@@ -369,3 +369,23 @@
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		H.say("LIGHTNINGBOLT!!", forced = "spell")
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
+	name = "Ground Smash"
+	desc = "Smash the ground to throw your enemies back!"
+	sound = 'sound/magic/Repulse.ogg'
+	charge_max = 150
+	clothes_req = FALSE
+	range = 1
+	cooldown_min = 150
+	invocation = "HULK SMASH!!"
+	action_icon_state = "green_hand"
+	action_background_icon_state = "bg_default"
+	animation = 0
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk/cast(list/targets,mob/user = usr)
+	var/turf/open/floor/T = get_turf(usr)
+	if(istype(T))
+		T.break_tile()
+	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, 1, 2)
+	..()

@@ -82,7 +82,7 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.dna.check_mutation(HULK))
+		if(H.dna.check_mutation(HULK) || H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(user, "<span class='warning'>Your fingers can't press the button!</span>")
 			return
 

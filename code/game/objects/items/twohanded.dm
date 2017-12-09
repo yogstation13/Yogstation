@@ -356,7 +356,7 @@
 
 /obj/item/twohanded/dualsaber/attack(mob/target, mob/living/carbon/human/user)
 	if(user.has_dna())
-		if(user.dna.check_mutation(HULK))
+		if(user.dna.check_mutation(HULK) || user.dna.check_mutation(ACTIVE_HULK))
 			to_chat(user, "<span class='warning'>You grip the blade too hard and accidentally close it!</span>")
 			unwield()
 			return
@@ -393,7 +393,7 @@
 
 /obj/item/twohanded/dualsaber/wield(mob/living/carbon/M) //Specific wield () hulk checks due to reflection chance for balance issues and switches hitsounds.
 	if(M.has_dna())
-		if(M.dna.check_mutation(HULK))
+		if(M.dna.check_mutation(HULK) || user.dna.check_mutation(ACTIVE_HULK))
 			to_chat(M, "<span class='warning'>You lack the grace to wield this!</span>")
 			return
 	..()

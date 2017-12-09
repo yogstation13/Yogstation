@@ -668,7 +668,7 @@
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air... which is a sensation you don't recognise...</span>")
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && dna.check_mutation(HULK))
+	if(dna && (dna.check_mutation(HULK) || dna.check_mutation(ACTIVE_HULK)))
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
 			dropItemToGround(I)
@@ -1025,8 +1025,12 @@
 	. *= physiology.do_after_speed
 
 /mob/living/carbon/human/updatehealth()
+	var/oldhealth = health
 	. = ..()
 	dna?.species.spec_updatehealth(src)
+	if(!dna)
+		return
+	hulk_health_check(oldhealth)
 
 /mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
@@ -1231,3 +1235,36 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/proc/hulk_health_check(oldhealth)
+	if(!dna) 
+		return
+
+	if(dna.check_mutation(ACTIVE_HULK))
+		if(health < HEALTH_THRESHOLD_CRIT)
+			dna.remove_mutation(ACTIVE_HULK)
+			return
+		if(health < oldhealth)
+			adjustStaminaLoss(-1.5 * (oldhealth - health))
+	else
+		if(!dna.check_mutation(HULK) && dna.check_mutation(GENETICS_HULK) && stat == CONSCIOUS && oldhealth >= health + 10)
+			dna.add_mutation(ACTIVE_HULK)
+
+/mob/living/carbon/human/proc/hulk_stamina_check()
+	if(dna.check_mutation(ACTIVE_HULK))
+		if(staminaloss < 60 && prob(1))
+			confused = 7
+			say("HULK SMASH!!")
+		if(staminaloss >= 90)
+			dna.remove_mutation(ACTIVE_HULK)
+			to_chat(src, "<span class='notice'>You have calm down enough to become human again.</span>")
+			Weaken(6)
+		return TRUE
+	else
+		return FALSE
+
+/mob/living/carbon/human/Bump(atom/movable/AM)
+	..()
+	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
+		Bumped(AM)
+		return AM.attack_hulk(src) 
