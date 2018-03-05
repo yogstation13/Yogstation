@@ -5,17 +5,11 @@
 
 ##Station shuttles
 #_maps/shuttles/emergency_birdboat.dmm
-#_maps/shuttles/emergency_box.dmm
-#_maps/shuttles/emergency_delta.dmm
-#_maps/shuttles/emergency_meta.dmm
-#_maps/shuttles/emergency_mini.dmm
-#_maps/shuttles/emergency_pubby.dmm
 
 ##Others
 #_maps/shuttles/emergency_asteroid.dmm
 #_maps/shuttles/emergency_airless.dmm
 #_maps/shuttles/emergency_arena.dmm
-#_maps/shuttles/emergency_bar.dmm
 #_maps/shuttles/emergency_clown.dmm
 #_maps/shuttles/emergency_cramped.dmm
 #_maps/shuttles/emergency_imfedupwiththisworld.dmm

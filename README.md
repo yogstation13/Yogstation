@@ -1,28 +1,25 @@
 ## /tg/station codebase
 
-[![Build Status](https://travis-ci.org/tgstation/tgstation.png)](https://travis-ci.org/tgstation/tgstation) [![Krihelimeter](https://www.krihelinator.xyz/badge/tgstation/tgstation)](https://www.krihelinator.xyz)  
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---2%25-red.svg)  
-[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+[![Build Status](https://travis-ci.org/yogstation/yogstation.png)](https://travis-ci.org/yogstation/yogstation)
+[![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-**Website:** https://www.tgstation13.org <BR>
-**Code:** https://github.com/tgstation/tgstation <BR>
-**Wiki** https://tgstation13.org/wiki/Main_Page <BR>
-**IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus).<BR>
+**Website:** https://yogstation.net <BR>
+**Code:** https://github.com/yogstation13/yogstation <BR>
+**Wiki:** https://wiki.yogstation.net <BR>
+**Discord:** https://discord.gg/0keg6hQH05Ha8OfO<BR>
 
  
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
+There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.yogstation.net/wiki/Downloading_the_source_code
 
 Option 1:
-Follow this: https://www.tgstation13.org/wiki/Setting_up_git
+Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/tgstation/tgstation
+code tab of https://github.com/yogstation13/tg-rebase
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
-
-Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightlies/ (same caveats as option 2)
 
 ## INSTALLATION
 
@@ -30,18 +27,18 @@ First-time installation should be fairly straightforward. First, you'll need
 BYOND installed. You can get it from https://www.byond.com/download. Once you've done
 that, extract the game files to wherever you want to keep them. This is a
 sourcecode-only release, so the next step is to compile the server files.
-Open tgstation.dme by double-clicking it, open the Build menu, and click
+Open yogstation.dme by double-clicking it, open the Build menu, and click
 compile. This'll take a little while, and if everything's done right you'll get
 a message like this:
 
 ```
-saving tgstation.dmb (DEBUG mode)
-tgstation.dmb - 0 errors, 0 warnings
+saving yogstation.dmb (DEBUG mode)
+yogstation.dmb - 0 errors, 0 warnings
 ```
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt
 download or the files extracted wrong. If problems persist, ask for assistance
-in irc://irc.rizon.net/coderbus
+in irc://irc.rizon.net/coderbus or on discord.
 
 Once that's done, open up the config folder. You'll want to edit config.txt to
 set the probabilities for different gamemodes in Secret and to set your server
