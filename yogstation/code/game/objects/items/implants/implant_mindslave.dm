@@ -67,21 +67,6 @@
 			target.visible_message("<span class='notice'>[target] looks like they have just been released from slavery!</span>", "<span class='boldnotice'>You feel as if you have just been released from eternal slavery. Yet you cant seem to remember anything at all!</span>")
 		return 1
 
-/obj/item/implant/mindslave/activate()
-	var/turf/T = get_turf(src.loc)
-
-	if (ismob(loc))
-		var/mob/M = loc
-		M << "<span class='danger'>Your master has decided to detonate you!</span>"
-
-	if(T)
-		T.hotspot_expose(1200,240)
-
-		explosion(T, 1, 2, 3, 3)
-
-	qdel(src)
-	return
-
 /obj/item/implanter/mindslave
 	name = "implanter (mindslave)"
 
