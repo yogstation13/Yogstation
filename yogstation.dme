@@ -2453,6 +2453,8 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "yogstation\code\game\objects\items\implants\implant_mindslave.dm"
 #include "yogstation\code\modules\clothing\clothing.dm"
 #include "yogstation\code\modules\spells\spells.dm"
+#include "yogstation\code\modules\uplink\uplink_items.dm"
 // END_INCLUDE

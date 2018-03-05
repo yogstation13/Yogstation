@@ -31,11 +31,11 @@
 		to_chat(holder, "<span class='warning'>[target] is already a slave!</span>")
 		return FALSE
 
-	if(isloyal(target))
+	if(target.isloyal())
 		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
 		return FALSE
 
-	if(target.mind.changeling)
+	if(target.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(holder, "<span class='warning'>[target]'s skin thickens where you try to inject them. Odd...</span>")
 		to_chat(target, "<span class='warning'>We instinctively prevent [holder]'s injector from penetrating our skin.</span>")
 		return FALSE
@@ -47,8 +47,8 @@
 	serve_objective.explanation_text = "Serve [holder.real_name] no matter what!"
 	serve_objective.completed = TRUE
 	source.mind.objectives = serve_objective
-	if(!ticker.mode.traitors.Find(source.mind))
-		ticker.mode.traitors = source.mind
+	if(!SSticker.mode.traitors.Find(source.mind))
+		SSticker.mode.traitors = source.mind
 
 	log_game("[holder.ckey] enslaved [target.ckey] with a Mindslave implant")
 
@@ -61,7 +61,7 @@
 			target.mind.objectives -= objective
 
 		if(target.mind.objectives.len == 0)
-			ticker.mode.traitors -= target.mind
+			SSticker.mode.traitors -= target.mind
 
 		if(target.stat != DEAD)
 			target.visible_message("<span class='notice'>[target] looks like they have just been released from slavery!</span>", "<span class='boldnotice'>You feel as if you have just been released from eternal slavery. Yet you cant seem to remember anything at all!</span>")
