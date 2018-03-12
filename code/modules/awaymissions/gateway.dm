@@ -156,10 +156,10 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W, mob/user, params)
 	if(istype(W, /obj/item/device/multitool))
 		if(calibrated)
-			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
+			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
 			return
 		else
-			to_chat(user, "<span class='boldnotice'>Recalibration successful!</span>: \black This gate's systems have been fine tuned.  Travel to this gate will now be on target.")
+			to_chat(user, "<span class='boldnotice'>Recalibration successful!</span>: <font color='black'>This gate's systems have been fine tuned.  Travel to this gate will now be on target.</font>")
 			calibrated = TRUE
 			return
 
@@ -201,7 +201,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 
 /obj/machinery/gateway/centeraway/proc/check_exile_implant(mob/living/L)
 	for(var/obj/item/implant/exile/E in L.implants)//Checking that there is an exile implant
-		to_chat(L, "\black The station gate has detected your exile implant and is blocking your entry.")
+		to_chat(L, "<font color='black'>The station gate has detected your exile implant and is blocking your entry.</font>")
 		return TRUE
 	return FALSE
 

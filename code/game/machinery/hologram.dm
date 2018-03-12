@@ -390,7 +390,7 @@ Possible to do for anyone motivated enough:
 
 	if(is_operational() && (!AI || AI.eyeobj.loc == loc))//If the projector has power and client eye is on it
 		if (AI && istype(AI.current, /obj/machinery/holopad))
-			to_chat(user, "<span class='danger'>ERROR:</span> \black Image feed in progress.")
+			to_chat(user, "<span class='danger'>ERROR:</span><font color='black'>Image feed in progress.</font>")
 			return
 
 		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.

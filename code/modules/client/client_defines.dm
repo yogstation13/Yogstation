@@ -64,6 +64,8 @@
 	var/list/topiclimiter
 
 	var/datum/chatOutput/chatOutput
+	// This gets set by goonchat.
+	var/encoding = "1252"
 
 	var/list/credits //lazy list of all credit object bound to this client
 

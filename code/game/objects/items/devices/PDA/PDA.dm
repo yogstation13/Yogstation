@@ -827,7 +827,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
 				if(C.radiation)
-					user.show_message("\green Radiation Level: \black [C.radiation]")
+					user.show_message("<font color='green'>Radiation Level: </font><font color='black'>[C.radiation]</font>")
 				else
 					user.show_message("<span class='notice'>No radiation detected.</span>")
 
