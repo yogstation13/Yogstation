@@ -18,6 +18,9 @@
 
 /obj/item/implant/mindshield/implant(mob/living/target, mob/user, silent = FALSE)
 	if(..())
+		var/obj/item/implant/mindslave/imp = locate(/obj/item/implant/mindslave) in target
+		if(imp)
+			imp.removed(target)
 		if(!target.mind)
 			return TRUE
 

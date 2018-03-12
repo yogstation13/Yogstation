@@ -190,6 +190,10 @@
 	..()
 	radio = new(src)
 
+/obj/item/cartridge/slavemaster
+	name = "\improper Slavemaster-2000 cartridge"
+	var/obj/item/implant/mindslave/imp = null
+
 /obj/item/cartridge/proc/post_status(command, data1, data2)
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
@@ -448,6 +452,15 @@ Code:
 				menu += "<li>#[SO.id] - [SO.pack.name] requested by [SO.orderer]</li>"
 			menu += "</ol><font size=\"-3\">Upgrade NOW to Space Parts & Space Vendors PLUS for full remote order control and inventory management."
 
+		if(48) //slavermaster2000
+			menu = "<h4><img src=pda_signaller.png> Slave Controller</h4>"
+
+			menu += "<BR><B>Available Slaves: </B><BR>"
+			if(src:imp.imp_in)
+				menu += "<ul><li>[src:imp.imp_in]<A href='byond://?src=\ref[src];choice=Detonate Slave'> *Detonate*</a></li></ul>"
+			else
+				menu += "No slaves detected."
+
 		if (49) //janitorial locator
 			menu = "<h4><img src=pda_bucket.png> Persistent Custodial Object Locator</h4>"
 
@@ -622,6 +635,15 @@ Code:
 			current_channel = host_pda.msg_input()
 			host_pda.Topic(null,list("choice"=num2text(host_pda.mode)))
 			return
+		if("Detonate Slave")
+			if(istype(src, /obj/item/cartridge/slavemaster))
+				if(src:imp)
+					if(ismob(src.loc))
+						var/mob/detonator = src.loc
+						if(ismob(src:imp.loc))
+							var/mob/detonated = src:imp.loc
+							log_game("[detonator.ckey]/([detonator] has detonated [detonated.ckey]/([detonated]) with a mindslave implant");
+					src:imp.activate()
 
 	//Bot control section! Viciously ripped from radios for being laggy and terrible.
 	if(href_list["op"])
