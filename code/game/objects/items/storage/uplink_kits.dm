@@ -309,6 +309,11 @@
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 
+/obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
+	var/obj/item/implanter/mindslave/M = new(src)
+	var/obj/item/cartridge/slavemaster/S = new(src)
+	S.imp = M.imp
+
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
