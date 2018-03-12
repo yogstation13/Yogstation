@@ -13,6 +13,7 @@
 #define CART_QUARTERMASTER	(1<<12)
 #define CART_HYDROPONICS	(1<<13)
 #define CART_DRONEPHONE	(1<<14)
+#define CART_MINDSLAVE (1<<15)
 
 
 /obj/item/cartridge
@@ -193,6 +194,8 @@
 /obj/item/cartridge/slavemaster
 	name = "\improper Slavemaster-2000 cartridge"
 	var/obj/item/implant/mindslave/imp = null
+	access = CART_MINDSLAVE
+
 
 /obj/item/cartridge/proc/post_status(command, data1, data2)
 

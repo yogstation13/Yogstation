@@ -310,8 +310,8 @@
 	new /obj/item/implanter/radio/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
-	new /obj/item/weapon/implanter/mindslave/M(src)
-	new /obj/item/weapon/cartridge/slavemaster/S(src)
+	var/obj/item/implanter/mindslave/M = new(src)
+	var/obj/item/cartridge/slavemaster/S = new(src)
 	S.imp = M.imp
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()

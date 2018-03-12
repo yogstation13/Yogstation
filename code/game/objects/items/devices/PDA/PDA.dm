@@ -259,22 +259,25 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if (cartridge)
 					if(cartridge.bot_access_flags)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=54'><img src=pda_medbot.png>Bots Access</a></li>"
-					if (cartridge.access & CART_JANITOR)
+					if(cartridge.access & CART_JANITOR)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=49'><img src=pda_bucket.png>Custodial Locator</a></li>"
-					if (istype(cartridge.radio))
+					if(istype(cartridge.radio))
 						dat += "<li><a href='byond://?src=[REF(src)];choice=40'><img src=pda_signaler.png>Signaler System</a></li>"
-					if (cartridge.access & CART_NEWSCASTER)
+					if(cartridge.access & CART_NEWSCASTER)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=53'><img src=pda_notes.png>Newscaster Access </a></li>"
-					if (cartridge.access & CART_REAGENT_SCANNER)
+					if(cartridge.access & CART_REAGENT_SCANNER)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Reagent Scan'><img src=pda_reagent.png>[scanmode == 3 ? "Disable" : "Enable"] Reagent Scanner</a></li>"
-					if (cartridge.access & CART_ENGINE)
+					if(cartridge.access & CART_ENGINE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Halogen Counter'><img src=pda_reagent.png>[scanmode == 4 ? "Disable" : "Enable"] Halogen Counter</a></li>"
-					if (cartridge.access & CART_ATMOS)
+					if(cartridge.access & CART_ATMOS)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Gas Scan'><img src=pda_reagent.png>[scanmode == 5 ? "Disable" : "Enable"] Gas Scanner</a></li>"
-					if (cartridge.access & CART_REMOTE_DOOR)
+					if(cartridge.access & CART_REMOTE_DOOR)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Toggle Door'><img src=pda_rdoor.png>Toggle Remote Door</a></li>"
-					if (cartridge.access & CART_DRONEPHONE)
+					if(cartridge.access & CART_DRONEPHONE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'><img src=pda_dronephone.png>Drone Phone</a></li>"
+					if(cartridge.access & CART_MINDSLAVE)
+						dat += "<li><a href='byond://?src=[REF(src)];choice=48'><img src=pda_signaler.png> Slavemaster 2000</a></li>"
+
 				dat += "<li><a href='byond://?src=[REF(src)];choice=3'><img src=pda_atmos.png>Atmospheric Scan</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'><img src=pda_flashlight.png>[fon ? "Disable" : "Enable"] Flashlight</a></li>"
 				if (pai)
