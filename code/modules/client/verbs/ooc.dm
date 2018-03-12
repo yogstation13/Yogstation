@@ -61,8 +61,9 @@
 		if(C.prefs.chat_toggles & CHAT_OOC)
 			if(holder)
 				if(!holder.fakekey || C.holder)
+					var/tag = "[find_admin_rank(src)]"
 					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span></font>")
+						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[tag] OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span></font>")
 					else
 						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span>")
 				else
@@ -292,3 +293,29 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 		to_chat(src, "You can't ignore yourself.")
 		return
 	ignore_key(selection)
+
+/client/proc/find_admin_rank(client)
+	var/client/C = client
+
+	switch(C.holder.rank.name)
+
+		if("CouncilMember")
+			return "\[Council\]"
+
+		if("Moderator")
+			return "\[Mod\]"
+
+		if("Administrator")
+			return "\[Admin\]"
+
+		if("ModeratorOnProbation")
+			return "\[ModOnProbation\]"
+
+		if("Bot")
+			return "\[YogBot\]"
+
+		if("RetiredAdmin")
+			return "\[Retmin\]"
+
+		else
+			return "\[[C.holder.rank.name]\]"
