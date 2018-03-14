@@ -53,7 +53,7 @@
 	if(..())
 		return
 	if(!is_station_level(z) && !is_centcom_level(z)) //Can only use on centcom and SS13
-		to_chat(usr, "<span class='boldannounce'>Unable to establish a connection</span>: \black You're too far away from the station!")
+		to_chat(usr, "<span class='boldannounce'>Unable to establish a connection</span>: <font color='black'>You're too far away from the station!</font>")
 		return
 	usr.set_machine(src)
 
@@ -432,7 +432,7 @@
 	if(..())
 		return
 	if (z > 6)
-		to_chat(user, "<span class='boldannounce'>Unable to establish a connection</span>: \black You're too far away from the station!")
+		to_chat(user, "<span class='boldannounce'>Unable to establish a connection</span>: <font color='black'>You're too far away from the station!</font>")
 		return
 
 	user.set_machine(src)

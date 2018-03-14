@@ -29,7 +29,7 @@
 
 /obj/machinery/computer/robotics/interact(mob/user)
 	if (src.z > 6)
-		to_chat(user, "<span class='boldannounce'>Unable to establish a connection</span>: \black You're too far away from the station!")
+		to_chat(user, "<span class='boldannounce'>Unable to establish a connection</span>: <font color='black'>You're too far away from the station!</font>")
 		return
 	user.set_machine(src)
 	var/dat
