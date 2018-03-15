@@ -4,7 +4,7 @@
 
 ## Why do we use it?
 
-To keep up-to-date with /tg/station while trying to avoid merge conflicts as much as possible, we modularize everything. This is the same method [HippieStation](https://github.com/yogsStation/yogsStation/tree/master/yogsstation) uses. The more code in the "yogstation" folder, the fewer conflicts will exist in future updates.
+To keep up-to-date with /tg/station while trying to avoid merge conflicts as much as possible, we modularize everything. This is the same method [HippieStation](https://github.com/HippieStation/HippieStation/tree/master/hippiestation) uses. The more code in the "yogstation" folder, the fewer conflicts will exist in future updates.
 
 ## What does it mean to modularize something?
 
