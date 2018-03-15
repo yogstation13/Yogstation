@@ -1,8 +1,4 @@
-[Round ID]: # (If you discovered this issue from playing tgstation hosted servers:)
-[Round ID]: # (**INCLUDE THE ROUND ID**)
-[Round ID]: # (It can be found in the Status panel or retrieved from https://atlantaned.space/statbus/round.php ! The round id let's us look up valuable information and logs for the round the bug happened.)
-
-[Testmerges]: # (If you believe the issue to be caused by a test merge [OOC tab -> Show Server Revision], report it in the pull request's comment section instead.)
+[Round ID]: # (Including the round helps a lot as it allows us to quickly find more information. It can be found in the Status panel.)
 
 [Reproduction]: # (Explain your issue in detail, including the steps to reproduce it. Issues without proper reproduction steps or explanation are open to being ignored/closed by maintainers.)
 
