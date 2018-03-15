@@ -2543,4 +2543,6 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "yogstation\code\modules\clothing\clothing.dm"
+#include "yogstation\code\modules\spells\spells.dm"
 // END_INCLUDE
