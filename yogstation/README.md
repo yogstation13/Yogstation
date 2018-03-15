@@ -61,4 +61,4 @@ New reagents should go inside "yogstation/code/modules/reagents/drug_reagents.dm
 
 ---
 
-### Thank you for following these rules! Please contact a maintainer if you have any questions about modular code or the "haven" folder.
+### Thank you for following these rules! Please contact a maintainer if you have any questions about modular code or the "yogstation" folder.
