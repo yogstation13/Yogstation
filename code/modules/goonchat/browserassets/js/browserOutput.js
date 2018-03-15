@@ -574,6 +574,14 @@ if (typeof $ === 'undefined') {
 }
 
 $(function() {
+	// yogs start - LibVG
+	// Detect encoding.
+	if (document.defaultCharset)
+	{
+		runByond("?_src_=chat&proc=encoding&encoding=" + escaper(document.defaultCharset));
+	}
+	// yogs end
+
 	$messages = $('#messages');
 	$subOptions = $('#subOptions');
 	$subAudio = $('#subAudio');
