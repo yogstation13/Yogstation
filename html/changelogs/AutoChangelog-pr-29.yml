@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Roundstart or latejoin sec officers will like donuts regardless of race."
