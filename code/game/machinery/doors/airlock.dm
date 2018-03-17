@@ -1081,11 +1081,11 @@
 		charge.ex_act(EXPLODE_DEVASTATE)
 		detonated = 1
 		charge = null
-		for(var/mob/living/carbon/human/H in orange(2,src))
+		for(var/mob/living/carbon/human/H in orange(1,src)) //yogs - balance change
 			H.Unconscious(160)
-			H.adjust_fire_stacks(20)
+			H.adjust_fire_stacks(1) //yogs - balance change
 			H.IgniteMob() //Guaranteed knockout and ignition for nearby people
-			H.apply_damage(40, BRUTE, "chest")
+			H.apply_damage(20, BRUTE, "chest") //yogs - balance change
 		return
 	if(forced < 2)
 		if(obj_flags & EMAGGED)
