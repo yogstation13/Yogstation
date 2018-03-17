@@ -107,6 +107,11 @@ SUBSYSTEM_DEF(job)
 		if(player.mind && job.title in player.mind.restricted_roles)
 			Debug("FOC incompatible with antagonist role, Player: [player]")
 			continue
+		// yogs start - Donor features, quiet round
+		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.toggles & QUIET_ROUND))
+			Debug("FOC quiet check failed, Player: [player]")
+			continue
+		// yogs end
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 			Debug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
@@ -415,6 +420,8 @@ SUBSYSTEM_DEF(job)
 	if(job && H)
 		job.after_spawn(H, M)
 
+	job.give_donor_stuff(H, M) // yogs - Donor Features
+	
 	return H
 
 
