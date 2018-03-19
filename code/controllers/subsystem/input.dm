@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 SUBSYSTEM_DEF(input)
 	name = "Input"
 	wait = 1 //SS_TICKER means this runs every tick
@@ -95,7 +96,7 @@ SUBSYSTEM_DEF(input)
 // For initially setting up or resetting to default the movement keys
 /datum/controller/subsystem/input/proc/setup_default_movement_keys()
 	var/static/list/default_movement_keys = list(
-		"Z" = NORTH, "Q" = WEST, "S" = SOUTH, "D" = EAST,				// WASD
+		"W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,				// WASD
 		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST,	// Arrow keys & Numpad
 		)
 
