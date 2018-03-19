@@ -117,6 +117,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
+	/client/proc/fix_air, //yogs - fix air verb
 	/client/proc/toggle_hub
 	)
 GLOBAL_PROTECT(admin_verbs_debug)
