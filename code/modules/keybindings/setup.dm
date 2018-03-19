@@ -33,7 +33,7 @@
 
 	erase_all_macros()
 
-	/*var/list/macro_sets = SSinput.macro_sets
+	var/list/macro_sets = SSinput.macro_sets
 	for(var/i in 1 to macro_sets.len)
 		var/setname = macro_sets[i]
 		if(setname != "default")
@@ -47,4 +47,4 @@
 	if(prefs.hotkeys)
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
 	else
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")*/
+		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")

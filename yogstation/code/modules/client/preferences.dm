@@ -1,2 +1,3 @@
 /datum/preferences 
-	var/list/movement_keys = list()
+	var/list/movement_keys
+	var/list/movement_keys_inv

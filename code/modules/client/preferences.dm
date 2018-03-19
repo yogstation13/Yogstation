@@ -503,9 +503,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</td></tr></table>"
 		// yogs start - Custom keybindings
 		if (2) // Keybindings
-			dat += "<b>North:</b> <a href='?_src_=prefs;preference=keybinding_north;task=input'>TODO</a><br>"
-		
-		
+			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a></center>"
+
+			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+			if(hotkeys)
+				dat += "<b>North:</b> <a href='?_src_=prefs;preference=keybinding_north;task=input'>[movement_keys_inv[num2text(NORTH)]]</a><br>"
+				dat += "<b>West:</b> <a href='?_src_=prefs;preference=keybinding_west;task=input'>[movement_keys_inv[num2text(WEST)]]</a><br>"
+				dat += "<b>South:</b> <a href='?_src_=prefs;preference=keybinding_south;task=input'>[movement_keys_inv[num2text(SOUTH)]]</a><br>"
+				dat += "<b>East:</b> <a href='?_src_=prefs;preference=keybinding_east;task=input'>[movement_keys_inv[num2text(EAST)]]</a><br>"
+				
+			dat += "</td></tr></table>"
 		// yogs end
 	dat += "<hr><center>"
 
@@ -1301,10 +1308,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pda_color = pickedPDAColor
 				// yogs start - Custom keybindings
 				if("keybinding_north")
-					var/keybind_north = input(user, "Enter north button", "Character Preference", "Y")  as text|null
-					if(keybind_north)
-						movement_keys -= NORTH
-						movement_keys[keybind_north] = NORTH
+					UPDATE_KEY("north", NORTH)
+				if("keybinding_west")
+					UPDATE_KEY("west", WEST)
+				if("keybinding_south")
+					UPDATE_KEY("south", SOUTH)
+				if("keybinding_east")
+					UPDATE_KEY("east", EAST)
 				// yogs end
 		else
 			switch(href_list["preference"])
