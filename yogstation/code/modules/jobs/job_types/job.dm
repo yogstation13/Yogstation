@@ -33,4 +33,5 @@
 		if(4)//rainbow
 			var/obj/item/device/pda/PDA = locate(/obj/item/device/pda) in H.GetAllContents()
 			if(PDA)
+				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-rainbow"
