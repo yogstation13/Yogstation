@@ -2552,6 +2552,7 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\client\verbs\ooc.dm"
 #include "yogstation\code\modules\clothing\clothing.dm"
 #include "yogstation\code\modules\libvg\utf8.dm"
