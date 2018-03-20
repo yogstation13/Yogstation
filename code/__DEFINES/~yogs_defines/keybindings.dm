@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 ))
 
 #define UPDATE_KEY(name, dir) \
-	if("keybinding_name") { \
+	if("keybinding_[name]") { \
 		var/keybind = input(user, "Select [name] button", "Keybinding Preference") as null|anything in GLOB.keybinding_validkeys; \
 		if(keybind) { \
 			var/cur_key = movement_keys_inv[num2text(dir)]; \
@@ -23,4 +23,4 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 	};
 
 #define BUTTON_KEY(name, id, dir) \
-	dat += "<b>name:</b> <a href='?_src_=prefs;preference=keybinding_[id];task=input'>[movement_keys_inv[num2text(dir)]]</a><br>";
+	dat += "<b>[name]:</b> <a href='?_src_=prefs;preference=keybinding_[id];task=input'>[movement_keys_inv[num2text(dir)]]</a><br>";
