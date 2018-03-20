@@ -2,7 +2,7 @@
 /datum/preferences/proc/load_keybindings(var/savefile/S)
 	S["movement_keys"] >> movement_keys
 	if(!movement_keys)
-		movement_keys = SSinput.default_movement_keys
+		movement_keys = SSinput.movement_default
 
 	movement_keys_inv = list()
 	for(var/K in movement_keys)

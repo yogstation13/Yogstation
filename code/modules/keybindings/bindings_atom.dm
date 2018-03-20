@@ -4,9 +4,9 @@
 /atom/movable/keyLoop(client/user)
 	if(!user.keys_held["Ctrl"])
 		var/movement_dir = NONE
-		var/list/keys = SSinput.default_arrowmovement_keys + user.prefs.movement_keys
+		var/list/keys = SSinput.movement_arrows + user.prefs.movement_keys
 		for(var/_key in user.keys_held)
-			movement_dir = movement_dir | keys[_key]
+			movement_dir |= keys[_key]
 		if(user.next_move_dir_add)
 			movement_dir |= user.next_move_dir_add
 		if(user.next_move_dir_sub)
