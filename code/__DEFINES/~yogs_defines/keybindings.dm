@@ -25,8 +25,9 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 	"X",
 	"Y",
 	"Z",
-	"Unbound", // this is broken fix me (:
+	"Unbound",
 ))
+// unbound is broken fix me (:
 
 #define BUTTON_KEY(name, id, dir) \
 	button = movement_keys_inv[num2text(dir)]; \
@@ -35,6 +36,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 		button_bound = FALSE; \
 	dat += "<b>[name]:</b> <a href='?_src_=prefs;preference=keybinding_[id];task=input' [button_bound ? "" : "style='color:red'"]>[button_bound ? button : "Unbound"]</a><br>";
 
+// "uh this looks retarded" - This is calculated when its changed to minimize lag caused by the input SS
 #define UPDATE_KEY(name, dir) \
 	if("keybinding_" + name) { \
 		var/keybind = input(user, "Select [name] button", "Keybinding Preference") as null|anything in GLOB.keybinding_validkeys; \
@@ -42,6 +44,6 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 			var/cur_key = movement_keys_inv[num2text(dir)]; \
 			movement_keys -= cur_key; \
 			movement_keys[keybind] = dir; \
-			refresh_keybindings(); \ // "uh this looks retarded" - This is calculated when its changed to minimize lag caused by the input SS
+			refresh_keybindings(); \
 		}; \
 	};
