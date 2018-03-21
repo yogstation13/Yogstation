@@ -507,6 +507,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			if(hotkeys)
+				var/button
+				var/button_bound
 				BUTTON_KEY("North (Up)", "north", NORTH)
 				BUTTON_KEY("West (Left)", "west", WEST)
 				BUTTON_KEY("South (Down)", "south", SOUTH)
@@ -1331,7 +1333,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
 					else
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 				if("action_buttons")

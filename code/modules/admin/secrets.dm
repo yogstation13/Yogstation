@@ -587,7 +587,7 @@
 			message_admins("[key_name_admin(usr)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
-		// yogs start - Custom keybings
+		// yogs start - Custom keybindings
 		/*if("flipmovement")
 			if(!check_rights(R_FUN))
 				return

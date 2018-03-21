@@ -4,6 +4,9 @@
 	if(!movement_keys)
 		movement_keys = SSinput.movement_default
 
+	refresh_keybindings()
+
+/datum/preferences/proc/refresh_keybindings()
 	movement_keys_inv = list()
 	for(var/K in movement_keys)
 		var/V = movement_keys[K]
