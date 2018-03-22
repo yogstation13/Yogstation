@@ -10,7 +10,10 @@ GLOBAL_LIST_INIT(command_positions, list(
 GLOBAL_LIST_INIT(engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
-	"Atmospheric Technician"))
+	// yogs start - Yog jobs
+	"Atmospheric Technician",
+	"Signal Technician"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
@@ -18,7 +21,12 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	"Medical Doctor",
 	"Geneticist",
 	"Virologist",
-	"Chemist"))
+	// yogs start - Yog jobs
+	"Chemist",
+	"Paramedic",
+	"Psychiatrist",
+	"Mining Medic"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(science_positions, list(
@@ -44,7 +52,11 @@ GLOBAL_LIST_INIT(civilian_positions, list(
 	"Chaplain",
 	"Clown",
 	"Mime",
-	"Assistant"))
+	// yogs start - Yog jobs
+	"Assistant",
+	"Clerk",
+	"Tourist"))
+	// yogs end
 
 
 GLOBAL_LIST_INIT(security_positions, list(
@@ -110,6 +122,13 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/static/regex/mine_expand = new("(?<!shaft )miner")
 	var/static/regex/chef_expand = new("chef")
 	var/static/regex/borg_expand = new("(?<!cy)borg")
+	// yogs start - Yog jobs
+	var/static/regex/tour_expand = new("tourist")
+	var/static/regex/mm_expand = new("mining medic")
+	var/static/regex/psych_expand = new("psychiatrist")
+	var/static/regex/clerk_expand = new("clerk")
+	var/static/regex/para_expand = new("paramedic")
+	// yogs end
 
 	job = lowertext(job)
 	job = cap_expand.Replace(job, "captain")
@@ -126,4 +145,11 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = mine_expand.Replace(job, "shaft miner")
 	job = chef_expand.Replace(job, "cook")
 	job = borg_expand.Replace(job, "cyborg")
+	// yogs start - Yog jobs
+	job = tour_expand.Replace(job, "tourist")
+	job = mm_expand.Replace(job, "mining medic")
+	job = psych_expand.Replace(job, "psychiatrist")
+	job = clerk_expand.Replace(job, "clerk")
+	job = para_expand.Replace(job, "paramedic")
+	// yogs end
 	return job
