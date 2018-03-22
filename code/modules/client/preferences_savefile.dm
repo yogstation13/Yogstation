@@ -103,6 +103,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
 
+	// yogs start - Donor features
+	S["donor_pda"]			>> donor_pda
+	S["donor_hat"]          >> donor_hat
+	S["purrbation"]			>> purrbation
+	// yogs end
+
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -128,6 +134,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(MONO, VT, SHARE, ORBITRON)
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+
+	// yogs start - Donor features
+	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
+	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
+	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
+	// yogs end
 
 	return 1
 
@@ -170,6 +182,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	
+	// yogs start - Donor features
+	WRITE_FILE(S["donor_pda"], donor_pda)
+	WRITE_FILE(S["donor_hat"], donor_hat)
+	WRITE_FILE(S["purrbation"], purrbation)
+	// yogs end
 
 	return 1
 

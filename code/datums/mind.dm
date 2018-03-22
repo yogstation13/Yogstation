@@ -653,6 +653,13 @@
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
+	
+	// yogs start - Donor features, quiet round
+	else if (href_list["quiet_override"])
+		quiet_round = FALSE
+		message_admins("[key_name_admin(usr)] has disabled [current]'s quiet round mode.")
+		log_admin("[key_name(usr)] has disabled [current]'s quiet round mode.")
+	// yogs end
 
 	//Something in here might have changed your mob
 	if(self_antagging && (!usr || !usr.client) && current.client)
@@ -679,10 +686,18 @@
 	qdel(find_syndicate_uplink())
 
 /datum/mind/proc/make_Traitor()
+	// yogs start - Donor features, quiet round
+	if(quiet_round)
+		return
+	// yogs end
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
 /datum/mind/proc/make_Changling()
+	// yogs start - Donor features, quiet round
+	if(quiet_round)
+		return
+	// yogs end
 	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
 	if(!C)
 		C = add_antag_datum(/datum/antagonist/changeling)
@@ -690,6 +705,10 @@
 	return C
 
 /datum/mind/proc/make_Wizard()
+	// yogs start - Donor features, quiet round
+	if(quiet_round)
+		return
+	// yogs end
 	if(!has_antag_datum(/datum/antagonist/wizard))
 		special_role = ROLE_WIZARD
 		assigned_role = ROLE_WIZARD
@@ -697,6 +716,10 @@
 
 
 /datum/mind/proc/make_Cultist()
+	// yogs start - Donor features, quiet round
+	if(quiet_round)
+		return
+	// yogs end
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
 		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
 		special_role = ROLE_CULTIST
@@ -704,6 +727,10 @@
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new bretheren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
 
 /datum/mind/proc/make_Rev()
+	// yogs start - Donor features, quiet round
+	if(quiet_round)
+		return
+	// yogs end
 	var/datum/antagonist/rev/head/head = new()
 	head.give_flash = TRUE
 	head.give_hud = TRUE
