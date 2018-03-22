@@ -327,6 +327,7 @@
 	SSjob.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
+	character.mind.quiet_round = character.client.prefs.toggles & QUIET_ROUND // yogs - Donor Features
 	var/equip = SSjob.EquipRank(character, rank, 1)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
@@ -364,7 +365,7 @@
 
 	GLOB.joined_player_list += character.ckey
 
-	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc)	//Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
+	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc && !character.mind.quiet_round)	//Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais. // yogs - Donor Features
 		if(SSshuttle.emergency)
 			switch(SSshuttle.emergency.mode)
 				if(SHUTTLE_RECALL, SHUTTLE_IDLE)

@@ -130,9 +130,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
-			unlock_content = C.IsByondMember()
+			unlock_content |= C.IsByondMember() // yogs - Donor features
 			if(unlock_content)
 				max_save_slots = 8
+			// yogs start - Donor features
+			else if(is_donator(C))
+				max_save_slots = DONOR_CHARACTER_SLOTS
+			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if(load_character())
@@ -155,6 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a> "
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -496,10 +501,38 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 					if(days_remaining)
 						dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
+					// yogs start - Donor features
+					else if(src.toggles & QUIET_ROUND)
+						dat += "<b>Be [capitalize(i)]:</b> <font color=blue><b>\[QUIET ROUND\]</b></font><br>"
+					// yogs end
 					else
 						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Yes" : "No"]</a><br>"
 
+			// yogs start - Donor features
+			if(is_donator(user.client))
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+			// yogs end
 			dat += "</td></tr></table>"
+
+		// yogs start - Donor features
+		if (2) //Donator preferences
+			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
+			dat += "<h2>Donator Preferences</h2>"
+			if(is_donator(user.client))
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Fancy Hat:</b> "
+				var/type = donor_hat ? donor_start_items[donor_hat] : null
+				var/temp_hat = donor_hat ? (new type()) : "None selected"
+				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
+				if(donor_hat)
+					qdel(temp_hat)
+				dat += "<b>Fancy PDA:</b> "
+				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
+				dat += "<b>Purrbation (Humans only)</b> "
+				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
+			else
+				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+		// yogs end
 
 	dat += "<hr><center>"
 
@@ -572,6 +605,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if((job_civilian_low & ASSISTANT) && (rank != "Assistant") && !jobban_isbanned(user, "Assistant"))
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
+			// yogs start - Donor features, quiet round
+			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.toggles & QUIET_ROUND))
+				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
+				continue
+			// yogs end
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
@@ -851,6 +889,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			text += ".</span>"
 			to_chat(user, text)
 		return
+	// yogs start - Donor features
+	if(href_list["preference"] == "donor")
+		if(is_donator(user))
+			switch(href_list["task"])
+				if("hat")
+					var/item = input(usr, "What would you like to start with?","Donator fun","Nothing") as null|anything in donor_start_items
+					if(item)
+						donor_hat = donor_start_items.Find(item)
+					else
+						donor_hat = 0
+				if("quiet_round")
+					toggles ^= QUIET_ROUND
+				if("pda")
+					donor_pda = donor_pda % donor_pdas.len + 1
+				if("purrbation")
+					purrbation = !purrbation
+		else
+			message_admins("EXPLOIT \[donor\]: [user] tried to access donor only functions (as a non-donor). Attempt made on \"[href_list["preference"]]\" -> \"[href_list["task"]]\".")
+	// yogs end
 
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
