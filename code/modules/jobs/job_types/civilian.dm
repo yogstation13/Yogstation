@@ -109,8 +109,13 @@ Mime
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall(null))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/mime(null)) // yogs - Yog jobs
 		H.mind.miming = 1
 
+	// yogs start - Yog jobs
+	H.rename_self("mime")
+	log_game("[H.real_name]/[H.ckey] joined the round as [H.job].")
+	// yogs end
 /*
 Curator
 */
@@ -201,3 +206,65 @@ Lawyer
 	if(J.lawyers>1)
 		uniform = /obj/item/clothing/under/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
+
+// yogs start - Yogs jobs
+/*
+Tourist
+*/
+/datum/job/tourist
+	title = "Tourist"
+	flag = TOUR
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = -1
+	spawn_positions = 0
+	supervisors = "the head of personnel"
+	selection_color = "#dddddd"
+	access = list()
+	minimal_access = list()
+
+	outfit = /datum/outfit/job/tourist
+
+/datum/outfit/job/tourist
+	name = "Tourist"
+	jobtype = /datum/job/tourist
+
+	uniform = /obj/item/clothing/under/yogs/tourist
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	ears = /obj/item/device/radio/headset
+	belt = /obj/item/device/pda
+	backpack_contents = list(/obj/item/device/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
+	r_hand =  /obj/item/device/camera
+	l_pocket = /obj/item/device/camera_film
+	r_pocket = /obj/item/device/camera_film
+
+
+
+/*
+Clerk
+*/
+/datum/job/clerk
+	title = "Clerk"
+	flag = CLERK
+	department_head = list("Head of Personnel")
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the head of personnel"
+	selection_color = "#dddddd"
+	access = list(ACCESS_MANUFACTURING)
+	minimal_access = list(ACCESS_MANUFACTURING)
+
+	outfit = /datum/outfit/job/clerk
+
+/datum/outfit/job/clerk
+	name = "Clerk"
+	jobtype = /datum/job/clerk
+
+	belt = /obj/item/device/pda
+	ears = /obj/item/device/radio/headset/headset_srv
+	uniform = /obj/item/clothing/under/yogs/rank/clerk
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	head = /obj/item/clothing/head/yogs/clerkcap
+// yogs end

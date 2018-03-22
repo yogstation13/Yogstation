@@ -193,3 +193,105 @@ Virologist
 	backpack = /obj/item/storage/backpack/virology
 	satchel = /obj/item/storage/backpack/satchel/vir
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
+
+// yogs start - Yogs jobs
+/*
+Mining Medic
+*/
+/datum/job/miningmedic
+	title = "Mining Medic"
+	flag = MMEDIC
+	department_head = list("Chief Medical Officer")
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the chief medical officer and the quartermaster"
+	selection_color = "#ffeef0"
+
+	outfit = /datum/outfit/job/miningmedic
+
+
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CARGO, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+
+/datum/outfit/job/miningmedic
+	name = "Mining Medic"
+	jobtype = /datum/job/miningmedic
+
+	backpack_contents = list(/obj/item/roller = 1,\
+		/obj/item/kitchen/knife/combat/survival = 1,\
+		/obj/item/device/gps/mining = 1)
+	belt = /obj/item/storage/belt/mining/medical
+	ears = /obj/item/device/radio/headset/headset_medcargo
+	shoes = /obj/item/clothing/shoes/workboots/mining
+	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
+	l_hand = /obj/item/storage/firstaid/regular
+	l_pocket =  /obj/item/device/pda/medical
+	gloves = /obj/item/clothing/gloves/color/latex
+	mask = /obj/item/clothing/mask/surgical
+
+/*
+Paramedic
+*/
+/datum/job/paramedic
+	title = "Paramedic"
+	flag = PARAMEDIC
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 3
+	spawn_positions = 2
+	supervisors = "the chief medical officer"
+	selection_color = "#ffeef0"
+
+
+	outfit = /datum/outfit/job/paramedic
+
+
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_CLONING)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC)
+
+/datum/outfit/job/paramedic
+	name = "Paramedic"
+	jobtype = /datum/job/paramedic
+
+	backpack_contents = list(/obj/item/storage/firstaid/regular)
+	belt = /obj/item/device/pda/para
+	ears = /obj/item/device/radio/headset/headset_med
+	uniform = /obj/item/clothing/under/rank/medical
+	suit = /obj/item/clothing/suit/toggle/labcoat/emt
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	l_hand = /obj/item/roller
+	l_pocket = /obj/item/device/flashlight
+	r_pocket = /obj/item/device/gps
+
+
+/*
+Psychiatrist
+*/
+/datum/job/psych
+	title = "Psychiatrist"
+	flag = PSYCH
+	department_flag = MEDSCI
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the chief medical officer"
+	selection_color = "#ffeef0"
+
+	outfit = /datum/outfit/job/psych
+
+	access = list(ACCESS_MEDICAL)
+	minimal_access = list(ACCESS_MEDICAL)
+
+/datum/outfit/job/psych
+	name = "Psych"
+	jobtype = /datum/job/psych
+
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	uniform = /obj/item/clothing/under/suit_jacket/burgundy
+	l_hand = /obj/item/storage/briefcase
+	glasses = /obj/item/clothing/glasses/regular
+	belt = /obj/item/device/pda
+	ears = /obj/item/device/radio/headset/headset_med
+// yogs end
