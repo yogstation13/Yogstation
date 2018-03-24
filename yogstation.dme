@@ -2607,6 +2607,7 @@
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
+#include "yogstation\code\modules\admin\prettyfilter.dm"
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\client\preferences.dm"
 #include "yogstation\code\modules\client\verbs\ooc.dm"
