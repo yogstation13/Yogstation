@@ -29,7 +29,7 @@
 	if(!msg)
 		return
 
-	msg = pretty_filter(msg)
+	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
 	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
