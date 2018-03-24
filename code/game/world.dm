@@ -32,7 +32,7 @@ GLOBAL_PROTECT(security_mode)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 	LoadBans()
-	setup_pretty_filter()
+	setup_pretty_filter() //yogs
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
