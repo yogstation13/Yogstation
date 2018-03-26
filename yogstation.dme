@@ -2601,7 +2601,9 @@
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
 #include "yogstation\code\__HELPERS\mobs.dm"
+#include "yogstation\code\__HELPERS\projectile_data.dm"
 #include "yogstation\code\datums\mind.dm"
+#include "yogstation\code\game\machinery\computer\computer_circuitboards.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\cart.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA_types.dm"
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
@@ -2623,5 +2625,7 @@
 #include "yogstation\code\modules\libvg\utf8.dm"
 #include "yogstation\code\modules\spells\spells.dm"
 #include "yogstation\code\modules\spells\spell_types\mime.dm"
+#include "yogstation\code\modules\telesci\telepad.dm"
+#include "yogstation\code\modules\telesci\telesci_computer.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 // END_INCLUDE
