@@ -11,7 +11,7 @@
 	// VARIABLES //
 	var/teles_left	// How many teleports left until it becomes uncalibrated
 	var/datum/projectile_data/last_tele_data = null
-	var/z_co = 1
+	var/z_co = 2
 	var/power_off
 	var/rotation_off
 	//var/angle_off
@@ -259,6 +259,7 @@
 			log_msg += " [sending ? "to" : "from"] [trueX], [trueY], [z_co] ([A ? A.name : "null area"])"
 			investigate_log(log_msg, "telesci")
 			updateDialog()
+			interact(user)
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
 	if(rotation == null || angle == null || z_co == null)
@@ -354,7 +355,8 @@
 		eject()
 		temp_msg = "NOTICE:<BR>Bluespace crystals ejected."
 
-	updateDialog()
+	updateUsrDialog()
+	interact(usr) //shitcode
 
 /obj/machinery/computer/telescience/proc/recalibrate()
 	teles_left = rand(30, 40)
