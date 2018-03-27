@@ -11,16 +11,12 @@
 
 #AsV9
 
-/code/__DEFINES/MC.dm @AsV9
-/code/controllers/master.dm @AsV9
 /yogstation/code/modules/telesci/ @AsV9
 
 #ThatLing
 
-/code/__DEFINES/MC.dm @ThatLing
 /code/__DEFINES/tick.dm @ThatLing
 /code/controllers/admin.dm @ThatLing
-/code/controllers/master.dm @ThatLing
 /code/controllers/failsafe.dm @ThatLing
 /code/controllers/subsystem.dm @ThatLing
 /code/controllers/subsystem/ @ThatLing
@@ -32,3 +28,8 @@
 /code/datums/shuttles.dm @Nichlas0010
 /code/controllers/subsystem/shuttle.dm @Nichlas0010
 /_maps/shuttles/ @Nichlas0010
+
+#Multiple Owners
+
+/code/__DEFINES/MC.dm @AsV9 @ThatLing
+/code/controllers/master.dm @AsV9 @ThatLing
