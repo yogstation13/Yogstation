@@ -69,7 +69,7 @@
 		if(anchored)
 			anchored = FALSE
 			to_chat(user, "<span class='caution'>\The [src] can now be moved.</span>")
-		else if(!anchored)
+		else
 			anchored = TRUE
 			to_chat(user, "<span class='caution'>\The [src] is now secured.</span>")
 	else if(istype(W, /obj/item/screwdriver))
