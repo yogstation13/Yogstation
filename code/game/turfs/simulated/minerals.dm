@@ -433,6 +433,7 @@
 	var/mutable_appearance/activated_overlay
 
 /turf/closed/mineral/gibtonite/Initialize()
+	scan_state = pick("rock_Uranium", "rock_Gold", "rock_Diamond", "rock_Silver", "rock_Plasma", "rock_BScrystal", "rock_Titanium", "rock_Iron", "rock_Gibtonite") //YOGS - stealth gibtonite, hides it as another mineral
 	det_time = rand(8,10) //So you don't know exactly when the hot potato will explode
 	. = ..()
 
