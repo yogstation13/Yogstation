@@ -9,6 +9,11 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
+#AsV9
+
+/code/__DEFINES/MC.dm @AsV9
+/code/controllers/master.dm @AsV9
+/yogstation/code/modules/telesci/ @AsV9
 
 #ThatLing
 
