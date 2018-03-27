@@ -82,7 +82,7 @@
 		return ..()
 
 /obj/machinery/computer/telescience/attack_ai(mob/user)
-	src.attack_hand(user)
+	attack_hand(user)
 
 /obj/machinery/computer/telescience/attack_hand(mob/user)
 	if(..())
@@ -109,7 +109,8 @@
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 
-		for(var/i = 1; i <= power_options.len; i++)
+		for(var/i = 1 in (1 to power_options.len))
+			i++
 			if(crystals.len + telepad.efficiency  < i)
 				t += "<span class='linkOff'>[power_options[i]]</span>"
 				continue
@@ -289,7 +290,7 @@
 	for(var/obj/item/I in crystals)
 		I.loc = src.loc
 		crystals -= I
-	power = 0
+	power = FALSE
 
 /obj/machinery/computer/telescience/Topic(href, href_list)
 	if(..())

@@ -57,32 +57,31 @@
 	desc = "A telepad used by the Rapid Crate Sender."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 20
 	active_power_usage = 500
-	var/stage = 0
+	var/stage = FALSE
 
 /obj/machinery/telepad_cargo/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/wrench))
-		anchored = 0
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			to_chat(user, "<span class='caution'>\The [src] can now be moved.</span>")
 		else if(!anchored)
-			anchored = 1
+			anchored = TRUE
 			to_chat(user, "<span class='caution'>\The [src] is now secured.</span>")
 	else if(istype(W, /obj/item/screwdriver))
-		if(stage == 0)
+		if(!stage)
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='caution'>You unscrew the telepad's tracking beacon.</span>")
-			stage = 1
-		else if(stage == 1)
+			stage = TRUE
+		else
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='caution'>You screw in the telepad's tracking beacon.</span>")
-			stage = 0
-	else if(istype(W, /obj/item/weldingtool) && stage == 1)
+			stage = FALSE
+	else if(istype(W, /obj/item/weldingtool) && stage)
 		var/obj/item/weldingtool/WT = W
 		if(WT.use(2))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
