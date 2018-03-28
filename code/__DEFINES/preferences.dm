@@ -14,7 +14,8 @@
 #define SOUND_ANNOUNCEMENTS 2048
 #define DISABLE_DEATHRATTLE 4096
 #define DISABLE_ARRIVALRATTLE 8192
-#define QUIET_ROUND 16384 // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
+#define COMBOHUD_LIGHTING 16384
+#define QUIET_ROUND 32768 // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS)
 
