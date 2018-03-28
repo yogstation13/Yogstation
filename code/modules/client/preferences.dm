@@ -162,11 +162,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
-<<<<<<< HEAD
-	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
-=======
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
->>>>>>> ece7616f3b... Merge pull request #36558 from ShizCalev/player-pref-panel-revamp
+	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -568,28 +565,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 			// yogs end
 			dat += "</td></tr></table>"
-
-<<<<<<< HEAD
-		// yogs start - Donor features
-		if (2) //Donator preferences
-			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
-			dat += "<h2>Donator Preferences</h2>"
-			if(is_donator(user.client))
-				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
-				dat += "<b>Fancy Hat:</b> "
-				var/type = donor_hat ? donor_start_items[donor_hat] : null
-				var/temp_hat = donor_hat ? (new type()) : "None selected"
-				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
-				if(donor_hat)
-					qdel(temp_hat)
-				dat += "<b>Fancy PDA:</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
-				dat += "<b>Purrbation (Humans only)</b> "
-				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
-			else
-				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
-		// yogs end
-=======
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
@@ -624,7 +599,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
->>>>>>> ece7616f3b... Merge pull request #36558 from ShizCalev/player-pref-panel-revamp
+		// yogs start - Donor features
+		if (3) //Donator preferences
+			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
+			dat += "<h2>Donator Preferences</h2>"
+			if(is_donator(user.client))
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Fancy Hat:</b> "
+				var/type = donor_hat ? donor_start_items[donor_hat] : null
+				var/temp_hat = donor_hat ? (new type()) : "None selected"
+				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
+				if(donor_hat)
+					qdel(temp_hat)
+				dat += "<b>Fancy PDA:</b> "
+				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
+				dat += "<b>Purrbation (Humans only)</b> "
+				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
+			else
+				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+		// yogs end
 
 	dat += "<hr><center>"
 
