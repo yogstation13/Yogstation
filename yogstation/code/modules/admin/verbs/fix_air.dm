@@ -15,15 +15,6 @@
 			if(F.blocks_air)
 			//skip walls
 				continue
-			if(istype(F, /turf/open/floor/plasteel/airless) || istype(F, /turf/open/floor/engine/vacuum) || istype(F, /turf/open/floor/plating/airless) || istype(F, /turf/open/floor/engine/n2o) || istype(F, /turf/open/floor/mech_bay_recharge_floor/airless) || istype(F, /turf/open/floor/engine/airless))
-			//skip some special turf types
-				continue
-			if(istype(F.loc, /area/science/server) || istype(F.loc, /area/tcommsat/server))
-			//skip superchilled rooms
-				continue
-			if(istype(F, /turf/open/floor/engine) && istype(F.loc, /area/engine/atmos))
-			//skip atmos tanks
-				continue
 			GM.parse_gas_string(F.initial_gas_mix)
 			F.copy_air(GM)
 			F.update_visuals()
