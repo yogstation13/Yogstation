@@ -114,13 +114,22 @@
 	throwforce = 18
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
+	//YOG start - toolspeed
+	var/obj/item/I
 	new /obj/item/screwdriver/nuke(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool/largetank(src)
-	new /obj/item/crowbar/red(src)
-	new /obj/item/wirecutters(src, "red")
-	new /obj/item/device/multitool(src)
-	new /obj/item/clothing/gloves/combat(src)
+	I = new /obj/item/wrench(src)
+	I.toolspeed = 0.5
+	I = new /obj/item/weldingtool/largetank(src)
+	I.toolspeed = 0.5
+	I = new /obj/item/crowbar/red(src)
+	I.toolspeed = 0.5
+	I = new /obj/item/wirecutters(src, "red")
+	I.toolspeed = 0.5
+	I = new /obj/item/device/multitool(src)
+	I.toolspeed = 0.5
+	I = new /obj/item/clothing/gloves/combat(src)
+	I.toolspeed = 0.5
+	//YOGS end - toolspeed
 
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
