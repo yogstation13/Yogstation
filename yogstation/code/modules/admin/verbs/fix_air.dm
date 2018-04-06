@@ -11,7 +11,6 @@
 		message_admins("[key_name_admin(usr)] fixed air with range [range] in area [T.loc.name]")
 		log_game("[key_name_admin(usr)] fixed air with range [range] in area [T.loc.name]")
 		var/datum/gas_mixture/GM = new
-		GM.parse_gas_string("o2=22;n2=82;TEMP=293.15")
 		for(var/turf/open/F in range(range,T))
 			if(F.blocks_air)
 			//skip walls
@@ -25,5 +24,6 @@
 			if(istype(F, /turf/open/floor/engine) && istype(F.loc, /area/engine/atmos))
 			//skip atmos tanks
 				continue
+			GM.parse_gas_string(F.initial_gas_mix)
 			F.copy_air(GM)
 			F.update_visuals()
