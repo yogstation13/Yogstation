@@ -114,7 +114,7 @@
 	throwforce = 18
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
-	//YOG start - toolspeed
+	//YOGS start - toolspeed
 	var/obj/item/I
 	new /obj/item/screwdriver/nuke(src)
 	I = new /obj/item/wrench(src)
