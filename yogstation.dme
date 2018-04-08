@@ -2606,6 +2606,7 @@
 #include "yogstation\code\__HELPERS\projectile_data.dm"
 #include "yogstation\code\datums\mind.dm"
 #include "yogstation\code\game\machinery\computer\computer_circuitboards.dm"
+#include "yogstation\code\game\objects\effects\landmarks.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\cart.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA_types.dm"
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
