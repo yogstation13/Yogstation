@@ -82,12 +82,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 //	var/list/dat = list("<html><head><title>[title]</title></head>")
 	var/list/dat = list(get_html("Admin Tickets", "", ""))
-//	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_action=switchTicketMode'>Switch ticket list</A>"
-//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_ACTIVE]'>Switch ticket list</A>"
-//	GLOB.ahelp_tickets.BrowseTickets(browse_to)
-//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_ACTIVE]'>Active tickets</A><br><br>"
-//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_CLOSED]'>Closed Tickets</A><br><br>"
-//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_RESOLVED]'>Resolved Tickets</A><br><br>"
 	var/total
 	if(resolved_tickets.len == 0)
 		if(active_tickets.len)
