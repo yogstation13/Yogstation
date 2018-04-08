@@ -82,7 +82,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 //	var/list/dat = list("<html><head><title>[title]</title></head>")
 	var/list/dat = list(get_html("Admin Tickets", "", ""))
-	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh list</A>"
 //	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_action=switchTicketMode'>Switch ticket list</A>"
 //	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_ACTIVE]'>Switch ticket list</A>"
 //	GLOB.ahelp_tickets.BrowseTickets(browse_to)
@@ -98,6 +97,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else
 		total = "[active_tickets.len / resolved_tickets.len]"
 	dat += "<span class='adminnotice'><span class='adminhelp'><font color='red'><b>Unresolved Tickets ( [total] )</span></font></b><br>"
+	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh list</A>"
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
 		dat += "<span class='adminnotice'><span class='adminhelp'>Owner:<A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]:</A> [AH.name]</span>: #[AH.id]</span><br>"
