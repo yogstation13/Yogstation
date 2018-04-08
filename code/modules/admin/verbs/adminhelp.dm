@@ -421,7 +421,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			dat += "CLOSED"
 		else
 			dat += "UNKNOWN"
-	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Rename Ticket", ref_src, "retitle")]"
+	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Rename Ticket", ref_src, "retitle")] <br>"
 	if(initiator)
 		dat += "[FullMonty(ref_src)]<br>" //Remove brackets BLS
 	else
