@@ -154,7 +154,7 @@
 				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [keywordparsedmsg]</font>")
 
 				//omg this is dumb, just fill in both their tickets
-				var/interaction_message = "<font color='purple'><b>[key_name(src, recipient)]</b> -><b>[key_name(recipient, src)]</b>:[keywordparsedmsg]</font>"
+				var/interaction_message = "<font color='red'><b>[key_name(src, recipient)]</b> -><b>[key_name(recipient, src)]</b>:[keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, interaction_message)
