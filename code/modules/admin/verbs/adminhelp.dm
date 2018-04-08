@@ -64,9 +64,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	ticket_list += new_ticket
 
 //opens the ticket listings for one of the 3 states
-/datum/admin_help_tickets/proc/BrowseTickets(state)
-	var/list/l2b
+/datum/admin_help_tickets/proc/BrowseTickets(state) //This is the golden goose of getting tickets to look nice
+//	var/html = get_html("Admin Tickets", "", "", var/content)
 	var/title
+	var/list/l2b
 	switch(state)
 		if(AHELP_ACTIVE)
 			l2b = active_tickets
@@ -79,13 +80,29 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			title = "Resolved Tickets"
 	if(!l2b)
 		return
-	var/list/dat = list("<html><head><title>[title]</title></head>")
-	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
+//	var/list/dat = list("<html><head><title>[title]</title></head>")
+	var/list/dat = list(get_html("Admin Tickets", "", ""))
+	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh list</A>"
+//	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_action=switchTicketMode'>Switch ticket list</A>"
+//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_ACTIVE]'>Switch ticket list</A>"
+//	GLOB.ahelp_tickets.BrowseTickets(browse_to)
+//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_ACTIVE]'>Active tickets</A><br><br>"
+//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_CLOSED]'>Closed Tickets</A><br><br>"
+//	dat += "<A href='?_src_=holder;[HrefToken()];GLOB.ahelp_tickets.BrowseTickets=[AHELP_RESOLVED]'>Resolved Tickets</A><br><br>"
+	var/total
+	if(resolved_tickets.len == 0)
+		if(active_tickets.len)
+			total = "[active_tickets.len] / 1" //To avoid a runtime
+		else
+			total = "0 / 0"
+	else
+		total = "[active_tickets.len / resolved_tickets.len]"
+	dat += "<span class='adminnotice'><span class='adminhelp'><font color='red'><b>Unresolved Tickets ( [total] )</span></font></b><br>"
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
-		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[AH.id]</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
-
-	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
+		dat += "<span class='adminnotice'><span class='adminhelp'>Owner:<A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]:</A> [AH.name]</span>: #[AH.id]</span><br>"
+		dat += "[AH.FullMonty(REF(AH))]<br>"
+	usr << browse(dat.Join(), "window=ahelp_list[state];size=400x480")
 
 //Tickets statpanel
 /datum/admin_help_tickets/proc/stat_entry()
@@ -222,7 +239,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	initiator.adminhelptimerid = addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 1200, TIMER_STOPPABLE) //2 minute cooldown of admin helps
 
 //private
-/datum/admin_help/proc/FullMonty(ref_src)
+/datum/admin_help/proc/FullMonty(ref_src)//Whoever called it this can go die :)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
 	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
@@ -230,13 +247,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		. += ClosureLinks(ref_src)
 
 //private
-/datum/admin_help/proc/ClosureLinks(ref_src)
+/datum/admin_help/proc/ClosureLinks(ref_src) //Extra buttons be here
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJT</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>)"
+	. = " <A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJT</A>" //The brackets looed ugly as shit
+	. += " <A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>"
+	. += " <A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>"
+	. += " <A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>"
+
+//"[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)] [ADMIN_INDIVIDUALLOG(user)] [ADMIN_SMITE(user)]"
+
 
 //private
 /datum/admin_help/proc/LinkedReplyName(ref_src)
@@ -384,35 +404,34 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
-	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
+//	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
+	var/list/dat = list(get_html("Ticket Log Viewer", "", ""))
 	var/ref_src = "[REF(src)]"
-	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
-	dat += "<b>State: "
+	dat += "<h4>Ticket#[id]</h4>"
+	dat += "[LinkedReplyName(ref_src)]"
+//	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"  These are clutter, IMO
+//	if(closed_at)
+//		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font>"
+			dat += "<font color='red'><b>Unresolved</b><br></font>"
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font>"
+			dat += "<font color='green'><b>Resolved<br></b></font>"
 		if(AHELP_CLOSED)
 			dat += "CLOSED"
 		else
 			dat += "UNKNOWN"
-	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Re-Title", ref_src, "retitle")]"
-	if(state != AHELP_ACTIVE)
-		dat += "[GLOB.TAB][TicketHref("Reopen", ref_src, "reopen")]"
-	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
-	if(closed_at)
-		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
-	dat += "<br><br>"
+	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Rename Ticket", ref_src, "retitle")]"
 	if(initiator)
-		dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>"
+		dat += "[FullMonty(ref_src)]<br>" //Remove brackets BLS
 	else
 		dat += "<b>DISCONNECTED</b>[GLOB.TAB][ClosureLinks(ref_src)]<br>"
-	dat += "<br><b>Log:</b><br><br>"
-	for(var/I in _interactions)
+	dat += "<br>Location: [initiator.mob.x], [initiator.mob.y], [initiator.mob.z] in area <b>[get_area(initiator.mob)]</b><br><br>"
+	for(var/I in _interactions) //Interactions are the logs here.
 		dat += "[I]<br>"
-
-	usr << browse(dat.Join(), "window=ahelp[id];size=620x480")
+	if(state != AHELP_ACTIVE)
+		dat += "[GLOB.TAB][TicketHref("Re-open", ref_src, "reopen")]"
+	usr << browse(dat.Join(), "window=ahelp[id];size=400x480")
 
 /datum/admin_help/proc/Retitle()
 	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
@@ -524,7 +543,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	var/browse_to
-
 	switch(input("Display which ticket list?") as null|anything in list("Active Tickets", "Closed Tickets", "Resolved Tickets"))
 		if("Active Tickets")
 			browse_to = AHELP_ACTIVE
@@ -534,7 +552,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			browse_to = AHELP_RESOLVED
 		else
 			return
-
 	GLOB.ahelp_tickets.BrowseTickets(browse_to)
 
 //
