@@ -89,6 +89,13 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
 		return 1
+	//YOGS start - flying over tables in nograv
+	if(iscarbon(mover))
+		var/mob/living/carbon/C = mover
+		var/obj/item/tank/jetpack/jetpacktable = C.get_jetpack()
+		if(jetpacktable && jetpacktable.on && !has_gravity(C))
+			return 1
+	//YOGS end - flying over tables in nograv
 	if(mover.throwing)
 		return 1
 	if(locate(/obj/structure/table) in get_turf(mover))
