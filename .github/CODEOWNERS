@@ -29,6 +29,9 @@
 /code/controllers/subsystem/shuttle.dm @Nichlas0010
 /_maps/shuttles/ @Nichlas0010
 
+#GrayRachnid
+/_maps/map_files/ @GrayRachnid
+
 #Multiple Owners
 
 /code/__DEFINES/MC.dm @AsV9 @ThatLing
