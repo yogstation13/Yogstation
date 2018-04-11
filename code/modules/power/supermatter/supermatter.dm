@@ -22,7 +22,7 @@
 #define SEVERE_POWER_PENALTY_THRESHOLD 7000   //Same as above, but causes more dangerous effects
 #define CRITICAL_POWER_PENALTY_THRESHOLD 9000 //Even more dangerous effects, threshold for tesla delamination
 #define HEAT_PENALTY_THRESHOLD 40             //Higher == Crystal safe operational temperature is higher.
-#define DAMAGE_HARDCAP 0.0025
+#define DAMAGE_HARDCAP 0.002
 #define DAMAGE_INCREASE_MULTIPLIER 0.25
 
 
@@ -54,7 +54,13 @@
 #define SUPERMATTER_DANGER_PERCENT 50
 #define SUPERMATTER_WARNING_PERCENT 100
 
+<<<<<<< HEAD
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_shard)
+=======
+#define SUPERMATTER_COUNTDOWN_TIME 30 SECONDS
+
+GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
+>>>>>>> 5dbc037d1d... Makes sm delamination have a final countdown (#36977)
 
 /obj/machinery/power/supermatter_shard
 	name = "supermatter shard"
@@ -73,6 +79,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_shard)
 	var/gasefficency = 0.125
 
 	var/base_icon_state = "darkmatter_shard"
+
+	var/final_countdown = FALSE
 
 	var/damage = 0
 	var/damage_archived = 0
@@ -229,7 +237,49 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_shard)
 	integrity = integrity < 0 ? 0 : integrity
 	return integrity
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_shard/proc/explode()
+=======
+/obj/machinery/power/supermatter_crystal/proc/countdown()
+	if(final_countdown) // We're already doing it go away
+		return
+	final_countdown = TRUE
+	
+	var/image/causality_field = image(icon, null, "causality_field")
+	add_overlay(causality_field, TRUE)
+	
+	var/speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
+	radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
+	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
+		if(damage < explosion_point) // Cutting it a bit close there engineers
+			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel, get_spans(), get_default_language())
+			cut_overlay(causality_field, TRUE)
+			final_countdown = FALSE
+			return
+		else if((i % 50) != 0 && i > 50) // A message once every 5 seconds until the final 5 seconds which count down individualy
+			sleep(10)
+			continue
+		else if(i > 50)
+			speaking = "[i/10] seconds remain before causality stabilization."
+		else
+			speaking = "[i/10]..."
+		radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
+		sleep(10)
+	
+	explode()
+
+/obj/machinery/power/supermatter_crystal/proc/explode()
+	for(var/mob in GLOB.alive_mob_list)
+		var/mob/living/L = mob
+		if(istype(L) && L.z == z)
+			if(ishuman(mob))
+				//Hilariously enough, running into a closet should make you get hit the hardest.
+				var/mob/living/carbon/human/H = mob
+				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
+			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
+			L.rad_act(rads)
+			
+>>>>>>> 5dbc037d1d... Makes sm delamination have a final countdown (#36977)
 	var/turf/T = get_turf(src)
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
@@ -282,7 +332,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_shard)
 	else
 		if(takes_damage)
 			//causing damage
-			damage = max(damage + (max(removed.temperature - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
+			damage = max(damage + (max(CLAMP(removed.total_moles() / 200, 0.5, 1) * removed.temperature - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
 			damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
 			damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
 
@@ -427,17 +477,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_shard)
 				radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel, get_spans(), get_default_language())
 
 		if(damage > explosion_point)
-			for(var/mob in GLOB.alive_mob_list)
-				var/mob/living/L = mob
-				if(istype(L) && L.z == z)
-					if(ishuman(mob))
-						//Hilariously enough, running into a closet should make you get hit the hardest.
-						var/mob/living/carbon/human/H = mob
-						H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-					var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
-					L.rad_act(rads)
-
-			explode()
+			countdown()
 
 	return 1
 
