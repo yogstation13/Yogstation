@@ -18122,7 +18122,12 @@
 /turf/closed/wall/r_wall/rust,
 /area/engine/supermatter)
 "aLR" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/atmos/glass{
+=======
+/obj/machinery/door/airlock/atmos/glass/critical{
+	heat_proof = 1;
+>>>>>>> e71af8bc87... Fixes Gr3y.T1d3 delaming the SM (#36925)
 	name = "Supermatter Chamber";
 	req_access_txt = "24"
 	},
@@ -35713,7 +35718,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wUF" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/atmos/glass{
+=======
+/obj/machinery/door/airlock/atmos/glass/critical{
+	heat_proof = 1;
+>>>>>>> e71af8bc87... Fixes Gr3y.T1d3 delaming the SM (#36925)
 	name = "Supermatter Chamber";
 	req_access_txt = "24"
 	},
