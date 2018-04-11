@@ -18982,13 +18982,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aOa" = (
-<<<<<<< HEAD
-/obj/machinery/power/supermatter_shard/crystal/engine,
-=======
 /obj/machinery/power/supermatter_crystal/engine{
 	anchored = 1
 	},
->>>>>>> 910eb893b9... The supermatter crystal is now the parent object of the supermatter shard, rather than the other way around (#37025)
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "aOb" = (
