@@ -14054,7 +14054,6 @@
 	height = 18;
 	id = "emergency_home";
 	name = "OmegaStation emergency evac bay";
-	turf_type = /turf/open/space;
 	width = 30
 	},
 /turf/open/space/basic,
@@ -30533,7 +30532,6 @@
 	height = 13;
 	id = "ferry_home";
 	name = "port bay 2";
-	turf_type = /turf/open/space;
 	width = 5
 	},
 /turf/open/space/basic,
@@ -32801,7 +32799,6 @@
 	height = 17;
 	id = "syndicate_sw";
 	name = "southwest of station";
-	turf_type = /turf/open/space;
 	width = 23
 	},
 /turf/open/space,
