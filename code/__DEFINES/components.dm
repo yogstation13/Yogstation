@@ -47,10 +47,6 @@
 #define COMSIG_ATOM_SET_LIGHT "atom_set_light"					//from base of atom/set_light(): (l_range, l_power, l_color)
 #define COMSIG_ATOM_ROTATE "atom_rotate"						//from base of atom/shuttleRotate(): (rotation, params)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
-<<<<<<< HEAD
-#define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
-#define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
-=======
 #define COMSIG_ATOM_CONTENTS_DEL "atom_contents_del"			//from base of atom/handle_atom_del(): (atom/deleted)
 /////////////////
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
@@ -58,7 +54,6 @@
 #define COMSIG_ATOM_ATTACK_PAW "atom_attack_paw"				//from base of atom/attack_paw(): (mob/user)
 	#define COMPONENT_NO_ATTACK_HAND 1							//works on all 3.
 /////////////////
->>>>>>> ab993a117a... Component Storage, Experimental attack_hand and [ui_]interact() refactors (#36696)
 
 #define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
 #define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
