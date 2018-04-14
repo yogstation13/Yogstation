@@ -2,4 +2,4 @@ author: " Cobby"
 delete-after: true 
 changes: 
   - experiment: "Ore burning's math has been edited to be more RNG but also potentially more profitable."
-  - bugfix: "Fixes getting \\"emptystacks\\" (a stack with an amount of 0)"
+  - bugfix: "Fixes getting emptystacks (a stack with an amount of 0)"
