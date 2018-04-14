@@ -3,7 +3,12 @@
 	item_state = "explorer2"
 	name = "medical webbing"
 	desc = "A combat belt cherished by emergency medics in every corner of the galaxy."
-	can_hold = list(
+
+/obj/item/storage/belt/mining/medical/Initialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.can_hold = typecacheof(list(
 		/obj/item/pickaxe,
 		/obj/item/bodybag,
 		/obj/item/device/healthanalyzer,
@@ -28,4 +33,4 @@
 		/obj/item/device/gps,
 		/obj/item/stack/ore/bluespace_crystal,
 		/obj/item/reagent_containers/food/drinks
-	)
+	))
