@@ -13,6 +13,9 @@
 
 /yogstation/code/modules/telesci/ @AsV9
 
+#GrayRachnid
+/_maps/map_files/ @GrayRachnid
+
 #ThatLing
 
 /code/__DEFINES/tick.dm @ThatLing
@@ -29,9 +32,6 @@
 /code/datums/shuttles.dm @Nichlas0010
 /code/controllers/subsystem/shuttle.dm @Nichlas0010
 /_maps/shuttles/ @Nichlas0010
-
-#GrayRachnid
-/_maps/map_files/ @GrayRachnid
 
 #Multiple Owners
 
