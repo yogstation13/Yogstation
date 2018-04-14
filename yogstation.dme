@@ -1056,6 +1056,7 @@
 #include "code\modules\admin\verbs\adminjump.dm"
 #include "code\modules\admin\verbs\adminpm.dm"
 #include "code\modules\admin\verbs\adminsay.dm"
+#include "code\modules\admin\verbs\ahelp_template.dm"
 #include "code\modules\admin\verbs\atmosdebug.dm"
 #include "code\modules\admin\verbs\bluespacearty.dm"
 #include "code\modules\admin\verbs\borgpanel.dm"
