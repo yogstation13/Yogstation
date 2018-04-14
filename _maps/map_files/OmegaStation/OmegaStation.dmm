@@ -20483,7 +20483,7 @@
 /area/medical/morgue)
 "aRd" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Morgue";
 	req_access_txt = "5"
 	},
@@ -22199,7 +22199,7 @@
 /area/medical/morgue)
 "aVf" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Morgue";
 	req_access_txt = "5"
 	},
@@ -27259,7 +27259,7 @@
 /turf/closed/wall,
 /area/chapel/main)
 "bfz" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Crematorium";
 	req_access_txt = "27"
 	},
@@ -28129,7 +28129,7 @@
 /turf/closed/wall,
 /area/chapel/main)
 "bhr" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Crematorium";
 	req_access_txt = "27"
 	},
@@ -28201,7 +28201,7 @@
 /area/chapel/main)
 "bhy" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Hall"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -28782,7 +28782,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/main)
 "biH" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Quarters";
 	req_access_txt = "27"
 	},
@@ -28826,7 +28826,7 @@
 /area/chapel/main)
 "biM" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Office";
 	req_access_txt = "27"
 	},
@@ -29830,7 +29830,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "blA" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Mass Driver Room";
 	req_access_txt = "27"
 	},
