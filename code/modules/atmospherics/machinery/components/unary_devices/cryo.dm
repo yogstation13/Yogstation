@@ -276,7 +276,16 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
 		return
+<<<<<<< HEAD
 	close_machine(target)
+=======
+	if (target.IsKnockdown() || target.IsStun() || target.IsSleeping() || target.IsUnconscious())
+		close_machine(target)
+	else
+		user.visible_message("<b>[user]</b> starts shoving [target] inside [src].", "<span class='notice'>You start shoving [target] inside [src].</span>")
+		if (do_after(user, 25, target=target))
+			close_machine(target)
+>>>>>>> e13da06595... unconscious check
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/glass))
