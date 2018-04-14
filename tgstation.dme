@@ -2591,4 +2591,5 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "yogstation\code\tickets\ahelp_template.dm"
 // END_INCLUDE
