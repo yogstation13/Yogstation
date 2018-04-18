@@ -109,8 +109,7 @@
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 
-		for(var/i = 1 in (1 to power_options.len))
-			i++
+		for(var/i in 1 to power_options.len)
 			if(crystals.len + telepad.efficiency  < i)
 				t += "<span class='linkOff'>[power_options[i]]</span>"
 				continue
@@ -118,6 +117,7 @@
 				t += "<span class='linkOn'>[power_options[i]]</span>"
 				continue
 			t += "<A href='?src=\ref[src];setpower=[i]'>[power_options[i]]</A>"
+			i++
 		t += "</div>"
 
 		t += "<A href='?src=\ref[src];setz=1'>Set Sector</A>"
