@@ -19,6 +19,7 @@
 	// yogs start
 	var/max_potency = 35 //See RefreshParts() for how these work
 	var/max_yield = 10
+	var/min_production = 1
 	var/max_endurance = 40 //IMPT: ALSO AFFECTS LIFESPAN
 	// yogs stop
 	var/min_wchance = 67
@@ -37,6 +38,7 @@
 		if(SM.rating > 3) //If you create t5 parts I'm a step ahead mwahahaha!
 			min_production = 1
 		else
+			min_production = 1 // yogs - TG's old version: 9,6,3,1. Requires if to avoid going below clamp [1], Yog's superior version: 1. No point of leaving this in, but I left it anyway.
 
 		max_endurance = initial(max_endurance) + (SM.rating * 15) // yogs - TG's old version: 35,60,85,100	Clamps at 10min 100max, Yog's version: 55, 70, 85, 100
 
