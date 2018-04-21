@@ -51013,6 +51013,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/tcommsat/computer)
+"nOB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "tsci"
+ 	},
+/turf/open/floor/plating,
+/area/science/misc_lab)
 "nOJ" = (
 /obj/structure/fireaxecabinet{
 	pixel_x = -32
