@@ -28580,7 +28580,6 @@
 /area/maintenance/starboard)
 "buB" = (
 /obj/machinery/conveyor_switch/oneway{
-	!INVALID_VAR! = -1;
 	id = "QMLoad"
 	},
 /turf/open/floor/plasteel,
