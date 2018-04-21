@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/burnmod = 1		// multiplier for burn damage
 	var/coldmod = 1		// multiplier for cold damage
 	var/heatmod = 1		// multiplier for heat damage
+	var/acidmod = 1     // multiplier for acid damage // yogs - Old Plant People
 	var/stunmod = 1		// multiplier for stun duration
 	var/punchdamagelow = 0       //lowest possible punch damage
 	var/punchdamagehigh = 9      //highest possible punch damage
