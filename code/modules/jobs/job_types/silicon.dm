@@ -63,7 +63,7 @@ AI
 	. = ..()
 	var/area/A = get_area(AI)
 	var/turf/T = get_turf(AI)
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core at [COORD(T)], [A.name]."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core in [A.name].")) //YOGS - removed the co-ordinates
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
