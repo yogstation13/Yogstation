@@ -273,6 +273,17 @@
 	},
 /turf/open/floor/plasteel/barber,
 /area/security/prison)
+"aaR" = (
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor";
+	name = "supply dock loading door"
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "aaS" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -386,6 +397,24 @@
 /obj/machinery/vending/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"abm" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
+"abn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "abo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -506,6 +535,31 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
+"abH" = (
+/obj/machinery/light,
+/obj/machinery/status_display{
+	pixel_y = -30;
+	supply_display = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
+"abI" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "abJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table,
@@ -28526,7 +28580,6 @@
 /area/maintenance/starboard)
 "buB" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
 	id = "QMLoad"
 	},
 /turf/open/floor/plasteel,
@@ -29098,50 +29151,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"bvS" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/obj/machinery/door/poddoor{
-	id = "QMLoaddoor";
-	name = "supply dock loading door"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
-"bvT" = (
-/obj/structure/plasticflaps,
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
-"bvU" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/obj/machinery/light,
-/obj/machinery/status_display{
-	pixel_y = -30;
-	supply_display = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
-"bvV" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "bvW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -45689,7 +45698,6 @@
 /area/maintenance/port/aft)
 "cAI" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
 	id = "garbage";
 	name = "disposal conveyor"
 	},
@@ -71650,7 +71658,7 @@ bqi
 brJ
 boI
 brJ
-bvS
+aaR
 boI
 aaa
 aaa
@@ -71907,7 +71915,7 @@ bqj
 brK
 blW
 brK
-bvT
+abm
 blW
 aaa
 aaa
@@ -72164,7 +72172,7 @@ bqi
 cyD
 blW
 cyD
-bvS
+aaR
 blW
 aaa
 aaa
@@ -72421,7 +72429,7 @@ bql
 brL
 btr
 bnw
-bvV
+abn
 blW
 aaa
 aaa
@@ -72678,7 +72686,7 @@ bps
 bjr
 bjr
 buB
-bvU
+abH
 aZE
 aaf
 aaf
@@ -72935,7 +72943,7 @@ cCo
 bjt
 bjt
 biq
-bvV
+abn
 blW
 aaa
 aaa
@@ -73192,7 +73200,7 @@ bmb
 bjr
 bjr
 buC
-bvV
+abn
 blW
 aaa
 aaa
@@ -73449,7 +73457,7 @@ bpz
 boK
 bjr
 bkt
-bvV
+abn
 blW
 aaa
 aaa
@@ -73706,7 +73714,7 @@ bjr
 boK
 bjr
 bjr
-bvV
+abI
 bxu
 aaa
 aaa
@@ -73963,7 +73971,7 @@ bjr
 cBp
 bjr
 buB
-bvV
+abI
 bxu
 bxu
 bxx
