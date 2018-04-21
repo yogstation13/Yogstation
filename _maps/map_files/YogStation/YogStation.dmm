@@ -45698,7 +45698,6 @@
 /area/maintenance/port/aft)
 "cAI" = (
 /obj/machinery/conveyor_switch/oneway{
-	!INVALID_VAR! = -1;
 	id = "garbage";
 	name = "disposal conveyor"
 	},
