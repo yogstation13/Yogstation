@@ -1,6 +1,6 @@
 ## Yogstation codebase
 
-[![Build Status](https://travis-ci.org/yogstation/tg-rebase.png)](https://travis-ci.org/yogstation/tg-rebase)  
+[![Build Status](https://travis-ci.org/yogstation13/tg-rebase.png)](https://travis-ci.org/yogstation13/tg-rebase)  
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 **Website:** https://yogstation.net <BR>
@@ -60,6 +60,11 @@ byondkey = Rank
 ```
 
 where the admin rank must be properly capitalised.
+
+This codebase also depends on a native library called rust-g. A precompiled
+Windows DLL is included in this repository, but Linux users will need to build
+and install it themselves. Directions can be found at the [rust-g
+repo](https://github.com/tgstation13/rust-g).
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled tgstation.dmb file. Make sure to set the port to the one you
