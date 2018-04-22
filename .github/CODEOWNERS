@@ -16,6 +16,13 @@
 #GrayRachnid
 /_maps/map_files/ @GrayRachnid
 
+#Nichlas0010
+
+/code/modules/shuttle/ @Nichlas0010
+/code/datums/shuttles.dm @Nichlas0010
+/code/controllers/subsystem/shuttle.dm @Nichlas0010
+/_maps/shuttles/ @Nichlas0010
+
 #ThatLing
 
 /code/__DEFINES/tick.dm @ThatLing
@@ -24,14 +31,6 @@
 /code/controllers/subsystem.dm @ThatLing
 /code/controllers/subsystem/ @ThatLing
 /yogstation/code/controllers/ @ThatLing
-
-
-#Nichlas0010
-
-/code/modules/shuttle/ @Nichlas0010
-/code/datums/shuttles.dm @Nichlas0010
-/code/controllers/subsystem/shuttle.dm @Nichlas0010
-/_maps/shuttles/ @Nichlas0010
 
 #Multiple Owners
 
