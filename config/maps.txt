@@ -16,6 +16,10 @@ map yogstation
 	default
 endmap
 
+map yogspubby
+
+endmap
+
 #map boxstation
 	#default
 	#voteweight 1.5
