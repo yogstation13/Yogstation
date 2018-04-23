@@ -33,14 +33,14 @@ Chief Medical Officer
 	jobtype = /datum/job/cmo
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/device/pda/heads/cmo
+	belt = /obj/item/pda/heads/cmo
 	l_pocket = /obj/item/pinpointer/crew
-	ears = /obj/item/device/radio/headset/heads/cmo
+	ears = /obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/regular
-	suit_store = /obj/item/device/flashlight/pen
+	suit_store = /obj/item/flashlight/pen
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
 
 	backpack = /obj/item/storage/backpack/medic
@@ -71,13 +71,13 @@ Medical Doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
 
-	belt = /obj/item/device/pda/medical
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda/medical
+	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/storage/firstaid/regular
-	suit_store = /obj/item/device/flashlight/pen
+	suit_store = /obj/item/flashlight/pen
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -110,8 +110,8 @@ Chemist
 	jobtype = /datum/job/chemist
 
 	glasses = /obj/item/clothing/glasses/science
-	belt = /obj/item/device/pda/chemist
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda/chemist
+	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/chemist
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/chemist
@@ -145,12 +145,12 @@ Geneticist
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist
 
-	belt = /obj/item/device/pda/geneticist
-	ears = /obj/item/device/radio/headset/headset_medsci
+	belt = /obj/item/pda/geneticist
+	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/geneticist
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/genetics
-	suit_store =  /obj/item/device/flashlight/pen
+	suit_store =  /obj/item/flashlight/pen
 
 	backpack = /obj/item/storage/backpack/genetics
 	satchel = /obj/item/storage/backpack/satchel/gen
@@ -182,13 +182,13 @@ Virologist
 	name = "Virologist"
 	jobtype = /datum/job/virologist
 
-	belt = /obj/item/device/pda/viro
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda/viro
+	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/virologist
 	mask = /obj/item/clothing/mask/surgical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	suit =  /obj/item/clothing/suit/toggle/labcoat/virologist
-	suit_store =  /obj/item/device/flashlight/pen
+	suit_store =  /obj/item/flashlight/pen
 
 	backpack = /obj/item/storage/backpack/virology
 	satchel = /obj/item/storage/backpack/satchel/vir
@@ -221,13 +221,13 @@ Mining Medic
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/device/gps/mining = 1)
+		/obj/item/gps/mining = 1)
 	belt = /obj/item/storage/belt/mining/medical
-	ears = /obj/item/device/radio/headset/headset_medcargo
+	ears = /obj/item/radio/headset/headset_medcargo
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/regular
-	l_pocket =  /obj/item/device/pda/medical
+	l_pocket =  /obj/item/pda/medical
 	gloves = /obj/item/clothing/gloves/color/latex
 	mask = /obj/item/clothing/mask/surgical
 
@@ -256,14 +256,14 @@ Paramedic
 	jobtype = /datum/job/paramedic
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
-	belt = /obj/item/device/pda/para
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda/para
+	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	l_hand = /obj/item/roller
-	l_pocket = /obj/item/device/flashlight
-	r_pocket = /obj/item/device/gps
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/gps
 
 
 /*
@@ -292,6 +292,6 @@ Psychiatrist
 	uniform = /obj/item/clothing/under/suit_jacket/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/device/pda
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_med
 // yogs end

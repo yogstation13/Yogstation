@@ -20,18 +20,18 @@
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
-			var/obj/item/device/pda/PDA = locate(/obj/item/device/pda) in H.GetAllContents()
+			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-clear"
 		if(3)//pip-boy
-			var/obj/item/device/pda/PDA = locate(/obj/item/device/pda) in H.GetAllContents()
+			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-pipboy"
 				PDA.slot_flags |= SLOT_GLOVES
 		if(4)//rainbow
-			var/obj/item/device/pda/PDA = locate(/obj/item/device/pda) in H.GetAllContents()
+			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-rainbow"

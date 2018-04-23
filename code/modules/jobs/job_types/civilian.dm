@@ -25,7 +25,7 @@ Clown
 	name = "Clown"
 	jobtype = /datum/job/clown
 
-	belt = /obj/item/device/pda/clown
+	belt = /obj/item/pda/clown
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat
@@ -34,7 +34,7 @@ Clown
 		/obj/item/stamp/clown = 1,
 		/obj/item/reagent_containers/spray/waterflower = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
-		/obj/item/device/instrument/bikehorn = 1,
+		/obj/item/instrument/bikehorn = 1,
 		)
 
 	implants = list(/obj/item/implant/sad_trombone)
@@ -87,7 +87,7 @@ Mime
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	belt = /obj/item/device/pda/mime
+	belt = /obj/item/pda/mime
 	uniform = /obj/item/clothing/under/rank/mime
 	mask = /obj/item/clothing/mask/gas/mime
 	gloves = /obj/item/clothing/gloves/color/white
@@ -140,11 +140,11 @@ Curator
 	name = "Curator"
 	jobtype = /datum/job/curator
 
-	belt = /obj/item/device/pda/curator
+	belt = /obj/item/pda/curator
 	uniform = /obj/item/clothing/under/rank/curator
 	l_hand = /obj/item/storage/bag/books
 	r_pocket = /obj/item/key/displaycase
-	l_pocket = /obj/item/device/laser_pointer
+	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
 		/obj/item/melee/curator_whip = 1,
@@ -186,13 +186,13 @@ Lawyer
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	belt = /obj/item/device/pda/lawyer
-	ears = /obj/item/device/radio/headset/headset_sec
+	belt = /obj/item/pda/lawyer
+	ears = /obj/item/radio/headset/headset_sec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/storage/briefcase/lawyer
-	l_pocket = /obj/item/device/laser_pointer
+	l_pocket = /obj/item/laser_pointer
 	r_pocket = /obj/item/clothing/accessory/lawyers_badge
 
 
@@ -231,12 +231,12 @@ Tourist
 
 	uniform = /obj/item/clothing/under/yogs/tourist
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	ears = /obj/item/device/radio/headset
-	belt = /obj/item/device/pda
-	backpack_contents = list(/obj/item/device/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
-	r_hand =  /obj/item/device/camera
-	l_pocket = /obj/item/device/camera_film
-	r_pocket = /obj/item/device/camera_film
+	ears = /obj/item/radio/headset
+	belt = /obj/item/pda
+	backpack_contents = list(/obj/item/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
+	r_hand =  /obj/item/camera
+	l_pocket = /obj/item/camera_film
+	r_pocket = /obj/item/camera_film
 
 
 
@@ -262,8 +262,8 @@ Clerk
 	name = "Clerk"
 	jobtype = /datum/job/clerk
 
-	belt = /obj/item/device/pda
-	ears = /obj/item/device/radio/headset/headset_srv
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head = /obj/item/clothing/head/yogs/clerkcap
