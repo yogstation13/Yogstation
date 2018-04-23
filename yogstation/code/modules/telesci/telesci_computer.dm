@@ -28,7 +28,7 @@
 	var/starting_crystals = 3
 	var/max_crystals = 4
 	var/list/crystals = list()
-	var/obj/item/device/gps/inserted_gps
+	var/obj/item/gps/inserted_gps
 
 /obj/machinery/computer/telescience/Initialize()
 	recalibrate()
@@ -66,14 +66,14 @@
 		W.loc = null
 		user.visible_message("[user] inserts [W] into \the [src]'s crystal slot.", "<span class='notice'>You insert [W] into \the [src]'s crystal slot.</span>")
 		updateDialog()
-	else if(istype(W, /obj/item/device/gps))
+	else if(istype(W, /obj/item/gps))
 		if(!inserted_gps)
 			if(!user.transferItemToLoc(W, src))
 				return
 			inserted_gps = W
 			user.visible_message("[user] inserts [W] into \the [src]'s GPS device slot.", "<span class='notice'>You insert [W] into \the [src]'s GPS device slot.</span>")
-	else if(istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/M = W
+	else if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/M = W
 		if(M.buffer && istype(M.buffer, /obj/machinery/telepad))
 			telepad = M.buffer
 			M.buffer = null
@@ -103,9 +103,9 @@
 			t += "<span class='linkOff'>Set GPS memory</span>"
 		t += "<div class='statusDisplay'>[temp_msg]</div><BR>"
 		t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-		t += "<div class='statusDisplay'>[rotation]°</div>"
+		t += "<div class='statusDisplay'>[rotation]ï¿½</div>"
 		t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-		t += "<div class='statusDisplay'>[angle]°</div>"
+		t += "<div class='statusDisplay'>[angle]ï¿½</div>"
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 

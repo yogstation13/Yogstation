@@ -191,8 +191,8 @@ Signal Technician
 	jobtype = /datum/job/signal_tech
 
 	belt = /obj/item/storage/belt/utility/full
-	l_pocket = /obj/item/device/pda/signaltech
-	ears = /obj/item/device/radio/headset/headset_eng
+	l_pocket = /obj/item/pda/signaltech
+	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/yogs/rank/signal_tech
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black

@@ -221,13 +221,13 @@ Mining Medic
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/device/gps/mining = 1)
+		/obj/item/gps/mining = 1)
 	belt = /obj/item/storage/belt/mining/medical
-	ears = /obj/item/device/radio/headset/headset_medcargo
+	ears = /obj/item/radio/headset/headset_medcargo
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/regular
-	l_pocket =  /obj/item/device/pda/medical
+	l_pocket =  /obj/item/pda/medical
 	gloves = /obj/item/clothing/gloves/color/latex
 	mask = /obj/item/clothing/mask/surgical
 
@@ -256,14 +256,14 @@ Paramedic
 	jobtype = /datum/job/paramedic
 
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
-	belt = /obj/item/device/pda/para
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda/para
+	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	l_hand = /obj/item/roller
-	l_pocket = /obj/item/device/flashlight
-	r_pocket = /obj/item/device/gps
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/gps
 
 
 /*
@@ -292,6 +292,6 @@ Psychiatrist
 	uniform = /obj/item/clothing/under/suit_jacket/burgundy
 	l_hand = /obj/item/storage/briefcase
 	glasses = /obj/item/clothing/glasses/regular
-	belt = /obj/item/device/pda
-	ears = /obj/item/device/radio/headset/headset_med
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_med
 // yogs end

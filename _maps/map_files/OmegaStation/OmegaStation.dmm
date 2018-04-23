@@ -4310,7 +4310,7 @@
 	pixel_x = 26;
 	pixel_y = -10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	broadcasting = 1;
 	frequency = 1447;
 	listening = 0;

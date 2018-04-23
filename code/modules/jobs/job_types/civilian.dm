@@ -231,12 +231,12 @@ Tourist
 
 	uniform = /obj/item/clothing/under/yogs/tourist
 	shoes = /obj/item/clothing/shoes/sneakers/black
-	ears = /obj/item/device/radio/headset
-	belt = /obj/item/device/pda
-	backpack_contents = list(/obj/item/device/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
-	r_hand =  /obj/item/device/camera
-	l_pocket = /obj/item/device/camera_film
-	r_pocket = /obj/item/device/camera_film
+	ears = /obj/item/radio/headset
+	belt = /obj/item/pda
+	backpack_contents = list(/obj/item/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
+	r_hand =  /obj/item/camera
+	l_pocket = /obj/item/camera_film
+	r_pocket = /obj/item/camera_film
 
 
 
@@ -262,8 +262,8 @@ Clerk
 	name = "Clerk"
 	jobtype = /datum/job/clerk
 
-	belt = /obj/item/device/pda
-	ears = /obj/item/device/radio/headset/headset_srv
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head = /obj/item/clothing/head/yogs/clerkcap
