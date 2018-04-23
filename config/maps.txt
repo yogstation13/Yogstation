@@ -15,7 +15,6 @@ endmap
 map yogstation
 	default
 endmap
-
 map yogsmeta
 	minplayers 25
 endmap
