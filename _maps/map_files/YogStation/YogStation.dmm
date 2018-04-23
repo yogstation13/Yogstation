@@ -51049,6 +51049,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"lZq" = (
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/plasteel/hydrofloor,
+/area/hydroponics)
 "lZJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -95087,7 +95091,7 @@ aFp
 aGW
 anf
 aIp
-aKI
+lZq
 aMA
 aIp
 aOX
