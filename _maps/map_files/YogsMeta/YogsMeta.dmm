@@ -12454,6 +12454,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/mining_medic,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "aAG" = (
@@ -34004,6 +34005,7 @@
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/signal_technician,
 /turf/open/floor/plasteel/darkblue/corner,
 /area/engine/break_room)
 "btF" = (
@@ -34860,6 +34862,7 @@
 	dir = 2;
 	pixel_y = 20
 	},
+/obj/structure/closet/wardrobe/tcomms,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bvz" = (
@@ -36737,7 +36740,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/chair/office/dark,
-/obj/effect/landmark/start/yogs/signal_technician,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bzt" = (
@@ -58177,16 +58179,16 @@
 /area/medical/genetics)
 "ctC" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Genetics Maintenance";
-	req_access_txt = "9"
+	name = "Psychiatrists Maintenance";
+	req_access_txt = "5"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/maintenance/aft)
+/area/medical/medbay/central)
 "ctD" = (
 /obj/structure/sign/directions/evac,
 /turf/closed/wall,
-/area/medical/genetics)
+/area/medical/medbay/central)
 "ctE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor,
@@ -58667,11 +58669,9 @@
 /turf/open/floor/plasteel/vault,
 /area/medical/genetics)
 "cuw" = (
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/plasteel/blue/side{
-	dir = 9
-	},
-/area/medical/genetics)
+/obj/structure/bed,
+/turf/open/floor/carpet,
+/area/medical/medbay/central)
 "cux" = (
 /obj/structure/noticeboard{
 	desc = "A board for pinning important notices upon. Probably helpful for keeping track of requests.";
@@ -58680,26 +58680,18 @@
 	pixel_y = 32
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/blue/side{
-	dir = 5
-	},
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cuy" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "genetics_shutters";
-	name = "genetics shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cuz" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 6
+/obj/machinery/door/airlock/wood{
+	name = "Psychiatrists office";
+	req_access_txt = "5"
 	},
-/turf/open/floor/plasteel/blue,
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cuA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/blue/side{
@@ -59126,57 +59118,26 @@
 	},
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/genetics)
-"cvC" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/item/storage/box/syringes,
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/blue/side{
-	dir = 8
-	},
-/area/medical/genetics)
 "cvD" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/start/geneticist,
-/turf/open/floor/plasteel/blue/side{
-	dir = 4
-	},
-/area/medical/genetics)
-"cvE" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
+/obj/structure/table/wood,
+/obj/item/paper_bin,
 /obj/item/pen,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/eastright{
-	dir = 8;
-	name = "Genetics Desk";
-	req_access_txt = "5;9"
-	},
-/obj/machinery/door/window/southleft{
-	dir = 4;
-	name = "Outer Window"
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "genetics_shutters";
-	name = "genetics shutters"
+/turf/open/floor/carpet,
+/area/medical/medbay/central)
+"cvE" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/carpet,
+/area/medical/medbay/central)
+"cvF" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "psych";
+	name = "privacy shutter"
 	},
 /turf/open/floor/plating,
-/area/medical/genetics)
-"cvF" = (
-/turf/open/floor/plasteel/blue,
-/area/medical/genetics)
+/area/medical/medbay/central)
 "cvG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/extinguisher_cabinet{
@@ -59615,42 +59576,10 @@
 /obj/machinery/dna_scannernew,
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/genetics)
-"cwD" = (
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/device/radio/intercom{
-	freerange = 0;
-	frequency = 1459;
-	name = "Station Intercom (General)";
-	pixel_x = -29
-	},
-/obj/machinery/camera{
-	c_tag = "Genetics Desk";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/blue/side{
-	dir = 8
-	},
-/area/medical/genetics)
 "cwE" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/button/door{
-	id = "genetics_shutters";
-	name = "genetics shutters control";
-	pixel_x = 28;
-	req_access_txt = "9"
-	},
-/turf/open/floor/plasteel/blue/side{
-	dir = 4
-	},
-/area/medical/genetics)
+/turf/open/floor/carpet,
+/area/medical/medbay/central)
 "cwF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/firealarm{
@@ -60053,38 +59982,33 @@
 	},
 /area/medical/genetics)
 "cxw" = (
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "psych";
+	name = "privacy shutter"
 	},
-/obj/item/stack/packageWrap,
-/obj/item/pen,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/blue/side{
-	dir = 8
-	},
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cxx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
+/obj/structure/disposalpipe/segment,
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "psych";
+	name = "privacy shutter"
 	},
-/turf/open/floor/plasteel/blue/corner{
-	dir = 4
-	},
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cxy" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = 28
 	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "psych";
+	name = "privacy shutter"
 	},
-/turf/open/floor/plasteel/blue/side{
-	dir = 5
-	},
-/area/medical/genetics)
+/turf/open/floor/wood,
+/area/medical/medbay/central)
 "cxz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/light{
@@ -60405,6 +60329,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/blue/side{
 	dir = 1
 	},
@@ -60793,6 +60718,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/machinery/camera{
+	c_tag = "Genetics Desk";
+	dir = 4;
+	network = list("ss13","medbay")
+	},
 /turf/open/floor/plasteel/blue/side{
 	dir = 8
 	},
@@ -60801,6 +60735,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/medical/genetics)
 "czd" = (
@@ -60808,6 +60743,9 @@
 	pixel_x = 23
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/blue/side{
@@ -61337,6 +61275,9 @@
 /area/medical/genetics)
 "cAg" = (
 /obj/structure/closet/secure_closet/personal/patient,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plasteel/blue/side{
 	dir = 0
 	},
@@ -76116,6 +76057,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"eSt" = (
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Psych Office Shutters Control";
+	pixel_x = 28
+	},
+/obj/structure/chair/wood/normal{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/psychiatrist,
+/turf/open/floor/carpet,
+/area/medical/medbay/central)
 "eXy" = (
 /obj/machinery/airalarm{
 	pixel_y = 32
@@ -76635,7 +76591,10 @@
 /turf/closed/wall,
 /area/hydroponics)
 "oud" = (
-/obj/structure/closet/secure_closet/personal/patient,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/plasteel/blue/side{
 	dir = 6
 	},
@@ -103324,10 +103283,10 @@ coV
 cqt
 cga
 cKJ
-ctB
+cdw
 cuw
-cvC
-cwD
+cuy
+cuy
 cxw
 cyj
 czb
@@ -103838,10 +103797,10 @@ coX
 cnL
 cga
 cbC
-ctB
+cdw
 cuy
 cvE
-ctB
+eSt
 cxy
 cyl
 czd
@@ -104098,8 +104057,8 @@ csI
 ctD
 cuz
 cvF
-ctB
-ctB
+cdw
+cdw
 cym
 cze
 ctB

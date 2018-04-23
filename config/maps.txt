@@ -13,14 +13,11 @@ Format:
 	disabled (disables the map)
 endmap
 map yogstation
-
+	default
 endmap
 
-#
-#
-
 map yogsmeta
-	default
+	minplayers 25
 endmap
 
 #map boxstation
