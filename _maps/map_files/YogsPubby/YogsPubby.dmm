@@ -17607,10 +17607,10 @@
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "aSF" = (
-/obj/machinery/chem_master/condimaster,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "aSG" = (
@@ -50359,6 +50359,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"ooS" = (
+/obj/machinery/chem_master/condimaster,
+/turf/open/floor/plasteel/hydrofloor,
+/area/hydroponics)
 "oyF" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -77386,7 +77390,7 @@ aQJ
 aRL
 aSD
 aTT
-aTV
+ooS
 aRL
 aWR
 aXT
