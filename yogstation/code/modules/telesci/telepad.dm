@@ -36,8 +36,8 @@
 		return
 
 	if(panel_open)
-		if(istype(I, /obj/item/device/multitool))
-			var/obj/item/device/multitool/M = I
+		if(istype(I, /obj/item/multitool))
+			var/obj/item/multitool/M = I
 			M.buffer = src
 			to_chat(user, "<span class='caution'>You save the data in the [I.name]'s buffer.</span>")
 			return 1
@@ -97,14 +97,14 @@
 		return ..()
 
 ///TELEPAD CALLER///
-/obj/item/device/telepad_beacon
+/obj/item/telepad_beacon
 	name = "telepad beacon"
 	desc = "Use to warp in a cargo telepad."
 	icon = 'yogstation/icons/obj/radio.dmi'
 	icon_state = "beacon"
 	item_state = "beacon"
 
-/obj/item/device/telepad_beacon/attack_self(mob/user)
+/obj/item/telepad_beacon/attack_self(mob/user)
 	if(user)
 		to_chat(user, "<span class='caution'>Locked In</span>")
 		new /obj/machinery/telepad_cargo(user.loc)
