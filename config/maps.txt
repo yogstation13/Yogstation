@@ -20,6 +20,10 @@ map yogsmeta
 	minplayers 25
 endmap
 
+map yogspubby
+
+endmap
+
 #map boxstation
 	#default
 	#voteweight 1.5
