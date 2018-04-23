@@ -13,6 +13,13 @@ Format:
 	disabled (disables the map)
 endmap
 map yogstation
+
+endmap
+
+#
+#
+
+map yogsmeta
 	default
 endmap
 
