@@ -70,7 +70,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/datum/admin_help/parent
 	var/gametime
 	var/user
-	var/user_admin = 0
+	var/user_admin = FALSE
 	var/text
 	var/text_admin
 	var/for_admins
@@ -80,13 +80,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	src.parent = parent
 	if(istype(user, /client))
 		src.user_admin = is_admin(user)
-	else
-		src.user_admin = text
+
 	src.for_admins = for_admins
-	if(istype(user, /client))
-		src.user = get_fancy_key(user)
-	else
-		src.user = user
+	src.user = get_fancy_key(user)
 	src.text = text
 	src.text_admin = generate_admin_info(text)
 
@@ -246,12 +242,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			SSblackbox.record_feedback("tally", "ahelp_stats", -1, "closed")
 		if(AHELP_RESOLVED)
 			SSblackbox.record_feedback("tally", "ahelp_stats", -1, "resolved")
-	state = AHELP_ACTIVE
-	closed_at = null
-	if(initiator)
-		initiator.current_ticket = src
 
-	AddInteraction("Reopened by [key_name_admin(usr)]")
+	AddActive()
+	state = AHELP_ACTIVE
+
+	AddInteraction("Reopened by [usr.ckey]")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
 	message_admins(msg)
 	log_admin_private(msg)
@@ -282,7 +277,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	RemoveActive()
 	state = AHELP_CLOSED
-	AddInteraction("Closed by [key_name].")
+	AddInteraction("Closed by [usr.ckey].")
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "closed")
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
@@ -308,11 +303,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(resolved)
-		AddInteraction("Ticket #[id] marked as resolved by [key_name].")
+		AddInteraction("Ticket #[id] marked as resolved by [usr.ckey].")
 		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as resolved. The Adminhelp verb will be returned to you shortly.</span>")
 		addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 	else // AHELP_ACTIVE
-		AddInteraction("Ticket #[id] marked as unresolved by [key_name].")
+		AddInteraction("Ticket #[id] marked as unresolved by [usr.ckey].")
 		to_chat(initiator, "<span class='adminhelp'>Your ticket has been marked as unresolved.</span>")
 		TimeoutVerb()
 
@@ -342,7 +337,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Rejected by [key_name].")
+	AddInteraction("Rejected by [usr.ckey].")
 	Close(silent = TRUE)
 
 //Resolve ticket with IC Issue message
@@ -361,7 +356,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Marked as IC issue by [key_name]")
+	AddInteraction("Marked as IC issue by [usr.ckey]")
 	Resolve(silent = TRUE)
 
 //Show the ticket panel
@@ -431,8 +426,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/i = 0
 	for(i = 1; i <= _interactions.len; i++)
 		var/datum/ticket_log/item = _interactions[i]
-		if(usr.client.holder || !item.for_admins)
-			content += "<p class='message-bar'>[item.toString()]</p>"
+		if(!usr.client.holder)
+			if(!item.for_admins)
+				content += "<p class='message-bar'>[item.toString()]</p>"
+		else
+			content += "<p class='message-bar'>[item.toAdminString()]</p>"
 
 	// New ticket logs added to top - If reverting this, do not forget to prepend in the template!
 	/*for(i = log.len; i > 0; i--)
