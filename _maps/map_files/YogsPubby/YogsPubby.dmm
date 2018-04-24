@@ -75,10 +75,10 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
+	id = "giftshop";
+	name = "Gift Shop Shutters";
 	pixel_x = -28;
-	pixel_y = 0
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel/greenyellow,
 /area/clerk)
