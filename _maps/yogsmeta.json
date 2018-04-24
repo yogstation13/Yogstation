@@ -1,0 +1,11 @@
+{
+    "map_name": "YogsMeta",
+    "map_path": "map_files/YogsMeta",
+    "map_file": "YogsMeta.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_meta",
+	    "emergency": "emergency_meta"
+    }
+}
