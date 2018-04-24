@@ -44131,7 +44131,7 @@
 	id = "giftshop";
 	name = "Gift Shop Button";
 	pixel_x = -22;
-	pixel_y = 0
+	pixel_y = -1
 	},
 /turf/open/floor/carpet,
 /area/clerk)
