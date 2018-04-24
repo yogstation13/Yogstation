@@ -75,10 +75,10 @@
 	dir = 4
 	},
 /obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
+	id = "giftshop";
+	name = "Gift Shop Shutters";
 	pixel_x = -28;
-	pixel_y = 0
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel/greenyellow,
 /area/clerk)
@@ -23277,6 +23277,7 @@
 	name = "Mining Dock APC";
 	pixel_x = -24
 	},
+/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel/brown/corner{
 	dir = 1
 	},
@@ -46137,6 +46138,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
+/obj/effect/landmark/start/yogs/signal_technician,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "cma" = (
@@ -46195,6 +46197,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/closet/wardrobe/tcomms,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 1
 	},
