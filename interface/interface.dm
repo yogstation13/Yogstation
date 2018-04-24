@@ -221,3 +221,22 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	to_chat(src, hotkey_mode)
 	to_chat(src, other)
+
+// yogs start - Yogs Tickets
+/client/verb/show_tickets()
+	set name = "Tickets"
+	set desc = "Show list of tickets"
+	set hidden = 1
+
+	if(holder)
+		view_tickets()
+	else
+		for(var/I in GLOB.ahelp_tickets.tickets_list)
+			var/datum/admin_help/T = I
+			if(compare_ckey(T.initiator_ckey, usr) && T.state == AHELP_ACTIVE)
+				T.TicketPanel()
+				return
+
+		to_chat(src, "<span class='danger'>You have no open tickets!</span>")
+	return
+// yogs end

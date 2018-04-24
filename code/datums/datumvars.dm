@@ -1163,7 +1163,7 @@
 
 			if(result)
 				var/newtype = GLOB.species_list[result]
-				admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result]")
+				admin_ticket_log("[key_name(usr)] has modified the bodyparts of [H] to [result]") // yogs - Yog Tickets
 				H.set_species(newtype)
 
 		else if(href_list["editbodypart"])
@@ -1209,7 +1209,7 @@
 								to_chat(usr, "[C] doesn't have such bodypart.")
 						else
 							to_chat(usr, "Only humans can be augmented.")
-			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [C]")
+			admin_ticket_log("[key_name(usr)] has modified the bodyparts of [C]") // yogs - Yog Tickets
 
 
 		else if(href_list["purrbation"])
@@ -1232,14 +1232,14 @@
 			if(success)
 				to_chat(usr, "Put [H] on purrbation.")
 				log_admin("[key_name(usr)] has put [key_name(H)] on purrbation.")
-				var/msg = "<span class='notice'>[key_name_admin(usr)] has put [key_name(H)] on purrbation.</span>"
+				var/msg = "[key_name(usr)] has put [key_name(H)] on purrbation." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(H, msg)
 
 			else
 				to_chat(usr, "Removed [H] from purrbation.")
 				log_admin("[key_name(usr)] has removed [key_name(H)] from purrbation.")
-				var/msg = "<span class='notice'>[key_name_admin(usr)] has removed [key_name(H)] from purrbation.</span>"
+				var/msg = "[key_name(usr)] has removed [key_name(H)] from purrbation." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(H, msg)
 
@@ -1280,7 +1280,7 @@
 
 			if(amount != 0)
 				log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
-				var/msg = "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [L] </span>"
+				var/msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [L]" // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(L, msg)
 				href_list["datumrefresh"] = href_list["mobToDamage"]
