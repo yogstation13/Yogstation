@@ -1,0 +1,4 @@
+author: " Dax Dupont"
+delete-after: true 
+changes: 
+  - bugfix: "Cargo scanner is no longer invisible."
