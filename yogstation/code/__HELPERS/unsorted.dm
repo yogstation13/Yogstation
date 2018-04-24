@@ -27,7 +27,7 @@
 	. = ""
 
 	if(!ckey)
-		include_link = 0
+		include_link = FALSE
 
 	if(key)
 		if(include_link)
