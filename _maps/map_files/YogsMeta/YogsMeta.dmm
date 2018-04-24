@@ -11804,12 +11804,7 @@
 	},
 /area/quartermaster/miningoffice)
 "azp" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/storage/toolbox/emergency,
+/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel/brown{
 	dir = 5
 	},
@@ -14914,6 +14909,14 @@
 	pixel_x = -5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = -2;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/brown{
 	dir = 2
 	},
@@ -44128,7 +44131,7 @@
 	id = "giftshop";
 	name = "Gift Shop Button";
 	pixel_x = -22;
-	pixel_y = 0
+	pixel_y = -1
 	},
 /turf/open/floor/carpet,
 /area/clerk)
