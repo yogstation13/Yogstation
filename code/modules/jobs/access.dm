@@ -325,7 +325,9 @@
 		if(ACCESS_PARAMEDIC)
 			return "Paramedic"
 		if(ACCESS_TCOM_ADMIN)
-			return "Tcom Admin"
+			return "Tcomms Admin"
+		if(ACCESS_MANUFACTURING)
+			return "Clerk"
 		// yogs end
 
 /proc/get_centcom_access_desc(A)
