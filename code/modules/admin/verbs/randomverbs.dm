@@ -14,7 +14,7 @@
 			M.regenerate_icons()
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
-	var/msg = "[key_name_admin(usr)] made [key_name_admin(M)] drop everything!"
+	var/msg = "[key_name(usr)] made [key_name(M)] drop everything!" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Everything") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -40,7 +40,7 @@
 				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	msg = "<span class='adminnotice'><b> SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :</b> [msg]</span>"
+	msg = "<b> SubtleMessage: [key_name(usr)] -> [key_name(M)] :</b> [msg]" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Subtle Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -127,7 +127,7 @@
 
 	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	msg = "<span class='adminnotice'><b> DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):</b> [msg]<BR></span>"
+	msg = "<b> DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]):</b> [msg]" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Direct Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -163,7 +163,7 @@
 	to_chat(usr, "<span class='adminnotice'>Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</span>")
 
 	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	var/msg = "[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]"
+	var/msg = "[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Godmode", "[M.status_flags & GODMODE ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -288,7 +288,7 @@
 		SSjob.SendToLateJoin(new_xeno, FALSE)
 
 	new_xeno.ckey = ckey
-	var/msg = "<span class='notice'>[key_name_admin(usr)] has spawned [ckey] as a filthy xeno [alien_caste].</span>"
+	var/msg = "[key_name(usr)] has spawned [ckey] as a filthy xeno [alien_caste]." // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(new_xeno, msg)
 	return 1
@@ -350,7 +350,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				G_found.mind.transfer_to(new_xeno)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_xeno.key = G_found.key
 				to_chat(new_xeno, "You have been fully respawned. Enjoy the game.")
-				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has respawned [new_xeno.key] as a filthy xeno.</span>"
+				var/msg = "[key_name(usr)] has respawned [new_xeno.key] as a filthy xeno." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(new_xeno, msg)
 				return	//all done. The ghost is auto-deleted
@@ -363,7 +363,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
 				to_chat(new_monkey, "You have been fully respawned. Enjoy the game.")
-				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has respawned [new_monkey.key] as a filthy xeno.</span>"
+				var/msg = "[key_name(usr)] has respawned [new_monkey.key] as a filthy xeno." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(new_monkey, msg)
 				return	//all done. The ghost is auto-deleted
@@ -457,7 +457,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(alert(new_character,"Would you like an active AI to announce this character?",,"No","Yes")=="Yes")
 				AnnounceArrival(new_character, new_character.mind.assigned_role)
 
-	var/msg = "<span class='adminnotice'>[admin] has respawned [player_key] as [new_character.real_name].</span>"
+	var/msg = "[admin] has respawned [player_key] as [new_character.real_name]." // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(new_character, msg)
 
@@ -504,7 +504,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.revive(full_heal = 1, admin_revive = 1)
 
 	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-	var/msg = "<span class='danger'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!</span>"
+	var/msg = "Admin [key_name(usr)] healed / revived [key_name(M)]!" // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Rejuvinate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1282,7 +1282,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/turf/endT = spaceDebrisFinishLoc(startside, T.z)
 			new /obj/effect/immovablerod(startT, endT,target)
 
-	var/msg = "[key_name_admin(usr)] punished [key_name_admin(target)] with [punishment]."
+	var/msg = "[key_name(usr)] punished [key_name(target)] with [punishment]." // yogs - Yog Tickets
 	message_admins(msg)
 	admin_ticket_log(target, msg)
 	log_admin("[key_name(usr)] punished [key_name(target)] with [punishment].")
