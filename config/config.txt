@@ -435,3 +435,7 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 ##	For reference, Goonstation uses a resolution of 21x15 for it's widescreen mode.
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
 DEFAULT_VIEW 15x15
+
+##Used to send round data to a webhook. Adress must use HTTP without SSL because byond is horrible.
+#WEBHOOK_ADRESS http://example.com
+#WEBHOOK_KEY webkey

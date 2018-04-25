@@ -51,6 +51,7 @@
 
 
 	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
+	webhook_send_ooc(key, msg) //YOGS - webhook support
 	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
 
 	var/keyname = key
