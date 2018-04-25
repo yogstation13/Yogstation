@@ -17,7 +17,7 @@
 				if(lastGroup != rank_group)
 					lastGroup = rank_group
 					ranksFile << " "
-				ranksFile << "[rank_name]\t=\t[rank_byond]"
+				WRITE_FILE(ranksFile, "[rank_name]\t=\t[rank_byond]")
 
 		var/datum/DBQuery/query_admin = SSdbcore.NewQuery("SELECT `web_admins`.`username` AS admin, `web_groups`.`name` AS rank, `web_groups`.`rank_group` AS rank_group FROM `web_admins`, `web_groups` WHERE `web_admins`.`rank` = `web_groups`.`rankid` ORDER BY `web_groups`.`rank_group` ASC, rank DESC")
 		if(query_admin.Execute())
