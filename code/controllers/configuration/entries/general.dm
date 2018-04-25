@@ -166,16 +166,16 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "http://www.tgstation13.org/wiki"
+	config_entry_value = "https://wiki.yogstation.net/" // yogs - Old Tickets
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "http://tgstation13.org/phpBB/index.php"
+	config_entry_value = "https://forums.yogstation.net/index.php" // yogs - Old Tickets
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/Rules"
+	config_entry_value = "https://forums.yogstation.net/index.php?pages/rules/" // yogs - Old Tickets
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://www.github.com/tgstation/-tg-station"
+	config_entry_value = "https://github.com/yogstation13/tg-rebase" // yogs - Old Tickets
 
 /datum/config_entry/number/githubrepoid
 	config_entry_value = null

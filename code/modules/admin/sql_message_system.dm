@@ -50,9 +50,9 @@
 		return
 	if(logged)
 		log_admin_private("[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]: [text]")
-		var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]"
+		var/header = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]" // yogs - Yog Tickets
 		message_admins("[header]:<br>[text]")
-		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font>")
+		admin_ticket_log(target_ckey, header) // yogs - Yog Tickets
 		admin_ticket_log(target_ckey, text)
 		if(browse)
 			browse_messages("[type]")
