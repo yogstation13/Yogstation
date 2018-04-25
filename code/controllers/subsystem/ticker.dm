@@ -287,6 +287,7 @@ SUBSYSTEM_DEF(ticker)
 	SEND_SOUND(world, sound('sound/ai/welcome.ogg'))
 
 	current_state = GAME_STATE_PLAYING
+	webhook_send_roundstatus("ingame") //yogs - webhook support
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(SSevents.holidays)
@@ -600,6 +601,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	webhook_send_roundstatus("endgame") //yogs - webhook support
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever

@@ -54,7 +54,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
-	
+
 	var/static/random_seed
 
 	//current tick limit, assigned before running a subsystem.
@@ -69,7 +69,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(!random_seed)
 		random_seed = (TEST_RUN_PARAMETER in world.params) ? 29051994 : rand(1, 1e9)
 		rand_seed(random_seed)
-	
+
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
@@ -192,6 +192,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, "<span class='boldannounce'>[msg]</span>")
 	log_world(msg)
+	//yogs start - webhook support
+	var/list/webhookData = list(\
+								"map_name" = SSmapping.config.map_name,             \
+								"round" = GLOB.round_id,       \
+								"revision" = GLOB.revdata.commit,      \
+								"changelog_hash" = GLOB.changelog_hash)
+	webhook_send_roundstatus("lobby", webhookData) //yogs end -webhook support
 
 	if (!current_runlevel)
 		SetRunLevel(1)
