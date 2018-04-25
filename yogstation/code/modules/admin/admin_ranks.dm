@@ -16,7 +16,7 @@
 				var/rank_group = text2num(query_ranks.item[3])
 				if(lastGroup != rank_group)
 					lastGroup = rank_group
-					ranksFile << " "
+					WRITE_FILE(ranksFile, " ")
 				WRITE_FILE(ranksFile, "[rank_name]\t=\t[rank_byond]")
 
 		var/datum/DBQuery/query_admin = SSdbcore.NewQuery("SELECT `web_admins`.`username` AS admin, `web_groups`.`name` AS rank, `web_groups`.`rank_group` AS rank_group FROM `web_admins`, `web_groups` WHERE `web_admins`.`rank` = `web_groups`.`rankid` ORDER BY `web_groups`.`rank_group` ASC, rank DESC")
@@ -33,5 +33,5 @@
 				var/rank_group = text2num(query_admin.item[3])
 				if(lastGroup != rank_group)
 					lastGroup = rank_group
-					adminsFile << " "
-				adminsFile << "[name]\t=\t[rank]"
+					WRITE_FILE(adminsFile, " ")
+				WRITE_FILE(adminsFile, "[name]\t=\t[rank]")
