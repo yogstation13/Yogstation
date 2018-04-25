@@ -436,6 +436,6 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
 DEFAULT_VIEW 15x15
 
-##Used to send round data to a webhook. Adress must use HTTP without SSL because byond is horrible.
+##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
 #WEBHOOK_ADRESS http://example.com
 #WEBHOOK_KEY webkey
