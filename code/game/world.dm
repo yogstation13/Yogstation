@@ -28,6 +28,7 @@ GLOBAL_PROTECT(security_mode)
 	SERVER_TOOLS_ON_NEW
 
 	load_admins()
+	refresh_admin_files() //yogs - DB support
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
