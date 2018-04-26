@@ -237,6 +237,7 @@ Paramedic
 /datum/job/paramedic
 	title = "Paramedic"
 	flag = PARAMEDIC
+	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
@@ -272,6 +273,7 @@ Psychiatrist
 /datum/job/psych
 	title = "Psychiatrist"
 	flag = PSYCH
+	department_head = list("Chief Medical Officer")
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
