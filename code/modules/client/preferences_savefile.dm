@@ -140,6 +140,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 	// yogs end
+	
+	load_keybindings(S) // yogs - Custom keybindings
 
 	return 1
 
@@ -188,6 +190,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["purrbation"], purrbation)
 	// yogs end
+	
+	save_keybindings(S) // yogs - Custom keybindings
 
 	return 1
 

@@ -164,6 +164,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
+	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Keybindings</a>" // yogs - Custom keybindings
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -460,7 +461,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -617,8 +618,73 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+			dat += "</tr></table>"
 		// yogs end
+		
+		// yogs start - Custom keybindings
+		if (4) // Keybindings
+			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a>"
+			dat += "<a href='?_src_=prefs;preference=reset_bindings'>Reset to default</a></center>"
+			if(hotkeys)
+				var/button
+				var/button_bound
 
+				dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+				dat += "<h2>Client</h2>"
+				BUTTON_KEY("Move North (up)", ACTION_MOVENORTH)
+				BUTTON_KEY("Move West (left)", ACTION_MOVEWEST)
+				BUTTON_KEY("Move South (down)", ACTION_MOVESOUTH)
+				BUTTON_KEY("Move East (right)", ACTION_MOVEEAST)
+				
+				BUTTON_KEY("Adminhelp", ACTION_AHELP)
+				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
+				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
+
+
+				dat += "<h2>Mob</h2>"
+				BUTTON_KEY("Stop pulling", ACTION_STOPPULLING)
+				BUTTON_KEY("Cycle intent clockwise", ACTION_INTENTRIGHT)
+				BUTTON_KEY("Cycle intent counter-clockwise", ACTION_INTENTLEFT)
+				BUTTON_KEY("Swap hands", ACTION_SWAPHAND)
+				BUTTON_KEY("Use on self", ACTION_USESELF)
+				BUTTON_KEY("Drop", ACTION_DROP)
+				BUTTON_KEY("Equip", ACTION_EQUIP)
+				BUTTON_KEY("Toggle movement", ACTION_MOVETOGGLE)
+
+				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
+				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
+				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
+				BUTTON_KEY("Target left arm", ACTION_TARGETLARM)
+				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
+				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
+				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
+				
+				dat += "</td><td width='300px' height='300px' valign='top'>"
+
+				BUTTON_KEY("Resist", ACTION_RESIST)
+
+				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
+				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
+				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
+				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
+				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
+
+
+				dat += "<h2>Cyborg</h2>"
+				BUTTON_KEY("Module 1", ACTION_MODULE1)
+				BUTTON_KEY("Module 2", ACTION_MODULE2)
+				BUTTON_KEY("Module 3", ACTION_MODULE3)
+				
+				if(parent.holder)
+					dat += "<h2>Admin</h2>"
+					BUTTON_KEY("Adminchat", ACTION_ASAY)
+					BUTTON_KEY("Admin ghost", ACTION_AGHOST)
+					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
+					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
+					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
+
+				dat += "</td></tr></table>"
+		// yogs end
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -1450,7 +1516,54 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				// yogs start - Custom keybindings
+				UPDATE_MOVEMENT(ACTION_MOVENORTH, NORTH)
+				UPDATE_MOVEMENT(ACTION_MOVEWEST, WEST)
+				UPDATE_MOVEMENT(ACTION_MOVESOUTH, SOUTH)
+				UPDATE_MOVEMENT(ACTION_MOVEEAST, EAST)
 
+				UPDATE_KEY(ACTION_AHELP)
+				UPDATE_KEY(ACTION_SCREENSHOT)
+				UPDATE_KEY(ACTION_MINHUD)
+
+
+				UPDATE_KEY(ACTION_STOPPULLING)
+				UPDATE_KEY(ACTION_INTENTRIGHT)
+				UPDATE_KEY(ACTION_INTENTLEFT)
+				UPDATE_KEY(ACTION_SWAPHAND)
+				UPDATE_KEY(ACTION_USESELF)
+				UPDATE_KEY(ACTION_DROP)
+				UPDATE_KEY(ACTION_EQUIP)
+				UPDATE_KEY(ACTION_MOVETOGGLE)
+
+				UPDATE_KEY(ACTION_TARGETHEAD)
+				UPDATE_KEY(ACTION_TARGETRARM)
+				UPDATE_KEY(ACTION_TARGETCHEST)
+				UPDATE_KEY(ACTION_TARGETLARM)
+				UPDATE_KEY(ACTION_TARGETRLEG)
+				UPDATE_KEY(ACTION_TARGETGROIN)
+				UPDATE_KEY(ACTION_TARGETLLEG)
+				
+				UPDATE_KEY(ACTION_RESIST)
+				
+				UPDATE_KEY(ACTION_TOGGLETHROW)
+				UPDATE_KEY(ACTION_INTENTHELP)
+				UPDATE_KEY(ACTION_INTENTDISARM)
+				UPDATE_KEY(ACTION_INTENTGRAB)
+				UPDATE_KEY(ACTION_INTENTHARM)
+
+
+				UPDATE_KEY(ACTION_MODULE1)
+				UPDATE_KEY(ACTION_MODULE2)
+				UPDATE_KEY(ACTION_MODULE3)
+
+
+				UPDATE_KEY(ACTION_ASAY)
+				UPDATE_KEY(ACTION_AGHOST)
+				UPDATE_KEY(ACTION_PLAYERPANEL)
+				UPDATE_KEY(ACTION_BUILDMODE)
+				UPDATE_KEY(ACTION_STEALTHMIN)
+				// yogs end
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -1470,7 +1583,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
 					else
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 				if("action_buttons")
@@ -1559,6 +1672,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
+
+				// yogs start - Custom keybindings
+				if("reset_bindings")
+					reset_keybindings()
+				// yogs end
 
 	ShowChoices(user)
 	return 1
