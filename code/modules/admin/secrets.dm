@@ -589,8 +589,8 @@
 			message_admins("[key_name_admin(usr)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
-
-		if("flipmovement")
+		// yogs start - Custom keybindings
+		/*if("flipmovement")
 			if(!check_rights(R_FUN))
 				return
 			if(alert("Flip all movement controls?","Confirm","Yes","Cancel") == "Cancel")
@@ -642,7 +642,8 @@
 				return
 			SSinput.setup_default_movement_keys()
 			message_admins("[key_name_admin(usr)] has reset all movement keys.")
-			log_admin("[key_name(usr)] has reset all movement keys.")
+			log_admin("[key_name(usr)] has reset all movement keys.")*/
+		// yogs end
 
 	if(E)
 		E.processing = FALSE
