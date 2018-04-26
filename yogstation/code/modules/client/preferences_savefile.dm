@@ -1,4 +1,3 @@
-
 /datum/preferences/proc/load_keybindings(var/savefile/S)
 	var/keybindings
 	S["keybindings"] >> keybindings 
