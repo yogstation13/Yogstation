@@ -70,11 +70,15 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_MOVEEAST "Move East"
 
 // Client
+#define ACTION_OOC "Ooc"
 #define ACTION_AHELP "Adminhelp"
 #define ACTION_SCREENSHOT "Screenshot"
 #define ACTION_MINHUD "Min Hud"
 
 // Mob
+#define ACTION_SAY "Say"
+#define ACTION_ME "Me"
+
 #define ACTION_STOPPULLING "Stop Pulling"
 #define ACTION_INTENTRIGHT "Intent Right"
 #define ACTION_INTENTLEFT "Intent Left"
@@ -82,7 +86,6 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_USESELF "Use Self"
 #define ACTION_DROP "Drop"
 #define ACTION_EQUIP "Equip"
-#define ACTION_MOVETOGGLE "Move Toggle"
 
 #define ACTION_TARGETHEAD "Target Head"
 #define ACTION_TARGETRARM "Target RArm"
@@ -107,11 +110,6 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_BUILDMODE "Build Mode"
 #define ACTION_STEALTHMIN "Stealthmin"
 #define ACTION_DSAY "Deadchat"
-
-// Cyborg
-#define ACTION_MODULE1 "Module1"
-#define ACTION_MODULE2 "Module2"
-#define ACTION_MODULE3 "Module3"
 
 
 #define BUTTON_KEY(name, action) \
@@ -143,10 +141,14 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_MOVESOUTH = "S",
 	ACTION_MOVEEAST = "D",
 
+	ACTION_OOC = "O",
 	ACTION_AHELP = "F1",
 	ACTION_SCREENSHOT = "F2",
 	ACTION_MINHUD = "F12",
 
+
+	ACTION_SAY = "T",
+	ACTION_ME = "M",
 
 	ACTION_STOPPULLING = "Delete",
 	ACTION_INTENTRIGHT = "G",
@@ -180,8 +182,4 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_BUILDMODE = "F7",
 	ACTION_STEALTHMIN = "F8",
 	ACTION_DSAY = "F10",
-	
-	ACTION_MODULE1 = "1",
-	ACTION_MODULE2 = "2",
-	ACTION_MODULE3 = "3",
 ))
