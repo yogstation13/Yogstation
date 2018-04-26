@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 // Clients aren't datums so we have to define these procs indpendently.
 // These verbs are called for all key press and release events
 /client/verb/keyDown(_key as text)

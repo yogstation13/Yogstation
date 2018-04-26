@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 /mob/living/silicon/robot/key_down(_key, client/user)
 	switch(_key)
 		if("1", "2", "3")

@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 /mob/living/carbon/key_down(_key, client/user)
 	switch(_key)
 		if("R", "Southwest") // Southwest is End
