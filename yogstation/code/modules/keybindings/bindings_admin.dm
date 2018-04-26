@@ -18,5 +18,7 @@
 			else
 				user.invisimin()
 			return
-
+		if(ACTION_DSAY)
+			user.get_dead_say()
+			return
 	..()
