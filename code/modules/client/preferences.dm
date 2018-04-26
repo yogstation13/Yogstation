@@ -682,7 +682,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
 					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
 					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
-					BUTTON_KEY("Deachat", ACTION_DSAY)
+					BUTTON_KEY("Deadchat", ACTION_DSAY)
 
 				dat += "</td></tr></table>"
 		// yogs end
