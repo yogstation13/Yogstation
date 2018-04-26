@@ -682,6 +682,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
 					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
 					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
+					BUTTON_KEY("Deachat", ACTION_DSAY)
 
 				dat += "</td></tr></table>"
 		// yogs end
@@ -1563,6 +1564,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				UPDATE_KEY(ACTION_PLAYERPANEL)
 				UPDATE_KEY(ACTION_BUILDMODE)
 				UPDATE_KEY(ACTION_STEALTHMIN)
+				UPDATE_KEY(ACTION_DSAY)
 				// yogs end
 		else
 			switch(href_list["preference"])

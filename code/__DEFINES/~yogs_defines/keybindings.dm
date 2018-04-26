@@ -105,6 +105,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_PLAYERPANEL "Player Panel"
 #define ACTION_BUILDMODE "Build Mode"
 #define ACTION_STEALTHMIN "Stealthmin"
+#define ACTION_DSAY "Deadchat"
 
 // Cyborg
 #define ACTION_MODULE1 "Module1"
@@ -177,6 +178,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_PLAYERPANEL = "F6",
 	ACTION_BUILDMODE = "F7",
 	ACTION_STEALTHMIN = "F8",
+	ACTION_DSAY = "F10",
 	
 	ACTION_MODULE1 = "1",
 	ACTION_MODULE2 = "2",
