@@ -57,6 +57,8 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 	"Numpad7",
 	"Numpad8",
 	"Numpad9",
+	",",
+	".",
 	"Unbound",
 ))
 
