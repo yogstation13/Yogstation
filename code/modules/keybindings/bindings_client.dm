@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 // Clients aren't datums so we have to define these procs indpendently.
 // These verbs are called for all key press and release events
 /client/verb/keyDown(_key as text)
@@ -5,7 +6,7 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/movement = SSinput.movement_keys[_key]
+	var/movement = prefs.movement_keys[_key] // yogs - Custom keybinds
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
@@ -36,7 +37,7 @@
 	set hidden = TRUE
 
 	keys_held -= _key
-	var/movement = SSinput.movement_keys[_key]
+	var/movement = prefs.movement_keys[_key] // yogs - Custom keybinds
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
