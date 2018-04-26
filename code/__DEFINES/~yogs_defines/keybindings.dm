@@ -39,6 +39,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 	"F10",
 	"F11",
 	"F12",
+	"0",
 	"1",
 	"2",
 	"3",
