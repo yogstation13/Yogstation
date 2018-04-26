@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_MOVEEAST "Move East"
 
 // Client
-#define ACTION_OOC "Ooc"
+#define ACTION_OOC "OOC"
 #define ACTION_AHELP "Adminhelp"
 #define ACTION_SCREENSHOT "Screenshot"
 #define ACTION_MINHUD "Min Hud"
