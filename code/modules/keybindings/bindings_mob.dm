@@ -60,7 +60,7 @@
 			return
 
 	if(client.keys_held["Ctrl"])
-		switch(client.prefs.movement_keys[_key])
+		switch(SSinput.movement_keys[_key])
 			if(NORTH)
 				northface()
 				return
