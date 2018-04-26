@@ -4,6 +4,12 @@
 
 /mob/key_down(datum/keyinfo/I, client/user)
 	switch(I.action)
+		if(ACTION_SAY)
+			get_say()
+			return
+		if(ACTION_ME)
+			me_verb()
+			return
 		if(ACTION_STOPPULLING)
 			if(!pulling)
 				to_chat(src, "<span class='notice'>You are not pulling anything.</span>")
@@ -31,9 +37,6 @@
 			return
 		if(ACTION_EQUIP)
 			quick_equip()
-			return
-		if(ACTION_MOVETOGGLE)
-			toggle_move_intent()
 			return
 		//Bodypart selections
 		if(ACTION_TARGETHEAD)
@@ -74,11 +77,4 @@
 				eastface()
 				return
 
-	return ..()
-
-/mob/key_up(datum/keyinfo/I, client/user)
-	switch(I.action)
-		if(ACTION_MOVETOGGLE)
-			toggle_move_intent()
-			return
 	return ..()

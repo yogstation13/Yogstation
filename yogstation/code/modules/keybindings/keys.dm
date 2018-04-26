@@ -14,6 +14,16 @@
 	movement_keys -= old_key
 	movement_keys[_key] = _dir
 
+/datum/keybindings/proc/unbind_movement()
+	movement_keys = list()
+
+/datum/keybindings/proc/bind_movement()
+	unbind_movement()
+	movement_keys[get_action_key(ACTION_MOVENORTH)] = NORTH
+	movement_keys[get_action_key(ACTION_MOVEWEST)] = WEST
+	movement_keys[get_action_key(ACTION_MOVESOUTH)] = SOUTH
+	movement_keys[get_action_key(ACTION_MOVEEAST)] = EAST
+
 /datum/keybindings/proc/unbind_old_keys(_key)
 	movement_keys -= _key
 	for(var/A in keys)
@@ -56,10 +66,7 @@
 
 /datum/keybindings/proc/from_list(list/_list)
 	keys = _list.Copy()
-	movement_keys[get_action_key(ACTION_MOVENORTH)] = NORTH
-	movement_keys[get_action_key(ACTION_MOVEWEST)] = WEST
-	movement_keys[get_action_key(ACTION_MOVESOUTH)] = SOUTH
-	movement_keys[get_action_key(ACTION_MOVEEAST)] = EAST
+	bind_movement()
 
 /datum/keybindings/proc/to_list()
 	return keys

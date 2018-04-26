@@ -1,12 +1,12 @@
 /mob/living/silicon/robot/key_down(datum/keyinfo/I, client/user)
 	switch(I.action)
-		if(ACTION_MODULE1)
+		if(ACTION_INTENTHELP)
 			toggle_module(1)
 			return
-		if(ACTION_MODULE2)
+		if(ACTION_INTENTDISARM)
 			toggle_module(2)
 			return
-		if(ACTION_MODULE3)
+		if(ACTION_INTENTGRAB)
 			toggle_module(3)
 			return
 		if(ACTION_INTENTLEFT)

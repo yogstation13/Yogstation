@@ -636,20 +636,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Move South (down)", ACTION_MOVESOUTH)
 				BUTTON_KEY("Move East (right)", ACTION_MOVEEAST)
 				
+				BUTTON_KEY("OOC", ACTION_OOC)
 				BUTTON_KEY("Adminhelp", ACTION_AHELP)
 				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
 				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
 
 
 				dat += "<h2>Mob</h2>"
+				BUTTON_KEY("Say", ACTION_SAY)
+				BUTTON_KEY("Emote", ACTION_ME)
 				BUTTON_KEY("Stop pulling", ACTION_STOPPULLING)
 				BUTTON_KEY("Cycle intent clockwise", ACTION_INTENTRIGHT)
 				BUTTON_KEY("Cycle intent counter-clockwise", ACTION_INTENTLEFT)
 				BUTTON_KEY("Swap hands", ACTION_SWAPHAND)
-				BUTTON_KEY("Use on self", ACTION_USESELF)
+				BUTTON_KEY("Use item on self", ACTION_USESELF)
 				BUTTON_KEY("Drop", ACTION_DROP)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
-				BUTTON_KEY("Toggle movement", ACTION_MOVETOGGLE)
+
+				dat += "</td><td width='300px' height='300px' valign='top'>"
+				dat += "<h2>Mob</h2>"
 
 				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
 				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
@@ -658,8 +663,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
 				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
 				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
-				
-				dat += "</td><td width='300px' height='300px' valign='top'>"
 
 				BUTTON_KEY("Resist", ACTION_RESIST)
 
@@ -668,12 +671,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
 				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
 				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
-
-
-				dat += "<h2>Cyborg</h2>"
-				BUTTON_KEY("Module 1", ACTION_MODULE1)
-				BUTTON_KEY("Module 2", ACTION_MODULE2)
-				BUTTON_KEY("Module 3", ACTION_MODULE3)
 				
 				if(parent.holder)
 					dat += "<h2>Admin</h2>"
@@ -1523,10 +1520,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				UPDATE_MOVEMENT(ACTION_MOVESOUTH, SOUTH)
 				UPDATE_MOVEMENT(ACTION_MOVEEAST, EAST)
 
+				UPDATE_KEY(ACTION_OOC)
 				UPDATE_KEY(ACTION_AHELP)
 				UPDATE_KEY(ACTION_SCREENSHOT)
 				UPDATE_KEY(ACTION_MINHUD)
 
+
+				UPDATE_KEY(ACTION_SAY)
+				UPDATE_KEY(ACTION_ME)
 
 				UPDATE_KEY(ACTION_STOPPULLING)
 				UPDATE_KEY(ACTION_INTENTRIGHT)
@@ -1535,7 +1536,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				UPDATE_KEY(ACTION_USESELF)
 				UPDATE_KEY(ACTION_DROP)
 				UPDATE_KEY(ACTION_EQUIP)
-				UPDATE_KEY(ACTION_MOVETOGGLE)
 
 				UPDATE_KEY(ACTION_TARGETHEAD)
 				UPDATE_KEY(ACTION_TARGETRARM)
@@ -1552,11 +1552,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				UPDATE_KEY(ACTION_INTENTDISARM)
 				UPDATE_KEY(ACTION_INTENTGRAB)
 				UPDATE_KEY(ACTION_INTENTHARM)
-
-
-				UPDATE_KEY(ACTION_MODULE1)
-				UPDATE_KEY(ACTION_MODULE2)
-				UPDATE_KEY(ACTION_MODULE3)
 
 
 				UPDATE_KEY(ACTION_ASAY)
@@ -1585,8 +1580,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
+						bindings.bind_movement() // yogs - Rebindable keys
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
 					else
+						bindings.unbind_movement() // yogs - Rebindable keys
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 				if("action_buttons")
 					buttons_locked = !buttons_locked

@@ -28,6 +28,9 @@
 		if(ACTION_MINHUD) // Toggles minimal HUD
 			mob.button_pressed_F12()
 			return
+		if(ACTION_OOC)
+			get_ooc()
+			return
 			
 	var/datum/keyinfo/I = bind.to_keyinfo(_key, A)
 
