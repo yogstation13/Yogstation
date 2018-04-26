@@ -6,7 +6,7 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/movement = prefs.movement_keys[_key] // yogs - Custom keybinds
+	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
@@ -37,7 +37,7 @@
 	set hidden = TRUE
 
 	keys_held -= _key
-	var/movement = prefs.movement_keys[_key] // yogs - Custom keybinds
+	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 

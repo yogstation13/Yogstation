@@ -58,8 +58,22 @@
 			user.body_l_leg()
 			return
 
-	//if(bind.isheld_key("Ctrl"))
-		// TODO: Movement looking
+	if(client.prefs.bindings.isheld_key("Ctrl"))
+		var/list/keys = SSinput.movement_arrows + client.prefs.bindings.movement_keys
+		switch(keys[I.key])
+			if(NORTH)
+				northface()
+				return
+			if(SOUTH)
+				southface()
+				return
+			if(WEST)
+				westface()
+				return
+			if(EAST)
+				eastface()
+				return
+
 	return ..()
 
 /mob/key_up(datum/keyinfo/I, client/user)
