@@ -2623,6 +2623,7 @@
 #include "yogstation\code\game\objects\items\storage\belt.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\job_closets.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
+#include "yogstation\code\modules\admin\admin_ranks.dm"
 #include "yogstation\code\modules\admin\prettyfilter.dm"
 #include "yogstation\code\modules\admin\verbs\admin_ticket_templates.dm"
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
