@@ -122,7 +122,7 @@ GLOBAL_PROTECT(protected_ranks)
 	var/previous_rights = 0
 	//load text from file and process each line separately
 	for(var/line in world.file2list("[global.config.directory]/admin_ranks.txt"))
-		if(!line || findtextEx(line,"#",1,2))
+		if(!line || findtextEx(line,"#",1,2) || line == " ") //YOGS - added our DB support
 			continue
 		var/next = findtext(line, "=")
 		var/datum/admin_rank/R = new(ckeyEx(copytext(line, 1, next)))
@@ -219,7 +219,7 @@ GLOBAL_PROTECT(protected_ranks)
 	//ckeys listed in admins.txt are always made admins before sql loading is attempted
 	var/list/lines = world.file2list("[global.config.directory]/admins.txt")
 	for(var/line in lines)
-		if(!length(line) || findtextEx(line, "#", 1, 2))
+		if(!length(line) || findtextEx(line, "#", 1, 2) || line == " ") //yogs - added our DB support
 			continue
 		var/list/entry = splittext(line, "=")
 		if(entry.len < 2)
