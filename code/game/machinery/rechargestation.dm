@@ -54,9 +54,6 @@
 		if(default_deconstruction_screwdriver(user, "borgdecon2", "borgcharger0", P))
 			return
 
-	if(exchange_parts(user, P))
-		return
-
 	if(default_pry_open(P))
 		return
 
