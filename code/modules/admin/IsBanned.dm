@@ -70,8 +70,8 @@
 			message_admins(msg)
 			return
 
-		var/ipquery = "" YOGS - DB support //yogs start - DB support
-		var/cidquery = "" YOGS - DB support
+		var/ipquery = ""
+		var/cidquery = ""
 		if(address)
 			ipquery = " OR ip = INET_ATON('[address]') "
 
