@@ -2609,6 +2609,7 @@
 #include "yogstation\code\controllers\subsystem\input.dm"
 #include "yogstation\code\datums\mind.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
+#include "yogstation\code\game\gamemodes\wizard\wizard.dm"
 #include "yogstation\code\game\machinery\computer\computer_circuitboards.dm"
 #include "yogstation\code\game\machinery\computer\crew.dm"
 #include "yogstation\code\game\machinery\computer\medical.dm"
