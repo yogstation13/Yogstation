@@ -139,6 +139,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/is_main_engine = FALSE
 
+	var/datum/looping_sound/supermatter/soundloop
+
 	var/moveable = FALSE
 
 /obj/machinery/power/supermatter_crystal/Initialize()
@@ -156,6 +158,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 
+	soundloop = new(list(src), TRUE)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
@@ -165,6 +168,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
@@ -235,10 +239,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(final_countdown) // We're already doing it go away
 		return
 	final_countdown = TRUE
-
+	
 	var/image/causality_field = image(icon, null, "causality_field")
 	add_overlay(causality_field, TRUE)
-
+	
 	var/speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
 	radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
 	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
@@ -256,7 +260,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			speaking = "[i/10]..."
 		radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
 		sleep(10)
-
+	
 	explode()
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
@@ -269,7 +273,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
 			L.rad_act(rads)
-
+			
 	var/turf/T = get_turf(src)
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
@@ -300,6 +304,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!istype(T)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
+	if(power)
+		soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/env = T.return_air()
