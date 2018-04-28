@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/UI_style = "Midnight"
 	var/buttons_locked = FALSE
-	var/hotkeys = TRUE
+	var/hotkeys = TRUE // yogs - Rebindable Keybindings
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
 	var/windowflashing = TRUE
