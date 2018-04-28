@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/opened_at
 	var/closed_at
-	
+
 	var/client/handling_admin
 
 	var/client/initiator	//semi-misnomer, it's the person who ahelped/was bwoinked
@@ -454,10 +454,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Administer(key_name = key_name_admin(usr))
 	handling_admin = usr
 
-	var/msg = "[usr] has been assigned to ticket #[id] as primary admin."
+	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
 	message_admins(msg)
 	log_admin_private(msg)
-	
+
 
 //Forwarded action from admin/Topic
 /datum/admin_help/proc/Action(action)
@@ -503,7 +503,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/content = ""
 	var/list/tickets_list = GLOB.ahelp_tickets.tickets_list
-	
+
 	if(holder)
 		content += {"<p class='info-bar'>
 			<a href='?_src_=[REF(src)];[HrefToken()];action=refresh_admin_ticket_list;flag=[flag]'>Refresh List</a>
@@ -526,7 +526,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			[(flag & TICKET_FLAG_LIST_UNCLAIMED) ? " Unclaimed" : ""]
 		</b></p>"}
 
-		
+
 		var/list/resolved = new /list()
 		var/list/unresolved = new /list()
 
@@ -553,7 +553,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			if(!include)
 				continue
 
-			if(T.state == AHELP_ACTIVE)	
+			if(T.state == AHELP_ACTIVE)
 				unresolved.Add(T)
 			else
 				resolved.Add(T)
