@@ -44214,6 +44214,9 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "36"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/clerk)
 "bQy" = (
@@ -44222,6 +44225,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/clerk)
