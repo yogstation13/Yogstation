@@ -66043,8 +66043,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	name = "Captain's Office Maintenance";
-	req_access_txt = "20"
+	name = "Paramedic Staging Area Maintenance";
+	req_access_txt = "69"
 	},
 /turf/open/floor/plating,
 /area/medical/paramedic)
