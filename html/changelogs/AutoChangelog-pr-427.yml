@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Cycle-linking is no longer permanently disabled for airlocks on shuttles."

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Machine power will now update when moving from powered to unpowered areas and vice versa."

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Entering a frequency like 145.7 into a radio will now work, where 1457 was previously required."

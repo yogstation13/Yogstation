@@ -1,4 +1,0 @@
-author: " ninjanomnom"
-delete-after: true 
-changes: 
-  - bugfix: "Shuttles getting removed would occasionally causes issues. This has been fixed."

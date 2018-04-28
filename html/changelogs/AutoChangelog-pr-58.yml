@@ -1,6 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "Made AI VOX sound files smaller sized"
-  - bugfix: "Fixed improperly pronounced AI VOX lines"
-  - soundadd: " Added a ton of new AI VOX sayings"
