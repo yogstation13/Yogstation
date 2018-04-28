@@ -13,16 +13,16 @@ GLOBAL_LIST_EMPTY(donators)
 		log_sql("Error loading donators from database.")
 		return
 
+	var/ckey
 	while(query.NextRow())
 		ckey = query.item[1]
 		if(ckey)
 			donatorskeys |= ckey
 
-	var/ckey
 	var/datum/preferences/P
 	for(var/key in donatorskeys)
 		ckey = ckey(key)
-		donators |= ckey
+		GLOB.donators |= ckey
 		P = GLOB.preferences_datums[ckey]
 		if(P)
 			P.unlock_content |= 2
