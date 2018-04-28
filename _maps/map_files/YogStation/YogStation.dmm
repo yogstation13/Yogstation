@@ -52100,13 +52100,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qIg" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Kitchen";
-	req_access_txt = "28"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "qIz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
 	dir = 8
@@ -91777,7 +91770,7 @@ aYJ
 aJI
 bbz
 aYV
-qIg
+aYV
 aYV
 bfK
 bhj
