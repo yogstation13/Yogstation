@@ -2608,6 +2608,7 @@
 #include "yogstation\code\__HELPERS\unsorted.dm"
 #include "yogstation\code\controllers\subsystem\input.dm"
 #include "yogstation\code\datums\mind.dm"
+#include "yogstation\code\game\world.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
 #include "yogstation\code\game\machinery\computer\computer_circuitboards.dm"
