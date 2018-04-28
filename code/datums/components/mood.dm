@@ -10,7 +10,12 @@
 
 /datum/component/mood/Initialize()
 	if(!isliving(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("Some good for nothing loser put a mood component on something that isn't even a living mob.")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	START_PROCESSING(SSmood, src)
 	owner = parent
 	soundloop = new(list(owner), FALSE, TRUE)

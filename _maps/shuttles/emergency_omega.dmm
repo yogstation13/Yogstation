@@ -31,7 +31,11 @@
 /obj/structure/chair{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom";
 	pixel_y = 24
 	},
@@ -232,7 +236,11 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom";
 	pixel_x = 26
 	},
@@ -485,7 +493,11 @@
 	pixel_x = -4;
 	pixel_y = 3
 	},
+<<<<<<< HEAD
 /obj/item/healthanalyzer{
+=======
+/obj/item/device/healthanalyzer{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -520,7 +532,11 @@
 /obj/machinery/sleeper{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom";
 	pixel_x = 26
 	},
@@ -557,17 +573,29 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
+<<<<<<< HEAD
 /obj/item/flashlight/flare{
 	pixel_x = 3;
 	pixel_y = 3
 	},
 /obj/item/flashlight/flare{
+=======
+/obj/item/device/flashlight/flare{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/device/flashlight/flare{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = -6;
 	pixel_y = -2
 	},
 /obj/item/crowbar,
 /obj/item/wrench,
+<<<<<<< HEAD
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -606,7 +634,11 @@
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = -32
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom";
 	pixel_y = -26
 	},

@@ -50,7 +50,11 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
 	flags_1 = CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 8
 
 	var/max_uses = 20
@@ -148,7 +152,11 @@
 
 		to_chat(user, "<span class='notice'>You fill \the [src] with lights from \the [S]. " + status_string() + "</span>")
 
+<<<<<<< HEAD
 /obj/item/lightreplacer/emag_act()
+=======
+/obj/item/device/lightreplacer/emag_act()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(obj_flags & EMAGGED)
 		return
 	Emag()
@@ -156,7 +164,11 @@
 /obj/item/lightreplacer/attack_self(mob/user)
 	to_chat(user, status_string())
 
+<<<<<<< HEAD
 /obj/item/lightreplacer/update_icon()
+=======
+/obj/item/device/lightreplacer/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "lightreplacer[(obj_flags & EMAGGED ? 1 : 0)]"
 
 /obj/item/lightreplacer/proc/status_string()
@@ -168,7 +180,11 @@
 	return 1
 
 // Negative numbers will subtract
+<<<<<<< HEAD
 /obj/item/lightreplacer/proc/AddUses(amount = 1)
+=======
+/obj/item/device/lightreplacer/proc/AddUses(amount = 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	uses = CLAMP(uses + amount, 0, max_uses)
 
 /obj/item/lightreplacer/proc/AddShards(amount = 1, user)
@@ -222,7 +238,11 @@
 		to_chat(U, "<span class='warning'>There is a working [target.fitting] already inserted!</span>")
 		return
 
+<<<<<<< HEAD
 /obj/item/lightreplacer/proc/Emag()
+=======
+/obj/item/device/lightreplacer/proc/Emag()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	obj_flags ^= EMAGGED
 	playsound(src.loc, "sparks", 100, 1)
 	if(obj_flags & EMAGGED)

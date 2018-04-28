@@ -41,7 +41,11 @@
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
+<<<<<<< HEAD
 	if(user.get_item_by_slot(SLOT_BACK) == src)
+=======
+	if(user.get_item_by_slot(slot_back) == src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		user.update_inv_back()
 	else
 		user.update_inv_hands()

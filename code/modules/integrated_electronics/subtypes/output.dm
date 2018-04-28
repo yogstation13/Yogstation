@@ -56,7 +56,11 @@
 
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
+<<<<<<< HEAD
 	var/obj/O = assembly ? get_turf(assembly) : loc
+=======
+	var/obj/O = assembly ? loc : assembly
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	O.visible_message("<span class='notice'>[icon2html(O.icon, world, O.icon_state)]  [stuff_to_display]</span>")
 
 /obj/item/integrated_circuit/output/light

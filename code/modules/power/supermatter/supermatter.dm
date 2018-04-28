@@ -64,7 +64,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
 	density = TRUE
+<<<<<<< HEAD
 	anchored = TRUE
+=======
+	anchored = FALSE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/uid = 1
 	var/static/gl_uid = 1
 	light_range = 4
@@ -141,9 +145,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/datum/looping_sound/supermatter/soundloop
 
+<<<<<<< HEAD
 	var/moveable = FALSE
 
 /obj/machinery/power/supermatter_crystal/Initialize()
+=======
+	var/moveable = TRUE
+
+/obj/machinery/power/supermatter_shard/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	uid = gl_uid++
 	SSair.atmos_machinery += src
@@ -160,7 +170,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	soundloop = new(list(src), TRUE)
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/Destroy()
+=======
+/obj/machinery/power/supermatter_shard/Destroy()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
 	SSair.atmos_machinery -= src
 	QDEL_NULL(radio)
@@ -326,6 +340,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	else
 		if(takes_damage)
 			//causing damage
+<<<<<<< HEAD
 			damage = max(damage + (max(CLAMP(removed.total_moles() / 200, 0.5, 1) * removed.temperature - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
 			damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
 			damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
@@ -360,6 +375,42 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//more moles of gases are harder to heat than fewer, so let's scale heat damage around them
 		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
 
+=======
+			damage = max(damage + (max(removed.temperature - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
+			damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
+			damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
+
+			//healing damage
+			if(combined_gas < MOLE_PENALTY_THRESHOLD)
+				damage = max(damage + (min(removed.temperature - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
+
+			//capping damage
+			damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
+			if(damage > damage_archived && prob(10))
+				playsound(get_turf(src), 'sound/effects/empulse.ogg', 50, 1)
+
+		removed.assert_gases(/datum/gas/oxygen, /datum/gas/plasma, /datum/gas/carbon_dioxide, /datum/gas/nitrous_oxide, /datum/gas/nitrogen)
+		//calculating gas related values
+		combined_gas = max(removed.total_moles(), 0)
+
+		plasmacomp = max(removed.gases[/datum/gas/plasma][MOLES]/combined_gas, 0)
+		o2comp = max(removed.gases[/datum/gas/oxygen][MOLES]/combined_gas, 0)
+		co2comp = max(removed.gases[/datum/gas/carbon_dioxide][MOLES]/combined_gas, 0)
+
+		n2ocomp = max(removed.gases[/datum/gas/nitrous_oxide][MOLES]/combined_gas, 0)
+		n2comp = max(removed.gases[/datum/gas/nitrogen][MOLES]/combined_gas, 0)
+
+		gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp - n2comp, 0), 1)
+
+		dynamic_heat_modifier = max((plasmacomp * PLASMA_HEAT_PENALTY)+(o2comp * OXYGEN_HEAT_PENALTY)+(co2comp * CO2_HEAT_PENALTY)+(n2comp * NITROGEN_HEAT_MODIFIER), 0.5)
+		dynamic_heat_resistance = max(n2ocomp * N2O_HEAT_RESISTANCE, 1)
+
+		power_transmission_bonus = max((plasmacomp * PLASMA_TRANSMIT_MODIFIER) + (o2comp * OXYGEN_TRANSMIT_MODIFIER), 0)
+
+		//more moles of gases are harder to heat than fewer, so let's scale heat damage around them
+		mole_heat_penalty = max(combined_gas / MOLE_HEAT_PENALTY, 0.25)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if (combined_gas > POWERLOSS_INHIBITION_MOLE_THRESHOLD && co2comp > POWERLOSS_INHIBITION_GAS_THRESHOLD)
 			powerloss_dynamic_scaling = CLAMP(powerloss_dynamic_scaling + CLAMP(co2comp - powerloss_dynamic_scaling, -0.02, 0.02), 0, 1)
 		else
@@ -471,7 +522,21 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel, get_spans(), get_default_language())
 
 		if(damage > explosion_point)
+<<<<<<< HEAD
 			countdown()
+=======
+			for(var/mob in GLOB.alive_mob_list)
+				var/mob/living/L = mob
+				if(istype(L) && L.z == z)
+					if(ishuman(mob))
+						//Hilariously enough, running into a closet should make you get hit the hardest.
+						var/mob/living/carbon/human/H = mob
+						H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
+					var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(L, src) + 1) )
+					L.rad_act(rads)
+
+			explode()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	return 1
 
@@ -547,13 +612,21 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/attack_ai(mob/user)
 	return
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/attack_hand(mob/living/user)
+=======
+/obj/machinery/power/supermatter_shard/attack_hand(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return
 	dust_mob(user, cause = "hand")
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
+=======
+/obj/machinery/power/supermatter_shard/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(nom.incorporeal_move || nom.status_flags & GODMODE)
 		return
 	if(!vis_msg)
@@ -567,7 +640,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
 	Consume(nom)
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/attackby(obj/item/W, mob/living/user, params)
+=======
+/obj/machinery/power/supermatter_shard/attackby(obj/item/W, mob/living/user, params)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(W) || (W.flags_1 & ABSTRACT_1) || !istype(user))
 		return
 	if (istype(W, /obj/item/melee/roastingstick))
@@ -588,7 +665,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		radiation_pulse(src, 150, 4)
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/wrench_act(mob/user, obj/item/tool)
+=======
+/obj/machinery/power/supermatter_shard/wrench_act(mob/user, obj/item/tool)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (moveable)
 		default_unfasten_wrench(user, tool, time = 20)
 	return TRUE
@@ -659,7 +740,24 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	produces_gas = FALSE
 	moveable = FALSE
 
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
+=======
+/obj/machinery/power/supermatter_shard/crystal
+	name = "supermatter crystal"
+	desc = "A strangely translucent and iridescent crystal."
+	base_icon_state = "darkmatter"
+	icon_state = "darkmatter"
+	anchored = TRUE
+	gasefficency = 0.15
+	explosion_power = 35
+	moveable = FALSE
+
+/obj/machinery/power/supermatter_shard/crystal/engine
+	is_main_engine = TRUE
+
+/obj/machinery/power/supermatter_shard/proc/supermatter_pull(turf/center, pull_range = 10)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 	for(var/atom/P in orange(pull_range,center))
 		if(ismovableatom(P))

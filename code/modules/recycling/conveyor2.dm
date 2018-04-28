@@ -18,7 +18,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
+<<<<<<< HEAD
 	var/verted = 1		// Inverts the direction the conveyor belt moves.
+=======
+	var/verted = 1		// set to -1 to have the conveyour belt be inverted, so you can use the other corner icons
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	speed_process = TRUE
 
 /obj/machinery/conveyor/centcom_auto
@@ -284,7 +288,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		CHECK_TICK
 
 // attack with hand, switch position
+<<<<<<< HEAD
 /obj/machinery/conveyor_switch/interact(mob/user)
+=======
+/obj/machinery/conveyor_switch/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_fingerprint(user)
 	if(position == 0)
 		if(oneway)   //is it a oneway switch
@@ -305,7 +316,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	// find any switches with same id as this one, and set their positions to match us
 	for(var/obj/machinery/conveyor_switch/S in GLOB.conveyors_by_id[id])
+<<<<<<< HEAD
 		S.invert_icon = invert_icon
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		S.position = position
 		S.update_icon()
 		CHECK_TICK

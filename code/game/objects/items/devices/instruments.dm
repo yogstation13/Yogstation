@@ -35,10 +35,17 @@
 		return 1
 	interact(user)
 
+<<<<<<< HEAD
 /obj/item/instrument/interact(mob/user)
 	ui_interact(user)
 
 /obj/item/instrument/ui_interact(mob/user)
+=======
+/obj/item/device/instrument/interact(mob/user)
+	ui_interact(user)
+
+/obj/item/device/instrument/ui_interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!user)
 		return
 
@@ -112,14 +119,22 @@
 	item_state = "accordion"
 	instrumentId = "accordion"
 
+<<<<<<< HEAD
 /obj/item/instrument/trumpet
+=======
+/obj/item/device/instrument/trumpet
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "trumpet"
 	desc = "To announce the arrival of the king!"
 	icon_state = "trumpet"
 	item_state = "trombone"
 	instrumentId = "trombone"
 
+<<<<<<< HEAD
 /obj/item/instrument/trumpet/spectral
+=======
+/obj/item/device/instrument/trumpet/spectral
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "spectral trumpet"
 	desc = "Things are about to get spooky!"
 	icon_state = "trumpet"
@@ -128,6 +143,7 @@
 	instrumentId = "trombone"
 	attack_verb = list("played","jazzed","trumpeted","mourned","dooted","spooked")
 
+<<<<<<< HEAD
 /obj/item/instrument/trumpet/spectral/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spooky)
@@ -137,13 +153,28 @@
 	..()
 
 /obj/item/instrument/saxophone
+=======
+/obj/item/device/instrument/trumpet/spectral/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spooky)
+
+/obj/item/device/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
+	playsound (loc, 'sound/instruments/trombone/En4.mid', 100,1,-1)
+	..()
+
+/obj/item/device/instrument/saxophone
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "saxophone"
 	desc = "This soothing sound will be sure to leave your audience in tears."
 	icon_state = "saxophone"
 	item_state = "saxophone"
 	instrumentId = "saxophone"
 
+<<<<<<< HEAD
 /obj/item/instrument/saxophone/spectral
+=======
+/obj/item/device/instrument/saxophone/spectral
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "spectral saxophone"
 	desc = "This spooky sound will be sure to leave mortals in bones."
 	icon_state = "saxophone"
@@ -152,6 +183,7 @@
 	force = 0
 	attack_verb = list("played","jazzed","saxxed","mourned","dooted","spooked")
 
+<<<<<<< HEAD
 /obj/item/instrument/saxophone/spectral/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spooky)
@@ -161,13 +193,28 @@
 	..()
 
 /obj/item/instrument/trombone
+=======
+/obj/item/device/instrument/saxophone/spectral/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spooky)
+
+/obj/item/device/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
+	playsound (loc, 'sound/instruments/saxophone/En4.mid', 100,1,-1)
+	..()
+
+/obj/item/device/instrument/trombone
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "trombone"
 	desc = "How can any pool table ever hope to compete?"
 	icon_state = "trombone"
 	item_state = "trombone"
 	instrumentId = "trombone"
 
+<<<<<<< HEAD
 /obj/item/instrument/trombone/spectral
+=======
+/obj/item/device/instrument/trombone/spectral
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "spectral trombone"
 	desc = "A skeleton's favorite instrument. Apply directly on the mortals."
 	instrumentId = "trombone"
@@ -176,6 +223,7 @@
 	force = 0
 	attack_verb = list("played","jazzed","tromboned","mourned","dooted","spooked")
 
+<<<<<<< HEAD
 /obj/item/instrument/trombone/spectral/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spooky)
@@ -185,6 +233,17 @@
 	..()
 
 /obj/item/instrument/recorder
+=======
+/obj/item/device/instrument/trombone/spectral/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spooky)
+
+/obj/item/device/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
+	playsound (loc, 'sound/instruments/trombone/Cn4.mid', 100,1,-1)
+	..()
+
+/obj/item/device/instrument/recorder
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "recorder"
 	desc = "Just like in school, playing ability and all."
 	force = 5

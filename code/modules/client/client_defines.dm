@@ -68,6 +68,10 @@
 
 	var/list/credits //lazy list of all credit object bound to this client
 
+<<<<<<< HEAD
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 	
 	var/encoding = "1252" // yogs - LibVG
+=======
+	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

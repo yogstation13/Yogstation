@@ -90,6 +90,10 @@ Chaplain
 
 	belt = /obj/item/pda/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
+<<<<<<< HEAD
 	backpack_contents = list(/obj/item/camera/spooky = 1)
+=======
+	backpack_contents = list(/obj/item/device/camera/spooky = 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack

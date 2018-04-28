@@ -10,7 +10,11 @@
 	..()
 
 /datum/wires/radio/interactable(mob/user)
+<<<<<<< HEAD
 	var/obj/item/radio/R = holder
+=======
+	var/obj/item/device/radio/R = holder
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return R.unscrewed
 
 /datum/wires/radio/on_pulse(index)

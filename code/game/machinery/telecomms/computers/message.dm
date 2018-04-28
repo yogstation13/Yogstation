@@ -28,7 +28,11 @@
 	var/optioncount = 7
 	// Custom Message Properties
 	var/customsender = "System Administrator"
+<<<<<<< HEAD
 	var/obj/item/pda/customrecepient = null
+=======
+	var/obj/item/device/pda/customrecepient = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/customjob		= "Admin"
 	var/custommessage 	= "This is a test, please ignore."
 
@@ -388,7 +392,11 @@
 					//Select Receiver
 					if("Recepient")
 						//Get out list of viable PDAs
+<<<<<<< HEAD
 						var/list/obj/item/pda/sendPDAs = get_viewable_pdas()
+=======
+						var/list/obj/item/device/pda/sendPDAs = get_viewable_pdas()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						if(GLOB.PDAs && GLOB.PDAs.len > 0)
 							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortNames(sendPDAs)
 						else

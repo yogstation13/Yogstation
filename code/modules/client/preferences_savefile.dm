@@ -102,12 +102,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["tip_delay"]			>> tip_delay
 	S["pda_style"]			>> pda_style
 	S["pda_color"]			>> pda_color
+<<<<<<< HEAD
 
 	// yogs start - Donor features
 	S["donor_pda"]			>> donor_pda
 	S["donor_hat"]          >> donor_hat
 	S["purrbation"]			>> purrbation
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -134,6 +137,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(MONO, VT, SHARE, ORBITRON)
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+<<<<<<< HEAD
 
 	// yogs start - Donor features
 	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
@@ -142,6 +146,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs end
 	
 	load_keybindings(S) // yogs - Custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	return 1
 
@@ -184,6 +190,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+<<<<<<< HEAD
 	
 	// yogs start - Donor features
 	WRITE_FILE(S["donor_pda"], donor_pda)
@@ -192,6 +199,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs end
 	
 	save_keybindings(S) // yogs - Custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	return 1
 

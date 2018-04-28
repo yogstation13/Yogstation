@@ -299,7 +299,10 @@ SUBSYSTEM_DEF(garbage)
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
+<<<<<<< HEAD
 		D.SendSignal(COMSIG_PARENT_QDELETED, force, hint) // Let the (remaining) components know about the result of Destroy
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(world.time != start_time)
 			I.slept_destroy++
 		else

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/modular_computer/laptop/preset/Initialize()
+=======
+/obj/item/device/modular_computer/laptop/preset/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	install_component(new /obj/item/computer_hardware/processor_unit/small)
 	install_component(new /obj/item/computer_hardware/battery(src, /obj/item/stock_parts/cell/computer))

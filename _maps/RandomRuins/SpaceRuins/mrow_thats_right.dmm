@@ -309,7 +309,11 @@
 /area/ruin/space/has_grav/powered/cat_man)
 "ba" = (
 /obj/structure/table/wood,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/cat_man)
 "bb" = (
@@ -317,7 +321,11 @@
 	dir = 4
 	},
 /obj/structure/closet/cabinet,
+<<<<<<< HEAD
 /obj/item/gps{
+=======
+/obj/item/device/gps{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gpstag = "kitty"
 	},
 /turf/open/floor/carpet,

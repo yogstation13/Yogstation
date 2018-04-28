@@ -311,6 +311,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	Moved(oldloc, direct)
 
+<<<<<<< HEAD
+=======
+/mob/dead/observer/is_active()
+	return 0
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
 	set name = "Re-enter Corpse"

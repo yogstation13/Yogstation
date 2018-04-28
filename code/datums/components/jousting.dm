@@ -18,7 +18,12 @@
 
 /datum/component/jousting/Initialize()
 	if(!isitem(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("Warning: Jousting component incorrectly applied to invalid parent type [parent.type]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	RegisterSignal(COMSIG_ITEM_EQUIPPED, .proc/on_equip)
 	RegisterSignal(COMSIG_ITEM_DROPPED, .proc/on_drop)
 	RegisterSignal(COMSIG_ITEM_ATTACK, .proc/on_attack)

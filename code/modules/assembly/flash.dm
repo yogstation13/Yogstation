@@ -15,7 +15,11 @@
 	var/cooldown = 0
 	var/last_trigger = 0 //Last time it was successfully triggered.
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/suicide_act(mob/living/user)
+=======
+/obj/item/device/assembly/flash/suicide_act(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (crit_fail)
 		user.visible_message("<span class='suicide'>[user] raises \the [src] up to [user.p_their()] eyes and activates it ... but its burnt out!</span>")
 		return SHAME
@@ -26,7 +30,11 @@
 	attack(user,user)
 	return FIRELOSS
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/update_icon(flash = FALSE)
+=======
+/obj/item/device/assembly/flash/update_icon(flash = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	cut_overlays()
 	attached_overlays = list()
 	if(crit_fail)
@@ -39,7 +47,11 @@
 	if(holder)
 		holder.update_icon()
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/clown_check(mob/living/carbon/human/user)
+=======
+/obj/item/device/assembly/flash/proc/clown_check(mob/living/carbon/human/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(user.has_trait(TRAIT_CLUMSY) && prob(50))
 		flash_carbon(user, user, 15, 0)
 		return FALSE
@@ -56,7 +68,11 @@
 		var/turf/T = get_turf(src)
 		T.visible_message("<span class='danger'>[src] burns out!</span>")
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/flash_recharge(interval = 10)
+=======
+/obj/item/device/assembly/flash/proc/flash_recharge(interval = 10)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/deciseconds_passed = world.time - last_used
 	for(var/seconds = deciseconds_passed / 10, seconds >= interval, seconds -= interval) //get 1 charge every interval
 		times_used--
@@ -68,7 +84,11 @@
 	return TRUE
 
 //BYPASS CHECKS ALSO PREVENTS BURNOUT!
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/AOE_flash(bypass_checks = FALSE, range = 3, power = 5, targeted = FALSE, mob/user)
+=======
+/obj/item/device/assembly/flash/proc/AOE_flash(bypass_checks = FALSE, range = 3, power = 5, targeted = FALSE, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!bypass_checks && !try_use_flash())
 		return FALSE
 	var/list/mob/targets = get_flash_targets(get_turf(src), range, FALSE)
@@ -78,7 +98,11 @@
 		flash_carbon(C, user, power, targeted, TRUE)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/get_flash_targets(atom/target_loc, range = 3, override_vision_checks = FALSE)
+=======
+/obj/item/device/assembly/flash/proc/get_flash_targets(atom/target_loc, range = 3, override_vision_checks = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!target_loc)
 		target_loc = loc
 	if(override_vision_checks)
@@ -88,7 +112,11 @@
 	else
 		return typecache_filter_list(target_loc.GetAllContents(), typecacheof(list(/mob/living)))
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
+=======
+/obj/item/device/assembly/flash/proc/try_use_flash(mob/user = null)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(crit_fail || (world.time < last_trigger + cooldown))
 		return FALSE
 	last_trigger = world.time
@@ -100,7 +128,11 @@
 		return FALSE
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
+=======
+/obj/item/device/assembly/flash/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(M))
 		return
 	add_logs(user, M, "[targeted? "flashed(targeted)" : "flashed(AOE)"]", src)
@@ -145,7 +177,11 @@
 
 	user.visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to blind [M] with the flash!</span>")
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
+=======
+/obj/item/device/assembly/flash/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(holder)
 		return FALSE
 	if(!AOE_flash(FALSE, 3, 5, FALSE, user))
@@ -159,7 +195,11 @@
 	burn_out()
 	. = ..()
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/activate()//AOE flash on signal recieved
+=======
+/obj/item/device/assembly/flash/activate()//AOE flash on signal recieved
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!..())
 		return
 	AOE_flash()
@@ -182,7 +222,11 @@
 				to_chat(user, "<span class='warning'>This mind seems resistant to the flash!</span>")
 
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/cyborg
+=======
+/obj/item/device/assembly/flash/cyborg
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/assembly/flash/cyborg/attack(mob/living/M, mob/user)
 	..()
@@ -278,7 +322,11 @@
 				return
 	..()
 
+<<<<<<< HEAD
 /obj/item/assembly/flash/shield/update_icon(flash = FALSE)
+=======
+/obj/item/device/assembly/flash/shield/update_icon(flash = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "flashshield"
 	item_state = "flashshield"
 

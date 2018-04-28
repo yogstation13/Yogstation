@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/modular_computer/attack_self(mob/user)
+=======
+/obj/item/device/modular_computer/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	ui_interact(user)
 

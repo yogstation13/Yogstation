@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // yogs - Replicated for custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // Clients aren't datums so we have to define these procs indpendently.
 // These verbs are called for all key press and release events
 /client/verb/keyDown(_key as text)

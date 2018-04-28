@@ -27,12 +27,20 @@
 		var/obj/item/storage/bag/trash/T = W
 		to_chat(user, "<span class='notice'>You fill the bag.</span>")
 		for(var/obj/item/O in src)
+<<<<<<< HEAD
 			T.SendSignal(COMSIG_TRY_STORAGE_INSERT, O, user, TRUE)
 		T.update_icon()
 		do_animate()
 	else if(istype(W, /obj/item/wrench))
 		anchored = !anchored
 		W.play_tool_sound(src, 75)
+=======
+			if(T.can_be_inserted(O, 1))
+				O.forceMove(T)
+		T.update_icon()
+		do_animate()
+		return TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	else
 		return ..()
 

@@ -221,6 +221,7 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	to_chat(src, hotkey_mode)
 	to_chat(src, other)
+<<<<<<< HEAD
 
 // yogs start - Yogs Tickets
 /client/verb/show_tickets()
@@ -240,3 +241,5 @@ Any-Mode: (hotkey doesn't need to be on)
 		to_chat(src, "<span class='danger'>You have no open tickets!</span>")
 	return
 // yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

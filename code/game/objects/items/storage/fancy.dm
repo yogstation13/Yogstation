@@ -38,7 +38,11 @@
 /obj/item/storage/fancy/examine(mob/user)
 	..()
 	if(fancy_open)
+<<<<<<< HEAD
 		if(length(contents) == 1)
+=======
+		if(contents.len == 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			to_chat(user, "There is one [icon_type] left.")
 		else
 			to_chat(user, "There are [contents.len <= 0 ? "no" : "[contents.len]"] [icon_type]s left.")
@@ -53,10 +57,16 @@
 	fancy_open = TRUE
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/storage/fancy/Entered()
 	. = ..()
 	fancy_open = TRUE
 	update_icon()
+=======
+/obj/item/storage/fancy/remove_from_storage(obj/item/W, atom/new_location, burn = 0)
+	fancy_open = TRUE
+	return ..()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /*
  * Donut Box
@@ -89,6 +99,11 @@
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	name = "egg box"
 	desc = "A carton for containing eggs."
+<<<<<<< HEAD
+=======
+	storage_slots = 12
+	can_hold = list(/obj/item/reagent_containers/food/snacks/egg)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	spawn_type = /obj/item/reagent_containers/food/snacks/egg
 
 /obj/item/storage/fancy/egg_box/ComponentInitialize()
@@ -324,6 +339,7 @@
 	icon_type = "chocolate"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
+<<<<<<< HEAD
 	spawn_type = /obj/item/reagent_containers/food/snacks/tinychocolate
 
 /obj/item/storage/fancy/heart_box/ComponentInitialize()
@@ -331,3 +347,8 @@
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.max_items = 8
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/tinychocolate))
+=======
+	storage_slots = 8
+	can_hold = list(/obj/item/reagent_containers/food/snacks/tinychocolate)
+	spawn_type = /obj/item/reagent_containers/food/snacks/tinychocolate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

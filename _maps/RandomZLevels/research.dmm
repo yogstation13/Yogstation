@@ -827,8 +827,13 @@
 /area/awaymission/research/interior)
 "cD" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/radio,
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/gateway)
 "cE" = (
@@ -999,7 +1004,11 @@
 	name = "encrypted genetic data disk";
 	read_only = 1
 	},
+<<<<<<< HEAD
 /obj/item/firing_pin/dna,
+=======
+/obj/item/device/firing_pin/dna,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "de" = (
@@ -2599,7 +2608,11 @@
 /obj/item/clothing/head/collectable/petehat{
 	name = "dusty hat"
 	},
+<<<<<<< HEAD
 /obj/item/firing_pin/dna,
+=======
+/obj/item/device/firing_pin/dna,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/research/interior/secure)
 "hT" = (

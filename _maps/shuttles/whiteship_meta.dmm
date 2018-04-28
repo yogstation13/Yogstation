@@ -1110,7 +1110,11 @@
 	name = "dust"
 	},
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/megaphone,
+=======
+/obj/item/device/megaphone,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bU" = (

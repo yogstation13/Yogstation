@@ -3,8 +3,16 @@
 // (
 
 #define NUM_E 2.71828183
+<<<<<<< HEAD
 
 #define PI						3.1416
+=======
+#define NUM_SQRT2 1.41421356
+
+#define PI						3.1415
+#define SPEED_OF_LIGHT			3e8		//not exact but hey!
+#define SPEED_OF_LIGHT_SQ		9e+16
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #define INFINITY				1e31	//closer then enough
 
 #define SHORT_REAL_LIMIT 16777216
@@ -201,4 +209,8 @@
 
 	return list(region_x1 & region_x2, region_y1 & region_y2)
 
+<<<<<<< HEAD
 // )
+=======
+// )
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

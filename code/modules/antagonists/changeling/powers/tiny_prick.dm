@@ -50,6 +50,12 @@
 		return
 	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = 0))
 		return
+<<<<<<< HEAD:code/modules/antagonists/changeling/powers/tiny_prick.dm
+=======
+	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/changeling))
+		sting_feedback(user, target)
+		changeling.chem_charges -= chemical_cost //??
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/changeling/powers/tiny_prick.dm
 	return 1
 
 /obj/effect/proc_holder/changeling/sting/sting_feedback(mob/user, mob/target)

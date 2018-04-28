@@ -359,7 +359,11 @@
 
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
+<<<<<<< HEAD
 			if(role in player.client.prefs.be_special && !(player.mind.quiet_round)) // yogs - Donor features, quiet round
+=======
+			if(role in player.client.prefs.be_special)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !jobban_isbanned(player, role)) //Nodrak/Carn: Antag Job-bans
 					if(age_check(player.client)) //Must be older than the minimum age
 						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round

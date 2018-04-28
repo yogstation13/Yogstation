@@ -38,12 +38,17 @@
 		A.holder = V
 
 	V.update_icon()
+<<<<<<< HEAD
 
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/newbomb/timer/syndicate/Initialize()
 	temp_p = (OPTIMAL_TEMP_K_PLA_BURN_SCALE(pressure_p, pressure_o, temp_o)/2 + OPTIMAL_TEMP_K_PLA_BURN_RATIO(pressure_p, pressure_o, temp_o)/2) - T0C
 	. = ..()
+=======
+	
+	return INITIALIZE_HINT_QDEL
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/effect/spawner/newbomb/timer
 	assembly_type = /obj/item/assembly/timer

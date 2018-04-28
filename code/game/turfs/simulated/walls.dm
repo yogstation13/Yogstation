@@ -31,6 +31,20 @@
 
 	var/list/dent_decals
 
+<<<<<<< HEAD
+=======
+	var/static/list/dent_decal_list = list(
+	WALL_DENT_HIT = list(
+	mutable_appearance('icons/effects/effects.dmi', "impact1", BULLET_HOLE_LAYER),
+	mutable_appearance('icons/effects/effects.dmi', "impact2", BULLET_HOLE_LAYER),
+	mutable_appearance('icons/effects/effects.dmi', "impact3", BULLET_HOLE_LAYER)
+	),
+	WALL_DENT_SHOT = list(
+	mutable_appearance('icons/effects/effects.dmi', "bullet_hole", BULLET_HOLE_LAYER)
+	)
+	)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/closed/wall/examine(mob/user)
 	..()
 	deconstruction_hints(user)
@@ -188,11 +202,19 @@
 			return FALSE
 
 		to_chat(user, "<span class='notice'>You begin fixing dents on the wall...</span>")
+<<<<<<< HEAD
 		if(W.use_tool(src, user, 0, volume=100))
 			if(iswallturf(src) && LAZYLEN(dent_decals))
 				to_chat(user, "<span class='notice'>You fix some dents on the wall.</span>")
 				cut_overlay(dent_decals)
 				dent_decals.Cut()
+=======
+		if(W.use_tool(src, user, slicing_duration, volume=100))
+			if(iswallturf(src) && LAZYLEN(dent_decals))
+				to_chat(user, "<span class='notice'>You fix some dents on the wall.</span>")
+				cut_overlay(dent_decals)
+				LAZYCLEARLIST(dent_decals)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return TRUE
 
 	return FALSE
@@ -209,8 +231,13 @@
 		place_poster(W,user)
 		return TRUE
 	//wall mounted IC assembly stuff
+<<<<<<< HEAD
 	else if(istype(W, /obj/item/electronic_assembly/wallmount))
 		var/obj/item/electronic_assembly/wallmount/A = W
+=======
+	else if(istype(W, /obj/item/device/electronic_assembly/wallmount))
+		var/obj/item/device/electronic_assembly/wallmount/A = W
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		A.mount_assembly(src, user)
 		return TRUE
 
@@ -291,6 +318,7 @@
 	if(LAZYLEN(dent_decals) >= MAX_DENT_DECALS)
 		return
 
+<<<<<<< HEAD
 	var/mutable_appearance/decal = mutable_appearance('icons/effects/effects.dmi', "", BULLET_HOLE_LAYER)
 	switch(denttype)
 		if(WALL_DENT_SHOT)
@@ -307,6 +335,14 @@
 	else
 		dent_decals = list(decal)
 
+=======
+	var/mutable_appearance/decal = pick(dent_decal_list[denttype])
+	decal.pixel_x = x
+	decal.pixel_y = y
+
+	cut_overlay(dent_decals)
+	LAZYADD(dent_decals, decal)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_overlay(dent_decals)
 
 #undef MAX_DENT_DECALS

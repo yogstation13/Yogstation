@@ -69,6 +69,7 @@
 			set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 			push_data()
 
+<<<<<<< HEAD
 // Hydroponics trays have no reagents holder and handle reagents in their own snowflakey way.
 // This is a dirty hack to make injecting reagents into them work.
 // TODO: refactor that.
@@ -97,6 +98,8 @@
 		temp_reagents.clear_reagents()
 		qdel(temp_reagents)
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/integrated_circuit/reagent/injector
 	name = "integrated hypo-injector"
 	desc = "This scary looking thing is able to pump liquids into whatever it's pointed at."
@@ -147,6 +150,21 @@
 		new_amount = CLAMP(new_amount, 0, volume)
 		transfer_amount = new_amount
 
+<<<<<<< HEAD
+=======
+// Hydroponics trays have no reagents holder and handle reagents in their own snowflakey way.
+// This is a dirty hack to make injecting reagents into them work.
+// TODO: refactor that.
+/obj/item/integrated_circuit/reagent/proc/inject_tray(obj/machinery/hydroponics/tray, atom/movable/source, amount)
+	var/datum/reagents/temp_reagents = new /datum/reagents()
+	temp_reagents.my_atom = tray
+
+	source.reagents.trans_to(temp_reagents, amount)
+	tray.applyChemicals(temp_reagents)
+
+	temp_reagents.clear_reagents()
+	qdel(temp_reagents)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/integrated_circuit/reagent/injector/do_work(ord)
 	switch(ord)
@@ -166,7 +184,11 @@
 		return
 
 	if(!AM.reagents)
+<<<<<<< HEAD
 		if(istype(AM, /obj/machinery/hydroponics) && direction_mode == SYRINGE_INJECT && reagents.total_volume && transfer_amount)//injection into tray.
+=======
+		if(istype(AM, /obj/machinery/hydroponics) && direction_mode == SYRINGE_INJECT && reagents.total_volume)//injection into tray.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			inject_tray(AM, src, transfer_amount)
 			activate_pin(2)
 			return
@@ -202,6 +224,7 @@
 				activate_pin(3)
 				return
 			busy = FALSE
+<<<<<<< HEAD
 
 		else
 			reagents.trans_to(AM, transfer_amount)
@@ -209,6 +232,13 @@
 	if(direction_mode == SYRINGE_DRAW)
 		if(reagents.total_volume >= reagents.maximum_volume)
 			acting_object.visible_message("[acting_object] tries to draw from [AM], but the injector is full.")
+=======
+		else
+			reagents.trans_to(AM, transfer_amount)
+
+	else
+		if(!AM.is_drawable() || reagents.total_volume >= reagents.maximum_volume)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			activate_pin(3)
 			return
 
@@ -224,12 +254,16 @@
 					L.visible_message("<span class='danger'>[acting_object] takes a blood sample from [L]!</span>", \
 					"<span class='userdanger'>[acting_object] takes a blood sample from you!</span>")
 				else
+<<<<<<< HEAD
 					L.visible_message("<span class='warning'>[acting_object] fails to take a blood sample from [L].</span>", \
 								"<span class='userdanger'>[acting_object] fails to take a blood sample from you!</span>")
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					busy = FALSE
 					activate_pin(3)
 					return
 			busy = FALSE
+<<<<<<< HEAD
 
 		else
 			if(!AM.reagents.total_volume)
@@ -241,6 +275,14 @@
 				activate_pin(3)
 				return
 			tramount = min(tramount, AM.reagents.total_volume)
+=======
+		else
+			tramount = min(tramount, AM.reagents.total_volume)
+			if(!AM.reagents.total_volume)
+				activate_pin(3)
+				return
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			AM.reagents.trans_to(src, tramount)
 	activate_pin(2)
 

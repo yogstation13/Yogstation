@@ -58,7 +58,14 @@
 			door = I
 			break
 
+<<<<<<< HEAD
 /obj/machinery/doorButtons/access_button/interact(mob/user)
+=======
+/obj/machinery/doorButtons/access_button/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(busy)
 		return
 	if(!allowed(user))
@@ -257,7 +264,14 @@
 	else
 		icon_state = "access_control_standby"
 
+<<<<<<< HEAD
 /obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user)
+=======
+/obj/machinery/doorButtons/airlock_controller/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/browser/popup = new(user, "computer", name)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.set_content(returnText())

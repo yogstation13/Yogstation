@@ -117,6 +117,11 @@
 			return TRUE
 		user.visible_message("[user] starts recharging [A] with [src].","<span class='notice'>You start recharging [A] with [src].</span>")
 		while(C.charge < C.maxcharge)
+<<<<<<< HEAD
+=======
+			if(E)
+				E.semicd = TRUE  // Prevents someone from firing continuously while recharging the gun.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(do_after(user, 10, target = user) && cell.charge)
 				done_any = TRUE
 				induce(C, coefficient)
@@ -125,6 +130,11 @@
 					O.update_icon()
 			else
 				break
+<<<<<<< HEAD
+=======
+		if(E)
+			E.reset_semicd() //We're done charging, so we'll let someone fire it now.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(done_any) // Only show a message if we succeeded at least once
 			user.visible_message("[user] recharged [A]!","<span class='notice'>You recharged [A]!</span>")
 		recharging = FALSE

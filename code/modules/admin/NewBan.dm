@@ -25,7 +25,11 @@ GLOBAL_PROTECT(Banlist)
 				.["desc"] = "\nReason: [GLOB.Banlist["reason"]]\nExpires: [GetExp(GLOB.Banlist["minutes"])]\nBy: [GLOB.Banlist["bannedby"]] during round ID [GLOB.Banlist["roundid"]][appeal]"
 		else
 			GLOB.Banlist.cd	= "/base/[ckey][id]"
+<<<<<<< HEAD
 			.["desc"]	= "\nReason: [GLOB.Banlist["reason"]]\nExpires: <B>PERMANENT</B>\nBy: [GLOB.Banlist["bannedby"]] during round ID [GLOB.Banlist["roundid"]][appeal]"
+=======
+			.["desc"]	= "\nReason: [GLOB.Banlist["reason"]]\nExpires: <B>PERMANENT</B>\nBy: [GLOB.Banlist["bannedby"]][appeal]"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		.["reason"]	= "ckey/id"
 		return .
 	else

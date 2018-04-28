@@ -61,7 +61,11 @@ SUBSYSTEM_DEF(blackbox)
 
 /datum/controller/subsystem/blackbox/Shutdown()
 	sealed = FALSE
+<<<<<<< HEAD
 	//record_feedback("tally", "ahelp_stats", GLOB.ahelp_tickets.active_tickets.len, "unresolved") // yogs - Yogs Tickets
+=======
+	record_feedback("tally", "ahelp_stats", GLOB.ahelp_tickets.active_tickets.len, "unresolved")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for (var/obj/machinery/telecomms/message_server/MS in GLOB.telecomms_list)
 		if (MS.pda_msgs.len)
 			record_feedback("tally", "radio_usage", MS.pda_msgs.len, "PDA")

@@ -10,7 +10,11 @@
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 
+<<<<<<< HEAD
 	radio_key = /obj/item/encryptionkey/headset_service //doesn't have security key
+=======
+	radio_key = /obj/item/device/encryptionkey/headset_service //doesn't have security key
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	radio_channel = "Service" //Doesn't even use the radio anyway.
 	bot_type = HONK_BOT
 	model = "Honkbot"
@@ -334,7 +338,11 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	if(prob(50))
 		drop_part(robot_arm, Tsec)
 	new bikehorn(Tsec)
+<<<<<<< HEAD
 	new /obj/item/assembly/prox_sensor(Tsec)
+=======
+	new /obj/item/device/assembly/prox_sensor(Tsec)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/datum/effect_system/spark_spread/s = new
 	s.set_up(3, 1, src)

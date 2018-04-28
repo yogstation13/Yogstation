@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/integrated_electronics/debugger
+=======
+/obj/item/device/integrated_electronics/debugger
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "circuit debugger"
 	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
 	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
@@ -9,7 +13,11 @@
 	var/data_to_write = null
 	var/accepting_refs = FALSE
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/debugger/attack_self(mob/user)
+=======
+/obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
 	if(!user.IsAdvancedToolUser())
 		return
@@ -36,7 +44,11 @@
 			data_to_write = null
 			to_chat(user, "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>")
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
+=======
+/obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(accepting_refs && proximity)
 		data_to_write = WEAKREF(target)
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
@@ -46,7 +58,11 @@
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+=======
+/obj/item/device/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(io.io_type == DATA_CHANNEL)
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write

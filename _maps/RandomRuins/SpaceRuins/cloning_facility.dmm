@@ -24,7 +24,11 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle)
 "g" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/whiteblue,
 /area/ruin/space/has_grav/powered/ancient_shuttle)
@@ -225,7 +229,11 @@
 "R" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/regular,
+<<<<<<< HEAD
 /obj/item/healthanalyzer{
+=======
+/obj/item/device/healthanalyzer{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	desc = "A prototype hand-held body scanner able to distinguish vital signs of the subject.";
 	name = "prototype health analyzer"
 	},

@@ -122,7 +122,11 @@ GLOBAL_PROTECT(protected_ranks)
 	var/previous_rights = 0
 	//load text from file and process each line separately
 	for(var/line in world.file2list("[global.config.directory]/admin_ranks.txt"))
+<<<<<<< HEAD
 		if(!line || findtextEx(line,"#",1,2) || line == " ") //YOGS - added our DB support
+=======
+		if(!line || findtextEx(line,"#",1,2))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			continue
 		var/next = findtext(line, "=")
 		var/datum/admin_rank/R = new(ckeyEx(copytext(line, 1, next)))
@@ -219,7 +223,11 @@ GLOBAL_PROTECT(protected_ranks)
 	//ckeys listed in admins.txt are always made admins before sql loading is attempted
 	var/list/lines = world.file2list("[global.config.directory]/admins.txt")
 	for(var/line in lines)
+<<<<<<< HEAD
 		if(!length(line) || findtextEx(line, "#", 1, 2) || line == " ") //yogs - added our DB support
+=======
+		if(!length(line) || findtextEx(line, "#", 1, 2))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			continue
 		var/list/entry = splittext(line, "=")
 		if(entry.len < 2)
@@ -242,6 +250,10 @@ GLOBAL_PROTECT(protected_ranks)
 				var/skip
 				if(rank_names[admin_rank] == null)
 					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
+<<<<<<< HEAD
+=======
+					log_sql("[admin_ckey] loaded with invalid admin rank [admin_rank].")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					skip = 1
 				if(GLOB.admin_datums[admin_ckey] || GLOB.deadmins[admin_ckey])
 					skip = 1

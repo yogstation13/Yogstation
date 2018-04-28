@@ -911,11 +911,20 @@
 			update()
 		if("emergency_lighting")
 			emergency_lights = !emergency_lights
+<<<<<<< HEAD
 			for(var/obj/machinery/light/L in area)
 				if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
 					L.no_emergency = emergency_lights
 					INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
 				CHECK_TICK
+=======
+			for(var/area/A in area.related)
+				for(var/obj/machinery/light/L in A)
+					if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
+						L.no_emergency = emergency_lights
+						INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
+					CHECK_TICK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return 1
 
 /obj/machinery/power/apc/proc/toggle_breaker()
@@ -1320,11 +1329,20 @@
 /obj/machinery/power/apc/proc/set_nightshift(on)
 	set waitfor = FALSE
 	nightshift_lights = on
+<<<<<<< HEAD
 	for(var/obj/machinery/light/L in area)
 		if(L.nightshift_allowed)
 			L.nightshift_enabled = nightshift_lights
 			L.update(FALSE)
 		CHECK_TICK
+=======
+	for(var/area/A in area.related)
+		for(var/obj/machinery/light/L in A)
+			if(L.nightshift_allowed)
+				L.nightshift_enabled = nightshift_lights
+				L.update(FALSE)
+			CHECK_TICK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #undef UPSTATE_CELL_IN
 #undef UPSTATE_OPENED1

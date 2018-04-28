@@ -17,7 +17,11 @@
 	punchdamagehigh = 14
 	punchstunthreshold = 14 //about 44% chance to stun
 
+<<<<<<< HEAD
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM)
+=======
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_w_uniform)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	burnmod = 1.25
 	heatmod = 1.5

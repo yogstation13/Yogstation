@@ -393,6 +393,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/brown/hidden
 	level = PIPE_HIDDEN_LEVEL
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/pipe/manifold4w/brown/hidden/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -403,3 +404,5 @@
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

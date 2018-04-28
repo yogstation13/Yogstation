@@ -56,6 +56,27 @@
 		to_chat(user, "<span class='notice'>You insert the [I] into [src].</span>")
 	else
 		return ..()
+<<<<<<< HEAD
+=======
+
+/obj/item/device/autosurgeon/screwdriver_act(mob/living/user, obj/item/I)
+	if(!storedorgan)
+		to_chat(user, "<span class='notice'>There's no implant in [src] for you to remove.</span>")
+	else
+		var/atom/drop_loc = user.drop_location()
+		for(var/J in src)
+			var/atom/movable/AM = J
+			AM.forceMove(drop_loc)
+
+		to_chat(user, "<span class='notice'>You remove the [storedorgan] from [src].</span>")
+		I.play_tool_sound(src)
+		storedorgan = null
+		if(uses != INFINITE)
+			uses--
+		if(!uses)
+			desc = "[initial(desc)] Looks like it's been used up."
+	return TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/autosurgeon/screwdriver_act(mob/living/user, obj/item/I)
 	if(!storedorgan)

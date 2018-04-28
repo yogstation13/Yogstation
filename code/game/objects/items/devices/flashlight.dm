@@ -38,14 +38,22 @@
 		A.UpdateButtonIcon()
 	return 1
 
+<<<<<<< HEAD
 /obj/item/flashlight/suicide_act(mob/living/carbon/human/user)
+=======
+/obj/item/device/flashlight/suicide_act(mob/living/carbon/human/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (user.eye_blind)
 		user.visible_message("<span class='suicide'>[user]  is putting [src] close to [user.p_their()] eyes and turning it on ... but [user.p_theyre()] blind!</span>")
 		return SHAME
 	user.visible_message("<span class='suicide'>[user] is putting [src] close to [user.p_their()] eyes and turning it on! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (FIRELOSS)
 
+<<<<<<< HEAD
 /obj/item/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
+=======
+/obj/item/device/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_fingerprint(user)
 	if(istype(M) && on && user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))
 
@@ -352,7 +360,11 @@
 	materials = list()
 	brightness_on = 6 //luminosity when on
 
+<<<<<<< HEAD
 /obj/item/flashlight/emp
+=======
+/obj/item/device/flashlight/emp
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/emp_max_charges = 4
 	var/emp_cur_charges = 4
 	var/charge_tick = 0
@@ -374,7 +386,11 @@
 	emp_cur_charges = min(emp_cur_charges+1, emp_max_charges)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/flashlight/emp/attack(mob/living/M, mob/living/user)
+=======
+/obj/item/device/flashlight/emp/attack(mob/living/M, mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(on && user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)) // call original attack when examining organs
 		..()
 	return
@@ -496,9 +512,15 @@
 	icon_state = "random_glowstick"
 	color = null
 
+<<<<<<< HEAD
 /obj/item/flashlight/glowstick/random/Initialize()
 	..()
 	var/T = pick(typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random)
+=======
+/obj/item/device/flashlight/glowstick/random/Initialize()
+	..()
+	var/T = pick(typesof(/obj/item/device/flashlight/glowstick) - /obj/item/device/flashlight/glowstick/random)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	new T(loc)
 	return INITIALIZE_HINT_QDEL
 

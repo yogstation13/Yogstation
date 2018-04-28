@@ -13,11 +13,14 @@
 	desc = "A 10 gauge lead slug."
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug/tengauge
 
+<<<<<<< HEAD
 /obj/item/ammo_casing/shotgun/tengauge
 	name = "10g shotgun slug"
 	desc = "A 10 gauge lead slug."
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug/tengauge
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."

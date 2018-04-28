@@ -3,7 +3,11 @@
 	name = "string pin"
 
 /datum/integrated_io/string/ask_for_pin_data(mob/user)
+<<<<<<< HEAD
 	var/new_data = stripped_multiline_input(user, "Please type in a string.","[src] string writing", no_trim = TRUE)
+=======
+	var/new_data = stripped_input(user, "Please type in a string.","[src] string writing", no_trim = TRUE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(holder.check_interactivity(user) )
 		to_chat(user, "<span class='notice'>You input [new_data ? "[new_data]" : "NULL"] into the pin.</span>")
 		write_data_to_pin(new_data)

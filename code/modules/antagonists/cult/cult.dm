@@ -81,9 +81,15 @@
 
 /datum/antagonist/cult/proc/cult_give_item(obj/item/item_path, mob/living/carbon/human/mob)
 	var/list/slots = list(
+<<<<<<< HEAD
 		"backpack" = SLOT_IN_BACKPACK,
 		"left pocket" = SLOT_L_STORE,
 		"right pocket" = SLOT_R_STORE
+=======
+		"backpack" = slot_in_backpack,
+		"left pocket" = slot_l_store,
+		"right pocket" = slot_r_store
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	)
 
 	var/T = new item_path(mob)
@@ -95,8 +101,15 @@
 	else
 		to_chat(mob, "<span class='danger'>You have a [item_name] in your [where].</span>")
 		if(where == "backpack")
+<<<<<<< HEAD
 			mob.back.SendSignal(COMSIG_TRY_STORAGE_SHOW, mob)
 		return TRUE
+=======
+			var/obj/item/storage/B = mob.back
+			B.orient2hud(mob)
+			B.show_to(mob)
+		return 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/antagonist/cult/apply_innate_effects(mob/living/mob_override)
 	. = ..()

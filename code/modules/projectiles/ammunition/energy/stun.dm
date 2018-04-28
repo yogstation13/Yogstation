@@ -3,7 +3,10 @@
 	select_name = "stun"
 	fire_sound = 'sound/weapons/taser.ogg'
 	e_cost = 200
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/electrode/spec
 	e_cost = 100
@@ -23,4 +26,7 @@
 	select_name  = "disable"
 	e_cost = 50
 	fire_sound = 'sound/weapons/taser2.ogg'
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

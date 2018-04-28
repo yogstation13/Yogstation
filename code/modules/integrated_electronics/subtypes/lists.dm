@@ -84,7 +84,10 @@
 		"on failure" = IC_PINTYPE_PULSE_OUT,
 		)
 	icon_state = "addition"
+<<<<<<< HEAD
 	complexity = 2
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	cooldown_per_use = 1
 
@@ -101,6 +104,7 @@
 		activate_pin(3)
 
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit/lists/filter
 	name = "filter circuit"
 	desc = "This circuit will search through a list for anything matching the desired element(s) and outputs two lists: \
@@ -186,6 +190,8 @@
 	push_data()
 	activate_pin(2)
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/integrated_circuit/lists/at
 	name = "at circuit"
 	desc = "This circuit will pick an element from a list by the input index."
@@ -200,7 +206,11 @@
 	activators = list(
 		"compute" = IC_PINTYPE_PULSE_IN,
 		"on success" = IC_PINTYPE_PULSE_OUT,
+<<<<<<< HEAD
 		"on failure" = IC_PINTYPE_PULSE_OUT
+=======
+		"on failure" = IC_PINTYPE_PULSE_OUT,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		)
 	icon_state = "addition"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH

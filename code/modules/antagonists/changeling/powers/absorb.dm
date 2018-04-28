@@ -53,7 +53,10 @@
 
 	if(!changeling.has_dna(target.dna))
 		changeling.add_new_profile(target)
+<<<<<<< HEAD:code/modules/antagonists/changeling/powers/absorb.dm
 		changeling.trueabsorbs++
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/changeling/powers/absorb.dm
 
 	if(user.nutrition < NUTRITION_LEVEL_WELL_FED)
 		user.nutrition = min((user.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED)
@@ -90,6 +93,7 @@
 
 		var/datum/antagonist/changeling/target_ling = target.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(target_ling)//If the target was a changeling, suck out their extra juice and objective points!
+<<<<<<< HEAD:code/modules/antagonists/changeling/powers/absorb.dm
 			to_chat(user, "<span class='boldnotice'>[target] was one of us. We have absorbed their power.</span>")
 			target_ling.remove_changeling_powers()
 			changeling.geneticpoints += round(target_ling.geneticpoints/2)
@@ -100,6 +104,11 @@
 			target_ling.chem_charges = 0
 			target_ling.chem_storage = 0
 			changeling.absorbedcount += (target_ling.absorbedcount)
+=======
+			changeling.chem_charges += min(target_ling.chem_charges, changeling.chem_storage)
+			changeling.absorbedcount += (target_ling.absorbedcount)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/changeling/powers/absorb.dm
 			target_ling.stored_profiles.len = 1
 			target_ling.absorbedcount = 0
 

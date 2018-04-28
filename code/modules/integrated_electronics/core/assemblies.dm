@@ -1,7 +1,11 @@
 #define IC_MAX_SIZE_BASE		25
 #define IC_COMPLEXITY_BASE		75
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly
+=======
+/obj/item/device/electronic_assembly
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "electronic assembly"
 	obj_flags = CAN_BE_HIT
 	desc = "It's a case, for building small electronics with."
@@ -23,7 +27,10 @@
 	var/use_cyborg_cell = TRUE
 	var/ext_next_use = 0
 	var/atom/collw
+<<<<<<< HEAD
 	var/obj/item/card/id/access_card
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/allowed_circuit_action_flags = IC_ACTION_COMBAT | IC_ACTION_LONG_RANGE //which circuit flags are allowed
 	var/combat_circuits = 0 //number of combat cicuits in the assembly, used for diagnostic hud
 	var/long_range_circuits = 0 //number of long range cicuits in the assembly, used for diagnostic hud
@@ -54,13 +61,18 @@
 		COLOR_ASSEMBLY_PURPLE
 		)
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/examine(mob/user)
+=======
+/obj/item/device/electronic_assembly/examine(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(can_anchor)
 		to_chat(user, "<span class='notice'>The anchoring bolts [anchored ? "are" : "can be"] <b>wrenched</b> in place and the maintainence panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
 	else
 		to_chat(user, "<span class='notice'>The maintainence panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, BE_CLOSE)
 
@@ -73,6 +85,16 @@
 			D.open()
 
 /obj/item/electronic_assembly/Initialize()
+=======
+/obj/item/device/electronic_assembly/proc/check_interactivity(mob/user)
+	return user.canUseTopic(src, BE_CLOSE)
+
+/obj/item/device/electronic_assembly/Collide(atom/AM)
+	collw = AM
+	.=..()
+
+/obj/item/device/electronic_assembly/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	.=..()
 	START_PROCESSING(SScircuit, src)
 	materials[MAT_METAL] = round((max_complexity + max_components) / 4) * SScircuit.cost_multiplier
@@ -86,6 +108,7 @@
 	diag_hud_set_circuitstat()
 	diag_hud_set_circuittracking()
 
+<<<<<<< HEAD
 	access_card = new /obj/item/card/id(src)
 
 /obj/item/electronic_assembly/Destroy()
@@ -96,6 +119,15 @@
 	return ..()
 
 /obj/item/electronic_assembly/process()
+=======
+/obj/item/device/electronic_assembly/Destroy()
+	STOP_PROCESSING(SScircuit, src)
+	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
+		diag_hud.remove_from_hud(src)
+	return ..()
+
+/obj/item/device/electronic_assembly/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	handle_idle_power()
 	check_pulling()
 
@@ -103,7 +135,11 @@
 	diag_hud_set_circuithealth()
 	diag_hud_set_circuitcell()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/handle_idle_power()
+=======
+/obj/item/device/electronic_assembly/proc/handle_idle_power()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	// First we generate power.
 	for(var/obj/item/integrated_circuit/passive/power/P in assembly_components)
 		P.make_energy()
@@ -115,10 +151,17 @@
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/interact(mob/user)
 	ui_interact(user)
 
 /obj/item/electronic_assembly/ui_interact(mob/user)
+=======
+/obj/item/device/electronic_assembly/interact(mob/user)
+	ui_interact(user)
+
+/obj/item/device/electronic_assembly/ui_interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(!check_interactivity(user))
 		return
@@ -147,8 +190,14 @@
 	for(var/c in assembly_components)
 		var/obj/item/integrated_circuit/circuit = c
 		if(!circuit.removable)
+<<<<<<< HEAD
 			builtin_components += "<a href='?src=[REF(circuit)];rename=1;return=1'>\[R\]</a> | "
 			builtin_components += "<a href='?src=[REF(circuit)]'>[circuit.displayed_name]</a>"
+=======
+			builtin_components += "<a href='?src=[REF(circuit)]'>[circuit.displayed_name]</a> | "
+			builtin_components += "<a href='?src=[REF(circuit)];rename=1;return=1'>\[Rename\]</a> | "
+			builtin_components += "<a href='?src=[REF(circuit)];scan=1;return=1'>\[Copy Ref\]</a>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			builtin_components += "<br>"
 
 	// Put removable circuits (if any) in separate categories from non-removable
@@ -164,6 +213,7 @@
 	for(var/c in assembly_components)
 		var/obj/item/integrated_circuit/circuit = c
 		if(circuit.removable)
+<<<<<<< HEAD
 			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];up=1' style='text-decoration:none;'>&#8593;</a> "
 			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];down=1' style='text-decoration:none;'>&#8595;</a>  "
 			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];top=1' style='text-decoration:none;'>&#10514;</a> "
@@ -171,12 +221,26 @@
 			HTML += "<a href='?src=[REF(circuit)];component=[REF(circuit)];rename=1;return=1'>\[R\]</a> | "
 			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];remove=1'>\[-\]</a> | "
 			HTML += "<a href='?src=[REF(circuit)]'>[circuit.displayed_name]</a>"
+=======
+			HTML += "<a href='?src=[REF(circuit)]'>[circuit.displayed_name]</a> | "
+			HTML += "<a href='?src=[REF(circuit)];rename=1;return=1'>\[Rename\]</a> | "
+			HTML += "<a href='?src=[REF(circuit)];scan=1;return=1'>\[Copy Ref\]</a> | "
+			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];remove=1'>\[Remove\]</a> | "
+			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];up=1' style='text-decoration:none;'>&#8593;</a> "
+			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];down=1' style='text-decoration:none;'>&#8595;</a>  "
+			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];top=1' style='text-decoration:none;'>&#10514;</a> "
+			HTML += "<a href='?src=[REF(src)];component=[REF(circuit)];bottom=1' style='text-decoration:none;'>&#10515;</a>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			HTML += "<br>"
 
 	HTML += "</body></html>"
 	user << browse(HTML, "window=assembly-[REF(src)];size=655x350;border=1;can_resize=1;can_close=1;can_minimize=1")
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/Topic(href, href_list)
+=======
+/obj/item/device/electronic_assembly/Topic(href, href_list)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(..())
 		return 1
 
@@ -235,7 +299,11 @@
 
 	interact(usr) // To refresh the UI.
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/pickup(mob/living/user)
+=======
+/obj/item/device/electronic_assembly/pickup(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	//update diagnostic hud when picked up, true is used to force the hud to be hidden
 	diag_hud_set_circuithealth(TRUE)
@@ -243,7 +311,11 @@
 	diag_hud_set_circuitstat(TRUE)
 	diag_hud_set_circuittracking(TRUE)
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/dropped(mob/user)
+=======
+/obj/item/device/electronic_assembly/dropped(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	//update diagnostic hud when dropped
 	diag_hud_set_circuithealth()
@@ -251,7 +323,11 @@
 	diag_hud_set_circuitstat()
 	diag_hud_set_circuittracking()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/rename()
+=======
+/obj/item/device/electronic_assembly/proc/rename()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/mob/M = usr
 	if(!check_interactivity(M))
 		return
@@ -263,10 +339,17 @@
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/can_move()
 	return FALSE
 
 /obj/item/electronic_assembly/update_icon()
+=======
+/obj/item/device/electronic_assembly/proc/can_move()
+	return FALSE
+
+/obj/item/device/electronic_assembly/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else
@@ -278,7 +361,11 @@
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/examine(mob/user)
+=======
+/obj/item/device/electronic_assembly/examine(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 	for(var/I in assembly_components)
 		var/obj/item/integrated_circuit/IC = I
@@ -286,14 +373,22 @@
 	if(opened)
 		interact(user)
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/return_total_complexity()
+=======
+/obj/item/device/electronic_assembly/proc/return_total_complexity()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = 0
 	var/obj/item/integrated_circuit/part
 	for(var/p in assembly_components)
 		part = p
 		. += part.complexity
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/return_total_size()
+=======
+/obj/item/device/electronic_assembly/proc/return_total_size()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = 0
 	var/obj/item/integrated_circuit/part
 	for(var/p in assembly_components)
@@ -301,7 +396,11 @@
 		. += part.size
 
 // Returns true if the circuit made it inside.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/try_add_component(obj/item/integrated_circuit/IC, mob/user)
+=======
+/obj/item/device/electronic_assembly/proc/try_add_component(obj/item/integrated_circuit/IC, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!opened)
 		to_chat(user, "<span class='warning'>\The [src]'s hatch is closed, you can't put anything inside.</span>")
 		return FALSE
@@ -334,7 +433,11 @@
 
 
 // Actually puts the circuit inside, doesn't perform any checks.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/add_component(obj/item/integrated_circuit/component)
+=======
+/obj/item/device/electronic_assembly/proc/add_component(obj/item/integrated_circuit/component)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	component.forceMove(get_object())
 	component.assembly = src
 	assembly_components |= component
@@ -350,7 +453,11 @@
 	diag_hud_set_circuittracking()
 
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/try_remove_component(obj/item/integrated_circuit/IC, mob/user, silent)
+=======
+/obj/item/device/electronic_assembly/proc/try_remove_component(obj/item/integrated_circuit/IC, mob/user, silent)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!opened)
 		if(!silent)
 			to_chat(user, "<span class='warning'>[src]'s hatch is closed, so you can't fiddle with the internal components.</span>")
@@ -370,7 +477,11 @@
 	return TRUE
 
 // Actually removes the component, doesn't perform any checks.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/remove_component(obj/item/integrated_circuit/component)
+=======
+/obj/item/device/electronic_assembly/proc/remove_component(obj/item/integrated_circuit/component)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	component.disconnect_all()
 	component.forceMove(drop_location())
 	component.assembly = null
@@ -387,20 +498,32 @@
 	diag_hud_set_circuittracking()
 
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/afterattack(atom/target, mob/user, proximity)
+=======
+/obj/item/device/electronic_assembly/afterattack(atom/target, mob/user, proximity)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for(var/obj/item/integrated_circuit/input/S in assembly_components)
 		if(S.sense(target,user,proximity))
 			visible_message("<span class='notice'> [user] waves [src] around [target].</span>")
 
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/screwdriver_act(mob/living/user, obj/item/I)
+=======
+/obj/item/device/electronic_assembly/screwdriver_act(mob/living/user, obj/item/I)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	I.play_tool_sound(src)
 	opened = !opened
 	to_chat(user, "<span class='notice'>You [opened ? "open" : "close"] the maintenance hatch of [src].</span>")
 	update_icon()
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/attackby(obj/item/I, mob/living/user)
+=======
+/obj/item/device/electronic_assembly/attackby(obj/item/I, mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(can_anchor && default_unfasten_wrench(user, I, 20))
 		return
 	if(istype(I, /obj/item/integrated_circuit))
@@ -413,7 +536,11 @@
 			for(var/obj/item/integrated_circuit/input/S in assembly_components)
 				S.attackby_react(I,user,user.a_intent)
 			return ..()
+<<<<<<< HEAD
 	else if(istype(I, /obj/item/multitool) || istype(I, /obj/item/integrated_electronics/wirer) || istype(I, /obj/item/integrated_electronics/debugger))
+=======
+	else if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(opened)
 			interact(user)
 			return TRUE
@@ -442,8 +569,13 @@
 		to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
 		interact(user)
 		return TRUE
+<<<<<<< HEAD
 	else if(istype(I, /obj/item/integrated_electronics/detailer))
 		var/obj/item/integrated_electronics/detailer/D = I
+=======
+	else if(istype(I, /obj/item/device/integrated_electronics/detailer))
+		var/obj/item/device/integrated_electronics/detailer/D = I
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		detail_color = D.detail_color
 		update_icon()
 	else
@@ -452,7 +584,11 @@
 		return ..()
 
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/attack_self(mob/user)
+=======
+/obj/item/device/electronic_assembly/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!check_interactivity(user))
 		return
 	if(opened)
@@ -487,32 +623,52 @@
 	if(choice)
 		choice.ask_for_input(user)
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/emp_act(severity)
+=======
+/obj/item/device/electronic_assembly/emp_act(severity)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 	for(var/i in 1 to contents.len)
 		var/atom/movable/AM = contents[i]
 		AM.emp_act(severity)
 
 // Returns true if power was successfully drawn.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/draw_power(amount)
+=======
+/obj/item/device/electronic_assembly/proc/draw_power(amount)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(battery && battery.use(amount * GLOB.CELLRATE))
 		return TRUE
 	return FALSE
 
 // Ditto for giving.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/give_power(amount)
+=======
+/obj/item/device/electronic_assembly/proc/give_power(amount)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(battery && battery.give(amount * GLOB.CELLRATE))
 		return TRUE
 	return FALSE
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/Moved(oldLoc, dir)
+=======
+/obj/item/device/electronic_assembly/Moved(oldLoc, dir)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for(var/I in assembly_components)
 		var/obj/item/integrated_circuit/IC = I
 		IC.ext_moved(oldLoc, dir)
 	if(light) //Update lighting objects (From light circuits).
 		update_light()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/stop_pulling()
+=======
+/obj/item/device/electronic_assembly/stop_pulling()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for(var/I in assembly_components)
 		var/obj/item/integrated_circuit/IC = I
 		IC.stop_pulling()
@@ -521,7 +677,11 @@
 
 // Returns the object that is supposed to be used in attack messages, location checks, etc.
 // Override in children for special behavior.
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/get_object()
+=======
+/obj/item/device/electronic_assembly/proc/get_object()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return src
 
 // Returns the location to be used for dropping items.
@@ -535,46 +695,81 @@
 
 	return acting_object.drop_location()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/attack_tk(mob/user)
+=======
+/obj/item/device/electronic_assembly/attack_tk(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(anchored)
 		return
 	..()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/attack_hand(mob/user)
+=======
+/obj/item/device/electronic_assembly/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(anchored)
 		attack_self(user)
 		return
 	..()
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/default //The /default electronic_assemblys are to allow the introduction of the new naming scheme without breaking old saves.
   name = "type-a electronic assembly"
 
 /obj/item/electronic_assembly/calc
+=======
+/obj/item/device/electronic_assembly/default //The /default electronic_assemblys are to allow the introduction of the new naming scheme without breaking old saves.
+  name = "type-a electronic assembly"
+
+/obj/item/device/electronic_assembly/calc
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-b electronic assembly"
 	icon_state = "setup_small_calc"
 	desc = "It's a case, for building small electronics with. This one resembles a pocket calculator."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/clam
+=======
+/obj/item/device/electronic_assembly/clam
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-c electronic assembly"
 	icon_state = "setup_small_clam"
 	desc = "It's a case, for building small electronics with. This one has a clamshell design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/simple
+=======
+/obj/item/device/electronic_assembly/simple
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-d electronic assembly"
 	icon_state = "setup_small_simple"
 	desc = "It's a case, for building small electronics with. This one has a simple design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/hook
+=======
+/obj/item/device/electronic_assembly/hook
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-e electronic assembly"
 	icon_state = "setup_small_hook"
 	desc = "It's a case, for building small electronics with. This one looks like it has a belt clip, but it's purely decorative."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/pda
+=======
+/obj/item/device/electronic_assembly/pda
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-f electronic assembly"
 	icon_state = "setup_small_pda"
 	desc = "It's a case, for building small electronics with. This one resembles a PDA."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium
+=======
+/obj/item/device/electronic_assembly/medium
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "electronic mechanism"
 	icon_state = "setup_medium"
 	desc = "It's a case, for building medium-sized electronics with."
@@ -582,35 +777,62 @@
 	max_components = IC_MAX_SIZE_BASE * 2
 	max_complexity = IC_COMPLEXITY_BASE * 2
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium/default
 	name = "type-a electronic mechanism"
 
 /obj/item/electronic_assembly/medium/box
+=======
+/obj/item/device/electronic_assembly/medium/default
+	name = "type-a electronic mechanism"
+
+/obj/item/device/electronic_assembly/medium/box
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-b electronic mechanism"
 	icon_state = "setup_medium_box"
 	desc = "It's a case, for building medium-sized electronics with. This one has a boxy design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium/clam
+=======
+/obj/item/device/electronic_assembly/medium/clam
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-c electronic mechanism"
 	icon_state = "setup_medium_clam"
 	desc = "It's a case, for building medium-sized electronics with. This one has a clamshell design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium/medical
+=======
+/obj/item/device/electronic_assembly/medium/medical
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-d electronic mechanism"
 	icon_state = "setup_medium_med"
 	desc = "It's a case, for building medium-sized electronics with. This one resembles some type of medical apparatus."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium/gun
+=======
+/obj/item/device/electronic_assembly/medium/gun
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-e electronic mechanism"
 	icon_state = "setup_medium_gun"
 	desc = "It's a case, for building medium-sized electronics with. This one resembles a gun, or some type of tool, if you're feeling optimistic."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/medium/radio
+=======
+/obj/item/device/electronic_assembly/medium/radio
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-f electronic mechanism"
 	icon_state = "setup_medium_radio"
 	desc = "It's a case, for building medium-sized electronics with. This one resembles an old radio."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large
+=======
+/obj/item/device/electronic_assembly/large
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "electronic machine"
 	icon_state = "setup_large"
 	desc = "It's a case, for building large electronics with."
@@ -618,35 +840,62 @@
 	max_components = IC_MAX_SIZE_BASE * 4
 	max_complexity = IC_COMPLEXITY_BASE * 4
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large/default
 	name = "type-a electronic machine"
 
 /obj/item/electronic_assembly/large/scope
+=======
+/obj/item/device/electronic_assembly/large/default
+	name = "type-a electronic machine"
+
+/obj/item/device/electronic_assembly/large/scope
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-b electronic machine"
 	icon_state = "setup_large_scope"
 	desc = "It's a case, for building large electronics with. This one resembles an oscilloscope."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large/terminal
+=======
+/obj/item/device/electronic_assembly/large/terminal
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-c electronic machine"
 	icon_state = "setup_large_terminal"
 	desc = "It's a case, for building large electronics with. This one resembles a computer terminal."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large/arm
+=======
+/obj/item/device/electronic_assembly/large/arm
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-d electronic machine"
 	icon_state = "setup_large_arm"
 	desc = "It's a case, for building large electronics with. This one resembles a robotic arm."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large/tall
+=======
+/obj/item/device/electronic_assembly/large/tall
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-e electronic machine"
 	icon_state = "setup_large_tall"
 	desc = "It's a case, for building large electronics with. This one has a tall design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/large/industrial
+=======
+/obj/item/device/electronic_assembly/large/industrial
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-f electronic machine"
 	icon_state = "setup_large_industrial"
 	desc = "It's a case, for building large electronics with. This one resembles some kind of industrial machinery."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone
+=======
+/obj/item/device/electronic_assembly/drone
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "electronic drone"
 	icon_state = "setup_drone"
 	desc = "It's a case, for building mobile electronics with."
@@ -656,6 +905,7 @@
 	allowed_circuit_action_flags = IC_ACTION_MOVEMENT | IC_ACTION_COMBAT | IC_ACTION_LONG_RANGE
 	can_anchor = FALSE
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone/can_move()
 	return TRUE
 
@@ -663,31 +913,60 @@
 	name = "type-a electronic drone"
 
 /obj/item/electronic_assembly/drone/arms
+=======
+/obj/item/device/electronic_assembly/drone/can_move()
+	return TRUE
+
+/obj/item/device/electronic_assembly/drone/default
+	name = "type-a electronic drone"
+
+/obj/item/device/electronic_assembly/drone/arms
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-b electronic drone"
 	icon_state = "setup_drone_arms"
 	desc = "It's a case, for building mobile electronics with. This one is armed and dangerous."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone/secbot
+=======
+/obj/item/device/electronic_assembly/drone/secbot
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-c electronic drone"
 	icon_state = "setup_drone_secbot"
 	desc = "It's a case, for building mobile electronics with. This one resembles a Securitron."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone/medbot
+=======
+/obj/item/device/electronic_assembly/drone/medbot
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-d electronic drone"
 	icon_state = "setup_drone_medbot"
 	desc = "It's a case, for building mobile electronics with. This one resembles a Medibot."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone/genbot
+=======
+/obj/item/device/electronic_assembly/drone/genbot
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-e electronic drone"
 	icon_state = "setup_drone_genbot"
 	desc = "It's a case, for building mobile electronics with. This one has a generic bot design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/drone/android
+=======
+/obj/item/device/electronic_assembly/drone/android
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "type-f electronic drone"
 	icon_state = "setup_drone_android"
 	desc = "It's a case, for building mobile electronics with. This one has a hominoid design."
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/wallmount
+=======
+/obj/item/device/electronic_assembly/wallmount
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "wall-mounted electronic assembly"
 	icon_state = "setup_wallmount_medium"
 	desc = "It's a case, for building medium-sized electronics with. It has a magnetized backing to allow it to stick to walls, but you'll still need to wrench the anchoring bolts in place to keep it on."
@@ -695,7 +974,11 @@
 	max_components = IC_MAX_SIZE_BASE * 2
 	max_complexity = IC_COMPLEXITY_BASE * 2
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/wallmount/heavy
+=======
+/obj/item/device/electronic_assembly/wallmount/heavy
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "heavy wall-mounted electronic assembly"
 	icon_state = "setup_wallmount_large"
 	desc = "It's a case, for building large electronics with. It has a magnetized backing to allow it to stick to walls, but you'll still need to wrench the anchoring bolts in place to keep it on."
@@ -703,7 +986,11 @@
 	max_components = IC_MAX_SIZE_BASE * 4
 	max_complexity = IC_COMPLEXITY_BASE * 4
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/wallmount/light
+=======
+/obj/item/device/electronic_assembly/wallmount/light
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "light wall-mounted electronic assembly"
 	icon_state = "setup_wallmount_small"
 	desc = "It's a case, for building small electronics with. It has a magnetized backing to allow it to stick to walls, but you'll still need to wrench the anchoring bolts in place to keep it on."
@@ -711,7 +998,11 @@
 	max_components = IC_MAX_SIZE_BASE
 	max_complexity = IC_COMPLEXITY_BASE
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/wallmount/proc/mount_assembly(turf/on_wall, mob/user) //Yeah, this is admittedly just an abridged and kitbashed version of the wallframe attach procs.
+=======
+/obj/item/device/electronic_assembly/wallmount/proc/mount_assembly(turf/on_wall, mob/user) //Yeah, this is admittedly just an abridged and kitbashed version of the wallframe attach procs.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(get_dist(on_wall,user)>1)
 		return
 	var/ndir = get_dir(on_wall, user)

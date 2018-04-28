@@ -1018,7 +1018,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 
 /datum/uplink_item/device_tools/briefcase_launchpad/purchase(mob/user, datum/component/uplink/U)
+<<<<<<< HEAD:code/modules/uplink/uplink_items.dm
 	spawn_item(/obj/item/launchpad_remote, user) //free remote
+=======
+	spawn_item(/obj/item/device/launchpad_remote, user) //free remote
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/uplink/uplink_items.dm
 	..()
 
 /datum/uplink_item/device_tools/magboots
@@ -1087,7 +1091,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
 			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
 			be defused, and some crew may attempt to do so."
+<<<<<<< HEAD:code/modules/uplink/uplink_items.dm
 	item = /obj/item/sbeacondrop/clownbomb
+=======
+	item = /obj/item/device/sbeacondrop/clownbomb
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/uplink/uplink_items.dm
 	cost = 15
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
@@ -1304,7 +1312,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	violently open, instantly killing anyone wearing it by tearing their jaws in half. To arm, attack someone with it while they're not wearing headgear, and you will force it onto their \
 	head after three seconds uninterrupted."
 	cost = 5
+<<<<<<< HEAD:code/modules/uplink/uplink_items.dm
 	item = /obj/item/reverse_bear_trap
+=======
+	item = /obj/item/device/reverse_bear_trap
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/uplink/uplink_items.dm
 	restricted_roles = list("Clown")
 
 /datum/uplink_item/role_restricted/mimery
@@ -1402,7 +1414,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
 			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
 			be defused, and some crew may attempt to do so."
+<<<<<<< HEAD:code/modules/uplink/uplink_items.dm
 	item = /obj/item/sbeacondrop/clownbomb
+=======
+	item = /obj/item/device/sbeacondrop/clownbomb
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/uplink/uplink_items.dm
 	cost = 15
 	restricted_roles = list("Clown")
 

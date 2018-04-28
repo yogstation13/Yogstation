@@ -464,6 +464,16 @@
 	name = "Listening Post"
 	icon_state = "yellow"
 
+<<<<<<< HEAD
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"
 	icon_state = "yellow"
+=======
+/area/ruin/space/has_grav/powered/scp_294
+	name = "Abandoned SCP-294 Containment"
+	icon_state = "yellow"
+
+/area/ruin/space/has_grav/powered/ancient_shuttle
+	name = "Ancient Shuttle"
+	icon_state = "yellow"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

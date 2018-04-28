@@ -107,10 +107,17 @@ effective or pretty fucking useless.
 /obj/item/healthanalyzer/rad_laser/proc/GetCooldown()
 	return round(max(10, (stealth*30 + intensity*5 - wavelength/4)))
 
+<<<<<<< HEAD
 /obj/item/healthanalyzer/rad_laser/interact(mob/user)
 	ui_interact(user)
 
 /obj/item/healthanalyzer/rad_laser/ui_interact(mob/user)
+=======
+/obj/item/device/healthanalyzer/rad_laser/interact(mob/user)
+	ui_interact(user)
+
+/obj/item/device/healthanalyzer/rad_laser/ui_interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 
 	var/dat = "Irradiation: <A href='?src=[REF(src)];rad=1'>[irradiate ? "On" : "Off"]</A><br>"
@@ -243,7 +250,11 @@ effective or pretty fucking useless.
 	var/active = FALSE
 	var/range = 12
 
+<<<<<<< HEAD
 /obj/item/jammer/attack_self(mob/user)
+=======
+/obj/item/device/jammer/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	to_chat(user,"<span class='notice'>You [active ? "deactivate" : "activate"] [src].</span>")
 	active = !active
 	if(active)

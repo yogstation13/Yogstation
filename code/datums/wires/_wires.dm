@@ -229,7 +229,11 @@
 		reveal_wires = TRUE
 
 	// Same for anyone with an abductor multitool.
+<<<<<<< HEAD:code/datums/wires/_wires.dm
 	else if(user.is_holding_item_of_type(/obj/item/multitool/abductor))
+=======
+	else if(user.is_holding_item_of_type(/obj/item/device/multitool/abductor))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/datums/wires/_wires.dm
 		reveal_wires = TRUE
 
 	// Station blueprints do that too, but only if the wires are not randomized.
@@ -280,8 +284,13 @@
 					. = TRUE
 			else
 				I = L.get_active_held_item()
+<<<<<<< HEAD:code/datums/wires/_wires.dm
 				if(istype(I, /obj/item/assembly))
 					var/obj/item/assembly/A = I
+=======
+				if(istype(I, /obj/item/device/assembly))
+					var/obj/item/device/assembly/A = I
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/datums/wires/_wires.dm
 					if(A.attachable)
 						if(!L.temporarilyRemoveItemFromInventory(A))
 							return

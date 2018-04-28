@@ -544,8 +544,13 @@
 /atom/Entered(atom/movable/AM, atom/oldLoc)
 	SendSignal(COMSIG_ATOM_ENTERED, AM, oldLoc)
 
+<<<<<<< HEAD
 /atom/Exited(atom/movable/AM, atom/newLoc)
 	SendSignal(COMSIG_ATOM_EXITED, AM, newLoc)
+=======
+/atom/Exited(atom/movable/AM)
+	SendSignal(COMSIG_ATOM_EXITED, AM)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /atom/proc/return_temperature()
 	return

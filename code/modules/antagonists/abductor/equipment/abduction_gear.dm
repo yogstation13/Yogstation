@@ -280,7 +280,11 @@
 			if(!istype(I, /obj/item/radio/headset))
 				r.broadcasting = 0 //goddamned headset hacks
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/abductor/mind_device
+=======
+/obj/item/device/abductor/mind_device
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	name = "mental interface device"
 	desc = "A dual-mode tool for directly communicating with sentient brains. It can be used to send a direct message to a target, \
 			or to send a command to a test subject with a charged gland."
@@ -290,7 +294,11 @@
 	righthand_file = 'icons/mob/inhands/antag/abductor_righthand.dmi'
 	var/mode = MIND_DEVICE_MESSAGE
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/abductor/mind_device/attack_self(mob/user)
+=======
+/obj/item/device/abductor/mind_device/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	if(!ScientistCheck(user))
 		return
 
@@ -302,7 +310,11 @@
 		icon_state = "mind_device_message"
 	to_chat(user, "<span class='notice'>You switch the device to [mode==MIND_DEVICE_MESSAGE? "TRANSMISSION": "COMMAND"] MODE</span>")
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/abductor/mind_device/afterattack(atom/target, mob/living/user, flag, params)
+=======
+/obj/item/device/abductor/mind_device/afterattack(atom/target, mob/living/user, flag, params)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	if(!ScientistCheck(user))
 		return
 
@@ -312,7 +324,11 @@
 		if(MIND_DEVICE_MESSAGE)
 			mind_message(target, user)
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/abductor/mind_device/proc/mind_control(atom/target, mob/living/user)
+=======
+/obj/item/device/abductor/mind_device/proc/mind_control(atom/target, mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		var/obj/item/organ/heart/gland/G = C.getorganslot("heart")
@@ -338,14 +354,22 @@
 		if(QDELETED(G))
 			return
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 		if(istype(C.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
+=======
+		if(istype(C.get_item_by_slot(slot_head), /obj/item/clothing/head/foilhat))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 			to_chat(user, "<span class='warning'>Your target seems to have some sort of protective headgear on, blocking the message from being sent!</span>")
 			return
 
 		G.mind_control(command, user)
 		to_chat(user, "<span class='notice'>You send the command to your target.</span>")
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/abductor/mind_device/proc/mind_message(atom/target, mob/living/user)
+=======
+/obj/item/device/abductor/mind_device/proc/mind_message(atom/target, mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD)
@@ -362,7 +386,11 @@
 		log_talk(user,"[key_name(user)] sent an abductor mind message to [L]/[L.ckey]: '[message]'", LOGSAY)
 
 
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 /obj/item/firing_pin/abductor
+=======
+/obj/item/device/firing_pin/abductor
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	name = "alien firing pin"
 	icon_state = "firing_pin_ayy"
 	desc = "This firing pin is slimy and warm; you can swear you feel it \
@@ -425,7 +453,11 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	item_state = "wonderprod"
 	lefthand_file = 'icons/mob/inhands/antag/abductor_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/abductor_righthand.dmi'
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 	force = 7
 	w_class = WEIGHT_CLASS_NORMAL
 	actions_types = list(/datum/action/item_action/toggle_mode)
@@ -515,7 +547,11 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 
 /obj/item/abductor_baton/proc/SleepAttack(mob/living/L,mob/living/user)
 	if(L.incapacitated(TRUE, TRUE))
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 		if(istype(L.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
+=======
+		if(istype(L.get_item_by_slot(slot_head), /obj/item/clothing/head/foilhat))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 			to_chat(user, "<span class='warning'>The specimen's protective headgear is interfering with the sleep inducement!</span>")
 			L.visible_message("<span class='danger'>[user] tried to induced sleep in [L] with [src], but their headgear protected them!</span>", \
 								"<span class='userdanger'>You feel a strange wave of heavy drowsiness wash over you, but your headgear deflects most of it!</span>")
@@ -527,7 +563,11 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.Sleeping(1200)
 		add_logs(user, L, "put to sleep")
 	else
+<<<<<<< HEAD:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 		if(istype(L.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
+=======
+		if(istype(L.get_item_by_slot(slot_head), /obj/item/clothing/head/foilhat))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/equipment/abduction_gear.dm
 			to_chat(user, "<span class='warning'>The specimen's protective headgear is completely blocking our sleep inducement methods!</span>")
 			L.visible_message("<span class='danger'>[user] tried to induce sleep in [L] with [src], but their headgear completely protected them!</span>", \
 								"<span class='userdanger'>Any sense of drowsiness is quickly diminished as your headgear deflects the effects!</span>")

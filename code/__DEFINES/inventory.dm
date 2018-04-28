@@ -100,6 +100,7 @@
 #define HIDENECK		(1<<10)
 
 //bitflags for clothing coverage - also used for limbs
+<<<<<<< HEAD
 #define HEAD		(1<<0)
 #define CHEST		(1<<1)
 #define GROIN		(1<<2)
@@ -117,6 +118,25 @@
 #define HANDS		(HAND_LEFT | HAND_RIGHT)
 #define NECK		(1<<11)
 #define FULL_BODY	(~0)
+=======
+#define HEAD		1
+#define CHEST		2
+#define GROIN		4
+#define LEG_LEFT	8
+#define LEG_RIGHT	16
+#define LEGS		24
+#define FOOT_LEFT	32
+#define FOOT_RIGHT	64
+#define FEET		96
+#define ARM_LEFT	128
+#define ARM_RIGHT	256
+#define ARMS		384
+#define HAND_LEFT	512
+#define HAND_RIGHT	1024
+#define HANDS		1536
+#define NECK		2048
+#define FULL_BODY	4095
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 //flags for female outfits: How much the game can safely "take off" the uniform without it looking weird
 #define NO_FEMALE_UNIFORM			0
@@ -151,7 +171,11 @@
 GLOBAL_LIST_INIT(advanced_hardsuit_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
+<<<<<<< HEAD
 	/obj/item/flashlight,
+=======
+	/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/gun,
 	/obj/item/melee/baton,
 	/obj/item/reagent_containers/spray/pepper,
@@ -161,7 +185,11 @@ GLOBAL_LIST_INIT(advanced_hardsuit_allowed, typecacheof(list(
 GLOBAL_LIST_INIT(security_hardsuit_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
+<<<<<<< HEAD
 	/obj/item/flashlight,
+=======
+	/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/melee/baton,
@@ -172,9 +200,15 @@ GLOBAL_LIST_INIT(security_hardsuit_allowed, typecacheof(list(
 GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
+<<<<<<< HEAD
 	/obj/item/detective_scanner,
 	/obj/item/flashlight,
 	/obj/item/taperecorder,
+=======
+	/obj/item/device/detective_scanner,
+	/obj/item/device/flashlight,
+	/obj/item/device/taperecorder,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/lighter,
@@ -189,7 +223,11 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
+<<<<<<< HEAD
 	/obj/item/flashlight,
+=======
+	/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,
 	/obj/item/kitchen/knife/combat,
@@ -203,7 +241,11 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
+<<<<<<< HEAD
 	/obj/item/flashlight,
+=======
+	/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/storage/fancy/cigarettes,
 	/obj/item/gun/ballistic,
 	/obj/item/gun/energy,

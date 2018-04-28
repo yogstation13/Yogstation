@@ -84,11 +84,14 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit/memory/constant/emp_act()
 	for(var/i in 1 to activators.len)
 		var/datum/integrated_io/activate/A = activators[i]
 		A.scramble()
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/integrated_circuit/memory/constant/save_special()
 	var/datum/integrated_io/O = outputs[1]
 	if(istext(O.data) || isnum(O.data))
@@ -134,4 +137,8 @@
 		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
 		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data(O.data)].  The ref scanner is \
 		now off.</span>")
+<<<<<<< HEAD
 		accepting_refs = FALSE
+=======
+		accepting_refs = FALSE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

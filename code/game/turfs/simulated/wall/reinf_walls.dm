@@ -141,7 +141,11 @@
 			if(istype(W, /obj/item/wrench))
 				to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame...</span>")
 				if(W.use_tool(src, user, 40, volume=100))
+<<<<<<< HEAD
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
+=======
+					if(!istype(src, /turf/closed/wall/r_wall) || d_state != BOLTS)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						return 1
 					d_state = SUPPORT_RODS
 					update_icon()
@@ -151,7 +155,11 @@
 			if(istype(W, /obj/item/crowbar))
 				to_chat(user, "<span class='notice'>You start to pry the cover back into place...</span>")
 				if(W.use_tool(src, user, 20, volume=100))
+<<<<<<< HEAD
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != ANCHOR_BOLTS)
+=======
+					if(!istype(src, /turf/closed/wall/r_wall) || d_state != BOLTS)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						return 1
 					d_state = CUT_COVER
 					update_icon()

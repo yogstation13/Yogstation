@@ -206,6 +206,10 @@
 #include "code\controllers\subsystem\garbage.dm"
 #include "code\controllers\subsystem\icon_smooth.dm"
 #include "code\controllers\subsystem\idlenpcpool.dm"
+<<<<<<< HEAD
+=======
+#include "code\controllers\subsystem\inbounds.dm"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #include "code\controllers\subsystem\input.dm"
 #include "code\controllers\subsystem\ipintel.dm"
 #include "code\controllers\subsystem\job.dm"
@@ -320,7 +324,10 @@
 #include "code\datums\components\knockoff.dm"
 #include "code\datums\components\lockon_aiming.dm"
 #include "code\datums\components\material_container.dm"
+<<<<<<< HEAD
 #include "code\datums\components\mirage_border.dm"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #include "code\datums\components\mood.dm"
 #include "code\datums\components\ntnet_interface.dm"
 #include "code\datums\components\paintable.dm"
@@ -332,11 +339,15 @@
 #include "code\datums\components\slippery.dm"
 #include "code\datums\components\spooky.dm"
 #include "code\datums\components\squeek.dm"
+<<<<<<< HEAD
 #include "code\datums\components\stationloving.dm"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #include "code\datums\components\swarming.dm"
 #include "code\datums\components\thermite.dm"
 #include "code\datums\components\wet_floor.dm"
 #include "code\datums\components\decals\blood.dm"
+<<<<<<< HEAD
 #include "code\datums\components\storage\storage.dm"
 #include "code\datums\components\storage\concrete\_concrete.dm"
 #include "code\datums\components\storage\concrete\bag_of_holding.dm"
@@ -346,6 +357,8 @@
 #include "code\datums\components\storage\concrete\rped.dm"
 #include "code\datums\components\storage\concrete\special.dm"
 #include "code\datums\components\storage\concrete\stack.dm"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #include "code\datums\diseases\_disease.dm"
 #include "code\datums\diseases\_MobProcs.dm"
 #include "code\datums\diseases\anxiety.dm"
@@ -2114,7 +2127,10 @@
 #include "code\modules\NTNet\netdata.dm"
 #include "code\modules\NTNet\network.dm"
 #include "code\modules\NTNet\relays.dm"
+<<<<<<< HEAD
 #include "code\modules\NTNet\services\_service.dm"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #include "code\modules\orbit\orbit.dm"
 #include "code\modules\paperwork\clipboard.dm"
 #include "code\modules\paperwork\contract.dm"
@@ -2303,6 +2319,7 @@
 #include "code\modules\reagents\chemistry\machinery\chem_master.dm"
 #include "code\modules\reagents\chemistry\machinery\pandemic.dm"
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
+#include "code\modules\reagents\chemistry\machinery\scp_294.dm"
 #include "code\modules\reagents\chemistry\machinery\smoke_machine.dm"
 #include "code\modules\reagents\chemistry\reagents\alcohol_reagents.dm"
 #include "code\modules\reagents\chemistry\reagents\blob_reagents.dm"

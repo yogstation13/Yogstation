@@ -44,7 +44,11 @@
 		return machinery_computer.update_icon()
 
 // This thing is not meant to be used on it's own, get topic data from our machinery owner.
+<<<<<<< HEAD
 //obj/item/modular_computer/processor/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+=======
+//obj/item/device/modular_computer/processor/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 //	if(!machinery_computer)
 //		return 0
 

@@ -80,7 +80,11 @@
 		B.forceMove(destination)
 	else if (istype(destination, /obj/item/organ/brain))
 		doMove(destination)
+<<<<<<< HEAD
 	else if (istype(destination, /obj/item/mmi))
+=======
+	else if (istype(destination, /obj/item/device/mmi))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		doMove(destination)
 	else
 		CRASH("Brainmob without a container [src] attempted to move to [destination].")

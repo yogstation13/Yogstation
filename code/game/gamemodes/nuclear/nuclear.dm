@@ -134,28 +134,45 @@
 
 	var/tc = 25
 	var/command_radio = FALSE
+<<<<<<< HEAD
 	var/uplink_type = /obj/item/radio/uplink/nuclear
+=======
+	var/uplink_type = /obj/item/device/radio/uplink/nuclear
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 /datum/outfit/syndicate/leader
 	name = "Syndicate Leader - Basic"
 	id = /obj/item/card/id/syndicate/nuke_leader
+<<<<<<< HEAD
 	r_hand = /obj/item/nuclear_challenge
+=======
+	r_hand = /obj/item/device/nuclear_challenge
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals
 	tc = 0
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_SYNDICATE)
 	R.freqlock = TRUE
 	if(command_radio)
 		R.command = TRUE
 
 	if(tc)
+<<<<<<< HEAD
 		var/obj/item/radio/uplink/U = new uplink_type(H, H.key, tc)
 		H.equip_to_slot_or_del(U, SLOT_IN_BACKPACK)
+=======
+		var/obj/item/device/radio/uplink/U = new uplink_type(H, H.key, tc)
+		H.equip_to_slot_or_del(U, slot_in_backpack)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/obj/item/implant/weapons_auth/W = new/obj/item/implant/weapons_auth(H)
 	W.implant(H)

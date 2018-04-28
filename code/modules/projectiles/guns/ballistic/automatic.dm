@@ -91,7 +91,11 @@
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	fire_delay = 2
 	burst_size = 2
+<<<<<<< HEAD
 	pin = /obj/item/firing_pin/implant/pindicate
+=======
+	pin = /obj/item/device/firing_pin/implant/pindicate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	can_bayonet = TRUE
 	knife_x_offset = 26
 	knife_y_offset = 12
@@ -363,7 +367,11 @@
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoom_out_amt = 13
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	actions_types = list()
 
 
@@ -377,7 +385,11 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "syndicate sniper rifle"
 	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+<<<<<<< HEAD
 	pin = /obj/item/firing_pin/implant/pindicate
+=======
+	pin = /obj/item/device/firing_pin/implant/pindicate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // Old Semi-Auto Rifle //
 

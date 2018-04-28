@@ -54,6 +54,7 @@
 
 /obj/effect/clockwork/city_of_cogs_rift/proc/beckon(atom/movable/AM)
 	var/turf/T = get_turf(pick(GLOB.city_of_cogs_spawns))
+<<<<<<< HEAD:code/modules/antagonists/clockcult/clock_effects/city_of_cogs_rift.dm
 	if(ismob(AM) && is_servant_of_ratvar(AM))
 		T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
 	else // Handle mechas and such
@@ -62,6 +63,10 @@
 			if(is_servant_of_ratvar(L) && L.stat != DEAD) // Having a living cultist in your inventory sends you to the cultist spawn
 				T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
 				break
+=======
+	if(is_servant_of_ratvar(AM))
+		T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/clockcult/clock_effects/city_of_cogs_rift.dm
 	AM.visible_message("<span class='danger'>[AM] passes through [src]!</span>", null, null, null, AM)
 	AM.forceMove(T)
 	AM.visible_message("<span class='danger'>[AM] materializes from the air!</span>", \
@@ -72,6 +77,10 @@
 		var/mob/living/L = AM
 		L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
 		L.clear_fullscreen("flash", 5)
+<<<<<<< HEAD:code/modules/antagonists/clockcult/clock_effects/city_of_cogs_rift.dm
 		var/obj/item/transfer_valve/TTV = locate() in L.GetAllContents()
+=======
+		var/obj/item/device/transfer_valve/TTV = locate() in L.GetAllContents()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/clockcult/clock_effects/city_of_cogs_rift.dm
 		if(TTV)
 			to_chat(L, "<span class='userdanger'>The air resonates with the Ark's presence; your explosives will be significantly dampened here!</span>")

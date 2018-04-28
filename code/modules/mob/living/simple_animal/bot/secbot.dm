@@ -406,7 +406,11 @@ Auto Patrol: []"},
 	Sa.build_step = 1
 	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
+<<<<<<< HEAD
 	new /obj/item/assembly/prox_sensor(Tsec)
+=======
+	new /obj/item/device/assembly/prox_sensor(Tsec)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	drop_part(baton_type, Tsec)
 
 	if(prob(50))

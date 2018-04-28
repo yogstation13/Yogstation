@@ -2375,7 +2375,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/workroom)
 "hr" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/dock)
 "hs" = (

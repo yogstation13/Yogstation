@@ -36,14 +36,20 @@ PROCESSING_SUBSYSTEM_DEF(circuit)
 		var/list/category_list = circuit_fabricator_recipe_list[category]
 		category_list += IC // Populating the fabricator categories
 
+<<<<<<< HEAD
 	for(var/path in typesof(/obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/A = path
+=======
+	for(var/path in typesof(/obj/item/device/electronic_assembly))
+		var/obj/item/device/electronic_assembly/A = path
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/name = initial(A.name)
 		all_assemblies[name] = path
 		cached_assemblies[A] = new path
 
 
 	circuit_fabricator_recipe_list["Assemblies"] = list(
+<<<<<<< HEAD
 		/obj/item/electronic_assembly/default,
 		/obj/item/electronic_assembly/calc,
 		/obj/item/electronic_assembly/clam,
@@ -71,12 +77,48 @@ PROCESSING_SUBSYSTEM_DEF(circuit)
 		/obj/item/electronic_assembly/wallmount/light,
 		/obj/item/electronic_assembly/wallmount,
 		/obj/item/electronic_assembly/wallmount/heavy
+=======
+		/obj/item/device/electronic_assembly/default,
+		/obj/item/device/electronic_assembly/calc,
+		/obj/item/device/electronic_assembly/clam,
+		/obj/item/device/electronic_assembly/simple,
+		/obj/item/device/electronic_assembly/hook,
+		/obj/item/device/electronic_assembly/pda,
+		/obj/item/device/electronic_assembly/medium/default,
+		/obj/item/device/electronic_assembly/medium/box,
+		/obj/item/device/electronic_assembly/medium/clam,
+		/obj/item/device/electronic_assembly/medium/medical,
+		/obj/item/device/electronic_assembly/medium/gun,
+		/obj/item/device/electronic_assembly/medium/radio,
+		/obj/item/device/electronic_assembly/large/default,
+		/obj/item/device/electronic_assembly/large/scope,
+		/obj/item/device/electronic_assembly/large/terminal,
+		/obj/item/device/electronic_assembly/large/arm,
+		/obj/item/device/electronic_assembly/large/tall,
+		/obj/item/device/electronic_assembly/large/industrial,
+		/obj/item/device/electronic_assembly/drone/default,
+		/obj/item/device/electronic_assembly/drone/arms,
+		/obj/item/device/electronic_assembly/drone/secbot,
+		/obj/item/device/electronic_assembly/drone/medbot,
+		/obj/item/device/electronic_assembly/drone/genbot,
+		/obj/item/device/electronic_assembly/drone/android,
+		/obj/item/device/electronic_assembly/wallmount/light,
+		/obj/item/device/electronic_assembly/wallmount,
+		/obj/item/device/electronic_assembly/wallmount/heavy
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		///obj/item/weapon/implant/integrated_circuit
 		)
 
 	circuit_fabricator_recipe_list["Tools"] = list(
+<<<<<<< HEAD
 		/obj/item/integrated_electronics/wirer,
 		/obj/item/integrated_electronics/debugger,
 		/obj/item/integrated_electronics/analyzer,
 		/obj/item/integrated_electronics/detailer
+=======
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/device/integrated_electronics/analyzer,
+		/obj/item/device/integrated_electronics/detailer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		)

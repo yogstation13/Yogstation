@@ -155,6 +155,10 @@
 #undef CLIMB_TIME
 
 #undef NO_HOLE
+<<<<<<< HEAD
+=======
+#undef SMALL_HOLE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #undef MEDIUM_HOLE
 #undef LARGE_HOLE
 #undef MAX_HOLE_SIZE

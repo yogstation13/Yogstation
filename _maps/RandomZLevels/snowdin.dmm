@@ -102,7 +102,11 @@
 /area/awaymission/snowdin/post/research)
 "ay" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/research)
 "az" = (
@@ -126,7 +130,11 @@
 /area/awaymission/snowdin/post/research)
 "aD" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/research)
@@ -304,7 +312,11 @@
 /area/awaymission/snowdin/post/research)
 "bd" = (
 /obj/structure/window,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/research)
 "be" = (
@@ -838,11 +850,19 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/neutral/side{
 	dir = 9
 	},
@@ -911,12 +931,21 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/dorm)
 "cz" = (
 /obj/machinery/door/airlock/public/glass{
@@ -949,11 +978,19 @@
 "cD" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
+<<<<<<< HEAD
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/neutral/side{
 	dir = 1
 	},
+=======
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/neutral/side{
+	dir = 1
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/research)
 "cE" = (
 /obj/machinery/firealarm{
@@ -987,6 +1024,7 @@
 "cI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
@@ -994,6 +1032,15 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/snowdin/post/kitchen)
@@ -1017,6 +1064,7 @@
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -1024,11 +1072,21 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/kitchen)
 "cL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -1036,6 +1094,15 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/kitchen/fork,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -1478,10 +1545,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
+=======
+	},
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
 "dM" = (
@@ -1639,12 +1713,21 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/effect/landmark/awaystart,
 /obj/item/bedsheet/red,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
+=======
+	},
+/obj/effect/landmark/awaystart,
+/obj/item/bedsheet/red,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/dorm)
 "ei" = (
 /obj/effect/baseturf_helper/asteroid/snow,
@@ -1656,10 +1739,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
 "ek" = (
@@ -1685,6 +1775,7 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -1719,6 +1810,42 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/awaymission/snowdin/post/gateway)
+"en" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Research Center APC";
+	pixel_x = 1;
+	pixel_y = 25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/awaymission/snowdin/post/research)
+"eo" = (
+/obj/machinery/light/small,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/awaymission/snowdin/post)
+"ep" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -1888,6 +2015,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1895,6 +2023,15 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/dorm)
 "eS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1942,6 +2079,7 @@
 "eV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -1949,6 +2087,15 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/trash/cheesie,
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
@@ -1978,11 +2125,19 @@
 /obj/item/clothing/neck/stethoscope,
 /obj/machinery/light{
 	dir = 1
+<<<<<<< HEAD
 	},
 /obj/machinery/firealarm{
 	dir = 2;
 	pixel_y = 24
 	},
+=======
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 24
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/cmo,
 /area/awaymission/snowdin/post)
 "fa" = (
@@ -2168,7 +2323,11 @@
 /turf/open/floor/plasteel/cmo,
 /area/awaymission/snowdin/post)
 "fz" = (
+<<<<<<< HEAD
 /obj/item/flashlight/pen,
+=======
+/obj/item/device/flashlight/pen,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/cmo,
 /area/awaymission/snowdin/post)
 "fA" = (
@@ -2210,10 +2369,17 @@
 	dir = 4;
 	name = "Outpost Hallway APC";
 	pixel_x = 26
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
@@ -2763,6 +2929,7 @@
 "ha" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -2774,6 +2941,19 @@
 /turf/open/floor/plasteel/neutral/side{
 	dir = 4
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/neutral/side{
+	dir = 4
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/dorm)
 "hb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -3061,10 +3241,17 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/dorm)
 "hM" = (
@@ -3102,10 +3289,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
@@ -3267,6 +3461,7 @@
 "io" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5;
@@ -3277,6 +3472,18 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/dorm)
 "ip" = (
@@ -3288,10 +3495,17 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/dorm)
 "iq" = (
@@ -3414,10 +3628,17 @@
 	},
 /obj/structure/sign/departments/medbay{
 	pixel_y = 32
+<<<<<<< HEAD
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+=======
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post)
 "ix" = (
 /turf/open/floor/plasteel/neutral/side{
@@ -3451,6 +3672,7 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -3459,6 +3681,16 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/effect/landmark/awaystart,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/floorgrime,
 /area/awaymission/snowdin/post/gateway)
@@ -3536,6 +3768,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6;
@@ -3543,6 +3776,15 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
 "iO" = (
@@ -3554,10 +3796,17 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+=======
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
 "iP" = (
@@ -3643,6 +3892,7 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -3657,6 +3907,22 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/snowdin/post/garage)
+"iV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
 "iW" = (
@@ -3774,6 +4040,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3781,6 +4048,15 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -3897,6 +4173,7 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/structure/sink{
 	dir = 4;
@@ -3905,6 +4182,16 @@
 /turf/open/floor/plasteel/green/side{
 	dir = 4
 	},
+=======
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/green/side{
+	dir = 4
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post/hydro)
 "jC" = (
 /obj/structure/cable{
@@ -4043,10 +4330,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/floorgrime,
 /area/awaymission/snowdin/post)
 "jW" = (
@@ -4234,10 +4528,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/shower{
 	pixel_y = 25
 	},
+=======
+	},
+/obj/machinery/shower{
+	pixel_y = 25
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
 "kw" = (
@@ -4304,10 +4605,17 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/snowdin/post/dorm)
@@ -4333,10 +4641,17 @@
 	name = "Custodials APC";
 	pixel_x = 1;
 	pixel_y = 25
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/snowdin/post/custodials)
 "kE" = (
@@ -4647,6 +4962,7 @@
 "lq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -4657,6 +4973,18 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/turf_decal/snowdin_station_sign/up/three,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/floorgrime,
@@ -4698,6 +5026,7 @@
 "lt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -4708,6 +5037,18 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/turf_decal/snowdin_station_sign/up/six,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post)
@@ -4779,6 +5120,7 @@
 "ly" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Mess Hall"
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -4789,6 +5131,18 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -5031,6 +5385,7 @@
 "lQ" = (
 /obj/machinery/door/airlock{
 	name = "Mechanic's Quarters"
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4;
@@ -5041,6 +5396,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
 "lR" = (
@@ -5172,6 +5539,7 @@
 /turf/open/floor/plasteel/neutral/side{
 	dir = 8;
 	heat_capacity = 1e+006
+<<<<<<< HEAD
 	},
 /area/awaymission/snowdin/post)
 "me" = (
@@ -5187,6 +5555,23 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+	},
+/area/awaymission/snowdin/post)
+"me" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post)
 "mf" = (
@@ -5198,6 +5583,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -5205,6 +5591,15 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/turf_decal/snowdin_station_sign,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/floorgrime,
@@ -5387,6 +5782,7 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/firealarm{
 	dir = 8;
@@ -5404,10 +5800,32 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+=======
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
 /area/awaymission/snowdin/post)
+<<<<<<< HEAD
+=======
+"mI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9;
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/awaymission/snowdin/post)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "mJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5546,11 +5964,19 @@
 	piping_layer = 3;
 	pixel_x = 5;
 	pixel_y = 5
+<<<<<<< HEAD
 	},
 /obj/machinery/light/broken,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+=======
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/awaymission/snowdin/post)
 "nd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -5569,10 +5995,17 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/neutral/side,
 /area/awaymission/snowdin/post)
 "nf" = (
@@ -5596,11 +6029,19 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
 	pixel_y = -32
 	},
+=======
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post)
 "nh" = (
@@ -5660,10 +6101,17 @@
 "nn" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+=======
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/yellow,
 /area/awaymission/snowdin/post/engineering)
 "no" = (
@@ -5693,6 +6141,7 @@
 "nq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -5714,11 +6163,37 @@
 /area/awaymission/snowdin/post/engineering)
 "ns" = (
 /obj/machinery/computer/monitor,
+=======
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/awaymission/snowdin/post/engineering)
+"nr" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Engineering APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/engineering)
+<<<<<<< HEAD
+=======
+"ns" = (
+/obj/machinery/computer/monitor,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel,
+/area/awaymission/snowdin/post/engineering)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "nt" = (
 /turf/closed/wall/rust,
 /area/awaymission/snowdin/post/engineering)
@@ -5845,11 +6320,19 @@
 /obj/machinery/power/smes/engineering,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+<<<<<<< HEAD
 	},
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+	},
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
 "nP" = (
@@ -5944,7 +6427,11 @@
 	req_access_txt = "201"
 	},
 /obj/item/restraints/handcuffs,
+<<<<<<< HEAD
 /obj/item/assembly/flash,
+=======
+/obj/item/device/assembly/flash,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/storage/box/rubbershot,
 /obj/structure/fireaxecabinet{
 	pixel_y = 32
@@ -6341,7 +6828,11 @@
 /area/awaymission/snowdin/post/cavern2)
 "pb" = (
 /obj/structure/table/wood,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp{
+=======
+/obj/item/device/flashlight/lamp{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -9441,11 +9932,19 @@
 	width = 6
 	},
 /obj/docking_port/stationary{
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 4;
 	dwidth = 3;
 	height = 6;
 	id = "snowdin_excavation_top";
 	name = "snowdin excavation top";
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 6
 	},
 /turf/open/floor/plating,
@@ -9476,11 +9975,19 @@
 /area/awaymission/snowdin/post/mining_dock)
 "xP" = (
 /obj/docking_port/stationary{
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/floor/plating/snowed;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 4;
 	dwidth = 3;
 	height = 6;
 	id = "snowdin_excavation_down";
 	name = "snowdin excavation down";
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/plating/snowed;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 6
 	},
 /turf/open/floor/plating,
@@ -10483,7 +10990,11 @@
 /area/awaymission/snowdin/post/minipost)
 "AF" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/neutral/side{
 	dir = 4
 	},
@@ -11269,7 +11780,11 @@
 	},
 /area/awaymission/snowdin/cave)
 "CY" = (
+<<<<<<< HEAD
 /obj/item/aicard,
+=======
+/obj/item/device/aicard,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -13817,11 +14332,19 @@
 	width = 5
 	},
 /obj/docking_port/stationary{
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 4;
 	dwidth = 2;
 	height = 5;
 	id = "snowdin_mining_top";
 	name = "snowdin mining top";
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 5
 	},
 /turf/open/floor/plating,
@@ -13868,11 +14391,19 @@
 "Kt" = (
 /obj/docking_port/stationary{
 	area_type = /area/awaymission/snowdin/post/mining_dock;
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 4;
 	dwidth = 2;
 	height = 5;
 	id = "snowdin_mining_down";
 	name = "snowdin mining bottom";
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/engine;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 5
 	},
 /turf/open/floor/plating,

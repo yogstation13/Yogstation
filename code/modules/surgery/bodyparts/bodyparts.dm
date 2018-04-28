@@ -235,7 +235,11 @@
 		C = owner
 		no_update = FALSE
 
+<<<<<<< HEAD
 	if(C.has_trait(TRAIT_HUSK) && is_organic_limb())
+=======
+	if(C.has_trait(TRAIT_HUSK))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE

@@ -7,9 +7,15 @@
 			new /obj/item/clothing/mask/chameleon(src) // Goes with above
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/clothing/shoes/chameleon/noslip(src) // 2 tc
+<<<<<<< HEAD
 			new /obj/item/camera_bug(src) // 1 tc
 			new /obj/item/multitool/ai_detect(src) // 1 tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
+=======
+			new /obj/item/device/camera_bug(src) // 1 tc
+			new /obj/item/device/multitool/ai_detect(src) // 1 tc
+			new /obj/item/device/encryptionkey/syndicate(src) // 2 tc
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			new /obj/item/reagent_containers/syringe/mulligan(src) // 4 tc
 			new /obj/item/switchblade(src) //I'll count this as 2 tc
 			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
@@ -56,7 +62,11 @@
 			new /obj/item/clothing/glasses/thermal/syndi(src)
 			new /obj/item/card/emag(src)
 			new /obj/item/clothing/shoes/chameleon/noslip(src)
+<<<<<<< HEAD
 			new /obj/item/encryptionkey/syndicate(src)
+=======
+			new /obj/item/device/encryptionkey/syndicate(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			new /obj/item/grenade/syndieminibomb(src)
 
 		if("implant") // 55+ tc holy shit what the fuck this is a lottery disguised as fun boxes isn't it?
@@ -321,10 +331,17 @@
 	new /obj/item/clothing/under/rank/centcom_officer(src)
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/clothing/gloves/color/black(src)
+<<<<<<< HEAD
 	new /obj/item/radio/headset/headset_cent/empty(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/storage/backpack/satchel(src)
 	new /obj/item/pda/heads(src)
+=======
+	new /obj/item/device/radio/headset/headset_cent/empty(src)
+	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/storage/backpack/satchel(src)
+	new /obj/item/device/pda/heads(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	new /obj/item/clipboard(src)
 
 /obj/item/storage/box/syndie_kit/chameleon/broken/PopulateContents()
@@ -336,7 +353,13 @@
 	new /obj/item/clothing/head/chameleon/broken(src)
 	new /obj/item/clothing/mask/chameleon/broken(src)
 	new /obj/item/storage/backpack/chameleon/broken(src)
+<<<<<<< HEAD
 	new /obj/item/radio/headset/chameleon/broken(src)
 	new /obj/item/stamp/chameleon/broken(src)
 	new /obj/item/pda/chameleon/broken(src)
+=======
+	new /obj/item/device/radio/headset/chameleon/broken(src)
+	new /obj/item/stamp/chameleon/broken(src)
+	new /obj/item/device/pda/chameleon/broken(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	// No chameleon laser, they can't randomise for //REASONS//

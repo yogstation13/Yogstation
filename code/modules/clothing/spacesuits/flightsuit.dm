@@ -16,7 +16,10 @@
 /obj/item/flightpack
 	name = "flight pack"
 	desc = "An advanced back-worn system that has dual ion engines powerful enough to grant a humanoid flight. Contains an internal self-recharging high-current capacitor for short, powerful boosts."
+<<<<<<< HEAD
 	icon = 'icons/obj/device.dmi'
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = FLIGHTPACK_SPRITE_BASE
 	item_state = FLIGHTPACK_SPRITE_BASE
 	actions_types = list(/datum/action/item_action/flightpack/toggle_flight, /datum/action/item_action/flightpack/engage_boosters, /datum/action/item_action/flightpack/toggle_stabilizers, /datum/action/item_action/flightpack/change_power, /datum/action/item_action/flightpack/toggle_airbrake)
@@ -100,7 +103,11 @@
 	var/afterForceMove = FALSE
 	var/datum/component/mobhook
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/changeWearer(mob/changeto)
+=======
+/obj/item/device/flightpack/proc/changeWearer(mob/changeto)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(wearer)
 		LAZYREMOVE(wearer.user_movement_hooks, src)
 	wearer = null
@@ -112,7 +119,11 @@
 		cached_pull = changeto.pulling
 		mobhook = changeto.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED), CALLBACK(src, .proc/on_mob_move, changeto))
 
+<<<<<<< HEAD
 /obj/item/flightpack/Initialize()
+=======
+/obj/item/device/flightpack/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ion_trail = new
 	ion_trail.set_up(src)
 	START_PROCESSING(SSflightpacks, src)
@@ -211,7 +222,11 @@
 	calculate_momentum_speed()
 
 //The wearer has momentum left. Move them and take some away, while negating the momentum that moving the wearer would gain. Or force the wearer to lose control if they are incapacitated.
+<<<<<<< HEAD
 /obj/item/flightpack/proc/momentum_drift()
+=======
+/obj/item/device/flightpack/proc/momentum_drift()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!flight || !wearer || (momentum_speed == 0))
 		return FALSE
 	else if(!wearer.canmove)
@@ -235,6 +250,7 @@
 		sleep(1)
 	if(prob(emp_damage * 15))
 		step(wearer, pick(GLOB.alldirs))
+<<<<<<< HEAD
 
 /obj/item/flightpack/proc/on_mob_move(mob/mob, turf/oldLoc, dir, forced)
 	if(forced)
@@ -277,6 +293,50 @@
 
 //Make the wearer lose some momentum.
 /obj/item/flightpack/proc/momentum_decay()
+=======
+
+/obj/item/device/flightpack/proc/on_mob_move(mob/mob, turf/oldLoc, dir, forced)
+	if(forced)
+		if(cached_pull && istype(oldLoc) && (get_dist(oldLoc, loc) <= 1) && !oldLoc.density)
+			cached_pull.forceMove(oldLoc)
+			mob.start_pulling(cached_pull, TRUE)
+			afterForceMove = TRUE
+		else
+			cached_pull = null
+	else
+		if(afterForceMove && !oldLoc.density)
+			cached_pull.forceMove(oldLoc)
+			wearer.start_pulling(cached_pull, TRUE)
+			cached_pull = null
+		else
+			cached_pull = wearer.pulling
+		afterForceMove = FALSE
+	if(flight)
+		ion_trail.generate_effect()
+
+/obj/item/device/flightpack/intercept_user_move(dir, mob, newLoc, oldLoc)
+	if(!flight)
+		return
+	var/momentum_increment = momentum_gain
+	if(boost)
+		momentum_increment = boost_power
+	if(brake)
+		momentum_increment = 0
+	if(!gravity && !pressure)
+		momentum_increment -= 10
+	switch(dir)
+		if(NORTH)
+			adjust_momentum(0, momentum_increment)
+		if(SOUTH)
+			adjust_momentum(0, -momentum_increment)
+		if(EAST)
+			adjust_momentum(momentum_increment, 0)
+		if(WEST)
+			adjust_momentum(-momentum_increment, 0)
+
+//Make the wearer lose some momentum.
+/obj/item/device/flightpack/proc/momentum_decay()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/amt = momentum_passive_loss
 	brake? (amt += airbrake_decay_amount) : 0
 	gravity? (amt += gravity_decay_amount) : 0
@@ -285,7 +345,11 @@
 	adjust_momentum(0, 0, amt)
 
 //Check for gravity, air pressure, and whether this is still linked to a suit. Also, resync the flightpack/flight suit every minute.
+<<<<<<< HEAD
 /obj/item/flightpack/proc/check_conditions()
+=======
+/obj/item/device/flightpack/proc/check_conditions()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(flight && (!assembled || !wearer || (!suit && requires_suit)))
 		disable_flight(TRUE)
 	var/turf/T = get_turf(src)
@@ -303,7 +367,11 @@
 		usermessage("Warning: Sensor data is not being recieved from flight shoes. Stabilizers and airbrake modules deactivated!", "boldwarning")
 
 
+<<<<<<< HEAD
 /obj/item/flightpack/process()
+=======
+/obj/item/device/flightpack/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(processing_mode == FLIGHTSUIT_PROCESSING_NONE)
 		return FALSE
 	check_conditions()
@@ -312,10 +380,17 @@
 	handle_boost()
 	handle_damage()
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/update_slowdown()
 	flight? (slowdown = slowdown_air) : (slowdown = slowdown_ground)
 
 /obj/item/flightpack/proc/handle_damage()
+=======
+/obj/item/device/flightpack/proc/update_slowdown()
+	flight? (slowdown = slowdown_air) : (slowdown = slowdown_ground)
+
+/obj/item/device/flightpack/proc/handle_damage()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(emp_damage)
 		emp_damage = CLAMP(emp_damage-emp_heal_amount, 0, emp_disable_threshold * 10)
 		if(emp_damage >= emp_disable_threshold)
@@ -356,7 +431,11 @@
 	if(boost_charge < boost_maxcharge)
 		boost_charge = CLAMP(boost_charge+boost_chargerate, 0, boost_maxcharge)
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/cycle_power()
+=======
+/obj/item/device/flightpack/proc/cycle_power()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	powersetting < powersetting_high? (powersetting++) : (powersetting = 1)
 	momentum_gain = powersetting * 10
 	usermessage("Engine output set to [momentum_gain].")
@@ -372,13 +451,21 @@
 		crashmessagesrc += "but luckily [wearer]'s impact was absorbed by their suit's stabilizers!</span>"
 	wearer.visible_message(crashmessagesrc)
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/userknockback(density, anchored, speed, dir)
+=======
+/obj/item/device/flightpack/proc/userknockback(density, anchored, speed, dir)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = turn(dir, 180)
 	var/turf/target = get_edge_target_turf(get_turf(wearer), dir)
 	wearer.visible_message("[wearer] is knocked flying by the impact!")
 	wearer.throw_at(target, speed * 2 + density * 2 + anchored * 2, 2, wearer)
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/flight_impact(atom/impacted_atom, crashdir)	//Yes, victim.
+=======
+/obj/item/device/flightpack/proc/flight_impact(atom/impacted_atom, crashdir)	//Yes, victim.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!flight || (impacted_atom == wearer) || crashing || (processing_mode == FLIGHTSUIT_PROCESSING_NONE))
 		return FALSE
 	crashing = TRUE
@@ -422,7 +509,11 @@
 		losecontrol(knockdown = FALSE, move = FALSE)
 	crashing = FALSE
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/door_pass(obj/structure/mineral_door/door)
+=======
+/obj/item/device/flightpack/proc/door_pass(obj/structure/mineral_door/door)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	INVOKE_ASYNC(door, /obj/structure/mineral_door.proc/Open)
 	var/turf/T = get_turf(door)
 	wearer.forceMove(T)
@@ -434,7 +525,11 @@
 	if(wearer.Move(target.loc))
 		wearer.visible_message("<span class='warning'>[wearer] smashes straight past [target]!</span>")
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/airlock_pass(obj/machinery/door/A)
+=======
+/obj/item/device/flightpack/proc/airlock_pass(obj/machinery/door/A)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/nopass = FALSE
 	if(!A.density)
 		return TRUE
@@ -451,7 +546,11 @@
 		wearer.forceMove(target)
 	return !nopass
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/atom_impact(atom/movable/victim, power, direction)
+=======
+/obj/item/device/flightpack/proc/atom_impact(atom/movable/victim, power, direction)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!victim)
 		return FALSE
 	if(!victim.anchored)
@@ -467,7 +566,11 @@
 		var/obj/O = victim
 		O.take_damage(power * 14)
 
+<<<<<<< HEAD
 /obj/item/flightpack/proc/losecontrol(knockdown = FALSE, move = TRUE)
+=======
+/obj/item/device/flightpack/proc/losecontrol(knockdown = FALSE, move = TRUE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	usermessage("Warning: Control system not responding. Deactivating!", "boldwarning")
 	if(wearer)
 		wearer.visible_message("<span class='warning'>[wearer]'s flight suit abruptly shuts off and they lose control!</span>")
@@ -549,7 +652,11 @@
 	if(slot == ITEM_SLOT_BACK)
 		return TRUE
 
+<<<<<<< HEAD
 /obj/item/flightpack/equipped(mob/user, slot)
+=======
+/obj/item/device/flightpack/equipped(mob/user, slot)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	changeWearer(user)
 	..()
 
@@ -572,10 +679,17 @@
 		momentum_speed_y = 0
 	momentum_speed = max(momentum_speed_x, momentum_speed_y)
 
+<<<<<<< HEAD
 /obj/item/flightpack/item_action_slot_check(slot)
 	return slot == SLOT_BACK
 
 /obj/item/flightpack/proc/enable_stabilizers()
+=======
+/obj/item/device/flightpack/item_action_slot_check(slot)
+	return slot == slot_back
+
+/obj/item/device/flightpack/proc/enable_stabilizers()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(requires_suit && suit && !suit.deployedshoes)
 		usermessage("Stabilizers requires flight shoes to be attached and deployed!", "boldwarning")
 		return FALSE
@@ -729,7 +843,11 @@
 			src.flags_1 &= ~NOSLIP_1
 
 /obj/item/clothing/shoes/flightshoes/item_action_slot_check(slot)
+<<<<<<< HEAD
 	return slot == SLOT_SHOES
+=======
+	return slot == slot_shoes
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/clothing/shoes/flightshoes/proc/delink_suit()
 	if(suit)
@@ -765,7 +883,11 @@
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 30, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100)
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	var/locked_strip_delay = 80
+<<<<<<< HEAD
 	var/obj/item/flightpack/pack = null
+=======
+	var/obj/item/device/flightpack/pack = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/obj/item/clothing/shoes/flightshoes/shoes = null
 	var/mob/living/carbon/human/user = null
 	var/deployedpack = FALSE
@@ -829,8 +951,13 @@
 		var/mob/living/carbon/human/H = user
 		if(src == H.wear_suit && locked)
 			usermessage("You can not take a locked hardsuit off! Unlock it first!", "boldwarning")
+<<<<<<< HEAD
 			return FALSE
 	return ..()
+=======
+			return
+	..()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/clothing/suit/space/hardsuit/flightsuit/dropped()
 	if(deployedpack)

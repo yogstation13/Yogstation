@@ -7,7 +7,12 @@
 
 /datum/component/knockoff/Initialize(knockoff_chance,zone_override,slots_knockoffable)
 	if(!isitem(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("Knockoff component misuse")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	RegisterSignal(COMSIG_ITEM_EQUIPPED,.proc/OnEquipped)
 	RegisterSignal(COMSIG_ITEM_DROPPED,.proc/OnDropped)
 

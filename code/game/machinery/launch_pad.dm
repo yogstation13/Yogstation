@@ -242,7 +242,11 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "blpad-remote"
 	w_class = WEIGHT_CLASS_SMALL
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/sending = TRUE
 	var/obj/machinery/launchpad/briefcase/pad
 

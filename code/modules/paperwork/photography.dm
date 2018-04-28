@@ -130,7 +130,11 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
 	var/pictures_max = 10
 	var/pictures_left = 10
@@ -209,7 +213,11 @@
 		return TRUE //no afterattack
 	..()
 
+<<<<<<< HEAD
 /obj/item/camera/attack_self(mob/user)
+=======
+/obj/item/device/camera/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!disk)
 		return
 	to_chat(user, "<span class='notice'>You eject [disk] out the back of [src].</span>")
@@ -221,7 +229,11 @@
 	to_chat(user, "It has [pictures_left] photo\s left.")
 
 
+<<<<<<< HEAD
 /obj/item/camera/proc/camera_get_icon(list/turfs, turf/center)
+=======
+/obj/item/device/camera/proc/camera_get_icon(list/turfs, turf/center)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/list/atoms = list()
 	for(var/turf/T in turfs)
 		atoms.Add(T)
@@ -482,6 +494,14 @@
 	icon_state = "camera_off"
 	on = FALSE
 	addtimer(CALLBACK(src, .proc/cooldown), 64)
+<<<<<<< HEAD
+=======
+
+/obj/item/device/camera/proc/cooldown()
+	set waitfor = FALSE
+	icon_state = "camera"
+	on = TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/camera/proc/cooldown()
 	set waitfor = FALSE

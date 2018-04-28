@@ -56,7 +56,11 @@ Cargo Technician
 	belt = /obj/item/pda/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargotech
+<<<<<<< HEAD
 	l_hand = /obj/item/export_scanner
+=======
+	l_hand = /obj/item/device/export_scanner
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /*
 Shaft Miner
@@ -220,7 +224,11 @@ Cook
 	var/list/possible_boxes = subtypesof(/obj/item/storage/box/ingredients)
 	var/chosen_box = pick(possible_boxes)
 	var/obj/item/storage/box/I = new chosen_box(src)
+<<<<<<< HEAD
 	H.equip_to_slot_or_del(I,SLOT_IN_BACKPACK)
+=======
+	H.equip_to_slot_or_del(I,slot_in_backpack)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
 

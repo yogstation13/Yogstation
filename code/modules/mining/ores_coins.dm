@@ -27,6 +27,7 @@
 		cut_overlays()
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null;
+<<<<<<< HEAD
 		else
 			stack_overlays.len += difference
 	else if(difference > 0)			//amount > stack_overlays, add some.
@@ -62,6 +63,39 @@
 		else
 			new refined_type(drop_location(),amountrefined)
 			qdel(src)
+=======
+		else
+			stack_overlays.len += difference
+	else if(difference > 0)			//amount > stack_overlays, add some.
+		cut_overlays()
+		for(var/i in 1 to difference)
+			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
+			newore.pixel_x = rand(-8,8)
+			newore.pixel_y = rand(-8,8)
+			LAZYADD(stack_overlays, newore)
+	if (stack_overlays)
+		add_overlay(stack_overlays)
+
+/obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
+	if(!refined_type)
+		return TRUE
+
+	if(I.use_tool(src, user, 0, volume=50, amount=15))
+		new refined_type(drop_location())
+		use(1)
+
+	return TRUE
+
+/obj/item/stack/ore/burn()
+	if(!refined_type)
+		return ..()
+	var/obj/item/stack/sheet/S = new refined_type(drop_location())
+	var/percent = rand(0.3,0.7)
+	var/amountrefined = round(amount*percent)
+	S.amount = amountrefined
+	S.update_icon()
+	qdel(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
@@ -94,11 +128,19 @@
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50)\
 		))
+<<<<<<< HEAD
 
 /obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.sand_recipes
 	. = ..()
 
+=======
+
+/obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.sand_recipes
+	. = ..()
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/stack/ore/glass/throw_impact(atom/hit_atom)
 	if(..() || !ishuman(hit_atom))
 		return

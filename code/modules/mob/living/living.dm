@@ -301,9 +301,15 @@
 //same as above
 /mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(incapacitated())
+<<<<<<< HEAD
 		return FALSE
 	if(has_trait(TRAIT_FAKEDEATH))
 		return FALSE
+=======
+		return 0
+	if(src.has_trait(TRAIT_FAKEDEATH))
+		return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!..())
 		return FALSE
 	visible_message("<b>[src]</b> points at [A].", "<span class='notice'>You point at [A].</span>")
@@ -405,6 +411,16 @@
 /mob/living/is_injectable(allowmobs = TRUE)
 	return (allowmobs && reagents && can_inject())
 
+<<<<<<< HEAD
+=======
+// Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
+/mob/living/proc/can_inject()
+	return TRUE
+
+/mob/living/is_injectable(allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject())
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /mob/living/is_drawable(allowmobs = TRUE)
 	return (allowmobs && reagents && can_inject())
 
@@ -842,6 +858,14 @@
 /mob/living/proc/can_use_guns(obj/item/G)//actually used for more than guns!
 	if(G.trigger_guard != TRIGGER_GUARD_ALLOW_ALL && !IsAdvancedToolUser())
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return FALSE
+	var/obj/item/gun/shooty
+	if(istype(G, /obj/item/gun))
+		shooty = G
+	if(has_trait(TRAIT_PACIFISM))
+		if(shooty && !shooty.harmful)
+			return TRUE
+		to_chat(src, "<span class='notice'>You don't want to risk harming anyone!</span>")
 		return FALSE
 	return TRUE
 

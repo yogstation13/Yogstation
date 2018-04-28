@@ -2,6 +2,17 @@
 
 GLOBAL_LIST_EMPTY(roundstart_races)
 
+<<<<<<< HEAD
+=======
+#define HEAT_DAMAGE_LEVEL_1 2
+#define HEAT_DAMAGE_LEVEL_2 3
+#define HEAT_DAMAGE_LEVEL_3 8
+
+#define COLD_DAMAGE_LEVEL_1 0.5
+#define COLD_DAMAGE_LEVEL_2 1.5
+#define COLD_DAMAGE_LEVEL_3 3
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/species
 	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
 	var/limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
@@ -735,11 +746,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return FALSE
 		if(SLOT_WEAR_MASK)
 			if(H.wear_mask)
+<<<<<<< HEAD
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_MASK))
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+=======
+				return 0
+			if( !(I.slot_flags & SLOT_MASK) )
+				return 0
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_NECK)
 			if(H.wear_neck)
@@ -794,27 +813,51 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLASSES)
 			if(H.glasses)
+<<<<<<< HEAD
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EYES))
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+=======
+				return 0
+			if( !(I.slot_flags & SLOT_EYES) )
+				return 0
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_HEAD)
 			if(H.head)
+<<<<<<< HEAD
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_HEAD))
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+=======
+				return 0
+			if( !(I.slot_flags & SLOT_HEAD) )
+				return 0
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_EARS)
 			if(H.ears)
+<<<<<<< HEAD
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+=======
+				return 0
+			if( !(I.slot_flags & SLOT_EARS) )
+				return 0
+			if(!H.get_bodypart(BODY_ZONE_HEAD))
+				return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_W_UNIFORM)
 			if(H.w_uniform)

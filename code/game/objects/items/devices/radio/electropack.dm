@@ -28,7 +28,11 @@
 	return ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
+<<<<<<< HEAD
 /obj/item/electropack/attack_hand(mob/user)
+=======
+/obj/item/device/electropack/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.back)
@@ -98,7 +102,11 @@
 		return
 	return
 
+<<<<<<< HEAD
 /obj/item/electropack/receive_signal(datum/signal/signal)
+=======
+/obj/item/device/electropack/receive_signal(datum/signal/signal)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!signal || signal.data["code"] != code)
 		return
 

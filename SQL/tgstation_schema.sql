@@ -37,7 +37,10 @@ CREATE TABLE `admin_log` (
   `adminckey` varchar(32) NOT NULL,
   `adminip` int(10) unsigned NOT NULL,
   `operation` enum('add admin','remove admin','change admin rank','add rank','remove rank','change rank flags') NOT NULL,
+<<<<<<< HEAD
   `target` varchar(32) NOT NULL,
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
   `log` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

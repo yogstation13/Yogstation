@@ -25,6 +25,20 @@
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
+<<<<<<< HEAD
+=======
+	environment_target_typecache = list(
+	/obj/machinery/door/window,
+	/obj/structure/window,
+	/obj/structure/closet,
+	/obj/structure/table,
+	/obj/structure/grille,
+	/obj/structure/girder,
+	/obj/structure/rack,
+	/obj/structure/barricade,
+	/obj/machinery/field,
+	/obj/machinery/power/emitter)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/list/crusher_loot
 	var/medal_type
 	var/score_type = BOSS_SCORE
@@ -124,4 +138,8 @@
 			SSmedals.UnlockMedal("[medaltype] [BOSS_KILL_MEDAL_CRUSHER]", C)
 		SSmedals.SetScore(BOSS_SCORE, C, 1)
 		SSmedals.SetScore(score_type, C, 1)
+<<<<<<< HEAD
 	return TRUE
+=======
+	return TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

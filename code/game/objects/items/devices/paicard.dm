@@ -6,6 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
 	var/mob/living/silicon/pai/pai
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
@@ -15,6 +16,17 @@
 	return OXYLOSS
 
 /obj/item/paicard/Initialize()
+=======
+	slot_flags = SLOT_BELT
+	var/mob/living/silicon/pai/pai
+	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
+
+/obj/item/device/paicard/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!</span>")
+	return OXYLOSS
+
+/obj/item/device/paicard/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	SSpai.pai_card_list += src
 	add_overlay("pai-off")
 	return ..()

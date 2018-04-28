@@ -126,7 +126,11 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "u" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},

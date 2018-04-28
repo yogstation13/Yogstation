@@ -5,7 +5,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/spider/spiderling,
 		/obj/item/disk/nuclear,
 		/obj/machinery/nuclearbomb,
+<<<<<<< HEAD
 		/obj/item/beacon,
+=======
+		/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/singularity,
 		/obj/machinery/teleport/station,
 		/obj/machinery/teleport/hub,
@@ -17,12 +21,20 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/recieving_pad,
 		/obj/effect/clockwork/spatial_gateway,
 		/obj/structure/destructible/clockwork/powered/clockwork_obelisk,
+<<<<<<< HEAD
 		/obj/item/warp_cube,
+=======
+		/obj/item/device/warp_cube,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/machinery/rnd/production/protolathe, //print tracking beacons, send shuttle
 		/obj/machinery/autolathe, //same
 		/obj/item/projectile/beam/wormhole,
 		/obj/effect/portal,
+<<<<<<< HEAD
 		/obj/item/shared_storage,
+=======
+		/obj/item/device/shared_storage,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/structure/extraction_point
 	)))
 

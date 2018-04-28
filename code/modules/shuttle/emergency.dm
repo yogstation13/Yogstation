@@ -428,7 +428,11 @@
 	. = ..()
 	var/static/i = 1
 	if(id == initial(id))
+<<<<<<< HEAD
 		id = "[initial(id)][i]"
+=======
+		id = "[initial(id)] [i]"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(name == initial(name))
 		name = "[initial(name)] [i]"
 

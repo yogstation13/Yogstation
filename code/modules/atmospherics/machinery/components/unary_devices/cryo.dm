@@ -12,7 +12,10 @@
 	state_open = FALSE
 	circuit = /obj/item/circuitboard/machine/cryo_tube
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
+<<<<<<< HEAD
 	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/on = FALSE
 	var/autoeject = FALSE
@@ -298,7 +301,11 @@
 		var/reagentlist = pretty_string_from_reagent_list(I.reagents.reagent_list)
 		log_game("[key_name(user)] added an [I] to cyro containing [reagentlist]")
 		return
+<<<<<<< HEAD
 	if(!on && !occupant && !state_open && (default_deconstruction_screwdriver(user, "pod-off", "pod-off", I)) \
+=======
+	if(!on && !occupant && !state_open && (default_deconstruction_screwdriver(user, "pod-off", "pod-off", I) || exchange_parts(user, I)) \
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		|| default_change_direction_wrench(user, I) \
 		|| default_pry_open(I) \
 		|| default_deconstruction_crowbar(I))

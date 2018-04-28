@@ -52,7 +52,11 @@
 
 	try_toggle_open(usr)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/laptop/MouseDrop(obj/over_object, src_location, over_location)
+=======
+/obj/item/device/modular_computer/laptop/MouseDrop(obj/over_object, src_location, over_location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(over_object == usr || over_object == src)
 		try_toggle_open(usr)
@@ -65,14 +69,22 @@
 				return
 			M.put_in_hand(src, H.held_index)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/laptop/attack_hand(mob/user)
+=======
+/obj/item/device/modular_computer/laptop/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return
 	if(screen_on && isturf(loc))
 		return attack_self(user)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/laptop/proc/try_toggle_open(mob/living/user)
+=======
+/obj/item/device/modular_computer/laptop/proc/try_toggle_open(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(issilicon(user))
 		return
 	if(!isturf(loc) && !ismob(loc)) // No opening it in backpack.

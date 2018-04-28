@@ -421,7 +421,11 @@
 /*~~~~~~~~~~~~
 	Circutry!
 ~~~~~~~~~~~~~*/
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/diag_hud_set_circuithealth(hide = FALSE)
+=======
+/obj/item/device/electronic_assembly/proc/diag_hud_set_circuithealth(hide = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/image/holder = hud_list[DIAG_CIRCUIT_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
@@ -430,7 +434,11 @@
 	else
 		holder.icon_state = "huddiag[RoundDiagBar(obj_integrity/max_integrity)]"
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/diag_hud_set_circuitcell(hide = FALSE)
+=======
+/obj/item/device/electronic_assembly/proc/diag_hud_set_circuitcell(hide = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/image/holder = hud_list[DIAG_BATT_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
@@ -442,7 +450,11 @@
 	else
 		holder.icon_state = "hudnobatt"
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/diag_hud_set_circuitstat(hide = FALSE) //On, On and dangerous, or Off
+=======
+/obj/item/device/electronic_assembly/proc/diag_hud_set_circuitstat(hide = FALSE) //On, On and dangerous, or Off
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/image/holder = hud_list[DIAG_STAT_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
@@ -457,7 +469,11 @@
 	else //Bot is on and not dangerous
 		holder.icon_state = prefered_hud_icon
 
+<<<<<<< HEAD
 /obj/item/electronic_assembly/proc/diag_hud_set_circuittracking(hide = FALSE)
+=======
+/obj/item/device/electronic_assembly/proc/diag_hud_set_circuittracking(hide = FALSE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/image/holder = hud_list[DIAG_TRACK_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size

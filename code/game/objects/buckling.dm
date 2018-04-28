@@ -107,7 +107,11 @@
 
 //Wrapper procs that handle sanity and user feedback
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
+<<<<<<< HEAD
 	if(!in_range(user, src) || !isturf(user.loc) || user.incapacitated() || M.anchored)
+=======
+	if(!in_range(user, src) || !isturf(user.loc) || user.incapacitated())
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return FALSE
 
 	add_fingerprint(user)

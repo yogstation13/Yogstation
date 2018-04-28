@@ -212,6 +212,7 @@ Consuming extracts:
 	taste = "sugar and starlight"
 
 /obj/item/slime_cookie/bluespace/do_effect(mob/living/M, mob/user)
+<<<<<<< HEAD
 	var/list/L = get_area_turfs(get_area(get_turf(M)))
 	var/turf/target
 	while (L.len && !target)
@@ -233,6 +234,20 @@ Consuming extracts:
 
 	if(target)
 		do_teleport(M, target, 0, asoundin = 'sound/effects/phasein.ogg')
+=======
+	var/list/L = list()
+	for(var/turf/T in get_area_turfs(get_area(get_turf(M))))
+		if(!T.density)
+			var/clear = 1
+			for(var/obj/O in T)
+				if(O.density)
+					clear = 0
+					break
+			if(clear)
+				L+=T
+	if(length(L))
+		do_teleport(M, pick(L), 0, asoundin = 'sound/effects/phasein.ogg')
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		new /obj/effect/particle_effect/sparks(get_turf(M))
 		playsound(get_turf(M), "sparks", 50, 1)
 

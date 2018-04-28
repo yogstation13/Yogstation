@@ -11,12 +11,17 @@
 
 /datum/round_event/wizard/cursed_items/start()
 	var/item_set = pick("wizardmimic", "swords", "bigfatdoobie", "boxing", "voicemodulators", "catgirls2015")
+<<<<<<< HEAD
 	var/list/loadout[SLOTS_AMT]
+=======
+	var/list/loadout[slots_amt]
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/ruins_spaceworthiness
 	var/ruins_wizard_loadout
 
 	switch(item_set)
 		if("wizardmimic")
+<<<<<<< HEAD
 			loadout[SLOT_WEAR_SUIT] = /obj/item/clothing/suit/wizrobe
 			loadout[SLOT_SHOES] = /obj/item/clothing/shoes/sandal/magic
 			loadout[SLOT_HEAD] = /obj/item/clothing/head/wizard
@@ -34,6 +39,25 @@
 			loadout[SLOT_WEAR_MASK] = /obj/item/clothing/mask/chameleon
 		if("catgirls2015")
 			loadout[SLOT_HEAD] = /obj/item/clothing/head/kitty
+=======
+			loadout[slot_wear_suit] = /obj/item/clothing/suit/wizrobe
+			loadout[slot_shoes] = /obj/item/clothing/shoes/sandal/magic
+			loadout[slot_head] = /obj/item/clothing/head/wizard
+			ruins_spaceworthiness = 1
+		if("swords")
+			loadout[slot_hands] = /obj/item/katana/cursed
+		if("bigfatdoobie")
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/cigarette/rollie/trippy
+			ruins_spaceworthiness = 1
+		if("boxing")
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/luchador
+			loadout[slot_gloves] = /obj/item/clothing/gloves/boxing
+			ruins_spaceworthiness = 1
+		if("voicemodulators")
+			loadout[slot_wear_mask] = /obj/item/clothing/mask/chameleon
+		if("catgirls2015")
+			loadout[slot_head] = /obj/item/clothing/head/kitty
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			ruins_spaceworthiness = 1
 			ruins_wizard_loadout = 1
 

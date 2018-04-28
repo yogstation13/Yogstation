@@ -163,8 +163,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
+<<<<<<< HEAD
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
 	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Keybindings</a>" // yogs - Custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -302,7 +305,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//Mutant stuff
 			var/mutant_category = 0
 
+<<<<<<< HEAD
 			if("tail_lizard" in pref_species.default_features)
+=======
+			if("tail_lizard" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -315,7 +322,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("snout" in pref_species.default_features)
+=======
+			if("snout" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -328,7 +339,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("horns" in pref_species.default_features)
+=======
+			if("horns" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -341,7 +356,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("frills" in pref_species.default_features)
+=======
+			if("frills" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -354,7 +373,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("spines" in pref_species.default_features)
+=======
+			if("spines" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -367,7 +390,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("body_markings" in pref_species.default_features)
+=======
+			if("body_markings" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -380,7 +407,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("legs" in pref_species.default_features)
+=======
+			if("legs" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -393,7 +424,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			if("moth_wings" in pref_species.default_features)
+=======
+			if("moth_wings" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -408,7 +443,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
+<<<<<<< HEAD
 				if("tail_human" in pref_species.default_features)
+=======
+				if("tail_human" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					if(!mutant_category)
 						dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -421,7 +460,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "</td>"
 						mutant_category = 0
 
+<<<<<<< HEAD
 				if("ears" in pref_species.default_features)
+=======
+				if("ears" in pref_species.mutant_bodyparts)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					if(!mutant_category)
 						dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -434,7 +477,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "</td>"
 						mutant_category = 0
 
+<<<<<<< HEAD
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
+=======
+				if("wings" in pref_species.mutant_bodyparts && GLOB.r_wings_list.len >1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					if(!mutant_category)
 						dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -461,7 +508,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
+<<<<<<< HEAD
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
+=======
+			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -561,10 +612,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
 
+<<<<<<< HEAD
 			// yogs start - Donor features
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 			// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			dat += "</td></tr></table>"
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
@@ -576,6 +630,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<br>"
 
+<<<<<<< HEAD
+=======
+		if(2) //OOC Preferences
+			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+			dat += "<h2>OOC Settings</h2>"
+			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<br>"
+			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<br>"
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 			if(user.client)
 				if(unlock_content)
@@ -600,6 +667,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
+<<<<<<< HEAD
 		// yogs start - Donor features
 		if (3) //Donator preferences
 			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
@@ -683,6 +751,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "</td></tr></table>"
 		// yogs end
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -759,11 +830,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if((job_civilian_low & overflow.flag) && (rank != SSjob.overflow_role) && !jobban_isbanned(user, SSjob.overflow_role))
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
+<<<<<<< HEAD
 			// yogs start - Donor features, quiet round
 			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.toggles & QUIET_ROUND))
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
@@ -981,6 +1055,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center>"
 		dat += "<hr>"
 		dat += "<center><b>Current traits:</b> [all_traits.len ? all_traits.Join(", ") : "None"]</center>"
+<<<<<<< HEAD
+=======
+		/*dat += "<center><font color='#AAFFAA'>[positive_traits.len] / [MAX_POSITIVE_TRAITS]</font> \
+		| <font color='#AAAAFF'>[neutral_traits.len] / [MAX_NEUTRAL_TRAITS]</font> \
+		| <font color='#FFAAAA'>[negative_traits.len] / [MAX_NEGATIVE_TRAITS]</font></center><br>"*/
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		dat += "<center>[all_traits.len] / [MAX_TRAITS] max traits<br>\
 		<b>Trait balance remaining:</b> [GetTraitBalance()]</center><br>"
 		for(var/V in SStraits.traits)
@@ -988,6 +1068,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/trait_name = initial(T.name)
 			var/has_trait
 			var/trait_cost = initial(T.value) * -1
+<<<<<<< HEAD
 			var/lock_reason = "This trait is unavailable."
 			var/trait_conflict = FALSE
 			for(var/_V in all_traits)
@@ -1002,11 +1083,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					has_trait = FALSE
 				else
 					trait_cost *= -1 //invert it back, since we'd be regaining this amount
+=======
+			for(var/_V in all_traits)
+				if(_V == trait_name)
+					has_trait = TRUE
+			if(has_trait)
+				trait_cost *= -1 //invert it back, since we'd be regaining this amount
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(trait_cost > 0)
 				trait_cost = "+[trait_cost]"
 			var/font_color = "#AAAAFF"
 			if(initial(T.value) != 0)
 				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
+<<<<<<< HEAD
 			if(trait_conflict)
 				dat += "<font color='[font_color]'>[trait_name]</font> - [initial(T.desc)] \
 				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"
@@ -1017,6 +1106,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dat += "<font color='[font_color]'>[trait_name]</font> - [initial(T.desc)] \
 					<a href='?_src_=prefs;preference=trait;task=update;trait=[trait_name]'>[has_trait ? "Lose" : "Take"] ([trait_cost] pts.)</a><br>"
+=======
+			if(has_trait)
+				dat += "<b><font color='[font_color]'>[trait_name]</font></b> - [initial(T.desc)] \
+				<a href='?_src_=prefs;preference=trait;task=update;trait=[trait_name]'>[has_trait ? "Lose" : "Take"] ([trait_cost] pts.)</a><br>"
+			else
+				dat += "<font color='[font_color]'>[trait_name]</font> - [initial(T.desc)] \
+				<a href='?_src_=prefs;preference=trait;task=update;trait=[trait_name]'>[has_trait ? "Lose" : "Take"] ([trait_cost] pts.)</a><br>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Reset Traits</a></center>"
 
 	user << browse(null, "window=preferences")
@@ -1514,6 +1611,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+<<<<<<< HEAD
 				// yogs start - Custom keybindings
 				UPDATE_MOVEMENT(ACTION_MOVENORTH, NORTH)
 				UPDATE_MOVEMENT(ACTION_MOVEWEST, WEST)
@@ -1561,6 +1659,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				UPDATE_KEY(ACTION_STEALTHMIN)
 				UPDATE_KEY(ACTION_DSAY)
 				// yogs end
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -1580,10 +1681,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
+<<<<<<< HEAD
 						bindings.bind_movement() // yogs - Rebindable keys
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
 					else
 						bindings.unbind_movement() // yogs - Rebindable keys
+=======
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
+					else
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 				if("action_buttons")
 					buttons_locked = !buttons_locked

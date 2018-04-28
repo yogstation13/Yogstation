@@ -9,7 +9,10 @@
 	..()
 	button.screen_loc = "6:-29,4:-2"
 	button.moved = "6:-29,4:-2"
+<<<<<<< HEAD
 	button.ordered = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/action/innate/cult/blood_magic/Remove()
 	for(var/X in spells)
@@ -104,7 +107,10 @@
 	all_magic = BM
 	..()
 	button.locked = TRUE
+<<<<<<< HEAD
 	button.ordered = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/action/innate/cult/blood_spell/Remove()
 	if(all_magic)
@@ -605,11 +611,19 @@
 		uses--
 		var/mob/living/carbon/C = target
 		C.visible_message("<span class='warning'>Otherworldly armor suddenly appears on [C]!</span>")
+<<<<<<< HEAD
 		C.equip_to_slot_or_del(new /obj/item/clothing/under/color/black,SLOT_W_UNIFORM)
 		C.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), SLOT_HEAD)
 		C.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), SLOT_WEAR_SUIT)
 		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult/alt(user), SLOT_SHOES)
 		C.equip_to_slot_or_del(new /obj/item/storage/backpack/cultpack(user), SLOT_BACK)
+=======
+		C.equip_to_slot_or_del(new /obj/item/clothing/under/color/black,slot_w_uniform)
+		C.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), slot_head)
+		C.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), slot_wear_suit)
+		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult/alt(user), slot_shoes)
+		C.equip_to_slot_or_del(new /obj/item/storage/backpack/cultpack(user), slot_back)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(C == user)
 			qdel(src) //Clears the hands
 		C.put_in_hands(new /obj/item/melee/cultblade(user))

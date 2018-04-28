@@ -131,5 +131,9 @@ JStheguy = Game Master
 excessiveuseofcobby = Game Master
 Plizzard = Game Master
 octareenroon91 = Game Master
+<<<<<<< HEAD
 Serpentarium = Game Master
 Averagejoe82 = Game Master
+=======
+Serpentarium = Game Master
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

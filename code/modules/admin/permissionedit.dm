@@ -6,6 +6,7 @@
 		return
 	usr.client.holder.edit_admin_permissions()
 
+<<<<<<< HEAD
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
 	if(!check_rights(R_PERMISSIONS))
 		return
@@ -106,6 +107,58 @@
 			output += "</tr>"
 		output += "</table></div><div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div></body>"
 	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
+=======
+/datum/admins/proc/edit_admin_permissions()
+	if(!check_rights(R_PERMISSIONS))
+		return
+
+	var/list/output = list({"<!DOCTYPE html>
+<html>
+<head>
+<title>Permissions Panel</title>
+<script type='text/javascript' src='search.js'></script>
+<link rel='stylesheet' type='text/css' href='panels.css'>
+</head>
+<body onload='selectTextField();updateSearch();'>
+<div id='main'><table id='searchable' cellspacing='0'>
+<tr class='title'>
+<th style='width:150px;text-align:right;'>CKEY <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=add'>\[+\]</a></th>
+<th style='width:125px;'>RANK</th>
+<th style='width:40%;'>PERMISSIONS</th>
+<th style='width:20%;'>DENIED</th>
+<th style='width:40%;'>ALLOWED TO EDIT</th>
+</tr>
+"})
+
+	for(var/adm_ckey in GLOB.admin_datums+GLOB.deadmins)
+		var/datum/admins/D = GLOB.admin_datums[adm_ckey]
+		if(!D)
+			D = GLOB.deadmins[adm_ckey]
+			if (!D)
+				continue
+
+		var/deadminlink = ""
+		if (D.deadmined)
+			deadminlink = " <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=activate;ckey=[adm_ckey]'>\[RA\]</a>"
+		else
+			deadminlink = " <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=deactivate;ckey=[adm_ckey]'>\[DA\]</a>"
+
+		output += "<tr>"
+		output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='?src=[REF(src)];[HrefToken()];editrights=remove;ckey=[adm_ckey]'>\[-\]</a><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=sync;ckey=[adm_ckey]'>\[SYNC TGDB\]</a></td>"
+		output += "<td><a href='?src=[REF(src)];[HrefToken()];editrights=rank;ckey=[adm_ckey]'>[D.rank.name]</a></td>"
+		output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;ckey=[adm_ckey]'>[rights2text(D.rank.include_rights," ")]</a></td>"
+		output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;ckey=[adm_ckey]'>[rights2text(D.rank.exclude_rights," ", "-")]</a></td>"
+		output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;ckey=[adm_ckey]'>[rights2text(D.rank.can_edit_rights," ", "*")]</a></td>"
+		output += "</tr>"
+
+	output += {"
+</table></div>
+<div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div>
+</body>
+</html>"}
+
+	usr << browse(jointext(output, ""),"window=editrights;size=1000x650")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
@@ -192,6 +245,7 @@
 		return FALSE
 	if(use_db)
 		. = sanitizeSQL(.)
+<<<<<<< HEAD
 		//if an admin exists without a datum they won't be caught by the above
 		var/datum/DBQuery/query_admin_in_db = SSdbcore.NewQuery("SELECT 1 FROM [format_table_name("admin_ranks")] WHERE ckey = '[.]'")
 		if(!query_admin_in_db.warn_execute())
@@ -203,6 +257,12 @@
 		if(!query_add_admin.warn_execute())
 			return FALSE
 		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'add admin', '[.]', 'New admin added: [.]')")
+=======
+		var/datum/DBQuery/query_add_admin = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin")] (ckey, rank) VALUES ('[.]', 'NEW ADMIN')")
+		if(!query_add_admin.warn_execute())
+			return FALSE
+		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, adminckey, adminip, operation, log) VALUES ('[SQLtime()]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'add admin', 'New admin added: [.]')")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!query_add_admin_log.warn_execute())
 			return FALSE
 
@@ -210,13 +270,21 @@
 	if(alert("Are you sure you want to remove [admin_ckey]?","Confirm Removal","Do it","Cancel") == "Do it")
 		GLOB.admin_datums -= admin_ckey
 		GLOB.deadmins -= admin_ckey
+<<<<<<< HEAD
 		if(D)
 			D.disassociate()
+=======
+		D.disassociate()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(use_db)
 			var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery("DELETE FROM [format_table_name("admin")] WHERE ckey = '[admin_ckey]'")
 			if(!query_add_rank.warn_execute())
 				return
+<<<<<<< HEAD
 			var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'remove admin', '[admin_ckey]', 'Admin removed: [admin_ckey]')")
+=======
+			var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, adminckey, adminip, operation, log) VALUES ('[SQLtime()]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'remove admin', 'Admin removed: [admin_ckey]')")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(!query_add_rank_log.warn_execute())
 				return
 		message_admins("[key_name_admin(usr)] removed [admin_ckey] from the admins list [use_db ? "permanently" : "temporarily"]")
@@ -274,13 +342,21 @@
 			var/datum/DBQuery/query_add_rank = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_ranks")] (rank, flags, exclude_flags, can_edit_flags) VALUES ('[new_rank]', '0', '0', '0')")
 			if(!query_add_rank.warn_execute())
 				return
+<<<<<<< HEAD
 			var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'add rank', '[new_rank]', 'New rank added: [new_rank]')")
+=======
+			var/datum/DBQuery/query_add_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, adminckey, adminip, operation, log) VALUES ('[SQLtime()]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'add rank', 'New rank added: [admin_ckey]')")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(!query_add_rank_log.warn_execute())
 				return
 		var/datum/DBQuery/query_change_rank = SSdbcore.NewQuery("UPDATE [format_table_name("admin")] SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
 		if(!query_change_rank.warn_execute())
 			return
+<<<<<<< HEAD
 		var/datum/DBQuery/query_change_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'change admin rank', '[admin_ckey]', 'Rank of [admin_ckey] changed from [old_rank] to [new_rank]')")
+=======
+		var/datum/DBQuery/query_change_rank_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, adminckey, adminip, operation, log) VALUES ('[SQLtime()]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'change admin rank', 'Rank of [admin_ckey] changed from [old_rank] to [new_rank]')")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!query_change_rank_log.warn_execute())
 			return
 	if(D) //they were previously an admin
@@ -317,7 +393,11 @@
 		var/datum/DBQuery/query_change_rank_flags = SSdbcore.NewQuery("UPDATE [format_table_name("admin_ranks")] SET flags = '[new_flags]', exclude_flags = '[new_exclude_flags]', can_edit_flags = '[new_can_edit_flags]' WHERE rank = '[D.rank.name]'")
 		if(!query_change_rank_flags.warn_execute())
 			return
+<<<<<<< HEAD
 		var/datum/DBQuery/query_change_rank_flags_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'change rank flags', '[D.rank.name]', 'Permissions of [D.rank.name] changed from[rights2text(old_flags," ")][rights2text(old_exclude_flags," ", "-")][rights2text(old_can_edit_flags," ", "*")] to[rights2text(new_flags," ")][rights2text(new_exclude_flags," ", "-")][rights2text(new_can_edit_flags," ", "*")]')")
+=======
+		var/datum/DBQuery/query_change_rank_flags_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, adminckey, adminip, operation, log) VALUES ('[SQLtime()]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'change rank flags', 'Permissions of [admin_ckey] changed from[rights2text(old_flags," ")][rights2text(old_exclude_flags," ", "-")][rights2text(old_can_edit_flags," ", "*")] to[rights2text(new_flags," ")][rights2text(new_exclude_flags," ", "-")][rights2text(new_can_edit_flags," ", "*")]')")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!query_change_rank_flags_log.warn_execute())
 			return
 		for(var/datum/admin_rank/R in GLOB.admin_ranks)
@@ -352,6 +432,7 @@
 	message_admins("[key_name_admin(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_ckey] temporarily"]")
 	log_admin("[key_name(usr)] edited the permissions of [use_db ? " rank [D.rank.name] permanently" : "[admin_ckey] temporarily"]")
 
+<<<<<<< HEAD
 /datum/admins/proc/remove_rank(admin_rank)
 	if(!admin_rank)
 		return
@@ -382,6 +463,8 @@
 		message_admins("[key_name_admin(usr)] removed rank [admin_rank] permanently")
 		log_admin("[key_name(usr)] removed rank [admin_rank] permanently")
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/admins/proc/sync_lastadminrank(admin_ckey, datum/admins/D)
 	var/sqlrank = sanitizeSQL(D.rank.name)
 	admin_ckey = sanitizeSQL(admin_ckey)

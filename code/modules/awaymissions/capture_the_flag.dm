@@ -530,7 +530,11 @@
 
 /datum/outfit/ctf/red/post_equip(mob/living/carbon/human/H)
 	..()
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_CTF_RED)
 	R.freqlock = TRUE
 	R.independent = TRUE
@@ -538,7 +542,11 @@
 
 /datum/outfit/ctf/blue/post_equip(mob/living/carbon/human/H)
 	..()
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_CTF_BLUE)
 	R.freqlock = TRUE
 	R.independent = TRUE

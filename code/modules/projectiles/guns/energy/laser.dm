@@ -79,7 +79,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 =  CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/accelerator)
 	pin = null
 	ammo_x_offset = 3
@@ -118,7 +122,11 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag)
 	item_flags = NONE
 	clumsy_check = FALSE
+<<<<<<< HEAD
 	pin = /obj/item/firing_pin/tag/blue
+=======
+	pin = /obj/item/device/firing_pin/tag/blue
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ammo_x_offset = 2
 	selfcharge = TRUE
 
@@ -132,7 +140,11 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag)
 	item_flags = NONE
 	clumsy_check = FALSE
+<<<<<<< HEAD
 	pin = /obj/item/firing_pin/tag/red
+=======
+	pin = /obj/item/device/firing_pin/tag/red
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ammo_x_offset = 2
 	selfcharge = TRUE
 

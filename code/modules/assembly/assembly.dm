@@ -25,8 +25,15 @@
 
 	var/next_activate = 0 //When we're next allowed to activate - for spam control
 
+<<<<<<< HEAD
 /obj/item/assembly/get_part_rating()
 	return 1
+=======
+/obj/item/device/assembly/get_part_rating()
+	return 1
+
+/obj/item/device/assembly/proc/on_attach()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/assembly/proc/on_attach()
 
@@ -115,5 +122,9 @@
 	interact(user)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/assembly/interact(mob/user)
+=======
+/obj/item/device/assembly/interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return ui_interact(user)

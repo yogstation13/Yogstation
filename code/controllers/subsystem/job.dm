@@ -21,7 +21,10 @@ SUBSYSTEM_DEF(job)
 	if(CONFIG_GET(flag/load_jobs_from_txt))
 		LoadJobs()
 	generate_selectable_species()
+<<<<<<< HEAD
 	set_overflow_role(CONFIG_GET(string/overflow_job))
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 
 /datum/controller/subsystem/job/proc/set_overflow_role(new_overflow_role)
@@ -122,11 +125,14 @@ SUBSYSTEM_DEF(job)
 		if(player.mind && job.title in player.mind.restricted_roles)
 			Debug("FOC incompatible with antagonist role, Player: [player]")
 			continue
+<<<<<<< HEAD
 		// yogs start - Donor features, quiet round
 		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.toggles & QUIET_ROUND))
 			Debug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 			Debug("FOC pass, Player: [player], Level:[level]")
 			candidates += player

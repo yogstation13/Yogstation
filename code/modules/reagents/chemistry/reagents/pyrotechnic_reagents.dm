@@ -273,7 +273,11 @@
 			var/datum/gas_mixture/G = T.air
 			if(G.temperature > T20C)
 				G.temperature = max(G.temperature/2,T20C)
+<<<<<<< HEAD
 			G.react(src)
+=======
+			G.react()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			qdel(hotspot)
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)

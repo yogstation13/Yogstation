@@ -13,18 +13,27 @@
 
 /obj/item/ammo_casing/magic/heal
 	projectile_type = /obj/item/projectile/magic/resurrection
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/magic/death
 	projectile_type = /obj/item/projectile/magic/death
 
 /obj/item/ammo_casing/magic/teleport
 	projectile_type = /obj/item/projectile/magic/teleport
+<<<<<<< HEAD
 	harmful = FALSE
 
 /obj/item/ammo_casing/magic/door
 	projectile_type = /obj/item/projectile/magic/door
 	harmful = FALSE
+=======
+
+/obj/item/ammo_casing/magic/door
+	projectile_type = /obj/item/projectile/magic/door
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/magic/fireball
 	projectile_type = /obj/item/projectile/magic/aoe/fireball

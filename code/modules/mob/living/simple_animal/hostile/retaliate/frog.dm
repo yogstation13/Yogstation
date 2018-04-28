@@ -25,7 +25,10 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
 	gold_core_spawnable = HOSTILE_SPAWN
+<<<<<<< HEAD
 	var/stepped_sound = 'sound/effects/huuu.ogg'
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/living/simple_animal/hostile/retaliate/frog/Initialize()
 	. = ..()

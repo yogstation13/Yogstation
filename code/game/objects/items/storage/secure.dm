@@ -46,7 +46,11 @@
 		if ((istype(W, /obj/item/multitool)) && (!l_hacking))
 			if(open == 1)
 				to_chat(user, "<span class='danger'>Now attempting to reset internal memory, please hold.</span>")
+<<<<<<< HEAD
 				l_hacking = 1
+=======
+				src.l_hacking = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if (W.use_tool(src, user, 400))
 					to_chat(user, "<span class='danger'>Internal memory reset - lock has been disengaged.</span>")
 					l_set = 0

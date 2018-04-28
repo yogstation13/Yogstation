@@ -11,7 +11,10 @@
 #define BOSS_MEDAL_HIEROPHANT "Hierophant"
 #define BOSS_MEDAL_LEGION	  "Legion"
 #define BOSS_MEDAL_TENDRIL	  "Tendril"
+<<<<<<< HEAD
 #define BOSS_MEDAL_SWARMERS   "Swarmer Beacon"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // Score names
 #define HIEROPHANT_SCORE 	 "Hierophants Killed"

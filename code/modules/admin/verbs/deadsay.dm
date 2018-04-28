@@ -30,7 +30,10 @@
 			M.show_message(rendered, 2)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Dsay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+<<<<<<< HEAD
 
 /client/proc/get_dead_say()
 	var/msg = input(src, null, "dsay \"text\"") as text
 	dsay(msg)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

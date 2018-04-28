@@ -32,7 +32,11 @@
 	permeability_coefficient = 0.02
 	flags_1 = STOPSPRESSUREDMAGE_1 | THICKMATERIAL_1
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+<<<<<<< HEAD
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals)
+=======
+	allowed = list(/obj/item/device/flashlight, /obj/item/tank/internals)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	slowdown = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT

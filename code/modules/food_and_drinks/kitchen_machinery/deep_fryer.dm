@@ -46,8 +46,12 @@ God bless America.
 		/obj/item/reagent_containers/glass,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/food/condiment,
+<<<<<<< HEAD
 		/obj/item/storage/part_replacer,
 		/obj/item/his_grace))
+=======
+		/obj/item/storage/part_replacer))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/looping_sound/deep_fryer/fry_loop
 
 /obj/machinery/deepfryer/Initialize()
@@ -116,7 +120,13 @@ God bless America.
 		else if (cook_time >= 60 && !frying_burnt)
 			frying_burnt = TRUE
 			visible_message("<span class='warning'>[src] emits an acrid smell!</span>")
+<<<<<<< HEAD
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+
+/obj/machinery/deepfryer/attack_ai(mob/user)
+	return
 
 /obj/machinery/deepfryer/attack_ai(mob/user)
 	return

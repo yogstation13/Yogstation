@@ -688,7 +688,11 @@
 /obj/item/clothing/glasses/sunglasses/blindfold,
 /obj/item/clothing/mask/muzzle,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
 /obj/item/electropack,
+=======
+/obj/item/device/electropack,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
 "abX" = (
@@ -10550,7 +10554,11 @@
 /area/security/brig)
 "awx" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp,
+=======
+/obj/item/device/flashlight/lamp,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "awy" = (
@@ -15243,7 +15251,11 @@
 	},
 /area/hallway/primary/fore)
 "aGo" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/red/corner{
 	dir = 2
 	},
@@ -17888,7 +17900,11 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aMj" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/engineering/glass/critical{
+=======
+/obj/machinery/door/airlock/engineering/glass{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	heat_proof = 1;
 	name = "Supermatter Chamber";
 	req_access_txt = "10"
@@ -18734,7 +18750,11 @@
 /turf/open/floor/plasteel/neutral/side,
 /area/security/courtroom)
 "aOj" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/neutral/side,
 /area/security/courtroom)
 "aOk" = (
@@ -23383,8 +23403,13 @@
 	pixel_y = -1
 	},
 /obj/item/clothing/gloves/color/yellow,
+<<<<<<< HEAD
 /obj/item/t_scanner,
 /obj/item/multitool,
+=======
+/obj/item/device/t_scanner,
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
 "aYj" = (
@@ -24186,7 +24211,11 @@
 /area/library)
 "aZQ" = (
 /obj/effect/landmark/start/ai/secondary,
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	anyai = 1;
 	freerange = 1;
 	listening = 0;
@@ -24288,7 +24317,11 @@
 /area/ai_monitored/turret_protected/ai)
 "aZY" = (
 /obj/effect/landmark/start/ai/secondary,
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	anyai = 1;
 	freerange = 1;
 	listening = 0;
@@ -29455,7 +29488,11 @@
 	},
 /area/bridge)
 "bkF" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -31388,7 +31425,11 @@
 /obj/machinery/computer/communications{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 8;
 	freerange = 1;
 	name = "Station Intercom (Captain)";
@@ -31890,7 +31931,11 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/holopad,
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "bpL" = (
@@ -33291,7 +33336,11 @@
 	pixel_y = 3
 	},
 /obj/item/storage/toolbox/mechanical,
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
 "bsj" = (
@@ -33316,7 +33365,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bsm" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -33987,7 +34040,11 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "btE" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
@@ -36412,7 +36469,11 @@
 /area/ai_monitored/storage/satellite)
 "byP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/caution{
 	dir = 8
 	},
@@ -40653,7 +40714,11 @@
 "bIe" = (
 /obj/structure/table,
 /obj/item/hand_tele,
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -23
@@ -41457,7 +41522,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/neutral/side{
 	dir = 2
 	},
@@ -41769,7 +41838,11 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bKy" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
@@ -45032,9 +45105,15 @@
 /area/gateway)
 "bRK" = (
 /obj/item/storage/belt/utility,
+<<<<<<< HEAD
 /obj/item/radio/off,
 /obj/item/radio/off,
 /obj/item/radio/off,
+=======
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/rack,
 /obj/machinery/button/door{
 	id = "gateshutter";
@@ -50934,7 +51013,11 @@
 	},
 /area/maintenance/starboard)
 "cdW" = (
+<<<<<<< HEAD
 /obj/item/flashlight,
+=======
+/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -53309,7 +53392,11 @@
 /turf/open/floor/engine,
 /area/science/explab)
 "ciT" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
@@ -63360,7 +63447,11 @@
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "cDx" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating/airless,
 /area/science/test_area)
 "cDy" = (
@@ -67784,7 +67875,11 @@
 	pixel_x = 4
 	},
 /obj/item/organ/heart,
+<<<<<<< HEAD
 /obj/item/soulstone/anybody/chaplain,
+=======
+/obj/item/device/soulstone/anybody/chaplain,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/cult{
 	dir = 2
 	},
@@ -68323,7 +68418,11 @@
 /area/maintenance/port/aft)
 "cNg" = (
 /obj/structure/rack,
+<<<<<<< HEAD
 /obj/item/flashlight,
+=======
+/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -69552,7 +69651,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -71558,7 +71661,11 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "cZc" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
@@ -71667,7 +71774,11 @@
 /obj/item/stack/sheet/metal{
 	amount = 10
 	},
+<<<<<<< HEAD
 /obj/item/electropack,
+=======
+/obj/item/device/electropack,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "daF" = (
@@ -71684,7 +71795,11 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "daH" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "daI" = (
@@ -71693,7 +71808,11 @@
 	pixel_y = 5
 	},
 /obj/item/stack/cable_coil,
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/stock_parts/cell/high{
 	charge = 100;
 	maxcharge = 15000
@@ -71718,6 +71837,7 @@
 /area/science/xenobiology)
 "daM" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/assembly/igniter{
 	pixel_x = -5;
 	pixel_y = 3
@@ -71731,13 +71851,32 @@
 	pixel_y = 6
 	},
 /obj/item/assembly/igniter{
+=======
+/obj/item/device/assembly/igniter{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/device/assembly/igniter{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/device/assembly/igniter{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/item/device/assembly/igniter{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = 2;
 	pixel_y = -1
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "daN" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_y = -25
 	},
 /turf/open/floor/engine,
@@ -71854,6 +71993,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
+<<<<<<< HEAD
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -71975,6 +72115,129 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+=======
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"dbj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"dbk" = (
+/obj/item/hand_labeler_refill,
+/obj/structure/easel,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"dbl" = (
+/obj/structure/easel,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"dbm" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
+"dbn" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"dbo" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Pen #3";
+	dir = 4;
+	network = list("ss13","rd","xeno")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
+"dbp" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Pen #4";
+	dir = 8;
+	network = list("ss13","rd","xeno")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
+"dbq" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/port/aft)
+"dbr" = (
+/obj/machinery/camera{
+	c_tag = "Morgue";
+	dir = 2;
+	network = list("ss13","medbay")
+	},
+/obj/structure/bodycontainer/morgue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
+"dbs" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Pen #5";
+	dir = 4;
+	network = list("ss13","rd","xeno")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
+"dbt" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Pen #6";
+	dir = 8;
+	network = list("ss13","rd","xeno")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
+"dbv" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small,
+/turf/open/floor/circuit/killroom,
+/area/science/xenobiology)
+"dbw" = (
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Kill Chamber";
+	dir = 1;
+	network = list("ss13","rd","xeno");
+	start_active = 1
+	},
+/turf/open/floor/circuit/killroom,
+/area/science/xenobiology)
+"dbE" = (
+/obj/machinery/plantgenes,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"dbF" = (
+/obj/structure/bookcase{
+	name = "Holy Bookcase"
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/chapel/main)
+"dbH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/door/airlock/research{
 	id_tag = "ResearchInt";
 	name = "Research Division";
@@ -72204,6 +72467,7 @@
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 8;
 	pixel_y = 2
+<<<<<<< HEAD
 	},
 /obj/item/reagent_containers/glass/beaker/large{
 	pixel_x = -3;
@@ -72232,6 +72496,36 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+=======
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/dropper,
+/obj/machinery/power/apc/highcap/ten_k{
+	dir = 1;
+	name = "Xenobiology APC";
+	areastring = "/area/science/xenobiology";
+	pixel_y = 27
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 1
+	},
+/area/science/xenobiology)
+"dcd" = (
+/obj/structure/table/glass,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/pen{
 	pixel_x = -4
 	},
@@ -72274,7 +72568,11 @@
 /obj/machinery/shower{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
@@ -72360,6 +72658,7 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /obj/machinery/computer/camera_advanced/xenobio,
 /obj/effect/turf_decal/stripes/line{
@@ -72655,6 +72954,302 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "dcS" = (
+=======
+	},
+/obj/machinery/computer/camera_advanced/xenobio,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dcn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/smartfridge/extract/preloaded,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dco" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/computer/camera_advanced/xenobio,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dcp" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcq" = (
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcr" = (
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 4
+	},
+/area/science/xenobiology)
+"dcs" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Airlock";
+	dir = 4;
+	network = list("ss13","rd")
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dct" = (
+/obj/structure/closet/l3closet/scientist,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcu" = (
+/obj/structure/closet/l3closet/scientist,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dcw" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dcx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
+"dcy" = (
+/obj/machinery/holopad,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/science/xenobiology)
+"dcA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcC" = (
+/obj/structure/chair/office/light,
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcD" = (
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 4
+	},
+/area/science/xenobiology)
+"dcE" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/science/xenobiology)
+"dcG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcH" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcJ" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/extinguisher{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/extinguisher,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcK" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/deathsposal{
+	pixel_y = -32
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plasteel/whitepurple/corner{
+	dir = 2
+	},
+/area/science/xenobiology)
+"dcL" = (
+/obj/machinery/light,
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/storage/box/syringes{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/whitepurple/side,
+/area/science/xenobiology)
+"dcM" = (
+/obj/machinery/chem_master,
+/obj/item/device/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/turf/open/floor/plasteel/whitepurple/side,
+/area/science/xenobiology)
+"dcN" = (
+/obj/machinery/chem_heater,
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 6
+	},
+/area/science/xenobiology)
+"dcO" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Lab - Central";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "xenobio2";
+	name = "containment blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/xenobiology)
+"dcQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcR" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "xenobio7";
+	name = "containment blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/xenobiology)
+"dcS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -72669,6 +73264,37 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"dcT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dcU" = (
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+<<<<<<< HEAD
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/door/poddoor/preopen{
+	id = "xenobio7";
+=======
+	icon_state = "0-2"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "xenobio1";
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	name = "containment blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/xenobiology)
+<<<<<<< HEAD
 "dcT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -72702,6 +73328,20 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+=======
+"dcV" = (
+/obj/structure/window/reinforced,
+/obj/machinery/button/door{
+	id = "xenobio6";
+	name = "Containment Blast Doors";
+	pixel_y = 4;
+	req_access_txt = "55"
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "dcW" = (
@@ -72862,7 +73502,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
@@ -72966,6 +73610,7 @@
 "ddv" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
+<<<<<<< HEAD
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
@@ -73028,6 +73673,70 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+=======
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "Xenolab";
+	name = "test chamber blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/xenobiology)
+"ddw" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Test Chamber Maintenance APC";
+	areastring = "/area/maintenance/department/science/xenobiology";
+	pixel_x = 26
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/science/xenobiology)
+"ddx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/chair,
+/obj/item/cigbutt,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"ddy" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/maintenance/department/science/xenobiology)
+"ddz" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/turf/open/floor/plating,
+/area/science/xenobiology)
+"ddA" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/research{
+	glass = 1;
+	name = "Slime Euthanization Chamber";
+	opacity = 0;
+	req_access_txt = "55"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"ddB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/circuit/killroom,
+/area/science/xenobiology)
+"ddC" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/science/xenobiology)
@@ -73042,6 +73751,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+<<<<<<< HEAD
 "ddO" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel/dark,
@@ -73053,6 +73763,33 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+=======
+"ddG" = (
+/obj/docking_port/stationary{
+	area_type = /area/construction/mining/aux_base;
+	dir = 1;
+	dwidth = 4;
+	height = 9;
+	id = "aux_base_zone";
+	name = "aux base zone";
+	roundstart_template = /datum/map_template/shuttle/aux_base/default;
+	turf_type = /turf/open/floor/plating;
+	width = 9
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddO" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"ddP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -73246,7 +73983,11 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "deq" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
@@ -73336,9 +74077,35 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+<<<<<<< HEAD
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"deC" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+<<<<<<< HEAD
+"deD" = (
+/obj/machinery/status_display,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
+"deI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
+=======
 "deC" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -73360,6 +74127,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 8
 	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/engine,
 /area/engine/engineering)
 "deJ" = (
@@ -73451,7 +74219,11 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dfa" = (
+<<<<<<< HEAD
 /obj/machinery/power/supermatter_crystal/engine,
+=======
+/obj/machinery/power/supermatter_shard/crystal/engine,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "dfb" = (
@@ -74332,7 +75104,11 @@
 /area/maintenance/port/fore)
 "dhL" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/analyzer,
+=======
+/obj/item/device/analyzer,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Tool Storage APC";
@@ -74349,7 +75125,11 @@
 	},
 /area/storage/primary)
 "dhM" = (
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
@@ -74365,6 +75145,7 @@
 "dhN" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -74900,6 +75681,1022 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
+=======
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/fore)
+"dhO" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dhP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
+"dhQ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"dhR" = (
+/obj/structure/closet,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/poster/random_contraband,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"dhS" = (
+/obj/machinery/vending/cigarette,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/toilet/auxiliary)
+"dhT" = (
+/obj/structure/sign/poster/random,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"dhU" = (
+/obj/structure/piano,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/theatre)
+"dhV" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/theatre)
+"dhW" = (
+/obj/structure/table/wood,
+/obj/item/staff/broom,
+/obj/item/wrench,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dhX" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/clothing/head/sombrero,
+/obj/structure/sign/poster/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dhZ" = (
+/obj/structure/urinal{
+	pixel_y = 29
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/toilet/auxiliary)
+"dib" = (
+/obj/structure/table/wood,
+/obj/item/lipstick{
+	pixel_y = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Theatre - Stage";
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/device/instrument/guitar,
+/obj/structure/sign/poster/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dic" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/arrival{
+	dir = 4
+	},
+/area/hallway/secondary/entry)
+"did" = (
+/obj/structure/table/wood,
+/obj/item/folder,
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/security/vacantoffice)
+"dif" = (
+/obj/item/soap/nanotrasen,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/structure/sign/poster/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dig" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/security/vacantoffice)
+"dih" = (
+/obj/machinery/light/small,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/toilet/auxiliary)
+"dii" = (
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 8;
+	icon_state = "right";
+	name = "Theatre Stage"
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/theatre)
+"dij" = (
+/obj/item/device/instrument/violin,
+/obj/structure/table/wood,
+/obj/item/device/radio/intercom{
+	freerange = 0;
+	frequency = 1459;
+	name = "Station Intercom (General)";
+	pixel_x = 29
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dik" = (
+/obj/structure/sign/poster/official/random,
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
+"dil" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/clothing/mask/pig,
+/obj/item/bikehorn,
+/obj/structure/table/wood,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dim" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/structure/sign/poster/contraband/clown{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"din" = (
+/obj/structure/table/wood,
+/obj/item/paper,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/security/vacantoffice)
+"dio" = (
+/obj/structure/closet/crate,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/poster/random_official,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"dip" = (
+/obj/structure/table/wood,
+/obj/machinery/button/door{
+	id = "corporate_privacy";
+	name = "corporate showroom shutters control";
+	pixel_x = 28;
+	req_access_txt = "19"
+	},
+/obj/item/poster/random_official,
+/obj/item/poster/random_official,
+/obj/item/poster/random_official,
+/obj/item/poster/random_official,
+/obj/item/poster/random_official,
+/obj/item/device/paicard{
+	desc = "A real Nanotrasen success, these personal AIs provide all of the companionship of an AI without any law related red-tape.";
+	name = "Nanotrasen-brand personal AI device exhibit"
+	},
+/turf/open/floor/carpet,
+/area/bridge/showroom/corporate)
+"diq" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/clothing/mask/horsehead,
+/obj/structure/table/wood,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/item/clothing/mask/cigarette/pipe,
+/obj/item/clothing/mask/fakemoustache,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dir" = (
+/obj/machinery/camera{
+	c_tag = "Theatre - Backstage";
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/obj/structure/closet/crate/wooden/toy,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dis" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"dit" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"diu" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/storage/box/lights/mixed,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"div" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plating,
+<<<<<<< HEAD
+/area/maintenance/aft)
+"diM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+=======
+/area/maintenance/port)
+"diw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/firealarm{
+	pixel_y = 29
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/obj/structure/closet/crate/hydroponics,
+/obj/item/shovel/spade,
+/obj/item/wrench,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/cultivator,
+/obj/item/wirecutters,
+/turf/open/floor/plasteel/hydrofloor,
+/area/hydroponics)
+"dix" = (
+/obj/structure/rack,
+/obj/item/poster/random_contraband,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/port)
+"diy" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	},
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+<<<<<<< HEAD
+"diN" = (
+/obj/structure/chair/stool,
+/obj/structure/sign/poster/official/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/medical/medbay/aft)
+"diP" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"diQ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/aft)
+"diR" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/item/stack/ore/slag,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"diS" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+=======
+"diz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/hydrofloor,
+/area/hydroponics)
+"diA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/aft)
+"diB" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"diC" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+<<<<<<< HEAD
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"diT" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"diU" = (
+/obj/structure/closet/crate,
+/obj/item/poster/random_official,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/landmark/blobstart,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"diV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Port Fore";
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-24"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+"diW" = (
+/obj/machinery/hydroponics/soil{
+	pixel_y = 8
+	},
+/obj/item/seeds/glowshroom,
+/obj/item/seeds/corn,
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"djg" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"djh" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"djj" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Chapel - Funeral Parlour";
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
+"djk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/closed/wall,
+/area/chapel/main)
+"djr" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
+"djs" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/science/xenobiology)
+"djt" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"djx" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/item/crowbar,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"djz" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"djB" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/effect/landmark/observer_start,
+/obj/effect/turf_decal/plaque{
+	icon_state = "L8"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"djC" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Arrival Airlock"
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"djM" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 3;
+	height = 15;
+	id = "arrivals_stationary";
+	name = "arrivals";
+	width = 7;
+	roundstart_template = /datum/map_template/shuttle/arrival/box
+	},
+/turf/open/space/basic,
+/area/space)
+"djW" = (
+/obj/structure/table/wood,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/security/vacantoffice)
+"djX" = (
+/obj/structure/closet/coffin,
+/obj/machinery/door/window/eastleft{
+	name = "Coffin Storage";
+	req_access_txt = "22"
+	},
+/turf/open/floor/plating,
+/area/chapel/main)
+"dlI" = (
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
+"dlN" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/engine/supermatter)
+"dlV" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/department/science/xenobiology)
+"dmq" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/door/airlock/research{
+	glass = 1;
+	name = "Slime Euthanization Chamber";
+	opacity = 0;
+	req_access_txt = "55"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dmr" = (
+/obj/machinery/door/airlock/research{
+	glass = 1;
+	name = "Slime Euthanization Chamber";
+	opacity = 0;
+	req_access_txt = "55"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"dmD" = (
+/obj/structure/displaycase/trophy,
+/turf/open/floor/wood,
+/area/library)
+"dmF" = (
+/turf/closed/wall,
+/area/quartermaster/sorting)
+"dmH" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/quartermaster/sorting)
+"dmT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
+"dnd" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dne" = (
+/turf/closed/wall,
+/area/maintenance/port/fore)
+"dnh" = (
+/turf/closed/wall,
+/area/maintenance/starboard/fore)
+"dni" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dnk" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnr" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Port Bow Maintenance APC";
+	areastring = "/area/maintenance/port/fore";
+	pixel_x = 26
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/port/fore)
+"dnu" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnz" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dnF" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/port/fore)
+"dnG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnM" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnO" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dnR" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dnS" = (
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dnZ" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/port/fore)
+"dod" = (
+/obj/item/cigbutt,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"doe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"doh" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/starboard/fore)
+"dou" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"doA" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"doJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dpk" = (
+/obj/item/cigbutt,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dps" = (
+/obj/machinery/space_heater,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/starboard/fore)
+"dpG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dpL" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/starboard/fore)
+"dqe" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dqp" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/maintenance/starboard/fore)
+"dqu" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"dqT" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard/fore)
+"dqU" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel,
+/area/science/mixing)
+"drQ" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/port/fore)
+"dsg" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+=======
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"diD" = (
+/obj/machinery/vending/cigarette,
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/science/research)
+"diE" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 3;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vermouth{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
+"diF" = (
+/obj/structure/chair/stool,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
+"diG" = (
+/obj/structure/chair/stool,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/maintenance/port/aft)
+"diH" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"diI" = (
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/ale,
+/obj/structure/table/wood,
+/obj/item/device/instrument/eguitar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"diJ" = (
+/obj/structure/light_construct/small,
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
+"diK" = (
+/obj/item/dice/d20,
+/obj/item/dice,
+/obj/structure/table/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"diL" = (
+/obj/item/tank/internals/air,
+/obj/item/tank/internals/air,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/machinery/space_heater,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -75380,6 +77177,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/maintenance/fore)
 "dss" = (
 /obj/structure/cable/yellow{
@@ -75761,10 +77559,17 @@
 "dBz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+<<<<<<< HEAD
 	},
 /obj/machinery/light{
 	dir = 4
 	},
+=======
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -76090,6 +77895,7 @@
 "dCE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+<<<<<<< HEAD
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -76131,6 +77937,49 @@
 /turf/open/floor/plasteel/caution/corner{
 	dir = 8
 	},
+=======
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"dCH" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"dCI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
+"dCJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/yellow/corner{
+	dir = 1
+	},
+/area/hallway/primary/starboard)
+"dCK" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"dCM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/caution/corner{
+	dir = 8
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /area/hallway/primary/starboard)
 "dCN" = (
 /obj/structure/cable/yellow{
@@ -76424,7 +78273,11 @@
 /obj/item/wallframe/camera,
 /obj/item/wallframe/camera,
 /obj/item/wallframe/camera,
+<<<<<<< HEAD
 /obj/item/assault_pod/mining,
+=======
+/obj/item/device/assault_pod/mining,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/yellow/side{
 	dir = 1
 	},
@@ -76521,6 +78374,7 @@
 "eXy" = (
 /obj/machinery/airalarm{
 	pixel_y = 32
+<<<<<<< HEAD
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -76567,6 +78421,54 @@
 /obj/item/radio/intercom{
 	pixel_y = -30
 	},
+=======
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"eZe" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"fdr" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"fDD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"gfh" = (
+/obj/machinery/libraryscanner,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"gix" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/airlock/research/glass{
+	name = "Circuitry Lab";
+	req_access_txt = "47"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"gnZ" = (
+/obj/item/device/radio/intercom{
+	pixel_y = -30
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "gEk" = (
@@ -76606,8 +78508,13 @@
 /area/maintenance/aft)
 "gRS" = (
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/item/integrated_electronics/analyzer,
 /obj/item/integrated_circuit_printer,
+=======
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_circuit_printer,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "gXY" = (
@@ -76659,6 +78566,7 @@
 	},
 /turf/open/floor/plasteel/whitepurple,
 /area/science/lab)
+<<<<<<< HEAD
 "jeV" = (
 /obj/machinery/conveyor/inverted{
 	dir = 10;
@@ -76680,6 +78588,22 @@
 	network = list("rd");
 	pixel_y = 32
 	},
+=======
+"jwW" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/crew_quarters/fitness/recreation)
+"jyv" = (
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
+/obj/item/stack/sheet/metal/fifty,
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the RD's goons from the safety of your own office.";
+	name = "Research Monitor";
+	network = list("rd");
+	pixel_y = 32
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "jyQ" = (
@@ -76711,6 +78635,7 @@
 "krD" = (
 /turf/closed/wall,
 /area/science/circuit)
+<<<<<<< HEAD
 "kwI" = (
 /obj/item/wrench,
 /obj/item/clothing/suit/apron,
@@ -76719,6 +78644,8 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "kys" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -76758,7 +78685,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "kOt" = (
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/screwdriver,
 /obj/structure/table/reinforced,
 /obj/structure/cable/yellow{
@@ -76785,7 +78716,11 @@
 /area/science/circuit)
 "llb" = (
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer,
+=======
+/obj/item/device/integrated_circuit_printer,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "lsv" = (
@@ -76799,7 +78734,11 @@
 	icon_state = "0-8"
 	},
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "lzk" = (
@@ -76932,6 +78871,7 @@
 /obj/structure/target_stake,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+<<<<<<< HEAD
 "obX" = (
 /obj/docking_port/stationary{
 	area_type = /area/construction/mining/aux_base;
@@ -76953,10 +78893,44 @@
 /obj/item/stock_parts/cell/super,
 /obj/item/stock_parts/cell/super,
 /obj/item/stack/sheet/metal/fifty,
+=======
+"ocT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
+/obj/item/stack/sheet/metal/fifty,
 /obj/structure/table/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the RD's goons from the safety of your own office.";
+	name = "Research Monitor";
+	network = list("rd");
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"ohj" = (
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/wirer,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"oub" = (
+/obj/structure/sign/poster/official/random,
+/turf/closed/wall,
+/area/hydroponics)
+"oLW" = (
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+/obj/structure/table/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+<<<<<<< HEAD
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons from the safety of your own office.";
 	name = "Research Monitor";
@@ -76990,6 +78964,17 @@
 	receive_ore_updates = 1
 	},
 /obj/item/integrated_electronics/debugger,
+=======
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	dir = 2;
+	name = "Science Requests Console";
+	pixel_y = 30;
+	receive_ore_updates = 1
+	},
+/obj/item/device/integrated_electronics/debugger,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "oRL" = (
@@ -77005,6 +78990,7 @@
 /area/space)
 "oUA" = (
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -77066,13 +79052,65 @@
 "qnJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"pmc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/closed/wall/r_wall,
+/area/maintenance/disposal/incinerator)
+"pvA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"pzj" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"pCV" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"pOP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/disposal/incinerator)
+"pSX" = (
+/obj/machinery/door/airlock/external{
+	name = "Auxiliary Escape Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+<<<<<<< HEAD
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
@@ -77080,6 +79118,13 @@
 "qqg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
+=======
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"qnJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
@@ -77097,6 +79142,33 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/science/circuit)
+"qqg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
+"qBh" = (
+/obj/structure/table,
+/obj/item/device/paicard,
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 2
+	},
+/area/science/research)
+"qBq" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/hallway/secondary/entry)
+"qJZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "qRM" = (
@@ -77191,7 +79263,11 @@
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "tDM" = (
+<<<<<<< HEAD
 /obj/machinery/door/airlock/engineering/glass/critical{
+=======
+/obj/machinery/door/airlock/engineering/glass{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	heat_proof = 1;
 	name = "Supermatter Chamber";
 	req_access_txt = "10"
@@ -77355,7 +79431,11 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "xkG" = (
+<<<<<<< HEAD
 /obj/item/integrated_electronics/wirer,
+=======
+/obj/item/device/integrated_electronics/wirer,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
@@ -77380,6 +79460,10 @@
 	height = 17;
 	id = "syndicate_nw";
 	name = "northwest of station";
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/space;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 23
 	},
 /turf/open/space/basic,
@@ -89335,11 +91419,18 @@ aDa
 aDa
 aDa
 aDa
+<<<<<<< HEAD
 obX
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 aDa
 aDa
 aDa
 aDa
+<<<<<<< HEAD
+=======
+ddG
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 cWM
 cXR
 cYG
@@ -112504,7 +114595,11 @@ bOW
 bQH
 bRV
 bST
+<<<<<<< HEAD
 kwI
+=======
+bUh
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 bVx
 bWS
 bYi

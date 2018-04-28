@@ -3,6 +3,13 @@
 #define RAD_LEVEL_HIGH 400
 #define RAD_LEVEL_VERY_HIGH 800
 #define RAD_LEVEL_CRITICAL 1500
+<<<<<<< HEAD
+=======
+
+#define RAD_MEASURE_SMOOTHING 5
+
+#define RAD_GRACE_PERIOD 2
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define RAD_MEASURE_SMOOTHING 5
 
@@ -30,17 +37,29 @@
 	var/fail_to_receive = 0
 	var/current_warning = 1
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/Initialize()
+=======
+/obj/item/device/geiger_counter/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
 	soundloop = new(list(src), FALSE)
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/geiger_counter/process()
+=======
+/obj/item/device/geiger_counter/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/device/geiger_counter/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	update_icon()
 	update_sound()
 
@@ -86,7 +105,11 @@
 
 	to_chat(user, "<span class='notice'>The last radiation amount detected was [last_tick_amount]</span>")
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/update_icon()
+=======
+/obj/item/device/geiger_counter/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!scanning)
 		icon_state = "geiger_off"
 		return 1
@@ -108,7 +131,11 @@
 			icon_state = "geiger_on_5"
 	..()
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/proc/update_sound()
+=======
+/obj/item/device/geiger_counter/proc/update_sound()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/looping_sound/geiger/loop = soundloop
 	if(!scanning)
 		loop.stop()
@@ -119,7 +146,11 @@
 	loop.last_radiation = radiation_count
 	loop.start()
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/rad_act(amount)
+=======
+/obj/item/device/geiger_counter/rad_act(amount)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(amount <= RAD_BACKGROUND_RADIATION || !scanning)
 		return
@@ -143,7 +174,11 @@
 		return 1
 	..()
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/proc/scan(atom/A, mob/user)
+=======
+/obj/item/device/geiger_counter/proc/scan(atom/A, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/rad_strength = 0
 	for(var/i in get_rad_contents(A)) // Yes it's intentional that you can't detect radioactive things under rad protection. Gives traitors a way to hide their glowing green rocks.
 		var/atom/thing = i
@@ -165,7 +200,11 @@
 	else
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] Subject is free of radioactive contamination.</span>")
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
+=======
+/obj/item/device/geiger_counter/attackby(obj/item/I, mob/user, params)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(istype(I, /obj/item/screwdriver) && (obj_flags & EMAGGED))
 		if(scanning)
 			to_chat(user, "<span class='warning'>Turn off [src] before you perform this action!</span>")
@@ -181,7 +220,11 @@
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/AltClick(mob/living/user)
+=======
+/obj/item/device/geiger_counter/AltClick(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return ..()
 	if(!scanning)
@@ -191,7 +234,11 @@
 	to_chat(usr, "<span class='notice'>You flush [src]'s radiation counts, resetting it to normal.</span>")
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/emag_act(mob/user)
+=======
+/obj/item/device/geiger_counter/emag_act(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(obj_flags & EMAGGED)
 		return
 	if(scanning)
@@ -200,17 +247,28 @@
 	to_chat(user, "<span class='warning'>You override [src]'s radiation storing protocols. It will now generate small doses of radiation, and stored rads are now projected into creatures you scan.</span>")
 	obj_flags |= EMAGGED
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/cyborg
 	var/datum/component/mobhook
 
 /obj/item/geiger_counter/cyborg/equipped(mob/user)
+=======
+/obj/item/device/geiger_counter/cyborg
+	var/datum/component/mobhook
+
+/obj/item/device/geiger_counter/cyborg/equipped(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if (mobhook && mobhook.parent != user)
 		QDEL_NULL(mobhook)
 	if (!mobhook)
 		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_RAD_ACT), CALLBACK(src, /atom.proc/rad_act))
 
+<<<<<<< HEAD
 /obj/item/geiger_counter/cyborg/dropped()
+=======
+/obj/item/device/geiger_counter/cyborg/dropped()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	QDEL_NULL(mobhook)
 

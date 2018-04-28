@@ -175,7 +175,11 @@
 /obj/machinery/camera/attackby(obj/item/I, mob/living/user, params)
 	// UPGRADES
 	if(panel_open)
+<<<<<<< HEAD
 		if(istype(I, /obj/item/analyzer))
+=======
+		if(istype(I, /obj/item/device/analyzer))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(!isXRay())
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
@@ -195,7 +199,11 @@
 				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
 			return
 
+<<<<<<< HEAD
 		else if(istype(I, /obj/item/assembly/prox_sensor))
+=======
+		else if(istype(I, /obj/item/device/assembly/prox_sensor))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(!isMotion())
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
@@ -207,7 +215,11 @@
 			return
 
 	// OTHER
+<<<<<<< HEAD
 	if((istype(I, /obj/item/paper) || istype(I, /obj/item/pda)) && isliving(user))
+=======
+	if((istype(I, /obj/item/paper) || istype(I, /obj/item/device/pda)) && isliving(user))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
 		var/obj/item/pda/P = null
@@ -239,7 +251,11 @@
 				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
+<<<<<<< HEAD
 	else if(istype(I, /obj/item/camera_bug))
+=======
+	else if(istype(I, /obj/item/device/camera_bug))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!can_use())
 			to_chat(user, "<span class='notice'>Camera non-functional.</span>")
 			return

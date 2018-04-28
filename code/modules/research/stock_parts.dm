@@ -9,8 +9,27 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
+<<<<<<< HEAD
 	component_type = /datum/component/storage/concrete/rped
 	var/works_from_distance = FALSE
+=======
+	storage_slots = 50
+	use_to_pickup = 1
+	allow_quick_gather = 1
+	allow_quick_empty = 1
+	collection_mode = 1
+	display_contents_with_number = 1
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_combined_w_class = 100
+
+	can_hold = list(
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/device/assembly/igniter,
+		/obj/item/stock_parts,
+		/obj/item/stack/ore/bluespace_crystal)
+
+	var/works_from_distance = 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
 	var/alt_sound = null
 
@@ -58,10 +77,17 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
+/obj/item/storage/part_replacer/cyborg
+	name = "rapid part exchange device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	icon_state = "borgrped"
+	item_state = "RPED"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+
 //Sorts stock parts inside an RPED by their rating.
-//Only use /obj/item/stock_parts/ with this sort proc!
-/proc/cmp_rped_sort(obj/item/stock_parts/A, obj/item/stock_parts/B)
-	return B.rating - A.rating
+/proc/cmp_rped_sort(obj/item/A, obj/item/B)
+	return A.get_part_rating() - B.get_part_rating()
 
 /obj/item/stock_parts
 	name = "stock part"
@@ -77,9 +103,14 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 
 /obj/item/stock_parts/get_part_rating()
 	return rating
+<<<<<<< HEAD
 
 //Rating 1
 
+=======
+//Rating 1
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."

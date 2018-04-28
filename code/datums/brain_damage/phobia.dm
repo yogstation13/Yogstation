@@ -71,8 +71,12 @@
 	if(!owner.can_hear() || world.time < next_scare) //words can't trigger you if you can't hear them *taps head*
 		return message
 	for(var/word in trigger_words)
+<<<<<<< HEAD
 		var/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 
+=======
+		var/reg = regex("\[^\\l\][REGEX_QUOTE(word)]*s\[^\\l\]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(findtext(raw_message, reg))
 			addtimer(CALLBACK(src, .proc/freak_out, null, word), 10) //to react AFTER the chat message
 			break
@@ -80,8 +84,12 @@
 
 /datum/brain_trauma/mild/phobia/on_say(message)
 	for(var/word in trigger_words)
+<<<<<<< HEAD
 		var/reg = regex("(\\b|\\A)[REGEX_QUOTE(word)]'?s*(\\b|\\Z)", "i")
 		
+=======
+		var/reg = regex("\[^\\l\][REGEX_QUOTE(word)]*s\[^\\l\]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(findtext(message, reg))
 			to_chat(owner, "<span class='warning'>You can't bring yourself to say the word \"[word]\"!</span>")
 			return ""

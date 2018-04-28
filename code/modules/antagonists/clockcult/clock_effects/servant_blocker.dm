@@ -42,6 +42,9 @@
 
 /obj/effect/clockwork/servant_blocker/ex_act(severity, target)
 	return
+<<<<<<< HEAD
 
 /obj/effect/clockwork/servant_blocker/safe_throw_at()
 	return
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

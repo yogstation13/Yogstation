@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/integrated_electronics/analyzer
+=======
+/obj/item/device/integrated_electronics/analyzer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "circuit analyzer"
 	desc = "This tool can scan an assembly and generate code necessary to recreate it in a circuit printer."
 	icon = 'icons/obj/assemblies/electronic_tools.dmi'
@@ -6,8 +10,13 @@
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/analyzer/afterattack(var/atom/A, var/mob/living/user)
 	if(istype(A, /obj/item/electronic_assembly))
+=======
+/obj/item/device/integrated_electronics/analyzer/afterattack(var/atom/A, var/mob/living/user)
+	if(istype(A, /obj/item/device/electronic_assembly))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/saved = "[A.name] analyzed! On circuit printers with cloning enabled, you may use the code below to clone the circuit:<br><br><code>[SScircuit.save_electronic_assembly(A)]</code>"
 		if(saved)
 			to_chat(user, "<span class='notice'>You scan [A].</span>")

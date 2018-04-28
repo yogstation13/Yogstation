@@ -60,6 +60,7 @@
 #define DNA_UNIQUE_ENZYMES_LEN		32
 
 //Transformation proc stuff
+<<<<<<< HEAD
 #define TR_KEEPITEMS	(1<<0)
 #define TR_KEEPVIRUS	(1<<1)
 #define TR_KEEPDAMAGE	(1<<2)
@@ -68,6 +69,16 @@
 #define TR_KEEPSE		(1<<5)	// changelings shouldn't edit the DNA's SE when turning into a monkey
 #define TR_DEFAULTMSG	(1<<6)
 #define TR_KEEPORGANS	(1<<8)
+=======
+#define TR_KEEPITEMS	1
+#define TR_KEEPVIRUS	2
+#define TR_KEEPDAMAGE	4
+#define TR_HASHNAME		8	// hashing names (e.g. monkey(e34f)) (only in monkeyize)
+#define TR_KEEPIMPLANTS	16
+#define TR_KEEPSE		32 // changelings shouldn't edit the DNA's SE when turning into a monkey
+#define TR_DEFAULTMSG	64
+#define TR_KEEPORGANS	256
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 #define CLONER_FRESH_CLONE "fresh"

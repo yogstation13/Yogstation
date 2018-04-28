@@ -28,6 +28,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/components/binary/volume_pump/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -38,6 +39,8 @@ Thus, the two variables affect pump operation are set in New():
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/atmospherics/components/binary/volume_pump/Destroy()
 	SSradio.remove_object(src,frequency)
@@ -47,6 +50,7 @@ Thus, the two variables affect pump operation are set in New():
 	on = TRUE
 	icon_state = "volpump_on_map"
 
+<<<<<<< HEAD
 /obj/machinery/atmospherics/components/binary/volume_pump/on/layer1
 	piping_layer = PIPING_LAYER_MIN
 	pixel_x = -PIPING_LAYER_P_X
@@ -57,6 +61,8 @@ Thus, the two variables affect pump operation are set in New():
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
 	
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/components/binary/volume_pump/update_icon_nopipes()
 	if(!is_operational())
 		icon_state = "volpump_off"

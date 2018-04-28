@@ -35,7 +35,11 @@
 /obj/structure/chair{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = 25
 	},
 /obj/item/storage/pod{

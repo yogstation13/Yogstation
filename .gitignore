@@ -194,8 +194,12 @@ Temporary Items
 
 #Visual studio stuff
 *.vscode/*
+<<<<<<< HEAD
 tools/MapAtmosFixer/MapAtmosFixer/obj/*
 tools/MapAtmosFixer/MapAtmosFixer/bin/*
+=======
+tools/MapAtmosFixer/MapAtmosFixer/obj/x86/Debug/MapAtmosFixer.csproj.CoreCompileInputs.cache
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #GitHub Atom
 .atom-build.json

@@ -137,7 +137,11 @@
 	being held, or anchored in some way. It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
 	w_class = WEIGHT_CLASS_SMALL
 	complexity = 10
+<<<<<<< HEAD
 	cooldown_per_use = 1
+=======
+	cooldown_per_use = 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ext_cooldown = 1
 	inputs = list("direction" = IC_PINTYPE_DIR)
 	outputs = list("obstacle" = IC_PINTYPE_REF)
@@ -240,6 +244,7 @@
 
 /obj/item/integrated_circuit/manipulation/plant_module
 	name = "plant manipulation module"
+<<<<<<< HEAD
 	desc = "Used to uproot weeds and harvest/plant trays."
 	icon_state = "plant_m"
 	extended_desc = "The circuit accepts a reference to a hydroponic tray or an item in an adjacent tile. \
@@ -250,11 +255,24 @@
 	inputs = list("tray" = IC_PINTYPE_REF,"mode" = IC_PINTYPE_NUMBER,"item" = IC_PINTYPE_REF)
 	outputs = list("result" = IC_PINTYPE_LIST)
 	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+=======
+	desc = "Used to uproot weeds or harvest plants in trays."
+	icon_state = "plant_m"
+	extended_desc = "The circuit accepts a reference to a hydroponic tray in an adjacent tile. \
+	Mode(0- harvest, 1-uproot weeds, 2-uproot plant) determinies action."
+	cooldown_per_use = 10
+	w_class = WEIGHT_CLASS_TINY
+	complexity = 10
+	inputs = list("target" = IC_PINTYPE_REF,"mode" = IC_PINTYPE_NUMBER)
+	outputs = list()
+	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out"=IC_PINTYPE_PULSE_OUT)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 50
 
 /obj/item/integrated_circuit/manipulation/plant_module/do_work()
 	..()
+<<<<<<< HEAD
 	var/obj/acting_object = get_object()
 	var/obj/OM = get_pin_data_as_type(IC_INPUT, 1, /obj)
 	var/obj/O = get_pin_data_as_type(IC_INPUT, 3, /obj/item)
@@ -340,6 +358,48 @@
 	if(seed_output.len)
 		set_pin_data(IC_OUTPUT, 1, seed_output)
 		push_data()
+=======
+	var/turf/T = get_turf(src)
+	var/obj/OM = get_pin_data_as_type(IC_INPUT, 1, /obj)
+	if(istype(OM,/obj/structure/spacevine) && get_pin_data(IC_INPUT, 2) == 2)
+		qdel(OM)
+		activate_pin(2)
+		return
+	var/obj/machinery/hydroponics/AM = OM
+	if(!istype(AM)) //Invalid input
+		return FALSE
+	var/mob/living/M = get_turf(AM)
+	if(!M.Adjacent(T))
+		return //Can't reach
+	switch(get_pin_data(IC_INPUT, 2))
+		if(0)
+			if(AM.myseed)
+				if(AM.harvest)
+					AM.myseed.harvest()
+					AM.harvest = 0
+					AM.lastproduce = AM.age
+					if(!AM.myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
+						qdel(AM.myseed)
+						AM.myseed = null
+						AM.dead = 0
+					AM.update_icon()
+		if(1)
+			AM.weedlevel = 0
+		if(2)
+			if(AM.myseed) //Could be that they're just using it as a de-weeder
+				AM.age = 0
+				AM.plant_health = 0
+				if(AM.harvest)
+					AM.harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
+				qdel(AM.myseed)
+				AM.myseed = null
+			AM.weedlevel = 0 //Has a side effect of cleaning up those nasty weeds
+			AM.dead = 0
+			AM.update_icon()
+		else
+			activate_pin(2)
+			return FALSE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	activate_pin(2)
 
 /obj/item/integrated_circuit/manipulation/grabber
@@ -519,12 +579,20 @@
 
 /obj/item/integrated_circuit/manipulation/matman
 	name = "material manager"
+<<<<<<< HEAD
 	desc = "This circuit is designed for automatic storage and distribution of materials."
 	extended_desc = "The first input takes a ref of a machine with a material container. \
 					Second input is used for inserting material stacks into the internal material storage. \
 					Inputs 3-13 are used to transfer materials between target machine and circuit storage. \
 					Positive values will take that number of materials from another machine. \
 					Negative values will fill another machine from internal storage. Outputs show current stored amounts of mats."
+=======
+	desc = "It's module, designed to automatic storage and distribution of materials"
+	extended_desc = "The first input is ref to object of interaction.Second input used for interaction with stacks of materials.\
+					It accepts amount of sheets to insert.Inputs 3-13 used to direct mat transer between containers of machines.\
+					It accepts amount of material to transfer.Positive values means, that circuit will drain another machine.\
+					Negative ones means, that machine needs to be filled.Outputs shows current stored amounts of mats."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "grabber"
 	complexity = 16
 	inputs = list(
@@ -628,10 +696,17 @@
 				activate_pin(3)
 			else
 				activate_pin(4)
+<<<<<<< HEAD
 		if(5)
 			set_pin_data(IC_OUTPUT, 1, WEAKREF(src))
 			AfterMaterialInsert()
 			activate_pin(6)
+=======
+		if(4)
+			AfterMaterialInsert()
+			set_pin_data(IC_OUTPUT, 1, WEAKREF(src))
+			activate_pin(5)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/integrated_circuit/manipulation/matman/Destroy()
 	GET_COMPONENT(materials, /datum/component/material_container)

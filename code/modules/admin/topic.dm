@@ -1107,18 +1107,28 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
+<<<<<<< HEAD
 		var/safety = alert("Delete message/note?",,"Yes","No");
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
+=======
+		var/message_id = href_list["deletemessage"]
+		delete_message(message_id)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
+<<<<<<< HEAD
 		var/safety = alert("Delete message/note?",,"Yes","No");
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
+=======
+		var/message_id = href_list["deletemessageempty"]
+		delete_message(message_id, browse = 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	else if(href_list["editmessage"])
 		if(!check_rights(R_ADMIN))
@@ -1222,7 +1232,11 @@
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 				ban_unban_log_save("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This will be removed in [mins] minutes.")
 				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.ckey].\nReason: [reason]</BIG></span>")
+<<<<<<< HEAD
 				to_chat(M, "<span class='danger'>This is a temporary ban, it will be removed in [mins] minutes. The round ID is [GLOB.round_id].</span>")
+=======
+				to_chat(M, "<span class='danger'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
 					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
@@ -1936,6 +1950,7 @@
 
 	else if(href_list["borgpanel"])
 		if(!check_rights(R_ADMIN))
+<<<<<<< HEAD
 			return
 
 		var/mob/M = locate(href_list["borgpanel"])
@@ -1947,6 +1962,19 @@
 	else if(href_list["initmind"])
 		if(!check_rights(R_ADMIN))
 			return
+=======
+			return
+
+		var/mob/M = locate(href_list["borgpanel"])
+		if(!iscyborg(M))
+			to_chat(usr, "This can only be used on cyborgs")
+		else
+			open_borgopanel(M)
+
+	else if(href_list["initmind"])
+		if(!check_rights(R_ADMIN))
+			return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/mob/M = locate(href_list["initmind"])
 		if(!ismob(M) || M.mind)
 			to_chat(usr, "This can only be used on instances on mindless mobs")

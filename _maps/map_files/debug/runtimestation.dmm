@@ -638,7 +638,11 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "bT" = (
+<<<<<<< HEAD
 /obj/machinery/chem_dispenser,
+=======
+/obj/machinery/chem_dispenser/scp_294,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "bU" = (
@@ -1341,8 +1345,45 @@
 "jU" = (
 /obj/structure/table,
 /obj/item/melee/transforming/energy/axe,
+<<<<<<< HEAD
+=======
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"kk" = (
+/obj/structure/table/optable,
+/turf/open/floor/plasteel,
+/area/maintenance/department/bridge)
+"kn" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"kQ" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	pixel_y = 25
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"lK" = (
+/obj/effect/landmark/observer_start,
+/turf/open/floor/plating,
+/area/storage/primary)
+<<<<<<< HEAD
 "kk" = (
 /obj/structure/table/optable,
 /turf/open/floor/plasteel,
@@ -1376,6 +1417,8 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plating,
 /area/storage/primary)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "ny" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,

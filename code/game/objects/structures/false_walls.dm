@@ -62,6 +62,10 @@
 			opening = FALSE
 			return
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
+<<<<<<< HEAD
+=======
+	air_update_turf(1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/structure/falsewall/proc/toggle_open()
 	if(!QDELETED(src))
@@ -69,7 +73,10 @@
 		set_opacity(density)
 		opening = FALSE
 		update_icon()
+<<<<<<< HEAD
 		air_update_turf(TRUE)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	if(opening)

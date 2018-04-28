@@ -126,11 +126,18 @@
 		else
 			return TRUE
 	else
+<<<<<<< HEAD
 		if(O.loc.SendSignal(COMSIG_CONTAINS_STORAGE))
 			return O.loc.SendSignal(COMSIG_TRY_STORAGE_TAKE, O, src)
 		else
 			O.forceMove(src)
 			return TRUE
+=======
+		if(istype(O.loc, /obj/item/storage))
+			var/obj/item/storage/S = O.loc
+			S.remove_from_storage(O,src)
+		O.forceMove(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/smartfridge/attack_ai(mob/user)
 	return FALSE

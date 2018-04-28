@@ -166,6 +166,7 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
+<<<<<<< HEAD
 	config_entry_value = "https://wiki.yogstation.net/" // yogs - Old Tickets
 
 /datum/config_entry/string/forumurl
@@ -176,6 +177,18 @@
 
 /datum/config_entry/string/githuburl
 	config_entry_value = "https://github.com/yogstation13/tg-rebase" // yogs - Old Tickets
+=======
+	config_entry_value = "http://www.tgstation13.org/wiki"
+
+/datum/config_entry/string/forumurl
+	config_entry_value = "http://tgstation13.org/phpBB/index.php"
+
+/datum/config_entry/string/rulesurl
+	config_entry_value = "http://www.tgstation13.org/wiki/Rules"
+
+/datum/config_entry/string/githuburl
+	config_entry_value = "https://www.github.com/tgstation/-tg-station"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/config_entry/number/githubrepoid
 	config_entry_value = null

@@ -119,13 +119,30 @@
 
 /obj/effect/forcefield/arena_shuttle
 	name = "portal"
+<<<<<<< HEAD
 	timeleft = 0
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/list/warp_points
 
 /obj/effect/forcefield/arena_shuttle/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	for(var/obj/effect/landmark/shuttle_arena_safe/exit in GLOB.landmarks_list)
 		warp_points += exit
+=======
+	warp_points = get_area_turfs(/area/shuttle/escape)
+	for(var/thing in warp_points)
+		CHECK_TICK
+		var/turf/T = thing
+		if(istype(T.loc, /area/shuttle/escape/backup))
+			warp_points -= T
+			continue
+		for(var/atom/movable/TAM in T)
+			if(TAM.density && TAM.anchored)
+				warp_points -= T
+				break
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/effect/forcefield/arena_shuttle/CollidedWith(atom/movable/AM)
 	if(!isliving(AM))

@@ -2,7 +2,10 @@
 	if(istype(input) && !QDELETED(input))
 		if(istype(input, /datum/weakref))
 			return input
+<<<<<<< HEAD
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!input.weak_reference)
 			input.weak_reference = new /datum/weakref(input)
 		return input.weak_reference

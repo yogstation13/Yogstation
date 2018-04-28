@@ -387,8 +387,13 @@
 	desc = "A pair of black shoes."
 	permeability_coefficient = 0.05
 	resistance_flags = NONE
+<<<<<<< HEAD
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+=======
+	pockets = /obj/item/storage/internal/pocket/shoes
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -420,7 +425,11 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/chameleon)
 	clumsy_check = 0
 	item_flags = NONE
+<<<<<<< HEAD
 	pin = /obj/item/firing_pin
+=======
+	pin = /obj/item/device/firing_pin
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	cell_type = /obj/item/stock_parts/cell/bluespace
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
@@ -579,11 +588,18 @@
 /obj/item/storage/belt/chameleon
 	name = "toolbelt"
 	desc = "Holds tools."
+<<<<<<< HEAD
+=======
+	silent = TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/storage/belt/chameleon/Initialize()
 	. = ..()
+<<<<<<< HEAD
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/storage/belt
 	chameleon_action.chameleon_name = "Belt"
@@ -601,7 +617,11 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
+<<<<<<< HEAD
 /obj/item/radio/headset/chameleon
+=======
+/obj/item/device/radio/headset/chameleon
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "radio headset"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -615,6 +635,7 @@
 /obj/item/radio/headset/chameleon/emp_act(severity)
 	chameleon_action.emp_randomise()
 
+<<<<<<< HEAD
 /obj/item/radio/headset/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
@@ -624,6 +645,17 @@
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/pda/chameleon/Initialize()
+=======
+/obj/item/device/radio/headset/chameleon/broken/Initialize()
+	. = ..()
+	chameleon_action.emp_randomise(INFINITY)
+
+/obj/item/device/pda/chameleon
+	name = "PDA"
+	var/datum/action/item_action/chameleon/change/chameleon_action
+
+/obj/item/device/pda/chameleon/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/pda
@@ -634,7 +666,11 @@
 /obj/item/pda/chameleon/emp_act(severity)
 	chameleon_action.emp_randomise()
 
+<<<<<<< HEAD
 /obj/item/pda/chameleon/broken/Initialize()
+=======
+/obj/item/device/pda/chameleon/broken/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 

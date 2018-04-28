@@ -43,6 +43,7 @@
 
 	switch(mode)
 		if(WAND_OPEN)
+<<<<<<< HEAD
 			data.data["data"] = "open"
 		if(WAND_BOLT)
 			data.data["data"] = "bolt"
@@ -50,6 +51,15 @@
 			data.data["data"] = "emergency"
 
 	data.data["data_secondary"] = "toggle"
+=======
+			data.plaintext_data = "open"
+		if(WAND_BOLT)
+			data.plaintext_data = "bolt"
+		if(WAND_EMERGENCY)
+			data.plaintext_data = "emergency"
+
+	data.plaintext_data_secondary = "toggle"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	data.passkey = access_list
 
 	ntnet_send(data)

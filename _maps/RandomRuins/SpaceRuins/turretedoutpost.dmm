@@ -105,7 +105,11 @@
 /area/ruin/space/has_grav/turretedoutpost)
 "av" = (
 /obj/structure/rack,
+<<<<<<< HEAD
 /obj/item/firing_pin,
+=======
+/obj/item/device/firing_pin,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/vault/side{
 	dir = 1
 	},

@@ -285,7 +285,10 @@
 			var/list/ded = SSblackbox.first_death
 			if(ded.len)
 				parts += "[GLOB.TAB]First Death: <b>[ded["name"]], [ded["role"]], at [ded["area"]]. Damage taken: [ded["damage"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]</b>"
+<<<<<<< HEAD
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			else
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
 	return parts.Join("<br>")
@@ -343,17 +346,25 @@
 
 /datum/controller/subsystem/ticker/proc/law_report()
 	var/list/parts = list()
+<<<<<<< HEAD
 	var/borg_spacer = FALSE //inserts an extra linebreak to seperate AIs from independent borgs, and then multiple independent borgs.
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	//Silicon laws report
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
+<<<<<<< HEAD
 			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+=======
+			parts += "<b>[aiPlayer.name] (Played by: [aiPlayer.mind.key])'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was deactivated"] were:</b>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
+<<<<<<< HEAD
 			var/borg_num = aiPlayer.connected_robots.len
 			var/robolist = "<br><b>[aiPlayer.real_name]</b>'s minions were: "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
@@ -374,6 +385,23 @@
 			if(!borg_spacer)
 				borg_spacer = TRUE
 
+=======
+			var/robolist = "<b>[aiPlayer.real_name]'s minions were:</b> "
+			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
+				if(robo.mind)
+					robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.mind.key]), ":" (Played by: [robo.mind.key]), "]"
+			parts += "[robolist]"
+
+	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
+		if (!robo.connected_ai && robo.mind)
+			if (robo.stat != DEAD)
+				parts += "<b>[robo.name] (Played by: [robo.mind.key]) survived as an AI-less borg! Its laws were:</b>"
+			else
+				parts += "<b>[robo.name] (Played by: [robo.mind.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
+
+			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
+				parts += robo.laws.get_law_list(include_zeroth=TRUE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(parts.len)
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
 	else

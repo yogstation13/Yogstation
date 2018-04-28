@@ -106,8 +106,11 @@
 				return
 			if(!new_goal)
 				new_goal = default_goal
+<<<<<<< HEAD
 			if (new_goal > 1000)
 				to_chat(usr, "The entered amount of points is too large. Points have instead been set to the maximum allowed amount.")
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			id.goal = CLAMP(new_goal, 0, 1000) //maximum 1000 points
 		if("toggle_open")
 			if(teleporter.locked)

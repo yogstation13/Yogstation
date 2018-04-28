@@ -30,12 +30,19 @@
 
 #ifdef UNIT_TESTS
 /proc/log_test(text)
+<<<<<<< HEAD
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
 #endif
 
 
 /* Items with ADMINPRIVATE prefixed are stripped from public logs. */
+=======
+	WRITE_FILE(GLOB.test_log, "\[[time_stamp()]]: [text]")
+	SEND_TEXT(world.log, text)
+#endif
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /proc/log_admin(text)
 	GLOB.admin_log.Add(text)
 	if (CONFIG_GET(flag/log_admin))
@@ -170,5 +177,12 @@
 	else if(A.loc)
 		return "[A.loc] (0, 0, 0) ([A.loc.type])"
 
+<<<<<<< HEAD
 //this is only used here (for now)
 #undef RUST_G
+=======
+
+/proc/log_manifest(key,datum/mind/mind,mob/body,latejoin = FALSE)
+	if (CONFIG_GET(flag/log_manifest))
+		WRITE_FILE(GLOB.manifest_log, "[key] \\ [body.real_name] \\ [mind.assigned_role] \\ [mind.special_role ? mind.special_role : "NONE"] \\ [latejoin ? "LATEJOIN":"ROUNDSTART"]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

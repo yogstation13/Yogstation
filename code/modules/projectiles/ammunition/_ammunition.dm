@@ -18,7 +18,10 @@
 	var/click_cooldown_override = 0				//Override this to make your gun have a faster fire rate, in tenths of a second. 4 is the default gun cooldown.
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the ammo is fired.
 	var/heavy_metal = TRUE
+<<<<<<< HEAD:code/modules/projectiles/ammunition/_ammunition.dm
 	var/harmful = TRUE //pacifism check for boolet, set to FALSE if bullet is non-lethal
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/projectiles/ammunition/_ammunition.dm
 
 
 /obj/item/ammo_casing/Initialize()

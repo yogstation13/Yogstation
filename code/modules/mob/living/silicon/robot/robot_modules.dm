@@ -242,7 +242,11 @@
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/extinguisher,
 		/obj/item/pickaxe,
+<<<<<<< HEAD
 		/obj/item/t_scanner/adv_mining_scanner,
+=======
+		/obj/item/device/t_scanner/adv_mining_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/soap/nanotrasen,
 		/obj/item/borg/cyborghug)
@@ -298,11 +302,19 @@
 		/obj/item/wrench/cyborg,
 		/obj/item/crowbar/cyborg,
 		/obj/item/wirecutters/cyborg,
+<<<<<<< HEAD
 		/obj/item/multitool/cyborg,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/geiger_counter/cyborg,
 		/obj/item/assembly/signaler/cyborg,
+=======
+		/obj/item/device/multitool/cyborg,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/device/geiger_counter/cyborg,
+		/obj/item/device/assembly/signaler/cyborg,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/item/areaeditor/blueprints/cyborg,
 		/obj/item/electroadaptive_pseudocircuit,
 		/obj/item/stack/sheet/metal/cyborg,
@@ -323,7 +335,11 @@
 /obj/item/robot_module/security
 	name = "Security"
 	basic_modules = list(
+<<<<<<< HEAD
 		/obj/item/assembly/flash/cyborg,
+=======
+		/obj/item/device/assembly/flash/cyborg,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
@@ -427,9 +443,15 @@
 /obj/item/robot_module/clown
 	name = "Clown"
 	basic_modules = list(
+<<<<<<< HEAD
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/toy/crayon/rainbow,
 		/obj/item/instrument/bikehorn,
+=======
+		/obj/item/device/assembly/flash/cyborg,
+		/obj/item/toy/crayon/rainbow,
+		/obj/item/device/instrument/bikehorn,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/item/stamp/clown,
 		/obj/item/bikehorn,
 		/obj/item/bikehorn/airhorn,

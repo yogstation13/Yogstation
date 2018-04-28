@@ -8,7 +8,10 @@
 	var/gain_text
 	var/lose_text
 	var/medical_record_text //This text will appear on medical records for the trait. Not yet implemented
+<<<<<<< HEAD
 	var/mood_trait = FALSE //if true, this trait affects mood and is unavailable if moodlets are disabled
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/mob_trait //if applicable, apply and remove this mob trait
 	var/mob/living/trait_holder
 
@@ -57,7 +60,10 @@
 
 /datum/trait/process()
 	if(QDELETED(trait_holder))
+<<<<<<< HEAD
 		trait_holder = null
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		qdel(src)
 		return
 	if(trait_holder.stat == DEAD)
@@ -120,7 +126,11 @@ Use this as a guideline
 	var/mob/living/carbon/human/H = trait_holder
 	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
 	H.put_in_hands(glasses)
+<<<<<<< HEAD
 	H.equip_to_slot(glasses, SLOT_GLASSES)
+=======
+	H.equip_to_slot(glasses, slot_glasses)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	H.regenerate_icons()
 
 //This whole proc is called automatically

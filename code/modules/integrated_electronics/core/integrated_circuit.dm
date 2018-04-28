@@ -5,7 +5,11 @@
 	icon_state = "template"
 	w_class = WEIGHT_CLASS_TINY
 	materials = list()				// To be filled later
+<<<<<<< HEAD
 	var/obj/item/electronic_assembly/assembly // Reference to the assembly holding this circuit, if any.
+=======
+	var/obj/item/device/electronic_assembly/assembly // Reference to the assembly holding this circuit, if any.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/extended_desc
 	var/list/inputs = list()
 	var/list/inputs_default = list()// Assoc list which will fill a pin with data upon creation.  e.g. "2" = 0 will set input pin 2 to equal 0 instead of null.
@@ -255,14 +259,23 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			if(href_list["link"])
 				linked = locate(href_list["link"]) in pin.linked
 
+<<<<<<< HEAD
 			if(istype(held_item, /obj/item/integrated_electronics) || istype(held_item, /obj/item/multitool))
+=======
+			if(istype(held_item, /obj/item/device/integrated_electronics) || istype(held_item, /obj/item/device/multitool))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				pin.handle_wire(linked, held_item, href_list["act"], usr)
 			else
 				to_chat(usr, "<span class='warning'>You can't do a whole lot without the proper tools.</span>")
 
 	if(href_list["scan"])
+<<<<<<< HEAD
 		if(istype(held_item, /obj/item/integrated_electronics/debugger))
 			var/obj/item/integrated_electronics/debugger/D = held_item
+=======
+		if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
+			var/obj/item/device/integrated_electronics/debugger/D = held_item
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(D.accepting_refs)
 				D.afterattack(src, usr, TRUE)
 			else

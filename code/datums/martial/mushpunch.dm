@@ -23,7 +23,11 @@
 /obj/item/mushpunch
 	name = "odd mushroom"
 	desc = "<I>Sapienza Ophioglossoides</I>:An odd mushroom from the flesh of a mushroom person. it has apparently retained some innate power of it's owner, as it quivers with barely-contained POWER!"
+<<<<<<< HEAD
 	icon = 'icons/obj/hydroponics/seeds.dmi'
+=======
+	icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "mycelium-angel"
 
 /obj/item/mushpunch/attack_self(mob/living/carbon/human/user)

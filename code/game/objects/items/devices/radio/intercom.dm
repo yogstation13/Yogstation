@@ -85,7 +85,11 @@
 /obj/item/radio/intercom/attack_ai(mob/user)
 	interact(user)
 
+<<<<<<< HEAD
 /obj/item/radio/intercom/attack_hand(mob/user)
+=======
+/obj/item/device/radio/intercom/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return
@@ -95,7 +99,11 @@
 	..()
 	ui_interact(user, state = GLOB.default_state)
 
+<<<<<<< HEAD
 /obj/item/radio/intercom/can_receive(freq, level)
+=======
+/obj/item/device/radio/intercom/can_receive(freq, level)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!on)
 		return FALSE
 	if(wires.is_cut(WIRE_RX))
@@ -113,7 +121,11 @@
 	return TRUE
 
 
+<<<<<<< HEAD
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
+=======
+/obj/item/device/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (message_mode == MODE_INTERCOM)
 		return  // Avoid hearing the same thing twice
 	if(!anyai && !(speaker in ai))
@@ -135,7 +147,11 @@
 		else
 			icon_state = initial(icon_state)
 
+<<<<<<< HEAD
 /obj/item/radio/intercom/add_blood_DNA(list/blood_dna)
+=======
+/obj/item/device/radio/intercom/add_blood_DNA(list/blood_dna)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return FALSE
 
 //Created through the autolathe or through deconstructing intercoms. Can be applied to wall to make a new intercom on it!

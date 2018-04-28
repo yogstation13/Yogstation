@@ -40,7 +40,11 @@
 		if(ismineralturf(F))
 			var/turf/closed/mineral/M = F
 			M.ScrapeAway(null, CHANGETURF_IGNORE_AIR)
+<<<<<<< HEAD
 	gps = new /obj/item/gps/internal(src)
+=======
+	gps = new /obj/item/device/gps/internal(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/living/simple_animal/hostile/spawner/lavaland/Destroy()
 	QDEL_NULL(emitted_light)

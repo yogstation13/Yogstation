@@ -769,5 +769,9 @@
 	build_type = MECHFAB
 	materials = list(MAT_METAL = 750, MAT_GLASS = 750)
 	construction_time = 100
+<<<<<<< HEAD
 	build_path = /obj/item/assembly/flash/handheld
+=======
+	build_path = /obj/item/device/assembly/flash/handheld
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("Misc")

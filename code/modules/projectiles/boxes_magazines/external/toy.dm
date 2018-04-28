@@ -30,7 +30,10 @@
 
 /obj/item/ammo_box/magazine/toy/smgm45
 	name = "donksoft SMG magazine"
+<<<<<<< HEAD
 	icon_state = "c20r45-toy"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	caliber = "foam_force"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
 	max_ammo = 20
@@ -40,12 +43,18 @@
 	icon_state = "c20r45-[round(ammo_count(),2)]"
 
 /obj/item/ammo_box/magazine/toy/smgm45/riot
+<<<<<<< HEAD
 	icon_state = "c20r45-riot"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 
 /obj/item/ammo_box/magazine/toy/m762
 	name = "donksoft box magazine"
+<<<<<<< HEAD
 	icon_state = "a762-toy"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	caliber = "foam_force"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
 	max_ammo = 50
@@ -55,5 +64,8 @@
 	icon_state = "a762-[round(ammo_count(),10)]"
 
 /obj/item/ammo_box/magazine/toy/m762/riot
+<<<<<<< HEAD
 	icon_state = "a762-riot"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot

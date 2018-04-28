@@ -1,8 +1,15 @@
 //Plasma fire properties
 #define OXYGEN_BURN_RATE_BASE				1.4
 #define PLASMA_BURN_RATE_DELTA				9
+<<<<<<< HEAD
 #define PLASMA_MINIMUM_OXYGEN_NEEDED		2
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
+=======
+#define PLASMA_UPPER_TEMPERATURE			1370+T0C
+#define PLASMA_MINIMUM_OXYGEN_NEEDED		2
+#define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	30
+#define PLASMA_OXYGEN_FULLBURN				10
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #define FIRE_CARBON_ENERGY_RELEASED			100000	//Amount of heat released per mole of burnt carbon into the tile
 #define FIRE_HYDROGEN_ENERGY_RELEASED		280000 // Amount of heat released per mole of burnt hydrogen and/or tritium(hydrogen isotope)
 #define FIRE_PLASMA_ENERGY_RELEASED			3000000	//Amount of heat released per mole of burnt plasma into the tile
@@ -26,7 +33,11 @@
 #define PLASMA_FUSED_COEFFICENT				0.08
 #define CATALYST_COEFFICENT					0.01
 #define FUSION_PURITY_THRESHOLD				0.95
+<<<<<<< HEAD
 #define FUSION_HEAT_DROPOFF					(20000+T0C)
+=======
+#define FUSION_HEAT_DROPOFF					20000+T0C
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #define NOBLIUM_FORMATION_ENERGY			2e9 //1 Mole of Noblium takes the planck energy to condense.
 /datum/controller/subsystem/air/var/list/gas_reactions //this is our singleton of all reactions
 
@@ -66,10 +77,16 @@
 	priority = INFINITY
 	name = "Hyper-Noblium Reaction Supression"
 	id = "nobstop"
+<<<<<<< HEAD
 
 /datum/gas_reaction/nobliumsupression/init_reqs()
 	min_requirements = list(/datum/gas/hypernoblium = REACTION_OPPRESSION_THRESHOLD)
 
+=======
+/datum/gas_reaction/nobliumsupression/init_reqs()
+	min_requirements = list(/datum/gas/hypernoblium = REACTION_OPPRESSION_THRESHOLD)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/gas_reaction/nobliumsupression/react()
 	return STOP_REACTIONS
 
@@ -187,7 +204,11 @@
 
 	return cached_results[id] ? REACTING : NO_REACTION
 
+<<<<<<< HEAD
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again.
+=======
+//fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/gas_reaction/fusion
 	exclude = FALSE
 	priority = 2
@@ -197,12 +218,21 @@
 
 /datum/gas_reaction/fusion/init_reqs()
 	min_requirements = list(
+<<<<<<< HEAD
 		"ENER" = PLASMA_BINDING_ENERGY * 1000,
 		/datum/gas/plasma = 50,
 		/datum/gas/carbon_dioxide = 1
 	)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
+=======
+		"ENER" = PLASMA_BINDING_ENERGY * 10,
+		/datum/gas/plasma = MINIMUM_HEAT_CAPACITY,
+		/datum/gas/tritium = MINIMUM_HEAT_CAPACITY
+	)
+
+/datum/gas_reaction/fusion/react(datum/gas_mixture/air, turf/open/location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/list/cached_gases = air.gases
 	var/temperature = air.temperature
 	var/turf/open/location
@@ -264,6 +294,7 @@
 	name = "Nitryl formation"
 	id = "nitrylformation"
 
+<<<<<<< HEAD
 /datum/gas_reaction/nitrylformation/init_reqs()
 	min_requirements = list(
 		/datum/gas/oxygen = 20,
@@ -281,6 +312,10 @@
 	var/energy_used = heat_efficency*NITRYL_FORMATION_ENERGY
 	ASSERT_GAS(/datum/gas/nitryl,air)
 	if ((cached_gases[/datum/gas/oxygen][MOLES] - heat_efficency < 0 )|| (cached_gases[/datum/gas/nitrogen][MOLES] - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+=======
+	if(((cached_gases[/datum/gas/plasma][MOLES]+cached_gases[/datum/gas/tritium][MOLES])/air.total_moles() < FUSION_PURITY_THRESHOLD) || air.return_pressure() < 10*ONE_ATMOSPHERE)
+		//Fusion wont occur if the level of impurities is too high or if there is too little pressure.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return NO_REACTION
 	cached_gases[/datum/gas/oxygen][MOLES] -= heat_efficency
 	cached_gases[/datum/gas/nitrogen][MOLES] -= heat_efficency
@@ -310,6 +345,7 @@
 	var/pressure = air.return_pressure()
 
 	var/old_heat_capacity = air.heat_capacity()
+<<<<<<< HEAD
 	var/reaction_efficency = min(1/((pressure/(0.1*ONE_ATMOSPHERE))*(max(cached_gases[/datum/gas/plasma][MOLES]/cached_gases[/datum/gas/tritium][MOLES],1))),cached_gases[/datum/gas/tritium][MOLES],cached_gases[/datum/gas/plasma][MOLES]/2)
 	var/energy_released = 2*reaction_efficency*FIRE_CARBON_ENERGY_RELEASED
 	if ((cached_gases[/datum/gas/tritium][MOLES] - reaction_efficency < 0 )|| (cached_gases[/datum/gas/plasma][MOLES] - (2*reaction_efficency) < 0)) //Shouldn't produce gas from nothing.
@@ -359,6 +395,132 @@
 			air.temperature = max(((air.temperature*old_heat_capacity + stim_energy_change)/new_heat_capacity),TCMB)
 		return REACTING
 
+=======
+	var/catalyst_efficency = max(min(cached_gases[/datum/gas/plasma][MOLES]/cached_gases[/datum/gas/tritium][MOLES],MAX_CATALYST_EFFICENCY)-(temperature/FUSION_HEAT_DROPOFF),1)
+	var/reaction_energy = THERMAL_ENERGY(air)
+	var/moles_impurities = max(air.total_moles()-(cached_gases[/datum/gas/plasma][MOLES]+cached_gases[/datum/gas/tritium][MOLES]),1) //This makes it assume a minimum of 1 mol impurities so the reaction energy doesn't divide by 0
+
+	var/plasma_fused = min((PLASMA_FUSED_COEFFICENT*catalyst_efficency)*(temperature/PLASMA_BINDING_ENERGY)/10,cached_gases[/datum/gas/plasma][MOLES]) //Preserve matter
+	var/tritium_catalyzed = min((CATALYST_COEFFICENT*catalyst_efficency)*(temperature/PLASMA_BINDING_ENERGY)/40,cached_gases[/datum/gas/tritium][MOLES]) //Ditto
+	var/oxygen_added = tritium_catalyzed
+	var/waste_added = max((plasma_fused-oxygen_added)-((air.total_moles()*air.heat_capacity())/PLASMA_BINDING_ENERGY),0)
+	reaction_energy = max(reaction_energy+((catalyst_efficency*cached_gases[/datum/gas/plasma][MOLES])/((moles_impurities/catalyst_efficency)+2)*10)+((plasma_fused/(moles_impurities/catalyst_efficency))*PLASMA_BINDING_ENERGY),0)
+
+	air.assert_gases(/datum/gas/oxygen, /datum/gas/carbon_dioxide, /datum/gas/water_vapor, /datum/gas/nitrous_oxide, /datum/gas/nitryl)
+	//Fusion produces an absurd amount of waste products now, requiring active filtration.
+	cached_gases[/datum/gas/plasma][MOLES] = max(cached_gases[/datum/gas/plasma][MOLES] - plasma_fused,0)
+	cached_gases[/datum/gas/tritium][MOLES] = max(cached_gases[/datum/gas/tritium][MOLES] - tritium_catalyzed,0)
+	cached_gases[/datum/gas/oxygen][MOLES] += oxygen_added
+	cached_gases[/datum/gas/water_vapor][MOLES] += waste_added
+	cached_gases[/datum/gas/nitrous_oxide][MOLES] += waste_added
+	cached_gases[/datum/gas/nitryl][MOLES] += waste_added
+	cached_gases[/datum/gas/carbon_dioxide][MOLES] += waste_added
+	if (location)
+		radiation_pulse(location, reaction_energy/(PLASMA_BINDING_ENERGY*MAX_CATALYST_EFFICENCY))
+	if(reaction_energy > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((temperature*old_heat_capacity + reaction_energy)/new_heat_capacity),TCMB)
+			//Prevents whatever mechanism is causing it to hit negative temperatures.
+		return REACTING
+
+/datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
+	priority = 3
+	name = "Nitryl formation"
+	id = "nitrylformation"
+
+/datum/gas_reaction/nitrylformation/init_reqs()
+	min_requirements = list(
+		/datum/gas/oxygen = 20,
+		/datum/gas/nitrogen = 20,
+		/datum/gas/nitrous_oxide = 5,
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*400
+	)
+
+/datum/gas_reaction/nitrylformation/react(datum/gas_mixture/air)
+	var/list/cached_gases = air.gases
+	var/temperature = air.temperature
+
+	var/old_heat_capacity = air.heat_capacity()
+	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*100),cached_gases[/datum/gas/oxygen][MOLES],cached_gases[/datum/gas/nitrogen][MOLES])
+	var/energy_used = heat_efficency*NITRYL_FORMATION_ENERGY
+	ASSERT_GAS(/datum/gas/nitryl,air)
+
+	cached_gases[/datum/gas/oxygen][MOLES] -= heat_efficency
+	cached_gases[/datum/gas/nitrogen][MOLES] -= heat_efficency
+	cached_gases[/datum/gas/nitryl][MOLES] += heat_efficency*2
+
+	if(energy_used > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity),TCMB)
+		return REACTING
+
+/datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
+	priority = 4
+	name = "BZ Gas formation"
+	id = "bzformation"
+
+/datum/gas_reaction/bzformation/init_reqs()
+	min_requirements = list(
+		/datum/gas/tritium = 10,
+		/datum/gas/plasma = 10
+	)
+
+
+/datum/gas_reaction/bzformation/react(datum/gas_mixture/air)
+	var/list/cached_gases = air.gases
+	var/temperature = air.temperature
+	var/pressure = air.return_pressure()
+
+	var/old_heat_capacity = air.heat_capacity()
+	var/reaction_efficency = min(1/((pressure/(0.1*ONE_ATMOSPHERE))*(max(cached_gases[/datum/gas/plasma][MOLES]/cached_gases[/datum/gas/tritium][MOLES],1))),cached_gases[/datum/gas/tritium][MOLES],cached_gases[/datum/gas/plasma][MOLES]/2)
+	var/energy_released = 2*reaction_efficency*FIRE_CARBON_ENERGY_RELEASED
+
+	ASSERT_GAS(/datum/gas/bz,air)
+	cached_gases[/datum/gas/bz][MOLES]+= reaction_efficency
+	cached_gases[/datum/gas/tritium][MOLES] = max(cached_gases[/datum/gas/tritium][MOLES]- reaction_efficency,0)
+	cached_gases[/datum/gas/plasma][MOLES] = max(cached_gases[/datum/gas/plasma][MOLES] - (2*reaction_efficency),0)
+
+
+	if(energy_released > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((temperature*old_heat_capacity + energy_released)/new_heat_capacity),TCMB)
+		return REACTING
+
+/datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
+	priority = 5
+	name = "Stimulum formation"
+	id = "stimformation"
+/datum/gas_reaction/stimformation/init_reqs()
+	min_requirements = list(
+		/datum/gas/tritium = 30,
+		/datum/gas/plasma = 10,
+		/datum/gas/bz = 20,
+		/datum/gas/nitryl = 30,
+		"TEMP" = STIMULUM_HEAT_SCALE/2)
+
+/datum/gas_reaction/stimformation/react(datum/gas_mixture/air)
+	var/list/cached_gases = air.gases
+
+	var/old_heat_capacity = air.heat_capacity()
+	var/heat_scale = min(air.temperature/STIMULUM_HEAT_SCALE,cached_gases[/datum/gas/tritium][MOLES],cached_gases[/datum/gas/plasma][MOLES],cached_gases[/datum/gas/nitryl][MOLES])
+	var/stim_energy_change = heat_scale + STIMULUM_FIRST_RISE*(heat_scale**2) - STIMULUM_FIRST_DROP*(heat_scale**3) + STIMULUM_SECOND_RISE*(heat_scale**4) - STIMULUM_ABSOLUTE_DROP*(heat_scale**5)
+
+	ASSERT_GAS(/datum/gas/stimulum,air)
+	cached_gases[/datum/gas/stimulum][MOLES]+= heat_scale/10
+	cached_gases[/datum/gas/tritium][MOLES] = max(cached_gases[/datum/gas/tritium][MOLES]- heat_scale,0)
+	cached_gases[/datum/gas/plasma][MOLES] = max(cached_gases[/datum/gas/plasma][MOLES]- heat_scale,0)
+	cached_gases[/datum/gas/nitryl][MOLES] = max(cached_gases[/datum/gas/nitryl][MOLES]- heat_scale,0)
+
+	if(stim_energy_change)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((air.temperature*old_heat_capacity + stim_energy_change)/new_heat_capacity),TCMB)
+		return REACTING
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/gas_reaction/nobliumformation //Hyper-Nobelium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
 	priority = 6
 	name = "Hyper-Noblium condensation"
@@ -376,8 +538,11 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/nob_formed = min((cached_gases[/datum/gas/nitrogen][MOLES]+cached_gases[/datum/gas/tritium][MOLES])/100,cached_gases[/datum/gas/tritium][MOLES]/10,cached_gases[/datum/gas/nitrogen][MOLES]/20)
 	var/energy_taken = nob_formed*(NOBLIUM_FORMATION_ENERGY/(max(cached_gases[/datum/gas/bz][MOLES],1)))
+<<<<<<< HEAD
 	if ((cached_gases[/datum/gas/tritium][MOLES] - 10*nob_formed < 0) || (cached_gases[/datum/gas/nitrogen][MOLES] - 20*nob_formed < 0))
 		return NO_REACTION
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	cached_gases[/datum/gas/tritium][MOLES] = max(cached_gases[/datum/gas/tritium][MOLES]- 10*nob_formed,0)
 	cached_gases[/datum/gas/nitrogen][MOLES] = max(cached_gases[/datum/gas/nitrogen][MOLES]- 20*nob_formed,0)
 	cached_gases[/datum/gas/hypernoblium][MOLES]+= nob_formed
@@ -390,8 +555,15 @@
 
 #undef OXYGEN_BURN_RATE_BASE
 #undef PLASMA_BURN_RATE_DELTA
+<<<<<<< HEAD
 #undef PLASMA_MINIMUM_OXYGEN_NEEDED
 #undef PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO
+=======
+#undef PLASMA_UPPER_TEMPERATURE
+#undef PLASMA_MINIMUM_OXYGEN_NEEDED
+#undef PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO
+#undef PLASMA_OXYGEN_FULLBURN
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #undef FIRE_CARBON_ENERGY_RELEASED
 #undef FIRE_PLASMA_ENERGY_RELEASED
 #undef WATER_VAPOR_FREEZE

@@ -14,8 +14,18 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	
 	//this is snowflake because of a byond bug (ID:2306577), do not attempt to call non-builtin procs in this if
 	if(copytext(E.name,1,32) == "Maximum recursion level reached")
+<<<<<<< HEAD
 		//log to world while intentionally triggering the byond bug.
 		log_world("runtime error: [E.name]\n[E.desc]")
+=======
+		var/list/split = splittext(E.desc, "\n")
+		for (var/i in 1 to split.len)
+			if (split[i] != "")
+				split[i] = "\[[time2text(world.timeofday,"hh:mm:ss")]\][split[i]]"
+		E.desc = jointext(split, "\n")
+		//log to world while intentionally triggering the byond bug.
+		log_world("\[[time2text(world.timeofday,"hh:mm:ss")]\]runtime error: [E.name]\n[E.desc]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		//if we got to here without silently ending, the byond bug has been fixed.
 		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
 		return //this will never happen.
@@ -124,6 +134,13 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		//good day, sir
 		GLOB.current_test.Fail("[main_line]\n[desclines.Join("\n")]")
 #endif
+<<<<<<< HEAD
+=======
+
+/* This logs the runtime in the old format */
+
+	E.name = "\n\[[time2text(world.timeofday,"hh:mm:ss")]\][E.name]"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 	// This writes the regular format (unwrapping newlines and inserting timestamps as needed).

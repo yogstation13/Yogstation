@@ -17,7 +17,14 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
+=======
+	slot_flags = SLOT_BACK	//ERROOOOO
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_combined_w_class = 21
+	storage_slots = 21
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	resistance_flags = NONE
 	max_integrity = 300
 
@@ -45,8 +52,14 @@
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
 	flags_2 = NO_MAT_REDEMPTION_2
+<<<<<<< HEAD
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
+=======
+	var/pshoom = 'sound/items/pshoom.ogg'
+	var/alt_sound = 'sound/items/pshoom_2.ogg'
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 50)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/holding/ComponentInitialize()
 	. = ..()
@@ -64,6 +77,46 @@
 	qdel(user)
 	return
 
+<<<<<<< HEAD
+=======
+/obj/item/storage/backpack/holding/dump_content_at(atom/dest_object, mob/user)
+	if(Adjacent(user))
+		var/atom/dumping_location = dest_object.get_dumping_location()
+		if(get_dist(user, dumping_location) < 8)
+			if(dumping_location.storage_contents_dump_act(src, user))
+				if(alt_sound && prob(1))
+					playsound(src, alt_sound, 40, 1)
+				else
+					playsound(src, pshoom, 40, 1)
+				user.Beam(dumping_location,icon_state="rped_upgrade",time=5)
+				return 1
+		to_chat(user, "The [src.name] buzzes.")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	return 0
+
+/obj/item/storage/backpack/holding/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/living/user)
+	if((istype(W, /obj/item/storage/backpack/holding) || count_by_type(W.GetAllContents(), /obj/item/storage/backpack/holding)))
+		var/turf/loccheck = get_turf(src)
+		if(is_reebe(loccheck.z))
+			user.visible_message("<span class='warning'>An unseen force knocks [user] to the ground!</span>", "<span class='big_brass'>\"I think not!\"</span>")
+			user.Knockdown(60)
+			return
+		var/safety = alert(user, "Doing this will have extremely dire consequences for the station and its crew. Be sure you know what you're doing.", "Put in [name]?", "Proceed", "Abort")
+		if(safety == "Abort" || !in_range(src, user) || !src || !W || user.incapacitated())
+			return
+		investigate_log("has become a singularity. Caused by [user.key]", INVESTIGATE_SINGULO)
+		to_chat(user, "<span class='danger'>The Bluespace interfaces of the two devices catastrophically malfunction!</span>")
+		qdel(W)
+		var/obj/singularity/singulo = new /obj/singularity (get_turf(src))
+		singulo.energy = 300 //should make it a bit bigger~
+		message_admins("[key_name_admin(user)] detonated a bag of holding")
+		log_game("[key_name(user)] detonated a bag of holding")
+		qdel(src)
+		singulo.process()
+		return
+	. = ..()
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/storage/backpack/holding/singularity_act(current_size)
 	var/dist = max((current_size - 2),1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
@@ -127,6 +180,10 @@
 	desc = "It's a special backpack made exclusively for Nanotrasen officers."
 	icon_state = "captainpack"
 	item_state = "captainpack"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/industrial
 	name = "industrial backpack"
@@ -158,6 +215,10 @@
 	desc = "A specially designed backpack. It's fire resistant and smells vaguely of plasma."
 	icon_state = "toxpack"
 	item_state = "toxpack"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/virology
 	name = "virology backpack"
@@ -179,6 +240,10 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/satchel/leather/withwallet/PopulateContents()
 	new /obj/item/storage/wallet/random(src)
@@ -188,6 +253,10 @@
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel-eng"
 	item_state = "engiepack"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/satchel/med
 	name = "medical satchel"
@@ -218,6 +287,10 @@
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
 	item_state = "satchel-tox"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/satchel/hyd
 	name = "botanist satchel"
@@ -242,6 +315,10 @@
 	desc = "An exclusive satchel for Nanotrasen officers."
 	icon_state = "satchel-cap"
 	item_state = "captainpack"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/satchel/flat
 	name = "smuggler's satchel"
@@ -300,6 +377,12 @@
 			new R(src)
 		revealed = TRUE
 
+/obj/item/storage/backpack/satchel/flat/can_be_inserted(obj/item/W, stop_messages = 0, mob/user)
+	if(SSpersistence.spawned_objects[W])
+		to_chat(user, "<span class='warning'>[W] is unstable after its journey through space and time, it wouldn't survive another trip.</span>")
+		return FALSE
+	return ..()
+
 /obj/item/storage/backpack/duffelbag
 	name = "duffel bag"
 	desc = "A large duffel bag for holding extra things."
@@ -317,6 +400,10 @@
 	desc = "A large duffel bag for holding extra captainly goods."
 	icon_state = "duffel-captain"
 	item_state = "duffel-captain"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/duffelbag/med
 	name = "medical duffel bag"
@@ -364,6 +451,10 @@
 	desc = "A large duffel bag for holding extra tools and supplies."
 	icon_state = "duffel-eng"
 	item_state = "duffel-eng"
+<<<<<<< HEAD
+=======
+	resistance_flags = NONE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/backpack/duffelbag/drone
 	name = "drone duffel bag"
@@ -396,6 +487,10 @@
 	desc = "A large duffel bag for holding extra tactical supplies."
 	icon_state = "duffel-syndie"
 	item_state = "duffel-syndieammo"
+<<<<<<< HEAD
+=======
+	silent = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	slowdown = 0
 
 /obj/item/storage/backpack/duffelbag/syndie/ComponentInitialize()
@@ -535,6 +630,7 @@
 	new /obj/item/grenade/syndieminibomb(src)
 
 // For ClownOps.
+<<<<<<< HEAD
 /obj/item/storage/backpack/duffelbag/clown/syndie/ComponentInitialize()
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
@@ -543,6 +639,14 @@
 
 /obj/item/storage/backpack/duffelbag/clown/syndie/PopulateContents()
 	new /obj/item/pda/clown(src)
+=======
+/obj/item/storage/backpack/duffelbag/clown/syndie
+	slowdown = 0
+	silent = TRUE
+
+/obj/item/storage/backpack/duffelbag/clown/syndie/PopulateContents()
+	new /obj/item/device/pda/clown(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	new /obj/item/clothing/under/rank/clown(src)
 	new /obj/item/clothing/shoes/clown_shoes(src)
 	new /obj/item/clothing/mask/gas/clown_hat(src)

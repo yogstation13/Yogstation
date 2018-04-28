@@ -11,7 +11,11 @@
 /area/shuttle/escape)
 "d" = (
 /obj/structure/table/wood,
+<<<<<<< HEAD
 /obj/item/flashlight/lamp/green,
+=======
+/obj/item/device/flashlight/lamp/green,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "e" = (

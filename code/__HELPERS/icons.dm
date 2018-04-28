@@ -708,6 +708,7 @@ world
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
 /proc/getFlatIcon(image/A, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
+<<<<<<< HEAD
 	//Define... defines.
 	var/static/icon/flat_template = icon('icons/effects/effects.dmi', "nothing")
 
@@ -732,6 +733,16 @@ world
 		return BLANK
 
 	var/noIcon = FALSE
+=======
+	// We start with a blank canvas, otherwise some icon procs crash silently
+	var/icon/flat = icon('icons/effects/effects.dmi', "nothing") // Final flattened icon
+	if(!A)
+		return flat
+	if(A.alpha <= 0)
+		return flat
+	var/noIcon = FALSE
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(start)
 		if(!defdir)
 			defdir = A.dir
@@ -742,6 +753,7 @@ world
 		if(!defblend)
 			defblend = A.blend_mode
 
+<<<<<<< HEAD
 	var/curicon = A.icon || deficon
 	var/curstate = A.icon_state || defstate
 
@@ -752,6 +764,13 @@ world
 				curstate = ""
 			else
 				noIcon = TRUE // Do not render this object.
+=======
+	var/curicon
+	if(A.icon)
+		curicon = A.icon
+	else
+		curicon = deficon
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/curdir
 	var/base_icon_dir	//We'll use this to get the icon state to display if not null BUT NOT pass it to overlays as the dir we have
@@ -760,6 +779,7 @@ world
 	if(!A.dir || A.dir == SOUTH)
 		curdir = defdir
 	else
+<<<<<<< HEAD
 		curdir = A.dir
 
 	//Try to remove/optimize this section ASAP, CPU hog.
@@ -770,6 +790,105 @@ world
 		for(var/i in checkdirs)		//Not using GLOB for a reason.
 			if(length(icon_states(icon(curicon, curstate, i))))
 				exist = TRUE
+=======
+		curstate = defstate
+
+	if(!noIcon && !(curstate in icon_states(curicon)))
+		if("" in icon_states(curicon))
+			curstate = ""
+		else
+			noIcon = TRUE // Do not render this object.
+
+	var/curdir
+	var/base_icon_dir	//We'll use this to get the icon state to display if not null BUT NOT pass it to overlays as the dir we have
+	
+	//These should use the parent's direction (most likely)
+	if(!A.dir || A.dir == SOUTH)
+		curdir = defdir
+	else
+		curdir = A.dir
+
+	//Let's check if the icon actually contains any diagonals, just skip if it's south to save (lot of) time
+	if(curdir != SOUTH)
+		var/icon/test_icon 
+		var/directionals_exist = FALSE
+		var/list/dirs_to_check = GLOB.cardinals - SOUTH
+		outer:
+			for(var/possible_dir in dirs_to_check)
+				test_icon = icon(curicon,curstate,possible_dir,frame=1)
+				for(var/x in 1 to world.icon_size)
+					for(var/y in 1 to world.icon_size)
+						if(!isnull(test_icon.GetPixel(x,y)))
+							directionals_exist = TRUE
+							break outer
+		if(!directionals_exist)
+			base_icon_dir = SOUTH
+	if(!base_icon_dir)
+		base_icon_dir = curdir
+
+	var/curblend
+	if(A.blend_mode == BLEND_DEFAULT)
+		curblend = defblend
+	else
+		curblend = A.blend_mode
+
+	// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
+	var/list/layers = list()
+	var/image/copy
+	// Add the atom's icon itself, without pixel_x/y offsets.
+	if(!noIcon)
+		copy = image(icon=curicon, icon_state=curstate, layer=A.layer, dir=base_icon_dir)
+		copy.color = A.color
+		copy.alpha = A.alpha
+		copy.blend_mode = curblend
+		layers[copy] = A.layer
+
+	// Loop through the underlays, then overlays, sorting them into the layers list
+	var/list/process = A.underlays // Current list being processed
+	var/pSet=0 // Which list is being processed: 0 = underlays, 1 = overlays
+	var/curIndex=1 // index of 'current' in list being processed
+	var/current // Current overlay being sorted
+	var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
+	var/compare // The overlay 'add' is being compared against
+	var/cmpIndex // The index in the layers list of 'compare'
+	while(TRUE)
+		if(curIndex<=process.len)
+			current = process[curIndex]
+			if(!current)
+				curIndex++ //Try the next layer
+				continue
+			var/image/I = current
+			if(I.plane != FLOAT_PLANE && I.plane != A.plane)
+				curIndex++
+				continue
+			currentLayer = I.layer
+			if(currentLayer<0) // Special case for FLY_LAYER
+				if(currentLayer <= -1000)
+					return flat
+				if(pSet == 0) // Underlay
+					currentLayer = A.layer+currentLayer/1000
+				else // Overlay
+					currentLayer = A.layer+(1000+currentLayer)/1000
+
+			// Sort add into layers list
+			for(cmpIndex=1,cmpIndex<=layers.len,cmpIndex++)
+				compare = layers[cmpIndex]
+				if(currentLayer < layers[compare]) // Associated value is the calculated layer
+					layers.Insert(cmpIndex,current)
+					layers[current] = currentLayer
+					break
+			if(cmpIndex>layers.len) // Reached end of list without inserting
+				layers[current]=currentLayer // Place at end
+
+			curIndex++
+
+		if(curIndex>process.len)
+			if(pSet == 0) // Switch to overlays
+				curIndex = 1
+				pSet = 1
+				process = A.overlays
+			else // All done
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				break
 		if(!exist)
 			base_icon_dir = SOUTH
@@ -821,16 +940,41 @@ world
 
 		var/icon/add // Icon of overlay being added
 
+<<<<<<< HEAD
 		// Current dimensions of flattened icon
 		var/list/flat_size = list(1, flat.Width(), 1, flat.Height())
 		// Dimensions of overlay being added
 		var/list/add_size[4]
+=======
+	// Current dimensions of flattened icon
+	var/flatX1=1
+	var/flatX2=flat.Width()
+	var/flatY1=1
+	var/flatY2=flat.Height()
+	// Dimensions of overlay being added
+	var/addX1
+	var/addX2
+	var/addY1
+	var/addY2
+
+	for(var/V in layers)
+		var/image/I = V
+		if(I.alpha == 0)
+			continue
+
+		if(I == copy) // 'I' is an /image based on the object being flattened.
+			curblend = BLEND_OVERLAY
+			add = icon(I.icon, I.icon_state, base_icon_dir)
+		else // 'I' is an appearance object.
+			add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend, FALSE, no_anim)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 		for(var/V in layers)
 			var/image/I = V
 			if(I.alpha == 0)
 				continue
 
+<<<<<<< HEAD
 			if(I == copy) // 'I' is an /image based on the object being flattened.
 				curblend = BLEND_OVERLAY
 				add = icon(I.icon, I.icon_state, base_icon_dir)
@@ -892,6 +1036,15 @@ world
 
 	#undef BLANK
 	#undef SET_SELF
+=======
+	if(no_anim)
+		//Clean up repeated frames
+		var/icon/cleaned = new /icon()
+		cleaned.Insert(flat, "", SOUTH, 1, 0)
+		return cleaned
+	else
+		return icon(flat, "", SOUTH)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.

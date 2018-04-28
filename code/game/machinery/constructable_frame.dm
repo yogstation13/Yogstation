@@ -212,8 +212,13 @@
 							req_components[path] -= used_amt
 						else
 							added_components[part] = path
+<<<<<<< HEAD
 							if(replacer.SendSignal(COMSIG_TRY_STORAGE_TAKE, part, src))
 								req_components[path]--
+=======
+							replacer.remove_from_storage(part, src)
+							req_components[path]--
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 				for(var/obj/item/part in added_components)
 					if(istype(part,/obj/item/stack))

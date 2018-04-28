@@ -151,7 +151,11 @@
 		product_name = t_prod.name
 	if(getYield() >= 1)
 		SSblackbox.record_feedback("tally", "food_harvested", getYield(), product_name)
+<<<<<<< HEAD
 	parent.update_tray(user)
+=======
+	parent.update_tray()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	return result
 

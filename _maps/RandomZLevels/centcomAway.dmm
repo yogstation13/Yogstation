@@ -2762,7 +2762,11 @@
 /area/awaymission/centcomAway/general)
 "kn" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/flashlight/flare,
+=======
+/obj/item/device/flashlight/flare,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark,
 /area/awaymission/centcomAway/hangar)
 "ko" = (

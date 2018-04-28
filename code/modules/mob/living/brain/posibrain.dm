@@ -69,7 +69,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		visible_message(fail_message)
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
+<<<<<<< HEAD
 /obj/item/mmi/posibrain/attack_ghost(mob/user)
+=======
+/obj/item/device/mmi/posibrain/attack_ghost(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	activate(user)
 
 /obj/item/mmi/posibrain/proc/is_occupied()

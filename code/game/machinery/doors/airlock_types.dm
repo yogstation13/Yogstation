@@ -88,9 +88,12 @@
 	opacity = 0
 	glass = TRUE
 
+<<<<<<< HEAD
 /obj/machinery/door/airlock/engineering/glass/critical
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/door/airlock/security/glass
 	opacity = 0
 	glass = TRUE
@@ -115,9 +118,12 @@
 	opacity = 0
 	glass = TRUE
 
+<<<<<<< HEAD
 /obj/machinery/door/airlock/atmos/glass/critical
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/door/airlock/science/glass
 	opacity = 0
 	glass = TRUE

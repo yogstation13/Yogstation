@@ -72,7 +72,11 @@
 	var/justzap = FALSE
 	var/obj/item/electronics/airlock/electronics
 	var/shockCooldown = FALSE //Prevents multiple shocks from happening
+<<<<<<< HEAD
 	var/obj/item/doorCharge/charge //If applied, causes an explosion upon opening the door
+=======
+	var/obj/item/device/doorCharge/charge //If applied, causes an explosion upon opening the door
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/obj/item/note //Any papers pinned to the airlock
 	var/detonated = FALSE
 	var/abandoned = FALSE
@@ -202,8 +206,13 @@
 		return
 
 	// Handle recieved packet.
+<<<<<<< HEAD
 	var/command = lowertext(data.data["data"])
 	var/command_value = lowertext(data.data["data_secondary"])
+=======
+	var/command = lowertext(data.plaintext_data)
+	var/command_value = lowertext(data.plaintext_data_secondary)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	switch(command)
 		if("open")
 			if(command_value == "on" && !density)

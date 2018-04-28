@@ -16,8 +16,15 @@
 	if(storage)
 		if(U.SendSignal(COMSIG_CONTAINS_STORAGE))
 			return FALSE
+<<<<<<< HEAD
 		U.TakeComponent(storage)
 		detached_pockets = storage
+=======
+
+		pockets.forceMove(U)
+		U.pockets = pockets
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	U.attached_accessory = src
 	forceMove(U)
 	layer = FLOAT_LAYER
@@ -42,8 +49,14 @@
 	return TRUE
 
 /obj/item/clothing/accessory/proc/detach(obj/item/clothing/under/U, user)
+<<<<<<< HEAD
 	if(detached_pockets && detached_pockets.parent == U)
 		TakeComponent(detached_pockets)
+=======
+	if(pockets && pockets == U.pockets)
+		pockets.forceMove(src)
+		U.pockets = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	U.armor = U.armor.detachArmor(armor)
 
@@ -322,6 +335,10 @@
 	icon_state = "talisman"
 	item_color = "talisman"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+<<<<<<< HEAD
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"

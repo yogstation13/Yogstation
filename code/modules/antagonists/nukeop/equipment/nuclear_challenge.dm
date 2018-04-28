@@ -5,7 +5,11 @@
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
+<<<<<<< HEAD:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 /obj/item/nuclear_challenge
+=======
+/obj/item/device/nuclear_challenge
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 	name = "Declaration of War (Challenge Mode)"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-red"
@@ -16,7 +20,11 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			Such a brazen move will attract the attention of powerful benefactors within the Syndicate, who will supply your team with a massive amount of bonus telecrystals.  \
 			Must be used within five minutes, or your benefactors will lose interest."
 	var/declaring_war = FALSE
+<<<<<<< HEAD:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 	var/uplink_type = /obj/item/radio/uplink/nuclear
+=======
+	var/uplink_type = /obj/item/device/radio/uplink/nuclear
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 
 /obj/item/nuclear_challenge/attack_self(mob/living/user)
 	if(!check_allowed(user))
@@ -87,8 +95,13 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			return FALSE
 	return TRUE
 
+<<<<<<< HEAD:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 /obj/item/nuclear_challenge/clownops
 	uplink_type = /obj/item/radio/uplink/clownop
+=======
+/obj/item/device/nuclear_challenge/clownops
+	uplink_type = /obj/item/device/radio/uplink/clownop
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/nukeop/equipment/nuclear_challenge.dm
 
 #undef CHALLENGE_TELECRYSTALS
 #undef CHALLENGE_TIME_LIMIT

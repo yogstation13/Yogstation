@@ -112,7 +112,11 @@
 
 /obj/item/storage/lockbox/medal/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
+<<<<<<< HEAD
 		if(!SendSignal(COMSIG_IS_STORAGE_LOCKED))
+=======
+		if(!locked)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			open = (open ? FALSE : TRUE)
 			update_icon()
 		..()

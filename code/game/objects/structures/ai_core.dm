@@ -9,7 +9,11 @@
 	var/state = 0
 	var/datum/ai_laws/laws
 	var/obj/item/circuitboard/circuit = null
+<<<<<<< HEAD
 	var/obj/item/mmi/brain = null
+=======
+	var/obj/item/device/mmi/brain = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/can_deconstruct = TRUE
 
 /obj/structure/AIcore/Initialize()
@@ -61,7 +65,11 @@
 	return TRUE
 
 /obj/structure/AIcore/latejoin_inactive/attackby(obj/item/P, mob/user, params)
+<<<<<<< HEAD
 	if(istype(P, /obj/item/multitool))
+=======
+	if(istype(P, /obj/item/device/multitool))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		active = !active
 		to_chat(user, "You [active? "activate" : "deactivate"] [src]'s transimtters.")
 		return
@@ -310,7 +318,11 @@ That prevents a few funky behaviors.
 			return 0
 	return 1
 
+<<<<<<< HEAD
 /obj/structure/AIcore/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
+=======
+/obj/structure/AIcore/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/device/aicard/card)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(state != AI_READY_CORE || !..())
 		return
  //Transferring a carded AI to a core.

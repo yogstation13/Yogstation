@@ -330,6 +330,7 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+<<<<<<< HEAD
 /datum/design/board/soda_dispenser
 	name = "Machine Design (Portable Soda Dispenser Board)"
 	desc = "The circuit board for a portable soda dispenser."
@@ -346,6 +347,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	category = list ("Misc. Machinery")
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/design/board/slimeprocessor
 	name = "Machine Design (Slime Processor Board)"
 	desc = "The circuit board for a slime processor."
@@ -418,6 +421,7 @@
 	build_path = /obj/item/circuitboard/machine/tesla_coil
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+<<<<<<< HEAD
 
 /datum/design/board/rad_collector
 	name = "Machine Design (Radiation Collector Board)"
@@ -426,6 +430,8 @@
 	build_path = /obj/item/circuitboard/machine/rad_collector
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/design/board/grounding_rod
 	name = "Machine Design (Grounding Rod Board)"

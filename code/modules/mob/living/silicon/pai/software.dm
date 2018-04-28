@@ -612,7 +612,11 @@
 	[(pda.silent) ? "<font color='red'>\[Off\]</font>" : "<font color='green'>\[On\]</font>"]</a><br><br>"}
 	dat += "<ul>"
 	if(!pda.toff)
+<<<<<<< HEAD
 		for (var/obj/item/pda/P in sortNames(get_viewable_pdas()))
+=======
+		for (var/obj/item/device/pda/P in sortNames(get_viewable_pdas()))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if (P == pda)
 				continue
 			dat += "<li><a href='byond://?src=[REF(src)];software=pdamessage;target=[REF(P)]'>[P]</a>"

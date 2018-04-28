@@ -3067,6 +3067,14 @@
 	density = 1;
 	id = "XCCQMLoaddoor2";
 	name = "Supply Dock Loading Door"
+<<<<<<< HEAD
+=======
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "XCCQMLoad2";
+	movedir = 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
@@ -3093,6 +3101,14 @@
 	density = 1;
 	id = "XCCQMLoaddoor2";
 	name = "Supply Dock Loading Door"
+<<<<<<< HEAD
+=======
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "XCCQMLoad2";
+	movedir = 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -8455,11 +8471,19 @@
 "xN" = (
 /obj/docking_port/stationary{
 	area_type = /area/syndicate_mothership/control;
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/space;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dir = 1;
 	dwidth = 3;
 	height = 7;
 	name = "escape pod loader";
 	roundstart_template = /datum/map_template/shuttle/assault_pod/default;
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/plating/airless;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 7
 	},
 /turf/open/floor/plating/airless,
@@ -13370,6 +13394,10 @@
 "My" = (
 /obj/docking_port/stationary{
 	area_type = /area/syndicate_mothership;
+<<<<<<< HEAD
+=======
+	baseturf_type = /turf/open/floor/plating/asteroid/snow;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	dheight = 1;
 	dir = 8;
 	dwidth = 12;
@@ -13377,6 +13405,10 @@
 	id = "syndicate_away";
 	name = "syndicate recon outpost";
 	roundstart_template = /datum/map_template/shuttle/infiltrator/basic;
+<<<<<<< HEAD
+=======
+	turf_type = /turf/open/floor/plating/asteroid/snow;
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	width = 23
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -13480,10 +13512,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+<<<<<<< HEAD
 "VX" = (
 /obj/effect/landmark/shuttle_import,
 /turf/open/space/basic,
 /area/space)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "Wc" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -18395,6 +18430,12 @@ lI
 lI
 qE
 qE
+<<<<<<< HEAD
+=======
+Ax
+Ax
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 qE
 yC
@@ -18663,6 +18704,11 @@ BS
 qZ
 qZ
 qE
+<<<<<<< HEAD
+=======
+Ax
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 lI
 lI
@@ -18907,8 +18953,12 @@ lI
 lI
 qE
 qE
+<<<<<<< HEAD
 uD
 wM
+=======
+ME
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 vj
 qE
 qZ
@@ -19442,6 +19492,16 @@ EC
 qZ
 qZ
 qE
+<<<<<<< HEAD
+=======
+DL
+DZ
+Eh
+qE
+qE
+Ax
+qE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 lI
 lI
 lI
@@ -19675,6 +19735,12 @@ lI
 qE
 qE
 qE
+<<<<<<< HEAD
+=======
+Ax
+Ax
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 uD
 vj
@@ -20443,8 +20509,15 @@ lI
 lI
 lI
 Ax
+<<<<<<< HEAD
 ra
 qZ
+=======
+qZ
+qZ
+qZ
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 tX
 qZ
@@ -20455,8 +20528,12 @@ qZ
 yb
 qZ
 qZ
+<<<<<<< HEAD
 zO
 Ay
+=======
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 BS
 qZ
@@ -20700,6 +20777,10 @@ lI
 lI
 lI
 Ax
+<<<<<<< HEAD
+=======
+ra
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 qZ
 qZ
@@ -20717,6 +20798,7 @@ qZ
 qZ
 Ax
 qZ
+<<<<<<< HEAD
 qZ
 qZ
 qE
@@ -20725,6 +20807,14 @@ Ed
 El
 qE
 EW
+=======
+DD
+uE
+Ec
+uE
+Ax
+EX
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 qZ
 Gr
@@ -20956,6 +21046,19 @@ lI
 lI
 lI
 lI
+<<<<<<< HEAD
+=======
+Ax
+qZ
+qZ
+qZ
+Ax
+qZ
+qZ
+qZ
+wO
+xx
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 qE
 rX
@@ -20974,7 +21077,14 @@ qZ
 Bh
 qE
 qZ
+<<<<<<< HEAD
 uE
+=======
+qZ
+Ax
+qZ
+qZ
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 qE
 qE
@@ -21483,8 +21593,11 @@ xz
 qE
 qE
 Ax
+<<<<<<< HEAD
 Ax
 Ax
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 qE
 Ci
@@ -21732,6 +21845,19 @@ lI
 lI
 lI
 qE
+<<<<<<< HEAD
+=======
+uF
+vm
+wd
+uE
+xz
+qE
+qE
+Ax
+Ax
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 vn
 uE
@@ -21991,6 +22117,7 @@ lI
 lI
 qE
 qE
+<<<<<<< HEAD
 uF
 wQ
 wd
@@ -22001,6 +22128,20 @@ yI
 AA
 yI
 Ax
+=======
+vn
+uE
+vl
+uE
+Ax
+yH
+yK
+zQ
+Az
+yK
+Ax
+qZ
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qZ
 uE
 qZ
@@ -22249,6 +22390,7 @@ lI
 lI
 qE
 qE
+<<<<<<< HEAD
 vn
 uE
 Ax
@@ -22257,6 +22399,17 @@ zr
 yK
 zq
 yK
+=======
+uF
+wQ
+wd
+Ax
+yI
+zq
+yI
+AA
+yI
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 Ax
 qZ
 qZ
@@ -22509,11 +22662,25 @@ qE
 qE
 qE
 qE
+<<<<<<< HEAD
 yK
 zq
 yI
 AB
 Bi
+=======
+vn
+uE
+Ax
+yJ
+zr
+yK
+zq
+yK
+Ax
+qZ
+qZ
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 Ax
 Ax
@@ -22770,6 +22937,11 @@ qE
 qE
 qE
 qE
+<<<<<<< HEAD
+=======
+Ax
+Ax
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 qE
 qE
 lI
@@ -23714,6 +23886,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 hh
 hl
 hl
@@ -23770,6 +23943,64 @@ hl
 hl
 hl
 hl
+=======
+mB
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 hh
 aa
 lI
@@ -25602,6 +25833,38 @@ kt
 kt
 hl
 hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
 aa
 aa
 aa
@@ -25640,6 +25903,8 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
+=======
 aa
 aa
 aa
@@ -25672,6 +25937,264 @@ aa
 aa
 aa
 aa
+"}
+(47,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+hh
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+kt
+MD
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+hl
+hh
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 "}
 (48,1,1) = {"
 aa
@@ -27140,8 +27663,13 @@ hl
 hl
 hl
 hl
+<<<<<<< HEAD
 kt
 kt
+=======
+kt
+kt
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 hl
 hh
 aa
@@ -29963,6 +30491,18 @@ hl
 hl
 hl
 hl
+kt
+kt
+kt
+nz
+uJ
+nz
+kt
+hl
+hl
+hl
+hl
+hl
 hl
 hl
 hl
@@ -30218,14 +30758,23 @@ kt
 kt
 kt
 kt
+<<<<<<< HEAD
+=======
+kt
+kt
+kt
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 kt
 kt
 kt
 kt
 kt
+<<<<<<< HEAD
 kt
 kt
 kt
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 hl
 hh
 aa

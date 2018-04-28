@@ -51,7 +51,11 @@
 	sense()
 
 
+<<<<<<< HEAD
 /obj/item/assembly/prox_sensor/sense()
+=======
+/obj/item/device/assembly/prox_sensor/sense()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!scanning || !secured || next_activate > world.time)
 		return 0
 	pulse(0)
@@ -93,7 +97,11 @@
 		holder.update_icon()
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/prox_sensor/ui_interact(mob/user)//TODO: Change this to the wires thingy
+=======
+/obj/item/device/assembly/prox_sensor/ui_interact(mob/user)//TODO: Change this to the wires thingy
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(is_secured(user))
 		var/second = time % 60

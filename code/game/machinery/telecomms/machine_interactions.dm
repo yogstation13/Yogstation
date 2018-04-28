@@ -34,7 +34,11 @@
 		// istype returns false if the value is null
 		if(!istype(user.get_active_held_item(), /obj/item/multitool))
 			return
+<<<<<<< HEAD
 	var/obj/item/multitool/P = get_multitool(user)
+=======
+	var/obj/item/device/multitool/P = get_multitool(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/dat
 	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
 	dat += "<br>[temp]<br>"

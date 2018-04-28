@@ -81,7 +81,11 @@
 	resistance_flags = INDESTRUCTIBLE
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	armor = list("melee" = 0, "bullet" = 25, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+<<<<<<< HEAD
 	var/obj/item/forcefield/generator
+=======
+	var/obj/item/device/forcefield/generator
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/structure/projected_forcefield/Initialize(mapload, obj/item/forcefield/origin)
 	. = ..()

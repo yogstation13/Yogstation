@@ -25,7 +25,11 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/box/teargas(src)
 	new /obj/item/storage/backpack/duffelbag/syndie/med(src)
+<<<<<<< HEAD
 	new /obj/item/pda/syndicate(src)
+=======
+	new /obj/item/device/pda/syndicate(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/structure/closet/syndicate/resources
 	desc = "An old, dusty locker."

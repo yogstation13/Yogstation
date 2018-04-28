@@ -6,7 +6,10 @@
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foamdart"
 	var/modified = 0
+<<<<<<< HEAD:code/modules/projectiles/ammunition/caseless/foam.dm
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/projectiles/ammunition/caseless/foam.dm
 
 /obj/item/ammo_casing/caseless/foam_dart/update_icon()
 	..()
@@ -33,7 +36,10 @@
 	else if (istype(A, /obj/item/pen))
 		if(modified)
 			if(!FD.pen)
+<<<<<<< HEAD:code/modules/projectiles/ammunition/caseless/foam.dm
 				harmful = TRUE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/projectiles/ammunition/caseless/foam.dm
 				if(!user.transferItemToLoc(A, FD))
 					return
 				FD.pen = A

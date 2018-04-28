@@ -4,7 +4,11 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	flags_1 = CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BELT | SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 15
 	throwforce = 10
 	item_state = "pickaxe"
@@ -30,7 +34,11 @@
 	icon_state = "minipick"
 	force = 10
 	throwforce = 7
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(MAT_METAL=1000)
 
@@ -54,7 +62,11 @@
 	name = "mining drill"
 	icon_state = "handdrill"
 	item_state = "jackhammer"
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	toolspeed = 0.6 //available from roundstart, faster than a pickaxe.
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
@@ -93,7 +105,11 @@
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	flags_1 = CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 8
 	tool_behaviour = TOOL_SHOVEL
 	toolspeed = 1

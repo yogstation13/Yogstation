@@ -242,10 +242,24 @@
 	if (!mobhook)
 		mobhook = M.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_DIR_CHANGE), CALLBACK(src, .proc/update_visuals))
 
+<<<<<<< HEAD
 /obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M)
 	. = ..()
 	QDEL_NULL(mobhook)
 
+=======
+/obj/item/organ/eyes/robotic/glow/Insert(var/mob/living/carbon/M)
+	. = ..()
+	if (mobhook && mobhook.parent != M)
+		QDEL_NULL(mobhook)
+	if (!mobhook)
+		mobhook = M.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_DIR_CHANGE), CALLBACK(src, .proc/update_visuals))
+
+/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M)
+	. = ..()
+	QDEL_NULL(mobhook)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/organ/eyes/robotic/glow/Destroy()
 	QDEL_NULL(mobhook) // mobhook is not our component
 	return ..()

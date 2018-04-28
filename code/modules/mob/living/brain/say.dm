@@ -14,8 +14,13 @@
 	return ..() | SPAN_ROBOT
 
 /mob/living/brain/radio(message, message_mode, list/spans, language)
+<<<<<<< HEAD
 	if(message_mode == MODE_HEADSET && istype(container, /obj/item/mmi))
 		var/obj/item/mmi/R = container
+=======
+	if(message_mode == MODE_HEADSET && istype(container, /obj/item/device/mmi))
+		var/obj/item/device/mmi/R = container
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(R.radio)
 			R.radio.talk_into(src, message, , get_spans(), language)
 			return ITALICS | REDUCE_RANGE

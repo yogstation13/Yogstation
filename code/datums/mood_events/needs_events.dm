@@ -1,6 +1,10 @@
 //nutrition
 /datum/mood_event/nutrition/fat
+<<<<<<< HEAD
 	description = "<span class='warning'><B>I'm so fat...</B></span>\n" //muh fatshaming
+=======
+	description = "<span class='warning'><B>I'm so fat..</B></span>\n" //muh fatshaming
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	mood_change = -4
 
 /datum/mood_event/nutrition/wellfed

@@ -37,5 +37,9 @@
 	signal.broadcast()
 
 /obj/machinery/telecomms/allinone/attackby(obj/item/P, mob/user, params)
+<<<<<<< HEAD
 	if(istype(P, /obj/item/multitool))
+=======
+	if(istype(P, /obj/item/device/multitool))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return attack_hand(user)

@@ -291,6 +291,12 @@
 		wires.interact(user)
 		return
 
+<<<<<<< HEAD
+=======
+	else if(exchange_parts(user, I))
+		return
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return ..()
 
 /obj/machinery/power/emitter/emag_act(mob/user)

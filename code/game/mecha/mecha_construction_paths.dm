@@ -364,7 +364,10 @@
 		//13
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
+<<<<<<< HEAD
 			"action" = ITEM_MOVE_INSIDE,
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "Advanced scanner module is secured."
 		),
@@ -1409,7 +1412,11 @@
 
 		//26
 		list(
+<<<<<<< HEAD
 			"key" = /obj/item/assembly/signaler/anomaly,
+=======
+			"key" = /obj/item/device/assembly/signaler/anomaly,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WELDER,
 			"desc" = "Anomaly core socket is open.",

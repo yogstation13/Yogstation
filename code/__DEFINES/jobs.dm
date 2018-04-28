@@ -37,10 +37,17 @@
 #define CARGOTECH		(1<<7)
 #define MINER			(1<<8)
 #define LAWYER			(1<<9)
+<<<<<<< HEAD
 #define CHAPLAIN		(1<<10)
 #define CLOWN			(1<<11)
 #define MIME			(1<<12)
 #define ASSISTANT		(1<<13)
+=======
+#define CHAPLAIN			(1<<10)
+#define CLOWN				(1<<11)
+#define MIME				(1<<12)
+#define ASSISTANT			(1<<13)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define JOB_AVAILABLE 0
 #define JOB_UNAVAILABLE_GENERIC 1

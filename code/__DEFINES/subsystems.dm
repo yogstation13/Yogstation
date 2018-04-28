@@ -1,12 +1,20 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
 #define DB_MAJOR_VERSION 4
+<<<<<<< HEAD
 #define DB_MINOR_VERSION 2
+=======
+#define DB_MINOR_VERSION 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 //Timing subsystem
 //Don't run if there is an identical unique timer active
 //if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer, and returns the id of the existing timer
+<<<<<<< HEAD
 #define TIMER_UNIQUE			(1<<0)
+=======
+#define TIMER_UNIQUE		0x1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 //For unique timers: Replace the old timer rather then not start this one
 #define TIMER_OVERRIDE			(1<<1)
 //Timing should be based on how timing progresses on clients, not the sever.
@@ -99,6 +107,10 @@
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40
 #define FIRE_PRIOTITY_BURNING		40
+<<<<<<< HEAD
+=======
+#define FIRE_PRIORITY_INBOUNDS		40
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_FLIGHTPACKS	80

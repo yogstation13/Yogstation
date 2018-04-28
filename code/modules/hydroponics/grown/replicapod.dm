@@ -25,6 +25,7 @@
 	var/list/traits = null
 	var/contains_sample = 0
 
+<<<<<<< HEAD
 /obj/item/seeds/replicapod/Initialize()
 	. = ..()
 
@@ -57,6 +58,30 @@
 		features = null
 		factions = null
 		contains_sample = FALSE
+=======
+/obj/item/seeds/replicapod/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/reagent_containers/syringe))
+		if(!contains_sample)
+			for(var/datum/reagent/blood/bloodSample in W.reagents.reagent_list)
+				if(bloodSample.data["mind"] && bloodSample.data["cloneable"] == 1)
+					mind = bloodSample.data["mind"]
+					ckey = bloodSample.data["ckey"]
+					realName = bloodSample.data["real_name"]
+					blood_gender = bloodSample.data["gender"]
+					blood_type = bloodSample.data["blood_type"]
+					features = bloodSample.data["features"]
+					factions = bloodSample.data["factions"]
+					traits = bloodSample.data["traits"]
+					W.reagents.clear_reagents()
+					to_chat(user, "<span class='notice'>You inject the contents of the syringe into the seeds.</span>")
+					contains_sample = 1
+				else
+					to_chat(user, "<span class='warning'>The seeds reject the sample!</span>")
+		else
+			to_chat(user, "<span class='warning'>The seeds already contain a genetic sample!</span>")
+	else
+		return ..()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/seeds/replicapod/get_analyzer_text()
 	var/text = ..()

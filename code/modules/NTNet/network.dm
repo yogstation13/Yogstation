@@ -1,11 +1,15 @@
 /datum/ntnet
 	var/network_id = "Network"
+<<<<<<< HEAD:code/modules/NTNet/network.dm
 	var/list/connected_interfaces_by_id = list()		//id = datum/component/ntnet_interface
 	var/list/services_by_path = list()					//type = datum/ntnet_service
 	var/list/services_by_id = list()					//id = datum/ntnet_service
 
 	var/list/autoinit_service_paths = list()			//typepaths
 
+=======
+	var/connected_interfaces_by_id = list()		//id = datum/component/ntnet_interface
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/NTNet/network.dm
 
 	var/list/relays = list()
 	var/list/logs = list()
@@ -37,6 +41,7 @@
 		stack_trace("Network [type] with ID [network_id] failed to register and has been deleted.")
 		qdel(src)
 
+<<<<<<< HEAD:code/modules/NTNet/network.dm
 /datum/ntnet/Destroy()
 	for(var/i in connected_interfaces_by_id)
 		var/datum/component/ntnet_interface/I = i
@@ -49,6 +54,9 @@
 /datum/ntnet/proc/interface_connect(datum/component/ntnet_interface/I)
 	if(connected_interfaces_by_id[I.hardware_id])
 		return FALSE
+=======
+/datum/ntnet/proc/interface_connect(datum/component/ntnet_interface/I)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/NTNet/network.dm
 	connected_interfaces_by_id[I.hardware_id] = I
 	return TRUE
 
@@ -59,6 +67,7 @@
 /datum/ntnet/proc/find_interface_id(id)
 	return connected_interfaces_by_id[id]
 
+<<<<<<< HEAD:code/modules/NTNet/network.dm
 /datum/ntnet/proc/find_service_id(id)
 	return services_by_id[id]
 
@@ -121,6 +130,17 @@
 		var/datum/ntnet_service/serv = services_by_id[i]
 		serv.ntnet_intercept(data, src, sender)
 
+=======
+/datum/ntnet/proc/process_data_transmit(datum/component/ntnet_interface/sender, datum/netdata/data)
+	data.network_id = src
+	log_data_transfer(data)
+	if(!check_relay_operation())
+		return FALSE
+	for(var/i in data.recipient_ids)
+		var/datum/component/ntnet_interface/reciever = find_interface_id(i)
+		if(reciever)
+			reciever.__network_recieve(data)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/NTNet/network.dm
 	return TRUE
 
 /datum/ntnet/proc/check_relay_operation(zlevel)	//can be expanded later but right now it's true/false.

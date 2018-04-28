@@ -20,7 +20,11 @@
 	..(intact)
 
 /obj/machinery/atmospherics/components/unary/attackby(obj/item/W, mob/user, params)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/analyzer))
+=======
+	if(istype(W, /obj/item/device/analyzer))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		atmosanalyzer_scan(airs[1], user)
 	else
 		return ..()

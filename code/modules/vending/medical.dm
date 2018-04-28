@@ -7,8 +7,13 @@
 	req_access_txt = "5"
 	products = list(/obj/item/reagent_containers/syringe = 12, 
 					/obj/item/reagent_containers/dropper = 3, 
+<<<<<<< HEAD
 					/obj/item/healthanalyzer = 4, 
 					/obj/item/sensor_device = 2, 
+=======
+					/obj/item/device/healthanalyzer = 4, 
+					/obj/item/device/sensor_device = 2, 
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					/obj/item/pinpointer/crew = 2,
 					/obj/item/reagent_containers/medspray/sterilizine = 1,
 					/obj/item/stack/medical/gauze = 8, 

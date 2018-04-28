@@ -31,6 +31,7 @@
 	icon_state = "mixer_off_f"
 	flipped = TRUE
 
+<<<<<<< HEAD
 /obj/machinery/atmospherics/components/trinary/mixer/flipped/layer1
 	piping_layer = PIPING_LAYER_MIN
 	pixel_x = -PIPING_LAYER_P_X
@@ -41,6 +42,8 @@
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
 	
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/atmospherics/components/trinary/mixer/airmix //For standard airmix to distro
 	name = "air mixer"
 	icon_state = "mixer_on"

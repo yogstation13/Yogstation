@@ -398,3 +398,8 @@ Difficulty: Hard
 	if(istype(mover, /mob/living/simple_animal/hostile/megafauna/bubblegum))
 		return 1
 	return 0
+<<<<<<< HEAD
+=======
+
+#undef MEDAL_PREFIX
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

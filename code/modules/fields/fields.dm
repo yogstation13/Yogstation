@@ -285,7 +285,11 @@
 	var/datum/proximity_monitor/advanced/current = null
 	var/datum/component/mobhook
 
+<<<<<<< HEAD
 /obj/item/multitool/field_debug/Initialize()
+=======
+/obj/item/device/multitool/field_debug/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -310,11 +314,19 @@
 	else if(!operating)
 		QDEL_NULL(current)
 
+<<<<<<< HEAD
 /obj/item/multitool/field_debug/dropped()
 	. = ..()
 	QDEL_NULL(mobhook)
 
 /obj/item/multitool/field_debug/proc/on_mob_move()
+=======
+/obj/item/device/multitool/field_debug/dropped()
+	. = ..()
+	QDEL_NULL(mobhook)
+
+/obj/item/device/multitool/field_debug/proc/on_mob_move()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	check_turf(get_turf(src))
 
 /obj/item/multitool/field_debug/process()

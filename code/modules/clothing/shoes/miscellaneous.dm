@@ -264,7 +264,11 @@
 /obj/item/clothing/shoes/wheelys/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
+<<<<<<< HEAD
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/wheelys))
+=======
+	if(!istype(user.get_item_by_slot(slot_shoes), /obj/item/clothing/shoes/wheelys))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		to_chat(user, "<span class='warning'>You must be wearing the wheely-heels to use them!</span>")
 		return
 	if(!(W.is_occupant(user)))

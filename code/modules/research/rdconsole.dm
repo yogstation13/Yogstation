@@ -155,7 +155,11 @@ doesn't have toxins access.
 		if(stored_research == SSresearch.science_tech)
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[price]", "time" = SQLtime()))
 		if(stored_research.research_node(SSresearch.techweb_nodes[id]))
+<<<<<<< HEAD
 			say("Successfully researched [TN.display_name].")
+=======
+			say("Sucessfully researched [TN.display_name].")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			var/logname = "Unknown"
 			if(isAI(user))
 				logname = "AI: [user.name]"

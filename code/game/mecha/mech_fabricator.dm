@@ -400,6 +400,12 @@
 /obj/machinery/mecha_part_fabricator/attackby(obj/item/W, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "fab-o", "fab-idle", W))
 		return TRUE
+<<<<<<< HEAD
+=======
+
+	if(exchange_parts(user, W))
+		return TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	if(default_deconstruction_crowbar(W))
 		return TRUE

@@ -151,7 +151,11 @@ again.
 //shuttle window
 
 /obj/effect/spawner/structure/window/shuttle
+<<<<<<< HEAD
 	name = "shuttle window spawner"
+=======
+	name = "reinforced shuttle window spawner"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "swindow_spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/shuttle)
 

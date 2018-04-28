@@ -46,7 +46,11 @@
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
+<<<<<<< HEAD
 	result = /obj/item/assembly/flash/shield
+=======
+	result = /obj/item/device/assembly/flash/shield
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	reqs = list(/obj/item/wallframe/flasher = 1,
 				/obj/item/assembly/flash/handheld = 1,
 				/obj/item/shield/riot = 1)
@@ -79,7 +83,11 @@
 	result = /obj/item/melee/baton/cattleprod/teleprod
 	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/stack/rods = 1,
+<<<<<<< HEAD
 				/obj/item/assembly/igniter = 1,
+=======
+				/obj/item/device/assembly/igniter = 1,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				/obj/item/stack/ore/bluespace_crystal = 1)
 	time = 40
 	category = CAT_WEAPONRY
@@ -133,7 +141,11 @@
 				/obj/item/stack/cable_coil = 1,
 				/obj/item/gun/energy/e_gun/advtaser = 1,
 				/obj/item/stock_parts/cell = 1,
+<<<<<<< HEAD
 				/obj/item/assembly/prox_sensor = 1)
+=======
+				/obj/item/device/assembly/prox_sensor = 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	time = 60
 	category = CAT_ROBOT
@@ -184,7 +196,11 @@
 	result = /mob/living/simple_animal/bot/honkbot
 	reqs = list(/obj/item/storage/box/clown = 1,
 				/obj/item/bodypart/r_arm/robot = 1,
+<<<<<<< HEAD
 				/obj/item/assembly/prox_sensor = 1,
+=======
+				/obj/item/device/assembly/prox_sensor = 1,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				/obj/item/bikehorn/ = 1)
 	time = 40
 	category = CAT_ROBOT

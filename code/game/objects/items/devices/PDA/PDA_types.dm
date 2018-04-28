@@ -11,7 +11,11 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING, CALLBACK(src, .proc/AfterSlip))
 
+<<<<<<< HEAD
 /obj/item/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
+=======
+/obj/item/device/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (istype(M) && (M.real_name != owner))
 		var/obj/item/cartridge/virus/clown/cart = cartridge
 		if(istype(cart) && cart.charges < 5)

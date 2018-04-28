@@ -59,7 +59,11 @@
 	if(!D.default_hatmask && seasonal_hats && possible_seasonal_hats.len)
 		var/hat_type = pick(possible_seasonal_hats)
 		var/obj/item/new_hat = new hat_type(D)
+<<<<<<< HEAD
 		D.equip_to_slot_or_del(new_hat, SLOT_HEAD)
+=======
+		D.equip_to_slot_or_del(new_hat, slot_head)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	D.admin_spawned = admin_spawned
 	D.key = user.key
 	qdel(src)

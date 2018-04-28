@@ -601,7 +601,10 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+<<<<<<< HEAD
 	webhook_send_roundstatus("endgame") //yogs - webhook support
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever

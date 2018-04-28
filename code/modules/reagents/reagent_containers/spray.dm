@@ -8,7 +8,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	flags_1 = NOBLUDGEON_1
 	container_type = OPENCONTAINER
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
