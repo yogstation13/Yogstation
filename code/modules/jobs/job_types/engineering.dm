@@ -164,8 +164,7 @@ Atmospheric Technician
 	mask = /obj/item/clothing/mask/gas
 	suit = /obj/item/clothing/suit/space/hardsuit/engine/atmos
 	suit_store = /obj/item/tank/internals/oxygen
-<<<<<<< HEAD
-	internals_slot = slot_s_store
+	internals_slot = SLOT_S_STORE
 
 // yogs start - Yogs jobs
 /*
@@ -203,8 +202,5 @@ Signal Technician
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
-	pda_slot = slot_l_store
+	pda_slot = SLOT_L_STORE
 // yogs end
-=======
-	internals_slot = SLOT_S_STORE
->>>>>>> ecd0d8b538... Merge pull request #37476 from AnturK/thisalwaysbuggedme
