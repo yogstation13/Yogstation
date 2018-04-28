@@ -34,5 +34,33 @@
 
 #Multiple Owners
 
+<<<<<<< HEAD
 /code/__DEFINES/MC.dm @AsV9 @ThatLing
 /code/controllers/master.dm @AsV9 @ThatLing
+=======
+# MrStonedOne
+
+/SQL/database_changelog.txt @MrStonedOne
+/code/__DEFINES/MC.dm @MrStonedOne
+/code/__DEFINES/tick.dm @MrStonedOne
+/code/controllers/admin.dm @MrStonedOne
+/code/controllers/master.dm @MrStonedOne
+/code/controllers/failsafe.dm @MrStonedOne
+/code/controllers/subsystem.dm @MrStonedOne
+/code/controllers/subsystem/timer.dm @MrStonedOne
+
+# ninjanomnom
+
+/code/controllers/subsystem/shuttle.dm @ninjanomnom
+/code/modules/shuttle/ @ninjanomnom
+
+# ShizCalev
+
+/_maps/ @ShizCalev
+/sound/ @ShizCalev
+
+# Multiple Owners
+
+/code/controllers/subsystem/air.dm @duncathan @MrStonedOne
+/icons/ @ShizCalev @WJohn
+>>>>>>> 402946e714... sql changelog changes ping the host
