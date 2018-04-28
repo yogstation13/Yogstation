@@ -49,7 +49,11 @@
 /obj/item/stack/ore/bluespace_crystal/artificial
 	name = "artificial bluespace crystal"
 	desc = "An artificially made bluespace crystal, it looks delicate."
+<<<<<<< HEAD
 	materials = list(MAT_BLUESPACE=MINERAL_MATERIAL_AMOUNT*0.5)
+=======
+	materials = list(MAT_BLUESPACE=MINERAL_MATERIAL_AMOUNT / 2)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try
 	refined_type = null

@@ -48,7 +48,11 @@
 
 	GET_COMPONENT(FR, /datum/component/forensics)
 	//gloves
+<<<<<<< HEAD
 	if(gloves && !(SLOT_GLOVES in obscured))
+=======
+	if(gloves && !(slot_gloves in obscured))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		msg += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands.\n"
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms()
@@ -69,6 +73,7 @@
 		msg += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist.\n"
 
 	//shoes
+<<<<<<< HEAD
 	if(shoes && !(SLOT_SHOES in obscured))
 		msg += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet.\n"
 
@@ -85,6 +90,24 @@
 
 	//ears
 	if(ears && !(SLOT_EARS in obscured))
+=======
+	if(shoes && !(slot_shoes in obscured))
+		msg += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet.\n"
+
+	//mask
+	if(wear_mask && !(slot_wear_mask in obscured))
+		msg += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face.\n"
+
+	if (wear_neck && !(slot_neck in obscured))
+		msg += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck.\n"
+
+	//eyes
+	if(glasses && !(slot_glasses in obscured))
+		msg += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes.\n"
+
+	//ears
+	if(ears && !(slot_ears in obscured))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		msg += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears.\n"
 
 	//ID
@@ -318,7 +341,10 @@
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
+<<<<<<< HEAD
 	return msg
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()

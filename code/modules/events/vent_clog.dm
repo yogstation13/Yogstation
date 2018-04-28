@@ -1,9 +1,15 @@
 /datum/round_event_control/vent_clog
 	name = "Clogged Vents: Normal"
 	typepath = /datum/round_event/vent_clog
+<<<<<<< HEAD
 	weight = 10
 	max_occurrences = 3
 	min_players = 25
+=======
+	weight = 25
+	max_occurrences = 0
+	min_players = 50
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/round_event/vent_clog
 	announceWhen	= 1
@@ -11,12 +17,15 @@
 	endWhen			= 35
 	var/interval 	= 2
 	var/list/vents  = list()
+<<<<<<< HEAD
 	var/randomProbability = 1
 	var/reagentsAmount = 100
 	var/list/saferChems = list("water","carbon","flour","cleaner","nutriment","condensedcapsaicin","mushroomhallucinogen","lube","pink_glitter",
 						 "plantbgone","blood","charcoal","space_drugs","morphine","holywater","ethanol","hot_coco","sacid","mindbreaker","rotatium",
 						 "pax","laughter","concentrated_barbers_aid","colorful_reagent","dizzysolution","tiresolution")
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/round_event/vent_clog/announce()
 	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")
 
@@ -33,10 +42,14 @@
 		if(vent && vent.loc)
 			var/datum/reagents/R = new/datum/reagents(1000)
 			R.my_atom = vent
+<<<<<<< HEAD
 			if (prob(randomProbability))
 				R.add_reagent(get_random_reagent_id(), reagentsAmount)
 			else
 				R.add_reagent(pick(saferChems), reagentsAmount)
+=======
+			R.add_reagent(get_random_reagent_id(), 250)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 			var/datum/effect_system/foam_spread/foam = new
 			foam.set_up(200, get_turf(vent), R)
@@ -47,6 +60,7 @@
 				new /mob/living/simple_animal/cockroach(get_turf(vent))
 				cockroaches--
 		CHECK_TICK
+<<<<<<< HEAD
 
 /datum/round_event_control/vent_clog/threatening
 	name = "Clogged Vents: Threatening"
@@ -71,3 +85,5 @@
 /datum/round_event/vent_clog/catastrophic
 	randomProbability = 30
 	reagentsAmount = 250
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

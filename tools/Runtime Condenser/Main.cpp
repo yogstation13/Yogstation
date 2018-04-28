@@ -154,14 +154,22 @@ bool readFromFile(bool isstdin) {
 		fseek(inputFile, 0, SEEK_SET);
 		nextupdate = clock();
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (feof(inputFile))
 		return false; //empty file
 	do {
 		//Update our lines
 		forward_progress(inputFile);
 		//progress bar
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if (!isstdin && clock() >= nextupdate) {
 			int dProgress = (int)(((long double)ftell(inputFile) / (long double)fileLength) * 100.0L);
 			printprogressbar(dProgress);
@@ -280,14 +288,23 @@ bool writeToFile(bool usestdio) {
 	ofstream * outputFile;
 	if (!usestdio)
 		output = outputFile = new ofstream("Output.txt", ios::trunc);
+<<<<<<< HEAD
 
 
+=======
+	
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(usestdio || outputFile->is_open()) {
 		*output << "Note: The source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.\n\n";
 		if(storedInfiniteLoop.size() > 0)
 			*output << "Total unique infinite loops: " << storedInfiniteLoop.size() << endl;
 
+<<<<<<< HEAD
 		if(totalInfiniteLoops > 0)
+=======
+		if(totalInfiniteLoops > 0) 
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			*output << "Total infinite loops: " << totalInfiniteLoops << endl << endl;
 
 		*output << "Total unique runtimes: " << storedRuntime.size() << endl;
@@ -310,6 +327,7 @@ bool writeToFile(bool usestdio) {
 			*output << "** Infinite loops **";
 			for (int i=0; i < infiniteLoops.size(); i++) {
 				runtime* R = &infiniteLoops[i];
+<<<<<<< HEAD
 				*output << endl << endl << "The following infinite loop has occurred " << R->count << " time(s).\n";
 				*output << R->text << endl;
 				if(R->proc.length())
@@ -321,6 +339,19 @@ bool writeToFile(bool usestdio) {
 				if(R->src.length())
 					*output << R->src << endl;
 				if(R->loc.length())
+=======
+				*output << endl << endl << "The following infinite loop has occurred " << R->count << " time(s).\n"; 
+				*output << R->text << endl;
+				if(R->proc.length()) 
+					*output << R->proc << endl;
+				if(R->source.length()) 
+					*output << R->source << endl;
+				if(R->usr.length()) 
+					*output << R->usr << endl;
+				if(R->src.length()) 
+					*output << R->src << endl;
+				if(R->loc.length()) 
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					*output << R->loc << endl;
 			}
 			*output << endl << endl; //For spacing
@@ -337,6 +368,7 @@ bool writeToFile(bool usestdio) {
 		sort(runtimes.begin(), runtimes.end(), runtimeComp);
 		for (int i=0; i < runtimes.size(); i++) {
 			runtime* R = &runtimes[i];
+<<<<<<< HEAD
 			*output << endl << endl << "The following runtime has occurred " << R->count << " time(s).\n";
 			*output << R->text << endl;
 			if(R->proc.length())
@@ -352,6 +384,23 @@ bool writeToFile(bool usestdio) {
 		}
 		*output << endl << endl; //For spacing
 
+=======
+			*output << endl << endl << "The following runtime has occurred " << R->count << " time(s).\n"; 
+			*output << R->text << endl;
+			if(R->proc.length()) 
+				*output << R->proc << endl;
+			if(R->source.length()) 
+				*output << R->source << endl;
+			if(R->usr.length()) 
+				*output << R->usr << endl;
+			if(R->src.length()) 
+				*output << R->src << endl;
+			if(R->loc.length()) 
+				*output << R->loc << endl;
+		}
+		*output << endl << endl; //For spacing
+		
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		//and finally, hard deletes
 		if(totalHardDels > 0) {
 			*output << endl << "** Hard deletions **";
@@ -382,7 +431,11 @@ int main(int argc, const char * argv[]) {
 	bool usestdio = false;
 	if (argc >= 2 && !strcmp(argv[1], "-s"))
 		usestdio = true;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	char exit; //Used to stop the program from immediately exiting
 	cerr << "Reading input.\n";
 	if(readFromFile(usestdio)) {

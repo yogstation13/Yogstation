@@ -165,7 +165,11 @@
 "aw" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
+<<<<<<< HEAD
 /obj/item/flashlight,
+=======
+/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/darkblue/side{
 	dir = 4;
@@ -1351,7 +1355,11 @@
 	amount = 10
 	},
 /obj/item/storage/toolbox/mechanical,
+<<<<<<< HEAD
 /obj/item/flashlight{
+=======
+/obj/item/device/flashlight{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -1840,7 +1848,11 @@
 /obj/item/folder/yellow{
 	pixel_x = -6
 	},
+<<<<<<< HEAD
 /obj/item/gps{
+=======
+/obj/item/device/gps{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gpstag = "Distress Signal"
 	},
 /turf/open/floor/plasteel/darkblue/side{
@@ -1872,8 +1884,13 @@
 /obj/item/storage/toolbox/electrical,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/clothing/gloves/color/yellow,
+<<<<<<< HEAD
 /obj/item/multitool,
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter3)
 "gw" = (
@@ -2279,7 +2296,11 @@
 /obj/structure/table,
 /obj/item/stack/packageWrap,
 /obj/item/crowbar,
+<<<<<<< HEAD
 /obj/item/flashlight{
+=======
+/obj/item/device/flashlight{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = 1;
 	pixel_y = 5
 	},
@@ -2305,7 +2326,11 @@
 "hK" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
@@ -2318,7 +2343,11 @@
 "hN" = (
 /obj/structure/rack,
 /obj/item/tank/internals/oxygen,
+<<<<<<< HEAD
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/blue/corner{
 	dir = 4;
@@ -3171,7 +3200,11 @@
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tank/internals/oxygen,
+<<<<<<< HEAD
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/clothing/mask/gas,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged5"
@@ -3869,7 +3902,11 @@
 "lx" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
+<<<<<<< HEAD
 /obj/item/assembly/flash/handheld,
+=======
+/obj/item/device/assembly/flash/handheld,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/darkred/side{
 	dir = 5

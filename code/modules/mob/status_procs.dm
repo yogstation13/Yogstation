@@ -242,6 +242,17 @@
 	return
 
 /////////////////////////////////// TEMPERATURE ////////////////////////////////////
+<<<<<<< HEAD
+=======
+
+/mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
+	if(bodytemperature > min_temp && bodytemperature < max_temp)
+		bodytemperature = CLAMP(bodytemperature + amount,min_temp,max_temp)
+
+
+
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
 	if(bodytemperature > min_temp && bodytemperature < max_temp)

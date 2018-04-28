@@ -3,7 +3,12 @@
 
 /datum/component/decal/blood/Initialize(_icon, _icon_state, _dir, _cleanable=CLEAN_STRENGTH_BLOOD, _color, _layer=ABOVE_OBJ_LAYER)
 	if(!isitem(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("Warning: Blood decal attempted to be added to non-item of type [parent.type]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	RegisterSignal(COMSIG_ATOM_GET_EXAMINE_NAME, .proc/get_examine_name)
 

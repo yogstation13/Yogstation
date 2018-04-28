@@ -234,7 +234,14 @@
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+<<<<<<< HEAD
 /obj/machinery/shower/interact(mob/M)
+=======
+/obj/machinery/shower/attack_hand(mob/M)
+	. = ..()
+	if(.)
+		return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	on = !on
 	update_icon()
 	add_fingerprint(M)

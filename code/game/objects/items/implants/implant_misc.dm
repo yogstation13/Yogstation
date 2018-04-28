@@ -81,7 +81,11 @@
 /obj/item/implant/radio
 	name = "internal radio implant"
 	activated = TRUE
+<<<<<<< HEAD
 	var/obj/item/radio/radio
+=======
+	var/obj/item/device/radio/radio
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/radio_key
 	var/subspace_transmission = FALSE
 	icon = 'icons/obj/radio.dmi'
@@ -105,18 +109,30 @@
 	radio.recalculateChannels()
 
 /obj/item/implant/radio/mining
+<<<<<<< HEAD
 	radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/implant/radio/syndicate
 	desc = "Are you there God? It's me, Syndicate Comms Agent."
 	radio_key = /obj/item/encryptionkey/syndicate
+=======
+	radio_key = /obj/item/device/encryptionkey/headset_cargo
+
+/obj/item/implant/radio/syndicate
+	desc = "Are you there God? It's me, Syndicate Comms Agent."
+	radio_key = /obj/item/device/encryptionkey/syndicate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime
 	name = "slime radio"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "adamantine_resonator"
+<<<<<<< HEAD
 	radio_key = /obj/item/encryptionkey/headset_sci
+=======
+	radio_key = /obj/item/device/encryptionkey/headset_sci
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/get_data()

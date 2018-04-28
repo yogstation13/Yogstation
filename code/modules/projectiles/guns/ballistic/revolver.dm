@@ -340,7 +340,11 @@
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_NORMAL
 	sawn_off = TRUE
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 /obj/item/gun/ballistic/revolver/reverse //Fires directly at its user... unless the user is a clown, of course.

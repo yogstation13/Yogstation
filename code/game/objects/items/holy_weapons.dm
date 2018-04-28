@@ -279,7 +279,11 @@
 	item_state = "chainswordon"
 	name = "possessed chainsaw sword"
 	desc = "Suffer not a heretic to live."
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 30
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
@@ -330,7 +334,11 @@
 	force = 16
 	throwforce = 15
 	w_class = 4
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	attack_verb = list("attacked", "smashed", "crushed", "splattered", "cracked")
 	hitsound = 'sound/weapons/blade1.ogg'
 

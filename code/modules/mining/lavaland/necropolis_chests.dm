@@ -375,7 +375,11 @@
 	actions_types = list(/datum/action/item_action/immortality)
 	var/cooldown = 0
 
+<<<<<<< HEAD
 /obj/item/immortality_talisman/Initialize()
+=======
+/obj/item/device/immortality_talisman/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE)
 
@@ -447,11 +451,60 @@
 
 /obj/item/shared_storage/red/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
 	STR.max_items = 21
 	new /obj/item/shared_storage/blue(drop_location(), STR)
+=======
+	if(!bag)
+		var/obj/item/storage/backpack/shared/S = new(src)
+		var/obj/item/device/shared_storage/blue = new(src.loc)
+
+		src.bag = S
+		blue.bag = S
+
+
+/obj/item/device/shared_storage/attackby(obj/item/W, mob/user, params)
+	if(bag)
+		bag.forceMove(user)
+		bag.attackby(W, user, params)
+
+
+/obj/item/device/shared_storage/attack_hand(mob/living/carbon/user)
+	if(!iscarbon(user))
+		return
+	if(loc == user && user.back && user.back == src)
+		if(bag)
+			bag.forceMove(user)
+			bag.attack_hand(user)
+	else
+		..()
+
+
+/obj/item/device/shared_storage/MouseDrop(atom/over_object)
+	if(iscarbon(usr) || isdrone(usr))
+		var/mob/M = usr
+
+		if(!over_object)
+			return
+
+		if(ismecha(usr.loc))
+			return
+
+		if(!M.incapacitated())
+			playsound(loc, "rustle", 50, 1, -5)
+
+
+			if(istype(over_object, /obj/screen/inventory/hand))
+				var/obj/screen/inventory/hand/H = over_object
+				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
+
+			add_fingerprint(usr)
+
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/shared_storage/blue/Initialize(mapload, datum/component/storage/concrete/master)
 	. = ..()
@@ -946,7 +999,11 @@
 
 	var/mob/living/L = choice
 
+<<<<<<< HEAD
 	message_admins("<span class='adminnotice'>[key_name_admin(L)][ADMIN_FLW(L)] has been marked for death by [key_name_admin(user)]!</span>")
+=======
+	message_admins("<span class='adminnotice'>[L] has been marked for death!</span>")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/datum/objective/survive/survive = new
 	survive.owner = L.mind

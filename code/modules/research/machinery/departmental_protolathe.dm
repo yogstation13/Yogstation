@@ -1,6 +1,10 @@
 /obj/machinery/rnd/production/protolathe/department
 	name = "department protolathe"
+<<<<<<< HEAD
 	desc = "A special protolathe with a built in interface meant for departmental usage, with built in ExoSync recievers allowing it to print designs researched that match its ROM-encoded department type."
+=======
+	desc = "A special protolathe with a built in interface meant for departmental usage, with built in ExoSync recievers allowing it to print designs researched that match its ROM-encoded department type. Features a bluespace materials reciever for recieving materials without the hassle of running to mining!"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "protolathe"
 	container_type = OPENCONTAINER
 	circuit = /obj/item/circuitboard/machine/protolathe/department

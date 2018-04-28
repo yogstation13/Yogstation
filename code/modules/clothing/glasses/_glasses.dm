@@ -4,7 +4,11 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	flags_cover = GLASSESCOVERSEYES
+<<<<<<< HEAD:code/modules/clothing/glasses/_glasses.dm
 	slot_flags = ITEM_SLOT_EYES
+=======
+	slot_flags = SLOT_EYES
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/clothing/glasses/_glasses.dm
 	strip_delay = 20
 	equip_delay_other = 25
 	resistance_flags = NONE
@@ -263,7 +267,11 @@
 
 /obj/item/clothing/glasses/sunglasses/blindfold/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
+<<<<<<< HEAD:code/modules/clothing/glasses/_glasses.dm
 	if(slot == SLOT_GLASSES)
+=======
+	if(slot == slot_glasses)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/clothing/glasses/_glasses.dm
 		user.become_blind("blindfold_[REF(src)]")
 
 /obj/item/clothing/glasses/sunglasses/blindfold/dropped(mob/living/carbon/human/user)

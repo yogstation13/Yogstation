@@ -9,12 +9,23 @@
 	density = TRUE
 	pressure_resistance = 5*ONE_ATMOSPHERE
 
+<<<<<<< HEAD
 /obj/structure/ore_box/attackby(obj/item/W, mob/user, params)
 	if (istype(W, /obj/item/stack/ore))
 		user.transferItemToLoc(W, src)
 	else if(W.SendSignal(COMSIG_CONTAINS_STORAGE))
 		W.SendSignal(COMSIG_TRY_STORAGE_TAKE_TYPE, /obj/item/stack/ore, src)
 		to_chat(user, "<span class='notice'>You empty the ore in [W] into \the [src].</span>")
+=======
+/obj/structure/ore_box/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ore))
+		user.transferItemToLoc(I, src)
+	else if(istype(I, /obj/item/storage))
+		var/obj/item/storage/S = I
+		for(var/obj/item/stack/ore/O in S.contents)
+			S.remove_from_storage(O, src) //This will move the item to this item's contents
+		to_chat(user, "<span class='notice'>You empty the ore in [S] into \the [src].</span>")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	else
 		return ..()
 

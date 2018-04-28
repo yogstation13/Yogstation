@@ -50,7 +50,11 @@
 		playsound(chassis, fire_sound, 50, 1)
 
 		sleep(max(0, projectile_delay))
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(kickback)
 		chassis.newtonian_move(turn(chassis.dir,180))
 	chassis.log_message("Fired from [src.name], targeting [target].")

@@ -18,6 +18,13 @@ GAS ANALYZER
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	materials = list(MAT_METAL=150)
+<<<<<<< HEAD
+=======
+
+/obj/item/device/t_scanner/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return TOXLOSS
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/t_scanner/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -31,14 +38,41 @@ GAS ANALYZER
 	if(on)
 		START_PROCESSING(SSobj, src)
 
+<<<<<<< HEAD
 /obj/item/t_scanner/process()
+=======
+/obj/item/device/t_scanner/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!on)
 		STOP_PROCESSING(SSobj, src)
 		return null
 	scan()
 
+<<<<<<< HEAD
 /obj/item/t_scanner/proc/scan()
 	t_ray_scan(loc)
+=======
+/obj/item/device/t_scanner/proc/scan()
+	t_ray_scan(loc)
+
+/proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 2)
+	if(!ismob(viewer) || !viewer.client)
+		return
+	var/list/t_ray_images = list()
+	for(var/obj/O in orange(distance, viewer) )
+		if(O.level != 1)
+			continue
+
+		if(O.invisibility == INVISIBILITY_MAXIMUM)
+			var/image/I = new(loc = get_turf(O))
+			var/mutable_appearance/MA = new(O)
+			MA.alpha = 128
+			MA.dir = O.dir
+			I.appearance = MA
+			t_ray_images += I
+	if(t_ray_images.len)
+		flick_overlay(t_ray_images, list(viewer.client), flick_time)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 2)
 	if(!ismob(viewer) || !viewer.client)
@@ -77,11 +111,19 @@ GAS ANALYZER
 	var/scanmode = 0
 	var/advanced = FALSE
 
+<<<<<<< HEAD
 /obj/item/healthanalyzer/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!</span>")
 	return BRUTELOSS
 
 /obj/item/healthanalyzer/attack_self(mob/user)
+=======
+/obj/item/device/healthanalyzer/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!</span>")
+	return BRUTELOSS
+
+/obj/item/device/healthanalyzer/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!scanmode)
 		to_chat(user, "<span class='notice'>You switch the health analyzer to scan chemical contents.</span>")
 		scanmode = 1
@@ -337,7 +379,11 @@ GAS ANALYZER
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
 	advanced = TRUE
 
+<<<<<<< HEAD
 /obj/item/analyzer
+=======
+/obj/item/device/analyzer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	desc = "A hand-held environmental scanner which reports current gas levels. Alt-Click to use the built in barometer function."
 	name = "analyzer"
 	icon = 'icons/obj/device.dmi'
@@ -357,7 +403,11 @@ GAS ANALYZER
 	var/cooldown_time = 250
 	var/accuracy // 0 is the best accuracy.
 
+<<<<<<< HEAD
 /obj/item/analyzer/suicide_act(mob/living/carbon/user)
+=======
+/obj/item/device/analyzer/suicide_act(mob/living/carbon/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.visible_message("<span class='suicide'>[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!</span>")
 	return BRUTELOSS
 
@@ -420,7 +470,11 @@ GAS ANALYZER
 			to_chat(user, "<span class='alert'>[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] %</span>")
 		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C)] &deg;C ([round(environment.temperature)]K)</span>")
 
+<<<<<<< HEAD
 /obj/item/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
+=======
+/obj/item/device/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 
 	if(user.canUseTopic(src))
@@ -463,15 +517,36 @@ GAS ANALYZER
 			else
 				to_chat(user, "<span class='warning'>[src]'s barometer function says a storm will land in approximately [butchertime(fixed)].</span>")
 		cooldown = TRUE
+<<<<<<< HEAD
 		addtimer(CALLBACK(src,/obj/item/analyzer/proc/ping), cooldown_time)
 
 
 /obj/item/analyzer/proc/ping()
+=======
+		addtimer(CALLBACK(src,/obj/item/device/analyzer/proc/ping), cooldown_time)
+
+
+/obj/item/device/analyzer/proc/ping()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(isliving(loc))
 		var/mob/living/L = loc
 		to_chat(L, "<span class='notice'>[src]'s barometer function is ready!</span>")
 	playsound(src, 'sound/machines/click.ogg', 100)
 	cooldown = FALSE
+<<<<<<< HEAD
+=======
+
+/obj/item/device/analyzer/proc/butchertime(amount)
+	if(!amount)
+		return
+	if(accuracy)
+		var/inaccurate = round(accuracy*(1/3))
+		if(prob(50))
+			amount -= inaccurate
+		if(prob(50))
+			amount += inaccurate
+	return DisplayTimeText(max(1,amount))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/analyzer/proc/butchertime(amount)
 	if(!amount)

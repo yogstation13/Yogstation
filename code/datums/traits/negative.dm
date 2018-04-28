@@ -1,5 +1,6 @@
 //predominantly negative traits
 
+<<<<<<< HEAD
 /datum/trait/blooddeficiency
 	name = "Acute Blood Deficiency"
 	desc = "Your body can't produce enough blood to sustain itself."
@@ -13,6 +14,8 @@
 
 
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/trait/depression
 	name = "Depression"
 	desc = "You sometimes just hate life."
@@ -21,7 +24,10 @@
 	gain_text = "<span class='danger'>You start feeling depressed.</span>"
 	lose_text = "<span class='notice'>You no longer feel depressed.</span>" //if only it were that easy!
 	medical_record_text = "Patient has a severe mood disorder causing them to experience sudden moments of sadness."
+<<<<<<< HEAD
 	mood_trait = TRUE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 
@@ -29,7 +35,10 @@
 	name = "Family Heirloom"
 	desc = "You are the current owner of an heirloom. passed down for generations. You have to keep it safe!"
 	value = -1
+<<<<<<< HEAD
 	mood_trait = TRUE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/obj/item/heirloom
 	var/where_text
 
@@ -58,15 +67,27 @@
 		/obj/item/dice/d20)
 	heirloom = new heirloom_type(get_turf(trait_holder))
 	var/list/slots = list(
+<<<<<<< HEAD
 		"in your backpack" = SLOT_IN_BACKPACK,
 		"in your left pocket" = SLOT_L_STORE,
 		"in your right pocket" = SLOT_R_STORE
+=======
+		"in your backpack" = slot_in_backpack,
+		"in your left pocket" = slot_l_store,
+		"in your right pocket" = slot_r_store
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	)
 	var/where = H.equip_in_one_of_slots(heirloom, slots)
 	if(!where)
 		where = "at your feet"
 		if(where == "in your backpack")
+<<<<<<< HEAD
 			H.back.SendSignal(COMSIG_TRY_STORAGE_SHOW, H)
+=======
+			var/obj/item/storage/B = H.back
+			B.orient2hud(trait_holder)
+			B.show_to(trait_holder)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	where_text = "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>"
 
 /datum/trait/family_heirloom/post_add()
@@ -74,7 +95,11 @@
 	var/list/family_name = splittext(trait_holder.real_name, " ")
 	heirloom.name = "\improper [family_name[family_name.len]] family [heirloom.name]"
 
+<<<<<<< HEAD
 /datum/trait/family_heirloom/on_process()
+=======
+/datum/trait/family_heirloom/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(heirloom in trait_holder.GetAllContents())
 		trait_holder.SendSignal(COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
 		trait_holder.SendSignal(COMSIG_ADD_MOOD_EVENT, "family_heirloom", /datum/mood_event/family_heirloom)
@@ -121,7 +146,11 @@
 	var/mob/living/carbon/human/H = trait_holder
 	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
 	H.put_in_hands(glasses)
+<<<<<<< HEAD
 	H.equip_to_slot(glasses, SLOT_GLASSES)
+=======
+	H.equip_to_slot(glasses, slot_glasses)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	H.regenerate_icons() //this is to remove the inhand icon, which persists even if it's not in their hands
 
 

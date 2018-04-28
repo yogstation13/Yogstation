@@ -18,7 +18,10 @@
 				return
 			while(t_amount < t_max)
 				var/obj/item/seeds/t_prod = F.seed.Copy()
+<<<<<<< HEAD
 				seeds.Add(t_prod)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				t_prod.forceMove(seedloc)
 				t_amount++
 			qdel(O)
@@ -119,7 +122,10 @@
 	src.amount = am
 
 /obj/machinery/seed_extractor/ui_interact(mob/user)
+<<<<<<< HEAD
 	. = ..()
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (stat)
 		return FALSE
 

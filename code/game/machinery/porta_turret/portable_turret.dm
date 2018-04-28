@@ -299,7 +299,11 @@
 	to_chat(user, "<span class='warning'>You short out [src]'s threat assessment circuits.</span>")
 	visible_message("[src] hums oddly...")
 	obj_flags |= EMAGGED
+<<<<<<< HEAD
 	controllock = TRUE
+=======
+	controllock = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	on = FALSE //turns off the turret temporarily
 	update_icon()
 	sleep(60) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
@@ -588,10 +592,17 @@
 	var/obj/machinery/porta_turret/P = target
 	if(!istype(P))
 		return
+<<<<<<< HEAD
 	P.remove_control(FALSE)
 
 /obj/machinery/porta_turret/proc/give_control(mob/A)
 	if(manual_control || !can_interact(A))
+=======
+	P.remove_control(owner)
+
+/obj/machinery/porta_turret/proc/give_control(mob/A)
+	if(manual_control)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return FALSE
 	remote_controller = A
 	if(!quit_action)
@@ -607,12 +618,19 @@
 	popUp()
 	return TRUE
 
+<<<<<<< HEAD
 /obj/machinery/porta_turret/proc/remove_control(warning_message = TRUE)
 	if(!manual_control)
 		return FALSE
 	if(remote_controller)
 		if(warning_message)
 			to_chat(remote_controller, "<span class='warning'>Your uplink to [src] has been severed!</span>")
+=======
+/obj/machinery/porta_turret/proc/remove_control()
+	if(!manual_control)
+		return FALSE
+	if(remote_controller)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		quit_action.Remove(remote_controller)
 		toggle_action.Remove(remote_controller)
 		remote_controller.click_intercept = null
@@ -625,9 +643,12 @@
 /obj/machinery/porta_turret/proc/InterceptClickOn(mob/living/caller, params, atom/A)
 	if(!manual_control)
 		return FALSE
+<<<<<<< HEAD
 	if(!can_interact(caller))
 		remove_control()
 		return FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_logs(caller,A,"fired with manual turret control at")
 	target(A)
 	return TRUE

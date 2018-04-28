@@ -177,6 +177,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/proc/atmosalert(danger_level, obj/source)
 	if(danger_level != atmosalm)
 		if (danger_level==2)
+<<<<<<< HEAD
+=======
+			var/list/cameras = list()
+			for(var/area/RA in related)
+				for (var/item in RA.cameras)
+					var/obj/machinery/camera/C = item
+					cameras += C
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 			for (var/item in GLOB.silicon_mobs)
 				var/mob/living/silicon/aiPlayer = item
@@ -238,6 +246,20 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			var/obj/machinery/firealarm/F = item
 			F.update_icon()
 
+<<<<<<< HEAD
+=======
+	for(var/area/RA in related)
+		if (!( RA.fire ))
+			RA.set_fire_alarm_effect()
+			RA.ModifyFiredoors(FALSE)
+			for(var/item in RA.firealarms)
+				var/obj/machinery/firealarm/F = item
+				F.update_icon()
+		for (var/item in RA.cameras)
+			var/obj/machinery/camera/C = item
+			cameras += C
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for (var/item in GLOB.alert_consoles)
 		var/obj/machinery/computer/station_alert/a = item
 		a.triggerAlarm("Fire", src, cameras, source)
@@ -254,6 +276,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	START_PROCESSING(SSobj, src)
 
 /area/proc/firereset(obj/source)
+<<<<<<< HEAD
 	if (fire)
 		fire = 0
 		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -262,6 +285,17 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
 			F.update_icon()
+=======
+	for(var/area/RA in related)
+		if (RA.fire)
+			RA.fire = 0
+			RA.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			RA.updateicon()
+			RA.ModifyFiredoors(TRUE)
+			for(var/item in RA.firealarms)
+				var/obj/machinery/firealarm/F = item
+				F.update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	for (var/item in GLOB.silicon_mobs)
 		var/mob/living/silicon/aiPlayer = item
@@ -292,11 +326,25 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(always_unpowered == 1) //no burglar alarms in space/asteroid
 		return
 
+<<<<<<< HEAD
 	//Trigger alarm effect
 	set_fire_alarm_effect()
 	//Lockdown airlocks
 	for(var/obj/machinery/door/DOOR in src)
 		close_and_lock_door(DOOR)
+=======
+	var/list/cameras = list()
+
+	for(var/area/RA in related)
+		//Trigger alarm effect
+		RA.set_fire_alarm_effect()
+		//Lockdown airlocks
+		for(var/obj/machinery/door/DOOR in RA)
+			close_and_lock_door(DOOR)
+		for (var/item in RA.cameras)
+			var/obj/machinery/camera/C = item
+			cameras += C
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	for (var/i in GLOB.silicon_mobs)
 		var/mob/living/silicon/SILICON = i

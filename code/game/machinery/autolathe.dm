@@ -93,9 +93,18 @@
 		updateUsrDialog()
 		return TRUE
 
+<<<<<<< HEAD
 	if(default_deconstruction_crowbar(O))
 		return TRUE
 
+=======
+	if(exchange_parts(user, O))
+		return TRUE
+
+	if(default_deconstruction_crowbar(O))
+		return TRUE
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(panel_open && is_wire_tool(O))
 		wires.interact(user)
 		return TRUE

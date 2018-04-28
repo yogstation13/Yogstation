@@ -11,13 +11,21 @@
 	var/spamcheck = 0
 	var/list/voicespan = list(SPAN_COMMAND)
 
+<<<<<<< HEAD
 /obj/item/megaphone/suicide_act(mob/living/carbon/user)
+=======
+/obj/item/device/megaphone/suicide_act(mob/living/carbon/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.visible_message("<span class='suicide'>[user] is uttering [user.p_their()] last words into \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	spamcheck = 0//so they dont have to worry about recharging
 	user.say("AAAAAAAAAAAARGHHHHH")//he must have died while coding this
 	return OXYLOSS
 
+<<<<<<< HEAD
 /obj/item/megaphone/get_held_item_speechspans(mob/living/carbon/user)
+=======
+/obj/item/device/megaphone/get_held_item_speechspans(mob/living/carbon/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(spamcheck > world.time)
 		to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
 	else
@@ -25,7 +33,11 @@
 		spamcheck = world.time + 50
 		return voicespan
 
+<<<<<<< HEAD
 /obj/item/megaphone/emag_act(mob/user)
+=======
+/obj/item/device/megaphone/emag_act(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")

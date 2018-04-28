@@ -124,7 +124,11 @@ Industrial extracts:
 /obj/item/slimecross/industrial/sepia
 	colour = "sepia"
 	plasmarequired = 2
+<<<<<<< HEAD
 	itempath = /obj/item/camera
+=======
+	itempath = /obj/item/device/camera
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/slimecross/industrial/cerulean
 	colour = "cerulean"

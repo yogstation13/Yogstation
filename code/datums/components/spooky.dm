@@ -42,11 +42,19 @@
 		var/T = get_turf(H)
 		if(too_spooky)
 			if(prob(30))
+<<<<<<< HEAD
 				new/obj/item/instrument/saxophone/spectral(T)
 			else if(prob(30))
 				new/obj/item/instrument/trumpet/spectral(T)
 			else if(prob(30))
 				new/obj/item/instrument/trombone/spectral(T)
+=======
+				new/obj/item/device/instrument/saxophone/spectral(T)
+			else if(prob(30))
+				new/obj/item/device/instrument/trumpet/spectral(T)
+			else if(prob(30))
+				new/obj/item/device/instrument/trombone/spectral(T)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			else
 				to_chat(H, "The spooky gods forgot to ship your instrument. Better luck next unlife.")
 		to_chat(H, "<B>You are the spooky skeleton!</B>")

@@ -189,12 +189,20 @@
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(H.stat != CONSCIOUS)
+<<<<<<< HEAD:code/modules/antagonists/cult/cult_items.dm
 				var/obj/item/soulstone/SS = new /obj/item/soulstone(src)
+=======
+				var/obj/item/device/soulstone/SS = new /obj/item/device/soulstone(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/cult/cult_items.dm
 				SS.attack(H, user)
 				if(!LAZYLEN(SS.contents))
 					qdel(SS)
 		if(istype(target, /obj/structure/constructshell) && contents.len)
+<<<<<<< HEAD:code/modules/antagonists/cult/cult_items.dm
 			var/obj/item/soulstone/SS = contents[1]
+=======
+			var/obj/item/device/soulstone/SS = contents[1]
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/cult/cult_items.dm
 			if(istype(SS))
 				SS.transfer_soul("CONSTRUCT",target,user)
 				qdel(SS)

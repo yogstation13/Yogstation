@@ -5230,7 +5230,11 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -32
 	},

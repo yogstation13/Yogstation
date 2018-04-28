@@ -230,7 +230,11 @@
 					if(i < drop_threshold)
 						P = new(target_loc)
 					else
+<<<<<<< HEAD
 						P = new(drop_location())
+=======
+						P = new/obj/item/reagent_containers/pill(drop_location())
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					P.name = trim("[name] pill")
 					adjust_item_drop_location(P)
 					reagents.trans_to(P,vol_each)
@@ -357,7 +361,19 @@
 	else
 		var/md5 = md5(AM.name)
 		for (var/i in 1 to 32)
+<<<<<<< HEAD
 			. += hex2num(md5[i])
+=======
+			#if DM_VERSION >= 513
+			#warning 512 is definitely stable now, remove the old code
+			#endif
+
+			#if DM_VERSION >= 512
+			. += hex2num(md5[i])
+			#else
+			. += hex2num(copytext(md5,i,i+1))
+			#endif
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		. = . % 9
 		AM.pixel_x = ((.%3)*6)
 		AM.pixel_y = -8 + (round( . / 3)*8)

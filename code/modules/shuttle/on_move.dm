@@ -6,7 +6,11 @@ All ShuttleMove procs go here
 
 // Called on every turf in the shuttle region, returns a bitflag for allowed movements of that turf
 // returns the new move_mode (based on the old)
+<<<<<<< HEAD
 /turf/proc/fromShuttleMove(turf/newT, move_mode)
+=======
+/turf/proc/fromShuttleMove(turf/newT, turf_type, list/baseturf_cache, move_mode)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!(move_mode & MOVE_AREA) || !isshuttleturf(src))
 		return move_mode
 
@@ -66,12 +70,21 @@ All ShuttleMove procs go here
 	return TRUE
 
 // Called on the new turf after everything has been moved
+<<<<<<< HEAD
 /turf/proc/afterShuttleMove(turf/oldT, rotation)
+=======
+/turf/proc/afterShuttleMove(turf/oldT, turf_type, baseturf_type, rotation)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	//Dealing with the turf we left behind
 	oldT.TransferComponents(src)
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(shuttle_boundary)
+<<<<<<< HEAD
 		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1)
+=======
+		var/depth = baseturfs.len - shuttle_boundary + 1
+		oldT.ScrapeAway(depth)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	if(rotation)
 		shuttleRotate(rotation) //see shuttle_rotate.dm

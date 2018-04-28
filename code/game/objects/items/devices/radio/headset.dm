@@ -11,11 +11,19 @@
 	var/obj/item/encryptionkey/keyslot2 = null
 	dog_fashion = null
 
+<<<<<<< HEAD
 /obj/item/radio/headset/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins putting \the [src]'s antenna up [user.p_their()] nose! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer!</span>")
 	return TOXLOSS
 
 /obj/item/radio/headset/examine(mob/user)
+=======
+/obj/item/device/radio/headset/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] begins putting \the [src]'s antenna up [user.p_their()] nose! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer!</span>")
+	return TOXLOSS
+
+/obj/item/device/radio/headset/examine(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 	to_chat(user, "<span class='notice'>To speak on the general radio frequency, use ; before speaking.</span>")
 	if (command)
@@ -25,7 +33,11 @@
 	. = ..()
 	recalculateChannels()
 
+<<<<<<< HEAD
 /obj/item/radio/headset/Destroy()
+=======
+/obj/item/device/radio/headset/Destroy()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	QDEL_NULL(keyslot2)
 	return ..()
 
@@ -34,7 +46,11 @@
 		return ITALICS | REDUCE_RANGE
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/radio/headset/can_receive(freq, level, AIuser)
+=======
+/obj/item/device/radio/headset/can_receive(freq, level, AIuser)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.ears == src)
@@ -43,7 +59,11 @@
 		return ..(freq, level)
 	return FALSE
 
+<<<<<<< HEAD
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
+=======
+/obj/item/device/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/radio/headset/syndicate/alt //undisguised bowman with flash protection
 	name = "syndicate headset"
@@ -60,8 +80,13 @@
 	. = ..()
 	make_syndie()
 
+<<<<<<< HEAD
 /obj/item/radio/headset/binary
 /obj/item/radio/headset/binary/Initialize()
+=======
+/obj/item/device/radio/headset/binary
+/obj/item/device/radio/headset/binary/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/binary
@@ -194,12 +219,21 @@
 	keyslot = new /obj/item/encryptionkey/headset_com
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
 
+<<<<<<< HEAD
 /obj/item/radio/headset/headset_cent/empty
 	keyslot = null
 	keyslot2 = null
 
 /obj/item/radio/headset/headset_cent/commander
 	keyslot = new /obj/item/encryptionkey/heads/captain
+=======
+/obj/item/device/radio/headset/headset_cent/empty
+	keyslot = null
+	keyslot2 = null
+
+/obj/item/device/radio/headset/headset_cent/commander
+	keyslot = new /obj/item/device/encryptionkey/heads/captain
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/radio/headset/headset_cent/alt
 	name = "\improper CentCom bowman headset"
@@ -214,7 +248,11 @@
 	keyslot2 = new /obj/item/encryptionkey/ai
 	command = TRUE
 
+<<<<<<< HEAD
 /obj/item/radio/headset/ai/can_receive(freq, level)
+=======
+/obj/item/device/radio/headset/ai/can_receive(freq, level)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return ..(freq, level, TRUE)
 
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)
@@ -241,7 +279,11 @@
 		else
 			to_chat(user, "<span class='warning'>This headset doesn't have any unique encryption keys!  How useless...</span>")
 
+<<<<<<< HEAD
 	else if(istype(W, /obj/item/encryptionkey))
+=======
+	else if(istype(W, /obj/item/device/encryptionkey))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(keyslot && keyslot2)
 			to_chat(user, "<span class='warning'>The headset can't hold another key!</span>")
 			return
@@ -279,7 +321,11 @@
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+<<<<<<< HEAD
 /obj/item/radio/headset/AltClick(mob/living/user)
+=======
+/obj/item/device/radio/headset/AltClick(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return
 	if (command)

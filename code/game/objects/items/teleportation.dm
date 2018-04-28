@@ -55,7 +55,11 @@
 
 			if (sr)
 				temp += "<B>Beacon Signals:</B><BR>"
+<<<<<<< HEAD
 				for(var/obj/item/beacon/W in GLOB.teleportbeacons)
+=======
+				for(var/obj/item/device/beacon/W in GLOB.teleportbeacons)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					if (!W.renamed)
 						continue
 					var/turf/tr = get_turf(W)

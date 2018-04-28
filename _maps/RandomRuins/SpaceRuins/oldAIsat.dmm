@@ -556,7 +556,11 @@
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/chamber)
 "bR" = (
+<<<<<<< HEAD
 /obj/item/radio/off,
+=======
+/obj/item/device/radio/off,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/airless/dark,
 /area/tcommsat/chamber)
 "bS" = (
@@ -606,7 +610,11 @@
 /area/tcommsat/chamber)
 "ca" = (
 /obj/effect/decal/cleanable/blood,
+<<<<<<< HEAD
 /obj/item/assembly/signaler,
+=======
+/obj/item/device/assembly/signaler,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/airless/dark,
 /area/tcommsat/chamber)
 "cb" = (

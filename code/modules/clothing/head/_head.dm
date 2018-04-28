@@ -4,7 +4,11 @@
 	icon_state = "top_hat"
 	item_state = "that"
 	body_parts_covered = HEAD
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_HEAD
+=======
+	slot_flags = SLOT_HEAD
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/blockTracking = 0 //For AI tracking
 	var/can_toggle = null
 	dynamic_hair_suffix = "+generic"

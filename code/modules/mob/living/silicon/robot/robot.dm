@@ -806,7 +806,11 @@
 /mob/living/silicon/robot/modules/syndicate/Initialize()
 	. = ..()
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
+<<<<<<< HEAD
 	radio = new /obj/item/radio/borg/syndicate(src)
+=======
+	radio = new /obj/item/device/radio/borg/syndicate(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	laws = new /datum/ai_laws/syndicate_override()
 	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
 

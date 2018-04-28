@@ -36,7 +36,11 @@
 			else
 				to_chat(user, "<span class ='notice'>This firearm already has a firing pin installed.</span>")
 
+<<<<<<< HEAD
 /obj/item/firing_pin/emag_act(mob/user)
+=======
+/obj/item/device/firing_pin/emag_act(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED

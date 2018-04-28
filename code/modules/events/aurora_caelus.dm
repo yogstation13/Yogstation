@@ -2,7 +2,11 @@
 	name = "Aurora Caelus"
 	typepath = /datum/round_event/aurora_caelus
 	max_occurrences = 1
+<<<<<<< HEAD
 	weight = 4
+=======
+	weight = 15
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	earliest_start = 5 MINUTES
 
 /datum/round_event_control/aurora_caelus/canSpawnEvent(players, gamemode)

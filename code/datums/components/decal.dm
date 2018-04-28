@@ -7,7 +7,12 @@
 
 /datum/component/decal/Initialize(_icon, _icon_state, _dir, _cleanable=CLEAN_GOD, _color, _layer=TURF_LAYER, _description)
 	if(!isatom(parent) || !generate_appearance(_icon, _icon_state, _dir, _layer, _color))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("A turf decal was applied incorrectly to [parent.type]: icon:[_icon ? _icon : "none"] icon_state:[_icon_state ? _icon_state : "none"]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	description = _description
 	cleanable = _cleanable
 

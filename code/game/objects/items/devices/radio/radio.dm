@@ -8,7 +8,11 @@
 
 	flags_1 = CONDUCT_1 | HEAR_1
 	flags_2 = NO_EMP_WIRES_2
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_SMALL
@@ -33,7 +37,11 @@
 	var/command = FALSE  // If true, use_command can be toggled at will.
 
 	// Encryption key handling
+<<<<<<< HEAD
 	var/obj/item/encryptionkey/keyslot
+=======
+	var/obj/item/device/encryptionkey/keyslot
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/translate_binary = FALSE  // If true, can hear the special binary channel.
 	var/independent = FALSE  // If true, can say/hear on the special CentCom channel.
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
@@ -43,7 +51,11 @@
 	var/const/FREQ_LISTENING = 1
 	//FREQ_BROADCASTING = 2
 
+<<<<<<< HEAD
 /obj/item/radio/suicide_act(mob/living/user)
+=======
+/obj/item/device/radio/suicide_act(mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off their head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
@@ -78,7 +90,11 @@
 	syndie = 1
 	recalculateChannels()
 
+<<<<<<< HEAD
 /obj/item/radio/Destroy()
+=======
+/obj/item/device/radio/Destroy()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(wires)
 	QDEL_NULL(keyslot)
@@ -236,7 +252,11 @@
 
 	// Nearby active jammers severely gibberish the message
 	var/turf/position = get_turf(src)
+<<<<<<< HEAD
 	for(var/obj/item/jammer/jammer in GLOB.active_jammers)
+=======
+	for(var/obj/item/device/jammer/jammer in GLOB.active_jammers)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/turf/jammer_turf = get_turf(jammer)
 		if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) < jammer.range))
 			message = Gibberish(message,100)
@@ -254,6 +274,7 @@
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
 		signal.levels = list(0)  // reaches all Z-levels
 		signal.broadcast()
+<<<<<<< HEAD
 		return
 
 	// All radios make an attempt to use the subspace system first
@@ -298,6 +319,52 @@
 
 // Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(freq, level)
+=======
+		return
+
+	// All radios make an attempt to use the subspace system first
+	signal.send_to_receivers()
+
+	// If the radio is subspace-only, that's all it can do
+	if (subspace_transmission)
+		return
+
+	// Non-subspace radios will check in a couple of seconds, and if the signal
+	// was never received, send a mundane broadcast (no headsets).
+	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
+
+/obj/item/device/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
+	var/turf/T = get_turf(src)
+	if (signal.data["done"] && (T.z in signal.levels))
+		return
+
+	// Okay, the signal was never processed, send a mundane broadcast.
+	signal.data["compression"] = 0
+	signal.transmission_method = TRANSMISSION_RADIO
+	signal.levels = list(T.z)
+	signal.broadcast()
+
+/obj/item/device/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
+		return
+
+	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
+		// radios don't pick up whispers very well
+		raw_message = stars(raw_message)
+	else if(message_mode == MODE_L_HAND || message_mode == MODE_R_HAND)
+		// try to avoid being heard double
+		if (loc == speaker && ismob(speaker))
+			var/mob/M = speaker
+			var/idx = M.get_held_index_of_item(src)
+			// left hands are odd slots
+			if (idx && (idx % 2) == (message_mode == MODE_L_HAND))
+				return
+
+	talk_into(speaker, raw_message, , spans, language=message_language)
+
+// Checks if this radio can receive on the given frequency.
+/obj/item/device/radio/proc/can_receive(freq, level)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	// deny checks
 	if (!on || !listening || wires.is_cut(WIRE_RX))
 		return FALSE

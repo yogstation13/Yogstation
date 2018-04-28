@@ -6,7 +6,11 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 =  CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
 	casing_ejector = FALSE
 	var/recentpump = 0 // to prevent spammage

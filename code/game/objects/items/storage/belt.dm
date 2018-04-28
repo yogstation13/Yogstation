@@ -6,7 +6,11 @@
 	item_state = "utility"
 	lefthand_file = 'icons/mob/inhands/equipment/belt_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	attack_verb = list("whipped", "lashed", "disciplined")
 	max_integrity = 300
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
@@ -46,6 +50,7 @@
 		/obj/item/multitool,
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
+<<<<<<< HEAD
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/geiger_counter,
@@ -56,6 +61,18 @@
 		/obj/item/assembly/signaler
 		))
 	STR.can_hold = can_hold
+=======
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/device/geiger_counter,
+		/obj/item/extinguisher/mini,
+		/obj/item/device/radio,
+		/obj/item/clothing/gloves,
+		/obj/item/holosign_creator,
+		/obj/item/device/assembly/signaler
+		)
+	content_overlays = TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/belt/utility/chief
 	name = "\improper Chief Engineer's toolbelt" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
@@ -161,12 +178,22 @@
 		/obj/item/storage/bag/bio,
 		/obj/item/reagent_containers/blood,
 		/obj/item/tank/internals/emergency_oxygen,
+<<<<<<< HEAD
 		/obj/item/gun/syringe/syndicate,
 		/obj/item/implantcase,
 		/obj/item/implant,
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew
 		))
+=======
+		/obj/item/pinpointer/crew,
+		/obj/item/gun/syringe/syndicate,
+		/obj/item/implantcase,
+		/obj/item/implant,
+		/obj/item/implanter
+		)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/belt/security
 	name = "security belt"
@@ -194,10 +221,19 @@
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
 		/obj/item/melee/classic_baton/telescopic,
+<<<<<<< HEAD
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola
 		))
+=======
+		/obj/item/device/radio,
+		/obj/item/clothing/gloves,
+		/obj/item/restraints/legcuffs/bola,
+		/obj/item/holosign_creator/security
+		)
+	content_overlays = TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/belt/security/full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
@@ -226,8 +262,13 @@
 		/obj/item/weldingtool,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
+<<<<<<< HEAD
 		/obj/item/multitool,
 		/obj/item/flashlight,
+=======
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		/obj/item/stack/cable_coil,
 		/obj/item/analyzer,
 		/obj/item/extinguisher/mini,
@@ -299,6 +340,10 @@
 /obj/item/storage/belt/soulstone/full/chappy/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/soulstone/anybody/chaplain(src)
+
+/obj/item/storage/belt/soulstone/full/chappy/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/device/soulstone/anybody/chaplain(src)
 
 /obj/item/storage/belt/champion
 	name = "championship belt"
@@ -458,8 +503,13 @@
 		/obj/item/key/janitor,
 		/obj/item/clothing/gloves,
 		/obj/item/melee/flyswatter,
+<<<<<<< HEAD
 		/obj/item/assembly/mousetrap
 		))
+=======
+		/obj/item/device/assembly/mousetrap
+		)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/storage/belt/bandolier
 	name = "bandolier"

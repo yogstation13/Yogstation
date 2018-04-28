@@ -45,6 +45,7 @@
 	<HR>"}
 	for(var/i in 1 to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
+<<<<<<< HEAD
 		dat += "<BR><B>[get_held_index_name(i)]:</B><A href='?src=[REF(src)];item=[SLOT_HANDS];hand_index=[i]'>[(I && !(I.flags_1 & ABSTRACT_1)) ? I : "<font color=grey>Empty</font>"]</a>"
 	dat += "<BR><A href='?src=[REF(src)];pouches=1'>Empty Pouches</A>"
 
@@ -52,6 +53,15 @@
 		dat += "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>"
 	if(legcuffed)
 		dat += "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>"
+=======
+		dat += "<BR><B>[get_held_index_name(i)]:</B><A href='?src=[REF(src)];item=[slot_hands];hand_index=[i]'>[(I && !(I.flags_1 & ABSTRACT_1)) ? I : "<font color=grey>Empty</font>"]</a>"
+	dat += "<BR><A href='?src=[REF(src)];pouches=1'>Empty Pouches</A>"
+
+	if(handcuffed)
+		dat += "<BR><A href='?src=[REF(src)];item=[slot_handcuffed]'>Handcuffed</A>"
+	if(legcuffed)
+		dat += "<BR><A href='?src=[REF(src)];item=[slot_legcuffed]'>Legcuffed</A>"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	dat += {"
 	<BR>

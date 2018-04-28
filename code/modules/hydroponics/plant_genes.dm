@@ -156,6 +156,12 @@
 	return TRUE
 
 /datum/plant_gene/trait/proc/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
+<<<<<<< HEAD
+=======
+	return
+
+/datum/plant_gene/trait/proc/on_consume(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/target)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return
 
 /datum/plant_gene/trait/proc/on_consume(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/target)

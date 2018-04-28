@@ -141,5 +141,12 @@ Des: Removes all infected images from the alien.
 		mind.transfer_to(new_xeno)
 	qdel(src)
 
+<<<<<<< HEAD
+=======
+#undef HEAT_DAMAGE_LEVEL_1
+#undef HEAT_DAMAGE_LEVEL_2
+#undef HEAT_DAMAGE_LEVEL_3
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /mob/living/carbon/alien/can_hold_items()
 	return has_fine_manipulation

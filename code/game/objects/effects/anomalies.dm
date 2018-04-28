@@ -193,9 +193,15 @@
 	var/turf/T = safepick(get_area_turfs(impact_area))
 	if(T)
 			// Calculate new position (searches through beacons in world)
+<<<<<<< HEAD
 		var/obj/item/beacon/chosen
 		var/list/possible = list()
 		for(var/obj/item/beacon/W in GLOB.teleportbeacons)
+=======
+		var/obj/item/device/beacon/chosen
+		var/list/possible = list()
+		for(var/obj/item/device/beacon/W in GLOB.teleportbeacons)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			possible += W
 
 		if(possible.len > 0)
@@ -218,7 +224,11 @@
 			var/y_distance = TO.y - FROM.y
 			var/x_distance = TO.x - FROM.x
 			for (var/atom/movable/A in urange(12, FROM )) // iterate thru list of mobs in the area
+<<<<<<< HEAD
 				if(istype(A, /obj/item/beacon))
+=======
+				if(istype(A, /obj/item/device/beacon))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					continue // don't teleport beacons because that's just insanely stupid
 				if(A.anchored)
 					continue

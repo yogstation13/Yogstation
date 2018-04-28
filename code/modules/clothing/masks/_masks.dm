@@ -2,7 +2,11 @@
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	body_parts_covered = HEAD
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_MASK
+=======
+	slot_flags = SLOT_MASK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	strip_delay = 40
 	equip_delay_other = 40
 	var/mask_adjusted = 0

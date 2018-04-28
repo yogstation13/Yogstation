@@ -55,7 +55,11 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/item/radio/intercom{
+=======
+/obj/item/device/radio/intercom{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	freerange = 1;
 	name = "Syndicate Radio Intercom";
 	pixel_x = -30
@@ -87,7 +91,11 @@
 "al" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,
+<<<<<<< HEAD
 /obj/item/flashlight{
+=======
+/obj/item/device/flashlight{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_y = -12
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -278,8 +286,13 @@
 /obj/structure/rack{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/item/multitool,
 /obj/item/radio/headset/syndicate/alt,
+=======
+/obj/item/device/multitool,
+/obj/item/device/radio/headset/syndicate/alt,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -288,7 +301,11 @@
 	dir = 8;
 	layer = 2.9
 	},
+<<<<<<< HEAD
 /obj/item/mining_scanner,
+=======
+/obj/item/device/mining_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/pickaxe,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,

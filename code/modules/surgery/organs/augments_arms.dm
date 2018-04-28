@@ -196,7 +196,11 @@
 /obj/item/organ/cyberimp/arm/flash
 	name = "integrated high-intensity photon projector" //Why not
 	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+<<<<<<< HEAD
 	contents = newlist(/obj/item/assembly/flash/armimplant)
+=======
+	contents = newlist(/obj/item/device/assembly/flash/armimplant)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/organ/cyberimp/arm/flash/Initialize()
 	. = ..()
@@ -212,7 +216,11 @@
 /obj/item/organ/cyberimp/arm/combat
 	name = "combat cybernetics implant"
 	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
+<<<<<<< HEAD
 	contents = newlist(/obj/item/melee/transforming/energy/blade/hardlight, /obj/item/gun/medbeam, /obj/item/borg/stun, /obj/item/assembly/flash/armimplant)
+=======
+	contents = newlist(/obj/item/melee/transforming/energy/blade/hardlight, /obj/item/gun/medbeam, /obj/item/borg/stun, /obj/item/device/assembly/flash/armimplant)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/organ/cyberimp/arm/combat/Initialize()
 	. = ..()

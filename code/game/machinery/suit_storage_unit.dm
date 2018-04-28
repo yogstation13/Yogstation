@@ -103,12 +103,15 @@
 	mask_type = /obj/item/clothing/mask/breath
 	storage_type = /obj/item/tank/internals/emergency_oxygen/double
 
+<<<<<<< HEAD
 /obj/machinery/suit_storage_unit/radsuit
 	name = "radiation suit storage unit"
 	suit_type = /obj/item/clothing/suit/radiation
 	helmet_type = /obj/item/clothing/head/radiation
 	storage_type = /obj/item/geiger_counter
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/suit_storage_unit/open
 	state_open = TRUE
 	density = FALSE

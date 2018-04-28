@@ -73,7 +73,11 @@
 		STOP_PROCESSING(SSobj, src)
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/health/ui_interact(mob/user as mob)//TODO: Change this to the wires thingy
+=======
+/obj/item/device/assembly/health/ui_interact(mob/user as mob)//TODO: Change this to the wires thingy
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(!secured)
 		user.show_message("<span class='warning'>The [name] is unsecured!</span>")

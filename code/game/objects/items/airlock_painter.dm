@@ -10,7 +10,11 @@
 	materials = list(MAT_METAL=50, MAT_GLASS=50)
 
 	flags_1 = CONDUCT_1 | NOBLUDGEON_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	usesound = 'sound/effects/spray2.ogg'
 
 	var/obj/item/toner/ink = null

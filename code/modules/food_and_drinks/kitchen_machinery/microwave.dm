@@ -163,7 +163,10 @@
 ********************/
 
 /obj/machinery/microwave/ui_interact(mob/user) // The microwave Menu
+<<<<<<< HEAD
 	. = ..()
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(panel_open || !anchored)
 		return
 	var/dat = "<div class='statusDisplay'>"

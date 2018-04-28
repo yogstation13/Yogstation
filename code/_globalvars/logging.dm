@@ -18,8 +18,13 @@ GLOBAL_VAR(sql_error_log)
 GLOBAL_PROTECT(sql_error_log)
 GLOBAL_VAR(world_pda_log)
 GLOBAL_PROTECT(world_pda_log)
+<<<<<<< HEAD
 GLOBAL_VAR(world_manifest_log)
 GLOBAL_PROTECT(world_manifest_log)
+=======
+GLOBAL_VAR(manifest_log)
+GLOBAL_PROTECT(manifest_log)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 GLOBAL_LIST_EMPTY(bombers)
 GLOBAL_PROTECT(bombers)

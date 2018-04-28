@@ -70,7 +70,11 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
+<<<<<<< HEAD
 	var/new_input = stripped_multiline_input(user, "Enter some words, please.",displayed_name)
+=======
+	var/new_input = stripped_input(user, "Enter some words, please.",displayed_name)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(istext(new_input) && user.IsAdvancedToolUser())
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
@@ -81,7 +85,11 @@
 	desc = "A very small version of the common medical analyser. This allows the machine to know how healthy someone is."
 	icon_state = "medscan"
 	complexity = 4
+<<<<<<< HEAD
 	inputs = list("target" = IC_PINTYPE_REF)
+=======
+	inputs = list("\<REF\> target")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	outputs = list(
 		"total health %" = IC_PINTYPE_NUMBER,
 		"total missing health" = IC_PINTYPE_NUMBER
@@ -91,7 +99,11 @@
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/input/med_scanner/do_work()
+<<<<<<< HEAD
 	var/mob/living/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living)
+=======
+	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(H)) //Invalid input
 		return
 	if(H.Adjacent(get_turf(src))) // Like normal analysers, it can't be used at range.
@@ -110,7 +122,11 @@
 	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
+<<<<<<< HEAD
 	inputs = list("target" = IC_PINTYPE_REF)
+=======
+	inputs = list("\<REF\> target")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	outputs = list(
 		"total health %"		= IC_PINTYPE_NUMBER,
 		"total missing health"	= IC_PINTYPE_NUMBER,
@@ -125,7 +141,11 @@
 	power_draw_per_use = 80
 
 /obj/item/integrated_circuit/input/adv_med_scanner/do_work()
+<<<<<<< HEAD
 	var/mob/living/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living)
+=======
+	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(H)) //Invalid input
 		return
 	if(H in view(get_turf(src))) // Like medbot's analyzer it can be used in range..
@@ -150,10 +170,17 @@
 
 /obj/item/integrated_circuit/input/slime_scanner
 	name = "slime_scanner"
+<<<<<<< HEAD
 	desc = "A very small version of the xenobio analyser. This allows the machine to know every needed properties of slime. Output mutation list is non associative."
 	icon_state = "medscan_adv"
 	complexity = 12
 	inputs = list("target" = IC_PINTYPE_REF)
+=======
+	desc = "A very small version of the xenobio analyser. This allows the machine to know every needed properties of slime."
+	icon_state = "medscan_adv"
+	complexity = 12
+	inputs = list("\<REF\> target")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	outputs = list(
 		"colour"				= IC_PINTYPE_STRING,
 		"adult"					= IC_PINTYPE_BOOLEAN,
@@ -197,7 +224,11 @@
 			It cannot scan seeds nor fruits, only plants."
 	icon_state = "medscan_adv"
 	complexity = 12
+<<<<<<< HEAD
 	inputs = list("target" = IC_PINTYPE_REF)
+=======
+	inputs = list("\<REF\> target")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	outputs = list(
 		"plant type"		= IC_PINTYPE_STRING,
 		"age"		= IC_PINTYPE_NUMBER,
@@ -216,10 +247,14 @@
 		"Nutrition level"			= IC_PINTYPE_NUMBER,
 		"harvest"			= IC_PINTYPE_NUMBER,
 		"dead"			= IC_PINTYPE_NUMBER,
+<<<<<<< HEAD
 		"plant health"			= IC_PINTYPE_NUMBER,
 		"self sustaining"		= IC_PINTYPE_NUMBER,
 		"using irrigation" 		= IC_PINTYPE_NUMBER,
 		"connected trays"		= IC_PINTYPE_LIST
+=======
+		"plant health"			= IC_PINTYPE_NUMBER
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -251,19 +286,31 @@
 		set_pin_data(IC_OUTPUT, 16, H.harvest)
 		set_pin_data(IC_OUTPUT, 17, H.dead)
 		set_pin_data(IC_OUTPUT, 18, H.plant_health)
+<<<<<<< HEAD
 		set_pin_data(IC_OUTPUT, 19, H.self_sustaining)
 		set_pin_data(IC_OUTPUT, 20, H.using_irrigation)
 		set_pin_data(IC_OUTPUT, 21, H.FindConnected())
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/gene_scanner
 	name = "gene scanner"
+<<<<<<< HEAD
 	desc = "This circuit will scan plant for traits and reagent genes. Output is non-associative."
 	extended_desc = "This allows the machine to scan plants in trays for reagent and trait genes. \
 			It cannot scan seeds nor fruits, only plants."
 	inputs = list(
 		"target" = IC_PINTYPE_REF
+=======
+	desc = "This circuit will scan plant for traits and reagent genes."
+	extended_desc = "This allows the machine to scan plants in trays for reagent and trait genes. \
+			It cannot scan seeds nor fruits, only plants."
+	inputs = list(
+		"\<REF\> target" = IC_PINTYPE_REF
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	)
 	outputs = list(
 		"traits" = IC_PINTYPE_LIST,
@@ -314,7 +361,10 @@
 		"amount of reagents"	= IC_PINTYPE_NUMBER,
 		"density"				= IC_PINTYPE_BOOLEAN,
 		"opacity"				= IC_PINTYPE_BOOLEAN,
+<<<<<<< HEAD
 		"occupied turf"			= IC_PINTYPE_REF
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		)
 	activators = list(
 		"scan" = IC_PINTYPE_PULSE_IN,
@@ -325,7 +375,11 @@
 	power_draw_per_use = 80
 
 /obj/item/integrated_circuit/input/examiner/do_work()
+<<<<<<< HEAD
 	var/atom/H = get_pin_data_as_type(IC_INPUT, 1, /atom)
+=======
+	var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/turf/T = get_turf(src)
 
 	if(!istype(H) || !(H in view(T)))
@@ -333,6 +387,7 @@
 	else
 		set_pin_data(IC_OUTPUT, 1, H.name)
 		set_pin_data(IC_OUTPUT, 2, H.desc)
+<<<<<<< HEAD
 
 		if(istype(H, /mob/living))
 			var/mob/living/M = H
@@ -340,6 +395,8 @@
 			if(msg)
 				set_pin_data(IC_OUTPUT, 2, msg)
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		set_pin_data(IC_OUTPUT, 3, H.x-T.x)
 		set_pin_data(IC_OUTPUT, 4, H.y-T.y)
 		set_pin_data(IC_OUTPUT, 5, sqrt((H.x-T.x)*(H.x-T.x)+ (H.y-T.y)*(H.y-T.y)))
@@ -352,20 +409,34 @@
 		set_pin_data(IC_OUTPUT, 7, tr)
 		set_pin_data(IC_OUTPUT, 8, H.density)
 		set_pin_data(IC_OUTPUT, 9, H.opacity)
+<<<<<<< HEAD
 		set_pin_data(IC_OUTPUT, 10, get_turf(H))
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		push_data()
 		activate_pin(2)
 
 /obj/item/integrated_circuit/input/turfpoint
+<<<<<<< HEAD
 	name = "Tile pointer"
 	desc = "This circuit will get tile ref with given absolute coordinates."
 	extended_desc = "If the machine	cannot see the target, it will not be able to calculate the correct direction.\
 	This circuit works only inside an assembly."
+=======
+	name = "tile pointer"
+	desc = "This circuit will get tile ref with given absolute coorinates."
+	extended_desc = "If the machine	cannot see the target, it will not be able to scan it.\
+	This circuit will only work in an assembly."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "numberpad"
 	complexity = 5
 	inputs = list("X" = IC_PINTYPE_NUMBER,"Y" = IC_PINTYPE_NUMBER)
 	outputs = list("tile" = IC_PINTYPE_REF)
+<<<<<<< HEAD
 	activators = list("calculate dir" = IC_PINTYPE_PULSE_IN, "on calculated" = IC_PINTYPE_PULSE_OUT,"not calculated" = IC_PINTYPE_PULSE_OUT)
+=======
+	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT,"not scanned" = IC_PINTYPE_PULSE_OUT)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 40
 
@@ -388,7 +459,11 @@
 
 /obj/item/integrated_circuit/input/turfscan
 	name = "tile analyzer"
+<<<<<<< HEAD
 	desc = "This circuit can analyze the contents of the scanned turf, and can read letters on the turf."
+=======
+	desc = "This machine vision system can analyze contents of desired tile.And can read letters on floor."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "video_camera"
 	complexity = 5
 	inputs = list(
@@ -396,8 +471,12 @@
 		)
 	outputs = list(
 		"located ref" 		= IC_PINTYPE_LIST,
+<<<<<<< HEAD
 		"Written letters" 	= IC_PINTYPE_STRING,
 		"area"				= IC_PINTYPE_STRING
+=======
+		"Written letters" 	= IC_PINTYPE_STRING
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		)
 	activators = list(
 		"scan" = IC_PINTYPE_PULSE_IN,
@@ -409,6 +488,7 @@
 	cooldown_per_use = 10
 
 /obj/item/integrated_circuit/input/turfscan/do_work()
+<<<<<<< HEAD
 	var/turf/scanned_turf = get_pin_data_as_type(IC_INPUT, 1, /turf)
 	var/turf/circuit_turf = get_turf(src)
 	var/area_name = get_area_name(scanned_turf)
@@ -426,6 +506,23 @@
 		set_pin_data(IC_OUTPUT, 3, area_name)
 		var/list/St = new()
 		for(var/obj/effect/decal/cleanable/crayon/I in scanned_turf)
+=======
+	var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom)
+	var/turf/T = get_turf(src)
+	var/turf/E = get_turf(H)
+	if(!istype(H)) //Invalid input
+		return
+
+	if(H in view(T)) // This is a camera. It can't examine thngs,that it can't see.
+		var/list/cont = new()
+		if(E.contents.len)
+			for(var/i = 1 to E.contents.len)
+				var/atom/U = E.contents[i]
+				cont += WEAKREF(U)
+		set_pin_data(IC_OUTPUT, 1, cont)
+		var/list/St = new()
+		for(var/obj/effect/decal/cleanable/crayon/I in E.contents)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			St.Add(I.icon_state)
 		if(St.len)
 			set_pin_data(IC_OUTPUT, 2, jointext(St, ",", 1, 0))
@@ -465,8 +562,13 @@
 	extended_desc = "The first pin requires a ref to the kind of object that you want the locator to acquire. This means that it will \
 	give refs to nearby objects that are similar. If more than one valid object is found nearby, it will choose one of them at \
 	random."
+<<<<<<< HEAD
 	inputs = list("desired type ref" = IC_PINTYPE_REF)
 	outputs = list("located ref" = IC_PINTYPE_REF)
+=======
+	inputs = list("desired type ref")
+	outputs = list("located ref")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,
 		"not found" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -501,7 +603,11 @@
 	complexity = 6
 	name = "list advanced locator"
 	desc = "This is needed for certain devices that demand list of names for a targets to act upon. This type locates something \
+<<<<<<< HEAD
 	that is standing in given radius up to 8 meters. Output is non-associative. Input will only consider keys if associative."
+=======
+	that is standing in given radius up to 8 meters"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	extended_desc = "The first pin requires a list of kinds of objects that you want the locator to acquire. It will locate nearby objects by name and description, \
 	and will then provide a list of all found objects which are similar. \
 	The second pin is a radius."
@@ -527,6 +633,7 @@
 	var/turf/T = get_turf(src)
 	var/list/nearby_things = view(radius,T)
 	var/list/valid_things = list()
+<<<<<<< HEAD
 	var/list/input_list = list()
 	input_list = I.data
 	for(var/item in input_list)
@@ -541,6 +648,23 @@
 				for(var/atom/thing in nearby_things)
 					if(thing.type != desired_type)
 						continue
+=======
+	var/list/GI = list()
+	GI = I.data
+	for(var/G in GI)
+		if(isweakref(G))									//It should search by refs. But don't want.will fix it later.
+			var/datum/integrated_io/G1
+			G1.data = G
+			var/atom/A = G1.data.resolve()
+			var/desired_type = A.type
+			for(var/atom/thing in nearby_things)
+				if(thing.type != desired_type)
+					continue
+				valid_things.Add(WEAKREF(thing))
+		else if(istext(G))
+			for(var/atom/thing in nearby_things)
+				if(findtext(addtext(thing.name," ",thing.desc), G, 1, 0) )
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					valid_things.Add(WEAKREF(thing))
 	if(valid_things.len)
 		O.data = valid_things
@@ -560,7 +684,11 @@
 	item by matching desired text in it's name and description. If more than one valid object is found nearby, it will choose one of them at \
 	random. The second pin is a radius."
 	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
+<<<<<<< HEAD
 	outputs = list("located ref" = IC_PINTYPE_REF)
+=======
+	outputs = list("located ref")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 30
@@ -688,8 +816,13 @@
 	will pulse whatever's connected to it. Pulsing the first activation pin will send a message. Message \
 	can be send to multiple recepients. Addresses must be separated with ; symbol."
 	icon_state = "signal"
+<<<<<<< HEAD
 	complexity = 2
 	cooldown_per_use = 1
+=======
+	complexity = 4
+	cooldown_per_use = 5
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	inputs = list(
 		"target NTNet addresses"= IC_PINTYPE_STRING,
 		"data to send"			= IC_PINTYPE_STRING,
@@ -700,20 +833,31 @@
 		"address received"			= IC_PINTYPE_STRING,
 		"data received"				= IC_PINTYPE_STRING,
 		"secondary text received"	= IC_PINTYPE_STRING,
+<<<<<<< HEAD
 		"passkey"					= IC_PINTYPE_STRING,
 		"is_broadcast"				= IC_PINTYPE_BOOLEAN
+=======
+		"passkey"					= IC_PINTYPE_STRING
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		)
 	activators = list("send data" = IC_PINTYPE_PULSE_IN, "on data received" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	action_flags = IC_ACTION_LONG_RANGE
 	power_draw_per_use = 50
+<<<<<<< HEAD
+=======
+	var/datum/ntnet_connection/exonet = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/address
 
 /obj/item/integrated_circuit/input/ntnet_packet/Initialize()
 	. = ..()
 	var/datum/component/ntnet_interface/net = LoadComponent(/datum/component/ntnet_interface)
 	address = net.hardware_id
+<<<<<<< HEAD
 	net.differentiate_broadcast = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	desc += "<br>This circuit's NTNet hardware address is: [address]"
 
 /obj/item/integrated_circuit/input/ntnet_packet/do_work()
@@ -724,11 +868,18 @@
 
 	var/datum/netdata/data = new
 	data.recipient_ids = splittext(target_address, ";")
+<<<<<<< HEAD
 	data.standard_format_data(message, text, key)
+=======
+	data.plaintext_data = message
+	data.plaintext_data_secondary = text
+	data.encrypted_passkey = key
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	ntnet_send(data)
 
 /obj/item/integrated_circuit/input/ntnet_recieve(datum/netdata/data)
 	set_pin_data(IC_OUTPUT, 1, data.sender_id)
+<<<<<<< HEAD
 	set_pin_data(IC_OUTPUT, 2, data.data["data"])
 	set_pin_data(IC_OUTPUT, 3, data.data["data_secondary"])
 	set_pin_data(IC_OUTPUT, 4, data.data["encrypted_passkey"])
@@ -778,6 +929,12 @@
 /obj/item/integrated_circuit/input/ntnet_advanced/ntnet_recieve(datum/netdata/data)
 	set_pin_data(IC_OUTPUT, 1, data.data)
 	set_pin_data(IC_OUTPUT, 2, data.broadcast)
+=======
+	set_pin_data(IC_OUTPUT, 2, data.plaintext_data)
+	set_pin_data(IC_OUTPUT, 3, data.plaintext_data_secondary)
+	set_pin_data(IC_OUTPUT, 4, data.encrypted_passkey)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	push_data()
 	activate_pin(2)
 
@@ -861,8 +1018,12 @@
 		return FALSE
 	var/ignore_bags = get_pin_data(IC_INPUT, 1)
 	if(ignore_bags)
+<<<<<<< HEAD
 		GET_COMPONENT_FROM(STR, /datum/component/storage, A)
 		if(STR)
+=======
+		if(istype(A, /obj/item/storage))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			return FALSE
 	set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
@@ -1035,9 +1196,15 @@
 		activate_pin(3)
 
 /obj/item/integrated_circuit/input/matscan
+<<<<<<< HEAD
 	name = "material scanner"
 	desc = "This special module is designed to get information about material containers of different machinery, \
 			like ORM, lathes, etc."
+=======
+	name = "material scaner"
+	desc = "It's special module, designed to get information about material containers of different machinery.\
+			Like ORM, lathes, etc."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "video_camera"
 	complexity = 6
 	inputs = list(

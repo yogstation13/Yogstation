@@ -65,7 +65,18 @@
 
 	return ..()
 
+<<<<<<< HEAD
 /obj/machinery/quantumpad/interact(mob/user)
+=======
+/obj/machinery/quantumpad/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(panel_open)
+		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
+		return
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!linked_pad || QDELETED(linked_pad))
 		if(!map_pad_link_id || !initMappedLink())
 			to_chat(user, "<span class='warning'>There is no linked pad!</span>")

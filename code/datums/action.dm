@@ -480,7 +480,11 @@
 			H.attack_self(owner)
 			return
 	var/obj/item/I = target
+<<<<<<< HEAD
 	if(owner.can_equip(I, SLOT_HANDS))
+=======
+	if(owner.can_equip(I, slot_hands))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		owner.temporarilyRemoveItemFromInventory(I)
 		owner.put_in_hands(I)
 		I.attack_self(owner)
@@ -692,6 +696,7 @@
 	else
 		owner.remove_alt_appearance("smallsprite")
 		small = FALSE
+<<<<<<< HEAD
 
 /datum/action/item_action/storage_gather_mode
 	name = "Switch gathering mode"
@@ -714,3 +719,5 @@
 /datum/action/item_action/storage_gather_mode/Trigger()
 	GET_COMPONENT_FROM(STR, /datum/component/storage, target)
 	STR.gather_mode_switch(owner)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

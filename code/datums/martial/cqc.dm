@@ -78,7 +78,11 @@
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.SetSleeping(300)
 		D.adjustBrainLoss(15, 150)
+<<<<<<< HEAD
 	return TRUE
+=======
+	return 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -117,8 +121,14 @@
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+<<<<<<< HEAD
 	if(!can_use(A))
 		return FALSE
+=======
+	if(just_a_cook)
+		if(!is_type_in_typecache(get_area(A), areas_under_siege))
+			return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_to_streak("G",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -134,8 +144,14 @@
 	return TRUE
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+<<<<<<< HEAD
 	if(!can_use(A))
 		return FALSE
+=======
+	if(just_a_cook)
+		if(!is_type_in_typecache(get_area(A), areas_under_siege))
+			return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -164,8 +180,14 @@
 	return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+<<<<<<< HEAD
 	if(!can_use(A))
 		return FALSE
+=======
+	if(just_a_cook)
+		if(!is_type_in_typecache(get_area(A), areas_under_siege))
+			return 0
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	add_to_streak("D",D)
 	var/obj/item/I = null
 	if(check_streak(A,D))

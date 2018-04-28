@@ -87,7 +87,11 @@
 /obj/item/powersink/attack_ai()
 	return
 
+<<<<<<< HEAD
 /obj/item/powersink/attack_hand(mob/user)
+=======
+/obj/item/device/powersink/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return

@@ -138,7 +138,11 @@ Difficulty: Medium
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		..()
 
+<<<<<<< HEAD
 /obj/item/gps/internal/legion
+=======
+/obj/item/device/gps/internal/legion
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = null
 	gpstag = "Echoing Signal"
 	desc = "The message repeats."

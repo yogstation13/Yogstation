@@ -3,7 +3,12 @@
 
 /datum/component/cleaning/Initialize()
 	if(!ismovableatom(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("[type] added to a [parent.type]")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	RegisterSignal(list(COMSIG_MOVABLE_MOVED), .proc/Clean)
 
 /datum/component/cleaning/proc/Clean()

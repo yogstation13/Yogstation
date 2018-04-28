@@ -11,12 +11,20 @@
 	var/olddir = 0
 	var/datum/component/redirect/listener
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/Initialize()
+=======
+/obj/item/device/assembly/infra/Initialize()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/Destroy()
+=======
+/obj/item/device/assembly/infra/Destroy()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	QDEL_LIST(beams)
 	return ..()
 
@@ -51,15 +59,26 @@
 		holder.update_icon()
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/dropped()
 	refreshBeam()
 
 /obj/item/assembly/infra/process()
+=======
+/obj/item/device/assembly/infra/dropped()
+	refreshBeam()
+
+/obj/item/device/assembly/infra/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!on || !secured)
 		refreshBeam()
 		return
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/proc/refreshBeam()
+=======
+/obj/item/device/assembly/infra/proc/refreshBeam()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	QDEL_LIST(beams)
 	if(throwing || !on || !secured || !(isturf(loc) || holder && isturf(holder.loc)))
 		return
@@ -83,6 +102,7 @@
 			_T = get_step(_T, _dir)
 			CHECK_TICK
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/attack_hand()
 	. = ..()
 	refreshBeam()
@@ -91,6 +111,27 @@
 	var/t = dir
 	. = ..()
 	setDir(t)
+=======
+/obj/item/device/assembly/infra/attack_hand()
+	. = ..()
+	refreshBeam()
+
+/obj/item/device/assembly/infra/Moved()
+	var/t = dir
+	. = ..()
+	setDir(t)
+
+/obj/item/device/assembly/infra/throw_at()
+	. = ..()
+	olddir = dir
+
+/obj/item/device/assembly/infra/throw_impact()
+	. = ..()
+	if(!olddir)
+		return
+	setDir(olddir)
+	olddir = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/assembly/infra/throw_at()
 	. = ..()
@@ -109,7 +150,11 @@
 	refreshBeam()
 	return 1
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/proc/trigger_beam(atom/movable/AM, turf/location)
+=======
+/obj/item/device/assembly/infra/proc/trigger_beam(atom/movable/AM, turf/location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	refreshBeam()
 	switchListener(location)
 	if(!secured || !on || next_activate > world.time)
@@ -118,16 +163,28 @@
 	audible_message("[icon2html(src, hearers(src))] *beep* *beep*", null, 3)
 	next_activate =  world.time + 30
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
 	QDEL_NULL(listener)
 	listener = newloc.AddComponent(/datum/component/redirect, COMSIG_ATOM_EXITED, CALLBACK(src, .proc/check_exit))
 
 /obj/item/assembly/infra/proc/check_exit(atom/movable/offender)
+=======
+/obj/item/device/assembly/infra/proc/switchListener(turf/newloc)
+	QDEL_NULL(listener)
+	listener = newloc.AddComponent(/datum/component/redirect, COMSIG_ATOM_EXITED, CALLBACK(src, .proc/check_exit))
+
+/obj/item/device/assembly/infra/proc/check_exit(atom/movable/offender)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(offender && ((offender.flags_1 & ABSTRACT_1) || offender == src))
 		return
 	return refreshBeam()
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/ui_interact(mob/user)//TODO: change this this to the wire control panel
+=======
+/obj/item/device/assembly/infra/ui_interact(mob/user)//TODO: change this this to the wire control panel
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(is_secured(user))
 		user.set_machine(src)
@@ -174,7 +231,11 @@
 	else
 		rotate()
 
+<<<<<<< HEAD
 /obj/item/assembly/infra/setDir()
+=======
+/obj/item/device/assembly/infra/setDir()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	refreshBeam()
 
@@ -184,7 +245,11 @@
 	name = "infrared beam"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
+<<<<<<< HEAD
 	var/obj/item/assembly/infra/master
+=======
+	var/obj/item/device/assembly/infra/master
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	anchored = TRUE
 	density = FALSE
 	flags_1 = ABSTRACT_1

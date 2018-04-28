@@ -8,7 +8,11 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 3
 	throwforce = 5
 	hitsound = "swing_hit"
@@ -28,7 +32,10 @@
 	var/change_icons = 1
 	var/can_off_process = 0
 	var/light_intensity = 2 //how powerful the emitted light is when used.
+<<<<<<< HEAD
 	var/progress_flash_divisor = 10
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/burned_fuel_for = 0	//when fuel was last removed
 	heat = 3800
 	tool_behaviour = TOOL_WELDER
@@ -235,6 +242,7 @@
 	if(. && user)
 		user.flash_act(light_intensity)
 
+<<<<<<< HEAD
 // Flash the user during welding progress
 /obj/item/weldingtool/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	. = ..()
@@ -245,6 +253,8 @@
 		else
 			progress_flash_divisor--
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
@@ -369,4 +379,8 @@
 		nextrefueltick = world.time + 10
 		reagents.add_reagent("welding_fuel", 1)
 
+<<<<<<< HEAD
 #undef WELDER_FUEL_BURN_INTERVAL
+=======
+#undef WELDER_FUEL_BURN_INTERVAL
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

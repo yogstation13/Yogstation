@@ -41,7 +41,11 @@
 	var/turf/T = get_turf(ui_host())
 	if(!T)
 		return
+<<<<<<< HEAD
 	for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
+=======
+	for(var/obj/machinery/power/supermatter_shard/S in GLOB.machines)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		// Delaminating, not within coverage, not on a tile.
 		if (!isturf(S.loc) || !(is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z))
 			continue
@@ -120,7 +124,11 @@
 			return TRUE
 		if("PRG_set")
 			var/newuid = text2num(params["target"])
+<<<<<<< HEAD
 			for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
+=======
+			for(var/obj/machinery/power/supermatter_shard/S in supermatters)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(S.uid == newuid)
 					active = S
 			return TRUE

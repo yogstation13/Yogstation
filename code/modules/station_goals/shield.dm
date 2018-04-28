@@ -121,7 +121,11 @@
 	icon_state = active ? "sat_active" : "sat_inactive"
 
 /obj/machinery/satellite/attackby(obj/item/I, mob/user, params)
+<<<<<<< HEAD
 	if(istype(I, /obj/item/multitool))
+=======
+	if(istype(I, /obj/item/device/multitool))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		to_chat(user, "<span class='notice'>// NTSAT-[id] // Mode : [active ? "PRIMARY" : "STANDBY"] //[(obj_flags & EMAGGED) ? "DEBUG_MODE //" : ""]</span>")
 	else
 		return ..()

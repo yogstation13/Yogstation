@@ -31,8 +31,11 @@
 		var/turf/place = turfs[i]
 		if(istype(place, /turf/open/space)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue
+<<<<<<< HEAD
 		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
 			continue
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 //Whatever special stuff you want
@@ -86,10 +89,13 @@
 	port_id = "assault_pod"
 	can_be_bought = FALSE
 
+<<<<<<< HEAD
 /datum/map_template/shuttle/pirate
 	port_id = "pirate"
 	can_be_bought = FALSE
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // Shuttles start here:
 
 /datum/map_template/shuttle/emergency/airless
@@ -384,10 +390,13 @@
 	suffix = "pubby"
 	name = "arrival shuttle (Pubby)"
 
+<<<<<<< HEAD
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
 	
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
 	name = "auxilliary base (Default)"
@@ -402,8 +411,12 @@
 
 /datum/map_template/shuttle/assault_pod/default
 	suffix = "default"
+<<<<<<< HEAD
 	name = "assault pod (Default)"
 
 /datum/map_template/shuttle/pirate/default
 	suffix = "default"
 	name = "pirate ship (Default)"
+=======
+	name = "assault pod (Default)"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

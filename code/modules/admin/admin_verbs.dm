@@ -61,6 +61,10 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
+<<<<<<< HEAD
+=======
+	/client/proc/toggle_antag_hud, 	/*toggle display of the admin antag hud*/
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
 	/client/proc/open_shuttle_manipulator, /* Opens shuttle manipulator UI */
@@ -228,6 +232,10 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
+<<<<<<< HEAD
+=======
+	/client/proc/toggle_antag_hud,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/client/proc/toggle_combo_hud,
 	/client/proc/debug_huds
 	))
@@ -349,6 +357,10 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 		if(body && !body.key)
 			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Ghost") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+<<<<<<< HEAD
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /client/proc/invisimin()
 	set name = "Invisimin"
@@ -620,7 +632,11 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 		return
 
 	if(has_antag_hud())
+<<<<<<< HEAD
 		toggle_combo_hud()
+=======
+		toggle_antag_hud()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	holder.deactivate()
 

@@ -44,7 +44,11 @@
 			if(iscompartmentfull(user))
 				break
 			if(!S.junkiness)
+<<<<<<< HEAD
 				T.SendSignal(COMSIG_TRY_STORAGE_TAKE, S, src, TRUE)
+=======
+				T.remove_from_storage(S, src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				food_load(S)
 				loaded++
 			else

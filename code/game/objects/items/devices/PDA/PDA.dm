@@ -10,7 +10,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 #define PDA_SCANNER_HALOGEN		4
 #define PDA_SCANNER_GAS			5
 
+<<<<<<< HEAD
 /obj/item/pda
+=======
+/obj/item/device/pda
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
@@ -20,7 +24,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = NOBLUDGEON_1
 	w_class = WEIGHT_CLASS_TINY
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_ID | SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -78,7 +86,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/underline_flag = TRUE //flag for underline
 
+<<<<<<< HEAD
 /obj/item/pda/suicide_act(mob/living/carbon/user)
+=======
+/obj/item/device/pda/suicide_act(mob/living/carbon/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/deathMessage = msg_input(user)
 	if (!deathMessage)
 		deathMessage = "i ded"
@@ -86,7 +98,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 	tnote += "<i><b>&rarr; To The Grim Reaper:</b></i><br>[deathMessage]<br>"//records a message in their PDA as being sent to the grim reaper
 	return BRUTELOSS
 
+<<<<<<< HEAD
 /obj/item/pda/examine(mob/user)
+=======
+/obj/item/device/pda/examine(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 	if(!id && !inserted_item)
 		return
@@ -107,7 +123,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 		inserted_item =	new /obj/item/pen(src)
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/pda/equipped(mob/user, slot)
+=======
+/obj/item/device/pda/equipped(mob/user, slot)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(!equipped)
 		if(user.client)
@@ -597,7 +617,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 		id = null
 		update_icon()
 
+<<<<<<< HEAD
 /obj/item/pda/proc/msg_input(mob/living/U = usr)
+=======
+/obj/item/device/pda/proc/msg_input(mob/living/U = usr)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/t = stripped_input(U, "Please enter message", name)
 	if (!t || toff)
 		return
@@ -609,7 +633,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 		t = Gibberish(t, 100)
 	return t
 
+<<<<<<< HEAD
 /obj/item/pda/proc/send_message(mob/living/user, list/obj/item/pda/targets)
+=======
+/obj/item/device/pda/proc/send_message(mob/living/user, list/obj/item/device/pda/targets)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/message = msg_input(user)
 	if(!message || !targets.len)
 		return
@@ -618,7 +646,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	// Send the signal
 	var/list/string_targets = list()
+<<<<<<< HEAD
 	for (var/obj/item/pda/P in targets)
+=======
+	for (var/obj/item/device/pda/P in targets)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if (P.owner && P.ownjob)  // != src is checked by the UI
 			string_targets += "[P.owner] ([P.ownjob])"
 	for (var/obj/machinery/computer/message_monitor/M in targets)
@@ -655,11 +687,18 @@ GLOBAL_LIST_EMPTY(PDAs)
 			to_chat(M, "[FOLLOW_LINK(M, user)] [ghost_message]")
 	// Log in the talk log
 	log_talk(user, "[key_name(user)] (PDA: [initial(name)]) sent \"[message]\" to [target_text]", LOGPDA)
+<<<<<<< HEAD
 	to_chat(user, "<span class='info'>Message sent to [target_text]: \"[message]\"</span>")
 	// Reset the photo
 	photo = null
 
 /obj/item/pda/proc/receive_message(datum/signal/subspace/pda/signal)
+=======
+	// Reset the photo
+	photo = null
+
+/obj/item/device/pda/proc/receive_message(datum/signal/subspace/pda/signal)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	tnote += "<i><b>&larr; From <a href='byond://?src=[REF(src)];choice=Message;target=[REF(signal.source)]'>[signal.data["name"]]</a> ([signal.data["job"]]):</b></i><br>[signal.format_message()]<br>"
 
 	if (!silent)
@@ -685,10 +724,17 @@ GLOBAL_LIST_EMPTY(PDAs)
 	update_icon()
 	add_overlay(icon_alert)
 
+<<<<<<< HEAD
 /obj/item/pda/proc/send_to_all(mob/living/U)
 	send_message(U,get_viewable_pdas())
 
 /obj/item/pda/proc/create_message(mob/living/U, obj/item/pda/P)
+=======
+/obj/item/device/pda/proc/send_to_all(mob/living/U)
+	send_message(U,get_viewable_pdas())
+
+/obj/item/device/pda/proc/create_message(mob/living/U, obj/item/device/pda/P)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	send_message(U,list(P))
 
 /obj/item/pda/AltClick()

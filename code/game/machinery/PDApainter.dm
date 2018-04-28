@@ -30,6 +30,7 @@
 /obj/machinery/pdapainter/Initialize()
 	. = ..()
 	var/list/blocked = list(
+<<<<<<< HEAD
 		/obj/item/pda/ai/pai,
 		/obj/item/pda/ai,
 		/obj/item/pda/heads,
@@ -37,6 +38,15 @@
 		/obj/item/pda/syndicate,
 		/obj/item/pda/chameleon,
 		/obj/item/pda/chameleon/broken)
+=======
+		/obj/item/device/pda/ai/pai,
+		/obj/item/device/pda/ai,
+		/obj/item/device/pda/heads,
+		/obj/item/device/pda/clear,
+		/obj/item/device/pda/syndicate,
+		/obj/item/device/pda/chameleon,
+		/obj/item/device/pda/chameleon/broken)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	for(var/P in typesof(/obj/item/pda) - blocked)
 		var/obj/item/pda/D = new P
@@ -110,7 +120,11 @@
 		return
 
 	if(storedpda)
+<<<<<<< HEAD
 		var/obj/item/pda/P
+=======
+		var/obj/item/device/pda/P
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		P = input(user, "Select your color!", "PDA Painting") as null|anything in colorlist
 		if(!P)
 			return

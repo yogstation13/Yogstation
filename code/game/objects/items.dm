@@ -290,9 +290,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!user.put_in_active_hand(src))
 		dropped(user)
 
+<<<<<<< HEAD
 /obj/item/proc/allow_attack_hand_drop(mob/user)
 	return TRUE
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/attack_paw(mob/user)
 	if(!user)
 		return
@@ -335,6 +338,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/GetDeconstructableContents()
 	return GetAllContents() - src
 
+/obj/item/proc/GetDeconstructableContents()
+	return GetAllContents() - src
+
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
 /obj/item/proc/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -360,6 +366,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/pickup(mob/user)
 	SendSignal(COMSIG_ITEM_PICKUP, user)
 	item_flags |= IN_INVENTORY
+<<<<<<< HEAD
+=======
+
+/obj/item/proc/allow_attack_hand_drop(mob/user)
+	return TRUE
+
+// called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
+/obj/item/proc/on_exit_storage(obj/item/storage/S)
+	return
+
+// called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+/obj/item/proc/on_enter_storage(obj/item/storage/S)
+	return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder)
@@ -538,6 +558,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	var/mob/owner = loc
 	var/flags = slot_flags
+<<<<<<< HEAD
 	if(flags & ITEM_SLOT_OCLOTHING)
 		owner.update_inv_wear_suit()
 	if(flags & ITEM_SLOT_ICLOTHING)
@@ -561,6 +582,31 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(flags & ITEM_SLOT_BACK)
 		owner.update_inv_back()
 	if(flags & ITEM_SLOT_NECK)
+=======
+	if(flags & SLOT_OCLOTHING)
+		owner.update_inv_wear_suit()
+	if(flags & SLOT_ICLOTHING)
+		owner.update_inv_w_uniform()
+	if(flags & SLOT_GLOVES)
+		owner.update_inv_gloves()
+	if(flags & SLOT_EYES)
+		owner.update_inv_glasses()
+	if(flags & SLOT_EARS)
+		owner.update_inv_ears()
+	if(flags & SLOT_MASK)
+		owner.update_inv_wear_mask()
+	if(flags & SLOT_HEAD)
+		owner.update_inv_head()
+	if(flags & SLOT_FEET)
+		owner.update_inv_shoes()
+	if(flags & SLOT_ID)
+		owner.update_inv_wear_id()
+	if(flags & SLOT_BELT)
+		owner.update_inv_belt()
+	if(flags & SLOT_BACK)
+		owner.update_inv_back()
+	if(flags & SLOT_NECK)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		owner.update_inv_neck()
 
 /obj/item/proc/is_hot()

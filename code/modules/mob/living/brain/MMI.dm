@@ -14,7 +14,11 @@
 	var/force_replace_ai_name = FALSE
 	var/overrides_aicore_laws = FALSE // Whether the laws on the MMI, if any, override possible pre-existing laws loaded on the AI core.
 
+<<<<<<< HEAD
 /obj/item/mmi/update_icon()
+=======
+/obj/item/device/mmi/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!brain)
 		icon_state = "mmi_off"
 		return
@@ -196,7 +200,11 @@
 		else
 			to_chat(user, "<span class='notice'>The MMI indicates the brain is active.</span>")
 
+<<<<<<< HEAD
 /obj/item/mmi/relaymove(mob/user)
+=======
+/obj/item/device/mmi/relaymove(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
 
 /obj/item/mmi/syndie

@@ -3,6 +3,7 @@
 	var/amount
 	var/overlay
 
+<<<<<<< HEAD
 	var/static/list/blacklist = typecacheof(list(
 		/turf/open/lava,
 		/turf/open/space,
@@ -22,6 +23,30 @@
 
 /datum/component/thermite/Initialize(_amount)
 	if(!istype(parent, /turf) || blacklist[parent.type])
+=======
+	var/static/list/blacklist = typecacheof(
+		/turf/open/lava,
+		/turf/open/space,
+		/turf/open/water,
+		/turf/open/chasm,
+		)
+
+	var/static/list/immunelist = typecacheof(
+		/turf/closed/wall/mineral/diamond,
+		/turf/closed/indestructible,
+		/turf/open/indestructible,
+		)
+	
+	var/static/list/resistlist = typecacheof(
+		/turf/closed/wall/r_wall,
+		)
+
+/datum/component/thermite/Initialize(_amount)
+	if(!istype(parent, /turf))
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("A thermite component has been applied to an incorrect object. parent: [parent]")
+	if(blacklist[parent.type])
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return COMPONENT_INCOMPATIBLE
 	if(immunelist[parent.type])
 		_amount*=0 //Yeah the overlay can still go on it and be cleaned but you arent burning down a diamond wall

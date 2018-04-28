@@ -240,7 +240,11 @@
 
 /obj/item/clothing/head/foilhat/equipped(mob/living/carbon/human/user, slot)
 	..()
+<<<<<<< HEAD
 	if(slot == SLOT_HEAD)
+=======
+	if(slot == slot_head)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(paranoia)
 			QDEL_NULL(paranoia)
 		paranoia = new()

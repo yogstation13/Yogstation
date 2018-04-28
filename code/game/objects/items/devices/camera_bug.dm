@@ -46,10 +46,17 @@
 		tracking = null
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/camera_bug/interact(mob/user)
 	ui_interact(user)
 
 /obj/item/camera_bug/ui_interact(mob/user = usr)
+=======
+/obj/item/device/camera_bug/interact(mob/user)
+	ui_interact(user)
+
+/obj/item/device/camera_bug/ui_interact(mob/user = usr)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	var/datum/browser/popup = new(user, "camerabug","Camera Bug",nref=src)
 	popup.set_content(menu(get_cameras()))

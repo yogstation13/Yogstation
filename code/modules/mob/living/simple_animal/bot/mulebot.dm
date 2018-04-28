@@ -60,10 +60,13 @@
 	mulebot_count += 1
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
+<<<<<<< HEAD
 
 /mob/living/simple_animal/bot/mulebot/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/ntnet_interface)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/living/simple_animal/bot/mulebot/Destroy()
 	unload(0)

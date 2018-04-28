@@ -292,6 +292,12 @@ obj/machinery/chem_dispenser/proc/work_animation()
 		update_icon()
 		return
 
+<<<<<<< HEAD
+=======
+	if(exchange_parts(user, I))
+		return
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(default_deconstruction_crowbar(I))
 		return
 	if(istype(I, /obj/item/reagent_containers) && !(I.flags_1 & ABSTRACT_1) && I.is_open_container())
@@ -347,8 +353,13 @@ obj/machinery/chem_dispenser/proc/work_animation()
 			macrotier = M.rating
 	powerefficiency = round(newpowereff, 0.01)
 
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/machinery/chem_dispenser/on_deconstruction()
 	cell = null
 	if(beaker)
@@ -410,7 +421,10 @@ obj/machinery/chem_dispenser/proc/work_animation()
 	amount = 10
 	pixel_y = 6
 	layer = WALL_OBJ_LAYER
+<<<<<<< HEAD
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	working_state = null
 	nopower_state = null
 	dispensable_reagents = list(

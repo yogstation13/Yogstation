@@ -6,7 +6,11 @@
 	var/name	//read-only, this is determined by the last portion of the derived entry type
 	var/config_entry_value
 	var/default	//read-only, just set value directly
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/resident_file	//the file which this was loaded from, if any
 	var/modified = FALSE	//set to TRUE if the default has been overridden by a config entry
 

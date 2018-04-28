@@ -7,8 +7,13 @@
 GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768))
 
 // for /datum/var/datum_flags
+<<<<<<< HEAD
 #define DF_USE_TAG		(1<<0)
 #define DF_VAR_EDITED	(1<<1)
+=======
+#define DF_USE_TAG 1
+#define DF_VAR_EDITED 2
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 //FLAGS BITMASK
 #define STOPSPRESSUREDMAGE_1		(1<<0)	//This flag is used on the flags_1 variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & ITEM_SLOT_BACK) if you see it anywhere
@@ -25,7 +30,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define OVERLAY_QUEUED_1			(1<<8)		// atom queued to SSoverlay
 #define ON_BORDER_1					(1<<9)		// item has priority to check when entering or leaving
 
+<<<<<<< HEAD
 #define NOSLIP_1					(1<<10) 		//prevents from slipping on wet floors, in space etc
+=======
+#define NOSLIP_1			1024 		//prevents from slipping on wet floors, in space etc
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // BLOCK_GAS_SMOKE_EFFECT_1 only used in masks at the moment.
 #define BLOCK_GAS_SMOKE_EFFECT_1	(1<<12)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
@@ -60,7 +69,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 // LAVA_PROTECT used on the flags_2 variable for both SUIT and HEAD items, and stops lava damage. Must be present in both to stop lava damage.
 #define LAVA_PROTECT_2				(1<<11)
 
+// LAVA_PROTECT used on the flags_2 variable for both SUIT and HEAD items, and stops lava damage. Must be present in both to stop lava damage.
+#define LAVA_PROTECT_2			2048
+
 //turf-only flags
+<<<<<<< HEAD
 #define NOJAUNT_1				(1<<0)
 #define UNUSED_TRANSIT_TURF_1	(1<<1)
 #define CAN_BE_DIRTY_1			(1<<2) // If a turf can be made dirty at roundstart. This is also used in areas.
@@ -68,12 +81,22 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_RUINS_1				(1<<5) //Blocks ruins spawning on the turf
 #define NO_LAVA_GEN_1			(1<<6) //Blocks lava rivers being generated on the turf
 //#define CHECK_RICOCHET_1		32		//Same thing as atom flag.
+=======
+#define NOJAUNT_1				1
+#define UNUSED_TRANSIT_TURF_1	2
+#define CAN_BE_DIRTY_1			4 // If a turf can be made dirty at roundstart. This is also used in areas.
+#define NO_DEATHRATTLE_1		16 // Do not notify deadchat about any deaths that occur on this turf.
+#define NO_RUINS_1				32 //Blocks ruins spawning on the turf
+#define NO_LAVA_GEN_1				64 //Blocks lava rivers being generated on the turf
+//#define CHECK_RICOCHET_1	32		//Same thing as atom flag.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)
 */
 //flags for pass_flags
+<<<<<<< HEAD
 #define PASSTABLE		(1<<0)
 #define PASSGLASS		(1<<1)
 #define PASSGRILLE		(1<<2)
@@ -86,6 +109,20 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //Movement Types
 #define GROUND (1<<0)
 #define FLYING (1<<1)
+=======
+#define PASSTABLE		1
+#define PASSGLASS		2
+#define PASSGRILLE		4
+#define PASSBLOB		8
+#define PASSMOB			16
+#define PASSCLOSEDTURF		32
+#define LETPASSTHROW	64
+
+
+//Movement Types
+#define GROUND 1
+#define FLYING 2
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // Flags for reagents
 #define REAGENT_NOREACT (1<<0)

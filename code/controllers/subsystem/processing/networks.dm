@@ -9,7 +9,10 @@ PROCESSING_SUBSYSTEM_DEF(networks)
 	var/assignment_hardware_id = HID_RESTRICTED_END
 	var/list/networks_by_id = list()				//id = network
 	var/list/interfaces_by_id = list()				//hardware id = component interface
+<<<<<<< HEAD
 	var/resolve_collisions = TRUE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/controller/subsystem/processing/networks/Initialize()
 	station_network = new
@@ -35,6 +38,7 @@ PROCESSING_SUBSYSTEM_DEF(networks)
 /datum/controller/subsystem/processing/networks/proc/unregister_interface(datum/component/ntnet_interface/D)
 	interfaces_by_id -= D.hardware_id
 	return TRUE
+<<<<<<< HEAD
 
 /datum/controller/subsystem/processing/networks/proc/get_next_HID()
 	var/string = "[num2text(assignment_hardware_id++, 12)]"
@@ -49,3 +53,5 @@ PROCESSING_SUBSYSTEM_DEF(networks)
 	. = "[copytext(hex, 1, 9)]"		//16 ^ 8 possibilities I think.
 	if(interfaces_by_id[.])
 		return resolve_collisions? make_address("[num2text(rand(HID_RESTRICTED_END, 999999999), 12)]"):null
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

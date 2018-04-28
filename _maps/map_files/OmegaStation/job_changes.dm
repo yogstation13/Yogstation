@@ -166,8 +166,11 @@ MAP_REMOVE_JOB(rd)
 MAP_REMOVE_JOB(warden)
 MAP_REMOVE_JOB(lawyer)
 MAP_REMOVE_JOB(chemist)
+<<<<<<< HEAD
 MAP_REMOVE_JOB(clerk) //YOGS start - yogjobs
 MAP_REMOVE_JOB(paramedic)
 MAP_REMOVE_JOB(psych)
 MAP_REMOVE_JOB(signal_tech)
 MAP_REMOVE_JOB(miningmedic) //YOGS end - yogjobs
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

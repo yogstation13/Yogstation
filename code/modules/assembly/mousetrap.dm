@@ -91,7 +91,11 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
+<<<<<<< HEAD
 /obj/item/assembly/mousetrap/attack_hand(mob/living/carbon/human/user)
+=======
+/obj/item/device/assembly/mousetrap/attack_hand(mob/living/carbon/human/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(armed)
 		if((user.has_trait(TRAIT_DUMB) || user.has_trait(TRAIT_CLUMSY)) && prob(50))
 			var/which_hand = BODY_ZONE_PRECISE_L_HAND

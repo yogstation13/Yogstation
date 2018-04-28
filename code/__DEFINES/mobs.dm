@@ -63,6 +63,7 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
+<<<<<<< HEAD
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
@@ -84,6 +85,8 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 //Brain Damage defines
 #define BRAIN_DAMAGE_MILD 20
 #define BRAIN_DAMAGE_SEVERE 100
@@ -195,6 +198,7 @@
 #define AI_Z_OFF	4
 
 //determines if a mob can smash through it
+<<<<<<< HEAD
 #define ENVIRONMENT_SMASH_NONE			0
 #define ENVIRONMENT_SMASH_STRUCTURES	(1<<0) 	//crates, lockers, ect
 #define ENVIRONMENT_SMASH_WALLS			(1<<1)  //walls
@@ -204,6 +208,17 @@
 #define SLIDE					(1<<1)
 #define GALOSHES_DONT_HELP		(1<<2)
 #define SLIDE_ICE				(1<<3)
+=======
+#define ENVIRONMENT_SMASH_NONE 0
+#define ENVIRONMENT_SMASH_STRUCTURES 1 //crates, lockers, ect
+#define ENVIRONMENT_SMASH_WALLS 2   //walls
+#define ENVIRONMENT_SMASH_RWALLS 4  //rwalls
+
+#define NO_SLIP_WHEN_WALKING 1
+#define SLIDE 2
+#define GALOSHES_DONT_HELP 4
+#define SLIDE_ICE 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define MAX_CHICKENS 50
 

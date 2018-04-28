@@ -48,7 +48,11 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	health = 750
 	maxHealth = 750 //""""low-ish"""" HP because it's a passive boss, and the swarm itself is the real foe
 	mob_biotypes = list(MOB_ROBOTIC)
+<<<<<<< HEAD
 	medal_type = BOSS_MEDAL_SWARMERS
+=======
+	medal_type = MEDAL_PREFIX
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	score_type = SWARMER_BEACON_SCORE
 	faction = list("mining", "boss", "swarmer")
 	weather_immunities = list("lava","ash")

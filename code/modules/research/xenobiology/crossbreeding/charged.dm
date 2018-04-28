@@ -122,7 +122,11 @@ Charged extracts:
 	colour = "sepia"
 
 /obj/item/slimecross/charged/sepia/do_effect(mob/user)
+<<<<<<< HEAD
 	new /obj/item/camera/spooky(get_turf(user))
+=======
+	new /obj/item/device/camera/spooky(get_turf(user))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.visible_message("<span class='notice'>[src] flickers in a strange, ethereal manner, and produces a camera!</span>")
 	..()
 
@@ -329,7 +333,11 @@ Charged extracts:
 	if(!istype(C))
 		to_chat(user, "<span class='warning'>The potion can only be used on clothing!</span>")
 		return
+<<<<<<< HEAD
 	if(C.min_cold_protection_temperature == SPACE_SUIT_MIN_TEMP_PROTECT && C.flags_1 & STOPSPRESSUREDMAGE_1)
+=======
+	if(C.min_cold_protection_temperature == SPACE_SUIT_MIN_TEMP_PROTECT && STOPSPRESSUREDMAGE_1 in C.flags_1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		to_chat(user, "<span class='warning'>The [C] is already pressure-resistant!</span>")
 		return ..()
 	to_chat(user, "<span class='notice'>You slather the blue gunk over the [C], making it airtight.</span>")

@@ -9,7 +9,11 @@
 	id = "beacon"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 150, MAT_GLASS = 100)
+<<<<<<< HEAD
 	build_path = /obj/item/beacon
+=======
+	build_path = /obj/item/device/beacon
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SECURITY
 
@@ -40,7 +44,11 @@
 	id = "telesci_gps"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 500, MAT_GLASS = 1000)
+<<<<<<< HEAD
 	build_path = /obj/item/gps
+=======
+	build_path = /obj/item/device/gps
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 

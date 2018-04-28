@@ -1,6 +1,10 @@
 #define MAX_CIRCUIT_CLONE_TIME 3 MINUTES //circuit slow-clones can only take up this amount of time to complete
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer
+=======
+/obj/item/device/integrated_circuit_printer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "integrated circuit printer"
 	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
 	icon = 'icons/obj/assemblies/electronic_tools.dmi'
@@ -16,21 +20,33 @@
 	var/recycling = FALSE		// If an assembly is being emptied into this printer
 	var/list/program			// Currently loaded save, in form of list
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, BE_CLOSE)
 
 /obj/item/integrated_circuit_printer/upgraded
+=======
+/obj/item/device/integrated_circuit_printer/proc/check_interactivity(mob/user)
+	return user.canUseTopic(src, BE_CLOSE)
+
+/obj/item/device/integrated_circuit_printer/upgraded
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	upgraded = TRUE
 	can_clone = TRUE
 	fast_clone = TRUE
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/debug //translation: "integrated_circuit_printer/local_server"
+=======
+/obj/item/device/integrated_circuit_printer/debug //translation: "integrated_circuit_printer/local_server"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "debug circuit printer"
 	debug = TRUE
 	upgraded = TRUE
 	can_clone = TRUE
 	w_class = WEIGHT_CLASS_TINY
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/Initialize()
 	. = ..()
 	AddComponent(/datum/component/material_container, list(MAT_METAL), MINERAL_MATERIAL_AMOUNT * 25, TRUE, list(/obj/item/stack, /obj/item/integrated_circuit, /obj/item/electronic_assembly))
@@ -40,6 +56,17 @@
 	return ..()
 
 /obj/item/integrated_circuit_printer/process()
+=======
+/obj/item/device/integrated_circuit_printer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/material_container, list(MAT_METAL), MINERAL_MATERIAL_AMOUNT * 25, TRUE, list(/obj/item/stack, /obj/item/integrated_circuit, /obj/item/device/electronic_assembly))
+
+/obj/item/device/integrated_circuit_printer/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
+/obj/item/device/integrated_circuit_printer/process()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!cloning)
 		STOP_PROCESSING(SSprocessing, src)
 	if(world.time >= clone_countdown || fast_clone)
@@ -50,7 +77,11 @@
 		cloning = FALSE
 		STOP_PROCESSING(SSprocessing, src)
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/attackby(obj/item/O, mob/user)
+=======
+/obj/item/device/integrated_circuit_printer/attackby(obj/item/O, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(istype(O, /obj/item/disk/integrated_circuit/upgrade/advanced))
 		if(upgraded)
 			to_chat(user, "<span class='warning'>[src] already has this upgrade. </span>")
@@ -69,8 +100,13 @@
 		interact(user)
 		return TRUE
 
+<<<<<<< HEAD
 	if(istype(O, /obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/EA = O //microtransactions not included
+=======
+	if(istype(O, /obj/item/device/electronic_assembly))
+		var/obj/item/device/electronic_assembly/EA = O //microtransactions not included
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(EA.assembly_components.len)
 			if(recycling)
 				return
@@ -109,10 +145,17 @@
 
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/attack_self(mob/user)
 	interact(user)
 
 /obj/item/integrated_circuit_printer/interact(mob/user)
+=======
+/obj/item/device/integrated_circuit_printer/attack_self(mob/user)
+	interact(user)
+
+/obj/item/device/integrated_circuit_printer/interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(isnull(current_category))
 		current_category = SScircuit.circuit_fabricator_recipe_list[1]
 
@@ -170,7 +213,11 @@
 
 	user << browse(HTML, "window=integrated_printer;size=600x500;border=1;can_resize=1;can_close=1;can_minimize=1")
 
+<<<<<<< HEAD
 /obj/item/integrated_circuit_printer/Topic(href, href_list)
+=======
+/obj/item/device/integrated_circuit_printer/Topic(href, href_list)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!check_interactivity(usr))
 		return
 	if(..())
@@ -186,14 +233,22 @@
 			return TRUE
 
 		var/cost = 400
+<<<<<<< HEAD
 		if(ispath(build_type, /obj/item/electronic_assembly))
 			var/obj/item/electronic_assembly/E = SScircuit.cached_assemblies[build_type]
+=======
+		if(ispath(build_type, /obj/item/device/electronic_assembly))
+			var/obj/item/device/electronic_assembly/E = SScircuit.cached_assemblies[build_type]
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			cost = E.materials[MAT_METAL]
 		else if(ispath(build_type, /obj/item/integrated_circuit))
 			var/obj/item/integrated_circuit/IC = SScircuit.cached_components[build_type]
 			cost = IC.materials[MAT_METAL]
+<<<<<<< HEAD
 		else if(!build_type in SScircuit.circuit_fabricator_recipe_list["Tools"])
 			return
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 
@@ -204,8 +259,13 @@
 		var/obj/item/built = new build_type(drop_location())
 		usr.put_in_hands(built)
 
+<<<<<<< HEAD
 		if(istype(built, /obj/item/electronic_assembly))
 			var/obj/item/electronic_assembly/E = built
+=======
+		if(istype(built, /obj/item/device/electronic_assembly))
+			var/obj/item/device/electronic_assembly/E = built
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			E.opened = TRUE
 			E.update_icon()
 			//reupdate diagnostic hud because it was put_in_hands() and not pickup()'ed

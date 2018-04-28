@@ -55,7 +55,11 @@
 	..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
+<<<<<<< HEAD
 /obj/item/taperecorder/attack_hand(mob/user)
+=======
+/obj/item/device/taperecorder/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(loc == user)
 		if(mytape)
 			if(!user.is_holding(src))
@@ -276,7 +280,11 @@
 	ruined = 0
 
 
+<<<<<<< HEAD
 /obj/item/tape/attackby(obj/item/I, mob/user, params)
+=======
+/obj/item/device/tape/attackby(obj/item/I, mob/user, params)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(ruined && istype(I, /obj/item/screwdriver) || istype(I, /obj/item/pen))
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		if(I.use_tool(src, user, 120))
@@ -284,9 +292,16 @@
 			fix()
 
 //Random colour tapes
+<<<<<<< HEAD
 /obj/item/tape/random
 	icon_state = "random_tape"
 
 /obj/item/tape/random/New()
+=======
+/obj/item/device/tape/random
+	icon_state = "random_tape"
+
+/obj/item/device/tape/random/New()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
 	..()

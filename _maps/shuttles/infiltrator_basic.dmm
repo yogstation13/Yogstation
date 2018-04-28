@@ -527,7 +527,11 @@
 /obj/item/screwdriver{
 	pixel_y = 9
 	},
+<<<<<<< HEAD
 /obj/item/assembly/voice{
+=======
+/obj/item/device/assembly/voice{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_y = 3
 	},
 /obj/structure/table/reinforced,
@@ -535,7 +539,11 @@
 /area/shuttle/syndicate/armory)
 "bz" = (
 /obj/item/wrench,
+<<<<<<< HEAD
 /obj/item/assembly/infra,
+=======
+/obj/item/device/assembly/infra,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/table/reinforced,
 /obj/machinery/light{
 	dir = 1
@@ -543,6 +551,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
 "bA" = (
+<<<<<<< HEAD
 /obj/item/assembly/signaler,
 /obj/item/assembly/signaler,
 /obj/item/assembly/prox_sensor{
@@ -550,6 +559,15 @@
 	pixel_y = 4
 	},
 /obj/item/assembly/prox_sensor{
+=======
+/obj/item/device/assembly/signaler,
+/obj/item/device/assembly/signaler,
+/obj/item/device/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/device/assembly/prox_sensor{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = -8;
 	pixel_y = 4
 	},
@@ -560,7 +578,11 @@
 /obj/item/weldingtool/largetank{
 	pixel_y = 3
 	},
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/armory)
@@ -746,10 +768,17 @@
 /turf/open/floor/plasteel/vault,
 /area/shuttle/syndicate/hallway)
 "ce" = (
+<<<<<<< HEAD
 /obj/item/sbeacondrop/bomb{
 	pixel_y = 5
 	},
 /obj/item/sbeacondrop/bomb,
+=======
+/obj/item/device/sbeacondrop/bomb{
+	pixel_y = 5
+	},
+/obj/item/device/sbeacondrop/bomb,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/vault/side,
 /area/shuttle/syndicate/armory)
@@ -791,7 +820,11 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/item/aicard,
+=======
+/obj/item/device/aicard,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/vault/side,
 /area/shuttle/syndicate/armory)
 "cj" = (

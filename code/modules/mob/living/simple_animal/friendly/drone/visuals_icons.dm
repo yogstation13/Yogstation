@@ -152,7 +152,11 @@
 	if(seeStatic)
 		for(var/i in GLOB.mob_living_list)
 			var/mob/living/L = i
+<<<<<<< HEAD
 			if(isdrone(L) || !L.staticOverlays.len)
+=======
+			if(isdrone(L))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				continue
 			var/image/chosen
 			if(staticChoice in L.staticOverlays)

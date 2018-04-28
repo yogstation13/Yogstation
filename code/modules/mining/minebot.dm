@@ -36,12 +36,23 @@
 	del_on_death = TRUE
 	var/mode = MINEDRONE_COLLECT
 	var/light_on = 0
+<<<<<<< HEAD
+=======
+
+	var/datum/action/innate/minedrone/toggle_light/toggle_light_action
+	var/datum/action/innate/minedrone/toggle_mode/toggle_mode_action
+	var/datum/action/innate/minedrone/dump_ore/dump_ore_action
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
 	stored_gun = new(src)
+<<<<<<< HEAD
 	var/datum/action/innate/minedrone/toggle_light/toggle_light_action = new()
+=======
+	toggle_light_action = new()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	toggle_light_action.Grant(src)
 	var/datum/action/innate/minedrone/toggle_meson_vision/toggle_meson_vision_action = new()
 	toggle_meson_vision_action.Grant(src)
@@ -100,7 +111,11 @@
 		to_chat(user, "<span class='info'>You repair some of the armor on [src].</span>")
 
 /mob/living/simple_animal/hostile/mining_drone/attackby(obj/item/I, mob/user, params)
+<<<<<<< HEAD
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner))
+=======
+	if(istype(I, /obj/item/device/mining_scanner) || istype(I, /obj/item/device/t_scanner/adv_mining_scanner))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		to_chat(user, "<span class='info'>You instruct [src] to drop any collected ore.</span>")
 		DropOre()
 		return
@@ -263,18 +278,30 @@
 
 //Melee
 
+<<<<<<< HEAD
 /obj/item/mine_bot_upgrade
+=======
+/obj/item/device/mine_bot_upgrade
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "minebot melee upgrade"
 	desc = "A minebot upgrade."
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 
+<<<<<<< HEAD
 /obj/item/mine_bot_upgrade/afterattack(mob/living/simple_animal/hostile/mining_drone/M, mob/user, proximity)
+=======
+/obj/item/device/mine_bot_upgrade/afterattack(mob/living/simple_animal/hostile/mining_drone/M, mob/user, proximity)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!istype(M) || !proximity)
 		return
 	upgrade_bot(M, user)
 
+<<<<<<< HEAD
 /obj/item/mine_bot_upgrade/proc/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/M, mob/user)
+=======
+/obj/item/device/mine_bot_upgrade/proc/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/M, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(M.melee_damage_upper != initial(M.melee_damage_upper))
 		to_chat(user, "[src] already has a combat upgrade installed!")
 		return
@@ -284,10 +311,17 @@
 
 //Health
 
+<<<<<<< HEAD
 /obj/item/mine_bot_upgrade/health
 	name = "minebot armor upgrade"
 
 /obj/item/mine_bot_upgrade/health/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/M, mob/user)
+=======
+/obj/item/device/mine_bot_upgrade/health
+	name = "minebot armor upgrade"
+
+/obj/item/device/mine_bot_upgrade/health/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/M, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(M.maxHealth != initial(M.maxHealth))
 		to_chat(user, "[src] already has reinforced armor!")
 		return

@@ -10,7 +10,10 @@
 
 /obj/item/ammo_casing/energy/flora
 	fire_sound = 'sound/effects/stealthoff.ogg'
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/flora/yield
 	projectile_type = /obj/item/projectile/energy/florayield
@@ -39,12 +42,18 @@
 	select_name = "netting"
 	pellets = 6
 	variance = 40
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/trap
 	projectile_type = /obj/item/projectile/energy/trap
 	select_name = "snare"
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/instakill
 	projectile_type = /obj/item/projectile/beam/instakill

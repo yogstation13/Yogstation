@@ -17,7 +17,12 @@
 	STR.max_combined_w_class = 40
 	STR.can_hold = typecacheof(list(/obj/item/coin, /obj/item/stack/spacecash))
 
+<<<<<<< HEAD
 /obj/item/storage/bag/money/vault/PopulateContents()
+=======
+/obj/item/storage/bag/money/vault/Initialize()
+	. = ..()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/silver(src)

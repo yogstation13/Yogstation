@@ -240,6 +240,7 @@
 	icon_state = "pi"
 	inputs = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+<<<<<<< HEAD
 	
 /obj/item/integrated_circuit/arithmetic/pi/Initialize()
 	. = ..()
@@ -247,6 +248,11 @@
 
 /obj/item/integrated_circuit/arithmetic/pi/do_work()
 	set_pin_data(IC_OUTPUT, 1, PI)
+=======
+
+/obj/item/integrated_circuit/arithmetic/pi/do_work()
+	set_pin_data(IC_OUTPUT, 1, 3.14159)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	push_data()
 	activate_pin(2)
 
@@ -310,4 +316,8 @@
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
+<<<<<<< HEAD
 	activate_pin(2)
+=======
+	activate_pin(2)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

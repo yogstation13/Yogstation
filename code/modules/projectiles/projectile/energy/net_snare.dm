@@ -31,7 +31,11 @@
 
 /obj/effect/nettingportal/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	var/obj/item/beacon/teletarget = null
+=======
+	var/obj/item/device/beacon/teletarget = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
 		if(com.target)
 			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)

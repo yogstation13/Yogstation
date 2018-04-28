@@ -63,7 +63,11 @@
 	var/list/candidates = pollGhostCandidates("Do you wish to be considered for pirate crew ?", ROLE_TRAITOR)
 	shuffle_inplace(candidates)
 
+<<<<<<< HEAD
 	var/datum/map_template/shuttle/pirate/default/ship = new
+=======
+	var/datum/map_template/pirate_event_ship/ship = new
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
 	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
 	var/z = SSmapping.empty_space.z_value
@@ -94,13 +98,21 @@
 	density = TRUE
 	anchored = TRUE
 	var/active = FALSE
+<<<<<<< HEAD
 	var/obj/item/gps/gps
+=======
+	var/obj/item/device/gps/gps
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/credits_stored = 0
 	var/siphon_per_tick = 5
 
 /obj/machinery/shuttle_scrambler/Initialize(mapload)
 	. = ..()
+<<<<<<< HEAD
 	gps = new/obj/item/gps/internal/pirate(src)
+=======
+	gps = new/obj/item/device/gps/internal/pirate(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gps.tracking = FALSE
 	update_icon()
 
@@ -174,7 +186,15 @@
 	QDEL_NULL(gps)
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/gps/internal/pirate
+=======
+/datum/map_template/pirate_event_ship
+	name = "Pirate Ship"
+	mappath = "_maps/templates/pirate_ship.dmm"
+
+/obj/item/device/gps/internal/pirate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gpstag = "Nautical Signal"
 	desc = "You can hear shanties over the static."
 

@@ -49,9 +49,15 @@ if [ "$BUILD_TOOLS" = false ]; then
 
     source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
 	if [ "$BUILD_TESTING" = true ]; then
+<<<<<<< HEAD
 		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme
 	else
 		tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme && DreamDaemon yogstation.dmb -close -trusted -params "test-run&log-directory=travis"
+=======
+		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
+	else
+		tools/travis/dm.sh -DTRAVISBUILDING tgstation.dme && DreamDaemon tgstation.dmb -close -trusted -params "test-run&log-directory=travis"
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		cat data/logs/travis/clean_run.lk
 	fi;
 fi;

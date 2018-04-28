@@ -41,7 +41,11 @@ Chief Engineer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black/ce
+<<<<<<< HEAD
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1)
+=======
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/device/modular_computer/tablet/preset/advanced=1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
@@ -95,7 +99,11 @@ Station Engineer
 	uniform = /obj/item/clothing/under/rank/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	head = /obj/item/clothing/head/hardhat
+<<<<<<< HEAD
 	r_pocket = /obj/item/t_scanner
+=======
+	r_pocket = /obj/item/device/t_scanner
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
@@ -149,7 +157,11 @@ Atmospheric Technician
 	l_pocket = /obj/item/pda/atmos
 	ears = /obj/item/radio/headset/headset_eng
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
+<<<<<<< HEAD
 	r_pocket = /obj/item/analyzer
+=======
+	r_pocket = /obj/item/device/analyzer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

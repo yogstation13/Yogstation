@@ -10,6 +10,7 @@
 	layer = GAS_FILTER_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -20,6 +21,8 @@
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/atmospherics/components/unary/portables_connector/New()
 	..()

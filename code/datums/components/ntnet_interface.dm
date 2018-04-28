@@ -2,9 +2,12 @@
 /datum/proc/ntnet_recieve(datum/netdata/data)
 	return
 
+<<<<<<< HEAD
 /datum/proc/ntnet_recieve_broadcast(datum/netdata/data)
 	return
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/proc/ntnet_send(datum/netdata/data, netid)
 	GET_COMPONENT(NIC, /datum/component/ntnet_interface)
 	if(!NIC)
@@ -12,6 +15,7 @@
 	return NIC.__network_send(data, netid)
 
 /datum/component/ntnet_interface
+<<<<<<< HEAD
 	var/hardware_id			//text. this is the true ID. do not change this. stuff like ID forgery can be done manually.
 	var/network_name = ""			//text
 	var/list/networks_connected_by_id = list()		//id = datum/ntnet
@@ -23,6 +27,19 @@
 	if(!SSnetworks.register_interface(src))
 		. = COMPONENT_INCOMPATIBLE
 		CRASH("Unable to register NTNet interface. Interface deleted.")
+=======
+	var/hardware_id			//text
+	var/network_name = ""			//text
+	var/list/networks_connected_by_id = list()		//id = datum/ntnet
+
+/datum/component/ntnet_interface/Initialize(force_ID, force_name = "NTNet Device", autoconnect_station_network = TRUE)			//Don't force ID unless you know what you're doing!
+	if(!force_ID)
+		hardware_id = "[SSnetworks.assignment_hardware_id++]"
+	else
+		hardware_id = force_ID
+	network_name = force_name
+	SSnetworks.register_interface(src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(autoconnect_station_network)
 		register_connection(SSnetworks.station_network)
 
@@ -33,10 +50,14 @@
 
 /datum/component/ntnet_interface/proc/__network_recieve(datum/netdata/data)			//Do not directly proccall!
 	parent.SendSignal(COMSIG_COMPONENT_NTNET_RECIEVE, data)
+<<<<<<< HEAD
 	if(differentiate_broadcast && data.broadcast)
 		parent.ntnet_recieve_broadcast(data)
 	else
 		parent.ntnet_recieve(data)
+=======
+	parent.ntnet_recieve(data)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/component/ntnet_interface/proc/__network_send(datum/netdata/data, netid)			//Do not directly proccall!
 	// Process data before sending it

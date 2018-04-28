@@ -168,7 +168,11 @@
 	id = "camera"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 50, MAT_GLASS = 100)
+<<<<<<< HEAD
 	build_path = /obj/item/camera
+=======
+	build_path = /obj/item/device/camera
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("initial", "Misc")
 
 /datum/design/camera_film
@@ -176,7 +180,11 @@
 	id = "camera_film"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 10, MAT_GLASS = 10)
+<<<<<<< HEAD
 	build_path = /obj/item/camera_film
+=======
+	build_path = /obj/item/device/camera_film
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("initial", "Misc")
 
 /datum/design/earmuffs
@@ -431,6 +439,14 @@
 	build_path = /obj/item/storage/pill_bottle
 	category = list("initial", "Medical")
 
+/datum/design/pillbottle
+	name = "Pill Bottle"
+	id = "pillbottle"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 20, MAT_GLASS = 100)
+	build_path = /obj/item/storage/pill_bottle
+	category = list("initial", "Medical")
+
 /datum/design/beanbag_slug
 	name = "Beanbag Slug"
 	id = "beanbag_slug"
@@ -468,7 +484,11 @@
 	id = "tape"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 20, MAT_GLASS = 5)
+<<<<<<< HEAD
 	build_path = /obj/item/tape/random
+=======
+	build_path = /obj/item/device/tape/random
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	category = list("initial", "Misc")
 
 /datum/design/igniter
@@ -822,6 +842,39 @@
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 300, MAT_GLASS = 200)
 	build_path = /obj/item/slime_scanner
+	category = list("initial", "Misc")
+
+/datum/design/pet_carrier
+	name = "Pet Carrier"
+	id = "pet_carrier"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 7500, MAT_GLASS = 100)
+	build_path = /obj/item/pet_carrier
+	category = list("initial", "Misc")
+
+/datum/design/miniature_power_cell
+	name = "Light Fixture Battery"
+	id = "miniature_power_cell"
+	build_type = AUTOLATHE
+	materials = list(MAT_GLASS = 20)
+	build_path = /obj/item/stock_parts/cell/emergency_light
+	category = list("initial", "Electronics")
+
+/datum/design/packageWrap
+	name = "Package Wrapping"
+	id = "packagewrap"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 200, MAT_GLASS = 200)
+	build_path = /obj/item/stack/packageWrap
+	category = list("initial", "Misc")
+	maxstack = 30
+
+/datum/design/holodisk
+	name = "Holodisk"
+	id = "holodisk"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 100, MAT_GLASS = 100)
+	build_path = /obj/item/disk/holodisk
 	category = list("initial", "Misc")
 
 /datum/design/pet_carrier

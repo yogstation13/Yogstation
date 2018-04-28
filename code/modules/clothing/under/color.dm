@@ -9,7 +9,11 @@
 	var/obj/item/clothing/under/color/C = pick(subtypesof(/obj/item/clothing/under/color) - /obj/item/clothing/under/color/random - /obj/item/clothing/under/color/grey/glorf - /obj/item/clothing/under/color/black/ghost)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
+<<<<<<< HEAD
 		H.equip_to_slot_or_del(new C(H), SLOT_W_UNIFORM) //or else you end up with naked assistants running around everywhere...
+=======
+		H.equip_to_slot_or_del(new C(H), slot_w_uniform) //or else you end up with naked assistants running around everywhere...
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	else
 		new C(loc)
 	return INITIALIZE_HINT_QDEL

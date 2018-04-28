@@ -141,8 +141,13 @@
 	LAZYREMOVE(pods, pod)
 
 /obj/machinery/computer/prototype_cloning/attackby(obj/item/W, mob/user, params)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/multitool))
 		var/obj/item/multitool/P = W
+=======
+	if(istype(W, /obj/item/device/multitool))
+		var/obj/item/device/multitool/P = W
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 		if(istype(P.buffer, /obj/machinery/clonepod/experimental))
 			if(get_area(P.buffer) != get_area(src))

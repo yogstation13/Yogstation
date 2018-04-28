@@ -10,7 +10,11 @@
 
 
 
+<<<<<<< HEAD
 /obj/item/multitool
+=======
+/obj/item/device/multitool
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon = 'icons/obj/device.dmi'
@@ -32,11 +36,19 @@
 	var/datum/integrated_io/selected_io = null  //functional for integrated circuits.
 	var/mode = 0
 
+<<<<<<< HEAD
 /obj/item/multitool/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!</span>")
 	return OXYLOSS//theres a reason it wasnt recommended by doctors
 
 /obj/item/multitool/attack_self(mob/user)
+=======
+/obj/item/device/multitool/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!</span>")
+	return OXYLOSS//theres a reason it wasnt recommended by doctors
+
+/obj/item/device/multitool/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(selected_io)
 		selected_io = null
 		to_chat(user, "<span class='notice'>You clear the wired connection from the multitool.</span>")
@@ -44,13 +56,21 @@
 		..()
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/multitool/update_icon()
+=======
+/obj/item/device/multitool/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(selected_io)
 		icon_state = "multitool_red"
 	else
 		icon_state = "multitool"
 
+<<<<<<< HEAD
 /obj/item/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
+=======
+/obj/item/device/multitool/proc/wire(var/datum/integrated_io/io, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!io.holder.assembly)
 		to_chat(user, "<span class='warning'>\The [io.holder] needs to be secured inside an assembly first.</span>")
 		return
@@ -79,7 +99,11 @@
 	update_icon()
 
 
+<<<<<<< HEAD
 /obj/item/multitool/proc/unwire(var/datum/integrated_io/io1, var/datum/integrated_io/io2, mob/user)
+=======
+/obj/item/device/multitool/proc/unwire(var/datum/integrated_io/io1, var/datum/integrated_io/io2, mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!io1.linked.len || !io2.linked.len)
 		to_chat(user, "<span class='warning'>There is nothing connected to the data channel.</span>")
 		return

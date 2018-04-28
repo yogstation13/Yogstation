@@ -346,8 +346,26 @@ Possible to do for anyone motivated enough:
 			if(!istype(AI))
 				AI = null
 
+<<<<<<< HEAD
 			if(!is_operational() || !validate_user(master))
 				clear_holo(master)
+=======
+			if(!QDELETED(master) && !master.incapacitated() && master.client && (!AI || AI.eyeobj))//If there is an AI attached, it's not incapacitated, it has a client, and the client eye is centered on the projector.
+				if(is_operational())//If the  machine has power.
+					if(AI)	//ais are range based
+						if(get_dist(AI.eyeobj, src) <= holo_range)
+							continue
+						else
+							var/obj/machinery/holopad/pad_close = get_closest_atom(/obj/machinery/holopad, holopads, AI.eyeobj)
+							if(get_dist(pad_close, AI.eyeobj) <= holo_range)
+								var/obj/effect/overlay/holo_pad_hologram/h = masters[master]
+								unset_holo(master)
+								pad_close.set_holo(master, h)
+								continue
+					else
+						continue
+			clear_holo(master)//If not, we want to get rid of the hologram.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	if(outgoing_call)
 		outgoing_call.Check()
@@ -498,6 +516,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/holopad/proc/move_hologram(mob/living/user, turf/new_turf)
 	if(LAZYLEN(masters) && masters[user])
+<<<<<<< HEAD
 		var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
 		var/transfered = FALSE
 		if(!validate_location(new_turf))
@@ -510,6 +529,16 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		holo.forceMove(new_turf)
 		if(!transfered)
 			update_holoray(user,new_turf)
+=======
+		var/area/holo_area = get_area(src)
+		if(new_turf.loc in holo_area.related)
+			var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
+			step_to(holo, new_turf)
+			holo.forceMove(new_turf)
+			update_holoray(user, new_turf)
+		else
+			clear_holo(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	return TRUE
 
 

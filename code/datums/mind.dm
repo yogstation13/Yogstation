@@ -653,6 +653,7 @@
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
+<<<<<<< HEAD
 	
 	// yogs start - Donor features, quiet round
 	else if (href_list["quiet_override"])
@@ -660,6 +661,8 @@
 		message_admins("[key_name_admin(usr)] has disabled [current]'s quiet round mode.")
 		log_admin("[key_name(usr)] has disabled [current]'s quiet round mode.")
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	//Something in here might have changed your mob
 	if(self_antagging && (!usr || !usr.client) && current.client)
@@ -686,18 +689,24 @@
 	qdel(find_syndicate_uplink())
 
 /datum/mind/proc/make_Traitor()
+<<<<<<< HEAD
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
 		return
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
 /datum/mind/proc/make_Changling()
+<<<<<<< HEAD
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
 		return
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
 	if(!C)
 		C = add_antag_datum(/datum/antagonist/changeling)
@@ -716,10 +725,13 @@
 
 
 /datum/mind/proc/make_Cultist()
+<<<<<<< HEAD
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
 		return
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
 		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
 		special_role = ROLE_CULTIST
@@ -727,10 +739,13 @@
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new bretheren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
 
 /datum/mind/proc/make_Rev()
+<<<<<<< HEAD
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
 		return
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/datum/antagonist/rev/head/head = new()
 	head.give_flash = TRUE
 	head.give_hud = TRUE

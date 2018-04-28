@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+/obj/item/storage/internal/implant
+	name = "bluespace pocket"
+	max_w_class = WEIGHT_CLASS_NORMAL
+	max_combined_w_class = 6
+	cant_hold = list(/obj/item/disk/nuclear)
+	silent = TRUE
+
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/implant/storage
 	name = "storage implant"
 	desc = "Stores up to two big items in a bluespace pocket."
@@ -9,8 +20,12 @@
 	SendSignal(COMSIG_TRY_STORAGE_SHOW, imp_in, TRUE)
 
 /obj/item/implant/storage/removed(source, silent = FALSE, special = 0)
+<<<<<<< HEAD
 	. = ..()
 	if(.)
+=======
+	if(..())
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!special)
 			qdel(GetComponent(/datum/component/storage/concrete/implant))
 

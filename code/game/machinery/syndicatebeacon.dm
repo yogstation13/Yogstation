@@ -128,8 +128,14 @@
 
 /obj/item/sbeacondrop/powersink
 	desc = "A label on it reads: <i>Warning: Activating this device will send a power draining device to your location</i>."
+<<<<<<< HEAD
 	droptype = /obj/item/powersink
 
 /obj/item/sbeacondrop/clownbomb
+=======
+	droptype = /obj/item/device/powersink
+
+/obj/item/device/sbeacondrop/clownbomb
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	desc = "A label on it reads: <i>Warning: Activating this device will send a silly explosive to your location</i>."
 	droptype = /obj/machinery/syndicatebomb/badmin/clown

@@ -166,7 +166,11 @@
 /obj/item/modular_computer/attack_ai(mob/user)
 	return attack_self(user)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/attack_ghost(mob/dead/observer/user)
+=======
+/obj/item/device/modular_computer/attack_ghost(mob/dead/observer/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return
@@ -177,7 +181,11 @@
 		if(response == "Yes")
 			turn_on(user)
 
+<<<<<<< HEAD
 /obj/item/modular_computer/emag_act(mob/user)
+=======
+/obj/item/device/modular_computer/emag_act(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>\The [src] was already emagged.</span>")
 		return 0
@@ -210,7 +218,11 @@
 
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
+<<<<<<< HEAD
 /obj/item/modular_computer/interact(mob/user)
+=======
+/obj/item/device/modular_computer/interact(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(enabled)
 		ui_interact(user)
 	else

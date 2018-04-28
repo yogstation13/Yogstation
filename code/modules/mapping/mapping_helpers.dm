@@ -6,14 +6,19 @@
 	name = "baseturf editor"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
+<<<<<<< HEAD
 
 	var/list/baseturf_to_replace
 	var/baseturf
 	
+=======
+	var/baseturf = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	layer = POINT_LAYER
 
 /obj/effect/baseturf_helper/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/baseturf_helper/LateInitialize()
@@ -44,6 +49,16 @@
 		return
 
 	thing.PlaceOnBottom(null, baseturf)
+=======
+	var/area/thearea = get_area(src)
+	for(var/turf/T in get_area_turfs(thearea, z))
+		replace_baseturf(T)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
+	if(thing.baseturfs != thing.type)
+		thing.baseturfs = baseturf
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/effect/baseturf_helper/space
 	name = "space baseturf editor"
@@ -81,6 +96,98 @@
 	name = "lavaland baseturf editor"
 	baseturf = /turf/open/lava/smooth/lava_land_surface
 
+// Does the same thing as baseturf_helper but only the specified kinds of turf (the kind it's placed on or varedited)
+/obj/effect/baseturf_helper/picky
+	var/list/whitelist
+	// Can be mapedited as: a single type, a list of types, or a typecache-like list
+	// The first 2 make a typecache of the given values
+	// The last uses it as is
+
+/obj/effect/baseturf_helper/picky/Initialize()
+	if(!whitelist)
+		whitelist = list(loc.type)
+	else if(!islist(whitelist))
+		whitelist = list(whitelist)
+	else if(whitelist[whitelist[1]]) // Checking if it's a typecache-like list
+		return ..()
+	whitelist = typecacheof(whitelist)
+	return ..()
+
+/obj/effect/baseturf_helper/picky/replace_baseturf(turf/thing)
+	if(!whitelist[thing.type])
+		return
+	return ..()
+
+/obj/effect/baseturf_helper/picky/lava_land/plating
+	name = "picky lavaland plating baseturf helper"
+	baseturf = /turf/open/floor/plating/lavaland_baseturf
+
+/obj/effect/baseturf_helper/picky/lava_land/basalt
+	name = "picky lavaland basalt baseturf helper"
+	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+
+
+/obj/effect/mapping_helpers
+	icon = 'icons/effects/mapping_helpers.dmi'
+	icon_state = ""
+
+/obj/effect/mapping_helpers/Initialize()
+	..()
+	return INITIALIZE_HINT_QDEL
+
+
+//airlock helpers
+/obj/effect/mapping_helpers/airlock
+	layer = DOOR_HELPER_LAYER
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper
+	name = "airlock cyclelink helper"
+	icon_state = "airlock_cyclelink_helper"
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(airlock)
+		if(airlock.cyclelinkeddir)
+			log_world("### MAP WARNING, [src] at [COORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+		else
+			airlock.cyclelinkeddir = dir
+	else
+		log_world("### MAP WARNING, [src] failed to find an airlock at [COORD(src)]")		
+
+
+/obj/effect/mapping_helpers/airlock/locked
+	name = "airlock lock helper"
+	icon_state = "airlock_locked_helper"
+
+/obj/effect/mapping_helpers/airlock/locked/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(airlock)
+		if(airlock.locked)
+			log_world("### MAP WARNING, [src] at [COORD(src)] tried to bolt [airlock] but it's already locked!")
+		else
+			airlock.locked = TRUE
+	else
+		log_world("### MAP WARNING, [src] failed to find an airlock at [COORD(src)]")
+
+
+//needs to do its thing before spawn_rivers() is called
+INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
+
+/obj/effect/mapping_helpers/no_lava
+	icon_state = "no_lava"
+
+/obj/effect/mapping_helpers/no_lava/Initialize()
+	. = ..()
+	var/turf/T = get_turf(src)
+	T.flags_1 |= NO_LAVA_GEN_1
 
 /obj/effect/mapping_helpers
 	icon = 'icons/effects/mapping_helpers.dmi'
@@ -156,7 +263,10 @@ GLOBAL_LIST_EMPTY(z_is_planet)
 	. = ..()
 	var/turf/T = get_turf(src)
 	GLOB.z_is_planet["[T.z]"] = TRUE
+<<<<<<< HEAD
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 //This helper applies components to things on the map directly.
 /obj/effect/mapping_helpers/component_injector

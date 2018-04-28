@@ -98,10 +98,13 @@ GLOBAL_VAR(antag_prototypes)
 		return
 
 	var/out = "<B>[name]</B>[(current && (current.real_name!=name))?" (as [current.real_name])":""]<br>"
+<<<<<<< HEAD
 	// yogs start - Donor features, quiet round
 	if(quiet_round)
 		out += "<font color=red><b>QUIET ROUND ACTIVE</b></font> (<a href='?src=\ref[src];quiet_override=1'>Override</a>)<br>"
 	// yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=[REF(src)];role_edit=1'>Edit</a><br>"
 	out += "Faction and special role: <b><font color='red'>[special_role]</font></b><br>"

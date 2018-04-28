@@ -21,8 +21,11 @@
 
 /turf/open/floor/plasteel/dark
 	icon_state = "darkfull"
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark/airless
 	initial_gas_mix = "TEMP=2.7"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/dark/telecomms
 	initial_gas_mix = "n2=100;TEMP=80"
 /turf/open/floor/plasteel/dark/telecomms/mainframe

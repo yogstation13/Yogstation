@@ -21,6 +21,11 @@
 	var/dheight = 0	//position relative to covered area, parallel to dir
 
 	var/area_type
+<<<<<<< HEAD
+=======
+	var/turf_type
+	var/baseturf_type
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/hidden = FALSE //are we invisible to shuttle navigation computers?
 
 	//these objects are indestructible
@@ -152,7 +157,15 @@
 /obj/docking_port/stationary
 	name = "dock"
 
+<<<<<<< HEAD
 	area_type = SHUTTLE_DEFAULT_UNDERLYING_AREA
+=======
+	turf_type = SHUTTLE_DEFAULT_TURF_TYPE
+	baseturf_type = SHUTTLE_DEFAULT_BASETURF_TYPE
+	area_type = SHUTTLE_DEFAULT_UNDERLYING_AREA
+
+	var/list/baseturf_cache
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/last_dock_time
 
@@ -166,6 +179,10 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+
+	if(mapload)
+		for(var/turf/T in return_turfs())
+			T.flags_1 |= NO_RUINS_1
 
 	if(mapload)
 		for(var/turf/T in return_turfs())
@@ -213,9 +230,14 @@
 /obj/docking_port/stationary/transit/proc/dezone()
 	for(var/i in 1 to assigned_turfs.len)
 		var/turf/T = assigned_turfs[i]
+<<<<<<< HEAD
 		if(istype(T, /turf/open/space/transit))
 			T.ChangeTurf(/turf/open/space)
 			T.assemble_baseturfs(initial(T.baseturfs))
+=======
+		if(T.type == turf_type)
+			T.ChangeTurf(SHUTTLE_DEFAULT_TURF_TYPE, SHUTTLE_DEFAULT_BASETURF_TYPE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			T.flags_1 |= UNUSED_TRANSIT_TURF_1
 
 /obj/docking_port/stationary/transit/Destroy(force=FALSE)
@@ -425,6 +447,7 @@
 	// Not in a fancy way, it just ceases.
 	var/obj/docking_port/stationary/current_dock = get_docked()
 
+<<<<<<< HEAD
 	var/underlying_area_type = SHUTTLE_DEFAULT_UNDERLYING_AREA
 	// If the shuttle is docked to a stationary port, restore its normal
 	// "empty" area and turf
@@ -439,6 +462,23 @@
 		if(place.type == underlying_area_type)
 			underlying_area = place
 			break
+=======
+	var/turf_type = SHUTTLE_DEFAULT_TURF_TYPE
+	var/baseturf_type = SHUTTLE_DEFAULT_BASETURF_TYPE
+	var/underlying_area_type = SHUTTLE_DEFAULT_UNDERLYING_AREA
+	// If the shuttle is docked to a stationary port, restore its normal
+	// "empty" area and turf
+	if(current_dock)
+		if(current_dock.turf_type)
+			turf_type = current_dock.turf_type
+		if(current_dock.baseturf_type)
+			baseturf_type = current_dock.baseturf_type
+		if(current_dock.area_type)
+			underlying_area_type = current_dock.area_type
+
+	var/list/old_turfs = return_ordered_turfs(x, y, z, dir)
+	var/area/underlying_area = locate(underlying_area_type) in GLOB.sortedAreas
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!underlying_area)
 		underlying_area = new underlying_area_type(null)
 

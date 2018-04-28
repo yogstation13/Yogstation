@@ -529,7 +529,11 @@
 				/obj/item/gun/ballistic/automatic/c20r/unrestricted = 16,
 				/obj/item/gun/magic/wand/resurrection/inert = 15,
 				/obj/item/gun/magic/wand/resurrection = 10,
+<<<<<<< HEAD
 				/obj/item/radio/uplink/old = 2,
+=======
+				/obj/item/device/radio/uplink/old = 2,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				/obj/item/book/granter/spell/charge = 12,
 				/obj/item/grenade/clusterbuster/spawner_manhacks = 15,
 				/obj/item/book/granter/spell/fireball = 10,

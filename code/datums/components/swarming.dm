@@ -22,7 +22,11 @@
 
 /datum/component/swarming/proc/leave_swarm(atom/movable/AM)
 	GET_COMPONENT_FROM(other_swarm, /datum/component/swarming, AM)
+<<<<<<< HEAD
 	if(!other_swarm || !(other_swarm in swarm_members))
+=======
+	if(!other_swarm || !other_swarm in swarm_members)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return
 	swarm_members -= other_swarm
 	if(!swarm_members.len)

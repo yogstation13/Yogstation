@@ -3,7 +3,11 @@
 	name = "under"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_ICLOTHING
+=======
+	slot_flags = SLOT_ICLOTHING
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
@@ -65,7 +69,11 @@
 			adjusted = DIGITIGRADE_STYLE
 		H.update_inv_w_uniform()
 
+<<<<<<< HEAD
 	if(attached_accessory && slot != SLOT_HANDS && ishuman(user))
+=======
+	if(attached_accessory && slot != slot_hands && ishuman(user))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/mob/living/carbon/human/H = user
 		attached_accessory.on_uniform_equip(src, user)
 		if(attached_accessory.above_suit)

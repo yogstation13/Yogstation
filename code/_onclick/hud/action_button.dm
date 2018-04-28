@@ -9,7 +9,10 @@
 	var/appearance_cache
 
 	var/id
+<<<<<<< HEAD
 	var/ordered = TRUE //If the button gets placed into the default bar
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/screen/movable/action_button/Click(location,control,params)
 	var/list/modifiers = params2list(params)

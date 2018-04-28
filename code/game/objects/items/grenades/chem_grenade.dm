@@ -579,7 +579,10 @@
 
 	beakers += B1
 	beakers += B2
+<<<<<<< HEAD
 
 #undef READY
 #undef WIRED
 #undef EMPTY
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

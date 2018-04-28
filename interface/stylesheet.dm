@@ -168,6 +168,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
+<<<<<<< HEAD
 
 // yogs start - Yog Tickets
 .ticket-status {
@@ -197,4 +198,6 @@ h1.alert, h2.alert		{color: #000000;}
 	font-style: italic;
 }
 // yogs end
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 </style>"}

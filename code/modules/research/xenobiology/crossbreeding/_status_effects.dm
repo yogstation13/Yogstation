@@ -779,7 +779,11 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/adamantine/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
+<<<<<<< HEAD
 		H.physiology.damage_resistance -= 5
+=======
+		H.physiology.damage_resistance += 5
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/status_effect/stabilized/rainbow
 	id = "stabilizedrainbow"

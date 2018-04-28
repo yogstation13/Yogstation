@@ -19,9 +19,12 @@
 	var/list/access = I.GetAccess()
 	var/passkey = strtohex(XorEncrypt(json_encode(access), SScircuit.cipherkey))
 
+<<<<<<< HEAD
 	if(assembly)
 		assembly.access_card.access = access
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(card) // An ID card.
 		set_pin_data(IC_OUTPUT, 1, card.registered_name)
 		set_pin_data(IC_OUTPUT, 2, card.assignment)

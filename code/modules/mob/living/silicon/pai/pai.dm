@@ -19,7 +19,11 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
+<<<<<<< HEAD
 	var/obj/item/paicard/card	// The card we inhabit
+=======
+	var/obj/item/device/paicard/card	// The card we inhabit
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/hacking = FALSE		//Are we hacking a door?
 
 	var/speakStatement = "states"

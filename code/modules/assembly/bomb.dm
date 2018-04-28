@@ -12,7 +12,14 @@
 	var/status = FALSE   //0 - not readied //1 - bomb finished with welder
 	var/obj/item/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
 	var/obj/item/tank/bombtank = null //the second part of the bomb is a plasma tank
+<<<<<<< HEAD
 
+=======
+
+
+/obj/item/device/onetankbomb/examine(mob/user)
+	bombtank.examine(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/onetankbomb/examine(mob/user)
 	bombtank.examine(user)
@@ -81,7 +88,11 @@
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
 //Bomb assembly proc. This turns assembly+tank into a bomb
+<<<<<<< HEAD
 /obj/item/tank/proc/bomb_assemble(obj/item/assembly_holder/assembly, mob/living/user)
+=======
+/obj/item/tank/proc/bomb_assemble(obj/item/device/assembly_holder/assembly, mob/living/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 	if(isigniter(assembly.a_left) == isigniter(assembly.a_right))
 		return
@@ -94,7 +105,11 @@
 		to_chat(user, "<span class='warning'>[assembly] is stuck to your hand!</span>")
 		return
 
+<<<<<<< HEAD
 	var/obj/item/onetankbomb/bomb = new
+=======
+	var/obj/item/device/onetankbomb/bomb = new
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.transferItemToLoc(src, bomb)
 	user.transferItemToLoc(assembly, bomb)
 

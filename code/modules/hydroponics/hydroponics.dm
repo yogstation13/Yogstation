@@ -4,7 +4,11 @@
 	icon_state = "hydrotray"
 	density = TRUE
 	anchored = TRUE
+<<<<<<< HEAD
 	pixel_z = 8
+=======
+	pixel_y = 8
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
 	circuit = /obj/item/circuitboard/machine/hydroponics
 	var/waterlevel = 100	//The amount of water in the tray (max 100)

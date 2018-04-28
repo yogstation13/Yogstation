@@ -8,8 +8,13 @@
 /obj/item/cartridge/virus/message_header()
 	return "<b>[charges] viral files left.</b><HR>"
 
+<<<<<<< HEAD
 /obj/item/cartridge/virus/message_special(obj/item/pda/target)
 	if (!istype(loc, /obj/item/pda))
+=======
+/obj/item/cartridge/virus/message_special(obj/item/device/pda/target)
+	if (!istype(loc, /obj/item/device/pda))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return ""  //Sanity check, this shouldn't be possible.
 	return " (<a href='byond://?src=[REF(loc)];choice=cart;special=virus;target=[REF(target)]'>*Send Virus*</a>)"
 

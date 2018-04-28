@@ -1,6 +1,7 @@
 /datum/netdata				//this requires some thought later on but for now it's fine.
 	var/network_id
 
+<<<<<<< HEAD
 	var/autopasskey = TRUE
 
 	var/list/recipient_ids = list()
@@ -8,12 +9,21 @@
 	var/broadcast = FALSE			//Whether this is a broadcast packet.
 
 	var/list/data = list()
+=======
+	var/list/recipient_ids = list()
+	var/sender_id
+
+	var/plaintext_data
+	var/plaintext_data_secondary
+	var/encrypted_passkey
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	var/list/passkey
 
 // Process data before sending it
 /datum/netdata/proc/pre_send(datum/component/ntnet_interface/interface)
 	// Decrypt the passkey.
+<<<<<<< HEAD
 	if(autopasskey)
 		if(data["encrypted_passkey"] && !passkey)
 			var/result = XorEncrypt(hextostr(data["encrypted_passkey"], TRUE), SScircuit.cipherkey)
@@ -23,11 +33,20 @@
 			// Encrypt the passkey.
 			if(!data["encrypted_passkey"] && passkey)
 				data["encrypted_passkey"] = strtohex(XorEncrypt(json_encode(passkey), SScircuit.cipherkey))
+=======
+	if(encrypted_passkey && !passkey)
+		passkey = json_decode(XorEncrypt(hextostr(encrypted_passkey, TRUE), SScircuit.cipherkey))
+
+	// Encrypt the passkey.
+	if(!encrypted_passkey && passkey)
+		encrypted_passkey = strtohex(XorEncrypt(json_encode(passkey), SScircuit.cipherkey))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	// If there is no sender ID, set the default one.
 	if(!sender_id && interface)
 		sender_id = interface.hardware_id
 
+<<<<<<< HEAD
 /datum/netdata/proc/standard_format_data(primary, secondary, passkey)
 	data["data"] = primary
 	data["data_secondary"] = secondary
@@ -41,6 +60,8 @@
 
 /datum/netdata/proc/data_to_json()
 	return json_encode(data)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/netdata/proc/json_list_generation_admin()	//for admin logs and such.
 	. = list()
@@ -55,7 +76,13 @@
 	. = list()
 	.["recipient_ids"] = recipient_ids
 	.["sender_id"] = sender_id
+<<<<<<< HEAD
 	.["data_list"] = data
+=======
+	.["data"] = plaintext_data
+	.["data_secondary"] = plaintext_data_secondary
+	.["passkey"] = encrypted_passkey
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/netdata/proc/generate_netlog()
 	return "[json_encode(json_list_generation_netlog())]"

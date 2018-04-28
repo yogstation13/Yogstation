@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // yogs - Replicated for custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // Technically the client argument is unncessary here since that SHOULD be src.client but let's not assume things
 // All it takes is one badmin setting their focus to someone else's client to mess things up
 // Or we can have NPC's send actual keypresses and detect that by seeing no client

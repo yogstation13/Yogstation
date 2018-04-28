@@ -310,3 +310,11 @@
 
 /obj/screen/parallax_layer/planet/update_o()
 	return //Shit wont move
+<<<<<<< HEAD
+=======
+
+#undef LOOP_NONE
+#undef LOOP_NORMAL
+#undef LOOP_REVERSE
+#undef LOOP_TIME
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

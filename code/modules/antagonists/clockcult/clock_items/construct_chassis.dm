@@ -115,4 +115,8 @@
 			S.no_cost = TRUE
 		if(seasonal_hat && seasonal_hat != "none")
 			var/obj/item/hat = new seasonal_hat(construct)
+<<<<<<< HEAD:code/modules/antagonists/clockcult/clock_items/construct_chassis.dm
 			construct.equip_to_slot_or_del(hat, SLOT_HEAD)
+=======
+			construct.equip_to_slot_or_del(hat, slot_head)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/clockcult/clock_items/construct_chassis.dm

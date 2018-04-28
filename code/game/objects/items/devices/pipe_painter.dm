@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/pipe_painter
+=======
+/obj/item/device/pipe_painter
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "pipe painter"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"

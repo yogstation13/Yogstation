@@ -39,8 +39,13 @@
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/radio_enabled = TRUE //Determins if a carded AI can speak with its built in radio or not.
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
+<<<<<<< HEAD
 	var/obj/item/pda/ai/aiPDA
 	var/obj/item/multitool/aiMulti
+=======
+	var/obj/item/device/pda/ai/aiPDA
+	var/obj/item/device/multitool/aiMulti
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/mob/living/simple_animal/bot/Bot
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system//So they can initialize sparks whenever/N
@@ -321,7 +326,11 @@
 
 /mob/living/silicon/ai/can_interact_with(atom/A)
 	. = ..()
+<<<<<<< HEAD
 	return . || (istype(loc, /obj/item/aicard))? (ISINRANGE(A.x, x - interaction_range, x + interaction_range) && ISINRANGE(A.y, y - interaction_range, y + interaction_range)): GLOB.cameranet.checkTurfVis(get_turf(A))
+=======
+	return . || (istype(loc, /obj/item/device/aicard))? (ISINRANGE(A.x, x - interaction_range, x + interaction_range) && ISINRANGE(A.y, y - interaction_range, y + interaction_range)): GLOB.cameranet.checkTurfVis(get_turf(A))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /mob/living/silicon/ai/cancel_camera()
 	view_core()

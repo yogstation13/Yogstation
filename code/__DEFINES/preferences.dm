@@ -1,5 +1,6 @@
 
 //Preference toggles
+<<<<<<< HEAD
 #define SOUND_ADMINHELP			(1<<0)
 #define SOUND_MIDI				(1<<1)
 #define SOUND_AMBIENCE			(1<<2)
@@ -16,6 +17,23 @@
 #define DISABLE_ARRIVALRATTLE	(1<<13)
 #define COMBOHUD_LIGHTING		(1<<14)
 #define QUIET_ROUND				(1<<15) // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
+=======
+#define SOUND_ADMINHELP	1
+#define SOUND_MIDI		2
+#define SOUND_AMBIENCE	4
+#define SOUND_LOBBY		8
+#define MEMBER_PUBLIC	16
+#define INTENT_STYLE	32
+#define MIDROUND_ANTAG	64
+#define SOUND_INSTRUMENTS	128
+#define SOUND_SHIP_AMBIENCE 256
+#define SOUND_PRAYERS 512
+#define ANNOUNCE_LOGIN 1024
+#define SOUND_ANNOUNCEMENTS 2048
+#define DISABLE_DEATHRATTLE 4096
+#define DISABLE_ARRIVALRATTLE 8192
+#define COMBOHUD_LIGHTING 16384
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS)
 

@@ -88,8 +88,13 @@
 	auto_process = FALSE
 
 /datum/effect_system/trail_follow/ion/flight/set_dir(obj/effect/particle_effect/ion_trails/I)
+<<<<<<< HEAD
 	if(istype(holder, /obj/item/flightpack))
 		var/obj/item/flightpack/F = holder
+=======
+	if(istype(holder, /obj/item/device/flightpack))
+		var/obj/item/device/flightpack/F = holder
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(istype(F.wearer))
 			I.setDir(F.wearer.dir)
 

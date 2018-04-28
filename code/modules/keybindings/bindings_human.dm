@@ -1,15 +1,26 @@
+<<<<<<< HEAD
 // yogs - Replicated for custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /mob/living/carbon/human/key_down(_key, client/user)
 	if(client.keys_held["Shift"])
 		switch(_key)
 			if("E") // Put held thing in belt or take out most recent thing from belt
 				var/obj/item/thing = get_active_held_item()
+<<<<<<< HEAD
 				var/obj/item/storage/equipped_belt = get_item_by_slot(SLOT_BELT)
+=======
+				var/obj/item/storage/equipped_belt = get_item_by_slot(slot_belt)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!equipped_belt) // We also let you equip a belt like this
 					if(!thing)
 						to_chat(user, "<span class='notice'>You have no belt to take something out of.</span>")
 						return
+<<<<<<< HEAD
 					equip_to_slot_if_possible(thing, SLOT_BELT)
+=======
+					equip_to_slot_if_possible(thing, slot_belt)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					return
 				if(!istype(equipped_belt)) // not a storage item
 					if(!thing)
@@ -18,7 +29,13 @@
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
 				if(thing) // put thing in belt
+<<<<<<< HEAD
 					if(!equipped_belt.SendSignal(COMSIG_TRY_STORAGE_INSERT, thing, user.mob))
+=======
+					if(equipped_belt.can_be_inserted(thing))
+						equipped_belt.handle_item_insertion(thing)
+					else
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
 				if(!equipped_belt.contents.len) // nothing to take out
@@ -32,12 +49,20 @@
 
 			if("B") // Put held thing in backpack or take out most recent thing from backpack
 				var/obj/item/thing = get_active_held_item()
+<<<<<<< HEAD
 				var/obj/item/storage/equipped_backpack = get_item_by_slot(SLOT_BACK)
+=======
+				var/obj/item/storage/equipped_backpack = get_item_by_slot(slot_back)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!equipped_backpack) // We also let you equip a backpack like this
 					if(!thing)
 						to_chat(user, "<span class='notice'>You have no backpack to take something out of.</span>")
 						return
+<<<<<<< HEAD
 					equip_to_slot_if_possible(thing, SLOT_BACK)
+=======
+					equip_to_slot_if_possible(thing, slot_back)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 					return
 				if(!istype(equipped_backpack)) // not a storage item
 					if(!thing)
@@ -46,7 +71,13 @@
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
 				if(thing) // put thing in backpack
+<<<<<<< HEAD
 					if(!equipped_backpack.SendSignal(COMSIG_TRY_STORAGE_INSERT, thing, user.mob))
+=======
+					if(equipped_backpack.can_be_inserted(thing))
+						equipped_backpack.handle_item_insertion(thing)
+					else
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 						to_chat(user, "<span class='notice'>You can't fit anything in.</span>")
 					return
 				if(!equipped_backpack.contents.len) // nothing to take out

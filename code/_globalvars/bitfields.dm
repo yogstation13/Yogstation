@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(bitfields, list(
+<<<<<<< HEAD
 	"appearance_flags" = list(
 		"LONG_GLIDE" = LONG_GLIDE,
 		"RESET_COLOR" = RESET_COLOR,
@@ -22,6 +23,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SEE_BLACKNESS" = SEE_BLACKNESS,
 		"BLIND" = BLIND
 		),
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	"obj_flags" = list(
 		"EMAGGED" = EMAGGED,
 		"IN_USE" = IN_USE,
@@ -76,8 +79,12 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"INTERACT_MACHINE_WIRES_IF_OPEN" = INTERACT_MACHINE_WIRES_IF_OPEN,
 		"INTERACT_MACHINE_ALLOW_SILICON" = INTERACT_MACHINE_ALLOW_SILICON,
 		"INTERACT_MACHINE_OPEN_SILICON" = INTERACT_MACHINE_OPEN_SILICON,
+<<<<<<< HEAD
 		"INTERACT_MACHINE_REQUIRES_SILICON" = INTERACT_MACHINE_REQUIRES_SILICON,
 		"INTERACT_MACHINE_SET_MACHINE" = INTERACT_MACHINE_SET_MACHINE
+=======
+		"INTERACT_MACHINE_REQUIRES_SILICON" = INTERACT_MACHINE_REQUIRES_SILICON
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		),
 	"pass_flags" = list(
 		"PASSTABLE" = PASSTABLE,
@@ -123,6 +130,11 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"NO_EMP_WIRES_2" = NO_EMP_WIRES_2,
 		"HOLOGRAM_2" = HOLOGRAM_2,
 		"FRONZE_2" = FROZEN_2,
+<<<<<<< HEAD
+=======
+		"STATIONLOVING_2" = STATIONLOVING_2,
+		"INFORM_ADMINS_ON_RELOCATE_2" = INFORM_ADMINS_ON_RELOCATE_2,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		"BANG_PROTECT_2" = BANG_PROTECT_2,
 		"HEALS_EARS_2" = HEALS_EARS_2,
 		"OMNITONGUE_2" = OMNITONGUE_2,

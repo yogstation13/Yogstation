@@ -20,7 +20,11 @@
 /area/ruin/space/has_grav/whiteship/box)
 "af" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/radio/off,
+=======
+/obj/item/device/radio/off,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/mineral/titanium,
 /area/ruin/space/has_grav/whiteship/box)
 "ag" = (
@@ -254,7 +258,11 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/whiteship/box)
 "aU" = (
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/mineral/titanium,
 /area/ruin/space/has_grav/whiteship/box)
 "aV" = (

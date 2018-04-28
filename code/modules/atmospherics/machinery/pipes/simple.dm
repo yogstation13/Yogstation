@@ -392,6 +392,7 @@ The regular pipe you see everywhere, including bent ones.
 
 /obj/machinery/atmospherics/pipe/simple/brown/hidden
 	level = PIPE_HIDDEN_LEVEL
+<<<<<<< HEAD
 
 /obj/machinery/atmospherics/pipe/simple/brown/hidden/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -402,3 +403,5 @@ The regular pipe you see everywhere, including bent ones.
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

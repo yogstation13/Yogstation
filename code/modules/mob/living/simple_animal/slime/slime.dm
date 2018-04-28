@@ -356,7 +356,11 @@
 		var/hasFound = FALSE //Have we found an extract to be added?
 		for(var/obj/item/slime_extract/S in P.contents)
 			if(S.effectmod == effectmod)
+<<<<<<< HEAD
 				P.SendSignal(COMSIG_TRY_STORAGE_TAKE, S, get_turf(src), TRUE)
+=======
+				P.remove_from_storage(S, get_turf(src))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				qdel(S)
 				applied++
 				hasFound = TRUE

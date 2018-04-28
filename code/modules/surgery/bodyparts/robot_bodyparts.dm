@@ -5,10 +5,13 @@
 #define ROBOTIC_LIGHT_BURN_MSG "scorched"
 #define ROBOTIC_MEDIUM_BURN_MSG "charred"
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
+<<<<<<< HEAD
 
 //For ye whom may venture here, split up arm / hand sprites are formatted as "l_hand" & "l_arm".
 //The complete sprite (displayed when the limb is on the ground) should be named "borg_l_arm".
 //Failure to follow this pattern will cause the hand's icons to be missing due to the way get_limb_icon() works to generate the mob's icons using the aux_zone var.
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/bodypart/l_arm/robot
 	name = "cyborg left arm"
@@ -158,8 +161,13 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
+<<<<<<< HEAD
 	var/obj/item/assembly/flash/handheld/flash1 = null
 	var/obj/item/assembly/flash/handheld/flash2 = null
+=======
+	var/obj/item/device/assembly/flash/handheld/flash1 = null
+	var/obj/item/device/assembly/flash/handheld/flash2 = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 
 

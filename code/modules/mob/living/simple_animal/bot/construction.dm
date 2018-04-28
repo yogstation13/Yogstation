@@ -275,7 +275,11 @@
 	icon_state = "firstaid_arm"
 	created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
+<<<<<<< HEAD
 	var/healthanalyzer = /obj/item/healthanalyzer
+=======
+	var/healthanalyzer = /obj/item/device/healthanalyzer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/firstaid = /obj/item/storage/firstaid
 
 /obj/item/bot_assembly/medbot/Initialize()
@@ -314,7 +318,11 @@
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
+<<<<<<< HEAD
 			if(istype(W, /obj/item/healthanalyzer))
+=======
+			if(istype(W, /obj/item/device/healthanalyzer))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
 				healthanalyzer = W.type
@@ -392,7 +400,11 @@
 					build_step++
 
 			else if(istype(I, /obj/item/screwdriver)) //deconstruct
+<<<<<<< HEAD
 				new /obj/item/assembly/signaler(Tsec)
+=======
+				new /obj/item/device/assembly/signaler(Tsec)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				new /obj/item/clothing/head/helmet/sec(Tsec)
 				to_chat(user, "<span class='notice'>You disconnect the signaler from the helmet.</span>")
 				qdel(src)
@@ -426,7 +438,11 @@
 
 			else if(istype(I, /obj/item/screwdriver)) //deconstruct
 				cut_overlay("hs_eye")
+<<<<<<< HEAD
 				new /obj/item/assembly/prox_sensor(Tsec)
+=======
+				new /obj/item/device/assembly/prox_sensor(Tsec)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				to_chat(user, "<span class='notice'>You detach the proximity sensor from [src].</span>")
 				build_step--
 

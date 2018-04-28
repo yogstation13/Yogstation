@@ -105,8 +105,13 @@ D [1]/  ||
 	push_data()
 
 /datum/integrated_io/proc/handle_wire(datum/integrated_io/linked_pin, obj/item/tool, action, mob/living/user)
+<<<<<<< HEAD
 	if(istype(tool, /obj/item/multitool))
 		var/obj/item/multitool/multitool = tool
+=======
+	if(istype(tool, /obj/item/device/multitool))
+		var/obj/item/device/multitool/multitool = tool
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		switch(action)
 			if("wire")
 				multitool.wire(src, user)
@@ -119,15 +124,25 @@ D [1]/  ||
 				ask_for_pin_data(user)
 				return TRUE
 
+<<<<<<< HEAD
 	else if(istype(tool, /obj/item/integrated_electronics/wirer))
 		var/obj/item/integrated_electronics/wirer/wirer = tool
+=======
+	else if(istype(tool, /obj/item/device/integrated_electronics/wirer))
+		var/obj/item/device/integrated_electronics/wirer/wirer = tool
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(linked_pin)
 			wirer.wire(linked_pin, user)
 		else
 			wirer.wire(src, user)
 
+<<<<<<< HEAD
 	else if(istype(tool, /obj/item/integrated_electronics/debugger))
 		var/obj/item/integrated_electronics/debugger/debugger = tool
+=======
+	else if(istype(tool, /obj/item/device/integrated_electronics/debugger))
+		var/obj/item/device/integrated_electronics/debugger/debugger = tool
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		debugger.write_data(src, user)
 		return TRUE
 
@@ -185,7 +200,11 @@ D [1]/  ||
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
+<<<<<<< HEAD
 			new_data = stripped_multiline_input(user, "Now type in a string.","[src] string writing", istext(default) ? default : null, no_trim = TRUE)
+=======
+			new_data = stripped_input(user, "Now type in a string.","[src] string writing", istext(default) ? default : null, no_trim = TRUE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(istext(new_data) && holder.check_interactivity(user) )
 				to_chat(user, "<span class='notice'>You input "+new_data+" into the pin.</span>")
 				return new_data

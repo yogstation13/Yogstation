@@ -410,7 +410,11 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 
 	return ""
 
+<<<<<<< HEAD
 /datum/gas_mixture/react(datum/holder)
+=======
+/datum/gas_mixture/react(turf/open/dump_location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = NO_REACTION
 	var/list/cached_gases = gases
 	if(!cached_gases.len)
@@ -459,7 +463,11 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 			//at this point, all requirements for the reaction are satisfied. we can now react()
 			*/
 
+<<<<<<< HEAD
 			. |= reaction.react(src, holder)
+=======
+			. |= reaction.react(src, dump_location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if (. & STOP_REACTIONS)
 				break
 	if(.)

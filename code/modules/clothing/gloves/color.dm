@@ -209,7 +209,11 @@
 	var/obj/item/clothing/gloves/color/selected = pick(gloves)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
+<<<<<<< HEAD
 		H.equip_to_slot_or_del(new selected(H), SLOT_GLOVES)
+=======
+		H.equip_to_slot_or_del(new selected(H), slot_gloves)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	else
 		new selected(loc)
 	return INITIALIZE_HINT_QDEL

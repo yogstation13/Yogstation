@@ -140,7 +140,13 @@
 
 /obj/item/clothing/mask/chameleon/gps/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	new /obj/item/gps/internal/lavaland_syndicate_base(src)
 
 /obj/item/gps/internal/lavaland_syndicate_base
+=======
+	new /obj/item/device/gps/internal/lavaland_syndicate_base(src)
+
+/obj/item/device/gps/internal/lavaland_syndicate_base
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gpstag = "Encrypted Signal"

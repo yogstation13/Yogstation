@@ -13,7 +13,11 @@
 	var/obj/item/implant/mindshield/L = new/obj/item/implant/mindshield(H)
 	L.implant(H, null, 1)
 
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE
 
@@ -231,8 +235,13 @@
 	if(visualsOnly)
 		return
 
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
 	R.keyslot = new /obj/item/encryptionkey/heads/hop
+=======
+	var/obj/item/device/radio/R = H.ears
+	R.keyslot = new /obj/item/device/encryptionkey/heads/hop
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.recalculateChannels()
 
 /datum/outfit/ert/chaplain

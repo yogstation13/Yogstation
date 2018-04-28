@@ -116,7 +116,11 @@
 /datum/signal/subspace/pda/broadcast()
 	if (!logged)  // Can only go through if a message server logs it
 		return
+<<<<<<< HEAD
 	for (var/obj/item/pda/P in GLOB.PDAs)
+=======
+	for (var/obj/item/device/pda/P in GLOB.PDAs)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if ("[P.owner] ([P.ownjob])" in data["targets"])
 			P.receive_message(src)
 

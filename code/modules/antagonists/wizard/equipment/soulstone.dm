@@ -8,13 +8,21 @@
 	layer = HIGH_OBJ_LAYER
 	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefact's power."
 	w_class = WEIGHT_CLASS_TINY
+<<<<<<< HEAD:code/modules/antagonists/wizard/equipment/soulstone.dm
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/wizard/equipment/soulstone.dm
 	var/usability = 0
 
 	var/old_shard = FALSE
 	var/spent = FALSE
 
+<<<<<<< HEAD:code/modules/antagonists/wizard/equipment/soulstone.dm
 /obj/item/soulstone/proc/was_used()
+=======
+/obj/item/device/soulstone/proc/was_used()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/wizard/equipment/soulstone.dm
 	if(old_shard)
 		spent = TRUE
 		name = "dull [name]"
@@ -46,7 +54,11 @@
 		if(spent)
 			to_chat(user, "<span class='cult'>This shard is spent; it is now just a creepy rock.</span>")
 
+<<<<<<< HEAD:code/modules/antagonists/wizard/equipment/soulstone.dm
 /obj/item/soulstone/Destroy() //Stops the shade from being qdel'd immediately and their ghost being sent back to the arrival shuttle.
+=======
+/obj/item/device/soulstone/Destroy() //Stops the shade from being qdel'd immediately and their ghost being sent back to the arrival shuttle.
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/wizard/equipment/soulstone.dm
 	for(var/mob/living/simple_animal/shade/A in src)
 		A.death()
 	return ..()

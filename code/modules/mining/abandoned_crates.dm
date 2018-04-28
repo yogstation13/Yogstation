@@ -187,7 +187,11 @@
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
 	if(locked)
+<<<<<<< HEAD
 		if(istype(W, /obj/item/multitool))
+=======
+		if(istype(W, /obj/item/device/multitool))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			to_chat(user, "<span class='notice'>DECA-CODE LOCK REPORT:</span>")
 			if(attempts == 1)
 				to_chat(user, "<span class='warning'>* Anti-Tamper Bomb will activate on next failed access attempt.</span>")

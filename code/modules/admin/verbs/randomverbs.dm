@@ -1030,6 +1030,43 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+<<<<<<< HEAD
+=======
+	to_chat(usr, "You toggled your admin antag HUD [adding_hud ? "ON" : "OFF"].")
+	message_admins("[key_name_admin(usr)] toggled their admin antag HUD [adding_hud ? "ON" : "OFF"].")
+	log_admin("[key_name(usr)] toggled their admin antag HUD [adding_hud ? "ON" : "OFF"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Antag HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_combo_hud()
+	set category = "Admin"
+	set name = "Toggle Combo HUD"
+	set desc = "Toggles the Admin Combo HUD (antag, sci, med, eng)"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/adding_hud = !has_antag_hud()
+
+	for(var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)) // add data huds
+		var/datum/atom_hud/H = GLOB.huds[hudtype]
+		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+	for(var/datum/atom_hud/antag/H in GLOB.huds) // add antag huds
+		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+
+	if(prefs.toggles & COMBOHUD_LIGHTING)
+		if(adding_hud)
+			mob.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+		else
+			mob.lighting_alpha = initial(mob.lighting_alpha)
+
+	mob.update_sight()
+
+	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /client/proc/has_antag_hud()
 	var/datum/atom_hud/A = GLOB.huds[ANTAG_HUD_TRAITOR]
@@ -1282,7 +1319,11 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/turf/endT = spaceDebrisFinishLoc(startside, T.z)
 			new /obj/effect/immovablerod(startT, endT,target)
 
+<<<<<<< HEAD
 	var/msg = "[key_name(usr)] punished [key_name(target)] with [punishment]." // yogs - Yog Tickets
+=======
+	var/msg = "[key_name_admin(usr)] punished [key_name_admin(target)] with [punishment]."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	message_admins(msg)
 	admin_ticket_log(target, msg)
 	log_admin("[key_name(usr)] punished [key_name(target)] with [punishment].")

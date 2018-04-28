@@ -14,6 +14,21 @@
 	var/delay = 0
 	var/datum/radio_frequency/radio_connection
 	var/suicider = null
+<<<<<<< HEAD
+=======
+
+/obj/item/device/assembly/signaler/suicide_act(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user] eats \the [src]! If it is signaled, [user.p_they()] will die!</span>")
+	playsound(src, 'sound/items/eatfood.ogg', 50, 1)
+	user.transferItemToLoc(src, user, TRUE)
+	suicider = user
+	return MANUAL_SUICIDE
+
+/obj/item/device/assembly/signaler/proc/manual_suicide(mob/living/carbon/user)
+	user.visible_message("<span class='suicide'>[user]'s \the [src] recieves a signal, killing them instantly!</span>")
+	user.adjustOxyLoss(200)//it sends an electrical pulse to their heart, killing them. or something.
+	user.death(0)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/assembly/signaler/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] eats \the [src]! If it is signaled, [user.p_they()] will die!</span>")
@@ -48,7 +63,11 @@
 		holder.update_icon()
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/signaler/ui_interact(mob/user, flag1)
+=======
+/obj/item/device/assembly/signaler/ui_interact(mob/user, flag1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(is_secured(user))
 		var/t1 = "-------"
@@ -130,7 +149,11 @@ Code:
 
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
+=======
+/obj/item/device/assembly/signaler/receive_signal(datum/signal/signal)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!signal)
 		return 0
 	if(signal.data["code"] != code)
@@ -144,7 +167,11 @@ Code:
 	return
 
 
+<<<<<<< HEAD
 /obj/item/assembly/signaler/proc/set_frequency(new_frequency)
+=======
+/obj/item/device/assembly/signaler/proc/set_frequency(new_frequency)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
@@ -192,7 +219,11 @@ Code:
 /obj/item/assembly/signaler/anomaly/attack_self()
 	return
 
+<<<<<<< HEAD
 /obj/item/assembly/signaler/cyborg
+=======
+/obj/item/device/assembly/signaler/cyborg
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/assembly/signaler/cyborg/attackby(obj/item/W, mob/user, params)
 	return

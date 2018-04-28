@@ -12,9 +12,12 @@
 		#include "map_files\OmegaStation\OmegaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
+<<<<<<< HEAD
 		#include "map_files\YogsMeta\YogsMeta.dmm"
 		#include "map_files\YogsPubby\YogsPubby.dmm"
 		#include "map_files\YogStation\Yogstation.dmm"
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"

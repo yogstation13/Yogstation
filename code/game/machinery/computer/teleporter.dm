@@ -153,7 +153,11 @@
 	var/list/L = list()
 	var/list/areaindex = list()
 	if(regime_set == "Teleporter")
+<<<<<<< HEAD
 		for(var/obj/item/beacon/R in GLOB.teleportbeacons)
+=======
+		for(var/obj/item/device/beacon/R in GLOB.teleportbeacons)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			if(is_eligible(R))
 				var/area/A = get_area(R)
 				L[avoid_assoc_duplicate_keys(A.name, areaindex)] = R

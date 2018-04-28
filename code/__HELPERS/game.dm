@@ -234,7 +234,11 @@
 		processing_list.Cut(1, 2)
 		processing_list += A.contents
 
+<<<<<<< HEAD
 /proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
+=======
+/proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	for(var/obj/item/radio/R in radios)

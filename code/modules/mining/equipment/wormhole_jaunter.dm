@@ -11,7 +11,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/wormhole_jaunter/attack_self(mob/user)
 	user.visible_message("<span class='notice'>[user.name] activates the [src.name]!</span>")
@@ -28,7 +32,11 @@
 /obj/item/wormhole_jaunter/proc/get_destinations(mob/user)
 	var/list/destinations = list()
 
+<<<<<<< HEAD
 	for(var/obj/item/beacon/B in GLOB.teleportbeacons)
+=======
+	for(var/obj/item/device/beacon/B in GLOB.teleportbeacons)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/turf/T = get_turf(B)
 		if(is_station_level(T.z))
 			destinations += B

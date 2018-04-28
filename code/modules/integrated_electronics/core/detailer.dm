@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /obj/item/integrated_electronics/detailer
+=======
+/obj/item/device/integrated_electronics/detailer
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "assembly detailer"
 	desc = "A combination autopainter and flash anodizer designed to give electronic assemblies a colorful, wear-resistant finish."
 	icon = 'icons/obj/assemblies/electronic_tools.dmi'
@@ -27,17 +31,29 @@
 		"purple" = COLOR_ASSEMBLY_PURPLE
 		)
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/detailer/Initialize()
 	.=..()
 	update_icon()
 
 /obj/item/integrated_electronics/detailer/update_icon()
+=======
+/obj/item/device/integrated_electronics/detailer/Initialize()
+	.=..()
+	update_icon()
+
+/obj/item/device/integrated_electronics/detailer/update_icon()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	cut_overlays()
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/assemblies/electronic_tools.dmi', "detailer-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
+<<<<<<< HEAD
 /obj/item/integrated_electronics/detailer/attack_self(mob/user)
+=======
+/obj/item/device/integrated_electronics/detailer/attack_self(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/color_choice = input(user, "Select color.", "Assembly Detailer") as null|anything in color_list
 	if(!color_list[color_choice])
 		return

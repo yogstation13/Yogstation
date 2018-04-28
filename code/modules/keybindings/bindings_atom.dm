@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // yogs - Replicated for custom keybindings
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // You might be wondering why this isn't client level. If focus is null, we don't want you to move.
 // Only way to do that is to tie the behavior into the focus's keyLoop().
 

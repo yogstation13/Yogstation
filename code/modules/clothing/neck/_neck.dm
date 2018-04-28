@@ -2,7 +2,11 @@
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
 	body_parts_covered = NECK
+<<<<<<< HEAD:code/modules/clothing/neck/_neck.dm
 	slot_flags = ITEM_SLOT_NECK
+=======
+	slot_flags = SLOT_NECK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/clothing/neck/_neck.dm
 	strip_delay = 40
 	equip_delay_other = 40
 

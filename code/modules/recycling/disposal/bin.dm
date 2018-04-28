@@ -1,6 +1,10 @@
 // Disposal bin and Delivery chute.
 
+<<<<<<< HEAD:code/modules/recycling/disposal/bin.dm
 #define SEND_PRESSURE (0.05*ONE_ATMOSPHERE)
+=======
+#define SEND_PRESSURE 0.05*ONE_ATMOSPHERE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/recycling/disposal/bin.dm
 
 /obj/machinery/disposal
 	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
@@ -9,8 +13,12 @@
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
+<<<<<<< HEAD:code/modules/recycling/disposal/bin.dm
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	obj_flags = CAN_BE_HIT | USES_TGUI
+=======
+	interaction_flags_machine = INTERACT_MACHINE_OPEN
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/recycling/disposal/bin.dm
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/full_pressure = FALSE
 	var/pressure_charging = TRUE
@@ -219,6 +227,7 @@
 
 	for(var/A in H)
 		var/atom/movable/AM = A
+<<<<<<< HEAD:code/modules/recycling/disposal/bin.dm
 
 		target = get_offset_target_turf(loc, rand(5)-rand(5), rand(5)-rand(5))
 
@@ -226,6 +235,15 @@
 		AM.pipe_eject(0)
 		AM.throw_at(target, 5, 1)
 
+=======
+
+		target = get_offset_target_turf(loc, rand(5)-rand(5), rand(5)-rand(5))
+
+		AM.forceMove(T)
+		AM.pipe_eject(0)
+		AM.throw_at(target, 5, 1)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/recycling/disposal/bin.dm
 	H.vent_gas(loc)
 	qdel(H)
 

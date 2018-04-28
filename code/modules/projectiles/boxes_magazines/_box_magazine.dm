@@ -2,9 +2,16 @@
 /obj/item/ammo_box
 	name = "ammo box (null_reference_exception)"
 	desc = "A box of ammo."
+<<<<<<< HEAD:code/modules/projectiles/boxes_magazines/_box_magazine.dm
 	icon = 'icons/obj/ammo.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
+=======
+	icon_state = "357"
+	icon = 'icons/obj/ammo.dmi'
+	flags_1 = CONDUCT_1
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/projectiles/boxes_magazines/_box_magazine.dm
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'

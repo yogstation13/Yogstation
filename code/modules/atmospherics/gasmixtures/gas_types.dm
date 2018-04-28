@@ -97,7 +97,10 @@ GLOBAL_LIST_INIT(hardcoded_gases, list(/datum/gas/oxygen, /datum/gas/nitrogen, /
 	gas_overlay = "nitryl"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
+<<<<<<< HEAD
 	fusion_power = 1.5
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/gas/tritium
 	id = "tritium"
@@ -106,24 +109,39 @@ GLOBAL_LIST_INIT(hardcoded_gases, list(/datum/gas/oxygen, /datum/gas/nitrogen, /
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
+<<<<<<< HEAD
 	fusion_power = 2
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/gas/bz
 	id = "bz"
 	specific_heat = 20
 	name = "BZ"
 	dangerous = TRUE
+<<<<<<< HEAD
 	fusion_power = 2
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /datum/gas/stimulum
 	id = "stim"
 	specific_heat = 5
 	name = "Stimulum"
+<<<<<<< HEAD
 	fusion_power = 7
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /datum/gas/pluoxium
 	id = "pluox"
 	specific_heat = 80
 	name = "Pluoxium"
+<<<<<<< HEAD
 	fusion_power = 10
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/overlay/gas
 	icon = 'icons/effects/tile_effects.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

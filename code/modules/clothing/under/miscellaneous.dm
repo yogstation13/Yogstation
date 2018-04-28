@@ -648,7 +648,11 @@
 
 /obj/item/clothing/under/plasmaman/attackby(obj/item/E, mob/user, params)
 	..()
+<<<<<<< HEAD
 	if (istype(E, /obj/item/extinguisher_refill))
+=======
+	if (istype(E, /obj/item/device/extinguisher_refill))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if (extinguishes_left == 5)
 			to_chat(user, "<span class='notice'>The inbuilt extinguisher is full.</span>")
 			return
@@ -664,7 +668,10 @@
 	name = "envirosuit extinguisher cartridge"
 	desc = "A cartridge loaded with a compressed extinguisher mix, used to refill the automatic extinguisher on plasma envirosuits."
 	icon_state = "plasmarefill"
+<<<<<<< HEAD
 	icon = 'icons/obj/device.dmi'
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/clothing/under/rank/security/navyblue/russian
 	name = "russian officer's uniform"

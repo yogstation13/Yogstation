@@ -9,7 +9,11 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 0
+<<<<<<< HEAD
 	var/obj/item/beacon/Beacon
+=======
+	var/obj/item/device/beacon/Beacon
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/bluespace_beacon/Initialize()
 	. = ..()

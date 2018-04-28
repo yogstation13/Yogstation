@@ -147,6 +147,7 @@
 	density = TRUE
 	pixel_y = -32
 
+<<<<<<< HEAD
 /obj/item/gps/computer/wrench_act(mob/living/user, obj/item/I)
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
@@ -159,6 +160,20 @@
 	return TRUE
 
 /obj/item/gps/computer/attack_hand(mob/user)
+=======
+/obj/item/device/gps/computer/wrench_act(mob/living/user, obj/item/I)
+	if(flags_1 & NODECONSTRUCT_1)
+		return TRUE
+
+	user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
+		"<span class='notice'>You start to disassemble [src]...</span>", "You hear clanking and banging noises.")
+	if(I.use_tool(src, user, 20, volume=50))
+		new /obj/item/device/gps(loc)
+		qdel(src)
+	return TRUE
+
+/obj/item/device/gps/computer/attack_hand(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return

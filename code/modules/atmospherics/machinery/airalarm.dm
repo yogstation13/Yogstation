@@ -667,7 +667,11 @@
 				to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
 				update_icon()
 				return
+<<<<<<< HEAD
 			else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
+=======
+			else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 				togglelock(user)
 			else if(panel_open && is_wire_tool(W))
 				wires.interact(user)

@@ -20,6 +20,7 @@
 #define BANTYPE_ANY_JOB		9 //used to remove jobbans
 
 //Admin Permissions
+<<<<<<< HEAD
 #define R_BUILDMODE		(1<<0)
 #define R_ADMIN			(1<<1)
 #define R_BAN			(1<<2)
@@ -35,6 +36,23 @@
 #define R_SPAWN			(1<<12)
 #define R_AUTOLOGIN		(1<<13)
 #define R_DBRANKS		(1<<14)
+=======
+#define R_BUILDMODE		0x1
+#define R_ADMIN			0x2
+#define R_BAN			0x4
+#define R_FUN			0x8
+#define R_SERVER		0x10
+#define R_DEBUG			0x20
+#define R_POSSESS		0x40
+#define R_PERMISSIONS	0x80
+#define R_STEALTH		0x100
+#define R_POLL			0x200
+#define R_VAREDIT		0x400
+#define R_SOUNDS		0x800
+#define R_SPAWN			0x1000
+#define R_AUTOLOGIN		0x2000
+#define R_DBRANKS		0x4000
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define R_DEFAULT R_AUTOLOGIN
 

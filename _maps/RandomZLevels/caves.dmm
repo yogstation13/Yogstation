@@ -1379,8 +1379,13 @@
 /area/awaymission/caves/BMP_asteroid)
 "eh" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/radio,
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
 "ei" = (
@@ -1464,8 +1469,13 @@
 /area/awaymission/caves/BMP_asteroid)
 "ew" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/mining_scanner,
 /obj/item/mining_scanner,
+=======
+/obj/item/device/mining_scanner,
+/obj/item/device/mining_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
 "ex" = (
@@ -1553,7 +1563,11 @@
 	},
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
+<<<<<<< HEAD
 /obj/item/multitool,
+=======
+/obj/item/device/multitool,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/awaymission/caves/listeningpost)
 "eN" = (

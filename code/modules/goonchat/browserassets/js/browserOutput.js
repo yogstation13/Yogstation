@@ -330,12 +330,21 @@ function output(message, flag) {
 		//Actually append the message
 		var entry = document.createElement('div');
 		entry.className = 'entry';
+<<<<<<< HEAD
 
 		if (filteredOut) {
 			entry.className += ' hidden';
 			entry.setAttribute('data-filter', filteredOut);
 		}
 
+=======
+
+		if (filteredOut) {
+			entry.className += ' hidden';
+			entry.setAttribute('data-filter', filteredOut);
+		}
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		$last_message = trimmed_message;
 		entry.innerHTML = trimmed_message;
 		$messages[0].appendChild(entry);

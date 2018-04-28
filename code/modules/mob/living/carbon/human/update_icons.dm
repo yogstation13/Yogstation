@@ -176,7 +176,12 @@ There are several things that need to be remembered:
 		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_GLOVES]
 		inv.update_icon()
 
+<<<<<<< HEAD
 	if(!gloves && bloody_hands)
+=======
+	GET_COMPONENT(FR, /datum/component/forensics)
+	if(!gloves && FR && length(FR.blood_DNA))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
 		if(get_num_arms() < 2)
 			if(has_left_hand())
@@ -670,4 +675,8 @@ generate/load female uniform sprites matching all previously decided variables
 	dna.species.handle_hair(src)
 
 	update_inv_head()
+<<<<<<< HEAD
 	update_inv_wear_mask()
+=======
+	update_inv_wear_mask()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

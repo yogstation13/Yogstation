@@ -6,7 +6,11 @@
 	var/chained = 0
 
 	body_parts_covered = FEET
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_FEET
+=======
+	slot_flags = SLOT_FEET
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	permeability_coefficient = 0.5
 	slowdown = SHOES_SLOWDOWN

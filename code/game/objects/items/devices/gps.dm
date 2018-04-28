@@ -5,7 +5,11 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "gps-c"
 	w_class = WEIGHT_CLASS_SMALL
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	obj_flags = UNIQUE_RENAME
 	var/gpstag = "COM0"
 	var/emped = FALSE
@@ -40,12 +44,20 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	cut_overlay("emp")
 	add_overlay("working")
 
+<<<<<<< HEAD
 /obj/item/gps/AltClick(mob/user)
+=======
+/obj/item/device/gps/AltClick(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	toggletracking(user)
 
+<<<<<<< HEAD
 /obj/item/gps/proc/toggletracking(mob/user)
+=======
+/obj/item/device/gps/proc/toggletracking(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return //user not valid to use gps
 	if(emped)

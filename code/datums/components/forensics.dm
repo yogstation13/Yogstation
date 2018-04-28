@@ -15,7 +15,12 @@
 
 /datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
 	if(!isatom(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("Forensics datum applied incorrectly to non-atom of type [parent.type]!")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	fingerprints = new_fingerprints
 	hiddenprints = new_hiddenprints
 	blood_DNA = new_blood_DNA

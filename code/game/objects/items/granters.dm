@@ -59,8 +59,13 @@
 				return
 		if(do_after(user,50, user))
 			to_chat(user, "<span class='notice'>You feel like you've got a good handle on [actionname]!</span>")
+<<<<<<< HEAD
 			G.Grant(user)
 		reading = FALSE
+=======
+			reading = FALSE
+			G.Grant(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/book/granter/action/drink_fling
 	granted_action = /datum/action/innate/drink_fling
@@ -121,10 +126,17 @@
 				return
 		if(do_after(user,50, user))
 			to_chat(user, "<span class='notice'>You feel like you've experienced enough to cast [spellname]!</span>")
+<<<<<<< HEAD
 			user.mind.AddSpell(S)
 			user.log_message("<font color='orange'>learned the spell [spellname] ([S]).</font>", INDIVIDUAL_ATTACK_LOG)
 			onlearned(user)
 		reading = FALSE
+=======
+			reading = FALSE
+			user.mind.AddSpell(S)
+			user.log_message("<font color='orange'>learned the spell [spellname] ([S]).</font>", INDIVIDUAL_ATTACK_LOG)
+			onlearned(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/book/granter/spell/recoil(mob/user)
 	user.visible_message("<span class='warning'>[src] glows in a black light!</span>")
@@ -257,7 +269,11 @@
 		magichead.voicechange = TRUE	//NEEEEIIGHH
 		if(!user.dropItemToGround(user.wear_mask))
 			qdel(user.wear_mask)
+<<<<<<< HEAD
 		user.equip_to_slot_if_possible(magichead, SLOT_WEAR_MASK, TRUE, TRUE)
+=======
+		user.equip_to_slot_if_possible(magichead, slot_wear_mask, TRUE, TRUE)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		qdel(src)
 	else
 		to_chat(user,"<span class='notice'>I say thee neigh</span>") //It still lives here
@@ -328,10 +344,17 @@
 				return
 		if(do_after(user,50, user))
 			to_chat(user, "[greet]")
+<<<<<<< HEAD
 			MA.teach(user)
 			user.log_message("<font color='orange'>learned the martial art [martialname] ([MA]).</font>", INDIVIDUAL_ATTACK_LOG)
 			onlearned(user)
 		reading = FALSE
+=======
+			reading = FALSE
+			MA.teach(user)
+			user.log_message("<font color='orange'>learned the martial art [martialname] ([MA]).</font>", INDIVIDUAL_ATTACK_LOG)
+			onlearned(user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/book/granter/martial/cqc
 	martial = /datum/martial_art/cqc

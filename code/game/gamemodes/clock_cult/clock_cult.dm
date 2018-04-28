@@ -45,7 +45,11 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
+<<<<<<< HEAD
 	return istype(M) && !isobserver(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
+=======
+	return isliving(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/clockcult)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
@@ -74,14 +78,22 @@ Credit where due:
 	var/datum/antagonist/clockcult/C = new update_type(L.mind)
 	C.make_team = create_team
 	C.show_in_roundend = create_team //tutorial scarabs begone
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(iscyborg(L))
 		var/mob/living/silicon/robot/R = L
 		if(R.deployed)
 			var/mob/living/silicon/ai/AI = R.mainframe
 			R.undeploy()
 			to_chat(AI, "<span class='userdanger'>Anomaly Detected. Returned to core!</span>") //The AI needs to be in its core to properly be converted
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = L.mind.add_antag_datum(C)
 
 	if(!silent && L)
@@ -99,10 +111,17 @@ Credit where due:
 			" in an endless grey void.<br>It cannot be allowed to escape"].</span>")
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
+<<<<<<< HEAD
 
 
 
 
+=======
+	
+
+
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
 	if(!L || !L.mind)
 		return
@@ -263,7 +282,11 @@ Credit where due:
 	belt = /obj/item/storage/belt/utility/servant
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
+<<<<<<< HEAD
 	id = /obj/item/pda
+=======
+	id = /obj/item/device/pda
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -276,7 +299,11 @@ Credit where due:
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/obj/item/card/id/W = new(H)
+<<<<<<< HEAD
 	var/obj/item/pda/PDA = H.wear_id
+=======
+	var/obj/item/device/pda/PDA = H.wear_id
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	W.assignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name

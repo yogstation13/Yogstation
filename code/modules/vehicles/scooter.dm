@@ -72,7 +72,11 @@
 		H.throw_at(throw_target, 4, 3)
 		H.Knockdown(100)
 		H.adjustStaminaLoss(40)
+<<<<<<< HEAD
 		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+=======
+		var/head_slot = H.get_item_by_slot(slot_head)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 			H.adjustBrainLoss(3)
 			H.updatehealth()
@@ -147,9 +151,12 @@
 		qdel(src)
 	return TRUE
 
+<<<<<<< HEAD
 /obj/vehicle/ridden/scooter/skateboard/wrench_act(mob/living/user, obj/item/I)
 	return
 
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 //Wheelys
 /obj/vehicle/ridden/scooter/wheelys
 	name = "Wheely-Heels"
@@ -185,9 +192,17 @@
 		H.throw_at(throw_target, 4, 3)
 		H.Knockdown(30)
 		H.adjustStaminaLoss(10)
+<<<<<<< HEAD
 		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+=======
+		var/head_slot = H.get_item_by_slot(slot_head)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 			H.adjustBrainLoss(1)
 			H.updatehealth()
 		visible_message("<span class='danger'>[src] crashes into [A], sending [H] flying!</span>")
+<<<<<<< HEAD
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+=======
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets

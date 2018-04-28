@@ -77,7 +77,11 @@
 /area/ruin/space/abandoned_tele)
 "r" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "s" = (

@@ -65,10 +65,13 @@
 /obj/structure/healingfountain,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
+<<<<<<< HEAD
 "z" = (
 /obj/effect/landmark/shuttle_arena_safe,
 /turf/open/indestructible/necropolis/air,
 /area/shuttle/escape/arena)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 (1,1,1) = {"
 a

@@ -167,11 +167,19 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/toolbox/emergency,
+<<<<<<< HEAD
 /obj/item/flashlight/flare{
 	pixel_x = 3;
 	pixel_y = 3
 	},
 /obj/item/flashlight/flare{
+=======
+/obj/item/device/flashlight/flare{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/device/flashlight/flare{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	pixel_x = -6;
 	pixel_y = -2
 	},
@@ -243,7 +251,11 @@
 /area/shuttle/abandoned)
 "az" = (
 /obj/structure/sink/kitchen{
+<<<<<<< HEAD
 	pixel_y = 30
+=======
+	pixel_z = 30
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
@@ -272,7 +284,11 @@
 	},
 /obj/item/grenade/chem_grenade/metalfoam,
 /obj/item/relic,
+<<<<<<< HEAD
 /obj/item/t_scanner,
+=======
+/obj/item/device/t_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/spawner/lootdrop/maintenance{
 	lootcount = 3;
 	name = "3maintenance loot spawner"
@@ -452,7 +468,11 @@
 /obj/item/clothing/suit/apron,
 /obj/item/shovel/spade,
 /obj/item/cultivator,
+<<<<<<< HEAD
 /obj/item/plant_analyzer,
+=======
+/obj/item/device/plant_analyzer,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -651,7 +671,11 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/item/gps{
+=======
+/obj/item/device/gps{
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	gpstag = "ITVSAC";
 	pixel_x = -1;
 	pixel_y = 2
@@ -1654,7 +1678,11 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/item/megaphone,
+=======
+/obj/item/device/megaphone,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/blue/corner{
 	dir = 4
 	},
@@ -1688,7 +1716,11 @@
 	name = "dust"
 	},
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/camera,
+=======
+/obj/item/device/camera,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/blue/side{
 	dir = 5
 	},
@@ -1815,7 +1847,11 @@
 	name = "dust"
 	},
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/pda/clear,
+=======
+/obj/item/device/pda/clear,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/blue/side,
 /area/shuttle/abandoned)
 "dv" = (
@@ -1834,7 +1870,11 @@
 	name = "dust"
 	},
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/radio,
+=======
+/obj/item/device/radio,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/blue/side,
 /area/shuttle/abandoned)
 "dx" = (

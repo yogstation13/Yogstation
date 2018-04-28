@@ -125,6 +125,7 @@
 				S.destination_x = x_pos_transition[side] == 1 ? S.x : x_pos_transition[side]
 				S.destination_y = y_pos_transition[side] == 1 ? S.y : y_pos_transition[side]
 				S.destination_z = zdestination
+<<<<<<< HEAD:code/modules/mapping/space_management/space_transition.dm
 				
 				// Mirage border code
 				var/mirage_dir
@@ -141,3 +142,5 @@
 
 				var/turf/place = locate(S.destination_x, S.destination_y, S.destination_z)
 				S.AddComponent(/datum/component/mirage_border, place, mirage_dir)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/mapping/space_management/space_transition.dm

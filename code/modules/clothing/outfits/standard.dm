@@ -91,7 +91,11 @@
 	head = /obj/item/clothing/head/helmet/space/pirate/bandana
 	mask = /obj/item/clothing/mask/breath
 	suit_store = /obj/item/tank/internals/oxygen
+<<<<<<< HEAD
 	ears = /obj/item/radio/headset/syndicate
+=======
+	ears = /obj/item/device/radio/headset/syndicate
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	id = /obj/item/card/id
 
 /datum/outfit/pirate/space/captain
@@ -100,7 +104,11 @@
 /datum/outfit/pirate/post_equip(mob/living/carbon/human/H)
 	H.faction |= "pirate"
 
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(R)
 		R.set_frequency(FREQ_SYNDICATE)
 		R.freqlock = TRUE
@@ -256,7 +264,11 @@
 	W.registered_name = H.real_name
 	W.update_label()
 
+<<<<<<< HEAD
 	var/obj/item/radio/headset/R = H.ears
+=======
+	var/obj/item/device/radio/headset/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE
 
@@ -395,7 +407,11 @@
 	if(visualsOnly)
 		return
 
+<<<<<<< HEAD
 	var/obj/item/radio/R = H.ears
+=======
+	var/obj/item/device/radio/R = H.ears
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE
 

@@ -29,7 +29,11 @@
 	return TRUE
 
 /obj/effect/proc_holder/changeling/revive/can_be_used_by(mob/living/user)
+<<<<<<< HEAD:code/modules/antagonists/changeling/powers/revive.dm
 	if(user.has_trait(CHANGELING_DRAIN) || ((user.stat != DEAD) && !(user.has_trait(TRAIT_FAKEDEATH))))
+=======
+	if((user.stat != DEAD) && !(user.has_trait(TRAIT_FAKEDEATH)))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/changeling/powers/revive.dm
 		var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 		changeling.purchasedpowers -= src
 		return 0

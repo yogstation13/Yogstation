@@ -6,12 +6,20 @@
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
 	heat = 1000
 
+<<<<<<< HEAD
 /obj/item/assembly/igniter/suicide_act(mob/living/carbon/user)
+=======
+/obj/item/device/assembly/igniter/suicide_act(mob/living/carbon/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user.visible_message("<span class='suicide'>[user] is trying to ignite [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	user.IgniteMob()
 	return FIRELOSS
 
+<<<<<<< HEAD
 /obj/item/assembly/igniter/New()
+=======
+/obj/item/device/assembly/igniter/New()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 	sparks.set_up(2, 0, src)
 	sparks.attach(src)

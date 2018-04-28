@@ -59,8 +59,13 @@
 
 
 /obj/structure/disposalpipe/sorting/mail/attackby(obj/item/I, mob/user, params)
+<<<<<<< HEAD
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
+=======
+	if(istype(I, /obj/item/device/destTagger))
+		var/obj/item/device/destTagger/O = I
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 		if(O.currTag)// Tagger has a tag set
 			if(O.currTag in sortTypes)

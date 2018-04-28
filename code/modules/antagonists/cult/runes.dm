@@ -299,7 +299,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 			else
 				to_chat(M, "<span class='cultlarge'>\"I accept this meager sacrifice.\"</span>")
 
+<<<<<<< HEAD:code/modules/antagonists/cult/runes.dm
 	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
+=======
+	var/obj/item/device/soulstone/stone = new /obj/item/device/soulstone(get_turf(src))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/cult/runes.dm
 	if(sacrificial.mind && !sacrificial.suiciding)
 		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
 		stone.transfer_soul("FORCE", sacrificial, usr)
@@ -1056,7 +1060,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 /proc/hudFix(mob/living/carbon/human/target)
 	if(!target || !target.client)
 		return
+<<<<<<< HEAD:code/modules/antagonists/cult/runes.dm
 	var/obj/O = target.get_item_by_slot(SLOT_GLASSES)
+=======
+	var/obj/O = target.get_item_by_slot(slot_glasses)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/cult/runes.dm
 	if(istype(O, /obj/item/clothing/glasses/hud/security))
 		var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		AH.add_hud_to(target)

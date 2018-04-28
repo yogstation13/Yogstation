@@ -18,7 +18,10 @@
 /obj/item/ammo_casing/energy/laser/practice
 	projectile_type = /obj/item/projectile/beam/practice
 	select_name = "practice"
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/laser/scatter
 	projectile_type = /obj/item/projectile/beam/scatter
@@ -30,7 +33,10 @@
 	projectile_type = /obj/item/projectile/beam/disabler
 	pellets = 3
 	variance = 15
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/laser/heavy
 	projectile_type = /obj/item/projectile/beam/laser/heavylaser
@@ -46,7 +52,10 @@
 /obj/item/ammo_casing/energy/laser/bluetag
 	projectile_type = /obj/item/projectile/beam/lasertag/bluetag
 	select_name = "bluetag"
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/laser/bluetag/hitscan
 	projectile_type = /obj/item/projectile/beam/lasertag/bluetag/hitscan
@@ -54,7 +63,10 @@
 /obj/item/ammo_casing/energy/laser/redtag
 	projectile_type = /obj/item/projectile/beam/lasertag/redtag
 	select_name = "redtag"
+<<<<<<< HEAD
 	harmful = FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/ammo_casing/energy/laser/redtag/hitscan
 	projectile_type = /obj/item/projectile/beam/lasertag/redtag/hitscan

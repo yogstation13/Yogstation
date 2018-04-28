@@ -109,6 +109,10 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
+<<<<<<< HEAD
+=======
+	silent = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	force = 15
 	throwforce = 18
 

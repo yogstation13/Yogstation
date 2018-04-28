@@ -1,6 +1,10 @@
 /obj/machinery/jukebox
 	name = "jukebox"
+<<<<<<< HEAD
 	desc = "A classic music player."
+=======
+	desc = "A classic music player.."
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "jukebox"
 	anchored = TRUE
@@ -83,8 +87,11 @@
 
 /obj/machinery/jukebox/ui_interact(mob/user)
 	. = ..()
+<<<<<<< HEAD
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if (!anchored)
 		to_chat(user,"<span class='warning'>This device must be anchored by a wrench!</span>")
 		return
@@ -96,6 +103,13 @@
 		to_chat(user,"<span class='warning'>Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue.</span>")
 		playsound(src,'sound/misc/compiler-failure.ogg', 25, 1)
 		return
+<<<<<<< HEAD
+=======
+	if(!songs.len)
+		to_chat(user,"<span class='warning'>Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue.</span>")
+		playsound(src,'sound/misc/compiler-failure.ogg', 25, 1)
+		return
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/list/dat = list()
 	dat +="<div class='statusDisplay' style='text-align:center'>"
 	dat += "<b><A href='?src=[REF(src)];action=toggle'>[!active ? "BREAK IT DOWN" : "SHUT IT DOWN"]<b></A><br>"
@@ -156,56 +170,88 @@
 	var/turf/cen = get_turf(src)
 	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_RED
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x == cen.x && t.y < cen.y)
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_PURPLE
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x > cen.x && t.y == cen.y)
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_YELLOW
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if(t.x < cen.x && t.y == cen.y)
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_GREEN
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y+1 == cen.y) || (t.x+2==cen.x && t.y+2 == cen.y))
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_ORANGE
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y-1 == cen.y) || (t.x-2==cen.x && t.y-2 == cen.y))
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_CYAN
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x-1 == cen.x && t.y+1 == cen.y) || (t.x-2==cen.x && t.y+2 == cen.y))
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_BLUEGREEN
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1.4+get_dist(src, L)
 			spotlights+=L
 			continue
 		if((t.x+1 == cen.x && t.y-1 == cen.y) || (t.x+2==cen.x && t.y-2 == cen.y))
+<<<<<<< HEAD
 			var/obj/item/flashlight/spotlight/L = new /obj/item/flashlight/spotlight(t)
+=======
+			var/obj/item/device/flashlight/spotlight/L = new /obj/item/device/flashlight/spotlight(t)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			L.light_color = LIGHT_COLOR_BLUE
 			L.light_power = 30-(get_dist(src,L)*8)
 			L.range = 1.4+get_dist(src, L)

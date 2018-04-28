@@ -14,6 +14,7 @@
 		for(var/I in config_entry_value)
 			newv[replacetext(I, "+", " ")] = config_entry_value[I]
 		config_entry_value = newv
+<<<<<<< HEAD
 
 /datum/config_entry/keyed_string_list/cross_server/ValidateListEntry(key_name, key_value)
 	return key_value != "byond:\\address:port" && ..()
@@ -29,4 +30,15 @@
 	protection = CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/string/webhook_key
+=======
+
+/datum/config_entry/keyed_string_list/cross_server/ValidateListEntry(key_name, key_value)
+	return key_value != "byond:\\address:port" && ..()
+
+/datum/config_entry/string/cross_comms_name
+
+/datum/config_entry/string/medal_hub_address
+
+/datum/config_entry/string/medal_hub_password
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	protection = CONFIG_ENTRY_HIDDEN

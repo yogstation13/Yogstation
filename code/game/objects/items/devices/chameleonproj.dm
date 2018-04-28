@@ -28,11 +28,19 @@
 	..()
 	disrupt()
 
+<<<<<<< HEAD
 /obj/item/chameleon/attack_self(mob/user)
 	if (isturf(user.loc) || istype(user.loc, /obj/structure) || active_dummy)
 		toggle(user)
 	else
 		to_chat(user, "<span class='warning'>You can't use [src] while inside something!</span>")
+=======
+/obj/item/device/chameleon/attack_self(mob/user)
+	if (isturf(user.loc) || istype(user.loc, /obj/structure) || active_dummy)
+		toggle(user)
+	else
+		to_chat(user, "<span class='userwarning'>You can't use [src] while inside something.</span>")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/chameleon/afterattack(atom/target, mob/user , proximity)
 	if(!proximity)
@@ -54,7 +62,11 @@
 		return TRUE
 	return FALSE
 
+<<<<<<< HEAD
 /obj/item/chameleon/proc/toggle(mob/user)
+=======
+/obj/item/device/chameleon/proc/toggle(mob/user)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!can_use || !saved_appearance)
 		return
 	if(active_dummy)

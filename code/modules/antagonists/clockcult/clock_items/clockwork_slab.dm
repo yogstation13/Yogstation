@@ -9,7 +9,11 @@
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
 	var/inhand_overlay //If applicable, this overlay will be applied to the slab's inhand
 
+<<<<<<< HEAD:code/modules/antagonists/clockcult/clock_items/clockwork_slab.dm
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/clockcult/clock_items/clockwork_slab.dm
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/busy //If the slab is currently being used by something

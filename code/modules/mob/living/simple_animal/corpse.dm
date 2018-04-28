@@ -132,7 +132,11 @@
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
+<<<<<<< HEAD
 	ears = /obj/item/radio/headset
+=======
+	ears = /obj/item/device/radio/headset
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	head = /obj/item/clothing/head/helmet/alt
 	mask = /obj/item/clothing/mask/balaclava
 
@@ -146,7 +150,11 @@
 	uniform = /obj/item/clothing/under/rank/security/navyblue/russian
 	suit = /obj/item/clothing/suit/security/officer/russian
 	shoes = /obj/item/clothing/shoes/combat
+<<<<<<< HEAD
 	ears = /obj/item/radio/headset
+=======
+	ears = /obj/item/device/radio/headset
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	head = /obj/item/clothing/head/ushanka
 
 
@@ -200,7 +208,11 @@
 	suit = /obj/item/clothing/suit/apron/surgical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+<<<<<<< HEAD
 	ears = /obj/item/radio/headset
+=======
+	ears = /obj/item/device/radio/headset
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	back = /obj/item/storage/backpack/satchel/med
 	id = /obj/item/card/id
 	glasses = /obj/item/clothing/glasses/hud/health

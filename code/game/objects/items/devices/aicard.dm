@@ -11,6 +11,13 @@
 	flags_1 = NOBLUDGEON_1
 	var/flush = FALSE
 	var/mob/living/silicon/ai/AI
+<<<<<<< HEAD
+=======
+
+/obj/item/device/aicard/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] is trying to upload themselves into [src]! That's not going to work out well!</span>")
+	return BRUTELOSS
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/aicard/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] is trying to upload themselves into [src]! That's not going to work out well!</span>")

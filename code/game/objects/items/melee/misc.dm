@@ -321,7 +321,11 @@
 	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
 	icon_state = "roastingstick_0"
 	item_state = "null"
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
 	force = 0
@@ -334,7 +338,11 @@
 /obj/item/melee/roastingstick/Initialize()
 	. = ..()
 	if (!ovens)
+<<<<<<< HEAD
 		ovens = typecacheof(list(/obj/singularity, /obj/machinery/power/supermatter_crystal, /obj/structure/bonfire, /obj/structure/destructible/clockwork/massive/ratvar))
+=======
+		ovens = typecacheof(list(/obj/singularity, /obj/machinery/power/supermatter_shard/crystal, /obj/structure/bonfire, /obj/structure/destructible/clockwork/massive/ratvar))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/melee/roastingstick/attack_self(mob/user)
 	on = !on

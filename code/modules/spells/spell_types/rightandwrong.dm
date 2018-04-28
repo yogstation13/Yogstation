@@ -69,7 +69,11 @@ GLOBAL_LIST_INIT(summoned_magic, list(
 	/obj/item/voodoo,
 	/obj/item/warpwhistle,
 	/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
+<<<<<<< HEAD
 	/obj/item/immortality_talisman,
+=======
+	/obj/item/device/immortality_talisman,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/melee/ghost_sword))
 
 GLOBAL_LIST_INIT(summoned_special_magic, list(
@@ -78,7 +82,11 @@ GLOBAL_LIST_INIT(summoned_special_magic, list(
 	/obj/item/storage/belt/wands/full,
 	/obj/item/antag_spawner/contract,
 	/obj/item/gun/magic/staff/chaos,
+<<<<<<< HEAD
 	/obj/item/necromantic_stone,
+=======
+	/obj/item/device/necromantic_stone,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	/obj/item/blood_contract))
 
 // If true, it's the probability of triggering "survivor" antag.

@@ -77,6 +77,11 @@
 	name = "trash bag of holding"
 	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
 	icon_state = "bluetrashbag"
+<<<<<<< HEAD
+=======
+	max_combined_w_class = 60
+	storage_slots = 60
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	flags_2 = NO_MAT_REDEMPTION_2
 
 /obj/item/storage/bag/trash/bluespace/ComponentInitialize()
@@ -94,6 +99,7 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
@@ -108,6 +114,17 @@
 	STR.max_w_class = WEIGHT_CLASS_HUGE
 	STR.max_combined_stack_amount = 50
 
+=======
+	slot_flags = SLOT_BELT | SLOT_POCKET
+	w_class = WEIGHT_CLASS_NORMAL
+	storage_slots = 8
+	max_combined_w_class = 16 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
+	max_w_class = WEIGHT_CLASS_HUGE
+	can_hold = list(/obj/item/stack/ore)
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+	var/datum/component/mobhook
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /obj/item/storage/bag/ore/equipped(mob/user)
 	. = ..()
 	if (mobhook && mobhook.parent != user)
@@ -128,6 +145,7 @@
 		return
 	if (istype(user.pulling, /obj/structure/ore_box))
 		box = user.pulling
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	if(STR)
 		for(var/A in tile)
@@ -143,6 +161,22 @@
 					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
 					spam_protection = TRUE
 					continue
+=======
+	for(var/A in tile)
+		if (!is_type_in_typecache(A, can_hold))
+			continue
+		if (box)
+			user.transferItemToLoc(A, box)
+			show_message = TRUE
+		else if(can_be_inserted(A, TRUE, user))
+			handle_item_insertion(A, TRUE, user)
+			show_message = TRUE
+		else
+			if(!spam_protection)
+				to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+				spam_protection = TRUE
+				continue
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
 		if (box)
@@ -159,6 +193,11 @@
 /obj/item/storage/bag/ore/holding //miners, your messiah has arrived
 	name = "mining satchel of holding"
 	desc = "A revolution in convenience, this satchel allows for huge amounts of ore storage. It's been outfitted with anti-malfunction safety measures."
+<<<<<<< HEAD
+=======
+	storage_slots = INFINITY
+	max_combined_w_class = INFINITY
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	icon_state = "satchel_bspace"
 
 /obj/item/storage/bag/ore/holding/ComponentInitialize()
@@ -219,6 +258,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 
+<<<<<<< HEAD
 /obj/item/storage/bag/sheetsnatcher/ComponentInitialize()
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage/concrete/stack)
@@ -226,6 +266,124 @@
 	STR.can_hold = typecacheof(list(/obj/item/stack/sheet))
 	STR.cant_hold = typecacheof(list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
 	STR.max_combined_stack_amount = 300
+=======
+	allow_quick_empty = 1 // this function is superceded
+
+/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W, stop_messages = 0)
+	if(!istype(W, /obj/item/stack/sheet) || istype(W, /obj/item/stack/sheet/mineral/sandstone) || istype(W, /obj/item/stack/sheet/mineral/wood))
+		if(!stop_messages)
+			to_chat(usr, "The snatcher does not accept [W].")
+		return 0 //I don't care, but the existing code rejects them for not being "sheets" *shrug* -Sayu
+	var/current = 0
+	for(var/obj/item/stack/sheet/S in contents)
+		current += S.amount
+	if(capacity == current)//If it's full, you're done
+		if(!stop_messages)
+			to_chat(usr, "<span class='danger'>The snatcher is full.</span>")
+		return 0
+	return 1
+
+
+// Modified handle_item_insertion.  Would prefer not to, but...
+/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W, prevent_warning = 0)
+	var/obj/item/stack/sheet/S = W
+	if(!istype(S))
+		return 0
+
+	var/amount
+	var/inserted = 0
+	var/current = 0
+	for(var/obj/item/stack/sheet/S2 in contents)
+		current += S2.amount
+	if(capacity < current + S.amount)//If the stack will fill it up
+		amount = capacity - current
+	else
+		amount = S.amount
+
+	for(var/obj/item/stack/sheet/sheet in contents)
+		if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
+			sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
+			S.amount -= amount
+			inserted = 1
+			break
+
+	if(!inserted || !S.amount)
+		usr.dropItemToGround(S)
+		if (usr.client && usr.s_active != src)
+			usr.client.screen -= S
+		S.dropped(usr)
+		if(!S.amount)
+			qdel(S)
+		else
+			if(S.pulledby)
+				S.pulledby.stop_pulling()
+			S.forceMove(src)
+
+	orient2hud(usr)
+	if(usr.s_active)
+		usr.s_active.show_to(usr)
+	update_icon()
+	return 1
+
+
+// Sets up numbered display to show the stack size of each stored mineral
+// NOTE: numbered display is turned off currently because it's broken
+/obj/item/storage/bag/sheetsnatcher/orient2hud(mob/user)
+	var/adjusted_contents = contents.len
+
+	//Numbered contents display
+	var/list/datum/numbered_display/numbered_contents
+	if(display_contents_with_number)
+		numbered_contents = list()
+		adjusted_contents = 0
+		for(var/obj/item/stack/sheet/I in contents)
+			adjusted_contents++
+			var/datum/numbered_display/D = new/datum/numbered_display(I)
+			D.number = I.amount
+			numbered_contents.Add( D )
+
+	var/row_num = 0
+	var/col_count = min(7,storage_slots) -1
+	if (adjusted_contents > 7)
+		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
+	standard_orient_objs(row_num, col_count, numbered_contents)
+	return
+
+
+// Modified quick_empty verb drops appropriate sized stacks
+/obj/item/storage/bag/sheetsnatcher/quick_empty()
+	var/location = get_turf(src)
+	for(var/obj/item/stack/sheet/S in contents)
+		while(S.amount)
+			var/obj/item/stack/sheet/N = new S.type(location)
+			var/stacksize = min(S.amount,N.max_amount)
+			N.amount = stacksize
+			S.amount -= stacksize
+		if(!S.amount)
+			qdel(S)// todo: there's probably something missing here
+	orient2hud(usr)
+	if(usr.s_active)
+		usr.s_active.show_to(usr)
+	update_icon()
+
+// Instead of removing
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W, atom/new_location)
+	var/obj/item/stack/sheet/S = W
+	if(!istype(S))
+		return 0
+
+	//I would prefer to drop a new stack, but the item/attack_hand code
+	// that calls this can't recieve a different object than you clicked on.
+	//Therefore, make a new stack internally that has the remainder.
+	// -Sayu
+
+	if(S.amount > S.max_amount)
+		var/obj/item/stack/sheet/temp = new S.type(src)
+		temp.amount = S.amount - S.max_amount
+		S.amount = S.max_amount
+
+	return ..(S,new_location)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
@@ -330,6 +488,10 @@
 	icon_state = "bag"
 	desc = "A bag for storing pills, patches, and bottles."
 	w_class = WEIGHT_CLASS_TINY
+<<<<<<< HEAD
+=======
+	can_hold = list(/obj/item/reagent_containers/pill, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/chemistry/ComponentInitialize()
@@ -350,6 +512,10 @@
 	icon_state = "biobag"
 	desc = "A bag for the safe transportation and disposal of biowaste and other biological materials."
 	w_class = WEIGHT_CLASS_TINY
+<<<<<<< HEAD
+=======
+	can_hold = list(/obj/item/slime_extract, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/food/snacks/deadmouse, /obj/item/reagent_containers/food/snacks/monkeycube)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/bio/ComponentInitialize()

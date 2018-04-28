@@ -40,8 +40,11 @@
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(!AM)
 		return FALSE
+<<<<<<< HEAD
 	if(istype(AM, /obj/item/gun/energy))
 		return FALSE
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!assembly)
 		return FALSE // Pointless to do everything else if there's no battery to draw from.
 	var/obj/item/stock_parts/cell/cell = AM.get_cell()
@@ -77,10 +80,17 @@
 
 /obj/item/integrated_circuit/power/transmitter/large/do_work()
 	if(..()) // If the above code succeeds, do this below.
+<<<<<<< HEAD
 		var/atom/movable/acting_object = get_object()
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		if(prob(20))
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(12, 1, src)
 			s.start()
+<<<<<<< HEAD
 			acting_object.visible_message("<span class='warning'>\The [acting_object] makes some sparks!</span>")
+=======
+			visible_message("<span class='warning'>\The [assembly] makes some sparks!</span>")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		return TRUE

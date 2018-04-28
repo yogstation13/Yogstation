@@ -64,7 +64,30 @@
 		return 1
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/clothing/Destroy()
+=======
+/obj/item/clothing/AltClick(mob/user)
+	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)) && pockets && pockets.quickdraw && pockets.contents.len)
+		var/obj/item/I = pockets.contents[1]
+		if(!I)
+			return
+		pockets.remove_from_storage(I, get_turf(src))
+
+		if(!user.put_in_hands(I))
+			to_chat(user, "<span class='notice'>You fumble for [I] and it falls on the floor.</span>")
+			return 1
+		user.visible_message("<span class='warning'>[user] draws [I] from [src]!</span>", "<span class='notice'>You draw [I] from [src].</span>")
+		return 1
+	else
+		return ..()
+
+
+/obj/item/clothing/Destroy()
+	if(pockets)
+		qdel(pockets)
+		pockets = null
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	user_vars_remembered = null //Oh god somebody put REFERENCES in here? not to worry, we'll clean it up
 	return ..()
 

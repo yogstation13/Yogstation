@@ -300,9 +300,12 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/bot,
+<<<<<<< HEAD
 /obj/item/radio/intercom{
 	pixel_x = -30
 	},
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "H" = (
@@ -379,16 +382,26 @@
 	},
 /area/shuttle/arrival)
 "U" = (
+<<<<<<< HEAD
 /obj/machinery/computer{
 	dir = 1;
 	name = "Shuttle computer"
+=======
+/obj/structure/frame/computer{
+	dir = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /turf/open/floor/plasteel/blue,
 /area/shuttle/arrival)
 "V" = (
+<<<<<<< HEAD
 /obj/machinery/computer{
 	dir = 1;
 	name = "Shuttle computer"
+=======
+/obj/structure/frame/computer{
+	dir = 1
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /turf/open/floor/plasteel/blue/side,
 /area/shuttle/arrival)

@@ -13,7 +13,12 @@
 
 /datum/component/construction/Initialize()
 	if(!isatom(parent))
+<<<<<<< HEAD
 		return COMPONENT_INCOMPATIBLE
+=======
+		. = COMPONENT_INCOMPATIBLE
+		CRASH("A construction component was applied incorrectly to non-atom: [parent.type].")
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	RegisterSignal(COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(COMSIG_PARENT_ATTACKBY,.proc/action)

@@ -25,6 +25,7 @@ Passive gate is similar to the regular pump except:
 
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/components/binary/passive_gate/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -35,6 +36,8 @@ Passive gate is similar to the regular pump except:
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/atmospherics/components/binary/passive_gate/Destroy()
 	SSradio.remove_object(src,frequency)

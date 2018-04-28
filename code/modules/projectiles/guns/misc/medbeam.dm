@@ -5,6 +5,10 @@
 	icon_state = "chronogun"
 	item_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
+<<<<<<< HEAD:code/modules/projectiles/guns/misc/medbeam.dm
+=======
+	harmful = FALSE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/projectiles/guns/misc/medbeam.dm
 
 	var/mob/living/current_target
 	var/last_check = 0

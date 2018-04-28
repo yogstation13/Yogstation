@@ -15,8 +15,16 @@
 	screen.icon_state = "[initial(screen.icon_state)][severity]"
 	screen.severity = severity
 	if (client && screen.should_show_to(src))
+<<<<<<< HEAD
 		screen.update_for_view(client.view)
 		client.screen += screen
+=======
+		client.screen += screen
+		if (screen.screen_loc == "CENTER-7,CENTER-7" && screen.view != client.view)
+			var/list/actualview = getviewsize(client.view)
+			screen.view = client.view
+			screen.transform = matrix(actualview[1]/FULLSCREEN_OVERLAY_RESOLUTION_X, 0, 0, 0, actualview[2]/FULLSCREEN_OVERLAY_RESOLUTION_Y, 0)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 	return screen
 

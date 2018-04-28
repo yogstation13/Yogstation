@@ -108,7 +108,11 @@
 /obj/item/pickaxe,
 /obj/item/flashlight,
 /obj/item/clothing/glasses/meson,
+<<<<<<< HEAD
 /obj/item/mining_scanner,
+=======
+/obj/item/device/mining_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "av" = (
@@ -117,7 +121,11 @@
 /obj/item/flashlight,
 /obj/item/pickaxe,
 /obj/item/clothing/glasses/meson,
+<<<<<<< HEAD
 /obj/item/mining_scanner,
+=======
+/obj/item/device/mining_scanner,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "aw" = (
@@ -583,7 +591,11 @@
 /turf/open/floor/plating,
 /area/mine/production)
 "bO" = (
+<<<<<<< HEAD
 /obj/item/beacon,
+=======
+/obj/item/device/beacon,
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel/purple/corner{
 	dir = 8
 	},
@@ -801,6 +813,9 @@
 /turf/open/floor/plating,
 /area/mine/eva)
 "cq" = (
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mine/eva)
 "cr" = (
@@ -831,6 +846,9 @@
 /area/lavaland/surface/outdoors)
 "cw" = (
 /obj/machinery/computer/secure_data,
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "cx" = (
@@ -1029,6 +1047,12 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+	},
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 /turf/open/floor/plasteel,
 /area/mine/production)
 "dc" = (
@@ -1201,6 +1225,12 @@
 	c_tag = "Communications Relay";
 	dir = 8;
 	network = list("mine")
+<<<<<<< HEAD
+=======
+	},
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	},
 /turf/open/floor/circuit,
 /area/mine/maintenance)
@@ -3266,7 +3296,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Wt" = (
-/obj/effect/baseturf_helper/lava_land/surface,
+/obj/effect/baseturf_helper/picky/lava_land/plating,
 /turf/closed/wall,
 /area/mine/laborcamp/security)
 "Wz" = (
@@ -3291,6 +3321,7 @@
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
+<<<<<<< HEAD
 /area/mine/laborcamp)
 "WC" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -3344,6 +3375,75 @@
 /obj/effect/baseturf_helper/lava_land/surface,
 /turf/closed/wall,
 /area/mine/living_quarters)
+=======
+/area/mine/laborcamp)
+"WC" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Labor Camp Shuttle Prisoner Airlock"
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
+"WD" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	glass = 1;
+	name = "Mining External Airlock";
+	opacity = 0;
+	req_access_txt = "54"
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
+"WE" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/external{
+	glass = 1;
+	name = "Mining Shuttle Airlock";
+	opacity = 0
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
+"WF" = (
+/obj/effect/baseturf_helper/picky/lava_land/plating,
+/turf/closed/wall,
+/area/mine/laborcamp)
+"WG" = (
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
+"WH" = (
+/obj/effect/baseturf_helper/picky/lava_land/plating,
+/turf/closed/wall,
+/area/mine/eva)
+"WI" = (
+/obj/effect/baseturf_helper/picky/lava_land/plating,
+/turf/closed/wall,
+/area/mine/production)
+"WJ" = (
+/obj/effect/baseturf_helper/picky/lava_land/plating,
+/turf/closed/wall/r_wall,
+/area/mine/maintenance)
+"WK" = (
+/obj/effect/baseturf_helper/picky/lava_land/plating,
+/turf/closed/wall,
+/area/mine/living_quarters)
+"WL" = (
+/obj/effect/baseturf_helper/picky/lava_land/basalt{
+	whitelist = /turf/open/floor
+	},
+/turf/open/floor/plasteel/purple/corner{
+	dir = 8
+	},
+/area/mine/living_quarters)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 (1,1,1) = {"
 aa
@@ -8702,7 +8802,7 @@ aq
 ba
 aq
 bj
-az
+WG
 az
 aq
 ca
@@ -13085,7 +13185,7 @@ dQ
 ec
 er
 dZ
-eL
+WL
 fh
 ft
 eL

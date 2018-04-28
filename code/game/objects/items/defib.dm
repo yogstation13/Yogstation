@@ -239,7 +239,11 @@
 	icon_state = "defibcompact"
 	item_state = "defibcompact"
 	w_class = WEIGHT_CLASS_NORMAL
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/item/defibrillator/compact/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())

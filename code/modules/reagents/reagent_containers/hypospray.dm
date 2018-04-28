@@ -11,7 +11,11 @@
 	possible_transfer_amounts = list()
 	resistance_flags = ACID_PROOF
 	container_type = OPENCONTAINER
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BELT
+=======
+	slot_flags = SLOT_BELT
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/ignore_flags = 0
 	var/infinite = FALSE
 

@@ -12,6 +12,7 @@
 
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "he_manifold"
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -22,6 +23,8 @@
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/SetInitDirections()
 	switch(dir)
@@ -59,6 +62,7 @@
 
 	construction_type = /obj/item/pipe/quaternary
 	pipe_state = "he_manifold4w"
+<<<<<<< HEAD
 	
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/layer1
 	piping_layer = PIPING_LAYER_MIN
@@ -69,6 +73,8 @@
 	piping_layer = PIPING_LAYER_MAX
 	pixel_x = PIPING_LAYER_P_X
 	pixel_y = PIPING_LAYER_P_Y
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/SetInitDirections()
 	initialize_directions_he = initial(initialize_directions_he)

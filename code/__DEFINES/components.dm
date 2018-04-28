@@ -6,10 +6,17 @@
 
 // How multiple components of the exact same type are handled in the same datum
 
+<<<<<<< HEAD
 #define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
 #define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
 #define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
 #define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
+=======
+#define COMPONENT_DUPE_HIGHLANDER 0		//old component is deleted (default)
+#define COMPONENT_DUPE_ALLOWED 1		//duplicates allowed
+#define COMPONENT_DUPE_UNIQUE 2			//new component is deleted
+#define COMPONENT_DUPE_UNIQUE_PASSARGS 4	//old component is given the initialization args of the new
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // All signals. Format:
 // When the signal is called: (signal arguments)
@@ -48,6 +55,13 @@
 #define COMSIG_ATOM_SET_LIGHT "atom_set_light"					//from base of atom/set_light(): (l_range, l_power, l_color)
 #define COMSIG_ATOM_ROTATE "atom_rotate"						//from base of atom/shuttleRotate(): (rotation, params)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
+<<<<<<< HEAD
+=======
+
+#define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
+#define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 #define COMSIG_ATOM_CONTENTS_DEL "atom_contents_del"			//from base of atom/handle_atom_del(): (atom/deleted)
 /////////////////
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
@@ -55,9 +69,12 @@
 #define COMSIG_ATOM_ATTACK_PAW "atom_attack_paw"				//from base of atom/attack_paw(): (mob/user)
 	#define COMPONENT_NO_ATTACK_HAND 1							//works on all 3.
 /////////////////
+<<<<<<< HEAD
 
 #define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
 #define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 #define COMSIG_CLICK "atom_click"								//from base of atom/Click(): (location, control, params)
 #define COMSIG_CLICK_SHIFT "shift_click"						//from base of atom/ShiftClick(): (/mob)
@@ -71,6 +88,10 @@
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
+<<<<<<< HEAD
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, dir)
@@ -82,7 +103,11 @@
 #define COMSIG_MOVABLE_BUCKLE "buckle"								//from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"							//from base of atom/movable/unbuckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_THROW "movable_throw"					//from base of atom/movable/throw_at(): (datum/thrownthing, spin)
+<<<<<<< HEAD
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" //from base of atom/movable/onTransitZ(): (old_z, new_z)
+=======
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // /obj signals
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
 
@@ -97,11 +122,21 @@
 #define COMSIG_ITEM_DROPPED "item_drop"
 #define COMSIG_ITEM_PICKUP "item_pickup"						//from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"				//from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
+<<<<<<< HEAD
 #define COMSIG_ITEM_IMBUE_SOUL "item_imbue_soul" //return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
 
+<<<<<<< HEAD
+=======
+// /obj/machinery signals
+#define COMSIG_MACHINE_PROCESS "machine_process"				//from machinery subsystem fire(): ()
+#define COMSIG_MACHINE_PROCESS_ATMOS "machine_process_atmos"	//from air subsystem process_atmos_machinery(): ()
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACKBY "human_melee_unarmed_attackby"		//from mob/living/carbon/human/UnarmedAttack(): (mob/living/carbon/human/attacker)
@@ -123,6 +158,7 @@
 //NTnet
 #define COMSIG_COMPONENT_NTNET_RECIEVE "ntnet_recieve"			//called on an object by its NTNET connection component on recieve. (sending_id(number), sending_netname(text), data(datum/netdata))
 
+<<<<<<< HEAD
 // /datum/component/storage signals
 #define COMSIG_CONTAINS_STORAGE "is_storage"						//() - returns bool.
 #define COMSIG_TRY_STORAGE_INSERT "storage_try_insert"				//(obj/item/inserting, mob/user, silent, force) - returns bool
@@ -137,6 +173,8 @@
 #define COMSIG_TRY_STORAGE_QUICK_EMPTY "storage_quick_empty"		//(loc) - returns bool - if loc is null it will dump at parent location.
 #define COMSIG_TRY_STORAGE_RETURN_INVENTORY "storage_return_inventory"	//(list/list_to_inject_results_into)
 #define COMSIG_TRY_STORAGE_CAN_INSERT "storage_can_equip"			//(obj/item/insertion_candidate, mob/user, silent) - returns bool
+=======
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /*******Non-Signal Component Related Defines*******/
 

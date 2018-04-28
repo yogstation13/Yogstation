@@ -155,7 +155,11 @@ Burning extracts:
 
 /obj/item/slimecross/burning/sepia/do_effect(mob/user)
 	user.visible_message("<span class='notice'>[src] shapes itself into a camera!</span>")
+<<<<<<< HEAD
 	new /obj/item/camera/timefreeze(get_turf(user))
+=======
+	new /obj/item/device/camera/timefreeze(get_turf(user))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	..()
 
 /obj/item/slimecross/burning/cerulean
@@ -290,13 +294,21 @@ Burning extracts:
 
 //Misc. things added
 
+<<<<<<< HEAD
 /obj/item/camera/timefreeze
+=======
+/obj/item/device/camera/timefreeze
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	name = "sepia-tinted camera"
 	desc = "They say a picture is like a moment stopped in time."
 	pictures_left = 1
 	pictures_max = 1
 
+<<<<<<< HEAD
 /obj/item/camera/timefreeze/afterattack(atom/target, mob/user, flag)
+=======
+/obj/item/device/camera/timefreeze/afterattack(atom/target, mob/user, flag)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!on || !pictures_left || !isturf(target.loc))
 		return
 	new /obj/effect/timestop(get_turf(target), 2, 50, list(user))
@@ -386,7 +398,11 @@ Burning extracts:
 	item_state = "adamshield"
 	w_class = WEIGHT_CLASS_HUGE
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_BACK
+=======
+	slot_flags = SLOT_BACK
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	block_chance = 75
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2

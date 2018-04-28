@@ -5,7 +5,11 @@
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.5
 	body_parts_covered = HANDS
+<<<<<<< HEAD
 	slot_flags = ITEM_SLOT_GLOVES
+=======
+	slot_flags = SLOT_GLOVES
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	attack_verb = list("challenged")
 	var/transfer_prints = FALSE
 	strip_delay = 20

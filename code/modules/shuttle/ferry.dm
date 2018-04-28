@@ -6,7 +6,11 @@
 	possible_destinations = "ferry_home;ferry_away"
 	req_access = list(ACCESS_CENT_GENERAL)
 
+<<<<<<< HEAD
 	var/allow_silicons = FALSE
+=======
+	var/aiControlDisabled = TRUE
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	var/allow_emag = FALSE
 
 /obj/machinery/computer/shuttle/ferry/emag_act(mob/user)
@@ -16,10 +20,14 @@
 	return ..()
 
 /obj/machinery/computer/shuttle/ferry/attack_ai()
+<<<<<<< HEAD
 	return allow_silicons ? ..() : FALSE
 
 /obj/machinery/computer/shuttle/ferry/attack_robot()
 	return allow_silicons ? ..() : FALSE
+=======
+	return aiControlDisabled? FALSE : ..()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 
 /obj/machinery/computer/shuttle/ferry/request
 	name = "ferry console"

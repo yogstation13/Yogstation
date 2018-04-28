@@ -67,13 +67,21 @@
 	if(a_right)
 		a_right.on_found(finder)
 
+<<<<<<< HEAD
 /obj/item/assembly_holder/Move()
+=======
+/obj/item/device/assembly_holder/Move()
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(a_left && a_right)
 		a_left.holder_movement()
 		a_right.holder_movement()
 
+<<<<<<< HEAD
 /obj/item/assembly_holder/attack_hand()//Perhapse this should be a holder_pickup proc instead, can add if needbe I guess
+=======
+/obj/item/device/assembly_holder/attack_hand()//Perhapse this should be a holder_pickup proc instead, can add if needbe I guess
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	. = ..()
 	if(.)
 		return

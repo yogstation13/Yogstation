@@ -59,6 +59,15 @@
 	toggle_mode(user, TRUE)
 
 /obj/item/clothing/glasses/meson/engine/process()
+<<<<<<< HEAD
+=======
+	if(mode == MODE_MESON)
+		var/turf/T = get_turf(src)
+		if(T && is_mining_level(T.z))
+			toggle_mode(loc)
+		return
+
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/user = loc
@@ -90,7 +99,11 @@
 		var/strength = round(rad_places[i] / 1000, 0.1)
 		var/image/pic = new(loc = place)
 		var/mutable_appearance/MA = new()
+<<<<<<< HEAD
 		MA.alpha = 180
+=======
+		MA.alpha = 128
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 		MA.maptext = "[strength]k"
 		MA.color = "#64C864"
 		MA.layer = AREA_LAYER
@@ -123,7 +136,11 @@
 	item_state = icon_state
 	if(isliving(loc))
 		var/mob/living/user = loc
+<<<<<<< HEAD
 		if(user.get_item_by_slot(SLOT_GLASSES) == src)
+=======
+		if(user.get_item_by_slot(slot_glasses) == src)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets
 			user.update_inv_glasses()
 		else
 			user.update_inv_hands()

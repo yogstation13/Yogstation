@@ -112,7 +112,11 @@
 			if("vest")
 				Dispense(/obj/item/clothing/suit/armor/abductor/vest)
 			if("mind_device")
+<<<<<<< HEAD:code/modules/antagonists/abductor/machinery/console.dm
 				Dispense(/obj/item/abductor/mind_device,cost=2)
+=======
+				Dispense(/obj/item/device/abductor/mind_device,cost=2)
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/machinery/console.dm
 	updateUsrDialog()
 
 /obj/machinery/abductor/console/proc/TeleporterRetrieve()
@@ -167,7 +171,11 @@
 			c.console = src
 
 /obj/machinery/abductor/console/proc/AddSnapshot(mob/living/carbon/human/target)
+<<<<<<< HEAD:code/modules/antagonists/abductor/machinery/console.dm
 	if(istype(target.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
+=======
+	if(istype(target.get_item_by_slot(slot_head), /obj/item/clothing/head/foilhat))
+>>>>>>> d30da792ce... Merge remote-tracking branch 'upstream/master' into pets:code/modules/antagonists/abductor/machinery/console.dm
 		say("Subject wearing specialized protective headgear, unable to get a proper scan!")
 		return
 	var/datum/icon_snapshot/entry = new
