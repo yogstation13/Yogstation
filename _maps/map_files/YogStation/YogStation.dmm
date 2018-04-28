@@ -19145,10 +19145,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aVA" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/turf/open/floor/plasteel/cafeteria,
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barShutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "aVB" = (
 /obj/structure/table,
@@ -52098,6 +52100,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qIg" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Kitchen";
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "qIz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output{
 	dir = 8
@@ -53861,6 +53870,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"xvd" = (
+/obj/machinery/jukebox,
+/turf/open/floor/plasteel/bar,
+/area/crew_quarters/bar)
 "xvm" = (
 /obj/machinery/door/airlock/wood{
 	name = "Psychiatrists office";
@@ -91242,9 +91255,9 @@ aND
 aJC
 aab
 aRg
-aQc
 aac
 aQc
+xvd
 aXk
 aQc
 aQc
@@ -91499,8 +91512,8 @@ aJC
 aJC
 aJI
 aJI
-aSI
 aJI
+aSI
 aVA
 aJI
 aYK
@@ -91764,7 +91777,7 @@ aYJ
 aJI
 bbz
 aYV
-aYV
+qIg
 aYV
 bfK
 bhj
