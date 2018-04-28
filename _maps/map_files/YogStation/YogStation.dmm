@@ -42639,6 +42639,9 @@
 "ciG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/firecloset/full,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ciH" = (
@@ -43144,6 +43147,9 @@
 	req_access_txt = "12"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ckn" = (
@@ -49165,7 +49171,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes,
+/obj/machinery/power/smes{
+	charge = 5e+006
+	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "fba" = (
