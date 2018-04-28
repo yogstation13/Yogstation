@@ -114,7 +114,7 @@
 	reason = sanitizeSQL(reason)
 
 	if(maxadminbancheck)
-		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)")
+		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
 		if(!query_check_adminban_amt.warn_execute())
 			return
 		if(query_check_adminban_amt.NextRow())
@@ -192,7 +192,7 @@
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
 
-	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[ckey]' AND [bantype_sql] AND (isnull(unbanned) OR unbanned = 0)"
+	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[ckey]' AND [bantype_sql] AND (isnull(unbanned) OR unbanned = 0)" // yogs - Yog Bans
 	if(job)
 		sql += " AND job = '[job]'"
 
