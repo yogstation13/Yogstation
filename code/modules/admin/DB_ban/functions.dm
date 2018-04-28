@@ -114,7 +114,7 @@
 	reason = sanitizeSQL(reason)
 
 	if(maxadminbancheck)
-		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)")
 		if(!query_check_adminban_amt.warn_execute())
 			return
 		if(query_check_adminban_amt.NextRow())
@@ -192,7 +192,7 @@
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
 
-	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
+	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[ckey]' AND [bantype_sql] AND (isnull(unbanned) OR unbanned = 0)"
 	if(job)
 		sql += " AND job = '[job]'"
 
@@ -460,7 +460,7 @@
 			var/expiration = query_search_bans.item[7]
 			var/ckey = query_search_bans.item[8]
 			var/ackey = query_search_bans.item[9]
-			var/unbanned = query_search_bans.item[10]
+			var/unbanned = text2num(query_search_bans.item[10])
 			var/unbanckey = query_search_bans.item[11]
 			var/unbantime = query_search_bans.item[12]
 			var/edits = query_search_bans.item[13]
