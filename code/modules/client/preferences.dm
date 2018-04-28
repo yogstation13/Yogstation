@@ -672,7 +672,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
 				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
 				
-				if(parent.holder)
+				if(parent && parent.holder)
 					dat += "<h2>Admin</h2>"
 					BUTTON_KEY("Adminchat", ACTION_ASAY)
 					BUTTON_KEY("Admin ghost", ACTION_AGHOST)
