@@ -460,7 +460,7 @@
 			var/expiration = query_search_bans.item[7]
 			var/ckey = query_search_bans.item[8]
 			var/ackey = query_search_bans.item[9]
-			var/unbanned = text2num(query_search_bans.item[10])
+			var/unbanned = text2num(query_search_bans.item[10]) // yogs - Yog Bans
 			var/unbanckey = query_search_bans.item[11]
 			var/unbantime = query_search_bans.item[12]
 			var/edits = query_search_bans.item[13]
