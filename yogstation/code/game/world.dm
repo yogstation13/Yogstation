@@ -2,7 +2,6 @@ GLOBAL_LIST_EMPTY(donators)
 
 /world/proc/load_donators()
 	var/list/donatorskeys = list()
-	establish_db_connection()
 	if(!SSdbcore.IsConnected())
 		message_admins("Failed to connect to database in load_donators().")
 		log_sql("Failed to connect to database in load_donators().")
