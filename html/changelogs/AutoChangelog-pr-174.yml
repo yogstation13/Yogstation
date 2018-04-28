@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "night vision goggles no longer overwrite thermal eyes. nvg eyes no longer overwrite thermal goggles."

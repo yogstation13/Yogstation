@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The cargo conveyor switches now properly control the belts on the shuttle again."

@@ -1,4 +1,0 @@
-author: " deathride58"
-delete-after: true 
-changes: 
-  - bugfix: "Stocks in the stock market no longer have spontaneous exponential spikes."
