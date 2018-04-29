@@ -286,6 +286,8 @@
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
+	else if(bloodcrawl == BLOODCRAWL_EAT) //so demons can ctrl + click tiles to teleport to them
+		return
 	else
 		stop_pulling()
 
