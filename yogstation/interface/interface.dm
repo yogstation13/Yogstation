@@ -1,9 +1,3 @@
-/mob/living/silicon/robot/hotkey_help()
-	return
-
-/mob/proc/hotkey_help()
-	return
-
 /client/verb/hotkeys_help()
 	to_chat(src, "All hotkeys can be viewed and modified under Preferences -> Keybindings. Click on Default to switch to hotkeys mode")
 
