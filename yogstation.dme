@@ -2669,4 +2669,5 @@
 #include "yogstation\code\modules\telesci\telesci_computer.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
+#include "yogstation\interface\interface.dm"
 // END_INCLUDE
