@@ -371,6 +371,7 @@
 					candidates -= player
 
 	if(candidates.len < recommended_enemies)
+		message_admins("Not enough players had their antag preferences on, drafting from players with the preference off.")
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
