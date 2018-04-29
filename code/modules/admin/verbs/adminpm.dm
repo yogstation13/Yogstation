@@ -155,6 +155,8 @@
 
 				//omg this is dumb, just fill in both their tickets
 				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
+				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
+					recipient.current_ticket.Administer(src)
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, keywordparsedmsg, FALSE) // yogs - Yog Tickets
 
@@ -171,6 +173,8 @@
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if(!recipient.current_ticket)
 					new /datum/admin_help(keywordparsedmsg, recipient, TRUE) // yogs - Yog Tickets
+				if(!recipient.current_ticket.handling_admin)
+					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]</font>")
