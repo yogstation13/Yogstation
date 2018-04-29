@@ -74,7 +74,8 @@
 	else
 		to_chat(src, "<span class='danger'>The Github URL is not set in the server configuration.</span>")
 	return
-
+// yogs start - Rebindable Hotkeys
+/*
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
@@ -93,7 +94,7 @@ Admin:
 
 	if(holder)
 		to_chat(src, adminhotkeys)
-
+*/
 /client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
@@ -105,7 +106,7 @@ Admin:
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
 
-
+/*
 /mob/proc/hotkey_help()
 	var/hotkey_mode = {"<font color='purple'>
 Hotkey-Mode: (hotkey-mode must be on)
@@ -221,3 +222,5 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	to_chat(src, hotkey_mode)
 	to_chat(src, other)
+*/
+// yogs end
