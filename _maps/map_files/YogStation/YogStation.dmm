@@ -22157,6 +22157,10 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/medbay/central)
+"bdg" = (
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/plasteel/vault/telecomms/mainframe,
+/area/tcommsat/server)
 "bdi" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
@@ -96216,7 +96220,7 @@ pEf
 bVI
 bVI
 bVI
-lhK
+bdg
 sgr
 tUr
 sgr
