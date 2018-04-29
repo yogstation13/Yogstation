@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		GLOB.player_details[ckey] = player_details
 
 	// yogs start - Donor stuff
-	if(ckey in donators)
+	if(ckey in GLOB.donators)
 		prefs.unlock_content |= 2
 		//add_donor_verbs()
 	else
