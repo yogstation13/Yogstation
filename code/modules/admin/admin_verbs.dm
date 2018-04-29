@@ -96,6 +96,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/polymorph_all,
 	/client/proc/show_tip,
 	/client/proc/smite,
+	/client/proc/rejuv_all(), // yogs - Revive All
 	/client/proc/admin_away
 	))
 GLOBAL_PROTECT(admin_verbs_spawn)
