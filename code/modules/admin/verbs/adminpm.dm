@@ -179,6 +179,7 @@
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]</font>")
 				to_chat(recipient, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
+				recipient.giveadminhelpverb()
 				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [msg]</font>")
 
 				admin_ticket_log(recipient, keywordparsedmsg, FALSE) // yogs - Yog Tickets
