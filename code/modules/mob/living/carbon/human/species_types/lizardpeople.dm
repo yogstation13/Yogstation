@@ -54,3 +54,13 @@
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE)
 	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH)
+
+// yogs start - Ashwalkers now have ash immunity
+/datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.weather_immunities |= "ash"
+
+/datum/species/lizard/ashwalker/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	C.weather_immunities -= "ash"
+// yogs end
