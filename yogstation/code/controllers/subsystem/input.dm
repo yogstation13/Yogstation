@@ -9,7 +9,6 @@ SUBSYSTEM_DEF(input)
 	var/list/macro_sets
 	
 	var/list/movement_arrows
-	var/list/movement_default
 
 /datum/controller/subsystem/input/Initialize()
 	setup_default_macro_sets()
@@ -85,16 +84,11 @@ SUBSYSTEM_DEF(input)
 	macro_sets = default_macro_sets
 
 /datum/controller/subsystem/input/proc/setup_default_movement_keys()
-	var/static/list/default_keys = list(
-		"W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,				// WASD
-	)
-	
 	var/static/list/arrow_keys = list(
 		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST,	// Arrow keys & Numpad
 	)
 
 	movement_arrows = arrow_keys.Copy()
-	movement_default = default_keys.Copy()
 
 /datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients // Let's sing the list cache song
