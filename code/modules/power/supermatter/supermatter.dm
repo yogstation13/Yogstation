@@ -139,7 +139,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/is_main_engine = FALSE
 
-	//var/datum/looping_sound/supermatter/soundloop
+	//var/datum/looping_sound/supermatter/soundloop //yog removal
 
 	var/moveable = FALSE
 
@@ -158,7 +158,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 
-	//soundloop = new(list(src), TRUE)
+	//soundloop = new(list(src), TRUE) //yog removal
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
@@ -168,7 +168,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
-	//QDEL_NULL(soundloop)
+	//QDEL_NULL(soundloop) //yog removal
 	return ..()
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
