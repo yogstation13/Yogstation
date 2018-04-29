@@ -234,6 +234,16 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		player_details = new
 		GLOB.player_details[ckey] = player_details
 
+	// yogs start - Donor stuff
+	if(ckey in donators)
+		prefs.unlock_content |= 2
+		//add_donor_verbs()
+	else
+		prefs.unlock_content &= ~2
+		if(prefs.toggles & QUIET_ROUND)
+			prefs.toggles &= ~QUIET_ROUND
+			prefs.save_preferences()
+	// yogs end
 
 	. = ..()	//calls mob.Login()
 
