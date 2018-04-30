@@ -1560,4 +1560,3 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "sakecup"
 	glass_name = "cup of sake"
 	glass_desc = "A traditional cup of sake."
->>>>>>> 0fc0625ed2... Merge pull request #37539 from pigeonsk/sakememe
