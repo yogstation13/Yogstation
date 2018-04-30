@@ -22,25 +22,27 @@
 
 
 /mob/living/proc/phaseout(obj/effect/decal/cleanable/B)
-	if(iscarbon(src))
-		var/mob/living/carbon/C = src
-		for(var/obj/item/I in C.held_items)
-			//TODO make it toggleable to either forcedrop the items, or deny
-			//entry when holding them
-			// literally only an option for carbons though
-			to_chat(C, "<span class='warning'>You may not hold items while blood crawling!</span>")
-			return 0
-		var/obj/item/bloodcrawl/B1 = new(C)
-		var/obj/item/bloodcrawl/B2 = new(C)
-		B1.icon_state = "bloodhand_left"
-		B2.icon_state = "bloodhand_right"
-		C.put_in_hands(B1)
-		C.put_in_hands(B2)
-		C.regenerate_icons()
-	src.notransform = TRUE
-	spawn(0)
-		bloodpool_sink(B)
-		src.notransform = FALSE
+	var/turf/bloodloc = get_turf(B.loc)
+	if(Adjacent(bloodloc))
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			for(var/obj/item/I in C.held_items)
+				//TODO make it toggleable to either forcedrop the items, or deny
+				//entry when holding them
+				// literally only an option for carbons though
+				to_chat(C, "<span class='warning'>You may not hold items while blood crawling!</span>")
+				return 0
+			var/obj/item/bloodcrawl/B1 = new(C)
+			var/obj/item/bloodcrawl/B2 = new(C)
+			B1.icon_state = "bloodhand_left"
+			B2.icon_state = "bloodhand_right"
+			C.put_in_hands(B1)
+			C.put_in_hands(B2)
+			C.regenerate_icons()
+		src.notransform = TRUE
+		spawn(0)
+			bloodpool_sink(B)
+			src.notransform = FALSE
 	return 1
 
 /mob/living/proc/bloodpool_sink(obj/effect/decal/cleanable/B)

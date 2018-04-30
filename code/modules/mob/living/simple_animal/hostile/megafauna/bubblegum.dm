@@ -48,6 +48,7 @@ Difficulty: Hard
 	var/charging = FALSE
 	medal_type = BOSS_MEDAL_BUBBLEGUM
 	score_type = BUBBLEGUM_SCORE
+	bloodcrawl = BLOODCRAWL_EAT
 	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
 	death_sound = 'sound/magic/enter_blood.ogg'
 
@@ -107,10 +108,10 @@ Difficulty: Hard
 	for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_living_list)
 		if(B != src)
 			return INITIALIZE_HINT_QDEL //There can be only one
-	var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
+	/*var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
 	AddSpell(bloodspell)
 	if(istype(loc, /obj/effect/dummy/slaughter))
-		bloodspell.phased = 1
+		bloodspell.phased = 1*/
 	internal = new/obj/item/gps/internal/bubblegum(src)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/grant_achievement(medaltype,scoretype)
