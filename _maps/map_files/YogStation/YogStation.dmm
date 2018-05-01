@@ -51586,12 +51586,7 @@
 	},
 /area/engine/atmos)
 "nZJ" = (
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_y = -26
-	},
+/obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "obJ" = (
@@ -51785,7 +51780,6 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/machinery/ntnet_relay,
 /turf/open/floor/plasteel/vault/telecomms/mainframe,
 /area/tcommsat/server)
 "pfK" = (
