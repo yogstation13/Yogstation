@@ -1,7 +1,7 @@
 {
-    "map_name": "Delta Station",
-    "map_path": "map_files/Deltastation",
-    "map_file": "DeltaStation2.dmm",
+    "map_name": "YogsDelta",
+    "map_path": "map_files/YogsDelta",
+    "map_file": "YogsDelta.dmm",
     "shuttles": {
 	    "emergency": "emergency_delta",
 	    "ferry": "ferry_fancy",
