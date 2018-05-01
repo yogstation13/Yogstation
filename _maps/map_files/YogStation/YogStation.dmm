@@ -51785,6 +51785,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/machinery/ntnet_relay,
 /turf/open/floor/plasteel/vault/telecomms/mainframe,
 /area/tcommsat/server)
 "pfK" = (
