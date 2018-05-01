@@ -1,4 +1,4 @@
 author: "yogstation13-bot"
 delete-after: true 
 changes: 
-  - bugfix: "The button in the mech interface to terminate maintenace protocol no longer reads \\"Initiate maintenace protocol\\"."
+  - bugfix: "The button in the mech interface to terminate maintenace protocol no longer reads Initiate maintenace protocol."
