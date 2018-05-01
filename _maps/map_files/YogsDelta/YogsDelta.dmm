@@ -41063,6 +41063,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
+/obj/structure/closet/wardrobe/tcomms,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bMD" = (
@@ -78635,6 +78636,11 @@
 	dir = 4
 	},
 /obj/structure/closet/secure_closet/paramedic,
+/obj/machinery/camera{
+	c_tag = "Medbay - Paramedics Staging";
+	dir = 8;
+	name = "medbay camera"
+	},
 /turf/open/floor/plasteel/blue,
 /area/medical/medbay/central)
 "dnF" = (
