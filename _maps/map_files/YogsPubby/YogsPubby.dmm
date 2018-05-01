@@ -274,10 +274,6 @@
 	name = "Privacy Shutters";
 	pixel_y = 25
 	},
-/obj/machinery/camera{
-	c_tag = "Psych Office";
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
