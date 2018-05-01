@@ -274,10 +274,6 @@
 	name = "Privacy Shutters";
 	pixel_y = 25
 	},
-/obj/machinery/camera{
-	c_tag = "Psych Office";
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -22032,7 +22028,11 @@
 	},
 /area/maintenance/department/cargo)
 "bdA" = (
-/obj/machinery/droneDispenser,
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "bdB" = (
@@ -50123,11 +50123,10 @@
 /area/crew_quarters/heads/hos)
 "jBh" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
 	},
-/obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "jFO" = (

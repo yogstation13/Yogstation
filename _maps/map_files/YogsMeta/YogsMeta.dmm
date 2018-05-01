@@ -67407,11 +67407,10 @@
 /area/maintenance/aft)
 "cMl" = (
 /obj/structure/table,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = -4
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
 	},
-/obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cMm" = (
@@ -77098,7 +77097,11 @@
 /turf/closed/wall,
 /area/science/circuit)
 "wOE" = (
-/obj/machinery/droneDispenser,
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 3;
+	name = "3maintenance loot spawner"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "wPk" = (
