@@ -192,6 +192,67 @@
 	icon_state = "asclepius_active"
 	activated = TRUE
 
+<<<<<<< HEAD
+=======
+//Memento Mori
+/obj/item/clothing/neck/necklace/memento_mori
+	name = "Memento Mori"
+	desc = "A mysterious pendant. An inscription on it says: \"Certain death tomorrow means certain life today.\""
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "memento_mori"
+	actions_types = list(/datum/action/item_action/hands_free/memento_mori)
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/mob/living/carbon/human/active_owner
+
+/obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
+	return slot == SLOT_NECK
+
+/obj/item/clothing/neck/necklace/memento_mori/dropped(mob/user)
+	..()
+	if(active_owner)
+		mori()
+
+//Just in case
+/obj/item/clothing/neck/necklace/memento_mori/Destroy()
+	if(active_owner)
+		mori()
+	return ..()
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
+	to_chat(user, "<span class='warning'>You feel your life being drained by the pendant...</span>")
+	if(do_after(user, 40, target = user))
+		to_chat(user, "<span class='notice'>Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die.</span>")
+		user.add_trait(TRAIT_NODEATH, "memento_mori")
+		user.add_trait(TRAIT_NOHARDCRIT, "memento_mori")
+		user.add_trait(TRAIT_NOCRITDAMAGE, "memento_mori")
+		icon_state = "memento_mori_active"
+		active_owner = user
+
+/obj/item/clothing/neck/necklace/memento_mori/proc/mori()
+	icon_state = "memento_mori"
+	if(!active_owner)
+		return
+	var/mob/living/carbon/human/H = active_owner //to avoid infinite looping when dust unequips the pendant
+	active_owner = null
+	to_chat(H, "<span class='userdanger'>You feel your life rapidly slipping away from you!</span>")
+	H.dust(TRUE, TRUE)
+
+/datum/action/item_action/hands_free/memento_mori
+	check_flags = NONE
+	name = "Memento Mori"
+	desc = "Bind your life to the pendant."
+
+/datum/action/item_action/hands_free/memento_mori/Trigger()
+	var/obj/item/clothing/neck/necklace/memento_mori/MM = target
+	if(!MM.active_owner)
+		if(ishuman(owner))
+			MM.memento(owner)
+	else
+		to_chat(owner, "<span class='warning'>You try to free your lifeforce from the pendant...</span>")
+		if(do_after(owner, 40, target = owner))
+			MM.mori()
+
+>>>>>>> bf3a7ef88c... fix
 //Wisp Lantern
 /obj/item/wisp_lantern
 	name = "spooky lantern"
