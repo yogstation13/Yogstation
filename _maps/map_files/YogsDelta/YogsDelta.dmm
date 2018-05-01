@@ -74530,6 +74530,7 @@
 	},
 /area/medical/medbay/central)
 "deE" = (
+/obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/whiteblue/side,
 /area/medical/medbay/central)
 "deF" = (
@@ -77265,17 +77266,6 @@
 	},
 /turf/open/floor/plasteel/neutral,
 /area/medical/medbay/central)
-"dkA" = (
-/obj/structure/sign/departments/medbay/alt{
-	pixel_x = 32;
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/whiteblue/corner,
-/area/medical/medbay/central)
 "dkB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -78635,18 +78625,18 @@
 /turf/open/floor/plasteel/whiteblue/corner,
 /area/medical/medbay/central)
 "dnC" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/vault,
-/area/medical/surgery)
-"dnD" = (
-/turf/open/floor/plasteel/vault,
-/area/medical/surgery)
-"dnE" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/chair/office/light{
+	dir = 8
 	},
-/turf/open/floor/plasteel/vault,
-/area/medical/surgery)
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
+"dnE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/paramedic,
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "dnF" = (
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall,
@@ -79602,32 +79592,14 @@
 	},
 /turf/open/floor/plasteel/blue,
 /area/medical/medbay/central)
-"dpA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/whiteblue/corner,
-/area/medical/medbay/central)
 "dpB" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/vault{
-	dir = 5
-	},
-/area/medical/surgery)
-"dpC" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/medical{
-	name = "Surgery Observation"
-	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/yogs/paramedic,
+/obj/structure/chair/office/light{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical/surgery)
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "dpD" = (
 /obj/structure/chair,
 /obj/machinery/light{
@@ -83873,7 +83845,6 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/blue,
 /area/medical/medbay/central)
 "dyx" = (
@@ -86563,9 +86534,6 @@
 /obj/structure/bed/roller,
 /obj/machinery/iv_drip,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -87070,7 +87038,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/backpack/duffelbag/med,
 /obj/item/flashlight/pen,
-/obj/item/roller,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "dFe" = (
@@ -87803,7 +87770,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/neutral,
 /area/maintenance/department/medical/morgue)
 "dGv" = (
@@ -87811,10 +87777,6 @@
 /obj/item/clothing/gloves/color/latex/nitrile,
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/clothing/mask/breath/medical,
-/obj/item/clothing/glasses/hud/health,
-/obj/machinery/light/small{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "dGw" = (
@@ -88389,7 +88351,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/neutral,
 /area/maintenance/department/medical/morgue)
 "dHO" = (
@@ -88411,7 +88372,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/crowbar,
 /obj/item/storage/pill_bottle,
-/obj/item/roller,
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -89074,18 +89034,11 @@
 /obj/item/hand_labeler,
 /turf/open/floor/plating,
 /area/medical/morgue)
-"dJc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/paramedic,
-/turf/open/floor/plating,
-/area/maintenance/department/medical/morgue)
 "dJd" = (
-/obj/structure/closet/secure_closet/paramedic,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "dJe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "dJf" = (
@@ -99571,8 +99524,11 @@
 /turf/open/floor/wood,
 /area/clerk)
 "fxx" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plasteel/greenyellow,
-/area/space)
+/area/clerk)
 "fEf" = (
 /obj/structure/rack,
 /obj/item/storage/fancy/donut_box,
@@ -99604,9 +99560,6 @@
 /turf/closed/wall/r_wall,
 /area/science/circuit)
 "grQ" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/greenyellow,
 /area/clerk)
@@ -99746,9 +99699,29 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /turf/open/floor/carpet,
 /area/clerk)
+"hRC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/paramedic,
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
+"iaH" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
+"ioT" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "iuK" = (
 /obj/machinery/status_display{
 	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel/greenyellow,
 /area/clerk)
@@ -99968,6 +99941,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/circuit/green,
 /area/science/research/abandoned)
+"mBA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "mHY" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -99984,7 +99963,17 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/greenyellow,
-/area/space)
+/area/clerk)
+"nCx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/computer/crew{
+	dir = 4
+	},
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "nIX" = (
 /turf/closed/wall,
 /area/clerk)
@@ -100070,7 +100059,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/greenyellow,
-/area/space)
+/area/clerk)
 "qhc" = (
 /obj/structure/table/reinforced,
 /obj/item/integrated_electronics/analyzer,
@@ -100127,6 +100116,13 @@
 	dir = 6
 	},
 /area/science/circuit)
+"rHJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/closet/secure_closet/paramedic,
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "rUL" = (
 /obj/machinery/mineral/ore_redemption,
 /obj/machinery/door/firedoor,
@@ -100218,6 +100214,16 @@
 "uOC" = (
 /turf/open/floor/plasteel/greenyellow,
 /area/clerk)
+"uOW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/computer/med_data{
+	dir = 4
+	},
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "uWI" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -100259,6 +100265,16 @@
 	dir = 5
 	},
 /area/medical/morgue)
+"vAA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/table/glass,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plasteel/blue,
+/area/medical/medbay/central)
 "vLY" = (
 /obj/structure/table/wood,
 /obj/item/instrument/accordion,
@@ -143222,9 +143238,9 @@ csz
 cul
 cvE
 nIX
-fxx
-fxx
-fxx
+uOC
+uOC
+uOC
 fxx
 nxP
 pRd
@@ -143263,7 +143279,7 @@ dDR
 dEZ
 dGr
 dHM
-dJc
+dEZ
 dCF
 dLd
 dMF
@@ -146844,10 +146860,10 @@ deC
 cNz
 dhp
 diJ
-dkA
+dkC
 dfF
 dnB
-dpA
+dnB
 dnB
 dsH
 dnB
@@ -147102,9 +147118,9 @@ dfI
 dhk
 diK
 dkv
-dma
-dma
-dma
+iaH
+uOW
+nCx
 dma
 dsI
 dro
@@ -147359,7 +147375,7 @@ cNA
 dhj
 dix
 dkv
-dma
+hRC
 dnC
 dpB
 dmd
@@ -147616,9 +147632,9 @@ cNA
 dhj
 diy
 dkv
-dmb
-dnD
-dnI
+mBA
+cQT
+ioT
 drn
 dsK
 dtO
@@ -147873,9 +147889,9 @@ cNz
 dhj
 diz
 dkv
-dma
+vAA
 dnE
-dnI
+rHJ
 dmd
 dsL
 dtP
@@ -148132,7 +148148,7 @@ diL
 dkB
 dma
 dnF
-dpC
+dma
 dnF
 dsM
 dma
@@ -148387,7 +148403,7 @@ cPy
 dhq
 dix
 dkv
-dma
+dmb
 dnG
 dnG
 dro
