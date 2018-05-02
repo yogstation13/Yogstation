@@ -345,7 +345,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as a IC issue! -</b></font><br>"
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue! -</b></font><br>"
 	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
 	msg += "<font color='red'>Your character will frequently die, sometimes without even a possibility of avoiding it. Events will often be out of your control. No matter how good or prepared you are, sometimes you just lose.</font>"
 
@@ -353,10 +353,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		to_chat(initiator, msg)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "IC")
-	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
+	msg = "Ticket [TicketHref("#[id]")] marked as an IC by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Marked as IC issue by [usr.ckey]")
+	AddInteraction("Marked as an IC issue by [usr.ckey]")
 	Resolve(silent = TRUE)
 
 //Resolve ticket with wiki message
