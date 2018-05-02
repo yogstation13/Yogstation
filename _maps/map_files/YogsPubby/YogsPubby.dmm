@@ -50086,10 +50086,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"iUu" = (
-/obj/machinery/jukebox,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
 "iXQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -82539,7 +82535,7 @@ aSS
 aUg
 aVf
 aWi
-iUu
+bah
 aYe
 aZb
 bag
