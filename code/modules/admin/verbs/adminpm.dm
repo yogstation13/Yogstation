@@ -154,11 +154,11 @@
 				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [keywordparsedmsg]</font>")
 
 				//omg this is dumb, just fill in both their tickets
-				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
+				admin_ticket_log(src, msg, FALSE) // yogs - Yog Tickets
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src)
 				if(recipient != src)	//reeee
-					admin_ticket_log(recipient, keywordparsedmsg, FALSE) // yogs - Yog Tickets
+					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 
 			else		//recipient is an admin but sender is not
 				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
@@ -172,7 +172,7 @@
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				if(!recipient.current_ticket)
-					new /datum/admin_help(keywordparsedmsg, recipient, TRUE) // yogs - Yog Tickets
+					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(!recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
@@ -181,7 +181,7 @@
 				to_chat(recipient, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [msg]</font>")
 
-				admin_ticket_log(recipient, keywordparsedmsg, FALSE) // yogs - Yog Tickets
+				admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 
 				//always play non-admin recipients the adminhelp sound
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
