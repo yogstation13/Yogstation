@@ -1924,6 +1924,21 @@
 	crate_name = "toy crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/plushes
+	name = "Plushie Crate"
+	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
+	cost = 2000
+	contains = list(/obj/item/toy/plush/carpplushie,
+					/obj/item/toy/plush/bubbleplush,
+					/obj/item/toy/plush/plushvar,
+					/obj/item/toy/plush/narplush,
+					/obj/item/toy/plush/lizardplushie,
+					/obj/item/toy/plush/snakeplushie,
+					/obj/item/toy/plush/nukeplushie,
+					/obj/item/toy/plush/slimeplushie)
+	crate_name = "plush crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
 /datum/supply_pack/costumes_toys/wizard
 	name = "Wizard Costume Crate"
 	desc = "Pretend to join the Wizard Federation with this full wizard outfit! Nanotrasen would like to remind its employees that actually joining the Wizard Federation is subject to termination of job and life."
