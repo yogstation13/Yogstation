@@ -8,7 +8,7 @@
 /obj/item/paper
 	name = "paper"
 	gender = NEUTER
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'yogstation/icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
 	item_state = "paper"
 	throwforce = 0
@@ -301,7 +301,7 @@
 			return
 
 		stamps += "<img src=large_[P.icon_state].png>"
-		var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[P.icon_state]")
+		var/mutable_appearance/stampoverlay = mutable_appearance('yogstation/icons/obj/bureaucracy.dmi', "paper_[P.icon_state]")
 		stampoverlay.pixel_x = rand(-2, 2)
 		stampoverlay.pixel_y = rand(-3, 2)
 
