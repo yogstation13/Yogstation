@@ -1,7 +1,7 @@
 /obj/item/flamethrower
 	name = "flamethrower"
 	desc = "You are a firestarter!"
-	icon = 'icons/obj/flamethrower.dmi'
+	icon = 'yogstation/icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
 	lefthand_file = 'icons/mob/inhands/weapons/flamethrower_lefthand.dmi'
