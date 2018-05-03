@@ -13,7 +13,7 @@
 /obj/item/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'yogstation/icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
