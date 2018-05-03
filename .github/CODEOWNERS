@@ -23,6 +23,10 @@
 /code/controllers/subsystem/shuttle.dm @Nichlas0010
 /_maps/shuttles/ @Nichlas0010
 
+#Partheo
+/icons/ @Partheo
+/yogstation/icons/ @Partheo
+
 #ThatLing
 
 /code/__DEFINES/tick.dm @ThatLing
