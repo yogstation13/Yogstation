@@ -553,7 +553,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Delete"
 
-	if(!check_rights(R_SPAWN|R_DEBUG))
+	if(!check_rights(R_ADMIN)) //yogs - makes this +admin instead of +spawn/+debug
 		return
 
 	admin_delete(A)
