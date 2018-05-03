@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/food/snacks
 	name = "snack"
 	desc = "Yummy."
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'yogstation/obj/food/food.dmi'
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'

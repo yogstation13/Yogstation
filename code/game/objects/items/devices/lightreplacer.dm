@@ -43,7 +43,7 @@
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with broken or working lightbulbs, or sheets of glass."
 
-	icon = 'icons/obj/janitor.dmi'
+	icon = 'yogstation/icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
