@@ -1924,7 +1924,7 @@
 	crate_name = "toy crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
-/datum/supply_pack/costumes_toys/plushes //YOGS end - plushie crate
+/datum/supply_pack/costumes_toys/plushes //YOGS start - plushie crate
 	name = "Plushie Crate"
 	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
 	cost = 2000
