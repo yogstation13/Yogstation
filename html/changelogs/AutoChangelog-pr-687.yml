@@ -1,0 +1,4 @@
+author: "Partheo"
+delete-after: true 
+changes: 
+  - imageadd: "Updated whetstone sprite."
