@@ -1,7 +1,7 @@
 /obj/item/caution
 	desc = "Caution! Wet Floor!"
 	name = "wet floor sign"
-	icon = 'icons/obj/janitor.dmi'
+	icon = 'yogstation/icons/obj/janitor.dmi'
 	icon_state = "caution"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'

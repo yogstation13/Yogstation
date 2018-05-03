@@ -1,7 +1,7 @@
 /obj/item/mop
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
-	icon = 'icons/obj/janitor.dmi'
+	icon = 'yogstation/icons/obj/janitor.dmi'
 	icon_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
