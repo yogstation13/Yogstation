@@ -362,7 +362,8 @@
 			if(role in player.client.prefs.be_special && !(player.mind.quiet_round)) // yogs - Donor features, quiet round
 				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !jobban_isbanned(player, role)) //Nodrak/Carn: Antag Job-bans
 					if(age_check(player.client)) //Must be older than the minimum age
-						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
+						if(!player.mind.quiet_round) //YOGS - quiet round
+							candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in candidates)
