@@ -284,6 +284,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
+	GLOB.ahelp_tickets.tickets_list -= src
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.tickets_list.len)
+		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			SSticker.Reboot(delay = 10)
+		else
+			message_admins("All tickets have been closed, round can be restarted")
+
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
 	var/resolved = FALSE
@@ -294,10 +301,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		AddActive()
 		state = AHELP_ACTIVE
+		GLOB.ahelp_tickets.tickets_list += src
 	else if(state == AHELP_ACTIVE)
 		RemoveActive()
 		state = AHELP_RESOLVED
 		resolved = TRUE
+		GLOB.ahelp_tickets.tickets_list -= src
 	else // AHELP_CLOSED
 		to_chat(usr, "<span class='warning'>This ticket has been closed and can't be unresolved.</span>")
 		return
@@ -318,6 +327,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/msg = "Ticket [TicketHref("#[id]")] [resolved ? "" : "un"]resolved by [key_name]"
 		message_admins(msg)
 		log_admin_private(msg)
+
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.tickets_list.len)
+		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			SSticker.Reboot(delay = 100)
+		else
+			message_admins("All tickets have been closed, round can be restarted")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
