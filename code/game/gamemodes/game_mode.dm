@@ -351,7 +351,7 @@
 			/* yogs start - Donor features, quiet round
 			if(player.client.prefs.toggles & QUIET_ROUND)
 				player.mind.quiet_round = TRUE
-			*/ yogs end
+			*/ //yogs end
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
@@ -380,7 +380,7 @@
 						if(player.mind.quiet_round)
 							to_chat(player, "<span class='userdanger'>There aren't enough antag volunteers, so your quiet round setting will not be considered!</span>")
 							player.mind.quiet_round = FALSE
-						*/ yogs end
+						*/ //yogs end
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
