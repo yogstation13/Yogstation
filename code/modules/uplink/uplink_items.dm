@@ -1332,7 +1332,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/his_grace
 	cost = 20
 	restricted_roles = list("Chaplain")
-	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain */ //YOGS - removed murderbone item from the uplink
+	surplus = 5 */ //Very low chance to get it in a surplus crate even without being the chaplain //YOGS - removed murderbone item from the uplink
 
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
