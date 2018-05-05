@@ -33,7 +33,6 @@
 	s.start()
 	if(has_buckled_mobs())
 		flick("electrocute", src)
-		flick("electrocute_cables", cables)
 		for(var/m in buckled_mobs)
 			var/mob/living/buckled_mob = m
 			buckled_mob.electrocute_act(85, src, 1)
@@ -54,7 +53,6 @@
 	if(istype(W, /obj/item/wrench))
 		var/obj/structure/bed/roller/R = new /obj/structure/bed/roller(loc)
 		W.play_tool_sound(src)
-		R.setDir(dir)
 		part.forceMove(loc)
 		part.master = null
 		part = null
@@ -67,7 +65,6 @@
 		var/obj/item/assembly/shock_kit/SK = W
 		var/obj/structure/bed/roller/e_roller/E = new /obj/structure/bed/roller/e_roller(src.loc)
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-		E.setDir(dir)
 		E.part = SK
 		SK.forceMove(E)
 		SK.master = E
