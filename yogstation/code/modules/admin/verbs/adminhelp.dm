@@ -124,7 +124,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
-	var/bwoinkAmount = 0
+	var/bwoinkInterval = 600
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -181,31 +181,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		for(var/client/X in GLOB.admins)
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-		var/bwoinkInterval
-		switch(bwoinkAmount)
-			if(0)
-				bwoinkInterval = 600
-			else if(1)
-				bwoinkInterval = 550
-			else if(2)
-				bwoinkInterval = 500
-			else if(3)
-				bwoinkInterval = 450
-			else if(4)
-				bwoinkInterval = 400
-			else if(5)
-				bwoinkInterval = 350
-			else if(6)
-				bwoinkInterval = 300
-			else if(7)
-				bwoinkInterval = 250
-			else if(8)
-				bwoinkInterval = 200
-			else if(9)
-				bwoinkInterval = 150
-			else
-				bwoinkInterval = 100
-		bwoinkAmount++
+		if(bwoinkInterval >= 150)
+			bwoinkInterval -= 50
 		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
@@ -263,7 +240,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
-	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 600)
+	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
