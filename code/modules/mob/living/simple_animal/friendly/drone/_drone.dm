@@ -27,7 +27,7 @@
 	maxHealth = 30
 	unsuitable_atmos_damage = 0
 	wander = 0
-	speed = 0
+	speed = -1 //YOGS - drones //Buffed to not be a fucking god damn piece of slug matter writhing on the fucking floor
 	ventcrawler = VENTCRAWLER_ALWAYS
 	healable = 0
 	density = FALSE
