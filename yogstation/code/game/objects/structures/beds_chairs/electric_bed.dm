@@ -51,7 +51,7 @@
 
 /obj/structure/bed/roller/e_roller/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/wrench))
-		var/obj/structure/bed/roller/R = new /obj/structure/bed/roller(loc)
+		new /obj/structure/bed/roller(loc)
 		W.play_tool_sound(src)
 		part.forceMove(loc)
 		part.master = null
