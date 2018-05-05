@@ -599,7 +599,7 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
 		return
-	if(GLOB.ahelp_tickets.tickets_list.len) //YOGS - tickets
+	if(GLOB.ahelp_tickets.ticketAmount) //YOGS - tickets
 		message_admins("Not all tickets have been resolved. Server restart delayed.")
 		return //YOGS - tickets
 

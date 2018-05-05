@@ -9,6 +9,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help_tickets
 	var/list/tickets_list = list()
+	var/ticketAmount = 0
 
 /datum/admin_help_tickets/Destroy()
 	QDEL_LIST(tickets_list)
@@ -166,6 +167,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			heard_by_no_admins = TRUE
 
 	GLOB.ahelp_tickets.tickets_list += src
+	GLOB.ahelp_tickets.ticketAmount += 1
+
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
@@ -284,8 +287,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-	GLOB.ahelp_tickets.tickets_list -= src
-	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.tickets_list.len)
+	GLOB.ahelp_tickets.ticketAmount -= 1
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
 			SSticker.Reboot(delay = 10)
 		else
@@ -301,12 +304,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		AddActive()
 		state = AHELP_ACTIVE
-		GLOB.ahelp_tickets.tickets_list += src
+		GLOB.ahelp_tickets.ticketAmount += 1
 	else if(state == AHELP_ACTIVE)
 		RemoveActive()
 		state = AHELP_RESOLVED
 		resolved = TRUE
-		GLOB.ahelp_tickets.tickets_list -= src
+		GLOB.ahelp_tickets.ticketAmount -= 1
 	else // AHELP_CLOSED
 		to_chat(usr, "<span class='warning'>This ticket has been closed and can't be unresolved.</span>")
 		return
@@ -328,7 +331,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.tickets_list.len)
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
 			SSticker.Reboot(delay = 100)
 		else
