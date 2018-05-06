@@ -95,8 +95,8 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/meatball
-	name = "meatball"
+/obj/item/reagent_containers/food/snacks/meatball  //YOGS - Bigotry rule
+	name = "meatball"  //YOGS - Bigotry rule
 	desc = "A great meal all round. Not a cord of wood."
 	icon_state = "faggot"
 	list_reagents = list("nutriment" = 4, "vitamin" = 1)
