@@ -80,7 +80,7 @@
 		message = replacetext(message," drink "," water ")
 		message = replacetext(message," feminist "," empowered woman ")
 		message = replacetext(message," i hate you "," you're mean ")
-		message = replacetext(message," black "," african american ")
+		message = replacetext(message," black "," african american ") //YOGS - Bigotry rule
 		message = replacetext(message," jew "," jewish ")
 		message = replacetext(message," shit "," shiz ")
 		message = replacetext(message," crap "," poo ")
