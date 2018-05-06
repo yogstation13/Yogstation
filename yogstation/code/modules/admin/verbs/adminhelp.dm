@@ -9,6 +9,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help_tickets
 	var/list/tickets_list = list()
+	var/ticketAmount = 0
 
 /datum/admin_help_tickets/Destroy()
 	QDEL_LIST(tickets_list)
@@ -123,6 +124,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
+	var/bwoinkInterval = 600
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -166,10 +168,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			heard_by_no_admins = TRUE
 
 	GLOB.ahelp_tickets.tickets_list += src
+	GLOB.ahelp_tickets.ticketAmount += 1
+
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
 	return ..()
+
+/datum/admin_help/proc/check_owner()
+	if(!handling_admin && state == AHELP_ACTIVE)
+		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
+		for(var/client/X in GLOB.admins)
+			if(X.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+		if(bwoinkInterval >= 150)
+			bwoinkInterval -= 50
+		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
@@ -226,6 +240,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
+	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
@@ -284,6 +299,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
+	GLOB.ahelp_tickets.ticketAmount -= 1
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
+		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			SSticker.Reboot(delay = 10)
+		else
+			message_admins("All tickets have been closed, round can be restarted")
+
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
 	var/resolved = FALSE
@@ -294,10 +316,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		AddActive()
 		state = AHELP_ACTIVE
+		GLOB.ahelp_tickets.ticketAmount += 1
 	else if(state == AHELP_ACTIVE)
 		RemoveActive()
 		state = AHELP_RESOLVED
 		resolved = TRUE
+		GLOB.ahelp_tickets.ticketAmount -= 1
 	else // AHELP_CLOSED
 		to_chat(usr, "<span class='warning'>This ticket has been closed and can't be unresolved.</span>")
 		return
@@ -318,6 +342,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/msg = "Ticket [TicketHref("#[id]")] [resolved ? "" : "un"]resolved by [key_name]"
 		message_admins(msg)
 		log_admin_private(msg)
+
+	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
+		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
+			SSticker.Reboot(delay = 100)
+		else
+			message_admins("All tickets have been closed, round can be restarted")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
