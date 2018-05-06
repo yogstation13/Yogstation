@@ -599,6 +599,12 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
 		return
+	if(GLOB.ahelp_tickets.ticketAmount) //YOGS - tickets
+		if(!GLOB.admins.len)
+			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+		else
+			message_admins("Not all tickets have been resolved. Server restart delayed.")
+			return //YOGS - tickets
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
 	webhook_send_roundstatus("endgame") //yogs - webhook support
