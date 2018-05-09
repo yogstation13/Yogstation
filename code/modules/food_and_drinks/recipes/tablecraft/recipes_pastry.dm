@@ -124,7 +124,7 @@
 	name = "Donkpocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
-		/obj/item/reagent_containers/food/snacks/faggot = 1
+		/obj/item/reagent_containers/food/snacks/meatball = 1  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket
 	subcategory = CAT_PASTRY
@@ -200,7 +200,7 @@
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/faggot = 1,
+		/obj/item/reagent_containers/food/snacks/meatball = 1,  //YOGS - Bigotry rule
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatbun
