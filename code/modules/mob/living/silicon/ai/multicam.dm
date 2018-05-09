@@ -126,7 +126,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	name = "Secondary AI Eye"
 	var/obj/screen/movable/pic_in_pic/ai/screen
 	var/list/cameras_telegraphed = list()
-	var/telegraph_cameras = TRUE
+	var/telegraph_cameras = FALSE
 	var/telegraph_range = 7
 
 /mob/camera/aiEye/pic_in_pic/GetViewerClient()

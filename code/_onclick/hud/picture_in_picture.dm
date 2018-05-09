@@ -2,6 +2,7 @@
 	name = "Picture-in-picture"
 	screen_loc = "CENTER"
 	plane = GAME_PLANE
+	var/persistent = FALSE
 	var/atom/center
 	var/width = 0
 	var/height = 0
@@ -136,9 +137,14 @@
 /obj/screen/movable/pic_in_pic/proc/show_to(client/C)
 	if(C)
 		shown_to[C] = 1
-		C.screen += src
+		if(persistent)
+			C.add_persistent_screen_object(src)
+		else
+			C.screen += src
 
 /obj/screen/movable/pic_in_pic/proc/unshow_to(client/C)
 	if(C)
-		shown_to -= C
-		C.screen -= src
+		if(persistent)
+			C.remove_persistent_screen_object(src)
+		else
+			C.screen -= src

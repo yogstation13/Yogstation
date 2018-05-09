@@ -782,6 +782,21 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1],actualview[2])
 
+/client/proc/apply_persistent_screen_objects()
+	apply_clickcatcher()
+	if(LAZYLEN(persistent_screen_objects))
+		for(var/S in persistent_screen_objects)
+			screen += S
+
+/client/proc/add_persistent_screen_object(obj/screen/S)
+	screen += S
+	LAZYINITLIST(persistent_screen_objects)
+	persistent_screen_objects[S] = 1
+
+/client/proc/remove_persistent_screen_object(obj/screen/S)
+	screen -= S
+	LAZYREMOVE(persistent_screen_objects, S)
+
 /client/proc/AnnouncePR(announcement)
 	if(prefs && prefs.chat_toggles & CHAT_PULLR)
 		to_chat(src, announcement)

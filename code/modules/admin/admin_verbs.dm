@@ -28,6 +28,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
 	/datum/verbs/menu/Admin/verb/playerpanel,
+	/client/proc/pip_follow_mob,
+	/client/proc/pip_follow_client,
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
@@ -205,6 +207,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/object_say,
+	/client/proc/pip_follow_mob,
+	/client/proc/pip_follow_client,
 	/client/proc/toggle_random_events,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -701,3 +705,21 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+/client/proc/pip_follow_mob(client/C in GLOB.clients)
+	set name = "Picture-in-Picture Follow Client"
+	set category = "Admin"
+	set desc = "Open a picture-in-picture window following target client"
+	pip_follow(C)
+
+/client/proc/pip_follow_client(mob/M in GLOB.mob_list)
+	set name = "Picture-in-Picture Follow Mob"
+	set category = "Admin"
+	set desc = "Open a picture-in-picture window following target mob"
+	pip_follow(M)
+
+/client/proc/pip_follow(person)
+	var/obj/screen/movable/pic_in_pic/admin_track/A = new /obj/screen/movable/pic_in_pic/admin_track(null, person)
+	A.show_to(src)
+	log_admin("[key_name(usr)] opened a picture-in-picture window following [key_name(person)].")
+	message_admins("<span class='adminnotice'>[key_name(usr)] opened a picture-in-picture window following [key_name(person)]'s [ismob(person) ? "mob" : "client"].</span>")
