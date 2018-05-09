@@ -10,3 +10,13 @@ The best practice to have while coding is to keep everything modularized, or the
 ExampleProc() in /repo/ExampleTGFile.dm
 Example change description
 Example icon change
+
+### Various Yogstation sprites by Partheo
+Many "icon" variables have been changed from "icon = 'icons/x/y/z'" to "icon = 'yogstation/icons/x/y/z'"
+
+### Mirrored and included Yogstation files
+These files have been unencluded from Yogstation.dme, and mirrored into the appropriate directiory under the yogstation foler.
+code/game/objects/items/stacks/rods.dm
+code/game/objects/items/stacks/stack.dm
+code/game/objects/items/stacks/sheets/glass.dm
+code/game/objects/items/stacks/sheets/sheet_types.dm
