@@ -2629,7 +2629,6 @@
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
 #include "yogstation\code\modules\admin\verbs\adminsay.dm"
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
-#include "yogstation\code\modules\assembly\shock_kit.dm"
 #include "yogstation\code\modules\client\ooc.dm"
 #include "yogstation\code\modules\client\preferences.dm"
 #include "yogstation\code\modules\client\preferences_savefile.dm"
