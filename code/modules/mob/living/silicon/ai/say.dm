@@ -146,12 +146,12 @@
 
 	if( (GLOB.vox_sounds[word] && voxType == "female") || (GLOB.vox_sounds_male[word] &&voxType == "male") ) //yogs - male vox
 
-		var/sound_file
+		var/sound_file //yogs start - male vox
 
 		if(voxType == "female")
 			sound_file = GLOB.vox_sounds[word]
 		else
-			sound_file = GLOB.vox_sounds_male[word]
+			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
 
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM
