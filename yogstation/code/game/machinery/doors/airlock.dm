@@ -3,7 +3,7 @@
 		to_chat(user, "<span class='danger'>Psst, you can't interact with the world, ghosts!</span>")
 		return
 
-	if (!user.canUseTopic(src))
+	if(!user.canUseTopic(src))
 		to_chat(user, "<span class='info'>You can't do this right now!</span>")
 		return
 
