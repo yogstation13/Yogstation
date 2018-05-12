@@ -2643,6 +2643,7 @@
 #include "yogstation\code\modules\clothing\under\jobs\engineering.dm"
 #include "yogstation\code\modules\donor\donor_items.dm"
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
+#include "yogstation\code\modules\events\weightless.dm"
 #include "yogstation\code\modules\jobs\job_types\cargo_service.dm"
 #include "yogstation\code\modules\jobs\job_types\job.dm"
 #include "yogstation\code\modules\keybindings\bindings_admin.dm"
