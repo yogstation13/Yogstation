@@ -175,7 +175,7 @@
 	config_entry_value = "https://forums.yogstation.net/index.php?pages/rules/" // yogs - Old Tickets
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/yogstation13/tg-rebase" // yogs - Old Tickets
+	config_entry_value = "https://github.com/yogstation13/Yogstation-TG" // yogs - Old Tickets
 
 /datum/config_entry/number/githubrepoid
 	config_entry_value = null
