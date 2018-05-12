@@ -380,6 +380,8 @@
 			H.attack_ai(src) //may as well recycle
 		else
 			to_chat(src, "<span class='notice'>Unable to locate the holopad.</span>")
+	if(href_list["remotedoor"]) //yogs begin
+		handle_remotedoor(href_list) //yogs end
 	if(href_list["track"])
 		var/string = href_list["track"]
 		trackable_mobs()

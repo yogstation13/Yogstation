@@ -41,6 +41,8 @@
 #define ELECTRIFIED_PERMANENT -1
 #define AI_ELECTRIFY_DOOR_TIME 30
 
+#define COOLDOWN_TIME 10 //yogs - alt clickin' doors
+
 /obj/machinery/door/airlock
 	name = "airlock"
 	icon = 'icons/obj/doors/airlocks/station/public.dmi'
@@ -96,6 +98,8 @@
 	var/prying_so_hard = FALSE
 
 	var/static/list/airlock_overlays = list()
+
+	var/request_cooldown = 0 //yogs -- prevent door request spam
 
 /obj/machinery/door/airlock/Initialize()
 	. = ..()
