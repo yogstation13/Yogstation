@@ -23,6 +23,6 @@
 		if(isnull(userjob))
 			userjob = "Unknown" //very bootleg fix
 
-		to_chat(AI, "<span class='info'><a href='?src=\ref[AI];track=[html_encode(user.name)]'><span class='name'>[user.name] ([userjob])</span></a> is requesting you to open [src]<a href='?src=\ref[AI];remotedoor=\ref[src]'>(Open)</a></span>")
+		to_chat(AI, "<span class='info'><a href='?src=\ref[AI];track=[html_encode(user.name)]'><span class='name'>[user.name] ([userjob])</span></a> is requesting you to open [src]. <a href='?src=\ref[AI];remotedoor=\ref[src]'>(Open)</a></span>")
 	request_cooldown = world.time + (COOLDOWN_TIME * 10)
 	to_chat(user, "<span class='info'>Request sent.</span>")
