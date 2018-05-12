@@ -612,7 +612,7 @@
 				to_chat(M, "<span class='danger'>Appearance ban can be lifted only upon request.</span>")
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
+					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums.</span>") //yogs
 				else
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
 			if("No")
