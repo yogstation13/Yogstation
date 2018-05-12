@@ -9,10 +9,6 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#AsV9
-
-/yogstation/code/modules/telesci/ @AsV9
-
 #Nichlas0010
 
 /code/modules/shuttle/ @Nichlas0010
