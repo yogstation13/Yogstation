@@ -1,6 +1,6 @@
 ## Yogstation codebase
 
-[![Build Status](https://travis-ci.org/yogstation13/tg-rebase.png)](https://travis-ci.org/yogstation13/tg-rebase)  
+[![Build Status](https://travis-ci.org/yogstation13/Yogstation-TG.png)](https://travis-ci.org/yogstation13/Yogstation-TG)  
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 **Website:** https://yogstation.net <BR>
@@ -17,7 +17,7 @@ Option 1:
 Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/tg-rebase
+code tab of https://github.com/yogstation13/Yogstation-TG
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
