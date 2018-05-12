@@ -2663,6 +2663,7 @@
 #include "yogstation\code\modules\research\rdconsole.dm"
 #include "yogstation\code\modules\spells\spells.dm"
 #include "yogstation\code\modules\spells\spell_types\mime.dm"
+#include "yogstation\code\modules\uplink\uplink.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\interface\interface.dm"
