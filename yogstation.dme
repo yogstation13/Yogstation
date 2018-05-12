@@ -2617,6 +2617,7 @@
 #include "yogstation\code\game\objects\items\devices\PDA\PDA_types.dm"
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
+#include "yogstation\code\game\objects\items\melee\energy.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\job_closets.dm"
