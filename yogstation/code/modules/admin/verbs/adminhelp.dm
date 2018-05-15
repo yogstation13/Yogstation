@@ -124,7 +124,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
-	var/bwoinkInterval = 600
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -181,9 +180,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		for(var/client/X in GLOB.admins)
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-		if(bwoinkInterval >= 150)
-			bwoinkInterval -= 50
-		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
+
+		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
@@ -240,7 +238,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
-	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), bwoinkInterval)
+	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
@@ -500,7 +498,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 // Admin claims a ticket
 /datum/admin_help/proc/Administer(key_name = key_name_admin(usr))
-	handling_admin = usr
+	handling_admin = usr.client
 
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
 	message_admins(msg)
