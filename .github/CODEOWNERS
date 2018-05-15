@@ -9,13 +9,6 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#AsV9
-
-/yogstation/code/modules/telesci/ @AsV9
-
-#GrayRachnid
-/_maps/map_files/ @GrayRachnid
-
 #Nichlas0010
 
 /code/modules/shuttle/ @Nichlas0010
