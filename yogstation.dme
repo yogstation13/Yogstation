@@ -2663,6 +2663,7 @@
 #include "yogstation\code\modules\libvg\utf8.dm"
 #include "yogstation\code\modules\mob\say.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
+#include "yogstation\code\modules\mob\living\silicon\ai\vox_sounds.dm"
 #include "yogstation\code\modules\power\lighting.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
