@@ -498,6 +498,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 // Admin claims a ticket
 /datum/admin_help/proc/Administer(key_name = key_name_admin(usr))
+	if(!usr.client)
+		return FALSE
 	handling_admin = usr.client
 
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
