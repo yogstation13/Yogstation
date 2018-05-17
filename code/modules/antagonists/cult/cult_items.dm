@@ -71,11 +71,6 @@
 	if(!iscultist(user))
 		if(!is_servant_of_ratvar(user))
 			to_chat(user, "<span class='cultlarge'>\"I wouldn't advise that.\"</span>")
-<<<<<<< HEAD
-			to_chat(user, "<span class='warning'>An overwhelming sense of nausea overpowers you!</span>")
-			user.Dizzy(120)
-=======
->>>>>>> 9f94b67b00... as kor suggested
 		else
 			to_chat(user, "<span class='cultlarge'>\"One of Ratvar's toys is trying to play with things [user.p_they()] shouldn't. Cute.\"</span>")
 			to_chat(user, "<span class='userdanger'>A horrible force yanks at your arm!</span>")
@@ -139,14 +134,7 @@
 	if(!iscultist(user))
 		if(!is_servant_of_ratvar(user))
 			to_chat(user, "<span class='cultlarge'>\"I wouldn't advise that.\"</span>")
-<<<<<<< HEAD
-			to_chat(user, "<span class='warning'>An overwhelming sense of nausea overpowers you!</span>")
-			user.Dizzy(80)
-			user.dropItemToGround(src, TRUE)
-			user.Knockdown(30)
-=======
 			force = 5
->>>>>>> 9f94b67b00... as kor suggested
 			return
 		else
 			to_chat(user, "<span class='cultlarge'>\"One of Ratvar's toys is trying to play with things [user.p_they()] shouldn't. Cute.\"</span>")
