@@ -612,7 +612,7 @@
 				to_chat(M, "<span class='danger'>Appearance ban can be lifted only upon request.</span>")
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
+					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums.</span>") //yogs
 				else
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
 			if("No")
@@ -2460,6 +2460,19 @@
 		var/client/C = M.client
 		usr.client.cmd_admin_mod_antag_rep(C, href_list["modantagrep"])
 		show_player_panel(M)
+
+	else if(href_list["slowquery"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/answer = href_list["slowquery"]
+		if(answer == "yes")
+			log_query_debug("[usr.key] | Reported a server hang")
+			if(alert(usr, "Had you just press any admin buttons?", "Query server hang report", "Yes", "No") == "Yes")
+				var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+				if(response)
+					log_query_debug("[usr.key] | [response]")
+		else if(answer == "no")
+			log_query_debug("[usr.key] | Reported no server hang")
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

@@ -108,10 +108,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
-
-	var/datum/real_src = hsrc
-	if(QDELETED(real_src))
-		return
+	if (hsrc)
+		var/datum/real_src = hsrc
+		if(QDELETED(real_src))
+			return
 
 	..()	//redirect to hsrc.Topic()
 
@@ -732,6 +732,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			var/file = GLOB.vox_sounds[name]
 			Export("##action=load_rsc", file)
 			stoplag()
+		for (var/name in GLOB.vox_sounds_male) //YOGS start - male vox
+			var/file = GLOB.vox_sounds_male[name]
+			Export("##action=load_rsc", file)
+			stoplag() //YOGS end - male vox
 		#endif
 
 
