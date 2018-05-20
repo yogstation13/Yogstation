@@ -36590,18 +36590,11 @@
 	dir = 2
 	},
 /obj/item/circuitboard/computer/monastery_shuttle,
-<<<<<<< refs/remotes/upstream/master
-/obj/effect/spawner/lootdrop/techstorage/service,
-=======
-<<<<<<< HEAD
-=======
 /obj/effect/spawner/lootdrop/techstorage/service,
 /obj/machinery/airalarm{
 	dir = 2;
 	pixel_y = 22
 	},
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
->>>>>>> Update PubbyStation
 /turf/open/floor/plasteel/darkgreen,
 /area/storage/tech)
 "bQx" = (
@@ -39150,21 +39143,46 @@
 /area/crew_quarters/heads/chief)
 "bWs" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/AI,
+/obj/item/circuitboard/computer/robotics{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/circuitboard/computer/mecha_control{
+	pixel_x = 1;
+	pixel_y = -1
+	},
 /turf/open/floor/plasteel/darkred,
 /area/storage/tech)
 "bWt" = (
 /obj/structure/rack,
+/obj/item/circuitboard/computer/crew{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/circuitboard/computer/card{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/circuitboard/computer/communications{
+	pixel_x = 5;
+	pixel_y = -5
+	},
 /obj/machinery/camera{
 	c_tag = "Secure Tech Storage";
 	dir = 1
 	},
-/obj/effect/spawner/lootdrop/techstorage/RnD_secure,
 /turf/open/floor/plasteel/darkred,
 /area/storage/tech)
 "bWu" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/techstorage/command,
+/obj/item/circuitboard/computer/borgupload{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/circuitboard/computer/aiupload{
+	pixel_x = 2;
+	pixel_y = -2
+	},
 /turf/open/floor/plasteel/darkred,
 /area/storage/tech)
 "bWv" = (
@@ -84957,17 +84975,7 @@ cfV
 sWj
 uaP
 cgV
-<<<<<<< HEAD
-bBW
-bBW
-aaa
-cgV
-aaa
-bBW
-bBW
-=======
 uaP
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 cgV
 uaP
 ciG
@@ -85220,17 +85228,6 @@ cfa
 cfa
 twv
 cgv
-<<<<<<< HEAD
-bBW
-bBW
-bBW
-aaa
-abI
-aaa
-bBW
-bBW
-bBW
-=======
 sWj
 dnS
 uoq
@@ -85240,7 +85237,6 @@ fyO
 uoq
 uRk
 ciG
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 cfV
 bTE
 abI
@@ -85489,18 +85485,6 @@ cfb
 cfu
 tlN
 cgv
-<<<<<<< HEAD
-bBW
-bBW
-aaa
-aaa
-abI
-aaa
-aaa
-bBW
-bBW
-cfV
-=======
 cCI
 uoq
 fyO
@@ -85511,7 +85495,6 @@ fyO
 uoq
 hQC
 mpd
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 bTE
 abI
 aaa
@@ -85765,17 +85748,10 @@ fyO
 sWj
 cgT
 ciG
-<<<<<<< HEAD
-aaa
-aaa
-aaa
-cfV
-=======
 fyO
 fyO
 hQC
 mpd
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 bTE
 abI
 aaa
@@ -86023,18 +85999,6 @@ cfd
 cfw
 cfW
 cgw
-<<<<<<< HEAD
-cgV
-abI
-abI
-cij
-cit
-ciH
-abI
-abI
-cgV
-cfV
-=======
 cCI
 mpd
 mpd
@@ -86045,7 +86009,6 @@ mpd
 mpd
 hQC
 sYp
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 bTE
 abI
 aaa
@@ -86293,19 +86256,11 @@ cfe
 cfx
 tlN
 cgv
-<<<<<<< HEAD
-aaa
-aaa
-aaa
-cik
-ciu
-=======
 cCI
 fyO
 fyO
 fyF
 cgY
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 ciI
 fyO
 fyO
@@ -86558,18 +86513,6 @@ cey
 cfy
 tlN
 cgv
-<<<<<<< HEAD
-bBW
-bBW
-aaa
-aaa
-abI
-aaa
-aaa
-bBW
-bBW
-cfV
-=======
 cCI
 uoq
 fyO
@@ -86580,7 +86523,6 @@ fyO
 uoq
 hQC
 mpd
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 bTE
 aaa
 aaa
@@ -86828,17 +86770,6 @@ cet
 cet
 tlN
 cgv
-<<<<<<< HEAD
-bBW
-bBW
-aaa
-aaa
-abI
-aaa
-aaa
-bBW
-bBW
-=======
 fyF
 prQ
 fyO
@@ -86848,7 +86779,6 @@ fyO
 fyO
 dZj
 ciI
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 cfV
 bTE
 aaa
@@ -87097,17 +87027,6 @@ cet
 ulY
 oGm
 cgv
-<<<<<<< HEAD
-cgV
-bBW
-aaa
-aaa
-cgV
-aaa
-bBW
-bBW
-cgV
-=======
 cfV
 fyF
 cZt
@@ -87117,7 +87036,6 @@ wpI
 cZt
 ciI
 cfV
->>>>>>> 77ed114482... Merge pull request #37736 from pubby/newpub
 cfV
 bTE
 abI
