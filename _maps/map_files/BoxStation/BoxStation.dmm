@@ -2184,7 +2184,7 @@
 	pixel_x = 29
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "afe" = (
@@ -6893,7 +6893,7 @@
 	department = "Law office";
 	pixel_x = -32
 	},
-/obj/structure/closet/lawcloset,
+/obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/wood,
 /area/lawoffice)
 "arb" = (
@@ -11227,8 +11227,8 @@
 /turf/closed/wall,
 /area/crew_quarters/theatre)
 "aCs" = (
-/obj/structure/closet/wardrobe/red,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/red/side{
 	dir = 1
 	},
@@ -13099,10 +13099,10 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aHf" = (
-/obj/structure/closet/wardrobe/chaplain_black,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aHg" = (
@@ -15235,7 +15235,7 @@
 /area/library)
 "aMI" = (
 /obj/machinery/light/small,
-/obj/structure/closet/wardrobe/botanist,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "aMJ" = (
@@ -15510,12 +15510,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aND" = (
-/obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aNE" = (
@@ -15603,7 +15603,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/closet/chefcloset,
+/obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aNP" = (
@@ -16145,12 +16145,6 @@
 	},
 /turf/open/floor/engine/cult,
 /area/library)
-"aPj" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "aPk" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 4
@@ -16543,8 +16537,8 @@
 /turf/open/floor/wood,
 /area/library)
 "aQr" = (
-/obj/structure/closet/wardrobe/curator,
 /obj/machinery/light/small,
+/obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/engine/cult,
 /area/library)
 "aQs" = (
@@ -22742,7 +22736,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bha" = (
-/obj/structure/closet/secure_closet/chemical,
+/obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bhb" = (
@@ -23693,7 +23687,7 @@
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
 	},
-/obj/structure/closet/wardrobe/cargotech,
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjp" = (
@@ -25860,6 +25854,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
+/obj/item/radio/headset/headset_sci{
+	pixel_x = -3
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bow" = (
@@ -27782,10 +27779,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bsW" = (
-/obj/structure/closet/wardrobe/robotics_black,
-/obj/item/radio/headset/headset_sci{
-	pixel_x = -3
-	},
+/obj/machinery/vending/wardrobe/robo_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bsX" = (
@@ -30369,7 +30363,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/red/side,
 /area/security/checkpoint/supply)
 "byU" = (
@@ -30544,11 +30538,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzr" = (
-/obj/structure/closet/wardrobe/genetics_white,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
+/obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzs" = (
@@ -30790,7 +30784,7 @@
 	},
 /area/medical/sleeper)
 "bzV" = (
-/obj/structure/closet/wardrobe/white/medical,
+/obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzW" = (
@@ -31084,7 +31078,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/red/side{
 	dir = 8
 	},
@@ -31212,7 +31206,7 @@
 	},
 /area/quartermaster/qm)
 "bAT" = (
-/obj/structure/closet/jcloset,
+/obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bAU" = (
@@ -35005,7 +34999,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bJU" = (
-/obj/structure/closet/wardrobe/science_white,
+/obj/machinery/vending/wardrobe/science_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bJV" = (
@@ -37746,7 +37740,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/red/side{
 	dir = 4
 	},
@@ -37837,7 +37831,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bQF" = (
-/obj/structure/closet/wardrobe/virology_white,
+/obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bQG" = (
@@ -42243,7 +42237,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cbz" = (
-/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/machinery/vending/wardrobe/atmos_wardrobe,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cbA" = (
@@ -44207,7 +44201,7 @@
 	c_tag = "Engineering East";
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/engineering_yellow,
+/obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/plasteel/yellow/corner{
 	dir = 4
 	},
@@ -54207,6 +54201,10 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"wpP" = (
+/obj/machinery/vending/wardrobe/bar_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "wrp" = (
 /obj/machinery/light{
 	dir = 8
@@ -91401,7 +91399,7 @@ aGL
 aHM
 aJm
 aKz
-aKR
+wpP
 aND
 aJC
 aab
@@ -100141,7 +100139,7 @@ aJT
 aLc
 aMX
 aFw
-aPj
+aFz
 aFz
 aRR
 aTe
