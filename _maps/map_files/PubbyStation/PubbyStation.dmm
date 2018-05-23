@@ -20199,7 +20199,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/multitool,
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "baI" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -20624,7 +20624,7 @@
 	req_access_txt = "10; 13"
 	},
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "bbP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
@@ -21002,7 +21002,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "bcO" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -47610,7 +47610,7 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plating,
-/area/space)
+/area/maintenance/department/cargo)
 "dtm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -47706,9 +47706,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/department/science)
-"dLn" = (
-/turf/open/floor/plating,
-/area/maintenance/solars/starboard)
 "dLY" = (
 /obj/structure/table,
 /obj/item/assembly/igniter,
@@ -48098,7 +48095,7 @@
 "eZA" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plating,
-/area/maintenance/solars/starboard)
+/area/maintenance/department/cargo)
 "fdQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -50008,7 +50005,7 @@
 	layer = 2.9
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/starboard)
+/area/maintenance/department/cargo)
 "kIO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -50035,7 +50032,7 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/closet,
 /turf/open/floor/plating,
-/area/maintenance/solars/starboard)
+/area/maintenance/department/cargo)
 "kNf" = (
 /obj/machinery/door/window/northleft{
 	base_state = "right";
@@ -50291,9 +50288,6 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"lJT" = (
-/turf/closed/wall,
-/area/space)
 "lKL" = (
 /obj/machinery/door/airlock/abandoned{
 	name = "Starboard Emergency Storage";
@@ -51279,7 +51273,7 @@
 	req_access_txt = "10; 13"
 	},
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "oDP" = (
 /turf/open/floor/plasteel/whitepurple/side{
 	dir = 4
@@ -52061,10 +52055,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"qOO" = (
-/obj/machinery/shieldwallgen,
-/turf/open/floor/plating,
-/area/maintenance/solars/starboard)
 "qPB" = (
 /obj/structure/chair/stool,
 /obj/machinery/light/small{
@@ -52445,7 +52435,7 @@
 "rWE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "rXT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52580,7 +52570,7 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "svN" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/sign/departments/restroom{
@@ -52675,12 +52665,6 @@
 	dir = 1
 	},
 /area/engine/engineering)
-"sNu" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/solar/starboard)
 "sNz" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -52912,7 +52896,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "tuy" = (
 /obj/machinery/camera{
 	c_tag = "Xenobiology Test Chamber";
@@ -53396,16 +53380,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/solar/starboard)
+/area/maintenance/solars/starboard)
 "vay" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"vbd" = (
-/turf/open/space/basic,
-/area/maintenance/department/cargo)
 "veM" = (
 /obj/machinery/suit_storage_unit/rd,
 /obj/machinery/light{
@@ -53561,7 +53542,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/maintenance/department/cargo)
 "vAq" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -83198,7 +83179,7 @@ cfQ
 bXk
 qWG
 bXk
-cfV
+mVM
 aht
 aaa
 aht
@@ -96764,7 +96745,7 @@ aaa
 bfK
 aaa
 aaa
-vbd
+aaa
 aEj
 obj
 aLi
@@ -97021,7 +97002,7 @@ aaa
 aaa
 aaa
 aaa
-vbd
+aaa
 aEj
 bjx
 aFi
@@ -97278,7 +97259,7 @@ aaa
 aaa
 aaa
 aaa
-vbd
+aaa
 aEj
 bjx
 aEj
@@ -97535,7 +97516,7 @@ aaa
 aaa
 aaa
 aaa
-vbd
+aaa
 aEj
 bjx
 aFi
@@ -97792,7 +97773,7 @@ aaa
 aaa
 aaa
 aaa
-vbd
+aaa
 aEj
 bjx
 aEj
@@ -99840,10 +99821,10 @@ aUC
 aUC
 aUC
 aZw
-dLn
-bcO
-dLn
-dLn
+aFi
+bcI
+aFi
+aFi
 kIo
 bfN
 aEj
@@ -100096,12 +100077,12 @@ aEj
 aEj
 aEj
 aYC
-aEj
+baG
 baG
 bcJ
 baG
 baG
-baG
+aEj
 aEj
 aEj
 bhB
@@ -100353,12 +100334,12 @@ aVF
 aFi
 aFi
 aFi
-aEj
+baG
 bbL
 bcK
 bdR
 baG
-qOO
+bfP
 bfP
 aEj
 aEj
@@ -100610,7 +100591,7 @@ aEj
 aHu
 aEj
 aEj
-aEj
+baG
 bbM
 bcL
 bdS
@@ -100867,7 +100848,7 @@ aVG
 aFi
 aFi
 aYD
-aEj
+baG
 baH
 uXH
 bcN
@@ -101124,7 +101105,7 @@ aVH
 aFi
 aXC
 aYE
-aEj
+baG
 rWE
 bbO
 rWE
@@ -101381,9 +101362,9 @@ aVI
 aFi
 aXC
 aYF
-aEj
+baG
 sut
-sNu
+bcO
 rWE
 baG
 dsv
@@ -101638,12 +101619,12 @@ aEj
 aEl
 aEl
 aEl
-aEj
+baG
 rWE
 oCX
 rWE
-lJT
-lJT
+baG
+aEj
 aEj
 aEj
 aEj
