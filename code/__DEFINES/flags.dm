@@ -23,10 +23,10 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ON_BORDER_1					(1<<9)		// item has priority to check when entering or leaving
 #define DROPDEL_1					(1<<10)	// When dropped, it calls qdel on itself
 #define PREVENT_CLICK_UNDER_1		(1<<11)	//Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define NO_EMP_WIRES_1				(1<<12)
-#define HOLOGRAM_1					(1<<13)
-#define TESLA_IGNORE_1				(1<<14) // TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-
+#define HOLOGRAM_1					(1<<12)
+#define TESLA_IGNORE_1				(1<<13) // TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
+#define INITIALIZED_1				(1<<14)  //Whether /atom/Initialize() has already run for the object
+#define ADMIN_SPAWNED_1			(1<<15) 	//was this spawned by an admin? used for stat tracking stuff.
 
 //turf-only flags
 #define NOJAUNT_1				(1<<0)
