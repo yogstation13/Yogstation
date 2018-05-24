@@ -147,7 +147,7 @@
 /datum/techweb/proc/modify_point_type(type, amount)
 	if(!SSresearch.point_types[type])
 		return FALSE
-	research_points[type] = max(0, research_points[type] - amount)
+	research_points[type] = max(0, research_points[type] + amount)
 	return TRUE
 
 /datum/techweb/proc/remove_point_type(type, amount)
