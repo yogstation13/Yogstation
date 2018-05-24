@@ -141,13 +141,13 @@
 /datum/techweb/proc/add_point_type(type, amount)
 	if(!SSresearch.point_types[type] || (amount <= 0))
 		return FALSE
-	research_points[type] = amount
+	research_points[type] += amount
 	return TRUE
 
 /datum/techweb/proc/modify_point_type(type, amount)
 	if(!SSresearch.point_types[type])
 		return FALSE
-	research_points[type] = max(0, research_points[type] - amount)
+	research_points[type] = max(0, research_points[type] + amount)
 	return TRUE
 
 /datum/techweb/proc/remove_point_type(type, amount)
@@ -155,7 +155,6 @@
 		return FALSE
 	research_points[type] = max(0, research_points[type] - amount)
 	return TRUE
-
 /datum/techweb/proc/add_design_by_id(id)
 	return add_design(get_techweb_design_by_id(id))
 
