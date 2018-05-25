@@ -13840,7 +13840,7 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "aHi" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -13856,7 +13856,7 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aHl" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
 	name = "Coffin Storage";
 	req_access_txt = "22"
@@ -14431,7 +14431,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aID" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -14986,7 +14986,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aJV" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
 	dir = 8;
 	name = "Coffin Storage";

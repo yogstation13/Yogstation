@@ -13497,7 +13497,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aIq" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/item/toy/figure/lawyer,
 /obj/effect/decal/cleanable/cobweb{
 	icon_state = "cobweb2"
@@ -13978,7 +13978,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aJw" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/item/toy/figure/ian,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
@@ -14315,7 +14315,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aKr" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /obj/item/toy/figure/lawyer,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
@@ -14703,7 +14703,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "aLI" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "aLK" = (
@@ -45238,7 +45238,7 @@
 /turf/open/floor/plasteel/hydrofloor,
 /area/chapel/main/monastery)
 "ciz" = (
-/obj/structure/closet/coffin,
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "ciA" = (
