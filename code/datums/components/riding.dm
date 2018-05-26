@@ -148,7 +148,11 @@
 
 	if(world.time < next_vehicle_move)
 		return
-	next_vehicle_move = world.time + vehicle_move_delay
+	var/static/datum/config_entry/number/run_delay/config_run_delay								//yogs start
+	if(isnull(config_run_delay))
+		config_run_delay = CONFIG_GET(number/run_delay)
+	var/combined_delay = vehicle_move_delay * config_run_delay
+	next_vehicle_move = world.time + combined_delay																//yogs end
 
 	if(keycheck(user))
 		var/turf/next = get_step(AM, direction)
