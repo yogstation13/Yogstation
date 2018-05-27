@@ -598,7 +598,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		AM.visible_message("<span class='danger'>\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and catch flame before flashing into ash.</span>",\
 		"<span class='userdanger'>You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
 		"<span class='italics'>You hear an unearthly noise as a wave of heat washes over you.</span>")
-	else if(isobj(AM) && !istype(AM, /obj/effect))
+	else if(isobj(AM) && !iseffect(AM))
 		AM.visible_message("<span class='danger'>\The [AM] smacks into \the [src] and rapidly flashes to ash.</span>", null,\
 		"<span class='italics'>You hear a loud crack as you are washed with a wave of heat.</span>")
 	else
@@ -620,10 +620,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	else if(istype(AM, /obj/singularity))
 		return
 	else if(isobj(AM))
-		if(!istype(AM, /obj/effect))
+		if(!iseffect(AM))
 			investigate_log("has consumed [AM].", INVESTIGATE_SUPERMATTER)
 		qdel(AM)
-	if(!istype(AM, /obj/effect))
+	if(!iseffect(AM))
 		matter_power += 200
 
 	//Some poor sod got eaten, go ahead and irradiate people nearby.

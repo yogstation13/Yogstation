@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Chasms no longer drop mobs buckled to undroppable mobs or objects."
