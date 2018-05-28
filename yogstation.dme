@@ -2652,6 +2652,7 @@
 #include "yogstation\code\modules\client\preferences.dm"
 #include "yogstation\code\modules\client\preferences_savefile.dm"
 #include "yogstation\code\modules\client\verbs\ooc.dm"
+#include "yogstation\code\modules\clothing\chameleon.dm"
 #include "yogstation\code\modules\clothing\clothing.dm"
 #include "yogstation\code\modules\clothing\donator.dm"
 #include "yogstation\code\modules\clothing\head\jobs.dm"
