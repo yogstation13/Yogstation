@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "The emergency space suit safes in escape pods are no longer always unlocked."
