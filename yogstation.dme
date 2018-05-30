@@ -2679,6 +2679,7 @@
 #include "yogstation\code\modules\keybindings\keys.dm"
 #include "yogstation\code\modules\libvg\utf8.dm"
 #include "yogstation\code\modules\mob\say.dm"
+#include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\vox_sounds.dm"
 #include "yogstation\code\modules\power\lighting.dm"
