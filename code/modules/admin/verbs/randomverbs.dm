@@ -504,11 +504,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.revive(full_heal = 1, admin_revive = 1)
 
 	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-<<<<<<< HEAD
 	var/msg = "Admin [key_name(usr)] healed / revived [key_name(M)]!" // yogs - Yog Tickets
-=======
-	var/msg = "<span class='danger'>Admin [key_name_admin(usr)] healed / revived [ADMIN_LOOKUPFLW(M)]!</span>"
->>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Rejuvinate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
