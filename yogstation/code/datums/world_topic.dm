@@ -12,3 +12,11 @@
 /datum/world_topic/ooc/Run(list/input)
 	for(var/client/C in GLOB.clients)
 		to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>DISCORD OOC:</span> <EM>[input["admin"]]:</EM> <span class='message'>[input["ooc"]]</span></span></font>")
+
+/datum/world_topic/toggleooc
+	keyword = "toggleooc"
+	require_comms_key = TRUE
+
+/datum/world_topic/toggleooc/Run(list/input)
+	toggle_ooc()
+	return GLOB.ooc_allowed
