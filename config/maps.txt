@@ -15,18 +15,7 @@ endmap
 
 map yogstation
 	default
-endmap
-
-map yogsmeta
-	minplayers 25
-endmap
-
-map yogspubby
-
-endmap
-
-map yogsdelta
-	minplayers 50
+	voteweight 1.5
 endmap
 
 #map boxstation
@@ -34,21 +23,20 @@ endmap
 	#voteweight 1.5
 #endmap
 
-#map metastation
-	#minplayers 25
-	#voteweight 0.5
-#endmap
+map metastation
+	minplayers 25
+endmap
 
-#map pubbystation
-#endmap
+map pubbystation
+endmap
 
 map omegastation
 	maxplayers 35
 endmap
 
-#map deltastation
-	#minplayers 50
-#endmap
+map deltastation
+	minplayers 50
+endmap
 
 map runtimestation
 endmap

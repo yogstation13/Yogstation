@@ -12,9 +12,6 @@
 		#include "map_files\OmegaStation\OmegaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
-		#include "map_files\YogsDelta\YogsDelta.dmm"
-		#include "map_files\YogsMeta\YogsMeta.dmm"
-		#include "map_files\YogsPubby\YogsPubby.dmm"
 		#include "map_files\YogStation\Yogstation.dmm"
 
 		#ifdef TRAVISBUILDING
