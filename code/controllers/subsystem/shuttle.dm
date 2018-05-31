@@ -308,14 +308,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(canRecall())
 		emergency.cancel(get_area(user))
 		log_game("[key_name(user)] has recalled the shuttle.")
-<<<<<<< HEAD
-		message_admins("[key_name_admin(user)] has recalled the shuttle.")
-		var/area/A = get_area(user)
-		deadchat_broadcast("<span class='deadsay'><span class='name'>[user.name]</span> has recalled the shuttle at <span class='name'>[A.name]</span>.</span>", user)
-=======
 		message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
 		deadchat_broadcast("<span class='deadsay'><span class='name'>[user.real_name]</span> has recalled the shuttle from <span class='name'>[get_area_name(user, TRUE)]</span>.</span>", user)
->>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 		return 1
 
 /datum/controller/subsystem/shuttle/proc/canRecall()
