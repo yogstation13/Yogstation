@@ -47,6 +47,7 @@
 
 	preload_rsc = PRELOAD_RSC
 
+	var/list/persistent_screen_objects
 	var/obj/screen/click_catcher/void
 
 	var/ip_intel = "Disabled"

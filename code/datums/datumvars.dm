@@ -798,6 +798,25 @@
 				to_chat(usr, "This can only be used on instances of type /mob")
 				return
 			offer_control(M)
+		else if(href_list["pip_follow_mob"])
+			if(!check_rights(R_ADMIN))
+				return
+			var/mob/M = locate(href_list["pip_follow_mob"]) in GLOB.mob_list
+			if(!istype(M))
+				to_chat(usr, "This can only be used on instances of type /mob")
+				return
+			usr.client.pip_follow(M)
+		else if(href_list["pip_follow_client"])
+			if(!check_rights(R_ADMIN))
+				return
+			var/mob/M = locate(href_list["pip_follow_client"]) in GLOB.mob_list
+			if(!istype(M))
+				to_chat(usr, "This can only be used on instances of type /mob")
+				return
+			if(!M.client)
+				to_chat(usr, "[M] has no client")
+				return
+			usr.client.pip_follow(M.client)
 
 		else if (href_list["modarmor"])
 			if(!check_rights(NONE))

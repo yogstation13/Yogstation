@@ -1,5 +1,10 @@
 /mob/Login()
 	GLOB.player_list |= src
+	if(GLOB.ckey_PiP_watchlist[ckey])
+		for(var/V in GLOB.ckey_PiP_watchlist[ckey])
+			var/obj/screen/movable/pic_in_pic/admin_track/A = V
+			A.set_view_center(src)
+
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access("Mob Login: [key_name(src)] was assigned to a [type]")

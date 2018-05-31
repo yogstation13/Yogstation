@@ -863,6 +863,8 @@
 	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
 	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
 	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	.["PiP Follow Mob"] = "?_src_=vars;[HrefToken()];pip_follow_mob=[REF(src)]"
+	.["PiP Follow Client"] = "?_src_=vars;[HrefToken()];pip_follow_client=[REF(src)]"
 
 /mob/vv_get_var(var_name)
 	switch(var_name)

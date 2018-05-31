@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		return FALSE
 
 	screenmob.client.screen = list()
-	screenmob.client.apply_clickcatcher()
+	screenmob.client.apply_persistent_screen_objects()
 
 	var/display_hud_version = version
 	if(!display_hud_version)	//If 0 or blank, display the next hud version
