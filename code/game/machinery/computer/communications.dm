@@ -56,8 +56,6 @@
 		return
 	usr.set_machine(src)
 
-	var/area/A = get_area(usr)
-	var/area_name = A.name
 
 	if(!href_list["operation"])
 		return
@@ -115,9 +113,15 @@
 						playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 						//Only notify people if an actual change happened
 						var/security_level = get_security_level()
+<<<<<<< HEAD
 						log_game("[key_name(usr)] has changed the security level to [security_level].")
 						message_admins("[key_name_admin(usr)] has changed the security level to [security_level].")
 						deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> has changed the security level to [security_level] at <span class='name'>[area_name]</span>.</span>", usr)
+=======
+						log_game("[key_name(usr)] has changed the security level to [security_level] with [src] at [AREACOORD(usr)].")
+						message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [security_level] with [src] at [AREACOORD(usr)].")
+						deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> has changed the security level to [security_level] with [src] at <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 					tmp_alertlevel = 0
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this!</span>")
@@ -146,8 +150,13 @@
 				send2otherserver("[station_name()]", input,"Comms_Console")
 				minor_announce(input, title = "Outgoing message to allied station")
 				log_talk(usr,"[key_name(usr)] has sent a message to the other server: [input]",LOGSAY)
+<<<<<<< HEAD
 				message_admins("[key_name_admin(usr)] has sent a message to the other server.")
 				deadchat_broadcast("<span class='deadsay bold'>[usr.name] has sent an outgoing message to the other station(s).</span>", usr)
+=======
+				message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server.")
+				deadchat_broadcast("<span class='deadsay bold'>[usr.real_name] has sent an outgoing message to the other station(s).</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 				CM.lastTimeUsed = world.time
 
 		if("purchase_menu")
@@ -175,8 +184,13 @@
 								M.existing_shuttle = SSshuttle.emergency
 								M.action_load(S)
 								SSshuttle.points -= S.credit_cost
+<<<<<<< HEAD
 								minor_announce("[usr.name] has purchased [S.name] for [S.credit_cost] credits." , "Shuttle Purchase")
 								message_admins("[key_name_admin(usr)] purchased [S.name].")
+=======
+								minor_announce("[usr.real_name] has purchased [S.name] for [S.credit_cost] credits." , "Shuttle Purchase")
+								message_admins("[ADMIN_LOOKUPFLW(usr)] purchased [S.name].")
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 								SSblackbox.record_feedback("text", "shuttle_purchase", 1, "[S.name]")
 							else
 								to_chat(usr, "Something went wrong! The shuttle exchange system seems to be down.")
@@ -249,14 +263,24 @@
 		if("enableemergency")
 			make_maint_all_access()
 			log_game("[key_name(usr)] enabled emergency maintenance access.")
+<<<<<<< HEAD
 			message_admins("[key_name_admin(usr)] enabled emergency maintenance access.")
 			deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> enabled emergency maintenance access at <span class='name'>[area_name]</span>.</span>", usr)
+=======
+			message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
+			deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> enabled emergency maintenance access at <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 			state = STATE_DEFAULT
 		if("disableemergency")
 			revoke_maint_all_access()
 			log_game("[key_name(usr)] disabled emergency maintenance access.")
+<<<<<<< HEAD
 			message_admins("[key_name_admin(usr)] disabled emergency maintenance access.")
 			deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> disabled emergency maintenance access at <span class='name'>[area_name]</span>.</span>", usr)
+=======
+			message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
+			deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> disabled emergency maintenance access at <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 			state = STATE_DEFAULT
 
 		// Status display stuff
@@ -290,7 +314,11 @@
 				CentCom_announce(input, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted to Central Command.</span>")
 				log_talk(usr,"[key_name(usr)] has made a CentCom announcement: [input]",LOGSAY)
+<<<<<<< HEAD
 				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> has messaged CentCom, \"[input]\" at <span class='name'>[area_name]</span>.</span>", usr)
+=======
+				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> has messaged CentCom, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 				CM.lastTimeUsed = world.time
 
 		// OMG SYNDICATE ...LETTERHEAD
@@ -307,7 +335,11 @@
 				Syndicate_announce(input, usr)
 				to_chat(usr, "<span class='danger'>SYSERR @l(19833)of(transmit.dm): !@$ MESSAGE TRANSMITTED TO SYNDICATE COMMAND.</span>")
 				log_talk(usr,"[key_name(usr)] has made a Syndicate announcement: [input]",LOGSAY)
+<<<<<<< HEAD
 				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> has messaged the Syndicate, \"[input]\" at <span class='name'>[area_name]</span>.</span>", usr)
+=======
+				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> has messaged the Syndicate, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 				CM.lastTimeUsed = world.time
 
 		if("RestoreBackup")
@@ -388,9 +420,15 @@
 			if(GLOB.security_level != old_level)
 				//Only notify people if an actual change happened
 				var/security_level = get_security_level()
+<<<<<<< HEAD
 				log_game("[key_name(usr)] has changed the security level to [security_level].")
 				message_admins("[key_name_admin(usr)] has changed the security level to [security_level].")
 				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.name]</span> has changed the security level to [security_level].</span>", usr)
+=======
+				log_game("[key_name(usr)] has changed the security level to [security_level] from [src] at [AREACOORD(usr)].")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [security_level] from [src] at [AREACOORD(usr)].")
+				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> has changed the security level to [security_level] from [src] at [get_area_name(usr, TRUE)].</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 			tmp_alertlevel = 0
 			aistate = STATE_DEFAULT
 		if("ai-changeseclevel")
@@ -400,14 +438,24 @@
 		if("ai-enableemergency")
 			make_maint_all_access()
 			log_game("[key_name(usr)] enabled emergency maintenance access.")
+<<<<<<< HEAD
 			message_admins("[key_name_admin(usr)] enabled emergency maintenance access.")
 			deadchat_broadcast("<span class='deadsay bold'>[usr.name] enabled emergency maintenance access.</span>", usr)
+=======
+			message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
+			deadchat_broadcast("<span class='deadsay bold'>[usr.real_name] enabled emergency maintenance access.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 			aistate = STATE_DEFAULT
 		if("ai-disableemergency")
 			revoke_maint_all_access()
 			log_game("[key_name(usr)] disabled emergency maintenance access.")
+<<<<<<< HEAD
 			message_admins("[key_name_admin(usr)] disabled emergency maintenance access.")
 			deadchat_broadcast("<span class='deadsay bold'>[usr.name] disabled emergency maintenance access.</span>", usr)
+=======
+			message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
+			deadchat_broadcast("<span class='deadsay bold'>[usr.real_name] disabled emergency maintenance access.</span>", usr)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 			aistate = STATE_DEFAULT
 
 	updateUsrDialog()
@@ -700,8 +748,12 @@
 	if(!input || !user.canUseTopic(src))
 		return
 	SScommunications.make_announcement(user, is_silicon, input)
+<<<<<<< HEAD
 	var/area/A = get_area(user)
 	deadchat_broadcast("<span class='deadsay'><span class='name'>[user.name]</span> made an priority announcement at <span class='name'>[A.name]</span>.</span>", user)
+=======
+	deadchat_broadcast("<span class='deadsay'><span class='name'>[user.real_name]</span> made an priority announcement from <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", user)
+>>>>>>> c41d6ac965... Standardizes and cleans up some admin messages & logging (#38128)
 
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 
