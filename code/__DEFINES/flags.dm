@@ -76,8 +76,4 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //EMP protection
 #define EMP_PROTECT_SELF (1<<0)
 #define EMP_PROTECT_CONTENTS (1<<1)
-<<<<<<< HEAD
 #define EMP_PROTECT_WIRES (1<<2)
-=======
-#define EMP_PROTECT_WIRES (1<<2)
->>>>>>> c65a99f130... Move NODROP_1, DROPDEL_1, ABSTRACT_1 and NOBLUDGEON_1 to item_flags where they belong (#38171)
