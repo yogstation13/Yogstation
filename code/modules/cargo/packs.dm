@@ -59,6 +59,7 @@
 					/obj/item/clothing/mask/bandana/skull)//so you can properly #cargoniabikergang
 	crate_name = "Biker Kit"
 	crate_type = /obj/structure/closet/crate/large
+	
 
 /datum/supply_pack/emergency/equipment
 	name = "Emergency Bot/Internals Crate"
