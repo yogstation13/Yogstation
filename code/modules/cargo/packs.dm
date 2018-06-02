@@ -67,7 +67,7 @@
 	contains = list(/obj/item/drone_shell,
 					/obj/item/drone_shell,
 					/obj/item/drone_shell)
-crate_name = "drone shell crate"
+	crate_name = "drone shell crate"
 
 /datum/supply_pack/emergency/equipment
 	name = "Emergency Bot/Internals Crate"
