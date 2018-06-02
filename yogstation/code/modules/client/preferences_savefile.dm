@@ -8,6 +8,3 @@
 	
 /datum/preferences/proc/save_keybindings(var/savefile/S)
 	WRITE_FILE(S["keybindings"], bindings.to_list())
-
-/datum/preferences/proc/reset_keybindings()
-	bindings.from_list(GLOB.keybinding_default)
