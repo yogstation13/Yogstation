@@ -61,9 +61,16 @@
 			user.body_l_leg()
 			return
 
-	if(client.prefs.bindings.isheld_key("Ctrl"))
-		var/list/keys = SSinput.movement_arrows + client.prefs.bindings.movement_keys
-		switch(keys[I.key])
+	return ..()
+
+/mob/keyLoop(client/user)
+	if(user.prefs.bindings.isheld_key("Ctrl"))
+		var/list/keys = SSinput.movement_arrows + user.prefs.bindings.movement_keys
+		var/dir = NONE
+		for(var/_key in user.prefs.bindings.keys_held)
+			dir = keys[_key]
+
+		switch(dir)
 			if(NORTH)
 				northface()
 				return
