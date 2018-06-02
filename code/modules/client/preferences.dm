@@ -637,10 +637,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 				dat += "<h2>Client</h2>"
-				BUTTON_KEY("Move North (up)", ACTION_MOVENORTH)
-				BUTTON_KEY("Move West (left)", ACTION_MOVEWEST)
-				BUTTON_KEY("Move South (down)", ACTION_MOVESOUTH)
-				BUTTON_KEY("Move East (right)", ACTION_MOVEEAST)
+				BUTTON_KEY_MOVEMENT("Move North (up)", ACTION_MOVENORTH, NORTH)
+				BUTTON_KEY_MOVEMENT("Move West (left)", ACTION_MOVEWEST, WEST)
+				BUTTON_KEY_MOVEMENT("Move South (down)", ACTION_MOVESOUTH, SOUTH)
+				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
 				
 				BUTTON_KEY("OOC", ACTION_OOC)
 				BUTTON_KEY("Adminhelp", ACTION_AHELP)
@@ -671,7 +671,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
 
 				BUTTON_KEY("Resist", ACTION_RESIST)
-
 				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
 				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
 				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
@@ -688,6 +687,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					BUTTON_KEY("Deadchat", ACTION_DSAY)
 
 				dat += "</td></tr></table>"
+			else
+				dat += "<b>Default keybindings selected</b>"
 		// yogs end
 	dat += "<hr><center>"
 
@@ -1516,53 +1517,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
-				// yogs start - Custom keybindings
-				UPDATE_MOVEMENT(ACTION_MOVENORTH, NORTH)
-				UPDATE_MOVEMENT(ACTION_MOVEWEST, WEST)
-				UPDATE_MOVEMENT(ACTION_MOVESOUTH, SOUTH)
-				UPDATE_MOVEMENT(ACTION_MOVEEAST, EAST)
-
-				UPDATE_KEY(ACTION_OOC)
-				UPDATE_KEY(ACTION_AHELP)
-				UPDATE_KEY(ACTION_SCREENSHOT)
-				UPDATE_KEY(ACTION_MINHUD)
-
-
-				UPDATE_KEY(ACTION_SAY)
-				UPDATE_KEY(ACTION_ME)
-
-				UPDATE_KEY(ACTION_STOPPULLING)
-				UPDATE_KEY(ACTION_INTENTRIGHT)
-				UPDATE_KEY(ACTION_INTENTLEFT)
-				UPDATE_KEY(ACTION_SWAPHAND)
-				UPDATE_KEY(ACTION_USESELF)
-				UPDATE_KEY(ACTION_DROP)
-				UPDATE_KEY(ACTION_EQUIP)
-
-				UPDATE_KEY(ACTION_TARGETHEAD)
-				UPDATE_KEY(ACTION_TARGETRARM)
-				UPDATE_KEY(ACTION_TARGETCHEST)
-				UPDATE_KEY(ACTION_TARGETLARM)
-				UPDATE_KEY(ACTION_TARGETRLEG)
-				UPDATE_KEY(ACTION_TARGETGROIN)
-				UPDATE_KEY(ACTION_TARGETLLEG)
-				
-				UPDATE_KEY(ACTION_RESIST)
-				
-				UPDATE_KEY(ACTION_TOGGLETHROW)
-				UPDATE_KEY(ACTION_INTENTHELP)
-				UPDATE_KEY(ACTION_INTENTDISARM)
-				UPDATE_KEY(ACTION_INTENTGRAB)
-				UPDATE_KEY(ACTION_INTENTHARM)
-
-
-				UPDATE_KEY(ACTION_ASAY)
-				UPDATE_KEY(ACTION_AGHOST)
-				UPDATE_KEY(ACTION_PLAYERPANEL)
-				UPDATE_KEY(ACTION_BUILDMODE)
-				UPDATE_KEY(ACTION_STEALTHMIN)
-				UPDATE_KEY(ACTION_DSAY)
-				// yogs end
+			// yogs start - Custom keybindings
+			if(href_list["keybinding"])
+				update_keybindings(user, href_list["keybinding"], href_list["dir"])
+			// yogs end
 		else
 			switch(href_list["preference"])
 				if("publicity")
