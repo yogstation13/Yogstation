@@ -64,6 +64,18 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 	"Numpad9",
 	",",
 	".",
+	"&",
+	"é",
+	"\"",
+	"'",
+	"(",
+	"§",
+	"è",
+	"!",
+	"ç",
+	"à",
+	")",
+	"-",
 	"Unbound",
 ))
 
@@ -116,29 +128,6 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_DSAY "Deadchat"
 
 
-#define BUTTON_KEY(name, action) \
-	button = bindings.get_action_key(action); \
-	button_bound = TRUE; \
-	if(!button || button == "" || button == "Unbound") \
-		button_bound = FALSE; \
-	dat += "<b>[name]:</b> <a href='?_src_=prefs;preference=keybinding_[action];task=input' [button_bound ? "" : "style='color:red'"]>[button_bound ? button : "Unbound"]</a><br>";
-
-#define UPDATE_KEY(action) \
-	if("keybinding_" + action) { \
-		var/keybind = input(user, "Select [action] button", "Keybinding Preference") as null|anything in GLOB.keybinding_validkeys; \
-		if(keybind) { \
-			bindings.key_setbinding(keybind, action); \
-		}; \
-	};
-
-#define UPDATE_MOVEMENT(action, dir) \
-	if("keybinding_" + action) { \
-		var/keybind = input(user, "Select [action] button", "Keybinding Preference") as null|anything in GLOB.keybinding_validkeys; \
-		if(keybind) { \
-			bindings.key_setbinding(keybind, action, dir); \
-		}; \
-	};
-
 GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_MOVENORTH = "W",
 	ACTION_MOVEWEST = "A",
@@ -161,7 +150,6 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_USESELF = "Z",
 	ACTION_DROP = "Q",
 	ACTION_EQUIP = "E",
-	ACTION_MOVETOGGLE = "Alt",
 
 	ACTION_TARGETHEAD = "Numpad8",
 	ACTION_TARGETRARM = "Numpad4",
@@ -187,3 +175,14 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_STEALTHMIN = "F8",
 	ACTION_DSAY = "F10",
 ))
+
+
+#define BUTTON_KEY_MOVEMENT(name, action, dir) \
+	button = bindings.get_action_key(action); \
+	button_bound = TRUE; \
+	if(!button || button == "" || button == "Unbound") \
+		button_bound = FALSE; \
+	dat += "<b>[name]:</b> <a href='?_src_=prefs;keybinding=[action];dir=[dir];task=input' [button_bound ? "" : "style='color:red'"]>[button_bound ? button : "Unbound"]</a><br>"; \
+
+#define BUTTON_KEY(name, action) \
+BUTTON_KEY_MOVEMENT(name, action, 0);

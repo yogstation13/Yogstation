@@ -1,7 +1,16 @@
+/datum/keyinfo
+	var/action
+	var/key
+
+
 /datum/keybindings
-	var/list/keys = list()
+	var/list/keys
+	var/list/old_keys = list()
 	var/list/keys_held = list()
 	var/list/movement_keys = list()
+
+/datum/keybindings/New()
+	from_list(GLOB.keybinding_default)
 
 /datum/keybindings/proc/key_setbinding(_key, _action, _dir = 0)
 	unbind_old_keys(_key)
@@ -17,12 +26,20 @@
 /datum/keybindings/proc/unbind_movement()
 	movement_keys = list()
 
+	old_keys = keys.Copy()
+	keys = GLOB.keybinding_default
+
 /datum/keybindings/proc/bind_movement()
-	unbind_movement()
+	movement_keys = list()
+
 	movement_keys[get_action_key(ACTION_MOVENORTH)] = NORTH
 	movement_keys[get_action_key(ACTION_MOVEWEST)] = WEST
 	movement_keys[get_action_key(ACTION_MOVESOUTH)] = SOUTH
 	movement_keys[get_action_key(ACTION_MOVEEAST)] = EAST
+
+	if(old_keys.len)
+		keys = old_keys.Copy()
+		old_keys = list()
 
 /datum/keybindings/proc/unbind_old_keys(_key)
 	movement_keys -= _key
