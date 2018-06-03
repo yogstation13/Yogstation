@@ -14,7 +14,7 @@
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
 
-	var/A = bind.get_key_action(_key) // TODO: runtime here
+	var/A = bind.get_key_action(_key)
 	if(!A)
 		return
 
