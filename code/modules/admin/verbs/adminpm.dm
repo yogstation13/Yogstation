@@ -163,6 +163,8 @@
 					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 
 			else		//recipient is an admin but sender is not
+				if(!current_ticket)
+					to_chat(src, "<font color='blue'>Ticket closed, plese make a new one before trying to contact admins!</span>")
 				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
 				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [keywordparsedmsg]</font>") // yogs - Yog Tickets
 				to_chat(src, "<font color='blue'>-- [key_name(recipient, src)] -> <b>Admins</b>: [msg]</font>") // yogs - Yog Tickets
