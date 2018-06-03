@@ -2,7 +2,7 @@
 /datum/round_event_control/ion_storm
 	weight = 20
 
-/generate_ion_law(ionMessage)
+/proc/generate_ion_law(ionMessage)
 	if(ionMessage)
 		return ionMessage
 
