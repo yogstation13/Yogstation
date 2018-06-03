@@ -17,3 +17,44 @@
 	to_chat(world, "<b>The [fluff_adjective] admins have decided to [fluff_adverb] revive everyone. :)</b>")
 	message_admins("[src] revived [revive_count] mobs.")
 	log_admin("[src] revived [revive_count] mobs.")
+
+/client/proc/admin_pick_random_player()
+	set category = "Admin"
+	set name = "Pick Random Player"
+	set desc = "Picks a random logged-in player and brings up their player panel."
+
+	var/list/mobs = list()
+
+	var/what_group = input(src, "What group would you like to pick from?", "Selection", "Everyone") as null|anything in list("Everyone", "Antags Only", "Non-Antags Only")
+	if(!what_group)
+		return
+
+	var/choose_from_dead = input(src, "What group would you like to pick from?", "Selection", "Everyone") as null|anything in list("Everyone", "Living Only", "Dead Only")
+	if(!choose_from_dead)
+		return
+
+	if(choose_from_dead != "Dead Only")
+		for(var/mob/M in GLOB.alive_mob_list)
+			if(M.mind)
+				mobs += M
+	if(choose_from_dead != "Living Only")
+		for(var/mob/M in GLOB.dead_mob_list)
+			if(M.mind)
+				mobs += M
+
+	if(what_group == "Antags Only")
+		for(var/mob/M in mobs)
+			if(!M.mind.special_role)
+				mobs -= M
+	else if(what_group == "Non-Antags Only")
+		for(var/mob/M in mobs)
+			if(M.mind.special_role)
+				mobs -= M
+
+	if(!mobs.len)
+		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>")
+		return
+
+	var/mob/chosen_player = pick(mobs)
+	to_chat(src, "[chosen_player] has been chosen")
+	holder.show_player_panel(chosen_player)
