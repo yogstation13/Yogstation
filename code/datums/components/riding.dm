@@ -146,17 +146,9 @@
 		Unbuckle(user)
 		return
 
-	if(world.time < last_vehicle_move + vehicle_move_delay)
+	if(world.time < last_vehicle_move + (CONFIG_GET(number/run_delay) * vehicle_move_delay) ) //yogs - fixed this to work with movespeed
 		return
-<<<<<<< HEAD
-	var/static/datum/config_entry/number/run_delay/config_run_delay								//yogs start
-	if(isnull(config_run_delay))
-		config_run_delay = CONFIG_GET(number/run_delay)
-	var/combined_delay = vehicle_move_delay * config_run_delay
-	next_vehicle_move = world.time + combined_delay																//yogs end
-=======
 	last_vehicle_move = world.time
->>>>>>> bb3405b881... Merge pull request #38309 from kevinz000/patch-517
 
 	if(keycheck(user))
 		var/turf/next = get_step(AM, direction)
