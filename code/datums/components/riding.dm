@@ -1,5 +1,5 @@
 /datum/component/riding
-	var/next_vehicle_move = 0 //used for move delays
+	var/last_vehicle_move = 0 //used for move delays
 	var/vehicle_move_delay = 2 //tick delay between movements, lower = faster, higher = slower
 	var/keytype
 
@@ -146,13 +146,9 @@
 		Unbuckle(user)
 		return
 
-	if(world.time < next_vehicle_move)
+	if(world.time < last_vehicle_move + (CONFIG_GET(number/run_delay) * vehicle_move_delay) ) //yogs - fixed this to work with movespeed
 		return
-	var/static/datum/config_entry/number/run_delay/config_run_delay								//yogs start
-	if(isnull(config_run_delay))
-		config_run_delay = CONFIG_GET(number/run_delay)
-	var/combined_delay = vehicle_move_delay * config_run_delay
-	next_vehicle_move = world.time + combined_delay																//yogs end
+	last_vehicle_move = world.time
 
 	if(keycheck(user))
 		var/turf/next = get_step(AM, direction)
