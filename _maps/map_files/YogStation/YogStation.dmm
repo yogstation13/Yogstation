@@ -13912,7 +13912,6 @@
 	icon_state = "warningline";
 	dir = 6
 	},
-/obj/vehicle/ridden/secway,
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	areastring = "/area/ai_monitored/security/armory";
