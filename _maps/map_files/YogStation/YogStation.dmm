@@ -37055,7 +37055,6 @@
 /area/science/test_area)
 "bOK" = (
 /obj/structure/barricade/wooden,
-/obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bON" = (
@@ -37459,22 +37458,10 @@
 	name = "Maint Bar Access";
 	req_access_txt = "12"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bPW" = (
 /obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"bPX" = (
-/obj/structure/closet/emcloset,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"bPY" = (
-/obj/structure/girder,
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -37774,6 +37761,10 @@
 /area/maintenance/port/aft)
 "bRf" = (
 /obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -51808,6 +51799,16 @@
 	},
 /turf/open/floor/plasteel/vault/telecomms/mainframe,
 /area/tcommsat/server)
+"pew" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "pfK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/incinerator_output{
 	dir = 1
@@ -75677,7 +75678,7 @@ bxy
 aaf
 aaf
 bCq
-bPY
+bSp
 cOw
 bCq
 bCq
@@ -75934,7 +75935,7 @@ bxy
 aaH
 aaH
 bCq
-bPX
+bHE
 bRg
 bRg
 bCq
@@ -76191,9 +76192,9 @@ bGi
 aaf
 aaf
 bLv
-bQa
 bHE
 bHE
+ciT
 bCq
 bHE
 bLv
@@ -77733,7 +77734,7 @@ bLu
 bHE
 bHE
 bHE
-bHE
+bRh
 bLv
 aaf
 bLv
@@ -79535,7 +79536,7 @@ aaa
 aaf
 aaf
 bCq
-bTE
+pew
 bAx
 bCq
 bWC
