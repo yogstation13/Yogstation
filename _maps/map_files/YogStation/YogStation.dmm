@@ -3984,11 +3984,12 @@
 /turf/open/space,
 /area/solar/port/fore)
 "ajr" = (
-/obj/machinery/computer/gulag_teleporter_computer,
+/obj/structure/table,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajs" = (
-/obj/machinery/gulag_teleporter,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajt" = (
@@ -4290,6 +4291,10 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel,
 /area/security/processing)
 "akb" = (
@@ -4308,13 +4313,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/turf/open/floor/plasteel,
-/area/security/processing)
-"akd" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ake" = (
@@ -78435,7 +78433,7 @@ aaa
 aaa
 aiU
 ajr
-aka
+alq
 akH
 alq
 amb
@@ -78692,7 +78690,7 @@ aaa
 aaa
 aiU
 aju
-akd
+aka
 akK
 als
 ame
