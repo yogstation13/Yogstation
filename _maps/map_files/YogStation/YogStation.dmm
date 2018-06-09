@@ -29189,14 +29189,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"buE" = (
-/obj/structure/table,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "buF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -37066,10 +37058,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bOL" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bON" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -49818,6 +49806,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"hxY" = (
+/obj/machinery/computer/bounty{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hyH" = (
 /obj/machinery/light{
 	dir = 4
@@ -75923,8 +75917,8 @@ boN
 bqo
 brO
 btt
-buE
 bvZ
+hxY
 bxu
 bxx
 bwT
@@ -76181,7 +76175,7 @@ bbR
 bbR
 btu
 bbR
-bOL
+bbR
 bxy
 byF
 bwW
