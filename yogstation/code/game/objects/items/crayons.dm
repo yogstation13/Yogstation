@@ -12,7 +12,7 @@
 	if(istype(target, /obj/machinery/light))
 		if(actually_paints)
 			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
-			target.light_color = paint_color
-			target.update_light()
+			target.bulb_colour = paint_color
+			target.update()
 		. = use_charges(user, 2)
 	..()
