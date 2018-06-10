@@ -2639,6 +2639,7 @@
 #include "yogstation\code\game\objects\items\cards_ids.dm"
 #include "yogstation\code\game\objects\items\crayons.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
+#include "yogstation\code\game\objects\items\devices\powersink.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\cart.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA_types.dm"
