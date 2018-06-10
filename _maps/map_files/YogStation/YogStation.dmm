@@ -3984,11 +3984,12 @@
 /turf/open/space,
 /area/solar/port/fore)
 "ajr" = (
-/obj/machinery/computer/gulag_teleporter_computer,
+/obj/structure/table,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajs" = (
-/obj/machinery/gulag_teleporter,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajt" = (
@@ -4290,6 +4291,10 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel,
 /area/security/processing)
 "akb" = (
@@ -4308,13 +4313,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/turf/open/floor/plasteel,
-/area/security/processing)
-"akd" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ake" = (
@@ -13912,7 +13910,6 @@
 	icon_state = "warningline";
 	dir = 6
 	},
-/obj/vehicle/ridden/secway,
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	areastring = "/area/ai_monitored/security/armory";
@@ -29190,14 +29187,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"buE" = (
-/obj/structure/table,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "buF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -37064,13 +37053,8 @@
 /area/science/test_area)
 "bOK" = (
 /obj/structure/barricade/wooden,
-/obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bOL" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bON" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -37472,22 +37456,10 @@
 	name = "Maint Bar Access";
 	req_access_txt = "12"
 	},
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bPW" = (
 /obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"bPX" = (
-/obj/structure/closet/emcloset,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"bPY" = (
-/obj/structure/girder,
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -37787,6 +37759,10 @@
 /area/maintenance/port/aft)
 "bRf" = (
 /obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -49819,6 +49795,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"hxY" = (
+/obj/machinery/computer/bounty{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hyH" = (
 /obj/machinery/light{
 	dir = 4
@@ -51815,6 +51797,16 @@
 	},
 /turf/open/floor/plasteel/vault/telecomms/mainframe,
 /area/tcommsat/server)
+"pew" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "pfK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/incinerator_output{
 	dir = 1
@@ -75684,7 +75676,7 @@ bxy
 aaf
 aaf
 bCq
-bPY
+bSp
 cOw
 bCq
 bCq
@@ -75924,8 +75916,8 @@ boN
 bqo
 brO
 btt
-buE
 bvZ
+hxY
 bxu
 bxx
 bwT
@@ -75941,7 +75933,7 @@ bxy
 aaH
 aaH
 bCq
-bPX
+bHE
 bRg
 bRg
 bCq
@@ -76182,7 +76174,7 @@ bbR
 bbR
 btu
 bbR
-bOL
+bbR
 bxy
 byF
 bwW
@@ -76198,9 +76190,9 @@ bGi
 aaf
 aaf
 bLv
-bQa
 bHE
 bHE
+ciT
 bCq
 bHE
 bLv
@@ -77740,7 +77732,7 @@ bLu
 bHE
 bHE
 bHE
-bHE
+bRh
 bLv
 aaf
 bLv
@@ -78441,7 +78433,7 @@ aaa
 aaa
 aiU
 ajr
-aka
+alq
 akH
 alq
 amb
@@ -78698,7 +78690,7 @@ aaa
 aaa
 aiU
 aju
-akd
+aka
 akK
 als
 ame
@@ -79542,7 +79534,7 @@ aaa
 aaf
 aaf
 bCq
-bTE
+pew
 bAx
 bCq
 bWC
