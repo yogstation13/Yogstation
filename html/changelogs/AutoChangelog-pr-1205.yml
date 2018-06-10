@@ -1,0 +1,6 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - rscadd: "The station has been supplied with a bounty console."
+  - rscdel: "Due to budget cuts, secways and the labor camp teleporter are no longer provided to the security team."
+  - tweak: "There has been some work on the old bar in maintenance which is now more accessible."
