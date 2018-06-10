@@ -78,6 +78,10 @@
 				"[user] detaches \the [src] from the cable.", \
 				"<span class='notice'>You detach \the [src] from the cable.</span>",
 				"<span class='italics'>You hear some wires being disconnected from something.</span>")
+	// yogs start - multitool for power drained
+	if(istype(I, /obj/item/multitool))
+		to_chat(user, "The power dial reads [power_drained] kW.")
+	// yogs end
 	else
 		return ..()
 
