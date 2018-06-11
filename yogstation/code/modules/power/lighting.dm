@@ -5,5 +5,5 @@
 /obj/machinery/light/proc/clean_light(strength)
 	if(strength < CLEAN_STRENGTH_BLOOD)
 		return
-	light_color = initial(light_color)
-	update_light()
+	bulb_colour = initial(bulb_colour)
+	update()
