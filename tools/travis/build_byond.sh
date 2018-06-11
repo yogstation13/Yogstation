@@ -45,10 +45,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 	if [ "$BUILD_TESTING" = true ]; then
 		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme
 	else
-<<<<<<< HEAD
-		tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme && DreamDaemon yogstation.dmb -close -trusted -params "test-run&log-directory=travis"
-=======
-		tools/travis/dm.sh -DTRAVISBUILDING tgstation.dme
+		tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme
 		
 		#config folder should not be mandatory
 		rm -rf config/*
@@ -70,8 +67,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 		fi
     	ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
 	
-		DreamDaemon tgstation.dmb -close -trusted -params "test-run&log-directory=travis"
->>>>>>> a38ef372a1... Adds SQL to travis. Other travis optimizations (#38325)
+		DreamDaemon yogstation.dmb -close -trusted -params "test-run&log-directory=travis"
 		cat data/logs/travis/clean_run.lk
 	fi;
 fi;
