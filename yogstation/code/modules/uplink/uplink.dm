@@ -4,8 +4,7 @@
 		for(var/O in U.include_objectives)
 			if(!(locate(O) in user.mind.objectives))
 				continue
-			else
-				canBuy = TRUE
+			canBuy = TRUE
 	else
 		canBuy = TRUE
 
@@ -13,8 +12,7 @@
 		for(var/O in U.exclude_objectives)
 			if(!(locate(O) in user.mind.objectives))
 				continue
-			else
-				canBuy = FALSE
+			canBuy = FALSE
 
 	if(!canBuy)
 		to_chat(user, "<span class='warning'>The Syndicate lacks resources to provide you with this item.</span>")
