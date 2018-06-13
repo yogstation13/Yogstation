@@ -24,7 +24,7 @@
 	target.cut_overlay(plastic_overlay, TRUE)
 
 /obj/item/grenade/plastic/glitterbomb/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] swallows [src]! It looks like [user.p_theyre()] WANTS TO PARTY!</span>")
+	user.visible_message("<span class='suicide'>[user] swallows [src]! It looks like [user.p_they()] WANTS TO PARTY!</span>")
 	target = user
 	src.moveToNullspace()
 	addtimer(CALLBACK(src, .proc/prime), 99)
