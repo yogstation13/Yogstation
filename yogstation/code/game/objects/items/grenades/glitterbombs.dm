@@ -26,7 +26,7 @@
 /obj/item/grenade/plastic/glitterbomb/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] swallows [src]! It looks like [user.p_they()] WANTS TO PARTY!</span>")
 	target = user
-	src.moveToNullspace()
+	moveToNullspace()
 	addtimer(CALLBACK(src, .proc/prime), 99)
 	addtimer(CALLBACK(user, /mob/.proc/gib), 100)
 	return MANUAL_SUICIDE
