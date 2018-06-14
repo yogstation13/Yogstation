@@ -42,3 +42,7 @@
 /obj/item/grenade/plastic/glitterbomb/white
 	desc = "Used to put the party in specific locations. This one seems to be white colored and makes you feel sleepy by just looking at it."
 	glitter_type = "white_glitter"
+
+/obj/item/grenade/plastic/glitterbomb/black
+	desc = "Used to put the par- Who are we kidding, this limited edition only plastic party explosive was made to fix the bigotry issue with our products, with a unique bl- DARK color!"
+	glitter_type = "blackcrayonpowder"
