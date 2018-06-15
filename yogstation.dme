@@ -2628,6 +2628,7 @@
 #include "yogstation\code\datums\world_topic.dm"
 #include "yogstation\code\game\world.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
+#include "yogstation\code\game\donator\borg_skins.dm"
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
 #include "yogstation\code\game\machinery\computer\crew.dm"
