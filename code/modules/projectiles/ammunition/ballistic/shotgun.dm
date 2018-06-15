@@ -8,11 +8,6 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	materials = list(MAT_METAL=4000)
 
-/obj/item/ammo_casing/shotgun/tengauge
-	name = "10g shotgun slug"
-	desc = "A 10 gauge lead slug."
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug/tengauge
-
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
