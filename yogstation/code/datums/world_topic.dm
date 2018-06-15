@@ -20,3 +20,21 @@
 /datum/world_topic/toggleooc/Run(list/input)
 	toggle_ooc()
 	return GLOB.ooc_allowed
+
+/datum/world_topic/adminwho/Run(list/input)
+	var/list/message = list("Admins: ")
+	var/list/admin_keys = list()
+	for(var/adm in GLOB.admins)
+		var/client/C = adm
+		if(input["adminchannel"])
+			admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
+		else if(!C.holder.fakekey && !C.is_afk())
+			admin_keys += "[C]"
+
+	for(var/admin in admin_keys)
+		if(LAZYLEN(message) > 1)
+			message += ", [admin]"
+		else
+			message += "[admin]"
+
+	return jointext(message, "")
