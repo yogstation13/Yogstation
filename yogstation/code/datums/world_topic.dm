@@ -28,7 +28,7 @@
 		var/client/C = adm
 		if(input["adminchannel"])
 			admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
-		else if(!C.holder.fakekey && !C.is_afk())
+		else if(!C.holder.fakekey)
 			admin_keys += "[C]"
 
 	for(var/admin in admin_keys)
