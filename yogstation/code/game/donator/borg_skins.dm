@@ -104,10 +104,12 @@ SUBSYSTEM_DEF(YogFeatures)
 	owner = "kmc2000"
 	module_locked = "Security"
 
+/*							PENDING SPRITE!
 /datum/borg_skin/snail
 	name = "Snailborg"
 	icon_state = "snail"
 	owner = "drderp3635"
+*/
 
 /datum/borg_skin/fallout
 	name = "Fallout Borg"
