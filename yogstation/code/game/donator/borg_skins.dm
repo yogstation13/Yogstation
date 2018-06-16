@@ -9,6 +9,8 @@ SUBSYSTEM_DEF(YogFeatures)
 	if(!DonorBorgHolder)
 		DonorBorgHolder = new /datum/borg_skin_holder
 		return
+/mob/living/silicon/robot
+	var/special_skin = FALSE //Have we got a donor only skin?
 
 /datum/borg_skin_holder
 	var/name = "Donator Borg Skin Datumbase"
@@ -59,6 +61,7 @@ SUBSYSTEM_DEF(YogFeatures)
 			return FALSE
 		if(A.name == "Cancel")
 			to_chat(src, "You've chosen to use the standard skinset instead of a custom one")
+			special_skin = FALSE
 			return FALSE
 		icon =  A.icon
 		icon_state = A.icon_state
@@ -67,6 +70,7 @@ SUBSYSTEM_DEF(YogFeatures)
 		eye_lights.icon_state = "[icon_state]-e"
 		add_overlay(eye_lights)
 		to_chat(src, "You have successfully applied the skin: [A.name]")
+		special_skin = TRUE
 		return TRUE
 
 //I'm overriding this so that donors will be able to pick their borg skin after choosing a module.
@@ -187,3 +191,32 @@ SUBSYSTEM_DEF(YogFeatures)
 			icon_state = "ai-gentoo"
 		else if(icontype == "Angel")
 			icon_state = "ai-angel"
+
+/mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
+	cut_overlays()
+	if(!special_skin)
+		icon_state = module.cyborg_base_icon
+	if(stat != DEAD && !(IsUnconscious() || IsStun() || IsKnockdown() || low_power_mode)) //Not dead, not stunned.
+		if(!eye_lights)
+			eye_lights = new()
+		if(!special_skin)
+			if(lamp_intensity > 2)
+				eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_l"
+			else
+				eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
+		else
+			eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
+		eye_lights.icon = icon
+		add_overlay(eye_lights)
+	if(opened)
+		if(wiresexposed)
+			add_overlay("ov-opencover +w")
+		else if(cell)
+			add_overlay("ov-opencover +c")
+		else
+			add_overlay("ov-opencover -c")
+	if(hat)
+		var/mutable_appearance/head_overlay = hat.build_worn_icon(state = hat.icon_state, default_layer = 20, default_icon_file = 'icons/mob/head.dmi')
+		head_overlay.pixel_y += hat_offset
+		add_overlay(head_overlay)
+	update_fire()
