@@ -1,2 +1,2 @@
 /client
-	connection_number = 0
+	var/connection_number = 0
