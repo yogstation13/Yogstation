@@ -62,8 +62,14 @@ before_script:
   - tools/travis/before_build_byond.sh
 
 script:
+<<<<<<< HEAD
   - tools/travis/check_filedirs.sh yogstation.dme
   - tools/travis/build_tools.sh
   - tools/travis/build_dependencies.sh
+=======
+  - tools/travis/check_filedirs.sh tgstation.dme
+  - tools/travis/build_tools.sh || travis_terminate
+  - tools/travis/build_dependencies.sh || travis_terminate
+>>>>>>> 2c4a9d616c... Makes travis fail fast (#38515)
   - tools/travis/build_byond.sh
 
