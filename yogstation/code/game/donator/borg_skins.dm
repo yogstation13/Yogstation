@@ -44,19 +44,22 @@ SUBSYSTEM_DEF(YogFeatures)
 	if(is_donator(client)) //First off, are we even meant to have this verb?
 		var/datum/borg_skin/skins = list()
 		for(var/datum/borg_skin/S in SSYogFeatures.DonorBorgHolder.skins)
-			if(S.owner == client.ckey) //We own this skin.
+			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				skins += S //So add it to the temp list which we'll iterate through
-				to_chat(world,S.name)
+			//	to_chat(world,S.name)
 			else
 				return //Nope, not one of ours!
 		var/datum/borg_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
-		A = input(src,"Here's a list of your available silicon skins, pick one! (You can only do this once per round)", "Donator silicon skin picker 9000", A) as null|anything in skins//Pick any datum from the list we just established up here ^^
+		A = input(src,"Here's a list of your available silicon skins, pick one! (To reset your choice, get a module reset)", "Donator silicon skin picker 9000", A) as null|anything in skins//Pick any datum from the list we just established up here ^^
 		if(!A)
 			return
+		if(A.name == "Cancel")
+			to_chat(src, "You've chosen to use the standard skinset instead of a custom one")
+			return 0
 		icon = A.icon
 		icon_state = "[A.icon_state]"
 		to_chat(src, "You have successfully applied the skin: [A.name]")
-		return
+		return 1
 	else
 		to_chat(src, "This is a premium feature! it's not included in the base game, if you want to be able to pick a skin for your borg / AI characters, please donate using the link above!")
 		return 0 // :^(
@@ -86,5 +89,60 @@ SUBSYSTEM_DEF(YogFeatures)
 
 /datum/borg_skin/snail
 	name = "Snailborg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
 	icon_state = "snail"
-	owner = "kmc20001"
+	owner = "drderp3635"
+
+/datum/borg_skin/fallout
+	name = "Fallout Borg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "falloutsecborg"
+	owner = "lilhagan"
+
+/datum/borg_skin/prawnborg
+	name = "Distrct 9 Borg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "prawnborg"
+	owner = "smudgels"
+
+/datum/borg_skin/tronsec
+	name = "Neon blue secborg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "tronsecborg"
+	owner = null
+
+/datum/borg_skin/tronjani
+	name = "Neon blue janiborg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "tronjaniborg"
+	owner = null
+
+/datum/borg_skin/tronservice
+	name = "Neon blue service borg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "tronservice"
+	owner = null
+
+/datum/borg_skin/tronengiborg
+	name = "Neon blue engineering borg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "tronengiborg"
+	owner = null
+
+/datum/borg_skin/tronmedicalborg
+	name = "Neon blue medical borg"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "tronmedicalborg"
+	owner = null
+
+/datum/borg_skin/glados //Originally made for mayhemsailor but uh...yeaaah
+	name = "Bipedal GlaDos"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = "glados"
+	owner = null
+
+/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
+	name = "Cancel"
+	icon = 'yogstation/icons/mob/DonorRobots.dmi'
+	icon_state = null
+	owner = null
