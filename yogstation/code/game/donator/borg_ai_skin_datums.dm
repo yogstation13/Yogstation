@@ -41,7 +41,7 @@
 	module_locked = "Security"
 
 /datum/borg_skin/prawnborg
-	name = "Distrct 9 Borg"
+	name = "District 9 Borg"
 	icon_state = "prawnborg"
 	owner = "smudgels"
 
@@ -80,7 +80,7 @@
 	icon_state = "glados"
 	owner = null
 
-/datum/borg_skin/tronsec
+/datum/borg_skin/dio
 	name = "DIO L.I.T.E"
 	icon_state = "diosecborg"
 	owner = "atrealdonaldtrump"
