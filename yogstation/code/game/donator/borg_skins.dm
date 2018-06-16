@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(YogFeatures)
 		if(!src in SSYogFeatures.DonorBorgHolder.skins)
 			SSYogFeatures.DonorBorgHolder.AddSkin(src) //On new, add the skin to the borg skin database
 
-/mob/living/silicon/robot/proc/PickBorgSkin(var/forced = 0) //We'll do our own AI version inside its pre existent skin selector methinks
+/mob/living/silicon/robot/proc/PickBorgSkin(var/forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
 	if(!SSYogFeatures.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")
@@ -69,149 +69,6 @@ SUBSYSTEM_DEF(YogFeatures)
 		to_chat(src, "You have successfully applied the skin: [A.name]")
 		return TRUE
 
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-//  IMPORTANT! IF YOU'RE ADDING A DONATOR SKIN FOR SOMEONE, PLEASE FOLLOW THE FORMAT BELOW!   //
-////////////////////////////////////////////////////////////////////////////////////////////////
-//============================================================================================\\
-//>------------------------------------Template below-----------------------------------------<\\
-
-/*
-
-/datum/borg_skin/MadVenturerIsBadAtSiege
-	name = "HeUsesAcog"
-	icon = 'yogstation/icons/mob/DonorRobots.dmi'
-	icon_state = "saltborg"
-	owner = "asv9"
-	module_locked = "Security"
-
-*/
-
-// And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation-TG/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
-
-/datum/borg_skin //Give it a unique type
-	var/name = "A borg skin" //Give it a name! This will be visible when it's being picked
-	var/icon = 'yogstation/icons/mob/DonorRobots.dmi'
-	var/icon_state = null//Change this icon_state to the NAME OF THE BORG SKIN IN THE DMI ABOVE
-	var/owner = null//The owner of this borg skin, this should be their ckey in lower case!
-	var/module_locked = null //Is this skin for a specific module? don't want a janiborg looking like a secborg, as hilarious as that sounds
-
-/datum/borg_skin/droideka
-	name = "Droideka secborg"
-	icon_state = "droideka"
-	owner = "kmc2000"
-	module_locked = "Security"
-
-/*							PENDING SPRITE!
-/datum/borg_skin/snail
-	name = "Snailborg"
-	icon_state = "snail"
-	owner = "drderp3635"
-*/
-
-/datum/borg_skin/fallout
-	name = "Fallout Borg"
-	icon_state = "falloutsecborg"
-	owner = "lilhagan"
-	module_locked = "Security"
-
-/datum/borg_skin/prawnborg
-	name = "Distrct 9 Borg"
-	icon_state = "prawnborg"
-	owner = "smudgels"
-
-/datum/borg_skin/tronsec
-	name = "Neon blue secborg"
-	icon_state = "tronsecborg"
-	owner = null
-	module_locked = "Security"
-
-/datum/borg_skin/tronjani
-	name = "Neon blue janiborg"
-	icon_state = "tronjaniborg"
-	owner = null
-	module_locked = "Janitor"
-
-/datum/borg_skin/tronservice
-	name = "Neon blue service borg"
-	icon_state = "tronservice"
-	owner = null
-	module_locked = "Service"
-
-/datum/borg_skin/tronengiborg
-	name = "Neon blue engineering borg"
-	icon_state = "tronengiborg"
-	owner = null
-	module_locked = "Engineering"
-
-/datum/borg_skin/tronmedicalborg
-	name = "Neon blue medical borg"
-	icon_state = "tronmedicalborg"
-	owner = null
-	module_locked = "Medical"
-
-/datum/borg_skin/glados //Originally made for mayhemsailor but uh...yeaaah
-	name = "Bipedal GlaDos"
-	icon_state = "glados"
-	owner = null
-
-/datum/borg_skin/tronsec
-	name = "DIO L.I.T.E"
-	icon_state = "diosecborg"
-	owner = "atrealdonaldtrump"
-	module_locked = "Security"
-
-/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null
-	owner = null
-
-//Begin AI skins://
-/* These follow the same format as borg skins GOTO 75. */
-
-/datum/ai_skin
-	var/name = "A cool ai skin"
-	var/icon = 'yogstation/icons/mob/DonorRobots.dmi'
-	var/icon_state = "ai_dead"
-	var/owner = null
-
-/datum/ai_skin/ducc
-	name = "Angel"
-	icon_state = "ducc"
-	owner = "lilhagan"
-
-/datum/ai_skin/sneaker
-	name = "Sneaker database"
-	icon_state = "sneaker_database"
-	owner = "kmc2000"
-
-/datum/ai_skin/dio
-	name = "D.I.O"
-	icon_state = "dioAI"
-	owner = "atrealdonaldtrump"
-
-/datum/ai_skin/dio
-	name = "Nick Crompton"
-	icon_state = "nickcrompton"
-	owner = "drderp3635"
-
-/datum/ai_skin/nich
-	name = "You spin me right round right round nich like a record baby round round"
-	icon_state = "oneofourcouncilmembers"
-	owner = "nichlas0010"
-
-/datum/ai_skin/tokamak
-	name = "Tokamak fusion generator mk.1"
-	icon_state = "tokamak"
-	owner = null
-
-/datum/ai_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null
-	owner = null
-
 //I'm overriding this so that donors will be able to pick their borg skin after choosing a module.
 /obj/item/robot_module/do_transform_delay()
 	var/mob/living/silicon/robot/R = loc
@@ -219,14 +76,14 @@ SUBSYSTEM_DEF(YogFeatures)
 	sleep(1)
 	flick("[cyborg_base_icon]_transform", R)
 	R.notransform = TRUE
-	R.SetLockdown(1)
+	R.SetLockdown(TRUE)
 	R.anchored = TRUE
 	sleep(1)
 	for(var/i in 1 to 4)
 		playsound(R, pick('sound/items/drill_use.ogg', 'sound/items/jaws_cut.ogg', 'sound/items/jaws_pry.ogg', 'sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		sleep(7)
 	if(!prev_lockcharge)
-		R.SetLockdown(0)
+		R.SetLockdown(FALSE)
 	R.setDir(SOUTH)
 	R.anchored = FALSE
 	R.notransform = FALSE
@@ -243,12 +100,16 @@ SUBSYSTEM_DEF(YogFeatures)
 	set name = "Set AI Core Display"
 	if(incapacitated())
 		return
+	PickAiSkin()
+
+
+/mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)
 	if(!SSYogFeatures.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their AI skin, but there is no borg skin holder datum! (Has the game not started yet?)")
 		to_chat(src, "An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this")
 		return
-	if(is_donator(client))//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
+	if(is_donator(client) || forced)//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
 		var/datum/ai_skin/skins = list()
 		for(var/datum/ai_skin/S in SSYogFeatures.DonorBorgHolder.skins)
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
@@ -262,68 +123,69 @@ SUBSYSTEM_DEF(YogFeatures)
 			icon_state = A.icon_state
 			to_chat(src, "You have successfully applied the skin: [A.name]")
 			return
-	var/icontype = input("Please, select a display!", "AI", null/*, null*/) in list("Clown", "Monochrome", "Blue", "Inverted", "Firewall", "Green", "Red", "Static", "Red October", "House", "Heartline", "Hades", "Helios", "President", "Syndicat Meow", "Alien", "Too Deep", "Triumvirate", "Triumvirate-M", "Text", "Matrix", "Dorf", "Bliss", "Not Malf", "Fuzzy", "Goon", "Database", "Glitchman", "Murica", "Nanotrasen", "Gentoo", "Angel")
-	if(icontype == "Clown") //To whomever it concerns. Please use a switch statement next time :)
-		icon_state = "ai-clown2"
-	else if(icontype == "Monochrome")
-		icon_state = "ai-mono"
-	else if(icontype == "Blue")
-		icon_state = "ai"
-	else if(icontype == "Inverted")
-		icon_state = "ai-u"
-	else if(icontype == "Firewall")
-		icon_state = "ai-magma"
-	else if(icontype == "Green")
-		icon_state = "ai-wierd"
-	else if(icontype == "Red")
-		icon_state = "ai-malf"
-	else if(icontype == "Static")
-		icon_state = "ai-static"
-	else if(icontype == "Red October")
-		icon_state = "ai-redoctober"
-	else if(icontype == "House")
-		icon_state = "ai-house"
-	else if(icontype == "Heartline")
-		icon_state = "ai-heartline"
-	else if(icontype == "Hades")
-		icon_state = "ai-hades"
-	else if(icontype == "Helios")
-		icon_state = "ai-helios"
-	else if(icontype == "President")
-		icon_state = "ai-pres"
-	else if(icontype == "Syndicat Meow")
-		icon_state = "ai-syndicatmeow"
-	else if(icontype == "Alien")
-		icon_state = "ai-alien"
-	else if(icontype == "Too Deep")
-		icon_state = "ai-toodeep"
-	else if(icontype == "Triumvirate")
-		icon_state = "ai-triumvirate"
-	else if(icontype == "Triumvirate-M")
-		icon_state = "ai-triumvirate-malf"
-	else if(icontype == "Text")
-		icon_state = "ai-text"
-	else if(icontype == "Matrix")
-		icon_state = "ai-matrix"
-	else if(icontype == "Dorf")
-		icon_state = "ai-dorf"
-	else if(icontype == "Bliss")
-		icon_state = "ai-bliss"
-	else if(icontype == "Not Malf")
-		icon_state = "ai-notmalf"
-	else if(icontype == "Fuzzy")
-		icon_state = "ai-fuzz"
-	else if(icontype == "Goon")
-		icon_state = "ai-goon"
-	else if(icontype == "Database")
-		icon_state = "ai-database"
-	else if(icontype == "Glitchman")
-		icon_state = "ai-glitchman"
-	else if(icontype == "Murica")
-		icon_state = "ai-murica"
-	else if(icontype == "Nanotrasen")
-		icon_state = "ai-nanotrasen"
-	else if(icontype == "Gentoo")
-		icon_state = "ai-gentoo"
-	else if(icontype == "Angel")
-		icon_state = "ai-angel"
+	else
+		var/icontype = input("Please, select a display!", "AI", null/*, null*/) in list("Clown", "Monochrome", "Blue", "Inverted", "Firewall", "Green", "Red", "Static", "Red October", "House", "Heartline", "Hades", "Helios", "President", "Syndicat Meow", "Alien", "Too Deep", "Triumvirate", "Triumvirate-M", "Text", "Matrix", "Dorf", "Bliss", "Not Malf", "Fuzzy", "Goon", "Database", "Glitchman", "Murica", "Nanotrasen", "Gentoo", "Angel")
+		if(icontype == "Clown") //To whomever it concerns. Please use a switch statement next time :)
+			icon_state = "ai-clown2"
+		else if(icontype == "Monochrome")
+			icon_state = "ai-mono"
+		else if(icontype == "Blue")
+			icon_state = "ai"
+		else if(icontype == "Inverted")
+			icon_state = "ai-u"
+		else if(icontype == "Firewall")
+			icon_state = "ai-magma"
+		else if(icontype == "Green")
+			icon_state = "ai-wierd"
+		else if(icontype == "Red")
+			icon_state = "ai-malf"
+		else if(icontype == "Static")
+			icon_state = "ai-static"
+		else if(icontype == "Red October")
+			icon_state = "ai-redoctober"
+		else if(icontype == "House")
+			icon_state = "ai-house"
+		else if(icontype == "Heartline")
+			icon_state = "ai-heartline"
+		else if(icontype == "Hades")
+			icon_state = "ai-hades"
+		else if(icontype == "Helios")
+			icon_state = "ai-helios"
+		else if(icontype == "President")
+			icon_state = "ai-pres"
+		else if(icontype == "Syndicat Meow")
+			icon_state = "ai-syndicatmeow"
+		else if(icontype == "Alien")
+			icon_state = "ai-alien"
+		else if(icontype == "Too Deep")
+			icon_state = "ai-toodeep"
+		else if(icontype == "Triumvirate")
+			icon_state = "ai-triumvirate"
+		else if(icontype == "Triumvirate-M")
+			icon_state = "ai-triumvirate-malf"
+		else if(icontype == "Text")
+			icon_state = "ai-text"
+		else if(icontype == "Matrix")
+			icon_state = "ai-matrix"
+		else if(icontype == "Dorf")
+			icon_state = "ai-dorf"
+		else if(icontype == "Bliss")
+			icon_state = "ai-bliss"
+		else if(icontype == "Not Malf")
+			icon_state = "ai-notmalf"
+		else if(icontype == "Fuzzy")
+			icon_state = "ai-fuzz"
+		else if(icontype == "Goon")
+			icon_state = "ai-goon"
+		else if(icontype == "Database")
+			icon_state = "ai-database"
+		else if(icontype == "Glitchman")
+			icon_state = "ai-glitchman"
+		else if(icontype == "Murica")
+			icon_state = "ai-murica"
+		else if(icontype == "Nanotrasen")
+			icon_state = "ai-nanotrasen"
+		else if(icontype == "Gentoo")
+			icon_state = "ai-gentoo"
+		else if(icontype == "Angel")
+			icon_state = "ai-angel"
