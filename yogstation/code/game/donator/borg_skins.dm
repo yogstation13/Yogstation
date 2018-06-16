@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(YogFeatures)
 		icon_state = A.icon_state
 		cut_overlays()
 		eye_lights.icon = A.icon
-		eye_lights.icon_state = "[icon_state]-e"
+		eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 		add_overlay(eye_lights)
 		to_chat(src, "You have successfully applied the skin: [A.name]")
 		special_skin = TRUE
