@@ -94,14 +94,12 @@ SUBSYSTEM_DEF(YogFeatures)
 	SSblackbox.record_feedback("tally", "cyborg_modules", 1, R.module)
 	R.PickBorgSkin()
 
-
 /mob/living/silicon/ai/pick_icon() //Who the fuck wrote this shit????? Hello???
 	set category = "AI Commands"
 	set name = "Set AI Core Display"
 	if(incapacitated())
 		return
 	PickAiSkin()
-
 
 /mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)

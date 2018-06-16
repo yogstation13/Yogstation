@@ -5,16 +5,13 @@
 //>------------------------------------Template below-----------------------------------------<\\
 
 /*
-
 /datum/borg_skin/MadVenturerIsBadAtSiege
 	name = "HeUsesAcog"
 	icon = 'yogstation/icons/mob/DonorRobots.dmi'
 	icon_state = "saltborg"
 	owner = "asv9"
 	module_locked = "Security"
-
 */
-
 // And finally, if you want to lock your skin to any specific module, just put module_locked as the name of any of these modules: https://github.com/yogstation13/Yogstation-TG/blob/c3a439daa6b6f8496f47ce55235d30b513334749/code/modules/mob/living/silicon/robot/robot_modules.dm"
 
 /datum/borg_skin //Give it a unique type
@@ -89,11 +86,6 @@
 	owner = "atrealdonaldtrump"
 	module_locked = "Security"
 
-/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null
-	owner = null
-
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
@@ -134,6 +126,11 @@
 	owner = null
 
 /datum/ai_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
+	name = "Cancel"
+	icon_state = null
+	owner = null
+
+/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
 	name = "Cancel"
 	icon_state = null
 	owner = null
