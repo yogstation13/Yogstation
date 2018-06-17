@@ -432,6 +432,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 
+	sync_logout_with_db(connection_number) // yogs - logout logging
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
@@ -524,6 +525,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		account_join_date = "Error"
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')),'[world.port]','[GLOB.round_id]','[sql_ckey]',INET_ATON('[sql_ip]'),'[sql_computerid]')")
 	query_log_connection.Execute()
+	// yogs start - logout logging
+	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `serverip`=INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')) AND `ckey`='[sql_ckey]' AND `ip`='[sql_ip]' AND `computerid`='[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
+	query_getid.Execute()
+	while (query_getid.NextRow())
+		connection_number = query_getid.item[1]
+	// yogs end
 	if(new_player)
 		player_age = -1
 	. = player_age
