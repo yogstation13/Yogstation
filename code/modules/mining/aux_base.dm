@@ -260,6 +260,7 @@ obj/docking_port/stationary/public_mining_dock
 	dwidth = 3
 	width = 7
 	height = 5
+	area_type = /area/construction/mining/aux_base
 
 /obj/structure/mining_shuttle_beacon
 	name = "mining shuttle beacon"
