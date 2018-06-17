@@ -50,6 +50,9 @@ SUBSYSTEM_DEF(YogFeatures)
 		if(module.name == "Default")
 			to_chat(src, "Please choose a module first! (Standard works too)")
 			return FALSE
+		if(module.name == "Syndicate")
+			to_chat(src, "You cannot reskin a syndicate cyborg :(")
+			return FALSE
 		var/datum/borg_skin/skins = list()
 		for(var/datum/borg_skin/S in SSYogFeatures.DonorBorgHolder.skins)
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
@@ -220,3 +223,7 @@ SUBSYSTEM_DEF(YogFeatures)
 		head_overlay.pixel_y += hat_offset
 		add_overlay(head_overlay)
 	update_fire()
+
+/mob/living/silicon/robot/examine(mob/user)
+	. = ..()
+	to_chat(user, "It seems to have the [module.name] module loaded")

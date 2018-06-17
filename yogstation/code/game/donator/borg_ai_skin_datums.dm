@@ -86,6 +86,24 @@
 	owner = "atrealdonaldtrump"
 	module_locked = "Security"
 
+/datum/borg_skin/brainjar
+	name = "Cryojar"
+	icon_state = "brainjar"
+	owner = "qe"
+	module_locked = null
+
+/datum/borg_skin/angel
+	name = "Angel"
+	icon_state = "angel"
+	owner = "lilhagan"
+	module_locked = null
+
+/datum/borg_skin/paladin
+	name = "Silver Paladin"
+	icon_state = "paladin"
+	owner = null
+	module_locked = "Security"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
