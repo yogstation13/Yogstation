@@ -288,7 +288,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_analyzer
-	name = "Subspace Analyzer"
+	name = "Subspace Wavelength Analyzer" //yogs - added Wavelength
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
 	id = "s-analyzer"
 	build_type = PROTOLATHE
