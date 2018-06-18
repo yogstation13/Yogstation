@@ -1,14 +1,10 @@
 //GLOBAL_VAR_INIT(DonorBorgHolder, /datum/borg_skin_holder) Tried doing it this way, didn't work. :(
-SUBSYSTEM_DEF(YogFeatures)
-	name = "Yog Features" //Kmc's feature dump subsystem
-	flags = SS_BACKGROUND
-	priority = 10
-	var/datum/borg_skin_holder/DonorBorgHolder //Holder datum for borg skins
+GLOBAL_DATUM(DonorBorgHolder, /datum/borg_skin_holder)
 
-/datum/controller/subsystem/YogFeatures/fire(resumed = 0) //Runtime avoidance / Anti-Deleting donors
-	if(!DonorBorgHolder)
-		DonorBorgHolder = new /datum/borg_skin_holder
-		return
+/world/New()
+	. = ..()
+	GLOB.DonorBorgHolder = new /datum/borg_skin_holder
+
 /mob/living/silicon/robot
 	var/special_skin = FALSE //Have we got a donor only skin?
 
@@ -36,13 +32,13 @@ SUBSYSTEM_DEF(YogFeatures)
 		log_game("Successfully added the [B.name] donor borg skin to the datumbase!")
 
 /datum/borg_skin/New()
-	if(SSYogFeatures.DonorBorgHolder)
-		if(!src in SSYogFeatures.DonorBorgHolder.skins)
-			SSYogFeatures.DonorBorgHolder.AddSkin(src) //On new, add the skin to the borg skin database
+	if(GLOB.DonorBorgHolder)
+		if(!src in GLOB.DonorBorgHolder.skins)
+			GLOB.DonorBorgHolder.AddSkin(src) //On new, add the skin to the borg skin database
 
 /mob/living/silicon/robot/proc/PickBorgSkin(var/forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
-	if(!SSYogFeatures.DonorBorgHolder)
+	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")
 		to_chat(src, "An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this")
 		return FALSE
@@ -54,7 +50,7 @@ SUBSYSTEM_DEF(YogFeatures)
 			to_chat(src, "You cannot reskin a syndicate cyborg :(")
 			return FALSE
 		var/datum/borg_skin/skins = list()
-		for(var/datum/borg_skin/S in SSYogFeatures.DonorBorgHolder.skins)
+		for(var/datum/borg_skin/S in GLOB.DonorBorgHolder.skins)
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				if(!S.module_locked || S.module_locked == module.name)
 					skins += S //So add it to the temp list which we'll iterate through
@@ -110,13 +106,13 @@ SUBSYSTEM_DEF(YogFeatures)
 
 /mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)
-	if(!SSYogFeatures.DonorBorgHolder)
+	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their AI skin, but there is no borg skin holder datum! (Has the game not started yet?)")
 		to_chat(src, "An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this")
 		return
 	if(is_donator(client) || forced)//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
 		var/datum/ai_skin/skins = list()
-		for(var/datum/ai_skin/S in SSYogFeatures.DonorBorgHolder.skins)
+		for(var/datum/ai_skin/S in GLOB.DonorBorgHolder.skins)
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				skins += S //So add it to the temp list which we'll iterate through
 		var/datum/ai_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
