@@ -62,8 +62,14 @@ before_script:
   - tools/travis/before_build_byond.sh
 
 script:
+<<<<<<< HEAD
   - tools/travis/check_filedirs.sh yogstation.dme
   - tools/travis/build_tools.sh || travis_terminate
   - tools/travis/build_dependencies.sh || travis_terminate
+=======
+  - tools/travis/check_filedirs.sh tgstation.dme
+  - tools/travis/build_tools.sh || travis_terminate 1
+  - tools/travis/build_dependencies.sh || travis_terminate 1
+>>>>>>> a31156d2ac... Fixes failing tools/dependencies builds succeeding the entire build (#38581)
   - tools/travis/build_byond.sh
 
