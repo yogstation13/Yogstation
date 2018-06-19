@@ -137,6 +137,11 @@
 	name = "You spin me right round right round nich like a record baby round round"
 	icon_state = "oneofourcouncilmembers"
 	owner = "nichlas0010"
+	
+/datum/ai_skin/ling
+	name = "You spin me right round right round nich like a record baby round round"
+	icon_state = "oneofourcouncilmembers"
+	owner = "thatling"
 
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
