@@ -12,7 +12,8 @@
 			to_chat(src, "You cannot reskin a syndicate cyborg :(")
 			return FALSE
 		var/datum/borg_skin/skins = list()
-		for(var/datum/borg_skin/S in GLOB.DonorBorgHolder.skins)
+		for(var/T in GLOB.DonorBorgHolder.skins)
+			var/datum/borg_skin/S = T
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				if(!S.module_locked || S.module_locked == module.name)
 					skins += S //So add it to the temp list which we'll iterate through
