@@ -2667,6 +2667,7 @@
 #include "yogstation\code\modules\clothing\donator.dm"
 #include "yogstation\code\modules\clothing\head\jobs.dm"
 #include "yogstation\code\modules\clothing\shoes\miscellaneous.dm"
+#include "yogstation\code\modules\clothing\shoes\special_shoes.dm"
 #include "yogstation\code\modules\clothing\spacesuits\hardsuit.dm"
 #include "yogstation\code\modules\clothing\suits\labcoat.dm"
 #include "yogstation\code\modules\clothing\suits\miscellaneous.dm"
