@@ -10,10 +10,10 @@
 	icon_state = "ai"
 	if(incapacitated())
 		return
-	if(PickAiSkin())
-		return
+	if(is_donator(client))
+		PickAiSkin()
 	else
-		. = ..()
+		return ..()
 
 /mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)
