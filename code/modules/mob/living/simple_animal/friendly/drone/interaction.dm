@@ -32,6 +32,14 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/simple_animal/drone/attack_hand(mob/user)
 	if(ishuman(user))
+		//yog start
+		if(user.a_intent == INTENT_HELP) // If user is nice
+			user.visible_message("[user] pets [src].", \
+							"<span class='notice'>You pet [src].</span>") // Then be pet. <3
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1) // hug.ogg
+			return
+		//Else, attempt to pick'em up
+		//yogs end
 		if(stat == DEAD || status_flags & GODMODE || !can_be_held)
 			..()
 			return
@@ -158,6 +166,8 @@
 /mob/living/simple_animal/drone/proc/liberate()
 	// F R E E D R O N E
 	laws = "1. You are a Free Drone."
+	flavortext = "" // yogs - They don't need all the bullshit about drone interaction,
+	// if they're not gonna have laws.
 	to_chat(src, laws)
 
 /mob/living/simple_animal/drone/proc/update_drone_icon()
