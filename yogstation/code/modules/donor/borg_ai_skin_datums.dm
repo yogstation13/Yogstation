@@ -48,37 +48,31 @@
 /datum/borg_skin/tronsec
 	name = "Neon blue secborg"
 	icon_state = "tronsecborg"
-	owner = null
 	module_locked = "Security"
 
 /datum/borg_skin/tronjani
 	name = "Neon blue janiborg"
 	icon_state = "tronjaniborg"
-	owner = null
 	module_locked = "Janitor"
 
 /datum/borg_skin/tronservice
 	name = "Neon blue service borg"
 	icon_state = "tronservice"
-	owner = null
 	module_locked = "Service"
 
 /datum/borg_skin/tronengiborg
 	name = "Neon blue engineering borg"
 	icon_state = "tronengiborg"
-	owner = null
 	module_locked = "Engineering"
 
 /datum/borg_skin/tronmedicalborg
 	name = "Neon blue medical borg"
 	icon_state = "tronmedicalborg"
-	owner = null
 	module_locked = "Medical"
 
 /datum/borg_skin/glados //Originally made for mayhemsailor but uh...yeaaah
 	name = "Bipedal GlaDos"
 	icon_state = "glados"
-	owner = null
 
 /datum/borg_skin/dio
 	name = "DIO L.I.T.E"
@@ -101,7 +95,6 @@
 /datum/borg_skin/paladin
 	name = "Silver Paladin"
 	icon_state = "paladin"
-	owner = null
 	module_locked = "Security"
 
 //Begin AI skins://
@@ -146,14 +139,11 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
-	owner = null
 
 /datum/ai_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
 	name = "Cancel"
 	icon_state = null
-	owner = null
 
 /datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
 	name = "Cancel"
 	icon_state = null
-	owner = null
