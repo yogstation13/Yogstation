@@ -67,7 +67,6 @@
 
 /obj/item/drone_shell/syndrone/badass
 	name = "badass syndrone shell"
-	desc = "A shell of a particularly badass-looking syndrone. You should probably burn this." //yogs
 	drone_type = /mob/living/simple_animal/drone/syndrone/badass
 
 /obj/item/drone_shell/snowflake
@@ -110,7 +109,7 @@
 	icon_dead = "drone_clock_dead"
 	picked = TRUE
 	pass_flags = PASSTABLE
-	health = 50 // A fair bit stronger than normal drones, actually.
+	health = 50
 	maxHealth = 50
 	harm_intent_damage = 5
 	density = TRUE
