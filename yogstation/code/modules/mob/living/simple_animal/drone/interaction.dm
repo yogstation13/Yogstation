@@ -36,7 +36,12 @@
 		drop_all_held_items()
 		var/obj/item/clothing/head/mob_holder/drone/DH = new(get_turf(src), src)
 		user.put_in_hands(DH)
-
+/mob/living/simple_animal/drone/proc/liberate()
+	// F R E E D R O N E
+	laws = "1. You are a Free Drone."
+	flavortext = "" // yogs - They don't need all the bullshit about drone interaction,
+	// if they're not gonna have laws.
+	to_chat(src, laws)
 /mob/living/simple_animal/drone/proc/yogs_drone_hack(hack, clockwork, mob/user) // Basically an edited version of update_drone_hack.
 //Based on what update_drone_hack was on 19th of June, 2018.
 	if(!istype(src))
