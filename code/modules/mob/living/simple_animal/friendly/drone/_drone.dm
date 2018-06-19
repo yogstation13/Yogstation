@@ -31,7 +31,8 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	healable = 0
 	density = FALSE
-	pass_flags = PASSTABLE | PASSMOB
+	pass_flags = PASSTABLE | PASSMOB | PASSDOOR //yogs - allowed drones to pass thru airlocks again :D
+	light_color = "#E42742" //yogs - A hacked red, for when it needs to glow when hack'rd
 	sight = (SEE_TURFS | SEE_OBJS)
 	status_flags = (CANPUSH | CANSTUN | CANKNOCKDOWN)
 	gender = NEUTER
