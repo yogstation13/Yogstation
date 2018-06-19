@@ -5,6 +5,38 @@
 //How the world interacts with drones
 //Sounds like the pitch for a decent movie tbh
 
+
+//ATTACK HAND IGNORING PARENT RETURN VALUE
+/mob/living/simple_animal/drone/attack_hand(mob/user)
+	if(ishuman(user))
+		//yog start
+		if(user.a_intent == INTENT_HELP) // If user is nice
+			user.visible_message("[user] pets [src].", \
+							"<span class='notice'>You pet [src].</span>") // Then be pet. <3
+			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1) // hug.ogg
+			return
+		//Else, attempt to pick'em up
+		//yogs end
+		if(stat == DEAD || status_flags & GODMODE || !can_be_held)
+			..()
+			return
+		if(user.get_active_held_item())
+			to_chat(user, "<span class='warning'>Your hands are full!</span>")
+			return
+		visible_message("<span class='warning'>[user] starts picking up [src].</span>", \
+						"<span class='userdanger'>[user] starts picking you up!</span>")
+		if(!do_after(user, 20, target = src))
+			return
+		visible_message("<span class='warning'>[user] picks up [src]!</span>", \
+						"<span class='userdanger'>[user] picks you up!</span>")
+		if(buckled)
+			to_chat(user, "<span class='warning'>[src] is buckled to [buckled] and cannot be picked up!</span>")
+			return
+		to_chat(user, "<span class='notice'>You pick [src] up.</span>")
+		drop_all_held_items()
+		var/obj/item/clothing/head/mob_holder/drone/DH = new(get_turf(src), src)
+		user.put_in_hands(DH)
+
 /mob/living/simple_animal/drone/proc/yogs_drone_hack(hack, clockwork, mob/user) // Basically an edited version of update_drone_hack.
 //Based on what update_drone_hack was on 19th of June, 2018.
 	if(!istype(src))
