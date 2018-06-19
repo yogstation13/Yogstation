@@ -360,13 +360,8 @@
 
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-<<<<<<< HEAD
 			if(role in player.client.prefs.be_special ) //&& !(player.mind.quiet_round)) // yogs - Donor features, quiet round
-				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !jobban_isbanned(player, role)) //Nodrak/Carn: Antag Job-bans
-=======
-			if(role in player.client.prefs.be_special)
 				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player)) //Nodrak/Carn: Antag Job-bans
->>>>>>> cf7e8aa9ec... Qdels queries, adds sleep safety checks, DBcore checks for leaks (#38363)
 					if(age_check(player.client)) //Must be older than the minimum age
 						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
 
