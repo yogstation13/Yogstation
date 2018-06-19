@@ -26,8 +26,9 @@
 	"1. Interfere.\n"+\
 	"2. Kill.\n"+\
 	"3. Destroy."
-	default_storage = /obj/item/uplink
+	default_storage = /obj/item/radio/uplink
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi
+	seeStatic = 0 //Our programming is superior.
 	hacked = TRUE
 	flavortext = null
 
@@ -43,7 +44,7 @@
 /mob/living/simple_animal/drone/syndrone/badass
 	name = "Badass Syndrone"
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
-	default_storage = /obj/item/uplink/nuclear
+	default_storage = /obj/item/radio/uplink/nuclear
 
 /mob/living/simple_animal/drone/syndrone/badass/Initialize()
 	. = ..()
@@ -67,6 +68,7 @@
 
 /obj/item/drone_shell/syndrone/badass
 	name = "badass syndrone shell"
+	desc = "A shell of a particularly badass-looking syndrone. You should probably burn this." //yogs
 	drone_type = /mob/living/simple_animal/drone/syndrone/badass
 
 /obj/item/drone_shell/snowflake
@@ -109,7 +111,7 @@
 	icon_dead = "drone_clock_dead"
 	picked = TRUE
 	pass_flags = PASSTABLE
-	health = 50
+	health = 50 // A fair bit stronger than normal drones, actually.
 	maxHealth = 50
 	harm_intent_damage = 5
 	density = TRUE
@@ -127,6 +129,7 @@
 	heavy_emp_damage = 0
 	laws = "0. Purge all untruths and honor Ratvar."
 	default_storage = /obj/item/storage/toolbox/brass/prefilled
+	seeStatic = 0
 	hacked = TRUE
 	visualAppearence = CLOCKDRONE
 	can_be_held = FALSE
