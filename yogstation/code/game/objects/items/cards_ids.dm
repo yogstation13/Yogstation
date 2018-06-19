@@ -60,5 +60,8 @@
 /obj/item/card/id/silver
 	icon_state = "id_silver"
 
+/obj/item/card/id/gold
+	icon_state = "id_gold"
+
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
