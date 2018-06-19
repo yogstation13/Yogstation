@@ -2675,6 +2675,7 @@
 #include "yogstation\code\modules\donor\borg_ai_skin_datums.dm"
 #include "yogstation\code\modules\donor\borg_skins.dm"
 #include "yogstation\code\modules\donor\donor_items.dm"
+#include "yogstation\code\modules\donor\robot.dm"
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
 #include "yogstation\code\modules\events\ion_storm.dm"
 #include "yogstation\code\modules\events\weightless.dm"
