@@ -1,40 +1,34 @@
-/obj/item/clothing/shoes/yogs/fuzzy_slippers
-	name = "fuzzy bunny slippers"
-	desc = "No animals were harmed in the making of these fuzzy slippers"
-	icon_state = "fuzzyslippers"
-	item_state = "fuzzyslippers"
-
-/obj/item/clothing/shoes/yogs/yeezy
+/obj/item/clothing/shoes/yogs/trainers
 	name = "Black and white sneakers"
 	desc = "Cheaply made shoes endorsed by several famous rappers such as Lil' Ling, XXXGreentext and Ash Drake, they're comfortable and have a reactive midsole. This pair is black and white."
 	icon_state = "oreo"
 	item_state = "oreo"
 
-/obj/item/clothing/shoes/yogs/red
+/obj/item/clothing/shoes/yogs/trainers/red
 	name = "Black and red sneakers"
 	desc = "Cheaply made shoes endorsed by several famous rappers such as Lil' Ling, XXXGreentext and Ash Drake, they're comfortable and have a reactive midsole. This pair looks familiar."
 	icon_state = "red"
 	item_state = "red"
 
-/obj/item/clothing/shoes/yogs/yeezy/white
+/obj/item/clothing/shoes/yogs/trainers/white
 	name = "Quadrouple white sneakers"
 	desc = "Cheaply made shoes endorsed by several famous rappers such as Lil' Ling, XXXGreentext and Ash Drake, they're comfortable and have a reactive midsole. This pair is white."
 	icon_state = "cream"
 	item_state = "cream"
 
-/obj/item/clothing/shoes/yogs/yeezy/zebra
+/obj/item/clothing/shoes/yogs/trainers/zebra
 	name = "Zebra print sneakers"
 	desc = "Cheaply made shoes endorsed by several famous rappers such as Lil' Ling, XXXGreentext and Ash Drake, they're comfortable and have a reactive midsole. Put them back in the zoo enclosure you got them from."
 	icon_state = "zebra"
 	item_state = "zebra"
 
-/obj/item/clothing/shoes/yogs/yeezy/darkbrown
+/obj/item/clothing/shoes/yogs/trainers/darkbrown
 	name = "Rare brown sneakers"
 	desc = "A fine example of artificial scarcity at its finest! This pair of sneakers is worth a worrying amount of money"
 	icon_state = "moonrock"
 	item_state = "moonrock"
 
-/obj/item/clothing/shoes/yogs/yeezy/black
+/obj/item/clothing/shoes/yogs/trainers/black
 	name = "Rare vox black sneakers"
 	desc = "A fine example of artificial scarcity at its finest! This pair of sneakers is worth a worrying amount of money. This pair is black and red."
 	icon_state = "pirate"
@@ -42,9 +36,9 @@
 
 /obj/item/shoe_protector
 	icon = 'yogstation/icons/obj/shoeprotector.dmi'
-	name = "shoe cleaning spray"
+	name = "cleaning spray"
 	icon_state = "shoeprotect"
-	desc = "A spray that will clean the blood off of shoes / clothing items, the product description is written exclusively in slang using hip terms such as /'family'/ and /'Brudda'/."
+	desc = "A spray that will clean the blood off of shoes / clothing items, the product description is written exclusively in slang using hip terms such as 'family' and 'Brudda'."
 	var/charges = 10
 	var/max_charges = 10
 	var/infinite = FALSE
@@ -52,7 +46,7 @@
 
 /obj/item/shoe_protector/ultra
 	icon_state = "ultraprotect"
-	name = "Mt-x04 Multiphasic /'Flux'/ temporally shifted shoe cleaning spray"
+	name = "mt-x04 Multiphasic 'Flux' temporally shifted shoe cleaning spray"
 	desc = "This shoe cleaning spray uses the latest in reverse temporal engineering to retroactively go back in time to when it was being made (in its current, unfilled state) so that the factory automatically fills it back up for you as if it were hot off the assembly line, meaning that this spraycan will still be full of liquid long after the universe ends."
 	charges = 20
 	max_charges = 20
