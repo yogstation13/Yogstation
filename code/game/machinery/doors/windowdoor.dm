@@ -91,7 +91,7 @@
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && (PASSGLASS | PASSDOOR & mover.pass_flags))//yogs - Drone buff
+	if(istype(mover) && (mover.pass_flags & PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return !density
