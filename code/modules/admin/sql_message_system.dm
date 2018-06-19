@@ -52,18 +52,13 @@
 				return
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery("INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret) VALUES ('[type]', '[target_ckey]', '[admin_ckey]', '[text]', '[timestamp]', '[server]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]','[secret]')")
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]: [text]"
-	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]"
+	var/header = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]" // yogs - Yog Tickets
 	if(!query_create_message.warn_execute())
 		qdel(query_create_message)
 		return
 	qdel(query_create_message)
 	if(logged)
-<<<<<<< HEAD
-		log_admin_private("[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]: [text]")
-		var/header = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_ckey]" : ""]" // yogs - Yog Tickets
-=======
 		log_admin_private(pm)
->>>>>>> cf7e8aa9ec... Qdels queries, adds sleep safety checks, DBcore checks for leaks (#38363)
 		message_admins("[header]:<br>[text]")
 		admin_ticket_log(target_ckey, header) // yogs - Yog Tickets
 		admin_ticket_log(target_ckey, text)
