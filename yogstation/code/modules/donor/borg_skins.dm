@@ -1,9 +1,4 @@
-//GLOBAL_VAR_INIT(DonorBorgHolder, /datum/borg_skin_holder) Tried doing it this way, didn't work. :(
-GLOBAL_DATUM(DonorBorgHolder, /datum/borg_skin_holder)
-
-/world/New()
-	. = ..()
-	GLOB.DonorBorgHolder = new /datum/borg_skin_holder
+GLOBAL_DATUM_INIT(DonorBorgHolder, /datum/borg_skin_holder, new)
 
 /mob/living/silicon/robot
 	var/special_skin = FALSE //Have we got a donor only skin?
@@ -100,125 +95,47 @@ GLOBAL_DATUM(DonorBorgHolder, /datum/borg_skin_holder)
 /mob/living/silicon/ai/pick_icon() //Who the fuck wrote this shit????? Hello???
 	set category = "AI Commands"
 	set name = "Set AI Core Display"
+	icon_state = "ai"
 	if(incapacitated())
 		return
-	PickAiSkin()
+	if(PickAiSkin())
+		return
+	else
+		. = ..()
 
 /mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)
 	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their AI skin, but there is no borg skin holder datum! (Has the game not started yet?)")
 		to_chat(src, "An error occured, if the game has not started yet, please try again after it has. The admins have been notified about this")
-		return
+		return FALSE
 	if(is_donator(client) || forced)//First off, are we even meant to have this verb? or is an admin bruteforcing it onto a non donator for some reason?
 		var/datum/ai_skin/skins = list()
 		for(var/datum/ai_skin/S in GLOB.DonorBorgHolder.skins)
 			if(S.owner == client.ckey || !S.owner) //We own this skin.
 				skins += S //So add it to the temp list which we'll iterate through
 		var/datum/ai_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
-		A = input(src,"You're a donator! Would you like to use a custom AI skin (If not, hit cancel and pick a normal one)", "Donator AI skin picker 9000", A) as null|anything in skins//Pick any datum from the list we just established up here ^^
+		A = input(src,"You're a donator! Would you like to use a custom AI skin? (If not, hit cancel and pick a normal one)", "Donator AI skin picker 9000", A) as null|anything in skins//Pick any datum from the list we just established up here ^^
 		if(!A)
 			return
 		if(A.name != "Cancel")
 			icon =  A.icon
 			icon_state = A.icon_state
 			to_chat(src, "You have successfully applied the skin: [A.name]")
-			return
-	else
-		var/icontype = input("Please, select a display!", "AI", null/*, null*/) in list("Clown", "Monochrome", "Blue", "Inverted", "Firewall", "Green", "Red", "Static", "Red October", "House", "Heartline", "Hades", "Helios", "President", "Syndicat Meow", "Alien", "Too Deep", "Triumvirate", "Triumvirate-M", "Text", "Matrix", "Dorf", "Bliss", "Not Malf", "Fuzzy", "Goon", "Database", "Glitchman", "Murica", "Nanotrasen", "Gentoo", "Angel")
-		if(icontype == "Clown") //To whomever it concerns. Please use a switch statement next time :)
-			icon_state = "ai-clown2"
-		else if(icontype == "Monochrome")
-			icon_state = "ai-mono"
-		else if(icontype == "Blue")
-			icon_state = "ai"
-		else if(icontype == "Inverted")
-			icon_state = "ai-u"
-		else if(icontype == "Firewall")
-			icon_state = "ai-magma"
-		else if(icontype == "Green")
-			icon_state = "ai-wierd"
-		else if(icontype == "Red")
-			icon_state = "ai-malf"
-		else if(icontype == "Static")
-			icon_state = "ai-static"
-		else if(icontype == "Red October")
-			icon_state = "ai-redoctober"
-		else if(icontype == "House")
-			icon_state = "ai-house"
-		else if(icontype == "Heartline")
-			icon_state = "ai-heartline"
-		else if(icontype == "Hades")
-			icon_state = "ai-hades"
-		else if(icontype == "Helios")
-			icon_state = "ai-helios"
-		else if(icontype == "President")
-			icon_state = "ai-pres"
-		else if(icontype == "Syndicat Meow")
-			icon_state = "ai-syndicatmeow"
-		else if(icontype == "Alien")
-			icon_state = "ai-alien"
-		else if(icontype == "Too Deep")
-			icon_state = "ai-toodeep"
-		else if(icontype == "Triumvirate")
-			icon_state = "ai-triumvirate"
-		else if(icontype == "Triumvirate-M")
-			icon_state = "ai-triumvirate-malf"
-		else if(icontype == "Text")
-			icon_state = "ai-text"
-		else if(icontype == "Matrix")
-			icon_state = "ai-matrix"
-		else if(icontype == "Dorf")
-			icon_state = "ai-dorf"
-		else if(icontype == "Bliss")
-			icon_state = "ai-bliss"
-		else if(icontype == "Not Malf")
-			icon_state = "ai-notmalf"
-		else if(icontype == "Fuzzy")
-			icon_state = "ai-fuzz"
-		else if(icontype == "Goon")
-			icon_state = "ai-goon"
-		else if(icontype == "Database")
-			icon_state = "ai-database"
-		else if(icontype == "Glitchman")
-			icon_state = "ai-glitchman"
-		else if(icontype == "Murica")
-			icon_state = "ai-murica"
-		else if(icontype == "Nanotrasen")
-			icon_state = "ai-nanotrasen"
-		else if(icontype == "Gentoo")
-			icon_state = "ai-gentoo"
-		else if(icontype == "Angel")
-			icon_state = "ai-angel"
+			return TRUE
+		else
+			to_chat(src, "You've chosen to use the normal AI skinset")
+			return FALSE
+
 
 /mob/living/silicon/robot/update_icons() //Need to change this, as it's killing donorborgs
-	cut_overlays()
-	if(!special_skin)
-		icon_state = module.cyborg_base_icon
-	if(stat != DEAD && !(IsUnconscious() || IsStun() || IsKnockdown() || low_power_mode)) //Not dead, not stunned.
-		if(!eye_lights)
-			eye_lights = new()
-		if(!special_skin)
-			if(lamp_intensity > 2)
-				eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_l"
-			else
-				eye_lights.icon_state = "[module.special_light_key ? "[module.special_light_key]":"[module.cyborg_base_icon]"]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
-		else
-			eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
-		eye_lights.icon = icon
+	var/old_icon = icon_state
+	. = ..()
+	if (special_skin)
+		cut_overlays()
+		icon_state = old_icon
+		eye_lights.icon_state = "[icon_state]_e[is_servant_of_ratvar(src) ? "_r" : ""]"
 		add_overlay(eye_lights)
-	if(opened)
-		if(wiresexposed)
-			add_overlay("ov-opencover +w")
-		else if(cell)
-			add_overlay("ov-opencover +c")
-		else
-			add_overlay("ov-opencover -c")
-	if(hat)
-		var/mutable_appearance/head_overlay = hat.build_worn_icon(state = hat.icon_state, default_layer = 20, default_icon_file = 'icons/mob/head.dmi')
-		head_overlay.pixel_y += hat_offset
-		add_overlay(head_overlay)
-	update_fire()
 
 /mob/living/silicon/robot/examine(mob/user)
 	. = ..()
