@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(donators)
 	if(!query.Execute())
 		message_admins("Error loading donators from database.")
 		log_sql("Error loading donators from database.")
+		qdel(query)
 		return
 
 	var/ckey
@@ -18,6 +19,8 @@ GLOBAL_LIST_EMPTY(donators)
 		ckey = query.item[1]
 		if(ckey)
 			donatorskeys |= ckey
+
+	qdel(query)
 
 	var/datum/preferences/P
 	for(var/key in donatorskeys)
