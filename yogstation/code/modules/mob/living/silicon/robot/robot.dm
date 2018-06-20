@@ -13,10 +13,11 @@
 			return FALSE
 		var/datum/borg_skin/skins = list()
 		for(var/T in GLOB.DonorBorgHolder.skins)
-			var/datum/borg_skin/S = T
-			if(S.owner == client.ckey || !S.owner) //We own this skin.
-				if(!S.module_locked || S.module_locked == module.name)
-					skins += S //So add it to the temp list which we'll iterate through
+			if(istype(T, /datum/borg_skin))
+				var/datum/borg_skin/S = T
+				if(S.owner == client.ckey || !S.owner) //We own this skin.
+					if(!S.module_locked || S.module_locked == module.name)
+						skins += S //So add it to the temp list which we'll iterate through
 		var/datum/borg_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
 		A = input(src,"Here's a list of your available silicon skins, pick one! (To reset your choice, get a module reset)", "Donator silicon skin picker 9000", A) as null|anything in skins//Pick any datum from the list we just established up here ^^
 		if(!A)
