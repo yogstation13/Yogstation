@@ -88,13 +88,11 @@
 		hacked = FALSE
 		mind.special_role = null
 		set_light(0, 0) //yogs - Deactivates hacked light
-		seeStatic = initial(seeStatic)
 		speed = initial(speed)
 		if(is_servant_of_ratvar(src))
 			remove_servant_of_ratvar(src, TRUE)
 		message_admins("[src] ([src.key]), a hacked drone, was restored to factory defaults!")
 	update_drone_icon()
-	updateSeeStaticMobs()
 
 /mob/living/simple_animal/drone/emag_act(mob/user)
 	//I can just reuse /mob/living/simple_animal/drone/proc/update_drone_hack(hack, clockwork), yeah?
