@@ -36,7 +36,7 @@
 		drop_all_held_items()
 		var/obj/item/clothing/head/mob_holder/drone/DH = new(get_turf(src), src)
 		user.put_in_hands(DH)
-/mob/living/simple_animal/drone/proc/liberate()
+/mob/living/simple_animal/drone/liberate()
 	// F R E E D R O N E
 	laws = "1. You are a Free Drone."
 	flavortext = "" // yogs - They don't need all the bullshit about drone interaction,
