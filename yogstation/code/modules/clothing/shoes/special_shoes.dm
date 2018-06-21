@@ -58,12 +58,12 @@
 	return
 
 /obj/item/shoe_protector/afterattack(obj/I, mob/user)
-	if(infinite && charges <=0)
+	if(infinite && charges)
 		to_chat(user, "WARNING! Low liquid volume detected. Engaging time-jump.")
 		do_time_jump()
-		return 0
+		return FALSE
 	if(istype(I, /obj/item/clothing))
-		if(charges > 0)
+		if(charges)
 			I.SendSignal(COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
 			to_chat(user, "You've successfully cleaned [I] with [src]")
