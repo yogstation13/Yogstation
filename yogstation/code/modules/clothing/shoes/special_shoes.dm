@@ -88,4 +88,4 @@
 	charges = max_charges
 	infinite = TRUE
 	SpinAnimation(0,0)
-	visible_message("[src] pops back into existence! it's fully refilled.")
+	visible_message("[src] pops back into existence! It's fully refilled.")
