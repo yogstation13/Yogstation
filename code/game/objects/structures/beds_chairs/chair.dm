@@ -148,13 +148,16 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 	buildstackamount = 2
-	var/mutable_appearance/armrest
 	item_chair = null
+	var/mutable_appearance/armrest
 
 /obj/structure/chair/comfy/Initialize()
-	armrest = mutable_appearance('icons/obj/chairs.dmi', "comfychair_armrest")
+	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
+
+/obj/structure/chair/comfy/proc/GetArmrest()
+	return mutable_appearance('icons/obj/chairs.dmi', "comfychair_armrest")
 
 /obj/structure/chair/comfy/Destroy()
 	QDEL_NULL(armrest)
@@ -189,11 +192,15 @@
 /obj/structure/chair/comfy/lime
 	color = rgb(255,251,0)
 
+/obj/structure/chair/shuttle
+	name = "shuttle seat"
+	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
+	icon_state = "shuttle_chair"
+
 /obj/structure/chair/office
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
-
 
 /obj/structure/chair/office/Moved()
 	. = ..()
