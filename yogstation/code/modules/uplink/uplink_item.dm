@@ -12,5 +12,8 @@
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/device_tools/emag
+	cost = 8
+
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
