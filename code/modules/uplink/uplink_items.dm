@@ -168,14 +168,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/dangerous/revolver
-	name = "Syndicate Revolver"
-	desc = "A brutally simple syndicate revolver that fires .357 Magnum rounds and has 7 chambers."
-	item = /obj/item/gun/ballistic/revolver
-	cost = 13
-	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
-
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -300,14 +292,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			security's energy weapons, and silicon lifeforms when you're in a tight spot."
 	item = /obj/item/storage/box/syndie_kit/emp
 	cost = 2
-
-/datum/uplink_item/dangerous/syndicate_minibomb
-	name = "Syndicate Minibomb"
-	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
-			in addition to dealing high amounts of damage to nearby personnel."
-	item = /obj/item/grenade/syndieminibomb
-	cost = 6
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/bombanana
 	name = "Bombanana"
@@ -816,13 +800,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/card/id/syndicate
 	cost = 2
 
-/datum/uplink_item/stealthy_tools/chameleon_proj
-	name = "Chameleon Projector"
-	desc = "Projects an image across a user, disguising them as an object scanned with it, as long as they don't \
-			move the projector from their hand. Disguised users move slowly, and projectiles pass over them."
-	item = /obj/item/chameleon
-	cost = 7
-
 /datum/uplink_item/stealthy_tools/camera_bug
 	name = "Camera Bug"
 	desc = "Enables you to view all cameras on the network and track a target. Bugging cameras allows you \
@@ -1043,13 +1020,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/plastic/c4
 	cost = 1
 
-/datum/uplink_item/device_tools/c4bag
-	name = "Bag of C-4 explosives"
-	desc = "Because sometimes quantity is quality. Contains 10 C-4 plastic explosives."
-	item = /obj/item/storage/backpack/duffelbag/syndie/c4
-	cost = 9 //10% discount!
-	cant_discount = TRUE
-
 /datum/uplink_item/device_tools/x4bag
 	name = "Bag of X-4 explosives"
 	desc = "Contains 3 X-4 plastic explosives. Similar, but more powerful than C-4. X-4 can be placed on a solid surface, such as a wall or window, and it will \
@@ -1200,13 +1170,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	category = "Implants"
 	surplus = 50
 
-/datum/uplink_item/implants/freedom
-	name = "Freedom Implant"
-	desc = "An implant injected into the body and later activated at the user's will. It will attempt to free the \
-			user from common restraints such as handcuffs."
-	item = /obj/item/storage/box/syndie_kit/imp_freedom
-	cost = 5
-
 /datum/uplink_item/implants/uplink
 	name = "Uplink Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals, must be charged by the use of physical telecrystals. Undetectable (except via surgery), and excellent for escaping confinement."
@@ -1215,21 +1178,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
-
-/datum/uplink_item/implants/adrenal
-	name = "Adrenal Implant"
-	desc = "An implant injected into the body, and later activated at the user's will. It will inject a chemical \
-			cocktail which has a mild healing effect along with removing all stuns and increasing movement speed."
-	item = /obj/item/storage/box/syndie_kit/imp_adrenal
-	cost = 8
-	player_minimum = 25
-
-/datum/uplink_item/implants/storage
-	name = "Storage Implant"
-	desc = "An implant injected into the body, and later activated at the user's will. It will open a small bluespace \
-			pocket capable of storing two items."
-	item = /obj/item/storage/box/syndie_kit/imp_storage
-	cost = 8
 
 /datum/uplink_item/implants/microbomb
 	name = "Microbomb Implant"
