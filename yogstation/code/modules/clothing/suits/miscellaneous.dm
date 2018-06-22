@@ -12,3 +12,13 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 
 	icon_state = "winterhood_signaltech"
+
+/obj/item/clothing/suit/yogs/zebrasweat
+	name = "White and black sweatshirt"
+	desc = "A fashionable sweatshirt with industrial lines all over it. This one's white."
+	icon_state = "zebrasweat"
+
+/obj/item/clothing/suit/yogs/blackwhitesweat
+	name = "Black and white sweatshirt"
+	desc = "A fashionable sweatshirt with industrial lines all over it. This one's black."
+	icon_state = "blackwhitesweat"
