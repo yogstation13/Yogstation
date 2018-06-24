@@ -2710,5 +2710,6 @@
 #include "yogstation\code\modules\uplink\uplink.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
+#include "yogstation\code\modules\vending\clothesmate.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE
