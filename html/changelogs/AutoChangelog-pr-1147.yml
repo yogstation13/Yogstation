@@ -1,3 +1,4 @@
-author: ' yenwodyah'
-changes: []
-delete-after: true
+author: " yenwodyah"
+delete-after: true 
+changes: 
+  - bugfix: "A few virus threshold effects should work now"

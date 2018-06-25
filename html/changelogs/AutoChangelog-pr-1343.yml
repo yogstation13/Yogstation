@@ -1,3 +1,4 @@
-author: Apologistic
-changes: []
-delete-after: true
+author: "Apologistic"
+delete-after: true 
+changes: 
+  - tweak: "Use full name for subspace wavelength analyzer in protolathe design menu"

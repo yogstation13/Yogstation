@@ -1,3 +1,4 @@
-author: ' Denton'
-changes: []
-delete-after: true
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "Swarmers can no longer attack field generators and turret covers."

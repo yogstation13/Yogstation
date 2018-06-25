@@ -1,3 +1,4 @@
-author: ' XDTM'
-changes: []
-delete-after: true
+author: " XDTM"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed anti-magic not working at all."

@@ -1,3 +1,4 @@
-author: ' Denton'
-changes: []
-delete-after: true
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "The shutter buttons of Pubbystation's mechbay now check for access."

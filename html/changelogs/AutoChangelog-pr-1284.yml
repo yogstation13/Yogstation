@@ -1,3 +1,4 @@
-author: yogstation13-bot
-changes: []
-delete-after: true
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "logs will now show ckeys when admin transformations are done"

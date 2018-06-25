@@ -1,3 +1,5 @@
-author: ' Dax Dupont'
-changes: []
-delete-after: true
+author: " Dax Dupont"
+delete-after: true 
+changes: 
+  - rscadd: "Adds better messaging"
+  - bugfix: "Fixes summons happening on away missions."
