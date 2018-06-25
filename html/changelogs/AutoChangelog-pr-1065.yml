@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Flamethrowers are no longer uncraftable since they have a part that happens to be a tool."
+author: yogstation13-bot
+changes: []
+delete-after: true

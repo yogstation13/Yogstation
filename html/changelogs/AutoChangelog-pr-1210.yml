@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - experiment: "Pending rework, reactive incendiary armor is now adminspawn only. Pyro anomalies will instead give stealth armor."
+author: yogstation13-bot
+changes: []
+delete-after: true

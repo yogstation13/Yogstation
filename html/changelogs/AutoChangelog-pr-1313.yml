@@ -1,4 +1,3 @@
-author: " Dax Dupont"
-delete-after: true 
-changes: 
-  - bugfix: "You can no longer remove circuits with your mind."
+author: ' Dax Dupont'
+changes: []
+delete-after: true

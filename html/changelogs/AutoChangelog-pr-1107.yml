@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Vomiting on the same tile a second time no deletes the vomited reagents."
+author: yogstation13-bot
+changes: []
+delete-after: true

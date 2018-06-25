@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "Vehicle speed changes now happen immediately instead of on the next movement cycle"
+author: yogstation13-bot
+changes: []
+delete-after: true

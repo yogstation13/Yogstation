@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed a laser reflections from reflectors."
+author: yogstation13-bot
+changes: []
+delete-after: true

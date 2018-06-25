@@ -1,4 +1,3 @@
-author: " Mickyan"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed pacifists being able to harm using bottles/screwdrivers"
+author: ' Mickyan'
+changes: []
+delete-after: true

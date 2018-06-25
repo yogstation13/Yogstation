@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Non-secure windoors now properly support the One Required access mode of airlock electronics."
+author: yogstation13-bot
+changes: []
+delete-after: true

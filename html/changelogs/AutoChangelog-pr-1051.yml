@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "apiaries from cargo start unwrenched"
+author: yogstation13-bot
+changes: []
+delete-after: true

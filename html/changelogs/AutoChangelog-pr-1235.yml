@@ -1,4 +1,3 @@
-author: " XDTM"
-delete-after: true 
-changes: 
-  - bugfix: "Diseases now properly lose scan invisibility if their stealth drops below the required threshold."
+author: ' XDTM'
+changes: []
+delete-after: true

@@ -1,4 +1,3 @@
-author: " Naksu"
-delete-after: true 
-changes: 
-  - bugfix: "Pipe dispensers can no longer create pipes containing literally anything"
+author: ' Naksu'
+changes: []
+delete-after: true

@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Paradox bags no longer block the middle of your screen until reconnect, and also actually work."
+author: yogstation13-bot
+changes: []
+delete-after: true

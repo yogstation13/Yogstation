@@ -1,5 +1,3 @@
-author: " GuyonBroadway"
-delete-after: true 
-changes: 
-  - rscadd: "Adds gloves of the north star to the traitor uplink. Wearing these gloves lets you punch people five times faster than normal."
-  - rscadd: "Sprites for the gloves courtesy of Notamaniac"
+author: ' GuyonBroadway'
+changes: []
+delete-after: true

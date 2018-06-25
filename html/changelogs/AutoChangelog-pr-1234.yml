@@ -1,4 +1,3 @@
-author: " Dax Dupont"
-delete-after: true 
-changes: 
-  - bugfix: "Botany trays don't magically refill anymore with a rped."
+author: ' Dax Dupont'
+changes: []
+delete-after: true

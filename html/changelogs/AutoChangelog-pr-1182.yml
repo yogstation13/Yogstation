@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The thermal sight benefits of lantern wisps no longer disappear if you change glasses."
+author: yogstation13-bot
+changes: []
+delete-after: true

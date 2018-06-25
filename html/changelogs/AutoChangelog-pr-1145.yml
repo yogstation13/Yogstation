@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Atom initialization and icon smoothing no longer race, causing late-loading mineral turfs to have no icon."
+author: yogstation13-bot
+changes: []
+delete-after: true

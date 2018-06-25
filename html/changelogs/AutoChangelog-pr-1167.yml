@@ -1,4 +1,3 @@
-author: " Dax Dupont"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes a sentience related exploit by blacklisting it in restricted uplinks."
+author: ' Dax Dupont'
+changes: []
+delete-after: true
