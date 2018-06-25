@@ -1,4 +1,3 @@
-author: " optional name here"
-delete-after: true 
-changes: 
-  - rscadd: "After years of protests NT decided to update the fire security standards by adding 3 (three) advanced fire extinguishers to all the new stations."
+author: ' optional name here'
+changes: []
+delete-after: true

@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The robustness of the Super Secret Room has been increased."
+author: yogstation13-bot
+changes: []
+delete-after: true

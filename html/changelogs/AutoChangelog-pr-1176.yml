@@ -1,4 +1,3 @@
-author: " optional name here"
-delete-after: true 
-changes: 
-  - bugfix: " rad collectors set to research point gen are somewhat ok now"
+author: ' optional name here'
+changes: []
+delete-after: true

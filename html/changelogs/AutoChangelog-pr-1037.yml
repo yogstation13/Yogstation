@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Observers can no longer move the action button toggle or change the ambient occlusion setting of their targets."
+author: yogstation13-bot
+changes: []
+delete-after: true

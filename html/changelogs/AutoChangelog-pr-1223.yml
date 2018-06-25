@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Legion cores and admin revives now heal confusion."
+author: yogstation13-bot
+changes: []
+delete-after: true

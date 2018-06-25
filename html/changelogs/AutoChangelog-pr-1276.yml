@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Shift-clicking turfs obscured by fog of war no longer lets you examine them."
+author: yogstation13-bot
+changes: []
+delete-after: true

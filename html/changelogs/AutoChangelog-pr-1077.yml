@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "Hulks and catpeople now show Human-derived mutant under Species when health scanned."
+author: yogstation13-bot
+changes: []
+delete-after: true
