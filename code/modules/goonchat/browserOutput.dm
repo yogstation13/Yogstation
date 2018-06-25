@@ -218,16 +218,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	//Some macros remain in the string even after parsing and fuck up the eventual output
 	message = replacetext(message, "\improper", "")
 	message = replacetext(message, "\proper", "")
-<<<<<<< HEAD
-	message = replacetext(message, "\n", "<br>")
-	message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
-	message = to_utf8(message, target) // yogs - LibVG
-=======
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
-
->>>>>>> 0f6ecbb92b... Merge pull request #38672 from AutomaticFrenzy/patch/goonchat-motd
+	message = to_utf8(message, target) // yogs - LibVG
+	
 	for(var/I in targets)
 		//Grab us a client if possible
 		var/client/C
