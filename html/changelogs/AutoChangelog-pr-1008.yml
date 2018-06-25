@@ -1,3 +1,4 @@
-author: yogstation13-bot
-changes: []
-delete-after: true
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Running diagonally into space now properly continues the diagonal movement in zero-gravity."

@@ -1,3 +1,4 @@
-author: ' Kor'
-changes: []
-delete-after: true
+author: " Kor"
+delete-after: true 
+changes: 
+  - rscadd: "Bag of Holding detonations have been significantly reworked."

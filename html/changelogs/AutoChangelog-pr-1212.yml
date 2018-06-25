@@ -1,3 +1,4 @@
-author: ThatLing
-changes: []
-delete-after: true
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - rscadd: "Using a multitool on a powersink will now show you the amount of power consumed."

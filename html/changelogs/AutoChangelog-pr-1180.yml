@@ -1,3 +1,4 @@
-author: yogstation13-bot
-changes: []
-delete-after: true
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "A pAI dying while in holoform no longer deletes the card, instead merely emptying it."
