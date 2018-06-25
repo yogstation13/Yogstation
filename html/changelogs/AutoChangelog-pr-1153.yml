@@ -1,3 +1,4 @@
-author: yogstation13-bot
-changes: []
-delete-after: true
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - spellcheck: "Faceless persons no longer melt their face off in energy gun suicides."

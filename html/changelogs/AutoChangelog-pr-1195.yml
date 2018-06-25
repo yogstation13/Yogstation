@@ -1,3 +1,4 @@
-author: ' oranges'
-changes: []
-delete-after: true
+author: " oranges"
+delete-after: true 
+changes: 
+  - rscadd: "Sec now has khaki pants for tacticoolness"

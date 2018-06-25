@@ -1,3 +1,4 @@
-author: yogstation13-bot
-changes: []
-delete-after: true
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "fixed hydroponics tray weed light staying on when removing weeds with integrated circuits"
