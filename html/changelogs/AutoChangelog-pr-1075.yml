@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - experiment: "Chemistry now has something called specific heat. For the uninitiated, this is the thermal capacity of the reagent, much like how some atmospherics gases have different thermal capacities, making them able to absorb/release more energy per degree of temperature change!"
-  - rscadd: "Plasma specific heat is 500J/K*unit, everything else is 200"

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborg inventory slots once again unhighlight when a module is stowed."
