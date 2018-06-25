@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Hyperspace ripples now remain visible until the shuttle arrives, even during extreme lag."
-  - bugfix: "Ripples now correctly take the shape of the shuttle, rather than always being a rectangle."
