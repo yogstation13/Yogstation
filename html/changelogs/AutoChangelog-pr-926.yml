@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Mindswapping with someone else no longer forces ambient occlusion on."

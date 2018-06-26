@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - rscadd: "Collectors show their real produced power and stored power when examined"
