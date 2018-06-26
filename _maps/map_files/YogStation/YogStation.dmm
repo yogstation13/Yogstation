@@ -4315,6 +4315,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"akd" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "19;23";
+	security_level = 6
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plating,
+/area/storage/tech)
 "ake" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -24023,6 +24035,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"bhK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Secure Tech Storage";
+	dir = 2;
+	network = list("ss13")
+	},
+/turf/open/floor/plasteel,
+/area/storage/tech)
 "bhM" = (
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -34042,16 +34065,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/storage/tech)
-"bGs" = (
-/obj/machinery/camera{
-	c_tag = "Secure Tech Storage";
-	dir = 2
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/storage/tech)
 "bGt" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/borgupload{
@@ -34572,16 +34585,6 @@
 /turf/open/floor/plasteel,
 /area/storage/tech)
 "bHH" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/storage/tech)
-"bHI" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "19;23"
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -80037,7 +80040,7 @@ bBj
 aJw
 aaa
 bEV
-bGs
+bhK
 cBC
 bJg
 bKs
@@ -80295,7 +80298,7 @@ bCs
 bCs
 bEY
 bGu
-bHI
+akd
 bJi
 bEY
 bCs
