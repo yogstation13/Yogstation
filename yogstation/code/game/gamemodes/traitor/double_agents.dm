@@ -1,47 +1,87 @@
-/datum/game_mode/traitor/internal_affairs/make_antag_chance()
-	return FALSE
-
 /datum/antagonist/traitor/internal_affairs/iaa_process()
-	return
-
-/datum/game_mode/traitor/internal_affairs/check_finished(force_ending) //to be called by SSticker
-	.=..()
-	if(force_ending || !SSticker.setup_done || !gamemode_ready || .) //if the gamemode is already considered finished, if it's not begun or if it's being force ended
-		return .
-
-	var/new_target
-	for(var/datum/mind/traitor in traitors)
-		if(!traitor.current || traitor.current.stat==DEAD)
-			continue
-		new_target = TRUE
-		for(var/datum/objective/O in traitor)
-			if(O.check_completion() || istype(O, /datum/objective/escape) || istype(O, /datum/objective/survive))
+	if(owner && owner.current && owner.current.stat!=DEAD)
+		var/new_objective = TRUE
+		for(var/objective_ in owner.objectives)
+			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr))
+				new_objective = FALSE
+				break
+			if(!is_internal_objective(objective_))
 				continue
-			new_target = FALSE
+			var/datum/objective/assassinate/internal/objective = objective_
+			if(!objective.target || objective.check_completion())
+				continue
+			new_objective = FALSE
 
-		if(new_target)
-			var/list/other_traitors = traitors
-
-			for(var/datum/mind/other_traitor in other_traitors)
-				if(other_traitor == traitor || !other_traitor.current || other_traitor.current.stat==DEAD)
-					other_traitors -= other_traitor
+		if(new_objective)
+			var/list/other_traitors = SSticker.mode.traitors - owner
+			for(var/objective_ in owner.objectives)
+				if(!is_internal_objective(objective_))
+					continue
+				var/datum/objective/assassinate/internal/objective = objective_
+				if(objective.target && objective.target.current)
+					other_traitors -= objective.target.current
 
 			if(other_traitors.len)
-				var/datum/mind/newTarget = pick(other_traitors)
-				if(issilicon(newTarget.current))
+				var/datum/mind/target_mind = pick(other_traitors)
+				if(issilicon(target_mind.current))
 					var/datum/objective/destroy/internal/destroy_objective = new
-					destroy_objective.owner = traitor
-					destroy_objective.target = newTarget
+					destroy_objective.owner = owner
+					destroy_objective.target = target_mind
 					destroy_objective.update_explanation_text()
-					traitor.objectives += destroy_objective
-
+					add_objective(destroy_objective)
 				else
 					var/datum/objective/assassinate/internal/kill_objective = new
-					kill_objective.owner = traitor
-					kill_objective.target = newTarget
+					kill_objective.owner = owner
+					kill_objective.target = target_mind
 					kill_objective.update_explanation_text()
-					traitor.objectives += kill_objective
+					add_objective(kill_objective)
+			else
+				for(var/objective_ in owner.objectives)
+					remove_objective(objective_)
 
-				traitor.announce_objectives()
+				if(prob(50))
+					var/datum/objective/martyr/martyr_objective = new
+					martyr_objective.owner = owner
+					add_objective(martyr_objective)
+				else
+					var/datum/objective/hijack/hijack_objective = new
+					hijack_objective.owner = owner.
+					add_objective(hijack_objective)
 
-	return .
+/datum/game_mode/traitor/internal_affairs/add_latejoin_traitor(datum/mind/character)
+	for(var/data in character.antag_datums)
+		if(istype(data, /datum/antagonist/traitor/internal_affairs))
+			var/datum/antagonist/traitor/internal_affairs/IAAdata = data
+			IAAdata.latejoin()
+			break
+
+/datum/antagonist/traitor/internal_affairs/proc/latejoin()
+	var/list/other_traitors = SSticker.mode.traitors - owner
+	for(var/V in other_traitors)
+		var/datum/mind/traitor = V
+		if(!traitor.current || traitor.current.stat == DEAD)
+			other_traitors -= traitor
+
+	if(other_traitors.len)
+		var/datum/mind/target_mind = pick(other_traitors)
+		if(issilicon(target_mind.current))
+			var/datum/objective/destroy/internal/destroy_objective = new
+			destroy_objective.owner = owner
+			destroy_objective.target = target_mind
+			destroy_objective.update_explanation_text()
+			add_objective(destroy_objective)
+		else
+			var/datum/objective/assassinate/internal/kill_objective = new
+			kill_objective.owner = owner
+			kill_objective.target = target_mind
+			kill_objective.update_explanation_text()
+			add_objective(kill_objective)
+	else
+		if(prob(50))
+			var/datum/objective/martyr/martyr_objective = new
+			martyr_objective.owner = owner
+			add_objective(martyr_objective)
+		else
+			var/datum/objective/hijack/hijack_objective = new
+			hijack_objective.owner = owner.
+			add_objective(hijack_objective)
