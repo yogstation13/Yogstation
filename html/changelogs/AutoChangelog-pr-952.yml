@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "CentCom is no longer self-looping, fixing the ability to see or get into certain areas after escaping to space."

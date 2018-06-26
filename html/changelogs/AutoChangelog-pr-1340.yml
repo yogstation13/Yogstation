@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Item fortification scrolls no longer add multiple prefixes when applied to the same item."

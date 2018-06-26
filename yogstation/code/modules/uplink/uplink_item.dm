@@ -23,5 +23,8 @@
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
 
+/datum/uplink_item/device_tools/emag
+	cost = 8
+
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)

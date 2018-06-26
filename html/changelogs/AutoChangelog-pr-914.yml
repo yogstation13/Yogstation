@@ -1,4 +1,0 @@
-author: " Nichlas0010"
-delete-after: true 
-changes: 
-  - bugfix: "Comms consoles won't update while viewing messages"
