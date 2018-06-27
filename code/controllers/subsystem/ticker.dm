@@ -254,11 +254,7 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	if(hide_mode)
-		var/list/modes = new
-		for (var/datum/game_mode/M in runnable_modes)
-			modes += M.name
-		modes = sortList(modes)
-		to_chat(world, "<b>The gamemode is: secret!\nPossibilities:</B> [english_list(modes)]")
+		to_chat(world, "<b>The gamemode is: secret!</b>") // yogs - removed possible gamemodes list
 	else
 		mode.announce()
 
