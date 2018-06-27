@@ -449,7 +449,10 @@
 	name = "possessed chainsaw sword"
 	desc = "Suffer not a heretic to live."
 	slot_flags = ITEM_SLOT_BELT
+<<<<<<< HEAD
 	force = 30
+=======
+>>>>>>> 68edd12174... It just occured to me the line is unnecessary
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
 
