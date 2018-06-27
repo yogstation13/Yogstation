@@ -2570,7 +2570,6 @@
 #include "code\modules\tgui\states\zlevel.dm"
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
-#include "code\modules\uplink\uplink.dm"
 #include "code\modules\uplink\uplink_devices.dm"
 #include "code\modules\uplink\uplink_items.dm"
 #include "code\modules\uplink\uplink_purchase_log.dm"
