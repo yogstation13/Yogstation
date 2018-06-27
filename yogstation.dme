@@ -2647,6 +2647,7 @@
 #include "yogstation\code\game\objects\items\devices\radio\encryptionkey.dm"
 #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
 #include "yogstation\code\game\objects\items\grenades\glitterbombs.dm"
+#include "yogstation\code\game\objects\items\holy_weapons.dm"
 #include "yogstation\code\game\objects\items\melee\energy.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
