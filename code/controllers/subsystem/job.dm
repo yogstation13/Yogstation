@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(job)
 			continue
 		// yogs start - Donor features, quiet round
 		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.toggles & QUIET_ROUND))
-			Debug("FOC quiet check failed, Player: [player]")
+			JobDebug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
