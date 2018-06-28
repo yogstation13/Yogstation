@@ -63,8 +63,14 @@
 	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(iscultist(M))
+<<<<<<< HEAD
 		to_chat(user, "<span class='cultlarge'>\"Come now, do not capture your bretheren's soul.\"</span>")
 		return
+=======
+		if(iscultist(user))
+			to_chat(user, "<span class='cultlarge'>\"Come now, do not capture your bretheren's soul.\"</span>")
+			return
+>>>>>>> a557f54a6e... that should do it
 	add_logs(user, M, "captured [M.name]'s soul", src)
 	transfer_soul("VICTIM", M, user)
 
