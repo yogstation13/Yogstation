@@ -51,7 +51,7 @@ Made by Xhuis
 	var/list/datum/mind/thralls = list()
 	var/list/shadow_objectives = list()
 	var/required_thralls = 15 //How many thralls are needed (this is changed in pre_setup, so it scales based on pop)
-	var/shadowling_ascended = 0 //If at least one shadowling has ascended
+	var/shadowling_ascended = FALSE //If at least one shadowling has ascended
 	var/shadowling_dead = 0 //is shadowling kill
 	var/objective_explanation
 	var/thrall_ratio = 1
@@ -125,8 +125,8 @@ Made by Xhuis
 	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
 		var/datum/mind/shadow_mind = SM
 		if(istype(shadow_mind))
-			var/turf/T = get_turf(shadow_mind.current)
 			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+				var/turf/T = get_turf(shadow_mind.current)
 				return FALSE
 	return TRUE
 
@@ -140,12 +140,14 @@ Made by Xhuis
 	var/text = ""
 	if(shadows.len)
 		text += "<br><span class='big'><b>The shadowlings were:</b></span>"
-		for(var/datum/mind/shadow in shadows)
+		for(var/S in shadows)
+			var/datum/mind/shadow = S
 			text += printplayer(shadow)
 		text += "<br>"
 		if(thralls.len)
 			text += "<br><span class='big'><b>The thralls were:</b></span>"
-			for(var/datum/mind/thrall in thralls)
+			for(var/T in thralls)
+				var/datum/mind/thrall = T
 				text += printplayer(thrall)
 	text += "<br>"
 	to_chat(world, text)
@@ -163,7 +165,7 @@ Made by Xhuis
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYES)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
-	nojumpsuit = 1
+	nojumpsuit = TRUE
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
 	heatmod = 1.5
@@ -185,11 +187,10 @@ Made by Xhuis
 	. = ..()
 
 /datum/species/shadow/ling/spec_life(mob/living/carbon/human/H)
-	var/light_amount = 0
 	H.nutrition = NUTRITION_LEVEL_WELL_FED //i aint never get hongry
 	if(isturf(H.loc))
 		var/turf/T = H.loc
-		light_amount = T.get_rgb_lumcount(r_mul = LIGHT_RED_MULTIPLIER, g_mul = LIGHT_GREEN_MULTIPLIER, b_mul = LIGHT_BLUE_MULTIPLIER)
+		var/light_amount = T.get_rgb_lumcount(r_mul = LIGHT_RED_MULTIPLIER, g_mul = LIGHT_GREEN_MULTIPLIER, b_mul = LIGHT_BLUE_MULTIPLIER)
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
 			if(H.stat != DEAD)

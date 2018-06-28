@@ -3,7 +3,8 @@
 ////////////////////
 
 
-/obj/item/bodypart/var/should_draw_yogs = FALSE
+/obj/item/bodypart
+	var/should_draw_yogs = FALSE
 
 /mob/living/carbon/proc/draw_yogs_parts(undo = FALSE)
 	if(!undo)

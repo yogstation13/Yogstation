@@ -26,7 +26,8 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	message_admins("[key_name_admin(owner.current)] was dethralled!")
 	log_game("[key_name(owner.current)] was dethralled!")
 	owner.special_role = null
-	for(var/obj/effect/proc_holder/spell/S in owner.spell_list)
+	for(var/X in owner.spell_list)
+		var/obj/effect/proc_holder/spell/S = X
 		if(is_type_in_typecache(S, GLOB.thrall_spell_types)) //only remove thrall spells!
 			owner.RemoveSpell(S)
 	var/mob/living/M = owner.current

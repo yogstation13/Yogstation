@@ -18,7 +18,7 @@
 	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
 		return
 	var/mob/living/carbon/human/H = user
-	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
+	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!","Yes","No")
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, "<span class='warning'>You decide against hatching for now.")
@@ -76,11 +76,14 @@
 			to_chat(H, "<i><b><font size=3>YOU LIVE!!!</i></b></font>")
 
 			var/hatchannounce = "<font size=3><span class='shadowling'><b>[oldName] has hatched into the Shadowling [newNameId]!</b></span></font>"
-			for(var/mob/M in GLOB.mob_list)
+			for(var/T in GLOB.alive_mob_list)
+				var/mob/M = T
 				if(is_shadow_or_thrall(M))
 					to_chat(M, hatchannounce)
-				if(M in GLOB.dead_mob_list)
-					to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
+
+			for(var/T in GLOB.dead_mob_list)
+				var/mob/M = T
+				to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
 
 			for(var/obj/structure/alien/resin/wall/shadowling/W in orange(1, H))
 				playsound(W, 'sound/effects/splat.ogg', 50, 1)
@@ -117,7 +120,7 @@
 	desc = "Enters your true form."
 	panel = "Shadowling Evolution"
 	charge_max = 3000
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "ascend"
 
@@ -168,7 +171,8 @@
 				for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 					A.overload_lighting()
 				var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
-				for(var/obj/effect/proc_holder/spell/S in H.mind.spell_list)
+				for(var/X in H.mind.spell_list)
+					var/obj/effect/proc_holder/spell/S = X
 					if(S == src) continue
 					H.mind.RemoveSpell(S)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))

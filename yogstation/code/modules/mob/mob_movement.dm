@@ -1,5 +1,6 @@
 #define MAX_SW_LUMS 0.2
 #define ALLOW_PULL_THROUGH_WALLS 0
+#define SW_LIGHT_FACTOR 2.75
 
 /proc/Can_ShadowWalk(var/mob/mob)
 	if(mob.shadow_walk)

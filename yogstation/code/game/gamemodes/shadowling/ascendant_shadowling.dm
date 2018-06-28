@@ -40,10 +40,11 @@
 /mob/living/simple_animal/ascendant_shadowling/ex_act(severity)
 	return FALSE //You think an ascendant can be hurt by bombs? HA
 
-/mob/living/simple_animal/ascendant_shadowling/singularity_act(args)
+/mob/living/simple_animal/ascendant_shadowling/singularity_act()
 	to_chat(src, "<span class='shadowling>NO NO NO AAAAAAAAAAAAAAAAAAA-</span>")
 	to_chat(world, "<span class='shadowling'><b>\"<font size=6>NO!</font> <font size=5>I will</font> <font size=4>not be.... destroyed</font> <font size=3>by a....</font> <font size=2>AAAAAAA-</font>\"</span>")
-	for(var/mob/M in GLOB.mob_list)
+	for(var/X in GLOB.alive_mob_list)
+		var/mob/M = X
 		to_chat(M, "<span class='notice'><i><b>You feel a woosh as newly released energy temporarily distorts space itself...</b></i></span>")
 		SEND_SOUND(M, sound('sound/hallucinations/wail.ogg'))
-	. = ..(args)
+	. = ..()

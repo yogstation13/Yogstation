@@ -32,11 +32,12 @@
 	for(var/O in objectives_given)
 		owner.objectives -= O
 	SSticker.mode.update_shadow_icons_removed(owner)
-	SSticker.mode.shadows.Remove(owner)
+	SSticker.mode.shadows -= owner
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")
 	log_game("[key_name(owner.current)] was de-shadowlinged!")
 	owner.special_role = null
-	for(var/obj/effect/proc_holder/spell/S in owner.spell_list)
+	for(var/X in owner.spell_list)
+		var/obj/effect/proc_holder/spell/S = X
 		owner.RemoveSpell(S)
 	var/mob/living/M = owner.current
 	if(issilicon(M))
@@ -46,7 +47,7 @@
 		M.visible_message("<span class='big'>[M] screams and contorts!</span>", \
 						  "<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
 		spawn(30)
-			if(!M || QDELETED(M))
+			if(QDELETED(M))
 				return
 			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
 							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
@@ -66,7 +67,7 @@
 		var/datum/mind/shadow_mind = SM
 		if(istype(shadow_mind))
 			var/turf/T = get_turf(shadow_mind.current)
-			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+			if((shadow_mind) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
 				return FALSE
 	return TRUE
 

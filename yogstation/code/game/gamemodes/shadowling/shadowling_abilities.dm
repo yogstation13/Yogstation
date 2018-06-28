@@ -2,8 +2,8 @@
 
 /obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
 	if(!H || !istype(H)) return
-	if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
-	if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
+	if(H.dna && H.dna.species && H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
+	if(H.dna && H.dna.species && H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
 	if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
 	else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
 	else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
@@ -60,8 +60,8 @@
 	desc = "Disrupts the target's motor and speech abilities."
 	panel = "Shadowling Abilities"
 	charge_max = 300
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon_state = "glare"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 
@@ -102,8 +102,8 @@
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
 	charge_max = 150 //Short cooldown because people can just turn the lights back on
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	range = 5
 	action_icon_state = "veil"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
@@ -117,11 +117,11 @@
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
 				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
-			F.on = 0
+			F.on = FALSE
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))
 		var/obj/item/pda/P = I
-		P.fon = 0
+		P.fon = FALSE
 	I.set_light(0)
 	return I.luminosity
 
@@ -141,7 +141,7 @@
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
-			L.on = 0
+			L.on = FALSE
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
 			L.update(0)
 		for(var/obj/machinery/computer/C in T.contents)
@@ -167,8 +167,8 @@
 	panel = "Shadowling Abilities"
 	range = 3
 	charge_max = 250
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "icy_veins"
 	sound = 'sound/effects/ghost2.ogg'
@@ -202,12 +202,12 @@
 	desc = "Allows you to enslave a conscious, non-braindead, non-catatonic human to your will. This takes some time to cast."
 	panel = "Shadowling Abilities"
 	charge_max = 0
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	range = 1 //Adjacent to user
 	action_icon_state = "enthrall"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	var/enthralling = 0
+	var/enthralling = FALSE
 
 /obj/effect/proc_holder/spell/targeted/enthrall/cast(list/targets,mob/living/carbon/human/user = usr)
 	listclearnulls(SSticker.mode.thralls)
@@ -243,7 +243,7 @@
 			return
 		if(!target.client)
 			to_chat(user, "<span class='warning'>[target]'s mind is vacant of activity.</span>")
-		enthralling = 1
+		enthralling = TRUE
 
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
@@ -262,7 +262,7 @@
 						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, "<span class='warning'>The enthralling has been interrupted - your target's mind returns to its previous state.</span>")
 							to_chat(target, "<span class='userdanger'>You wrest yourself away from [user]'s hands and compose yourself</span>")
-							enthralling = 0
+							enthralling = FALSE
 							return
 						to_chat(user, "<span class='notice'>The nanobots composing the mindshield implant have been rendered inert. Now to continue.</span>")
 						user.visible_message("<span class='warning'>[user] relaxes again.</span>")
@@ -277,10 +277,10 @@
 			if(!do_mob(user, target, 70)) //around 21 seconds total for enthralling, 86 for someone with a loyalty implant
 				to_chat(user, "<span class='warning'>The enthralling has been interrupted - your target's mind returns to its previous state.</span>")
 				to_chat(target, "<span class='userdanger'>You wrest yourself away from [user]'s hands and compose yourself</span>")
-				enthralling = 0
+				enthralling = FALSE
 				return
 
-		enthralling = 0
+		enthralling = FALSE
 		to_chat(user, "<span class='shadowling'>You have enthralled <b>[target.real_name]</b>!</span>")
 		target.visible_message("<span class='big'>[target] looks to have experienced a revelation!</span>", \
 							   "<span class='warning'>False faces all d<b>ark not real not real not--</b></span>")
@@ -300,8 +300,8 @@
 	desc = "Allows you to silently communicate with all other shadowlings and thralls."
 	panel = "Shadowling Abilities"
 	charge_max = 0
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
@@ -327,8 +327,8 @@
 	desc = "Re-forms protective chitin that may be lost during cloning or similar processes."
 	panel = "Shadowling Abilities"
 	charge_max = 600
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "regen_armor"
 
@@ -350,13 +350,13 @@
 	desc = "Gathers the power of all of your thralls and compares it to what is needed for ascendance. Also gains you new abilities."
 	panel = "Shadowling Abilities"
 	charge_max = 300 //30 second cooldown to prevent spam
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon_state = "collective_mind"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	var/blind_smoke_acquired
-	var/screech_acquired
-	var/reviveThrallAcquired
+	var/blind_smoke_acquired = FALSE
+	var/screech_acquired = FALSE
+	var/reviveThrallAcquired = FALSE
 
 /obj/effect/proc_holder/spell/self/collective_mind/cast(mob/living/carbon/human/user)
 	if(!shadowling_check(user))
@@ -378,18 +378,18 @@
 		return
 
 	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
-		screech_acquired = 1
+		screech_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Sonic Screech</b> ability. This ability will shatter nearby windows and deafen enemies, plus stunning silicon lifeforms.</span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/unearthly_screech(null))
 
 	if(thralls >= CEILING(5 * SSticker.mode.thrall_ratio, 1) && !blind_smoke_acquired)
-		blind_smoke_acquired = 1
+		blind_smoke_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Blinding Smoke</b> ability. It will create a choking cloud that will blind any non-thralls who enter. \
 			</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
 
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
-		reviveThrallAcquired = 1
+		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
 		with no bodily defects.</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/revive_thrall(null))
@@ -419,8 +419,8 @@
 	desc = "Spews a cloud of smoke which will blind enemies."
 	panel = "Shadowling Abilities"
 	charge_max = 600
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon_state = "black_smoke"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	sound = 'sound/effects/bamf.ogg'
@@ -448,8 +448,8 @@
 	panel = "Shadowling Abilities"
 	range = 7
 	charge_max = 300
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon_state = "screech"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	sound = 'sound/effects/screech.ogg'
@@ -488,9 +488,9 @@
 	panel = "Shadowling Abilities"
 	range = 1
 	charge_max = 600
-	human_req = 1
-	clothes_req = 0
-	include_user = 0
+	human_req = TRUE
+	clothes_req = FALSE
+	include_user = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "revive_thrall"
 
@@ -595,8 +595,8 @@
 	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	charge_max = 600
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "extend_shuttle"
@@ -648,8 +648,8 @@
 	desc = "Makes a single target dizzy for a bit."
 	panel = "Thrall Abilities"
 	charge_max = 450
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "glare"
 
@@ -686,9 +686,9 @@
 	desc = "Wraps your form in shadows, making you harder to see."
 	panel = "Thrall Abilities"
 	charge_max = 1200
-	human_req = 1
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	clothes_req = 0
 	action_icon_state = "shadow_walk"
 
 /obj/effect/proc_holder/spell/self/lesser_shadow_walk/proc/reappear(mob/living/carbon/human/user)
@@ -707,7 +707,7 @@
 	desc = "Allows you to see in the dark!"
 	action_icon_state = "darksight"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	clothes_req = 0
+	clothes_req = FALSE
 	charge_max = 0
 
 /obj/effect/proc_holder/spell/self/thrall_night_vision/cast(mob/living/carbon/human/user)
@@ -735,8 +735,8 @@
 	desc = "Allows you to silently communicate with all other shadowlings and thralls."
 	panel = "Thrall Abilities"
 	charge_max = 50
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
@@ -749,7 +749,8 @@
 	if(!text)
 		return
 	text = "<span class='shadowling'><b>\[Thrall\]</b><i> [user.real_name]</i>: [text]</span>"
-	for(var/mob/M in GLOB.mob_list)
+	for(var/T in GLOB.alive_mob_list)
+		var/mob/M = T
 		if(is_shadow_or_thrall(M))
 			to_chat(M, text)
 		if(isobserver(M))
@@ -767,7 +768,7 @@
 	panel = "Ascendant"
 	range = 7
 	charge_max = 0
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon_state = "annihilate"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	sound = 'sound/magic/Staff_Chaos.ogg'
@@ -804,7 +805,7 @@
 	panel = "Ascendant"
 	range = 7
 	charge_max = 0
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "enthrall"
 
@@ -844,7 +845,7 @@
 	desc = "Phases you into the space between worlds at will, allowing you to move through walls and become invisible."
 	panel = "Ascendant"
 	charge_max = 15
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "shadow_walk"
 
@@ -868,7 +869,7 @@
 	panel = "Ascendant"
 	range = 6
 	charge_max = 100
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon_state = "lightning_storm"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	sound = 'sound/magic/lightningbolt.ogg'
@@ -896,7 +897,7 @@
 	desc = "Allows you to LOUDLY communicate with all other shadowlings and thralls."
 	panel = "Ascendant"
 	charge_max = 0
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
@@ -918,7 +919,7 @@
 	panel = "Ascendant"
 	range = 7
 	charge_max = 0
-	clothes_req = 0
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "gore"
 
