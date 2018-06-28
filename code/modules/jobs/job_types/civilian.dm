@@ -113,7 +113,7 @@ Mime
 		H.mind.miming = 1
 
 	// yogs start - Yog jobs
-	H.rename_self("mime")
+	H.apply_pref_name("mime")
 	log_game("[H.real_name]/[H.ckey] joined the round as [H.job].")
 	// yogs end
 /*
