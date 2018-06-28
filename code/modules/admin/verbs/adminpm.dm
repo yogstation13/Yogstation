@@ -170,7 +170,7 @@
 				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>") // yogs - Yog Tickets
 				to_chat(src, "<font color='blue'>-- [key_name(recipient, src)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
 
-			//play the recieving admin the adminhelp sound (if they have them enabled)
+			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 
