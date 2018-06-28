@@ -4,8 +4,8 @@
 	desc = "Casts off your disguise."
 	panel = "Shadowling Evolution"
 	charge_max = 3000
-	human_req = 1
-	clothes_req = 0
+	human_req = TRUE
+	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "hatch"
 
