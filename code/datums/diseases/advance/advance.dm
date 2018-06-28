@@ -56,6 +56,7 @@
 	return ..()
 
 /datum/disease/advance/try_infect(var/mob/living/infectee, make_copy = TRUE)
+<<<<<<< HEAD
 	var/replace_num = infectee.diseases.len + 1 - DISEASE_LIMIT
 	if(replace_num > 0)
 		//see if we are more transmittable than enough diseases to replace them
@@ -72,6 +73,22 @@
 		else
 			//we are not strong enough to bully our way in
 			return FALSE
+=======
+	//see if we are more transmittable than enough diseases to replace them
+	//diseases replaced in this way do not confer immunity
+	var/list/advance_diseases = list()
+	for(var/datum/disease/advance/P in infectee.diseases)
+		advance_diseases += P
+	var/replace_num = advance_diseases.len + 1 - DISEASE_LIMIT //amount of diseases that need to be removed to fit this one
+	if(replace_num > 0)
+		sortTim(advance_diseases, /proc/cmp_advdisease_resistance_asc)
+		for(var/i in 1 to replace_num)
+			var/datum/disease/advance/competition = advance_diseases[i]
+			if(totalTransmittable() > competition.totalResistance())
+				competition.cure(FALSE)
+			else
+				return FALSE //we are not strong enough to bully our way in
+>>>>>>> 549f5ceea6... better code
 	infect(infectee, make_copy)
 	return TRUE
 
