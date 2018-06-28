@@ -197,7 +197,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/banned = jobban_isbanned(src, "appearance")
 
 	while(loop && safety < 5)
+<<<<<<< HEAD
 		if(C && C.prefs.custom_names[role] && !safety && !banned)
+=======
+		if(C && C.prefs.custom_names[role] && !safety && (!jobban_isbanned(src, "appearance")))
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 			newname = C.prefs.custom_names[role]
 		else
 			switch(role)

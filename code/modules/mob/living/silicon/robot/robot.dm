@@ -240,9 +240,15 @@
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
+<<<<<<< HEAD
 	if(changed_name == "" && client && client.prefs.custom_names["cyborg"] != DEFAULT_CYBORG_NAME)
 		if(apply_pref_name("cyborg", client))
 			return //built in camera handled in proc
+=======
+	if(changed_name == "" && client)
+		rename_self(src, client)
+		return //built in camera handled in proc
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 	if(!changed_name)
 		changed_name = get_standard_name()
 

@@ -379,7 +379,11 @@
 	else if(transfer_after)
 		R.key = key
 
+<<<<<<< HEAD
 	R.apply_pref_name("cyborg")
+=======
+	R.rename_self("cyborg")
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 
 	if(R.mmi)
 		R.mmi.name = "Man-Machine Interface: [real_name]"

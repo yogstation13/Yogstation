@@ -350,7 +350,14 @@ SUBSYSTEM_DEF(job)
 	for(var/mob/dead/new_player/player in unassigned)
 		HandleUnassigned(player)
 
+<<<<<<< HEAD
 	JobDebug("DO, Handling unrejectable unassigned")
+=======
+	Debug("DO, Standard Check end")
+
+	Debug("DO, Running AC2")
+
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 	//Mop up people who can't leave.
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
@@ -376,7 +383,10 @@ SUBSYSTEM_DEF(job)
 		RejectPlayer(player)
 	else //Something gone wrong if we got here.
 		var/message = "DO: [player] fell through handling unassigned"
+<<<<<<< HEAD
 		JobDebug(message)
+=======
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 		log_game(message)
 		message_admins(message)
 		RejectPlayer(player)

@@ -3,10 +3,17 @@
 [![Build Status](https://travis-ci.org/yogstation13/Yogstation-TG.png)](https://travis-ci.org/yogstation13/Yogstation-TG)  
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
+<<<<<<< HEAD
 **Website:** https://yogstation.net
 **Code:** https://github.com/yogstation13/yogstation
 **Wiki:** https://wiki.yogstation.net
 **Discord:** https://discord.gg/0keg6hQH05Ha8OfO
+=======
+**Website:** https://www.tgstation13.org
+**Code:** https://github.com/tgstation/tgstation
+**Wiki** https://tgstation13.org/wiki/Main_Page
+**IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus)
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 
  
 ## DOWNLOADING
@@ -21,6 +28,17 @@ code tab of https://github.com/yogstation13/Yogstation-TG
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
+<<<<<<< HEAD
+=======
+Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightlies/ (same caveats as option 2)
+
+Option 4: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
+
+```
+docker run -d -p <your port>:1337 -v /path/to/your/config:/tgstation/config -v /path/to/your/data:/tgstation/data tgstation/tgstation <dream daemon options i.e. -public or -params>
+```
+
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 ## INSTALLATION
 
 First-time installation should be fairly straightforward. First, you'll need

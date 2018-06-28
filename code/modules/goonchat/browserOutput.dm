@@ -221,8 +221,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+<<<<<<< HEAD
 	message = to_utf8(message, target) // yogs - LibVG
 	
+=======
+
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 	for(var/I in targets)
 		//Grab us a client if possible
 		var/client/C
