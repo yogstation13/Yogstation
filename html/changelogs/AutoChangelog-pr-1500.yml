@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - tweak: "Added a disk compartmentalizer to Omegastation's hydroponics."
