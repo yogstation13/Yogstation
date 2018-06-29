@@ -128,7 +128,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!shadowling_check(H))
 		return
-	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
+	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?","Yes","No")
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, "<span class='warning'>You decide against ascending for now.")

@@ -49,7 +49,6 @@ Made by Xhuis
 /datum/game_mode
 	var/list/datum/mind/shadows = list()
 	var/list/datum/mind/thralls = list()
-	var/list/shadow_objectives = list()
 	var/required_thralls = 15 //How many thralls are needed (this is changed in pre_setup, so it scales based on pop)
 	var/shadowling_ascended = FALSE //If at least one shadowling has ascended
 	var/shadowling_dead = 0 //is shadowling kill
@@ -112,7 +111,8 @@ Made by Xhuis
 	reports of odd or suspicious sightings in maintenance."
 
 /datum/game_mode/shadowling/post_setup()
-	for(var/datum/mind/shadow in shadows)
+	for(var/T in shadows)
+		var/datum/mind/shadow = T
 		log_game("[shadow.key] (ckey) has been selected as a Shadowling.")
 		shadow.current.add_sling()
 	. = ..()
@@ -125,8 +125,8 @@ Made by Xhuis
 	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
 		var/datum/mind/shadow_mind = SM
 		if(istype(shadow_mind))
-			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
-				var/turf/T = get_turf(shadow_mind.current)
+			var/turf/T = get_turf(shadow_mind.current)
+			if((shadow_mind) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
 				return FALSE
 	return TRUE
 
@@ -229,11 +229,10 @@ Made by Xhuis
 	heatmod = 1.1
 
 /datum/species/shadow/ling/lesser/spec_life(mob/living/carbon/human/H)
-	var/light_amount = 0
 	H.nutrition = NUTRITION_LEVEL_WELL_FED //i aint never get hongry
 	if(isturf(H.loc))
 		var/turf/T = H.loc
-		light_amount = T.get_lumcount()
+		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)

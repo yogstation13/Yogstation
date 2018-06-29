@@ -1,5 +1,3 @@
-#define SW_LIGHT_FACTOR 2.75
-
 /mob/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
 		return TRUE
