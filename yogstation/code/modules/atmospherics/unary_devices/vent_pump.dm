@@ -1,6 +1,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump
 	var/cover = FALSE //For hiding tiny objects in, 1 means cover is up, can hide.
-	var/max_n_of_items = 5
+	var/max_n_of_items = 3
 
 /obj/machinery/atmospherics/components/unary/vent_pump/crowbar_act(mob/living/user, obj/item/I)
 	to_chat(user, "<span class='notice'>You begin prying [cover ? "in" : "off"] the vent cover.</span>")
