@@ -18,7 +18,7 @@
 	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
 		return
 	var/mob/living/carbon/human/H = user
-	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!","Yes","No")
+	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, "<span class='warning'>You decide against hatching for now.")
@@ -128,7 +128,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!shadowling_check(H))
 		return
-	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?","Yes","No")
+	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, "<span class='warning'>You decide against ascending for now.")
