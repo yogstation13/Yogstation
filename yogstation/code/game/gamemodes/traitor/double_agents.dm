@@ -2,7 +2,7 @@
 	if(owner && owner.current && owner.current.stat!=DEAD)
 		var/new_objective = TRUE
 		for(var/objective_ in owner.objectives)
-			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/purge))
+			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/block))
 				new_objective = FALSE
 				break
 			if(!is_internal_objective(objective_))
