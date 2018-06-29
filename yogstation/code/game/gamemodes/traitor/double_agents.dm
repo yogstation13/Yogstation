@@ -2,7 +2,7 @@
 	if(owner && owner.current && owner.current.stat!=DEAD)
 		var/new_objective = TRUE
 		for(var/objective_ in owner.objectives)
-			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr))
+			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/purge))
 				new_objective = FALSE
 				break
 			if(!is_internal_objective(objective_))
@@ -18,8 +18,12 @@
 				if(!is_internal_objective(objective_))
 					continue
 				var/datum/objective/assassinate/internal/objective = objective_
-				if(objective.target && objective.target.current)
-					other_traitors -= objective.target.current
+				if(objective.target)
+					other_traitors -= objective.target
+			for(var/tator in other_traitors)
+				var/datum/mind/tatortottle = tator
+				if(!tatortottle.current || tatortottle.current.stat == DEAD)
+					other_traitors -= tatortottle
 
 			if(other_traitors.len)
 				var/datum/mind/target_mind = pick(other_traitors)
@@ -39,7 +43,12 @@
 				for(var/objective_ in owner.objectives)
 					remove_objective(objective_)
 
-				if(prob(50))
+				if(issilicon(owner))
+					var/datum/objective/block/block_objective = new
+					block_objective.owner = owner
+					add_objective(block_objective) //AIs are guaranteed hijack since glorious death doesn't really make sense for them, and they don't have a murderbone rule regardless.
+
+				else if(prob(50)) //50/50 split between glorious death and hijack, so IAA can't just go "hurr, I can kill everyone since I'll get hijack later"
 					var/datum/objective/martyr/martyr_objective = new
 					martyr_objective.owner = owner
 					add_objective(martyr_objective)
@@ -47,6 +56,8 @@
 					var/datum/objective/hijack/hijack_objective = new
 					hijack_objective.owner = owner.
 					add_objective(hijack_objective)
+
+			owner.announce_objectives()
 
 /datum/game_mode/traitor/internal_affairs/add_latejoin_traitor(datum/mind/character)
 	for(var/data in character.antag_datums)
