@@ -139,5 +139,5 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 250, MAT_URANIUM = 500) //quite cheap, for more convenience
 	build_path = /obj/item/storage/bag/ore/holding
-	category = list("Bluespace Designs")
+	category = list("Bluespace Designs", "Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
