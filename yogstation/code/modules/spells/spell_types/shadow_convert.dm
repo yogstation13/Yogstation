@@ -41,7 +41,7 @@
 		return
 
 	if(target.stat != DEAD)
-		to_chat(user, "<span class='warning'>Their mind is still active!</span>"
+		to_chat(user, "<span class='warning'>Their mind is still active!</span>")
 
 	isconverting = TRUE
 	for(var/i in 1 to 3)
