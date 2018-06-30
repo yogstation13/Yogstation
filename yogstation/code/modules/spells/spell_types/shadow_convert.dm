@@ -28,7 +28,7 @@
 		return
 
 	var/mob/living/carbon/target = user.pulling
-	if(!mind || (!ckey && !get_ghost().ckey) )
+	if(!target.mind || (!target.ckey && !target.get_ghost().ckey) )
 		to_chat(user, "<span class='warning'>Their mind is too empty!</span>")
 		return
 
