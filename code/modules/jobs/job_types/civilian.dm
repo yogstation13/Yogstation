@@ -18,7 +18,7 @@ Clown
 	minimal_access = list(ACCESS_THEATRE)
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
-	H.rename_self("clown", M.client)
+	H.apply_pref_name("clown", M.client)
 
 /datum/outfit/job/clown
 	name = "Clown"
@@ -81,7 +81,7 @@ Mime
 	minimal_access = list(ACCESS_THEATRE)
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
-	H.rename_self("mime", M.client)
+	H.apply_pref_name("mime", M.client)
 
 /datum/outfit/job/mime
 	name = "Mime"
@@ -113,7 +113,7 @@ Mime
 		H.mind.miming = 1
 
 	// yogs start - Yog jobs
-	H.rename_self("mime")
+	H.apply_pref_name("mime")
 	log_game("[H.real_name]/[H.ckey] joined the round as [H.job].")
 	// yogs end
 /*

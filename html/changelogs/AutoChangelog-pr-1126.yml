@@ -1,4 +1,0 @@
-author: " cyclowns"
-delete-after: true 
-changes: 
-  - bugfix: "Fires no longer flicker back and forth like crazy"

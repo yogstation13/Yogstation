@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "R&D deconstructors can now destroy things regardless of if there's a point value or material"

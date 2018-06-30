@@ -192,7 +192,7 @@
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
 	return !requiresID() || ..()
 
-/obj/machinery/door/airlock/ntnet_recieve(datum/netdata/data)
+/obj/machinery/door/airlock/ntnet_receive(datum/netdata/data)
 	// Check if the airlock is powered and can accept control packets.
 	if(!hasPower() || !canAIControl())
 		return
@@ -201,7 +201,7 @@
 	if(!check_access_ntnet(data))
 		return
 
-	// Handle recieved packet.
+	// Handle received packet.
 	var/command = lowertext(data.data["data"])
 	var/command_value = lowertext(data.data["data_secondary"])
 	switch(command)
@@ -1509,7 +1509,7 @@
 			else if (safe)
 				safe = FALSE
 			else
-				to_chat(usr, "Firmware reports safeties already overriden.")
+				to_chat(usr, "Firmware reports safeties already overridden.")
 			. = TRUE
 		if("speed-on")
 			if(wires.is_cut(WIRE_TIMING))
@@ -1542,6 +1542,7 @@
 		to_chat(user, "Can't un-electrify the airlock - The electrification wire is cut.")
 	else if(isElectrified())
 		set_electrified(0)
+		to_chat(user, "Door un-electrified.") //yogs
 
 /obj/machinery/door/airlock/proc/shock_temp(mob/user)
 	if(!user_allowed(user))
@@ -1562,6 +1563,7 @@
 		LAZYADD(shockedby, text("\[[time_stamp()]\][user](ckey:[user.ckey])"))
 		add_logs(user, src, "electrified")
 		set_electrified(ELECTRIFIED_PERMANENT)
+		to_chat(user, "Door electrified") //yogs
 
 /obj/machinery/door/airlock/proc/emergency_on(mob/user)
 	if(!user_allowed(user))
@@ -1569,6 +1571,7 @@
 	if (!emergency)
 		emergency = TRUE
 		update_icon()
+		to_chat(user, "Airlock emergency access enabled.") //yogs
 	else
 		to_chat(user, "Emergency access is already enabled!")
 
@@ -1578,6 +1581,7 @@
 	if (emergency)
 		emergency = FALSE
 		update_icon()
+		to_chat(user, "Airlock emergency access disabled.") //yogs
 	else
 		to_chat(user, "Emergency access is already disabled!")
 
@@ -1591,6 +1595,7 @@
 	else
 		if(src.hasPower())
 			unbolt()
+			to_chat(user, "Door bolts raised.") //yogs
 		else
 			to_chat(user, "Cannot raise door bolts due to power failure")
 
@@ -1601,6 +1606,7 @@
 		to_chat(user, "You can't drop the door bolts - The door bolt dropping wire has been cut.")
 	else
 		bolt()
+		to_chat(user, "Door bolts dropped.") //yogs
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
 	if(!user_allowed(user))

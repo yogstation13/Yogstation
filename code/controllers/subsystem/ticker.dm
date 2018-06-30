@@ -244,8 +244,8 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!GLOB.Debug2)
 		if(!can_continue)
-			qdel(mode)
-			mode = null
+			log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
+			QDEL_NULL(mode)
 			to_chat(world, "<B>Error setting up [GLOB.master_mode].</B> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return 0
@@ -254,11 +254,7 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	if(hide_mode)
-		var/list/modes = new
-		for (var/datum/game_mode/M in runnable_modes)
-			modes += M.name
-		modes = sortList(modes)
-		to_chat(world, "<b>The gamemode is: secret!\nPossibilities:</B> [english_list(modes)]")
+		to_chat(world, "<b>The gamemode is: secret!</b>") // yogs - removed possible gamemodes list
 	else
 		mode.announce()
 
@@ -428,7 +424,7 @@ SUBSYSTEM_DEF(ticker)
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, "<span class='danger'>No response recieved. You have been removed from the line.</span>")
+			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
 			queued_players -= next_in_line
 			queue_delay = 0
 
@@ -600,12 +596,16 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
 		return
-	if(GLOB.ahelp_tickets.ticketAmount) //YOGS - tickets
-		if(!GLOB.admins.len)
-			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+	//yogs start - yogs tickets
+	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
+		var/list/adm = get_admin_counts(R_ADMIN)
+		var/list/activemins = adm["present"]
+		if(activemins.len > 0)
+			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
+			return
 		else
-			message_admins("Not all tickets have been resolved. Server restart delayed.")
-			return //YOGS - tickets
+			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+	 //yogs end - yogs tickets
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
 	webhook_send_roundstatus("endgame") //yogs - webhook support

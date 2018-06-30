@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Refunding nuclear reinforcements while polling ghosts no longer summons the reinforcements into the error room anyways."
