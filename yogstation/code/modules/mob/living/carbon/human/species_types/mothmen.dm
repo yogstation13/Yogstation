@@ -4,7 +4,7 @@
 
 /datum/species/moth/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if(stat != DEAD) //Suffer not a dead moth to move
+	if(H.stat != DEAD) //Suffer not a dead moth to move
 		MothLightProb = initial(MothLightProb)
 		var/retarded = H.getBrainLoss()
 		MothLightProb += retarded*0.3 //So there's always a slight chance.
