@@ -28,6 +28,11 @@
 		return
 
 	var/mob/living/carbon/target = user.pulling
+	var/obj/item/bodypart/head/HD = target.get_bodypart(BODY_ZONE_HEAD)
+	if(!HD) //decapitated
+		to_chat(user, "<span class='warning'>They have no mind!</span>"
+		return
+	
 	if(!target.mind || (!target.ckey && !target.get_ghost().ckey) )
 		to_chat(user, "<span class='warning'>Their mind is too empty!</span>")
 		return
