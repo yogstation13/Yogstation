@@ -68,7 +68,7 @@
 
 /datum/weather/nuclear/start()
 	. = ..()
-	for(var/mob/living/L in GLOB.player_list)
+	for(var/mob/living/L in GLOB.mob_living_list)
 		shake_camera(L, 7, 1)
 	for(var/obj/machinery/light/T in GLOB.machines)
 		T.break_light_tube()

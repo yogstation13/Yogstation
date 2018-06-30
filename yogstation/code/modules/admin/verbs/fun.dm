@@ -13,7 +13,7 @@
 				log_admin("[key_name(usr)] launched a nuke at the station!", 1)
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] launched a nuke at the station!</span>")
 				SSweather.run_weather("nuclear detonation",2)
-				return 1
+				return TRUE
 			if("NO")
 				log_admin("[key_name(usr)] Resisted the temptation to press the nuclear launch button.", 1)
-				return 0
+				return FALSE
