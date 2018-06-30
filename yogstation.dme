@@ -2654,6 +2654,7 @@
 #include "yogstation\code\modules\admin\admin_ranks.dm"
 #include "yogstation\code\modules\admin\admin_verbs.dm"
 #include "yogstation\code\modules\admin\prettyfilter.dm"
+#include "yogstation\code\modules\admin\secrets.dm"
 #include "yogstation\code\modules\admin\verbs\admin_ticket_templates.dm"
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
 #include "yogstation\code\modules\admin\verbs\adminsay.dm"
