@@ -19092,7 +19092,10 @@
 	},
 /area/hydroponics)
 "aXW" = (
-/obj/machinery/plantgenes,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel/green/corner{
 	dir = 4
 	},
@@ -49906,7 +49909,10 @@
 	},
 /area/hallway/primary/central)
 "kEW" = (
-/obj/machinery/smartfridge/disks,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kFm" = (
