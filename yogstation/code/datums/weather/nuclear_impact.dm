@@ -58,6 +58,7 @@
 				L.IgniteMob()
 		else
 			var/mob/living/themob = M
+			to_chat(M, "In an instant flash of heat, you are completely vaporized as your skin melts away.")
 			themob.dust()
 
 /datum/weather/nuclear/telegraph()
