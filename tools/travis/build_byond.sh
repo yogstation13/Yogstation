@@ -67,11 +67,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 		fi
     	ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
 	
-<<<<<<< HEAD
-		DreamDaemon yogstation.dmb -close -trusted -params "test-run&log-directory=travis"
-=======
-		DreamDaemon tgstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
->>>>>>> 4d3343459f... Make travis use -verbose to get all the runtimes without limit (#38816)
+		DreamDaemon yogstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
 		cat data/logs/travis/clean_run.lk
 	fi;
 fi;
