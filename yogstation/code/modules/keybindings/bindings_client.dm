@@ -31,7 +31,11 @@
 		if(ACTION_OOC)
 			get_ooc()
 			return
-			
+
+	if(prefs.afreeze)
+		to_chat(src, "<span class='userdanger'>You are frozen by an administrator.</span>")
+		return
+
 	var/datum/keyinfo/I = bind.to_keyinfo(_key, A)
 
 	if(holder)
