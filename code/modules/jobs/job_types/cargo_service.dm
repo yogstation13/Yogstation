@@ -75,7 +75,8 @@ Shaft Miner
 	outfit = /datum/outfit/job/miner
 
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING) //YOGS - removed mineral access from shaft miners :(
+	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM) //YOGS - removed mineral access from shaft miners :(
+//NOT ANYMORE THEY GOT IT BACC BOYS -Jcat
 
 /datum/outfit/job/miner
 	name = "Shaft Miner (Lavaland)"
