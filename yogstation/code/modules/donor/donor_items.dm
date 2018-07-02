@@ -66,6 +66,7 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/shoes/yogs/trainers/black, \
 						/obj/item/clothing/suit/yogs/zebrasweat, \
 						/obj/item/clothing/suit/yogs/blackwhitesweat, \
+						/obj/item/clothing/suit/yogs/blackwhitesweat, \
 						/obj/item/clothing/shoes/yogs/fuzzy_slippers
 						)
 
