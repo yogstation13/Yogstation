@@ -4,7 +4,7 @@
 #define LIGHT_DAM_THRESHOLD 0.25
 #define LIGHT_RED_MULTIPLIER 0.4
 #define LIGHT_GREEN_MULTIPLIER 0.8
-#define LIGHT_BLUE_MULTIPLIER 1
+#define LIGHT_BLUE_MULTIPLIER 1.2
 
 /*
 
@@ -71,7 +71,7 @@ Made by Xhuis
 	antag_flag = ROLE_SHADOWLING
 	required_players = 26
 	required_enemies = 3
-	recommended_enemies = 2
+	recommended_enemies = 3
 	enemy_minimum_age = 14
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")

@@ -87,7 +87,7 @@
 		target.Stun(100)
 		M.silent += 10
 	else //Distant glare
-		var/loss = 100 - ((distance - 1) * 18)
+		var/loss = 100 - (distance * 10))
 		target.adjustStaminaLoss(loss)
 		target.stuttering = loss
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
