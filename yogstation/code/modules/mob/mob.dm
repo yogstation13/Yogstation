@@ -9,3 +9,4 @@
 /mob/canface()
 	if(client.prefs.afreeze)
 		return FALSE
+	..()
