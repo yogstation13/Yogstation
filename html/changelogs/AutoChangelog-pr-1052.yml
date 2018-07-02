@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "added a check to see if the preferred race is human when the name doesn't have a space"

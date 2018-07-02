@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Removing an ID card from a wallet now properly removes its visual and accesses."

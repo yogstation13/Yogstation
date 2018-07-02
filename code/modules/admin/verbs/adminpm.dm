@@ -145,15 +145,15 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: [rawmsg]</font>")
+		to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, keywordparsedmsg) // yogs - Yog Tickets
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
 		if(recipient.holder)
 			if(holder)	//both are admins
-				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: [keywordparsedmsg]</font>") // yogs - Yog Tickets
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [keywordparsedmsg]</font>")
+				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
 				//omg this is dumb, just fill in both their tickets
 				admin_ticket_log(src, msg, FALSE) // yogs - Yog Tickets
@@ -164,13 +164,13 @@
 
 			else		//recipient is an admin but sender is not
 				if(!current_ticket)
-					to_chat(src, "<font color='blue'>Ticket closed, plese make a new one before trying to contact admins!</span>")
+					to_chat(src, "<font color='blue'>Ticket closed, please make a new one before trying to contact admins!</span>") // yogs - Yog Tickets
 					return
 				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
-				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [keywordparsedmsg]</font>") // yogs - Yog Tickets
-				to_chat(src, "<font color='blue'>-- [key_name(recipient, src)] -> <b>Admins</b>: [msg]</font>") // yogs - Yog Tickets
+				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>") // yogs - Yog Tickets
+				to_chat(src, "<font color='blue'>-- [key_name(recipient, src)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
 
-			//play the recieving admin the adminhelp sound (if they have them enabled)
+			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 
@@ -182,9 +182,9 @@
 					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
-				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [msg]</font>")
+				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></font>")
 				to_chat(recipient, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [msg]</font>")
+				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></font>")
 
 				admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 

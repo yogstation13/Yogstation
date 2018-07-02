@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Opening and closing airlocks repeatedly no longer stacks queued autocloses."
