@@ -2631,6 +2631,8 @@
 #include "yogstation\code\controllers\subsystem\input.dm"
 #include "yogstation\code\datums\mind.dm"
 #include "yogstation\code\datums\world_topic.dm"
+#include "yogstation\code\datums\antagonists\shadowling.dm"
+#include "yogstation\code\datums\antagonists\thrall.dm"
 #include "yogstation\code\datums\components\uplink.dm"
 #include "yogstation\code\game\world.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
