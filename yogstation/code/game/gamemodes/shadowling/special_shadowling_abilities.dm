@@ -34,84 +34,84 @@
 
 			H.unequip_everything()
 
-			if(do_mob(H,H,50,1))
+			sleep(50)
 
-				var/turf/shadowturf = get_turf(user)
-				for(var/turf/open/floor/F in orange(1, user))
-					new /obj/structure/alien/resin/wall/shadowling(F)
+			var/turf/shadowturf = get_turf(user)
+			for(var/turf/open/floor/F in orange(1, user))
+				new /obj/structure/alien/resin/wall/shadowling(F)
 
-				for(var/obj/structure/alien/resin/wall/shadowling/R in shadowturf) //extremely hacky
-					qdel(R)
-					new /obj/structure/alien/weeds/node(shadowturf) //Dim lighting in the chrysalis -- removes itself afterwards
+			for(var/obj/structure/alien/resin/wall/shadowling/R in shadowturf) //extremely hacky
+				qdel(R)
+				new /obj/structure/alien/weeds/node(shadowturf) //Dim lighting in the chrysalis -- removes itself afterwards
 
-				H.visible_message("<span class='warning'>A chrysalis forms around [H], sealing them inside.</span>", \
-								"<span class='shadowling'>You create your chrysalis and begin to contort within.</span>")
+			H.visible_message("<span class='warning'>A chrysalis forms around [H], sealing them inside.</span>", \
+							"<span class='shadowling'>You create your chrysalis and begin to contort within.</span>")
 
-				if(do_mob(H,H,100,1))
-					H.visible_message("<span class='warning'><b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b></span>", \
-									"<span class='shadowling'>Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit.</span>")
+			sleep(100)
+			H.visible_message("<span class='warning'><b>The skin on [H]'s back begins to split apart. Black spines slowly emerge from the divide.</b></span>", \
+							"<span class='shadowling'>Spines pierce your back. Your claws break apart your fingers. You feel excruciating pain as your true form begins its exit.</span>")
 
-					if(do_mob(H,H,90,1))
-						H.visible_message("<span class='warning'><b>[H], skin shifting, begins tearing at the walls around them.</b></span>", \
-										"<span class='shadowling'>Your false skin slips away. You begin tearing at the fragile membrane protecting you.</span>")
+			sleep(90)
+			H.visible_message("<span class='warning'><b>[H], skin shifting, begins tearing at the walls around them.</b></span>", \
+							"<span class='shadowling'>Your false skin slips away. You begin tearing at the fragile membrane protecting you.</span>")
 
-						if(do_mob(H,H,80,1))
-							playsound(H.loc, 'sound/weapons/slash.ogg', 25, 1)
-							to_chat(H, "<i><b>You rip and slice.</b></i>")
-							if(do_mob(H,H,10,1))
-								playsound(H.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
-								to_chat(H, "<i><b>The chrysalis falls like water before you.</b></i>")
-								if(do_mob(H,H,10,1))
-									playsound(H.loc, 'sound/weapons/slice.ogg', 25, 1)
-									to_chat(H, "<i><b>You are free!</b></i>")
-									H.status_flags = temp_flags
-									if(do_mob(H,H,10,1))
-										playsound(H.loc, 'sound/effects/ghost.ogg', 100, 1)
-										var/newNameId = pick(GLOB.nightmare_names)
-										var/oldName = H.real_name
-										GLOB.nightmare_names.Remove(newNameId)
-										H.real_name = newNameId
-										H.name = user.real_name
-										H.SetStun(0)
-										to_chat(H, "<i><b><font size=3>YOU LIVE!!!</i></b></font>")
+			sleep(80)
+			playsound(H.loc, 'sound/weapons/slash.ogg', 25, 1)
+			to_chat(H, "<i><b>You rip and slice.</b></i>")
+			sleep(10)
+			playsound(H.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+			to_chat(H, "<i><b>The chrysalis falls like water before you.</b></i>")
+			sleep(10)
+			playsound(H.loc, 'sound/weapons/slice.ogg', 25, 1)
+			to_chat(H, "<i><b>You are free!</b></i>")
+			H.status_flags = temp_flags
+			sleep(10)
+			playsound(H.loc, 'sound/effects/ghost.ogg', 100, 1)
+			var/newNameId = pick(GLOB.nightmare_names)
+			var/oldName = H.real_name
+			GLOB.nightmare_names.Remove(newNameId)
+			H.real_name = newNameId
+			H.name = user.real_name
+			H.SetStun(0)
+			to_chat(H, "<i><b><font size=3>YOU LIVE!!!</i></b></font>")
 
-										var/hatchannounce = "<font size=3><span class='shadowling'><b>[oldName] has hatched into the Shadowling [newNameId]!</b></span></font>"
-										for(var/T in GLOB.alive_mob_list)
-											var/mob/M = T
-											if(is_shadow_or_thrall(M))
-												to_chat(M, hatchannounce)
+			var/hatchannounce = "<font size=3><span class='shadowling'><b>[oldName] has hatched into the Shadowling [newNameId]!</b></span></font>"
+			for(var/T in GLOB.alive_mob_list)
+				var/mob/M = T
+				if(is_shadow_or_thrall(M))
+					to_chat(M, hatchannounce)
 
-										for(var/T in GLOB.dead_mob_list)
-											var/mob/M = T
-											to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
+			for(var/T in GLOB.dead_mob_list)
+				var/mob/M = T
+				to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
 
-										for(var/obj/structure/alien/resin/wall/shadowling/W in orange(1, H))
-											playsound(W, 'sound/effects/splat.ogg', 50, 1)
-											qdel(W)
-										for(var/obj/structure/alien/weeds/node/N in shadowturf)
-											qdel(N)
-										H.visible_message("<span class='warning'>The chrysalis explodes in a shower of purple flesh and fluid!</span>")
-										H.underwear = "Nude"
-										H.undershirt = "Nude"
-										H.socks = "Nude"
-										H.faction |= "faithless"
-										H.shadow_walk = TRUE
+			for(var/obj/structure/alien/resin/wall/shadowling/W in orange(1, H))
+				playsound(W, 'sound/effects/splat.ogg', 50, 1)
+				qdel(W)
+			for(var/obj/structure/alien/weeds/node/N in shadowturf)
+				qdel(N)
+			H.visible_message("<span class='warning'>The chrysalis explodes in a shower of purple flesh and fluid!</span>")
+			H.underwear = "Nude"
+			H.undershirt = "Nude"
+			H.socks = "Nude"
+			H.faction |= "faithless"
+			H.shadow_walk = TRUE
 
-										H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
-										H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
-										H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
+			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
 
-										H.mind.RemoveSpell(src)
+			H.mind.RemoveSpell(src)
 
-										sleep(10)
-										to_chat(H, "<span class='shadowling'><b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i></span>")
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/flashfreeze(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/collective_mind(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_regenarmor(null))
-										H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle(null))
+			sleep(10)
+			to_chat(H, "<span class='shadowling'><b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i></span>")
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/flashfreeze(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/collective_mind(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_regenarmor(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle(null))
 
 
 
@@ -142,56 +142,56 @@
 			for(var/obj/item/I in H) //drops all items
 				H.unequip_everything(I)
 
-				if(do_mob(H,H,50,1))
+				sleep(50)
 
-					H.visible_message("<span class='warning'>[H]'s skin begins to crack and harden.</span>", \
-									"<span class='shadowling'>Your flesh begins creating a shield around yourself.</span>")
+				H.visible_message("<span class='warning'>[H]'s skin begins to crack and harden.</span>", \
+								"<span class='shadowling'>Your flesh begins creating a shield around yourself.</span>")
 
-					if(do_mob(H,H,100,1))
-						H.visible_message("<span class='warning'>The small horns on [H]'s head slowly grow and elongate.</span>", \
-										"<span class='shadowling'>Your body continues to mutate. Your telepathic abilities grow.</span>") //y-your horns are so big, senpai...!~
+				sleep(100)
+				H.visible_message("<span class='warning'>The small horns on [H]'s head slowly grow and elongate.</span>", \
+								  "<span class='shadowling'>Your body continues to mutate. Your telepathic abilities grow.</span>") //y-your horns are so big, senpai...!~
 
-						if(do_mob(H,H,90,1))
-							H.visible_message("<span class='warning'>[H]'s body begins to violently stretch and contort.</span>", \
-											"<span class='shadowling'>You begin to rend apart the final barriers to godhood.</span>")
+				sleep(90)
+				H.visible_message("<span class='warning'>[H]'s body begins to violently stretch and contort.</span>", \
+								  "<span class='shadowling'>You begin to rend apart the final barriers to godhood.</span>")
 
-							if(do_mob(H,H,40,1))
-								to_chat(H, "<i><b>Yes!</b></i>")
-								if(do_mob(H,H,10,1))
-									to_chat(H, "<i><b><span class='big'>YES!!</span></b></i>")
-									if(do_mob(H,H,10,1))
-										to_chat(H, "<i><b><span class='reallybig'>YE--</span></b></i>")
-										if(do_mob(H,H,1,1))
-											for(var/mob/living/M in orange(7, H))
-												M.Knockdown(10)
-											to_chat(M, "<span class='userdanger'>An immense pressure slams you onto the ground!</span>")
-											to_chat(world, "<font size=5><span class='shadowling'><b>\"VYSHA NERADA YEKHEZET U'RUU!!\"</font></span>")
-											for(var/mob/M in GLOB.player_list)
-												SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
-											for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
-												A.overload_lighting()
-											var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
-											for(var/X in H.mind.spell_list)
-												var/obj/effect/proc_holder/spell/S = X
-												if(S == src) continue
-												H.mind.RemoveSpell(S)
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/hypnosis(null))
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_phase_shift(null))
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm(null))
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind_ascendant(null))
-											H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/gore(null))
-											H.mind.transfer_to(A)
-											A.name = H.real_name
-											if(A.real_name)
-												A.real_name = H.real_name
-											H.invisibility = 60 //This is pretty bad, but is also necessary for the shuttle call to function properly
-											H.forceMove(A)
-											if(!SSticker.mode.shadowling_ascended)
-												set_security_level(SEC_LEVEL_DELTA)
-												SSshuttle.emergencyCallTime = 1800
-												SSshuttle.emergency.request(null, 0.3)
-												SSshuttle.emergencyNoRecall = TRUE
-											SSticker.mode.shadowling_ascended = TRUE
-											A.mind.RemoveSpell(src)
-											qdel(H)
+				sleep(40)
+				to_chat(H, "<i><b>Yes!</b></i>")
+				sleep(10)
+				to_chat(H, "<i><b><span class='big'>YES!!</span></b></i>")
+				sleep(10)
+				to_chat(H, "<i><b><span class='reallybig'>YE--</span></b></i>")
+				sleep(1)
+				for(var/mob/living/M in orange(7, H))
+					M.Knockdown(10)
+					to_chat(M, "<span class='userdanger'>An immense pressure slams you onto the ground!</span>")
+				to_chat(world, "<font size=5><span class='shadowling'><b>\"VYSHA NERADA YEKHEZET U'RUU!!\"</font></span>")
+				for(var/mob/M in GLOB.player_list)
+					SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
+				for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
+					A.overload_lighting()
+				var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
+				for(var/X in H.mind.spell_list)
+					var/obj/effect/proc_holder/spell/S = X
+					if(S == src) continue
+					H.mind.RemoveSpell(S)
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/hypnosis(null))
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_phase_shift(null))
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm(null))
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind_ascendant(null))
+				H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/gore(null))
+				H.mind.transfer_to(A)
+				A.name = H.real_name
+				if(A.real_name)
+					A.real_name = H.real_name
+				H.invisibility = 60 //This is pretty bad, but is also necessary for the shuttle call to function properly
+				H.forceMove(A)
+				if(!SSticker.mode.shadowling_ascended)
+					set_security_level(SEC_LEVEL_DELTA)
+					SSshuttle.emergencyCallTime = 1800
+					SSshuttle.emergency.request(null, 0.3)
+					SSshuttle.emergencyNoRecall = TRUE
+				SSticker.mode.shadowling_ascended = TRUE
+				A.mind.RemoveSpell(src)
+				qdel(H)
