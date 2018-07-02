@@ -58,7 +58,7 @@
 	return
 
 /obj/item/shoe_protector/afterattack(obj/I, mob/user)
-	if(infinite && !charges)
+	if(infinite && charges)
 		to_chat(user, "WARNING! Low liquid volume detected. Engaging time-jump.")
 		do_time_jump()
 		return FALSE
