@@ -68,17 +68,19 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!target)
+		return
 	if(target.stat)
-		to_chat(user, "<span class='warning'>[target] must be conscious!</span>")
+		to_chat(usr, "<span class='warning'>[target] must be conscious!</span>")
 		revert_cast()
 		return
 	if(is_shadow_or_thrall(target))
-		to_chat(user, "<span class='warning'>You cannot glare at allies!</span>")
+		to_chat(usr, "<span class='warning'>You cannot glare at allies!</span>")
 		revert_cast()
 		return
 	var/mob/living/carbon/human/M = target
-	user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
-	var/distance = get_dist(target, user)
+	usr.visible_message("<span class='warning'><b>[usr]'s eyes flash a purpleish-red!</b></span>")
+	var/distance = get_dist(target, usr)
 	if (distance <= 1) //Melee
 		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
@@ -93,7 +95,7 @@
 	charge_counter = 0
 	start_recharge()
 	remove_ranged_ability()
-	user = null
+	usr = null
 	target = null
 
 
@@ -107,13 +109,19 @@
 	range = 5
 	action_icon_state = "veil"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
-	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	var/admin_override = FALSE //Requested by Shadowlight213. Allows anyone to cast the spell, not just shadowlings.
 
-/obj/effect/proc_holder/spell/aoe_turf/veil/proc/extinguishItem(obj/item/I) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
+/obj/effect/proc_holder/spell/aoe_turf/proc/extinguishItem(obj/item/I, cold = FALSE) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
+	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		if(F.on)
+			if(cold)
+				if(is_type_in_list(F, blacklisted_lights))
+					F.visible_message("<span class='warning'>The sheer cold shatters [F]!</span>")
+					qdel(F)
+				else
+					return
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
 				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
@@ -125,9 +133,11 @@
 	I.set_light(0)
 	return I.luminosity
 
-/obj/effect/proc_holder/spell/aoe_turf/veil/proc/extinguishMob(mob/living/H)
+/obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
 	var/blacklistLuminosity = 0
 	for(var/obj/item/F in H)
+		if(cold)
+			extinguishItem(F, TRUE)
 		blacklistLuminosity += extinguishItem(F)
 	H.set_light(blacklistLuminosity) //I hate lightcode for making me do it this way
 
@@ -161,6 +171,8 @@
 			if(prob(10))
 				cam.emp_act(2)
 
+
+
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage."
@@ -172,6 +184,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "icy_veins"
 	sound = 'sound/effects/ghost2.ogg'
+	var/special_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user))
@@ -193,7 +206,9 @@
 				M.bodytemperature -= 200 //Extreme amount of initial cold
 			if(M.reagents)
 				M.reagents.add_reagent("frostoil", 15) //Half of a cryosting
-
+			extinguishMob(M, TRUE)
+		for(var/obj/item/F in T.contents)
+			extinguishItem(F, TRUE)
 
 
 
