@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - experiment: "Internal Affairs Agents now get more objectives as they complete them."
