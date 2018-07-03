@@ -81,6 +81,16 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
+
+
+	var/delay = mob.movement_delay() // Yoggybear start
+
+	if(Can_ShadowWalk(mob))
+		if(Process_ShadowWalk(direct))
+			return
+		else
+			delay = delay*SW_LIGHT_FACTOR // Yogs end
+
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
