@@ -112,12 +112,7 @@
 
 /obj/item/areaeditor/blueprints/proc/get_images(turf/T, viewsize)
 	. = list()
-<<<<<<< HEAD
-	for(var/tt in RANGE_TURFS(viewsize, T))
-		var/turf/TT = tt
-=======
 	for(var/turf/TT in range(viewsize, T))
->>>>>>> 9875f19053... Should look before simplyfing names
 		if(TT.blueprint_data)
 			. += TT.blueprint_data
 
