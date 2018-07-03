@@ -1,0 +1,4 @@
+author: " Frozenguy5"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes nitryl gas not applying its effects."
