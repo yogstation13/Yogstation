@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The gulag shuttle no longer moves instantly when returned via the claim console."

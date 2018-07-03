@@ -12,5 +12,19 @@
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/device_tools/arm
+	name = "Additional Arm"
+	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
+	item = /obj/item/flashlight //doesn't actually spawn a flashlight, but it needs an object to show up in the menu :^)
+	cost = 5
+
+/datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
+	var/limbs = user.held_items.len
+	user.change_number_of_hands(limbs+1)
+	to_chat(user, "You feel more dexterous")
+
+/datum/uplink_item/device_tools/emag
+	cost = 8
+
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)

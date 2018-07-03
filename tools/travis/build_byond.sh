@@ -67,7 +67,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 		fi
     	ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
 	
-		DreamDaemon yogstation.dmb -close -trusted -params "test-run&log-directory=travis"
+		DreamDaemon yogstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
 		cat data/logs/travis/clean_run.lk
 	fi;
 fi;

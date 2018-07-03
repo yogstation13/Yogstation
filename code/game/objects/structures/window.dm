@@ -292,6 +292,7 @@
 				var/obj/item/I = i
 				I.forceMove(drop_location())
 				transfer_fingerprints_to(I)
+				debris -= I
 	qdel(src)
 	update_nearby_icons()
 
@@ -438,7 +439,7 @@
 
 /obj/structure/window/plasma/reinforced
 	name = "reinforced plasma window"
-	desc = "A window made out of a plasma-silicate alloy and a rod matrice. It looks hopelessly tough to break and is most likely nigh fireproof."
+	desc = "A window made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough to break and is most likely nigh fireproof."
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000

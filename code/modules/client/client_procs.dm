@@ -6,6 +6,7 @@
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
 	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
+	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
 
 	))
 
@@ -541,7 +542,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	query_log_connection.Execute()
 	qdel(query_log_connection)
 	// yogs start - logout logging
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `serverip`=INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')) AND `ckey`='[sql_ckey]' AND `ip`='[sql_ip]' AND `computerid`='[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
+	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip`=INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')) AND `ckey`='[sql_ckey]' AND `ip`='[sql_ip]' AND `computerid`='[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
 	query_getid.Execute()
 	while (query_getid.NextRow())
 		connection_number = query_getid.item[1]
