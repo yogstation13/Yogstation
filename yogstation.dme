@@ -2658,6 +2658,7 @@
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
 #include "yogstation\code\modules\admin\verbs\adminsay.dm"
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
+#include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
 #include "yogstation\code\modules\client\client_defines.dm"
 #include "yogstation\code\modules\client\client_procs.dm"
 #include "yogstation\code\modules\client\ooc.dm"
