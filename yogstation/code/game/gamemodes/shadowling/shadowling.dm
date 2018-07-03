@@ -51,8 +51,6 @@ Made by Xhuis
 	var/list/datum/mind/thralls = list()
 	var/required_thralls = 15 //How many thralls are needed (this is changed in pre_setup, so it scales based on pop)
 	var/shadowling_ascended = FALSE //If at least one shadowling has ascended
-	var/shadowling_dead = 0 //is shadowling kill
-	var/objective_explanation
 	var/thrall_ratio = 1
 
 /datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)

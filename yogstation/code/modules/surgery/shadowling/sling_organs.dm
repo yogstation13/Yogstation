@@ -47,7 +47,7 @@
 		to_chat(M, "<span class='shadowling'><b><i>NOT LIKE THIS!</i></b></span>")
 		M.visible_message("<span class='danger'>[M] suddenly slams upward and knocks down everyone!</span>")
 
-		M.resting = 0 //Remove all stuns
+		M.resting = FALSE //Remove all stuns
 		M.SetStun(0, 0)
 		M.SetKnockdown(0)
 		M.SetUnconscious(0)
@@ -55,11 +55,11 @@
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.Knockdown(6)
-				C.apply_damage(20, "brute", "chest")
+				C.adjustBruteLoss(20)
 			else if(issilicon(user))
 				var/mob/living/silicon/S = user
 				S.Knockdown(8)
-				S.apply_damage(20, "brute")
+				S.adjustBruteLoss(20)
 				playsound(S, 'sound/effects/bang.ogg', 50, 1)
 		return FALSE
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)

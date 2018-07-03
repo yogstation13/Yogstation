@@ -1,2 +1,2 @@
 /mob
-	var/shadow_walk = 0
+	var/shadow_walk = FALSE
