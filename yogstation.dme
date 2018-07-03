@@ -2686,6 +2686,7 @@
 #include "yogstation\code\modules\donor\borg_skins.dm"
 #include "yogstation\code\modules\donor\donor_items.dm"
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
+#include "yogstation\code\modules\events\immovable_rod.dm"
 #include "yogstation\code\modules\events\ion_storm.dm"
 #include "yogstation\code\modules\events\weightless.dm"
 #include "yogstation\code\modules\jobs\job_types\cargo_service.dm"
