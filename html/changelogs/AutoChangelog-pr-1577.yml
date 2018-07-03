@@ -1,0 +1,4 @@
+author: " MrDoomBringer"
+delete-after: true 
+changes: 
+  - bugfix: "SupplyPod smites work properly once again."
