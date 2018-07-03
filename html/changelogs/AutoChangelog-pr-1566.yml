@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Scrambled research console icons have been fixed, and will be prevented in the future."
