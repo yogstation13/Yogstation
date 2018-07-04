@@ -1,0 +1,4 @@
+author: "jcatjmeow"
+delete-after: true 
+changes: 
+  - tweak: "the viro requests console on the Yogs map now gives an alert when ores are added to the orm"
