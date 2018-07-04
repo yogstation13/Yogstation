@@ -10,6 +10,7 @@
 	var/finished = FALSE
 	var/mob/living/carbon/human/sole_survivor
 	var/borderstage = 0
+	var/stage_interval = 3000
 
 
 /datum/game_mode/royale/pre_setup()
@@ -39,7 +40,7 @@
 /datum/game_mode/royale/check_win()
 	var/list/living_players = list()
 	for(var/mob/M in GLOB.mob_list)
-		if(istype(M, /mob/living/carbon/human) && M.ckey && M.client && M.mind && M.stat != DEAD)
+		if(istype(M, /mob/living/carbon/human) && M.ckey && M.client && M.mind && M.stat != DEAD && !(get_area(src) in get_areas(/area/space)) && !(get_area(src) in get_areas(/area/space)))
 			living_players += M
 
 	if(living_players.len == 1)
@@ -79,4 +80,4 @@
 
 	borderstage++
 	if(borderstage <= 6)
-		addtimer(CALLBACK(src, .proc/shrinkborders), 3000)
+		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
