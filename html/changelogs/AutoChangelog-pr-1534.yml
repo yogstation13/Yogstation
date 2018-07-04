@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Deconstructable TEG now propertly connects to pipes."
-  - bugfix: "Fix of inverted TEG sprite of slow turbine turning."
