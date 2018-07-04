@@ -587,7 +587,6 @@ SUBSYSTEM_DEF(ticker)
 // yogs start - Mods can reboot when last ticket is closed
 /datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
 	set waitfor = FALSE
-
 	if(!force)
 		if(usr && !check_rights(R_SERVER, TRUE))
 			return
