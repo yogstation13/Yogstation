@@ -584,10 +584,15 @@ SUBSYSTEM_DEF(ticker)
 		C.Export("##action=load_rsc", round_end_sound)
 	round_end_sound_sent = TRUE
 
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+// yogs start - Mods can reboot when last ticket is closed
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
 	set waitfor = FALSE
-	if(usr && !check_rights(R_SERVER, TRUE))
+	if(usr)
 		return
+	
+	if(!force && !check_rights(R_SERVER, TRUE)
+		return
+// yogs end
 
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
