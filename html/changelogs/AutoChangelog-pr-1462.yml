@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Bucket helmets cannot have reagents transferred into them until after they are removed"
