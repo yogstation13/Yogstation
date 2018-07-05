@@ -40,7 +40,7 @@
 
 /datum/game_mode/royale/check_win()
 	var/list/living_players = list()
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/M in GLOB.mob_living_list)
 		if(istype(M, /mob/living/carbon/human) && M.ckey && M.client && M.mind && M.stat != DEAD && !(get_area(src) in get_areas(/area/space)) && !(get_area(src) in get_areas(/area/space)))
 			living_players += M
 
