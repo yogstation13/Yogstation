@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Setting \\"default\\" in maps.txt now will load that map as the first fallback when a next_map.json is missing"
