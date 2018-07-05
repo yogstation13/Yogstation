@@ -1,4 +1,4 @@
 author: "yogstation13-bot"
 delete-after: true 
 changes: 
-  - bugfix: "Fixed the \\"Remove IV Container\\" verb on IV drips from showing every nearby mob"
+  - bugfix: "Fixed the Remove IV Container verb on IV drips from showing every nearby mob"
