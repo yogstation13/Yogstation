@@ -8,13 +8,38 @@
 	telegraph_duration = 1
 	end_duration = 1
 	immunity_type = "fuckno"
+	weather_duration = INFINITY
+	weather_duration_lower = INFINITY
+	weather_duration_upper = INFINITY
 	var/list/areasToWeather = list()
 
 /datum/weather/royale/weather_act(mob/living/L)
 	L.adjustFireLoss(3)
 
 /datum/weather/royale/telegraph()
-	.=..()
+	if(stage == STARTUP_STAGE)
+		return
+	stage = STARTUP_STAGE
+	var/list/affectareas = list()
+	for(var/V in get_areas(area_type))
+		affectareas += V
+	for(var/V in protected_areas)
+		affectareas -= get_areas(V, FALSE)
+	for(var/V in affectareas)
+		var/area/A = V
+		if(A.z in impacted_z_levels)
+			impacted_areas |= A
+	weather_duration = rand(weather_duration_lower, weather_duration_upper)
+	START_PROCESSING(SSweather, src)
+	update_areas()
+	for(var/M in GLOB.player_list)
+		var/turf/mob_turf = get_turf(M)
+		if(mob_turf && (mob_turf.z in impacted_z_levels))
+			if(telegraph_message)
+				to_chat(M, telegraph_message)
+			if(telegraph_sound)
+				SEND_SOUND(M, sound(telegraph_sound))
+	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 	var/list/affected_spawns = list()
 	for(var/S in GLOB.generic_event_spawns)
 		var/obj/effect/landmark/event_spawn/E = S
@@ -56,48 +81,44 @@
 
 // ROYALE WEATHER TYPES
 /datum/weather/royale/zero
-	name = "royale zero" //roundstart wave, just hits space, solars and the toxins test area
-	weather_duration = 18000
-	weather_duration_lower = 18000
-	weather_duration_upper = 18000 //30 minutes flat.
+	name = "royale start" //roundstart wave, just hits solars and the toxins test area
 	areasToWeather = list(/area/solar/starboard/fore, /area/solar/starboard/aft, /area/solar/port/fore, /area/solar/port/aft, /area/science/test_area)
 
 /datum/weather/royale/one
-	name = "royale one" //first wave, hits the space-adjacent areas, except for major hallways.
-	weather_duration = 15000
-	weather_duration_lower = 15000
-	weather_duration_upper = 15000
-	areasToWeather = list(/area/tcommsat/computer, /area/tcommsat/entrance, /area/tcommsat/server, /area/engine/engineering, /area/engine/supermatter, /area/engine/engine_smes, /area/maintenance/disposal/incinerator, /area/maintenance/solars/starboard/aft, /area/maintenance/solars/starboard/fore, /area/maintenance/solars/port/aft, /area/maintenance/solars/port/fore, /area/maintenance/starboard/aft, /area/maintenance/starboard, /area/hallway/secondary/exit, /area/maintenance/department/electrical, /area/maintenance/fore/secondary, /area/crew_quarters/heads/hos, /area/security/main, /area/ai_monitored/security/armory, /area/security/prison, /area/security/execution/transfer, /area/maintenance/port/fore, /area/construction/mining/aux_base, /area/maintenance/disposal, /area/quartermaster/qm, /area/maintenance/port/aft)
+	name = "royale maint" //First wave, hits maintenance
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, get away from maintenance!</i></span>"
+	area_type = /area/maintenance
 
 /datum/weather/royale/two
-	name = "royale two" //second wave, takes out the rest of maint, as well as half of science, all of sec, atmos and half of the arrivals offshoot rooms.
-	weather_duration_lower = 12000
-	weather_duration_upper = 12000
-	areasToWeather = list(/area/crew_quarters/heads/chief, /area/engine/break_room, /area/security/checkpoint/engineering, /area/engine/atmos, /area/maintenance/aft, /area/science/mixing, /area/science/circuit, /area/science/explab, /area/science/misc_lab, /area/crew_quarters/heads/hor, /area/science/lab, /area/chapel/main, /area/chapel/office, /area/maintenance/starboard/fore, /area/hallway/secondary/service, /area/crew_quarters/fitness, /area/holodeck/rec_center, /area/security/courtroom, /area/security/warden, /area/security/brig, /area/security/vacantoffice/b, /area/security/processing, /area/maintenance/fore, /area/security/checkpoint/auxiliary, /area/hydroponics/garden, /area/security/vacantoffice, /area/maintenance/port, /area/quartermaster/storage, /area/quartermaster/warehouse, /area/quartermaster/miningdock, /area/engine/gravity_generator)
+	name = "royale north" //North wave, takes out security, EVA, dorms and associated areas.
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, get away from the north!</i></span>"
+	areasToWeather = list(/area/security/execution/transfer, /area/security/prison, /area/security/processing, /area/ai_monitored/security/armory, /area/security/main, /area/crew_quarters/heads/hos,
+	/area/security/warden, /area/security/brig, /area/security/courtroom, /area/security/vacantoffice/b, /area/lawoffice, /area/ai_monitored/storage/eva, /area/crew_quarters/dorms, /area/crew_quarters/toilet,
+	/area/crew_quarters/fitness, /area/holodeck/rec_center, /area/hallway/primary/fore)
 
 /datum/weather/royale/three
-	name = "royale three" //third wave, takes out anything east of medical, anything north of EVA, west of clerk (not including arrivals) and south of tech storage
-	weather_duration = 9000
-	weather_duration_lower = 9000
-	weather_duration_upper = 9000
-	areasToWeather = list(/area/library, /area/hydroponics, /area/crew_quarters/theatre, /area/crew_quarters/toilet, /area/lawoffice, /area/clerk, /area/ai_monitored/nuke_storage, /area/storage/primary, /area/crew_quarters/toilet/locker, /area/crew_quarters/locker, /area/storage/art, /area/quartermaster/office, /area/security/checkpoint/supply, /area/construction, /area/medical/virology, /area/crew_quarters/heads/cmo, /area/medical/genetics, /area/science/xenobiology, /area/science/storage, /area/science/research, /area/security/checkpoint/science, /area/science/server, /area/science/robotics/lab, /area/science/robotics/mechbay, /area/maintenance/department/medical/morgue, /area/medical/paramedic)
+	name = "royale east" //East wave, takes out medical, service and science
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, get away from the east!</i></span>"
+	areasToWeather = list(/area/science/lab, /area/science/explab, /area/crew_quarters/heads/hor, /area/science/mixing, /area/science/misc_lab, /area/science/circuit, /area/science/xenobiology, /area/science/storage,
+	/area/science/research, /area/security/checkpoint/science, /area/science/server, /area/science/robotics/lab, /area/science/robotics/mechbay, /area/medical/genetics, /area/medical/paramedic,
+	/area/medical/morgue, /area/security/checkpoint/medical, /area/crew_quarters/heads/cmo, /area/medical/virology, /area/medical/sleeper, /area/medical/chemistry, /area/medical/medbay/central,
+	/area/chapel/main, /area/chapel/office, /area/library, /area/hydroponics, /area/crew_quarters/bar, /area/crew_quarters/theatre, /area/hallway/secondary/service, /area/hallway/secondary/exit, /area/hallway/primary/starboard, /area/crew_quarters/kitchen)
 
 /datum/weather/royale/four
-	name = "royale four" //fourth wave, takes out everything outside the central ring hallway
-	weather_duration = 6000
-	weather_duration_lower = 6000
-	weather_duration_upper = 6000
-	areasToWeather = list(/area/storage/tech, /area/janitor, /area/medical/sleeper, /area/medical/medbay/central, /area/medical/chemistry, /area/security/checkpoint/medical, /area/medical/morgue, /area/hallway/primary/aft, /area/hallway/primary/starboard, /area/crew_quarters/kitchen, /area/crew_quarters/bar, /area/crew_quarters/dorms, /area/hallway/primary/fore, /area/ai_monitored/storage/eva, /area/storage/tools, /area/security/detectives_office, /area/quartermaster/sorting, /area/hallway/primary/port, /area/hallway/secondary/entry)
+	name = "royale south" //South wave, takes out engineering and atmos
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, get away from the south!</i></span>"
+	areasToWeather = list(/area/storage/tech, /area/janitor, /area/construction, /area/engine/atmos, /area/engine/gravity_generator, /area/security/checkpoint/engineering, /area/engine/break_room, /area/crew_quarters/heads/chief,
+	/area/engine/engine_smes, /area/engine/engineering, /area/engine/supermatter, /area/tcommsat/entrance, /area/tcommsat/computer, /area/tcommsat/server, /area/hallway/primary/aft)
 
 /datum/weather/royale/five
-	name = "royale five" //fifth wave, forces them into the bridge horseshoe, and forces them out of AI
-	weather_duration = 3000
-	weather_duration_lower = 3000
-	weather_duration_upper = 3000
-	areasToWeather = list(/area/hallway/primary/central, /area/ai_monitored/turret_protected/ai_upload_foyer, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai, /area/maintenance/central)
+	name = "royale west" //West wave, takes out arrivals and cargo
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, get away from the west!</i></span>"
+	areasToWeather = list(/area/construction/mining/aux_base, /area/security/checkpoint/auxiliary, /area/hydroponics/garden, /area/storage/primary, /area/ai_monitored/nuke_storage, /area/clerk, /area/security/vacantoffice,
+	/area/crew_quarters/toilet/locker, /area/crew_quarters/locker, /area/storage/art, /area/storage/emergency/port, /area/storage/tools, /area/security/detectives_office, /area/quartermaster/warehouse,
+	/area/quartermaster/sorting, /area/quartermaster/storage, /area/quartermaster/office, /area/quartermaster/qm, /area/quartermaster/miningdock, /area/security/checkpoint/supply, /area/hallway/secondary/entry, /area/hallway/primary/port)
 
 /datum/weather/royale/six
-	weather_duration_lower = INFINITY
-	weather_duration_upper = INFINITY
-	name = "royale six" //final wave, kills anyone left.
-	protected_areas = list(/area/space)
+	name = "royale centre" //final wave, takes out the centre ring.
+	telegraph_message = "<span class='userdanger'><i>The zone is shrinking, make your final stand!</i></span>"
+	areasToWeather = list(/area/hallway/primary/central, /area/crew_quarters/heads/hop, /area/bridge/meeting_room, /area/bridge, /area/crew_quarters/heads/captain, /area/teleporter, /area/ai_monitored/turret_protected/ai_upload_foyer,
+	/area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai)

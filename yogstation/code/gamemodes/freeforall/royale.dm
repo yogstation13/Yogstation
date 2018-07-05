@@ -10,7 +10,8 @@
 	var/finished = FALSE
 	var/mob/living/carbon/human/sole_survivor
 	var/borderstage = 0
-	var/stage_interval = 3000
+	var/stage_interval = 600
+	var/list/randomweathers = list("royale north", "royale south", "royale east")
 
 
 /datum/game_mode/royale/pre_setup()
@@ -64,19 +65,18 @@
 /datum/game_mode/royale/proc/shrinkborders()
 	switch(borderstage)
 		if(0)
-			SSweather.run_weather("royale zero",2)
+			SSweather.run_weather("royale start",2)
 		if(1)
-			SSweather.run_weather("royale one", 2)
-		if(2)
-			SSweather.run_weather("royale two", 2)
-		if(3)
-			SSweather.run_weather("royale three", 2)
-		if(4)
-			SSweather.run_weather("royale four", 2)
+			SSweather.run_weather("royale maint", 2)
+		if(2 to 4)
+			var/weather = pick(randomweathers)
+			SSweather.run_weather(weather, 2)
+			randomweathers -= weather
+
 		if(5)
-			SSweather.run_weather("royale five", 2)
+			SSweather.run_weather("royale west", 2)
 		if(6)
-			SSweather.run_weather("royale six", 2)
+			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
 	if(borderstage <= 6)
