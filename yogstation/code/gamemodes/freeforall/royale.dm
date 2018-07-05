@@ -1,7 +1,7 @@
 /datum/game_mode/royale
 	name = "battle royale"
 	config_tag = "royale"
-	restricted_jobs = list("AI", "Cyborg") //in this gamemode, this is the list of jobs you don't want people to use at all.
+	restricted_jobs = list("AI", "Cyborg", "Captain", "Warden", "Head of Personnel", "Head of Security") //in this gamemode, this is the list of jobs you don't want people to use at all.
 
 	announce_span = "danger"
 	announce_text = ""
@@ -10,7 +10,7 @@
 	var/finished = FALSE
 	var/mob/living/carbon/human/sole_survivor
 	var/borderstage = 0
-	var/stage_interval = 600
+	var/stage_interval = 3000
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
 
 
