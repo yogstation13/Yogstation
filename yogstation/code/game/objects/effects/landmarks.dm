@@ -28,6 +28,6 @@
 /obj/effect/landmark/event_spawn/proc/spawnroyale(drop = FALSE)
 	if(drop)
 		new /obj/effect/DPtarget(src, /obj/structure/closet/crate/royale, 0)
-		priority_announce("[get_area(src)]")
+		priority_announce("Supply drop located in [get_area(src)]", "Nanotrasen Battle Royale Committee")
 	else
 		return
