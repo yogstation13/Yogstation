@@ -112,8 +112,7 @@
 		return
 	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other inevitably destroying themselves.</span>")
 	playsound(src.loc, "sparks", 50, 1)
-	var/location = get_turf(holder.my_atom)
-	new /mob/living/simple_animal/pet/dog/corgi(location) //a doggo appear as a consultation prize :3
+	new /mob/living/simple_animal/pet/dog/corgi(src.loc) //a doggo appear as a consultation prize :3
 	qdel(otherEmag)
 	qdel(src)
 		
