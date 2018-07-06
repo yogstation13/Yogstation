@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "Supply shuttles will no longer spill containers on docking."
