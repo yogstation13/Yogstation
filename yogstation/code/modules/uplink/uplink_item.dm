@@ -13,16 +13,12 @@
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
-	include_objectives = list(/datum/objective/hijack)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 
-/datum/uplink_item/stealthy_weapons/romerol_nuke
-	name = "Romerol"
-	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. On death, these nodules take control of the dead body, causing limited revivification, along with slurred speech, aggression, and the ability to infect others with this agent."
-	item = /obj/item/storage/box/syndie_kit/romerol
-	cost = 25
-	cant_discount = TRUE
+/datum/uplink_item/stealthy_weapons/romerol_kit/nuke
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
+	include_objectives = null
 
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
