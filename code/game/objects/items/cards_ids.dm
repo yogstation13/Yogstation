@@ -96,6 +96,29 @@
 		return
 	A.emag_act(user)
 
+//emaging an emag
+/obj/item/weapon/card/emag/emag_act(mob/user)
+	var/otherEmag
+	if(user.l_hand)
+		if(istype(user.l_hand, /obj/item/weapon/card/emag))
+			if(user.l_hand != src)
+				otherEmag = user.l_hand
+	if(!otherEmag)
+		if(user.r_hand)
+			if(istype(user.r_hand, /obj/item/weapon/card/emag))
+				if(user.r_hand != src)
+					otherEmag = user.r_hand
+	if(!otherEmag)
+		return
+	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other inevitably destroying themselves.</span>")
+	playsound(src.loc, "sparks", 50, 1)
+	var/location = get_turf(holder.my_atom)
+	new /mob/living/simple_animal/pet/dog/corgi(location) //a doggo appear as a consultation prize :3
+	qdel(otherEmag)
+	qdel(src)
+		
+
+
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
 	name = "cryptographic sequencer"
