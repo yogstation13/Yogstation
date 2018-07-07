@@ -1622,7 +1622,11 @@
 		if(!isobserver(usr))
 			C.admin_ghost()
 		var/mob/dead/observer/A = C.mob
-		A.ManualFollow(AM)
+		var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+		if(istype(I) && I.eyeobj)
+			A.ManualFollow(I.eyeobj)
+		else
+			A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
 
 	else if(href_list["admingetmovable"])
 		if(!check_rights(R_ADMIN))
