@@ -2690,6 +2690,7 @@
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
 #include "yogstation\code\modules\events\ion_storm.dm"
 #include "yogstation\code\modules\events\weightless.dm"
+#indclude "yogstation\code\modules\jobs\job_types\assistant.dm"
 #include "yogstation\code\modules\jobs\job_types\cargo_service.dm"
 #include "yogstation\code\modules\jobs\job_types\job.dm"
 #include "yogstation\code\modules\keybindings\bindings_admin.dm"
