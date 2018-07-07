@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Advaced camera consoles now properly show camera static in the area that the eye starts"
