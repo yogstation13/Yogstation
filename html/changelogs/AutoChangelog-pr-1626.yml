@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Digitigrade legs no longer revert to normal on compatible outfits."
