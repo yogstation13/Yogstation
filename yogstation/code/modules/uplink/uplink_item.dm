@@ -12,6 +12,14 @@
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/stealthy_weapons/romerol_kit
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+
+/datum/uplink_item/stealthy_weapons/romerol_kit/nuke
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
+	include_objectives = null
+
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
