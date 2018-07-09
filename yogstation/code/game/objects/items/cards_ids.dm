@@ -67,8 +67,6 @@
 	icon_state = "id_gold"
 
 /obj/item/card/emag/emag_act(mob/user)
-	var/otherEmag
-
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
