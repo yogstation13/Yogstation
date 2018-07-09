@@ -8134,7 +8134,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	name = "Armoury";
-	req_access = "3"
+	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ai_monitored/security/armory)
@@ -48723,7 +48723,6 @@
 	department = "Virology";
 	receive_ore_updates = 1;
 	name = "Virology Requests Console";
-	
 	pixel_x = -32
 	},
 /obj/item/healthanalyzer,
