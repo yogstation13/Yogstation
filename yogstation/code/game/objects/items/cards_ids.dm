@@ -72,7 +72,7 @@
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
-	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other inevitably destroying themselves.</span>")
+	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
 	playsound(src.loc, "sparks", 50, 1)
 	qdel(otherEmag)
 	qdel(src)
