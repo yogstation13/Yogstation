@@ -80,6 +80,25 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	var/prox_check = TRUE //If the emag requires you to be in range
+	
+/obj/item/card/emag/emag_act(mob/user)
+	var/otherEmag
+
+	if(user.held_items[1])
+		if(istype(user.held_items[1], /obj/item/card/emag))
+			if(user.held_items[1] != src)
+				otherEmag = user.held_items[1]
+	if(!otherEmag)
+		if(user.held_items[2])
+			if(istype(user.held_items[2], /obj/item/card/emag))
+				if(user.held_items[2] != src)
+					otherEmag = user.held_items[2]
+	if(!otherEmag)
+		return
+	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other inevitably destroying themselves.</span>")
+	playsound(src.loc, "sparks", 50, 1)
+	qdel(otherEmag)
+	qdel(src)
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
