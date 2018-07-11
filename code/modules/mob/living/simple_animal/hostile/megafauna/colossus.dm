@@ -207,9 +207,9 @@ Difficulty: Very Hard
 /obj/item/projectile/colossus
 	name ="death bolt"
 	icon_state= "chronobolt"
-	damage = 25
+	damage = 15 //Yogs - Down from 25
 	armour_penetration = 100
-	speed = 2
+	speed = 4 // Yogs - Slowed from 2
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
