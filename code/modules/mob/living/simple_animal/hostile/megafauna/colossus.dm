@@ -77,14 +77,25 @@ Difficulty: Very Hard
 		else
 			visible_message("<span class='colossus'>\"<b>Judgement.</b>\"</span>")
 			INVOKE_ASYNC(src, .proc/spiral_shoot, pick(TRUE, FALSE))
-
-	else if(prob(20))
+	//Yogs begin - Added health gate and telegraph
+	else if(prob(20) && health < maxHealth/2)
+		telegraph()
+		sleep(3)
+		visible_message("<span class='colossus'>\"<b>Bow.</b>\"</span>")
+	//Yogs end
 		ranged_cooldown = world.time + 30
 		random_shots()
 	else
 		if(prob(70))
+			//Yogs begin - Colossus changes color immediately before shotgunning.
+			var/oldcolor = color
+			animate(src, color = "#C80000", time = 3)
+			sleep(3)
 			ranged_cooldown = world.time + 20
 			blast()
+			animate(src, color = oldcolor, time = 2)
+			sleep(2)
+			//Yogs end
 		else
 			ranged_cooldown = world.time + 40
 			INVOKE_ASYNC(src, .proc/alternating_dir_shots)
