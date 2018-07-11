@@ -89,8 +89,8 @@ Difficulty: Very Hard
 		if(prob(70))
 			//Yogs begin - Colossus changes color immediately before shotgunning.
 			var/oldcolor = color
-			animate(src, color = "#C80000", time = 3)
-			sleep(3)
+			animate(src, color = "#C80000", time = 5)
+			sleep(5)
 			ranged_cooldown = world.time + 20
 			blast()
 			animate(src, color = oldcolor, time = 2)
