@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - experiment: "Flightsuits no longer give you innate jetpack speeds in nograv environments"
+  - experiment: "Flightsuit braking/precision mode no longer slows you as badly"
