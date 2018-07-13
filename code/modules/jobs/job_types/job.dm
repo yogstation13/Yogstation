@@ -204,9 +204,6 @@
 		PDA.owner = H.real_name
 		PDA.ownjob = J.title
 		PDA.update_label()
-		
-	if(H.job != "Mime" && H.job != "Clown")
-		log_game("[H.real_name]/[H.ckey] joined the round as [H.job].") // yog - logs for roundstart job for everything but clown and mime
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()
