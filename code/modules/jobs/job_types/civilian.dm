@@ -59,6 +59,8 @@ Clown
 	if(visualsOnly)
 		return
 
+	log_game("[H.real_name]/[H.ckey] joined the round as [H.job].") // yogs - adds log of clown spawn in
+	
 	H.dna.add_mutation(CLOWNMUT)
 
 /*
