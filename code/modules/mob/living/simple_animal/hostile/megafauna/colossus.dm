@@ -77,25 +77,14 @@ Difficulty: Very Hard
 		else
 			visible_message("<span class='colossus'>\"<b>Judgement.</b>\"</span>")
 			INVOKE_ASYNC(src, .proc/spiral_shoot, pick(TRUE, FALSE))
-	//Yogs begin - Added health gate and telegraph
-	else if(prob(20) && health < maxHealth/2)
-		telegraph()
-		sleep(3)
-		visible_message("<span class='colossus'>\"<b>Bow.</b>\"</span>")
-	//Yogs end
+
+	else if(prob(20))
 		ranged_cooldown = world.time + 30
 		random_shots()
 	else
 		if(prob(70))
-			//Yogs begin - Colossus changes color immediately before shotgunning.
-			var/oldcolor = color
-			animate(src, color = "#C80000", time = 5)
-			sleep(5)
 			ranged_cooldown = world.time + 20
 			blast()
-			animate(src, color = oldcolor, time = 2)
-			sleep(2)
-			//Yogs end
 		else
 			ranged_cooldown = world.time + 40
 			INVOKE_ASYNC(src, .proc/alternating_dir_shots)
@@ -218,9 +207,9 @@ Difficulty: Very Hard
 /obj/item/projectile/colossus
 	name ="death bolt"
 	icon_state= "chronobolt"
-	damage = 15 //Yogs - Down from 25
+	damage = 25
 	armour_penetration = 100
-	speed = 4 // Yogs - Slowed from 2
+	speed = 2
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
