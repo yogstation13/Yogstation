@@ -131,3 +131,13 @@
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
 	category = list("Mining Designs", "Cyborg Upgrade Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+	
+/datum/design/miningsatchel_holding
+	name = "Mining Satchel of Holding"
+	desc = "A mining satchel that can hold an infinite amount of ores."
+	id = "minerbag_holding"
+	build_type = PROTOLATHE
+	materials = list(MAT_GOLD = 250, MAT_URANIUM = 500) //quite cheap, for more convenience
+	build_path = /obj/item/storage/bag/ore/holding
+	category = list("Bluespace Designs", "Mining Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
