@@ -442,6 +442,7 @@ SUBSYSTEM_DEF(job)
 	if(job && H)
 		job.after_spawn(H, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 
+	log_game("[H.real_name]/[M.client.ckey] joined the round as [H.job].") //yogs - Job logging
 	job.give_donor_stuff(H, M) // yogs - Donor Features
 	
 	return H
