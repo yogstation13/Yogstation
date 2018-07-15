@@ -166,9 +166,15 @@
 
 		update |= picked.heal_damage(brute, burn, stamina, only_robotic, only_organic, FALSE)
 
-		brute = round(brute - (brute_was - picked.brute_dam), 0.01)
-		burn = round(burn - (burn_was - picked.burn_dam), 0.01)
-		stamina = round(stamina - (stamina_was - picked.stamina_dam), 0.01)
+<<<<<<< HEAD
+		brute -= (brute_was - picked.brute_dam)
+		burn -= (burn_was - picked.burn_dam)
+		stamina -= (stamina_was - picked.stamina_dam)
+=======
+		brute = round(brute - (brute_was - picked.brute_dam), DAMAGE_PRECISION)
+		burn = round(burn - (burn_was - picked.burn_dam), DAMAGE_PRECISION)
+		stamina = round(stamina - (stamina_was - picked.stamina_dam), DAMAGE_PRECISION)
+>>>>>>> 259dc6f386... Merge pull request #39139 from AnturK/iloveprecision
 
 		parts -= picked
 	if(updating_health)
@@ -186,9 +192,9 @@
 	var/update = 0
 	while(parts.len && (brute > 0 || burn > 0 || stamina > 0))
 		var/obj/item/bodypart/picked = pick(parts)
-		var/brute_per_part = round(brute/parts.len, 0.01)
-		var/burn_per_part = round(burn/parts.len, 0.01)
-		var/stamina_per_part = round(stamina/parts.len, 0.01)
+		var/brute_per_part = round(brute/parts.len, DAMAGE_PRECISION)
+		var/burn_per_part = round(burn/parts.len, DAMAGE_PRECISION)
+		var/stamina_per_part = round(stamina/parts.len, DAMAGE_PRECISION)
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
@@ -197,9 +203,15 @@
 
 		update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE)
 
-		brute	= round(brute - (picked.brute_dam - brute_was), 0.01)
-		burn	= round(burn - (picked.burn_dam - burn_was), 0.01)
-		stamina = round(stamina - (picked.stamina_dam - stamina_was), 0.01)
+<<<<<<< HEAD
+		brute	-= (picked.brute_dam - brute_was)
+		burn	-= (picked.burn_dam - burn_was)
+		stamina -= (picked.stamina_dam - stamina_was)
+=======
+		brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
+		burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
+		stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
+>>>>>>> 259dc6f386... Merge pull request #39139 from AnturK/iloveprecision
 
 		parts -= picked
 	if(updating_health)
