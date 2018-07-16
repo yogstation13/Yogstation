@@ -36,7 +36,6 @@
 		carriers += carrier
 		carrier.special_role = "Monkey Leader"
 		carrier.restricted_roles = restricted_jobs
-		log_game("[key_name(carrier)] has been selected as a Jungle Fever carrier")
 		antag_candidates -= carrier
 
 	if(!carriers.len)
