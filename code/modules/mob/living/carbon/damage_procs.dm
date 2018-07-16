@@ -166,15 +166,9 @@
 
 		update |= picked.heal_damage(brute, burn, stamina, only_robotic, only_organic, FALSE)
 
-<<<<<<< HEAD
-		brute -= (brute_was - picked.brute_dam)
-		burn -= (burn_was - picked.burn_dam)
-		stamina -= (stamina_was - picked.stamina_dam)
-=======
 		brute = round(brute - (brute_was - picked.brute_dam), DAMAGE_PRECISION)
 		burn = round(burn - (burn_was - picked.burn_dam), DAMAGE_PRECISION)
 		stamina = round(stamina - (stamina_was - picked.stamina_dam), DAMAGE_PRECISION)
->>>>>>> 259dc6f386... Merge pull request #39139 from AnturK/iloveprecision
 
 		parts -= picked
 	if(updating_health)
@@ -203,15 +197,9 @@
 
 		update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE)
 
-<<<<<<< HEAD
-		brute	-= (picked.brute_dam - brute_was)
-		burn	-= (picked.burn_dam - burn_was)
-		stamina -= (picked.stamina_dam - stamina_was)
-=======
 		brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
 		burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
 		stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
->>>>>>> 259dc6f386... Merge pull request #39139 from AnturK/iloveprecision
 
 		parts -= picked
 	if(updating_health)
