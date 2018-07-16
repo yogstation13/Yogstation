@@ -2662,6 +2662,7 @@
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
 #include "yogstation\code\modules\admin\verbs\adminsay.dm"
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
+#include "yogstation\code\modules\antagonists\_common\antag_datum.dm"
 #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "yogstation\code\modules\cargo\cargo_packs.dm"
