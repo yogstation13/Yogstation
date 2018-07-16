@@ -14944,7 +14944,7 @@
 /area/chapel/office)
 "aJN" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/hydroponics_pod_people,
+/obj/item/book/manual/hydroponics_pod_people,
 /obj/item/paper/guides/jobs/hydroponics,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
@@ -18510,7 +18510,7 @@
 /area/crew_quarters/kitchen)
 "aTO" = (
 /obj/structure/table,
-/obj/item/book/manual/wiki/chef_recipes,
+/obj/item/book/manual/chef_recipes,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aTP" = (
