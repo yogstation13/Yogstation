@@ -551,14 +551,14 @@
 		C.debug_variables(thing)
 	// yogs start - offer control can now be used by mods
 	else if(href_list["offer_control"])
-			if(!check_rights(NONE))
-				return
+		if(!check_rights(NONE))
+			return
 
-			var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-			offer_control(M)
+		var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
+		if(!istype(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+		offer_control(M)
 	// yogs end
 
 
