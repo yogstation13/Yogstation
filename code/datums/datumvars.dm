@@ -549,6 +549,17 @@
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [thing]")
 		to_chat(C, "[usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)
+	// yogs start - offer control can now be used by mods
+	else if(href_list["offer_control"])
+			if(!check_rights(NONE))
+				return
+
+			var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
+			if(!istype(M))
+				to_chat(usr, "This can only be used on instances of type /mob")
+				return
+			offer_control(M)
+	// yogs end
 
 
 //Needs +VAREDIT past this point
@@ -788,16 +799,8 @@
 
 			if(usr.client)
 				usr.client.cmd_assume_direct_control(M)
-
-		else if(href_list["offer_control"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-			offer_control(M)
+				
+		// yogs - offer control moved up
 
 		else if (href_list["modarmor"])
 			if(!check_rights(NONE))
