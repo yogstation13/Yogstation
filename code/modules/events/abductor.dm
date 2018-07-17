@@ -26,6 +26,7 @@
 
 	//log_game("[key_name(scientist)] has been selected as [T.name] abductor scientist.") | yogs - redundant
 	//log_game("[key_name(agent)] has been selected as [T.name] abductor agent.") | yogs - redundant
+
 	scientist.mind.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.mind.add_antag_datum(/datum/antagonist/abductor/agent, T)
 
