@@ -2711,6 +2711,7 @@
 #include "yogstation\code\modules\power\lighting.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
+#include "yogstation\code\modules\research\designs\equipment_designs.dm"
 #include "yogstation\code\modules\spells\spells.dm"
 #include "yogstation\code\modules\spells\spell_types\mime.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
