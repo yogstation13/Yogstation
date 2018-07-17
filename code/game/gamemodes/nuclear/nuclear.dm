@@ -30,6 +30,8 @@
 			pre_nukeops += new_op
 			new_op.assigned_role = "Nuclear Operative"
 			new_op.special_role = "Nuclear Operative"
+			//log_game("[key_name(new_op)] has been selected as a nuclear operative") - yog redundant
+
 		return TRUE
 	else
 		setup_error = "Not enough nuke op candidates"

@@ -79,6 +79,7 @@
 		cultists_to_cult += cultist
 		cultist.special_role = ROLE_CULTIST
 		cultist.restricted_roles = restricted_jobs
+		//log_game("[key_name(cultist)] has been selected as a cultist") - yog redundant
 
 	if(cultists_to_cult.len>=required_enemies)
 		return TRUE
