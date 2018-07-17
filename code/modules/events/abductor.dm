@@ -24,7 +24,8 @@
 	if(T.team_number > ABDUCTOR_MAX_TEAMS)
 		return MAP_ERROR
 
-
+	//log_game("[key_name(scientist)] has been selected as [T.name] abductor scientist.") - yog redundant
+	//log_game("[key_name(agent)] has been selected as [T.name] abductor agent.") - yog redundant
 	scientist.mind.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.mind.add_antag_datum(/datum/antagonist/abductor/agent, T)
 

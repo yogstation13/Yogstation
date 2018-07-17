@@ -40,7 +40,8 @@
 		devils += devil
 		devil.special_role = traitor_name
 		devil.restricted_roles = restricted_jobs
-
+		
+		//log_game("[key_name(devil)] has been selected as a [traitor_name]") - yog redundant
 		antag_candidates.Remove(devil)
 
 	if(devils.len < required_enemies)
