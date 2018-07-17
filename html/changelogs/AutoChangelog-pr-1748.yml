@@ -1,4 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - bugfix: "Bounty console circuit boards no longer construct into supply request terminals."
