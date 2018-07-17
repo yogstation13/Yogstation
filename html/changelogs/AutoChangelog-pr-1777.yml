@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "AIs can now interact with smartfridges by default, but by default they will not be able to retrieve items."
