@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - experiment: "Portal guns no longer hit mobs without a direct click, and will not do anything to mobs even if they directly hit one."
