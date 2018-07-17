@@ -430,7 +430,7 @@
 				ERTOperative.mind.assigned_role = ert_antag.name
 
 				//Logging and cleanup
-				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") - yog redundant
+				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
 				numagents--
 				teamSpawned++
 

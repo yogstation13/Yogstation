@@ -53,7 +53,7 @@
 		pre_traitors += traitor
 		traitor.special_role = traitor_name
 		traitor.restricted_roles = restricted_jobs
-		//log_game("[key_name(traitor)] has been selected as a [traitor_name]") - yog redundant
+		//log_game("[key_name(traitor)] has been selected as a [traitor_name]") | yogs - redundant
 		antag_candidates.Remove(traitor)
 
 	var/enough_tators = !traitors_required || pre_traitors.len > 0
