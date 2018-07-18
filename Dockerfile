@@ -1,19 +1,21 @@
 FROM tgstation/byond:512.1427 as base
+#above version must be the same as the one in dependencies.sh
 
-FROM base as rustg
+FROM base as build_base
 
-WORKDIR /rust_g
-
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     git \
-    ca-certificates \
-    libc6-dev
+<<<<<<< HEAD
+=======
+    ca-certificates
 
-FROM build as rust_g
+FROM build_base as rust_g
 
 WORKDIR /rust_g
 
 RUN apt-get install -y --no-install-recommends \
+>>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
     libssl-dev \
     rustc \
     cargo \
@@ -22,14 +24,16 @@ RUN apt-get install -y --no-install-recommends \
 RUN git init \
     && git remote add origin https://github.com/tgstation/rust-g
 
-#TODO: find a way to read these from .travis.yml or a common source eventually
-ENV RUST_G_VERSION=0.3.0
+COPY dependencies.sh .
 
-RUN git fetch --depth 1 origin $RUST_G_VERSION \
+RUN /bin/bash -c "source dependencies.sh \
+    && git fetch --depth 1 origin \$RUST_G_VERSION" \
     && git checkout FETCH_HEAD \
     && cargo build --release
 
-FROM base as bsql
+<<<<<<< HEAD
+=======
+FROM build_base as bsql
 
 WORKDIR /bsql
 
@@ -40,16 +44,14 @@ RUN apt-get install -y --no-install-recommends software-properties-common \
     cmake \
     make \
     g++-7 \
-    libstdc++6 \
-    libmariadb-client-lgpl-dev
-
-RUN git init \
+    libmariadb-client-lgpl-dev \
+    && git init \
     && git remote add origin https://github.com/tgstation/BSQL 
 
-#TODO: find a way to read these from .travis.yml or a common source eventually
-ENV BSQL_VERSION=v1.3.0.2
+COPY dependencies.sh .
 
-RUN git fetch --depth 1 origin $BSQL_VERSION \
+RUN /bin/bash -c "source dependencies.sh \
+    && git fetch --depth 1 origin \$BSQL_VERSION" \
     && git checkout FETCH_HEAD
 
 WORKDIR /bsql/artifacts
@@ -61,6 +63,7 @@ RUN ln -s /usr/include/mariadb /usr/include/mysql \
     && cmake .. \
     && make
 
+>>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 FROM base as dm_base
 
 WORKDIR /tgstation
@@ -69,42 +72,25 @@ FROM dm_base as build
 
 COPY . .
 
-RUN DreamMaker -max_errors 0 tgstation.dme
-
-WORKDIR /deploy
-
-RUN mkdir -p \
-    .git/logs \
-    _maps \
-    config \
-    icons/minimaps \
-    sound/chatter \
-    sound/voice/complionator \
-    sound/instruments \
-    strings \
-    && cp /tgstation/tgstation.dmb /tgstation/tgstation.rsc ./ \
-    && cp -r /tgstation/.git/logs/* .git/logs/ \
-    && cp -r /tgstation/_maps/* _maps/ \
-    && cp -r /tgstation/config/* config/ \
-    && cp /tgstation/icons/default_title.dmi icons/ \
-    && cp -r /tgstation/icons/minimaps/* icons/minimaps/ \
-    && cp -r /tgstation/sound/chatter/* sound/chatter/ \
-    && cp -r /tgstation/sound/voice/complionator/* sound/voice/complionator/ \
-    && cp -r /tgstation/sound/instruments/* sound/instruments/ \
-    && cp -r /tgstation/strings/* strings/
+RUN DreamMaker -max_errors 0 tgstation.dme && tools/deploy.sh /deploy
 
 FROM dm_base
 
 EXPOSE 1337
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     mariadb-client \
     libssl1.0.0 \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /root/.byond/bin
 
+<<<<<<< HEAD
 COPY --from=rustg /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
+=======
+COPY --from=rust_g /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
 COPY --from=bsql /bsql/artifacts/src/BSQL/libBSQL.so ./
+>>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 COPY --from=build /deploy ./
 
 #bsql fexists memes
