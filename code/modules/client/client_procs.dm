@@ -542,14 +542,16 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		qdel(query_log_player)
 	if(!account_join_date)
 		account_join_date = "Error"
-	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')),'[world.port]','[GLOB.round_id]','[sql_ckey]',INET_ATON('[sql_ip]'),'[sql_computerid]')")
+	// yogs start - logout logging
+	var/serverip = "[world.internet_address]"
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), '[serverip]', '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
 	query_log_connection.Execute()
 	qdel(query_log_connection)
-	// yogs start - logout logging
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip`=INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')) AND `ckey`='[sql_ckey]' AND `ip`='[sql_ip]' AND `computerid`='[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
-	query_getid.Execute()
-	while (query_getid.NextRow())
-		connection_number = query_getid.item[1]
+
+	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = '[serverip]' AND `ckey` = '[sql_ckey]' AND `ip` = 'INET_ATON('[sql_ip]')' AND `computerid` = '[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
+	if(query_getid.Execute())
+		while(query_getid.NextRow())
+			connection_number = query_getid.item[1]
 	qdel(query_getid)
 	// yogs end
 	if(new_player)
