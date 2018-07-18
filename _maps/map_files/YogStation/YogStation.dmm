@@ -8134,7 +8134,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	name = "Armoury";
-	req_access = "3"
+	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ai_monitored/security/armory)
@@ -19924,7 +19924,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
-/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
@@ -24445,7 +24445,7 @@
 	req_access_txt = "29"
 	},
 /obj/structure/table,
-/obj/item/book/manual/robotics_cyborgs{
+/obj/item/book/manual/wiki/robotics_cyborgs{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -29533,7 +29533,7 @@
 	pixel_y = 24
 	},
 /obj/structure/table,
-/obj/item/book/manual/medical_cloning{
+/obj/item/book/manual/wiki/medical_cloning{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/white,
@@ -30370,7 +30370,7 @@
 "bxq" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/book/manual/experimentor,
+/obj/item/book/manual/wiki/experimentor,
 /turf/open/floor/plasteel/white/corner{
 	dir = 4
 	},
@@ -48723,7 +48723,6 @@
 	department = "Virology";
 	receive_ore_updates = 1;
 	name = "Virology Requests Console";
-	
 	pixel_x = -32
 	},
 /obj/item/healthanalyzer,
