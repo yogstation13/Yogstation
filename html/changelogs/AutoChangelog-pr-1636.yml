@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - rscadd: "autoname APC"
-  - rscadd: "directional autoname APC's"

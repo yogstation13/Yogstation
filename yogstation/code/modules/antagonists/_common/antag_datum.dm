@@ -1,0 +1,5 @@
+/datum/antagonist/on_gain()
+	. = ..()
+	log_game("[owner.key] has been selected as a [name] with objectives: ")
+	for(var/datum/objective/O in objectives)
+		log_game("[O.explanation_text]")
