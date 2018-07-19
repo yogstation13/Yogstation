@@ -1,7 +1,5 @@
 /client/proc/sync_logout_with_db(number)
 	if(!number)
-		message_admins("Failed to update logout for \"[ckey]\", check server logs and notify coders")
-		log_sql("Could not update logout for ckey \"[ckey]\"; connection_number = \"[number]\"")
 		return
 
 	if(!SSdbcore.Connect())
