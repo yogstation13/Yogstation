@@ -550,7 +550,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = 'INET_ATON('[serverip]')' AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
 	query_getid.Execute()
-	while(query_getid.NextRow())
+	if(query_getid.NextRow())
 		connection_number = query_getid.item[1]
 	qdel(query_getid)
 	// yogs end
