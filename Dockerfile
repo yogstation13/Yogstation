@@ -16,9 +16,8 @@ RUN apt-get install -y --no-install-recommends \
     libssl-dev \
     rustc \
     cargo \
-    pkg-config
-
-RUN git init \
+    pkg-config \
+    && git init \
     && git remote add origin https://github.com/tgstation/rust-g
 
 COPY dependencies.sh .
@@ -88,4 +87,4 @@ RUN ln -s /tgstation/libBSQL.so /root/.byond/bin/libBSQL.so
 
 VOLUME [ "/tgstation/config", "/tgstation/data" ]
 
-ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
+ENTRYPOINT [ "DreamDaemon", "yogstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
