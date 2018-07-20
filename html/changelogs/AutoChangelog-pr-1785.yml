@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "players can construct while standing on top of a directional window. (machine frames, computer frames, etc)"
+author: yogstation13-bot
+changes: []
+delete-after: true
