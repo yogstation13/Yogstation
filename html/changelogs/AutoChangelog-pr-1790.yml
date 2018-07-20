@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Deaths now lag the server less"
+author: yogstation13-bot
+changes: []
+delete-after: true

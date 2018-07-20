@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Ban checks cause less lag"
+author: yogstation13-bot
+changes: []
+delete-after: true

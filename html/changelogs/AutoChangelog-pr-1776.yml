@@ -1,4 +1,3 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "added UI to the circuit printer. That's all"
+author: yogstation13-bot
+changes: []
+delete-after: true
