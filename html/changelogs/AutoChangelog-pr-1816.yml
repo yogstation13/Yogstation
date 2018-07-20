@@ -1,0 +1,5 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - tweak: "Omegastation: Shaft miners now start with the correct backpack box."
+  - bugfix: "Added a missing shaft miner wardrobe to Omegastation."
