@@ -51,42 +51,26 @@ if [ "$BUILD_TOOLS" = false ]; then
 		mkdir travis_test/config
 
 		#test config
-<<<<<<< HEAD
-		cp tools/travis/travis_config.txt config/config.txt
-=======
 		cp tools/travis/travis_config.txt travis_test/config/config.txt
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 
 		# get libmariadb, cache it so limmex doesn't get angery
 		if [ -f $HOME/libmariadb ]; then
 			#travis likes to interpret the cache command as it being a file for some reason
 			rm $HOME/libmariadb
-<<<<<<< HEAD
-			mkdir $HOME/libmariadb
-		fi
-=======
 		fi
 		mkdir -p $HOME/libmariadb
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 		if [ ! -f $HOME/libmariadb/libmariadb.so ]; then
 			wget http://www.byond.com/download/db/mariadb_client-2.0.0-linux.tgz
 			tar -xvf mariadb_client-2.0.0-linux.tgz
 			mv mariadb_client-2.0.0-linux/libmariadb.so $HOME/libmariadb/libmariadb.so
 			rm -rf mariadb_client-2.0.0-linux.tgz mariadb_client-2.0.0-linux
 		fi
-<<<<<<< HEAD
-    	ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
-	
-		DreamDaemon yogstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
-		cat data/logs/travis/clean_run.lk
-=======
 	
 		cd travis_test
     	ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
-		DreamDaemon tgstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
+		DreamDaemon yogstation.dmb -close -trusted -verbose -params "test-run&log-directory=travis"
 		cd ..
 		cat travis_test/data/logs/travis/clean_run.lk
 
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 	fi;
 fi;
