@@ -2,4 +2,4 @@ author: "yogstation13-bot"
 delete-after: true 
 changes: 
   - experiment: "Hitscanning tracers now have lighting effects"
-  - experiment: "Projectile pathing has been changed - instead of moving to a turf 32 pixels forward using byond's built in step_towards() proc, it now increments 2 pixel 16 times (subject to change). While this will increase the processing overhead, this will more or less eliminate cases of \\"projectiles clipping past corners in some angles but not others\\"."
+  - experiment: "Projectile pathing has been changed - instead of moving to a turf 32 pixels forward using byond's built in step_towards() proc, it now increments 2 pixel 16 times (subject to change). While this will increase the processing overhead, this will more or less eliminate cases of projectiles clipping past corners in some angles but not others."
