@@ -1,6 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - tweak: "Pubbystation: Added missing fire alarm, moved existing fire alarms to easier to reach positions. Replaced most department signs."
-  - bugfix: "Pubbystation: The auxillary base telescreen now works again."
-  - tweak: "Pubbystation: The southern engine room wall has been replaced with r-walls to make it harder to sabotage engine containment."
