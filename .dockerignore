@@ -23,6 +23,12 @@ tgstation.int
 tgstation.rsc
 tgstation.lk
 tgstation.dyn.rsc
+yogstation.dmb
+yogstation.int
+yogstation.rsc
+yogstation.lk
+yogstation.dyn.rsc
+libvg.dll
 libmariadb.dll
 rust_g.dll
 BSQL.dll
