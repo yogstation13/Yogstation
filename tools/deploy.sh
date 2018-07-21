@@ -21,7 +21,7 @@ fi
 cp yogstation.dmb yogstation.rsc $1/
 cp -r _maps/* $1/_maps/
 cp icons/default_title.dmi $1/icons/
-cp yogstattion/icons/default_title.dmi $1/yogstation/icons/
+cp yogstation/icons/default_title.dmi $1/yogstation/icons/
 cp -r icons/minimaps/* $1/icons/minimaps/
 cp -r sound/chatter/* $1/sound/chatter/
 cp -r sound/voice/complionator/* $1/sound/voice/complionator/
