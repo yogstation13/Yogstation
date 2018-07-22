@@ -15,7 +15,7 @@ Bonus
 //////////////////////////////////////
 */
 
-/datum/symptom/confusion
+/datum/symptom/confusion/confusion
 
 	name = "Confusion"
 	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
@@ -33,7 +33,7 @@ Bonus
 					  <b>Transmission 6:</b> Increases confusion duration.<br>\
 					  <b>Stealth 4:</b> The symptom remains hidden until active."
 
-/datum/symptom/confusion/Start(datum/disease/advance/A)
+/datum/symptom/confusion/confusion/Start(datum/disease/advance/A)
 	if(!..())
 		return
 	if(A.properties["resistance"] >= 6)
@@ -43,7 +43,7 @@ Bonus
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
 
-/datum/symptom/confusion/Activate(datum/disease/advance/A)
+/datum/symptom/confusion/confusion/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
@@ -58,4 +58,51 @@ Bonus
 				M.adjustBrainLoss(3 * power, 80)
 				M.updatehealth()
 
+	return
+
+/datum/symptom/confusion/numb
+
+	name = "Nerve Block"
+	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
+	stealth = 2
+	resistance = -2
+	stage_speed = 0
+	transmittable = -2
+	level = 1
+	severity = 2
+	base_message_chance = 15
+	symptom_delay_min = 10
+	symptom_delay_max = 30
+	var/brain_damage = FALSE
+	threshold_desc = "<b>Resistance 6:</b> Causes brain damage over time.<br>\
+					  <b>Transmission 6:</b> Increases confusion duration.<br>\
+					  <b>Stealth 4:</b> The symptom remains hidden until active."
+					  
+/datum/symptom/confusion/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
+	if(!..())
+		return
+	if(A.properties["stealth"] >= 4)
+		suppress_warning = TRUE
+		
+/datum/symptom/confusion/numb/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/M = A.affected_mob
+	switch(A.stage)
+		if(1, 2, 3, 4)
+			if(prob(base_message_chance) && !suppress_warning)
+				to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
+		else
+			M.set_screwyhud(SCREWYHUD_HEALTHY)
+			M.updatehealth()
+
+	return
+	
+/datum/symptom/confusion/numb/End(datum/disease/advance/A)
+	var/mob/living/carbon/M = A.affected_mob
+	if(!..())
+		return
+	else
+		M.set_screwyhud(SCREWYHUD_NONE)
+	
 	return
