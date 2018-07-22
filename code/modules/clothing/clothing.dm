@@ -38,6 +38,9 @@
 	// THESE OVERRIDE THE HIDEHAIR FLAGS
 	var/dynamic_hair_suffix = ""//head > mask for head hair
 	var/dynamic_fhair_suffix = ""//mask > head for facial hair
+	
+	var/canbetorn //can this particular item be torn down to be used for cloth? | yogs
+	var/tearhealth = 100 //health regarding tearing clothes to get torn cloth | yogs
 
 /obj/item/clothing/Initialize()
 	. = ..()
