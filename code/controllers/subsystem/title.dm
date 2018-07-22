@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(title)
 		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
 	
 	if(!file_path)
-		file_path = 'icons/default_title.dmi'
+		file_path = "icons/default_title.dmi"
 
 	ASSERT(fexists(file_path))
 
