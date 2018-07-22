@@ -10,7 +10,8 @@ mkdir -p \
     $1/sound/chatter \
     $1/sound/voice/complionator \
     $1/sound/instruments \
-    $1/strings
+    $1/strings \
+	$1/yogstation/icons
 
 if [ -d ".git" ]; then
   # Control will enter here if $DIRECTORY exists.
