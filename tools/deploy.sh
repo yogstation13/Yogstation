@@ -7,11 +7,11 @@
 mkdir -p \
     $1/_maps \
     $1/icons/minimaps \
+    $1/yogstation/icons \
     $1/sound/chatter \
     $1/sound/voice/complionator \
     $1/sound/instruments \
-    $1/strings \
-	$1/yogstation/icons
+    $1/strings
 
 if [ -d ".git" ]; then
   # Control will enter here if $DIRECTORY exists.
