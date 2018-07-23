@@ -59,6 +59,8 @@
 	var/light_burn_msg = "numb"
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
+	
+	var/bandaged // yogs - 0 if the limb is not bandaged, 1 if the limb is bandaged
 
 /obj/item/bodypart/examine(mob/user)
 	..()
