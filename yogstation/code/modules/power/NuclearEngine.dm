@@ -13,7 +13,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor
 	name = "Nuclear Reactor Core"
-	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, Alt Click the reactor to open its access port for removal of objects, and CTRL Click the reactor to open / close its fuel port. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
+	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, Alt Click the reactor to open its access port for removal of objects, and CTRL Click the reactor to open / close its fuel port, you can also use a wrench to detect any pipes you've put under it. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
 	icon = 'icons/obj/reactor.dmi'
 	icon_state = "reactor"
 	critical_machine = TRUE
@@ -117,6 +117,8 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 		to_chat(user, "You slot [I] into [src]!")
 		I.forceMove(src)
 		react.CRS += I
+	if(istype(I, /obj/item/wrench))
+		CheckPipes()
 
 /obj/machinery/power/NuclearReactor/attack_hand(mob/user)
 	if(!ReactorInoperable)
