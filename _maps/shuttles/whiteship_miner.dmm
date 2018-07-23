@@ -57,14 +57,12 @@
 /area/shuttle/abandoned)
 "aj" = (
 /obj/structure/mirror{
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -163,8 +161,7 @@
 /area/shuttle/abandoned)
 "at" = (
 /obj/structure/mirror{
-	pixel_x = 28;
-	pixel_y = 0
+	pixel_x = 28
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -352,7 +349,6 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -28;
-	pixel_y = 0;
 	req_access_txt = "0";
 	},
 /obj/machinery/light{
@@ -631,8 +627,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/shuttle,
@@ -1133,8 +1128,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/xenoblood/xgibs/limb,
 /turf/open/floor/plasteel/shuttle,
@@ -1229,8 +1223,7 @@
 "WI" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 6;
-	pixel_y = 0
+	pixel_x = 6
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
 	pixel_x = -3
@@ -1261,8 +1254,7 @@
 /obj/item/reagent_containers/dropper,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 12;
-	pixel_y = 0
+	pixel_x = 12
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
