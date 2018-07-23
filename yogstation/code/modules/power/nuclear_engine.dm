@@ -145,23 +145,12 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	state |= WASTEHATCH_OPEN
 	connect_to_network()
 //	outlet = new(src.loc)
-	var/obj/dummy = new(src.loc) //Handle placing pipes properly
-	dummy.alpha = 0
-//	outlet.name = "[src] gas outlet port"
-//	outlet.dir = NORTH
-	dummy.y += 1 //1 tile above our loc, to get outlet!
-	outlet = locate(/obj/machinery/atmospherics/components/binary/pump/nuclear) in dummy.loc
-	qdel(dummy)
+	outlet = locate(/obj/machinery/atmospherics/components/binary/pump) in get_step(src, NORTH)
 	STOP_PROCESSING(SSmachines,src)
 
 /obj/machinery/power/NuclearReactor/proc/CheckPipes() //In case your pipes blow up
 	outlet = null
-	outlet = null
-	var/obj/dummy = new(loc)
-	dummy.alpha = 0
-	dummy.y += 1
-	outlet = locate(/obj/machinery/atmospherics/components/binary/pump/nuclear) in dummy.loc
-	qdel(dummy)
+	outlet = locate(/obj/machinery/atmospherics/components/binary/pump) in get_step(src, NORTH)
 	if(outlet)
 		say("Success! outlet pump registered as [outlet]")
 		return TRUE
@@ -256,9 +245,6 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	Heat = 0
 	HeatRate = 0
 
-/obj/machinery/power/NuclearReactor/proc/GetPower(var/C = 2) //C is changeable for balance as you see fit. You can also change input power modifier.
-	return Heat^C * Efficiency * C
-
 //obj/machinery/power/NuclearReactor/proc/GetHeat()
 //	return HeatRate*Time
 
@@ -313,7 +299,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 		if(!istype(FR,/obj/item/twohanded/required/FuelRod))
 			return
 		if(FR.integrity <= 0) //That rod's spent, make it into DU
-			reactor.say("[FR] died!")
+			reactor.say("[FR] has been depleted")
 			DepletedAmt ++
 			qdel(FR)
 			FRS -= FR
@@ -331,7 +317,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 			return
 		if(CR.integrity <= 10) //CR is spent!
 			qdel(CR)
-			reactor.say("[CR] died!")
+			reactor.say("[CR] has worn out.")
 		CR.integrity -= 10 - reactor.Efficiency/10
 
 /obj/item/twohanded/required/ControlRod
