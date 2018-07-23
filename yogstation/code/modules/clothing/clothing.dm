@@ -48,36 +48,50 @@
 	icon = 'yogstation/icons/obj/items.dmi'
 	icon_state = "clothscrap"
 	
-/obj/item/clothing/under/proc/handle_tear(mob/user, ripcount = 1)
+/obj/item/clothing/under/proc/handle_tear(mob/user)
 	if(!canbetorn)
 		return
+	log_game("GOT HERE ONE")
 
-	for(var/count = ripcount, count > 0, ripcount--)
-		take_teardamage(20)
-		permeability_coefficient += 0.20
-		if (armor)
-			if (armor["bullet"])
-				armor["bullet"] -= 2
-			if (armor["melee"])
-				armor["melee"] -= 2
-			if (armor["fire"])
-				armor["fire"] -= 2
-		if (user)
-			if (user.loc)
-				new /obj/item/clothing/torncloth(user.loc)
-				if(!QDELETED(src))
-					user.visible_message("You hear cloth tearing.", "A segment of [src] falls away to the floor, torn apart.", "*riiip*")
+	take_teardamage(20)
+	log_game("GOT HERE TWO")
+	permeability_coefficient += 0.20
+	log_game("GOT HERE THREE")
+	if (armor)
+		if (armor["bullet"])
+			armor["bullet"] -= 2
+		if (armor["melee"])
+			armor["melee"] -= 2
+		if (armor["fire"])
+			armor["fire"] -= 2
+	log_game("GOT HERE THREE")
+	if (user)
+		log_game("GOT HERE FOUR")
+		if (user.loc)
+			log_game("GOT HERE FIVE")
+			new /obj/item/clothing/torncloth(user.loc)
+			log_game("GOT HERE SIX")
+			if(!QDELETED(src))
+				log_game("GOT HERE SEVEN")
+				user.visible_message("You hear cloth tearing.", "A segment of [src] falls away to the floor, torn apart.", "*riiip*")
+				log_game("GOT HERE EIGHT")
 	return 1
 	
 /obj/item/clothing/under/proc/take_teardamage(amount)
 	var/bearer = loc
+	log_game("GOT HERE TWO-ONE")
 	if(amount > tearhealth || 0 >= tearhealth - amount)
+		log_game("GOT HERE TWO-TWO")
 		visible_message(break_message(), break_message())
+		log_game("GOT HERE TWO-THREE")
 		qdel(src)
-
+		log_game("GOT HERE TWO-FOUR")
 	if (ishuman(bearer))
+		log_game("GOT HERE TWO-FIVE")
 		var/mob/living/carbon/human/H = bearer
+		log_game("GOT HERE TWO-SIX")
 		H.update_inv_w_uniform()
+	log_game("GOT HERE TWO-SEVEN")
 	tearhealth -= amount
 	
 /obj/item/clothing/under/verb/rip()
@@ -89,7 +103,7 @@
 		return
 	if (!can_use(M))
 		return
-
+	log_game("GOT HERE THREE-ONE")
 	src.handle_tear(usr)
 	
 /obj/item/clothing/under/proc/break_message()
