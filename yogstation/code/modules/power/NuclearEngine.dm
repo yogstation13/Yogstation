@@ -376,10 +376,6 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	FuelPenalty = 2
 	radiation_strength = 30
 
-
-#undef FUELHATCH_OPEN
-#undef WASTEHATCH_OPEN
-
 /obj/effect/nuclearwaste
 	name = "nuclear waste"
 	desc = "A highly radioactive pool of sludge; the remains of a nuclear reactor that went critical."
@@ -451,3 +447,12 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	name = "pipe manifold"
 	desc = "A manifold composed of large pipes."
 	pipe_state = "manifold"
+
+
+#undef FUELHATCH_OPEN
+#undef WASTEHATCH_OPEN
+#undef LOW_HEAT
+#undef MEDIUM_HEAT
+#undef HIGH_HEAT
+#undef CRITICAL_HEAT
+#undef MELTDOWN
