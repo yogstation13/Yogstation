@@ -323,7 +323,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 /obj/item/twohanded/required/ControlRod
 	name = "Carbon Control Rod"
 	desc = "A huge rod of carbon used for nuclear reactors. It is inert."
-	icon = 'icons/obj/ControlRod.dmi'
+	icon = 'icons/obj/control_rod.dmi'
 	icon_state = "carbonrod"
 	var/integrity = 10000 //As rods become worn, they are damaged.
 	max_integrity = 10000
@@ -333,7 +333,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 /obj/item/twohanded/required/FuelRod
 	name = "Uranium Fuel Rod"
 	desc = "A huge stick of uranium to be inserted into a nuclear reactor, its casing is in tact, mitigating most of its radioactive output"
-	icon = 'icons/obj/ControlRod.dmi'
+	icon = 'icons/obj/control_rod.dmi'
 	icon_state = "uraniumrod"
 	var/integrity = 10000//As rods become worn, they are damaged.
 	max_integrity = 10000
@@ -348,8 +348,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/item/twohanded/required/FuelRod/plasma
 	name = "Plasma Fuel Rod"
-	desc = "A huge stick of plasma to be inserted into a nuclear reactor. It has a small label haphazardly stuck to it: WARNING, UNCONTROLLED USE OF THIS WILL OVERHEAT REACTOR. USE AT OWN RISK!"
-	icon = 'icons/obj/ControlRod.dmi' //This isn't a question of if it fucks your setup... It's when.
+	desc = "A huge stick of plasma to be inserted into a nuclear reactor. It has a small label haphazardly stuck to it: WARNING, UNCONTROLLED USE OF THIS WILL OVERHEAT REACTOR. USE AT OWN RISK!" //This isn't a question of if it fucks your setup... It's when.
 	icon_state = "plasmarod"
 	integrity = 1000//As rods become worn, they are damaged.
 	max_integrity = 1000
