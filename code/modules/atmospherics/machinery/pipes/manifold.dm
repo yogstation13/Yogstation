@@ -37,7 +37,7 @@
 	//Add non-broken pieces
 	for(var/i in 1 to device_type)
 		if(nodes[i])
-			add_overlay(getpipeimage(icon, "manifold_full[invis]", get_dir(src, nodes[i])))
+			add_overlay(getpipeimage('icons/obj/atmospherics/pipes/manifold.dmi', "manifold_full[invis]", get_dir(src, nodes[i])))
 
 //Colored pipes, use these for mapping
 /obj/machinery/atmospherics/pipe/manifold/general
