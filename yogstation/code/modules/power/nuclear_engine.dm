@@ -434,92 +434,78 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	pipe_state = "manifold"
 
 
-/datum/computer_file/program/nuclear_monitor //WIP!
-	filename = "nuclearmonitor"
-	filedesc = "Nuclear engine monitor"
-	ui_header = "smmon_0.gif"
-	program_icon_state = "smmon_0"
-	extended_desc = "This program hooks into the engineering monitor circuits to monitor nuclear reactors, providing the station has any."
-	requires_ntnet = TRUE
-	transfer_access = ACCESS_CONSTRUCTION
-	network_destination = "nuclear monitoring system"
-	size = 5
-	tgui_id = "ntos_nuclear_monitor"
-	ui_x = 600
-	ui_y = 400
-	var/list/reactors
+/obj/machinery/computer/nuclearmonitor
+	name = "Nuclear Monitoring Console"
+	desc = "Click it for fun stats about nuclear reactors."
+	icon_screen = "command"
+	icon_keyboard = "atmos_key"
+	var/list/reactors = list()
 	var/obj/machinery/power/NuclearReactor/active
+	var/mob/stored
 
-/datum/computer_file/program/nuclear_monitor/run_program(mob/living/user)
-	. = ..(user)
-	refresh()
+/obj/machinery/computer/nuclearmonitor/Initialize()
+	. = ..()
+	FindReactor()
+	START_PROCESSING(SSmachines,src)
 
-/datum/computer_file/program/nuclear_monitor/kill_program(forced = FALSE)
-	reactors = null
-	..()
 
-// Refreshes list of active reactors
-/datum/computer_file/program/nuclear_monitor/proc/refresh()
-	reactors = list()
-	var/turf/T = get_turf(ui_host())
-	if(!T)
-		return
-	for(var/obj/machinery/power/NuclearReactor/S in GLOB.machines)
-		//not on station etc.
-		if (!isturf(S.loc) || !(is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z))
-			continue
-		reactors.Add(S)
+/obj/machinery/computer/nuclearmonitor/Destroy()
+	STOP_PROCESSING(SSmachines,src)
+	. = ..()
 
-	if(!(active in reactors))
-		active = null
 
-/datum/computer_file/program/nuclear_monitor/ui_data() //if this looks similar to the SM monitor, you're right. It does.
-	var/list/data = get_header_data()
-
-	if(istype(active))
-		var/turf/T = get_turf(active)
-		if(!T)
-			active = null
-			refresh()
+/obj/machinery/computer/nuclearmonitor/process()
+	if(stored)
+		if(!stored in orange(src,1)	|| !stored.canUseTopic(src))
+			stored = null
 			return
-		var/activeyesno
-		switch(active.ReactorInoperable)
-			if(TRUE)
-				activeyesno = "OPERATIONAL"
-			if(FALSE)
-				activeyesno = "INOPERABLE"
-		data["operational"] = activeyesno
-		data["reactor_heat"] = active.Heat
-		data["reactor_heatrate"] = active.HeatRate
-	else
-		var/list/SMS = list()
-		for(var/obj/machinery/power/NuclearReactor/S in reactors)
-			var/area/A = get_area(S)
-			if(A)
-				SMS.Add(list(list(
-				"area_name" = A.name,
-				)))
-		data["reactors"] = SMS
-	return data
+		attack_hand(stored) //:)
 
-/datum/computer_file/program/nuclear_monitor/ui_act(action, params)
-	if(..())
-		return TRUE
+/obj/machinery/computer/nuclearmonitor/attack_hand(mob/user)
+	stored = user
+	if(!active)
+		FindReactor()
+		active = pick(reactors)
+	if(user.canUseTopic(src))
+		var/html = "<a href='byond://?src=[REF(src)];close=1'>Close Window</a>"
+		html += "<a href='byond://?src=[REF(src)];reset=1'>Change reactor</a> <BR>"
+		html += "<B>CONTROL PANEL</B><BR>"
+		html += "MONITORING: [active] in [get_area(active)]<BR>"
+		html += "Heat level: [active.Heat] K | Its maximum heat tolerance is: [CRITICAL_HEAT] K<BR>"
+		html += "Heat rate: [active.HeatRate] K/3s<BR>"
+		var/datum/browser/popup = new(user, "Reactor Monitoring", name, 300, 300)
+		popup.set_content(html)
+		popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
+		popup.open()
 
-	switch(action)
-		if("PRG_clear")
-			active = null
-			return TRUE
-		if("PRG_refresh")
-			refresh()
-			return TRUE
 
-/obj/machinery/modular_computer/console/preset/engineering/install_programs()
-	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
-	hard_drive.store_file(new/datum/computer_file/program/power_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/supermatter_monitor())
-	hard_drive.store_file(new/datum/computer_file/program/nuclear_monitor())
+/obj/machinery/computer/nuclearmonitor/Topic(href, href_list)
+	if (href_list["close"])
+		usr.unset_machine()
+		stored = null
+		usr << browse(null, "window=Reactor Monitoring")
+		return
+	if (href_list["reset"])
+		PickReactor(stored)
+		return
+
+/obj/machinery/computer/nuclearmonitor/proc/PickReactor(mob/user)
+	stored = user
+	var/obj/C = input(user, "What reactor shall we monitor", "[src]") as null|obj in reactors
+	var/F = input(user, "[C] is in [get_area(C)]: do you really want to monitor this one?") as anything in list("yes","no")
+	switch(F)
+		if("yes")
+			active = C
+		if("no")
+			PickReactor(user)
+		else
+			return
+
+/obj/machinery/computer/nuclearmonitor/proc/FindReactor()
+	reactors = list()
+	for(var/obj/machinery/power/NuclearReactor/N in GLOB.machines)
+		if(N.z == z)
+			reactors += N
 
 #undef FUELHATCH_OPEN
 #undef WASTEHATCH_OPEN

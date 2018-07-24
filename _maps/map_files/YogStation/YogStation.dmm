@@ -24046,6 +24046,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tech)
+"bhL" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/computer/nuclearmonitor,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "bhM" = (
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -24068,6 +24076,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bhP" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plasteel,
+/area/engine/break_room)
 "bhQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -24213,6 +24233,16 @@
 	dir = 4
 	},
 /area/engine/gravity_generator)
+"bij" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/obj/machinery/computer/nuclearmonitor{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/break_room)
 "bik" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -24425,6 +24455,17 @@
 "biL" = (
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"biM" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/nuclearmonitor,
+/turf/open/floor/plasteel/darkyellow/side{
+	icon_state = "darkyellow";
+	dir = 1
+	},
+/area/engine/engineering)
 "biN" = (
 /turf/open/floor/plasteel/whitered/side{
 	dir = 1
@@ -39915,17 +39956,6 @@
 "bZy" = (
 /turf/open/floor/plasteel,
 /area/engine/break_room)
-"bZz" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/break_room)
 "bZA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -40177,15 +40207,6 @@
 	dir = 8
 	},
 /area/hallway/primary/aft)
-"caw" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/meson,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/open/floor/plasteel,
-/area/engine/break_room)
 "cax" = (
 /obj/structure/closet/wardrobe/black,
 /obj/effect/decal/cleanable/cobweb,
@@ -42342,13 +42363,6 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"chG" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "chH" = (
 /obj/structure/closet/firecloset,
@@ -51867,16 +51881,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
-"pHF" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/darkyellow/side{
-	icon_state = "darkyellow";
-	dir = 1
-	},
-/area/engine/engineering)
 "pIt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/structure/cable{
@@ -82415,7 +82419,7 @@ cev
 cfg
 cgU
 cgJ
-chG
+bhL
 cpx
 csd
 csd
@@ -82435,7 +82439,7 @@ ccw
 dWT
 dWT
 ccw
-pHF
+biM
 csd
 wCx
 ccw
@@ -84197,8 +84201,8 @@ bVO
 bWO
 bXK
 bYH
-bZz
-caw
+bhP
+bij
 bYH
 bVo
 bXq
@@ -84491,7 +84495,7 @@ ccw
 dWT
 dWT
 ccw
-pHF
+biM
 csd
 uXP
 ccw
