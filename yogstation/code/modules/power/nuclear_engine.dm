@@ -13,7 +13,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor
 	name = "Nuclear Reactor Core"
-	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, Alt Click the reactor to open its access port for removal of objects, and CTRL Click the reactor to open / close its fuel port, you can also use a wrench to detect any pipes you've put under it. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
+	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, <I>Alt Click</I> the reactor to open its access port for removal of objects, and <B>CTRL Click</B> the reactor to open / close its fuel port, you can also use a wrench to detect any pipes you've put under it. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
 	icon = 'icons/obj/reactor.dmi'
 	icon_state = "reactor"
 	critical_machine = TRUE
@@ -41,7 +41,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/examine(mob/user)
 	. = ..()
-	to_chat(user, "Its heat readout reads: [Heat] K, Its maximum tolerance limit is [CRITICAL_HEAT] K")
+	to_chat(user, "<span class='warning'>Its heat readout reads: [Heat] K, its maximum tolerance limit is [CRITICAL_HEAT] K.</span>")
 
 
 //COOL STUFF: PIPES AIR CONTAINER: AIRS | AIR TEMPERATURE VAR: TEMPERATURE (K) aim for 1000 for turbines!
@@ -68,11 +68,11 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	if(state & FUELHATCH_OPEN)
 		state &= ~FUELHATCH_OPEN //Bitflags! We add the OPPOSITE of fuelhatch open to "state", in other words, inverting it, if the hatch is open, this closes it
 		playsound(loc, 'sound/effects/bin_close.ogg',50,1)
-		to_chat(user,"You shut the fuel hatch")
+		to_chat(user,"You shut the fuel hatch.")
 	else
 		state |= FUELHATCH_OPEN
 		playsound(loc, 'sound/effects/bin_open.ogg',50,1)
-		to_chat(user,"You open the fuel hatch")
+		to_chat(user,"You open the fuel hatch.")
 	UpdateIcon()
 
 /obj/machinery/power/NuclearReactor/AltClick(mob/user)
@@ -153,10 +153,10 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	outlet = null
 	outlet = locate(/obj/machinery/atmospherics/components/binary/pump) in get_step(src, NORTH)
 	if(outlet)
-		say("Success! outlet pump registered as [outlet]")
+		say("Success: Outlet pump registered as [outlet].")
 		return TRUE
 	else
-		say("Error! No outlet pump could be found!")
+		say("Error: No outlet pump could be found!")
 		return FALSE
 
 /obj/machinery/power/NuclearReactor/Destroy()
@@ -165,11 +165,11 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/proc/start()
 	if(!outlet)
-		say("ERROR! No outlet found!, please attach a standard atmospherics pump on the highlighted tile to the left!")
+		say("<span class='warning'>ERROR: No outlet found, please attach a standard atmospherics pump on the highlighted tile to the left! (one tile above the reactor)<span>")
 	if(!powernet)
 		connect_to_network()
 	if(state & FUELHATCH_OPEN || state & WASTEHATCH_OPEN)
-		say("Warning! A hatch is still open! Please close it before trying this!")
+		say("<span class='warning'>Warning! A hatch is still open! Please close it before trying this!</span>")
 		return
 	say("Reaction started!")
 	Heat += 1 //kickstart it
@@ -197,19 +197,17 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 /obj/machinery/power/NuclearReactor/proc/MeltdownAnnounce() //Announce the meltdown to give them a chance to RUN
 	stop()
 	ReactorInoperable = TRUE
-	if(ReactorInoperable)
-		for(var/mob/M in GLOB.player_list)
-			if(M.z == z)
-				M << null //Don't want to assault their eardrums
-				M << MeltDownSound
-				priority_announce("Nuclear reactor status: CRITICAL Meltdown imminent! Evacuate engineering section IMMEDIATELY", "Nuclear Reactor Monitoring Subsystem",'sound/ai/attention.ogg')
-				addtimer(CALLBACK(src, .proc/Meltdown), 410) //It's the final countdown
+	priority_announce("Nuclear reactor status: CRITICAL Meltdown imminent! Evacuate engineering section IMMEDIATELY", "Nuclear Reactor Monitoring Subsystem",'sound/ai/attention.ogg')
+	addtimer(CALLBACK(src, .proc/Meltdown), 410) //It's the final countdown
+	for(var/mob/M in GLOB.player_list)
+		if(M.z == z)
+			M << null //Don't want to assault their eardrums
+			M << MeltDownSound
 
 /obj/machinery/power/NuclearReactor/proc/Meltdown() //qdel(station)
-	explosion(get_turf(src),20,40,40, 100)
+	explosion(get_turf(src),20,40,30, 100, ignorecap=TRUE)
 	var/datum/round_event_control/radiation_storm/RS = new()
 	RS.runEvent()
-	ReactorInoperable = TRUE
 	fuel = null
 	monitor = null
 	waste = null
@@ -223,7 +221,6 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	if(state & FUELHATCH_OPEN || state & WASTEHATCH_OPEN)
 		radiation_pulse(src, Heat, 40) //You fucked up kid
 	if(Heat >= MELTDOWN) //Oh FUCK
-		stop()
 		MeltdownAnnounce()
 		return
 	if(Heat >= CRITICAL_HEAT)
@@ -238,7 +235,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/proc/ProcessAtmos()
 	for(var/datum/gas_mixture/S in outlet.airs)
-		if(S.temperature <= 20000) //A small nerf to avoid tritium production
+		if(S.temperature <= 20000) //A small nerf to avoid ambient temperatures in the room reaching 2000 degrees
 			var/num = Heat
 			if(num <= 0)
 				num = 0
@@ -261,11 +258,8 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /datum/nuclearreaction
 	var/name = "nuclear reaction"
-	var/FuelAmt = 0 //How much fuel
-	var/CombFuelPower = 0 //And combined, how strong are all our fuels
 	var/list/obj/item/twohanded/required/ControlRod/CRS = list()
 	var/list/obj/item/twohanded/required/FuelRod/FRS = list()
-	var/DepletedAmt = 0 //How much of the uranium has been depleted, and thus acts like control rods?
 	var/obj/machinery/power/NuclearReactor/reactor
 
 /datum/nuclearreaction/proc/GetCoolAmounts()
@@ -303,8 +297,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 		if(!istype(FR,/obj/item/twohanded/required/FuelRod))
 			return
 		if(FR.integrity <= 0) //That rod's spent, make it into DU
-			reactor.say("[FR] has been depleted")
-			DepletedAmt ++
+			reactor.say("<span class='warning'>[FR] has been depleted.<span>")
 			qdel(FR)
 			FRS -= FR
 			FR = null
@@ -321,7 +314,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 			return
 		if(CR.integrity <= 10) //CR is spent!
 			qdel(CR)
-			reactor.say("[CR] has worn out.")
+			reactor.say("<span class='warning'>[CR] has worn out.<span>")
 		CR.integrity -= 10 - reactor.Efficiency/10
 
 /obj/item/twohanded/required/ControlRod
