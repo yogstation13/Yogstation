@@ -1,4 +1,3 @@
-// yogs start
 /datum/symptom/heal/conversion
 	name = "Rapid Protein Synthesis"
 	desc = "The virus rapidly consumes nutrients in blood to heal wounds."
@@ -63,5 +62,4 @@
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len))
 			M.update_damage_overlays()
 
-	return 1
-// yogs end
+	return TRUE

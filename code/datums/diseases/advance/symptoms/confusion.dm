@@ -15,7 +15,7 @@ Bonus
 //////////////////////////////////////
 */
 
-/datum/symptom/confusion/confusion
+/datum/symptom/confusion
 
 	name = "Confusion"
 	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
@@ -33,7 +33,7 @@ Bonus
 					  <b>Transmission 6:</b> Increases confusion duration.<br>\
 					  <b>Stealth 4:</b> The symptom remains hidden until active."
 
-/datum/symptom/confusion/confusion/Start(datum/disease/advance/A)
+/datum/symptom/confusion/Start(datum/disease/advance/A)
 	if(!..())
 		return
 	if(A.properties["resistance"] >= 6)
@@ -43,7 +43,7 @@ Bonus
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
 
-/datum/symptom/confusion/confusion/Activate(datum/disease/advance/A)
+/datum/symptom/confusion/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
