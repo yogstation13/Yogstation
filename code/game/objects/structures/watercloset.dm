@@ -539,6 +539,11 @@
 		to_chat(user, "<span class='notice'>You tear off a strip of gauze and make a rag.</span>")
 		G.use(1)
 		return
+		
+	if(istype(O, /obj/item/medical/bandage/))
+		var/obj/item/medical/bandage/B = O
+		B.wash(O, user)			//yogs - BANDAGES
+		return
 
 	if(!istype(O))
 		return
