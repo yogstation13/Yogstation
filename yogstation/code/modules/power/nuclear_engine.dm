@@ -36,6 +36,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	var/WarningSound = 'yogstation/sound/effects/CoreOverheating.ogg'
 	var/MeltDownSound = 'yogstation/sound/effects/Meltdown.ogg'
 	var/ReactorInoperable = FALSE
+	density = TRUE
 //	var/CoreHealth = 1000 //This gets chipped away when you run it above its temperature tolerance
 
 /obj/machinery/power/NuclearReactor/examine(mob/user)
@@ -195,12 +196,14 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/proc/MeltdownAnnounce() //Announce the meltdown to give them a chance to RUN
 	stop()
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
-			M << null //Don't want to assault their eardrums
-			M << MeltDownSound
-			priority_announce("Nuclear reactor status: CRITICAL Meltdown imminent! Evacuate engineering section IMMEDIATELY", "Nuclear Reactor Monitoring Subsystem",'sound/ai/attention.ogg')
-			addtimer(CALLBACK(src, .proc/Meltdown), 410) //It's the final countdown
+	ReactorInoperable = TRUE
+	if(ReactorInoperable)
+		for(var/mob/M in GLOB.player_list)
+			if(M.z == z)
+				M << null //Don't want to assault their eardrums
+				M << MeltDownSound
+				priority_announce("Nuclear reactor status: CRITICAL Meltdown imminent! Evacuate engineering section IMMEDIATELY", "Nuclear Reactor Monitoring Subsystem",'sound/ai/attention.ogg')
+				addtimer(CALLBACK(src, .proc/Meltdown), 410) //It's the final countdown
 
 /obj/machinery/power/NuclearReactor/proc/Meltdown() //qdel(station)
 	explosion(get_turf(src),20,40,40, 100)
@@ -235,10 +238,11 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/proc/ProcessAtmos()
 	for(var/datum/gas_mixture/S in outlet.airs)
-		var/num = Heat
-		if(num <= 0)
-			num = 0
-		S.temperature += num
+		if(S.temperature <= 20000) //A small nerf to avoid tritium production
+			var/num = Heat
+			if(num <= 0)
+				num = 0
+			S.temperature += num
 
 /obj/machinery/power/NuclearReactor/proc/stop()
 	STOP_PROCESSING(SSmachines,src)
