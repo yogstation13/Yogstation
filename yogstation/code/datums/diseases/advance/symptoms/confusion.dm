@@ -1,4 +1,4 @@
-/datum/symptom/confusion/numb
+/datum/symptom/numb
 
 	name = "Nerve hardening"
 	desc = "The virus strengthens nerve connections decreasing interference to nerve connections, as a side effect the nervous system no longer reacts to pain."
@@ -17,7 +17,7 @@
 					  <b>Transmission 6:</b> Increases confusion duration.<br>\
 					  <b>Stealth 4:</b> The symptom remains hidden until active."
 					  
-/datum/symptom/confusion/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
+/datum/symptom/numb/Start(datum/disease/advance/A)  //ADD Stamina reg, and a stun resist
 	if(!..())
 		return
 	if(A.properties["stealth"] >= 4)
@@ -27,7 +27,7 @@
 	if(A.properties["transmission"] >= 7)
 		stamina_regen = TRUE
 		
-/datum/symptom/confusion/numb/Activate(datum/disease/advance/A)
+/datum/symptom/numb/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
@@ -44,7 +44,7 @@
 			
 	return
 	
-/datum/symptom/confusion/numb/End(datum/disease/advance/A)
+/datum/symptom/numb/End(datum/disease/advance/A)
 	var/mob/living/carbon/M = A.affected_mob
 	if(!..())
 		return
