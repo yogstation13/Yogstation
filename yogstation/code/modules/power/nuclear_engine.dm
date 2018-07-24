@@ -13,7 +13,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor
 	name = "Nuclear Reactor Core"
-	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, <I>Alt Click</I> the reactor to open its access port for removal of objects, and <B>CTRL Click</B> the reactor to open / close its fuel port, you can also use a wrench to detect any pipes you've put under it. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
+	desc = "A massive nuclear reactor with an inbuilt cooling spire, two access hatches, and a large port for attaching atmos pipes to, <B>Alt Click</B> the reactor to open its access port for removal of objects, and <B>CTRL Click</B> the reactor to open / close its fuel port, you can also use a wrench to detect any pipes you've put under it. The Nt-STE-VENS series of reactors are a testament to the old saying 'If it ain't broke, don't fix it'"
 	icon = 'icons/obj/reactor.dmi'
 	icon_state = "reactor"
 	critical_machine = TRUE
@@ -212,7 +212,11 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	waste = null
 	cut_overlays()
 	icon_state = "reactor-broken"
-	for(var/turf/T in orange(src, 10))
+	addtimer(CALLBACK(src, .proc/SpillWaste), 80) //give the explosion some time to render
+
+/obj/machinery/power/NuclearReactor/proc/SpillWaste()
+	visible_message("<span class='warning'>Nuclear waste starts seeping from [src]!</span>")
+	for(var/turf/T in orange(src, 7))
 		new /obj/effect/nuclearwaste(T)
 
 
