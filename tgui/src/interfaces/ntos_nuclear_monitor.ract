@@ -1,0 +1,25 @@
+<link rel='ractive' href='./ntosheader.ract'>
+<ntosheader/>
+
+
+{{#if data.active}}
+	<ui-button action='PRG_clear'>Back to Menu</ui-button><br>
+		<ui-display title='Reactor Status:'>
+		</ui-section>
+		<ui-section label='Temperature'>
+				<span class='{{bigState(data.active.Heat</span>
+		<ui-section label='Heat Increase Rate'>
+				<span class='{{bigState(data.active.HeatRate</span>
+		</ui-section>	
+		</ui-display>
+
+{{else}}
+	<ui-button action='PRG_refresh'>Refresh</ui-button><br>
+	<ui-display title='Detected Reactors'>
+	{{#each data.reactors}}
+		<ui-section label='Area'>
+				{{area_name}}
+		</ui-section>	
+	{{/each}}
+	</ui-display>
+{{/if}}

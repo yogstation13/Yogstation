@@ -434,6 +434,93 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	pipe_state = "manifold"
 
 
+/datum/computer_file/program/nuclear_monitor //WIP!
+	filename = "nuclearmonitor"
+	filedesc = "Nuclear engine monitor"
+	ui_header = "smmon_0.gif"
+	program_icon_state = "smmon_0"
+	extended_desc = "This program hooks into the engineering monitor circuits to monitor nuclear reactors, providing the station has any."
+	requires_ntnet = TRUE
+	transfer_access = ACCESS_CONSTRUCTION
+	network_destination = "nuclear monitoring system"
+	size = 5
+	tgui_id = "ntos_nuclear_monitor"
+	ui_x = 600
+	ui_y = 400
+	var/list/reactors
+	var/obj/machinery/power/NuclearReactor/active
+
+/datum/computer_file/program/nuclear_monitor/run_program(mob/living/user)
+	. = ..(user)
+	refresh()
+
+/datum/computer_file/program/nuclear_monitor/kill_program(forced = FALSE)
+	reactors = null
+	..()
+
+// Refreshes list of active reactors
+/datum/computer_file/program/nuclear_monitor/proc/refresh()
+	reactors = list()
+	var/turf/T = get_turf(ui_host())
+	if(!T)
+		return
+	for(var/obj/machinery/power/NuclearReactor/S in GLOB.machines)
+		//not on station etc.
+		if (!isturf(S.loc) || !(is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z))
+			continue
+		reactors.Add(S)
+
+	if(!(active in reactors))
+		active = null
+
+/datum/computer_file/program/nuclear_monitor/ui_data() //if this looks similar to the SM monitor, you're right. It does.
+	var/list/data = get_header_data()
+
+	if(istype(active))
+		var/turf/T = get_turf(active)
+		if(!T)
+			active = null
+			refresh()
+			return
+		var/activeyesno
+		switch(active.ReactorInoperable)
+			if(TRUE)
+				activeyesno = "OPERATIONAL"
+			if(FALSE)
+				activeyesno = "INOPERABLE"
+		data["operational"] = activeyesno
+		data["reactor_heat"] = active.Heat
+		data["reactor_heatrate"] = active.HeatRate
+	else
+		var/list/SMS = list()
+		for(var/obj/machinery/power/NuclearReactor/S in reactors)
+			var/area/A = get_area(S)
+			if(A)
+				SMS.Add(list(list(
+				"area_name" = A.name,
+				)))
+		data["reactors"] = SMS
+	return data
+
+/datum/computer_file/program/nuclear_monitor/ui_act(action, params)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("PRG_clear")
+			active = null
+			return TRUE
+		if("PRG_refresh")
+			refresh()
+			return TRUE
+
+/obj/machinery/modular_computer/console/preset/engineering/install_programs()
+	var/obj/item/computer_hardware/hard_drive/hard_drive = cpu.all_components[MC_HDD]
+	hard_drive.store_file(new/datum/computer_file/program/power_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/supermatter_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/nuclear_monitor())
+
 #undef FUELHATCH_OPEN
 #undef WASTEHATCH_OPEN
 #undef LOW_HEAT
