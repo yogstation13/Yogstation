@@ -281,13 +281,14 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	var/AmtAdd
 	for(var/obj/item/twohanded/required/FuelRod/FR in FRS)
 		if(!istype(FR,/obj/item/twohanded/required/FuelRod))
-			return
+			continue //today i learned that return stops the entire proc not just that iteration of the loop
 		AmtAdd += FR.FuelPower
 	return AmtAdd //IE, AmtSubtract with one CR = 1, AmtAdd with 2 Uranium = 4, so resultant reaction power is 3, which also means a heat spike
 
 /datum/nuclearreaction/proc/ConsumeFuel()
-	for(var/obj/item/twohanded/required/FuelRod/FR in FRS)
-		if(FR.loc != reactor || !FR in reactor.contents)
+	for(var/FL in FRS)
+		var/obj/item/twohanded/required/FuelRod/FR = FL
+		if(FR.loc != reactor || !(FR in reactor.contents))
 			FRS -= FR
 		if(!istype(FR,/obj/item/twohanded/required/FuelRod))
 			return
@@ -302,14 +303,15 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 			return
 		if(!istype(FR, /obj/item/twohanded/required/FuelRod/depleted)) //Depleted rods don't deplete further, they just interrupt heat
 			FR.integrity -= 10 - reactor.Efficiency/10 // Eg, 100/10 = 10, so integrity -= 0 aka no health lost, 25 = 2.5, so 8.5 health lost, so keep that efficiency up!
-	for(var/obj/item/twohanded/required/ControlRod/CR in CRS)
-		if(CR.loc != reactor || !CR in reactor.contents)
+	for(var/T in CRS)
+		var/obj/item/twohanded/required/ControlRod/CR = T
+		if(CR.loc != reactor || (!CR in reactor.contents))
 			CRS -= CR
 		if(!istype(CR,/obj/item/twohanded/required/ControlRod))
 			return
 		if(CR.integrity <= 10) //CR is spent!
-			qdel(CR)
 			reactor.say("<span class='warning'>[CR] has worn out.<span>")
+			qdel(CR)
 		CR.integrity -= 10 - reactor.Efficiency/10
 
 /obj/item/twohanded/required/ControlRod
@@ -362,7 +364,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	icon_state = "nuclearwaste"
 
 /obj/effect/nuclearwaste/attackby() //You need to contain it
-	return 0
+	return FALSE
 
 /obj/effect/nuclearwaste/Initialize()
 	START_PROCESSING(SSobj,src)
