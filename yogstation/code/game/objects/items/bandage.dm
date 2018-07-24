@@ -68,13 +68,11 @@
 		used = 1
 
 /obj/item/medical/bandage/proc/apply(mob/living/user, mob/tar, obj/item/bodypart/lt)
-	var/mob/living/carbon/human/temphuman
 	if (!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use this!</span>")
 		return 0
 
 	if (ishuman(tar))
-		temphuman = tar
 		if (!lt.bandaged)
 			if (user == tar)
 				user.visible_message("<span class='notice'>[user] begins winding [src] about their [lt.name]..</span>", "<span class='notice'>You begin winding [src] around your [lt.name]..</span>")
@@ -86,17 +84,11 @@
 					return 0
 				healing_limb = lt
 				lt.bandaged = src
-				loc = temphuman
+				moveToNullspace(src)
 				user.visible_message("[user] has applied [src] successfully.", "You have applied [src] successfully.")
 				return 1
 			else
-				if(user.get_active_held_item() == src)
-					if(!user.canUnEquip(src))
-						return 0
-					loc = temphuman.loc
-					user.visible_message("<span class='warning'>Interrupted, [user] fumbles and drops [src] to the floor!</span>", "<span class='warning'>Losing your concentration, you find yourself unable to apply [src] and let it slip through your fingers to pool upon the floor!</span>")
-				else
-					user.visible_message("<span class='warning'>[user] stops applying [src] to [tar].</span>", "<span class='warning'>You stop applying [src] to [tar].</span>")
+				user.visible_message("<span class='warning'>[user] stops applying [src] to [tar].</span>", "<span class='warning'>You stop applying [src] to [tar].</span>")
 				return 0
 		else
 			to_chat(user, "[tar] is already bandaged for the moment.")
