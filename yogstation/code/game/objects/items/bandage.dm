@@ -11,7 +11,7 @@
 	var/staunch_bleeding = 600 //does it stop bleeding and if so, how much?
 	var/duration = 40 //duration in ticks of healing effect (these roughly equate to 1.5s each)
 	var/activefor = 1
-	var/used = 0 //has the bandage been used or not?
+	var/used = FALSE //has the bandage been used or not?
 	var/obj/item/bodypart/healing_limb = null
 	//bandages unwrap bloodied after the duration ends and fall to the floor with the user's blood on them
 
@@ -19,19 +19,19 @@
 	//handles bandage healing per tick, called in life
 	if (!used)
 		if (healing_limb && healing_limb.status == BODYPART_ORGANIC)
-			var/success = 0
+			var/success = FALSE
 			switch (healtype)
 				if ("brute")
 					if (healing_limb.brute_dam)
 						success = healing_limb.heal_damage(healamount/src.duration, 0, 0)
 					else
 						to_chat(H, "<span class='notice'>The wounds on your [src.healing_limb.name] have stopped bleeding and appear to be healed.</span>")
-						used = 1
+						used = TRUE
 				if ("burn")
 					if (healing_limb.burn_dam)
 						success = healing_limb.heal_damage(0, healamount/src.duration, 0)
 					else
-						used = 1
+						used = TRUE
 						to_chat(H, "<span class='notice'>The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed.</span>")
 			if (success)
 				H.update_damage_overlays(0)
@@ -40,7 +40,7 @@
 			if (activefor <= src.duration)
 				activefor += 1
 			else
-				used = 1
+				used = TRUE
 	else
 		//eject the bandage onto the floor with
 		fall_off(H, healing_limb)
@@ -53,8 +53,8 @@
 		desc = "Piled into a tangled, crusty mess, these bandages have obviously been used and then disposed of in great haste."
 		color = "red"
 		loc = T.loc
-		healing_limb.bandaged = 0
-		used = 1
+		healing_limb.bandaged = FALSE
+		used = TRUE
 
 
 /obj/item/medical/bandage/proc/fall_off(mob/living/carbon/human/H, obj/item/bodypart/L)
@@ -64,8 +64,8 @@
 		desc = "Bloodied and crusted, these bandages have clearly been used and aren't fit for much anymore. Seems as if they were wrapped around someone's [L.name] last."
 		color = "red"
 		loc = H.loc
-		L.bandaged = 0
-		used = 1
+		L.bandaged = FALSE
+		used = TRUE
 
 /obj/item/medical/bandage/proc/apply(mob/living/user, mob/tar, obj/item/bodypart/lt)
 	if (!ishuman(user))
@@ -106,7 +106,7 @@
 		duration = src.duration * 1.15
 		activefor = 1
 		color = 0
-		used = 0
+		used = FALSE
 	else
 		to_chat(user, "There's no real need to wash this - it's perfectly clean!")
 
