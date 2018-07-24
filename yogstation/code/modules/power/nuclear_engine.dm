@@ -41,7 +41,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='warning'>Its heat readout reads: [Heat] K, its maximum tolerance limit is [CRITICAL_HEAT] K.</span>")
+	to_chat(user, "<span class='notice'>Its heat readout reads: [Heat] K, its maximum tolerance limit is [CRITICAL_HEAT] K.</span>")
 
 
 //COOL STUFF: PIPES AIR CONTAINER: AIRS | AIR TEMPERATURE VAR: TEMPERATURE (K) aim for 1000 for turbines!
@@ -150,7 +150,6 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	STOP_PROCESSING(SSmachines,src)
 
 /obj/machinery/power/NuclearReactor/proc/CheckPipes() //In case your pipes blow up
-	outlet = null
 	outlet = locate(/obj/machinery/atmospherics/components/binary/pump) in get_step(src, NORTH)
 	if(outlet)
 		say("Success: Outlet pump registered as [outlet].")
@@ -165,7 +164,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 
 /obj/machinery/power/NuclearReactor/proc/start()
 	if(!outlet)
-		say("<span class='warning'>ERROR: No outlet found, please attach a standard atmospherics pump on the highlighted tile to the left! (one tile above the reactor)<span>")
+		say("<span class='warning'>ERROR: No outlet found, please attach a standard atmospherics pump on the highlighted tile to the left! (one tile above the reactor)</span>")
 	if(!powernet)
 		connect_to_network()
 	if(state & FUELHATCH_OPEN || state & WASTEHATCH_OPEN)
@@ -205,7 +204,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 			M << MeltDownSound
 
 /obj/machinery/power/NuclearReactor/proc/Meltdown() //qdel(station)
-	explosion(get_turf(src),20,40,30, 100, ignorecap=TRUE)
+	explosion(get_turf(src),20,30,40, 100, ignorecap=TRUE)
 	var/datum/round_event_control/radiation_storm/RS = new()
 	RS.runEvent()
 	fuel = null
@@ -236,10 +235,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 /obj/machinery/power/NuclearReactor/proc/ProcessAtmos()
 	for(var/datum/gas_mixture/S in outlet.airs)
 		if(S.temperature <= 20000) //A small nerf to avoid ambient temperatures in the room reaching 2000 degrees
-			var/num = Heat
-			if(num <= 0)
-				num = 0
-			S.temperature += num
+			S.temperature += max(0, Heat)
 
 /obj/machinery/power/NuclearReactor/proc/stop()
 	STOP_PROCESSING(SSmachines,src)
@@ -287,8 +283,7 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 		if(!istype(FR,/obj/item/twohanded/required/FuelRod))
 			return
 		AmtAdd += FR.FuelPower
-	var/final = AmtAdd
-	return final //IE, AmtSubtract with one CR = 1, AmtAdd with 2 Uranium = 4, so resultant reaction power is 3, which also means a heat spike
+	return AmtAdd //IE, AmtSubtract with one CR = 1, AmtAdd with 2 Uranium = 4, so resultant reaction power is 3, which also means a heat spike
 
 /datum/nuclearreaction/proc/ConsumeFuel()
 	for(var/obj/item/twohanded/required/FuelRod/FR in FRS)
