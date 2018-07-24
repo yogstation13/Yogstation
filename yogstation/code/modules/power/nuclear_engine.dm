@@ -79,11 +79,11 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 	if(state & WASTEHATCH_OPEN)
 		state &= ~WASTEHATCH_OPEN //Bitflags! We add the OPPOSITE of wastehatch open to "state", in other words, inverting it, if the hatch is open, this closes it
 		playsound(loc, 'sound/effects/bin_close.ogg',50,1)
-		to_chat(user,"You shut the access hatch")
+		to_chat(user,"You shut the access hatch.")
 	else
 		state |= WASTEHATCH_OPEN
 		playsound(loc, 'sound/effects/bin_open.ogg',50,1)
-		to_chat(user,"You open the access hatch")
+		to_chat(user,"You open the access hatch.")
 	UpdateIcon()
 
 /obj/machinery/power/NuclearReactor/proc/UpdateIcon()
