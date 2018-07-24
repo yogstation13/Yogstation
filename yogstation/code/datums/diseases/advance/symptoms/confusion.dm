@@ -1,69 +1,7 @@
-/*
-//////////////////////////////////////
-
-Confusion
-
-	Little bit hidden.
-	Lowers resistance.
-	Decreases stage speed.
-	Not very transmissibile.
-	Intense Level.
-
-Bonus
-	Makes the affected mob be confused for short periods of time.
-
-//////////////////////////////////////
-*/
-
-/datum/symptom/confusion/confusion
-
-	name = "Confusion"
-	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
-	stealth = 1
-	resistance = -1
-	stage_speed = -3
-	transmittable = 0
-	level = 4
-	severity = 2
-	base_message_chance = 25
-	symptom_delay_min = 10
-	symptom_delay_max = 30
-	var/brain_damage = FALSE
-	threshold_desc = "<b>Resistance 6:</b> Causes brain damage over time.<br>\
-					  <b>Transmission 6:</b> Increases confusion duration.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
-
-/datum/symptom/confusion/confusion/Start(datum/disease/advance/A)
-	if(!..())
-		return
-	if(A.properties["resistance"] >= 6)
-		brain_damage = TRUE
-	if(A.properties["transmittable"] >= 6)
-		power = 1.5
-	if(A.properties["stealth"] >= 4)
-		suppress_warning = TRUE
-
-/datum/symptom/confusion/confusion/Activate(datum/disease/advance/A)
-	if(!..())
-		return
-	var/mob/living/carbon/M = A.affected_mob
-	switch(A.stage)
-		if(1, 2, 3, 4)
-			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("Your head hurts.", "Your mind blanks for a moment.")]</span>")
-		else
-			to_chat(M, "<span class='userdanger'>You can't think straight!</span>")
-			M.confused = min(100 * power, M.confused + 8)
-			if(brain_damage)
-				M.adjustBrainLoss(3 * power, 80)
-				M.updatehealth()
-
-	return
-	
 /datum/symptom/confusion/numb
 
-	name = "Nerve Block"
-	desc = "The virus interferes with the proper function of the neural system, leading to bouts of confusion and erratic movement."
+	name = "Nerve hardening"
+	desc = "The virus strengthens nerve connections decreasing interference to nerve connections, as a side effect the nervous system no longer reacts to pain."
 	stealth = 2
 	resistance = -2
 	stage_speed = 0
@@ -71,10 +9,11 @@ Bonus
 	level = 1
 	severity = 2
 	base_message_chance = 15
-	symptom_delay_min = 10
-	symptom_delay_max = 30
-	var/brain_damage = FALSE
-	threshold_desc = "<b>Resistance 6:</b> Causes brain damage over time.<br>\
+	symptom_delay_min = 5		//quick because it needs to reduce stun times
+	symptom_delay_max = 10
+	var/stun_reduce = -15
+	var/stamina_regen = FALSE
+	threshold_desc = "<b>Resistance 8:</b> Increases stun resistance.<br>\
 					  <b>Transmission 6:</b> Increases confusion duration.<br>\
 					  <b>Stealth 4:</b> The symptom remains hidden until active."
 					  
@@ -83,6 +22,10 @@ Bonus
 		return
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
+	if(A.properties["resistance"] >= 8)
+		stun_reduce = -25
+	if(A.properties["transmission"] >= 7)
+		stamina_regen = TRUE
 		
 /datum/symptom/confusion/numb/Activate(datum/disease/advance/A)
 	if(!..())
@@ -93,9 +36,12 @@ Bonus
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
 		else
+			M.AdjustStun(stun_reduce, 0)
 			M.set_screwyhud(SCREWYHUD_HEALTHY)
+			if(stamina_regen)
+				M.adjustStaminaLoss(-2, 0)
 			M.updatehealth()
-
+			
 	return
 	
 /datum/symptom/confusion/numb/End(datum/disease/advance/A)
@@ -104,5 +50,5 @@ Bonus
 		return
 	else
 		M.set_screwyhud(SCREWYHUD_NONE)
-	
+		M.updatehealth()
 	return
