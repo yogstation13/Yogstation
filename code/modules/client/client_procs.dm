@@ -210,7 +210,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(fexists(roundend_report_file()))
 		verbs += /client/proc/show_previous_roundend_report
 
-	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[byond_version]")
+	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
+	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
+
 	var/alert_mob_dupe_login = FALSE
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
@@ -236,8 +238,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	if(GLOB.player_details[ckey])
 		player_details = GLOB.player_details[ckey]
+		player_details.byond_version = full_version
 	else
 		player_details = new
+		player_details.byond_version = full_version
 		GLOB.player_details[ckey] = player_details
 
 	// yogs start - Donor stuff
@@ -538,13 +542,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		qdel(query_log_player)
 	if(!account_join_date)
 		account_join_date = "Error"
-	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')),'[world.port]','[GLOB.round_id]','[sql_ckey]',INET_ATON('[sql_ip]'),'[sql_computerid]')")
+	// yogs start - logout logging
+	var/serverip = "[world.internet_address]"
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
 	query_log_connection.Execute()
 	qdel(query_log_connection)
-	// yogs start - logout logging
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip`=INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')) AND `ckey`='[sql_ckey]' AND `ip`='[sql_ip]' AND `computerid`='[sql_computerid]' ORDER BY datetime DESC LIMIT 1;")
+
+	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = 'INET_ATON('[serverip]')' AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
 	query_getid.Execute()
-	while (query_getid.NextRow())
+	if(query_getid.NextRow())
 		connection_number = query_getid.item[1]
 	qdel(query_getid)
 	// yogs end

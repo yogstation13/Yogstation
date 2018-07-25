@@ -70,8 +70,6 @@
 		layer = initial(layer)
 
 /obj/machinery/door/Destroy()
-	density = FALSE
-	air_update_turf(1)
 	update_freelook_sight()
 	GLOB.airlocks -= src
 	if(spark_system)
@@ -79,7 +77,7 @@
 		spark_system = null
 	return ..()
 
-/obj/machinery/door/CollidedWith(atom/movable/AM)
+/obj/machinery/door/Bumped(atom/movable/AM)
 	if(operating || (obj_flags & EMAGGED))
 		return
 	if(ismob(AM))

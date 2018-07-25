@@ -168,7 +168,7 @@
 					return
 				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
 				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>") // yogs - Yog Tickets
-				to_chat(src, "<font color='blue'>-- [key_name(recipient, src)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
+				to_chat(src, "<font color='blue'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)

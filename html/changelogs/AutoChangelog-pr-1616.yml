@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - imageadd: "Medical HUDs will now show an icon if the body has died recently enough to be defibbed"
