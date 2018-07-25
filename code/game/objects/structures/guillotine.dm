@@ -140,8 +140,9 @@
 			for(var/mob/M in viewers(src, 7))
 				var/mob/living/carbon/human/C = M
 				if (ishuman(M))
-					addtimer(CALLBACK(C, /mob/.proc/emote, "clap"), delay_offset * 0.3)
-					delay_offset++
+					if(!((H.mind in SSticker.mode.head_revolutionaries)&&((M.mind in SSticker.mode.revolutionaries)||(M.mind in SSticker.mode.head_revolutionaries)))) //if the victim is a headrev AND the observer is a rev OR a headrev, no clap
+						addtimer(CALLBACK(C, /mob/.proc/emote, "clap"), delay_offset * 0.3)
+						delay_offset++
 		else
 			H.apply_damage(15 * blade_sharpness, BRUTE, head)
 			add_logs(user, H, "dropped the blade on", src, " non-fatally")
