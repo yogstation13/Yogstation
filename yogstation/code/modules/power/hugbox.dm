@@ -10,10 +10,6 @@
 	var/power_per_hug = 100000
 	var/crunching = FALSE
 
-/obj/machinery/power/hugbox_engine/Initialize()
-	connect_to_network()
-	return ..()
-
 /obj/machinery/power/hugbox_engine/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
