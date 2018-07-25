@@ -8,7 +8,7 @@
 	level = 1
 	passive_message = "<span class='notice'>You feel tough.</span>"
 	var/Toxin_damage = FALSE
-	var/Hunger_reduction = 10
+	var/Hunger_reduction = 8
 	threshold_desc = "<b>Resistance 9:</b> No blood loss.<br>\
 					  <b>Stage Speed 7:</b> Reduces nutrients used."
 
@@ -16,7 +16,7 @@
 	if(!..())
 		return
 	if(A.properties["stage_rate"] >= 7)
-		Hunger_reduction = 5
+		Hunger_reduction = 4
 	
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
