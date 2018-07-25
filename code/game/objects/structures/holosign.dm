@@ -83,11 +83,6 @@
 	. = ..()
 	air_update_turf(TRUE)
 
-/obj/structure/holosign/barrier/atmos/Destroy()
-	var/turf/T = get_turf(src)
-	. = ..()
-	T.air_update_turf(TRUE)
-
 /obj/structure/holosign/barrier/cyborg
 	name = "Energy Field"
 	desc = "A fragile energy field that blocks movement. Excels at blocking lethal projectiles."
@@ -125,7 +120,7 @@
 			shockcd = TRUE
 			addtimer(CALLBACK(src, .proc/cooldown), 5)
 
-/obj/structure/holosign/barrier/cyborg/hacked/CollidedWith(atom/movable/AM)
+/obj/structure/holosign/barrier/cyborg/hacked/Bumped(atom/movable/AM)
 	if(shockcd)
 		return
 

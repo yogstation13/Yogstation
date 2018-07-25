@@ -549,6 +549,17 @@
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [thing]")
 		to_chat(C, "[usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)
+	// yogs start - offer control can now be used by mods
+	else if(href_list["offer_control"])
+		if(!check_rights(NONE))
+			return
+
+		var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
+		if(!istype(M))
+			to_chat(usr, "This can only be used on instances of type /mob")
+			return
+		offer_control(M)
+	// yogs end
 
 
 //Needs +VAREDIT past this point
@@ -788,16 +799,8 @@
 
 			if(usr.client)
 				usr.client.cmd_assume_direct_control(M)
-
-		else if(href_list["offer_control"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-			offer_control(M)
+				
+		// yogs - offer control moved up
 
 		else if (href_list["modarmor"])
 			if(!check_rights(NONE))
@@ -997,6 +1000,33 @@
 
 			manipulate_organs(C)
 			href_list["datumrefresh"] = href_list["editorgans"]
+
+		else if(href_list["givemartialart"])
+			if(!check_rights(NONE))
+				return
+
+			var/mob/living/carbon/C = locate(href_list["givemartialart"]) in GLOB.carbon_list
+			if(!istype(C))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+				return
+
+			var/list/artpaths = subtypesof(/datum/martial_art)
+			var/list/artnames = list()
+			for(var/i in artpaths)
+				var/datum/martial_art/M = i
+				artnames[initial(M.name)] = M
+
+			var/result = input(usr, "Choose the martial art to teach","JUDO CHOP") as null|anything in artnames
+			if(!usr)
+				return
+			if(QDELETED(C))
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+
+			if(result)
+				var/chosenart = artnames[result]
+				var/datum/martial_art/MA = new chosenart
+				MA.teach(C)
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
