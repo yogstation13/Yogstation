@@ -45,12 +45,12 @@
 	M.nutrition = max(M.nutrition - (Hunger_reduction * Hunger_multi), 0) // So heal to nutrient ratio doesnt change
 	
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !Toxin_damage)
-		M.blood_volume -= 20
+		M.blood_volume -= 10
 		if(prob(45))
 			to_chat(M, "<span class='warning'>You feel like you are wasting away!</span>")
 	
 	if(Toxin_damage)
-		M.adjustToxLoss(-5)
+		M.adjustToxLoss(-2)
 		if(prob(45))
 			to_chat(M, "<span class='warning'>You dont feel so well.</span>")
 	
