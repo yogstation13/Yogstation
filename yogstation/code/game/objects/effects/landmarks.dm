@@ -24,3 +24,10 @@
 /obj/effect/landmark/start/yogs/tourist
 	name = "Tourist"
 	icon_state = "Tourist"
+
+/obj/effect/landmark/event_spawn/proc/spawnroyale(drop = FALSE)
+	if(drop)
+		new /obj/effect/DPtarget(src, /obj/structure/closet/crate/royale, 0)
+		priority_announce("[get_area(src)]")
+	else
+		return
