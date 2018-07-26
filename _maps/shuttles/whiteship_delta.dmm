@@ -1595,6 +1595,10 @@
 	},
 /area/shuttle/abandoned/bridge)
 "cq" = (
+=======
+/area/shuttle/abandoned/bridge)
+"cj" = (
+>>>>>>> 11dd42ca32... Fixes some missing pipes in new delta whiteship. (#39345)
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -3297,6 +3301,140 @@ dx
 cy
 ea
 cy
+"}
+(7,1,1) = {"
+ac
+ac
+ac
+aQ
+bn
+bC
+bR
+bX
+cf
+cn
+ct
+bC
+cP
+df
+dD
+vm
+iM
+"}
+(8,1,1) = {"
+ac
+aj
+aC
+aR
+bo
+bD
+bS
+bY
+cg
+co
+cu
+bD
+cQ
+dg
+dE
+dN
+vm
+"}
+(9,1,1) = {"
+ac
+ak
+aD
+aS
+ac
+bB
+bT
+bZ
+ch
+cp
+bT
+bB
+vm
+dh
+vm
+vm
+vm
+"}
+(10,1,1) = {"
+ac
+ac
+ac
+aT
+ac
+bE
+bT
+bT
+bT
+bT
+bT
+cE
+vm
+dj
+dF
+dO
+vm
+"}
+(11,1,1) = {"
+ac
+al
+aE
+Ci
+bp
+bF
+bF
+ca
+bM
+cq
+cq
+cq
+cS
+dk
+dH
+di
+vm
+"}
+(12,1,1) = {"
+ac
+ac
+ac
+aU
+bq
+bG
+bU
+cb
+cj
+cr
+cv
+cr
+cT
+dl
+dG
+dQ
+vm
+"}
+(13,1,1) = {"
+ac
+am
+aF
+aV
+ac
+bH
+ac
+bI
+ac
+bI
+ac
+cF
+cR
+dm
+dP
+dR
+vm
+>>>>>>> 11dd42ca32... Fixes some missing pipes in new delta whiteship. (#39345)
 "}
 (26,1,1) = {"
 ag
