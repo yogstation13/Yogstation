@@ -140,7 +140,7 @@
 	being held, or anchored in some way. It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits; only drone assemblies can move."
 	w_class = WEIGHT_CLASS_SMALL
 	complexity = 10
-	cooldown_per_use = 3
+	cooldown_per_use = 1
 	ext_cooldown = 1
 	inputs = list("direction" = IC_PINTYPE_DIR)
 	outputs = list("obstacle" = IC_PINTYPE_REF)
@@ -472,10 +472,10 @@
 	The 'fire' activator will cause the mechanism to attempt to throw objects at the coordinates, if possible. Note that the \
 	projectile needs to be inside the machine, or on an adjacent tile, and must be medium sized or smaller. The assembly \
 	must also be a gun if you wish to throw something while the assembly is in hand."
-	complexity = 45
+	complexity = 25
 	w_class = WEIGHT_CLASS_SMALL
-	size = 5
-	cooldown_per_use = 50
+	size = 2
+	cooldown_per_use = 10
 	ext_cooldown = 1
 	inputs = list(
 		"target X rel" = IC_PINTYPE_NUMBER,
@@ -488,7 +488,7 @@
 	)
 	spawn_flags = IC_SPAWN_RESEARCH
 	action_flags = IC_ACTION_COMBAT
-	power_draw_per_use = 100
+	power_draw_per_use = 50
 
 /obj/item/integrated_circuit/manipulation/thrower/do_work()
 	var/max_w_class = assembly.w_class
