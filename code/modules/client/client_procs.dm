@@ -152,12 +152,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
 
-/client/can_vv_get(var_name)
-	return var_name != NAMEOF(src, holder) && ..()
-
-/client/vv_edit_var(var_name, var_value)
-	return var_name != NAMEOF(src, holder) && ..()
-
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
@@ -548,7 +542,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	query_log_connection.Execute()
 	qdel(query_log_connection)
 
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = 'INET_ATON('[serverip]')' AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
+	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
 	query_getid.Execute()
 	if(query_getid.NextRow())
 		connection_number = query_getid.item[1]

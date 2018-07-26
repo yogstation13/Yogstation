@@ -1,0 +1,4 @@
+author: " Mickyan"
+delete-after: true 
+changes: 
+  - bugfix: "Deltastation: replaced blood decals in maintenance with their dried counterparts"
