@@ -70,7 +70,7 @@
 	
 /obj/item/clothing/under/proc/take_teardamage(amount)
 	var/bearer = loc
-	if(amount > tearhealth || 0 >= tearhealth - amount)
+	if(tearhealth - amount < 0)
 		visible_message(break_message(), break_message())
 		qdel(src)
 	if (ishuman(bearer))
@@ -106,5 +106,3 @@
 				to_chat(user, "The garment is badly damaged, several seams completely torn away.")
 			if (20)
 				to_chat(user, "The basic form of the garment is barely holding together, the bulk badly torn.")
-			if (0)
-				to_chat(user, "It is completely torn, with only tatters remaining. Completely unusuable.")
