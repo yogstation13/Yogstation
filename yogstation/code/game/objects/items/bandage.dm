@@ -3,7 +3,7 @@
 	desc = "A generic bandage of unknown origin and use. What does it cover? Is it a trendy accessory? Will I ever know?."
 	icon = 'yogstation/icons/obj/items.dmi'
 	icon_state = "improv_bandage"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
 	var/healtype = "brute" //determines what damage type the item heals
@@ -17,33 +17,31 @@
 
 /obj/item/medical/bandage/proc/handle_bandage(mob/living/carbon/human/H)
 	//handles bandage healing per tick, called in life
-	if (!used)
-		if (healing_limb && healing_limb.status == BODYPART_ORGANIC)
-			var/success = FALSE
-			switch (healtype)
-				if ("brute")
-					if (healing_limb.brute_dam)
-						success = healing_limb.heal_damage(healamount/src.duration, 0, 0)
-					else
-						to_chat(H, "<span class='notice'>The wounds on your [src.healing_limb.name] have stopped bleeding and appear to be healed.</span>")
-						used = TRUE
-				if ("burn")
-					if (healing_limb.burn_dam)
-						success = healing_limb.heal_damage(0, healamount/src.duration, 0)
-					else
-						used = TRUE
-						to_chat(H, "<span class='notice'>The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed.</span>")
-			if (success)
-				H.update_damage_overlays(0)
-			if (staunch_bleeding && !H.bleedsuppress)
-				H.suppress_bloodloss(staunch_bleeding)
-			if (activefor <= src.duration)
-				activefor += 1
-			else
-				used = TRUE
-	else
-		//eject the bandage onto the floor with
-		fall_off(H, healing_limb)
+	if(used)
+		return fall_off(H, healing_limb)
+	if (healing_limb && healing_limb.status == BODYPART_ORGANIC)
+		var/success = FALSE
+		switch (healtype)
+			if (BRUTE)
+				if (healing_limb.brute_dam)
+					success = healing_limb.heal_damage(healamount/src.duration, 0, 0)
+				else
+					to_chat(H, "<span class='notice'>The wounds on your [src.healing_limb.name] have stopped bleeding and appear to be healed.</span>")
+					used = TRUE
+			if (BURN)
+				if (healing_limb.burn_dam)
+					success = healing_limb.heal_damage(0, healamount/src.duration, 0)
+				else
+					used = TRUE
+					to_chat(H, "<span class='notice'>The burns on your [src.healing_limb.name] feel much better, and seem to be completely healed.</span>")
+		if (success)
+			H.update_damage_overlays()
+		if (staunch_bleeding && !H.bleedsuppress)
+			H.suppress_bloodloss(staunch_bleeding)
+		if (activefor <= src.duration)
+			activefor += 1
+		else
+			used = TRUE
 
 /obj/item/medical/bandage/proc/unwrap(mob/living/M, mob/living/carbon/human/T)
 	//DUPLICATE CODE BUT I'M FUCKING LAZY <- this was not Morrow
@@ -52,7 +50,7 @@
 		name = "used [src.name]"
 		desc = "Piled into a tangled, crusty mess, these bandages have obviously been used and then disposed of in great haste."
 		color = "red"
-		loc = T.loc
+		forceMove(get_turf(T))
 		healing_limb.bandaged = FALSE
 		used = TRUE
 
@@ -70,7 +68,7 @@
 /obj/item/medical/bandage/proc/apply(mob/living/user, mob/tar, obj/item/bodypart/lt)
 	if (!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to use this!</span>")
-		return 0
+		return FALSE
 
 	if (ishuman(tar))
 		if (!lt.bandaged)
@@ -81,21 +79,21 @@
 
 			if (do_after(user, 50, target = tar))
 				if(!user.canUnEquip(src))
-					return 0
+					return FALSE
 				healing_limb = lt
 				lt.bandaged = src
 				moveToNullspace(src)
 				user.visible_message("[user] has applied [src] successfully.", "You have applied [src] successfully.")
-				return 1
+				return TRUE
 			else
 				user.visible_message("<span class='warning'>[user] stops applying [src] to [tar].</span>", "<span class='warning'>You stop applying [src] to [tar].</span>")
-				return 0
+				return FALSE
 		else
 			to_chat(user, "[tar] is already bandaged for the moment.")
-			return 0
+			return FALSE
 	else
 		to_chat(user, "This doesn't look like it'll work.")
-		return 0
+		return FALSE
 
 /obj/item/medical/bandage/proc/wash(obj/O, mob/user)
 	if (src.used)
@@ -131,7 +129,7 @@
 /obj/item/medical/bandage/improvised
 	name = "improvised bandage"
 	desc = "A primitive bandage fashioned from some torn cloth and leftover elastic. Will do in a pinch, but is nowhere near as effective as actual medical-grade bandages."
-	healtype = "brute"
+	healtype = BRUTE
 	healamount = 40
 	duration = 40
 	staunch_bleeding = 240
@@ -139,7 +137,7 @@
 /obj/item/medical/bandage/improvised_soaked
 	name = "soaked improvised bandage"
 	desc = "Primitive bandage thoroughly soaked in water, Probably decent for a burn wound, but definitely isn't sterile. Useless at stopping bleeding."
-	healtype = "burn"
+	healtype = BURN
 	color = "blue"
 	healamount = 40
 	duration = 40
