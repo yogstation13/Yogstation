@@ -1,4 +1,0 @@
-author: " Naksu"
-delete-after: true 
-changes: 
-  - rscadd: "gas reactions no longer copy a list needlessly"
