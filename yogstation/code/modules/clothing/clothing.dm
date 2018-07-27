@@ -66,7 +66,7 @@
 			new /obj/item/clothing/torncloth(user.loc)
 			if(!QDELETED(src))
 				user.visible_message("You hear cloth tearing.", "A segment of [src] falls away to the floor, torn apart.", "*riiip*")
-	return 1
+	return TRUE
 	
 /obj/item/clothing/under/proc/take_teardamage(amount)
 	var/bearer = loc
