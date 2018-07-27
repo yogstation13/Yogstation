@@ -514,3 +514,21 @@ According to players, the average usage is 160 KW, or 160,000 watts. So that's t
 #undef HIGH_HEAT
 #undef CRITICAL_HEAT
 #undef MELTDOWN
+
+
+/obj/machinery/power/excercise_bike
+	name = "Excercise bike"
+	desc "The new NT 4FA5 AS5 excercise bike allows you burn those calories whilst generating power! It's a deal, it's a steal, it's sale of the fucking century alright?"
+	icon = 'icons/machinery/excercisebike.dmi'
+	icon_state = "bike1"
+	can_buckle = TRUE
+	max_buckled_mobs = 1
+	var/power = 2 //PUSH IT TO THE LIMIT!!!!
+
+/obj/machinery/power/excercise_bike/relaymove(mob/user, direction)
+	if(powernet)
+		if(isliving(user))
+			var/mob/living/L = user
+			L.apply_status_effect(STATUS_EFFECT_EXERCISED)
+			playsound(loc, 'goon/sound/effects/spring.ogg', 20, 1)
+			add_avail(power)
