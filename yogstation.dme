@@ -2716,6 +2716,7 @@
 #include "yogstation\code\modules\mob\living\simple_animal\hostile\megafauna\colossus.dm"
 #include "yogstation\code\modules\power\hugbox.dm"
 #include "yogstation\code\modules\power\lighting.dm"
+#include "yogstation\code\modules\power\validhunter.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
 #include "yogstation\code\modules\spells\spells.dm"
