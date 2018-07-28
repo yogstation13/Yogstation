@@ -657,4 +657,4 @@
 /obj/item/integrated_circuit/manipulation/matman/Destroy()
 	GET_COMPONENT(materials, /datum/component/material_container)
 	materials.retrieve_all()
-	.=..() 
+	.=..()
