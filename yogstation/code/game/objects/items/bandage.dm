@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
-	var/healtype = "brute" //determines what damage type the item heals
+	var/healtype = BRUTE //determines what damage type the item heals
 	var/healamount = 70 //determines how much it heals OVERALL (over duration)
 	var/staunch_bleeding = 600 //does it stop bleeding and if so, how much?
 	var/duration = 40 //duration in ticks of healing effect (these roughly equate to 1.5s each)
@@ -122,7 +122,7 @@
 	if (!O.bandaged)
 		apply(U, T, O)
 		return
-	else if (O.bandaged)
+	else
 		to_chat(U, "This limb has already been bandaged, so there's no point putting another one on.")
 		return
 
