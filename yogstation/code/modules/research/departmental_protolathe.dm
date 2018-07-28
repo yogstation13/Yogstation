@@ -9,36 +9,42 @@
 
 /obj/machinery/rnd/production/protolathe/department/engineering
 	name = "department protolathe (Engineering)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_ENGINEERING
 	department_tag = "Engineering"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/engineering
+	req_access = list(ACCESS_ENGINE)
 
 /obj/machinery/rnd/production/protolathe/department/service
 	name = "department protolathe (Service)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_SERVICE
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_SERVICE
 	department_tag = "Service"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/service
+	req_access = list(ACCESS_HYDROPONICS, ACCESS_JANITOR)
 
 /obj/machinery/rnd/production/protolathe/department/medical
 	name = "department protolathe (Medical)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_MEDICAL
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_MEDICAL
 	department_tag = "Medical"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/medical
+	req_access = list(ACCESS_MEDICAL)
 
 /obj/machinery/rnd/production/protolathe/department/cargo
 	name = "department protolathe (Cargo)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_CARGO
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_CARGO
 	department_tag = "Cargo"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/cargo
+	req_access = list(ACCESS_CARGO)
 
 /obj/machinery/rnd/production/protolathe/department/science
 	name = "department protolathe (Science)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_SCIENCE
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_SCIENCE
 	department_tag = "Science"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/science
+	req_access = list(ACCESS_TOX)
 
 /obj/machinery/rnd/production/protolathe/department/security
 	name = "department protolathe (Security)"
-	allowed_department_flags = DEPARTMENTAL_FLAG_SECURITY
+	allowed_department_flags = DEPARTMENTAL_FLAG_ALL|DEPARTMENTAL_FLAG_SECURITY
 	department_tag = "Security"
 	circuit = /obj/item/circuitboard/machine/protolathe/department/security
+	req_access = list(ACCESS_SECURITY)
