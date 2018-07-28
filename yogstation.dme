@@ -2723,6 +2723,7 @@
 #include "yogstation\code\modules\power\lighting.dm"
 #include "yogstation\code\modules\power\validhunter.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
+#include "yogstation\code\modules\research\departmental_protolathe.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
 #include "yogstation\code\modules\spells\spells.dm"
 #include "yogstation\code\modules\spells\spell_types\mime.dm"
