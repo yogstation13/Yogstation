@@ -66,6 +66,10 @@
 	},
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"am" = (
+/obj/structure/sink/puddle,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 "aq" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
@@ -351,15 +355,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
-"ba" = (
-/obj/structure/stone_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile{
-	dir = 4
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "bc" = (
@@ -1554,7 +1549,7 @@ ae
 as
 aE
 aQ
-ba
+am
 bn
 bz
 ak
