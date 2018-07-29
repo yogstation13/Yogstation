@@ -5,6 +5,6 @@
 	if(!SSdbcore.Connect())
 		return
 
-	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET left = Now() WHERE id = [number]")
+	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = [number]")
 	query_logout.Execute()
 	qdel(query_logout)
