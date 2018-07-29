@@ -88,8 +88,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), /area/space, space_ruins_templates)
-
-	seedStation() //yogs - random station rooms
 	loading_ruins = FALSE
 #endif
 	repopulate_sorted_areas()
