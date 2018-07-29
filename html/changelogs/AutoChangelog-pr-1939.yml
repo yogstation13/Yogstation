@@ -1,4 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - bugfix: "Regular fedoras no longer spawn containing flasks."
