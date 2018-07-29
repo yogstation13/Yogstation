@@ -55,7 +55,7 @@
 	if(!template)
 		return FALSE
 	log_world("Ruin \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
-	template.load(T, centered = FALSE)
+	template.load(T, centered = FALSE, stationroom = TRUE)
 	template.loaded++
 	GLOB.stationroom_landmarks -= src
 	qdel(src)
