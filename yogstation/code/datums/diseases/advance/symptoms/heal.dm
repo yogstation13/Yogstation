@@ -5,7 +5,7 @@
 	resistance = -2
 	stage_speed = 2
 	transmittable = -2
-	level = 1
+	level = 6
 	passive_message = "<span class='notice'>You feel tough.</span>"
 	var/Toxin_damage = FALSE
 	var/Hunger_reduction = 8
