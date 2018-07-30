@@ -6,7 +6,7 @@
 	resistance = -2
 	stage_speed = 0
 	transmittable = -2
-	level = 1
+	level = 5
 	severity = 2
 	base_message_chance = 15
 	symptom_delay_min = 5		//quick because it needs to reduce stun times
