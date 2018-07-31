@@ -8,6 +8,7 @@
 	anchored = TRUE
 	var/mob_type = null
 	var/mob_name = ""
+	var/prompt_name = null// Yogs
 	var/mob_gender = null
 	var/death = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
@@ -39,8 +40,10 @@
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
-	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
-	if(ghost_role == "No" || !loc)
+	if(!check_allowed(user)) // Yogs
+		return // Yogs
+	var/ghost_role = alert("Become [prompt_name ? prompt_name : mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No") // Yogs
+	if(!check_allowed(user) || (ghost_role == "No") || !loc || QDELETED(src) || QDELETED(user)) // Yogs
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
@@ -60,6 +63,11 @@
 	if(!LAZYLEN(spawners))
 		GLOB.mob_spawners -= name
 	return ..()
+
+// Yogs start
+/obj/effect/mob_spawn/proc/check_allowed(mob/M)
+	return TRUE
+// Yogs end
 
 /obj/effect/mob_spawn/proc/special(mob/M)
 	return
