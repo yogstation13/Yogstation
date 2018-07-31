@@ -17,7 +17,8 @@
 		return
 	if(A.properties["stage_rate"] >= 7)
 		Hunger_reduction = 4
-	
+	if(A.properties["resistance"] >= 9)
+		Toxin_damage = True
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
@@ -50,7 +51,7 @@
 			to_chat(M, "<span class='warning'>You feel like you are wasting away!</span>")
 	
 	if(Toxin_damage)
-		M.adjustToxLoss(-2)
+		M.adjustToxLoss(2)
 		if(prob(45))
 			to_chat(M, "<span class='warning'>You dont feel so well.</span>")
 	
