@@ -1,7 +1,7 @@
 /datum/symptom/numb
 
-	name = "Nerve hardening"
-	desc = "The virus strengthens nerve connections decreasing interference to nerve connections, as a side effect the nervous system no longer reacts to pain."
+	name = "Analgesia"
+	desc = "The Virus attacks pain receptors in the host making them unable to feel injuries."
 	stealth = 2
 	resistance = -2
 	stage_speed = 0
@@ -31,16 +31,15 @@
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	switch(A.stage)
-		if(1, 2, 3, 4)
-			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
-		else
-			M.AdjustStun(stun_reduce, 0)
-			M.set_screwyhud(SCREWYHUD_HEALTHY)
-			if(stamina_regen)
-				M.adjustStaminaLoss(-2, 0)
-			M.updatehealth()
+	if(A.stage < 5)
+		if(prob(base_message_chance) && !suppress_warning)
+			to_chat(M, "<span class='notice'>[pick("You feel better.")]</span>")
+	else
+		M.AdjustStun(stun_reduce, 0)
+		M.set_screwyhud(SCREWYHUD_HEALTHY)
+		if(stamina_regen)
+			M.adjustStaminaLoss(-2, 0)
+		M.updatehealth()
 			
 	return
 	
