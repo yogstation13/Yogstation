@@ -271,8 +271,19 @@
 				visible_message("<span class='danger'>[M] disarmed [src]!</span>", \
 						"<span class='userdanger'>[M] disarmed [src]!</span>")
 			else
+				//yogs start
+				var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
+				if(!affecting)
+					affecting = get_bodypart(BODY_ZONE_CHEST)
+				var/armour = run_armor_check(affecting, "melee")
+				if(prob(armour))
+					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-				Knockdown(100)
+				if(armour > 0)
+					Knockdown(100 - armour)
+				else
+					Knockdown(100)
+				//yogs end
 				add_logs(M, src, "tackled")
 				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
 					"<span class='userdanger'>[M] has tackled down [src]!</span>")
