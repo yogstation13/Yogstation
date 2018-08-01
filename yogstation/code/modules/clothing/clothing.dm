@@ -54,13 +54,6 @@
 
 	take_teardamage(20)
 	permeability_coefficient += 0.20
-	if (armor)
-		if (armor["bullet"])
-			armor["bullet"] -= 2
-		if (armor["melee"])
-			armor["melee"] -= 2
-		if (armor["fire"])
-			armor["fire"] -= 2
 	if (user)
 		if (user.loc)
 			new /obj/item/clothing/torncloth(user.loc)
