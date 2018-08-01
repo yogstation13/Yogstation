@@ -18,7 +18,7 @@
 	if(A.properties["stage_rate"] >= 7)
 		Hunger_reduction = 4
 	if(A.properties["resistance"] >= 9)
-		Toxin_damage = True
+		Toxin_damage = TRUE
 		
 /datum/symptom/heal/conversion/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
