@@ -4,7 +4,6 @@ SUBSYSTEM_DEF(YogFeatures)
 	init_order = -101 //last subsystem to initialize, and first to shut down
 
 /datum/controller/subsystem/YogFeatures/Initialize()
-	SSmapping.seedStation()
 	return ..()
 
 /datum.controller/subsystem/YogFeatures/fire(resumed = 0)
