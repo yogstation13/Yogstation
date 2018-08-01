@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed items stacks sometimes having the wrong amount if created on another stack"
-  - bugfix: "Constructing light tiles no longer uses two sheets of metal"

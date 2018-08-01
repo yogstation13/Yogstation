@@ -31,6 +31,9 @@
 	if(jammed)
 		to_chat(user, "<span class='warning'>The Syndicate is jamming the console!</span>")
 		return
+	if(!shuttle_port && !SSshuttle.getShuttle(shuttleId))
+		to_chat(user,"<span class='warning'>Warning: Shuttle connection severed!</span>")
+		return
 	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/GrantActions(mob/living/user)
@@ -244,9 +247,15 @@
 		current_user.client.images -= remove_images
 		current_user.client.images += add_images
 
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	if(port && (shuttleId == initial(shuttleId) || override))
+		shuttleId = port.id
+	if(dock)
+		jumpto_ports += dock.id
+
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
-	use_static = FALSE
+	use_static = USE_STATIC_NONE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
 

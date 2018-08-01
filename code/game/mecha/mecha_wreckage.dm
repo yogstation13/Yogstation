@@ -1,3 +1,4 @@
+// yogs - This file is mirrored to yogstation/game/mecha/mecha_wreckage.dm
 ///////////////////////////////////
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
@@ -5,7 +6,7 @@
 
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely unrepairable, but perhaps something can be salvaged."
+	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE

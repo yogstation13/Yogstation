@@ -1,6 +1,0 @@
-author: "Partheo"
-delete-after: true 
-changes: 
-  - imageadd: "All tank sprites have been updated."
-  - imageadd: "Most jetpack sprites have been updated."
-  - imageadd: "The flamethrower sprite has been updated."

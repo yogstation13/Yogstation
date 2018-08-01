@@ -4315,6 +4315,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"akd" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "19;23";
+	security_level = 6
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plating,
+/area/storage/tech)
 "ake" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -8122,7 +8134,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	name = "Armoury";
-	req_access = "3"
+	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ai_monitored/security/armory)
@@ -8652,32 +8664,9 @@
 	},
 /area/crew_quarters/dorms)
 "auX" = (
-/obj/structure/mirror{
-	icon_state = "mirror_broke";
-	pixel_y = 28
+/obj/effect/landmark/stationroom{
+	template_names = list("Maintenance Surgery")
 	},
-/obj/machinery/iv_drip,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"auY" = (
-/obj/structure/mirror{
-	icon_state = "mirror_broke";
-	pixel_y = 28
-	},
-/obj/item/shard{
-	icon_state = "medium"
-	},
-/obj/item/circuitboard/computer/operating,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"auZ" = (
-/obj/structure/frame/computer,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"ava" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/chair,
-/obj/item/reagent_containers/blood/random,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "avb" = (
@@ -9043,10 +9032,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"avS" = (
-/obj/item/wrench,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "avT" = (
 /obj/docking_port/stationary{
 	dheight = 1;
@@ -9622,19 +9607,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"axe" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "axf" = (
 /obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"axg" = (
-/obj/structure/table/glass,
-/obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "axh" = (
@@ -10125,24 +10099,6 @@
 	dir = 4
 	},
 /area/hallway/secondary/entry)
-"ays" = (
-/obj/structure/closet/wardrobe/white,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"ayt" = (
-/obj/structure/table/glass,
-/obj/item/hemostat,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"ayu" = (
-/obj/structure/table/glass,
-/obj/item/restraints/handcuffs/cable/zipties,
-/obj/item/reagent_containers/blood/random,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "ayv" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -13298,6 +13254,7 @@
 /area/ai_monitored/nuke_storage)
 "aGb" = (
 /obj/effect/turf_decal/bot_white/right,
+/obj/machinery/ore_silo,
 /turf/open/floor/plasteel/vault{
 	dir = 1
 	},
@@ -19912,7 +19869,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
-/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
@@ -24023,6 +23980,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"bhK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Secure Tech Storage";
+	dir = 2;
+	network = list("ss13")
+	},
+/turf/open/floor/plasteel,
+/area/storage/tech)
 "bhM" = (
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -24422,7 +24390,7 @@
 	req_access_txt = "29"
 	},
 /obj/structure/table,
-/obj/item/book/manual/robotics_cyborgs{
+/obj/item/book/manual/wiki/robotics_cyborgs{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -28503,13 +28471,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
-"bsU" = (
-/obj/structure/table/optable{
-	name = "Robotics Operating Table"
-	},
-/obj/item/surgical_drapes,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bsV" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -29510,7 +29471,7 @@
 	pixel_y = 24
 	},
 /obj/structure/table,
-/obj/item/book/manual/medical_cloning{
+/obj/item/book/manual/wiki/medical_cloning{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/white,
@@ -30347,7 +30308,7 @@
 "bxq" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/book/manual/experimentor,
+/obj/item/book/manual/wiki/experimentor,
 /turf/open/floor/plasteel/white/corner{
 	dir = 4
 	},
@@ -34042,16 +34003,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/storage/tech)
-"bGs" = (
-/obj/machinery/camera{
-	c_tag = "Secure Tech Storage";
-	dir = 2
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/storage/tech)
 "bGt" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/borgupload{
@@ -34572,16 +34523,6 @@
 /turf/open/floor/plasteel,
 /area/storage/tech)
 "bHH" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/storage/tech)
-"bHI" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "19;23"
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -48718,6 +48659,7 @@
 /obj/item/clothing/gloves/color/latex,
 /obj/machinery/requests_console{
 	department = "Virology";
+	receive_ore_updates = 1;
 	name = "Virology Requests Console";
 	pixel_x = -32
 	},
@@ -67910,10 +67852,10 @@ aqK
 alU
 asc
 atq
-aon
 amC
-axe
-ays
+amC
+amC
+auX
 alU
 auT
 aBI
@@ -68167,8 +68109,8 @@ aqL
 alU
 asc
 atq
-auX
-avS
+amC
+amC
 amC
 amC
 alU
@@ -68424,9 +68366,9 @@ aom
 ank
 asc
 atq
-auZ
-bsU
-axf
+amC
+amC
+amC
 amC
 alU
 auT
@@ -68681,10 +68623,10 @@ aqM
 arF
 asc
 atq
-auY
 amC
 amC
-ayt
+amC
+amC
 alU
 aAw
 aBl
@@ -68938,10 +68880,10 @@ aqO
 arG
 asc
 atq
-ava
 amC
-axg
-ayu
+amC
+amC
+amC
 azF
 azF
 azF
@@ -80037,7 +79979,7 @@ bBj
 aJw
 aaa
 bEV
-bGs
+bhK
 cBC
 bJg
 bKs
@@ -80295,7 +80237,7 @@ bCs
 bCs
 bEY
 bGu
-bHI
+akd
 bJi
 bEY
 bCs

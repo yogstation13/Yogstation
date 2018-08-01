@@ -1,8 +1,0 @@
-author: "Altoids1"
-delete-after: true 
-changes: 
-  - rscadd: "You can emag drones!"
-  - rscadd: "Drones can do silicon emotes!"
-  - rscadd: "Drones can phase thru doors again!"
-  - rscadd: "You can pet drones!"
-  - spellcheck: "fixed a few typos"

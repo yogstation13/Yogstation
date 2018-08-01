@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/obj/item/paicard/pai = null	// A slot for a personal AI device
 
-	var/icon/photo //Scanned photo
+	var/datum/picture/picture //Scanned photo
 
 	var/list/contained_item = list(/obj/item/pen, /obj/item/toy/crayon, /obj/item/lipstick, /obj/item/flashlight/pen, /obj/item/clothing/mask/cigarette)
 	var/obj/item/inserted_item //Used for pen, crayon, and lipstick insertion or removal. Same as above.
@@ -257,6 +257,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<h4>Quartermaster Functions:</h4>"
 						dat += "<ul>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=47'>[PDAIMG(crate)]Supply Records</A></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=48'>[PDAIMG(crate)]Ore Silo Logs</a></li>"
 						dat += "</ul>"
 				dat += "</ul>"
 
@@ -451,13 +452,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 //MAIN FUNCTIONS===================================
 
 			if("Light")
-				if(fon)
-					fon = FALSE
-					set_light(0)
-				else if(f_lum)
-					fon = TRUE
-					set_light(f_lum)
-				update_icon()
+				toggle_light()
 			if("Medical Scan")
 				if(scanmode == PDA_SCANNER_MEDICAL)
 					scanmode = PDA_SCANNER_NONE
@@ -519,24 +514,19 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Ringtone")
 				var/t = input(U, "Please enter new ringtone", name, ttone) as text
 				if(in_range(src, U) && loc == U && t)
-					GET_COMPONENT(hidden_uplink, /datum/component/uplink)
-					if(hidden_uplink && (trim(lowertext(t)) == trim(lowertext(lock_code))))
-						hidden_uplink.locked = FALSE
-						hidden_uplink.interact(U)
-						to_chat(U, "The PDA softly beeps.")
+					if(SEND_SIGNAL(src, COMSIG_PDA_CHANGE_RINGTONE, U, t) & COMPONENT_STOP_RINGTONE_CHANGE)
 						U << browse(null, "window=pda")
-						src.mode = 0
+						return
 					else
-						t = copytext(sanitize(t), 1, 20)
-						ttone = t
+						ttone = copytext(sanitize(t), 1, 20)
 				else
 					U << browse(null, "window=pda")
 					return
 			if("Message")
-				src.create_message(U, locate(href_list["target"]))
+				create_message(U, locate(href_list["target"]))
 
 			if("MessageAll")
-				src.send_to_all(U)
+				send_to_all(U)
 
 			if("cart")
 				if(cartridge)
@@ -562,7 +552,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					if("1")		// Configure pAI device
 						pai.attack_self(U)
 					if("2")		// Eject pAI device
-						var/turf/T = get_turf(src.loc)
+						var/turf/T = get_turf(loc)
 						if(T)
 							pai.forceMove(T)
 
@@ -593,13 +583,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return
 
 /obj/item/pda/proc/remove_id()
+
+	if(issilicon(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		return
+
 	if (id)
-		if (ismob(loc))
-			var/mob/M = loc
-			M.put_in_hands(id)
-			to_chat(usr, "<span class='notice'>You remove the ID from the [name].</span>")
-		else
-			id.forceMove(drop_location())
+		usr.put_in_hands(id)
+		to_chat(usr, "<span class='notice'>You remove the ID from the [name].</span>")
 		id = null
 		update_icon()
 
@@ -607,9 +597,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/t = stripped_input(U, "Please enter message", name)
 	if (!t || toff)
 		return
-	if (!in_range(src, U) && loc != U)
-		return
-	if(!U.canUseTopic(src))
+	if(!U.canUseTopic(src, BE_CLOSE))
 		return
 	if(emped)
 		t = Gibberish(t, 100)
@@ -643,8 +631,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 		"message" = message,
 		"targets" = string_targets
 	))
-	if (photo)
-		signal.data["photo"] = photo
+	if (picture)
+		signal.data["photo"] = picture
 	signal.send_to_receivers()
 
 	// If it didn't reach, note that fact
@@ -664,7 +652,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	log_talk(user, "[key_name(user)] (PDA: [initial(name)]) sent \"[message]\" to [target_text]", LOGPDA)
 	to_chat(user, "<span class='info'>Message sent to [target_text]: \"[message]\"</span>")
 	// Reset the photo
-	photo = null
+	picture = null
 	last_text = world.time
 	if (everyone)
 		last_everyone = world.time
@@ -707,57 +695,59 @@ GLOBAL_LIST_EMPTY(PDAs)
 /obj/item/pda/AltClick()
 	..()
 
-	if(issilicon(usr))
-		return
-
-	if(usr.canUseTopic(src))
-		if(id)
-			remove_id()
-		else
-			remove_pen()
+	if(id)
+		remove_id()
+	else
+		remove_pen()
 
 /obj/item/pda/CtrlClick()
 	..()
 
-	if(issilicon(usr))
+	if(isturf(loc)) //stops the user from dragging the PDA by ctrl-clicking it.
 		return
 
-	if(usr.canUseTopic(src) && !isturf(loc))
-		remove_pen()
+	remove_pen()
+
+/obj/item/pda/verb/verb_toggle_light()
+	set category = "Object"
+	set name = "Toggle Flashlight"
+	
+	toggle_light()
 
 /obj/item/pda/verb/verb_remove_id()
 	set category = "Object"
 	set name = "Eject ID"
 	set src in usr
 
-	if(issilicon(usr))
-		return
-
-	if (usr.canUseTopic(src))
-		if(id)
-			remove_id()
-		else
-			to_chat(usr, "<span class='warning'>This PDA does not have an ID in it!</span>")
+	if(id)
+		remove_id()
+	else
+		to_chat(usr, "<span class='warning'>This PDA does not have an ID in it!</span>")
 
 /obj/item/pda/verb/verb_remove_pen()
 	set category = "Object"
 	set name = "Remove Pen"
 	set src in usr
 
-	if(issilicon(usr))
-		return
+	remove_pen()
 
-	if (usr.canUseTopic(src))
-		remove_pen()
+/obj/item/pda/proc/toggle_light()
+	if(fon)
+		fon = FALSE
+		set_light(0)
+	else if(f_lum)
+		fon = TRUE
+		set_light(f_lum)
+	update_icon()
 
 /obj/item/pda/proc/remove_pen()
+
+	if(issilicon(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		return
+
 	if(inserted_item)
-		if(ismob(loc))
-			var/mob/M = loc
-			M.put_in_hands(inserted_item)
-		else
-			inserted_item.forceMove(drop_location())
-		to_chat(usr, "<span class='notice'>You remove \the [inserted_item] from \the [src].</span>")
+		usr.put_in_hands(inserted_item)
+		to_chat(usr, "<span class='notice'>You remove [inserted_item] from [src].</span>")
 		inserted_item = null
 		update_icon()
 	else
@@ -766,9 +756,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 //trying to insert or remove an id
 /obj/item/pda/proc/id_check(mob/user, obj/item/card/id/I)
 	if(!I)
-		if(id)
+		if(id && (src in user.contents))
 			remove_id()
-			return 1
+			return TRUE
 		else
 			var/obj/item/card/id/C = user.get_active_held_item()
 			if(istype(C))
@@ -776,13 +766,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	if(I && I.registered_name)
 		if(!user.transferItemToLoc(I, src))
-			return 0
+			return FALSE
 		var/obj/old_id = id
 		id = I
 		if(old_id)
 			user.put_in_hands(old_id)
 		update_icon()
-	return 1
+	return TRUE
 
 // access to status display signals
 /obj/item/pda/attackby(obj/item/C, mob/user, params)
@@ -813,7 +803,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
-	else if(istype(C, /obj/item/paicard) && !src.pai)
+	else if(istype(C, /obj/item/paicard) && !pai)
 		if(!user.transferItemToLoc(C, src))
 			return
 		pai = C
@@ -831,7 +821,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			update_icon()
 	else if(istype(C, /obj/item/photo))
 		var/obj/item/photo/P = C
-		photo = P.img
+		picture = P.picture
 		to_chat(user, "<span class='notice'>You scan \the [C].</span>")
 	else
 		return ..()
@@ -855,6 +845,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					user.show_message("<span class='notice'>No radiation detected.</span>")
 
 /obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+	. = ..()
 	if(!proximity)
 		return
 	switch(scanmode)
@@ -926,14 +917,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/list/plist = list()
 	var/list/namecounts = list()
 
-	if(src.aiPDA.toff)
+	if(aiPDA.toff)
 		to_chat(user, "Turn on your receiver in order to send messages.")
 		return
 
 	for (var/obj/item/pda/P in get_viewable_pdas())
 		if (P == src)
 			continue
-		else if (P == src.aiPDA)
+		else if (P == aiPDA)
 			continue
 
 		plist[avoid_assoc_duplicate_keys(P.owner, namecounts)] = P
@@ -945,16 +936,16 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/selected = plist[c]
 
-	if(aicamera.aipictures.len>0)
+	if(aicamera.stored.len)
 		var/add_photo = input(user,"Do you want to attach a photo?","Photo","No") as null|anything in list("Yes","No")
 		if(add_photo=="Yes")
-			var/datum/picture/Pic = aicamera.selectpicture(aicamera)
-			src.aiPDA.photo = Pic.fields["img"]
+			var/datum/picture/Pic = aicamera.selectpicture(user)
+			aiPDA.picture = Pic
 
 	if(incapacitated())
 		return
 
-	src.aiPDA.create_message(src, selected)
+	aiPDA.create_message(src, selected)
 
 
 /mob/living/silicon/ai/verb/cmd_toggle_pda_receiver()

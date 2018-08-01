@@ -244,8 +244,8 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!GLOB.Debug2)
 		if(!can_continue)
-			qdel(mode)
-			mode = null
+			log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
+			QDEL_NULL(mode)
 			to_chat(world, "<B>Error setting up [GLOB.master_mode].</B> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return 0
@@ -254,11 +254,7 @@ SUBSYSTEM_DEF(ticker)
 
 	CHECK_TICK
 	if(hide_mode)
-		var/list/modes = new
-		for (var/datum/game_mode/M in runnable_modes)
-			modes += M.name
-		modes = sortList(modes)
-		to_chat(world, "<b>The gamemode is: secret!\nPossibilities:</B> [english_list(modes)]")
+		to_chat(world, "<b>The gamemode is: secret!</b>") // yogs - removed possible gamemodes list
 	else
 		mode.announce()
 
@@ -366,8 +362,8 @@ SUBSYSTEM_DEF(ticker)
 				captainless=0
 			if(player.mind.assigned_role != player.mind.special_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)
-			if(CONFIG_GET(flag/roundstart_traits))
-				SSquirks.AssignQuirks(player, N.client, TRUE)
+			if(CONFIG_GET(flag/roundstart_traits) && ishuman(N.new_character))
+				SSquirks.AssignQuirks(N.new_character, N.client, TRUE)
 		CHECK_TICK
 	if(captainless)
 		for(var/mob/dead/new_player/N in GLOB.player_list)
@@ -428,7 +424,7 @@ SUBSYSTEM_DEF(ticker)
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, "<span class='danger'>No response recieved. You have been removed from the line.</span>")
+			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
 			queued_players -= next_in_line
 			queue_delay = 0
 
@@ -588,10 +584,13 @@ SUBSYSTEM_DEF(ticker)
 		C.Export("##action=load_rsc", round_end_sound)
 	round_end_sound_sent = TRUE
 
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+// yogs start - Mods can reboot when last ticket is closed
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
 	set waitfor = FALSE
-	if(usr && !check_rights(R_SERVER, TRUE))
-		return
+	if(usr && !force)
+		if(!check_rights(R_SERVER, TRUE))
+			return
+// yogs end
 
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
@@ -600,12 +599,16 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
 		return
-	if(GLOB.ahelp_tickets.ticketAmount) //YOGS - tickets
-		if(!GLOB.admins.len)
-			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+	//yogs start - yogs tickets
+	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
+		var/list/adm = get_admin_counts(R_ADMIN)
+		var/list/activemins = adm["present"]
+		if(activemins.len > 0)
+			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
+			return
 		else
-			message_admins("Not all tickets have been resolved. Server restart delayed.")
-			return //YOGS - tickets
+			to_chat(world, "<span class='boldannounce'>Round ended, but there were still active tickets. Please submit a player complaint if you did not receive a response.</span>")
+	 //yogs end - yogs tickets
 
 	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
 	webhook_send_roundstatus("endgame") //yogs - webhook support
@@ -634,6 +637,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
 	save_admin_data()
+	update_everything_flag_in_db()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',

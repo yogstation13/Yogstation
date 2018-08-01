@@ -1,3 +1,4 @@
+#define CONFUSION_STACK_MAX_MULTIPLIER 2
 /obj/item/assembly/flash
 	name = "flash"
 	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
@@ -108,7 +109,9 @@
 		to_chat(M, "<span class='disarm'>[src] emits a blinding light!</span>")
 	if(targeted)
 		if(M.flash_act(1, 1))
-			M.confused += power
+			if(M.confused < power)
+				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+				M.confused += min(power, diff)
 			if(user)
 				terrible_conversion_proc(M, user)
 				visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
@@ -125,7 +128,8 @@
 			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
 	else
 		if(M.flash_act())
-			M.confused += power
+			var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+			M.confused += min(power, diff)
 
 /obj/item/assembly/flash/attack(mob/living/M, mob/user)
 	if(!try_use_flash(user))
@@ -137,8 +141,9 @@
 		var/mob/living/silicon/robot/R = M
 		add_logs(user, R, "flashed", src)
 		update_icon(1)
-		M.Knockdown(rand(80,120))
-		R.confused += 5
+		R.Knockdown(rand(80,120))
+		var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
+		R.confused += min(5, diff)
 		R.flash_act(affect_silicon = 1)
 		user.visible_message("<span class='disarm'>[user] overloads [R]'s sensors with the flash!</span>", "<span class='danger'>You overload [R]'s sensors with the flash!</span>")
 		return TRUE
@@ -161,7 +166,7 @@
 	AOE_flash()
 	burn_out()
 
-/obj/item/assembly/flash/activate()//AOE flash on signal recieved
+/obj/item/assembly/flash/activate()//AOE flash on signal received
 	if(!..())
 		return
 	AOE_flash()
@@ -210,7 +215,7 @@
 
 /obj/item/assembly/flash/armimplant
 	name = "photon projector"
-	desc = "A high-powered photon projector implant normally used for lighting purposes, but also doubles as a flashbulb weapon. Self-repair protocals fix the flashbulb if it ever burns out."
+	desc = "A high-powered photon projector implant normally used for lighting purposes, but also doubles as a flashbulb weapon. Self-repair protocols fix the flashbulb if it ever burns out."
 	var/flashcd = 20
 	var/overheat = 0
 	var/obj/item/organ/cyberimp/arm/flash/I = null

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The Spirit Realm rune no longer spawns a braindead cult ghost when attempting to summon one after a player reaches the limit."

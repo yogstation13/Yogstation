@@ -40,7 +40,7 @@
 */
 /atom/Click(location,control,params)
 	if(flags_1 & INITIALIZED_1)
-		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params)
+		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, params)
 
 /atom/DblClick(location,control,params)
@@ -57,7 +57,7 @@
 
 	After that, mostly just check your state, check whether you're holding an item,
 	check whether you're adjacent to the target, then pass off the click to whoever
-	is recieving it.
+	is receiving it.
 	The most common are:
 	* mob/UnarmedAttack(atom,adjacent) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
 	* atom/attackby(item,user) - used only when adjacent
@@ -70,6 +70,9 @@
 	next_click = world.time + 1
 
 	if(check_click_intercept(params,A))
+		return
+
+	if(notransform)
 		return
 
 	var/list/modifiers = params2list(params)

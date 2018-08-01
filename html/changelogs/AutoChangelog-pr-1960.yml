@@ -1,0 +1,4 @@
+author: "Cruix"
+delete-after: true 
+changes: 
+  - bugfix: "point transfer cards from the mining vendor are no longer invisible"
