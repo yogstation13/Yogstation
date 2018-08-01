@@ -15,7 +15,7 @@
 	icon_state = "impact_omni"
 
 /obj/effect/projectile/impact/xray
-	name = "\improper X-ray impact"
+	name = "xray impact"
 	icon_state = "impact_xray"
 
 /obj/effect/projectile/impact/pulse
@@ -33,6 +33,3 @@
 /obj/effect/projectile/impact/heavy_laser
 	name = "heavy laser impact"
 	icon_state = "impact_beam_heavy"
-
-/obj/effect/projectile/impact/wormhole
-	icon_state = "wormhole_g"

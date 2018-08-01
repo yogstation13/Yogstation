@@ -132,9 +132,9 @@
 	var/triggered = 0
 
 /obj/effect/meatgrinder/Crossed(atom/movable/AM)
-	Bumped(AM)
+	CollidedWith(AM)
 
-/obj/effect/meatgrinder/Bumped(atom/movable/AM)
+/obj/effect/meatgrinder/CollidedWith(atom/movable/AM)
 
 	if(triggered)
 		return

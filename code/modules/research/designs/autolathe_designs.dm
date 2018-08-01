@@ -229,10 +229,10 @@
 /datum/design/rglass
 	name = "Reinforced Glass"
 	id = "rglass"
-	build_type = AUTOLATHE | SMELTER | PROTOLATHE
+	build_type = AUTOLATHE | SMELTER
 	materials = list(MAT_METAL = 1000, MAT_GLASS = MINERAL_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/sheet/rglass
-	category = list("initial","Construction","Stock Parts")
+	category = list("initial","Construction")
 	maxstack = 50
 
 /datum/design/rods
@@ -656,7 +656,7 @@
 
 /datum/design/receiver
 	name = "Modular Receiver"
-	id = "receiver"
+	id = "reciever"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 15000)
 	build_path = /obj/item/weaponcrafting/receiver

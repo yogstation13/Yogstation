@@ -10,7 +10,6 @@
 	icon_state = "setup_small"
 	item_flags = NOBLUDGEON
 	materials = list()		// To be filled later
-	datum_flags = DF_USE_TAG
 	var/list/assembly_components = list()
 	var/list/ckeys_allowed_to_scan = list() // Players who built the circuit can scan it as a ghost.
 	var/max_components = IC_MAX_SIZE_BASE
@@ -31,8 +30,6 @@
 	var/combat_circuits = 0 //number of combat cicuits in the assembly, used for diagnostic hud
 	var/long_range_circuits = 0 //number of long range cicuits in the assembly, used for diagnostic hud
 	var/prefered_hud_icon = "hudstat"		// Used by the AR circuit to change the hud icon.
-	var/creator // circuit creator if any
-	var/static/next_assembly_id = 0
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD, DIAG_CIRCUIT_HUD) //diagnostic hud overlays
 	max_integrity = 50
 	pass_flags = 0
@@ -59,28 +56,20 @@
 		COLOR_ASSEMBLY_PURPLE
 		)
 
-/obj/item/electronic_assembly/New()
-	..()
-	src.max_components = round(max_components)
-	src.max_complexity = round(max_complexity)
-
-/obj/item/electronic_assembly/GenerateTag()
-    tag = "assembly_[next_assembly_id++]"
-
 /obj/item/electronic_assembly/examine(mob/user)
 	. = ..()
 	if(can_anchor)
-		to_chat(user, "<span class='notice'>The anchoring bolts [anchored ? "are" : "can be"] <b>wrenched</b> in place and the maintenance panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
+		to_chat(user, "<span class='notice'>The anchoring bolts [anchored ? "are" : "can be"] <b>wrenched</b> in place and the maintainence panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
 	else
-		to_chat(user, "<span class='notice'>The maintenance panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
+		to_chat(user, "<span class='notice'>The maintainence panel [opened ? "can be" : "is"] <b>screwed</b> in place.</span>")
 
-	if((isobserver(user) && ckeys_allowed_to_scan[user.ckey]) || IsAdminGhost(user))
+	if(isobserver(user) && ckeys_allowed_to_scan[user.ckey])
 		to_chat(user, "You can <a href='?src=[REF(src)];ghostscan=1'>scan</a> this circuit.");
 
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, BE_CLOSE)
 
-/obj/item/electronic_assembly/Bump(atom/AM)
+/obj/item/electronic_assembly/Collide(atom/AM)
 	collw = AM
 	.=..()
 	if((istype(collw, /obj/machinery/door/airlock) ||  istype(collw, /obj/machinery/door/window)) && (!isnull(access_card)))
@@ -197,14 +186,14 @@
 		return 1
 
 	if(href_list["ghostscan"])
-		if((isobserver(usr) && ckeys_allowed_to_scan[usr.ckey]) || IsAdminGhost(usr))
+		if(isobserver(usr) && ckeys_allowed_to_scan[usr.ckey])
 			if(assembly_components.len)
 				var/saved = "On circuit printers with cloning enabled, you may use the code below to clone the circuit:<br><br><code>[SScircuit.save_electronic_assembly(src)]</code>"
 				usr << browse(saved, "window=circuit_scan;size=500x600;border=1;can_resize=1;can_close=1;can_minimize=1")
 			else
 				to_chat(usr, "<span class='warning'>The circuit is empty!</span>")
 		return
-
+		
 	if(!check_interactivity(usr))
 		return
 
@@ -362,7 +351,6 @@
 	to_chat(user, "<span class='notice'>You slide [IC] inside [src].</span>")
 	playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 	add_allowed_scanner(user.ckey)
-	investigate_log("had [IC]([IC.type]) inserted by [key_name(user)].", INVESTIGATE_CIRCUIT)
 
 	add_component(IC)
 	return TRUE
@@ -402,7 +390,6 @@
 		playsound(src, 'sound/items/crowbar.ogg', 50, 1)
 		user.put_in_hands(IC)
 	add_allowed_scanner(user.ckey)
-	investigate_log("had [IC]([IC.type]) removed by [key_name(user)].", INVESTIGATE_CIRCUIT)
 
 	return TRUE
 
@@ -425,7 +412,6 @@
 
 
 /obj/item/electronic_assembly/afterattack(atom/target, mob/user, proximity)
-	. = ..()
 	for(var/obj/item/integrated_circuit/input/S in assembly_components)
 		if(S.sense(target,user,proximity))
 			visible_message("<span class='notice'> [user] waves [src] around [target].</span>")
@@ -445,6 +431,7 @@
 		if(!user.canUnEquip(I))
 			return FALSE
 		if(try_add_component(I, user))
+			interact(user)
 			return TRUE
 		else
 			for(var/obj/item/integrated_circuit/input/S in assembly_components)
@@ -477,6 +464,7 @@
 		diag_hud_set_circuitstat() //update diagnostic hud
 		playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
+		interact(user)
 		return TRUE
 	else if(istype(I, /obj/item/integrated_electronics/detailer))
 		var/obj/item/integrated_electronics/detailer/D = I
@@ -612,37 +600,6 @@
 	name = "type-f electronic assembly"
 	icon_state = "setup_small_pda"
 	desc = "It's a case, for building small electronics with. This one resembles a PDA."
-
-/obj/item/electronic_assembly/small
-	name = "electronic device"
-	icon_state = "setup_device"
-	desc = "It's a case, for building tiny-sized electronics with."
-	w_class = WEIGHT_CLASS_TINY
-	max_components = IC_MAX_SIZE_BASE / 2
-	max_complexity = IC_COMPLEXITY_BASE / 2
-
-/obj/item/electronic_assembly/small/default
-	name = "type-a electronic device"
-
-/obj/item/electronic_assembly/small/cylinder
-	name = "type-b electronic device"
-	icon_state = "setup_device_cylinder"
-	desc = "It's a case, for building tiny-sized electronics with. This one has a cylindrical design."
-
-/obj/item/electronic_assembly/small/scanner
-	name = "type-c electronic device"
-	icon_state = "setup_device_scanner"
-	desc = "It's a case, for building tiny-sized electronics with. This one has a scanner-like design."
-
-/obj/item/electronic_assembly/small/hook
-	name = "type-d electronic device"
-	icon_state = "setup_device_hook"
-	desc = "It's a case, for building tiny-sized electronics with. This one looks like it has a belt clip, but it's purely decorative."
-
-/obj/item/electronic_assembly/small/box
-	name = "type-e electronic device"
-	icon_state = "setup_device_box"
-	desc = "It's a case, for building tiny-sized electronics with. This one has a boxy design."
 
 /obj/item/electronic_assembly/medium
 	name = "electronic mechanism"
@@ -784,14 +741,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	max_components = IC_MAX_SIZE_BASE
 	max_complexity = IC_COMPLEXITY_BASE
-
-/obj/item/electronic_assembly/wallmount/tiny
-	name = "tiny wall-mounted electronic assembly"
-	icon_state = "setup_wallmount_tiny"
-	desc = "It's a case, for building tiny electronics with. It has a magnetized backing to allow it to stick to walls, but you'll still need to wrench the anchoring bolts in place to keep it on."
-	w_class = WEIGHT_CLASS_TINY
-	max_components = IC_MAX_SIZE_BASE / 2
-	max_complexity = IC_COMPLEXITY_BASE / 2
 
 /obj/item/electronic_assembly/wallmount/proc/mount_assembly(turf/on_wall, mob/user) //Yeah, this is admittedly just an abridged and kitbashed version of the wallframe attach procs.
 	if(get_dist(on_wall,user)>1)

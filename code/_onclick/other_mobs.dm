@@ -56,11 +56,6 @@
 		return FALSE
 	return TRUE
 
-/atom/ui_status(mob/user)
-	. = ..()
-	if(!can_interact(user))
-		. = min(., UI_UPDATE)
-
 /atom/movable/can_interact(mob/user)
 	. = ..()
 	if(!.)

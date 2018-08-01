@@ -24,7 +24,7 @@
 	maxbodytemp = INFINITY
 	loot = list(/obj/effect/collapse, /obj/structure/closet/crate/necropolis/tendril)
 	del_on_death = 1
-	//var/gps = null - yogs - removed tendril gps
+	var/gps = null
 	var/obj/effect/light_emitter/tendril/emitted_light
 
 /mob/living/simple_animal/hostile/spawner/lavaland/goliath
@@ -40,11 +40,11 @@
 		if(ismineralturf(F))
 			var/turf/closed/mineral/M = F
 			M.ScrapeAway(null, CHANGETURF_IGNORE_AIR)
-	//gps = new /obj/item/gps/internal(src) - yogs - removed tendril gps
+	gps = new /obj/item/gps/internal(src)
 
 /mob/living/simple_animal/hostile/spawner/lavaland/Destroy()
 	QDEL_NULL(emitted_light)
-	//QDEL_NULL(gps) - yogs - removed tendril gps
+	QDEL_NULL(gps)
 	return ..()
 
 /mob/living/simple_animal/hostile/spawner/lavaland/death()

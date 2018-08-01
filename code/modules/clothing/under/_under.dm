@@ -15,7 +15,6 @@
 	var/obj/item/clothing/accessory/attached_accessory
 	var/mutable_appearance/accessory_overlay
 	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
-	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE)
 	. = list()

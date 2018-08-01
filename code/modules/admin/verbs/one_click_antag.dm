@@ -76,7 +76,7 @@
 	return 0
 
 
-/datum/admins/proc/makeChangelings()
+/datum/admins/proc/makeChanglings()
 
 	var/datum/game_mode/changeling/temp = new
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -95,11 +95,11 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numChangelings = min(candidates.len, 3)
+		var/numChanglings = min(candidates.len, 3)
 
-		for(var/i = 0, i<numChangelings, i++)
+		for(var/i = 0, i<numChanglings, i++)
 			H = pick(candidates)
-			H.mind.make_Changeling()
+			H.mind.make_Changling()
 			candidates.Remove(H)
 
 		return 1
@@ -430,7 +430,7 @@
 				ERTOperative.mind.assigned_role = ert_antag.name
 
 				//Logging and cleanup
-				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
+				log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]")
 				numagents--
 				teamSpawned++
 

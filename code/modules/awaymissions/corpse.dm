@@ -8,7 +8,6 @@
 	anchored = TRUE
 	var/mob_type = null
 	var/mob_name = ""
-	var/prompt_name = null// Yogs
 	var/mob_gender = null
 	var/death = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
@@ -40,10 +39,8 @@
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
-	if(!check_allowed(user)) // Yogs
-		return // Yogs
-	var/ghost_role = alert("Become [prompt_name ? prompt_name : mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No") // Yogs
-	if(!check_allowed(user) || (ghost_role == "No") || !loc || QDELETED(src) || QDELETED(user)) // Yogs
+	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
+	if(ghost_role == "No" || !loc)
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
@@ -63,11 +60,6 @@
 	if(!LAZYLEN(spawners))
 		GLOB.mob_spawners -= name
 	return ..()
-
-// Yogs start
-/obj/effect/mob_spawn/proc/check_allowed(mob/M)
-	return TRUE
-// Yogs end
 
 /obj/effect/mob_spawn/proc/special(mob/M)
 	return
@@ -344,10 +336,10 @@
 
 /obj/effect/mob_spawn/human/miner
 	name = "Shaft Miner"
-	outfit = /datum/outfit/job/miner
+	outfit = /datum/outfit/job/miner/asteroid
 
 /obj/effect/mob_spawn/human/miner/rig
-	outfit = /datum/outfit/job/miner/equipped/hardsuit
+	outfit = /datum/outfit/job/miner/equipped/asteroid
 
 /obj/effect/mob_spawn/human/miner/explorer
 	outfit = /datum/outfit/job/miner/equipped

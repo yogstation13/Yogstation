@@ -78,5 +78,4 @@
 			temp = master.supplied[index]
 			if (length(temp) > 0)
 				laws.supplied[index] = temp
-
-	picturesync()
+	return

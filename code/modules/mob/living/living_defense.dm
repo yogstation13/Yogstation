@@ -330,7 +330,7 @@
 	return(gain)
 
 /mob/living/narsie_act()
-	if(status_flags & GODMODE || QDELETED(src))
+	if(status_flags & GODMODE)
 		return
 
 	if(is_servant_of_ratvar(src) && !stat)

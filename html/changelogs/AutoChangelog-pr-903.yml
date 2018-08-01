@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Removing an ID from a PDA in a backpack no longer hides the ID until something else updates."

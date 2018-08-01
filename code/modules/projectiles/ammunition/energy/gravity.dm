@@ -1,29 +1,36 @@
-/obj/item/ammo_casing/energy/gravity
+/obj/item/ammo_casing/energy/gravityrepulse
+	projectile_type = /obj/item/projectile/gravityrepulse
 	e_cost = 0
 	fire_sound = 'sound/weapons/wave.ogg'
-	select_name = "gravity"
+	select_name = "repulse"
 	delay = 50
 	var/obj/item/gun/energy/gravity_gun/gun
 
-/obj/item/ammo_casing/energy/gravity/Initialize(mapload)
-	if(istype(loc,/obj/item/gun/energy/gravity_gun))
-		gun = loc
+/obj/item/ammo_casing/energy/gravityrepulse/Initialize(mapload, obj/item/gun/energy/gravity_gun/G)
 	. = ..()
+	gun = G
 
-/obj/item/ammo_casing/energy/gravity/Destroy()
-	gun = null
-	. = ..()
-
-/obj/item/ammo_casing/energy/gravity/repulse
-	projectile_type = /obj/item/projectile/gravityrepulse
-	select_name = "repulse"
-
-/obj/item/ammo_casing/energy/gravity/attract
+/obj/item/ammo_casing/energy/gravityattract
 	projectile_type = /obj/item/projectile/gravityattract
+	e_cost = 0
+	fire_sound = 'sound/weapons/wave.ogg'
 	select_name = "attract"
+	delay = 50
+	var/obj/item/gun/energy/gravity_gun/gun
 
-/obj/item/ammo_casing/energy/gravity/chaos
+
+/obj/item/ammo_casing/energy/gravityattract/Initialize(mapload, obj/item/gun/energy/gravity_gun/G)
+	. = ..()
+	gun = G
+
+/obj/item/ammo_casing/energy/gravitychaos
 	projectile_type = /obj/item/projectile/gravitychaos
+	e_cost = 0
+	fire_sound = 'sound/weapons/wave.ogg'
 	select_name = "chaos"
+	delay = 50
+	var/obj/item/gun/energy/gravity_gun/gun
 
-
+/obj/item/ammo_casing/energy/gravitychaos/Initialize(mapload, obj/item/gun/energy/gravity_gun/G)
+	. = ..()
+	gun = G

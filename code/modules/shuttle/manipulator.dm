@@ -40,10 +40,6 @@
 	add_overlay(hologram_projection)
 	add_overlay(hologram_ship)
 
-/obj/machinery/shuttle_manipulator/can_interact(mob/user)
-	// Only admins can use this, but they can use it from anywhere
-	return user.client && check_rights_for(user.client, R_ADMIN)
-
 /obj/machinery/shuttle_manipulator/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
@@ -198,8 +194,7 @@
 		preview_template = null
 
 	if(!preview_shuttle)
-		if(load_template(loading_template))
-			preview_shuttle.linkup(loading_template, destination_port)
+		load_template(loading_template)
 		preview_template = loading_template
 
 	// get the existing shuttle information, if any
@@ -229,11 +224,7 @@
 	if(existing_shuttle)
 		existing_shuttle.jumpToNullSpace()
 
-	var/list/force_memory = preview_shuttle.movement_force
-	preview_shuttle.movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	preview_shuttle.initiate_docking(D)
-	preview_shuttle.movement_force = force_memory
-	
 	. = preview_shuttle
 
 	// Shuttle state involves a mode and a timer based on world.time, so
@@ -250,8 +241,8 @@
 	existing_shuttle = null
 	selected = null
 
-/obj/machinery/shuttle_manipulator/proc/load_template(datum/map_template/shuttle/S)
-	. = FALSE
+/obj/machinery/shuttle_manipulator/proc/load_template(
+	datum/map_template/shuttle/S)
 	// load shuttle template, centred at shuttle import landmark,
 	var/turf/landmark_turf = get_turf(locate(/obj/effect/landmark/shuttle_import) in GLOB.landmarks_list)
 	S.load(landmark_turf, centered = TRUE)
@@ -294,7 +285,6 @@
 		return
 	//Everything fine
 	S.on_bought()
-	return TRUE
 
 /obj/machinery/shuttle_manipulator/proc/unload_preview()
 	if(preview_shuttle)

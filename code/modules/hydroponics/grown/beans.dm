@@ -28,7 +28,6 @@
 	foodtype = VEGETABLES
 	grind_results = list("soymilk" = 0)
 	tastes = list("soy" = 1)
-	wine_power = 20
 
 // Koibean
 /obj/item/seeds/soya/koi
@@ -52,4 +51,3 @@
 	bitesize_mod = 2
 	foodtype = VEGETABLES
 	tastes = list("koi" = 1)
-	wine_power = 40

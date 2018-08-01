@@ -23,7 +23,6 @@
 	filling_color = "#800080"
 	bitesize_mod = 2
 	foodtype = FRUIT
-	wine_power = 20
 
 // Egg-Plant
 /obj/item/seeds/eggplant/eggy
@@ -45,4 +44,3 @@
 	filling_color = "#F8F8FF"
 	bitesize_mod = 2
 	foodtype = MEAT
-	distill_reagent = "eggnog"

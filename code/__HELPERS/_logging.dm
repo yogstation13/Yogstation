@@ -1,10 +1,13 @@
+//location of the rust-g library
+#define RUST_G "rust_g"
+
 //wrapper macros for easier grepping
 #define DIRECT_OUTPUT(A, B) A << B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
-#define WRITE_LOG(log, text) rustg_log_write(log, text)
+#define WRITE_LOG(log, text) call(RUST_G, "log_write")(log, text)
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
@@ -103,10 +106,6 @@
 		//reusing the PDA option because I really don't think news comments are worth a config option
 		WRITE_LOG(GLOB.world_pda_log, "COMMENT: [text]")
 
-/proc/log_telecomms(text)
-	if (CONFIG_GET(flag/log_telecomms))
-		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
-
 /proc/log_chat(text)
 	if (CONFIG_GET(flag/log_pda))
 		//same thing here
@@ -132,10 +131,6 @@
 /proc/log_query_debug(text)
 	WRITE_LOG(GLOB.query_debug_log, "SQL: [text]")
 
-/proc/log_job_debug(text)
-	if (CONFIG_GET(flag/log_job_debug))
-		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
-
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
@@ -157,7 +152,7 @@
 
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
-	rustg_log_close_all()
+	call(RUST_G, "log_close_all")()
 
 
 /* Helper procs for building detailed log lines */
@@ -177,3 +172,6 @@
 		return "[A.loc] [COORD(T)] ([A.loc.type])"
 	else if(A.loc)
 		return "[A.loc] (0, 0, 0) ([A.loc.type])"
+
+//this is only used here (for now)
+#undef RUST_G

@@ -67,6 +67,6 @@
 				S.step_action()
 
 /mob/living/carbon/human/Process_Spacemove(movement_dir = 0) //Temporary laziness thing. Will change to handles by species reee.
-	if(dna.species.space_move(src))
-		return TRUE
-	return ..()
+	if(..())
+		return 1
+	return dna.species.space_move(src)

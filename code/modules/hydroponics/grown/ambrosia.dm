@@ -31,7 +31,6 @@
 	seed = /obj/item/seeds/ambrosia
 	name = "ambrosia vulgaris branch"
 	desc = "This is a plant containing various healing chemicals."
-	wine_power = 30
 
 // Ambrosia Deus
 /obj/item/seeds/ambrosia/deus
@@ -51,7 +50,6 @@
 	desc = "Eating this makes you feel immortal!"
 	icon_state = "ambrosiadeus"
 	filling_color = "#008B8B"
-	wine_power = 50
 
 //Ambrosia Gaia
 /obj/item/seeds/ambrosia/gaia
@@ -75,5 +73,3 @@
 	filling_color = rgb(255, 175, 0)
 	light_range = 3
 	seed = /obj/item/seeds/ambrosia/gaia
-	wine_power = 70
-	wine_flavor = "the earthmother's blessing"

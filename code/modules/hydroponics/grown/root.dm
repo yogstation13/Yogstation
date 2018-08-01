@@ -23,7 +23,6 @@
 	bitesize_mod = 2
 	foodtype = VEGETABLES
 	juice_results = list("carrotjuice" = 0)
-	wine_power = 30
 
 /obj/item/reagent_containers/food/snacks/grown/carrot/attackby(obj/item/I, mob/user, params)
 	if(I.is_sharp())
@@ -54,7 +53,6 @@
 	icon_state = "parsnip"
 	bitesize_mod = 2
 	foodtype = VEGETABLES
-	wine_power = 35
 
 
 // White-Beet
@@ -81,7 +79,6 @@
 	filling_color = "#F4A460"
 	bitesize_mod = 2
 	foodtype = VEGETABLES
-	wine_power = 40
 
 // Red Beet
 /obj/item/seeds/redbeet
@@ -106,4 +103,3 @@
 	icon_state = "redbeet"
 	bitesize_mod = 2
 	foodtype = VEGETABLES
-	wine_power = 60

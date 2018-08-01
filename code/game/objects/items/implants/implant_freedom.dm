@@ -7,7 +7,6 @@
 
 
 /obj/item/implant/freedom/activate()
-	. = ..()
 	uses--
 	to_chat(imp_in, "You feel a faint click.")
 	if(iscarbon(imp_in))

@@ -37,7 +37,6 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/mask/gas = 15,
 	/obj/item/clothing/suit/hazardvest = 1,
 	/obj/item/clothing/under/rank/vice = 1,
-	/obj/item/clothing/suit/hooded/flashsuit = 2,
 	/obj/item/assembly/prox_sensor = 4,
 	/obj/item/assembly/timer = 3,
 	/obj/item/flashlight = 4,
@@ -105,6 +104,5 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/secure/briefcase = 3,
 	/obj/item/storage/toolbox/artistic = 2,
 	/obj/item/toy/eightball = 1,
-	/obj/item/reagent_containers/pill/floorpill = 1,
 	"" = 3
 	))

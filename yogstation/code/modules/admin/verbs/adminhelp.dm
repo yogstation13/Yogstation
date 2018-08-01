@@ -301,7 +301,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ticketAmount -= 1
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 100, force = TRUE)
+			SSticker.Reboot(delay = 10)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 
@@ -344,7 +344,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 100, force = TRUE)
+			SSticker.Reboot(delay = 100)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 

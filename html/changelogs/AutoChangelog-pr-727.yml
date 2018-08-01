@@ -1,0 +1,4 @@
+author: " Garen"
+delete-after: true 
+changes: 
+  - tweak: "Grilles must take damage to produce tesla shocks."

@@ -57,7 +57,7 @@
 	if(!limbs_to_consume.len)
 		H.losebreath++
 		return
-	if(H.get_num_legs(FALSE)) //Legs go before arms
+	if(H.get_num_legs()) //Legs go before arms
 		limbs_to_consume -= list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
 	consumed_limb = H.get_bodypart(pick(limbs_to_consume))
 	consumed_limb.drop_limb()
@@ -662,8 +662,6 @@
 
 /datum/action/innate/project_thought/Activate()
 	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD)
-		return
 	if(!is_species(H, /datum/species/jelly/stargazer))
 		return
 	CHECK_DNA_AND_SPECIES(H)

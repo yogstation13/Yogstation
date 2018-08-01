@@ -64,7 +64,7 @@
 	icon_state = "nanotrasenrangedsmg"
 	icon_living = "nanotrasenrangedsmg"
 	vision_range = 9
-	rapid = 3
+	rapid = 1
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 5

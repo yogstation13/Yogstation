@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "Omegastation: Connected the Engineering Foyer APC to the powernet."

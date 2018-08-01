@@ -27,7 +27,6 @@
 	return dat
 
 /obj/item/implant/explosive/activate(cause)
-	. = ..()
 	if(!cause || !imp_in || active)
 		return 0
 	if(cause == "action_button" && !popup)

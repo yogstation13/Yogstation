@@ -1,0 +1,4 @@
+author: " Dax Dupont"
+delete-after: true 
+changes: 
+  - bugfix: "Foam no longer gives infinite metal"

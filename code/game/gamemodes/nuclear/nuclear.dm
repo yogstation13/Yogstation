@@ -30,10 +30,9 @@
 			pre_nukeops += new_op
 			new_op.assigned_role = "Nuclear Operative"
 			new_op.special_role = "Nuclear Operative"
-			//log_game("[key_name(new_op)] has been selected as a nuclear operative") | yogs - redundant
+			log_game("[key_name(new_op)] has been selected as a nuclear operative")
 		return TRUE
 	else
-		setup_error = "Not enough nuke op candidates"
 		return FALSE
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -64,13 +63,17 @@
 			return FALSE
 	return TRUE
 
-/datum/game_mode/nuclear/check_finished()
-	//Keep the round going if ops are dead but bomb is ticking.
+/datum/game_mode/nuclear/check_finished() //to be called by SSticker
+	if(replacementmode && round_converted == 2)
+		return replacementmode.check_finished()
+	if((SSshuttle.emergency.mode == SHUTTLE_ENDGAME) || station_was_nuked)
+		return TRUE
 	if(nuke_team.operatives_dead())
-		for(var/obj/machinery/nuclearbomb/N in GLOB.nuke_list)
-			if(N.proper_bomb && (N.timing || N.exploding))
-				return FALSE
-	return ..()
+		var/obj/machinery/nuclearbomb/N
+		pass(N)	//suppress unused warning
+		if(N.bomb_set) //snaaaaaaaaaake! It's not over yet!
+			return FALSE	//its a static var btw
+	..()
 
 /datum/game_mode/nuclear/set_round_result()
 	..()

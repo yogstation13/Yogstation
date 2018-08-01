@@ -113,8 +113,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 
 
 	for(var/message in messageQueue)
-		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE)
+		to_chat(owner, message)
 
 	messageQueue = null
 	sendClientData()
@@ -192,7 +191,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 
 //Global chat procs
 
-/proc/to_chat(target, message, handle_whitespace=TRUE)
+/proc/to_chat(target, message)
 	if(!target)
 		return
 
@@ -218,11 +217,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	//Some macros remain in the string even after parsing and fuck up the eventual output
 	message = replacetext(message, "\improper", "")
 	message = replacetext(message, "\proper", "")
-	if(handle_whitespace)
-		message = replacetext(message, "\n", "<br>")
-		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+	message = replacetext(message, "\n", "<br>")
+	message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
 	message = to_utf8(message, target) // yogs - LibVG
-	
 	for(var/I in targets)
 		//Grab us a client if possible
 		var/client/C

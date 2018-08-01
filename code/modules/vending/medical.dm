@@ -38,7 +38,3 @@
 /obj/item/vending_refill/medical
 	machine_name = "NanoMed Plus"
 	icon_state = "refill_medical"
-
-/obj/machinery/vending/medical/syndicate_access
-	name = "\improper SyndiMed Plus"
-	req_access = list(ACCESS_SYNDICATE)

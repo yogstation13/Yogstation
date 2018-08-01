@@ -46,7 +46,7 @@
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	usr.emote("me",1,message,TRUE)
+	usr.emote("me",1,message)
 
 /mob/proc/say_dead(var/message)
 	var/name = real_name
@@ -97,7 +97,7 @@
 
 /mob/proc/check_emote(message)
 	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2), intentional = TRUE)
+		emote(copytext(message, 2))
 		return 1
 
 /mob/proc/hivecheck()

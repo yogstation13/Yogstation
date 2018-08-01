@@ -34,7 +34,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 	var/obj/screen/cinematic/screen
 	var/datum/callback/special_callback //For special effects synced with animation (explosions after the countdown etc)
 	var/cleanup_time = 300 //How long for the final screen to remain
-	var/stop_ooc = TRUE //Turns off ooc when played globally.
 
 /datum/cinematic/New()
 	GLOB.cinematics += src
@@ -60,12 +59,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 	if(is_global)
 		SStgui.close_all_uis()
 
-	//Pause OOC
-	var/ooc_toggled = FALSE
-	if(is_global && stop_ooc && GLOB.ooc_allowed)
-		ooc_toggled = TRUE
-		toggle_ooc(FALSE)
-
 
 	for(var/mob/M in GLOB.mob_list)
 		if(M in watchers)
@@ -83,11 +76,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 	//Actually play it
 	content()
-	
-	//Restore OOC
-	if(ooc_toggled)
-		toggle_ooc(TRUE)
-	
 	//Cleanup
 	sleep(cleanup_time)
 	qdel(src)

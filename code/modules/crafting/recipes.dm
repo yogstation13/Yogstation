@@ -370,14 +370,6 @@
 				/obj/item/stack/rods = 12)
 	category = CAT_MISC
 
-/datum/crafting_recipe/mousetrap
-	name = "Mouse Trap"
-	result = /obj/item/assembly/mousetrap
-	time = 10
-	reqs = list(/obj/item/stack/sheet/cardboard = 1,
-				/obj/item/stack/rods = 1)
-	category = CAT_MISC
-
 /datum/crafting_recipe/papersack
 	name = "Paper Sack"
 	result = /obj/item/storage/box/papersack
@@ -676,12 +668,4 @@
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/clothing/glasses/sunglasses/reagent = 1)
-	category = CAT_CLOTHING
-
-/datum/crafting_recipe/ghostsheet
-	name = "Ghost Sheet"
-	result = /obj/item/clothing/suit/ghost_sheet
-	time = 5
-	tools = list(TOOL_WIRECUTTER)
-	reqs = list(/obj/item/bedsheet = 1)
 	category = CAT_CLOTHING

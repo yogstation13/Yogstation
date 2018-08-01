@@ -104,4 +104,3 @@
 	bitesize_mod = 2
 	foodtype = VEGETABLES | GROSS
 	tastes = list("kudzu" = 1)
-	wine_power = 20

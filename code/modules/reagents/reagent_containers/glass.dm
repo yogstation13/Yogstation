@@ -53,7 +53,6 @@
 			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
-	. = ..()
 	if((!proximity) || !check_allowed_items(target,target_self=1))
 		return
 
@@ -287,16 +286,10 @@
 
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
-	if (slot == SLOT_HEAD)
-		if(reagents.total_volume)
-			to_chat(user, "<span class='userdanger'>[src]'s contents spill all over you!</span>")
-			reagents.reaction(user, TOUCH)
-			reagents.clear_reagents()
-		container_type = NONE
-
-/obj/item/reagent_containers/glass/bucket/dropped(mob/user)
-	. = ..()
-	container_type = initial(container_type)
+	if(slot == SLOT_HEAD && reagents.total_volume)
+		to_chat(user, "<span class='userdanger'>[src]'s contents spill all over you!</span>")
+		reagents.reaction(user, TOUCH)
+		reagents.clear_reagents()
 
 /obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head
@@ -331,3 +324,103 @@
 
 /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty
 	list_reagents = list()
+
+/obj/item/reagent_containers/glass/beaker/large/hydrogen
+	name = "hydrogen beaker"
+	list_reagents = list("hydrogen" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/lithium
+	name = "lithium beaker"
+	list_reagents = list("lithium" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/carbon
+	name = "carbon beaker"
+	list_reagents = list("carbon" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/nitrogen
+	name = "nitrogen beaker"
+	list_reagents = list("nitrogen" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/oxygen
+	name = "oxygen beaker"
+	list_reagents = list("oxygen" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/fluorine
+	name = "fluorine beaker"
+	list_reagents = list("fluorine" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/sodium
+	name = "sodium beaker"
+	list_reagents = list("sodium" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/aluminium
+	name = "aluminium beaker"
+	list_reagents = list("aluminium" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/silicon
+	name = "silicon beaker"
+	list_reagents = list("silicon" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/phosphorus
+	name = "phosphorus beaker"
+	list_reagents = list("phosphorus" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/sulfur
+	name = "sulfur beaker"
+	list_reagents = list("sulfur" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/chlorine
+	name = "chlorine beaker"
+	list_reagents = list("chlorine" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/potassium
+	name = "potassium beaker"
+	list_reagents = list("potassium" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/iron
+	name = "iron beaker"
+	list_reagents = list("iron" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/copper
+	name = "copper beaker"
+	list_reagents = list("copper" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/mercury
+	name = "mercury beaker"
+	list_reagents = list("mercury" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/radium
+	name = "radium beaker"
+	list_reagents = list("radium" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/water
+	name = "water beaker"
+	list_reagents = list("water" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/ethanol
+	name = "ethanol beaker"
+	list_reagents = list("ethanol" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/sugar
+	name = "sugar beaker"
+	list_reagents = list("sugar" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/sacid
+	name = "sulphuric acid beaker"
+	list_reagents = list("sacid" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/welding_fuel
+	name = "welding fuel beaker"
+	list_reagents = list("welding_fuel" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/silver
+	name = "silver beaker"
+	list_reagents = list("silver" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/iodine
+	name = "iodine beaker"
+	list_reagents = list("iodine" = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/bromine
+	name = "bromine beaker"
+	list_reagents = list("bromine" = 50)

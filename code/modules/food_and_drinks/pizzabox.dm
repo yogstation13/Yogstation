@@ -269,14 +269,9 @@
 
 /obj/item/pizzabox/margherita/Initialize()
 	. = ..()
-	AddPizza()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita(src)
 	boxtag = "Margherita Deluxe"
 
-/obj/item/pizzabox/margherita/proc/AddPizza()
-	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita(src)
-
-/obj/item/pizzabox/margherita/robo/AddPizza()
-	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita/robo(src)
 
 /obj/item/pizzabox/vegetable/Initialize()
 	. = ..()

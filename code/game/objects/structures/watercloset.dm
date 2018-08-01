@@ -238,7 +238,6 @@
 	update_icon()
 	add_fingerprint(M)
 	if(on)
-		START_PROCESSING(SSmachines, src)
 		soundloop.start()
 		wash_turf()
 		for(var/atom/movable/G in loc)
@@ -419,8 +418,6 @@
 			else if(isobj(AM))
 				wash_obj(AM)
 			contamination_cleanse(AM)
-	else
-		return PROCESS_KILL
 
 /obj/machinery/shower/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal (loc, 3)
@@ -539,13 +536,6 @@
 		to_chat(user, "<span class='notice'>You tear off a strip of gauze and make a rag.</span>")
 		G.use(1)
 		return
-	
-	//yogs start - BANDAGES
-	if(istype(O, /obj/item/medical/bandage/))
-		var/obj/item/medical/bandage/B = O
-		B.wash(O, user)			
-		return
-	//yogs end
 
 	if(!istype(O))
 		return

@@ -42,7 +42,7 @@ SLIME SCANNER
 /obj/item/t_scanner/proc/scan()
 	t_ray_scan(loc)
 
-/proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 3)
+/proc/t_ray_scan(mob/viewer, flick_time = 8, distance = 2)
 	if(!ismob(viewer) || !viewer.client)
 		return
 	var/list/t_ray_images = list()
@@ -455,7 +455,7 @@ SLIME SCANNER
 	if(user.canUseTopic(src))
 
 		if(cooldown)
-			to_chat(user, "<span class='warning'>[src]'s barometer function is preparing itself.</span>")
+			to_chat(user, "<span class='warning'>[src]'s barometer function is prepraring itself.</span>")
 			return
 
 		var/turf/T = get_turf(user)

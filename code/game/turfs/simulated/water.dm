@@ -11,3 +11,6 @@
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null //needs a splashing sound one day.
 
+/turf/open/water/Initialize()
+	. = ..()
+	MakeSlippery(TURF_WET_WATER, INFINITY, 0, INFINITY, TRUE)

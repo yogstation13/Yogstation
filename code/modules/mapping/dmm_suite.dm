@@ -1,4 +1,4 @@
-/datum/maploader{
+dmm_suite{
 	/*
 
 		dmm_suite version 1.0

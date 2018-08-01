@@ -8,7 +8,7 @@
 	. = ..()
 	AddComponent(/datum/component/rad_insulation, RAD_MEDIUM_INSULATION)
 
-/turf/closed/AfterChange()
+/turf/closed/ChangeTurf()
 	. = ..()
 	SSair.high_pressure_delta -= src
 
@@ -34,9 +34,6 @@
 /turf/closed/indestructible/Melt()
 	to_be_destroyed = FALSE
 	return src
-
-/turf/closed/indestructible/singularity_act()
-	return
 
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"

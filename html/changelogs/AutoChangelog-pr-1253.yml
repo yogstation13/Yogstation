@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "checks to see if bullets are deleted if they are the ammo type and the bullet chambered."

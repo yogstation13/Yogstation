@@ -24,7 +24,6 @@
 	foodtype = GRAIN
 	grind_results = list("flour" = 0)
 	tastes = list("wheat" = 1)
-	distill_reagent = "beer"
 
 // Oat
 /obj/item/seeds/wheat/oat
@@ -47,7 +46,6 @@
 	foodtype = GRAIN
 	grind_results = list("flour" = 0)
 	tastes = list("oat" = 1)
-	distill_reagent = "ale"
 
 // Rice
 /obj/item/seeds/wheat/rice
@@ -71,7 +69,6 @@
 	foodtype = GRAIN
 	grind_results = list("rice" = 0)
 	tastes = list("rice" = 1)
-	distill_reagent = "sake"
 
 //Meatwheat - grows into synthetic meat
 /obj/item/seeds/wheat/meat
@@ -94,7 +91,6 @@
 	foodtype = MEAT | GRAIN
 	grind_results = list("flour" = 0, "blood" = 0)
 	tastes = list("meatwheat" = 1)
-	can_distill = FALSE
 
 /obj/item/reagent_containers/food/snacks/grown/meatwheat/attack_self(mob/living/user)
 	user.visible_message("<span class='notice'>[user] crushes [src] into meat.</span>", "<span class='notice'>You crush [src] into something that resembles meat.</span>")

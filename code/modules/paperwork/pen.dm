@@ -44,7 +44,7 @@
 	colour = "red"
 
 /obj/item/pen/invisible
-	desc = "It's an invisible pen marker."
+	desc = "It's an invisble pen marker."
 	icon_state = "pen"
 	colour = "white"
 
@@ -104,7 +104,12 @@
 	if(deg && (deg > 0 && deg <= 360))
 		degrees = deg
 		to_chat(user, "<span class='notice'>You rotate the top of the pen to [degrees] degrees.</span>")
-		SEND_SIGNAL(src, COMSIG_PEN_ROTATED, deg, user)
+		GET_COMPONENT(hidden_uplink, /datum/component/uplink)
+		if(hidden_uplink && degrees == traitor_unlock_degrees)
+			to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
+			degrees = 0
+			hidden_uplink.locked = FALSE
+			hidden_uplink.interact(user)
 
 /obj/item/pen/attack(mob/living/M, mob/user,stealth)
 	if(!istype(M))
@@ -123,7 +128,6 @@
 		. = ..()
 
 /obj/item/pen/afterattack(obj/O, mob/living/user, proximity)
-	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
 	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
 		var/penchoice = input(user, "What would you like to edit?", "Rename or change description?") as null|anything in list("Rename","Change description")

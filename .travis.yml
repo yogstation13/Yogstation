@@ -3,11 +3,16 @@ sudo: false
 branches:
   except:
   - ___TGS3TempBranch
+env:
+    global:
+    - BYOND_MAJOR="512"
+    - BYOND_MINOR="1427"
+    - NODE_VERSION="4"
+    - RUST_G_VERSION="0.3.0"
 matrix:
   include:
     - env:
       - BUILD_TOOLS=true
-      name: "Build Tools"
       addons:
         apt:
           packages:
@@ -19,36 +24,29 @@ matrix:
     - env:
       - BUILD_TESTING=true
       - BUILD_TOOLS=false
-      name: "Build All Maps"
       addons:
         apt:
           packages:
             - libstdc++6:i386
       cache:
         directories:
-          - $HOME/BYOND
+          - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
     - env:
       - BUILD_TESTING=false
       - BUILD_TOOLS=false
-      name: "Build and Run Unit Tests"
       addons:
         mariadb: '10.2'
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
           packages:
             - libstdc++6:i386
             - libssl-dev:i386
             - gcc-multilib
-            - g++-7
-            - g++-7-multilib
-            - libmariadbclient-dev:i386
       cache:
         directories:
-          - $HOME/.cargo
-          - $HOME/BYOND
-          - $HOME/MariaDB
+          - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
+          - $HOME/libmariadb
           - $HOME/.rustup
+          - $HOME/.cargo
 
 install:
   - tools/travis/install_build_tools.sh

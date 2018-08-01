@@ -3,7 +3,6 @@
 
 	var/directory = "config"
 
-	var/warned_deprecated_configs = FALSE
 	var/hiding_entries_by_type = TRUE	//Set for readability, admins can set this to FALSE if they want to debug it
 	var/list/entries
 	var/list/entries_by_type
@@ -20,9 +19,7 @@
 
 	var/motd
 
-/datum/controller/configuration/proc/Load(_directory)
-	if(_directory)
-		directory = _directory
+/datum/controller/configuration/proc/Load()
 	if(entries)
 		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
 	InitEntries()
@@ -86,7 +83,6 @@
 	var/list/lines = world.file2list("[directory]/[filename]")
 	var/list/_entries = entries
 	for(var/L in lines)
-		L = trim(L)
 		if(!L)
 			continue
 		
@@ -127,26 +123,11 @@
 		if(lockthis)
 			E.protection |= CONFIG_ENTRY_LOCKED
 
-		if(E.deprecated_by)
-			var/datum/config_entry/new_ver = entries_by_type[E.deprecated_by]
-			var/new_value = E.DeprecationUpdate(value)
-			var/good_update = istext(new_value)
-			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
-			if(!warned_deprecated_configs)
-				addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
-				warned_deprecated_configs = TRUE
-			if(good_update)
-				value = new_value
-				E = new_ver
-			else
-				warning("[new_ver.type] is deprecated but gave no proper return for DeprecationUpdate()")
-			
 		var/validated = E.ValidateAndSet(value)
 		if(!validated)
 			log_config("Failed to validate setting \"[value]\" for [entry]")
-		else 
-			if(E.modified && !E.dupes_allowed)
-				log_config("Duplicate setting for [entry] ([value], [E.resident_file]) detected! Using latest.")
+		else if(E.modified && !E.dupes_allowed)
+			log_config("Duplicate setting for [entry] ([value], [E.resident_file]) detected! Using latest.")
 
 		E.resident_file = filename
 		

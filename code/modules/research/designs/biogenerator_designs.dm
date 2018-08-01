@@ -113,15 +113,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 50)
 	build_path = /obj/item/stack/sheet/cloth
-	category = list("initial","Organic Materials")
-
-/datum/design/cardboard
-	name = "Sheet of Cardboard"
-	id = "cardboard"
-	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 25)
-	build_path = /obj/item/stack/sheet/cardboard
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/leather
 	name = "Sheet of Leather"
@@ -129,7 +121,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 150)
 	build_path = /obj/item/stack/sheet/leather
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/secbelt
 	name = "Security Belt"
@@ -137,7 +129,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/storage/belt/security
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/medbelt
 	name = "Medical Belt"
@@ -145,7 +137,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/storage/belt/medical
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/janibelt
 	name = "Janitorial Belt"
@@ -153,7 +145,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/storage/belt/janitor
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/s_holster
 	name = "Shoulder Holster"
@@ -161,7 +153,7 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 400)
 	build_path = /obj/item/storage/belt/holster
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")
 
 /datum/design/rice_hat
 	name = "Rice Hat"
@@ -169,4 +161,4 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/clothing/head/rice_hat
-	category = list("initial","Organic Materials")
+	category = list("initial","Leather and Cloth")

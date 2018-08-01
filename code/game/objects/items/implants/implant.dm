@@ -18,7 +18,7 @@
 	return
 
 /obj/item/implant/proc/activate()
-	SEND_SIGNAL(src, COMSIG_IMPLANT_ACTIVATED)
+	return
 
 /obj/item/implant/ui_action_click()
 	activate("action_button")
@@ -41,26 +41,12 @@
 //return 1 if the implant injects
 //return 0 if there is no room for implant / it fails
 /obj/item/implant/proc/implant(mob/living/target, mob/user, silent = FALSE)
-	if(SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTING, args) & COMPONENT_STOP_IMPLANTING)
-		return
 	LAZYINITLIST(target.implants)
 	if(!target.can_be_implanted() || !can_be_implanted_in(target))
-		return FALSE
+		return 0
 	for(var/X in target.implants)
-		var/obj/item/implant/imp_e = X
-		var/flags = SEND_SIGNAL(imp_e, COMSIG_IMPLANT_OTHER, args, src)
-		if(flags & COMPONENT_DELETE_NEW_IMPLANT)
-			UNSETEMPTY(target.implants)
-			qdel(src)
-			return TRUE
-		if(flags & COMPONENT_DELETE_OLD_IMPLANT)
-			qdel(imp_e)
-			continue
-		if(flags & COMPONENT_STOP_IMPLANTING)
-			UNSETEMPTY(target.implants)
-			return FALSE
-		
-		if(istype(imp_e, type))
+		if(istype(X, type))
+			var/obj/item/implant/imp_e = X
 			if(!allow_multiple)
 				if(imp_e.uses < initial(imp_e.uses)*2)
 					if(uses == -1)
@@ -68,9 +54,9 @@
 					else
 						imp_e.uses = min(imp_e.uses + uses, initial(imp_e.uses)*2)
 					qdel(src)
-					return TRUE
+					return 1
 				else
-					return FALSE
+					return 0
 
 	forceMove(target)
 	imp_in = target
@@ -86,7 +72,7 @@
 	if(user)
 		add_logs(user, target, "implanted", "\a [name]")
 
-	return TRUE
+	return 1
 
 /obj/item/implant/proc/removed(mob/living/source, silent = FALSE, special = 0)
 	moveToNullspace()

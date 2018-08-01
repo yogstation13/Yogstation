@@ -27,7 +27,6 @@
 	var/turf/open/atmos_destination	//Atmos link destination
 	var/allow_anchored = FALSE
 	var/innate_accuracy_penalty = 0
-	var/last_effect = 0
 
 /obj/effect/portal/anom
 	name = "wormhole"
@@ -155,12 +154,7 @@
 		return
 	if(ismegafauna(M))
 		message_admins("[M] has used a portal at [ADMIN_VERBOSEJMP(src)] made by [usr].")
-	var/no_effect = FALSE
-	if(last_effect == world.time)
-		no_effect = TRUE
-	else
-		last_effect = world.time
-	if(do_teleport(M, real_target, innate_accuracy_penalty, no_effects = no_effect))
+	if(do_teleport(M, real_target, innate_accuracy_penalty))
 		if(istype(M, /obj/item/projectile))
 			var/obj/item/projectile/P = M
 			P.ignore_source_check = TRUE

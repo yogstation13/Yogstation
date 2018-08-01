@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Picture-in-picture objects now are no longer overlapped by other certain objects"

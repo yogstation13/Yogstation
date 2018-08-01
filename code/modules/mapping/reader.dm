@@ -1,60 +1,22 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
-#define SPACE_KEY "space"
+
 //global datum that will preload variables on atoms instanciation
 GLOBAL_VAR_INIT(use_preloader, FALSE)
-GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
+GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 
-/datum/grid_set
-	var/xcrd
-	var/ycrd
-	var/zcrd
-	var/xcrdStart
-	var/gridLines
-
-/datum/parsed_map
-	var/list/grid_models = list()
-	var/list/gridSets = list()
-	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
-	var/key_len = 0
-
-/datum/parsed_map/proc/initTemplateBounds()
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
-	var/list/obj/structure/cable/cables = list()
-	var/list/atom/atoms = list()
-
-	var/list/turfs = block(	locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
-							locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
-	var/list/border = block(locate(max(bounds[MAP_MINX]-1, 1),			max(bounds[MAP_MINY]-1, 1),			 bounds[MAP_MINZ]),
-							locate(min(bounds[MAP_MAXX]+1, world.maxx),	min(bounds[MAP_MAXY]+1, world.maxy), bounds[MAP_MAXZ])) - turfs
-	for(var/L in turfs)
-		var/turf/B = L
-		atoms += B
-		for(var/A in B)
-			atoms += A
-			if(istype(A, /obj/structure/cable))
-				cables += A
-				continue
-			if(istype(A, /obj/machinery/atmospherics))
-				atmos_machines += A
-	for(var/L in border)
-		var/turf/T = L
-		T.air_update_turf(TRUE) //calculate adjacent turfs along the border to prevent runtimes
-
-	SSatoms.InitializeAtoms(atoms)
-	SSmachines.setup_template_powernets(cables)
-	SSair.setup_template_machinery(atmos_machines)
-
-/datum/maploader
+/dmm_suite
 		// /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g
 	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
 		// /^[\s\n]+"?|"?[\s\n]+$|^"|"$/g
 	var/static/regex/trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
 		// /^[\s\n]+|[\s\n]+$/
 	var/static/regex/trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
+	var/static/list/modelCache = list()
+	var/static/space_key
 	#ifdef TESTING
-	var/turfsSkipped
+	var/static/turfsSkipped
 	#endif
 
 /**
@@ -67,23 +29,38 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
-/datum/maploader/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, lower_crop_x as num,  lower_crop_y as num, upper_crop_x as num, upper_crop_y as num, placeOnTop as num, stationroom as num) //YOGS
+/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, lower_crop_x as num,  lower_crop_y as num, upper_crop_x as num, upper_crop_y as num, placeOnTop as num)
 	//How I wish for RAII
 	Master.StartLoadingMap()
+	space_key = null
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
-	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, lower_crop_x, upper_crop_x, lower_crop_y, upper_crop_y, placeOnTop, stationroom = stationroom) //yogs
+	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, lower_crop_x, upper_crop_x, lower_crop_y, upper_crop_y, placeOnTop)
 	#ifdef TESTING
 	if(turfsSkipped)
 		testing("Skipped loading [turfsSkipped] default turfs")
 	#endif
 	Master.StopLoadingMap()
 
-/datum/parsed_map/New(tfile, x_offset, y_offset, z_offset, x_lower, x_upper, y_lower, y_upper, measureOnly, regex/dmmRegex, cropMap)
+/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE)
+	var/tfile = dmm_file//the map file we're creating
+	if(isfile(tfile))
+		tfile = file2text(tfile)
+
+	if(!x_offset)
+		x_offset = 1
+	if(!y_offset)
+		y_offset = 1
+	if(!z_offset)
+		z_offset = world.maxz + 1
+
+	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
+	var/list/grid_models = list()
+	var/key_len = 0
+
 	var/stored_index = 1
 
-	//multiz lool
 	while(dmmRegex.Find(tfile, stored_index))
 		stored_index = dmmRegex.next
 
@@ -96,33 +73,41 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 				if(!key_len)
 					key_len = length(key)
 				else
-					CRASH("Inconsistent key length in DMM")
+					throw EXCEPTION("Inconsistant key length in DMM")
 			if(!measureOnly)
 				grid_models[key] = dmmRegex.group[2]
 
 		// (1,1,1) = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
 		else if(dmmRegex.group[3]) // Coords
 			if(!key_len)
-				CRASH("Coords before model definition in DMM")
+				throw EXCEPTION("Coords before model definition in DMM")
 
 			var/curr_x = text2num(dmmRegex.group[3])
 
 			if(curr_x < x_lower || curr_x > x_upper)
 				continue
 
-			var/datum/grid_set/gridSet = new
-
-			gridSet.xcrdStart = curr_x + x_offset - 1
+			var/xcrdStart = curr_x + x_offset - 1
 			//position of the currently processed square
-			gridSet.ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
-			gridSet.zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
+			var/xcrd
+			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
+			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
 
-			bounds[MAP_MINX] = min(bounds[MAP_MINX], CLAMP(gridSet.xcrdStart, x_lower, x_upper))
-			bounds[MAP_MINZ] = min(bounds[MAP_MINZ], gridSet.zcrd)
-			bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], gridSet.zcrd)
+			var/zexpansion = zcrd > world.maxz
+			if(zexpansion && !measureOnly)
+				if(cropMap)
+					continue
+				else
+					while (zcrd > world.maxz) //create a new z_level if needed
+						world.incrementMaxZ()
+				if(!no_changeturf)
+					WARNING("Z-level expansion occurred without no_changeturf set, this may cause problems when /turf/AfterChange is called")
+
+			bounds[MAP_MINX] = min(bounds[MAP_MINX], CLAMP(xcrdStart, x_lower, x_upper))
+			bounds[MAP_MINZ] = min(bounds[MAP_MINZ], zcrd)
+			bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], zcrd)
 
 			var/list/gridLines = splittext(dmmRegex.group[6], "\n")
-			gridSet.gridLines = gridLines
 
 			var/leadingBlanks = 0
 			while(leadingBlanks < gridLines.len && gridLines[++leadingBlanks] == "")
@@ -132,120 +117,112 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 			if(!gridLines.len) // Skip it if only blank lines exist.
 				continue
 
-			gridSets += gridSet
-
 			if(gridLines.len && gridLines[gridLines.len] == "")
 				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
 
-			bounds[MAP_MINY] = min(bounds[MAP_MINY], CLAMP(gridSet.ycrd, y_lower, y_upper))
-			gridSet.ycrd += gridLines.len - 1 // Start at the top and work down
+			bounds[MAP_MINY] = min(bounds[MAP_MINY], CLAMP(ycrd, y_lower, y_upper))
+			ycrd += gridLines.len - 1 // Start at the top and work down
 
-			if(!cropMap && gridSet.ycrd > world.maxy)
-				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], CLAMP(gridSet.ycrd, y_lower, y_upper))
+			if(!cropMap && ycrd > world.maxy)
+				if(!measureOnly)
+					world.maxy = ycrd // Expand Y here.  X is expanded in the loop below
+				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], CLAMP(ycrd, y_lower, y_upper))
 			else
-				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], CLAMP(min(gridSet.ycrd, world.maxy), y_lower, y_upper))
+				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], CLAMP(min(ycrd, world.maxy), y_lower, y_upper))
 
-			var/maxx = gridSet.xcrdStart
-			if(gridLines.len) //Not an empty map
-				maxx = max(maxx, gridSet.xcrdStart + length(gridLines[1]) / key_len - 1)
+			var/maxx = xcrdStart
+			if(measureOnly)
+				for(var/line in gridLines)
+					maxx = max(maxx, xcrdStart + length(line) / key_len - 1)
+			else
+				for(var/line in gridLines)
+					if((ycrd - y_offset + 1) < y_lower || (ycrd - y_offset + 1) > y_upper)				//Reverse operation and check if it is out of bounds of cropping.
+						--ycrd
+						continue
+					if(ycrd <= world.maxy && ycrd >= 1)
+						xcrd = xcrdStart
+						for(var/tpos = 1 to length(line) - key_len + 1 step key_len)
+							if((xcrd - x_offset + 1) < x_lower || (xcrd - x_offset + 1) > x_upper)			//Same as above.
+								++xcrd
+								continue								//X cropping.
+							if(xcrd > world.maxx)
+								if(cropMap)
+									break
+								else
+									world.maxx = xcrd
+
+							if(xcrd >= 1)
+								var/model_key = copytext(line, tpos, tpos + key_len)
+								var/no_afterchange = no_changeturf || zexpansion
+								if(!no_afterchange || (model_key != space_key))
+									if(!grid_models[model_key])
+										throw EXCEPTION("Undefined model key in DMM.")
+									parse_grid(grid_models[model_key], model_key, xcrd, ycrd, zcrd, no_changeturf || zexpansion, placeOnTop)
+								#ifdef TESTING
+								else
+									++turfsSkipped
+								#endif
+								CHECK_TICK
+							maxx = max(maxx, xcrd)
+							++xcrd
+					--ycrd
 
 			bounds[MAP_MAXX] = CLAMP(max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx), x_lower, x_upper)
-		CHECK_TICK
-
-/datum/maploader/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, stationroom = FALSE) //yogs
-	var/tfile = dmm_file//the map file we're creating
-	if(isfile(tfile))
-		tfile = file2text(tfile)
-
-	if(!x_offset)
-		x_offset = 1
-	if(!y_offset)
-		y_offset = 1
-	if(!z_offset)
-		z_offset = world.maxz + 1
-
-	var/datum/parsed_map/parsed = new(tfile, x_offset, y_offset, z_offset, x_lower, x_upper, y_lower, y_upper, measureOnly, dmmRegex, cropMap)
-
-	var/list/modelCache
-	var/space_key
-	if(!measureOnly)
-		modelCache = build_cache(parsed, no_changeturf)
-		space_key = modelCache[SPACE_KEY]
-
-	for(var/I in parsed.gridSets)
-		var/datum/grid_set/gset = I
-		if(!cropMap && !measureOnly && gset.ycrd > world.maxy)
-			world.maxy = gset.ycrd // Expand Y here.  X is expanded in the loop below
-		var/zexpansion = gset.zcrd > world.maxz
-		if(zexpansion && !measureOnly)
-			if(cropMap)
-				continue
-			else
-				while (gset.zcrd > world.maxz) //create a new z_level if needed
-					world.incrementMaxZ()
-			if(!no_changeturf)
-				WARNING("Z-level expansion occurred without no_changeturf set, this may cause problems when /turf/AfterChange is called")
-
-		var/maxx = gset.xcrdStart
-		if(!measureOnly)
-			for(var/line in gset.gridLines)
-				if((gset.ycrd - y_offset + 1) < y_lower || (gset.ycrd - y_offset + 1) > y_upper)				//Reverse operation and check if it is out of bounds of cropping.
-					--gset.ycrd
-					continue
-				if(gset.ycrd <= world.maxy && gset.ycrd >= 1)
-					gset.xcrd = gset.xcrdStart
-					for(var/tpos = 1 to length(line) - parsed.key_len + 1 step parsed.key_len)
-						if((gset.xcrd - x_offset + 1) < x_lower || (gset.xcrd - x_offset + 1) > x_upper)			//Same as above.
-							++gset.xcrd
-							continue								//X cropping.
-						if(gset.xcrd > world.maxx)
-							if(cropMap)
-								break
-							else
-								world.maxx = gset.xcrd
-
-						if(gset.xcrd >= 1)
-							var/model_key = copytext(line, tpos, tpos + parsed.key_len)
-							var/no_afterchange = no_changeturf || zexpansion
-							if(!no_afterchange || (model_key != space_key))
-								var/list/cache = modelCache[model_key]
-								if(!cache)
-									CRASH("Undefined model key in DMM: [model_key]")
-								build_coordinate(cache, gset.xcrd, gset.ycrd, gset.zcrd, no_afterchange, placeOnTop, stationroom = stationroom) //yogs
-							#ifdef TESTING
-							else
-								++turfsSkipped
-							#endif
-							CHECK_TICK
-						maxx = max(maxx, gset.xcrd)
-						++gset.xcrd
-				--gset.ycrd
 
 		CHECK_TICK
 
-	var/list/bounds = parsed.bounds
 	if(bounds[1] == 1.#INF) // Shouldn't need to check every item
-		parsed.bounds = null
-	else if(!measureOnly && !no_changeturf)
-		for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
-			var/turf/T = t
-			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
-			T.AfterChange(CHANGETURF_IGNORE_AIR)
-	return parsed
+		return null
+	else
+		if(!measureOnly)
+			if(!no_changeturf)
+				for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+					var/turf/T = t
+					//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
+					T.AfterChange(CHANGETURF_IGNORE_AIR)
+		return bounds
 
-/datum/maploader/proc/build_cache(datum/parsed_map/parsed, no_changeturf)
-	. = list()
-	var/list/grid_models = parsed.grid_models
-	for(var/model_key in grid_models)
-		var/model = grid_models[model_key]
-		var/list/members = list() //will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
-		var/list/members_attributes = list() //will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
+/**
+ * Fill a given tile with its area/turf/objects/mobs
+ * Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = "rock"}, /area/mine/explored)
+ *
+ * WORKING :
+ *
+ * 1) Read the model string, member by member (delimiter is ',')
+ *
+ * 2) Get the path of the atom and store it into a list
+ *
+ * 3) a) Check if the member has variables (text within '{' and '}')
+ *
+ * 3) b) Construct an associative list with found variables, if any (the atom index in members is the same as its variables in members_attributes)
+ *
+ * 4) Instanciates the atom with its variables
+ *
+ */
+/dmm_suite/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, placeOnTop as num)
+	/*Method parse_grid()
+	- Accepts a text string containing a comma separated list of type paths of the
+		same construction as those contained in a .dmm file, and instantiates them.
+	*/
+
+	var/list/members //will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
+	var/list/members_attributes //will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
+	var/list/cached = modelCache[model]
+	var/index
+
+	if(cached)
+		members = cached[1]
+		members_attributes = cached[2]
+	else
 
 		/////////////////////////////////////////////////////////
 		//Constructing members and corresponding variables lists
 		////////////////////////////////////////////////////////
 
-		var/index = 1
+		members = list()
+		members_attributes = list()
+		index = 1
+
 		var/old_position = 1
 		var/dpos
 
@@ -292,25 +269,13 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 		// 5. and the members are world.turf and world.area
 		// Basically, if we find an entry like this: "XXX" = (/turf/default, /area/default)
 		// We can skip calling this proc every time we see XXX
-		if(no_changeturf \
-			&& !(.[SPACE_KEY]) \
-			&& members.len == 2 \
-			&& members_attributes.len == 2 \
-			&& length(members_attributes[1]) == 0 \
-			&& length(members_attributes[2]) == 0 \
-			&& (world.area in members) \
-			&& (world.turf in members))
-
-			.[SPACE_KEY] = model_key
-			continue
+		if(no_changeturf && !space_key && members.len == 2 && members_attributes.len == 2 && length(members_attributes[1]) == 0 && length(members_attributes[2]) == 0 && (world.area in members) && (world.turf in members))
+			space_key = model_key
+			return
 
 
-		.[model_key] = list(members, members_attributes)
+		modelCache[model] = list(members, members_attributes)
 
-/datum/maploader/proc/build_coordinate(list/model, xcrd as num, ycrd as num, zcrd as num, no_changeturf as num, placeOnTop as num, stationroom = FALSE) //yogs
-	var/index
-	var/list/members = model[1]
-	var/list/members_attributes = model[2]
 
 	////////////////
 	//Instanciation
@@ -361,7 +326,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
-		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop, stationroom = stationroom) //yogs
+		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
 	//Restore initialization to the previous value
 	SSatoms.map_loader_stop()
 
@@ -370,7 +335,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/datum/maploader/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop, stationroom = FALSE) //yogs
+/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop)
 	GLOB._preloader.setup(attributes, path)
 
 	if(crds)
@@ -382,7 +347,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 			else
 				. = create_atom(path, crds)//first preloader pass
 		else
-			. = create_atom(path, crds, stationroom = stationroom)//first preloader pass //yogs
+			. = create_atom(path, crds)//first preloader pass
 
 	if(GLOB.use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
 		GLOB._preloader.load(.)
@@ -393,13 +358,13 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 		stoplag()
 		SSatoms.map_loader_begin()
 
-/datum/maploader/proc/create_atom(path, crds)
+/dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE
 	. = new path (crds)
 
 //text trimming (both directions) helper proc
 //optionally removes quotes before and after the text (for variable name)
-/datum/maploader/proc/trim_text(what as text,trim_quotes=0)
+/dmm_suite/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
 		return trimQuotesRegex.Replace(what, "")
 	else
@@ -408,7 +373,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
-/datum/maploader/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
+/dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)
 	var/next_opening = findtext(text,opening_escape,position,0)
@@ -423,7 +388,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 //build a list from variables in text form (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
 //return the filled list
-/datum/maploader/proc/readlist(text as text, delimiter=",")
+/dmm_suite/proc/readlist(text as text, delimiter=",")
 
 	var/list/to_return = list()
 
@@ -476,7 +441,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 	return to_return
 
-/datum/maploader/Destroy()
+/dmm_suite/Destroy()
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -484,18 +449,18 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 //Preloader datum
 //////////////////
 
-/datum/map_preloader
+/dmm_suite/preloader
 	parent_type = /datum
 	var/list/attributes
 	var/target_path
 
-/datum/map_preloader/proc/setup(list/the_attributes, path)
+/dmm_suite/preloader/proc/setup(list/the_attributes, path)
 	if(the_attributes.len)
 		GLOB.use_preloader = TRUE
 		attributes = the_attributes
 		target_path = path
 
-/datum/map_preloader/proc/load(atom/what)
+/dmm_suite/preloader/proc/load(atom/what)
 	for(var/attribute in attributes)
 		var/value = attributes[attribute]
 		if(islist(value))

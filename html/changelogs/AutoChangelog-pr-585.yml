@@ -1,0 +1,4 @@
+author: " ninjanomnom"
+delete-after: true 
+changes: 
+  - bugfix: "Caravan ambush shuttles have been templated to fit the new system and can fly again."

@@ -17,12 +17,6 @@
 	name = "APLU \"Ripley\""
 	reward = 13000
 	wanted_types = list(/obj/mecha/working/ripley)
-	exclude_types = list(/obj/mecha/working/ripley/firefighter)
-
-/datum/bounty/item/mech/firefighter
-	name = "APLU \"Firefighter\""
-	reward = 18000
-	wanted_types = list(/obj/mecha/working/ripley/firefighter)
 
 /datum/bounty/item/mech/odysseus
 	name = "Odysseus"
@@ -43,3 +37,4 @@
 	name = "Phazon"
 	reward = 50000
 	wanted_types = list(/obj/mecha/combat/phazon)
+

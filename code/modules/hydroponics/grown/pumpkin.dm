@@ -25,7 +25,6 @@
 	bitesize_mod = 2
 	foodtype = FRUIT
 	juice_results = list("pumpkinjuice" = 0)
-	wine_power = 20
 
 /obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(W.is_sharp())
@@ -57,4 +56,3 @@
 	bitesize_mod = 2
 	foodtype = FRUIT
 	juice_results = list("blumpkinjuice" = 0)
-	wine_power = 50

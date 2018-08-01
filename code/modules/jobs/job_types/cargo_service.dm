@@ -75,10 +75,10 @@ Shaft Miner
 	outfit = /datum/outfit/job/miner
 
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM) 
+	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING) //YOGS - removed mineral access from shaft miners :(
 
 /datum/outfit/job/miner
-	name = "Shaft Miner"
+	name = "Shaft Miner (Lavaland)"
 	jobtype = /datum/job/mining
 
 	belt = /obj/item/pda/shaftminer
@@ -101,8 +101,13 @@ Shaft Miner
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
 
+/datum/outfit/job/miner/asteroid
+	name = "Shaft Miner (Asteroid)"
+	uniform = /obj/item/clothing/under/rank/miner
+	shoes = /obj/item/clothing/shoes/workboots
+
 /datum/outfit/job/miner/equipped
-	name = "Shaft Miner (Equipment)"
+	name = "Shaft Miner (Lavaland + Equipment)"
 	suit = /obj/item/clothing/suit/hooded/explorer
 	mask = /obj/item/clothing/mask/gas/explorer
 	glasses = /obj/item/clothing/glasses/meson
@@ -124,10 +129,14 @@ Shaft Miner
 		var/obj/item/clothing/suit/hooded/S = H.wear_suit
 		S.ToggleHood()
 
-/datum/outfit/job/miner/equipped/hardsuit
-	name = "Shaft Miner (Equipment + Hardsuit)"
+/datum/outfit/job/miner/equipped/asteroid
+	name = "Shaft Miner (Asteroid + Equipment)"
+	uniform = /obj/item/clothing/under/rank/miner
+	shoes = /obj/item/clothing/shoes/workboots
 	suit = /obj/item/clothing/suit/space/hardsuit/mining
 	mask = /obj/item/clothing/mask/breath
+
+
 
 /*
 Bartender
