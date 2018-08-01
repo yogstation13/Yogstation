@@ -60,3 +60,9 @@
 	GLOB.stationroom_landmarks -= src
 	qdel(src)
 	return TRUE
+
+/obj/effect/landmark/stationroom/bar
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Default")
+
+/obj/effect/landmark/stationroom/foreportmaint1
+	template_names = list("Maintenance Surgery")
