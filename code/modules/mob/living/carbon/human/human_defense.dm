@@ -277,6 +277,7 @@
 					affecting = get_bodypart(BODY_ZONE_CHEST)
 				var/armour = run_armor_check(affecting, "melee")
 				if(prob(armour))
+					to_chat(M, "<span class='notice'>[src]'s armour shields the blow!</span>")
 					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 				if(armour > 0)
