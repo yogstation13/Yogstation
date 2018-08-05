@@ -2666,6 +2666,7 @@
 #include "yogstation\code\game\objects\items\bandage.dm"
 #include "yogstation\code\game\objects\items\cards_ids.dm"
 #include "yogstation\code\game\objects\items\crayons.dm"
+#include "yogstation\code\game\objects\items\mop.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
 #include "yogstation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "yogstation\code\game\objects\items\devices\powersink.dm"
