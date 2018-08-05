@@ -26,6 +26,13 @@
 /obj/structure/closet/cardboard/agent/process()
 	alpha = max(0, alpha - 50)
 
+<<<<<<< HEAD
+=======
+/obj/structure/closet/cardboard/agent/proc/reveal()
+	alpha = 255
+	addtimer(CALLBACK(src, .proc/go_invisible), 10, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+>>>>>>> a27fea4858... Merge pull request #39554 from ShizCalev/box-agent-timer
 /obj/structure/closet/cardboard/agent/Bump(atom/movable/A)
 	. = ..()
 	if(isliving(A))
