@@ -1049,9 +1049,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
-"cY" = (
-/turf/open/space/basic,
-/area/template_noop)
 "cZ" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
@@ -1063,23 +1060,6 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
-"db" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30;
-	receive_ore_updates = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8
-	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/turf/open/floor/plasteel/bar,
-/area/template_noop)
 "dc" = (
 /obj/machinery/requests_console{
 	department = "Bar";
@@ -1477,8 +1457,8 @@ al
 aa
 "}
 (24,1,1) = {"
-db
-cY
+aa
+aa
 al
 al
 al
