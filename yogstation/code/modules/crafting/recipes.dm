@@ -15,6 +15,6 @@
 /datum/crafting_recipe/drone_shell
 	name = "Drone Shell"
 	result = /obj/item/drone_shell
-	reqs = list(/obj/item/stock_parts/cell = 1, /obj/item/assembly/flash/handheld = 1, /obj/item/crowbar = 1, /obj/item/wrench = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/screwdriver = 1, /obj/item/multitool = 1, /obj/item/weldingtool = 1, /obj/item/wirecutters = 1, /obj/item/storage/backpack = 1)
+	reqs = list(/obj/item/stock_parts/cell = 1, /obj/item/assembly/flash/handheld = 1, /obj/item/crowbar = 1, /obj/item/wrench = 1, /obj/item/restraints/handcuffs/cable = 1, /obj/item/screwdriver = 1, /obj/item/multitool = 1, /obj/item/weldingtool = 1, /obj/item/wirecutters = 1, /obj/item/storage/backpack = 1, /obj/item/stack/sheet/plasteel = 5)
 	time = 120
 	category = CAT_ROBOT
