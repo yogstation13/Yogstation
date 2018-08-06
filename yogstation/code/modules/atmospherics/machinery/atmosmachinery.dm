@@ -1,5 +1,0 @@
-/obj/machinery/atmospherics/proc/ruinload()
-	atmosinit()
-	var/list/nodes = pipeline_expansion()
-	for(var/obj/machinery/atmospherics/A in nodes)
-		A.atmosinit()

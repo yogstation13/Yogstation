@@ -2694,7 +2694,6 @@
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\antagonists\_common\antag_datum.dm"
 #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
-#include "yogstation\code\modules\atmospherics\machinery\atmosmachinery.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "yogstation\code\modules\cargo\cargo_packs.dm"
 #include "yogstation\code\modules\client\client_defines.dm"
