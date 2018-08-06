@@ -2734,7 +2734,6 @@
 #include "yogstation\code\modules\keybindings\bindings_robot.dm"
 #include "yogstation\code\modules\keybindings\keys.dm"
 #include "yogstation\code\modules\libvg\utf8.dm"
-#include "yogstation\code\modules\mapping\reader.dm"
 #include "yogstation\code\modules\mob\mob.dm"
 #include "yogstation\code\modules\mob\say.dm"
 #include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
