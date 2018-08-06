@@ -67,13 +67,13 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
-/datum/maploader/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, lower_crop_x as num,  lower_crop_y as num, upper_crop_x as num, upper_crop_y as num, placeOnTop as num, stationroom as num) //YOGS
+/datum/maploader/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, lower_crop_x as num,  lower_crop_y as num, upper_crop_x as num, upper_crop_y as num, placeOnTop as num)
 	//How I wish for RAII
 	Master.StartLoadingMap()
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
-	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, lower_crop_x, upper_crop_x, lower_crop_y, upper_crop_y, placeOnTop, stationroom = stationroom) //yogs
+	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, lower_crop_x, upper_crop_x, lower_crop_y, upper_crop_y, placeOnTop)
 	#ifdef TESTING
 	if(turfsSkipped)
 		testing("Skipped loading [turfsSkipped] default turfs")
@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 			bounds[MAP_MAXX] = CLAMP(max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx), x_lower, x_upper)
 		CHECK_TICK
 
-/datum/maploader/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, stationroom = FALSE) //yogs
+/datum/maploader/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE)
 	var/tfile = dmm_file//the map file we're creating
 	if(isfile(tfile))
 		tfile = file2text(tfile)
@@ -211,7 +211,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 								var/list/cache = modelCache[model_key]
 								if(!cache)
 									CRASH("Undefined model key in DMM: [model_key]")
-								build_coordinate(cache, gset.xcrd, gset.ycrd, gset.zcrd, no_afterchange, placeOnTop, stationroom = stationroom) //yogs
+								build_coordinate(cache, gset.xcrd, gset.ycrd, gset.zcrd, no_afterchange, placeOnTop)
 							#ifdef TESTING
 							else
 								++turfsSkipped
@@ -361,7 +361,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
-		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop, stationroom = stationroom) //yogs
+		instance_atom(members[index],members_attributes[index],crds,no_changeturf,placeOnTop)
 	//Restore initialization to the previous value
 	SSatoms.map_loader_stop()
 
@@ -370,7 +370,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/datum/maploader/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop, stationroom = FALSE) //yogs
+/datum/maploader/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, placeOnTop)
 	GLOB._preloader.setup(attributes, path)
 
 	if(crds)
@@ -382,7 +382,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 			else
 				. = create_atom(path, crds)//first preloader pass
 		else
-			. = create_atom(path, crds, stationroom = stationroom)//first preloader pass //yogs
+			. = create_atom(path, crds)//first preloader pass
 
 	if(GLOB.use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
 		GLOB._preloader.load(.)

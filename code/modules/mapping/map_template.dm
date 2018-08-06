@@ -68,7 +68,7 @@
 
 	return level
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, stationroom = FALSE) //yogs
+/datum/map_template/proc/load(turf/T, centered = FALSE)
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
@@ -78,7 +78,7 @@
 	if(T.y+height > world.maxy)
 		return
 
-	var/datum/parsed_map/parsed = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE, stationroom = stationroom) //yogs
+	var/datum/parsed_map/parsed = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE)
 	var/list/bounds = parsed?.bounds
 	if(!bounds)
 		return
