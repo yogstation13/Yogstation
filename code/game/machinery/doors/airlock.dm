@@ -94,6 +94,8 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/list/Bolt_log = list() //Who can it be bolting all my doors? Go away, don't come down here no more.
+	var/list/Shocking_log = list() //yogs - who electrified this door.
 
 	var/static/list/airlock_overlays = list()
 
@@ -1442,12 +1444,15 @@
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
+			Shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("shock-temp")
 			shock_temp(usr)
+			Shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("shock-perm")
 			shock_perm(usr)
+			Shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("idscan-on")
 			if(wires.is_cut(WIRE_IDSCAN))
@@ -1473,9 +1478,11 @@
 			. = TRUE
 		if("bolt-raise")
 			bolt_raise(usr)
+			Bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("bolt-drop")
 			bolt_drop(usr)
+			Bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("light-on")
 			if(wires.is_cut(WIRE_LIGHT))
