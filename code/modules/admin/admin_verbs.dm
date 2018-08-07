@@ -372,11 +372,14 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	set name = "Check Antagonists"
 	set category = "Admin"
 	if(holder)
-		holder.check_antagonists()
+	// yogs start
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
-		if(!isobserver(usr) && SSticker.HasRoundStarted())
+		if((!isobserver(usr) && SSticker.HasRoundStarted()) || !check_rights(R_VAREDIT))
 			message_admins("[key_name_admin(usr)] checked antagonists.")
+		holder.check_antagonists()
+
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Check Antagonists") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	// yogs end
 
 /client/proc/unban_panel()
 	set name = "Unban Panel"
