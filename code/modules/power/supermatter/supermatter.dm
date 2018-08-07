@@ -676,10 +676,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/atom/movable/pulled_object = P
 			if(ishuman(P))
 				var/mob/living/carbon/human/H = P
-				if(istype(H.shoes, /obj/item/clothing/shoes/magboots))
-					to_chat(H, "<span class='warning'>Your boots keep you upright against [src]'s pull!</span>")
-				else
-					H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
+				H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
 			if(pulled_object && !pulled_object.anchored && !ishuman(P))
 				step_towards(pulled_object,center)
 				step_towards(pulled_object,center)
