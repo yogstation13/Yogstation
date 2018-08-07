@@ -2,6 +2,7 @@
 /mob/living/simple_animal/hostile/retaliate/dolphin
 	name = "space dolphin"
 	desc = "A dolphin in space."
+	icon = 'yogstation/icons/mob/animal.dmi' // yogs -- separation of icons and state
 	icon_state = "dolphin"
 	icon_living = "dolphin"
 	icon_dead = "dolphin_dead"
