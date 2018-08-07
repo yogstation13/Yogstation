@@ -65,7 +65,7 @@
 	set desc = "View list of law changes for silicons."
 	var/data = ""
 	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
-		data += "<h1>[S.name]:</h1>\n"
+		data += "<h1>[key_name(S)]:</h1>\n"
 		data += "<ol>\n"
 		for(var/lawset in S.law_history)
 			data += " <li>[lawset]</li><br>\n"
