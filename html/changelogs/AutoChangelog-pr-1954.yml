@@ -1,4 +1,0 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - tweak: "all departments can now print the basic stock parts, but advanced stock parts belong to engi/sci only"
