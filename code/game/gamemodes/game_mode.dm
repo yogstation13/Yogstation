@@ -184,6 +184,7 @@
 			replacementmode.make_antag_chance(H)
 	round_converted = 2
 	message_admins("-- IMPORTANT: The roundtype has been converted to [replacementmode.name], antagonists may have been created! --")
+	replacementmode.gamemode_ready = TRUE //yogs
 
 
 ///Called by the gameSSticker
