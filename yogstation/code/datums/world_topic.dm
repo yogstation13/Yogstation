@@ -38,3 +38,13 @@
 			message += "[admin]"
 
 	return jointext(message, "")
+
+/datum/world_topic/pr_announce/Run(list/input)
+	var/msgTitle = input["announce"]
+	var/author = input["author"]
+	var/id = input["id"]
+	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+
+	var/final_composed = "<span class='announce'><a href=[link]>PR: [msgTitle] by [author]</a></span>"
+	for(var/client/C in GLOB.clients)
+		C.AnnouncePR(final_composed)
