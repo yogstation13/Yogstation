@@ -1,0 +1,2426 @@
+commit d74e40c955a6b82d0edf9739a79ca53def095514
+Author: daklaj <0937@openmailbox.org>
+Date:   Wed Aug 8 15:47:56 2018 +0200
+
+    k
+
+diff --git a/code/__DEFINES/role_preferences.dm b/code/__DEFINES/role_preferences.dm
+index 98d77d77ed..e498a883f0 100644
+--- a/code/__DEFINES/role_preferences.dm
++++ b/code/__DEFINES/role_preferences.dm
+@@ -26,6 +26,7 @@
+ #define ROLE_SERVANT_OF_RATVAR	"servant of Ratvar"
+ #define ROLE_BROTHER			"blood brother"
+ #define ROLE_BRAINWASHED		"brainwashed victim"
++#define ROLE_GANG				"gangster"	// yogs
+ 
+ //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
+ //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
+@@ -48,6 +49,7 @@ GLOBAL_LIST_INIT(special_roles, list(
+ 	ROLE_ABDUCTOR,
+ 	ROLE_DEVIL = /datum/game_mode/devil,
+ 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult
++	ROLE_GANG = /datum/game_mode/gang		// yogs
+ ))
+ 
+ //Job defines for what happens when you fail to qualify for any job during job selection
+diff --git a/code/__DEFINES/~yogs_defines/antagonists.dm b/code/__DEFINES/~yogs_defines/antagonists.dm
+new file mode 100644
+index 0000000000..1389a5c8eb
+--- /dev/null
++++ b/code/__DEFINES/~yogs_defines/antagonists.dm
+@@ -0,0 +1,3 @@
++#define NOT_DOMINATING			-1
++#define MAX_LEADERS_GANG		3
++#define INITIAL_DOM_ATTEMPTS	3 
+diff --git a/code/__DEFINES/~yogs_defines/misc.dm b/code/__DEFINES/~yogs_defines/misc.dm
+new file mode 100644
+index 0000000000..6be2424169
+--- /dev/null
++++ b/code/__DEFINES/~yogs_defines/misc.dm
+@@ -0,0 +1,3 @@
++//Endgame Results
++#define GANG_LOSS 6
++#define GANG_TAKEOVER 7
+diff --git a/code/__DEFINES/~yogs_defines/preferences.dm b/code/__DEFINES/~yogs_defines/preferences.dm
+index 124f88c440..0c8fcd9c56 100644
+--- a/code/__DEFINES/~yogs_defines/preferences.dm
++++ b/code/__DEFINES/~yogs_defines/preferences.dm
+@@ -1 +1 @@
+-#define DONOR_CHARACTER_SLOTS 6
+\ No newline at end of file
++#define DONOR_CHARACTER_SLOTS 6
+diff --git a/code/game/gamemodes/gangs/dominator.dm b/code/game/gamemodes/gangs/dominator.dm
+new file mode 100644
+index 0000000000..fc8e1899a9
+--- /dev/null
++++ b/code/game/gamemodes/gangs/dominator.dm
+@@ -0,0 +1,241 @@
++#define DOM_BLOCKED_SPAM_CAP 6
++#define DOM_REQUIRED_TURFS 30
++#define DOM_HULK_HITS_REQUIRED 10
++
++/obj/machinery/dominator
++	name = "dominator"
++	desc = "A visibly sinister device. Looks like you can break it if you hit it enough."
++	icon = 'icons/obj/machines/dominator.dmi'
++	icon_state = "dominator"
++	density = TRUE
++	anchored = TRUE
++	layer = HIGH_OBJ_LAYER
++	max_integrity = 300
++	integrity_failure = 100
++	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 10, "acid" = 70)
++	var/datum/team/gang/gang
++	var/operating = FALSE	//false=standby or broken, true=takeover
++	var/warned = FALSE	//if this device has set off the warning at <3 minutes yet
++	var/spam_prevention = DOM_BLOCKED_SPAM_CAP //first message is immediate
++	var/datum/effect_system/spark_spread/spark_system
++	var/obj/effect/countdown/dominator/countdown
++
++/obj/machinery/dominator/Initialize()
++	. = ..()
++	set_light(2)
++	GLOB.poi_list |= src
++	spark_system = new
++	spark_system.set_up(5, TRUE, src)
++	countdown = new(src)
++	update_icon()
++
++/obj/machinery/dominator/Destroy()
++	if(!(stat & BROKEN))
++		set_broken()
++	GLOB.poi_list.Remove(src)
++	gang = null
++	QDEL_NULL(spark_system)
++	QDEL_NULL(countdown)
++	STOP_PROCESSING(SSmachines, src)
++	return ..()
++
++/obj/machinery/dominator/emp_act(severity)
++	take_damage(100, BURN, "energy", 0)
++	..()
++
++/obj/machinery/dominator/hulk_damage()
++	return (max_integrity - integrity_failure) / DOM_HULK_HITS_REQUIRED
++
++/obj/machinery/dominator/tesla_act()
++	qdel(src)
++
++/obj/machinery/dominator/update_icon()
++	cut_overlays()
++	if(!(stat & BROKEN))
++		icon_state = "dominator-active"
++		if(operating)
++			var/mutable_appearance/dominator_overlay = mutable_appearance('icons/obj/machines/dominator.dmi', "dominator-overlay")
++			if(gang)
++				dominator_overlay.color = gang.color
++			add_overlay(dominator_overlay)
++		else
++			icon_state = "dominator"
++		if(obj_integrity/max_integrity < 0.66)
++			add_overlay("damage")
++	else
++		icon_state = "dominator-broken"
++
++/obj/machinery/dominator/examine(mob/user)
++	..()
++	if(stat & BROKEN)
++		return
++
++	if(gang && gang.domination_time != NOT_DOMINATING)
++		if(gang.domination_time > world.time)
++			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
++		else
++			to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
++	else
++		to_chat(user, "<span class='notice'>System on standby.</span>")
++	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
++
++/obj/machinery/dominator/process()
++	..()
++	if(gang && gang.domination_time != NOT_DOMINATING)
++		var/time_remaining = gang.domination_time_remaining()
++		if(time_remaining > 0)
++			if(excessive_walls_check())
++				gang.domination_time += 20
++				playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
++				if(spam_prevention < DOM_BLOCKED_SPAM_CAP)
++					spam_prevention++
++				else
++					gang.message_gangtools("Warning: There are too many walls around your gang's dominator, its signal is being blocked!")
++					say("Error: Takeover signal is currently blocked! There are too many walls within 3 standard units of this device.")
++					spam_prevention = 0
++				return
++			. = TRUE
++			playsound(loc, 'sound/items/timer.ogg', 10, 0)
++			if(!warned && (time_remaining < 180))
++				warned = TRUE
++				var/area/domloc = get_area(loc)
++				gang.message_gangtools("Less than 3 minutes remains in hostile takeover. Defend your dominator at [domloc.map_name]!")
++				for(var/G in GLOB.gangs)
++					var/datum/team/gang/tempgang = G
++					if(tempgang != gang)
++						tempgang.message_gangtools("WARNING: [gang.name] Gang takeover imminent. Their dominator at [domloc.map_name] must be destroyed!",1,1)
++		else
++			Cinematic(CINEMATIC_MALF,world)
++			gang.winner = TRUE
++			SSticker.force_ending = TRUE
++
++	if(!.)
++		STOP_PROCESSING(SSmachines, src)
++
++/obj/machinery/dominator/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
++	switch(damage_type)
++		if(BRUTE)
++			if(damage_amount)
++				playsound(src, 'sound/effects/bang.ogg', 50, 1)
++			else
++				playsound(loc, 'sound/weapons/tap.ogg', 50, 1)
++		if(BURN)
++			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
++
++/obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
++	. = ..()
++	if(.)
++		if(obj_integrity/max_integrity > 0.66)
++			if(prob(damage_amount*2))
++				spark_system.start()
++		else if(!(stat & BROKEN))
++			spark_system.start()
++			update_icon()
++
++
++/obj/machinery/dominator/obj_break(damage_flag)
++	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
++		set_broken()
++
++/obj/machinery/dominator/deconstruct(disassembled = TRUE)
++	if(!(flags_1 & NODECONSTRUCT_1))
++		if(!(stat & BROKEN))
++			set_broken()
++		new /obj/item/stack/sheet/plasteel(src.loc)
++	qdel(src)
++
++/obj/machinery/dominator/attacked_by(obj/item/I, mob/living/user)
++	add_fingerprint(user)
++	..()
++
++/obj/machinery/dominator/attack_hand(mob/user)
++	if(operating || (stat & BROKEN))
++		examine(user)
++		return
++
++	var/datum/team/gang/tempgang
++
++	var/datum/antagonist/gang/GA = user.mind.has_antag_datum(/datum/antagonist/gang)
++	if(GA)
++		tempgang = GA.gang
++	if(!tempgang)
++		examine(user)
++		return
++
++	if(tempgang.domination_time != NOT_DOMINATING)
++		to_chat(user, "<span class='warning'>Error: Hostile Takeover is already in progress.</span>")
++		return
++
++	if(!tempgang.dom_attempts)
++		to_chat(user, "<span class='warning'>Error: Unable to breach station network. Firewall has logged our signature and is blocking all further attempts.</span>")
++		return
++
++	var/time = round(tempgang.determine_domination_time()/60,0.1)
++	if(alert(user,"A takeover will require [time] minutes.\nYour gang will be unable to gain influence while it is active.\nThe entire station will likely be alerted to it once it starts.\nYou have [tempgang.dom_attempts] attempt(s) remaining. Are you ready?","Confirm","Ready","Later") == "Ready")
++		if((tempgang.domination_time != NOT_DOMINATING) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
++			return 0
++
++		var/area/A = get_area(loc)
++		var/locname = A.map_name
++
++		gang = tempgang
++		gang.dom_attempts --
++		priority_announce("Network breach detected in [locname]. The [gang.name] Gang is attempting to seize control of the station!","Network Alert")
++		gang.domination()
++		SSshuttle.registerHostileEnvironment(src)
++		name = "[gang.name] Gang [name]"
++		operating = TRUE
++		update_icon()
++
++		countdown.color = gang.color
++		countdown.start()
++
++		set_light(3)
++		START_PROCESSING(SSmachines, src)
++
++		gang.message_gangtools("Hostile takeover in progress: Estimated [time] minutes until victory.[gang.dom_attempts ? "" : " This is your final attempt."]")
++		for(var/G in GLOB.gangs)
++			var/datum/team/gang/vagos = G
++			if(vagos != gang)
++				vagos.message_gangtools("Enemy takeover attempt detected in [locname]: Estimated [time] minutes until our defeat.",1,1)
++
++/obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
++	var/open = FALSE
++	for(var/turf/T in view(3, src))
++		if(!isclosedturf(T))
++			open++
++	if(open < DOM_REQUIRED_TURFS)
++		return TRUE
++	else
++		return FALSE
++
++/obj/machinery/dominator/proc/set_broken()
++	if(gang)
++		gang.domination_time = NOT_DOMINATING
++
++		var/takeover_in_progress = FALSE
++		for(var/G in GLOB.gangs)
++			var/datum/team/gang/ballas = G
++			if(ballas.domination_time != NOT_DOMINATING)
++				takeover_in_progress = TRUE
++				break
++		if(!takeover_in_progress)
++			var/was_stranded = SSshuttle.emergency.mode == SHUTTLE_STRANDED
++			SSshuttle.clearHostileEnvironment(src)
++			if(!was_stranded)
++				priority_announce("All hostile activity within station systems has ceased.","Network Alert")
++
++			if(get_security_level() == "delta")
++				set_security_level("red")
++
++		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
++
++	set_light(0)
++	operating = FALSE
++	stat |= BROKEN
++	update_icon()
++	STOP_PROCESSING(SSmachines, src)
++
++#undef DOM_BLOCKED_SPAM_CAP
++#undef DOM_REQUIRED_TURFS
++#undef DOM_HULK_HITS_REQUIRED
+diff --git a/code/game/gamemodes/gangs/gang_items.dm b/code/game/gamemodes/gangs/gang_items.dm
+new file mode 100644
+index 0000000000..e9c9813017
+--- /dev/null
++++ b/code/game/gamemodes/gangs/gang_items.dm
+@@ -0,0 +1,375 @@
++/datum/gang_item
++	var/name
++	var/item_path
++	var/cost
++	var/spawn_msg
++	var/category
++	var/list/gang_whitelist = list()
++	var/list/gang_blacklist = list()
++	var/id
++
++/datum/gang_item/proc/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
++	if(check_canbuy && !can_buy(user, gang, gangtool))
++		return FALSE
++	var/real_cost = get_cost(user, gang, gangtool)
++	if(!spawn_item(user, gang, gangtool))
++		gang.adjust_influence(-real_cost)
++		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
++		return TRUE
++
++/datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
++	if(item_path)
++		var/obj/item/O = new item_path(user.loc)
++		user.put_in_hands(O)
++	else
++		return TRUE
++	if(spawn_msg)
++		to_chat(user, spawn_msg)
++
++/datum/gang_item/proc/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
++
++/datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return TRUE
++
++/datum/gang_item/proc/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return cost
++
++/datum/gang_item/proc/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return "([get_cost(user, gang, gangtool)] Influence)"
++
++/datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return name
++
++/datum/gang_item/proc/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	return
++
++///////////////////
++//CLOTHING
++///////////////////
++
++/datum/gang_item/clothing
++	category = "Purchase Influence-Enhancing Clothes:"
++
++/datum/gang_item/clothing/under
++	name = "Gang Uniform"
++	id = "under"
++	cost = 1
++
++/datum/gang_item/clothing/under/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gang.inner_outfits.len)
++		var/outfit = pick(gang.inner_outfits)
++		if(outfit)
++			var/obj/item/O = new outfit(user.loc)
++			user.put_in_hands(O)
++			to_chat(user, "<span class='notice'> This is your gang's official uniform, wearing it will increase your influence")
++			return
++	return TRUE
++
++/datum/gang_item/clothing/suit
++	name = "Gang Armored Outerwear"
++	id = "suit"
++	cost = 1
++
++/datum/gang_item/clothing/suit/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gang.outer_outfits.len)
++		var/outfit = pick(gang.outer_outfits)
++		if(outfit)
++			var/obj/item/O = new outfit(user.loc)
++			O.armor = O.armor.setRating(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
++			O.desc += " Tailored for the [gang.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
++			user.put_in_hands(O)
++			to_chat(user, "<span class='notice'> This is your gang's official outerwear, wearing it will increase your influence")
++			return
++	return TRUE
++
++
++/datum/gang_item/clothing/hat
++	name = "Pimp Hat"
++	id = "hat"
++	cost = 16
++	item_path = /obj/item/clothing/head/collectable/petehat/gang
++
++
++/obj/item/clothing/head/collectable/petehat/gang
++	name = "pimpin' hat"
++	desc = "The undisputed king of style."
++
++/datum/gang_item/clothing/mask
++	name = "Golden Death Mask"
++	id = "mask"
++	cost = 18
++	item_path = /obj/item/clothing/mask/gskull
++
++/obj/item/clothing/mask/gskull
++	name = "golden death mask"
++	icon_state = "gskull"
++	desc = "Strike terror, and envy, into the hearts of your enemies."
++
++/datum/gang_item/clothing/shoes
++	name = "Bling Boots"
++	id = "boots"
++	cost = 22
++	item_path = /obj/item/clothing/shoes/gang
++
++/obj/item/clothing/shoes/gang
++	name = "blinged-out boots"
++	desc = "Stand aside peasants."
++	icon_state = "bling"
++
++/datum/gang_item/clothing/neck
++	name = "Gold Necklace"
++	id = "necklace"
++	cost = 9
++	item_path = /obj/item/clothing/neck/necklace/dope
++
++/datum/gang_item/clothing/hands
++	name = "Decorative Brass Knuckles"
++	id = "hand"
++	cost = 11
++	item_path = /obj/item/clothing/gloves/gang
++
++/obj/item/clothing/gloves/gang
++	name = "braggadocio's brass knuckles"
++	desc = "Purely decorative, don't find out the hard way."
++	icon_state = "knuckles"
++	w_class = 3
++
++/datum/gang_item/clothing/belt
++	name = "Badass Belt"
++	id = "belt"
++	cost = 13
++	item_path = /obj/item/storage/belt/military/gang
++
++/obj/item/storage/belt/military/gang
++	name = "badass belt"
++	icon_state = "gangbelt"
++	item_state = "gang"
++	desc = "The belt buckle simply reads 'BAMF'."
++
++///////////////////
++//WEAPONS
++///////////////////
++
++/datum/gang_item/weapon
++	category = "Purchase Weapons:"
++
++/datum/gang_item/weapon/ammo
++
++/datum/gang_item/weapon/shuriken
++	name = "Shuriken"
++	id = "shuriken"
++	cost = 3
++	item_path = /obj/item/throwing_star
++
++/datum/gang_item/weapon/switchblade
++	name = "Switchblade"
++	id = "switchblade"
++	cost = 5
++	item_path = /obj/item/switchblade
++
++/datum/gang_item/weapon/surplus
++	name = "Surplus Rifle"
++	id = "surplus"
++	cost = 8
++	item_path = /obj/item/gun/ballistic/automatic/surplus
++
++/datum/gang_item/weapon/ammo/surplus_ammo
++	name = "Surplus Rifle Ammo"
++	id = "surplus_ammo"
++	cost = 5
++	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
++
++/datum/gang_item/weapon/improvised
++	name = "Sawn-Off Improvised Shotgun"
++	id = "sawn"
++	cost = 6
++	item_path = /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
++
++/datum/gang_item/weapon/ammo/improvised_ammo
++	name = "Box of Buckshot"
++	id = "buckshot"
++	cost = 5
++	item_path = /obj/item/storage/box/lethalshot
++
++/datum/gang_item/weapon/pistol
++	name = "10mm Pistol"
++	id = "pistol"
++	cost = 30
++	item_path = /obj/item/gun/ballistic/automatic/pistol
++
++/datum/gang_item/weapon/ammo/pistol_ammo
++	name = "10mm Ammo"
++	id = "pistol_ammo"
++	cost = 10
++	item_path = /obj/item/ammo_box/magazine/m10mm
++
++/datum/gang_item/weapon/uzi
++	name = "Uzi SMG"
++	id = "uzi"
++	cost = 60
++	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
++
++/datum/gang_item/weapon/ammo/uzi_ammo
++	name = "Uzi Ammo"
++	id = "uzi_ammo"
++	cost = 40
++	item_path = /obj/item/ammo_box/magazine/uzim9mm
++
++///////////////////
++//EQUIPMENT
++///////////////////
++
++/datum/gang_item/equipment
++	category = "Purchase Equipment:"
++
++
++/datum/gang_item/equipment/spraycan
++	name = "Territory Spraycan"
++	id = "spraycan"
++	cost = 5
++	item_path = /obj/item/toy/crayon/spraycan/gang
++
++/datum/gang_item/equipment/spraycan/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	var/obj/item/O = new item_path(user.loc, gang)
++	user.put_in_hands(O)
++
++/datum/gang_item/equipment/sharpener
++	name = "Sharpener"
++	id = "whetstone"
++	cost = 3
++	item_path = /obj/item/sharpener
++
++
++/datum/gang_item/equipment/emp
++	name = "EMP Grenade"
++	id = "EMP"
++	cost = 5
++	item_path = /obj/item/grenade/empgrenade
++
++/datum/gang_item/equipment/c4
++	name = "C4 Explosive"
++	id = "c4"
++	cost = 7
++	item_path = /obj/item/grenade/plastic/c4
++
++/datum/gang_item/equipment/frag
++	name = "Fragmentation Grenade"
++	id = "frag nade"
++	cost = 18
++	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
++
++/datum/gang_item/equipment/stimpack
++	name = "Black Market Stimulants"
++	id = "stimpack"
++	cost = 12
++	item_path = /obj/item/reagent_containers/syringe/nanoboost
++
++/datum/gang_item/equipment/implant_breaker
++	name = "Implant Breaker"
++	id = "implant_breaker"
++	cost = 10
++	item_path = /obj/item/implanter/gang
++	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
++
++/datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	var/obj/item/O = new item_path(user.loc, gang)
++	user.put_in_hands(O)
++
++/datum/gang_item/equipment/wetwork_boots
++	name = "Wetwork boots"
++	id = "wetwork"
++	cost = 20
++	item_path = /obj/item/clothing/shoes/combat/gang
++
++/obj/item/clothing/shoes/combat/gang
++	name = "Wetwork boots"
++	desc = "A gang's best hitmen are prepared for anything."
++	permeability_coefficient = 0.01
++	clothing_flags = NOSLIP
++
++/datum/gang_item/equipment/pen
++	name = "Recruitment Pen"
++	id = "pen"
++	cost = 50
++	item_path = /obj/item/pen/gang
++	spawn_msg = "<span class='notice'>More <b>recruitment pens</b> will allow you to recruit gangsters faster. Only gang leaders can recruit with pens.</span>"
++
++/datum/gang_item/equipment/pen/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(..())
++		gangtool.free_pen = FALSE
++		return TRUE
++	return FALSE
++
++/datum/gang_item/equipment/pen/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gangtool && gangtool.free_pen)
++		return 0
++	return ..()
++
++/datum/gang_item/equipment/pen/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gangtool && gangtool.free_pen)
++		return "(GET ONE FREE)"
++	return ..()
++
++
++/datum/gang_item/equipment/gangtool
++	id = "gangtool"
++	cost = 10
++
++/datum/gang_item/equipment/gangtool/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	var/item_type
++	if(gang)
++		item_type = /obj/item/device/gangtool/spare/lt
++		if(gang.leaders.len < MAX_LEADERS_GANG)
++			to_chat(user, "<span class='notice'><b>Gangtools</b> allow you to promote a gangster to be your Lieutenant, enabling them to recruit and purchase items like you. Simply have them register the gangtool. You may promote up to [MAX_LEADERS_GANG-gang.leaders.len] more Lieutenants</span>")
++	else
++		item_type = /obj/item/device/gangtool/spare
++	var/obj/item/device/gangtool/spare/tool = new item_type(user.loc)
++	user.put_in_hands(tool)
++
++/datum/gang_item/equipment/gangtool/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gang && (gang.leaders.len < gang.max_leaders))
++		return "Promote a Gangster"
++	return "Spare Gangtool"
++
++/datum/gang_item/equipment/dominator
++	name = "Station Dominator"
++	id = "dominator"
++	cost = 30
++	item_path = /obj/machinery/dominator
++	spawn_msg = "<span class='notice'>The <b>dominator</b> will secure your gang's dominance over the station. Turn it on when you are ready to defend it.</span>"
++
++/datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(!gang || !gang.dom_attempts)
++		return FALSE
++	return ..()
++
++/datum/gang_item/equipment/dominator/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(!gang || !gang.dom_attempts)
++		return ..()
++	return "<b>[..()]</b>"
++
++/datum/gang_item/equipment/dominator/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(!gang || !gang.dom_attempts)
++		return "(Out of stock)"
++	return ..()
++
++/datum/gang_item/equipment/dominator/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	if(gang)
++		return "This device requires a 5x5 area clear of walls to work. (Estimated Takeover Time: [round(gang.determine_domination_time()/60,0.1)] minutes)"
++
++/datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	var/area/userarea = get_area(user)
++	if(!(userarea.type in gang.territories|gang.new_territories))
++		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
++		return FALSE
++	for(var/obj/obj in get_turf(user))
++		if(obj.density)
++			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
++			return FALSE
++
++	return ..()
++
++/datum/gang_item/equipment/dominator/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
++	new item_path(user.loc)
++	to_chat(user, spawn_msg)
+diff --git a/code/game/gamemodes/gangs/gang_pen.dm b/code/game/gamemodes/gangs/gang_pen.dm
+new file mode 100644
+index 0000000000..3474ced0c2
+--- /dev/null
++++ b/code/game/gamemodes/gangs/gang_pen.dm
+@@ -0,0 +1,58 @@
++/*
++ * Gang Boss Pens
++ */
++/obj/item/pen/gang
++	var/cooldown
++	var/last_used
++
++/obj/item/pen/gang/Initialize()
++	..()
++	last_used = world.time
++
++/obj/item/pen/gang/attack(mob/living/M, mob/user, stealth = TRUE)
++	if(!istype(M))
++		return
++	if(!ishuman(M) || !ishuman(user) || M.stat == DEAD)
++		return ..()
++	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
++	if(!L)
++		return ..()
++	if(!..())
++		return
++	if(cooldown)
++		to_chat(user, "<span class='warning'>[src] needs more time to recharge before it can be used.</span>")
++		return
++	if(!M.client || !M.mind)
++		to_chat(user, "<span class='warning'>A braindead gangster is an useless gangster!</span>")
++		return
++	var/datum/team/gang/gang = L.gang
++	add_gangster(user, gang, M.mind)
++	cooldown = TRUE
++	icon_state = "pen_blink"
++	var/cooldown_time = 600+(600*gang.leaders.len)
++	addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
++
++/obj/item/pen/gang/proc/cooldown()
++	cooldown = FALSE
++	icon_state = "pen"
++	var/mob/M = loc
++	if(istype(M))
++		to_chat(M, "<span class='notice'>[icon2html(src, M)] [src][(loc == M)?(""):(" in your [loc]")] vibrates softly. It is ready to be used again.</span>")
++
++/obj/item/pen/gang/proc/add_gangster(mob/user, datum/team/gang/gang, datum/mind/gangster_mind, check = TRUE) // Basically a wrapper to add_antag_datum.
++	var/datum/antagonist/dudegang = gangster_mind.has_antag_datum(/datum/antagonist/gang)
++	if(dudegang)
++		if(dudegang == gang)
++			to_chat(user, "<span class='danger'>This mind is already controlled by your gang!</span>")
++			return
++		to_chat(user, "<span class='danger'>This mind is already controlled by someone else!</span>")
++		return
++	if(check && gangster_mind.current.isloyal()) //Check to see if the potential gangster is implanted
++		to_chat(user, "<span class='danger'>This mind is too strong to control!</span>")
++		return
++	var/mob/living/carbon/human/H = gangster_mind.current // we are sure the dude's human cause it's checked in attack()
++	H.silent = max(H.silent, 5)
++	H.Knockdown(100)
++	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
++		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
++	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)
+diff --git a/code/game/gamemodes/gangs/gangs.dm b/code/game/gamemodes/gangs/gangs.dm
+new file mode 100644
+index 0000000000..68c682e13c
+--- /dev/null
++++ b/code/game/gamemodes/gangs/gangs.dm
+@@ -0,0 +1,59 @@
++//gang.dm
++//Gang War Game Mode
++GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
++GLOBAL_LIST_EMPTY(gangs)
++/datum/game_mode/gang
++	name = "gang war"
++	config_tag = "gang"
++	antag_flag = ROLE_GANG
++	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security")
++	required_players = 15
++	required_enemies = 1
++	recommended_enemies = 2
++	enemy_minimum_age = 14
++
++	announce_span = "danger"
++	announce_text = "A violent turf war has erupted on the station!\n\
++	<span class='danger'>Gangsters</span>: Take over the station with a dominator.\n\
++	<span class='notice'>Crew</span>: Prevent the gangs from expanding and initiating takeover."
++
++	var/list/datum/mind/gangboss_candidates = list()
++
++/datum/game_mode/gang/pre_setup()
++	if(CONFIG_GET(flag/protect_roles_from_antagonist))
++		restricted_jobs += protected_jobs
++
++	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
++		restricted_jobs += "Assistant"
++
++	//Spawn more bosses depending on server population
++	var/gangs_to_create = 2
++	if(prob(num_players()) && num_players() > 1.5*required_players)
++		gangs_to_create++
++	if(prob(num_players()) && num_players() > 2*required_players)
++		gangs_to_create++
++	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
++
++	for(var/i in 1 to gangs_to_create)
++		if(!antag_candidates.len)
++			break
++
++		//Now assign a boss for the gang
++		var/datum/mind/boss = pick_n_take(antag_candidates)
++		antag_candidates -= boss
++		gangboss_candidates += boss
++		boss.restricted_roles = restricted_jobs
++
++	if(gangboss_candidates.len < 1) //Need at least one gangs
++		return
++
++	return TRUE
++
++/datum/game_mode/gang/post_setup()
++	set waitfor = FALSE
++	..()
++	for(var/i in gangboss_candidates)
++		var/datum/mind/M = i
++		var/datum/antagonist/gang/boss/B = new()
++		M.add_antag_datum(B)
++		B.equip_gang()
+diff --git a/code/game/gamemodes/gangs/gangtool.dm b/code/game/gamemodes/gangs/gangtool.dm
+new file mode 100644
+index 0000000000..0e858b310e
+--- /dev/null
++++ b/code/game/gamemodes/gangs/gangtool.dm
+@@ -0,0 +1,257 @@
++//gangtool device
++/obj/item/device/gangtool
++	name = "suspicious device"
++	desc = "A strange device of sorts. Hard to really make out what it actually does if you don't know how to operate it."
++	icon = 'yogstation/icons/obj/device.dmi'
++	icon_state = "gangtool"
++	item_state = "radio"
++	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
++	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
++	throwforce = 0
++	w_class = WEIGHT_CLASS_TINY
++	throw_speed = 3
++	throw_range = 7
++	flags_1 = CONDUCT_1
++	var/datum/team/gang/gang //Which gang uses this?
++	var/recalling = 0
++	var/outfits = 2
++	var/free_pen = 0
++	var/promotable = FALSE
++	var/static/list/buyable_items = list()
++	var/list/tags = list()
++
++/obj/item/device/gangtool/Initialize()
++	..()
++	update_icon()
++	for(var/i in subtypesof(/datum/gang_item))
++		var/datum/gang_item/G = i
++		var/id = initial(G.id)
++		var/cat = initial(G.category)
++		if(id)
++			if(!islist(buyable_items[cat]))
++				buyable_items[cat] = list()
++			buyable_items[cat][id] = new G
++
++/obj/item/device/gangtool/Destroy()
++	if(gang)
++		gang.gangtools -= src
++	return ..()
++
++/obj/item/device/gangtool/attack_self(mob/user)
++	..()
++	if (!can_use(user))
++		return
++	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
++	var/dat
++	if(!gang)
++		dat += "This device is not registered.<br><br>"
++		if(L)
++			if(promotable && L.gang.leaders.len < L.gang.max_leaders)
++				dat += "Give this device to another member of your organization to use to promote them to Lieutenant.<br><br>"
++				dat += "If this is meant as a spare device for yourself:<br>"
++			dat += "<a href='?src=[REF(src)];register=1'>Register Device as Spare</a><br>"
++		else if(promotable)
++			var/datum/antagonist/gang/sweet = user.mind.has_antag_datum(/datum/antagonist/gang)
++			if(sweet.gang.leaders.len < sweet.gang.max_leaders)
++				dat += "You have been selected for a promotion!<br>"
++				dat += "<a href='?src=[REF(src)];register=1'>Accept Promotion</a><br>"
++			else
++				dat += "No promotions available: All positions filled.<br>"
++		else
++			dat += "This device is not authorized to promote.<br>"
++	else
++		if(gang.domination_time != NOT_DOMINATING)
++			dat += "<center><font color='red'>Takeover In Progress:<br><B>[gang.domination_time] seconds remain</B></font></center>"
++
++		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
++		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B><br>"
++		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
++		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
++		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
++		dat += "<hr>"
++		for(var/cat in buyable_items)
++			dat += "<b>[cat]</b><br>"
++			for(var/id in buyable_items[cat])
++				var/datum/gang_item/G = buyable_items[cat][id]
++				if(!G.can_see(user, gang, src))
++					continue
++
++				var/cost = G.get_cost_display(user, gang, src)
++				if(cost)
++					dat += cost + " "
++
++				var/toAdd = G.get_name_display(user, gang, src)
++				if(G.can_buy(user, gang, src))
++					toAdd = "<a href='?src=[REF(src)];purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
++				dat += toAdd
++				var/extra = G.get_extra_info(user, gang, src)
++				if(extra)
++					dat += "<br><i>[extra]</i>"
++				dat += "<br>"
++			dat += "<br>"
++
++	dat += "<a href='?src=[REF(src)];choice=refresh'>Refresh</a><br>"
++
++	var/datum/browser/popup = new(user, "gangtool", "Welcome to GangTool v4.0", 340, 625)
++	popup.set_content(dat)
++	popup.open()
++
++/obj/item/device/gangtool/Topic(href, href_list)
++	if(!can_use(usr))
++		return
++
++	add_fingerprint(usr)
++
++	if(href_list["register"])
++		register_device(usr)
++
++	else if(!gang) //Gangtool must be registered before you can use the functions below
++		return
++
++	if(href_list["purchase"])
++		if(islist(buyable_items[href_list["cat"]]))
++			var/list/L = buyable_items[href_list["cat"]]
++			var/datum/gang_item/G = L[href_list["id"]]
++			if(G && G.can_buy(usr, gang, src))
++				G.purchase(usr, gang, src, FALSE)
++
++	if(href_list["commute"])
++		ping_gang(usr)
++	if(href_list["recall"])
++		recall(usr)
++	attack_self(usr)
++
++/obj/item/device/gangtool/update_icon()
++	overlays.Cut()
++	var/image/I = new(icon, "[icon_state]-overlay")
++	if(gang)
++		I.color = gang.color
++	overlays.Add(I)
++
++/obj/item/device/gangtool/proc/ping_gang(mob/user)
++	if(!can_use(user))
++		return
++	var/message = stripped_input(user,"Discreetly send a gang-wide message.","Send Message") as null|text
++	if(!message || !can_use(user))
++		return
++	if(!is_station_level(user.z))
++		to_chat(user, "<span class='info'>[icon2html(src, user)]Error: Station out of range.</span>")
++		return
++	if(gang.members.len)
++		var/ping = "<span class='danger'><B><i>[gang.name] [(user.mind in gang.leaders) ? "Leader" : "Gangster"]</i>: [message]</B></span>"
++		for(var/datum/mind/ganger in gang.members)
++			if(ganger.current && is_station_level(ganger.current.z) && (ganger.current.stat == CONSCIOUS))
++				to_chat(ganger.current, ping)
++		for(var/mob/M in GLOB.dead_mob_list)
++			var/link = FOLLOW_LINK(M, user)
++			to_chat(M, "[link] [ping]")
++		log_talk(user,"GANG: [key_name(user)] Messaged [gang.name] Gang: [message].",LOGSAY)
++
++/obj/item/device/gangtool/proc/register_device(mob/user)
++	if(gang)	//It's already been registered!
++		return
++	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++	if(G)
++		gang = G.gang
++		gang.gangtools += src
++		update_icon()
++		if(!(user.mind in gang.leaders) && promotable)
++			G.promote()
++			free_pen = TRUE
++			gang.message_gangtools("[user] has been promoted to Lieutenant.")
++			to_chat(user, "The <b>Gangtool</b> you registered will allow you to purchase weapons and equipment, and send messages to your gang.")
++			to_chat(user, "Unlike regular gangsters, you may use <b>recruitment pens</b> to add recruits to your gang. Use them on unsuspecting crew members to recruit them. Don't forget to get your one free pen from the gangtool.")
++	else
++		to_chat(user, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
++
++/obj/item/device/gangtool/proc/recall(mob/user)
++	if(!recallchecks(user))
++		return
++	if(recalling)
++		to_chat(user, "<span class='warning'>Error: Recall already in progress.</span>")
++		return
++	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
++	recalling = TRUE
++	to_chat(user, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
++	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
++
++/obj/item/device/gangtool/proc/recall2(mob/user)
++	if(!recallchecks(user))
++		return
++	to_chat(user, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
++	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
++
++/obj/item/device/gangtool/proc/recall3(mob/user)
++	if(!recallchecks(user))
++		return
++	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
++	for(var/mob/Player in GLOB.mob_list)
++		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
++			living_crew += Player
++	var/malc = CONFIG_GET(number/midround_antag_life_check)
++	if(living_crew.len / GLOB.joined_player_list.len <= malc) //Shuttle cannot be recalled if too many people died
++		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Station communication systems compromised. Unable to establish connection.</span>")
++		recalling = FALSE
++		return
++	to_chat(user, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
++	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
++
++/obj/item/device/gangtool/proc/recallfinal(mob/user)
++	if(!recallchecks(user))
++		return
++	recalling = FALSE
++	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
++	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
++	if(SSshuttle.cancelEvac(user))
++		gang.recalls--
++		return TRUE
++
++	to_chat(user, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
++	return
++
++/obj/item/device/gangtool/proc/recallchecks(mob/user)
++	if(!can_use(user))
++		return
++	if(SSshuttle.emergencyNoRecall)
++		return
++	if(!gang.recalls)
++		to_chat(user, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
++		return
++	if(SSshuttle.emergency.mode != SHUTTLE_CALL) //Shuttle can only be recalled when it's moving to the station
++		to_chat(user, "<span class='warning'>[icon2html(src, user)]Emergency shuttle cannot be recalled at this time.</span>")
++		recalling = FALSE
++		return
++	if(!gang.dom_attempts)
++		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
++		recalling = FALSE
++		return
++	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
++		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
++		recalling = FALSE
++		return
++	return TRUE
++
++/obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
++	if(!istype(user))
++		return
++	if(user.incapacitated())
++		return
++	if(!(src in user.contents))
++		return
++	if(!user.mind)
++		return
++	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++	if(!G)
++		to_chat(user, "<span class='notice'>Huh, what's this?</span>")
++		return
++	if(!isnull(gang) && G.gang != gang)
++		to_chat(user, "<span class='danger'>You cannot use gang tools owned by enemy gangs!</span>")
++		return
++	return TRUE
++
++
++/obj/item/device/gangtool/spare
++	outfits = TRUE
++
++/obj/item/device/gangtool/spare/lt
++	promotable = TRUE
+diff --git a/code/game/objects/items/crayons.dm b/code/game/objects/items/crayons.dm
+index 69d5eeabb2..af3d60e5a1 100644
+--- a/code/game/objects/items/crayons.dm
++++ b/code/game/objects/items/crayons.dm
+@@ -240,6 +240,7 @@
+ 			out += a
+ 	return jointext(out,"")
+ 
++/* yogs - hippie - I've tried very hard to get this piece of shit to work without mirroring it, but it's so badly done it gave me an aneurysm
+ /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
+ 	. = ..()
+ 	if(!proximity || !check_allowed_items(target))
+@@ -368,6 +369,7 @@
+ 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
+ 		reagents.trans_to(t, ., volume_multiplier)
+ 	check_empty(user)
++*/
+ 
+ /obj/item/toy/crayon/attack(mob/M, mob/user)
+ 	if(edible && (M == user))
+diff --git a/yogstation.dme b/yogstation.dme
+index 412aa6308d..1a3f644499 100644
+--- a/yogstation.dme
++++ b/yogstation.dme
+@@ -98,8 +98,10 @@
+ #include "code\__DEFINES\wires.dm"
+ #include "code\__DEFINES\~yogs_defines\access.dm"
+ #include "code\__DEFINES\~yogs_defines\admin.dm"
++#include "code\__DEFINES\~yogs_defines\antagonists.dm"
+ #include "code\__DEFINES\~yogs_defines\jobs.dm"
+ #include "code\__DEFINES\~yogs_defines\keybindings.dm"
++#include "code\__DEFINES\~yogs_defines\misc.dm"
+ #include "code\__DEFINES\~yogs_defines\preferences.dm"
+ #include "code\__HELPERS\_lists.dm"
+ #include "code\__HELPERS\_logging.dm"
+@@ -2657,6 +2659,11 @@
+ #include "yogstation\code\datums\ruins\station.dm"
+ #include "yogstation\code\game\world.dm"
+ #include "yogstation\code\game\area\Space_Station_13_areas.dm"
++#include "yogstation\code\game\gamemodes\gangs\dominator.dm"
++#include "yogstation\code\game\gamemodes\gangs\gang_items.dm"
++#include "yogstation\code\game\gamemodes\gangs\gang_pen.dm"
++#include "yogstation\code\game\gamemodes\gangs\gangs.dm"
++#include "yogstation\code\game\gamemodes\gangs\gangtool.dm"
+ #include "yogstation\code\game\gamemodes\traitor\double_agents.dm"
+ #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
+ #include "yogstation\code\game\machinery\computer\arcade.dm"
+@@ -2666,12 +2673,15 @@
+ #include "yogstation\code\game\machinery\telecomms\computers\logbrowser.dm"
+ #include "yogstation\code\game\machinery\telecomms\computers\telemonitor.dm"
+ #include "yogstation\code\game\mecha\mecha_wreckage.dm"
++#include "yogstation\code\game\objects\effects\countdown.dm"
++#include "yogstation\code\game\objects\effects\decals\crayon.dm"
+ #include "yogstation\code\game\objects\effects\landmarks.dm"
+ #include "yogstation\code\game\objects\items\bandage.dm"
+ #include "yogstation\code\game\objects\items\cards_ids.dm"
+ #include "yogstation\code\game\objects\items\crayons.dm"
+ #include "yogstation\code\game\objects\items\sharpener.dm"
+ #include "yogstation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
++#include "yogstation\code\game\objects\items\crayons.dm"
+ #include "yogstation\code\game\objects\items\devices\powersink.dm"
+ #include "yogstation\code\game\objects\items\devices\PDA\cart.dm"
+ #include "yogstation\code\game\objects\items\devices\PDA\PDA.dm"
+@@ -2680,6 +2690,8 @@
+ #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
+ #include "yogstation\code\game\objects\items\devices\radio\radio.dm"
+ #include "yogstation\code\game\objects\items\grenades\glitterbombs.dm"
++#include "yogstation\code\game\objects\items\implants\implant_gang.dm"
++#include "yogstation\code\game\objects\items\implants\implant_mindshield.dm"
+ #include "yogstation\code\game\objects\items\melee\energy.dm"
+ #include "yogstation\code\game\objects\items\storage\belt.dm"
+ #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
+@@ -2695,6 +2707,10 @@
+ #include "yogstation\code\modules\admin\verbs\fix_air.dm"
+ #include "yogstation\code\modules\antagonists\_common\antag_datum.dm"
+ #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
++#include "yogstation\code\modules\antagonists\blob\blob\blob_report.dm"
++#include "yogstation\code\modules\antagonists\gang\gang.dm"
++#include "yogstation\code\modules\antagonists\gang\gang_datums.dm"
++#include "yogstation\code\modules\antagonists\gang\gang_hud.dm"
+ #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
+ #include "yogstation\code\modules\cargo\cargo_packs.dm"
+ #include "yogstation\code\modules\client\client_defines.dm"
+diff --git a/yogstation/code/game/objects/effects/countdown.dm b/yogstation/code/game/objects/effects/countdown.dm
+new file mode 100644
+index 0000000000..8548c10fba
+--- /dev/null
++++ b/yogstation/code/game/objects/effects/countdown.dm
+@@ -0,0 +1,13 @@
++/obj/effect/countdown/dominator
++	name = "dominator countdown"
++	text_size = 1
++	color = "#ff00ff" // Overwritten when the dominator starts
++
++/obj/effect/countdown/dominator/get_value()
++	var/obj/machinery/dominator/D = attached_to
++	if(!istype(D))
++		return
++	else if(D.gang && D.gang.domination_time != NOT_DOMINATING)
++		return D.gang.domination_time_remaining()
++	else
++		return "OFFLINE"
+diff --git a/yogstation/code/game/objects/effects/decals/crayon.dm b/yogstation/code/game/objects/effects/decals/crayon.dm
+new file mode 100644
+index 0000000000..7bfd2f4398
+--- /dev/null
++++ b/yogstation/code/game/objects/effects/decals/crayon.dm
+@@ -0,0 +1,26 @@
++/obj/effect/decal/cleanable/crayon/gang
++	icon = 'yogstation/icons/effects/crayondecal.dmi'
++	layer = ABOVE_NORMAL_TURF_LAYER //Harder to hide
++	plane = GAME_PLANE
++	do_icon_rotate = FALSE //These are designed to always face south, so no rotation please.
++	var/datum/team/gang/gang
++
++/obj/effect/decal/cleanable/crayon/gang/Initialize(mapload, datum/team/gang/G, e_name = "gang tag", rotation = 0,  mob/user)
++	if(!G)
++		qdel(src)
++		return
++	gang = G
++	var/newcolor = G.color
++	var/area/territory = get_area(src)
++	icon_state = G.name
++	G.new_territories |= list(territory.type = territory.name)
++	//If this isn't tagged by a specific gangster there's no bonus income.
++	..(mapload, newcolor, icon_state, e_name, rotation)
++
++/obj/effect/decal/cleanable/crayon/gang/Destroy()
++	if(gang)
++		var/area/territory = get_area(src)
++		gang.territories -= territory.type
++		gang.new_territories -= territory.type
++		gang.lost_territories |= list(territory.type = territory.name)
++	return ..()
+diff --git a/yogstation/code/game/objects/items/crayons.dm b/yogstation/code/game/objects/items/crayons.dm
+index c62508049e..cd223e27f4 100644
+--- a/yogstation/code/game/objects/items/crayons.dm
++++ b/yogstation/code/game/objects/items/crayons.dm
+@@ -1,3 +1,469 @@
++#define RANDOM_GRAFFITI "Random Graffiti"
++#define RANDOM_LETTER "Random Letter"
++#define RANDOM_NUMBER "Random Number"
++#define RANDOM_ORIENTED "Random Oriented"
++#define RANDOM_RUNE "Random Rune"
++#define RANDOM_ANY "Random Anything"
++
++/obj/item/toy/crayon
++	var/datum/team/gang/gang //For marking territory, spraycans are gang-locked to their initial gang due to colors
++
++/obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
++	if(!proximity || !check_allowed_items(target))
++		return
++
++	var/cost = 1
++	if(paint_mode == PAINT_LARGE_HORIZONTAL)
++		cost = 5
++	if(istype(target, /obj/item/canvas))
++		cost = 0
++
++	if(istype(target, /obj/effect/decal/cleanable))
++		target = target.loc
++
++	if(!is_type_in_list(target,validSurfaces))
++		return
++
++	var/drawing = drawtype
++	switch(drawtype)
++		if(RANDOM_LETTER)
++			drawing = pick(letters)
++		if(RANDOM_GRAFFITI)
++			drawing = pick(graffiti)
++		if(RANDOM_RUNE)
++			drawing = pick(runes)
++		if(RANDOM_ORIENTED)
++			drawing = pick(oriented)
++		if(RANDOM_NUMBER)
++			drawing = pick(numerals)
++		if(RANDOM_ANY)
++			drawing = pick(all_drawables)
++
++	var/temp = "rune"
++	if(drawing in letters)
++		temp = "letter"
++	else if(drawing in graffiti)
++		temp = "graffiti"
++	else if(drawing in numerals)
++		temp = "number"
++
++	temp = hippie_gang_check(user,target)
++	if(!temp) return // hippie
++	var/graf_rot
++	if(drawing in oriented)
++		switch(user.dir)
++			if(EAST)
++				graf_rot = 90
++			if(SOUTH)
++				graf_rot = 180
++			if(WEST)
++				graf_rot = 270
++			else
++				graf_rot = 0
++
++	var/list/click_params = params2list(params)
++	var/clickx
++	var/clicky
++
++	if(click_params && click_params["icon-x"] && click_params["icon-y"])
++		clickx = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
++		clicky = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
++
++	if(!instant)
++		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>")
++
++	if(pre_noise)
++		audible_message("<span class='notice'>You hear spraying.</span>")
++		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
++
++	var/takes_time = !instant
++
++	var/wait_time = 50
++	if(paint_mode == PAINT_LARGE_HORIZONTAL)
++		wait_time *= 3
++	if(gang) takes_time = TRUE // hippie
++	if(takes_time)
++		if(!do_after(user, 50, target = target))
++			return
++
++	if(length(text_buffer))
++		drawing = copytext(text_buffer,1,2)
++
++
++	var/list/turf/affected_turfs = list()
++
++	if(!gang) // hippie - drawing is done in gang_final() if it's a gang type
++		if(actually_paints)
++			switch(paint_mode)
++				if(PAINT_NORMAL)
++					var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_rot)
++					C.add_hiddenprint(user)
++					C.pixel_x = clickx
++					C.pixel_y = clicky
++					affected_turfs += target
++				if(PAINT_LARGE_HORIZONTAL)
++					var/turf/left = locate(target.x-1,target.y,target.z)
++					var/turf/right = locate(target.x+1,target.y,target.z)
++					if(is_type_in_list(left, validSurfaces) && is_type_in_list(right, validSurfaces))
++						var/obj/effect/decal/cleanable/crayon/C = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
++						C.add_hiddenprint(user)
++						affected_turfs += left
++						affected_turfs += right
++						affected_turfs += target
++					else
++						to_chat(user, "<span class='warning'>There isn't enough space to paint!</span>")
++						return
++	else // hippie
++		if(gang_final(user, target, affected_turfs)) return // hippie
++
++	if(!instant)
++		to_chat(user, "<span class='notice'>You finish drawing \the [temp].</span>")
++	else
++		to_chat(user, "<span class='notice'>You spray a [temp] on \the [target.name]</span>")
++
++	var/charges_used = use_charges(user, cost)
++	if(!charges_used)
++		return
++	. = charges_used
++
++	if(length(text_buffer))
++		text_buffer = copytext(text_buffer,2)
++
++	if(post_noise)
++		audible_message("<span class='notice'>You hear spraying.</span>")
++		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
++
++	var/fraction = min(1, . / reagents.maximum_volume)
++	if(affected_turfs.len)
++		fraction /= affected_turfs.len
++	for(var/t in affected_turfs)
++		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
++		reagents.trans_to(t, ., volume_multiplier)
++	check_empty(user)
++
++/obj/item/toy/crayon/proc/hippie_gang_check(mob/user, atom/target) // hooked into afterattack
++	var/gang_mode = FALSE
++	if(gang && user.mind)
++		var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++		if(G.gang != gang)
++			to_chat(user, "<span class='danger'>This spraycan's color isn't your gang's one! You cannot use it.</span>")
++			return FALSE
++		gang_mode = TRUE
++		instant = FALSE
++		. = "graffiti"
++	// discontinue if the area isn't valid for tagging because gang "honour"
++	if(gang_mode && (!can_claim_for_gang(user, target)))
++		return FALSE
++
++/obj/item/toy/crayon/proc/gang_final(mob/user, atom/target, list/affected_turfs) // hooked into afterattack
++	// Double check it wasn't tagged in the meanwhile
++	if(!can_claim_for_gang(user, target))
++		return TRUE
++	tag_for_gang(user, target)
++	affected_turfs += target
++
++/obj/item/toy/crayon/proc/can_claim_for_gang(mob/user, atom/target)
++	// Check area validity.
++	// Reject space, player-created areas, and non-station z-levels.
++	var/area/A = get_area(target)
++	if(!A || (!is_station_level(A.z)) || !A.valid_territory)
++		to_chat(user, "<span class='warning'>[A] is unsuitable for tagging.</span>")
++		return FALSE
++
++	var/spraying_over = FALSE
++	for(var/G in target)
++		var/obj/effect/decal/cleanable/crayon/gang/gangtag = G
++		if(istype(gangtag))
++			var/datum/antagonist/gang/GA = user.mind.has_antag_datum(/datum/antagonist/gang)
++			if(gangtag.gang != GA.gang)
++				spraying_over = TRUE
++				break
++
++	for(var/obj/machinery/power/apc in target)
++		to_chat(user, "<span class='warning'>You can't tag an APC.</span>")
++		return FALSE
++
++	var/occupying_gang = territory_claimed(A, user)
++	if(occupying_gang && !spraying_over)
++		to_chat(user, "<span class='danger'>[A] has already been tagged by the [occupying_gang] gang! You must get rid of or spray over the old tag first!</span>")
++		return FALSE
++#define RANDOM_GRAFFITI "Random Graffiti"
++#define RANDOM_LETTER "Random Letter"
++#define RANDOM_NUMBER "Random Number"
++#define RANDOM_ORIENTED "Random Oriented"
++#define RANDOM_RUNE "Random Rune"
++#define RANDOM_ANY "Random Anything"
++
++/obj/item/toy/crayon
++	var/datum/team/gang/gang //For marking territory, spraycans are gang-locked to their initial gang due to colors
++
++/obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
++	if(!proximity || !check_allowed_items(target))
++		return
++
++	var/cost = 1
++	if(paint_mode == PAINT_LARGE_HORIZONTAL)
++		cost = 5
++	if(istype(target, /obj/item/canvas))
++		cost = 0
++
++	if(istype(target, /obj/effect/decal/cleanable))
++		target = target.loc
++
++	if(!is_type_in_list(target,validSurfaces))
++		return
++
++	var/drawing = drawtype
++	switch(drawtype)
++		if(RANDOM_LETTER)
++			drawing = pick(letters)
++		if(RANDOM_GRAFFITI)
++			drawing = pick(graffiti)
++		if(RANDOM_RUNE)
++			drawing = pick(runes)
++		if(RANDOM_ORIENTED)
++			drawing = pick(oriented)
++		if(RANDOM_NUMBER)
++			drawing = pick(numerals)
++		if(RANDOM_ANY)
++			drawing = pick(all_drawables)
++
++	var/temp = "rune"
++	if(drawing in letters)
++		temp = "letter"
++	else if(drawing in graffiti)
++		temp = "graffiti"
++	else if(drawing in numerals)
++		temp = "number"
++
++	temp = hippie_gang_check(user,target)
++	if(!temp) return // hippie
++	var/graf_rot
++	if(drawing in oriented)
++		switch(user.dir)
++			if(EAST)
++				graf_rot = 90
++			if(SOUTH)
++				graf_rot = 180
++			if(WEST)
++				graf_rot = 270
++			else
++				graf_rot = 0
++
++	var/list/click_params = params2list(params)
++	var/clickx
++	var/clicky
++
++	if(click_params && click_params["icon-x"] && click_params["icon-y"])
++		clickx = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
++		clicky = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
++
++	if(!instant)
++		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>")
++
++	if(pre_noise)
++		audible_message("<span class='notice'>You hear spraying.</span>")
++		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
++
++	var/takes_time = !instant
++
++	var/wait_time = 50
++	if(paint_mode == PAINT_LARGE_HORIZONTAL)
++		wait_time *= 3
++	if(gang) takes_time = TRUE // hippie
++	if(takes_time)
++		if(!do_after(user, 50, target = target))
++			return
++
++	if(length(text_buffer))
++		drawing = copytext(text_buffer,1,2)
++
++
++	var/list/turf/affected_turfs = list()
++
++	if(!gang) // hippie - drawing is done in gang_final() if it's a gang type
++		if(actually_paints)
++			switch(paint_mode)
++				if(PAINT_NORMAL)
++					var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_rot)
++					C.add_hiddenprint(user)
++					C.pixel_x = clickx
++					C.pixel_y = clicky
++					affected_turfs += target
++				if(PAINT_LARGE_HORIZONTAL)
++					var/turf/left = locate(target.x-1,target.y,target.z)
++					var/turf/right = locate(target.x+1,target.y,target.z)
++					if(is_type_in_list(left, validSurfaces) && is_type_in_list(right, validSurfaces))
++						var/obj/effect/decal/cleanable/crayon/C = new(left, paint_color, drawing, temp, graf_rot, PAINT_LARGE_HORIZONTAL_ICON)
++						C.add_hiddenprint(user)
++						affected_turfs += left
++						affected_turfs += right
++						affected_turfs += target
++					else
++						to_chat(user, "<span class='warning'>There isn't enough space to paint!</span>")
++						return
++	else // hippie
++		if(gang_final(user, target, affected_turfs)) return // hippie
++
++	if(!instant)
++		to_chat(user, "<span class='notice'>You finish drawing \the [temp].</span>")
++	else
++		to_chat(user, "<span class='notice'>You spray a [temp] on \the [target.name]</span>")
++
++	var/charges_used = use_charges(user, cost)
++	if(!charges_used)
++		return
++	. = charges_used
++
++	if(length(text_buffer))
++		text_buffer = copytext(text_buffer,2)
++
++	if(post_noise)
++		audible_message("<span class='notice'>You hear spraying.</span>")
++		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
++
++	var/fraction = min(1, . / reagents.maximum_volume)
++	if(affected_turfs.len)
++		fraction /= affected_turfs.len
++	for(var/t in affected_turfs)
++		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
++		reagents.trans_to(t, ., volume_multiplier)
++	check_empty(user)
++
++/obj/item/toy/crayon/proc/hippie_gang_check(mob/user, atom/target) // hooked into afterattack
++	var/gang_mode = FALSE
++	if(gang && user.mind)
++		var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++		if(G.gang != gang)
++			to_chat(user, "<span class='danger'>This spraycan's color isn't your gang's one! You cannot use it.</span>")
++			return FALSE
++		gang_mode = TRUE
++		instant = FALSE
++		. = "graffiti"
++	// discontinue if the area isn't valid for tagging because gang "honour"
++	if(gang_mode && (!can_claim_for_gang(user, target)))
++		return FALSE
++
++/obj/item/toy/crayon/proc/gang_final(mob/user, atom/target, list/affected_turfs) // hooked into afterattack
++	// Double check it wasn't tagged in the meanwhile
++	if(!can_claim_for_gang(user, target))
++		return TRUE
++	tag_for_gang(user, target)
++	affected_turfs += target
++
++/obj/item/toy/crayon/proc/can_claim_for_gang(mob/user, atom/target)
++	// Check area validity.
++	// Reject space, player-created areas, and non-station z-levels.
++	var/area/A = get_area(target)
++	if(!A || (!is_station_level(A.z)) || !A.valid_territory)
++		to_chat(user, "<span class='warning'>[A] is unsuitable for tagging.</span>")
++		return FALSE
++
++	var/spraying_over = FALSE
++	for(var/G in target)
++		var/obj/effect/decal/cleanable/crayon/gang/gangtag = G
++		if(istype(gangtag))
++			var/datum/antagonist/gang/GA = user.mind.has_antag_datum(/datum/antagonist/gang)
++			if(gangtag.gang != GA.gang)
++				spraying_over = TRUE
++				break
++
++	for(var/obj/machinery/power/apc in target)
++		to_chat(user, "<span class='warning'>You can't tag an APC.</span>")
++		return FALSE
++
++	var/occupying_gang = territory_claimed(A, user)
++	if(occupying_gang && !spraying_over)
++		to_chat(user, "<span class='danger'>[A] has already been tagged by the [occupying_gang] gang! You must get rid of or spray over the old tag first!</span>")
++		return FALSE
++
++	// If you pass the gaunlet of checks, you're good to proceed
++	return TRUE
++
++/obj/item/toy/crayon/proc/territory_claimed(area/territory, mob/user)
++	for(var/datum/team/gang/G in GLOB.gangs)
++		if(territory.type in (G.territories|G.new_territories))
++			. = G.name
++			break
++
++/obj/item/toy/crayon/proc/tag_for_gang(mob/user, atom/target)
++	//Delete any old markings on this tile, including other gang tags
++	for(var/obj/effect/decal/cleanable/crayon/old_marking in target)
++		qdel(old_marking)
++
++	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++	var/area/territory = get_area(target)
++
++	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"graffiti",0,user)
++	to_chat(user, "<span class='notice'>You tagged [territory] for your gang!</span>")
++
++/obj/item/toy/crayon/spraycan/gang
++	//desc = "A modified container containing suspicious paint."
++	charges = 20
++	gang = TRUE
++
++	pre_noise = FALSE
++	post_noise = TRUE
++
++/obj/item/toy/crayon/spraycan/gang/Initialize(loc, datum/team/gang/G)
++	..()
++	if(G)
++		gang = G
++		paint_color = G.color
++		update_icon()
++
++/obj/item/toy/crayon/spraycan/gang/examine(mob/user)
++	. = ..()
++	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/gang) || isobserver(user))
++		to_chat(user, "This spraycan has been specially modified for tagging territory.")
++
++#undef RANDOM_GRAFFITI
++#undef RANDOM_LETTER
++#undef RANDOM_NUMBER
++#undef RANDOM_ORIENTED
++#undef RANDOM_RUNE
++#undef RANDOM_ANY
++
++	// If you pass the gaunlet of checks, you're good to proceed
++	return TRUE
++
++/obj/item/toy/crayon/proc/territory_claimed(area/territory, mob/user)
++	for(var/datum/team/gang/G in GLOB.gangs)
++		if(territory.type in (G.territories|G.new_territories))
++			. = G.name
++			break
++
++/obj/item/toy/crayon/proc/tag_for_gang(mob/user, atom/target)
++	//Delete any old markings on this tile, including other gang tags
++	for(var/obj/effect/decal/cleanable/crayon/old_marking in target)
++		qdel(old_marking)
++
++	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
++	var/area/territory = get_area(target)
++
++	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"graffiti",0,user)
++	to_chat(user, "<span class='notice'>You tagged [territory] for your gang!</span>")
++
++/obj/item/toy/crayon/spraycan/gang
++	//desc = "A modified container containing suspicious paint."
++	charges = 20
++	gang = TRUE
++
++	pre_noise = FALSE
++	post_noise = TRUE
++
++/obj/item/toy/crayon/spraycan/gang/Initialize(loc, datum/team/gang/G)
++	..()
++	if(G)
++		gang = G
++		paint_color = G.color
++		update_icon()
++
++/obj/item/toy/crayon/spraycan/gang/examine(mob/user)
++	. = ..()
++	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/gang) || isobserver(user))
++		to_chat(user, "This spraycan has been specially modified for tagging territory.")
++
+ /obj/item/toy/crayon/spraycan/afterattack(atom/target, mob/user, proximity)
+ 	if(!proximity)
+ 		return
+@@ -17,3 +483,10 @@
+ 			light.update()
+ 		. = use_charges(user, 2)
+ 	..()
++
++	#undef RANDOM_GRAFFITI
++	#undef RANDOM_LETTER
++	#undef RANDOM_NUMBER
++	#undef RANDOM_ORIENTED
++	#undef RANDOM_RUNE
++	#undef RANDOM_ANY
+diff --git a/yogstation/code/game/objects/items/implants/implant_gang.dm b/yogstation/code/game/objects/items/implants/implant_gang.dm
+new file mode 100644
+index 0000000000..128f0c0208
+--- /dev/null
++++ b/yogstation/code/game/objects/items/implants/implant_gang.dm
+@@ -0,0 +1,57 @@
++/obj/item/implant/gang
++	name = "gang implant"
++	desc = "Makes you a gangster or such."
++	activated = 0
++	var/datum/team/gang/gang
++
++/obj/item/implant/gang/Initialize(setgang)
++	..()
++	gang = setgang
++
++/obj/item/implant/gang/get_data()
++	var/dat = {"<b>Implant Specifications:</b><BR>
++				<b>Name:</b> Criminal brainwash implant<BR>
++				<b>Life:</b> A few seconds after injection.<BR>
++				<b>Important Notes:</b> Illegal<BR>
++				<HR>
++				<b>Implant Details:</b><BR>
++				<b>Function:</b> Contains a small pod of nanobots that change the host's brain to be loyal to a certain organization.<BR>
++				<b>Special Features:</b> This device will also emit a small EMP pulse, destroying any other implants within the host's brain.<BR>
++				<b>Integrity:</b> Implant's EMP function will destroy itself in the process."}
++	return dat
++
++/obj/item/implant/gang/implant(mob/living/target, mob/user, silent = 0)
++	if(!target || !target.mind || target.stat == DEAD)
++		return 0
++	var/datum/antagonist/gang/G = target.mind.has_antag_datum(/datum/antagonist/gang)
++	if(G && G.gang == G)
++		return 0 // it's pointless
++	if(..())
++		for(var/obj/item/implant/I in target.implants)
++			if(I != src)
++				qdel(I)
++
++		if(ishuman(target))
++			var/success
++			if(G)
++				if(!istype(G, /datum/antagonist/gang/boss))
++					success = TRUE	//Was not a gang boss, convert as usual
++					target.mind.remove_antag_datum(/datum/antagonist/gang)
++			else
++				success = TRUE
++			if(!success)
++				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
++				return FALSE
++		target.mind.add_antag_datum(/datum/antagonist/gang, gang)
++		qdel(src)
++		return TRUE
++
++/obj/item/implanter/gang
++	name = "implanter (gang)"
++
++/obj/item/implanter/gang/Initialize(loc, gang)
++	if(!gang)
++		qdel(src)
++		return
++	imp = new /obj/item/implant/gang(src,gang)
++	..()
+diff --git a/yogstation/code/game/objects/items/implants/implant_mindshield.dm b/yogstation/code/game/objects/items/implants/implant_mindshield.dm
+new file mode 100644
+index 0000000000..ec5539ff4f
+--- /dev/null
++++ b/yogstation/code/game/objects/items/implants/implant_mindshield.dm
+@@ -0,0 +1,15 @@
++/obj/item/implant/mindshield/implant(mob/living/target, mob/user, silent = FALSE)
++	if(..())
++		if(!target.mind)
++			return TRUE
++		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss))
++			if(!silent)
++				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel something interfering with your mental conditioning, but you resist it!</span>")
++			removed(target, 1)
++			qdel(src)
++			return FALSE
++		target.mind.remove_antag_datum(/datum/antagonist/gang)
++		if(!silent)
++			to_chat(target, "<span class='notice'>You feel a sense of peace and security. You are now protected from brainwashing.</span>")
++		return TRUE
++	return FALSE
+diff --git a/yogstation/code/modules/antagonists/blob/blob/blob_report.dm b/yogstation/code/modules/antagonists/blob/blob/blob_report.dm
+new file mode 100644
+index 0000000000..a9dd19a8e4
+--- /dev/null
++++ b/yogstation/code/modules/antagonists/blob/blob/blob_report.dm
+@@ -0,0 +1,14 @@
++/datum/station_state
++	var/num_territories = 1//Number of total valid territories for gang mode
++
++/datum/station_state/count(count_territories)
++	..()
++	if(count_territories)
++		var/list/valid_territories = list()
++		for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION)) //First, collect all area types on the station zlevel
++			for(var/ar in SSmapping.areas_in_z["[z]"])
++				var/area/A = ar
++				if(!(A.type in valid_territories) && A.valid_territory)
++					valid_territories |= A.type
++		if(valid_territories.len)
++			num_territories = valid_territories.len //Add them all up to make the total number of area types
+diff --git a/yogstation/code/modules/antagonists/gang/gang.dm b/yogstation/code/modules/antagonists/gang/gang.dm
+new file mode 100644
+index 0000000000..4ede4b6f05
+--- /dev/null
++++ b/yogstation/code/modules/antagonists/gang/gang.dm
+@@ -0,0 +1,459 @@
++/datum/antagonist/gang
++	name = "Gangster"
++	roundend_category = "gangsters"
++	can_coexist_with_others = FALSE
++	job_rank = ROLE_GANG
++	antagpanel_category = "Gang"
++	var/hud_type = "gangster"
++	var/datum/team/gang/gang
++
++/datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
++	. = ..()
++	if(.)
++		if(new_owner.unconvertible)
++			return FALSE
++		if(new_owner.current && new_owner.current.isloyal())
++			return FALSE
++
++/datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
++	var/mob/living/M = mob_override || owner.current
++	update_gang_icons_added(M)
++
++/datum/antagonist/gang/remove_innate_effects(mob/living/mob_override)
++	var/mob/living/M = mob_override || owner.current
++	update_gang_icons_removed(M)
++
++/datum/antagonist/gang/get_team()
++	return gang
++
++/datum/antagonist/gang/greet()
++	gang.greet_gangster(owner)
++
++/datum/antagonist/gang/farewell()
++	if(ishuman(owner.current))
++		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
++		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
++
++/datum/antagonist/gang/on_gain()
++	if(!gang)
++		create_team()
++	..()
++	var/mob/living/carbon/human/H = owner.current
++	if(istype(H))
++		if(owner.assigned_role == "Clown")
++			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
++			H.dna.remove_mutation(CLOWNMUT)
++	add_to_gang()
++
++/datum/antagonist/gang/on_removal()
++	remove_from_gang()
++	..()
++
++/datum/antagonist/gang/create_team(team)
++	if(!gang) // add_antag_datum calls create_team, so we need to avoid generating two gangs in that case
++		if(team)
++			gang = team
++			return
++		var/datum/team/gang/gangteam = pick_n_take(GLOB.possible_gangs)
++		if(gangteam)
++			gang = new gangteam
++
++/datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
++	return
++
++/datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
++	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
++	if(!ganghud)
++		ganghud = new/datum/atom_hud/antag/gang()
++		GLOB.huds[gang.name] = ganghud
++	ganghud.color = gang.color
++	ganghud.join_hud(M)
++	set_antag_hud(M,hud_type)
++
++/datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
++	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
++	if(ganghud)
++		ganghud.leave_hud(M)
++		set_antag_hud(M, null)
++
++/datum/antagonist/gang/proc/can_be_converted(mob/living/candidate)
++	if(!candidate.mind)
++		return FALSE
++	if(!can_be_owned(candidate.mind))
++		return FALSE
++	var/mob/living/carbon/human/H = candidate
++	if(!istype(H)) //Can't nonhumans
++		return FALSE
++	return TRUE
++
++/datum/antagonist/gang/proc/promote() // Bump up to boss
++	var/datum/team/gang/old_gang = gang
++	var/datum/mind/old_owner = owner
++	owner.remove_antag_datum(/datum/antagonist/gang)
++	var/datum/antagonist/gang/boss/new_boss = new
++	new_boss.silent = TRUE
++	old_owner.add_antag_datum(new_boss,old_gang)
++	new_boss.silent = FALSE
++	log_game("[key_name(old_owner)] has been promoted to Lieutenant in the [old_gang.name] Gang")
++	to_chat(old_owner, "<FONT size=3 color=red><B>You have been promoted to Lieutenant!</B></FONT>")
++
++
++// Admin commands
++/datum/antagonist/gang/get_admin_commands()
++	. = ..()
++	.["Promote"] = CALLBACK(src,.proc/admin_promote)
++	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
++	if(gang.domination_time != NOT_DOMINATING)
++		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
++
++/datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
++	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
++	if(isnull(new_or_existing))
++		return
++	else if(new_or_existing == "New")
++		var/newgang = input(admin, "Select a gang, or select random to pick a random one.", "New gang") as null|anything in GLOB.possible_gangs + "Random"
++		if(isnull(newgang))
++			return
++		else if(newgang == "Random")
++			var/datum/team/gang/G = pick_n_take(GLOB.possible_gangs)
++			gang = new G
++		else
++			GLOB.possible_gangs -= newgang
++			gang = new newgang
++	else
++		if(!GLOB.gangs.len) // no gangs exist
++			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
++			return
++		var/existinggang = input(admin, "Select a gang, or select random to pick a random one.", "Existing gang") as null|anything in GLOB.gangs + "Random"
++		if(isnull(existinggang))
++			return
++		else if(existinggang == "Random")
++			gang = pick(GLOB.gangs)
++		else
++			gang = existinggang
++	..()
++	return TRUE
++
++/datum/antagonist/gang/proc/admin_promote(mob/admin)
++	message_admins("[key_name_admin(admin)] has promoted [owner] to gang boss.")
++	log_admin("[key_name(admin)] has promoted [owner] to boss.")
++	promote()
++
++/datum/antagonist/gang/proc/admin_adjust_influence()
++	var/inf = input("Influence for [gang.name]","Gang influence", gang.influence) as null | num
++	if(!isnull(inf))
++		gang.influence = inf
++		message_admins("[key_name_admin(usr)] changed [gang.name]'s influence to [inf].")
++		log_admin("[key_name(usr)] changed [gang.name]'s influence to [inf].")
++
++/datum/antagonist/gang/proc/add_to_gang()
++	gang.add_member(owner)
++	owner.current.log_message("<font color='red'>Has been converted to the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
++
++/datum/antagonist/gang/proc/remove_from_gang()
++	gang.remove_member(owner)
++	owner.current.log_message("<font color='red'>Has been deconverted from the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
++
++/datum/antagonist/gang/proc/set_dom_time_left(mob/admin)
++	if(gang.domination_time == NOT_DOMINATING)
++		return // an admin shouldn't need this
++	var/seconds = input(admin, "Set the time left for the gang to win, in seconds", "Domination time left") as null|num
++	if(seconds && seconds > 0)
++		gang.domination_time = world.time + seconds*10
++		gang.message_gangtools("Takeover shortened to [gang.domination_time_remaining()] seconds by your Syndicate benefactors.")
++
++// Boss type. Those can use gang tools to buy items for their gang, in particular the Dominator, used to win the gamemode, along with more gang tools to promote fellow gangsters to boss status.
++/datum/antagonist/gang/boss
++	name = "Gang boss"
++	hud_type = "gang_boss"
++
++/datum/antagonist/gang/boss/on_gain()
++	..()
++	if(gang)
++		gang.leaders += owner
++
++/datum/antagonist/gang/boss/on_removal()
++	if(gang)
++		gang.leaders -= owner
++	..()
++
++/datum/antagonist/gang/boss/antag_listing_name()
++	return ..() + "(Boss)"
++
++/datum/antagonist/gang/boss/equip_gang(gangtool = TRUE, pen = TRUE, spraycan = TRUE, hud = TRUE) // usually has to be called separately
++	var/mob/living/carbon/human/H = owner.current
++	if(!istype(H))
++		return
++
++	var/list/slots = list (
++		"backpack" = SLOT_IN_BACKPACK,
++		"left pocket" = SLOT_L_STORE,
++		"right pocket" = SLOT_R_STORE,
++		"hands" = SLOT_HANDS
++	)
++
++	if(gangtool)
++		var/obj/item/device/gangtool/G = new()
++		var/where = H.equip_in_one_of_slots(G, slots)
++		if (!where)
++			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a Gangtool.")
++		else
++			G.register_device(H)
++			to_chat(H, "The <b>Gangtool</b> in your [where] will allow you to purchase weapons and equipment, send messages to your gang, and recall the emergency shuttle from anywhere on the station.")
++			to_chat(H, "As the gang boss, you can also promote your gang members to <b>lieutenant</b>. Unlike regular gangsters, Lieutenants cannot be deconverted and are able to use recruitment pens and gangtools.")
++
++	if(pen)
++		var/obj/item/pen/gang/T = new()
++		var/where2 = H.equip_in_one_of_slots(T, slots)
++		if (!where2)
++			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a recruitment pen to start.")
++		else
++			to_chat(H, "The <b>recruitment pen</b> in your [where2] will help you get your gang started. Stab unsuspecting crew members with it to recruit them.")
++
++	if(spraycan)
++		var/obj/item/toy/crayon/spraycan/gang/SC = new(null,gang)
++		var/where3 = H.equip_in_one_of_slots(SC, slots)
++		if (!where3)
++			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a territory spraycan to start.")
++		else
++			to_chat(H, "The <b>territory spraycan</b> in your [where3] can be used to claim areas of the station for your gang. The more territory your gang controls, the more influence you get. All gangsters can use these, so distribute them to grow your influence faster.")
++
++	if(hud)
++		var/obj/item/clothing/glasses/hud/security/chameleon/C = new(null,gang)
++		var/where4 = H.equip_in_one_of_slots(C, slots)
++		if (!where4)
++			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a chameleon security HUD.")
++		else
++			to_chat(H, "The <b>chameleon security HUD</b> in your [where4] will help you keep track of who is mindshield-implanted, and unable to be recruited.")
++
++// Admin commands for bosses
++/datum/antagonist/gang/boss/admin_add(datum/mind/new_owner,mob/admin)
++	if(!new_owner.has_antag_datum(parent_type))
++		..()
++		to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
++		return
++	promote()
++	message_admins("[key_name_admin(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
++	log_admin("[key_name(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
++	to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
++
++/datum/antagonist/gang/boss/get_admin_commands()
++	. = ..()
++	. -= "Promote"
++	.["Take gangtool"] = CALLBACK(src,.proc/admin_take_gangtool)
++	.["Give gangtool"] = CALLBACK(src,.proc/admin_give_gangtool)
++	.["Demote"] = CALLBACK(src,.proc/admin_demote)
++
++/datum/antagonist/gang/boss/proc/demote()
++	var/old_gang = gang
++	var/datum/mind/old_owner = owner
++	silent = TRUE
++	owner.remove_antag_datum(/datum/antagonist/gang/boss)
++	var/datum/antagonist/gang/new_gangster = new /datum/antagonist/gang()
++	new_gangster.silent = TRUE
++	old_owner.add_antag_datum(new_gangster,old_gang)
++	new_gangster.silent = FALSE
++	log_game("[key_name(old_owner)] has been demoted to Gangster in the [gang.name] Gang")
++	to_chat(old_owner, "<span class='userdanger'>The gang has been disappointed of your leader traits! You are a regular gangster now!</span>")
++
++/datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
++	var/list/L = owner.current.get_contents()
++	var/obj/item/device/gangtool/gangtool = locate() in L
++	if (!gangtool)
++		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
++		return
++	qdel(gangtool)
++
++/datum/antagonist/gang/boss/proc/admin_give_gangtool(mob/admin)
++	equip_gang(TRUE, FALSE, FALSE, FALSE)
++
++/datum/antagonist/gang/boss/proc/admin_demote(datum/mind/target,mob/user)
++	message_admins("[key_name_admin(user)] has demoted [owner.current] from gang boss.")
++	log_admin("[key_name(user)] has demoted [owner.current] from gang boss.")
++	admin_take_gangtool(user)
++	demote()
++
++#define MAXIMUM_RECALLS 3
++#define INFLUENCE_INTERVAL 1800
++// Gang team datum. This handles the gang itself.
++/datum/team/gang
++	name = "Gang"
++	member_name = "gangster"
++	var/list/leaders = list() // bosses
++	var/max_leaders = MAX_LEADERS_GANG
++	var/list/territories = list() // territories owned by the gang.
++	var/list/lost_territories = list() // territories lost by the gang.
++	var/list/new_territories = list() // territories captured by the gang.
++	var/list/gangtools = list()
++	var/domination_time = NOT_DOMINATING
++	var/dom_attempts = INITIAL_DOM_ATTEMPTS
++	var/color
++	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
++	var/winner // Once the gang wins with a dominator, this becomes true. For roundend credits purposes.
++	var/list/inner_outfits = list()
++	var/list/outer_outfits = list()
++	var/next_point_time
++	var/recalls = MAXIMUM_RECALLS // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
++
++/datum/team/gang/New(starting_members)
++	. = ..()
++	GLOB.gangs += src
++	if(starting_members)
++		if(islist(starting_members))
++			for(var/datum/mind/groveboss in starting_members)
++				leaders += groveboss
++				var/datum/antagonist/gang/boss/gb = new
++				groveboss.add_antag_datum(gb, src)
++				gb.equip_gang()
++
++		else
++			var/datum/mind/CJ = starting_members
++			if(istype(CJ))
++				leaders += CJ
++				var/datum/antagonist/gang/boss/bossdatum = new
++				CJ.add_antag_datum(bossdatum, src)
++				bossdatum.equip_gang()
++	next_point_time = world.time + INFLUENCE_INTERVAL
++	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
++
++/datum/team/gang/Destroy()
++	GLOB.gangs -= src
++	..()
++
++/datum/team/gang/roundend_report()
++	var/list/report = list()
++	report += "<span class='header'>[name]:</span>"
++	if(winner)
++		report += "<span class='greentext'>The [name] gang was successful!</span>"
++	else
++		report += "<span class='redtext'>The [name] gang has failed!</span>"
++
++	report += "The [name] gang bosses were:"
++	report += printplayerlist(leaders)
++	report += "The [name] [member_name]s were:"
++	report += printplayerlist(members-leaders)
++
++	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
++
++/datum/team/gang/proc/greet_gangster(datum/mind/gangster)
++	to_chat(gangster, "<FONT size=3 color=red><B>You are now a member of the [name] Gang!</B></FONT>")
++	to_chat(gangster, "<font color='red'>Help your bosses take over the station by claiming territory with <b>special spraycans</b> only they can provide. Simply spray on any unclaimed area of the station.</font>")
++	to_chat(gangster, "<font color='red'>Their ultimate objective is to take over the station with a Dominator machine.</font>")
++	to_chat(gangster, "<font color='red'>You can identify your mates by their <b>large, bright \[G\] <font color='[color]'>icon</font></b>.</font>")
++	gangster.store_memory("You are a member of the [name] Gang!")
++
++/datum/team/gang/proc/handle_territories()
++	next_point_time = world.time + INFLUENCE_INTERVAL
++	if(!leaders.len)
++		return
++	var/added_names = ""
++	var/lost_names = ""
++
++	//Re-add territories that were reclaimed, so if they got tagged over, they can still earn income if they tag it back before the next status report
++	var/list/reclaimed_territories = new_territories & lost_territories
++	territories |= reclaimed_territories
++	new_territories -= reclaimed_territories
++	lost_territories -= reclaimed_territories
++
++	//Process lost territories
++	for(var/area in lost_territories)
++		if(lost_names != "")
++			lost_names += ", "
++		lost_names += "[lost_territories[area]]"
++		territories -= area
++
++	//Calculate and report influence growth
++
++	//Process new territories
++	for(var/area in new_territories)
++		if(added_names != "")
++			added_names += ", "
++		added_names += "[new_territories[area]]"
++		territories += area
++
++	//Report territory changes
++	var/message = "<b>[src] Gang Status Report:</b>.<BR>*---------*<BR>"
++	message += "<b>[new_territories.len] new territories:</b><br><i>[added_names]</i><br>"
++	message += "<b>[lost_territories.len] territories lost:</b><br><i>[lost_names]</i><br>"
++	//Clear the lists
++	new_territories = list()
++	lost_territories = list()
++	GLOB.start_state.count(TRUE) // update the state
++	var/control = round((territories.len/GLOB.start_state.num_territories)*100, 1)
++	var/uniformed = check_clothing()
++	message += "Your gang now has <b>[control]% control</b> of the station.<BR>*---------*<BR>"
++	if(domination_time != NOT_DOMINATING)
++		var/new_time = max(world.time, domination_time - (uniformed * 4) - (territories.len * 2))
++		if(new_time < domination_time)
++			message += "Takeover shortened by [(domination_time - new_time)*0.1] seconds for defending [territories.len] territories.<BR>"
++			domination_time = new_time
++		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
++	else
++		var/new_influence = check_territory_income()
++		if(new_influence != influence)
++			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
++		influence = new_influence
++		message += "Your gang now has <b>[influence] influence</b>.<BR>"
++	message_gangtools(message)
++	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
++
++/datum/team/gang/proc/check_territory_income()
++	var/new_influence = min(999,influence + 15 + (check_clothing() * 2) + territories.len)
++	return new_influence
++
++/datum/team/gang/proc/check_clothing()
++	//Count uniformed gangsters
++	var/uniformed = 0
++	for(var/datum/mind/gangmind in members)
++		if(ishuman(gangmind.current))
++			var/mob/living/carbon/human/gangster = gangmind.current
++			//Gangster must be alive and on station
++			if((gangster.stat == DEAD) || (is_station_level(gangster.z)))
++				continue
++
++			var/obj/item/clothing/outfit
++			var/obj/item/clothing/gang_outfit
++			if(gangster.w_uniform)
++				outfit = gangster.w_uniform
++				if(outfit.type in inner_outfits)
++					gang_outfit = outfit
++			if(gangster.wear_suit)
++				outfit = gangster.wear_suit
++				if(outfit.type in outer_outfits)
++					gang_outfit = outfit
++
++			if(gang_outfit)
++				gangster << "<span class='notice'>The [src] Gang's influence grows as you wear [gang_outfit].</span>"
++				uniformed++
++	return uniformed
++
++/datum/team/gang/proc/adjust_influence(value)
++	influence = max(0, influence + value)
++
++/datum/team/gang/proc/message_gangtools(message)
++	if(!gangtools.len || !message)
++		return
++	for(var/i in gangtools)
++		var/obj/item/device/gangtool/tool = i
++		var/mob/living/mob = get(tool.loc, /mob/living)
++		if(mob && mob.mind && mob.stat == CONSCIOUS)
++			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)
++			if(gangster.gang == src)
++				to_chat(mob, "<span class='warning'>[icon2html(tool, mob)] [message]</span>")
++				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
++			return
++
++/datum/team/gang/proc/domination()
++	domination_time = world.time + determine_domination_time()*10
++	set_security_level("delta")
++
++/datum/team/gang/proc/determine_domination_time() // calculates the value in seconds (this is the initial domination time!)
++	GLOB.start_state.count(TRUE) // update the state
++	return max(180,480 - (round((territories.len/GLOB.start_state.num_territories)*100, 1) * 9))
++
++/datum/team/gang/proc/domination_time_remaining() // retrieves the value from world.time based deciseconds to seconds
++	var/diff = domination_time - world.time
++	return round(diff * 0.1)
++
++#undef MAXIMUM_RECALLS
++#undef INFLUENCE_INTERVAL
+diff --git a/yogstation/code/modules/antagonists/gang/gang_datums.dm b/yogstation/code/modules/antagonists/gang/gang_datums.dm
+new file mode 100644
+index 0000000000..cc2ba230d5
+--- /dev/null
++++ b/yogstation/code/modules/antagonists/gang/gang_datums.dm
+@@ -0,0 +1,120 @@
++// Gang datums go here. If you want to create a new gang, you must be sure to edit:
++// name
++// color (must be a hex, "blue" isn't acceptable due to how spraycans are handled)
++// inner_outfits (must be a list() with typepaths of the clothes in it. One is fine, but there is support for multiple: one will be picked at random when bought)
++// outer_outfits (same as above)
++// You also need to make a gang graffiti, that will go in crayondecal.dmi inside our icons(not tg's), with the same name of the gang it's assigned to. Nothing else,just the icon.
++// Those are all required. If one is missed, stuff could break.
++
++/datum/team/gang/clandestine
++	name = "Clandestine"
++	color = "#FF0000"
++	inner_outfits = list(/obj/item/clothing/under/syndicate/combat)
++	outer_outfits = list(/obj/item/clothing/suit/jacket)
++
++/datum/team/gang/prima
++	name = "Prima"
++	color = "#FFFF00"
++	inner_outfits = list(/obj/item/clothing/under/color/yellow)
++	outer_outfits = list(/obj/item/clothing/suit/hastur)
++
++/datum/team/gang/zerog
++	name = "Zero-G"
++	color = "#C0C0C0"
++	inner_outfits = list(/obj/item/clothing/under/suit_jacket/white)
++	outer_outfits = list(/obj/item/clothing/suit/hooded/wintercoat)
++
++/datum/team/gang/max
++	name = "Max"
++	color = "#800000"
++	inner_outfits = list(/obj/item/clothing/under/color/maroon)
++	outer_outfits = list(/obj/item/clothing/suit/poncho/red)
++
++/datum/team/gang/blasto
++	name = "Blasto"
++	color = "#000080"
++	inner_outfits = list(/obj/item/clothing/under/suit_jacket/navy)
++	outer_outfits = list(/obj/item/clothing/suit/jacket/miljacket)
++
++/datum/team/gang/waffle
++	name = "Waffle"
++	color = "#808000"
++	inner_outfits = list(/obj/item/clothing/under/suit_jacket/green)
++	outer_outfits = list(/obj/item/clothing/suit/poncho)
++
++/datum/team/gang/north
++	name = "North"
++	color = "#00FF00"
++	inner_outfits = list(/obj/item/clothing/under/color/green)
++	outer_outfits = list(/obj/item/clothing/suit/poncho/green)
++
++/datum/team/gang/omni
++	name = "Omni"
++	color = "#008080"
++	inner_outfits = list(/obj/item/clothing/under/color/teal)
++	outer_outfits = list(/obj/item/clothing/suit/studentuni)
++
++/datum/team/gang/newton
++	name = "Newton"
++	color = "#A52A2A"
++	inner_outfits = list(/obj/item/clothing/under/color/brown)
++	outer_outfits = list(/obj/item/clothing/suit/toggle/owlwings)
++
++/datum/team/gang/cyber
++	name = "Cyber"
++	color = "#808000"
++	inner_outfits = list(/obj/item/clothing/under/color/lightbrown)
++	outer_outfits = list(/obj/item/clothing/suit/nemes)
++
++/datum/team/gang/donk
++	name = "Donk"
++	color = "#0000FF"
++	inner_outfits = list(/obj/item/clothing/under/color/darkblue)
++	outer_outfits = list(/obj/item/clothing/suit/apron/overalls)
++
++/datum/team/gang/gene
++	name = "Gene"
++	color = "#00FFFF"
++	inner_outfits = list(/obj/item/clothing/under/color/blue)
++	outer_outfits = list(/obj/item/clothing/suit/apron)
++
++/datum/team/gang/gib
++	name = "Gib"
++	color = "#000000"
++	inner_outfits = list(/obj/item/clothing/under/color/black)
++	outer_outfits = list(/obj/item/clothing/suit/jacket/leather/overcoat)
++
++/datum/team/gang/tunnel
++	name = "Tunnel"
++	color = "#FF00FF"
++	inner_outfits = list(/obj/item/clothing/under/hippie/robbie)
++	outer_outfits = list(/obj/item/clothing/suit/poncho/ponchoshame)
++
++/datum/team/gang/diablo
++	name = "Diablo"
++	color = "#FF0000"
++	inner_outfits = list(/obj/item/clothing/under/color/red)
++	outer_outfits = list(/obj/item/clothing/suit/jacket/leather)
++
++/datum/team/gang/psyke
++	name = "Psyke"
++	color = "#808080"
++	inner_outfits = list(/obj/item/clothing/under/color/grey)
++	outer_outfits = list(/obj/item/clothing/suit/toggle/owlwings/griffinwings)
++
++/datum/team/gang/osiron
++	name = "Osiron"
++	color = "#FFFFFF"
++	inner_outfits = list(/obj/item/clothing/under/color/white)
++	outer_outfits = list(/obj/item/clothing/suit/toggle/labcoat)
++
++/datum/team/gang/sirius
++	name = "Sirius"
++	color = "#FFC0CB"
++	inner_outfits = list(/obj/item/clothing/under/color/pink)
++
++/datum/team/gang/sleepingcarp
++	name = "Sleeping Carp"
++	color = "#800080"
++	inner_outfits = list(/obj/item/clothing/under/color/lightpurple)
++	outer_outfits = list(/obj/item/clothing/suit/hooded/carp_costume)
+diff --git a/yogstation/code/modules/antagonists/gang/gang_hud.dm b/yogstation/code/modules/antagonists/gang/gang_hud.dm
+new file mode 100644
+index 0000000000..825d361ab0
+--- /dev/null
++++ b/yogstation/code/modules/antagonists/gang/gang_hud.dm
+@@ -0,0 +1,34 @@
++/datum/atom_hud/antag/gang
++	var/color = null
++
++/datum/atom_hud/antag/gang/add_to_hud(atom/A)
++	if(!A)
++		return
++	var/image/holder = A.hud_list[ANTAG_HUD]
++	if(holder)
++		holder.color = color
++	..()
++
++/datum/atom_hud/antag/gang/remove_from_hud(atom/A)
++	if(!A)
++		return
++	var/image/holder = A.hud_list[ANTAG_HUD]
++	if(holder)
++		holder.color = null
++	..()
++
++/datum/atom_hud/antag/gang/join_hud(mob/M)
++	if(!istype(M))
++		CRASH("join_hud(): [M] ([M.type]) is not a mob!")
++	var/image/holder = M.hud_list[ANTAG_HUD]
++	if(holder)
++		holder.color = color
++	..()
++
++/datum/atom_hud/antag/gang/leave_hud(mob/M)
++	if(!istype(M))
++		CRASH("leave_hud(): [M] ([M.type]) is not a mob!")
++	var/image/holder = M.hud_list[ANTAG_HUD]
++	if(holder)
++		holder.color = null
++	..()
