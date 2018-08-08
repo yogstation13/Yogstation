@@ -94,13 +94,15 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
-	var/list/Bolt_log = list() //Who can it be bolting all my doors? Go away, don't come down here no more.
-	var/list/Shocking_log = list() //yogs - who electrified this door.
+	var/list/Bolt_log //YOGS START: Who can it be bolting all my doors? Go away, don't come down here no more.
+	var/list/Shocking_log //yogs - who electrified this door. //YOGS END
 
 	var/static/list/airlock_overlays = list()
 
 /obj/machinery/door/airlock/Initialize()
 	. = ..()
+	Bolt_log = list()
+	Shocking_log = list()
 	wires = new /datum/wires/airlock(src)
 	if(frequency)
 		set_frequency(frequency)
