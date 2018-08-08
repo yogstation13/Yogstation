@@ -38,3 +38,10 @@
 			message += "[admin]"
 
 	return jointext(message, "")
+
+/datum/world_topic/reboot
+	keyword = "reboot"
+	require_comms_key = TRUE
+
+/datum/world_topic/reboot/Run(list/input)
+	SSticker.Reboot("Initiated from discord")
