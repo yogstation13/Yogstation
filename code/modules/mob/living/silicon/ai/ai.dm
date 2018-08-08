@@ -105,6 +105,8 @@
 	else
 		make_laws()
 
+	update_law_history() //yogs
+
 	if(target_ai.mind)
 		target_ai.mind.transfer_to(src)
 		if(mind.special_role)
