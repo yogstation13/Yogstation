@@ -94,15 +94,15 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
-	var/list/Bolt_log //YOGS START: Who can it be bolting all my doors? Go away, don't come down here no more.
-	var/list/Shocking_log //yogs - who electrified this door. //YOGS END
+	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
+	var/list/shocking_log //yogs - who electrified this door.
 
 	var/static/list/airlock_overlays = list()
 
 /obj/machinery/door/airlock/Initialize()
 	. = ..()
-	Bolt_log = list()
-	Shocking_log = list()
+	bolt_log = list() //yogs
+	shocking_log = list() //yogs
 	wires = new /datum/wires/airlock(src)
 	if(frequency)
 		set_frequency(frequency)
@@ -1446,15 +1446,15 @@
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
-			Shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("shock-temp")
 			shock_temp(usr)
-			Shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("shock-perm")
 			shock_perm(usr)
-			Shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("idscan-on")
 			if(wires.is_cut(WIRE_IDSCAN))
@@ -1480,11 +1480,11 @@
 			. = TRUE
 		if("bolt-raise")
 			bolt_raise(usr)
-			Bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("bolt-drop")
 			bolt_drop(usr)
-			Bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
 			. = TRUE
 		if("light-on")
 			if(wires.is_cut(WIRE_LIGHT))
