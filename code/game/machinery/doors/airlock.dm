@@ -1446,15 +1446,15 @@
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
-			shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("shock-temp")
 			shock_temp(usr)
-			shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("shock-perm")
 			shock_perm(usr)
-			shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("idscan-on")
 			if(wires.is_cut(WIRE_IDSCAN))
@@ -1480,11 +1480,11 @@
 			. = TRUE
 		if("bolt-raise")
 			bolt_raise(usr)
-			bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("bolt-drop")
 			bolt_drop(usr)
-			bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]"
+			bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("light-on")
 			if(wires.is_cut(WIRE_LIGHT))
