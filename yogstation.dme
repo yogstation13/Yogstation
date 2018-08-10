@@ -2645,6 +2645,7 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "yogstation\code\__HELPERS\_lists.dm"
 #include "yogstation\code\__HELPERS\mobs.dm"
 #include "yogstation\code\__HELPERS\unsorted.dm"
 #include "yogstation\code\controllers\subsystem\input.dm"
