@@ -679,7 +679,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				if(istype(H.shoes, /obj/item/clothing/shoes/magboots)) //yogs start
 					var/obj/item/clothing/shoes/magboots/MB = H.shoes
 					if(MB.magpulse)
-						to_chat(H, "<span class='warning'>Your \the [MB] keep you standing up against [src]'s pull!</span>")
+						to_chat(H, "<span class='warning'>[MB] prevent you from falling over due to [src]'s pull!</span>")
 					else
 						H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
 				else
