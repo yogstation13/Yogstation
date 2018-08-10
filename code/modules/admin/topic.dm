@@ -893,6 +893,13 @@
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
 
+		//yogs start - gangs jobban
+		if(jobban_isbanned(M, ROLE_GANG) || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=gangster;jobban4=[REF(M)]'><font color=red>Gangster</font></a></td>"
+		else
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=gangster;jobban4=[REF(M)]'>Gangster</a></td>"
+		//yogs stop - gangs jobban
+
 		dat += "</tr></table>"
 		usr << browse(dat, "window=jobban2;size=800x450")
 		return
@@ -954,9 +961,9 @@
 			if("ghostroles")
 				joblist += list(ROLE_PAI, "posibrain", "drone", "deathsquad", "lavaland")
 			if("teamantags")
-				joblist += list(ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ABDUCTOR, ROLE_ALIEN)
+				joblist += list(ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_GANG)	//yogs - gangs jobbans
 			if("convertantags")
-				joblist += list(ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ALIEN)
+				joblist += list(ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ALIEN, ROLE_GANG)	//yogs - gangs jobbans
 			else
 				joblist += href_list["jobban3"]
 
