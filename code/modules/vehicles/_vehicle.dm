@@ -109,11 +109,7 @@
 	vehicle_move(direction)
 
 /obj/vehicle/proc/vehicle_move(direction)
-	var/static/datum/config_entry/number/run_delay/config_run_delay								//yogs start
-	if(isnull(config_run_delay))
-		config_run_delay = CONFIG_GET(number/run_delay)
-	var/combined_delay = movedelay * config_run_delay
-	if(lastmove + combined_delay > world.time)																		//yogs end
+	if(lastmove + (movedelay * CONFIG_GET(number/movedelay/run_delay)) > world.time)
 		return FALSE
 	lastmove = world.time
 	if(trailer)
