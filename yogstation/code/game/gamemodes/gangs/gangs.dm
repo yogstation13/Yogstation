@@ -57,3 +57,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/datum/antagonist/gang/boss/B = new()
 		M.add_antag_datum(B)
 		B.equip_gang()
+
+/datum/game_mode/gang/generate_report()
+	return "We have reports of criminal activity in close proximity to our operations within your sector. \
+	Ensure law and order is maintained on the station and be on the lookout for territorial aggression within the crew."

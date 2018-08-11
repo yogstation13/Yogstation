@@ -138,7 +138,7 @@
 		to_chat(user, "<span class='info'>[icon2html(src, user)]Error: Station out of range.</span>")
 		return
 	if(gang.members.len)
-		var/ping = "<span class='danger'><B><i>[gang.name] [(user.mind in gang.leaders) ? "Leader" : "Gangster"]</i>: [message]</B></span>"
+		var/ping = "<span class='danger'><B><i>[gang.name] [(user.mind in gang.leaders) ? "Leader" : "Gangster"] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]</i>: [message]</B></span>"
 		for(var/datum/mind/ganger in gang.members)
 			if(ganger.current && is_station_level(ganger.current.z) && (ganger.current.stat == CONSCIOUS))
 				to_chat(ganger.current, ping)
