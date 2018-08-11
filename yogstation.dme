@@ -98,6 +98,7 @@
 #include "code\__DEFINES\wires.dm"
 #include "code\__DEFINES\~yogs_defines\access.dm"
 #include "code\__DEFINES\~yogs_defines\admin.dm"
+#include "code\__DEFINES\~yogs_defines\components.dm"
 #include "code\__DEFINES\~yogs_defines\jobs.dm"
 #include "code\__DEFINES\~yogs_defines\keybindings.dm"
 #include "code\__DEFINES\~yogs_defines\preferences.dm"
