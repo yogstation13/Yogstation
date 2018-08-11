@@ -295,11 +295,7 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 
 		.[model_key] = list(members, members_attributes)
 
-<<<<<<< HEAD
-/datum/maploader/proc/build_coordinate(list/model, xcrd as num, ycrd as num, zcrd as num, no_changeturf as num, placeOnTop as num, stationroom = FALSE) //yogs
-=======
 /datum/parsed_map/proc/build_coordinate(list/model, xcrd as num, ycrd as num, zcrd as num, no_changeturf as num, placeOnTop as num)
->>>>>>> b83424bd87... Refactor the map loader (#39567)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
