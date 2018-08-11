@@ -150,11 +150,7 @@
 		return
 	qdel(query_add_ban)
 	to_chat(usr, "<span class='adminnotice'>Ban saved to database.</span>")
-<<<<<<< HEAD
-	var/msg = "[key_name(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database." // yogs - Yog Tickets
-=======
-	var/msg = "[key_name_admin(usr)] has added a [bantype_str] for [bankey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database."
->>>>>>> 0d7ef3ed65... Key instead of ckey for user facing logs and ui (#39009)
+	var/msg = "[key_name(usr)] has added a [bantype_str] for [bankey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database." // yogs - Yog Tickets
 	message_admins(msg,1)
 	var/datum/admin_help/AH = admin_ticket_log(ckey, msg)
 
@@ -494,17 +490,10 @@
 			var/job = query_search_bans.item[5]
 			var/duration = query_search_bans.item[6]
 			var/expiration = query_search_bans.item[7]
-<<<<<<< HEAD
-			var/ckey = query_search_bans.item[8]
-			var/ackey = query_search_bans.item[9]
-			var/unbanned = text2num(query_search_bans.item[10]) // yogs - Yog Bans
-			var/unbanckey = query_search_bans.item[11]
-=======
 			var/ban_key = query_search_bans.item[8]
 			var/a_key = query_search_bans.item[9]
-			var/unbanned = query_search_bans.item[10]
+			var/unbanned = text2num(query_search_bans.item[10])
 			var/unban_key = query_search_bans.item[11]
->>>>>>> 0d7ef3ed65... Key instead of ckey for user facing logs and ui (#39009)
 			var/unbantime = query_search_bans.item[12]
 			var/edits = query_search_bans.item[13]
 			var/round_id = query_search_bans.item[14]
