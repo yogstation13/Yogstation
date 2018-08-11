@@ -75,11 +75,7 @@
 		if(computer_id)
 			cidquery = " OR computerid = '[computer_id]' "
 
-<<<<<<< HEAD
-		var/datum/DBQuery/query_ban_check = SSdbcore.NewQuery("SELECT ckey, a_ckey, reason, expiration_time, duration, bantime, bantype, id, round_id FROM [format_table_name("ban")] WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR bantype = 'ADMIN_PERMABAN' OR ((bantype = 'TEMPBAN' OR bantype = 'ADMIN_TEMPBAN') AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
-=======
-		var/datum/DBQuery/query_ban_check = SSdbcore.NewQuery("SELECT (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].ckey), (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey), reason, expiration_time, duration, bantime, bantype, id, round_id FROM [format_table_name("ban")] WHERE (ckey = '[ckey]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR bantype = 'ADMIN_PERMABAN' OR ((bantype = 'TEMPBAN' OR bantype = 'ADMIN_TEMPBAN') AND expiration_time > Now())) AND isnull(unbanned)")
->>>>>>> 0d7ef3ed65... Key instead of ckey for user facing logs and ui (#39009)
+		var/datum/DBQuery/query_ban_check = SSdbcore.NewQuery("SELECT (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].ckey), (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey), reason, expiration_time, duration, bantime, bantype, id, round_id FROM [format_table_name("ban")] WHERE (ckey = '[ckey]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR bantype = 'ADMIN_PERMABAN' OR ((bantype = 'TEMPBAN' OR bantype = 'ADMIN_TEMPBAN') AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
 		if(!query_ban_check.Execute(async = TRUE))
 			qdel(query_ban_check)
 			return
@@ -113,11 +109,7 @@
 			else
 				expires = " The is a permanent ban."
 
-<<<<<<< HEAD
-			var/desc = "\nReason: You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [ackey] on [bantime] during round ID [ban_round_id], [expires]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums." //yogs
-=======
-			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id], [expires]"
->>>>>>> 0d7ef3ed65... Key instead of ckey for user facing logs and ui (#39009)
+			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id], [expires]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums." //yogs
 
 			. = list("reason"="[bantype]", "desc"="[desc]")
 
