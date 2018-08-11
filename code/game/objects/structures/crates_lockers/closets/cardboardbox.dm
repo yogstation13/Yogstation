@@ -20,16 +20,11 @@
 /obj/structure/closet/cardboard/relaymove(mob/user, direction)
 	if(opened || move_delay || user.stat || user.IsStun() || user.IsKnockdown() || user.IsUnconscious() || !isturf(loc) || !has_gravity(loc))
 		return
-	step(src, direction)		//yogs start
 	move_delay = TRUE
-<<<<<<< HEAD
-	addtimer(CALLBACK(src, .proc/ResetMoveDelay), CONFIG_GET(number/walk_delay) * move_speed_multiplier)		//yogs end
-=======
 	if(step(src, direction))
 		addtimer(CALLBACK(src, .proc/ResetMoveDelay), CONFIG_GET(number/movedelay/walk_delay) * move_speed_multiplier)
 	else
 		ResetMoveDelay()
->>>>>>> 5f4b418eaa... Movespeed Modification System (#39181)
 
 /obj/structure/closet/cardboard/proc/ResetMoveDelay()
 	move_delay = FALSE
