@@ -345,7 +345,8 @@
 	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
-	if(!SEND_SIGNAL(src, COMSIG_ALT_CLICK_ON, A)) //yogs
+	var/result = SEND_SIGNAL(src, COMSIG_ALT_CLICK_ON, A) //yogs - has to be like this, otherwise stuff breaks
+	if(!result)
 		A.AltClick(src)
 	return
 
