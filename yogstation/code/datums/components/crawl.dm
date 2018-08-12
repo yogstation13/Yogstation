@@ -266,13 +266,13 @@
 
 /datum/component/crawl/meme
 	var/thing = "meme"
-	var/name
+	var/crawl_name
 
 /datum/component/crawl/meme/Initialize()
-	if(!name)
-		name = thing
-	gain_message = "<span class='notice'>You can now [name]! Alt-click on [thing] to phase in and out.</span>"
-	loss_message = "<span class='warning'>You can no longer [name].</span>"
+	if(!crawl_name)
+		crawl_name= thing
+	gain_message = "<span class='notice'>You can now [crawl_name]! Alt-click on [thing] to phase in and out.</span>"
+	loss_message = "<span class='warning'>You can no longer [crawl_name].</span>"
 	..()
 
 /datum/component/crawl/meme/start_crawling(atom/target, mob/living/user)
@@ -295,17 +295,17 @@
 
 /datum/component/crawl/meme/animal
 	thing = "animals"
-	name = "animalcrawl"
+	crawl_name = "animalcrawl"
 	crawling_types = list(/mob/living/simple_animal)
 
 /datum/component/crawl/meme/human
 	thing = "people"
-	name = "humancrawl"
+	crawl_name = "humancrawl"
 	crawling_types = list(/mob/living/carbon/human)
 
 /datum/component/crawl/meme/human/corpse
 	thing = "dead and unconscious people"
-	name = "corpsecrawl"
+	crawl_name = "corpsecrawl"
 	crawling_types = list(/mob/living/carbon/human)
 
 /datum/component/crawl/meme/human/corpse/can_start_crawling(atom/target, mob/living/user)
@@ -322,5 +322,5 @@
 
 /datum/component/crawl/meme/silicon
 	thing = "silicons"
-	name = "siliconcrawl"
+	crawl_name = "siliconcrawl"
 	crawling_types = list(/mob/living/silicon)
