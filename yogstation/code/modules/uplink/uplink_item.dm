@@ -39,5 +39,5 @@
 	name = "Gondola meat"
 	desc = "A slice of gondola meat will turn any hard-working, brainwashed NT employee into a goody-two-shoes gondola in a matter of minutes."
 	item = /obj/item/reagent_containers/food/snacks/meat/slab/gondola
-	cost = 2
+	cost = 6
 	restricted_roles = list("Cook")
