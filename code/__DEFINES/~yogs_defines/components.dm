@@ -1,0 +1,1 @@
+#define COMSIG_ATOM_POINTED_AT "atom_pointed_at"				//yogs: from base of atom/pointed_at(): (mob/user)
