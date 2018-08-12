@@ -345,7 +345,8 @@
 	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
-	A.AltClick(src)
+	if(!SEND_SIGNAL(src, COMSIG_ALT_CLICK_ON, A)) //yogs
+		A.AltClick(src)
 	return
 
 /mob/living/carbon/AltClickOn(atom/A)

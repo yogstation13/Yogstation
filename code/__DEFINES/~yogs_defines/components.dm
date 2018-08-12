@@ -1,0 +1,1 @@
+#define COMSIG_ALT_CLICK_ON "alt_click_on" //from base of mob/AltClickOn: (atom/A)
