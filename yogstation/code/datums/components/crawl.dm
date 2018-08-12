@@ -33,6 +33,7 @@
 	on_gain(M)
 
 /datum/component/crawl/proc/try_crawl(atom/target)
+	set waitfor = FALSE
 	var/can_crawl = FALSE
 	for(var/type in crawling_types)
 		if(istype(target, type))
@@ -44,11 +45,11 @@
 	if(M.incapacitated())
 		return FALSE
 
+	. = TRUE
 	if(holder && can_stop_crawling(target, M))
 		stop_crawling(target, M)
 	else if(!istype(M.loc, /obj/effect/dummy/crawling) && can_start_crawling(target, M)) //no crawling while crawling
 		start_crawling(target, M)
-	return TRUE
 
 /datum/component/crawl/proc/can_start_crawling(atom/target, mob/living/user)
 	if(!user.Adjacent(target))
@@ -210,3 +211,116 @@
 
 /datum/component/crawl/blood/demonic/hilarious/swallow(mob/living/victim, mob/living/user)
 	friends += victim
+
+////////////LOCKERCRAWL
+/datum/component/crawl/locker
+	crawling_types = list(/obj/structure/closet)
+	gain_message = "<span class='notice'>You can now lockercrawl! Alt-click a locker you are inside of to phase out, alt-click a closed locker to phase in.</span>"
+	loss_message = "<span class='warning'>You can no longer lockercrawl.</span>"
+
+/datum/component/crawl/locker/can_start_crawling(atom/target, mob/living/user)
+	if(!(user in target.contents))
+		target.AltClick(user) //toggle the lock if we aren't inside
+		return FALSE
+	var/obj/structure/closet/C = target
+	if(C.opened)
+		to_chat(user, "<span class='warning'>Close the locker first!</span>")
+		return FALSE
+	if(user.notransform)
+		return FALSE
+	return TRUE
+
+/datum/component/crawl/locker/can_stop_crawling(atom/target, mob/living/user)
+	var/obj/structure/closet/C = target
+	if(C.opened)
+		return FALSE
+	var/mobs = 0
+	for(var/mob/living/L in C)
+		mobs++
+	if(mobs >= C.mob_storage_capacity)
+		to_chat(user, "<span class='warning'>This locker is full!</span>")
+		return FALSE
+	return ..()
+
+/datum/component/crawl/locker/start_crawling(atom/target, mob/living/user)
+	to_chat(user, "<span class='notice'>You close your eyes, plug your ears and start counting to three...</span>")
+	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
+	target.Shake(3, 3, 3 SECONDS * 5)
+	if(!do_after(user, 3 SECONDS, target = target))
+		return
+	..()
+	to_chat(user, "<span class='notice'>You open your eyes and find yourself in the locker dimension.</span>")
+	user.reset_perspective()
+	user.clear_fullscreen("remote_view")
+
+/datum/component/crawl/locker/stop_crawling(atom/target, mob/living/user)
+	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
+	target.Shake(3, 3, 3 SECONDS * 5)
+	if(!do_after(user, 3 SECONDS, target = target))
+		return
+	user.forceMove(target)
+	qdel(holder)
+	holder = null
+	to_chat(user, "<span class='notice'>You are back in the material plane.</span>")
+	user.reset_perspective()
+
+/datum/component/crawl/meme
+	var/thing = "meme"
+	var/name
+
+/datum/component/crawl/meme/Initialize()
+	if(!name)
+		name = thing
+	gain_message = "<span class='notice'>You can now [name]! Alt-click on [thing] to phase in and out.</span>"
+	loss_message = "<span class='warning'>You can no longer [name].</span>"
+	..()
+
+/datum/component/crawl/meme/start_crawling(atom/target, mob/living/user)
+	target.visible_message("<span class='warning'>[user] disappears into [target]!</span>")
+	playsound(get_turf(target), 'sound/magic/enter_blood.ogg', 100, 1, -1)
+	..()
+
+/datum/component/crawl/meme/stop_crawling(atom/target, mob/living/user)
+	target.visible_message("<span class='warning'>[user] rises from [target]!</span>")
+	playsound(get_turf(target), 'sound/magic/exit_blood.ogg', 100, 1, -1)
+	..()
+
+/datum/component/crawl/meme/food
+	thing = "food"
+	crawling_types = list(/obj/item/reagent_containers/food)
+
+/datum/component/crawl/meme/trash
+	thing = "trash"
+	crawling_types = list(/obj/item/trash)
+
+/datum/component/crawl/meme/animal
+	thing = "animals"
+	name = "animalcrawl"
+	crawling_types = list(/mob/living/simple_animal)
+
+/datum/component/crawl/meme/human
+	thing = "people"
+	name = "humancrawl"
+	crawling_types = list(/mob/living/carbon/human)
+
+/datum/component/crawl/meme/human/corpse
+	thing = "dead and unconscious people"
+	name = "corpsecrawl"
+	crawling_types = list(/mob/living/carbon/human)
+
+/datum/component/crawl/meme/human/corpse/can_start_crawling(atom/target, mob/living/user)
+	var/mob/living/carbon/human/H = target
+	if(H.stat < UNCONSCIOUS)
+		return FALSE
+	return ..()
+
+/datum/component/crawl/meme/human/corpse/can_stop_crawling(atom/target, mob/living/user)
+	var/mob/living/carbon/human/H = target
+	if(H.stat < UNCONSCIOUS)
+		return FALSE
+	return ..()
+
+/datum/component/crawl/meme/silicon
+	thing = "silicons"
+	name = "siliconcrawl"
+	crawling_types = list(/mob/living/silicon)
