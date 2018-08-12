@@ -88,6 +88,7 @@
 	loss_message = "<span class='warning'>You can no longer bloodcrawl.</span>"
 
 	var/kidnap = FALSE
+	var/speed_boost = FALSE
 
 /datum/component/crawl/blood/can_start_crawling(atom/target, mob/living/user)
 	if(!iscarbon(user))
@@ -129,7 +130,7 @@
 	target.visible_message("<span class='warning'><b>[user] drags [victim] into the pool of blood!</b></span>", null, "<span class='notice'>You hear a splash.</span>")
 
 	user.notransform = TRUE
-	devour(victim, user)
+	devour(victim, user, target)
 	user.notransform = FALSE
 
 /datum/component/crawl/blood/stop_crawling(atom/target, mob/living/user)
@@ -145,8 +146,13 @@
 	..()
 	user.visible_message("<span class='warning'><B>[user] rises out of the pool of blood!</B></span>")
 	exit_blood_effect(target, user)
+	if(speed_boost)
+		if(istype(user, /mob/living/simple_animal))
+			var/mob/living/simple_animal/SA = user
+			SA.speed = 0
+			addtimer(VARSET_CALLBACK(SA, speed, 1), 6 SECONDS)
 
-/datum/component/crawl/blood/proc/devour(mob/living/victim, mob/living/user)
+/datum/component/crawl/blood/proc/devour(mob/living/victim, mob/living/user, atom/target)
 	to_chat(user, "<span class='danger'>You begin to feast on [victim]. You can not move while you are doing this.</span>")
 	var/sound
 	if(istype(user, /mob/living/simple_animal/slaughter))
@@ -168,12 +174,11 @@
 		if(target)
 			victim.forceMove(get_turf(target))
 			victim.visible_message("<span class='warning'>[target] violently expels [victim]!</span>")
-			exit_blood_effect(target, victim)
 		else
 			// Fuck it, just eject them, thanks to some split second cleaning
 			victim.forceMove(get_turf(victim))
 			victim.visible_message("<span class='warning'>[victim] appears from nowhere, covered in blood!</span>")
-			exit_blood_effect(target, victim)
+		exit_blood_effect(target, victim)
 		return
 
 	to_chat(user, "<span class='danger'>You devour [victim]. Your health is fully restored.</span>")
@@ -194,7 +199,14 @@
 		newcolor = rgb(43, 186, 0)
 	user.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	// but only for a few seconds
-	addtimer(CALLBACK(user, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 30)
+	addtimer(CALLBACK(user, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 3 SECONDS)
 
 /datum/component/crawl/blood/demonic
 	kidnap = TRUE
+	speed_boost = TRUE
+
+/datum/component/crawl/blood/demonic/hilarious
+	var/list/friends = list()
+
+/datum/component/crawl/blood/demonic/hilarious/swallow(mob/living/victim, mob/living/user)
+	friends += victim
