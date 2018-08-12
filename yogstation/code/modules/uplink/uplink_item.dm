@@ -37,7 +37,7 @@
 
 /datum/uplink_item/role_restricted/gondola_meat
 	name = "Gondola meat"
-	desc = "A slice of gondola meat will turn any brainwashed Nanotrasen employee into a goody-two-shoes gondola."
+	desc = "A slice of gondola meat will turn any hard-working, brainwashed NT employee into a goody-two-shoes gondola in a matter of minutes."
 	item = /obj/item/reagent_containers/food/snacks/meat/slab/gondola
 	cost = 2
 	restricted_roles = list("Cook")
