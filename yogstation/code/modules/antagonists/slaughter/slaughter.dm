@@ -131,6 +131,9 @@
 
 /mob/living/simple_animal/slaughter/laughter/Initialize()
 	..()
+	GET_COMPONENT(scary, /datum/component/crawl/blood/demonic)
+	if(scary)
+		scary.RemoveComponent()
 	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc
