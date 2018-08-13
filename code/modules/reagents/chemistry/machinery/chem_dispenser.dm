@@ -230,6 +230,7 @@
 				beaker = null
 				update_icon()
 				. = TRUE
+		/* yogs - removes chem recipes
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
@@ -283,6 +284,7 @@
 				if (resmismatch && alert("[src] is not yet capable of replicating this recipe with the precision it needs, do you want to save it anyway?",, "Yes","No") == "No")
 					return
 				saved_recipes += list(list("recipe_name" = name, "contents" = recipe))
+		yogs - removed chem recipes */
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	if(default_unfasten_wrench(user, I))
@@ -550,7 +552,7 @@
 		"ammonia",
 		"ash",
 		"diethylamine")
-	
+
 /obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
 	. = ..()
 	component_parts = list()
