@@ -57,8 +57,8 @@
 
 /datum/martial_art/krav_maga/teach(mob/living/carbon/human/H,make_temporary=0)
 	if(..())
-		to_chat(H, "<span class = 'userdanger'>You know the arts of [name]!</span>")
-		to_chat(H, "<span class = 'danger'>Place your cursor over a move at the top of the screen to see what it does.</span>")
+		//to_chat(H, "<span class = 'userdanger'>You know the arts of [name]!</span>") - YOGS CHANGE
+		//to_chat(H, "<span class = 'danger'>Place your cursor over a move at the top of the screen to see what it does.</span>") - YOGS CHANGE
 		neckchop.Grant(H)
 		legsweep.Grant(H)
 		lungpunch.Grant(H)
