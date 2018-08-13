@@ -22,20 +22,32 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	if(href_list["afreeze"])
+	if(href_list["afreeze"]) //yogs start - afreeze
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["afreeze"]) in GLOB.mob_list
 		if(!M || !M.client)
 			return
+		var/message
 		if(M.client.prefs.afreeze)
 			to_chat(M, "<span class='userdanger'>You are no longer frozen.</span>")
 			M.client.prefs.afreeze = FALSE
+			M.client.show_popup_menus = TRUE
+			M.client.show_verb_panel = TRUE
 			M.notransform = FALSE
+			M.verbs += M.client.afreeze_stored_verbs
+			message = "[key_name(usr)] has unfrozen [key_name(M)]."
 		else
 			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
 			M.client.prefs.afreeze = TRUE
+			M.client.show_popup_menus = FALSE
+			M.client.show_verb_panel = FALSE
 			M.notransform = TRUE
+			M.client.afreeze_stored_verbs = M.verbs.Copy()
+			M.verbs.Cut()
+			message = "[key_name(usr)] has frozen [key_name(M)]."
+		log_admin(message)
+		message_admins(message) //yogs end
 
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))

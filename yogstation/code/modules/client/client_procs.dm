@@ -8,9 +8,3 @@
 	var/datum/DBQuery/query_logout = SSdbcore.NewQuery("UPDATE [format_table_name("connection_log")] SET `left` = Now() WHERE id = [number]")
 	query_logout.Execute()
 	qdel(query_logout)
-
-/client/Move()
-	if(src.prefs && src.prefs.afreeze)
-		to_chat(src, "<span class='userdanger'>You have been frozen by an administrator.</span>")
-		return
-	..()
