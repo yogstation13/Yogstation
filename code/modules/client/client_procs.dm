@@ -36,6 +36,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(src.prefs && src.prefs.afreeze) //yogs - afreeze
+		to_chat(src, "<span class='userdanger'>You have been frozen by an administrator.</span>")
+		return
+
 	// asset_cache
 	if(href_list["asset_cache_confirm_arrival"])
 		var/job = text2num(href_list["asset_cache_confirm_arrival"])
