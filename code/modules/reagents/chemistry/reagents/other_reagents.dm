@@ -1788,10 +1788,14 @@
 /datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
 	..()
 	L.add_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
 	..()
 	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
 	if(L.mind)
