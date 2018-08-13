@@ -1,5 +1,5 @@
-//////////////////The Monster
-/* YOGS - !!!MOVED TO yogstation/code/modules/antagonists/slaughter/slaughter.dm!!!
+//////////////////YOGS - !!!MOVED TO yogstation/code/modules/antagonists/slaughter/slaughter.dm!!!
+
 /mob/living/simple_animal/slaughter
 	name = "slaughter demon"
 	real_name = "slaughter demon"
@@ -189,4 +189,3 @@
 		victim.forceMove(get_turf(victim))
 		victim.exit_blood_effect()
 		victim.visible_message("[victim] falls out of the air, covered in blood, looking highly confused. And dead.")
-*/
