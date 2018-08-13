@@ -32,7 +32,7 @@
 /datum/antagonist/gang/farewell()
 	if(ishuman(owner.current))
 		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
+		to_chat(owner, "<span class='userdanger'>You are no longer a gangster! Your memory is hazy from the time you were a criminal... the only thing you remember is the name of the one who brainwashed you...</span>")
 
 /datum/antagonist/gang/on_gain()
 	if(!gang)
@@ -67,6 +67,11 @@
 		ganghud = new/datum/atom_hud/antag/gang()
 		gang.hud_entry_num = GLOB.huds.len+1 // this is the index the gang hud will be added at
 		GLOB.huds += ganghud
+		for(var/client/C in GLOB.admins)	// gang huds are being created dynamically so new hud layers have to be added to existing antag-hud instances
+			if (C.has_antag_hud())
+				var/mob/client_mob = C.mob
+				if (client_mob)
+					ganghud.add_hud_to(client_mob)
 	ganghud.color = gang.color
 	ganghud.join_hud(M)
 	set_antag_hud(M,hud_type)
@@ -243,6 +248,8 @@
 	. -= "Promote"
 	.["Take gangtool"] = CALLBACK(src,.proc/admin_take_gangtool)
 	.["Give gangtool"] = CALLBACK(src,.proc/admin_give_gangtool)
+	.["Give recruitment pen"] = CALLBACK(src,.proc/admin_give_gangpen)
+	.["Give chameleon hud"] = CALLBACK(src,.proc/admin_give_chameleonhud)
 	.["Demote"] = CALLBACK(src,.proc/admin_demote)
 
 /datum/antagonist/gang/boss/proc/demote()
@@ -267,6 +274,12 @@
 
 /datum/antagonist/gang/boss/proc/admin_give_gangtool(mob/admin)
 	equip_gang(TRUE, FALSE, FALSE, FALSE)
+
+/datum/antagonist/gang/boss/proc/admin_give_gangpen(mob/admin)
+	equip_gang(FALSE, TRUE, FALSE, FALSE)
+
+/datum/antagonist/gang/boss/proc/admin_give_chameleonhud(mob/admin)
+	equip_gang(FALSE, FALSE, FALSE, TRUE)
 
 /datum/antagonist/gang/boss/proc/admin_demote(datum/mind/target,mob/user)
 	message_admins("[key_name_admin(user)] has demoted [owner.current] from gang boss.")
@@ -341,7 +354,7 @@
 	to_chat(gangster, "<FONT size=3 color=red><B>You are now a member of the [name] Gang!</B></FONT>")
 	to_chat(gangster, "<font color='red'>Help your bosses take over the station by claiming territory with <b>special spraycans</b> only they can provide. Simply spray on any unclaimed area of the station.</font>")
 	to_chat(gangster, "<font color='red'>Their ultimate objective is to take over the station with a Dominator machine.</font>")
-	to_chat(gangster, "<font color='red'>You can identify your mates by their <b>large, bright \[G\] <font color='[color]'>icon</font></b>.</font>")
+	to_chat(gangster, "<font color='red'>You can identify your mates by their <b>large \[M\] <font color='[color]'>icon</font></b>.</font>")
 	gangster.store_memory("You are a member of the [name] Gang!")
 
 /datum/team/gang/proc/handle_territories()

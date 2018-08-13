@@ -30,12 +30,6 @@
 	inner_outfits = list(/obj/item/clothing/under/color/maroon)
 	outer_outfits = list(/obj/item/clothing/suit/poncho/red)
 
-/datum/team/gang/blasto
-	name = "Blasto"
-	color = "#000080"
-	inner_outfits = list(/obj/item/clothing/under/suit_jacket/navy)
-	outer_outfits = list(/obj/item/clothing/suit/jacket/miljacket)
-
 /datum/team/gang/waffle
 	name = "Waffle"
 	color = "#808000"
@@ -78,12 +72,6 @@
 	inner_outfits = list(/obj/item/clothing/under/color/blue)
 	outer_outfits = list(/obj/item/clothing/suit/apron)
 
-/datum/team/gang/gib
-	name = "Gib"
-	color = "#000000"
-	inner_outfits = list(/obj/item/clothing/under/color/black)
-	outer_outfits = list(/obj/item/clothing/suit/jacket/leather/overcoat)
-
 /datum/team/gang/diablo
 	name = "Diablo"
 	color = "#FF0000"
@@ -95,12 +83,6 @@
 	color = "#808080"
 	inner_outfits = list(/obj/item/clothing/under/color/grey)
 	outer_outfits = list(/obj/item/clothing/suit/toggle/owlwings/griffinwings)
-
-/datum/team/gang/osiron
-	name = "Osiron"
-	color = "#FFFFFF"
-	inner_outfits = list(/obj/item/clothing/under/color/white)
-	outer_outfits = list(/obj/item/clothing/suit/toggle/labcoat)
 
 /datum/team/gang/sirius
 	name = "Sirius"

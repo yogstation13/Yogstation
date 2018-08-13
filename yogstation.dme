@@ -2765,6 +2765,7 @@
 #include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\life.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
+#include "yogstation\code\modules\mob\living\silicon\login.dm"
 #include "yogstation\code\modules\mob\living\silicon\silicon.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\ai.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\vox_sounds.dm"

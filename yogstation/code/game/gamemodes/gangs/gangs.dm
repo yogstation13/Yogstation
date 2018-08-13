@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	required_enemies = 2
 	recommended_enemies = 2
 	enemy_minimum_age = 14
+	var/gangs_to_create = 2
 
 	announce_span = "danger"
 	announce_text = "A violent turf war has erupted on the station!\n\
@@ -27,7 +28,6 @@ GLOBAL_LIST_EMPTY(gangs)
 		restricted_jobs += "Assistant"
 
 	//Spawn more bosses depending on server population
-	var/gangs_to_create = 2
 	if(prob(num_players()) && num_players() > 1.5*required_players)
 		gangs_to_create++
 	if(prob(num_players()) && num_players() > 2*required_players)
@@ -52,6 +52,32 @@ GLOBAL_LIST_EMPTY(gangs)
 /datum/game_mode/gang/post_setup()
 	set waitfor = FALSE
 	..()
+	for(var/i in gangboss_candidates)
+		var/datum/mind/gang_mind = i
+		if(isnewplayer(gang_mind.current))
+			gangboss_candidates -= gang_mind
+			var/list/newcandidates = shuffle(antag_candidates)
+			if(newcandidates.len == 0)
+				continue
+			for(var/M in newcandidates)
+				var/datum/mind/new_gangster = M
+				antag_candidates -= new_gangster
+				newcandidates -= new_gangster
+				if(isnewplayer(new_gangster.current))
+					continue
+				else
+					var/mob/new_gangster_mob = new_gangster.current
+					if(new_gangster_mob.job in restricted_jobs)
+						antag_candidates += new_gangster	//Let's let them keep antag chance for other antags
+						continue
+					gangboss_candidates += new_gangster
+					break
+
+	while(gangs_to_create < gangboss_candidates.len)
+		var/datum/mind/begone = pick(gangboss_candidates)
+		antag_candidates += begone
+		gangboss_candidates -= begone
+
 	for(var/i in gangboss_candidates)
 		var/datum/mind/M = i
 		var/datum/antagonist/gang/boss/B = new()
