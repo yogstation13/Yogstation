@@ -22,6 +22,21 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
+	if(href_list["afreeze"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/M = locate(href_list["afreeze"]) in GLOB.mob_list
+		if(!M || !M.client)
+			return
+		if(M.client.prefs.afreeze)
+			to_chat(M, "<span class='userdanger'>You are no longer frozen.</span>")
+			M.client.prefs.afreeze = FALSE
+			M.notransform = FALSE
+		else
+			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
+			M.client.prefs.afreeze = TRUE
+			M.notransform = TRUE
+
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
