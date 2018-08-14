@@ -2658,6 +2658,7 @@
 #include "yogstation\code\__HELPERS\_lists.dm"
 #include "yogstation\code\__HELPERS\mobs.dm"
 #include "yogstation\code\__HELPERS\unsorted.dm"
+#include "yogstation\code\_onclick\click.dm"
 #include "yogstation\code\controllers\subsystem\input.dm"
 #include "yogstation\code\controllers\subsystem\mapping.dm"
 #include "yogstation\code\controllers\subsystem\yogs.dm"
