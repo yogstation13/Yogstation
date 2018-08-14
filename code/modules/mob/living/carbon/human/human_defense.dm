@@ -280,17 +280,12 @@
 					to_chat(M, "<span class='notice'>[src]'s armour shields the blow!</span>")
 					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-<<<<<<< HEAD
 				if(armour > 0)
 					Knockdown(100 - armour)
 				else
 					Knockdown(100)
 				//yogs end
-				add_logs(M, src, "tackled")
-=======
-				Knockdown(100)
 				log_combat(M, src, "tackled")
->>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
 					"<span class='userdanger'>[M] has tackled down [src]!</span>")
 
