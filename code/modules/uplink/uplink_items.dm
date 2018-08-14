@@ -93,8 +93,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	if(!spawn_item)
 		return
 	var/atom/A
-	if(jobspecials[user.mind.assigned_role])
-		spawn_item = jobspecials[user.mind.assigned_role]
+	if(jobspecials[user.mind.assigned_role]) //yogs
+		spawn_item = jobspecials[user.mind.assigned_role] //yogs
 	if(ispath(spawn_item))
 		A = new spawn_item(get_turf(user))
 	else
