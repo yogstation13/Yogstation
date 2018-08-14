@@ -51880,6 +51880,7 @@
 	name = "Medbay";
 	req_access_txt = "5"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/medbay/central)
 "cha" = (
@@ -51890,6 +51891,7 @@
 	name = "Medbay";
 	req_access_txt = "5"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/medbay/central)
 "chb" = (
@@ -52419,13 +52421,6 @@
 	},
 /area/medical/medbay/central)
 "cis" = (
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayFoyer";
-	name = "Medbay Exit Button";
-	normaldoorcontrol = 1;
-	pixel_y = 26
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -59994,6 +59989,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 4
+	},
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/genetics/cloning)
 "cxZ" = (
@@ -60423,14 +60422,6 @@
 	},
 /area/medical/medbay/aft)
 "cyV" = (
-/obj/machinery/button/door{
-	desc = "A remote control switch for the cloning door.";
-	id = "CloningDoor";
-	name = "Cloning Exit Button";
-	normaldoorcontrol = 1;
-	pixel_x = -23;
-	pixel_y = 8
-	},
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 10
 	},
