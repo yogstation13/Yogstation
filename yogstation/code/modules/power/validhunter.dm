@@ -133,7 +133,7 @@
 	if(typeofskin)
 		skin = new typeofskin
 	
-	add_logs(user, L, "gibbed")
+	log_combat(user, occupant, "gibbed")
 	L.death(1)
 	L.ghostize()
 	qdel(L)
