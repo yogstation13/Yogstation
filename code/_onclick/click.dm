@@ -345,8 +345,10 @@
 	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
-	A.AltClick(src)
-	return
+	var/result = SEND_SIGNAL(src, COMSIG_ALT_CLICK_ON, A) //yogs start - has to be like this, otherwise stuff breaks
+	if(!result)
+		A.AltClick(src)
+	return //yogs end
 
 /mob/living/carbon/AltClickOn(atom/A)
 	if(!stat && mind && iscarbon(A) && A != src)
