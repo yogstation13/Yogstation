@@ -125,11 +125,7 @@
 	reason = sanitizeSQL(reason)
 	var/sql_a_ckey = sanitizeSQL(a_ckey)
 	if(maxadminbancheck)
-<<<<<<< HEAD
-		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[a_ckey]') AND (bantype = 'ADMIN_PERMABAN' OR bantype = 'PERMABAN' OR ((bantype = 'ADMIN_TEMPBAN' OR bantype = 'TEMPBAN') AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
-=======
-		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[sql_a_ckey]') AND (bantype = 'ADMIN_PERMABAN'  OR (bantype = 'ADMIN_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
->>>>>>> f8f1b6ca03... Some injection fixes (#39642)
+		var/datum/DBQuery/query_check_adminban_amt = SSdbcore.NewQuery("SELECT count(id) AS num FROM [format_table_name("ban")] WHERE (a_ckey = '[sql_a_ckey]') AND (bantype = 'ADMIN_PERMABAN' OR bantype = 'PERMABAN' OR ((bantype = 'ADMIN_TEMPBAN' OR bantype = 'TEMPBAN') AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
 		if(!query_check_adminban_amt.warn_execute())
 			qdel(query_check_adminban_amt)
 			return
@@ -216,13 +212,9 @@
 		bantype_sql = "(bantype = 'JOB_PERMABAN' OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now() ) )"
 	else
 		bantype_sql = "bantype = '[bantype_str]'"
-<<<<<<< HEAD
 
-	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[ckey]' AND [bantype_sql] AND (isnull(unbanned) OR unbanned = 0)" // yogs - Yog Bans
-=======
 	var/sql_ckey = sanitizeSQL(ckey)
-	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
->>>>>>> f8f1b6ca03... Some injection fixes (#39642)
+	var/sql = "SELECT id FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND [bantype_sql] AND (isnull(unbanned) OR unbanned = 0)" // yogs - Yog Bans
 	if(job)
 		var/sql_job = sanitizeSQL(job)
 		sql += " AND job = '[sql_job]'"
