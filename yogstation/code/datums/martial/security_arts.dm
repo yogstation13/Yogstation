@@ -3,6 +3,11 @@
  	constant_block = 5
  	var/desc = ""
 
+/datum/martial_art/sec/teach(mob/living/carbon/human/H,make_temporary=0,mob/M)
+	. = ..()
+	to_chat(M, "<span class='bold info'><font size='2'>[desc]</font></span>")
+
+
 /datum/martial_art/sec/flipper
 	name = "Cool Flips Bro"
 	desc = "You've become adept to flipping, you are likely to kick people right in the face during unarmed combat."
