@@ -65,6 +65,8 @@
 	else
 		to_chat(src, "Master revision unknown")
 	to_chat(src, "Revision: [GLOB.revdata.commit]")
+	if(!check_rights_for(src, R_ADMIN)) //yogs
+		return //yogs
 	if(world.TgsAvailable())
 		to_chat(src, "Server tools version: [world.TgsVersion()]")
 	to_chat(src, "<b>Current Informational Settings:</b>")
