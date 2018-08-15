@@ -132,6 +132,8 @@
 		if(!TryConnectToAI())
 			lawupdate = FALSE
 
+	update_law_history() //yogs
+
 	radio = new /obj/item/radio/borg(src)
 	if(!scrambledcodes && !builtInCamera)
 		builtInCamera = new (src)

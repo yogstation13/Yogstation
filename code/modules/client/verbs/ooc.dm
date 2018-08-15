@@ -51,13 +51,11 @@
 		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
 		return
 
-
-	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
+	mob.log_talk(raw_msg, LOG_OOC)
 	if(holder && holder.fakekey) //YOGS start - webhook support
 		webhook_send_ooc(holder.fakekey, msg)
 	else
 		webhook_send_ooc(key, msg) //YOGS end - webhook support
-	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
 
 	var/keyname = key
 	if(prefs.unlock_content)
