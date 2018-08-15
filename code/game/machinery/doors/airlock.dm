@@ -94,11 +94,15 @@
 
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
+	var/list/shocking_log //yogs - who electrified this door.
 
 	var/static/list/airlock_overlays = list()
 
 /obj/machinery/door/airlock/Initialize()
 	. = ..()
+	bolt_log = list() //yogs
+	shocking_log = list() //yogs
 	wires = new /datum/wires/airlock(src)
 	if(frequency)
 		set_frequency(frequency)
@@ -785,7 +789,7 @@
 					if(do_after(user, 20, 1, target = src))
 						if(!panel_open || !S.use(2))
 							return
-						user.visible_message("<span class='notice'>[user] reinforce \the [src] with metal.</span>",
+						user.visible_message("<span class='notice'>[user] reinforces \the [src] with metal.</span>",
 											"<span class='notice'>You reinforce \the [src] with metal.</span>")
 						security_level = AIRLOCK_SECURITY_METAL
 						update_icon()
@@ -799,7 +803,7 @@
 					if(do_after(user, 20, 1, target = src))
 						if(!panel_open || !S.use(2))
 							return
-						user.visible_message("<span class='notice'>[user] reinforce \the [src] with plasteel.</span>",
+						user.visible_message("<span class='notice'>[user] reinforces \the [src] with plasteel.</span>",
 											"<span class='notice'>You reinforce \the [src] with plasteel.</span>")
 						security_level = AIRLOCK_SECURITY_PLASTEEL
 						modify_max_integrity(normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER)
@@ -1280,7 +1284,7 @@
 		bolt() //Bolt it!
 		set_electrified(ELECTRIFIED_PERMANENT)  //Shock it!
 		if(origin)
-			LAZYADD(shockedby, "\[[time_stamp()]\][origin](ckey:[origin.ckey])")
+			LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(origin)]")
 
 
 /obj/machinery/door/airlock/disable_lockdown()
@@ -1442,12 +1446,15 @@
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
+			shocking_log += "[key_name(usr)] de-electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("shock-temp")
 			shock_temp(usr)
+			shocking_log += "[key_name(usr)] temporarily electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("shock-perm")
 			shock_perm(usr)
+			shocking_log += "[key_name(usr)] permanently electrified [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("idscan-on")
 			if(wires.is_cut(WIRE_IDSCAN))
@@ -1473,9 +1480,11 @@
 			. = TRUE
 		if("bolt-raise")
 			bolt_raise(usr)
+			bolt_log += "[key_name(usr)] unbolted [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("bolt-drop")
 			bolt_drop(usr)
+			bolt_log += "[key_name(usr)] bolted [src] at [gameTimestamp("hh:mm:ss", world.time)]" //yogs
 			. = TRUE
 		if("light-on")
 			if(wires.is_cut(WIRE_LIGHT))
@@ -1550,8 +1559,8 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
-		LAZYADD(shockedby, "\[[time_stamp()]\][user](ckey:[user.ckey])")
-		add_logs(user, src, "electrified")
+		LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(user)]")
+		log_combat(user, src, "electrified")
 		set_electrified(AI_ELECTRIFY_DOOR_TIME)
 
 /obj/machinery/door/airlock/proc/shock_perm(mob/user)
@@ -1560,8 +1569,8 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
-		LAZYADD(shockedby, text("\[[time_stamp()]\][user](ckey:[user.ckey])"))
-		add_logs(user, src, "electrified")
+		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)]"))
+		log_combat(user, src, "electrified")
 		set_electrified(ELECTRIFIED_PERMANENT)
 		to_chat(user, "Door electrified") //yogs
 
