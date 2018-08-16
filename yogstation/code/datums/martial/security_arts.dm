@@ -20,7 +20,7 @@
 		D.apply_damage(15, BRUTE)
 		var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 		D.throw_at(throwtarget, 4, 2, A)
-		D.Knockdown(35) //3.5 milisecond stun, because why not
+		D.Knockdown(35) //3.5 second stun, because why not
 		return TRUE
 	..()
 
@@ -52,7 +52,7 @@
 	desc = "Getting dropped as a child has given you some pretty hard times in life, now it shines. You can headbutt people, just make sure you AIM FOR THEIR HEAD and they have no helmets on."
 
 /datum/martial_art/sec/headbutter/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
-	if(prob(50) && !istype(D.head, /obj/item/clothing/head/helmet) && A.zone_selected == BODY_ZONE_HEAD)
+	if(prob(50) && !istype(D.head, /obj/item/clothing/head/helmet) && !istype(D.head, /obj/item/clothing/head/hardhat) && A.zone_selected == BODY_ZONE_HEAD)
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message("<span class='danger'>[A] headbutts [D]!</span>", \
 				  "<span class='userdanger'>[A] headbutts you!</span>")
