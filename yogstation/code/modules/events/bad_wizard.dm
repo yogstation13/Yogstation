@@ -36,14 +36,42 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(1)) //keep this consistent with the amount of loadouts.
+	switch(rand(6)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
-			var/obj/effect/proc_holder/spell/S = new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt
-			owner.AddSpell(S)
-			S.spell_level = 4
-			S.charge_max = round(initial(S.charge_max) - S.spell_level * (initial(S.charge_max) - S.cooldown_min)/ S.level_max)
-			if(S.charge_max < S.charge_counter)
-				S.charge_counter = S.charge_max
-			S.name = "Instant [S.name]"
-			to_chat(owner, "[S.name]")
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
+
+		if(2) //5x blink
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 4)
+
+		if(3) //2x smoke, 2x blind, and 2x barnyard :)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/smoke, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/barnyardcurse, 1)
+
+		if(4) //5x summon guns - no
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/infinite_guns, 4, "Greater Summon Guns")
+
+		if(5)
+			//1x space-time distortion, 2x knock, and 2x blink
+			SpellAdd(/obj/effect/proc_holder/spell/spacetime_dist)
+			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/knock, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 1)
+
+		if(6) //5x forcewall, and 5x repulse (AKA the safe space loadout)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/forcewall, 4)
+			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/repulse, 4)
+
+/datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 0, custom_name) //0 is the first level (cause logic (arrays start at one))
+	var/obj/effect/proc_holder/spell/S = new spellType
+	owner.AddSpell(S)
+	if(level)
+		S.spell_level = level
+		S.charge_max = round(initial(S.charge_max) - S.spell_level * (initial(S.charge_max) - S.cooldown_min)/ S.level_max)
+		if(S.charge_max < S.charge_counter)
+			S.charge_counter = S.charge_max
+	if(custom_name)
+		S.name = custom_name
+	else
+		S.name = "Instant [S.name]"
+	to_chat(owner, "[S.name]")
