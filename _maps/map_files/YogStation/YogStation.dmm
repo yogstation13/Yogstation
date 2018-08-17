@@ -26720,6 +26720,7 @@
 	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 1
 	},
@@ -26739,6 +26740,7 @@
 	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 1
 	},
@@ -27250,13 +27252,6 @@
 /area/medical/chemistry)
 "bpu" = (
 /obj/structure/bed/roller,
-/obj/machinery/button/door{
-	desc = "A remote control switch for the medbay foyer.";
-	id = "MedbayFoyer";
-	name = "Medbay Exit Button";
-	normaldoorcontrol = 1;
-	pixel_y = 26
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
@@ -28471,6 +28466,7 @@
 	name = "Genetics";
 	req_access_txt = "5; 68"
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bsv" = (
@@ -29638,14 +29634,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bvn" = (
-/obj/machinery/button/door{
-	desc = "A remote control switch for the genetics doors.";
-	id = "GeneticsDoor";
-	name = "Genetics Exit Button";
-	normaldoorcontrol = 1;
-	pixel_x = 8;
-	pixel_y = 24
-	},
 /obj/structure/table,
 /obj/item/book/manual/wiki/medical_cloning{
 	pixel_y = 6
