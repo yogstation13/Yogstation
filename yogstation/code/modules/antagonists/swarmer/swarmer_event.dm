@@ -10,10 +10,10 @@
 
 /datum/round_event/spawn_swarmer/start()
 	if(find_swarmer())
-		return false
+		return FALSE
 	var/list/obj/machinery/gravity_generator/main/gens = GLOB.gravity_generators["[pick(SSmapping.levels_by_trait(ZTRAIT_STATION))]"]
 	if(!gens.len)
-		return false
+		return FALSE
 	new /obj/effect/mob_spawn/swarmer(get_turf(pick(gens)))
 	if(prob(25)) //25% chance to announce it to the crew
 		var/swarmer_report = "<span class='big bold'>[command_name()] High-Priority Update</span>"
@@ -24,5 +24,5 @@
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		if(istype(L, /mob/living/simple_animal/hostile/swarmer) && L.client) //If there is a swarmer with an active client, we've found our swarmer
-			return true
-	return false
+			return TRUE
+	return FALSE
