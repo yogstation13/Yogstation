@@ -6,6 +6,7 @@
 	earliest_start = 30 MINUTES
 	min_players = 15
 
+/datum/round_event/spawn_swarmer
 
 /datum/round_event/spawn_swarmer/start()
 	if(find_swarmer())
