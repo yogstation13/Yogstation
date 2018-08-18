@@ -47,6 +47,17 @@
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are!"
 	assignedrole = "Free Miner"
 	outfit = /datum/outfit/freeminer
+	prompt_name = "a free miner"
+
+/obj/effect/mob_spawn/human/free_miner/check_allowed(mob/M)
+	var/area/A = get_area(src)
+	if(A)
+		var/obj/effect/mob_spawn/human/free_miner/captain/cap = locate(/obj/effect/mob_spawn/human/free_miner/captain) in A
+		if(cap)
+			if(alert("The ship needs a captain before it can have a crew. Would you like to play as the captain instead?",,"Yes","No") == "Yes")
+				cap.attack_ghost(M)
+			return FALSE
+	return TRUE
 
 /datum/outfit/freeminer
 	name = "Free Miner"
@@ -64,13 +75,14 @@
 /obj/effect/mob_spawn/human/free_miner/engi
 	name = "Free Miner Engineer"
 	id_job = "Free Miner Engineer"
-	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are!"
+	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! After years of saving, you finally have just enough parts to put your own mech together. Salvage the wreckage with a welder and a crowbar to get them."
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
 	assignedrole = "Free Miner Engineer"
 	outfit = /datum/outfit/freeminer/engi
+	prompt_name = "a free miner engineer"
 
 /datum/outfit/freeminer/engi
 	l_pocket = null
@@ -82,9 +94,13 @@
 /obj/effect/mob_spawn/human/free_miner/captain
 	name = "Free Miner Captain"
 	id_job = "Free Miner Captain"
-	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! Try not to lose your ID, as it is the only way to move your ship."
+	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! Your ID and the ship pilot IDs in the cockpit are the only way to move your ship. Try not to lose them!"
 	assignedrole = "Free Miner Captain"
 	outfit = /datum/outfit/freeminer/captain
+	prompt_name = "the free miner captain"
+
+/obj/effect/mob_spawn/human/free_miner/captain/check_allowed(mob/M)
+	return TRUE
 
 /datum/outfit/freeminer/captain
 	uniform = /obj/item/clothing/under/rank/vice
@@ -96,12 +112,23 @@
 
 
 /obj/item/card/id/freeminer
-	name = "Free Miner ID"
+	name = "Free Miner Crewman ID"
 	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER)
 
 /obj/item/card/id/freeminer/captain
-	name = "Free Miner Ship Captain ID"
+	name = "Free Miner Ship Pilot ID"
 	access = list(ACCESS_MINERAL_STOREROOM, ACCESS_FREEMINER, ACCESS_FREEMINER_CAPTAIN)
+
+/obj/item/storage/box/ids/free_miners
+	name = "box of spare IDs"
+	desc = "Spare IDs for promotions and new hires."
+	illustration = "id"
+
+/obj/item/storage/box/ids/free_miners/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/card/id/freeminer(src)
+	for(var/i in 1 to 2)
+		new /obj/item/card/id/freeminer/captain(src)
 
 /****************Free Miner Vendor**************************/
 
