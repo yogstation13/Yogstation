@@ -220,7 +220,7 @@
 		else if(!M.client || prob(5)) // only natural monkeys get to stun reliably, (they only do it occasionaly)
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 			Knockdown(100)
-			add_logs(M, src, "tackled")
+			log_combat(M, src, "tackled")
 			visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
 				"<span class='userdanger'>[M] has tackled down [src]!</span>")
 
@@ -259,7 +259,7 @@
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 			visible_message("<span class='danger'>[M] has slashed at [src]!</span>", \
 				"<span class='userdanger'>[M] has slashed at [src]!</span>")
-			add_logs(M, src, "attacked")
+			log_combat(M, src, "attacked")
 			if(!dismembering_strike(M, M.zone_selected)) //Dismemberment successful
 				return 1
 			apply_damage(damage, BRUTE, affecting, armor_block)
@@ -271,9 +271,21 @@
 				visible_message("<span class='danger'>[M] disarmed [src]!</span>", \
 						"<span class='userdanger'>[M] disarmed [src]!</span>")
 			else
+				//yogs start
+				var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
+				if(!affecting)
+					affecting = get_bodypart(BODY_ZONE_CHEST)
+				var/armour = run_armor_check(affecting, "melee")
+				if(prob(armour))
+					to_chat(M, "<span class='notice'>[src]'s armour shields the blow!</span>")
+					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-				Knockdown(100)
-				add_logs(M, src, "tackled")
+				if(armour > 0)
+					Knockdown(50 + armour)
+				else
+					Knockdown(50)
+				//yogs end
+				log_combat(M, src, "tackled")
 				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
 					"<span class='userdanger'>[M] has tackled down [src]!</span>")
 
@@ -357,7 +369,7 @@
 
 		visible_message("<span class='danger'>[M.name] has hit [src]!</span>", \
 								"<span class='userdanger'>[M.name] has hit [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		add_logs(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+		log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
 
 	else
 		..()

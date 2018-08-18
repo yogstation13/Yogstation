@@ -3,7 +3,7 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/asay/Run(list/input)
-	to_chat(GLOB.admins, "<span class='adminobserver'><span class='prefix'>DISCORD ADMIN:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>")
+	to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["asay"]]</span></span>")
 
 /datum/world_topic/ooc
 	keyword = "ooc"
@@ -38,3 +38,20 @@
 			message += "[admin]"
 
 	return jointext(message, "")
+
+/datum/world_topic/pr_announce/Run(list/input)
+	var/msgTitle = input["announce"]
+	var/author = input["author"]
+	var/id = input["id"]
+	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
+
+	var/final_composed = "<span class='announce'><a href=[link]>PR: [msgTitle] by [author]</a></span>"
+	for(var/client/C in GLOB.clients)
+		C.AnnouncePR(final_composed)
+
+/datum/world_topic/reboot
+	keyword = "reboot"
+	require_comms_key = TRUE
+
+/datum/world_topic/reboot/Run(list/input)
+	SSticker.Reboot("Initiated from discord")

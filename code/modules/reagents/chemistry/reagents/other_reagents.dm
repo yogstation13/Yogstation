@@ -457,6 +457,13 @@
 	race = /datum/species/jelly/slime
 	mutationtext = "<span class='danger'>The pain subsides. Your whole body feels like slime.</span>"
 
+/datum/reagent/mutationtoxin/felinid
+	name = "Felinid Mutation Toxin"
+	id = "felinidmutationtoxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/human/felinid
+	mutationtext = "<span class='danger'>The pain subsides. You feel... like a degenerate.</span>"
+
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
 	id = "lizardmutationtoxin"
@@ -1781,10 +1788,14 @@
 /datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
 	..()
 	L.add_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
 	..()
 	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
 	if(L.mind)
@@ -1829,3 +1840,15 @@
 	if(prob(30))
 		to_chat(M, "You should sit down and take a rest...")
 	..()
+
+/datum/reagent/tranquility
+	name = "Tranquility"
+	id = "tranquility"
+	description = "A highly mutative liquid of unknown origin."
+	color = "#9A6750" //RGB: 154, 103, 80
+	taste_description = "inner peace"
+	can_synth = FALSE
+
+/datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)

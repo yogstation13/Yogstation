@@ -1,0 +1,1474 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Kitchen Maintenance";
+	req_access_txt = "28"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"ac" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ad" = (
+/obj/machinery/door/airlock{
+	name = "Theatre Backstage";
+	req_access_txt = "46"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/theatre)
+"ae" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"af" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Bar Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"ag" = (
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"ah" = (
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ai" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aj" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ak" = (
+/obj/machinery/door/window/southleft{
+	base_state = "left";
+	dir = 2;
+	icon_state = "left";
+	name = "Bar Delivery";
+	req_access_txt = "25"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"al" = (
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
+"am" = (
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"an" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
+"ao" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	freq = 1400;
+	location = "Kitchen"
+	},
+/obj/structure/plasticflaps{
+	opacity = 1
+	},
+/obj/effect/turf_decal/bot{
+	dir = 2
+	},
+/turf/open/floor/plasteel{
+	dir = 2
+	},
+/area/crew_quarters/kitchen)
+"ap" = (
+/obj/machinery/airalarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aq" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/obj/machinery/camera{
+	c_tag = "Theatre Stage";
+	dir = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ar" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"as" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"at" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"au" = (
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"av" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 8
+	},
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"aw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ax" = (
+/obj/machinery/reagentgrinder,
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ay" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"az" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aA" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aB" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aC" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aD" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen Cold Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aE" = (
+/obj/machinery/door/window/southleft{
+	base_state = "left";
+	dir = 2;
+	icon_state = "left";
+	name = "Kitchen Delivery";
+	req_access_txt = "28"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"aF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aG" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aI" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aJ" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aM" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aN" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aO" = (
+/obj/structure/closet/secure_closet/bar{
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aP" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aQ" = (
+/obj/machinery/icecream_vat,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aR" = (
+/obj/machinery/chem_master/condimaster{
+	name = "CondiMaster Neo"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aS" = (
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"aT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aU" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aV" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"aX" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -31
+	},
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"aY" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ba" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"bb" = (
+/obj/structure/closet/gmcloset,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil,
+/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"be" = (
+/obj/structure/kitchenspike,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bf" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/retaliate/goat{
+	name = "Pete"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bg" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/chefcloset,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bi" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"bj" = (
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bm" = (
+/obj/machinery/door/airlock{
+	name = "Bar Storage";
+	req_access_txt = "25"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/crew_quarters/bar)
+"bn" = (
+/obj/effect/landmark/blobstart,
+/obj/item/toy/beach_ball/holoball,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"bo" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bp" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"br" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bs" = (
+/obj/machinery/gibber,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bt" = (
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bu" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/obj/machinery/camera{
+	c_tag = "Bar West";
+	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"bv" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bw" = (
+/obj/machinery/holopad,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bx" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -31
+	},
+/turf/open/floor/fakespace,
+/area/crew_quarters/bar)
+"by" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bz" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xmastree,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bB" = (
+/obj/machinery/door/airlock{
+	name = "Kitchen cold room";
+	req_access_txt = "28"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"bC" = (
+/obj/effect/landmark/event_spawn,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"bD" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bE" = (
+/obj/machinery/newscaster{
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bF" = (
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bG" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bH" = (
+/obj/machinery/camera{
+	c_tag = "Bar South";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bI" = (
+/obj/structure/noticeboard{
+	pixel_y = -27
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bJ" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"bK" = (
+/turf/closed/wall/mineral/titanium,
+/area/crew_quarters/bar)
+"bL" = (
+/turf/closed/wall/mineral/titanium,
+/area/crew_quarters/kitchen)
+"bM" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"bN" = (
+/obj/machinery/vending/dinnerware,
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"bO" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bP" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bQ" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bR" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bS" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bT" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bU" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
+	},
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bV" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bW" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"bX" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"bY" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "barShutters";
+	name = "privacy shutters"
+	},
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"bZ" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"ca" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cb" = (
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cd" = (
+/obj/effect/landmark/start/cook,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"ce" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cg" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"ch" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"ci" = (
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cj" = (
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"ck" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cl" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cm" = (
+/obj/structure/table,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cn" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"co" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/kitchen)
+"cq" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cr" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cs" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"ct" = (
+/obj/machinery/processor,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cu" = (
+/obj/effect/landmark/start/cook,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cv" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/machinery/requests_console{
+	department = "Kitchen";
+	departmentType = 2;
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cw" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cx" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/landmark/start/bartender,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cy" = (
+/obj/machinery/light_switch{
+	pixel_y = -25
+	},
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cz" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cA" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/button/door{
+	id = "kitchen";
+	name = "Kitchen Shutters Control";
+	pixel_x = -1;
+	pixel_y = -24;
+	req_access_txt = "28"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cC" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes{
+	icon_state = "warningline";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/kitchen)
+"cD" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
+"cF" = (
+/obj/machinery/door/airlock/titanium/glass{
+	name = "Diner";
+	req_one_access_txt = "25;28"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cG" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cH" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cJ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cL" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Kitchen";
+	req_one_access_txt = "28"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/kitchen)
+"cM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cN" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cO" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cP" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cQ" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/titanium/glass{
+	name = "Diner"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cR" = (
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/computer{
+	icon_state = "computer";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cT" = (
+/obj/machinery/button/door{
+	id = "barShutters";
+	name = "bar shutters";
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cU" = (
+/obj/machinery/computer{
+	icon_state = "computer";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cV" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
+"cW" = (
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cX" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/titanium{
+	name = "Kitchen";
+	req_one_access_txt = "28"
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/kitchen)
+"cZ" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"da" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"dc" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30;
+	receive_ore_updates = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Bar";
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"dd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"df" = (
+/obj/structure/sign/barsign,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+
+(1,1,1) = {"
+aa
+aa
+ag
+ag
+ag
+ag
+bC
+bY
+ag
+bY
+ag
+bY
+ag
+ag
+"}
+(2,1,1) = {"
+aa
+aa
+av
+au
+au
+aX
+ba
+au
+bu
+au
+bx
+au
+av
+ag
+"}
+(3,1,1) = {"
+aa
+aa
+bi
+aJ
+cG
+cG
+bD
+cG
+cG
+bD
+cG
+cw
+bi
+ag
+"}
+(4,1,1) = {"
+ag
+ac
+am
+bj
+bJ
+bJ
+aI
+bJ
+bJ
+aI
+bJ
+cP
+bE
+ag
+"}
+(5,1,1) = {"
+ad
+am
+am
+bv
+bJ
+bJ
+aI
+bJ
+bJ
+aI
+bJ
+cP
+bF
+ag
+"}
+(6,1,1) = {"
+ag
+ap
+am
+aK
+cH
+ca
+aI
+cM
+cN
+bw
+ca
+aI
+am
+cQ
+"}
+(7,1,1) = {"
+ag
+aq
+aw
+aL
+aI
+aI
+aI
+bk
+aI
+aI
+aI
+aI
+am
+bY
+"}
+(8,1,1) = {"
+ag
+am
+aF
+bA
+aI
+aI
+aI
+bk
+aI
+aI
+aI
+aI
+am
+cQ
+"}
+(9,1,1) = {"
+ae
+ar
+aG
+aT
+aW
+cI
+cI
+bl
+cV
+cO
+aI
+aI
+bG
+df
+"}
+(10,1,1) = {"
+af
+as
+aH
+aU
+aH
+cS
+cS
+aH
+cS
+cS
+aH
+by
+bH
+ag
+"}
+(11,1,1) = {"
+ag
+at
+am
+aV
+bK
+cJ
+cK
+bZ
+cJ
+cK
+bK
+cW
+bI
+ag
+"}
+(12,1,1) = {"
+ag
+ag
+ag
+ag
+bK
+aY
+cU
+am
+cU
+bZ
+bK
+am
+bR
+ag
+"}
+(13,1,1) = {"
+ah
+ax
+az
+aO
+bK
+cT
+cx
+am
+cx
+am
+cR
+bz
+bS
+ag
+"}
+(14,1,1) = {"
+ai
+ai
+aA
+aP
+bm
+aZ
+dd
+bt
+am
+am
+cF
+am
+bT
+ag
+"}
+(15,1,1) = {"
+aj
+by
+am
+bb
+bK
+cZ
+da
+am
+dc
+am
+bK
+am
+am
+ag
+"}
+(16,1,1) = {"
+ag
+ay
+aM
+ag
+bK
+bL
+bM
+cL
+bL
+cp
+bM
+cX
+al
+al
+"}
+(17,1,1) = {"
+ak
+am
+aN
+ag
+bn
+al
+bN
+cb
+cb
+cb
+cb
+cy
+al
+aa
+"}
+(18,1,1) = {"
+al
+al
+al
+al
+al
+al
+bO
+cc
+cj
+cj
+cj
+cz
+al
+aa
+"}
+(19,1,1) = {"
+al
+aB
+aQ
+be
+bo
+al
+bP
+cd
+ck
+cq
+cj
+cj
+cD
+aa
+"}
+(20,1,1) = {"
+ab
+aC
+aC
+aC
+bp
+bB
+bQ
+ce
+cl
+cr
+cu
+cj
+cE
+aa
+"}
+(21,1,1) = {"
+an
+aD
+aR
+bf
+bq
+an
+bU
+cf
+cm
+cs
+cj
+cA
+cE
+aa
+"}
+(22,1,1) = {"
+ao
+aE
+aS
+bg
+br
+al
+bV
+cg
+cn
+cs
+cj
+cj
+cE
+aa
+"}
+(23,1,1) = {"
+al
+al
+al
+bh
+bs
+al
+bW
+ch
+co
+co
+co
+cB
+al
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+al
+al
+al
+al
+bX
+ci
+ci
+ct
+cv
+cC
+al
+aa
+"}
