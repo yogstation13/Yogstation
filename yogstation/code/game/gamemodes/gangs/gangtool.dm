@@ -145,7 +145,7 @@
 		for(var/mob/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
 			to_chat(M, "[link] [ping]")
-		log_talk(user,"GANG: [key_name(user)] Messaged [gang.name] Gang: [message].",LOGSAY)
+		user.log_talk(message, LOG_SAY, tag="gang")
 
 /obj/item/device/gangtool/proc/register_device(mob/user)
 	if(gang)	//It's already been registered!
