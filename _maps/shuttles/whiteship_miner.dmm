@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "aa" = (
 /turf/open/space,
 /area/space)
@@ -7,10 +7,6 @@
 	name = "cargo bay";
 	req_access_txt = "71"
 	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"ac" = (
-/obj/structure/ore_box,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "ad" = (
@@ -180,20 +176,6 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
-"av" = (
-/obj/effect/decal/cleanable/oil,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate,
-/obj/item/circuitboard/machine/ore_redemption,
-/obj/item/stack/cable_coil,
-/obj/item/assembly/igniter,
-/obj/item/stack/sheet/glass,
-/obj/item/stock_parts/manipulator,
-/obj/item/stock_parts/matter_bin,
-/obj/item/stock_parts/micro_laser,
-/obj/machinery/light/broken,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "aw" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = -32
@@ -311,23 +293,6 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
-"aK" = (
-/obj/structure/table,
-/obj/item/wrench,
-/obj/item/crowbar,
-/obj/item/clothing/suit/apron,
-/obj/item/shovel/spade,
-/obj/item/cultivator,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/wirecutters,
-/obj/item/reagent_containers/glass/bucket,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
-/area/shuttle/abandoned)
 "aL" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/shuttle,
@@ -349,7 +314,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -28;
-	req_access_txt = "0";
+	req_access_txt = "0"
 	},
 /obj/machinery/light{
 	dir = 8
@@ -401,7 +366,7 @@
 /obj/machinery/vending/boozeomat{
 	icon_deny = "smartfridge";
 	icon_state = "smartfridge";
-	req_access_txt = "0";
+	req_access_txt = "0"
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
@@ -424,7 +389,7 @@
 /area/shuttle/abandoned)
 "bw" = (
 /obj/machinery/vending/coffee{
-	pixel_x = -2;
+	pixel_x = -2
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
@@ -507,7 +472,7 @@
 /area/shuttle/abandoned)
 "bT" = (
 /obj/machinery/vending/cola{
-	pixel_x = -1;
+	pixel_x = -1
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
@@ -524,7 +489,7 @@
 /area/shuttle/abandoned)
 "bZ" = (
 /obj/machinery/vending/snack{
-	pixel_x = -1;
+	pixel_x = -1
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
@@ -587,7 +552,7 @@
 /area/shuttle/abandoned)
 "cm" = (
 /obj/machinery/biogenerator{
-	idle_power_usage = 0;
+	idle_power_usage = 0
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
@@ -595,7 +560,7 @@
 /area/shuttle/abandoned)
 "cn" = (
 /obj/machinery/vending/hydroseeds{
-	pixel_x = 2;
+	pixel_x = 2
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/shuttle{
@@ -847,12 +812,26 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
-"ll" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/gloves/color/black,
+"kR" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/color/black,
+/obj/item/storage/belt/utility,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/paper/crumpled{
+	info = "Note to self - do not forget to turn internals on before leaving the airlock.<br><br>-M";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
+/obj/item/mining_scanner,
 /obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/item/pickaxe,
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
 	},
@@ -873,6 +852,17 @@
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
+"my" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/color/black,
+/obj/structure/table,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson,
+/obj/item/pickaxe,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "shuttlefloor3"
+	},
+/area/shuttle/abandoned)
 "mR" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -890,7 +880,57 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
-"nL" = (
+"ov" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/paper/crumpled{
+	info = "I found this while digging through another derelict, thought we could prank the rest of the crew with it.<br><br>-F"
+	},
+/obj/item/clothing/mask/breath,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "shuttlefloor3"
+	},
+/area/shuttle/abandoned)
+"oy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/free_miner/captain,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"oH" = (
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/crowbar,
+/obj/item/clothing/suit/apron,
+/obj/item/shovel/spade,
+/obj/item/cultivator,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/wirecutters,
+/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/hatchet,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "shuttlefloor3"
+	},
+/area/shuttle/abandoned)
+"pa" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "engineering bay"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"pg" = (
+/obj/structure/table,
+/obj/item/radio/off{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "shuttlefloor3"
+	},
+/area/shuttle/abandoned)
+"pu" = (
 /obj/docking_port/mobile{
 	callTime = 250;
 	dheight = 0;
@@ -910,39 +950,8 @@
 	req_access_txt = "71"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"ov" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/paper/crumpled{
-	info = "I found this while digging through another derelict, thought we could prank the rest of the crew with it.<br><br>-F"
-	},
-/obj/item/clothing/mask/breath,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
-/area/shuttle/abandoned)
-"oy" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/free_miner/captain,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"pa" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "engineering bay"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"pg" = (
-/obj/structure/table,
-/obj/item/radio/off{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
 /area/shuttle/abandoned)
 "pP" = (
 /obj/machinery/computer/shuttle/white_ship/miner,
@@ -1006,21 +1015,17 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
-"ur" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "recovery shuttle external airlock";
-	req_access_txt = "71"
-	},
+"vK" = (
+/obj/effect/decal/cleanable/oil,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"uB" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "free miner ship interior airlock"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/fans/tiny,
+/obj/structure/closet/crate,
+/obj/item/circuitboard/machine/ore_redemption,
+/obj/item/stack/cable_coil,
+/obj/item/assembly/igniter,
+/obj/item/stack/sheet/glass,
+/obj/item/stock_parts/manipulator,
+/obj/item/stock_parts/matter_bin,
+/obj/item/stock_parts/micro_laser,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "wj" = (
@@ -1042,6 +1047,15 @@
 	icon_state = "shuttlefloor3"
 	},
 /area/shuttle/abandoned)
+"Bd" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "recovery shuttle external airlock";
+	req_access_txt = "71"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "Bi" = (
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
@@ -1062,6 +1076,25 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table,
+/turf/open/floor/plasteel/shuttle{
+	icon_state = "shuttlefloor3"
+	},
+/area/shuttle/abandoned)
+"DY" = (
+/obj/item/storage/box/ids/free_miners{
+	pixel_y = 15
+	},
+/obj/structure/table,
+/obj/item/paper/crumpled{
+	info = "Damn corporates. Finally managed to scrap together enough parts for an ore redemption machine, so we can actually start cashing in on the ore we mine. Still have to put it together in the cargo bay. The catch is, the only place to sell anything around here is a Nanotrasen outpost - some screaming metal deathtrap called Space Station 13. If we want to get anything that is not in the vendor, we will have to go there.<br><br>-C";
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/gps{
+	gpstag = "NTREC1";
+	pixel_x = -1;
+	pixel_y = 2
+	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
 	},
@@ -1153,28 +1186,14 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
-"QH" = (
-/obj/structure/table,
-/obj/item/storage/belt/utility,
-/obj/item/storage/bag/ore,
-/obj/item/storage/bag/ore,
-/obj/item/storage/bag/ore,
-/obj/item/storage/bag/ore,
-/obj/item/radio/off,
-/obj/item/radio/off,
-/obj/item/paper/crumpled{
-	info = "Note to self - do not forget to turn internals on before leaving the airlock.<br><br>-M";
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/mining_scanner,
-/obj/item/mining_scanner,
-/obj/item/mining_scanner,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/glasses/meson,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+"PO" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"RI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ore_box,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "TL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1186,23 +1205,6 @@
 "Ua" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"UW" = (
-/obj/structure/table,
-/obj/item/folder/blue,
-/obj/item/gps{
-	gpstag = "NTREC1";
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/obj/item/paper/crumpled{
-	info = "Damn corporates. Finally managed to scrap together enough parts for an ore redemption machine, so we can actually start cashing in on the ore we mine. Still have to put it together in the cargo bay. The catch is, the only place to sell anything around here is a Nanotrasen outpost - some screaming metal deathtrap called Space Station 13. If we want to get anything that is not in the vendor, we will have to go there.<br><br>-C";
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
 /area/shuttle/abandoned)
 "VU" = (
 /obj/structure/table,
@@ -1274,11 +1276,18 @@
 /area/shuttle/abandoned)
 "XZ" = (
 /obj/machinery/sleeper{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/plasteel/shuttle{
 	icon_state = "shuttlefloor3"
 	},
+/area/shuttle/abandoned)
+"YW" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "free miner ship interior airlock"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Zb" = (
 /turf/open/floor/plasteel/shuttle{
@@ -1381,7 +1390,7 @@ aL
 aE
 bk
 cl
-aK
+oH
 cH
 bk
 "}
@@ -1473,7 +1482,7 @@ bk
 (11,1,1) = {"
 bk
 Oj
-QH
+kR
 VU
 bk
 zy
@@ -1556,11 +1565,11 @@ lo
 bk
 "}
 (16,1,1) = {"
-nL
+pu
 aw
 aL
 ax
-uB
+YW
 JR
 JR
 gv
@@ -1573,11 +1582,11 @@ Xq
 ae
 "}
 (17,1,1) = {"
-ur
+Bd
 ax
 as
 aL
-uB
+YW
 aL
 JR
 bx
@@ -1608,13 +1617,13 @@ bk
 "}
 (19,1,1) = {"
 bk
-aL
+RI
 af
 JR
 bk
 az
 Zb
-ll
+my
 Zb
 aE
 bk
@@ -1627,7 +1636,7 @@ bk
 bk
 ao
 ag
-av
+PO
 bk
 JR
 Zb
@@ -1642,7 +1651,7 @@ bk
 "}
 (21,1,1) = {"
 ae
-ac
+vK
 aL
 aL
 ap
@@ -1732,7 +1741,7 @@ aa
 aa
 ae
 ho
-UW
+DY
 pP
 aN
 pg

@@ -676,7 +676,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/atom/movable/pulled_object = P
 			if(ishuman(P))
 				var/mob/living/carbon/human/H = P
-				H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
+				if(istype(H.shoes, /obj/item/clothing/shoes/magboots)) //yogs start
+					var/obj/item/clothing/shoes/magboots/MB = H.shoes
+					if(MB.magpulse)
+						to_chat(H, "<span class='warning'>[MB] prevent you from falling over due to [src]'s pull!</span>")
+					else
+						H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
+				else
+					H.apply_effect(40, EFFECT_KNOCKDOWN, 0) //yogs end
 			if(pulled_object && !pulled_object.anchored && !ishuman(P))
 				step_towards(pulled_object,center)
 				step_towards(pulled_object,center)

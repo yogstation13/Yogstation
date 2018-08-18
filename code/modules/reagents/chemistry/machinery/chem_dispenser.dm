@@ -230,6 +230,7 @@
 				beaker = null
 				update_icon()
 				. = TRUE
+		/* yogs - removes chem recipes
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
@@ -283,6 +284,7 @@
 				if (resmismatch && alert("[src] is not yet capable of replicating this recipe with the precision it needs, do you want to save it anyway?",, "Yes","No") == "No")
 					return
 				saved_recipes += list(list("recipe_name" = name, "contents" = recipe))
+		yogs - removed chem recipes */
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	if(default_unfasten_wrench(user, I))
@@ -455,6 +457,24 @@
 		"tirizene"
 	)
 
+/obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
+	desc = "Contains a large reservoir of soft drinks. This model has had its safeties shorted out."
+	obj_flags = CAN_BE_HIT | EMAGGED
+	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize()
+	. = ..()
+	dispensable_reagents |= emagged_reagents //adds emagged reagents
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()
+
 /obj/machinery/chem_dispenser/drinks/beer
 	name = "booze dispenser"
 	desc = "Contains a large reservoir of the good stuff."
@@ -488,6 +508,23 @@
 		"fernet"
 	)
 
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged
+	desc = "Contains a large reservoir of the good stuff. This model has had its safeties shorted out."
+	obj_flags = CAN_BE_HIT | EMAGGED
+	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize()
+	. = ..()
+	dispensable_reagents |= emagged_reagents //adds emagged reagents
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks/beer(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()
 
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
@@ -499,6 +536,8 @@
 /obj/machinery/chem_dispenser/mutagensaltpeter
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
+	flags_1 = NODECONSTRUCT_1
+
 	dispensable_reagents = list(
 		"mutagen",
 		"saltpetre",
@@ -514,10 +553,26 @@
 		"ash",
 		"diethylamine")
 
-/obj/machinery/chem_dispenser/fullupgrade //fully upgraded stock parts
+/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stack/sheet/glass(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()
+
+/obj/machinery/chem_dispenser/fullupgrade //fully ugpraded stock parts, emagged
+	desc = "Creates and dispenses chemicals. This model has had its safeties shorted out."
+	obj_flags = CAN_BE_HIT | EMAGGED
+	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/chem_dispenser/fullupgrade/Initialize()
 	. = ..()
+	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)

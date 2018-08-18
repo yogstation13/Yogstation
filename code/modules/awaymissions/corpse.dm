@@ -8,6 +8,7 @@
 	anchored = TRUE
 	var/mob_type = null
 	var/mob_name = ""
+	var/prompt_name = null// Yogs
 	var/mob_gender = null
 	var/death = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
@@ -26,10 +27,11 @@
 	var/assignedrole
 	var/show_flavour = TRUE
 	var/banType = "lavaland"
+	var/ghost_usable = TRUE
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/attack_ghost(mob/user)
-	if(!SSticker.HasRoundStarted() || !loc)
+	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
@@ -39,8 +41,10 @@
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
-	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
-	if(ghost_role == "No" || !loc)
+	if(!check_allowed(user)) // Yogs
+		return // Yogs
+	var/ghost_role = alert("Become [prompt_name ? prompt_name : mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No") // Yogs
+	if(!check_allowed(user) || (ghost_role == "No") || !loc || QDELETED(src) || QDELETED(user)) // Yogs
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
@@ -49,7 +53,7 @@
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))
 		create()
-	else
+	else if(ghost_usable)
 		GLOB.poi_list |= src
 		LAZYADD(GLOB.mob_spawners[name], src)
 
@@ -60,6 +64,11 @@
 	if(!LAZYLEN(spawners))
 		GLOB.mob_spawners -= name
 	return ..()
+
+// Yogs start
+/obj/effect/mob_spawn/proc/check_allowed(mob/M)
+	return TRUE
+// Yogs end
 
 /obj/effect/mob_spawn/proc/special(mob/M)
 	return
@@ -224,6 +233,9 @@
 	death = FALSE
 	roundstart = FALSE //you could use these for alive fake humans on roundstart but this is more common scenario
 
+/obj/effect/mob_spawn/human/corpse/delayed
+	ghost_usable = FALSE //These are just not-yet-set corpses.
+	instant = FALSE
 
 //Non-human spawners
 
