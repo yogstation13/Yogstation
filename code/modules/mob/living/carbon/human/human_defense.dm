@@ -281,9 +281,9 @@
 					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
 				if(armour > 0)
-					Knockdown(100 - armour)
+					Knockdown(50 + armour)
 				else
-					Knockdown(100)
+					Knockdown(50)
 				//yogs end
 				log_combat(M, src, "tackled")
 				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
