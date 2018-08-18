@@ -58,3 +58,22 @@
 	var/mob/chosen_player = pick(mobs)
 	to_chat(src, "[chosen_player] has been chosen")
 	holder.show_player_panel(chosen_player)
+
+/client/proc/get_law_history()
+	set name = "Get Law History"
+	set category = "Admin"
+	set desc = "View list of law changes for silicons."
+	var/data = ""
+	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
+		if(ispAI(S))
+			continue
+		data += "<h1>[key_name(S)]:</h1>\n"
+		data += "<ol>\n"
+		for(var/lawset in S.law_history)
+			var/laws = ""
+			for(var/L in lawset)
+				laws += L
+				laws += "<br>"
+			data += " <li>[laws]</li><br>\n"
+		data += "</ol>\n"
+	src << browse(data, "window=law_history")
