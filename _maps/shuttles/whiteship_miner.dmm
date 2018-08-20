@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/open/space,
 /area/space)
@@ -65,9 +65,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ak" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -109,9 +107,7 @@
 /obj/effect/decal/cleanable/greenglow{
 	desc = "Looks like something's sprung a leak"
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ao" = (
 /obj/structure/ore_box,
@@ -135,9 +131,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ar" = (
 /obj/effect/decal/cleanable/dirt,
@@ -172,9 +166,7 @@
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aw" = (
 /obj/structure/sign/warning/vacuum{
@@ -207,9 +199,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aB" = (
 /obj/item/paper/crumpled{
@@ -263,9 +253,7 @@
 	pixel_y = 5
 	},
 /obj/machinery/light,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aI" = (
 /obj/machinery/processor,
@@ -273,9 +261,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aJ" = (
 /obj/structure/closet/crate/freezer,
@@ -289,9 +275,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -306,9 +290,7 @@
 /area/shuttle/abandoned)
 "aN" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aO" = (
 /obj/machinery/vending/wallmed{
@@ -342,9 +324,7 @@
 	dir = 8
 	},
 /obj/item/stock_parts/cell/hyper/empty,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bd" = (
 /obj/machinery/door/airlock/shuttle{
@@ -375,9 +355,7 @@
 /area/shuttle/abandoned)
 "bm" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bv" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -391,29 +369,21 @@
 /obj/machinery/vending/coffee{
 	pixel_x = -2
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bx" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "by" = (
 /obj/structure/chair,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bC" = (
 /obj/machinery/door/airlock/shuttle{
@@ -427,34 +397,26 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bE" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bG" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bH" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bI" = (
 /obj/machinery/door/airlock/shuttle{
@@ -474,26 +436,20 @@
 /obj/machinery/vending/cola{
 	pixel_x = -1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bU" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bZ" = (
 /obj/machinery/vending/snack{
 	pixel_x = -1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ce" = (
 /obj/structure/sign/departments/botany,
@@ -546,34 +502,26 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cm" = (
 /obj/machinery/biogenerator{
 	idle_power_usage = 0
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cn" = (
 /obj/machinery/vending/hydroseeds{
 	pixel_x = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cp" = (
 /obj/structure/kitchenspike,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cq" = (
 /obj/structure/table,
@@ -584,9 +532,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cw" = (
 /obj/structure/sink{
@@ -627,17 +573,13 @@
 "cH" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cI" = (
 /obj/machinery/hydroponics/constructable,
 /obj/item/seeds/glowshroom,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cJ" = (
 /obj/structure/table,
@@ -645,9 +587,7 @@
 	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cT" = (
 /obj/structure/table,
@@ -657,9 +597,7 @@
 	name = "surgical dufflebag";
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "cZ" = (
 /obj/machinery/shower{
@@ -672,23 +610,17 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/soap/nanotrasen,
 /obj/effect/decal/cleanable/oil,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ea" = (
 /obj/structure/table,
 /obj/item/healthanalyzer,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "eT" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/ore_box,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "fh" = (
 /obj/item/paper/crumpled{
@@ -704,16 +636,12 @@
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "fw" = (
 /obj/structure/table,
 /obj/item/storage/photo_album,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "gv" = (
 /obj/effect/decal/cleanable/dirt,
@@ -721,9 +649,7 @@
 	desc = "A sticky note on the side says 'DO NOT TOUCH, VERY DANGEROUS'.";
 	name = "self-destruct device"
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "gP" = (
 /obj/effect/decal/cleanable/xenoblood,
@@ -739,9 +665,7 @@
 	pixel_x = -1;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "hs" = (
 /obj/effect/decal/cleanable/oil,
@@ -761,15 +685,11 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "id" = (
 /obj/machinery/computer/mech_bay_power_console,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "jA" = (
 /obj/structure/table,
@@ -801,16 +721,12 @@
 	pixel_x = -10;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "kL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/suit_storage_unit/mining/eva,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "kR" = (
 /obj/structure/table,
@@ -832,15 +748,11 @@
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/meson,
 /obj/item/pickaxe,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "lo" = (
 /obj/machinery/mech_bay_recharge_port,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "lL" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -859,9 +771,7 @@
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/glasses/meson,
 /obj/item/pickaxe,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "mR" = (
 /obj/structure/table,
@@ -876,9 +786,7 @@
 /obj/item/storage/box/monkeycubes{
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ov" = (
 /obj/effect/decal/cleanable/dirt,
@@ -887,9 +795,7 @@
 	info = "I found this while digging through another derelict, thought we could prank the rest of the crew with it.<br><br>-F"
 	},
 /obj/item/clothing/mask/breath,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "oy" = (
 /obj/effect/decal/cleanable/dirt,
@@ -910,9 +816,7 @@
 	dir = 8
 	},
 /obj/item/hatchet,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "pa" = (
 /obj/machinery/door/airlock/shuttle{
@@ -926,9 +830,7 @@
 /obj/item/radio/off{
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "pu" = (
 /obj/docking_port/mobile{
@@ -955,26 +857,20 @@
 /area/shuttle/abandoned)
 "pP" = (
 /obj/machinery/computer/shuttle/white_ship/miner,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "qu" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/suit/apron/surgical,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "qA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
 /obj/item/defibrillator,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ry" = (
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -995,25 +891,19 @@
 /obj/item/reagent_containers/food/condiment/sugar,
 /obj/item/reagent_containers/food/condiment/sugar,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "rT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ore_box,
 /obj/effect/mob_spawn/human/free_miner/engi,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "ti" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/oil,
 /obj/structure/mecha_wreckage/ripley/loaded,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "vK" = (
 /obj/effect/decal/cleanable/oil,
@@ -1030,9 +920,7 @@
 /area/shuttle/abandoned)
 "wj" = (
 /obj/structure/chair/office/light,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "zy" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -1043,9 +931,7 @@
 /obj/effect/mob_spawn/human/free_miner{
 	dir = 8
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Bd" = (
 /obj/machinery/door/airlock/shuttle{
@@ -1060,9 +946,7 @@
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
 /obj/item/storage/firstaid/regular,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Ct" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1076,9 +960,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "DY" = (
 /obj/item/storage/box/ids/free_miners{
@@ -1095,15 +977,11 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Fj" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Ft" = (
 /obj/structure/rack{
@@ -1121,26 +999,20 @@
 	},
 /obj/item/clothing/glasses/welding,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Gy" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice{
 	pixel_y = 3
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "HW" = (
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "JR" = (
 /turf/open/floor/plasteel/shuttle,
@@ -1153,9 +1025,7 @@
 /obj/item/storage/toolbox/emergency,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Nt" = (
 /obj/structure/sink{
@@ -1178,9 +1048,7 @@
 	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "PB" = (
 /obj/structure/extinguisher_cabinet,
@@ -1198,9 +1066,7 @@
 "TL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/mineral/equipment_vendor/free_miner,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Ua" = (
 /obj/effect/decal/cleanable/oil,
@@ -1218,9 +1084,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "WI" = (
 /obj/structure/table,
@@ -1241,9 +1105,7 @@
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Xh" = (
 /obj/structure/table,
@@ -1258,29 +1120,21 @@
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = 12
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Xq" = (
 /obj/item/mecha_parts/chassis/ripley,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "XU" = (
 /obj/structure/dresser,
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "XZ" = (
 /obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "YW" = (
 /obj/machinery/door/airlock/shuttle{
@@ -1290,9 +1144,7 @@
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Zb" = (
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Zp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1304,9 +1156,7 @@
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
-/turf/open/floor/plasteel/shuttle{
-	icon_state = "shuttlefloor3"
-	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 
 (1,1,1) = {"
