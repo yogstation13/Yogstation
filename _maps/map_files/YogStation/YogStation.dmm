@@ -40425,8 +40425,7 @@
 	pixel_x = -8
 	},
 /obj/item/integrated_electronics/wirer{
-	pixel_x = -8;
-	step_x = 0
+	pixel_x = -8
 	},
 /obj/item/integrated_electronics/wirer{
 	pixel_x = 8
@@ -40435,8 +40434,7 @@
 	pixel_x = 8
 	},
 /obj/item/integrated_electronics/analyzer{
-	pixel_x = 8;
-	pixel_y = 0
+	pixel_x = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
@@ -40718,9 +40716,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "cbZ" = (
-/obj/machinery/nanite_programmer{
-	step_x = 0
-	},
+/obj/machinery/nanite_programmer,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "cca" = (
@@ -48768,8 +48764,7 @@
 	name = "Science Requests Console";
 	pixel_x = 0;
 	pixel_y = -30;
-	receive_ore_updates = 1;
-	step_x = 0
+	receive_ore_updates = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
