@@ -59,9 +59,9 @@
 		return FALSE
 
 	var/mob/living/L = mob  //Already checked for isliving earlier
-	if(L.incorporeal_move)	//Move though walls
+	/*if(L.incorporeal_move)	//Move though walls //yogs start - turned into component
 		Process_Incorpmove(direct)
-		return FALSE
+		return FALSE*/ //yogs end
 
 	if(mob.remote_control)					//we're controlling something, our movement is relayed to it
 		return mob.remote_control.relaymove(mob, direct)
@@ -85,9 +85,9 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/handled = SEND_SIGNAL(mob, COMSIG_PROCESS_MOVE, n, direct) //yogs start - movement components
+	var/handled = SEND_SIGNAL(L, COMSIG_PROCESS_MOVE, direct) //yogs start - movement components
 	if(handled)
-		return //yogs end
+		return FALSE//yogs end
 
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
