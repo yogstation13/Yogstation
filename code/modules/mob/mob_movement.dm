@@ -84,6 +84,11 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
+
+	var/handled = SEND_SIGNAL(mob, COMSIG_PROCESS_MOVE, n, direct) //yogs start - movement components
+	if(handled)
+		return //yogs end
+
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
