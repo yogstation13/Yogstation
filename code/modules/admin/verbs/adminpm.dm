@@ -15,7 +15,7 @@
 	else if(M.oobe_client)
 		cmd_admin_pm(M.oobe_client,null)
 	else
-		return
+		return //yogs end
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin PM Mob") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
