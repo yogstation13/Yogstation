@@ -22,27 +22,23 @@
   // While normally the length of an array is something you can only read and never write,
   //in DM, len is actually how you manage the size of the array. Editing it to value to like this is actually totally doable.
     words.len = 30
-
+  var/list/voxlist
   if(voxType == "female") // The if for this is OUTSIDE the for-loop, for optimization.
   //Putting it inside makes it check for it every single damned time it parses a word,
   //Which might be super shitty if someone removes the length limit above at some point.
-    for(var/word in words) // For each word
-      word = lowertext(trim(word)) // We store the words as lowercase, so lowercase the word and trim off any weirdness like newlines
-      if(!word) // If we accidentally captured a space or something weird like that
-        words -= word // Scratch this one off the list
-        continue // and skip over it
-      if(!GLOB.vox_sounds[word])
-        incorrect_words += word
+    voxlist = GLOB.vox_sounds[word]
   else if(voxType == "male") // If we're doing the yog-ly male AI vox voice
-    for(var/word in words)
-      word = lowertext(trim(word))
-      if(!word)
-        words -= word
-        continue
-      if(!GLOB.vox_sounds_male[word])
-        incorrect_words += word
+    voxlist = GLOB.vox_sounds_male[word]
   else
     to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>")
+    return
+  for(var/word in words) // For each word
+    word = lowertext(trim(word)) // We store the words as lowercase, so lowercase the word and trim off any weirdness like newlines
+    if(!word) // If we accidentally captured a space or something weird like that
+      words -= word // Scratch this one off the list
+      continue // and skip over it
+    if(!voxlist[word])
+      incorrect_words += word
 
   if(incorrect_words.len)
     to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
@@ -50,10 +46,9 @@
 
   log_admin("[key_name(src)] made an admin AI vocal announcement with the following message: [message].")
   message_admins("[key_name_admin(src)] has forced an AI vox announcement.")
-  if(src.mob) // If the admin has a mob, whether it's a ghost or whatever
-    for(var/word in words) // Then play it
-      play_vox_word(word, src.mob.loc.z, null, voxType) //yogs - male vox
-  else // If, for some ungodly reason, the admin lacks a mob
-    for(var/word in words) // Then play it on the station's Z-level
-    //TODO: Make a define for the station's z-level
-      play_vox_word(word, 2, null, voxType) //yogs - male vox
+  var/z_level = 2 // Default value should be the station's z-level
+  //TODO: Make a define for the station's z-level
+  if(src.mob && src.mob.loc) // If the admin has a mob who exists somewhere
+      z_level = src.mob.loc.z // Play it on their mob's z-level
+  for(var/word in words) // The forloop that actually plays the sounds, hopefully
+    play_vox_word(word, z_level, null, voxType)
