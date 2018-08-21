@@ -37818,14 +37818,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/stock_parts/cell/super,
-/obj/item/stock_parts/cell/super,
-/obj/item/stack/sheet/metal/fifty,
+/obj/item/flashlight/lamp,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "bRb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/item/integrated_circuit_printer,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "bRc" = (
@@ -38511,6 +38509,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "bTp" = (
@@ -38829,10 +38830,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
-"bUq" = (
-/obj/machinery/vending/assist,
-/turf/open/floor/plasteel/white,
-/area/science/circuit)
 "bUr" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -39088,7 +39085,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/structure/target_stake,
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "bVu" = (
@@ -40422,9 +40418,26 @@
 /area/science/misc_lab)
 "cbe" = (
 /obj/structure/table/reinforced,
-/obj/item/integrated_electronics/analyzer,
-/obj/item/integrated_electronics/debugger,
-/obj/item/integrated_electronics/wirer,
+/obj/item/integrated_electronics/analyzer{
+	pixel_x = -8
+	},
+/obj/item/integrated_electronics/debugger{
+	pixel_x = -8
+	},
+/obj/item/integrated_electronics/wirer{
+	pixel_x = -8;
+	step_x = 0
+	},
+/obj/item/integrated_electronics/wirer{
+	pixel_x = 8
+	},
+/obj/item/integrated_electronics/debugger{
+	pixel_x = 8
+	},
+/obj/item/integrated_electronics/analyzer{
+	pixel_x = 8;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "cbf" = (
@@ -40701,28 +40714,13 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "cbY" = (
-/obj/structure/table/reinforced,
-/obj/item/multitool,
-/obj/item/screwdriver,
-/obj/machinery/requests_console{
-	department = "Science";
-	departmentType = 2;
-	name = "Science Requests Console";
-	pixel_y = -30;
-	receive_ore_updates = 1
-	},
+/obj/machinery/nanite_program_hub,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "cbZ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of his office.";
-	dir = 1;
-	name = "Research Monitor";
-	network = list("rd");
-	pixel_y = -28
+/obj/machinery/nanite_programmer{
+	step_x = 0
 	},
-/obj/item/integrated_circuit_printer,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "cca" = (
@@ -48648,6 +48646,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/structure/target_stake,
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "dfM" = (
@@ -48762,6 +48761,18 @@
 /obj/machinery/air_sensor/atmos/oxygen_tank,
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
+"duS" = (
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	name = "Science Requests Console";
+	pixel_x = 0;
+	pixel_y = -30;
+	receive_ore_updates = 1;
+	step_x = 0
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "dvO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -48809,6 +48820,10 @@
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
 	},
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "dQf" = (
@@ -48871,7 +48886,6 @@
 /turf/open/space/basic,
 /area/tcommsat/computer)
 "eaI" = (
-/obj/structure/table/reinforced,
 /obj/item/radio/intercom{
 	pixel_x = -30
 	},
@@ -49181,7 +49195,9 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "flc" = (
-/obj/machinery/bookbinder,
+/obj/structure/table/reinforced,
+/obj/item/multitool,
+/obj/item/screwdriver,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "flP" = (
@@ -49535,6 +49551,10 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"gCY" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "gDN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall/r_wall,
@@ -50003,8 +50023,22 @@
 /area/tcommsat/server)
 "itG" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
+/obj/item/nanite_remote{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/nanite_remote{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/nanite_scanner{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 8;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "iuF" = (
@@ -50392,6 +50426,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "jTR" = (
@@ -51227,6 +51262,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"mJE" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/nanite_chamber,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "mKj" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/brute{
@@ -51799,6 +51841,10 @@
 /obj/structure/closet/secure_closet/personal/patient,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"pyE" = (
+/obj/machinery/computer/nanite_chamber_control,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "pzs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -52710,10 +52756,6 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
-"sSW" = (
-/obj/structure/chair/office/light,
-/turf/open/floor/plasteel/white,
-/area/science/circuit)
 "sTL" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -52835,6 +52877,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"teH" = (
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "tiM" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -53517,7 +53565,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/libraryscanner,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "vTi" = (
@@ -53619,11 +53667,8 @@
 /turf/open/floor/plasteel/vault/telecomms/mainframe,
 /area/tcommsat/server)
 "wvX" = (
-/obj/structure/table/reinforced,
 /obj/machinery/light,
-/obj/item/stock_parts/cell/super,
-/obj/item/stock_parts/cell/super,
-/obj/item/stack/sheet/metal/fifty,
+/obj/machinery/computer/nanite_cloud_controller,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "wwZ" = (
@@ -102872,7 +102917,7 @@ mRe
 bXs
 bPL
 bQI
-bTo
+mJE
 eaI
 cbZ
 bSl
@@ -103129,8 +103174,8 @@ qeQ
 qeQ
 bPF
 bQI
-bXs
-sSW
+pyE
+teH
 cbY
 bSl
 cOe
@@ -103387,7 +103432,7 @@ bXt
 bPM
 bZh
 itG
-cbe
+bXs
 wvX
 bSl
 cOe
@@ -103635,8 +103680,8 @@ bEC
 bEC
 bSl
 dMZ
-bXs
-bXs
+teH
+gCY
 bXs
 gwd
 ycu
@@ -103645,7 +103690,7 @@ uNu
 bXs
 bXs
 bXs
-bXs
+duS
 bSl
 cOe
 ceR
@@ -103894,7 +103939,7 @@ bSl
 bRb
 flc
 vPE
-bUq
+bXs
 bVt
 dfh
 jSO
