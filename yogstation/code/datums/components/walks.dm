@@ -50,4 +50,4 @@
 
 #undef DEFER_MOVE
 #undef MOVE_ALLOWED
-#nudef MOVE_NOT_ALLOWED
+#undef MOVE_NOT_ALLOWED
