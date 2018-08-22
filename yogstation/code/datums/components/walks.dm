@@ -2,6 +2,8 @@
 #define MOVE_ALLOWED 2 //Allow mob to pass through
 #define MOVE_NOT_ALLOWED 3 //Do not let the mob through
 
+#define SHADOWWALK_THRESHOLD 0.02
+
 /datum/component/walk
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
@@ -21,15 +23,44 @@
 		if(MOVE_NOT_ALLOWED)
 			return TRUE
 		if(MOVE_ALLOWED)
+			preprocess_move(L, T)
 			L.forceMove(T)
+			finalize_move(L, T)
 			return TRUE
 
 /datum/component/walk/proc/can_walk(mob/living/user, turf/destination)
 	return MOVE_ALLOWED
 
+/datum/component/walk/proc/preprocess_move(mob/living/user, turf/destination)
+	return
+
+/datum/component/walk/proc/finalize_move(mob/living/user, turf/destination)
+	return
+
 /datum/component/walk/shadow
+	var/atom/movable/pulled
+
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
-	return (destination.get_lumcount() ? DEFER_MOVE : MOVE_ALLOWED)
+	return (destination.get_lumcount() <= SHADOWWALK_THRESHOLD ? MOVE_ALLOWED : DEFER_MOVE)
+
+/datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
+	if(user.pulling)
+		if(user.pulling.anchored || (user.pulling == user.loc && user.pulling.density))
+			user.stop_pulling()
+			return
+		if(isliving(user.pulling))
+			var/mob/living/L = user.pulling
+			L.stop_pulling()
+			if(L.buckled && L.buckled.buckle_prevents_pull)
+				user.stop_pulling()
+				return
+		pulled = user.pulling
+		user.pulling.forceMove(get_turf(user))
+
+/datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)
+	if(pulled)
+		user.start_pulling(pulled, TRUE)
+		pulled = null
 
 /datum/component/walk/jaunt
 /datum/component/walk/jaunt/can_walk(mob/living/user, turf/destination)
