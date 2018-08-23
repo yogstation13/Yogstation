@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "The body zone selector now indicates which body part you are about to select when hovered over."
