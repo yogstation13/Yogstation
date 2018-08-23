@@ -28859,6 +28859,10 @@
 	pixel_x = -24
 	},
 /obj/item/folder/yellow,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 6;
+	pixel_y = -5
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "btu" = (
@@ -29885,10 +29889,7 @@
 /area/quartermaster/storage)
 "bvZ" = (
 /obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 6;
-	pixel_y = -5
-	},
+/obj/machinery/computer/stockexchange,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bwa" = (
@@ -30750,13 +30751,10 @@
 /area/crew_quarters/heads/hor)
 "byc" = (
 /obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/computer/stockexchange,
 /turf/open/floor/plasteel/brown{
 	dir = 2
 	},
@@ -30782,6 +30780,10 @@
 /obj/item/stamp/qm,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 2
