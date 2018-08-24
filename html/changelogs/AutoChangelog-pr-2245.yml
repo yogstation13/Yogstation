@@ -1,6 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - experiment: "Stamina damage has been reworked. Instead of healing 3 stamina per tick for the entire mob for carbon mobs, head/chest heals 3 stamina per tick, other limbs 2."
-  - experiment: "To fully stun someone, you must do a combined 100 stamina damage to their chest and head. Individually limbs can be disabled, but it will not fully stun the person like before."
-  - experiment: "Stuns from stamina damage are now more consistent. After being stamcritted, you'll always be stunned for a 7 seconds afterwards, down from the previous, where it stunned you for 10 but only if you weren't stunned already."

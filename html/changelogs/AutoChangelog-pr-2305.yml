@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Overcharging energy guns no longer crashes the server."
