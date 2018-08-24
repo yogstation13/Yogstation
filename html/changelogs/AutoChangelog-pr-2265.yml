@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Freezers and heaters which start on no longer stay visually on when you turn them off."
