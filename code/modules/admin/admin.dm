@@ -25,6 +25,13 @@
 		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
+	if(M.oobe_client) //yogs start
+		if(M.oobe_client.mob)
+			.(M.oobe_client.mob) //using . because show_player_panel(M.oobe_client.mob) caused "Runtime in admin.dm,30: undefined proc or verb /client/Show Player Panel()."
+		else
+			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>")
+		return //yogs end
+
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
