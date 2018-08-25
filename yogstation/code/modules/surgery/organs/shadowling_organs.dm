@@ -32,7 +32,7 @@
 			visible_message("<span class='warning'>[src] collapses in on itself!</span>")
 			qdel(src)
 	else
-		organ_health += 0.5
+		organ_health = min(organ_health+0.5, 3)
 
 /obj/item/organ/internal/shadowtumor/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
@@ -40,7 +40,7 @@
 
 /obj/item/organ/internal/shadowtumor/on_find(mob/living/finder)
 	. = ..()
-	finder.visible_message("<span class='danger'>[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain.</span>'")
+	finder.visible_message("<span class='danger'>[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain.</span>")
 
 /obj/item/organ/internal/shadowtumor/Remove(mob/living/carbon/M, special)
 	if(M.dna.species.id == "l_shadowling") //Empowered thralls cannot be deconverted
@@ -67,5 +67,4 @@
 	M.update_sight()
 	M.remove_thrall()
 	M.visible_message("<span class='warning'>A strange black mass falls from [M]'s head!</span>")
-	new /obj/item/organ/internal/shadowtumor(get_turf(M))
 	return ..()
