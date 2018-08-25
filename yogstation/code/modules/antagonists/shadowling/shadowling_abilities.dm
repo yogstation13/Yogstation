@@ -819,28 +819,6 @@
 	target.mind.special_role = "thrall"
 	target.add_thrall()
 
-/obj/effect/proc_holder/spell/self/shadowling_phase_shift //Permanent version of shadow walk with no drawback. Toggleable.
-	name = "Phase Shift"
-	desc = "Phases you into the space between worlds at will, allowing you to move through walls and become invisible."
-	panel = "Ascendant"
-	charge_max = 15
-	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "shadow_walk"
-
-/obj/effect/proc_holder/spell/self/shadowling_phase_shift/cast(mob/living/simple_animal/ascendant_shadowling/user)
-	user.incorporeal_move = !user.incorporeal_move
-	if(user.incorporeal_move)
-		user.visible_message("<span class='danger'>[user] suddenly vanishes!</span>", \
-		"<span class='shadowling'>You begin phasing through planes of existence. Use the ability again to return.</span>")
-		user.density = 0
-		user.alpha = 0
-	else
-		user.visible_message("<span class='danger'>[user] suddenly appears from nowhere!</span>", \
-		"<span class='shadowling'>You return from the space between worlds.</span>")
-		user.density = 1
-		user.alpha = 255
-
 /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm //Releases bolts of lightning to everyone nearby
 	name = "Lightning Storm"
 	desc = "Shocks everyone nearby."
