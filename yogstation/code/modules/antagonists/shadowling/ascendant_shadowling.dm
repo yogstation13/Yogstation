@@ -27,6 +27,10 @@
 	environment_smash = 3
 	faction = list("faithless")
 
+/mob/living/simple_animal/ascendant_shadowling/Initialize()
+	. = ..()
+	LoadComponent(/datum/component/walk)
+
 /mob/living/simple_animal/ascendant_shadowling/Process_Spacemove(movement_dir = 0)
 	return TRUE //copypasta from carp code
 

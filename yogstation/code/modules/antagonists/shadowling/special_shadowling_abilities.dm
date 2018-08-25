@@ -170,7 +170,6 @@
 				H.mind.RemoveSpell(S)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/hypnosis(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_phase_shift(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind_ascendant(null))
 			H.mind.transfer_to(A)
