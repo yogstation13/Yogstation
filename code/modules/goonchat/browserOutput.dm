@@ -215,31 +215,13 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
-<<<<<<< HEAD
 	message = to_utf8(message, target) // yogs - LibVG
-	
-	for(var/I in targets)
-		//Grab us a client if possible
-		var/client/C
-		if (ismob(I))
-			var/mob/M = I
-			if(M.client)
-				C = M.client
-		else if(istype(I, /client))
-			C = I
-		else if(istype(I, /datum/mind))
-			var/datum/mind/M = I
-			if(M.current && M.current.client)
-				C = M.current.client
-			
-=======
 
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
 		var/twiceEncoded = url_encode(url_encode(message))
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
-
 			if (!C)
 				continue
 
@@ -257,8 +239,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 			C << output(twiceEncoded, "browseroutput:output")
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
->>>>>>> bc7006f266... Small refactor to to_chat to get rid of needless list-wrapping (#39899)
-
 		if (!C)
 			return
 
