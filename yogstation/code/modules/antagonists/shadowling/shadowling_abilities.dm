@@ -75,13 +75,13 @@
 	var/mob/living/carbon/human/M = target
 	usr.visible_message("<span class='warning'><b>[usr]'s eyes flash a purpleish-red!</b></span>")
 	var/distance = get_dist(target, usr)
-	if (distance <= 1) //Melee
+	if (distance <= 4)
 		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Stun(100)
+		target.Knockdown(100)
 		M.silent += 10
 	else //Distant glare
-		var/loss = 100 - (distance * 10)
+		var/loss = 120 - (distance * 10)
 		target.adjustStaminaLoss(loss)
 		target.stuttering = loss
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
@@ -139,7 +139,7 @@
 		revert_cast()
 		return
 	to_chat(user, "<span class='shadowling'>You silently disable all nearby lights.</span>")
-	for(var/turf/T in view(5))
+	for(var/turf/T in view(6))
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
