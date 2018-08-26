@@ -133,7 +133,7 @@
 	..()
 	GET_COMPONENT(scary, /datum/component/crawl/blood/demonic)
 	if(scary)
-		scary.RemoveComponent()
+		scary.RemoveComponent(del_holder=FALSE)
 	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc
