@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Roundstart cyborgs will now be properly referred to as \"it.\""
