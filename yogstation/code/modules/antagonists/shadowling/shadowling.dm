@@ -50,6 +50,7 @@
 							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
 			playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
 			M.gib()
+	return ..()
 
 /datum/antagonist/shadowling/greet()
 	to_chat(owner, "<br> <span class='shadowling bold big'>You are a shadowling!</span>")
