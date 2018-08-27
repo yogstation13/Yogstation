@@ -551,6 +551,7 @@
 		var/obj/item/light/bulb/B = W //yogs start
 		if(B.status)
 			to_chat(user, "<span class='warning'>[B] is broken!</span>")
+			return
 		if(!opened)
 			to_chat(user, "<span class='warning'>You need to open the panel to repair the headlamp!</span>")
 		else if(lamp_cooldown <= world.time)

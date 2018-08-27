@@ -105,8 +105,15 @@
 	var/admin_override = FALSE //Requested by Shadowlight213. Allows anyone to cast the spell, not just shadowlings.
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishItem(obj/item/I, cold = FALSE) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
-	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime, /obj/item/electronic_assembly)
-	if(istype(I, /obj/item/flashlight))
+	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
+	if(istype(I, /obj/item/electronic_assembly))
+		var/obj/item/electronic_assembly/EA = I
+		for(var/AC in EA.assembly_components)
+			if(istype(AC, /obj/item/integrated_circuit/output/light))
+				EA.remove_component(AC)
+				qdel(AC)
+				EA.visible_message("<span class='warning'>A puff of smoke rises from [EA].</span>")
+	else if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(cold)
@@ -155,7 +162,7 @@
 		for(var/mob/living/silicon/robot/borg in T.contents)
 			if(!borg.lamp_cooldown)
 				borg.update_headlamp(TRUE, INFINITY)
-				to_chat(borg, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
+				to_chat(borg, "<span class='userdanger'>The lightbulb in your headlamp is fried! You'll need a human to help replace it.</span>")
 		for(var/obj/machinery/camera/cam in T.contents)
 			cam.set_light(0)
 			if(prob(10))
