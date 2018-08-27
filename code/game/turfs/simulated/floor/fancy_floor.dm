@@ -12,6 +12,7 @@
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
 	broken_states = list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+	footstep = FOOTSTEP_WOOD
 	tiled_dirt = FALSE
 
 /turf/open/floor/wood/examine(mob/user)
@@ -71,6 +72,7 @@
 	broken_states = list("sand")
 	flags_1 = NONE
 	bullet_bounce_sound = null
+	footstep = FOOTSTEP_GRASS
 	var/ore_type = /obj/item/stack/ore/glass
 	var/turfverb = "uproot"
 	tiled_dirt = FALSE
@@ -100,6 +102,7 @@
 	initial_gas_mix = "o2=22;n2=82;TEMP=180"
 	slowdown = 2
 	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_SAND
 
 /turf/open/floor/grass/snow/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
@@ -132,6 +135,7 @@
 	ore_type = /obj/item/stack/ore/glass/basalt
 	turfverb = "dig up"
 	slowdown = 0
+	footstep = FOOTSTEP_SAND
 
 /turf/open/floor/grass/fakebasalt/Initialize()
 	. = ..()
@@ -151,6 +155,7 @@
 	canSmoothWith = list(/turf/open/floor/carpet)
 	flags_1 = NONE
 	bullet_bounce_sound = null
+	footstep = FOOTSTEP_CARPET
 	tiled_dirt = FALSE
 
 /turf/open/floor/carpet/examine(mob/user)
