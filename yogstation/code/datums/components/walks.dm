@@ -10,7 +10,7 @@
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_PROCESS_MOVE, .proc/handle_move)
 
-/datum/component/walk/proc/handle_move(direction)
+/datum/component/walk/proc/handle_move(datum/source, direction)
 	var/mob/living/L = parent
 	var/turf/T = get_step(L, direction)
 	L.setDir(direction)
