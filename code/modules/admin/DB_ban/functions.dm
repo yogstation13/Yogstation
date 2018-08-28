@@ -418,9 +418,9 @@
 	output += "<option value='High'>High Severity</option>"
 	output += "<option value='Medium'>Medium Severity</option>"
 	output += "<option value='Minor'>Minor Severity</option>"
-	output += "<option value='None'>No Severity</option>"
+	output += "<option value='None'>No Severity</option>"*/ //yogs end
 	output += "<td><b>Job:</b><select name='dbbanaddjob'>"
-	output += "<option value=''>--</option>" //yogs end*/
+	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in GLOB.nonhuman_positions)
