@@ -413,14 +413,14 @@
 	output += "<tr><td><b>IP:</b> <input type='text' name='dbbanaddip'></td>"
 	output += "<td><b>Computer id:</b> <input type='text' name='dbbanaddcid'></td></tr>"
 	output += "<tr><td><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
-	output += "<tr><td><b>Severity:</b><select name='dbbanaddseverity'>"
+	/*output += "<tr><td><b>Severity:</b><select name='dbbanaddseverity'>" //yogs start
 	output += "<option value=''>--</option>"
 	output += "<option value='High'>High Severity</option>"
 	output += "<option value='Medium'>Medium Severity</option>"
 	output += "<option value='Minor'>Minor Severity</option>"
 	output += "<option value='None'>No Severity</option>"
 	output += "<td><b>Job:</b><select name='dbbanaddjob'>"
-	output += "<option value=''>--</option>"
+	output += "<option value=''>--</option>" //yogs end*/
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in GLOB.nonhuman_positions)
