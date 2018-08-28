@@ -31,9 +31,9 @@
 	playsound(src, 'sound/items/jaws_pry.ogg', 100)
 
 /obj/machinery/door/airlock/proc/dir_to_cardinal(dir)
-	if(dir & NORTH && !(locate(/turf/closed/wall) in get_step(src, NORTH)))
+	if((dir & NORTH) && (!is_blocked_turf(get_step(src, NORTH), TRUE)))
 		return NORTH
-	if(dir & SOUTH && !(locate(/turf/closed/wall) in get_step(src, SOUTH)))
+	if((dir & SOUTH) && (!is_blocked_turf(get_step(src, SOUTH), TRUE)))
 		return SOUTH
 	if(dir & EAST)
 		return EAST
