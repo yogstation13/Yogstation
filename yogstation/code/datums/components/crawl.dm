@@ -32,7 +32,7 @@
 	var/mob/living/M = parent
 	on_gain(M)
 
-/datum/component/crawl/proc/try_crawl(atom/target)
+/datum/component/crawl/proc/try_crawl(datum/source, atom/target)
 	set waitfor = FALSE
 	var/can_crawl = FALSE
 	for(var/type in crawling_types)
