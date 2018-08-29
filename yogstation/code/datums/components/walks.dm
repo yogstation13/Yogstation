@@ -9,6 +9,15 @@
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_PROCESS_MOVE, .proc/handle_move)
+	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	if(footsteps)
+		footsteps.signal_enabled = FALSE
+
+/datum/component/walk/RemoveComponent()
+	GET_COMPONENT_FROM(footsteps, /datum/component/footstep, parent)
+	if(footsteps)
+		footsteps.signal_enabled = TRUE
+	return ..()
 
 /datum/component/walk/proc/handle_move(direction)
 	var/mob/living/L = parent
@@ -55,6 +64,7 @@
 				user.stop_pulling()
 				return
 		pulled = user.pulling
+		pulled.face_atom(user)
 		user.pulling.forceMove(get_turf(user))
 
 /datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)
