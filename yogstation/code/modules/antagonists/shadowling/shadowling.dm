@@ -74,19 +74,17 @@
 
 /datum/antagonist/shadowling/roundend_report_header()
 	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
-		return "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
+		return "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span><br>"
 	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
-		return "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
+		return "<span class='redtext big'>The shadowlings have been killed by the crew!</span><br>"
 	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		return "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
+		return "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span><br>"
 	else
-		return "<span class='redtext big'>The shadowlings have failed!</span>"
+		return "<span class='redtext big'>The shadowlings have failed!</span><br>"
 
 /datum/antagonist/shadowling/roundend_report_footer()
-	var/msg = "<span class='redtext big'>The shadowlings have not managed to convert anyone!</span></div>"
-	if(LAZYLEN(SSticker.mode.thralls))
-		msg = "The thralls were:<br>[printplayerlist(SSticker.mode.thralls)]"
-	return msg
+	if(!LAZYLEN(SSticker.mode.thralls))
+		return "<span class='redtext big'>The shadowlings have not managed to convert anyone!</span></div>"
 
 /datum/objective/ascend
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with 15 or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
