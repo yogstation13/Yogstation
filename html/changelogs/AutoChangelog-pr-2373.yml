@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "A new gamemode called overthrow has been added. A few syndicate mutineers spawn at roundstart, with special items such as a converting implanter and a hacked AI board, their objectives are to stage a bloodless coup. Each initial agent has its own syndicate team, and said teams can choose to cooperate or not. The team with the most points, given by the objectives, wins at roundend."
