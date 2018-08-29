@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/yogs/fake_maga
+/obj/item/clothing/gloves/fake_maga
 	name = "krav maga gloves"
 	desc = "These gloves can teach you to perform Krav Maga using nanochips (Results may vary)."
 	icon_state = "fightgloves"
