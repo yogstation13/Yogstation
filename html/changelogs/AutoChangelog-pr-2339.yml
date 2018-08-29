@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - bugfix: "The Changeling Hivemend no longer sends 7 changelings to kill one person (changeling team objectives are gone)"
