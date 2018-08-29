@@ -19,7 +19,7 @@
 		footsteps.signal_enabled = TRUE
 	return ..()
 
-/datum/component/walk/proc/handle_move(direction)
+/datum/component/walk/proc/handle_move(datum/source, direction)
 	var/mob/living/L = parent
 	var/turf/T = get_step(L, direction)
 	L.setDir(direction)

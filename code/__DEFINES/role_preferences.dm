@@ -26,6 +26,7 @@
 #define ROLE_SERVANT_OF_RATVAR	"servant of Ratvar"
 #define ROLE_BROTHER			"blood brother"
 #define ROLE_BRAINWASHED		"brainwashed victim"
+#define ROLE_OVERTHROW			"syndicate mutineer",
 #define ROLE_SHADOWLING 		"shadowling" // Yogs
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -49,7 +50,11 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_ABDUCTOR,
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
+<<<<<<< HEAD
 	ROLE_SHADOWLING = /datum/game_mode/shadowling //yogs
+=======
+	ROLE_OVERTHROW = /datum/game_mode/overthrow
+>>>>>>> 3649e81e78f8cde4a7dc59b442a0b1074ff617c9
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

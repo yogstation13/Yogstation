@@ -32,7 +32,7 @@
 	var/mob/living/M = parent
 	on_gain(M)
 
-/datum/component/crawl/proc/try_crawl(atom/target)
+/datum/component/crawl/proc/try_crawl(datum/source, atom/target)
 	set waitfor = FALSE
 	var/can_crawl = FALSE
 	for(var/type in crawling_types)
@@ -74,9 +74,9 @@
 	qdel(holder)
 	holder = null
 
-/datum/component/crawl/RemoveComponent()
+/datum/component/crawl/RemoveComponent(del_holder=TRUE)
 	var/mob/living/M = parent
-	if(holder)
+	if(del_holder && holder)
 		M.forceMove(get_turf(holder))
 		qdel(holder)
 	on_loss(M)
