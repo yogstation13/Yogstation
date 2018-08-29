@@ -114,7 +114,7 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/flashlight/seclite(src)
-	new /obj/item/clothing/gloves/yogs/fake_maga(src) //yogs - removed krav maga gloves, in favour of giving the warden innate knowledge of krav maga
+	new /obj/item/clothing/gloves/fake_maga(src) //yogs - removed krav maga gloves, in favour of giving the warden innate knowledge of krav maga
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 
