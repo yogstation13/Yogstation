@@ -70,27 +70,23 @@
 	return TRUE
 
 /datum/antagonist/shadowling/roundend_report()
-	var/list/parts = list()
+	return "[owner ? printplayer(owner) : "Unnamed Shadowling"]"
+
+/datum/antagonist/shadowling/roundend_report_header()
 	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
-		parts += "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
+		return "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
 	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
-		parts += "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
+		return "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
 	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		parts += "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
+		return "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
 	else
-		parts += "<span class='redtext big'>The shadowlings have failed!</span>"
-	if(objectives.len)
-		parts += "<b>The shadowlings' objectives were:</b>"
-		var/count = 1
-		for(var/datum/objective/objective in objectives)
-			if(objective.check_completion())
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
-			else
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
-			count++
-	if(LAZYLEN(SSticker.mode.shadows))
-		parts += printplayerlist(SSticker.mode.shadows)
-	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+		return "<span class='redtext big'>The shadowlings have failed!</span>"
+
+/datum/antagonist/shadowling/roundend_report_footer()
+	var/msg = "<span class='redtext big'>The shadowlings have not managed to convert anyone!</span></div>"
+	if(LAZYLEN(SSticker.mode.thralls))
+		msg = "The thralls were:<br>[printplayerlist(SSticker.mode.thralls)]"
+	return msg
 
 /datum/objective/ascend
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with 15 or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."

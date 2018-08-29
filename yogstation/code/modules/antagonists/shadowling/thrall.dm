@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 		M.visible_message("<span class='big'>[M] looks like their mind is their own again!</span>", \
 						  "<span class='userdanger'>A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the shadowlings or your time \
 						  under their command...</span>")
+	M.update_sight()
 	return ..()
 
 /datum/antagonist/thrall/greet()
