@@ -565,7 +565,7 @@
 	return
 
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
 
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
 	return
@@ -613,6 +613,8 @@
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
+		if(LOG_ASAY)
+			log_adminsay(log_text)
 		if(LOG_OWNERSHIP)
 			log_game(log_text)
 		if(LOG_GAME)

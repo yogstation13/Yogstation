@@ -251,16 +251,16 @@
 
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
-	var/obj/effect/dummy/slaughter/holder = new /obj/effect/dummy/slaughter(T)
+	var/obj/effect/dummy/crawling/holder = new /obj/effect/dummy/crawling(T) //yogs start
 	var/mob/living/simple_animal/slaughter/S = new demon_type(holder)
-	S.holder = holder
+	//S.holder = holder //yogs end
 	S.key = C.key
 	S.mind.assigned_role = S.name
 	S.mind.special_role = S.name
 	S.mind.add_antag_datum(antag_type)
 	to_chat(S, S.playstyle_string)
-	to_chat(S, "<B>You are currently not currently in the same plane of existence as the station. \
-	Ctrl+Click a blood pool to manifest.</B>")
+	to_chat(S, "<B>You are currently not in the same plane of existence as the station. \
+	Alt+Click a blood pool to manifest.</B>") //yogs
 
 /obj/item/antag_spawner/slaughter_demon/laughter
 	name = "vial of tickles"

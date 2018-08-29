@@ -131,7 +131,7 @@
 		incorporeal_move = INCORPOREAL_MOVE_BASIC
 		GET_COMPONENT(incorp, /datum/component/walk) //yogs start
 		if(incorp)
-			incorp.enabled = TRUE //yogs end
+			incorp.signal_enabled = TRUE //yogs end
 	. = ..()
 
 /mob/living/simple_animal/hostile/guardian/ranged/Recall(forced)
@@ -139,5 +139,5 @@
 	incorporeal_move = FALSE
 	GET_COMPONENT(incorp, /datum/component/walk) //yogs start
 	if(incorp)
-		incorp.enabled = FALSE //yogs end
+		incorp.signal_enabled = FALSE //yogs end
 	. = ..()
