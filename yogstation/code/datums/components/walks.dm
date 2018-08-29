@@ -63,8 +63,8 @@
 			if(L.buckled && L.buckled.buckle_prevents_pull)
 				user.stop_pulling()
 				return
+			L.face_atom(user)
 		pulled = user.pulling
-		pulled.face_atom(user)
 		user.pulling.forceMove(get_turf(user))
 
 /datum/component/walk/shadow/finalize_move(mob/living/user, turf/destination)

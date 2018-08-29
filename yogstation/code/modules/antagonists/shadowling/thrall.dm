@@ -50,4 +50,4 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 	SEND_SOUND(owner.current, sound('yogstation/sound/ambience/antag/thrall.ogg'))
 
 /datum/antagonist/thrall/roundend_report()
-	return "<div class='panel redborder'>[printplayerlist(SSticker.mode.thralls)]</div>"
+	return "[printplayerlist(SSticker.mode.thralls)]"
