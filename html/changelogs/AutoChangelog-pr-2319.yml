@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Ordering the Build Your Own Shuttle kit no longer crashes the server."
