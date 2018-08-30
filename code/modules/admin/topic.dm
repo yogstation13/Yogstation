@@ -240,37 +240,38 @@
 		var/banduration = text2num(href_list["dbbaddduration"])
 		var/banjob = href_list["dbbanaddjob"]
 		var/banreason = href_list["dbbanreason"]
+		//var/banseverity = href_list["dbbanaddseverity"] //yogs start - removed ban severity
 
 		switch(bantype)
 			if(BANTYPE_PERMA)
-				if(!banckey || !banreason)
-					to_chat(usr, "Not enough parameters (Requires ckey and reason).")
+				if(!banckey || !banreason /*|| !banseverity*/)
+					to_chat(usr, "Not enough parameters (Requires ckey, and reason).")
 					return
 				banduration = null
 				banjob = null
 			if(BANTYPE_TEMP)
-				if(!banckey || !banreason || !banduration)
+				if(!banckey || !banreason || !banduration /*|| !banseverity*/)
 					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration).")
 					return
 				banjob = null
 			if(BANTYPE_JOB_PERMA)
-				if(!banckey || !banreason || !banjob)
+				if(!banckey || !banreason || !banjob /*|| !banseverity*/)
 					to_chat(usr, "Not enough parameters (Requires ckey, reason and job).")
 					return
 				banduration = null
 			if(BANTYPE_JOB_TEMP)
-				if(!banckey || !banreason || !banjob || !banduration)
+				if(!banckey || !banreason || !banjob || !banduration /*|| !banseverity*/)
 					to_chat(usr, "Not enough parameters (Requires ckey, reason and job).")
 					return
 			if(BANTYPE_ADMIN_PERMA)
-				if(!banckey || !banreason)
+				if(!banckey || !banreason /*|| !banseverity*/)
 					to_chat(usr, "Not enough parameters (Requires ckey and reason).")
 					return
 				banduration = null
 				banjob = null
 			if(BANTYPE_ADMIN_TEMP)
-				if(!banckey || !banreason || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration).")
+				if(!banckey || !banreason || !banduration /*|| !banseverity*/)
+					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration).") //yogs end
 					return
 				banjob = null
 
@@ -295,7 +296,8 @@
 		if(!DB_ban_record(bantype, playermob, banduration, banreason, banjob, bankey, banip, bancid ))
 			to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 			return
-		create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0)
+		//create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0, banseverity)
+		create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0) //yogs - remove severity
 
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
@@ -624,6 +626,9 @@
 				var/reason = input(usr,"Please State Reason.","Reason") as message|null
 				if(!reason)
 					return
+				/*var/severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+				if(!severity)
+					return*/ //yogs - remove severity
 				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, "appearance"))
 					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 					return
@@ -631,7 +636,8 @@
 					jobban_buildcache(M.client)
 				ban_unban_log_save("[key_name(usr)] appearance banned [key_name(M)]. reason: [reason]")
 				log_admin_private("[key_name(usr)] appearance banned [key_name(M)]. \nReason: [reason]")
-				create_message("note", M.key, null, "Appearance banned - [reason]", null, null, 0, 0, null, 0)
+				//create_message("note", M.key, null, "Appearance banned - [reason]", null, null, 0, 0, null, 0, severity)
+				create_message("note", M.key, null, "Appearance banned - [reason]", null, null, 0, 0, null, 0) //yogs - severity
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] appearance banned [key_name_admin(M)].</span>")
 				to_chat(M, "<span class='boldannounce'><BIG>You have been appearance banned by [usr.client.key].</BIG></span>")
 				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
@@ -994,6 +1000,7 @@
 
 		//Banning comes first
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
+			//var/severity = null //yogs - severity
 			switch(alert("Temporary Ban for [M.key]?",,"Yes","No", "Cancel"))
 				if("Yes")
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
@@ -1003,7 +1010,9 @@
 					var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 					if(!reason)
 						return
-
+					/*severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+					if(!severity)
+						return*/ //yogs - severity
 					var/msg
 					for(var/job in notbannedlist)
 						if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, job))
@@ -1017,7 +1026,8 @@
 							msg = job
 						else
 							msg += ", [job]"
-					create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0)
+					//create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0, severity)
+					create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0) //yogs - severity
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes.</span>")
 					to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.key] from: [msg].</BIG></span>")
 					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
@@ -1026,6 +1036,9 @@
 					return 1
 				if("No")
 					var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
+					/*severity = input("Set the severity of the note/ban.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+					if(!severity)
+						return*/ //yogs - severity
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
@@ -1040,7 +1053,8 @@
 								msg = job
 							else
 								msg += ", [job]"
-						create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0)
+						//create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0, severity)
+						create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0) //yogs - severity
 						message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg].</span>")
 						to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.key] from: [msg].</BIG></span>")
 						to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
@@ -1177,6 +1191,12 @@
 		var/message_id = href_list["editmessageexpiryempty"]
 		edit_message_expiry(message_id, browse = 1)
 
+	/*else if(href_list["editmessageseverity"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageseverity"]
+		edit_message_severity(message_id)*/ //yogs - remove severity
+
 	else if(href_list["secretmessage"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1241,7 +1261,10 @@
 		if(query_get_message_edits.NextRow())
 			var/edit_log = query_get_message_edits.item[1]
 			if(!QDELETED(usr))
-				usr << browse(edit_log,"window=noteedits")
+				/*var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				browser.set_content(jointext(edit_log, ""))
+				browser.open()*/ //yogs - simple fast interface thanks
+				usr << browse(edit_log,"window=noteedits") //yogs
 		qdel(query_get_message_edits)
 
 	else if(href_list["newban"])
