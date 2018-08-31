@@ -47,7 +47,7 @@
 	else
 		return TRUE
 
-/datum/game_mode/traitor/post_setup()
+/datum/game_mode/spythief/post_setup()
 	for(var/datum/mind/spy in pre_spies)
 		var/datum/antagonist/spythief/new_antag = new antag_datum()
 		addtimer(CALLBACK(spy, /datum/mind.proc/add_antag_datum, new_antag), rand(10,100))
@@ -57,3 +57,6 @@
 	gamemode_ready = FALSE
 	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), 101)
 	return TRUE
+
+/datum/game_mode/spythief/proc/generate_bounties()
+	return
