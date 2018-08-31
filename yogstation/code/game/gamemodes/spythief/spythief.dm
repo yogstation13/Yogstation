@@ -1,5 +1,12 @@
 /datum/game_mode
 	var/list/datum/mind/spythieves = list()
+	var/list/spythief_turn_in_locs = list()
+	var/list/spythief_bounties = list()
+	var/list/bounty_stationitems = list()
+	var/list/bounty_personalitems = list()
+	var/list/bounty_organs = list()
+	var/list/bounty_machines = list()
+	//and the last bounty is a photograph
 
 
 /datum/game_mode/spythief
@@ -15,6 +22,9 @@
 	enemy_minimum_age = 14
 
 	var/list/datum/mind/pre_spies = list()
+
+
+
 
 /datum/game_mode/spythief/pre_setup() //shamelessly stolen from the tatortottle gamemode
 
@@ -56,7 +66,34 @@
 	//We're not actually ready until all traitors are assigned.
 	gamemode_ready = FALSE
 	addtimer(VARSET_CALLBACK(src, gamemode_ready, TRUE), 101)
+	generate_bounties(TRUE)
 	return TRUE
 
-/datum/game_mode/spythief/proc/generate_bounties()
+/datum/game_mode/spythief/proc/generate_bounties(roundstart = FALSE)
+
+	if(!roundstart)
+		spythief_bounties.Cut()
+
+	else //generate all the bounties
+		for(var/datum/spythief_bounty/bounty in subtypesof(/datum/spythief_bounty/station_item))
+			new bounty()
+		for(var/datum/spythief_bounty/bounty in subtypesof(/datum/spythief_bounty/personal_item))
+			new bounty()
+		for(var/datum/spythief_bounty/bounty in subtypesof(/datum/spythief_bounty/organ))
+			new bounty()
+		for(var/datum/spythief_bounty/bounty in subtypesof(/datum/spythief_bounty/machine))
+			new bounty()
+
+
+	//now let's find and add the bounties. 2 station item, 2 personal item, 2 organs, 2 machines and 1 photograph
+	spythief_bounties += pick(bounty_stationitems)
+	spythief_bounties += pick(bounty_personalitems)
+	spythief_bounties += pick(bounty_organs)
+	spythief_bounties += pick(bounty_machines)
+	spythief_bounties += pick(bounty_stationitems - spythief_bounties)
+	spythief_bounties += pick(bounty_personalitems - spythief_bounties)
+	spythief_bounties += pick(bounty_organs - spythief_bounties)
+	spythief_bounties += pick(bounty_machines - spythief_bounties)
+	spythief_bounties += new /datum/spythief_bounty/photo()
+
 	return
