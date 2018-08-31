@@ -2750,6 +2750,7 @@
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\antagonists\_common\antag_datum.dm"
 #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
+#include "yogstation\code\modules\antagonists\changeling\powers\absorb.dm"
 #include "yogstation\code\modules\antagonists\slaughter\slaughter.dm"
 #include "yogstation\code\modules\antagonists\swarmer\swarmer_event.dm"
 #include "yogstation\code\modules\antagonists\traitor\datum_traitor.dm"
