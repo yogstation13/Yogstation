@@ -2754,6 +2754,7 @@
 #include "yogstation\code\modules\mob\mob.dm"
 #include "yogstation\code\modules\mob\say.dm"
 #include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
+#include "yogstation\code\modules\mob\living\carbon\carbon_defense.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\life.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
 #include "yogstation\code\modules\mob\living\silicon\silicon.dm"
