@@ -12,6 +12,7 @@
 /datum/antagonist/spythief/on_gain()
 	SSticker.mode.spythieves += owner
 	owner.special_role = special_role
+	equip_spy()
 	..()
 
 /datum/antagonist/spythief/apply_innate_effects()
@@ -34,3 +35,18 @@
 		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")
 	owner.special_role = null
 	..()
+
+/datum/antagonist/spythief/proc/equip_spy()
+	uplink_holder = owner.equip_traitor(uplink_owner = src)
+	var/list/slots = list (
+			"backpack" = SLOT_IN_BACKPACK,
+			"left pocket" = SLOT_L_STORE,
+			"right pocket" = SLOT_R_STORE
+		)
+	var/mob/living/carbon/human/H = owner.current
+	var/obj/item/telebeacon/T = new(H)
+	var/where = H.equip_in_one_of_slots(T, slots)
+	if (!where)
+		to_chat(H, "The Syndicate were unfortunately unable to get you a telebeacon.")
+	else
+		to_chat(H, "The telebeacon in your [where] will help you complete bounties for The Syndicate.")
