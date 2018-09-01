@@ -45,7 +45,7 @@
 	var/id = input["id"]
 	var/link = "https://github.com/yogstation13/Yogstation-TG/pull/[id]"
 
-	var/final_composed = "<span class='announce'><a href=[link]>PR: [msgTitle] by [author]</a></span>"
+	var/final_composed = "<span class='announce'>PR: <a href=[link]>[msgTitle]</a> by [author]</span>"
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
