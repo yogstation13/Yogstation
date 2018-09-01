@@ -140,3 +140,9 @@
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
 	vamphud.leave_hud(traitor_mind.current)
 	set_antag_hud(traitor_mind.current, null)
+
+
+/datum/game_mode/vampire/generate_report()
+	return "The Wizard Federation has created a new being based off ancient mythology. \
+	These beings are known as vampires and are capable of sucking blood from crew members. \
+	No further information is known at this time."
