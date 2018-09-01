@@ -31,7 +31,7 @@
 				/obj/item/paper = 5, //Cause paper is the best for making a mech airtight obviously
 				/obj/item/flashlight = 1, //For the mech light
 				/obj/item/stack/rods = 4, //to mount the equipment
-				/obj/structure/chair = 2) //For legs
+				/obj/item/chair = 2) //For legs
 	tools = list(/obj/item/weldingtool, /obj/item/screwdriver, /obj/item/wirecutters)
 	time = 200
 	category = CAT_ROBOT
