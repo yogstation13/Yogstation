@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Computers are now visible even in the darkest of rooms. Comfy!"
+  - tweak: "Because computers are now far easier to find in dark rooms their base light output has been reduced."
