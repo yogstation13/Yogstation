@@ -30,12 +30,14 @@
 	assume_disguise(old_species, H)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == "synthflesh")
+	H.reagents.remove_reagent(chem.id, chem.volume) //yogs start - synths don't process chems
+	return TRUE
+	/*if(chem.id == "synthflesh")
 		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
 		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 		return 1
 	else
-		return ..()
+		return ..()*/ //yogs end
 
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H)
