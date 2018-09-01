@@ -11,7 +11,7 @@
 	reqs = list(/obj/item/clothing/torncloth = 1, /datum/reagent/water = 20)
 	time = 45
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/drone_shell
 	name = "Drone Shell"
 	result = /obj/item/drone_shell
@@ -28,7 +28,7 @@
 				/obj/item/tank/internals/oxygen = 1, // For air
 				/obj/item/electronics/airlock = 1, //You are stealing the motors from airlocks
 				/obj/item/extinguisher = 1, //For bastard pnumatics
-				/obj/item/stack/ducttape = 5, //to make it airtight
+				/obj/item/paper = 5, //Cause paper is the best for making a mech airtight obviously
 				/obj/item/flashlight = 1, //For the mech light
 				/obj/item/stack/rods = 4, //to mount the equipment
 				/obj/item/pipe = 2) //For legs
