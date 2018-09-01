@@ -6,6 +6,7 @@
 	var/area/turn_in_loc	//the area they need to be in to turn the bounty in
 	var/hot = FALSE 		//if it's hot, they get a bigger reward
 	var/reward				//the amount of TC they get as a reward
+	var/old_reward			//the reward pre-hotness
 
 /datum/spythief_bounty/New()
 	turn_in_loc = pick(SSticker.mode.spythief_turn_in_locs)
@@ -18,10 +19,17 @@
 	var/datum/antagonist/spythief/spy = user.mind.has_antag_datum(/datum/antagonist/spythief)
 	GET_COMPONENT_FROM(uplink, /datum/component/uplink, spy.uplink_holder)
 	uplink.telecrystals += reward
+	completed = TRUE
+
 
 /datum/spythief_bounty/proc/makeHot()
 	hot = TRUE
+	old_reward = reward
 	reward = rand(6,8)
+
+/datum/spythief_bounty/proc/resetHot()
+	hot = FALSE
+	reward = old_reward
 
 /***************************************\
 |*************Station Items*************|
@@ -29,6 +37,10 @@
 
 /datum/spythief_bounty/station_item/New()
 	SSticker.mode.bounty_stationitems += src
+	.=..()
+
+/datum/spythief_bounty/station_item/complete()
+	SSticker.mode.bounty_stationitems -= src
 	.=..()
 
 /***************************************\
@@ -39,6 +51,10 @@
 	SSticker.mode.bounty_personalitems += src
 	.=..()
 
+/datum/spythief_bounty/personal_item/complete()
+	SSticker.mode.bounty_personalitems -= src
+	.=..()
+
 /***************************************\
 |***************Organs******************|
 \***************************************/
@@ -47,12 +63,20 @@
 	SSticker.mode.bounty_organs += src
 	.=..()
 
+/datum/spythief_bounty/organ/complete()
+	SSticker.mode.bounty_organs -= src
+	.=..()
+
 /***************************************\
 |***************Machines****************|
 \***************************************/
 
 /datum/spythief_bounty/machine/New()
 	SSticker.mode.bounty_machines += src
+	.=..()
+
+/datum/spythief_bounty/machine/complete()
+	SSticker.mode.bounty_machines -= src
 	.=..()
 
 /***************************************\
@@ -69,6 +93,8 @@
 	for(var/mob in GLOB.player_list)
 		if(!istype(mob, /mob/living/carbon/human))
 			continue
+		if(mob in SSticker.mode.completed_photos)
+			continue
 		possible_candidates += mob
 
 	target = pick(possible_candidates)
@@ -77,3 +103,7 @@
 	.=..()
 	if(.)
 		return TRUE //todo: make it check the photo for whether the target is on it
+
+/datum/spythief_bounty/photo/complete()
+	SSticker.mode.completed_photos += target
+	.=..()

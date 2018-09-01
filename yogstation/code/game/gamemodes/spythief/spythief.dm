@@ -6,6 +6,7 @@
 	var/list/bounty_personalitems = list()
 	var/list/bounty_organs = list()
 	var/list/bounty_machines = list()
+	var/list/completed_photos = list()
 	//and the last bounty is a photograph
 
 
@@ -20,11 +21,9 @@
 	required_enemies = 3
 	recommended_enemies = 6
 	enemy_minimum_age = 14
+	var/bountyTime = 15 // the amount of time between bounty generations (in minutes)
 
 	var/list/datum/mind/pre_spies = list()
-
-
-
 
 /datum/game_mode/spythief/pre_setup() //shamelessly stolen from the tatortottle gamemode
 
@@ -72,6 +71,9 @@
 /datum/game_mode/spythief/proc/generate_bounties(roundstart = FALSE)
 
 	if(!roundstart)
+		for(var/datum/spythief_bounty/bounty in spythief_bounties)
+			if(bounty.hot)
+				bounty.resetHot()
 		spythief_bounties.Cut()
 
 	else //generate all the bounties
@@ -100,4 +102,6 @@
 	var/datum/spythief_bounty/bounty = pick(spythief_bounties)
 	bounty.makeHot()
 
+	addtimer(CALLBACK(src, .proc/generate_bounties), bountyTime * 600)
+	to_chat(spythieves, "<span class='warning'>New bounties are available!</span>") //AKA, all the effort you've put in for the last few minutes was a waste
 	return
