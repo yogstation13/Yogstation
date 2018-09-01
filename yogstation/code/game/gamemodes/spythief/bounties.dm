@@ -1,15 +1,27 @@
 /datum/spythief_bounty
 	var/name = "Spy Thief Bounty (Report this to the coders)"
 	var/description = "Please report this to your local maintainers!"
-	var/completed = FALSE
-	var/objective
-	var/area/turn_in_loc
+	var/completed = FALSE	//whether the bounty has been completed or not
+	var/objective			//the path of the item they need to get
+	var/area/turn_in_loc	//the area they need to be in to turn the bounty in
+	var/hot = FALSE 		//if it's hot, they get a bigger reward
+	var/reward				//the amount of TC they get as a reward
 
 /datum/spythief_bounty/New()
 	turn_in_loc = pick(SSticker.mode.spythief_turn_in_locs)
+	reward = rand(3,5)
 
 /datum/spythief_bounty/proc/check_complete(atom/A)
 	return istype(A, objective)
+
+/datum/spythief_bounty/proc/complete(mob/user)
+	var/datum/antagonist/spythief/spy = user.mind.has_antag_datum(/datum/antagonist/spythief)
+	GET_COMPONENT_FROM(uplink, /datum/component/uplink, spy.uplink_holder)
+	uplink.telecrystals += reward
+
+/datum/spythief_bounty/proc/makeHot()
+	hot = TRUE
+	reward = rand(6,8)
 
 /***************************************\
 |*************Station Items*************|

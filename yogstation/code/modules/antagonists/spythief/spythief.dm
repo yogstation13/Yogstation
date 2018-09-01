@@ -7,6 +7,7 @@
 	var/special_role = ROLE_SPY_THIEF
 	var/employer = "The Syndicate"
 	can_hijack = HIJACK_HIJACKER
+	var/obj/item/uplink_holder
 
 /datum/antagonist/spythief/on_gain()
 	SSticker.mode.spythieves += owner

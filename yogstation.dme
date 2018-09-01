@@ -2711,6 +2711,7 @@
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
 #include "yogstation\code\game\gamemodes\spythief\bounties.dm"
 #include "yogstation\code\game\gamemodes\spythief\spythief.dm"
+#include "yogstation\code\game\gamemodes\spythief\telebeacon.dm"
 #include "yogstation\code\game\gamemodes\traitor\double_agents.dm"
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"

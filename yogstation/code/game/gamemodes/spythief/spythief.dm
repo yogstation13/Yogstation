@@ -96,4 +96,8 @@
 	spythief_bounties += pick(bounty_machines - spythief_bounties)
 	spythief_bounties += new /datum/spythief_bounty/photo()
 
+	//pick a bounty and set it to hot
+	var/datum/spythief_bounty/bounty = pick(spythief_bounties)
+	bounty.makeHot()
+
 	return
