@@ -10,9 +10,9 @@
 	var/datum/game_mode/spythief/mode
 
 /datum/spythief_bounty/New()
-	turn_in_loc = pick(SSticker.mode.spythief_turn_in_locs)
-	reward = rand(3,5)
 	mode = SSticker.mode
+	turn_in_loc = pick(mode.spythief_turn_in_locs)
+	reward = rand(3,5)
 
 /datum/spythief_bounty/proc/check_complete(atom/A)
 	return istype(A, objective)
@@ -95,7 +95,7 @@
 	for(var/mob in GLOB.player_list)
 		if(!istype(mob, /mob/living/carbon/human))
 			continue
-		if(mob in SSticker.mode.completed_photos)
+		if(mob in mode.completed_photos)
 			continue
 		possible_candidates += mob
 
