@@ -244,7 +244,7 @@
 			M.stuttering = 0
 			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-	if(ishuman(M) && is_vampire(M))
+	if(ishuman(M) && is_vampire(M)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 		if(!V.get_ability(/datum/vampire_passive/full))
 			switch(data)
@@ -258,7 +258,7 @@
 					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", "<span class='userdanger'>You suddenly ignite in a holy fire!</span>")
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
-					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard?
+					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
 	holder.remove_reagent(id, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
