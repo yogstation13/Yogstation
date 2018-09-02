@@ -244,26 +244,17 @@
 			M.stuttering = 0
 			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-	to_chat(world, "ishuman: [ishuman(M)]")
-	to_chat(world, "is_vampire: [is_vampire(M)]")
 	if(ishuman(M) && is_vampire(M))
-		to_chat(world, "first check passed")
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
-		to_chat(world, "V: [V]")
-		to_chat(world, "get_ability: [V.get_ability(/datum/vampire_passive/full)]")
 		if(!V.get_ability(/datum/vampire_passive/full))
-			to_chat(world, "second check passed")
 			switch(data)
 				if(1 to 4)
-					to_chat(world, "cycles 1-4")
 					to_chat(M, "<span class='warning'>Something sizzles in your veins!</span>")
 					M.adjustFireLoss(0.5)
 				if(5 to 12)
-					to_chat(world, "cycles 5-12")
 					to_chat(M, "<span class='danger'>You feel an intense burning inside of you!</span>")
 					M.adjustFireLoss(1)
 				if(13 to INFINITY)
-					to_chat(world, "cycles 13+")
 					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", "<span class='userdanger'>You suddenly ignite in a holy fire!</span>")
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
