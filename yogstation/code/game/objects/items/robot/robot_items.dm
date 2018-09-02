@@ -11,8 +11,8 @@
 	var/choice = show_radial_menu(user,src,choices)
 	switch(choice)
 		if("Throw Lollipop")
-			if(mode == THROW_LOLLIPO_MODE)
-				mode = DISPENSE_LOLLIPO_MODE
+			if(mode == THROW_LOLLIPOP_MODE)
+				mode = DISPENSE_LOLLIPOP_MODE
 				to_chat(user, "<span class='notice'>Module is now dispensing lollipops.</span>")
 			else
 				mode = THROW_LOLLIPOP_MODE
