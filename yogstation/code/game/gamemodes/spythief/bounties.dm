@@ -7,10 +7,12 @@
 	var/hot = FALSE 		//if it's hot, they get a bigger reward
 	var/reward				//the amount of TC they get as a reward
 	var/old_reward			//the reward pre-hotness
+	var/datum/game_mode/spythief/mode
 
 /datum/spythief_bounty/New()
 	turn_in_loc = pick(SSticker.mode.spythief_turn_in_locs)
 	reward = rand(3,5)
+	mode = SSticker.mode
 
 /datum/spythief_bounty/proc/check_complete(atom/A)
 	return istype(A, objective)
@@ -36,11 +38,11 @@
 \***************************************/
 
 /datum/spythief_bounty/station_item/New()
-	SSticker.mode.bounty_stationitems += src
+	mode.bounty_stationitems += src
 	.=..()
 
 /datum/spythief_bounty/station_item/complete()
-	SSticker.mode.bounty_stationitems -= src
+	mode.bounty_stationitems -= src
 	.=..()
 
 /***************************************\
@@ -48,11 +50,11 @@
 \***************************************/
 
 /datum/spythief_bounty/personal_item/New()
-	SSticker.mode.bounty_personalitems += src
+	mode.bounty_personalitems += src
 	.=..()
 
 /datum/spythief_bounty/personal_item/complete()
-	SSticker.mode.bounty_personalitems -= src
+	mode.bounty_personalitems -= src
 	.=..()
 
 /***************************************\
@@ -60,11 +62,11 @@
 \***************************************/
 
 /datum/spythief_bounty/organ/New()
-	SSticker.mode.bounty_organs += src
+	mode.bounty_organs += src
 	.=..()
 
 /datum/spythief_bounty/organ/complete()
-	SSticker.mode.bounty_organs -= src
+	mode.bounty_organs -= src
 	.=..()
 
 /***************************************\
@@ -72,11 +74,11 @@
 \***************************************/
 
 /datum/spythief_bounty/machine/New()
-	SSticker.mode.bounty_machines += src
+	mode.bounty_machines += src
 	.=..()
 
 /datum/spythief_bounty/machine/complete()
-	SSticker.mode.bounty_machines -= src
+	mode.bounty_machines -= src
 	.=..()
 
 /***************************************\
@@ -105,5 +107,5 @@
 		return TRUE //todo: make it check the photo for whether the target is on it
 
 /datum/spythief_bounty/photo/complete()
-	SSticker.mode.completed_photos += target
+	mode.completed_photos += target
 	.=..()

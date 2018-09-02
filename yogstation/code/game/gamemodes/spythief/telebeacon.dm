@@ -37,7 +37,7 @@
 		to_chat(user, "<span class='notice'>Initiating transport, please stay still.</span>") //should probably come up with a better way to word this.
 
 		if(!do_after(user, 50, target = src)) //stand still while it tries to "teleport" the bounty out
-			break
+			return
 
 		spark_system.start()
 		qdel(target)

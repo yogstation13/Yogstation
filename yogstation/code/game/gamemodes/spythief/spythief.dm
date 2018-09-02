@@ -1,13 +1,5 @@
 /datum/game_mode
 	var/list/datum/mind/spythieves = list()
-	var/list/spythief_turn_in_locs = list()
-	var/list/spythief_bounties = list()
-	var/list/bounty_stationitems = list()
-	var/list/bounty_personalitems = list()
-	var/list/bounty_organs = list()
-	var/list/bounty_machines = list()
-	var/list/completed_photos = list()
-	//and the last bounty is a photograph
 
 
 /datum/game_mode/spythief
@@ -24,6 +16,13 @@
 	var/bountyTime = 15 // the amount of time between bounty generations (in minutes)
 
 	var/list/datum/mind/pre_spies = list()
+	var/list/spythief_turn_in_locs = list()
+	var/list/spythief_bounties = list()
+	var/list/bounty_stationitems = list()
+	var/list/bounty_personalitems = list()
+	var/list/bounty_organs = list()
+	var/list/bounty_machines = list()
+	var/list/completed_photos = list()
 
 /datum/game_mode/spythief/pre_setup() //shamelessly stolen from the tatortottle gamemode
 
