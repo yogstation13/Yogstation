@@ -244,7 +244,7 @@
 			M.stuttering = 0
 			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-	if(ishuman(M) && is_vampire(M)) && prob(80)) // Yogs Start
+	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 		if(!V.get_ability(/datum/vampire_passive/full))
 			switch(data)
