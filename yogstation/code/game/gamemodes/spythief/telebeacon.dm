@@ -14,9 +14,8 @@
 
 /obj/item/telebeacon/attack_self(mob/user)
 	if(!user.mind || !user.mind.has_antag_datum(/datum/antagonist/spythief))
-		return
-
-	return // todo: make this show all the available bounties
+		return FALSE
+	.=..()
 
 /obj/item/telebeacon/attackby(obj/item/I, mob/user, params)
 	check_complete(I, user)
