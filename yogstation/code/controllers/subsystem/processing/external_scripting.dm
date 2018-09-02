@@ -7,7 +7,7 @@
 SUBSYSTEM_DEF(exscript)
 	name = "External Scripting"
 	wait = 0.1
-	priority = FIRE_PRIORITY_PROCESS
+	priority = 800
 	flags = SS_BACKGROUND|SS_POST_FIRE_TIMING
 	var/instruction_delimiter
 	var/type_value_delimiter
@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(exscript)
 	var/instruction_group_delimiter
 	var/editing_script = FALSE
 	var/emergency_brake = FALSE
+	var/missed_calls = 0
 
 /datum/controller/subsystem/exscript/Initialize(start_timeofday)
 	instruction_delimiter = ascii2text(1)
@@ -64,7 +65,17 @@ SUBSYSTEM_DEF(exscript)
 		if("object")
 			final_value = locate(tv[2])
 		if("list")
-			final_value = json_decode(tv[2]) //TODO: LOCATE BYOND OBJECTS
+			final_value = list()
+			var/intermediate = json_decode(tv[2])
+			for(var/V in intermediate)
+				if(findtext(V, "\[", 1, 2) && findtext(V, "]", lentext(V)) && (findtext(V, "0x") || findtext(V, "mob_")))
+					var/datum/thing = locate(V)
+					if(thing)
+						final_value += thing
+					else
+						final_value += V
+				else
+					final_value += V
 		if("null")
 			final_value = null
 	return final_value
@@ -94,7 +105,9 @@ SUBSYSTEM_DEF(exscript)
 /datum/controller/subsystem/exscript/fire(resumed = 0)
 	var/instruction = call("ss13script.dll","get_instruction")()
 	if(!instruction)
+		missed_calls += 1
 		return
+	missed_calls = 0
 	var/list/instr_args = splittext(instruction, instruction_delimiter)
 	var/instr = instr_args[1]
 	var/list/iargs = instr_args.Copy(2)
@@ -139,19 +152,16 @@ SUBSYSTEM_DEF(exscript)
 			var/varname = iargs[2]
 			var/new_value = deserialize(iargs[3])
 			if(!object)
-				RETURN("ERROR: OBJECT NOT FOUND")
+				//RETURN("ERROR: OBJECT NOT FOUND")
 				return
 			try
 				var/current_value = object.vars[varname]
 				pass(current_value) //suppress warning
 			catch()
-				RETURN("ERROR: NO SUCH VAR")
+				//RETURN("ERROR: NO SUCH VAR")
 				return
 
-			if(object.vv_edit_var(varname, new_value))
-				RETURN("1")
-			else
-				RETURN("0")
+			object.vv_edit_var(varname, new_value)
 		if("CHECK_CALL")
 			var/datum/object = locate(iargs[1])
 			var/procname = iargs[2]
@@ -172,20 +182,14 @@ SUBSYSTEM_DEF(exscript)
 			var/result = call(object, procname)(arglist(final_args))
 			result = serialize(result)
 			RETURN(result)
-		if("DELETE")
-			var/datum/object = locate(iargs[1])
-			if(!object)
-				RETURN("ERROR: OBJECT NOT FOUND")
-				return
-			qdel(object)
-			RETURN("1")
 		if("WARN")
-			var/warning = iargs[1]
+			var/warning = "SCRIPT WARNING: [iargs[1]]"
 			message_admins(warning)
 		if("NEW_OBJECT")
 			var/tpath = iargs[1]
 			var/path = text2path(tpath)
 			if(!path)
 				RETURN("ERROR: OBJECT NOT FOUND")
+				return
 			var/object = serialize(new path)
 			RETURN(object)

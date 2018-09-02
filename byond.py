@@ -85,7 +85,7 @@ class BYOND:
 		self.server_instance.sendall(data.encode())
 		
 	def recv(self):
-		return self.server_instance.recv(4096).decode()
+		return self.server_instance.recv(2**15).decode()
 		
 	def recv_object(self):
 		ref = self.recv()
@@ -117,10 +117,6 @@ class BYOND:
 			func = ByondFunction(None, name, self, True)
 			self.__dict__[name] = func
 			return func
-	
-	def qdel(self, thing):
-		if type(thing) is ByondObject:
-			thing.delete()
 			
 	def warn(self, message):
 		self.send_instruction("WARN", message)
@@ -162,7 +158,7 @@ class ByondObject:
 			return
 			
 		value = serialize(value)
-		self.server.communicate("SET_VAR", self.ref, name, value)
+		self.server.send_instruction("SET_VAR", self.ref, name, value)
 	
 	def delete(self):
 		self.server.communicate("DELETE", self.ref)
