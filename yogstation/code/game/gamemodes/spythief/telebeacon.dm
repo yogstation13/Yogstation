@@ -29,8 +29,8 @@
 /obj/item/telebeacon/proc/check_complete(atom/target, mob/user)
 	if(!user.mind || !user.mind.has_antag_datum(/datum/antagonist/spythief))
 		return
-
-	for(var/datum/spythief_bounty/bounty in SSticker.mode.spythief_bounties)
+	var/datum/game_mode/spythief/mode = SSticker.mode
+	for(var/datum/spythief_bounty/bounty in mode.spythief_bounties)
 		if(!bounty.check_complete(target, user)) //does the target match any known bounty? If it doesn't, continue on
 			continue
 
