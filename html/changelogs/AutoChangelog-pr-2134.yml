@@ -1,4 +1,0 @@
-author: "MacHac"
-delete-after: true 
-changes: 
-  - rscadd: "Added component signal for when something is pointed to."

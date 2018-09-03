@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "Gas meters will now prefer to target visible pipes if they share a turf with hidden pipes."

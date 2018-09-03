@@ -607,7 +607,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(isloyal())
+	if(has_trait(TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -689,7 +689,7 @@
 		if(..())
 			dropItemToGround(I)
 
-/mob/living/carbon/human/proc/clean_blood(strength)
+/mob/living/carbon/human/proc/clean_blood(datum/source, strength)
 	if(strength < CLEAN_STRENGTH_BLOOD)
 		return
 	if(gloves)
