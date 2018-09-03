@@ -5,8 +5,8 @@
 	stage_prob = 2
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "A mix of nothing, Driest Martini and bleach"
-	cures = list("bleach", "nothing", "driestmartini")
+	cure_text = "A small mix of nothing" // heh
+	cures = list("nothing")
 	agent = "Fury from the circus of hell itself."
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "Subject will become dizzy, confused and steadily more retarded before being turned into a cluwne!"
