@@ -1205,6 +1205,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			return FALSE
 
+		target.lastattacker = user.real_name  //yogs
+		target.lastattackerckey = user.ckey   //yogs
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
