@@ -507,6 +507,8 @@ function ehjaxCallback(data) {
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
+	} else if (data == 'stopLobbyMusic') { //yogs start - lobby music
+		$('#lobbyMusic').prop('src', ''); //yogs end
 	} else {
 		//Oh we're actually being sent data instead of an instruction
 		var dataJ;
@@ -555,7 +557,15 @@ function ehjaxCallback(data) {
 				$('#adminMusic').prop('src', adminMusic);
 				$('#adminMusic').trigger("play");
 			}
-		}
+		} else if (data.lobbyMusic) { //yogs start - lobby music
+			if (typeof data.lobbyMusic === 'string') {
+				var lobbyMusic = byondDecode(data.lobbyMusic);
+				lobbyMusic = lobbyMusic.match(/https?:\/\/\S+/) || '';
+				$('#lobbyMusic').prop('defaultPlaybackRate', 1.0);
+				$('#lobbyMusic').prop('src', lobbyMusic);
+				$('#lobbyMusic').trigger("play");
+			}
+		} //yogs end
 	}
 }
 
