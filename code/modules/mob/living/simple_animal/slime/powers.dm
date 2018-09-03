@@ -30,9 +30,9 @@
 	var/list/choices = list()
 	for(var/mob/living/C in view(1,src))
 		if(C!=src && Adjacent(C))
-			choices += C
+			choices[C] = C //yogs
 
-	var/mob/living/M = input(src,"Who do you wish to feed on?") in null|choices
+	var/mob/living/M = show_radial_menu(src,src,choices) //yogs
 	if(!M)
 		return 0
 	if(CanFeedon(M))
