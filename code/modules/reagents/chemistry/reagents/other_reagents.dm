@@ -131,7 +131,7 @@
 	var/CT = cooling_temperature
 
 	if(reac_volume >= 5)
-		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
+		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume*3 SECONDS, 300 SECONDS)) //yogs
 
 	for(var/mob/living/simple_animal/slime/M in T)
 		M.apply_water()
@@ -1098,7 +1098,7 @@
 		M.emote("drool")
 	..()
 
-/datum/reagent/nanites
+/datum/reagent/nanomachines
 	name = "Nanomachines"
 	id = "nanomachines"
 	description = "Microscopic construction robots."
@@ -1106,7 +1106,7 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/nanomachines/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
@@ -1672,7 +1672,7 @@
 /datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, method=TOUCH, reac_volume)
 	// Silently add the zombie infection organ to be activated upon death
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
-		var/obj/item/organ/zombie_infection/ZI = new()
+		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
 		ZI.Insert(H)
 	..()
 

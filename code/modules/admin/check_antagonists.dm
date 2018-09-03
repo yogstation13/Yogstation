@@ -19,7 +19,7 @@
 	else
 		if(owner.current.stat == DEAD)
 			return "<font color=red>(DEAD)</font>"
-		else if(!owner.current.client)
+		else if(!owner.current.client && !owner.current.oobe_client) //yogs - oobe_client
 			return "(No client)"
 
 //Builds the common FLW PM TP commands part

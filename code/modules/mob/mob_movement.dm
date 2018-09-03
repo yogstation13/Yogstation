@@ -59,9 +59,9 @@
 		return FALSE
 
 	var/mob/living/L = mob  //Already checked for isliving earlier
-	if(L.incorporeal_move)	//Move though walls
+	/*if(L.incorporeal_move)	//Move though walls //yogs start - turned into component
 		Process_Incorpmove(direct)
-		return FALSE
+		return FALSE*/ //yogs end
 
 	if(mob.remote_control)					//we're controlling something, our movement is relayed to it
 		return mob.remote_control.relaymove(mob, direct)
@@ -84,6 +84,11 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
+
+	var/handled = SEND_SIGNAL(L, COMSIG_PROCESS_MOVE, direct) //yogs start - movement components
+	if(handled)
+		return FALSE//yogs end
+
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
@@ -119,7 +124,7 @@
 
 	var/atom/movable/P = mob.pulling
 	if(P && !ismob(P) && P.density)
-		mob.dir = turn(mob.dir, 180)
+		mob.setDir(turn(mob.dir, 180))
 
 ///Process_Grab()
 ///Called by client/Move()
