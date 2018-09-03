@@ -630,8 +630,12 @@
 				return
 			SSinput.setup_default_movement_keys()
 			message_admins("[key_name_admin(usr)] has reset all movement keys.")
+<<<<<<< HEAD
 			log_admin("[key_name(usr)] has reset all movement keys.")*/
 		// yogs end
+=======
+			log_admin("[key_name(usr)] has reset all movement keys.")
+>>>>>>> 29cf085563... Revert "[WIP] custom portal spawners" (#40067)
 
 	if(E)
 		E.processing = FALSE
