@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "fixed clothing vendor fedoras having Detective Fedora grade armor"
