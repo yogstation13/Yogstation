@@ -22,6 +22,9 @@
 	alternate_worn_icon = 'yogstation/icons/mob/mask.dmi'
 	icon = 'yogstation/icons/obj/clothing/masks.dmi'
 
+/obj/item
+	var/list/alternate_screams = list()
+
 /obj/item/clothing/shoes/yogs
 	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
