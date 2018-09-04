@@ -88,6 +88,10 @@
 	config_entry_value = 15
 	min_val = 1
 
+/datum/config_entry/number/spy_scaling_coeff		//how much does the amount of players get divided by to determine spythieves	//yogs start
+	config_entry_value = 6
+	min_val = 1 //yogs end
+
 /datum/config_entry/number/traitor_objectives_amount
 	config_entry_value = 2
 	min_val = 0
