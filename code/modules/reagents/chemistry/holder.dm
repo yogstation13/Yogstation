@@ -550,8 +550,13 @@
 	if(!D)
 		WARNING("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
+<<<<<<< HEAD
 
  	update_total()
+=======
+	
+	update_total()
+>>>>>>> 4b6fe44ba5... Should fix vanishing chems (Issue #39045) (#40102)
 	var/cached_total = total_volume
 	if(cached_total + amount > maximum_volume)
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
