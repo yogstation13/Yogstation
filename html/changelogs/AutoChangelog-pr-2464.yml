@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "In extreme lag scenarios, hyperspace ripples are no longer removed before the location is actually safe."
