@@ -32,7 +32,7 @@
 	var/mob/living/M = parent
 	on_gain(M)
 
-/datum/component/crawl/proc/try_crawl(atom/target)
+/datum/component/crawl/proc/try_crawl(datum/source, atom/target)
 	set waitfor = FALSE
 	var/can_crawl = FALSE
 	for(var/type in crawling_types)
@@ -74,9 +74,9 @@
 	qdel(holder)
 	holder = null
 
-/datum/component/crawl/RemoveComponent()
+/datum/component/crawl/RemoveComponent(del_holder=TRUE)
 	var/mob/living/M = parent
-	if(holder)
+	if(del_holder && holder)
 		M.forceMove(get_turf(holder))
 		qdel(holder)
 	on_loss(M)
@@ -84,14 +84,18 @@
 
 ////////////BLOODCRAWL
 /datum/component/crawl/blood
-	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood)
-	gain_message = "<span class='notice'>You can now bloodcrawl! Alt-click blood or gibs to phase in and out.</span>"
+	crawling_types = list(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/xenoblood, /obj/effect/decal/cleanable/trail_holder)
+	gain_message = "<span class='boldnotice'>You can now bloodcrawl! Alt-click blood or gibs to phase in and out.</span>"
 	loss_message = "<span class='warning'>You can no longer bloodcrawl.</span>"
 
 	var/kidnap = FALSE
 	var/speed_boost = FALSE
 
 /datum/component/crawl/blood/can_start_crawling(atom/target, mob/living/user)
+	if(istype(target, /obj/effect/decal/cleanable/blood/footprints))
+		var/obj/effect/decal/cleanable/blood/footprints/F = target
+		if(F.blood_state != "blood")
+			return FALSE
 	if(!iscarbon(user))
 		return ..()
 	var/mob/living/carbon/C = user
@@ -215,7 +219,7 @@
 ////////////LOCKERCRAWL
 /datum/component/crawl/locker
 	crawling_types = list(/obj/structure/closet)
-	gain_message = "<span class='notice'>You can now lockercrawl! Alt-click a locker you are inside of to phase out, alt-click a closed locker to phase in.</span>"
+	gain_message = "<span class='boldnotice'>You can now lockercrawl! Alt-click a locker you are inside of to phase out, alt-click a closed locker to phase in.</span>"
 	loss_message = "<span class='warning'>You can no longer lockercrawl.</span>"
 
 /datum/component/crawl/locker/can_start_crawling(atom/target, mob/living/user)
@@ -270,8 +274,8 @@
 
 /datum/component/crawl/meme/Initialize()
 	if(!crawl_name)
-		crawl_name= thing
-	gain_message = "<span class='notice'>You can now [crawl_name]! Alt-click on [thing] to phase in and out.</span>"
+		crawl_name = thing
+	gain_message = "<span class='boldnotice'>You can now [crawl_name]! Alt-click on [thing] to phase in and out.</span>"
 	loss_message = "<span class='warning'>You can no longer [crawl_name].</span>"
 	..()
 

@@ -1,5 +1,5 @@
 /datum/antagonist/traitor/internal_affairs/iaa_process()
-	if(owner && owner.current && owner.current.stat!=DEAD)
+	if(owner && owner.current && !iscyborg(owner.current) && owner.current.stat!=DEAD)
 		var/new_objective = TRUE
 		for(var/objective_ in owner.objectives)
 			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/block))
@@ -56,6 +56,11 @@
 					var/datum/objective/hijack/hijack_objective = new
 					hijack_objective.owner = owner.
 					add_objective(hijack_objective)
+
+			if(uplink_holder && owner.current && ishuman(owner.current))
+				GET_COMPONENT_FROM(uplink, /datum/component/uplink, uplink_holder)
+				uplink.telecrystals += 5
+				to_chat(owner, "<span class='notice'>You have been given 5 TC as a reward for completing your objective!</span>")
 
 			owner.announce_objectives()
 
