@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Health sensor's 'detect death' mode now triggers on death rather than extreme unwellness."

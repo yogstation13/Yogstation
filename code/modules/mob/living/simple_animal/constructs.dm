@@ -122,8 +122,8 @@
 	desc = "A massive, armored construct built to spearhead attacks and soak up enemy fire."
 	icon_state = "behemoth"
 	icon_living = "behemoth"
-	maxHealth = 200
-	health = 200
+	maxHealth = 150
+	health = 150
 	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	obj_damage = 90
@@ -148,7 +148,7 @@
 
 /mob/living/simple_animal/hostile/construct/armored/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
-		var/reflectchance = 60 - round(P.damage/3)
+		var/reflectchance = 40 - round(P.damage/3)
 		if(prob(reflectchance))
 			apply_damage(P.damage * 0.5, P.damage_type)
 			visible_message("<span class='danger'>The [P.name] is reflected by [src]'s armored shell!</span>", \
@@ -323,7 +323,8 @@
 	attacktext = "butchers"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/area_conversion,
-							/obj/effect/proc_holder/spell/targeted/forcewall/cult)
+							/obj/effect/proc_holder/spell/targeted/forcewall/cult,
+							/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 	playstyle_string = "<B>You are a Harvester. You are incapable of directly killing humans, but your attacks will remove their limbs: \
 						Bring those who still cling to this world of illusion back to the Geometer so they may know Truth. Your form and any you are pulling can pass through runed walls effortlessly.</B>"
 	can_repair_constructs = TRUE
