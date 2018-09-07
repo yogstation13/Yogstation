@@ -27572,6 +27572,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "buz" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -28066,6 +28070,10 @@
 	icon_state = "darkpurplecorners";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bvP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -28110,10 +28118,21 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/darkpurple/side{
 	icon_state = "darkpurple";
 	dir = 5
 	},
+=======
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bvU" = (
 /obj/machinery/recharger,
@@ -28773,6 +28792,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bxD" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -29398,6 +29421,10 @@
 	icon_state = "darkpurplecorners";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "byZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -29425,10 +29452,21 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/darkpurple/side{
 	icon_state = "darkpurple";
 	dir = 6
 	},
+=======
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bzc" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -30053,6 +30091,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bAF" = (
 /turf/closed/wall,
@@ -30262,8 +30304,19 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /mob/living/simple_animal/pet/cat/Runtime,
 /turf/open/floor/plasteel/cmo,
+=======
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/cat/Runtime,
+/turf/open/floor/plasteel/white,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/cmo)
 "bBi" = (
 /obj/effect/landmark/start/chief_medical_officer,
@@ -30407,6 +30460,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/hor)
 "bBw" = (
 /obj/machinery/computer/security,
@@ -30519,6 +30576,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bBK" = (
 /obj/structure/closet/bombcloset,
@@ -31004,6 +31065,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/hor)
 "bCJ" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -31345,6 +31410,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/hor)
 "bDG" = (
 /obj/structure/table,
@@ -31478,6 +31547,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bDU" = (
 /obj/machinery/door/firedoor/heavy,
@@ -32007,10 +32080,21 @@
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/darkpurple/side{
 	icon_state = "darkpurple";
 	dir = 6
 	},
+=======
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/hor)
 "bEW" = (
 /obj/structure/reagent_dispensers/peppertank{
@@ -32084,6 +32168,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bFh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -32517,6 +32605,10 @@
 	icon_state = "darkpurple";
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/science/explab)
 "bGm" = (
 /obj/machinery/light_switch{
@@ -38624,10 +38716,21 @@
 /obj/item/folder/yellow,
 /obj/item/paper/monitorkey,
 /obj/item/pen,
+<<<<<<< HEAD
 /mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 8
 	},
+=======
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/mob/living/simple_animal/parrot/Poly,
+/turf/open/floor/plasteel,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/crew_quarters/heads/chief)
 "bVE" = (
 /turf/open/floor/plasteel,
@@ -38708,6 +38811,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/engine/engine_smes)
 "bVM" = (
 /obj/machinery/power/terminal{
@@ -39004,6 +39111,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/engine/engine_smes)
 "bWw" = (
 /obj/structure/cable/yellow{
@@ -39311,6 +39422,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/engine/engine_smes)
 "bXm" = (
 /obj/structure/cable{
@@ -40064,6 +40179,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "bZg" = (
 /obj/structure/cable{
@@ -40300,6 +40419,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "bZP" = (
 /obj/structure/cable/yellow{
@@ -40580,6 +40703,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "caJ" = (
 /obj/structure/cable/yellow{
@@ -40877,6 +41004,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "cbB" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -41131,6 +41262,10 @@
 	icon_state = "darkyellow";
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "ccq" = (
 /obj/structure/chair/office/dark,
@@ -41289,10 +41424,21 @@
 /obj/structure/table/glass,
 /obj/item/paper_bin,
 /obj/item/pen,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/darkyellow/side{
 	icon_state = "darkyellow";
 	dir = 10
 	},
+=======
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "cdh" = (
 /obj/structure/table/glass,
@@ -41305,10 +41451,21 @@
 "cdi" = (
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /obj/machinery/meter,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/darkyellow/side{
 	icon_state = "darkyellow";
 	dir = 6
 	},
+=======
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/maintenance/disposal/incinerator)
 "cdj" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
