@@ -327,17 +327,17 @@
 		new /obj/effect/decal/remains/human(L.loc)
 		L.dust()
 	to_chat(L, "<span class='notice'>We begin to reanimate... this will take a minute.</span>")
-	addtimer(CALLBACK(src, .proc/revive, L), 600)
+	addtimer(CALLBACK(src, /obj/effect/proc_holder/spell/self/revive.proc/revive, L), 600)
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
-	if(user.reagents.has_reagent("holywater"))
-		to_chat(user, "<span class='danger'>We cannot revive, holy water is in our system!</span>")
-		return
-	user.revive()
+	user.revive(full_heal = TRUE)
 	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
-	user.fully_heal(TRUE)
-
-
+	var/list/missing = user.get_missing_limbs()
+	if(missing.len)
+		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
+		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
+		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
+		user.regenerate_organs()
 
 /obj/effect/proc_holder/spell/self/summon_coat
 	name = "Summon Dracula Coat (5)"
@@ -379,10 +379,12 @@
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)
 		return FALSE
-	if(!bat)
+	if(!bat || bat.stat == DEAD)
 		if(V.usable_blood < 15)
 			to_chat(user, "<span class='warning'>You do not have enough blood to cast this!</span>")
 			return FALSE
+		if(bat.stat == DEAD)
+			QDEL_NULL(bat)
 		bat = new /mob/living/simple_animal/hostile/vampire_bat(user.loc)
 		user.forceMove(bat)
 		bat.controller = user
