@@ -13991,6 +13991,10 @@
 	name = "Armory APC";
 	pixel_x = 24
 	},
+/obj/structure/rack,
+/obj/item/brace,
+/obj/item/brace,
+/obj/item/brace,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "aHt" = (
