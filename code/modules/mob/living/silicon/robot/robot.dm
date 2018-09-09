@@ -547,18 +547,22 @@
 			qdel(W)
 			to_chat(user, "<span class='notice'>You fill the toner level of [src] to its max capacity.</span>")
 
-	else if(istype(W, /obj/item/flashlight))
+	else if(istype(W, /obj/item/light/bulb))
+		var/obj/item/light/bulb/B = W //yogs start
+		if(B.status)
+			to_chat(user, "<span class='warning'>[B] is broken!</span>")
+			return
 		if(!opened)
 			to_chat(user, "<span class='warning'>You need to open the panel to repair the headlamp!</span>")
 		else if(lamp_cooldown <= world.time)
 			to_chat(user, "<span class='warning'>The headlamp is already functional!</span>")
 		else
-			if(!user.temporarilyRemoveItemFromInventory(W))
-				to_chat(user, "<span class='warning'>[W] seems to be stuck to your hand. You'll have to find a different light.</span>")
+			if(!user.temporarilyRemoveItemFromInventory(B))
+				to_chat(user, "<span class='warning'>[B] seems to be stuck to your hand. You'll have to find a different light.</span>")
 				return
 			lamp_cooldown = 0
-			qdel(W)
-			to_chat(user, "<span class='notice'>You replace the headlamp bulbs.</span>")
+			qdel(B)
+			to_chat(user, "<span class='notice'>You replace the headlamp bulb.</span>") //yogs end
 	else
 		return ..()
 

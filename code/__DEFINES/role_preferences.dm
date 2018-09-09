@@ -33,6 +33,7 @@
 #define ROLE_DRONE                  "drone"
 #define ROLE_DEATHSQUAD             "deathsquad"
 #define ROLE_LAVALAND               "lavaland"
+#define ROLE_SHADOWLING 		"shadowling" // Yogs
 #define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -57,6 +58,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
+	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SENTIENCE
 ))
