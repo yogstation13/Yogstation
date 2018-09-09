@@ -254,6 +254,11 @@
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform/Initialize()
+	. = ..()
+	range = -1
+	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
+
 /obj/effect/proc_holder/spell/targeted/vampirize
 	name = "Lilith's Pact (500)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
@@ -269,7 +274,7 @@
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
-		target.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
+		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
@@ -383,8 +388,6 @@
 		if(V.usable_blood < 15)
 			to_chat(user, "<span class='warning'>You do not have enough blood to cast this!</span>")
 			return FALSE
-		if(bat.stat == DEAD)
-			QDEL_NULL(bat)
 		bat = new /mob/living/simple_animal/hostile/vampire_bat(user.loc)
 		user.forceMove(bat)
 		bat.controller = user
