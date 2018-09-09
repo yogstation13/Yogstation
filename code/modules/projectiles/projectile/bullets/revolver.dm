@@ -14,13 +14,8 @@
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-<<<<<<< HEAD
-	damage = 15
-	//knockdown = 60 //yogs - commented out
-	stamina = 50
-=======
 	damage = 25
->>>>>>> 026ac56aa1... .38 no longer insta stuns (#39891)
+	//knockdown = 60 //yogs - commented out
 
 // .357 (Syndie Revolver)
 
