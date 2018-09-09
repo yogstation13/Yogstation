@@ -240,7 +240,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
 		if(!M)				//yogs
-			GLOB.player_list.Remove(M)			//yogs
 			continue		//yogs | null in player_list for whatever reason :shrug:
 		if(M.stat != DEAD) //not dead, not important
 			continue
