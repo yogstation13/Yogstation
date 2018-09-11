@@ -15,7 +15,10 @@ SUBSYSTEM_DEF(exscript)
 	var/instruction_group_delimiter
 	var/editing_script = FALSE
 	var/emergency_brake = FALSE
+	var/last_editor
+	var/datum/cached_object
 	var/missed_calls = 0
+	var/rapid_fire = FALSE
 
 /datum/controller/subsystem/exscript/Initialize(start_timeofday)
 	instruction_delimiter = ascii2text(1)
@@ -28,6 +31,10 @@ SUBSYSTEM_DEF(exscript)
 /datum/controller/subsystem/exscript/Destroy()
 	call("ss13script.dll","destroy")()
 	return ..()
+
+/datum/controller/subsystem/exscript/proc/disconnect()
+	sleep(50)
+	call("ss13script.dll","destroy")()
 
 /datum/controller/subsystem/exscript/proc/serialize(data)
 	var/list/return_value[2] //1 - type, 2 - value
@@ -63,13 +70,13 @@ SUBSYSTEM_DEF(exscript)
 		if("number")
 			final_value = text2num(tv[2])
 		if("object")
-			final_value = locate(tv[2])
+			final_value = to_object(tv[2])
 		if("list")
 			final_value = list()
 			var/intermediate = json_decode(tv[2])
 			for(var/V in intermediate)
 				if(findtext(V, "\[", 1, 2) && findtext(V, "]", lentext(V)) && (findtext(V, "0x") || findtext(V, "mob_")))
-					var/datum/thing = locate(V)
+					var/datum/thing = to_object(V)
 					if(thing)
 						final_value += thing
 					else
@@ -84,16 +91,17 @@ SUBSYSTEM_DEF(exscript)
 	if(editing_script)
 		to_chat(usr, "<span class='danger'>The script is being edited by someone else!</span>")
 		return
+	last_editor = key_name(usr)
 	editing_script = TRUE
 	var/current_script = file2text("external_script.py")
 	var/new_script = input(usr, "Enter your Python script here:", "External script input", current_script) as message|null
 	if(!new_script || new_script == current_script)
-		//reconnect()
+		reconnect()
 		editing_script = FALSE
 		return
 	fdel("external_script.py")
 	text2file(new_script, "external_script.py")
-	//reconnect()
+	reconnect()
 	editing_script = FALSE
 
 /datum/controller/subsystem/exscript/proc/run_script()
@@ -101,6 +109,18 @@ SUBSYSTEM_DEF(exscript)
 
 /datum/controller/subsystem/exscript/proc/reconnect()
 	call("ss13script.dll","initialize")()
+
+/datum/controller/subsystem/exscript/proc/call_proc(procname, arguments, object=null)
+	var/list/final_args = list()
+	for(var/PA in arguments)
+		final_args += deserialize(PA)
+	if(object)
+		return call(object, procname)(arglist(final_args))
+	else
+		return call(procname)(arglist(final_args))
+
+/datum/controller/subsystem/exscript/proc/to_object(ref)
+	return ((ref == "CACHED") ? cached_object : locate(ref))
 
 /datum/controller/subsystem/exscript/fire(resumed = 0)
 	var/instruction = call("ss13script.dll","get_instruction")()
@@ -127,28 +147,30 @@ SUBSYSTEM_DEF(exscript)
 		if("CALL_GLOBAL") //call a global proc
 			var/procname = iargs[1]
 			var/list/proc_args = splittext(iargs[2], proc_args_delimiter) //list of type and value
-			var/list/final_args = list()
-			for(var/PA in proc_args)
-				final_args += deserialize(PA)
-			var/result = call(procname)(arglist(final_args))
-			result = serialize(result)
-			RETURN(result)
+			var/ret = iargs[3]
+			var/result = call_proc(procname, proc_args)
+			if(ret == "RETURN")
+				result = serialize(result)
+				RETURN(result)
 		if("GET_VAR")
-			var/datum/object = locate(iargs[1])
-			var/varname = iargs[2]
+			var/datum/object = to_object(iargs[1])
+			var/proc_or_varname = iargs[2]
 			if(!object)
 				RETURN("ERROR: OBJECT NOT FOUND")
 				return
 			var/data
 			try
-				data = object.vars[varname]
+				data = object.vars[proc_or_varname]
 			catch()
-				RETURN("ERROR: NO SUCH VAR")
+				if(!hascall(object, proc_or_varname))
+					RETURN("ERROR: NO SUCH VAR")
+					return
+				RETURN("IT'S A PROC!")
 				return
 			data = serialize(data)
 			RETURN(data)
 		if("SET_VAR")
-			var/datum/object = locate(iargs[1])
+			var/datum/object = to_object(iargs[1])
 			var/varname = iargs[2]
 			var/new_value = deserialize(iargs[3])
 			if(!object)
@@ -162,34 +184,29 @@ SUBSYSTEM_DEF(exscript)
 				return
 
 			object.vv_edit_var(varname, new_value)
-		if("CHECK_CALL")
-			var/datum/object = locate(iargs[1])
-			var/procname = iargs[2]
-			if(!object)
-				RETURN("0")
-				return
-			if(!hascall(object, procname))
-				RETURN("1")
-			else
-				RETURN("2")
 		if("CALL_PROC")
-			var/datum/object = locate(iargs[1])
+			var/datum/object = to_object(iargs[1])
 			var/procname = iargs[2]
 			var/list/proc_args = splittext(iargs[3], proc_args_delimiter) //list of type and value
-			var/list/final_args = list()
-			for(var/PA in proc_args)
-				final_args += deserialize(PA)
-			var/result = call(object, procname)(arglist(final_args))
-			result = serialize(result)
-			RETURN(result)
+			var/ret = iargs[4]
+			var/result = call_proc(procname, proc_args, object)
+			if(ret == "RETURN")
+				result = serialize(result)
+				RETURN(result)
 		if("WARN")
-			var/warning = "SCRIPT WARNING: [iargs[1]]"
+			var/warning = "SCRIPT MESSAGE: [iargs[1]]"
 			message_admins(warning)
 		if("NEW_OBJECT")
 			var/tpath = iargs[1]
+			var/ret = iargs[2]
 			var/path = text2path(tpath)
 			if(!path)
 				RETURN("ERROR: OBJECT NOT FOUND")
 				return
-			var/object = serialize(new path)
-			RETURN(object)
+			cached_object = new path
+			if(ret == "RETURN")
+				RETURN(serialize(cached_object))
+	if(MC_TICK_CHECK)
+		return
+	if(rapid_fire)
+		fire()

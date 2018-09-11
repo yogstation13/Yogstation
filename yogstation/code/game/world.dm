@@ -29,3 +29,7 @@ GLOBAL_LIST_EMPTY(donators)
 		P = GLOB.preferences_datums[ckey]
 		if(P)
 			P.unlock_content |= 2
+
+/world/Del()
+	SSexscript.disconnect()
+	..()

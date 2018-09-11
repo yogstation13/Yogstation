@@ -1,8 +1,10 @@
-import socket, urllib.parse, json
+import socket, json, threading
 
 class ObjectNotFoundFail:
 	pass
 class VariableNotFoundFail:
+	pass
+class IssaProc:
 	pass
 	
 def empty_func(*args, **kwargs): pass
@@ -13,7 +15,7 @@ def serialize(value):
 	if type(value) is int or type(value) is float:
 		vtype = "number"
 		value = str(value)
-	elif type(value) is ByondObject:
+	elif type(value) is ByondObject or type(value) is CachedByondObject:
 		vtype = "object"
 		value = value.ref
 	elif type(value) is list:
@@ -32,6 +34,8 @@ def deserialize(data, server):
 		return ObjectNotFoundFail()
 	elif data == "ERROR: NO SUCH VAR":
 		return VariableNotFoundFail()
+	elif data == "IT'S A PROC!":
+		return IssaProc()
 		
 	if not "\x02" in data: #integers only if the data is not serialized
 		return int(data)
@@ -68,9 +72,15 @@ class BYOND:
 		self.server_instance = None
 		self.world = None
 		self.GLOB = None
+		self.cached = CachedByondObject(self)
+		
+		self.connected = False
 	
 	def connect(self):
+		self.connected = False
 		self.server_instance, addr = self.socket.accept()
+		self.connected = True
+		self.heartbeat()
 		print("Server connected from {}".format(str(addr)))
 		print("Waiting for subsystem to start...")
 		self.send_instruction("GET_WORLD")
@@ -82,10 +92,14 @@ class BYOND:
 		print("Subsystem started!")
 		
 	def send(self, data):
+		data += "\n"
 		self.server_instance.sendall(data.encode())
 		
 	def recv(self):
-		return self.server_instance.recv(2**15).decode()
+		data = self.server_instance.recv(2**15)
+		if not data:
+			raise ConnectionResetError()
+		return data.decode()
 		
 	def recv_object(self):
 		ref = self.recv()
@@ -108,6 +122,9 @@ class BYOND:
 		if name == "clients":
 			return self.GLOB.clients
 			
+		elif name == "subsystem" and not self.connected:
+			return None
+			
 		name = "/proc/"+name
 		data = int(self.communicate("CHECK_GLOBAL_CALL", name))
 		if data == 0:
@@ -125,10 +142,26 @@ class BYOND:
 		return ByondObject(ref, self)
 		
 	def new(self, typepath):
-		newobj = self.communicate("NEW_OBJECT", typepath)
+		newobj = self.communicate("NEW_OBJECT", typepath, "RETURN")
 		if type(newobj) is ObjectNotFoundFail:
 			self.warn("Could not create object with path {}".format(typepath))
 		return newobj
+		
+	def new_cache(self, typepath):
+		self.send_instruction("NEW_OBJECT", typepath, "NORETURN")
+		
+	def heartbeat(self):
+		if not self.connected:
+			return
+		self.send("HEARTBEAT")
+		threading.Timer(4.0, self.heartbeat).start()
+
+	def gottagofast(self):
+		self.warn("Going into rapid fire mode.")
+		self.subsystem.rapid_fire = 1
+
+	def slowyoroll(self):
+		self.subsystem.rapid_fire = 0
 
 class ByondObject:
 	def __init__(self, ref, inst):
@@ -140,16 +173,10 @@ class ByondObject:
 		if type(data) is ObjectNotFoundFail:
 			self.warn("WARNING: OBJECT NOT FOUND")
 			return
-		if type(data) is VariableNotFoundFail: #no such variable, might be a call though
-			result = int(self.server.communicate("CHECK_CALL", self.ref, name))
-			if result == 0: #object does not exist
-				self.warn("ERROR: Object does not exist!")
-			if result == 1: #no such call
-				self.warn("ERROR: This object does not have a proc named {}".format(name))
-			if result == 2: #eyy
-				func = ByondFunction(self.ref, name, self.server)
-				self.__dict__[name] = func #Save for later since functions won't change unlike variables
-				return func
+		if type(data) is IssaProc:
+			func = ByondFunction(self.ref, name, self.server)
+			self.__dict__[name] = func #Save for later since functions won't change unlike variables
+			return func
 		return data
 
 	def __setattr__(self, name, value):
@@ -163,6 +190,20 @@ class ByondObject:
 	def delete(self):
 		self.server.communicate("DELETE", self.ref)
 
+class CachedByondObject(ByondObject):
+	def __init__(self, inst):
+		self.ref = "CACHED"
+		self.server = inst
+
+	def __getattr__(self, name):
+		data = self.server.communicate("GET_VAR", self.ref, name)
+		if type(data) is ObjectNotFoundFail:
+			self.warn("WARNING: OBJECT NOT FOUND")
+			return
+		if type(data) is IssaProc:
+			return ByondFunction(self.ref, name, self.server)
+		return data
+
 class ByondFunction:
 	def __init__(self, ref, name, inst, glob=False):
 		self.ref = ref
@@ -175,6 +216,15 @@ class ByondFunction:
 		for arg in args:
 			final_args.append(serialize(arg))
 		if self.glob:
-			return self.server.communicate("CALL_GLOBAL", self.name, "\x03".join(final_args))
+			return self.server.communicate("CALL_GLOBAL", self.name, "\x03".join(final_args), "RETURN")
 		else:
-			return self.server.communicate("CALL_PROC", self.ref, self.name, "\x03".join(final_args))
+			return self.server.communicate("CALL_PROC", self.ref, self.name, "\x03".join(final_args), "RETURN")
+			
+	def noreturn(self, *args):
+		final_args = []
+		for arg in args:
+			final_args.append(serialize(arg))
+		if self.glob:
+			return self.server.send_instruction("CALL_GLOBAL", self.name, "\x03".join(final_args), "NORETURN")
+		else:
+			return self.server.send_instruction("CALL_PROC", self.ref, self.name, "\x03".join(final_args), "NORETURN")

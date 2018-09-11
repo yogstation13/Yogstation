@@ -1,6 +1,10 @@
-import byond, importlib, time, sys, socket
+import byond, importlib, time, sys, socket, shutil, dis
+from collections.abc import Mapping
 
 class Sentinel(Exception): pass
+
+class SecurityException(Exception): pass
+def security_exception(*args, **kwargs): raise SecurityException("Attempt to call unsafe function")
 
 class SetTrace(object):
 	def __init__(self, func):
@@ -17,33 +21,94 @@ class SetTrace(object):
 server = None
 next_check = 0
 
+server = byond.BYOND()
+
+unsafe_builtins = [
+	"globals",
+	"locals",
+	"breakpoint",
+	"compile",
+	"delattr",
+	"eval",
+	"exec",
+	"format",
+	"getattr",
+	"hasattr",
+	"input",
+	"memoryview",
+	"object",
+	"open",
+	"property",
+	"setattr",
+	"type",
+	"vars",
+	"__import__"
+]
+
+safe_builtins = {}
+
+whitelisted_modules = ["time", "random"]
+
+def safe_import(name, *args, **kwargs):
+	if name in whitelisted_modules:
+		return __import__(name, *args, **kwargs)
+	raise SecurityException("Attempt to load disallowed module: "+repr(name))
+
+for func in dir(__builtins__):
+	if func not in unsafe_builtins:
+		safe_builtins[func] = getattr(__builtins__, func)
+	else:
+		safe_builtins[func] = security_exception
+		
+safe_builtins["__import__"] = safe_import
+
 def monitor(frame, event, arg):
 	global next_check
 	global server
-	if event == "line":
-		if frame.f_code.co_filename.endswith("external_script.py") and time.time() > next_check:
-			next_check = time.time() + 1
+	
+	if frame.f_code.co_filename.endswith("external_script.py") and event == "line":
+		frame.f_globals["__builtins__"] = safe_builtins
+		if server.subsystem is not None and time.time() > next_check:
+			next_check = time.time() + 2
 			if server.subsystem.emergency_brake:
-				print("Interrupted, stopping script...")
+				server.warn("Interrupted, stopping script...")
 				server.subsystem.emergency_brake = 0
 				raise Sentinel()
-	return monitor
+		return monitor
 
-external_script = importlib.import_module("external_script")
+import_fail = ""
+external_script = None
+try:
+	with SetTrace(monitor):
+		external_script = importlib.import_module("external_script")
+except Exception as e:
+	import_fail = str(e)
 
-server = byond.BYOND()
-print("Waiting for server...")
-server.connect()
-print("Ready")
 while True:
-	importlib.invalidate_caches()
-	external_script = importlib.reload(external_script)
-	try:
-		if server.recv() != "Let's go!": continue
-		print("Received signal...")
-		with SetTrace(monitor):
-			external_script.main(server)
-		print("Finished")
-	except (ConnectionAbortedError, ConnectionResetError):
-		print("WARNING: LOST CONNECTION")
-		server.connect()
+	print("Waiting for server...")
+	server.connect()
+	print("Ready")
+	if import_fail:
+		server.warn(import_fail)
+		server.warn("Fix the errors and run the script.")
+		import_fail = ""
+	while True:
+		try:
+			if server.recv() != "Let's go!": continue
+			print("Received signal...")
+			with SetTrace(monitor):
+				with open("external_script.py", "r") as f:
+					if "__" in f.read():
+						raise SecurityException("Stop toying with python's internals")
+				importlib.invalidate_caches()
+				external_script = importlib.reload(external_script)
+				external_script.main(server)
+		except (ConnectionAbortedError, ConnectionResetError):
+			print("Server disconnected!")
+			break
+		except SecurityException as e:
+			server.warn("SECURITY EXCEPTION: " + str(e))
+		#except Exception as e:
+		#	server.warn(str(e))
+		print("Finished running script")
+		server.slowyoroll()
