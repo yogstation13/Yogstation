@@ -155,6 +155,12 @@
 /turf/open/floor/plasteel/darkpurple/side{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/item/surgicaldrill,
+/obj/item/cautery,
+/turf/open/floor/plasteel/dark,
+>>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "aC" = (
 /turf/open/floor/plasteel/dark,
@@ -508,6 +514,7 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
 "bp" = (
+<<<<<<< HEAD
 /mob/living/simple_animal/bot/medbot{
 	name = "\improper emergency medibot";
 	pixel_x = -3;
@@ -516,6 +523,20 @@
 /turf/open/floor/plasteel/darkpurple/side{
 	dir = 8
 	},
+=======
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/mob/living/simple_animal/bot/medbot{
+	name = "\improper emergency medibot";
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "bq" = (
 /turf/open/floor/plasteel/darkgreen/corner{
