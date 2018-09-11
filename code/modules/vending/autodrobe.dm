@@ -8,7 +8,6 @@
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
 		            /obj/item/clothing/head/chicken = 1,
-					/obj/item/clothing/mask/yogs/cluwne/happy_cluwne = 1, // yogs
 		            /obj/item/clothing/under/rank/blueclown = 1,
 					/obj/item/clothing/under/rank/greenclown = 1,
 					/obj/item/clothing/under/rank/yellowclown = 1,
