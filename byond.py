@@ -7,6 +7,9 @@ class VariableNotFoundFail:
 class IssaProc:
 	pass
 	
+class SecurityException(Exception): pass
+def security_exception(*args, **kwargs): raise SecurityException("Attempt to call unsafe function")
+	
 def empty_func(*args, **kwargs): pass
 
 def serialize(value):
@@ -118,7 +121,7 @@ class BYOND:
 		self.send_instruction(*args)
 		return deserialize(self.recv(), self)
 	
-	def __getattr__(self, name):
+	def fake_getattr(self, name):
 		if name == "clients":
 			return self.GLOB.clients
 			
@@ -162,6 +165,34 @@ class BYOND:
 
 	def slowyoroll(self):
 		self.subsystem.rapid_fire = 0
+	
+	def wrap(self):
+		return ServerWrapper(self)
+		
+class ServerWrapper:
+	def __init__(self, server):
+		self.__server__ = server
+		
+		self.safe_fields = [
+			"warn",
+			"obj_from_ref",
+			"new",
+			"new_cache",
+			"gottagofast",
+			"slowyoroll",
+			"GLOB",
+			"world",
+			"cached"
+		]
+		
+	def __getattribute__(self, name):
+		if "__" in name: return None
+		serb = object.__getattribute__(self, "__server__")
+		if name in object.__getattribute__(self, "safe_fields"):
+			return getattr(serb, name)
+		else:
+			return serb.fake_getattr(name)
+		
 
 class ByondObject:
 	def __init__(self, ref, inst):

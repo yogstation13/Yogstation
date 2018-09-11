@@ -1,10 +1,9 @@
 import byond, importlib, time, sys, socket, shutil, dis
 from collections.abc import Mapping
 
-class Sentinel(Exception): pass
+from byond import SecurityException, security_exception
 
-class SecurityException(Exception): pass
-def security_exception(*args, **kwargs): raise SecurityException("Attempt to call unsafe function")
+class Sentinel(Exception): pass
 
 class SetTrace(object):
 	def __init__(self, func):
@@ -22,6 +21,7 @@ server = None
 next_check = 0
 
 server = byond.BYOND()
+wrapped_server = server.wrap()
 
 unsafe_builtins = [
 	"globals",
@@ -29,6 +29,7 @@ unsafe_builtins = [
 	"breakpoint",
 	"compile",
 	"delattr",
+	"dir",
 	"eval",
 	"exec",
 	"format",
@@ -102,7 +103,7 @@ while True:
 						raise SecurityException("Stop toying with python's internals")
 				importlib.invalidate_caches()
 				external_script = importlib.reload(external_script)
-				external_script.main(server)
+				external_script.main(wrapped_server)
 		except (ConnectionAbortedError, ConnectionResetError):
 			print("Server disconnected!")
 			break
