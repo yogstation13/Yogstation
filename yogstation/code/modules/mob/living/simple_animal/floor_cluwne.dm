@@ -334,6 +334,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	for(var/I in 1 to get_dist(src, H))
 
 		if(do_after(src, 10, target = H))
+			if(get_dist(src,H) >= 7)
+				Acquire_Victim()
+				eating = FALSE
+				return
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			H.emote("scream")
