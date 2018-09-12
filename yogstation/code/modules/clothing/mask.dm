@@ -58,10 +58,10 @@
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
-	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 100% curse free and 100% not haunted thanks to some extra scrubbing and the centcomm chaplain. "
+	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 100% curse free and 100% not haunted thanks to some extra scrubbing and the CentCom chaplain. "
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
-	var/can_cluwne = TRUE
+	var/can_cluwne = FALSE
 	item_flags = ABSTRACT
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/attack_self(mob/user)
@@ -70,6 +70,8 @@
 	if(voicechange)
 		play_laugh1()
 
+
+/* Removed because we don't want this effect
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
@@ -98,5 +100,6 @@
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/proc/re_cluwne()
 	if(!can_cluwne)
 		can_cluwne = TRUE
+*/
 
 #undef CLUWNEDOWN
