@@ -444,12 +444,6 @@
 /area/shuttle/escape)
 "bj" = (
 /obj/machinery/suit_storage_unit/standard_unit,
-<<<<<<< HEAD
-/turf/open/floor/plasteel/darkyellow/side{
-	dir = 10;
-	icon_state = "darkyellow"
-	},
-=======
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -458,7 +452,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
->>>>>>> a20e1be7f4... Merge pull request #40207 from 81Denton/i-love-free-gbp
 /area/shuttle/escape)
 "bk" = (
 /obj/machinery/suit_storage_unit/standard_unit,
