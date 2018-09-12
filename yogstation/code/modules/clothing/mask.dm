@@ -61,8 +61,8 @@
 	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 100% curse free and 100% not haunted thanks to some extra scrubbing and the CentCom chaplain. "
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
-	var/can_cluwne = FALSE
 	item_flags = ABSTRACT
+	//var/can_cluwne = FALSE
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/attack_self(mob/user)
 	voicechange = !voicechange
