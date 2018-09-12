@@ -19,22 +19,32 @@ SUBSYSTEM_DEF(exscript)
 	var/datum/cached_object
 	var/missed_calls = 0
 	var/rapid_fire = FALSE
+	var/init_success = TRUE
 
 /datum/controller/subsystem/exscript/Initialize(start_timeofday)
+	if(!fexists("ss13script.dll") || call("ss13script.dll","initialize")() != "OK") //fuck travis lol
+		message_admins("Failed to initialize external scripting.")
+		flags |= SS_NO_FIRE
+		init_success = FALSE
+		return ..()
 	instruction_delimiter = ascii2text(1)
 	type_value_delimiter = ascii2text(2)
 	proc_args_delimiter = ascii2text(3)
 	instruction_group_delimiter = ascii2text(4)
-	call("ss13script.dll","initialize")()
 	return ..()
 
 /datum/controller/subsystem/exscript/Destroy()
-	call("ss13script.dll","destroy")()
+	disconnect()
 	return ..()
 
+/datum/controller/subsystem/exscript/Shutdown()
+	disconnect()
+
 /datum/controller/subsystem/exscript/proc/disconnect()
-	sleep(50)
+	if(!init_success)
+		return
 	call("ss13script.dll","destroy")()
+	sleep(50)
 
 /datum/controller/subsystem/exscript/proc/serialize(data)
 	var/list/return_value[2] //1 - type, 2 - value
@@ -88,6 +98,9 @@ SUBSYSTEM_DEF(exscript)
 	return final_value
 
 /datum/controller/subsystem/exscript/proc/edit_script()
+	if(!init_success)
+		to_chat(usr, "<span class='danger'>Subsystem not initialized.</span>")
+		return
 	if(editing_script)
 		to_chat(usr, "<span class='danger'>The script is being edited by someone else!</span>")
 		return
@@ -105,9 +118,14 @@ SUBSYSTEM_DEF(exscript)
 	editing_script = FALSE
 
 /datum/controller/subsystem/exscript/proc/run_script()
+	if(!init_success)
+		to_chat(usr, "<span class='danger'>Subsystem not initialized.</span>")
+		return
 	RETURN("Let's go!")
 
 /datum/controller/subsystem/exscript/proc/reconnect()
+	if(!init_success)
+		return
 	call("ss13script.dll","initialize")()
 
 /datum/controller/subsystem/exscript/proc/call_proc(procname, arguments, object=null)

@@ -125,8 +125,10 @@ class BYOND:
 		if name == "clients":
 			return self.GLOB.clients
 			
-		elif name == "subsystem" and not self.connected:
+		if name == "subsystem" and not self.connected:
 			return None
+		elif self.connected:
+			return self.subsystem
 			
 		name = "/proc/"+name
 		data = int(self.communicate("CHECK_GLOBAL_CALL", name))
@@ -202,7 +204,7 @@ class ByondObject:
 	def __getattr__(self, name):
 		data = self.server.communicate("GET_VAR", self.ref, name)
 		if type(data) is ObjectNotFoundFail:
-			self.warn("WARNING: OBJECT NOT FOUND")
+			self.server.warn("WARNING: OBJECT NOT FOUND")
 			return
 		if type(data) is IssaProc:
 			func = ByondFunction(self.ref, name, self.server)

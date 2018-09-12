@@ -1,5 +1,3 @@
-extern crate encoding;
-
 #[macro_use]
 mod byond;
 #[macro_use]
@@ -10,6 +8,7 @@ extern crate log;
 extern crate simplelog;
 use simplelog::*;
 
+extern crate encoding;
 use encoding::all::ASCII;
 use encoding::{EncoderTrap, Encoding};
 
@@ -20,6 +19,8 @@ use std::io::BufReader;
 use std::io::Write;
 
 use std::sync::mpsc::{channel, Receiver, Sender};
+
+use std::net::SocketAddr;
 
 static mut SCRIPT_SERVER: Option<std::net::TcpStream> = None;
 static INIT: std::sync::Once = std::sync::Once::new();
@@ -33,19 +34,21 @@ byond_fn! { initialize() {
 		let _ = WriteLogger::init(LevelFilter::Debug, Config::default(), File::create("exscript.log").unwrap());
 		debug!("Initializing...");
 	});
-	loop {
-		match std::net::TcpStream::connect("127.0.0.1:5678") {
-			Ok(c) => {
-				debug!("Connected to script server...");
-				SCRIPT_SERVER = Some(c);
-				break;
-				},
-			Err(_e) => {
-				debug!("Could not connect to script server, retrying...")
+	let ip: SocketAddr = "127.0.0.1:5678".parse().expect("This is not an address");
+	match std::net::TcpStream::connect_timeout(&ip, std::time::Duration::from_secs(5)) {
+		Ok(c) => {
+			debug!("Connected to script server...");
+			SCRIPT_SERVER = Some(c);
 			},
-		}
+		Err(_e) => {
+			debug!("Could not connect to script server, aborting!");
+			return Some("ERROR");
+		},
 	}
-	SCRIPT_SERVER.as_ref().unwrap().set_read_timeout(Some(std::time::Duration::from_secs(5))).or_else(|e| { debug!("Failed to set timeout: {}", e) });
+	match SCRIPT_SERVER.as_ref().unwrap().set_read_timeout(Some(std::time::Duration::from_secs(5))) {
+		Ok(()) => (),
+		Err(e) => debug!("Failed to set timeout: {}", e),
+	}
 	std::thread::spawn(|| {
 		debug!("Starting new receiving thread");
 		for line in BufReader::new(SCRIPT_SERVER.as_ref().unwrap()).lines() {
@@ -70,7 +73,7 @@ byond_fn! { initialize() {
 		debug!("Exiting receiving thread");
 	});
 	debug!("Initialized!");
-	Some("")
+	Some("OK")
 } }
 
 byond_fn! { get_instruction() {

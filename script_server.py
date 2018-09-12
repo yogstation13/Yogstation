@@ -69,13 +69,13 @@ def monitor(frame, event, arg):
 	
 	if frame.f_code.co_filename.endswith("external_script.py") and event == "line":
 		frame.f_globals["__builtins__"] = safe_builtins
-		if server.subsystem is not None and time.time() > next_check:
+		if time.time() > next_check:
 			next_check = time.time() + 2
-			if server.subsystem.emergency_brake:
+			if server.fake_getattr("subsystem") is not None and server.subsystem.emergency_brake:
 				server.warn("Interrupted, stopping script...")
 				server.subsystem.emergency_brake = 0
 				raise Sentinel()
-		return monitor
+	return monitor
 
 import_fail = ""
 external_script = None
@@ -97,12 +97,21 @@ while True:
 		try:
 			if server.recv() != "Let's go!": continue
 			print("Received signal...")
+			with open("external_script.py", "r+") as f:
+				data = f.read()
+				if "__" in data:
+					raise SecurityException("Stop toying with python's internals")
+				data = data.strip()
+				f.seek(0)
+				f.truncate()
+				f.write(data) #Stop the script from having 10 thousand newlines at the end because of byond
 			with SetTrace(monitor):
-				with open("external_script.py", "r") as f:
-					if "__" in f.read():
-						raise SecurityException("Stop toying with python's internals")
 				importlib.invalidate_caches()
-				external_script = importlib.reload(external_script)
+				if not external_script:
+					external_script = importlib.import_module("external_script")
+				else:
+					external_script = importlib.reload(external_script)
+			with SetTrace(monitor):
 				external_script.main(wrapped_server)
 		except (ConnectionAbortedError, ConnectionResetError):
 			print("Server disconnected!")
