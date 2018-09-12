@@ -58,11 +58,11 @@
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
-	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be %99 curse free and %99.9 not haunted. "
+	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be 100% curse free and 100% not haunted thanks to some extra scrubbing and the CentCom chaplain. "
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
-	var/can_cluwne = TRUE
 	item_flags = ABSTRACT
+	//var/can_cluwne = FALSE
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/attack_self(mob/user)
 	voicechange = !voicechange
@@ -70,19 +70,21 @@
 	if(voicechange)
 		play_laugh1()
 
+
+/* Removed because we don't want this effect
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(slot == SLOT_WEAR_MASK)
-		if(prob(1) && can_cluwne) // Its %99 curse free!
+		if(prob(0) && can_cluwne) // Its %99 curse free!
 			log_admin("[key_name(H)] was made into a cluwne by [src]")
 			message_admins("[key_name(H)] got cluwned by [src]")
 			to_chat(H, "<span class='userdanger'>The masks straps suddenly tighten to your face and your thoughts are erased by a horrible green light!</span>")
 			H.dropItemToGround(src)
 			H.cluwneify()
 			qdel(src)
-		else if(prob(0.1) && can_cluwne) //And %99.9 free form being haunted by vengeful jester-like entites.
+		else if(prob(0) && can_cluwne) //And %99.9 free form being haunted by vengeful jester-like entites.
 			var/turf/T = get_turf(src)
 			var/mob/living/simple_animal/hostile/floor_cluwne/S = new(T)
 			S.Acquire_Victim(user)
@@ -98,5 +100,6 @@
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/proc/re_cluwne()
 	if(!can_cluwne)
 		can_cluwne = TRUE
+*/
 
 #undef CLUWNEDOWN
