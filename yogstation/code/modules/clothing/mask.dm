@@ -1,5 +1,3 @@
-#define CLUWNEDOWN 50
-
 /obj/item/clothing/mask/yogs/cluwne
 	name = "clown wig and mask"
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
@@ -61,8 +59,19 @@
 	desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be %99 curse free and %99.9 not haunted. "
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
-	var/can_cluwne = TRUE
 	item_flags = ABSTRACT
+	var/can_cluwne = TRUE
+	var/is_cursed = FALSE //i don't care that this is *slightly* memory wasteful, it's just one more byte and it's not like some madman is going to spawn thousands of these
+	var/is_very_cursed = FALSE
+
+/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/New()
+	..()
+	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything
+		is_cursed = TRUE
+		is_very_cursed = FALSE
+	else if(prob(0.1))
+		is_cursed = FALSE
+		is_very_cursed = TRUE
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/attack_self(mob/user)
 	voicechange = !voicechange
@@ -75,14 +84,14 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(slot == SLOT_WEAR_MASK)
-		if(prob(1) && can_cluwne) // Its %99 curse free!
+		if(is_cursed && can_cluwne) //logic predetermined
 			log_admin("[key_name(H)] was made into a cluwne by [src]")
 			message_admins("[key_name(H)] got cluwned by [src]")
 			to_chat(H, "<span class='userdanger'>The masks straps suddenly tighten to your face and your thoughts are erased by a horrible green light!</span>")
 			H.dropItemToGround(src)
 			H.cluwneify()
 			qdel(src)
-		else if(prob(0.1) && can_cluwne) //And %99.9 free form being haunted by vengeful jester-like entites.
+		else if(is_very_cursed && can_cluwne)
 			var/turf/T = get_turf(src)
 			var/mob/living/simple_animal/hostile/floor_cluwne/S = new(T)
 			S.Acquire_Victim(user)
@@ -91,12 +100,3 @@
 			to_chat(H, "<span class='warning'>The mask suddenly slips off your face and... slides under the floor?</span>")
 			to_chat(H, "<i>...dneirf uoy ot gnoleb ton seod tahT</i>")
 			qdel(src)
-		else if(can_cluwne)
-			can_cluwne = FALSE
-			addtimer(CALLBACK(src, .proc/re_cluwne), CLUWNEDOWN)
-
-/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/proc/re_cluwne()
-	if(!can_cluwne)
-		can_cluwne = TRUE
-
-#undef CLUWNEDOWN
