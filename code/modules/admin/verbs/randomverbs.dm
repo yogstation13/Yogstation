@@ -1249,9 +1249,19 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING)
+	var/list/punishment_list = list( //yogs start
+		ADMIN_PUNISHMENT_LIGHTNING = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitelightning"),
+		ADMIN_PUNISHMENT_BRAINDAMAGE = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitebraindmg"),
+		ADMIN_PUNISHMENT_GIB = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitegib"),
+		ADMIN_PUNISHMENT_BSA = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitebsa"),
+		ADMIN_PUNISHMENT_FIREBALL = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitefireball"),
+		ADMIN_PUNISHMENT_ROD = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smiterod"),
+		ADMIN_PUNISHMENT_SUPPLYPOD = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitepod"),
+		ADMIN_PUNISHMENT_MAZING = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitemazing")
+		)
 
-	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
+	var/punishment = show_radial_menu(src.mob, src.mob, punishment_list)
+
 
 	if(QDELETED(target) || !punishment)
 		return
