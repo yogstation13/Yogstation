@@ -1260,7 +1260,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		ADMIN_PUNISHMENT_MAZING = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitemazing")
 		)
 
-	var/punishment = show_radial_menu(src.mob, src.mob, punishment_list)
+	var/punishment = show_radial_menu(src.mob, src.mob, punishment_list) //yogs end
 
 
 	if(QDELETED(target) || !punishment)
