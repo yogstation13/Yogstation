@@ -64,14 +64,16 @@
 	var/is_cursed = FALSE //i don't care that this is *slightly* memory wasteful, it's just one more byte and it's not like some madman is going to spawn thousands of these
 	var/is_very_cursed = FALSE
 
-/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/New()
-	..()
+/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize()
+	.=..()
 	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything
 		is_cursed = TRUE
 		is_very_cursed = FALSE
+		message_admins("Debug message 1")
 	else if(prob(0.1))
 		is_cursed = FALSE
 		is_very_cursed = TRUE
+		message_admins("Debug message 2")
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/attack_self(mob/user)
 	voicechange = !voicechange
