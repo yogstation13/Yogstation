@@ -3,8 +3,6 @@
 	form = "Infection"
 	max_stages = 5
 	stage_prob = 2
-	spread_text = "On contact"
-	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = "A small mix of nothing" // heh
 	cures = list("nothing")
 	agent = "Fury from the circus of hell itself."
