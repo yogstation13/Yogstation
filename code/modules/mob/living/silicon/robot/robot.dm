@@ -1008,6 +1008,7 @@
 	for(var/obj/item/borg/upgrade/I in upgrades)
 		I.deactivate(src)
 		I.forceMove(get_turf(src))
+		I.dropped()
 
 	upgrades.Cut()
 
