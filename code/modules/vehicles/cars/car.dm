@@ -7,6 +7,15 @@
 	var/engine_sound_length = 20 //Set this to the length of the engine sound
 	var/escape_time = 200 //Time it takes to break out of the car
 
+<<<<<<< HEAD
+=======
+/obj/vehicle/sealed/car/Initialize()
+	. = ..()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = movedelay
+	D.slowvalue = 0
+	
+>>>>>>> 682215d55b... Clown car fix second edition (#40252)
 /obj/vehicle/sealed/car/generate_actions()
 	. = ..()
 	initialize_controller_action_type(/datum/action/vehicle/sealed/remove_key, VEHICLE_CONTROL_DRIVE)
