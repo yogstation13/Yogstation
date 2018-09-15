@@ -23,7 +23,7 @@
 
 	var/disabled = FALSE //If TRUE, limb is as good as missing
 	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
-	var/stam_damage_coeff = 0
+	var/stam_damage_coeff = 0.5
 	var/brutestate = 0
 	var/burnstate = 0
 	var/brute_dam = 0
@@ -63,7 +63,7 @@
 	var/light_burn_msg = "numb"
 	var/medium_burn_msg = "blistered"
 	var/heavy_burn_msg = "peeling away"
-	
+
 	var/bandaged // yogs - FALSE if the limb is not bandaged, TRUE if the limb is bandaged
 
 /obj/item/bodypart/examine(mob/user)
@@ -396,6 +396,12 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
+		if(should_draw_yogs) //yogs start
+			limb.icon = 'yogstation/icons/mob/mutant_bodyparts.dmi'
+			if(should_draw_gender)
+				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
+			else
+				limb.icon_state = "[species_id]_[body_zone]" //yogs end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

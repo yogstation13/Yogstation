@@ -18,7 +18,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
-	
+
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
 	var/dark_damage_multiplier = 1
@@ -44,7 +44,7 @@
 	C.faction -= "vines"
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)
@@ -109,7 +109,7 @@
 		if(H.getOxyLoss() < 60)
 			H.adjustOxyLoss(min(5 * dark_damage_multiplier, 60 - H.getOxyLoss()), 1)
 			H.adjustToxLoss(1 * dark_damage_multiplier, 1)
-	
+
 	if(light_level != last_light_level)
 		last_light_level = light_level
 		if(light_msg)
@@ -131,7 +131,7 @@
 				last_light_message = -STATUS_MESSAGE_COOLDOWN
 				to_chat(H, "<span class='userdanger'>Your internal stores of light are depleted. Find a source to replenish your nourishment at once!</span>")
 			H.take_overall_damage(2, 0)
-	
+
 
 /datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")

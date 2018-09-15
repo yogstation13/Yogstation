@@ -309,6 +309,8 @@
 	qdel(note)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.remove_from_hud(src)
+	if(brace) //yogs
+		brace.remove() //yogs
 	return ..()
 
 /obj/machinery/door/airlock/handle_atom_del(atom/A)
@@ -668,6 +670,12 @@
 		else
 			to_chat(user, "It looks very robust.")
 
+	if(issilicon(user) && (!stat & BROKEN))
+		to_chat(user, "<span class='notice'>Shift-click [src] to [ density ? "open" : "close"] it.</span>")
+		to_chat(user, "<span class='notice'>Ctrl-click [src] to [ locked ? "raise" : "drop"] its bolts.</span>")
+		to_chat(user, "<span class='notice'>Alt-click [src] to [ secondsElectrified ? "un-electrify" : "permanently electrify"] it.</span>")
+		to_chat(user, "<span class='notice'>Ctrl-Shift-click [src] to [ emergency ? "disable" : "enable"] emergency access.</span>")
+
 /obj/machinery/door/airlock/attack_ai(mob/user)
 	if(!src.canAIControl(user))
 		if(src.canAIHack())
@@ -972,6 +980,8 @@
 		user.visible_message("<span class='notice'>[user] pins [C] to [src].</span>", "<span class='notice'>You pin [C] to [src].</span>")
 		note = C
 		update_icon()
+	else if(istype(C, /obj/item/brace)) //yogs
+		apply_brace(C, user) //yogs
 	else
 		return ..()
 
@@ -1075,7 +1085,7 @@
 					to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 
 /obj/machinery/door/airlock/open(forced=0)
-	if( operating || welded || locked )
+	if( operating || welded || locked || brace) //yogs - brace
 		return FALSE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
