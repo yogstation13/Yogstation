@@ -16,12 +16,14 @@
 IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY CANISTER CHARGES in vending_items.dm
 */
 
+GLOBAL_LIST_EMPTY(vending_cache) //yogs
+
 /datum/data/vending_product
 	name = "generic"
 	var/product_path = null
 	var/amount = 0
 	var/max_amount = 0
-	var/display_color = "blue"
+	//var/display_color = "blue" //yogs - use icons instead of colours
 
 /obj/machinery/vending
 	name = "\improper Vendomat"
@@ -158,7 +160,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
-		R.display_color = pick("#ff8080","#80ff80","#8080ff")
+		//R.display_color = pick("#ff8080","#80ff80","#8080ff") //yogs - icon instead of colour
 		recordlist += R
 
 /obj/machinery/vending/proc/restock(obj/item/vending_refill/canister)
@@ -334,17 +336,16 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			display_records = product_records + coin_records
 		if((coin || bill) && extended_inventory)
 			display_records = product_records + hidden_records + coin_records
-		dat += "<ul>"
+		dat += "<table>" //yogs start - icon instead of colour
 		for (var/datum/data/vending_product/R in display_records)
-			dat += "<li>"
+			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
+			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]</b></td>"
 			if(R.amount > 0)
-				dat += "<a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a> "
+				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
-				dat += "<span class='linkOff'>Sold out</span> "
-			dat += "<font color = '[R.display_color]'><b>[sanitize(R.name)]</b>:</font>"
-			dat += " <b>[R.amount]</b>"
-			dat += "</li>"
-		dat += "</ul>"
+				dat += "<td>0&nbsp;</td><td><span class='linkOff'>Vend</span></td>"
+			dat += "</tr>"
+		dat += "</table>" //yogs end - icon instead of colour
 	dat += "</div>"
 	if(premium.len > 0)
 		dat += "<b>Change Return:</b> "
