@@ -34,6 +34,7 @@
 #define ROLE_DRONE                  "drone"
 #define ROLE_DEATHSQUAD             "deathsquad"
 #define ROLE_LAVALAND               "lavaland"
+#define ROLE_GANG				"gangster"	// yogs
 #define ROLE_SHADOWLING 		"shadowling" // Yogs
 #define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
 
@@ -60,9 +61,10 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
+	ROLE_SENTIENCE,
+  ROLE_GANG = /datum/game_mode/gang,		// yogs
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
-	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
-	ROLE_SENTIENCE
+	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

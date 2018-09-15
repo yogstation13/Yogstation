@@ -246,6 +246,7 @@
 			out += a
 	return jointext(out,"")
 
+/* yogs - hippie - I've tried very hard to get this piece of shit to work without mirroring it, but it's so badly done it gave me an aneurysm
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
 	. = ..()
 	if(!proximity || !check_allowed_items(target))
@@ -376,6 +377,7 @@
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier)
 	check_empty(user)
+*/
 
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
