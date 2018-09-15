@@ -31,6 +31,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	anchored = TRUE //Stays anchored until death as to be unpullable
 	var/mob/living/carbon/human/current_victim
 	var/manifested = FALSE
 	var/switch_stage = 60
@@ -334,6 +335,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	for(var/I in 1 to get_dist(src, H))
 
 		if(do_after(src, 10, target = H))
+			if(get_dist(src,H) >= 7)
+				Acquire_Victim()
+				eating = FALSE
+				return
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			H.emote("scream")
