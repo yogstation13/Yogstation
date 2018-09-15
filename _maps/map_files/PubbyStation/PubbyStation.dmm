@@ -34810,19 +34810,16 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/turf/open/floor/plasteel/yellow/side{
-	dir = 1
-	},
-<<<<<<< HEAD
-=======
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/gloves/color/black,
 /obj/item/clothing/gloves/color/black,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
->>>>>>> 8c8bc7c26e... Merge pull request #40146 from granpawalton/fix/standardizing-pubby-atmos
 /area/engine/atmos)
 "bLZ" = (
 /obj/machinery/meter/atmos/atmos_waste_loop,
@@ -35940,9 +35937,6 @@
 /obj/item/t_scanner,
 /obj/item/t_scanner,
 /obj/item/t_scanner,
-<<<<<<< HEAD
-/turf/open/floor/plasteel/yellow/side,
-=======
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -35950,7 +35944,6 @@
 /obj/item/grenade/chem_grenade/smart_metal_foam,
 /obj/item/grenade/chem_grenade/smart_metal_foam,
 /turf/open/floor/plasteel,
->>>>>>> 8c8bc7c26e... Merge pull request #40146 from granpawalton/fix/standardizing-pubby-atmos
 /area/engine/atmos)
 "bOX" = (
 /obj/structure/table,
