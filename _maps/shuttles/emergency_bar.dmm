@@ -261,17 +261,12 @@
 /turf/open/floor/plasteel/bar,
 /area/shuttle/escape)
 "aU" = (
-<<<<<<< HEAD
-/mob/living/simple_animal/hostile/alien/maid/barmaid,
-/turf/open/floor/plasteel/bar,
-=======
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/alien/maid/barmaid,
 /turf/open/floor/plasteel,
->>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "aW" = (
 /obj/structure/chair/wood/normal,
@@ -281,17 +276,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-<<<<<<< HEAD
-/mob/living/simple_animal/drone/snowflake/bardrone,
-/turf/open/floor/plasteel/bar,
-=======
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
 /mob/living/simple_animal/drone/snowflake/bardrone,
 /turf/open/floor/plasteel,
->>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "aY" = (
 /obj/machinery/vending/boozeomat,

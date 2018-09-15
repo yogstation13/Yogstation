@@ -148,9 +148,6 @@
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/mask/surgical,
 /obj/structure/table/reinforced,
-<<<<<<< HEAD
-/turf/open/floor/plasteel/cmo,
-=======
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -160,7 +157,6 @@
 /obj/item/surgicaldrill,
 /obj/item/cautery,
 /turf/open/floor/plasteel/white,
->>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "an" = (
 /obj/item/twohanded/required/kirbyplants{

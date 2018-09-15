@@ -51,10 +51,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-<<<<<<< HEAD
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel/bar,
-=======
 /obj/machinery/vending/boozeomat{
 	req_access = null
 	},
@@ -63,7 +59,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
->>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "l" = (
 /obj/machinery/computer/security/wooden_tv,
