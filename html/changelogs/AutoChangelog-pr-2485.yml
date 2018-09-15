@@ -1,0 +1,4 @@
+author: " WJohn"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed pubby's bugged R&D tiles."
