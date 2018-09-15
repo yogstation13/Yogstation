@@ -664,9 +664,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
 	},
-<<<<<<< HEAD
-/turf/open/floor/plasteel/cmo,
-=======
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -676,7 +673,6 @@
 /obj/item/cautery,
 /obj/item/surgicaldrill,
 /turf/open/floor/plasteel/white,
->>>>>>> 7e3c759cc0... Emergency shuttle fixes and tweaks (#40159)
 /area/shuttle/escape)
 "bo" = (
 /obj/structure/table/optable,
