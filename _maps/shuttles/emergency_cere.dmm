@@ -629,14 +629,6 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ch" = (
-<<<<<<< HEAD
-/mob/living/simple_animal/bot/medbot{
-	name = "Speedy* Recovery"
-	},
-/turf/open/floor/plasteel/whiteblue/side{
-	dir = 9
-	},
-=======
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -650,7 +642,6 @@
 	name = "Speedy* Recovery"
 	},
 /turf/open/floor/plasteel/white,
->>>>>>> fe202d1e90... Fixes pubby's missing tiles and a cleans a few other maps. (#40147)
 /area/shuttle/escape)
 "ci" = (
 /turf/open/floor/plasteel/whiteblue/side{
