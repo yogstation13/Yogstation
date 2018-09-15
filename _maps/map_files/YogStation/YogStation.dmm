@@ -19374,9 +19374,10 @@
 /area/bridge)
 "aRm" = (
 /obj/machinery/computer/communications,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aRn" = (
 /obj/machinery/computer/shuttle/labor,
@@ -21665,9 +21666,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -21684,9 +21686,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWR" = (
 /obj/item/radio/intercom{
@@ -21709,9 +21712,10 @@
 /obj/structure/fireaxecabinet{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWT" = (
 /obj/machinery/requests_console{
@@ -21725,25 +21729,28 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWW" = (
 /obj/machinery/power/apc/highcap/five_k{
@@ -21755,9 +21762,10 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aWX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -22351,9 +22359,10 @@
 /area/security/detectives_office)
 "aYk" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aYl" = (
 /obj/effect/turf_decal/tile/blue,
@@ -22375,9 +22384,10 @@
 	c_tag = "Bridge West Entrance";
 	dir = 1
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aYo" = (
 /obj/machinery/door/firedoor,
@@ -22396,27 +22406,30 @@
 "aYq" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aYr" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aYs" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aYt" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -22507,9 +22520,10 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "aYE" = (
 /obj/machinery/door/firedoor,
@@ -22530,9 +22544,10 @@
 	pixel_y = -24
 	},
 /obj/structure/cable,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aYG" = (
 /obj/structure/disposalpipe/segment,
@@ -24815,15 +24830,17 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bet" = (
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "beu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bev" = (
 /obj/machinery/light,
@@ -54618,9 +54635,10 @@
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 1
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/engine/atmos)
 "lNd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -57560,9 +57578,10 @@
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/blue/side{
+/obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/turf/open/floor/plasteel,
 /area/bridge)
 "wpV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{

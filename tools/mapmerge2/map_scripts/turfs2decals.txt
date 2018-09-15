@@ -19,6 +19,7 @@
 /turf/open/floor/plasteel/bar : /obj/effect/turf_decal/tile/bar , /obj/effect/turf_decal/tile/bar {dir=1} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
 /turf/open/floor/plasteel/barber : /obj/effect/turf_decal/tile/blue {dir=4} , /obj/effect/turf_decal/tile/blue {dir=8} , /turf/open/floor/plasteel/cafeteria {@OLD;dir=@SKIP}
 /turf/open/floor/plasteel/blue : /obj/effect/turf_decal/tile/blue {dir=1} , /obj/effect/turf_decal/tile/blue , /obj/effect/turf_decal/tile/blue {dir=4} , /obj/effect/turf_decal/tile/blue {dir=8} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
+/turf/open/floor/plasteel/blue/side {dir=0} : /obj/effect/turf_decal/tile/blue {dir=0} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
 /turf/open/floor/plasteel/blue/side {dir=1} : /obj/effect/turf_decal/tile/blue {dir=1} , /obj/effect/turf_decal/tile/blue {dir=4} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
 /turf/open/floor/plasteel/blue/side {dir=@UNSET} : /obj/effect/turf_decal/tile/blue , /obj/effect/turf_decal/tile/blue {dir=8} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
 /turf/open/floor/plasteel/blue/side {dir=2} : /obj/effect/turf_decal/tile/blue , /obj/effect/turf_decal/tile/blue {dir=8} , /turf/open/floor/plasteel {@OLD;dir=@SKIP}
