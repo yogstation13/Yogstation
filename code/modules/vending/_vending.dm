@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 			if(R.amount > 0)
 				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
-				dat += "<td>0&nbsp;</td><td><span class='linkOff'>Vend</span></td>"
+				dat += "<td>0&nbsp;</td><td><span class='linkOff'>Sold out</span></td>"
 			dat += "</tr>"
 		dat += "</table>" //yogs end - icon instead of colour
 	dat += "</div>"
