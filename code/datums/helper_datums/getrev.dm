@@ -56,22 +56,6 @@
 	var/list/msg = list("")
 	// Round ID
 	if(GLOB.round_id)
-<<<<<<< HEAD
-		to_chat(src, "<b>Round ID:</b> [GLOB.round_id]")
-	if(GLOB.revdata.originmastercommit)
-		to_chat(src, "<b>Server revision compiled on:</b> [GLOB.revdata.date]")
-		var/prefix = ""
-		if(GLOB.revdata.testmerge.len)
-			to_chat(src, GLOB.revdata.GetTestMergeInfo())
-			prefix = "Based off origin/master commit: "
-		var/pc = GLOB.revdata.originmastercommit
-		to_chat(src, "[prefix]<a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[copytext(pc, 1, min(length(pc), 11))]</a>")
-	else
-		to_chat(src, "Master revision unknown")
-	to_chat(src, "Revision: [GLOB.revdata.commit]")
-	if(!check_rights_for(src, R_ADMIN)) //yogs
-		return //yogs
-=======
 		msg += "<b>Round ID:</b> [GLOB.round_id]"
 
 	// Revision information
@@ -86,9 +70,13 @@
 		msg += "Local commit: [revdata.commit]"
 	else if(!pc)
 		msg += "No commit information"
->>>>>>> c0561362ce... Merge pull request #40167 from AutomaticFrenzy/patch/rustg-git
+
 	if(world.TgsAvailable())
 		msg += "Server tools version: [world.TgsVersion()]"
+
+	if(!check_rights_for(src, R_ADMIN)) //yogs
+		to_chat(src, msg.Join("<br>"))
+		return //yogs
 
 	// Game mode odds
 	msg += "<br><b>Current Informational Settings:</b>"
