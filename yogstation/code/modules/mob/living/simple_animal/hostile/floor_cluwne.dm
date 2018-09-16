@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	anchored = TRUE //Stays anchored until death as to be unpullable
+	move_resist = INFINITY
 	var/mob/living/carbon/human/current_victim
 	var/manifested = FALSE
 	var/switch_stage = 60
