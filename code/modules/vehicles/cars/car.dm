@@ -10,8 +10,10 @@
 
 /obj/vehicle/sealed/car/Initialize()
 	. = ..()
-	LoadComponent(/datum/component/riding)
-	
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.vehicle_move_delay = movedelay
+	D.slowvalue = 0
+
 /obj/vehicle/sealed/car/generate_actions()
 	. = ..()
 	initialize_controller_action_type(/datum/action/vehicle/sealed/remove_key, VEHICLE_CONTROL_DRIVE)
