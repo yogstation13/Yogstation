@@ -1203,11 +1203,15 @@
 	var/list/optionlist
 	if(airlock_material == "glass")
 		optionlist = list("Standard", "Public", "Engineering", "Atmospherics", "Security", "Command", "Medical", "Research", "Science", "Virology", "Mining", "Maintenance", "External", "External Maintenance")
+		for(var/option in optionlist) //yogs start
+			optionlist[option] = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "[option]G")
 	else
 		optionlist = list("Standard", "Public", "Engineering", "Atmospherics", "Security", "Command", "Medical", "Research", "Freezer", "Science", "Virology", "Mining", "Maintenance", "External", "External Maintenance")
+		for(var/option in optionlist)
+			optionlist[option] = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = option)
 
-	var/paintjob = input(user, "Please select a paintjob for this airlock.") in optionlist
-	if((!in_range(src, usr) && src.loc != usr) || !W.use(user))
+	var/paintjob = show_radial_menu(user,src,optionlist)
+	if(!paintjob || (!in_range(src, usr) && src.loc != usr) || !W.use_paint(user)) //yogs end
 		return
 	switch(paintjob)
 		if("Standard")
