@@ -14,6 +14,28 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0)
+	allowed = null
+	var/blood_restoration_delay = 200
+	var/next_blood_restoration_tick = 0
+
+/obj/item/clothing/suit/draculacoat/Initialize()
+	if(!allowed)
+		allowed = GLOB.security_vest_allowed
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/suit/draculacoat/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/suit/draculacoat/process()
+	var/mob/living/carbon/human/user = src.loc
+	if(user && ishuman(user) && is_vampire(user) && (user.wear_suit == src))
+		if (world.time > next_blood_restoration_tick)
+			next_blood_restoration_tick = world.time + blood_restoration_delay
+			var/datum/antagonist/vampire/vampire = user.mind.has_antag_datum(/datum/antagonist/vampire)
+			if (vampire.total_blood >= 5 && vampire.usable_blood <= vampire.total_blood * 0.25)
+				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood * 0.25) // 5 units every 20 seconds
 
 /mob/living/carbon/human/handle_fire()
 	. = ..()
