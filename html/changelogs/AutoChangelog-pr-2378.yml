@@ -1,6 +1,0 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - tweak: "Internal Affairs Agents now actually need to kill their targets, not just cause Sudden Sleep Disorder!"
-  - tweak: "Internal Affairs Agents get 5 telecrystals when they accomplish an objective"
-  - tweak: "Internal Affairs Agents can no longer advance their objectives after being borged."

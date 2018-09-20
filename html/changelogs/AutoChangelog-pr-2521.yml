@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "seed extractor and dna manipulator are now in the right tab"
