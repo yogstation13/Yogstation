@@ -1,4 +1,0 @@
-author: " XDTM"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed nanite cloud storage not allowing uploads."
