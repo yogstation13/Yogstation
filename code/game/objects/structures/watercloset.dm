@@ -181,6 +181,8 @@
 		return ..()
 
 /obj/structure/urinal/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
 	to_chat(user, "<span class='notice'>You start to [exposed ? "screw the cap back into place" : "unscrew the cap to the drain protector"]...</span>")
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 	if(I.use_tool(src, user, 20))
@@ -408,7 +410,7 @@
 	if(strength <= RAD_BACKGROUND_RADIATION)
 		qdel(healthy_green_glow)
 		return
-	healthy_green_glow.strength = max(strength-1, 0)
+	healthy_green_glow.strength -= max(0, (healthy_green_glow.strength - (RAD_BACKGROUND_RADIATION * 2)) * 0.2)
 
 /obj/machinery/shower/process()
 	if(on)

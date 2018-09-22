@@ -12,7 +12,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	stat = DEAD
 	density = FALSE
 	canmove = 0
-	anchored = TRUE	//  don't get pushed around
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
@@ -263,6 +262,8 @@ Works together with spawning an observer, noted above.
 	if(key)
 		if(!cmptext(copytext(key,1,2),"@")) // Skip aghosts.
 			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
+			if(can_reenter_corpse && client) //yogs start
+				oobe_client = client //yogs end
 			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
@@ -335,6 +336,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.change_view(CONFIG_GET(string/default_view))
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
+	mind.current.oobe_client = null //yogs
 	return 1
 
 /mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
