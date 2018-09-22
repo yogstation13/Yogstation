@@ -6,6 +6,9 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
+	if(QDELETED(src))
+		return
+
 	if(!mob)
 		return
 
@@ -13,9 +16,11 @@
 		if(!GLOB.looc_allowed)
 			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
 			return
-		if(!GLOB.dlooc_allowed && (mob.stat == DEAD))
+
+		if(!GLOB.dlooc_allowed && (mob.stat == DEAD || isobserver(mob)))
 			to_chat(usr, "<span class='danger'>LOOC for dead mobs has been turned off.</span>")
 			return
+
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use LOOC (muted).</span>")
 			return
@@ -24,16 +29,13 @@
 		to_chat(src, "<span class='danger'>You have been banned from LOOC.</span>")
 		return
 
-	if(QDELETED(src))
-		return
-
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
 		return
 
-	msg = pretty_filter(msg) //yogs
+	msg = pretty_filter(msg)
 	//msg = emoji_parse(msg)
 
 	if(!holder)
