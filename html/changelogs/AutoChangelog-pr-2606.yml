@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Non-TGM format shuttle templates no longer leave some of their turfs behind."

@@ -371,21 +371,21 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = rand(1,3)
+	var/changeling_objective = rand(1,2) //yogs - fuck absorb most
 	switch(changeling_objective)
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
 			absorb_objective.owner = owner
-			absorb_objective.gen_amount_goal(6, 8)
+			absorb_objective.gen_amount_goal(3, 5) //yogs, 6-8 -> 3-5
 			objectives += absorb_objective
 		if(2)
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
-		if(3)
+		/* if(3) //yogs - fuck absorb most
 			var/datum/objective/absorb_most/ac = new
 			ac.owner = owner
-			objectives += ac
+			objectives += ac */ //yogs - fuck absorb most
 
 	if(prob(60))
 		if(prob(85))

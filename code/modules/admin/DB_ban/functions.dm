@@ -413,13 +413,19 @@
 	output += "<tr><td><b>IP:</b> <input type='text' name='dbbanaddip'></td>"
 	output += "<td><b>Computer id:</b> <input type='text' name='dbbanaddcid'></td></tr>"
 	output += "<tr><td><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
+	/*output += "<tr><td><b>Severity:</b><select name='dbbanaddseverity'>" //yogs start
+	output += "<option value=''>--</option>"
+	output += "<option value='High'>High Severity</option>"
+	output += "<option value='Medium'>Medium Severity</option>"
+	output += "<option value='Minor'>Minor Severity</option>"
+	output += "<option value='None'>No Severity</option>"*/ //yogs end
 	output += "<td><b>Job:</b><select name='dbbanaddjob'>"
 	output += "<option value=''>--</option>"
 	for(var/j in get_all_jobs())
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in GLOB.nonhuman_positions)
 		output += "<option value='[j]'>[j]</option>"
-	for(var/j in list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_WIZARD))
+	for(var/j in list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_WIZARD, ROLE_SENTIENCE, ROLE_MIND_TRANSFER))
 		output += "<option value='[j]'>[j]</option>"
 	output += "</select></td></tr></table>"
 	output += "<b>Reason:<br></b><textarea name='dbbanreason' cols='50'></textarea><br>"

@@ -94,6 +94,16 @@
 	category= CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/gonbola
+	name = "Gonbola"
+	result = /obj/item/restraints/legcuffs/bola/gonbola
+	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
+				/obj/item/stack/sheet/metal = 6,
+				/obj/item/stack/sheet/animalhide/gondola = 1)
+	time = 40
+	category= CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/tailclub
 	name = "Tail Club"
 	result = /obj/item/tailclub
@@ -319,6 +329,7 @@
 	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/shard = 1,
 				/obj/item/stack/rods = 1)
+	parts = list(/obj/item/shard = 1)
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -522,7 +533,7 @@
 	result = /obj/item/bikehorn/golden
 	time = 20
 	reqs = list(/obj/item/stack/sheet/mineral/bananium = 5,
-				/obj/item/bikehorn)
+				/obj/item/bikehorn = 1)
 	category = CAT_MISC
 
 /datum/crafting_recipe/bonedagger
@@ -685,3 +696,19 @@
 	tools = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/bedsheet = 1)
 	category = CAT_CLOTHING
+
+/datum/crafting_recipe/aitater
+	name = "intelliTater"
+	result = /obj/item/aicard/aitater
+	time = 30
+	reqs = list(/obj/item/aicard = 1,
+					/obj/item/reagent_containers/food/snacks/grown/potato = 1)
+	category = CAT_MISC
+
+/datum/crafting_recipe/ghettojetpack
+	name = "Improvised Jetpack"
+	result = /obj/item/tank/jetpack/improvised
+	time = 30
+	reqs = list(/obj/item/tank/internals/oxygen/red = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = 30)//red oxygen tank so it looks right
+	category = CAT_MISC
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
