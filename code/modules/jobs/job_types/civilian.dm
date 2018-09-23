@@ -234,6 +234,8 @@ Tourist
 	minimal_access = list()
 
 	outfit = /datum/outfit/job/tourist
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_CIV
 
 /datum/outfit/job/tourist
 	name = "Tourist"
@@ -267,6 +269,8 @@ Clerk
 	minimal_access = list(ACCESS_MANUFACTURING)
 
 	outfit = /datum/outfit/job/clerk
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_SRV
 
 /datum/outfit/job/clerk
 	name = "Clerk"
