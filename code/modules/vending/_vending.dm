@@ -23,12 +23,8 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	var/product_path = null
 	var/amount = 0
 	var/max_amount = 0
-<<<<<<< HEAD
 	//var/display_color = "blue" //yogs - use icons instead of colours
-=======
-	var/display_color = "blue"
 	var/custom_price
->>>>>>> f735a7d34d... [READY][PAID CODE] economy PR (#40312)
 
 /obj/machinery/vending
 	name = "\improper Vendomat"
@@ -169,12 +165,8 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
-<<<<<<< HEAD
 		//R.display_color = pick("#ff8080","#80ff80","#8080ff") //yogs - icon instead of colour
-=======
-		R.display_color = pick("#ff8080","#80ff80","#8080ff")
 		R.custom_price = initial(temp.custom_price)
->>>>>>> f735a7d34d... [READY][PAID CODE] economy PR (#40312)
 		recordlist += R
 
 /obj/machinery/vending/proc/restock(obj/item/vending_refill/canister)
@@ -330,25 +322,8 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	else
 		var/list/display_records = product_records + coin_records
 		if(extended_inventory)
-<<<<<<< HEAD
-			display_records = product_records + hidden_records
-		if(coin || bill)
-			display_records = product_records + coin_records
-		if((coin || bill) && extended_inventory)
-			display_records = product_records + hidden_records + coin_records
-		dat += "<table>" //yogs start - icon instead of colour
-		for (var/datum/data/vending_product/R in display_records)
-			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
-			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]</b></td>"
-			if(R.amount > 0)
-				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
-			else
-				dat += "<td>0&nbsp;</td><td><span class='linkOff'>Sold out</span></td>"
-			dat += "</tr>"
-		dat += "</table>" //yogs end - icon instead of colour
-=======
 			display_records = product_records + coin_records + hidden_records
-		dat += "<ul>"
+		dat += "<table>" //yogs start - icon instead of colour
 		for (var/datum/data/vending_product/R in display_records)
 			var/price_listed = "$[default_price]"
 			var/is_hidden = hidden_records.Find(R)
@@ -360,16 +335,14 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				price_listed = "$[R.custom_price]"
 			if(!onstation || account && account.account_job && account.account_job.paycheck_department == payment_department)
 				price_listed = "FREE"
-			dat += "<li>"
+			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
+			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
 			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && iscarbon(user))))
-				dat += "<a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a> "
+				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
-				dat += "<span class='linkOff'>Not Available</span> "
-			dat += "<font color = '[R.display_color]'><b>[sanitize(R.name)] ([price_listed])</b>:</font>"
-			dat += " <b>[R.amount]</b>"
-			dat += "</li>"
-		dat += "</ul>"
->>>>>>> f735a7d34d... [READY][PAID CODE] economy PR (#40312)
+				dat += "<td>0&nbsp;</td><td><span class='linkOff'>Not Available</span></td>"
+			dat += "</tr>"
+		dat += "</table>" //yogs end - icon instead of colour
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
