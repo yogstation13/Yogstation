@@ -64,11 +64,16 @@
 		return
 	if(!isnull(target) && !target.toff)
 		charges--
-		message_admins("[!is_special_character(U) ? "Non-antag " : ""][ADMIN_LOOKUPFLW(U)] triggered a PDA explosion on [target.name] at [ADMIN_VERBOSEJMP(target)].")
-		var/message_log = "triggered a PDA explosion on [target.name] at [AREACOORD(target)]."
-		U.log_message(message_log, LOG_ATTACK)
-		U.show_message("<span class='notice'>Success!</span>", 1)
-		target.explode()
+
+		GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, target)
+		if(!target.detonatable || hidden_uplink)
+			U.show_message("<span class='danger'>An error flashes on your [src].</span>", 1)
+		else
+			message_admins("[!is_special_character(U) ? "Non-antag " : ""][ADMIN_LOOKUPFLW(U)] triggered a PDA explosion on [target.name] at [ADMIN_VERBOSEJMP(target)].")
+			var/message_log = "triggered a PDA explosion on [target.name] at [AREACOORD(target)]."
+			U.log_message(message_log, LOG_ATTACK)
+			U.show_message("<span class='notice'>Success!</span>", 1)
+			target.explode()
 	else
 		to_chat(U, "PDA not found.")
 
