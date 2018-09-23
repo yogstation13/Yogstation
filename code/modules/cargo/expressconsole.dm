@@ -186,15 +186,9 @@
 							CHECK_TICK
 						if(empty_turfs && empty_turfs.len)
 							LZ = pick(empty_turfs)
-<<<<<<< HEAD
-					if (SO.pack.cost <= SSshuttle.points && LZ)//we need to call the cost check again because of the CHECK_TICK call
-						SSshuttle.points -= SO.pack.cost
-						new /obj/effect/DPtarget(LZ, SO, podID)
-=======
 					if (SO.pack.cost <= points_to_check && LZ)//we need to call the cost check again because of the CHECK_TICK call
 						D.adjust_money(-SO.pack.cost)
 						new /obj/effect/DPtarget(LZ, podType, SO)
->>>>>>> f735a7d34d... [READY][PAID CODE] economy PR (#40312)
 						. = TRUE
 						update_icon()
 			else
