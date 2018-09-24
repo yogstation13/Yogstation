@@ -28,6 +28,7 @@
 #define ROLE_VAMPIRE				"vampire" // Yogs
 #define ROLE_BRAINWASHED			"brainwashed victim"
 #define ROLE_OVERTHROW				"syndicate mutineer"
+#define ROLE_HIVE					"hivemind host"
 #define ROLE_SENTIENCE          	"sentience potion spawn"
 #define ROLE_MIND_TRANSFER          "mind transfer potion"
 #define ROLE_POSIBRAIN              "posibrain"
@@ -60,7 +61,11 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
+<<<<<<< HEAD
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
+=======
+	ROLE_HIVE = /datum/game_mode/hivemind,
+>>>>>>> 9e8d7509b6... [READY] [Gamemode Bounty] Assimilation (#40296)
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SENTIENCE
 ))
