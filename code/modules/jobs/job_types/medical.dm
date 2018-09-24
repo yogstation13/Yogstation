@@ -26,6 +26,8 @@ Chief Medical Officer
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_HEADS, ACCESS_MINERAL_STOREROOM,
 			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_SURGERY, ACCESS_RC_ANNOUNCE,
 			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_PARAMEDIC) //yogs - added paramedic
+	paycheck = PAYCHECK_COMMAND
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"
@@ -40,7 +42,7 @@ Chief Medical Officer
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/regular
 	suit_store = /obj/item/flashlight/pen
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/card/id/departmental_budget/med=1)
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -74,6 +76,9 @@ Medical Doctor
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
+
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
@@ -113,6 +118,8 @@ Chemist
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/chemist
 	name = "Chemist"
@@ -148,8 +155,11 @@ Geneticist
 
 	outfit = /datum/outfit/job/geneticist
 
+
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_CHEMISTRY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_ROBOTICS, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/geneticist
 	name = "Geneticist"
@@ -186,6 +196,8 @@ Virologist
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/virologist
 	name = "Virologist"
@@ -220,9 +232,10 @@ Mining Medic
 
 	outfit = /datum/outfit/job/miningmedic
 
-
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CARGO, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/miningmedic
 	name = "Mining Medic"
@@ -254,12 +267,12 @@ Paramedic
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 
-
 	outfit = /datum/outfit/job/paramedic
-
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC, ACCESS_CLONING)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PARAMEDIC)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"
@@ -294,6 +307,8 @@ Psychiatrist
 
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
+	paycheck = PAYCHECK_MEDIUM
+	paycheck_department = ACCOUNT_MED
 
 /datum/outfit/job/psych
 	name = "Psych"
