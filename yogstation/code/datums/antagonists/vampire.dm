@@ -81,7 +81,7 @@
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	SSticker.mode.update_vampire_icons_removed(owner)
 	for(var/O in objectives_given)
-		owner.objectives -= O
+		objectives -= O
 	LAZYCLEARLIST(objectives_given)
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
@@ -112,14 +112,14 @@
 	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		forge_single_objective()
 
-	if(!(locate(/datum/objective/escape) in owner.objectives))
+	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
 		escape_objective.owner = owner
 		add_objective(escape_objective)
 		return
 
 /datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
-	owner.objectives += O
+	objectives += O
 	objectives_given += O
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
