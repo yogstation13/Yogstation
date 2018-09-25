@@ -68,7 +68,7 @@
 		            /obj/item/clothing/gloves/fingerless = 2,
 		            /obj/item/clothing/glasses/orange = 1,
 		            /obj/item/clothing/glasses/red = 1,
-					/obj/item/clothing/glasses/cheapsunglasses = 2,
+					/obj/item/clothing/glasses/sunglasses/cheap = 2,
 		            /obj/item/storage/belt/fannypack = 1,
 		            /obj/item/storage/belt/fannypack/blue = 1,
 		            /obj/item/storage/belt/fannypack/red = 1,
