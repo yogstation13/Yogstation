@@ -32,6 +32,8 @@
 
 	var/list/filter_data //For handling persistent filters
 
+	var/custom_price
+
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
@@ -585,6 +587,9 @@
 	return
 
 /atom/proc/GenerateTag()
+	return
+
+/atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
 // Generic logging helper
