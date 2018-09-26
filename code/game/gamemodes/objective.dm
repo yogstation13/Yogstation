@@ -487,13 +487,8 @@ GLOBAL_LIST_EMPTY(possible_items)
 		return
 
 	if (new_target == "custom") //Can set custom items.
-<<<<<<< HEAD
-		var/obj/item/custom_target = input("Select type:","Type") as null|anything in typesof(/obj/item)
-		if (!custom_target)
-=======
 		var/custom_path = input(admin,"Search for target item type:","Type") as null|text
 		if (!custom_path)
->>>>>>> 29881dab1c... Improve custom steal target picking (#40447)
 			return
 		var/obj/item/custom_target = pick_closest_path(custom_path, make_types_fancy(subtypesof(/obj/item)))
 		var/custom_name = initial(custom_target.name)
