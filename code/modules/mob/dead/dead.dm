@@ -31,14 +31,11 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	return
 
 /mob/dead/forceMove(atom/destination)
-<<<<<<< HEAD
-=======
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(destination)
 	if (old_turf?.z != new_turf?.z)
 		onTransitZ(old_turf?.z, new_turf?.z)
 	var/oldloc = loc
->>>>>>> 1cb74aff0b... Component strengthening course (#40480)
 	loc = destination
 	Moved(oldloc, NONE, TRUE)
 
