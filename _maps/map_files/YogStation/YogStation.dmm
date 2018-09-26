@@ -52229,7 +52229,6 @@
 	department = "Science";
 	departmentType = 2;
 	name = "Science Requests Console";
-	pixel_x = 0;
 	pixel_y = -30;
 	receive_ore_updates = 1
 	},
