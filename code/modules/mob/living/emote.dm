@@ -420,15 +420,15 @@
 	else if(!params)
 		var/custom_emote = copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
 		if(custom_emote && !check_invalid(user, custom_emote))
-			var/type = input("Is this a visible or hearable emote?") as null|anything in list("Visible", "Hearable")
-			switch(type)
-				if("Visible")
-					emote_type = EMOTE_VISIBLE
-				if("Hearable")
-					emote_type = EMOTE_AUDIBLE
-				else
-					alert("Unable to use this emote, must be either hearable or visible.")
-					return
+			/*var/type = input("Is this a visible or hearable emote?") as null|anything in list("Visible", "Hearable") - YOGS CHANGE
+			switch(type) - YOGS CHANGE
+				if("Visible") - YOGS CHANGE
+					emote_type = EMOTE_VISIBLE - YOGS CHANGE
+				if("Hearable") - YOGS CHANGE
+					emote_type = EMOTE_AUDIBLE - YOGS CHANGE
+				else - YOGS CHANGE
+					alert("Unable to use this emote, must be either hearable or visible.") - YOGS CHANGE
+					return - YOGS CHANGE*/
 			message = custom_emote
 	else
 		message = params
@@ -436,7 +436,7 @@
 			emote_type = type_override
 	. = ..()
 	message = null
-	emote_type = EMOTE_VISIBLE
+	//emote_type = EMOTE_VISIBLE - YOGS CHANGE
 
 /datum/emote/living/custom/replace_pronoun(mob/user, message)
 	return message
