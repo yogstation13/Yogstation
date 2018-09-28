@@ -11,6 +11,9 @@
 /datum/antagonist/ninja/New()
 	if(helping_station)
 		can_hijack = HIJACK_PREVENT
+		name = "Nanotrasen Ninja"
+	else
+		name = "Syndicate Ninja"
 	. = ..()
 
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
