@@ -69,7 +69,7 @@
 	new /obj/item/paint/paint_remover(src)
 	new /obj/item/melee/flyswatter(src)
 	new /obj/item/flashlight(src)
-	for(var/i in 1 to 3)
+	for(var/i in 1 to 4)
 		new /obj/item/caution(src)
 	new /obj/item/holosign_creator(src)
 	new /obj/item/lightreplacer(src)
