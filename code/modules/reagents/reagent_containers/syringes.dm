@@ -139,7 +139,7 @@
 						return
 					L.visible_message("<span class='danger'>[user] injects [L] with the syringe!", \
 									"<span class='userdanger'>[user] injects [L] with the syringe!</span>")
-
+// yogs start - Adds viruslist stuff
 				var/viruslist = ""
 				for(var/datum/reagent/R in reagents.reagent_list)
 					if(istype(R, /datum/reagent/blood))
@@ -156,7 +156,7 @@
 				if(viruslist)
 					investigate_log("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 					log_game("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]")
-
+// yogs end
 				if(L != user)
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
