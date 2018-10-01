@@ -69,7 +69,7 @@
 	new /obj/item/paint/paint_remover(src)
 	new /obj/item/melee/flyswatter(src)
 	new /obj/item/flashlight(src)
-	for(var/i in 1 to 4)
+	for(var/i in 1 to 4) // yogs - Makes there be 4 caution signs instead of 3
 		new /obj/item/caution(src)
 	new /obj/item/holosign_creator(src)
 	new /obj/item/lightreplacer(src)
