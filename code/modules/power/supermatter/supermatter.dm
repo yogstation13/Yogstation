@@ -248,7 +248,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
 		if(damage < explosion_point) // Cutting it a bit close there engineers
 			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel, get_spans(), get_default_language())
-			log_game("[safe_alert] Failsafe has been disengaged.")
+			log_game("[safe_alert] Failsafe has been disengaged.") // yogs - Logs SM chatter
 			cut_overlay(causality_field, TRUE)
 			final_countdown = FALSE
 			return
@@ -257,10 +257,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			continue
 		else if(i > 50)
 			speaking = "[DisplayTimeText(i, TRUE)] remain before causality stabilization."
-			log_game("[DisplayTimeText(i, TRUE)] remain before causality stabilization.")
+			log_game("[DisplayTimeText(i, TRUE)] remain before causality stabilization.") // yogs - Logs SM chatter
 		else
 			speaking = "[i*0.1]..."
-			log_game("[i*0.1]...")
+			log_game("[i*0.1]...") // yogs - Logs SM chatter
 		radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
 		sleep(10)
 
@@ -452,7 +452,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			if(damage > emergency_point)
 				radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel, get_spans(), get_default_language())
-				log_game("[emergency_alert] Integrity: [get_integrity()]%")
+				log_game("[emergency_alert] Integrity: [get_integrity()]%") // yogs - Logs SM chatter
 				lastwarning = REALTIMEOFDAY
 				if(!has_reached_emergency)
 					investigate_log("has reached the emergency point for the first time.", INVESTIGATE_SUPERMATTER)
@@ -460,24 +460,24 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					has_reached_emergency = TRUE
 			else if(damage >= damage_archived) // The damage is still going up
 				radio.talk_into(src, "[warning_alert] Integrity: [get_integrity()]%", engineering_channel, get_spans(), get_default_language())
-				log_game("[warning_alert] Integrity: [get_integrity()]%")
+				log_game("[warning_alert] Integrity: [get_integrity()]%") // yogs - Logs SM chatter
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 5)
 
 			else                                                 // Phew, we're safe
 				radio.talk_into(src, "[safe_alert] Integrity: [get_integrity()]%", engineering_channel, get_spans(), get_default_language())
-				log_game("[safe_alert] Integrity: [get_integrity()]%")
+				log_game("[safe_alert] Integrity: [get_integrity()]%") // yogs - Logs SM chatter
 				lastwarning = REALTIMEOFDAY
 
 			if(power > POWER_PENALTY_THRESHOLD)
 				radio.talk_into(src, "Warning: Hyperstructure has reached dangerous power level.", engineering_channel, get_spans(), get_default_language())
-				log_game("Warning: Hyperstructure has reached dangerous power level.")
+				log_game("Warning: Hyperstructure has reached dangerous power level.") // yogs - Logs SM chatter
 				if(powerloss_inhibitor < 0.5)
 					radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel, get_spans(), get_default_language())
-					log_game("DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.")
+					log_game("DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.") // yogs - Logs SM chatter
 
 			if(combined_gas > MOLE_PENALTY_THRESHOLD)
 				radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel, get_spans(), get_default_language())
-				log_game("Warning: Critical coolant mass reached.")
+				log_game("Warning: Critical coolant mass reached.") // yogs - Logs SM chatter
 
 		if(damage > explosion_point)
 			countdown()
