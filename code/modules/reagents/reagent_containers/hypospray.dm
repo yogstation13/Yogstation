@@ -39,6 +39,7 @@
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 		reagents.reaction(M, INJECT, fraction)
 		if(M.reagents)
+// yogs start -Adds viruslist stuff
 			var/viruslist = ""
 			for(var/datum/reagent/R in reagents.reagent_list)
 				injected += R.name
@@ -52,6 +53,7 @@
 							for(var/datum/symptom/S in DD.symptoms)
 								viruslist += "[S.name] "
 							viruslist += "\]"
+// yogs end
 			var/trans = 0
 			if(!infinite)
 				trans = reagents.trans_to(M, amount_per_transfer_from_this)
@@ -61,11 +63,11 @@
 			to_chat(user, "<span class='notice'>[trans] unit\s injected.  [reagents.total_volume] unit\s remaining in [src].</span>")
 
 			log_combat(user, M, "injected", src, "([contained])")
-			
+// yogs start - makes logs if viruslist
 			if(viruslist)
 				investigate_log("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
-		
+// yogs end
 /obj/item/reagent_containers/hypospray/CMO
 	list_reagents = list("omnizine" = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
