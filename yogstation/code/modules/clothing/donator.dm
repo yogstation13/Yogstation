@@ -81,10 +81,3 @@
 	desc = "A clown hardsuit. The joke being that it is anything but."
 	icon_state = "hardsuit_clown"
 	item_state = "hardsuit_clown"
-	
-/obj/item/clothing/suit/yogs/armor/hardsuit_clown
-	name = "wizard hat"
-	desc = "Strange-looking red hat-wear that most certainly belongs to a fake magic user."
-	icon_state = "wizard"
-	item_state = "wizard"
-	
