@@ -63,7 +63,7 @@
 	return
 
 
-/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1)
+/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1) // yogs - makes log activate if a living mob is sprayed
 	var/range = max(min(current_range, get_dist(src, A)), 1)
 	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
@@ -73,7 +73,7 @@
 		puff_reagent_left = 1
 	else
 		reagents.trans_to(D, amount_per_transfer_from_this, 1/range)
-		
+// yogs start - viruslist stuff
 	if(log && user)
 		var/list/sprayed = list()
 		var/viruslist = ""
@@ -94,7 +94,7 @@
 		if(viruslist)
 			investigate_log("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]", INVESTIGATE_VIROLOGY)
 			log_game("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]")
-
+// yogs end
 	D.color = mix_color_from_reagents(D.reagents.reagent_list)
 	var/wait_step = max(round(2+3/range), 2)
 	do_spray(A, wait_step, D, range, puff_reagent_left)
