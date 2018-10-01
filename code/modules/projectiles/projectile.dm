@@ -183,7 +183,7 @@
 			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
 					"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
-
+	var/viruslist = ""
 	var/reagent_note
 	if(reagents && reagents.reagent_list)
 		reagent_note = " REAGENTS:"
@@ -191,6 +191,21 @@
 			reagent_note += R.id + " ("
 			reagent_note += num2text(R.volume) + ") "
 
+			if(istype(R, /datum/reagent/blood))
+				var/datum/reagent/blood/RR = R
+				for(var/datum/disease/D in RR.data["viruses"])
+					viruslist += " [D.name]"
+					if(istype(D, /datum/disease/advance))
+						var/datum/disease/advance/DD = D
+						viruslist += " \[ symptoms: "
+						for(var/datum/symptom/S in DD.symptoms)
+							viruslist += "[S.name] "
+						viruslist += "\]"
+
+
+	if(viruslist)
+		investigate_log("[firer] injected [src] using a projectile with [viruslist] [blocked == 100 ? "BLOCKED" : ""]", INVESTIGATE_VIROLOGY)
+		log_game("[firer] injected [src] using a projectile with [viruslist] [blocked == 100 ? "BLOCKED" : ""]")
 	if(ismob(firer))
 		log_combat(firer, L, "shot", src, reagent_note)
 	else
