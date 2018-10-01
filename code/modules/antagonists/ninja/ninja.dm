@@ -11,9 +11,6 @@
 /datum/antagonist/ninja/New()
 	if(helping_station)
 		can_hijack = HIJACK_PREVENT
-		name = "Nanotrasen Ninja"
-	else
-		name = "Syndicate Ninja"
 	. = ..()
 
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
@@ -31,6 +28,7 @@
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
 	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by clicking the initialize UI button, to use abilities like stealth)!<br>"
 	antag_memory += "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.<br>"
+	name = "[helping_station?"Nanotrasen Ninja":"Syndicate Ninja"]"
 
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
