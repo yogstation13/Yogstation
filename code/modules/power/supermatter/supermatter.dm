@@ -260,7 +260,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			log_game("[DisplayTimeText(i, TRUE)] remain before causality stabilization.") // yogs - Logs SM chatter
 		else
 			speaking = "[i*0.1]..."
-			log_game("[i*0.1]...") // yogs - Logs SM chatter
+			log_game("SM:[i*0.1]...") // yogs - Logs SM chatter
 		radio.talk_into(src, speaking, common_channel, get_spans(), get_default_language())
 		sleep(10)
 
