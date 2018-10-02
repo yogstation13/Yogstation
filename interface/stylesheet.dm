@@ -169,7 +169,7 @@ h1.alert, h2.alert		{color: #000000;}
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
 
-// yogs start - Yog Tickets //
+// yogs start - Yog Tickets
 .ticket-status {
 	color: #000099;
 	font-weight: bold;
@@ -196,5 +196,5 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 	font-style: italic;
 }
-// yogs end //
+// yogs end
 </style>"}
