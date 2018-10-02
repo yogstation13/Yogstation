@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Lights constructed by players will now respect the local APC's nightshift setting."
