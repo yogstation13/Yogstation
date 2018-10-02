@@ -28776,7 +28776,6 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bno" = (
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
 /turf/open/floor/plasteel,
 /area/science/lab)
@@ -52229,7 +52228,6 @@
 	department = "Science";
 	departmentType = 2;
 	name = "Science Requests Console";
-	pixel_x = 0;
 	pixel_y = -30;
 	receive_ore_updates = 1
 	},
