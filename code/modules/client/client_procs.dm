@@ -245,7 +245,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	// yogs start - Donor stuff
 	if(ckey in GLOB.donators)
 		prefs.unlock_content |= 2
-		//add_donor_verbs()
+		add_donor_verbs()
 	else
 		prefs.unlock_content &= ~2
 		if(prefs.toggles & QUIET_ROUND)
@@ -330,6 +330,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	if(holder)
 		add_admin_verbs()
+		add_donor_verbs() //yogs - adds in donor verbs for admins
 		to_chat(src, get_message_output("memo"))
 		adminGreet()
 
