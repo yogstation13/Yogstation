@@ -1249,19 +1249,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list( //yogs start
-		ADMIN_PUNISHMENT_LIGHTNING = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitelightning"),
-		ADMIN_PUNISHMENT_BRAINDAMAGE = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitebraindmg"),
-		ADMIN_PUNISHMENT_GIB = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitegib"),
-		ADMIN_PUNISHMENT_BSA = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitebsa"),
-		ADMIN_PUNISHMENT_FIREBALL = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitefireball"),
-		ADMIN_PUNISHMENT_ROD = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smiterod"),
-		ADMIN_PUNISHMENT_SUPPLYPOD = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitepod"),
-		ADMIN_PUNISHMENT_MAZING = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = "smitemazing")
-		)
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING)
 
-	var/punishment = show_radial_menu(src.mob, src.mob, punishment_list) //yogs end
-
+	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
 
 	if(QDELETED(target) || !punishment)
 		return
@@ -1287,6 +1277,23 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/turf/startT = spaceDebrisStartLoc(startside, T.z)
 			var/turf/endT = spaceDebrisFinishLoc(startside, T.z)
 			new /obj/effect/immovablerod(startT, endT,target)
+		if(ADMIN_PUNISHMENT_SUPPLYPOD_QUICK)
+			var/target_path = input(usr,"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):" ,"Typepath","/obj/item/reagent_containers/food/snacks/grown/harebell") as null|text
+			var/obj/structure/closet/supplypod/centcompod/pod = new()
+			pod.damage = 40
+			pod.explosionSize = list(0,0,0,2)
+			pod.effectStun = TRUE
+			if (isnull(target_path))
+				alert("ERROR: NULL path given.")
+				return
+			if (target_path != "empty")//if you didn't type empty, we want to load the pod with a delivery
+				var/delivery = text2path(target_path)
+				if(!ispath(delivery))
+					delivery = pick_closest_path(target_path)
+					if(!delivery)
+						alert("ERROR: Incorrect / improper path given.")
+				new delivery(pod)
+			new /obj/effect/DPtarget(get_turf(target), pod)
 		if(ADMIN_PUNISHMENT_SUPPLYPOD)
 			var/datum/centcom_podlauncher/plaunch  = new(usr)
 			if(!holder)
