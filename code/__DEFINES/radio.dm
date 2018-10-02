@@ -8,9 +8,9 @@
 #define FREQ_CTF_BLUE 1217  // CTF blue team comms frequency, blue
 #define FREQ_CENTCOM 1337  // CentCom comms frequency, gray
 #define FREQ_SUPPLY 1347  // Supply comms frequency, light brown
-#define FREQ_SERVICE 1349  // Service comms frequency, green
+#define FREQ_SERVICE 1349  // Service comms frequency, dark green // yogs - Changes colour to right name
 #define FREQ_SCIENCE 1351  // Science comms frequency, plum
-#define FREQ_COMMAND 1353  // Command comms frequency, gold
+#define FREQ_COMMAND 1353  // Command comms frequency, dark blue // yogs - Changes colour to right name
 #define FREQ_MEDICAL 1355  // Medical comms frequency, soft blue
 #define FREQ_ENGINEERING 1357  // Engineering comms frequency, orange
 #define FREQ_SECURITY 1359  // Security comms frequency, red
