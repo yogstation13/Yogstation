@@ -107,6 +107,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	S["donor_pda"]			>> donor_pda
 	S["donor_hat"]          >> donor_hat
+	S["donor_item"]          >> donor_item
 	S["purrbation"]			>> purrbation
 	// yogs end
 
@@ -141,6 +142,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
+	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 	// yogs end
 	
@@ -193,6 +195,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
+	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
 	// yogs end
 	
