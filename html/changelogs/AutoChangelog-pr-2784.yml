@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - tweak: "Tweaked lighting in some areas to better account for night lighting."
