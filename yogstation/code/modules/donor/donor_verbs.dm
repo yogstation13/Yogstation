@@ -90,13 +90,19 @@ var/global/normal_donor_ooc_colour = "#333333"
 	var/msg = "<b>Current Donators:</b>\n"
 	var/list/Lines = list()
 	if(holder)
-		if(check_rights(R_ADMIN,0))//If they have +ADMIN, show hidden admins, player IC names and IC status
+		if (check_rights(R_ADMIN,0) && isobserver(src.mob))//If they have +ADMIN and are a ghost they can see players IC names and statuses.
+			var/mob/dead/observer/G = src.mob
+			if(!G.started_as_observer)//If you aghost to do this, KorPhaeron will deadmin you in your sleep.
+				log_admin("[key_name(usr)] checked donor who in-round")
 			for(var/client/C in GLOB.clients)
 				if(is_donator(C))
 					var/entry = "\t[C.key]"
 					if(C.holder && C.holder.fakekey)
 						entry += " <i>(as [C.holder.fakekey])</i>"
-					entry += " - Playing as [C.mob.real_name]"
+					if (isnewplayer(C.mob))
+						entry += " - <font color='darkgray'><b>In Lobby</b></font>"
+					else
+						entry += " - Playing as [C.mob.real_name]"
 					switch(C.mob.stat)
 						if(UNCONSCIOUS)
 							entry += " - <font color='darkgray'><b>Unconscious</b></font>"
@@ -111,7 +117,8 @@ var/global/normal_donor_ooc_colour = "#333333"
 								entry += " - <font color='black'><b>DEAD</b></font>"
 					if(is_special_character(C.mob))
 						entry += " - <b><font color='red'>Antagonist</font></b>"
-					entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+					entry += " [ADMIN_QUE(C.mob)]"
+					entry += " ([round(C.avgping, 1)]ms)"
 					Lines += entry
 		else//If they don't have +ADMIN, only show hidden admins
 			for(var/client/C in GLOB.clients)
@@ -119,14 +126,15 @@ var/global/normal_donor_ooc_colour = "#333333"
 					var/entry = "\t[C.key]"
 					if(C.holder && C.holder.fakekey)
 						entry += " <i>(as [C.holder.fakekey])</i>"
+					entry += " ([round(C.avgping, 1)]ms)"
 					Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
 			if(is_donator(C))
 				if(C.holder && C.holder.fakekey)
-					Lines += C.holder.fakekey
+					Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
 				else
-					Lines += C.key
+					Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 
 	for(var/line in sortList(Lines))
 		msg += "[line]\n"
