@@ -1,0 +1,4 @@
+author: "thehighwayman"
+delete-after: true 
+changes: 
+  - tweak: "Changes the ability for golems to get hungry"
