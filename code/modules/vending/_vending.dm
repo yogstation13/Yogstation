@@ -307,7 +307,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	var/obj/item/card/id/C
 	if(ishuman(user))
 		H = user
-		C = H.get_idcard()
+		C = H.get_idcard(TRUE)
 
 	if(!C)
 		dat += "<font color = 'red'><h3>No ID Card detected!</h3></font>"
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		vend_ready = 0
 		if(ishuman(usr) && onstation)
 			var/mob/living/carbon/human/H = usr
-			var/obj/item/card/id/C = H.get_idcard()
+			var/obj/item/card/id/C = H.get_idcard(TRUE)
 
 			if(!C)
 				say("No card found.")
@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 			return
 		if(onstation && ishuman(usr))
 			var/mob/living/carbon/human/H = usr
-			var/obj/item/card/id/C = H.get_idcard()
+			var/obj/item/card/id/C = H.get_idcard(TRUE)
 
 			if(!C)
 				say("No card found.")
