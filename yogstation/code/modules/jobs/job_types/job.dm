@@ -18,7 +18,7 @@
 			var/obj/hat = new type()
 			hat.forceMove(BP)
 			
-	if(C.prefs.donor_hat)
+	if(C.prefs.donor_item)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
 		if(BP)
 			var/type = donor_start_tools[C.prefs.donor_item]
