@@ -85,10 +85,6 @@
 		. = if_no_id	//to prevent null-names making the mob unclickable
 	return
 
-<<<<<<< HEAD
-//gets ID card object from special clothes slot or null.
-/mob/living/carbon/human/get_idcard()
-=======
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
 	//Check hands
@@ -109,7 +105,6 @@
 			. = id_card
 
 	//Check inventory slots
->>>>>>> 5a24356b77... Fixes ID cards not working with vendors (#40673)
 	if(wear_id)
 		id_card = wear_id.GetID()
 		if(id_card)
