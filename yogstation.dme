@@ -2844,6 +2844,7 @@
 #include "yogstation\code\modules\clothing\shoe.dm"
 #include "yogstation\code\modules\clothing\under.dm"
 #include "yogstation\code\modules\clothing\head\jobs.dm"
+#include "yogstation\code\modules\clothing\glasses\_glasses.dm"
 #include "yogstation\code\modules\clothing\outfits\event.dm"
 #include "yogstation\code\modules\clothing\shoes\colour.dm"
 #include "yogstation\code\modules\clothing\shoes\miscellaneous.dm"
@@ -2916,6 +2917,7 @@
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\vending\_vending.dm"
+#include "yogstation\code\modules\vending\clothesmate.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE
