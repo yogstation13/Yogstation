@@ -1,5 +1,0 @@
-author: "daklaj"
-delete-after: true 
-changes: 
-  - rscadd: "Vampire's Dracula coat spell now costs 100 blood. The coat now provides the user with minor passive usable blood regeneration when the usable blood amount is below 25% of their total blood amount. It can now hold weapons too."
-  - bugfix: "fixed vampire spells triggering their cooldown even when clicked with insufficient usable blood."
