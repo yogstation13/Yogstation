@@ -28,6 +28,7 @@
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
 	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by clicking the initialize UI button, to use abilities like stealth)!<br>"
 	antag_memory += "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.<br>"
+	name = "[helping_station?"Nanotrasen Ninja":"Syndicate Ninja"]" // yogs - ninja disposition
 
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
