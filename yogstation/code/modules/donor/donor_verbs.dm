@@ -13,13 +13,6 @@ var/list/donor_verbs_list = list(
 			donor_verbs_list,
 			)
 
-var/global/normal_donor_ooc_colour = "#333333"
-
-/client/proc/donor_ooc_admin(msg as text)
-	set name = "Donor OOC"
-	set category = "Admin"
-	donor_ooc(msg)
-
 /client/proc/donor_ooc(msg as text)
 	set name = "Donor OOC"
 	set category = "OOC"
@@ -28,59 +21,78 @@ var/global/normal_donor_ooc_colour = "#333333"
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	if(!mob)	return
+	if(!mob)	
+		return
+		
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use Donor.")
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	if(!msg)	return
-
-	if(!(prefs.toggles & CHAT_OOC))
-		to_chat(src, "<span class='danger'>You have Donor muted.</span>")
-		return
-
 	if(!holder)
 		if(!GLOB.ooc_allowed)
-			to_chat(src, "<span class='danger'>Donor is globally muted.</span>")
+			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>Donor for dead mobs has been turned off.</span>")
+			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>You cannot use Donor (muted).</span>")
+			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
+	if(jobban_isbanned(src.mob, "OOC"))
+		to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
+		return
+	if(QDELETED(src))
+		return
+
+	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	var/raw_msg = msg
+	
+	if(!msg)
+		return
+		
+	msg = pretty_filter(msg)
+	msg = emoji_parse(msg)
+
+	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+			return
+
+	if(!holder)
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(src)] has attempted to advertise in Donor: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in Donor: [msg]")
+			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
-	log_ooc("\[Donor\] [mob.name]/[key] : [msg]")
+	if(!(prefs.toggles & CHAT_OOC))
+		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
+		return
+
+	mob.log_talk(raw_msg, LOG_OOC)
+	if(holder && holder.fakekey)
+		webhook_send_ooc(holder.fakekey, msg)
+	else
+		webhook_send_ooc(key, msg)
+
 
 	var/keyname = key
-	if(prefs.unlock_content && (prefs.toggles & MEMBER_PUBLIC))
-		keyname = "<font color='[prefs.ooccolor]'>"
-		if(prefs.unlock_content & 1)
-			keyname += "<img style='width:9px;height:9px;' class=icon src=\ref['icons/member_content.dmi'] iconstate=blag>"
-		if(prefs.unlock_content & 2)
-			keyname += "<img style='width:9px;height:9px;' class=icon src=\ref['icons/member_content.dmi'] iconstate=yogdon>"
-		keyname += "[key]</font>"
-
+	if(prefs.unlock_content)
+		if(prefs.toggles & MEMBER_PUBLIC)
+			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	for(var/client/C in GLOB.clients)
 		if((is_admin(C) || is_donator(C)) && C.prefs.toggles & CHAT_OOC)
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<font color='[normal_donor_ooc_colour]'><b><span class='prefix'>\[Admin\] Donor:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)] Donor:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 					else
-						to_chat(C, "<span class='[normal_donor_ooc_colour]'><span class='prefix'>Donor:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span>")
+						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>Donor:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
 				else
-					to_chat(C, "<font color='[normal_donor_ooc_colour]'><span class='ooc'><span class='prefix'>Donor:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
+					to_chat(C, "<font color='donorooc'><span class='ooc'><span class='prefix'>\[Donator\] Donor:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 			else
-				to_chat(C, "<font color='[normal_donor_ooc_colour]'><span class='ooc'><span class='prefix'>Donor:</span> <EM>[keyname]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(C, "<font color='donorooc'><span class='ooc'><span class='prefix'>\[Donator\] Donor:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 	return
 
 /client/verb/donator_who()
