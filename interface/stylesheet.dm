@@ -41,12 +41,12 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
 .radio					{color: #008000;}
 .sciradio				{color: #993399;}
-.comradio				{color: #0011BF;} /* yogs - Colour change */
+.comradio				{color: #948f02;}
 .secradio				{color: #a30000;}
 .medradio				{color: #337296;}
 .engradio				{color: #fb5613;}
 .suppradio				{color: #a8732b;}
-.servradio				{color: #105000;} /* yogs - Colour change */
+.servradio				{color: #6eaa2c;}
 .syndradio				{color: #6d3f40;}
 .centcomradio			{color: #686868;}
 .aiprivradio			{color: #ff00ff;}
@@ -176,7 +176,7 @@ h1.alert, h2.alert		{color: #000000;}
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
 
-/* yogs start - Yog Tickets */
+// yogs start - Yog Tickets
 .ticket-status {
 	color: #000099;
 	font-weight: bold;
@@ -203,5 +203,5 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 	font-style: italic;
 }
-/* yogs end */
+// yogs end
 </style>"}
