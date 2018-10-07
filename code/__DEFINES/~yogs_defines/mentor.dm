@@ -1,0 +1,1 @@
+#define YOGS_MENTOR_OOC_COLOUR "#FF3E96"

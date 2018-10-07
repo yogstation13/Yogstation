@@ -92,12 +92,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
+	// YOGS START - Mentor PMs
+	if(yogs_client_procs(href_list))
+		return
+	// YOGS END
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
+		if("mentor") // YOGS - Mentor stuff
+			hsrc = mentor_datum // YOGS - Mentor stuff
 		if("prefs")
 			if (inprefs)
 				return
