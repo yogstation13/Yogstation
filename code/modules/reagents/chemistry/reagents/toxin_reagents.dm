@@ -905,10 +905,10 @@
 	if(prob(20))
 		switch(rand(1, 3))
 			if(1)
-				var/list/possible_says = list("oof", "ouch", "my bones", "oof ouch", "oof ouch my bones")
+				var/list/possible_says = list("oof.", "ouch!", "my bones.", "oof ouch.", "oof ouch my bones.")
 				M.say(pick(possible_says), forced = "bonehurtingjuice")
 			if(2)
-				var/list/possible_mes = list("oofs softly", "looks like their bones hurt", "grimaces, as though their bones hurt")
+				var/list/possible_mes = list("oofs softly.", "looks like their bones hurt.", "grimaces, as though their bones hurt.")
 				M.say("*custom " + pick(possible_mes), forced = "bonehurtingjuice")
 			if(3)
 				to_chat(M, "<span class='warning'>Your bones hurt!</span>")
@@ -939,10 +939,10 @@
 		else //you just want to socialize
 			if(bp)
 				playsound(M, get_sfx("desceration"), 50, TRUE, -1)
-				M.visible_message("<span class='warning'>[M] rattles loudly and flails around!!</span>", "<span class='danger'>Your bones so much your missing muscles spasm!!</span>")
+				M.visible_message("<span class='warning'>[M] rattles loudly and flails around!!</span>", "<span class='danger'>Your bones hurt so much that your missing muscles spasm!!</span>")
 				M.say("OOF!!", forced="bonehurtingjuice")
 				bp.receive_damage(200, 0, 0) //But I don't think we should
 			else
-				to_chat(M, "<span class='warning'>Your missing arm aches from whever you left it.</span>")
+				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
 	return ..()

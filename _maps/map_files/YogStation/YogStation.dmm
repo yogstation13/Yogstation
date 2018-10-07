@@ -19802,11 +19802,11 @@
 /turf/open/floor/plating,
 /area/storage/emergency/port)
 "aSo" = (
-/mob/living/carbon/monkey/punpun,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/mob/living/carbon/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "aSp" = (
@@ -28776,7 +28776,6 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bno" = (
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
 /turf/open/floor/plasteel,
 /area/science/lab)
@@ -35902,10 +35901,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bDH" = (
-/obj/structure/closet/l3closet/janitor,
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+/obj/structure/closet/jcloset,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bDI" = (
@@ -35914,8 +35913,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bDJ" = (
-/obj/item/storage/box/lights/mixed,
-/obj/item/storage/box/lights/mixed,
+/obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bDK" = (
@@ -35925,10 +35923,11 @@
 /obj/machinery/camera{
 	c_tag = "Custodial Closet"
 	},
-/obj/vehicle/ridden/janicart,
+/obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bDL" = (
+/obj/vehicle/ridden/janicart,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bDM" = (
@@ -36127,13 +36126,13 @@
 /obj/structure/table/glass,
 /obj/item/pen,
 /obj/item/clothing/neck/stethoscope,
-/mob/living/simple_animal/pet/cat/Runtime,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/mob/living/simple_animal/pet/cat/Runtime,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "bEk" = (
@@ -36587,6 +36586,8 @@
 /area/hallway/primary/aft)
 "bFk" = (
 /obj/item/mop,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -43610,7 +43611,6 @@
 /obj/structure/filingcabinet/chestdrawer,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/mob/living/simple_animal/parrot/Poly,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -43621,6 +43621,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "cbr" = (
@@ -52229,7 +52230,6 @@
 	department = "Science";
 	departmentType = 2;
 	name = "Science Requests Console";
-	pixel_x = 0;
 	pixel_y = -30;
 	receive_ore_updates = 1
 	},
