@@ -121,6 +121,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 
 // Admin
 #define ACTION_ASAY "Adminchat"
+#define ACTION_MENTORCHAT "Mentorchat"
 #define ACTION_AGHOST "Admin Ghost"
 #define ACTION_PLAYERPANEL "Player Panel"
 #define ACTION_BUILDMODE "Build Mode"
@@ -158,9 +159,9 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_TARGETRLEG = "Numpad1",
 	ACTION_TARGETGROIN = "Numpad2",
 	ACTION_TARGETLLEG = "Numpad3",
-	
+
 	ACTION_RESIST = "B",
-	
+
 	ACTION_TOGGLETHROW = "R",
 	ACTION_INTENTHELP = "1",
 	ACTION_INTENTDISARM = "2",
@@ -169,6 +170,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 
 
 	ACTION_ASAY = "F3",
+	ACTION_MENTORCHAT = "F4",
 	ACTION_AGHOST = "F5",
 	ACTION_PLAYERPANEL = "F6",
 	ACTION_BUILDMODE = "F7",
