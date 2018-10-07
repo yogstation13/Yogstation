@@ -367,7 +367,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Kill(mob/living/carbon/human/H)
-	if(H)
+	if(!H)
+	return
 	playsound(H, 'yogstation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
 	var/old_color = H.client.color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
