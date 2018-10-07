@@ -158,14 +158,9 @@
 		return FALSE
 	research_points[type] = max(0, research_points[type] - amount)
 	return TRUE
-<<<<<<< HEAD
-/datum/techweb/proc/add_design_by_id(id)
-	return add_design(get_techweb_design_by_id(id))
-=======
 
 /datum/techweb/proc/add_design_by_id(id, custom = FALSE)
 	return add_design(SSresearch.techweb_design_by_id(id), custom)
->>>>>>> 4116f7ec79... Techwebs Backend Refactor - Removes references from techwebs and uses IDs instead (#40596)
 
 /datum/techweb/proc/add_design(datum/design/design, custom = FALSE)
 	if(!istype(design))
