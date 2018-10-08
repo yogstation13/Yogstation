@@ -1,0 +1,4 @@
+author: " MrDoomBringer"
+delete-after: true 
+changes: 
+  - bugfix: "Supplypods no longer detonate their contents"
