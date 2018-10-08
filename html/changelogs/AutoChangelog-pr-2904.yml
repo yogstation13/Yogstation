@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "The \"floor is lava\" weather will no longer cover everything"
