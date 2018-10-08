@@ -5,3 +5,8 @@
 /datum/mood_event/sling
 	description = "<span class='shadowling'><b>The keys to reality are within my grasp.</b></span>\n"
 	mood_change = 20
+
+/datum/mood_event/peed
+	description = "<span class='rose'><i>T-That felt good...</i></span>\n"
+	mood_change = 5
+	timeout = 3000
