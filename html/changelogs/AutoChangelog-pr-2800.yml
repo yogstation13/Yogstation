@@ -1,4 +1,0 @@
-author: " Shdorsh"
-delete-after: true 
-changes: 
-  - bugfix: "Grabber mode -1 doesn't require a target"

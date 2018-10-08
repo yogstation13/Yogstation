@@ -1,4 +1,0 @@
-author: " Fixes the service cyborg's RSF"
-delete-after: true 
-changes: 
-  - bugfix: "Service cyborg's RSF can now dispense items again."
