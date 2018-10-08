@@ -325,11 +325,6 @@
 		return FALSE
 
 	new /obj/effect/temp_visual/point(A,invisibility)
-	
-	// yogs start
-	for(var/atom/on_tile in A.contents + A)
-		on_tile.pointed_at(src)
-	// yogs end
 
 	return TRUE
 
