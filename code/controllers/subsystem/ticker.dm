@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(ticker)
 		toggle_ooc(FALSE) // Turn it off
 
 	if(!CONFIG_GET(flag/looc_during_round))
-		toggle_ooc(FALSE) // yogs - Turn it off
+		toggle_looc(FALSE) // yogs - Turn it off
 
 	CHECK_TICK
 	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
