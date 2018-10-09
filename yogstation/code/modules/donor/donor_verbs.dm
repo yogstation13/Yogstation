@@ -104,7 +104,7 @@ var/list/donor_verbs_list = list(
 	if(holder)
 		for(var/client/C in GLOB.clients)
 			if(is_donator(C))
-					msg += "\t[C] is a [C.holder.rank]"
+				msg += "\t[C] is a [C.holder.rank]"
 
 			if(C.holder.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
