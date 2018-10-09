@@ -7,7 +7,7 @@ AI MODULES
 // AI module
 
 /obj/item/aiModule
-	name = "\rrrrr"
+	name = "\improper AI module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	item_state = "electronic"
