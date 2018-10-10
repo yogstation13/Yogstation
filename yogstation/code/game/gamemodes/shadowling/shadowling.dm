@@ -191,6 +191,9 @@ Made by Xhuis
 			return -1
 	return 0
 
+/datum/species/shadow/ling/check_roundstart_eligible()
+	return FALSE
+
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful
 	name = "Lesser Shadowling"
 	id = "l_shadowling"
