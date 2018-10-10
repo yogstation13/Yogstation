@@ -308,7 +308,7 @@
 		addiction_tick++
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
-		C.update_canmove()
+		C.update_mobility()
 		C.update_stamina()
 	update_total()
 
@@ -596,11 +596,15 @@
 		R.on_new(data)
 
 	if(isliving(my_atom))
+<<<<<<< HEAD
 		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) //yogs start - snowflake synth check
 			var/mob/living/carbon/human/H = my_atom
 			if(istype(H.dna.species, /datum/species/synth))
 				return
 		R.on_mob_add(my_atom) //yogs end //Must occur befor it could posibly run on_mob_delete
+=======
+		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
+>>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)
