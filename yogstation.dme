@@ -2849,6 +2849,7 @@
 #include "yogstation\code\modules\clothing\shoe.dm"
 #include "yogstation\code\modules\clothing\under.dm"
 #include "yogstation\code\modules\clothing\head\jobs.dm"
+#include "yogstation\code\modules\clothing\glasses\_glasses.dm"
 #include "yogstation\code\modules\clothing\outfits\event.dm"
 #include "yogstation\code\modules\clothing\shoes\colour.dm"
 #include "yogstation\code\modules\clothing\shoes\miscellaneous.dm"
