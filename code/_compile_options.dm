@@ -29,7 +29,6 @@
 
 #ifdef LOWMEMORYMODE
 #define FORCE_MAP "_maps/runtimestation.json"
-
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features
