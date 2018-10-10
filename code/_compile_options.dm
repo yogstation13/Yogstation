@@ -15,13 +15,13 @@
 									//implies FIND_REF_NO_CHECK_TICK
 
 //#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
- 
- 
+
+
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
 
 //#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETER
- 
+
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC	2			//	0 to allow using external resources or on-demand behaviour;
 #endif							//	1 to use the default behaviour;
