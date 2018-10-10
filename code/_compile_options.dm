@@ -8,12 +8,12 @@
 #define USE_CUSTOM_ERROR_HANDLER
 #endif
 
-
 #ifdef TESTING
-
 #define DATUMVAR_DEBUGGING_MODE
+
 //#define GC_FAILURE_HARD_LOOKUP	//makes paths that fail to GC call find_references before del'ing.
 									//implies FIND_REF_NO_CHECK_TICK
+
 //#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
  
  
