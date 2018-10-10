@@ -26,10 +26,13 @@
 		else if (light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD) //heal in the dark
 			H.heal_overall_damage(1,1)
 
-/datum/species/shadow/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
+// yogs start - Vampires got to go			
+///datum/species/shadow/check_roundstart_eligible()
+//	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+//		return TRUE
+//	return ..()
+// yogs end
+
 
 /datum/species/shadow/nightmare
 	name = "Nightmare"
