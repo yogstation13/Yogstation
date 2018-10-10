@@ -178,15 +178,18 @@
 	desc = "A door remote control switch."
 	var/normaldoorcontrol = FALSE
 	var/specialfunctions = OPEN // Bitflag, see assembly file
+	var/sync_doors = TRUE
 
 /obj/machinery/button/door/setup_device()
 	if(!device)
 		if(normaldoorcontrol)
 			var/obj/item/assembly/control/airlock/A = new(src)
-			device = A
 			A.specialfunctions = specialfunctions
+			device = A
 		else
-			device = new /obj/item/assembly/control(src)
+			var/obj/item/assembly/control/C = new(src)
+			C.sync_doors = sync_doors
+			device = C
 	..()
 
 /obj/machinery/button/door/incinerator_vent_toxmix
