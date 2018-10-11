@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - spellcheck: "fixed typo in Cryogenic Treatments description"
