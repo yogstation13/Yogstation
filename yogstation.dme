@@ -2745,6 +2745,7 @@
 #include "yogstation\code\_globalvars\configuration.dm"
 #include "yogstation\code\_globalvars\logging.dm"
 #include "yogstation\code\_globalvars\lists\mobs.dm"
+#include "yogstation\code\_onclick\click.dm"
 #include "yogstation\code\_onclick\hud\vampire.dm"
 #include "yogstation\code\controllers\configuration\entries\general.dm"
 #include "yogstation\code\controllers\configuration\entries\yogstation_config.dm"
