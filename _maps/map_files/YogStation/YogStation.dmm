@@ -39811,7 +39811,7 @@
 /area/medical/virology)
 "bOn" = (
 /obj/machinery/camera{
-	c_tag = "Chapel North";
+	c_tag = "Virology Module";
 	dir = 2
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -49527,7 +49527,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Research Division South";
+	c_tag = "Atmospherics Tanks East";
 	dir = 8
 	},
 /obj/item/radio/intercom{
@@ -52475,7 +52475,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Circuitry Lab";
+	c_tag = "Atmospherics  West";
 	dir = 4;
 	network = list("ss13","rd")
 	},
@@ -52747,7 +52747,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
+	c_tag = "Atmospherics Storage";
 	dir = 8
 	},
 /obj/machinery/airalarm{
@@ -53058,6 +53058,10 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Atmospherics Monitoring";
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "gVe" = (
@@ -54861,7 +54865,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Atmospherics North West";
+	c_tag = "Atmospherics Corridor North";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -56657,7 +56661,7 @@
 /area/engine/atmos)
 "rqq" = (
 /obj/machinery/camera{
-	c_tag = "Atmospherics Access";
+	c_tag = "Atmospherics Corridor West";
 	dir = 4
 	},
 /obj/machinery/light{
@@ -56795,7 +56799,7 @@
 /area/engine/atmos)
 "rPO" = (
 /obj/machinery/camera{
-	c_tag = "Circuitry Lab";
+	c_tag = "Atmospherics South West";
 	dir = 4;
 	network = list("ss13","rd")
 	},
@@ -56845,7 +56849,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Research Division South";
+	c_tag = "Atmospherics East";
 	dir = 8
 	},
 /obj/machinery/firealarm{
@@ -57354,7 +57358,7 @@
 /area/engine/atmos)
 "tkb" = (
 /obj/machinery/camera{
-	c_tag = "Gateway";
+	c_tag = "Atmospherics North West";
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -58448,7 +58452,7 @@
 /obj/item/reagent_containers/blood/APlus,
 /obj/item/reagent_containers/blood/random,
 /obj/machinery/camera{
-	c_tag = "Auxillary Base Construction";
+	c_tag = "Virology Break Room";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -58739,7 +58743,7 @@
 /area/engine/atmos)
 "xtz" = (
 /obj/machinery/camera{
-	c_tag = "Dormitory South";
+	c_tag = "Atmospherics Mix Tank";
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
