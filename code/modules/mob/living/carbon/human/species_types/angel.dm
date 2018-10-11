@@ -10,11 +10,6 @@
 	blacklisted = 1
 	limbs_id = "human"
 	skinned_type = /obj/item/stack/sheet/animalhide/human
-	
-/datum/species/angel/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
 
 	var/datum/action/innate/flight/fly
 
