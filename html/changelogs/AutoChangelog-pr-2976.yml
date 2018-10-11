@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed burning sprites not updating properly for humans on fire."
