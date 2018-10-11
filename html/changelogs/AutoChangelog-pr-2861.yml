@@ -1,4 +1,0 @@
-author: " tigercat2000@ Paradise"
-delete-after: true 
-changes: 
-  - bugfix: "fixed invalid characters breaking chat output for that message"

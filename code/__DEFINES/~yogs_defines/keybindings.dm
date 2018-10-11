@@ -87,6 +87,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 
 // Client
 #define ACTION_OOC "OOC"
+#define ACTION_LOOC "LOOC"
 #define ACTION_AHELP "Adminhelp"
 #define ACTION_SCREENSHOT "Screenshot"
 #define ACTION_MINHUD "Min Hud"
@@ -136,6 +137,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_MOVEEAST = "D",
 
 	ACTION_OOC = "O",
+	ACTION_LOOC = "L",
 	ACTION_AHELP = "F1",
 	ACTION_SCREENSHOT = "F2",
 	ACTION_MINHUD = "F12",
