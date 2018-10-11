@@ -35259,14 +35259,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "n2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -38929,14 +38922,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "o2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -42645,14 +42631,7 @@
 	},
 /obj/item/twohanded/required/kirbyplants,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "n2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
