@@ -32,7 +32,7 @@
 	playsound(src, engine_sound, 100, TRUE)
 
 /obj/vehicle/sealed/car/MouseDrop_T(atom/dropping, mob/M)
-	if(!M.canmove || M.stat || M.restrained())
+	if(M.stat || M.restrained())
 		return FALSE
 	if((car_traits & CAN_KIDNAP) && isliving(dropping) && M != dropping)
 		var/mob/living/L = dropping
@@ -64,7 +64,7 @@
 	if(!(car_traits & CAN_KIDNAP))
 		return
 	if(occupants[user])
-		return	
+		return
 	to_chat(user, "<span class='notice'>You start opening [src]'s trunk.</span>")
 	if(do_after(user, 30))
 		if(return_amount_of_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED))
