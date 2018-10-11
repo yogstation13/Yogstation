@@ -282,15 +282,11 @@
 					to_chat(M, "<span class='notice'>[src]'s armour shields the blow!</span>")
 					return
 				playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-<<<<<<< HEAD
 				if(armour > 0)
-					Knockdown(50 + armour)
+					Paralyze(50 + armour)
 				else
-					Knockdown(50)
+					Paralyze(50)
 				//yogs end
-=======
-				Paralyze(100)
->>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
 				log_combat(M, src, "tackled")
 				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
 					"<span class='userdanger'>[M] has tackled down [src]!</span>")

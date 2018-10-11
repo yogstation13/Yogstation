@@ -14,13 +14,9 @@
 	user.SetUnconscious(0)
 	user.SetStun(0)
 	user.SetKnockdown(0)
-<<<<<<< HEAD
-	//user.reagents.add_reagent("changelingadrenaline", 10) //yogs - lings no longer get prolonged anti-stun reagents
-=======
 	user.SetImmobilized(0)
 	user.SetParalyzed(0)
-	user.reagents.add_reagent("changelingadrenaline", 10)
->>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
+	//user.reagents.add_reagent("changelingadrenaline", 10) //yogs - lings no longer get prolonged anti-stun reagents
 	user.reagents.add_reagent("changelinghaste", 2) //For a really quick burst of speed
 	user.adjustStaminaLoss(-75)
 	return TRUE
