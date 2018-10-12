@@ -53551,7 +53551,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "iBw" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -56866,7 +56866,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "rXN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/yogs/mining_medic,
@@ -57164,15 +57164,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"sIR" = (
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white/corner{
-	dir = 4
-	},
-/area/maintenance/aft)
 "sJh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -58393,7 +58384,7 @@
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "wsM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -96236,7 +96227,7 @@ sfM
 qiQ
 krw
 bLK
-sIR
+dWn
 wsq
 iAu
 rXn
