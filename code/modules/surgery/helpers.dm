@@ -35,6 +35,11 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
+<<<<<<< HEAD
+=======
+			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+				continue
+>>>>>>> 0bd320b82a... Fixes surgery. (#40884)
 			if(!S.can_start(user, M))
 				continue
 			for(var/path in S.species)
@@ -60,6 +65,11 @@
 					return
 			else if(C && S.requires_bodypart)
 				return
+<<<<<<< HEAD
+=======
+			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+				return
+>>>>>>> 0bd320b82a... Fixes surgery. (#40884)
 			if(!S.can_start(user, M))
 				return
 
