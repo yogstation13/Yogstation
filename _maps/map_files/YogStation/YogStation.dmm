@@ -51805,15 +51805,16 @@
 	name = "Incinerator to Output"
 	},
 /obj/machinery/light/small,
+/obj/structure/sign/warning/fire{
+	pixel_y = -32
+	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "incinerator_airlock_interior";
 	idSelf = "incinerator_access_control";
+	layer = 3.1;
 	name = "Incinerator airlock control";
 	pixel_x = 22;
 	pixel_y = 8
-	},
-/obj/structure/sign/warning/fire{
-	pixel_y = -32
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -52112,20 +52113,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ems" = (
-/obj/machinery/airalarm{
-	desc = "This particular atmos control unit appears to have no access restrictions.";
-	dir = 1;
-	locked = 0;
-	name = "Incinerator Air Alarm";
-	pixel_y = -24;
-	req_access = "0"
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "enb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -53580,13 +53567,6 @@
 	dir = 4;
 	name = "Mix to Incinerator"
 	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "incinerator_airlock_exterior";
-	idSelf = "incinerator_access_control";
-	name = "Incinerator airlock control";
-	pixel_x = -24;
-	pixel_y = -8
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -53595,6 +53575,13 @@
 	},
 /obj/structure/sign/warning/fire{
 	pixel_y = 32
+	},
+/obj/machinery/doorButtons/access_button{
+	idDoor = "incinerator_airlock_exterior";
+	idSelf = "incinerator_access_control";
+	name = "Incinerator airlock control";
+	pixel_x = -24;
+	pixel_y = -8
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -55265,7 +55252,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
+/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior{
+	id_tag = "incinerator_airlock_interior";
+	locked = 1;
+	name = "Incinerator Interior Airlock"
+	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -55648,7 +55639,8 @@
 	frequency = 1449;
 	heat_proof = 1;
 	id_tag = "incinerator_airlock_exterior";
-	name = "Turbine Exterior Airlock";
+	locked = 1;
+	name = "Incinerator Exterior Airlock";
 	req_access_txt = "32"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
@@ -97040,7 +97032,7 @@ cfj
 cfj
 cfj
 irr
-ems
+nvh
 cmd
 ngP
 oiE
