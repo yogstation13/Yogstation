@@ -11,7 +11,7 @@
 	disliked_food = null
 	liked_food = GROSS
 	
-/datum/species/fly/check_roundstart_eligible()
+/datum/species/fly/check_roundstart_eligible() //YogsTG Change
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
