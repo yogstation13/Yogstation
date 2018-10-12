@@ -8,10 +8,10 @@
 	mutanttongue = /obj/item/organ/tongue/abductor
 	var/scientist = FALSE // vars to not pollute spieces list with castes
 
-/datum/species/abductor/check_roundstart_eligible() //YogsTG Change 
+/datum/species/abductor/check_roundstart_eligible() //yogs start - makes abductors be a option during halloween
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
-	return ..()
+	return ..() //yogs end
 
 /datum/species/abductor/copy_properties_from(datum/species/abductor/old_species)
 	scientist = old_species.scientist
