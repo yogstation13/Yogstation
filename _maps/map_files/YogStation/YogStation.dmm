@@ -6703,7 +6703,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -57779,6 +57778,16 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"uGW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
 "uHU" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel,
@@ -93094,7 +93103,7 @@ ajo
 ajo
 aoa
 ajo
-apt
+uGW
 aql
 apv
 arl
