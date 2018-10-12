@@ -2364,7 +2364,7 @@
 	pixel_x = 29
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "afe" = (
@@ -7955,7 +7955,7 @@
 	department = "Law office";
 	pixel_x = -32
 	},
-/obj/structure/closet/lawcloset,
+/obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/wood,
 /area/lawoffice)
 "arb" = (
@@ -15151,10 +15151,10 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aHf" = (
-/obj/structure/closet/wardrobe/chaplain_black,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aHg" = (
@@ -16798,8 +16798,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aKK" = (
-/obj/structure/closet/wardrobe/botanist,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aKL" = (
@@ -17368,7 +17368,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMi" = (
-/obj/machinery/vending/cola/random,
+/obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMj" = (
@@ -18328,7 +18328,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/closet/chefcloset,
+/obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/backroom)
 "aOI" = (
@@ -18997,8 +18997,8 @@
 /turf/open/floor/wood,
 /area/library)
 "aQr" = (
-/obj/structure/closet/wardrobe/curator,
 /obj/machinery/light/small,
+/obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/engine/cult,
 /area/library)
 "aQs" = (
@@ -26922,7 +26922,7 @@
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
 	},
-/obj/structure/closet/wardrobe/cargotech,
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjp" = (
@@ -28796,10 +28796,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bnB" = (
-/obj/structure/closet/wardrobe/chemistry_white,
 /obj/machinery/light_switch{
 	pixel_x = -23
 	},
+/obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bnC" = (
@@ -31027,10 +31027,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bsW" = (
-/obj/structure/closet/wardrobe/robotics_black,
-/obj/item/radio/headset/headset_sci{
-	pixel_x = -3
-	},
+/obj/machinery/vending/wardrobe/robo_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bsX" = (
@@ -33866,11 +33863,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzr" = (
-/obj/structure/closet/wardrobe/genetics_white,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
+/obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzs" = (
@@ -34137,7 +34134,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzV" = (
-/obj/structure/closet/wardrobe/white/medical,
+/obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzW" = (
@@ -34543,7 +34540,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bAT" = (
-/obj/structure/closet/jcloset,
+/obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bAU" = (
@@ -35259,14 +35256,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "n2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -38409,7 +38399,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bJU" = (
-/obj/structure/closet/wardrobe/science_white,
+/obj/machinery/vending/wardrobe/science_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bJV" = (
@@ -38931,14 +38921,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "o2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -39827,7 +39810,7 @@
 /area/medical/virology)
 "bOn" = (
 /obj/machinery/camera{
-	c_tag = "Chapel North";
+	c_tag = "Virology Module";
 	dir = 2
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -42647,14 +42630,7 @@
 	},
 /obj/item/twohanded/required/kirbyplants,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4;
-	external_pressure_bound = 0;
-	frequency = 1441;
-	id_tag = "n2_out";
-	internal_pressure_bound = 4000;
-	pressure_checks = 2;
-	pressure_resistance = 10;
-	pump_direction = 0
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -45145,10 +45121,10 @@
 	c_tag = "Engineering East";
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/engineering_yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cgR" = (
@@ -48426,7 +48402,9 @@
 /turf/open/floor/plating,
 /area/tcommsat/entrance)
 "cub" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector,
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	on = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "cuf" = (
@@ -49550,7 +49528,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Research Division South";
+	c_tag = "Atmospherics Tanks East";
 	dir = 8
 	},
 /obj/item/radio/intercom{
@@ -51245,14 +51223,19 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cSf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map";
-	dir = 8
-	},
 /obj/structure/sign/warning/vacuum{
 	name = "EXTERNAL AIRLOCK";
 	pixel_x = 32;
 	pixel_y = 0
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8;
+	external_pressure_bound = 0;
+	initialize_directions = 1;
+	internal_pressure_bound = 4000;
+	on = 0;
+	pressure_checks = 2;
+	pump_direction = 0
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
@@ -52165,10 +52148,13 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "esg" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
+/obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 4;
-	icon_state = "filter_on_f";
-	name = "Air Mixer"
+	icon_state = "mixer_off_f";
+	name = "Air Mixer";
+	node1_concentration = 0.8;
+	node2_concentration = 0.2;
+	on = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -52242,8 +52228,9 @@
 /area/space/nearstation)
 "eGn" = (
 /obj/machinery/power/turbine{
+	dir = 4;
 	icon_state = "turbine";
-	dir = 4
+	luminosity = 2
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -52498,7 +52485,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Circuitry Lab";
+	c_tag = "Atmospherics  West";
 	dir = 4;
 	network = list("ss13","rd")
 	},
@@ -52770,7 +52757,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
+	c_tag = "Atmospherics Storage";
 	dir = 8
 	},
 /obj/machinery/airalarm{
@@ -53081,6 +53068,10 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Atmospherics Monitoring";
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "gVe" = (
@@ -53408,7 +53399,7 @@
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "ibx" = (
-/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/machinery/vending/wardrobe/atmos_wardrobe,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "ibZ" = (
@@ -54115,13 +54106,16 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/closet/wardrobe/virology_white,
+/obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "kaF" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8;
+	frequency = 1443;
 	icon_state = "inje_map";
-	dir = 8
+	id = "air_in";
+	on = 1
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
@@ -54884,7 +54878,7 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Atmospherics North West";
+	c_tag = "Atmospherics Corridor North";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -56680,7 +56674,7 @@
 /area/engine/atmos)
 "rqq" = (
 /obj/machinery/camera{
-	c_tag = "Atmospherics Access";
+	c_tag = "Atmospherics Corridor West";
 	dir = 4
 	},
 /obj/machinery/light{
@@ -56818,7 +56812,7 @@
 /area/engine/atmos)
 "rPO" = (
 /obj/machinery/camera{
-	c_tag = "Circuitry Lab";
+	c_tag = "Atmospherics South West";
 	dir = 4;
 	network = list("ss13","rd")
 	},
@@ -56849,7 +56843,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/turbine_computer,
+/obj/machinery/computer/turbine_computer{
+	id = "incineratorturbine"
+	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -56868,7 +56864,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Research Division South";
+	c_tag = "Atmospherics East";
 	dir = 8
 	},
 /obj/machinery/firealarm{
@@ -57377,7 +57373,7 @@
 /area/engine/atmos)
 "tkb" = (
 /obj/machinery/camera{
-	c_tag = "Gateway";
+	c_tag = "Atmospherics North West";
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -57627,7 +57623,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/igniter,
+/obj/machinery/igniter{
+	id = "Incinerator";
+	luminosity = 2
+	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "ulJ" = (
@@ -58045,6 +58044,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vho" = (
+/turf/open/floor/plasteel,
+/area/space)
 "viz" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/engine/n2o,
@@ -58471,7 +58473,7 @@
 /obj/item/reagent_containers/blood/APlus,
 /obj/item/reagent_containers/blood/random,
 /obj/machinery/camera{
-	c_tag = "Auxillary Base Construction";
+	c_tag = "Virology Break Room";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -58738,8 +58740,10 @@
 /area/engine/atmos)
 "xoA" = (
 /obj/machinery/power/compressor{
+	comp_id = "incineratorturbine";
+	dir = 8;
 	icon_state = "compressor";
-	dir = 8
+	luminosity = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -58762,7 +58766,7 @@
 /area/engine/atmos)
 "xtz" = (
 /obj/machinery/camera{
-	c_tag = "Dormitory South";
+	c_tag = "Atmospherics Mix Tank";
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
@@ -78998,7 +79002,7 @@ aYb
 aZE
 bjp
 bjr
-bjr
+vho
 bmh
 boK
 bjr
