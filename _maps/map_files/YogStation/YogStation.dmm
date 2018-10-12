@@ -52149,10 +52149,13 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "esg" = (
-/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
+/obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 4;
-	icon_state = "filter_on_f";
-	name = "Air Mixer"
+	icon_state = "mixer_off_f";
+	name = "Air Mixer";
+	node1_concentration = 0.8;
+	node2_concentration = 0.2;
+	on = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
