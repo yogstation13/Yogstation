@@ -9620,7 +9620,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/lawoffice)
+/area/maintenance/fore)
 "avj" = (
 /obj/machinery/firealarm{
 	dir = 8;
