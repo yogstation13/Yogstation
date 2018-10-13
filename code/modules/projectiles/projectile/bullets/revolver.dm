@@ -14,9 +14,9 @@
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 15 //yogs
+	damage = 15 // yogs - Nerfed revolver damage
 	//knockdown = 60 //yogs - commented out
-	stamina = 60 //yogs
+	stamina = 60 // yogs - Buffed revolver 
 
 // .357 (Syndie Revolver)
 
