@@ -54,9 +54,9 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/head/cone, \
 						/obj/item/clothing/head/collectable/beret, \
 						/obj/item/clothing/head/crown, \
-						/obj/item/clothing/head/wizard/red/fake, \
-						/obj/item/clothing/head/wizard/yellow/fake, \
-						/obj/item/clothing/head/wizard/black/fake, \
+						/obj/item/clothing/head/wizard/fake/red, \
+						/obj/item/clothing/head/wizard/fake/yellow, \
+						/obj/item/clothing/head/wizard/fake/black, \
 						/obj/item/clothing/head/wizard/marisa/fake, \
 						/obj/item/clothing/neck/yogs/sith_cloak, \
 						/obj/item/clothing/suit/yogs/armor/sith_suit, \
