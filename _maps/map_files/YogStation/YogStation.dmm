@@ -22888,7 +22888,6 @@
 /area/quartermaster/warehouse)
 "aZJ" = (
 /obj/structure/table/wood,
-/obj/item/folder/red,
 /obj/item/camera/detective,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
