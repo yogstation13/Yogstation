@@ -51799,15 +51799,16 @@
 	name = "Incinerator to Output"
 	},
 /obj/machinery/light/small,
+/obj/structure/sign/warning/fire{
+	pixel_y = -32
+	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "incinerator_airlock_interior";
 	idSelf = "incinerator_access_control";
+	layer = 3.1;
 	name = "Incinerator airlock control";
 	pixel_x = 22;
 	pixel_y = 8
-	},
-/obj/structure/sign/warning/fire{
-	pixel_y = -32
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -52106,20 +52107,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"ems" = (
-/obj/machinery/airalarm{
-	desc = "This particular atmos control unit appears to have no access restrictions.";
-	dir = 1;
-	locked = 0;
-	name = "Incinerator Air Alarm";
-	pixel_y = -24;
-	req_access = "0"
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "enb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -52364,8 +52351,9 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 4
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 6
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -53557,7 +53545,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "iBw" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -53574,13 +53562,6 @@
 	dir = 4;
 	name = "Mix to Incinerator"
 	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "incinerator_airlock_exterior";
-	idSelf = "incinerator_access_control";
-	name = "Incinerator airlock control";
-	pixel_x = -24;
-	pixel_y = -8
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -53589,6 +53570,13 @@
 	},
 /obj/structure/sign/warning/fire{
 	pixel_y = 32
+	},
+/obj/machinery/doorButtons/access_button{
+	idDoor = "incinerator_airlock_exterior";
+	idSelf = "incinerator_access_control";
+	name = "Incinerator airlock control";
+	pixel_x = -24;
+	pixel_y = -8
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -55259,7 +55247,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior,
+/obj/machinery/door/airlock/public/glass/incinerator/atmos_interior{
+	id_tag = "incinerator_airlock_interior";
+	locked = 1;
+	name = "Incinerator Interior Airlock"
+	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -55642,7 +55634,8 @@
 	frequency = 1449;
 	heat_proof = 1;
 	id_tag = "incinerator_airlock_exterior";
-	name = "Turbine Exterior Airlock";
+	locked = 1;
+	name = "Incinerator Exterior Airlock";
 	req_access_txt = "32"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
@@ -56867,7 +56860,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "rXN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/yogs/mining_medic,
@@ -57165,15 +57158,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"sIR" = (
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white/corner{
-	dir = 4
-	},
-/area/maintenance/aft)
 "sJh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -58407,7 +58391,7 @@
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/aft)
+/area/engine/atmos)
 "wsM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -96250,7 +96234,7 @@ sfM
 qiQ
 krw
 bLK
-sIR
+dWn
 wsq
 iAu
 rXn
@@ -97047,7 +97031,7 @@ cfj
 cfj
 cfj
 irr
-ems
+nvh
 cmd
 ngP
 oiE
