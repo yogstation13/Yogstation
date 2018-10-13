@@ -436,7 +436,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 
-	sync_logout_with_db(connection_number) // yogs - logout logging
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
@@ -444,6 +443,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	Master.UpdateTickRate()
+	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
@@ -853,7 +853,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.auto_fit_viewport)
-		fit_viewport()
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)

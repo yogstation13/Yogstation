@@ -3,7 +3,7 @@
 	name = "Golem"
 	id = "iron golem"
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER) // yogs - Gives golems NOHUNGER
 	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
 	mutant_organs = list(/obj/item/organ/adamantine_resonator)
 	speedmod = 2
@@ -293,8 +293,8 @@
 		var/turf/T = H.loc
 		light_amount = min(1,T.get_lumcount()) - 0.5
 		H.nutrition += light_amount * 10
-		if(H.nutrition > NUTRITION_LEVEL_FULL)
-			H.nutrition = NUTRITION_LEVEL_FULL
+		if(H.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
+			H.nutrition = NUTRITION_LEVEL_ALMOST_FULL
 		if(light_amount > 0.2) //if there's enough light, heal
 			H.heal_overall_damage(1,1)
 			H.adjustToxLoss(-1)

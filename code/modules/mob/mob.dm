@@ -184,7 +184,7 @@
 /mob/proc/restrained(ignore_grab)
 	return
 
-/mob/proc/incapacitated(ignore_restraints, ignore_grab)
+/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
 	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
@@ -325,11 +325,6 @@
 		return FALSE
 
 	new /obj/effect/temp_visual/point(A,invisibility)
-	
-	// yogs start
-	for(var/atom/on_tile in A.contents + A)
-		on_tile.pointed_at(src)
-	// yogs end
 
 	return TRUE
 
@@ -610,8 +605,6 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)
-		return FALSE
 	if(world.time < client.last_turn)
 		return FALSE
 	if(stat == DEAD || stat == UNCONSCIOUS)
@@ -624,8 +617,10 @@
 		return FALSE
 	return TRUE
 
-/mob/proc/fall(forced)
-	drop_all_held_items()
+/mob/living/canface()
+	if(!(mobility_flags & MOBILITY_MOVE))
+		return FALSE
+	return ..()
 
 /mob/verb/eastface()
 	set hidden = TRUE
@@ -774,7 +769,7 @@
 	return 0
 
 //Can the mob use Topic to interact with machines
-/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return
 
 /mob/proc/faction_check_mob(mob/target, exact_match)
@@ -820,7 +815,7 @@
 		replace_identification_name(oldname,newname)
 
 		for(var/datum/mind/T in SSticker.minds)
-			for(var/datum/objective/obj in T.objectives)
+			for(var/datum/objective/obj in T.get_all_objectives())
 				// Only update if this player is a target
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
@@ -861,14 +856,7 @@
 	return
 
 /mob/proc/update_sight()
-	for(var/O in orbiters)
-		var/datum/orbit/orbit = O
-		var/obj/effect/wisp/wisp = orbit.orbiter
-		if (istype(wisp))
-			sight |= wisp.sight_flags
-			if(!isnull(wisp.lighting_alpha))
-				lighting_alpha = min(lighting_alpha, wisp.lighting_alpha)
-
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_alpha()
 
 /mob/proc/sync_lighting_plane_alpha()
@@ -885,6 +873,12 @@
 		var/obj/mecha/M = loc
 		if(M.mouse_pointer)
 			client.mouse_pointer_icon = M.mouse_pointer
+	else if (istype(loc, /obj/vehicle/sealed))
+		var/obj/vehicle/sealed/E = loc
+		if(E.mouse_pointer)
+			client.mouse_pointer_icon = E.mouse_pointer
+
+			
 
 /mob/proc/is_literate()
 	return 0
@@ -892,9 +886,8 @@
 /mob/proc/can_hold_items()
 	return FALSE
 
-/mob/proc/get_idcard()
+/mob/proc/get_idcard(hand_first)
 	return
-
 
 /mob/vv_get_dropdown()
 	. = ..()
@@ -923,3 +916,5 @@
 
 	var/datum/language_holder/H = get_language_holder()
 	H.open_language_menu(usr)
+
+

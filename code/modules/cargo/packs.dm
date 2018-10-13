@@ -16,8 +16,8 @@
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 
-/datum/supply_pack/proc/generate(turf/T)
-	var/obj/structure/closet/crate/C = new crate_type(T)
+/datum/supply_pack/proc/generate(atom/A)
+	var/obj/structure/closet/crate/C = new crate_type(A)
 	C.name = crate_name
 	if(access)
 		C.req_access = list(access)
@@ -1585,9 +1585,10 @@
 
 /datum/supply_pack/organic/seeds
 	name = "Seeds Crate"
-	desc = "Big things have small beginnings. Contains thirteen different seeds."
+	desc = "Big things have small beginnings. Contains fourteen different seeds."
 	cost = 1000
 	contains = list(/obj/item/seeds/chili,
+					/obj/item/seeds/cotton,
 					/obj/item/seeds/berry,
 					/obj/item/seeds/corn,
 					/obj/item/seeds/eggplant,
@@ -1605,7 +1606,7 @@
 
 /datum/supply_pack/organic/exoticseeds
 	name = "Exotic Seeds Crate"
-	desc = "Any entrepreneuring botanist's dream. Contains twelve different seeds, including three replica-pod seeds and two mystery seeds!"
+	desc = "Any entrepreneuring botanist's dream. Contains fourteen different seeds, including three replica-pod seeds and two mystery seeds!"
 	cost = 1500
 	contains = list(/obj/item/seeds/nettle,
 					/obj/item/seeds/replicapod,
@@ -1617,6 +1618,8 @@
 					/obj/item/seeds/reishi,
 					/obj/item/seeds/banana,
 					/obj/item/seeds/eggplant/eggy,
+					/obj/item/seeds/rainbow_bunch,
+					/obj/item/seeds/rainbow_bunch,
 					/obj/item/seeds/random,
 					/obj/item/seeds/random)
 	crate_name = "exotic seeds crate"

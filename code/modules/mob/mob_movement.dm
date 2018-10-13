@@ -1,14 +1,17 @@
 /mob/CanPass(atom/movable/mover, turf/target)
+	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
+
+/mob/living/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
 		return TRUE
 	if(istype(mover, /obj/item/projectile) || mover.throwing)
-		return (!density || lying)
+		return (!density || !(mobility_flags & MOBILITY_STAND))
 	if(buckled == mover)
 		return TRUE
 	if(ismob(mover))
 		if (mover in buckled_mobs)
 			return TRUE
-	return (!mover.density || !density || lying)
+	return (!mover.density || !density || !(mobility_flags & MOBILITY_STAND))
 
 //DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
 //See mob_movespeed.dm
@@ -75,7 +78,7 @@
 	if(mob.buckled)							//if we're buckled to something, tell it we moved.
 		return mob.buckled.relaymove(mob, direct)
 
-	if(!mob.canmove)
+	if(!(L.mobility_flags & MOBILITY_MOVE))
 		return FALSE
 
 	if(isobj(mob.loc) || ismob(mob.loc))	//Inside an object, tell it we moved
@@ -95,7 +98,6 @@
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
-	var/oldloc = mob.loc
 
 	if(L.confused)
 		var/newdir = 0
@@ -117,9 +119,6 @@
 	if(.) // If mob is null here, we deserve the runtime
 		if(mob.throwing)
 			mob.throwing.finalize(FALSE)
-
-	for(var/obj/O in mob.user_movement_hooks)
-		O.intercept_user_move(direct, mob, n, oldloc)
 
 	var/atom/movable/P = mob.pulling
 	if(P && !ismob(P) && P.density)
@@ -152,7 +151,7 @@
 		if(INCORPOREAL_MOVE_BASIC)
 			var/T = get_step(L,direct)
 			if(T)
-				L.loc = T
+				L.forceMove(T)
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_SHADOW)
 			if(prob(50))
@@ -194,7 +193,7 @@
 				new /obj/effect/temp_visual/dir_setting/ninja/shadow(mobloc, L.dir)
 				var/T = get_step(L,direct)
 				if(T)
-					L.loc = T
+					L.forceMove(T)
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_JAUNT) //Incorporeal move, but blocked by holy-watered tiles and salt piles.
 			var/turf/open/floor/stepTurf = get_step(L, direct)
@@ -213,7 +212,7 @@
 					to_chat(L, "<span class='warning'>Holy energies block your path!</span>")
 					return
 
-				L.loc = get_step(L, direct)
+				L.forceMove(stepTurf)
 			L.setDir(direct)
 	return TRUE
 

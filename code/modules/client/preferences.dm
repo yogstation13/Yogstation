@@ -598,6 +598,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Enabled":"Disabled"]</a><br>"
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
+				dat += "<br>"
+				dat += "<b>Silence Radio Messages:</b> <a href = '?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Disabled":"Enabled"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
 		// yogs start - Donor features
@@ -637,6 +639,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
 				
 				BUTTON_KEY("OOC", ACTION_OOC)
+				BUTTON_KEY("LOOC", ACTION_LOOC)
 				BUTTON_KEY("Adminhelp", ACTION_AHELP)
 				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
 				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
@@ -1501,12 +1504,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					tgui_lock = !tgui_lock
 				if("winflash")
 					windowflashing = !windowflashing
+
+				//here lies the badmins
 				if("hear_adminhelps")
-					toggles ^= SOUND_ADMINHELP
+					user.client.toggleadminhelpsound()
 				if("announce_login")
-					toggles ^= ANNOUNCE_LOGIN
+					user.client.toggleannouncelogin()
 				if("combohud_lighting")
 					toggles ^= COMBOHUD_LIGHTING
+				if("toggle_radio_chatter")
+					user.client.toggle_hear_radio()
 
 				if("be_special")
 					var/be_special_type = href_list["be_special_type"]
@@ -1671,6 +1678,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return pick(GLOB.clown_names)
 		if("mime")
 			return pick(GLOB.mime_names)
+		if("religion")
+			return DEFAULT_RELIGION
+		if("deity")
+			return DEFAULT_DEITY
 	return random_unique_name()
 
 /datum/preferences/proc/ask_for_custom_name(mob/user,name_id)

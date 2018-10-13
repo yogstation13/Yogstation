@@ -1,0 +1,4 @@
+author: " Naksu"
+delete-after: true 
+changes: 
+  - bugfix: "welding tools etc should be able to properly ignite plasma fires again"

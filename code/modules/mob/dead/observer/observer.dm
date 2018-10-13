@@ -11,7 +11,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
-	canmove = 0
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
@@ -417,9 +416,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/orbitsize = (I.Width()+I.Height())*0.5
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
 
-	if(orbiting && orbiting.orbiting != target)
-		to_chat(src, "<span class='notice'>Now orbiting [target].</span>")
-
 	var/rot_seg
 
 	switch(ghost_orbit)
@@ -438,10 +434,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/orbit()
 	setDir(2)//reset dir so the right directional sprites show up
-	..()
+	return ..()
 
-/mob/dead/observer/stop_orbit()
-	..()
+/mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 10, loop = -1)
@@ -737,7 +733,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	update_icon()
 
-/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)
 
 /mob/dead/observer/is_literate()

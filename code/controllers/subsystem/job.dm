@@ -434,12 +434,15 @@ SUBSYSTEM_DEF(job)
 	to_chat(M, "<b>You are the [rank].</b>")
 	if(job)
 		to_chat(M, "<b>As the [rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
-		to_chat(M, "<b>To speak on your departments radio, use the :h button. To see others, look closely at your headset.</b>")
+		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 		if(CONFIG_GET(number/minimal_access_threshold))
 			to_chat(M, "<FONT color='blue'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></font>")
-
+	if(ishuman(H))
+		var/mob/living/carbon/human/wageslave = H
+		to_chat(M, "<b><span class = 'big'>Your account ID is [wageslave.account_id].</span></b>")
+		H.add_memory("Your account ID is [wageslave.account_id].")
 	if(job && H)
 		job.after_spawn(H, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 

@@ -25,7 +25,8 @@
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: antitoxin -> morphine
 	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
-
+	payment_department = ACCOUNT_MED
+	fair_market_price = 5
 /obj/machinery/sleeper/Initialize()
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -84,8 +85,12 @@
 		open_machine()
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
-	if(user.stat || user.lying || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
+	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
 		return
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			return
 	close_machine(target)
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
@@ -110,6 +115,13 @@
 	if(!ui)
 		ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
 		ui.open()
+
+/obj/machinery/sleeper/process()
+	..()
+	check_nap_violations()
+
+/obj/machinery/sleeper/nap_violation(mob/violator)
+	open_machine()
 
 /obj/machinery/sleeper/ui_data()
 	var/list/data = list()
@@ -157,7 +169,7 @@
 	if(..())
 		return
 	var/mob/living/mob_occupant = occupant
-
+	check_nap_violations()
 	switch(action)
 		if("door")
 			if(state_open)

@@ -4,7 +4,6 @@
 	var/vamp_req = FALSE
 
 /obj/effect/proc_holder/spell/cast_check(skipcharge = 0, mob/user = usr)
-	. = ..(skipcharge, user)
 	if(vamp_req)
 		if(!is_vampire(user))
 			return FALSE
@@ -14,6 +13,7 @@
 		if(V.usable_blood < blood_used)
 			to_chat(user, "<span class='warning'>You do not have enough blood to cast this!</span>")
 			return FALSE
+	. = ..(skipcharge, user)
 
 /obj/effect/proc_holder/spell/Initialize()
 	. = ..()
@@ -345,9 +345,10 @@
 		user.regenerate_organs()
 
 /obj/effect/proc_holder/spell/self/summon_coat
-	name = "Summon Dracula Coat (5)"
+	name = "Summon Dracula Coat (100)"
+	desc = "Allows you to summon a Vampire Coat providing passive usable blood restoration when your usable blood is very low."
 	gain_desc = "Now that you have reached full power, you can now pull a vampiric coat out of thin air!"
-	blood_used = 5
+	blood_used = 100
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_icon_state = "coat"
 	action_background_icon_state = "bg_demon"

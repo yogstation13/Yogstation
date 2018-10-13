@@ -60,7 +60,9 @@
 	var/list/data = list()
 	data["requestonly"] = requestonly
 	data["location"] = SSshuttle.supply.getStatusText()
-	data["points"] = SSshuttle.points
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
@@ -159,7 +161,7 @@
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				name = H.get_authentification_name()
-				rank = H.get_assignment()
+				rank = H.get_assignment(hand_first = TRUE)
 			else if(issilicon(usr))
 				name = usr.real_name
 				rank = "Silicon"
