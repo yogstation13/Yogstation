@@ -2364,7 +2364,7 @@
 	pixel_x = 29
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/closet/wardrobe/red,
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "afe" = (
@@ -7954,7 +7954,7 @@
 	department = "Law office";
 	pixel_x = -32
 	},
-/obj/structure/closet/lawcloset,
+/obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/wood,
 /area/lawoffice)
 "arb" = (
@@ -15150,10 +15150,10 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aHf" = (
-/obj/structure/closet/wardrobe/chaplain_black,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aHg" = (
@@ -16797,8 +16797,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aKK" = (
-/obj/structure/closet/wardrobe/botanist,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aKL" = (
@@ -17367,7 +17367,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMi" = (
-/obj/machinery/vending/cola/random,
+/obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMj" = (
@@ -18327,7 +18327,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/closet/chefcloset,
+/obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/backroom)
 "aOI" = (
@@ -18996,8 +18996,8 @@
 /turf/open/floor/wood,
 /area/library)
 "aQr" = (
-/obj/structure/closet/wardrobe/curator,
 /obj/machinery/light/small,
+/obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/engine/cult,
 /area/library)
 "aQs" = (
@@ -26921,7 +26921,7 @@
 /obj/machinery/camera{
 	c_tag = "Cargo Bay North"
 	},
-/obj/structure/closet/wardrobe/cargotech,
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjp" = (
@@ -28795,10 +28795,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bnB" = (
-/obj/structure/closet/wardrobe/chemistry_white,
 /obj/machinery/light_switch{
 	pixel_x = -23
 	},
+/obj/machinery/vending/wardrobe/chem_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bnC" = (
@@ -31026,10 +31026,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bsW" = (
-/obj/structure/closet/wardrobe/robotics_black,
-/obj/item/radio/headset/headset_sci{
-	pixel_x = -3
-	},
+/obj/machinery/vending/wardrobe/robo_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bsX" = (
@@ -33865,11 +33862,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzr" = (
-/obj/structure/closet/wardrobe/genetics_white,
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
+/obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bzs" = (
@@ -34136,7 +34133,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzV" = (
-/obj/structure/closet/wardrobe/white/medical,
+/obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bzW" = (
@@ -34542,7 +34539,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bAT" = (
-/obj/structure/closet/jcloset,
+/obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bAU" = (
@@ -35829,7 +35826,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
-/obj/structure/closet/jcloset,
+/obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bDI" = (
@@ -35837,10 +35834,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bDJ" = (
-/obj/structure/closet/l3closet/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bDK" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -36511,9 +36504,9 @@
 /area/hallway/primary/aft)
 "bFk" = (
 /obj/item/mop,
-/obj/item/storage/box/lights/mixed,
-/obj/item/storage/box/lights/mixed,
 /obj/item/reagent_containers/glass/bucket,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bFl" = (
@@ -38401,7 +38394,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bJU" = (
-/obj/structure/closet/wardrobe/science_white,
+/obj/machinery/vending/wardrobe/science_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bJV" = (
@@ -45123,10 +45116,10 @@
 	c_tag = "Engineering East";
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/engineering_yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cgR" = (
@@ -53401,7 +53394,7 @@
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "ibx" = (
-/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/machinery/vending/wardrobe/atmos_wardrobe,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "ibZ" = (
@@ -54108,7 +54101,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/closet/wardrobe/virology_white,
+/obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "kaF" = (
@@ -57352,6 +57345,9 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"tcL" = (
+/turf/open/floor/plasteel,
+/area/janitor)
 "tds" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -88791,7 +88787,7 @@ aJq
 bBu
 bCv
 bAT
-bDL
+tcL
 bDq
 bCv
 bJs
@@ -89561,7 +89557,7 @@ aJq
 aJq
 aXf
 bCv
-bDJ
+bDL
 bCt
 bGD
 bCv
