@@ -14,9 +14,9 @@
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 15
+	damage = 15 //it does less damage than 25 because the stamina is back
 	//knockdown = 60 //yogs - commented out
-	stamina = 60
+	stamina = 60 //yogs is really stupid about this shit here now it does damage
 
 // .357 (Syndie Revolver)
 
