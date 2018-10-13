@@ -104,6 +104,5 @@ var/list/donor_start_tools = list(\
 						/obj/item/toy/gun, \
 						/obj/item/toy/plush/plushvar, \
 						/obj/item/toy/plush/narplush, \
-						/obj/item/toy/sword, \
-						/obj/item/gun/magic/wand
+						/obj/item/toy/sword
 						)
