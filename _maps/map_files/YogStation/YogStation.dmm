@@ -8725,6 +8725,8 @@
 	dir = 8
 	},
 /obj/structure/rack,
+/obj/item/folder,
+/obj/item/folder,
 /obj/item/storage/briefcase,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -22293,6 +22295,9 @@
 	name = "Privacy Shutters";
 	pixel_y = 24
 	},
+/obj/item/hand_labeler{
+	pixel_x = 5
+	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aYk" = (
@@ -22624,12 +22629,10 @@
 "aYZ" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/evidence,
-/obj/item/hand_labeler{
-	pixel_x = 5
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aZa" = (
@@ -22885,6 +22888,7 @@
 /area/quartermaster/warehouse)
 "aZJ" = (
 /obj/structure/table/wood,
+/obj/item/folder/red,
 /obj/item/camera/detective,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
@@ -23756,6 +23760,7 @@
 /area/quartermaster/warehouse)
 "bbQ" = (
 /obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = 3
 	},
@@ -23776,6 +23781,7 @@
 "bbT" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bbU" = (
@@ -24043,8 +24049,10 @@
 /area/security/detectives_office)
 "bcH" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/paper_bin,
+/obj/item/pen,
 /obj/item/clothing/glasses/sunglasses,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bcI" = (
