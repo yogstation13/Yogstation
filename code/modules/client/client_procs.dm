@@ -546,7 +546,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	// yogs start - logout logging
 	var/serverip = "[world.internet_address]"
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
-	if(query_log_connection.Execute())
+	if(query_log_connection.Execute(async = FALSE))
 		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
 		query_getid.Execute(async = FALSE)
 		if(query_getid.NextRow())
