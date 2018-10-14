@@ -609,11 +609,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
-				var/type = donor_hat ? donor_start_items[donor_hat] : null
-				var/temp_hat = donor_hat ? (new type()) : "None selected"
+				var/typehat = donor_hat ? donor_start_items[donor_hat] : null
+				var/temp_hat = donor_hat ? (new typehat()) : "None selected"
 				dat += "<a href='?_src_=prefs;preference=donor;task=hat'>Pick</a> [temp_hat]<BR>"
 				if(donor_hat)
 					qdel(temp_hat)
+				dat += "<b>Fancy Item:</b> "
+				var/typeitem = donor_item ? donor_start_tools[donor_item] : null
+				var/temp_item = donor_item ? (new typeitem()) : "None selected"
+				dat += "<a href='?_src_=prefs;preference=donor;task=item'>Pick</a> [temp_item]<BR>"
+				if(donor_item)
+					qdel(temp_item)
 				dat += "<b>Fancy PDA:</b> "
 				dat += "<a href='?_src_=prefs;preference=donor;task=pda'>[donor_pdas[donor_pda]]</a><BR>"
 				dat += "<b>Purrbation (Humans only)</b> "
@@ -1069,6 +1075,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						donor_hat = donor_start_items.Find(item)
 					else
 						donor_hat = 0
+				if("item")
+					var/item = input(usr, "What would you like to start with?","Donator fun","Nothing") as null|anything in donor_start_tools
+					if(item)
+						donor_item = donor_start_tools.Find(item)
+					else
+						donor_item = 0
 				if("quiet_round")
 					toggles ^= QUIET_ROUND
 				if("pda")
