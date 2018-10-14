@@ -125,13 +125,18 @@ Thus, the two variables affect pump operation are set in New():
 	return data
 
 /obj/machinery/atmospherics/components/binary/pump/ui_act(action, params)
+	var/turf/target
 	if(..())
 		return
 	switch(action)
 		if("power")
+			var/area/A = get_area(target)
 			on = !on
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
+			to_chat(world, "[A]")
+			if(istype(A, /area/engine/engineering ))
+				investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER)
 		if("pressure")
 			var/pressure = params["pressure"]
 			if(pressure == "max")
