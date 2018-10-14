@@ -78,7 +78,7 @@
 	if (distance <= 4)
 		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Paralyze(140)
+		target.Paralyze(120)
 		M.silent += 10
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
