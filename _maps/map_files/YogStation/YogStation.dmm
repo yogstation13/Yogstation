@@ -56957,7 +56957,8 @@
 "siX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/binary/pump{
-	dir = 4
+	dir = 4;
+	name = "Distro to Filter"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
