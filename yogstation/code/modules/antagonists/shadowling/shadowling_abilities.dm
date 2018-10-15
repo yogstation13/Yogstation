@@ -75,10 +75,10 @@
 	var/mob/living/carbon/human/M = target
 	usr.visible_message("<span class='warning'><b>[usr]'s eyes flash a purpleish-red!</b></span>")
 	var/distance = get_dist(target, usr)
-	if (distance <= 2)
+	if (distance <= 4)
 		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Knockdown(100)
+		target.Paralyze(120)
 		M.silent += 10
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
