@@ -1,0 +1,4 @@
+author: " Barhandar"
+delete-after: true 
+changes: 
+  - bugfix: "Golem shells and ashwalker eggs can be pulled again."
