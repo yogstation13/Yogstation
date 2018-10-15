@@ -5955,7 +5955,9 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "and" = (
@@ -12075,10 +12077,12 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aBD" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	icon_state = "manifold";
 	dir = 8
+	},
+/obj/machinery/meter{
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -13083,10 +13087,12 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aDV" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 5
+	},
+/obj/machinery/meter{
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -22081,7 +22087,6 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "aZT" = (
-/obj/machinery/meter,
 /obj/machinery/camera{
 	c_tag = "Telecomms Life Support";
 	dir = 8;
@@ -22091,6 +22096,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 9
+	},
+/obj/machinery/meter{
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
@@ -37352,10 +37360,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/construction)
-"bKB" = (
-/obj/machinery/meter,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "bKF" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -42876,7 +42880,6 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ceM" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/components/binary/valve/layer1{
 	icon_state = "mvalve_map";
 	dir = 4
@@ -42887,6 +42890,9 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	icon_state = "intact";
 	dir = 9
+	},
+/obj/machinery/meter{
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -50278,6 +50284,9 @@
 	icon_state = "intact";
 	dir = 5
 	},
+/obj/machinery/meter{
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dOQ" = (
@@ -51455,6 +51464,26 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"gmd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/meter{
+	target_layer = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "gnZ" = (
 /obj/machinery/disposal/bin,
 /obj/structure/sign/warning/deathsposal{
@@ -52473,8 +52502,10 @@
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "iJP" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/meter{
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "iLr" = (
@@ -55072,8 +55103,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
 	icon_state = "manifoldlayer";
-	dir = 4
+	level = 2
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -55639,8 +55671,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
 	icon_state = "manifoldlayer";
-	dir = 4
+	level = 2
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -57761,8 +57794,9 @@
 "uoh" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
 	icon_state = "manifoldlayer";
-	dir = 4
+	level = 2
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -57910,10 +57944,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
 	dir = 6
+	},
+/obj/machinery/meter{
+	target_layer = 3
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -100957,7 +100993,7 @@ bBN
 bHa
 bBN
 bBN
-bKB
+bAw
 bKH
 bNd
 vLa
@@ -101215,7 +101251,7 @@ bHd
 bAw
 bAw
 bAw
-bKH
+gmd
 bNd
 bNd
 bNd
