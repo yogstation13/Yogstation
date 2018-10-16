@@ -319,7 +319,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				manifested = TRUE
 				Manifest()
 				to_chat(H, "<span class='userdanger'>You feel the floor closing in on your feet!</span>")
-				H.Knockdown(300)
+				H.Paralyze(300)
 				H.emote("scream")
 				H.adjustBruteLoss(10)
 				if(!eating)
