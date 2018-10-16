@@ -777,9 +777,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
 	cant_discount = TRUE
-   /*
-   exclude_modes = list(/datum/game_mode/nuclear) 
-   */ //Yogs Change removes nuke op restrictions
+	/*
+	exclude_modes = list(/datum/game_mode/nuclear) 
+	*/ //Yogs Change removes nuke op restrictions
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
