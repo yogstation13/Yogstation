@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - rscadd: "Crawling is now possible if you are down but not stunned. Obviously, you will be slower."

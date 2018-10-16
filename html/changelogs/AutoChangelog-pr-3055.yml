@@ -1,4 +1,0 @@
-author: " ShizCalev"
-delete-after: true 
-changes: 
-  - bugfix: "Admin revives will now properly restore mutant organs."
