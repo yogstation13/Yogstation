@@ -10,6 +10,11 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/fly
 	disliked_food = null
 	liked_food = GROSS
+	
+/datum/species/fly/check_roundstart_eligible() //yogs start - makes flypeople be a option during halloween
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() // yogs end
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "pestkiller")
