@@ -6392,7 +6392,7 @@
 	},
 /obj/machinery/disposal/bin,
 /turf/open/floor/wood,
-/area/space)
+/area/lawoffice)
 "aoc" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -6401,7 +6401,7 @@
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/lawoffice)
 "aof" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/fore)
