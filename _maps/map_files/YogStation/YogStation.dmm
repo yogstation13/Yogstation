@@ -45475,10 +45475,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnW" = (
-/obj/machinery/computer/telecomms/monitor{
-	dir = 8;
-	network = "tcommsat"
-	},
+/obj/structure/chair/office/dark,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
 "cnX" = (
@@ -55444,11 +55441,8 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the telecoms satellite.";
 	name = "Telecoms Satellite Monitor";
-	network = list("Telecoms");
+	network = list("minisat");
 	pixel_y = 29
-	},
-/obj/structure/chair/office/dark{
-	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
@@ -56358,6 +56352,7 @@
 /area/engine/atmos)
 "rfE" = (
 /obj/machinery/light/small,
+/obj/item/twohanded/required/kirbyplants,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
 "rfP" = (
