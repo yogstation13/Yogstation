@@ -99,7 +99,6 @@
 				// yogs end
 				authorized.Cut()
 				. = TRUE
-				
 
 	if((old_len != authorized.len) && !ENGINES_STARTED)
 		var/alert = (authorized.len > old_len)
