@@ -16,7 +16,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "d" = (
-/obj/structure/chair{
+/obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
