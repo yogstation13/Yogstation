@@ -84,11 +84,13 @@
 				authorized -= ID
 				// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
 				last_early_auth = world.time
+			// yogs end
 
 		if("abort")
 			if(authorized.len)
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
+				// yogs start - added spam protection
 				if(last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
 					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
 					return
@@ -96,7 +98,7 @@
 				last_early_auth = world.time
 				authorized.Cut()
 				. = TRUE
-			// yogs end
+				// yogs end
 
 	if((old_len != authorized.len) && !ENGINES_STARTED)
 		var/alert = (authorized.len > old_len)
