@@ -76,18 +76,19 @@
 			. = authorize(user)
 
 		if("repeal")
-			if(authorized.len != 0 && last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
-				to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
-				return
-			authorized -= ID
-			// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
-			last_early_auth = world.time
+			if(ID in authorized)// if you have already submitted your authorization:
+				if(last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
+					return
+				authorized -= ID
+				// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
+				last_early_auth = world.time
 
 		if("abort")
 			if(authorized.len)
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
-				if(authorized.len != 0 && last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
+				if(last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
 					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
 					return
 				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
