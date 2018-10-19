@@ -16,8 +16,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "d" = (
-/obj/structure/chair/office/dark{
-	dir = 1
+/obj/structure/chair{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
