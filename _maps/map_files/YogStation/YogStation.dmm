@@ -6387,11 +6387,18 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aoc" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -7184,6 +7191,9 @@
 	icon_state = "manifold";
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "apY" = (
@@ -7206,6 +7216,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -7947,6 +7960,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/lawoffice)
 "arZ" = (
@@ -8104,6 +8118,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -9144,6 +9161,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "avi" = (
@@ -9565,14 +9583,15 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4;
+	sortType = 29
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "awi" = (
@@ -20822,9 +20841,6 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aWF" = (
@@ -20833,9 +20849,6 @@
 /area/storage/tools)
 "aWG" = (
 /obj/machinery/computer/secure_data,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aWH" = (
@@ -21289,12 +21302,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"aXK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/security/detectives_office)
 "aXL" = (
 /turf/open/floor/carpet,
 /area/security/vacantoffice)
@@ -21468,9 +21475,6 @@
 /turf/open/floor/plating,
 /area/construction)
 "aYh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -21479,21 +21483,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aYi" = (
 /obj/structure/closet/secure_closet/detective,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aYj" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
 /obj/machinery/button/door{
 	id = "kanyewest";
 	name = "Privacy Shutters";
@@ -21815,9 +21816,6 @@
 "aYZ" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/evidence,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -22036,7 +22034,6 @@
 /obj/machinery/light_switch{
 	pixel_x = 27
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "aZM" = (
@@ -22506,7 +22503,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "baU" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "baV" = (
@@ -22871,6 +22870,9 @@
 	icon_state = "intact";
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bbR" = (
@@ -22885,6 +22887,9 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /obj/item/restraints/handcuffs,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bbU" = (
@@ -22899,6 +22904,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -23146,6 +23154,9 @@
 	icon_state = "intact";
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bcH" = (
@@ -23157,6 +23168,9 @@
 	},
 /obj/item/pen,
 /obj/item/book/manual/wiki/security_space_law,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bcI" = (
@@ -47713,6 +47727,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "cCn" = (
@@ -51499,6 +51514,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"gsm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "gtp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -51972,6 +51993,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"hyu" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "hyH" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -53868,6 +53896,10 @@
 	icon_state = "intact";
 	dir = 8
 	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 30
+	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "lti" = (
@@ -55124,6 +55156,12 @@
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"oix" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "oiE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -55392,6 +55430,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on";
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -57604,6 +57645,7 @@
 /area/tcommsat/computer)
 "tYq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/lawoffice)
 "tZZ" = (
@@ -58914,6 +58956,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -81930,7 +81975,7 @@ aSm
 aTI
 aPK
 aWB
-aXK
+apd
 apd
 apd
 bbU
@@ -82187,11 +82232,11 @@ aSn
 aTK
 aPK
 apd
-aXK
+apd
 asW
 baW
 ltb
-bLE
+hyu
 apd
 bfj
 bgC
@@ -83215,7 +83260,7 @@ aSr
 aSr
 aUw
 apd
-aXK
+apd
 avr
 aZJ
 bbT
@@ -83475,7 +83520,7 @@ apd
 aYZ
 bLE
 aqW
-aqW
+oix
 bLE
 apd
 beA
@@ -83731,7 +83776,7 @@ aWD
 apd
 aYj
 aZL
-baU
+bLE
 baU
 bcV
 apf
@@ -86533,7 +86578,7 @@ aqZ
 aqZ
 aqZ
 apW
-aqZ
+gsm
 avh
 awh
 ayL
