@@ -96,9 +96,10 @@
 					return
 				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
 				last_early_auth = world.time
+				// yogs end
 				authorized.Cut()
 				. = TRUE
-				// yogs end
+				
 
 	if((old_len != authorized.len) && !ENGINES_STARTED)
 		var/alert = (authorized.len > old_len)
