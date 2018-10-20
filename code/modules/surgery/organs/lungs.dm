@@ -21,6 +21,10 @@
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
 
+//YOGS CHANGE - New var to allow editable Nitryl code.
+	var/lung_melty_min = 40 //Nitryl lung melting chance
+//END YOGS CHANGE
+
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
 	var/oxy_damage_type = OXY
@@ -254,20 +258,23 @@
 			H.radiation += trit_pp/10
 
 	// Nitryl
+// YOGS CHANGE - Change to this loop to allow different lungs to have different resistances. Nothing changed for vanilla lungs.
 		var/nitryl_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitryl][MOLES])
 		if (prob(nitryl_pp))
 			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
-		if (nitryl_pp >40)
+		if (nitryl_pp > lung_melty_min) //If your lungs are taking in this much nitryl... well, you're gonna have a REAL bad time
 			H.emote("gasp")
 			H.adjustFireLoss(10)
 			if (prob(nitryl_pp/2))
 				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
 				H.silent = max(H.silent, 3)
+		if (nitryl_pp < (lung_melty_min-40)/2) //If your lungs can filter out all this acid, then you take no damage. Avoids healing from this lung damage.
 		else
-			H.adjustFireLoss(nitryl_pp/4)
+			H.adjustFireLoss((nitryl_pp-(lung_melty_min-40)/2)/4) //The higher your Lung's resistance value is, the less damage you take from this shitty gas.
 		gas_breathed = breath_gases[/datum/gas/nitryl][MOLES]
 		if (gas_breathed > gas_stimulation_min)
 			H.reagents.add_reagent("no2",1)
+// END YOGS CHANGE
 
 		breath_gases[/datum/gas/nitryl][MOLES]-=gas_breathed
 
