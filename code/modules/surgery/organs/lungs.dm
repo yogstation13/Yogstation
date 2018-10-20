@@ -20,6 +20,7 @@
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
+	var/lung_melty_min = 40 //Nitryl lung melting chance
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
@@ -257,14 +258,15 @@
 		var/nitryl_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/nitryl][MOLES])
 		if (prob(nitryl_pp))
 			to_chat(H, "<span class='alert'>Your mouth feels like it's burning!</span>")
-		if (nitryl_pp >40)
+		if (nitryl_pp > lung_melty_min) //If your lungs are taking in this much nitryl... well, you're gonna have a REAL bad time
 			H.emote("gasp")
 			H.adjustFireLoss(10)
 			if (prob(nitryl_pp/2))
 				to_chat(H, "<span class='alert'>Your throat closes up!</span>")
 				H.silent = max(H.silent, 3)
+		if (nitryl_pp < (lung_melty_min-40)/2) //If your lungs can filter out all this acid, then you take no damage. Avoids healing from this lung damage.
 		else
-			H.adjustFireLoss(nitryl_pp/4)
+			H.adjustFireLoss((nitryl_pp-(lung_melty_min-40)/2)/4) //The higher your Lung's resistance value is, the less damage you take from this shitty gas.
 		gas_breathed = breath_gases[/datum/gas/nitryl][MOLES]
 		if (gas_breathed > gas_stimulation_min)
 			H.reagents.add_reagent("no2",1)
@@ -412,3 +414,23 @@
 	cold_level_1_threshold = 200
 	cold_level_2_threshold = 140
 	cold_level_3_threshold = 100
+
+/obj/item/organ/lungs/cybernetic/military
+	name = "military cybernetic lungs"
+	desc = "Military-grade cybernetic lungs. Features the ability to filter out low levels of all harmful gases, as well as tolerating more extreme temperature ranges."
+	icon_state = "lungs-c-m"
+
+	cold_level_1_threshold = 160
+	cold_level_2_threshold = 120
+	cold_level_3_threshold = 80
+
+	heat_level_1_threshold = 400
+	heat_level_2_threshold = 440
+	heat_level_3_threshold = 1000 //Not changed, but looks prettier that way
+
+	SA_para_min = 10 //Stuns aren't fun, right?
+	SA_sleep_min = 20 //Wake up, Mr. Freeman
+	BZ_trip_balls_min = 20 //Down with hallucinogens!
+	safe_toxins_max = 30
+	safe_co2_max = 30
+	lung_melty_min = 80 //These are military grade lungs. Not some chump lungs that let themselves get melted by some half-baked acid gas.
