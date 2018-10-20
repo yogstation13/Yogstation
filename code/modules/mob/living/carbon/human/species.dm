@@ -286,6 +286,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/datum/disease/A in C.diseases)
 			A.cure(FALSE)
 
+	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
+
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
 
@@ -296,6 +298,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		C.Digitigrade_Leg_Swap(TRUE)
 	for(var/X in inherent_traits)
 		C.remove_trait(X, SPECIES_TRAIT)
+	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
 
@@ -1072,7 +1075,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			. -= 1
 		if(H.has_trait(TRAIT_GOTTAGOREALLYFAST))
 			. -= 2
-		. += speedmod
 		. += H.physiology.speed_mod
 
 	if(H.has_trait(TRAIT_IGNORESLOWDOWN))
