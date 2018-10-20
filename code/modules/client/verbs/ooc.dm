@@ -73,7 +73,7 @@
 				else
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 			else if(is_mentor()) // YOGS START - Mentor and Donor colors
-				to_chat(C, "<font color='[YOGS_MENTOR_OOC_COLOUR]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
+				to_chat(C, "<font color='[GLOB.mentor_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
 			else if(!(key in C.prefs.ignoring))
 				if(is_donator(src))
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>\[Donator\] OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
@@ -101,6 +101,7 @@
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
 GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
