@@ -1316,14 +1316,9 @@
 					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-<<<<<<< HEAD
-				create_message("note", ckey(M.ckey), usr.ckey, "Banned for [mins] minutes - [reason]", null, null, 0, 0, null, 0) // yogs - removed note severity
-				ban_unban_log_save("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This will be removed in [mins] minutes.")
-=======
 				var/ban_duration = "[DisplayTimeText(mins MINUTES)]" //convert from minutes into deciseconds to display the amount of time in days, hours, minutes.
-				create_message("note", ckey(M.ckey), usr.ckey, "Banned for [ban_duration] - [reason]", null, null, 0, 0, null, 0, 0)
+				create_message("note", ckey(M.ckey), usr.ckey, "Banned for [ban_duration] - [reason]", null, null, 0, 0, null, 0) // yogs - removed note severity
 				ban_unban_log_save("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This will be removed in [ban_duration].")
->>>>>>> d470262007... Ban Message Duration (#40986)
 				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.key].\nReason: [reason]</BIG></span>")
 				to_chat(M, "<span class='danger'>This is a temporary ban, it will be removed in [ban_duration]. The round ID is [GLOB.round_id].</span>")
 				var/bran = CONFIG_GET(string/banappeals)
