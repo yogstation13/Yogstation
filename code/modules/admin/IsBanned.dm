@@ -109,11 +109,7 @@
 			else
 				expires = "\nThis is a permanent ban."
 
-<<<<<<< HEAD
-			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id], [expires]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums." //yogs
-=======
-			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id]. [expires]"
->>>>>>> d470262007... Ban Message Duration (#40986)
+			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id]. [expires]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums." //yogs
 
 			. = list("reason"="[bantype]", "desc"="[desc]")
 
