@@ -1,419 +1,284 @@
-#define EXPLOSION_THROW_SPEED 4
+//The "BDPtarget" temp visual is created by anything that "launches" a supplypod.  It makes two things: a falling droppod animation, and the droppod itself.
+//------------------------------------SUPPLY POD-------------------------------------//
+/obj/structure/closet/supplypod
+	name = "supply pod" //Names and descriptions are normally created with the setStyle() proc during initialization, but we have these default values here as a failsafe
+	desc = "A Nanotrasen supply drop pod."
+	icon = 'icons/obj/supplypods.dmi'
+	icon_state = "supplypod"
+	pixel_x = -16 //2x2 sprite
+	pixel_y = -5
+	layer = TABLE_LAYER //So that the crate inside doesn't appear underneath
+	allow_objects = TRUE
+	allow_dense = TRUE
+	delivery_icon = null
+	can_weld_shut = FALSE
+	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	anchored = TRUE //So it cant slide around after landing
+	anchorable = FALSE
+	//*****NOTE*****: Many of these comments are similarly described in centcom_podlauncher.dm. If you change them here, please consider doing so in the centcom podlauncher code as well!
+	var/adminNamed = FALSE //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
+	var/bluespace = FALSE //If true, the pod deletes (in a shower of sparks) after landing
+	var/landingDelay = 30 //How long the pod takes to land after launching
+	var/openingDelay = 30 //How long the pod takes to open after landing
+	var/departureDelay = 30 //How long the pod takes to leave after opening (if bluespace=true, it deletes. if reversing=true, it flies back to centcom)
+	var/damage = 0 //Damage that occurs to any mob under the pod when it lands.
+	var/effectStun = FALSE //If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
+	var/effectLimb = FALSE //If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
+	var/effectOrgans = FALSE //If true, yeets out every limb and organ from anyone caught under the pod when it lands
+	var/effectGib = FALSE //If true, anyone under the pod will be gibbed when it lands
+	var/effectStealth = FALSE //If true, a target icon isnt displayed on the turf where the pod will land
+	var/effectQuiet = FALSE //The female sniper. If true, the pod makes no noise (including related explosions, opening sounds, etc)
+	var/effectMissile = FALSE //If true, the pod deletes the second it lands. If you give it an explosion, it will act like a missile exploding as it hits the ground
+	var/effectCircle = FALSE //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
+	var/style = STYLE_STANDARD //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the POD_STYLES list in cargo.dm defines to get the proper icon/name/desc for the pod. 
+	var/reversing = FALSE //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
+	var/landingSound //Admin sound to play when the pod lands
+	var/openingSound //Admin sound to play when the pod opens
+	var/leavingSound //Admin sound to play when the pod leaves
+	var/soundVolume = 50 //Volume to play sounds at. Ignores the cap
+	var/bay //Used specifically for the centcom_podlauncher datum. Holds the current bay the user is launching objects from. Bays are specific rooms on the centcom map.
+	var/list/explosionSize = list(0,0,2,3)
 
-GLOBAL_LIST_EMPTY(explosions)
-//Against my better judgement, I will return the explosion datum
-//If I see any GC errors for it I will find you
-//and I will gib you
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE)
-	return new /datum/explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke)
+/obj/structure/closet/supplypod/bluespacepod
+	style = STYLE_BLUESPACE
+	bluespace = TRUE
+	explosionSize = list(0,0,1,2)
+	landingDelay = 15 //Slightly quicker than the supplypod
 
-//This datum creates 3 async tasks
-//1 GatherSpiralTurfsProc runs spiral_range_turfs(tick_checked = TRUE) to populate the affected_turfs list
-//2 CaculateExplosionBlock adds the blockings to the cached_exp_block list
-//3 The main thread explodes the prepared turfs
+/obj/structure/closet/supplypod/centcompod
+	style = STYLE_CENTCOM
+	bluespace = TRUE
+	explosionSize = list(0,0,0,0)
+	landingDelay = 5 //Very speedy!
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
-/datum/explosion
-	var/explosion_id
-	var/atom/explosion_source
-	var/started_at
-	var/running = TRUE
-	var/stopped = 0		//This is the number of threads stopped !DOESN'T COUNT THREAD 2!
-	var/static/id_counter = 0
+/obj/structure/closet/supplypod/Initialize()
+	..()
+	setStyle(style, TRUE) //Upon initialization, give the supplypod an iconstate, name, and description based on the "style" variable. This system is important for the centcom_podlauncher to function correctly
 
-#define EX_PREPROCESS_EXIT_CHECK \
-	if(!running) {\
-		stopped = 2;\
-		qdel(src);\
-		return;\
-	}
+/obj/structure/closet/supplypod/update_icon()
+	cut_overlays()
+	if (style != STYLE_INVISIBLE) //If we're invisible, we dont bother adding any overlays
+		if (opened)
+			add_overlay("[icon_state]_open")
+		else
+			add_overlay("[icon_state]_door")
 
-#define EX_PREPROCESS_CHECK_TICK \
-	if(TICK_CHECK) {\
-		stoplag();\
-		EX_PREPROCESS_EXIT_CHECK\
-	}
-
-/datum/explosion/New(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke)
-	set waitfor = FALSE
-
-	var/id = ++id_counter
-	explosion_id = id
-	explosion_source = epicenter
-
-	epicenter = get_turf(epicenter)
-	if(!epicenter)
+/obj/structure/closet/supplypod/proc/setStyle(chosenStyle, var/duringInit = FALSE) //Used to give the sprite an icon state, name, and description
+	if (!duringInit && style == chosenStyle) //Check if the input style is already the same as the pod's style. This happens in centcom_podlauncher, and as such we set the style to STYLE_CENTCOM.
+		setStyle(STYLE_CENTCOM) //We make sure to not check this during initialize() so the standard supplypod works correctly.
 		return
+	style = chosenStyle
+	icon_state = POD_STYLES[chosenStyle][POD_ICON_STATE] //POD_STYLES is a 2D array we treat as a dictionary. The style represents the verticle index, with the icon state, name, and desc being stored in the horizontal indexes of the 2D array.
+	if (!adminNamed) //We dont want to name it ourselves if it has been specifically named by an admin using the centcom_podlauncher datum
+		name = POD_STYLES[chosenStyle][POD_NAME]
+		desc = POD_STYLES[chosenStyle][POD_DESC]
+	update_icon()
 
-	GLOB.explosions += src
-	if(isnull(flame_range))
-		flame_range = light_impact_range
-	if(isnull(flash_range))
-		flash_range = devastation_range
+/obj/structure/closet/supplypod/tool_interact(obj/item/W, mob/user)
+	if (bluespace) //We dont want to worry about interacting with bluespace pods, as they are due to delete themselves soon anyways.
+		return FALSE 
+	else
+		..()
 
-	// Archive the uncapped explosion for the doppler array
-	var/orig_dev_range = devastation_range
-	var/orig_heavy_range = heavy_impact_range
-	var/orig_light_range = light_impact_range
+/obj/structure/closet/supplypod/ex_act() //Explosions dont do SHIT TO US! This is because supplypods create explosions when they land.
+	return
 
-	var/orig_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range)
+/obj/structure/closet/supplypod/contents_explosion() //Supplypods also protect their contents from the harmful effects of fucking exploding.
+	return
 
-	//Zlevel specific bomb cap multiplier
-	var/cap_multiplier = SSmapping.level_trait(epicenter.z, ZTRAIT_BOMBCAP_MULTIPLIER)
-	if (isnull(cap_multiplier))
-		cap_multiplier = 1
+/obj/structure/closet/supplypod/prevent_content_explosion() //Useful for preventing epicenter explosions from damaging contents
+	return TRUE
 
-	if(!ignorecap)
-		devastation_range = min(GLOB.MAX_EX_DEVESTATION_RANGE * cap_multiplier, devastation_range)
-		heavy_impact_range = min(GLOB.MAX_EX_HEAVY_RANGE * cap_multiplier, heavy_impact_range)
-		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
-		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
-		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
+/obj/structure/closet/supplypod/toggle(mob/living/user) //Supplypods shouldn't be able to be manually opened under any circumstances, as the open() proc generates supply order datums
+	return
 
-	//DO NOT REMOVE THIS STOPLAG, IT BREAKS THINGS
-	//not sleeping causes us to ex_act() the thing that triggered the explosion
-	//doing that might cause it to trigger another explosion
-	//this is bad
-	//I would make this not ex_act the thing that triggered the explosion,
-	//but everything that explodes gives us their loc or a get_turf()
-	//and somethings expect us to ex_act them so they can qdel()
-	stoplag() //tldr, let the calling proc call qdel(src) before we explode
+/obj/structure/closet/supplypod/proc/preOpen() //Called before the open() proc. Handles anything that occurs right as the pod lands.
+	var/turf/T = get_turf(src)
+	var/list/B = explosionSize //Mostly because B is more readable than explosionSize :p
+	if (landingSound)
+		playsound(get_turf(src), landingSound, soundVolume, 0, 0)
+	for (var/mob/living/M in T)
+		if (effectLimb && iscarbon(M)) //If effectLimb is true (which means we pop limbs off when we hit people):
+			var/mob/living/carbon/CM = M
+			for (var/obj/item/bodypart/bodypart in CM.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
+				if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)//we dont want to kill him, just teach em a lesson!
+					if (bodypart.dismemberable)
+						bodypart.dismember() //Using the power of flextape i've sawed this man's limb in half!
+						break
+		if (effectOrgans && iscarbon(M)) //effectOrgans means remove every organ in our mob
+			var/mob/living/carbon/CM = M
+			for(var/X in CM.internal_organs)
+				var/destination = get_edge_target_turf(T, pick(GLOB.alldirs)) //Pick a random direction to toss them in
+				var/obj/item/organ/O = X
+				O.Remove(CM) //Note that this isn't the same proc as for lists
+				O.forceMove(T) //Move the organ outta the body
+				O.throw_at(destination, 2, 3) //Thow the organ at a random tile 3 spots away
+				sleep(1)
+			for (var/obj/item/bodypart/bodypart in CM.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
+				var/destination = get_edge_target_turf(T, pick(GLOB.alldirs))
+				if (bodypart.dismemberable)
+					bodypart.dismember() //Using the power of flextape i've sawed this man's bodypart in half!	
+					bodypart.throw_at(destination, 2, 3)
+					sleep(1)		
 
-	EX_PREPROCESS_EXIT_CHECK
+		if (effectGib) //effectGib is on, that means whatever's underneath us better be fucking oof'd on
+			M.adjustBruteLoss(5000) //THATS A LOT OF DAMAGE (called just in case gib() doesnt work on em)
+			M.gib() //After adjusting the fuck outta that brute loss we finish the job with some satisfying gibs
+		M.adjustBruteLoss(damage)
 
-	started_at = REALTIMEOFDAY
+	if (B[1] || B[2] || B[3] || B[4]) //If the explosion list isn't all zeroes, call an explosion
+		explosion(get_turf(src), B[1], B[2], B[3], flame_range = B[4], silent = effectQuiet, ignorecap = istype(src, /obj/structure/closet/supplypod/centcompod)) //less advanced equipment than bluespace pod, so larger explosion when landing
+	else if (!effectQuiet) //If our explosion list IS all zeroes, we still make a nice explosion sound (unless the effectQuiet var is true)
+		playsound(src, "explosion", landingSound ? 15 : 80, 1)
+	if (effectMissile) //If we are acting like a missile, then right after we land and finish fucking shit up w explosions, we should delete
+		opened = TRUE //We set opened to TRUE to avoid spending time trying to open (due to being deleted) during the Destroy() proc
+		qdel(src)
+	if (style == STYLE_GONDOLA) //Checks if we are supposed to be a gondola pod. If so, create a gondolapod mob, and move this pod to nullspace. I'd like to give a shout out, to my man oranges
+		var/mob/living/simple_animal/pet/gondola/gondolapod/benis = new(get_turf(src), src)
+		benis.contents |= contents //Move the contents of this supplypod into the gondolapod mob.
+		moveToNullspace()
+		addtimer(CALLBACK(src, .proc/open, benis), openingDelay) //After the openingDelay passes, we use the open proc from this supplyprod while referencing the contents of the "holder", in this case the gondolapod mob
+	else
+		addtimer(CALLBACK(src, .proc/open, src), openingDelay) //After the openingDelay passes, we use the open proc from this supplypod, while referencing this supplypod's contents
 
-	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
+/obj/structure/closet/supplypod/open(atom/movable/holder, var/broken = FALSE, var/forced = FALSE) //The holder var represents an atom whose contents we will be working with
+	var/turf/T = get_turf(holder) //Get the turf of whoever's contents we're talking about
+	var/mob/M
+	if (istype(holder, /mob)) //Allows mobs to assume the role of the holder, meaning we look at the mob's contents rather than the supplypod's contents. Typically by this point the supplypod's contents have already been moved over to the mob's contents
+		M = holder
+		if (M.key && !forced && !broken) //If we are player controlled, then we shouldnt open unless the opening is manual, or if it is due to being destroyed (represented by the "broken" parameter)
+			return
+	opened = TRUE //This is to ensure we don't open something that has already been opened
+	if (openingSound)
+		playsound(get_turf(holder), openingSound, soundVolume, 0, 0)
+	INVOKE_ASYNC(holder, .proc/setOpened) //Use the INVOKE_ASYNC proc to call setOpened() on whatever the holder may be, without giving the atom/movable base class a setOpened() proc definition
+	for (var/atom/movable/O in holder.contents) //Go through the contents of the holder
+		O.forceMove(T) //move everything from the contents of the holder to the turf of the holder
+	if (!effectQuiet) //If we aren't being quiet, play an open sound
+		playsound(get_turf(holder), open_sound, 15, 1, -3)
+	if (broken) //If the pod is opening because it's been destroyed, we end here
+		return
+	addtimer(CALLBACK(src, .proc/depart, holder), departureDelay) //Finish up the pod's duties after a certain amount of time
 
-	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
-		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+/obj/structure/closet/supplypod/proc/depart(atom/movable/holder)
+	if (leavingSound)
+		playsound(get_turf(holder), leavingSound, soundVolume, 0, 0)
+	if (reversing) //If we're reversing, we call the close proc. This sends the pod back up to centcom
+		close(holder)
+	else if (bluespace) //If we're a bluespace pod, then delete ourselves (along with our holder, if a seperate holder exists) 
+		if (style != STYLE_INVISIBLE) 
+			do_sparks(5, TRUE, holder) //Create some sparks right before closing
+		qdel(src) //Delete ourselves and the holder 
+		if (holder != src)
+			qdel(holder)
 
-	var/x0 = epicenter.x
-	var/y0 = epicenter.y
-	var/z0 = epicenter.z
-	var/area/areatype = get_area(epicenter)
-	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = areatype.type, "time" = time_stamp("YYYY-MM-DD hh:mm:ss", 1)))
+/obj/structure/closet/supplypod/centcompod/close(atom/movable/holder) //Closes the supplypod and sends it back to centcom. Should only ever be called if the "reversing" variable is true
+	opened = FALSE
+	INVOKE_ASYNC(holder, .proc/setClosed) //Use the INVOKE_ASYNC proc to call setClosed() on whatever the holder may be, without giving the atom/movable base class a setClosed() proc definition
+	for (var/atom/movable/O in get_turf(holder))
+		if (ismob(O) && !isliving(O)) //We dont want to take ghosts with us
+			continue
+		O.forceMove(holder) //Put objects inside before we close
+	var/obj/effect/temp_visual/risingPod = new /obj/effect/temp_visual/DPfall(get_turf(holder), src) //Make a nice animation of flying back up
+	risingPod.pixel_z = 0 //The initial value of risingPod's pixel_z is 200 because it normally comes down from a high spot
+	holder.forceMove(bay) //Move the pod back to centcom, where it belongs
+	animate(risingPod, pixel_z = 200, time = 10, easing = LINEAR_EASING) //Animate our rising pod
+	reversing = FALSE //Now that we're done reversing, we set this to false (otherwise we would get stuck in an infinite loop of calling the close proc at the bottom of open() )
+	open(holder, forced = TRUE)
+	return
 
-	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
-	// Stereo users will also hear the direction of the explosion!
+/obj/structure/closet/supplypod/proc/setOpened() //Proc exists here, as well as in any atom that can assume the role of a "holder" of a supplypod. Check the open() proc for more details
+	update_icon()
 
-	// Calculate far explosion sound range. Only allow the sound effect for heavy/devastating explosions.
-	// 3/7/14 will calculate to 80 + 35
+/obj/structure/closet/supplypod/proc/setClosed() //Ditto
+	update_icon()
 
-	var/far_dist = 0
-	far_dist += heavy_impact_range * 5
-	far_dist += devastation_range * 20
-
-	if(!silent)
-		var/frequency = get_rand_frequency()
-		var/sound/explosion_sound = sound(get_sfx("explosion"))
-		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
-
-		for(var/mob/M in GLOB.player_list)
-			// Double check for client
-			var/turf/M_turf = get_turf(M)
-			if(M_turf && M_turf.z == z0)
-				var/dist = get_dist(M_turf, epicenter)
-				var/baseshakeamount
-				if(orig_max_distance - dist > 0)
-					baseshakeamount = sqrt((orig_max_distance - dist)*0.1)
-				// If inside the blast radius + world.view - 2
-				if(dist <= round(max_range + world.view - 2, 1))
-					M.playsound_local(epicenter, null, 100, 1, frequency, falloff = 5, S = explosion_sound)
-					if(baseshakeamount > 0)
-						shake_camera(M, 25, CLAMP(baseshakeamount, 0, 10))
-				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
-				else if(dist <= far_dist)
-					var/far_volume = CLAMP(far_dist, 30, 50) // Volume is based on explosion size and dist
-					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
-					M.playsound_local(epicenter, null, far_volume, 1, frequency, falloff = 5, S = far_explosion_sound)
-					if(baseshakeamount > 0)
-						shake_camera(M, 10, CLAMP(baseshakeamount*0.25, 0, 2.5))
-			EX_PREPROCESS_CHECK_TICK
-
-	//postpone processing for a bit
-	var/postponeCycles = max(round(devastation_range/8),1)
-	SSlighting.postpone(postponeCycles)
-	SSmachines.postpone(postponeCycles)
-
-	if(heavy_impact_range > 1)
-		var/datum/effect_system/explosion/E
-		if(smoke)
-			E = new /datum/effect_system/explosion/smoke
-		else
-			E = new
-		E.set_up(epicenter)
-		E.start()
-
-	EX_PREPROCESS_CHECK_TICK
-
-	//flash mobs
-	if(flash_range)
-		for(var/mob/living/L in viewers(flash_range, epicenter))
-			L.flash_act()
-
-	EX_PREPROCESS_CHECK_TICK
-
-	var/list/exploded_this_tick = list()	//open turfs that need to be blocked off while we sleep
-	var/list/affected_turfs = GatherSpiralTurfs(max_range, epicenter)
-
-	var/reactionary = CONFIG_GET(flag/reactionary_explosions)
-	var/list/cached_exp_block
-
-	if(reactionary)
-		cached_exp_block = CaculateExplosionBlock(affected_turfs)
-
-	//lists are guaranteed to contain at least 1 turf at this point
-
-	var/iteration = 0
-	var/affTurfLen = affected_turfs.len
-	var/expBlockLen = cached_exp_block.len
-	for(var/TI in affected_turfs)
-		var/turf/T = TI
-		++iteration
-		var/init_dist = cheap_hypotenuse(T.x, T.y, x0, y0)
-		var/dist = init_dist
-
-		if(reactionary)
-			var/turf/Trajectory = T
-			while(Trajectory != epicenter)
-				Trajectory = get_step_towards(Trajectory, epicenter)
-				dist += cached_exp_block[Trajectory]
-
-		var/flame_dist = dist < flame_range
-		var/throw_dist = dist
-
-		if(dist < devastation_range)
-			dist = EXPLODE_DEVASTATE
-		else if(dist < heavy_impact_range)
-			dist = EXPLODE_HEAVY
-		else if(dist < light_impact_range)
-			dist = EXPLODE_LIGHT
-		else
-			dist = EXPLODE_NONE
-
-		//------- EX_ACT AND TURF FIRES -------
-
-		if(T == epicenter) // Ensures explosives detonating from bags trigger other explosives in that bag
-			var/list/items = list()
-			for(var/I in T)
-				var/atom/A = I
-				if (!A.prevent_content_explosion()) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
-			for(var/O in items)
-				var/atom/A = O
-				if(!QDELETED(A))
-					A.ex_act(dist)
-
-		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
-			new /obj/effect/hotspot(T) //Mostly for ambience!
-
-		if(dist > EXPLODE_NONE)
-			T.explosion_level = max(T.explosion_level, dist)	//let the bigger one have it
-			T.explosion_id = id
-			T.ex_act(dist)
-			exploded_this_tick += T
-
-		//--- THROW ITEMS AROUND ---
-
-		var/throw_dir = get_dir(epicenter,T)
-		for(var/obj/item/I in T)
-			if(!I.anchored)
-				var/throw_range = rand(throw_dist, max_range)
-				var/turf/throw_at = get_ranged_target_turf(I, throw_dir, throw_range)
-				I.throw_speed = EXPLOSION_THROW_SPEED //Temporarily change their throw_speed for embedding purposes (Reset when it finishes throwing, regardless of hitting anything)
-				I.throw_at(throw_at, throw_range, EXPLOSION_THROW_SPEED)
-
-		//wait for the lists to repop
-		var/break_condition
-		if(reactionary)
-			//If we've caught up to the density checker thread and there are no more turfs to process
-			break_condition = iteration == expBlockLen && iteration < affTurfLen
-		else
-			//If we've caught up to the turf gathering thread and it's still running
-			break_condition = iteration == affTurfLen && !stopped
-
-		if(break_condition || TICK_CHECK)
-			stoplag()
-
-			if(!running)
-				break
-
-			//update the trackers
-			affTurfLen = affected_turfs.len
-			expBlockLen = cached_exp_block.len
-
-			if(break_condition)
-				if(reactionary)
-					//until there are more block checked turfs than what we are currently at
-					//or the explosion has stopped
-					UNTIL(iteration < affTurfLen || !running)
-				else
-					//until there are more gathered turfs than what we are currently at
-					//or there are no more turfs to gather/the explosion has stopped
-					UNTIL(iteration < expBlockLen || stopped)
-
-				if(!running)
-					break
-
-				//update the trackers
-				affTurfLen = affected_turfs.len
-				expBlockLen = cached_exp_block.len
-
-			var/circumference = (PI * (init_dist + 4) * 2) //+4 to radius to prevent shit gaps
-			if(exploded_this_tick.len > circumference)	//only do this every revolution
-				for(var/Unexplode in exploded_this_tick)
-					var/turf/UnexplodeT = Unexplode
-					UnexplodeT.explosion_level = 0
-				exploded_this_tick.Cut()
-
-	//unfuck the shit
-	for(var/Unexplode in exploded_this_tick)
-		var/turf/UnexplodeT = Unexplode
-		UnexplodeT.explosion_level = 0
-	exploded_this_tick.Cut()
-
-	var/took = (REALTIMEOFDAY - started_at) / 10
-
-	//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes to explosion code using this please so we can compare
-	if(GLOB.Debug2)
-		log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
-
-	if(running)	//if we aren't in a hurry
-		//Machines which report explosions.
-		for(var/array in GLOB.doppler_arrays)
-			var/obj/machinery/doppler_array/A = array
-			A.sense_explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, took,orig_dev_range, orig_heavy_range, orig_light_range)
-
-	++stopped
-	qdel(src)
-
-#undef EX_PREPROCESS_EXIT_CHECK
-#undef EX_PREPROCESS_CHECK_TICK
-
-//asyncly populate the affected_turfs list
-/datum/explosion/proc/GatherSpiralTurfs(range, turf/epicenter)
-	set waitfor = FALSE
-	. = list()
-	spiral_range_turfs(range, epicenter, outlist = ., tick_checked = TRUE)
-	++stopped
-
-/datum/explosion/proc/CaculateExplosionBlock(list/affected_turfs)
-	set waitfor = FALSE
-
-	. = list()
-	var/processed = 0
-	while(running)
-		var/I
-		for(I in (processed + 1) to affected_turfs.len) // we cache the explosion block rating of every turf in the explosion area
-			var/turf/T = affected_turfs[I]
-			var/current_exp_block = T.density ? T.explosion_block : 0
-
-			for(var/obj/O in T)
-				var/the_block = O.explosion_block
-				current_exp_block += the_block == EXPLOSION_BLOCK_PROC ? O.GetExplosionBlock() : the_block
-
-			.[T] = current_exp_block
-
-			if(TICK_CHECK)
-				break
-
-		processed = I
-		stoplag()
-
-/datum/explosion/Destroy()
-	running = FALSE
-	if(stopped < 2)	//wait for main thread and spiral_range thread
-		return QDEL_HINT_IWILLGC
-	GLOB.explosions -= src
-	explosion_source = null
+/obj/structure/closet/supplypod/Destroy()
+	if (!opened) //If we havent opened yet, we're opening because we've been destroyed. Lets dump our contents by opening up
+		open(src, broken = TRUE)
 	return ..()
 
-/client/proc/check_bomb_impacts()
-	set name = "Check Bomb Impact"
-	set category = "Debug"
+//------------------------------------FALLING SUPPLY POD-------------------------------------//
+/obj/effect/temp_visual/DPfall //Falling pod
+	name = ""
+	icon = 'icons/obj/supplypods.dmi'
+	pixel_x = -16
+	pixel_y = -5
+	pixel_z = 200
+	desc = "Get out of the way!"
+	layer = FLY_LAYER//that wasnt flying, that was falling with style!
+	randomdir = FALSE
+	icon_state = ""
 
-	var/newmode = alert("Use reactionary explosions?","Check Bomb Impact", "Yes", "No")
-	var/turf/epicenter = get_turf(mob)
-	if(!epicenter)
-		return
+/obj/effect/temp_visual/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
+	if (pod.style != STYLE_INVISIBLE) //Check to ensure the pod isn't invisible
+		icon_state = "[pod.icon_state]_falling"
+		name = pod.name
+	. = ..()
 
-	var/dev = 0
-	var/heavy = 0
-	var/light = 0
-	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = input("Bomb Size?") in choices
-	switch(choice)
-		if(null)
-			return 0
-		if("Small Bomb")
-			dev = 1
-			heavy = 2
-			light = 3
-		if("Medium Bomb")
-			dev = 2
-			heavy = 3
-			light = 4
-		if("Big Bomb")
-			dev = 3
-			heavy = 5
-			light = 7
-		if("Custom Bomb")
-			dev = input("Devastation range (Tiles):") as num
-			heavy = input("Heavy impact range (Tiles):") as num
-			light = input("Light impact range (Tiles):") as num
+//------------------------------------TEMPORARY_VISUAL-------------------------------------//
+/obj/effect/DPtarget //This is the object that forceMoves the supplypod to it's location
+	name = "Landing Zone Indicator"
+	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
+	icon = 'icons/mob/actions/actions_items.dmi'
+	icon_state = "sniper_zoom"
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	light_range = 2
+	var/obj/effect/temp_visual/fallingPod //Temporary "falling pod" that we animate
+	var/obj/structure/closet/supplypod/pod //The supplyPod that will be landing ontop of this target
 
-	var/max_range = max(dev, heavy, light)
-	var/x0 = epicenter.x
-	var/y0 = epicenter.y
-	var/list/wipe_colours = list()
-	for(var/turf/T in spiral_range_turfs(max_range, epicenter))
-		wipe_colours += T
-		var/dist = cheap_hypotenuse(T.x, T.y, x0, y0)
+/obj/effect/ex_act()
+	return
 
-		if(newmode == "Yes")
-			var/turf/TT = T
-			while(TT != epicenter)
-				TT = get_step_towards(TT,epicenter)
-				if(TT.density)
-					dist += TT.explosion_block
+/obj/effect/DPtarget/Initialize(mapload, podParam, var/single_order = null)
+	if (ispath(podParam)) //We can pass either a path for a pod (as expressconsoles do), or a reference to an instantiated pod (as the centcom_podlauncher does)
+		podParam = new podParam() //If its just a path, instantiate it
+	pod = podParam
+	if (single_order)
+		if (istype(single_order, /datum/supply_order))
+			var/datum/supply_order/SO = single_order
+			SO.generate(pod)
+		else if (istype(single_order, /atom/movable))
+			var/atom/movable/O = single_order
+			O.forceMove(pod)
+	for (var/mob/living/M in pod) //If there are any mobs in the supplypod, we want to forceMove them into the target. This is so that they can see where they are about to land, AND so that they don't get sent to the nullspace error room (as the pod is currently in nullspace)
+		M.forceMove(src)
+	if(pod.effectStun) //If effectStun is true, stun any mobs caught on this target until the pod gets a chance to hit them
+		for (var/mob/living/M in get_turf(src))
+			M.Stun(pod.landingDelay+10, ignore_canstun = TRUE)//you aint goin nowhere, kid.
+	if (pod.effectStealth) //If effectStealth is true we want to be invisible
+		alpha = 255
+	addtimer(CALLBACK(src, .proc/beginLaunch, pod.effectCircle), pod.landingDelay)
 
-				for(var/obj/O in T)
-					var/the_block = O.explosion_block
-					dist += the_block == EXPLOSION_BLOCK_PROC ? O.GetExplosionBlock() : the_block
+/obj/effect/DPtarget/proc/beginLaunch(effectCircle) //Begin the animation for the pod falling. The effectCircle param determines whether the pod gets to come in from any descent angle
+	fallingPod = new /obj/effect/temp_visual/DPfall(drop_location(), pod)
+	var/matrix/M = matrix(fallingPod.transform) //Create a new matrix that we can rotate
+	var/angle = effectCircle ? rand(0,360) : rand(70,110) //The angle that we can come in from
+	fallingPod.pixel_x = cos(angle)*200 //Use some ADVANCED MATHEMATICS to set the animated pod's position to somewhere on the edge of a circle with the center being the target
+	fallingPod.pixel_z = sin(angle)*200
+	var/rotation = Get_Pixel_Angle(fallingPod.pixel_z, fallingPod.pixel_x) //CUSTOM HOMEBREWED proc that is just arctan with extra steps
+	M.Turn(rotation) //Turn our matrix accordingly
+	fallingPod.transform = M //Transform the animated pod according to the matrix
+	M = matrix(pod.transform) //Make another matrix based on the pod
+	M.Turn(rotation) //Turn the matrix
+	pod.transform = M //Turn the actual pod (Won't be visible until endLaunch() proc tho)
+	animate(fallingPod, pixel_z = 0, pixel_x = -16, time = 3, , easing = LINEAR_EASING) //Make the pod fall! At an angle!
+	addtimer(CALLBACK(src, .proc/endLaunch), 3, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation
 
-		if(dist < dev)
-			T.color = "red"
-			T.maptext = "Dev"
-		else if (dist < heavy)
-			T.color = "yellow"
-			T.maptext = "Heavy"
-		else if (dist < light)
-			T.color = "blue"
-			T.maptext = "Light"
-		else
-			continue
+/obj/effect/DPtarget/proc/endLaunch()
+	pod.forceMove(drop_location()) //The fallingPod animation is over, now's a good time to forceMove the actual pod into position
+	for (var/mob/living/M in src) //Remember earlier (initialization) when we moved mobs into the DPTarget so they wouldnt get lost in nullspace? Time to get them out
+		M.forceMove(pod)
+	pod.preOpen() //Begin supplypod open procedures. Here effects like explosions, damage, and other dangerous (and potentially admin-caused, if the centcom_podlauncher datum was used) memes will take place
+	QDEL_NULL(fallingPod) //The fallingPod's (the animated effect, not the actual pod) purpose is complete. It can rest easy now
+	qdel(src) //ditto
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 100)
-
-/proc/wipe_color_and_text(list/atom/wiping)
-	for(var/i in wiping)
-		var/atom/A = i
-		A.color = null
-		A.maptext = ""
-
-/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE)
-	if(!power)
-		return
-	var/range = 0
-	range = round((2 * power)**GLOB.DYN_EX_SCALE)
-	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke)
-
-// Using default dyn_ex scale:
-// 100 explosion power is a (5, 10, 20) explosion.
-// 75 explosion power is a (4, 8, 17) explosion.
-// 50 explosion power is a (3, 7, 14) explosion.
-// 25 explosion power is a (2, 5, 10) explosion.
-// 10 explosion power is a (1, 3, 6) explosion.
-// 5 explosion power is a (0, 1, 3) explosion.
-// 1 explosion power is a (0, 0, 1) explosion.
+//------------------------------------UPGRADES-------------------------------------//
+/obj/item/disk/cargo/bluespace_pod //Disk that can be inserted into the Express Console to allow for Advanced Bluespace Pods
+	name = "Bluespace Drop Pod Upgrade"
+	desc = "This disk provides a firmware update to the Express Supply Console, granting the use of Nanotrasen's Bluespace Drop Pods to the supply department."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cargodisk"
+	item_state = "card-id"
+	w_class = WEIGHT_CLASS_SMALL
