@@ -3800,7 +3800,7 @@
 "air" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "ais" = (
 /obj/structure/filingcabinet,
 /obj/structure/extinguisher_cabinet{
@@ -6866,7 +6866,7 @@
 	req_access_txt = "32"
 	},
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "apf" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
@@ -7170,7 +7170,7 @@
 /area/ai_monitored/turret_protected/ai)
 "apU" = (
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "apV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -7589,7 +7589,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "aqW" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
@@ -7599,12 +7599,12 @@
 	},
 /obj/structure/chair,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "aqY" = (
 /obj/structure/table/wood,
 /obj/item/pen,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "aqZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -7913,18 +7913,18 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "arS" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "arT" = (
 /turf/open/floor/plasteel,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "arU" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "arV" = (
 /obj/structure/filingcabinet/employment,
 /obj/machinery/firealarm{
@@ -8089,7 +8089,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "ask" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
@@ -8100,7 +8100,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "asm" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -8516,7 +8516,7 @@
 /obj/structure/table/wood,
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "att" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -8535,7 +8535,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/plasteel,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "atv" = (
 /obj/structure/table,
 /obj/item/shard,
@@ -19858,7 +19858,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUp" = (
 /obj/structure/table,
 /obj/item/clothing/head/soft/grey{
@@ -19899,7 +19899,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUz" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/airalarm{
@@ -19912,7 +19912,7 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUB" = (
 /obj/structure/bookcase/random/adult,
 /turf/open/floor/wood,
@@ -19986,25 +19986,25 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUO" = (
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUP" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUQ" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUR" = (
 /obj/structure/table/wood,
 /obj/item/pen/red,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUS" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -20038,7 +20038,7 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aUX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -20666,7 +20666,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aWj" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -20701,7 +20701,7 @@
 	pixel_x = -28
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aWn" = (
 /obj/structure/closet/wardrobe/black,
 /obj/item/clothing/shoes/jackboots,
@@ -20750,7 +20750,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aWu" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -21304,7 +21304,7 @@
 /area/hallway/secondary/entry)
 "aXL" = (
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aXM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21321,7 +21321,7 @@
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aXO" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -21378,7 +21378,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aXY" = (
 /obj/structure/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -21390,7 +21390,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aXZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -21401,7 +21401,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aYa" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -21449,7 +21449,7 @@
 "aYd" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aYe" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -21874,7 +21874,7 @@
 /obj/structure/table/wood,
 /obj/item/folder/blue,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "aZo" = (
 /obj/structure/sink{
 	dir = 4;
@@ -22432,7 +22432,7 @@
 	pixel_y = -29
 	},
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "baK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -47065,7 +47065,7 @@
 /area/maintenance/starboard/aft)
 "czK" = (
 /turf/closed/wall,
-/area/security/vacantoffice)
+/area/vacant_room)
 "czQ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment,
@@ -47706,7 +47706,7 @@
 /area/security/processing)
 "cCi" = (
 /turf/closed/wall,
-/area/security/vacantoffice/b)
+/area/vacant_room/office/office_b)
 "cCl" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -50833,7 +50833,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "eXV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -52905,7 +52905,7 @@
 /obj/structure/table/wood,
 /obj/item/camera,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "jDD" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -54391,7 +54391,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "mAB" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped{
 	dir = 1;
@@ -55818,7 +55818,7 @@
 /obj/structure/table/wood,
 /obj/item/camera_film,
 /turf/open/floor/wood,
-/area/security/vacantoffice)
+/area/vacant_room)
 "pUq" = (
 /obj/effect/landmark/secequipment,
 /obj/effect/turf_decal/bot,
@@ -56581,7 +56581,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet,
-/area/security/vacantoffice)
+/area/vacant_room)
 "rIR" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel,
