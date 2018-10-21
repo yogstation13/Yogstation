@@ -24,6 +24,7 @@
 		to_chat(X, mentor_msg)
 
 	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
+	webhook_send_mhelp(key_name_mentor(src), msg)
 	return
 
 /proc/get_mentor_counts()
