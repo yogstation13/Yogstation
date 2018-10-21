@@ -19,7 +19,7 @@
 	log_mentor("MENTORHELP: [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
-		if(X.is_mentor())
+		if(X.prefs.toggles & SOUND_ADMINHELP)
 			SEND_SOUND(X, sound('sound/items/bikehorn.ogg'))
 		to_chat(X, mentor_msg)
 
