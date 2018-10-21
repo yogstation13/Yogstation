@@ -1,5 +1,5 @@
 /client/proc/mentor_follow(mob/living/M)
-	if(!is_mentor() && !is_admin())
+	if(!is_mentor() && !is_admin(M))
 		return
 
 	if(isnull(M))
