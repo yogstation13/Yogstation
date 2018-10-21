@@ -1,6 +1,5 @@
 #define TIME_LEFT (SSshuttle.emergency.timeLeft())
 #define ENGINES_START_TIME 100
-#define EARLY_AUTHORIZATION_DELAY_TIME 100
 #define ENGINES_STARTED (SSshuttle.emergency.mode == SHUTTLE_IGNITING)
 #define IS_DOCKED (SSshuttle.emergency.mode == SHUTTLE_DOCKED || (ENGINES_STARTED))
 
@@ -11,7 +10,6 @@
 	icon_keyboard = "tech_key"
 	var/auth_need = 3
 	var/list/authorized = list()
-	var/last_early_auth = 0
 
 /obj/machinery/computer/emergency_shuttle/attackby(obj/item/I, mob/user,params)
 	if(istype(I, /obj/item/card/id))
@@ -78,8 +76,8 @@
 		if("repeal")
 			// yogs start - added spam protection
 			if(ID in authorized)// if you have already submitted your authorization:
-				if(last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
-					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired (see yogstation/code/shuttle/emergency.dm)
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
 					return
 				authorized -= ID
 				// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
@@ -91,8 +89,8 @@
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
 				// yogs start - added spam protection
-				if(last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME > world.time) // this action was performed less than EARLY_AUTHORIZATION_DELAY_TIME *tenths* of a second ago
-					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + EARLY_AUTHORIZATION_DELAY_TIME) - world.time)*0.1] seconds.</span>")
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired (see yogstation/code/shuttle/emergency.dm)
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
 					return
 				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
 				last_early_auth = world.time
