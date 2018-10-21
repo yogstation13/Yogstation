@@ -36,7 +36,7 @@
 			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
 		else
 			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
-			return
+		return
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
@@ -56,7 +56,7 @@
 	log_mentor("Mentor PM: [key_name(src)]->[key_name(C)]: [msg]")
 
 	msg = emoji_parse(msg)
-	C << 'sound/items/bikehorn.ogg'
+	SEND_SOUND(X, sound('sound/items/bikehorn.ogg'))
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(C.is_mentor())
 		if(is_mentor())//both are mentors
@@ -76,5 +76,5 @@
 	var/show_char_sender = !is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
-		if(X.key!=key && X.key!=C.key)	//check client/X is an Mentor and isn't the sender or recipient
+		if(X.key != key && X.key != C.key)	//check client/X is an Mentor and isn't the sender or recipient
 			to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>") //inform X
