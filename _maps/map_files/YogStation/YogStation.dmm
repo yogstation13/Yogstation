@@ -4917,7 +4917,9 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "akL" = (
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 3
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 9
@@ -14163,7 +14165,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -20399,7 +20403,9 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "aVC" = (
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 3
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -21912,7 +21918,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aZs" = (
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 10
@@ -40503,7 +40511,9 @@
 	},
 /area/hallway/primary/aft)
 "bUG" = (
-/obj/machinery/meter,
+/obj/machinery/meter{
+	target_layer = 3
+	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	icon_state = "manifold";
 	dir = 1
