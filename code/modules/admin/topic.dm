@@ -1052,14 +1052,8 @@
 							msg = job
 						else
 							msg += ", [job]"
-<<<<<<< HEAD
-					//create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0, severity)
 					create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0) //yogs - severity
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes.</span>")
-=======
-					create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0, severity)
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [fancy_jobban_duration].</span>")
->>>>>>> 1f5e451a7e... Jobbans now use DisplayTimeText (#41025)
 					to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.key] from: [msg].</BIG></span>")
 					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 					to_chat(M, "<span class='danger'>This jobban will be lifted in [fancy_jobban_duration].</span>")
