@@ -13,75 +13,84 @@
 	if(!query_memoedits.warn_execute())
 		qdel(query_memoedits)
 		return
+
 	if(query_memoedits.NextRow())
 		var/edit_log = query_memoedits.item[1]
 		usr << browse(edit_log,"window=mentormemoeditlist")
-		qdel(query_memoedits)
+	qdel(query_memoedits)
 
 /datum/admins/proc/makeMentor(ckey)
 	if(!usr.client)
 		return
+
 	if (!check_rights(0))
 		return
+
 	if(!ckey)
 		return
+
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
 			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>")
 			return
+
+		new /datum/mentors(ckey)
+
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM [format_table_name("mentor")] WHERE ckey = '[ckey]'")
+		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
 			qdel(query_get_mentor)
 			return
+		qdel(query_get_mentor)
+
 		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
 		if(!query_add_mentor.warn_execute())
-			qdel(query_get_mentor)
 			qdel(query_add_mentor)
 			return
+		qdel(query_add_mentor)
+
 		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new mentor [ckey]');")
 		if(!query_add_admin_log.warn_execute())
-			qdel(query_get_mentor)
-			qdel(query_add_mentor)
 			qdel(query_add_admin_log)
 			return
-		qdel(query_get_mentor)
-		qdel(query_add_mentor)
 		qdel(query_add_admin_log)
+
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
-		new /datum/mentors(ckey)
-		to_chat(usr, "<span class='adminnotice'>New mentor added.</span>")
+
+	message_admins("[key_name_admin(usr)] added new mentor: [ckey]")
+	log_admin("[key_name(usr)] added new mentor: [ckey]")
 
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)
 		return
+
 	if (!check_rights(0))
 		return
+
 	if(!ckey)
 		return
+
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
 			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>")
 			return
+
 		C.remove_mentor_verbs()
 		C.mentor_datum = null
 		GLOB.mentors -= C
+
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM [format_table_name("mentor")] WHERE ckey = '[ckey]'")
-		if(!query_remove_mentor.warn_execute())
-			qdel(query_remove_mentor)
-			return
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Removed mentor [ckey]');")
-		if(!query_add_admin_log.warn_execute())
-			qdel(query_remove_mentor)
-			qdel(query_add_admin_log)
-			return
+		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
+		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
-		qdel(query_add_admin_log)
+
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
-		to_chat(usr, "<span class='adminnotice'>Mentor removed.</span>")
+
+	message_admins("[key_name_admin(usr)] removed mentor: [ckey]")
+	log_admin("[key_name(usr)] removed mentor: [ckey]")

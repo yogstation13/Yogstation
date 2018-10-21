@@ -2,9 +2,11 @@
 /client/proc/cmd_mentor_pm_panel()
 	set category = "Mentor"
 	set name = "Mentor PM"
+
 	if(!is_mentor())
 		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>")
 		return
+
 	var/list/client/targets[0]
 	for(var/client/T)
 		targets["[T]"] = T
@@ -22,14 +24,19 @@
 	if(ismob(whom))
 		var/mob/M = whom
 		C = M.client
+
 	else if(istext(whom))
 		C = GLOB.directory[whom]
+
 	else if(istype(whom,/client))
 		C = whom
-	if(!C)
-		if(is_mentor())	to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
-		else		mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
-		return
+
+	if(QDELETED(C))
+		if(is_mentor())
+			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
+		else
+			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
+			return
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
@@ -38,19 +45,13 @@
 		if(!msg)
 			return
 
-		if(!C)
-			if(is_mentor())
-				to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
-			else
-				mentorhelp(msg)	//Mentor we are replying to has vanished, Mentorhelp instead (how the fuck does this work?let's hope it works,shrug)
-				return
-
 		// Neither party is a mentor, they shouldn't be PMing!
 		if (!C.is_mentor() && !is_mentor())
 			return
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
-	if(!msg)	return
+	if(!msg)
+		return
 
 	log_mentor("Mentor PM: [key_name(src)]->[key_name(C)]: [msg]")
 
