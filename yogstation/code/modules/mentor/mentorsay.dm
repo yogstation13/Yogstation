@@ -1,7 +1,6 @@
 /client/proc/cmd_mentor_say(msg as text)
 	set category = "Mentor"
 	set name = "Msay" //Gave this shit a shorter name so you only have to time out "msay" rather than "mentor say" to use it --NeoFite
-	set hidden = 1
 
 	if(!is_mentor())
 		return
@@ -20,3 +19,7 @@
 
 	to_chat(GLOB.admins | GLOB.mentors, msg)
 	webhook_send_msay(src, msg)
+
+/client/proc/get_mentor_say()
+	var/msg = input(src, null, "msay \"text\"") as text
+	cmd_mentor_say(msg)
