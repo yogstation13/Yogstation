@@ -20,7 +20,6 @@
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
 	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
-	var/lung_melty_min = 40 //Nitryl lung melting chance
 
 //YOGS CHANGE - New var to allow editable Nitryl code.
 	var/lung_melty_min = 40 //Nitryl lung melting chance
