@@ -4,7 +4,7 @@
 			user.get_admin_say()
 			return
 		if(ACTION_MENTORCHAT)
-			user.cmd_mentor_say()
+			user.get_mentor_say()
 			return
 		if(ACTION_AGHOST)
 			user.admin_ghost()
