@@ -666,8 +666,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
 
 				dat += "</td><td width='300px' height='300px' valign='top'>"
-				dat += "<h2>Mob</h2>"
 
+				dat += "<h2>Mob</h2>"
 				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
 				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
 				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
@@ -683,14 +683,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
 				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
 				
-				if(parent && parent.holder)
-					dat += "<h2>Admin</h2>"
-					BUTTON_KEY("Adminchat", ACTION_ASAY)
-					BUTTON_KEY("Admin ghost", ACTION_AGHOST)
-					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
-					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
-					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
-					BUTTON_KEY("Deadchat", ACTION_DSAY)
+				if(parent)
+					if(parent.mentor_datum)
+						dat += "<h2>Mentor</h2>"
+						BUTTON_KEY("Mentorsay", ACTION_MENTORCHAT)
+
+					if(parent.holder)
+						dat += "<h2>Admin</h2>"
+						BUTTON_KEY("Adminchat", ACTION_ASAY)
+						BUTTON_KEY("Admin ghost", ACTION_AGHOST)
+						BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
+						BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
+						BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
+						BUTTON_KEY("Deadchat", ACTION_DSAY)
 
 				dat += "</td></tr></table>"
 			else
@@ -707,7 +712,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 770)
 	popup.set_content(dat.Join())
-	popup.open(0)
+	popup.open(FALSE)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
@@ -842,7 +847,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Preferences</div>", width, height)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
-	popup.open(0)
+	popup.open(FALSE)
 	return
 
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
@@ -1030,13 +1035,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
 					<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Lose" : "Take"] ([quirk_cost] pts.)</a><br>"
-		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Reset Traits</a></center>"
+		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Reset Quirks</a></center>"
 
 	user << browse(null, "window=preferences")
 	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Quirk Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
 	popup.set_window_options("can_close=0")
 	popup.set_content(dat.Join())
-	popup.open(0)
+	popup.open(FALSE)
 	return
 
 /datum/preferences/proc/GetQuirkBalance()
@@ -1057,13 +1062,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(query_get_jobban.NextRow())
 			var/reason = query_get_jobban.item[1]
 			var/bantime = query_get_jobban.item[2]
-			var/duration = query_get_jobban.item[3]
+			var/duration = text2num(query_get_jobban.item[3])
 			var/expiration_time = query_get_jobban.item[4]
 			var/admin_key = query_get_jobban.item[5]
 			var/text
 			text = "<span class='redtext'>You, or another user of this computer, ([user.key]) is banned from playing [job]. The ban reason is:<br>[reason]<br>This ban was applied by [admin_key] on [bantime]"
-			if(text2num(duration) > 0)
-				text += ". The ban is for [duration] minutes and expires on [expiration_time] (server time)"
+			if(duration > 0)
+				text += ". The ban is for [DisplayTimeText(duration MINUTES)] and expires on [expiration_time] (server time)"
 			text += ".</span>"
 			to_chat(user, text)
 		qdel(query_get_jobban)

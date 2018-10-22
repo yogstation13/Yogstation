@@ -60,7 +60,7 @@
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
 	item_flags = ABSTRACT
-	var/can_cluwne = TRUE
+	var/can_cluwne = FALSE
 	var/is_cursed = FALSE //i don't care that this is *slightly* memory wasteful, it's just one more byte and it's not like some madman is going to spawn thousands of these
 	var/is_very_cursed = FALSE
 
