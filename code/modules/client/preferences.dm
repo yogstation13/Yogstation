@@ -666,8 +666,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
 
 				dat += "</td><td width='300px' height='300px' valign='top'>"
-				dat += "<h2>Mob</h2>"
 
+				dat += "<h2>Mob</h2>"
 				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
 				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
 				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
@@ -683,14 +683,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
 				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
 				
-				if(parent && parent.holder)
-					dat += "<h2>Admin</h2>"
-					BUTTON_KEY("Adminchat", ACTION_ASAY)
-					BUTTON_KEY("Admin ghost", ACTION_AGHOST)
-					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
-					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
-					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
-					BUTTON_KEY("Deadchat", ACTION_DSAY)
+				if(parent)
+					if(parent.mentor_datum)
+						dat += "<h2>Mentor</h2>"
+						BUTTON_KEY("Mentorsay", ACTION_MENTORCHAT)
+
+					if(parent.holder)
+						dat += "<h2>Admin</h2>"
+						BUTTON_KEY("Adminchat", ACTION_ASAY)
+						BUTTON_KEY("Admin ghost", ACTION_AGHOST)
+						BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
+						BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
+						BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
+						BUTTON_KEY("Deadchat", ACTION_DSAY)
 
 				dat += "</td></tr></table>"
 			else

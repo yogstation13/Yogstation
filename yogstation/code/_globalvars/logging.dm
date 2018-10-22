@@ -1,2 +1,5 @@
+GLOBAL_LIST_EMPTY(mentorlog) // same here man
+GLOBAL_PROTECT(mentorlog)
+
 GLOBAL_LIST_EMPTY(LOOClog)
 GLOBAL_PROTECT(LOOClog)
