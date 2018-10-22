@@ -2605,6 +2605,13 @@
 				if(M)
 					T.admin_remove_member(usr,M)
 		check_teams()
+	// yogs start - mentors
+	else if(href_list["makementor"])
+		makeMentor(href_list["makementor"])
+
+	else if(href_list["removementor"])
+		removeMentor(href_list["removementor"])
+	// yogs end
 
 
 /datum/admins/proc/HandleCMode()

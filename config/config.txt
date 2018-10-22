@@ -462,3 +462,11 @@ DEFAULT_VIEW 15x15
 ##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
 #WEBHOOK_ADRESS http://example.com
 #WEBHOOK_KEY webkey
+
+## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.
+## You need to set up your database to use the SQL based system.
+## This flag is automatically enabled if SQL_ENABLED isn't
+#MENTOR_LEGACY_SYSTEM
+
+#Mentors only see ckeys by default. Uncomment to have them only see mob name
+#MENTORS_MOBNAME_ONLY
