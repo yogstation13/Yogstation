@@ -76,7 +76,7 @@
 		if("repeal")
 			// yogs start - added spam protection
 			if(ID in authorized)// if you have already submitted your authorization:
-				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired (see yogstation/code/shuttle/emergency.dm)
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
 					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
 					return
 				authorized -= ID
@@ -89,7 +89,7 @@
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
 				// yogs start - added spam protection
-				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired (see yogstation/code/shuttle/emergency.dm)
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
 					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
 					return
 				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
