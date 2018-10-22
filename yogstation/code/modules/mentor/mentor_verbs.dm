@@ -18,6 +18,10 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(!SSdbcore.Connect())
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		return
+
 	var/msg = "<b>Current Mentors:</b>\n"
 	var/datum/DBQuery/query_load_mentors = SSdbcore.NewQuery("SELECT `ckey` FROM `[format_table_name("mentor")]`")
 	if(!query_load_mentors.Execute())
