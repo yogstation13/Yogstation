@@ -27,7 +27,7 @@
 		return TRUE
 
 /client/proc/mentor_datum_set(admin)
-	found_datum = GLOB.mentor_datums[ckey]
+	var/found_datum = GLOB.mentor_datums[ckey]
 	if(!found_datum) // admin with no mentor datum?let's fix that
 		new /datum/mentors(ckey)
 
