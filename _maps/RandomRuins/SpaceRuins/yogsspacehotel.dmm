@@ -86,6 +86,10 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "ao" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "A3";
+	name = "A3 Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "ap" = (
@@ -93,6 +97,10 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "aq" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "A4";
+	name = "A4 Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "ar" = (
@@ -100,6 +108,10 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "as" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "A5";
+	name = "A5 Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "at" = (
@@ -107,6 +119,10 @@
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "au" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "A6";
+	name = "A6 Privacy Shutters"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "av" = (
@@ -140,10 +156,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "aB" = (
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_3)
-"aC" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "aD" = (
@@ -182,10 +194,6 @@
 "aJ" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
-"aK" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_4)
 "aL" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-16"
@@ -220,10 +228,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "aR" = (
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_5)
-"aS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "aT" = (
@@ -262,10 +266,6 @@
 "aZ" = (
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
-"ba" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_6)
 "bb" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-18"
@@ -300,11 +300,14 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bi" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bj" = (
@@ -331,11 +334,14 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bp" = (
@@ -362,11 +368,14 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "bt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "bu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "bv" = (
@@ -393,11 +402,14 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "bz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "bA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "bB" = (
@@ -420,7 +432,11 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bF" = (
@@ -434,7 +450,11 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bH" = (
@@ -448,7 +468,11 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "bJ" = (
@@ -462,7 +486,11 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "bL" = (
@@ -494,20 +522,21 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "bP" = (
 /obj/machinery/button/door{
-	id = "a3";
-	name = "privacy button";
-	pixel_y = -24
+	id = "Room3";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = -25;
+	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_3)
-"bQ" = (
 /obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = -24
 	},
 /turf/open/floor/wood,
@@ -542,20 +571,21 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "bV" = (
 /obj/machinery/button/door{
-	id = "a4";
-	name = "privacy button";
-	pixel_y = -24
+	id = "Room4";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = -25;
+	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_4)
-"bW" = (
 /obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = -24
 	},
 /turf/open/floor/wood,
@@ -590,20 +620,21 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "cb" = (
 /obj/machinery/button/door{
-	id = "a5";
-	name = "privacy button";
-	pixel_y = -24
+	id = "Room5";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = -25;
+	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_5)
-"cc" = (
 /obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = -24
 	},
 /turf/open/floor/wood,
@@ -638,20 +669,21 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
 "ch" = (
 /obj/machinery/button/door{
-	id = "a6";
-	name = "privacy button";
-	pixel_y = -24
+	id = "Room6";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = -25;
+	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_6)
-"ci" = (
 /obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = -24
 	},
 /turf/open/floor/wood,
@@ -665,92 +697,60 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "cl" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/airlock{
-	id_tag = "a3";
+	id_tag = "Room3";
 	name = "Guest Room A3"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_3)
-"cm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
 "cn" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/airlock{
-	id_tag = "a4";
+	id_tag = "Room4";
 	name = "Guest Room A4"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_4)
-"co" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
 "cp" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock{
-	id_tag = "a5";
+	id_tag = "Room5";
 	name = "Guest Room A5"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_5)
-"cq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "cr" = (
-/obj/machinery/door/airlock{
-	id_tag = "a6";
-	name = "Guest Room A6"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock{
+	id_tag = "Room6";
+	name = "Guest Room A6"
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_6)
-"cs" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/guestroom/room_6)
-"ct" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
-"cu" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel)
-"cv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel)
-"cw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
 "cx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -759,9 +759,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -773,7 +777,14 @@
 	name = "Room Number 3";
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cA" = (
@@ -784,12 +795,13 @@
 	name = "Room Number 4";
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
-"cB" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -801,15 +813,27 @@
 	name = "Room Number 5";
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -821,9 +845,6 @@
 	name = "Room Number 6";
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cF" = (
@@ -834,15 +855,16 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
-"cH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
 "cI" = (
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -851,7 +873,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -864,16 +891,26 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "cL" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -888,34 +925,27 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
-"cN" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cO" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cP" = (
 /obj/structure/cable{
 	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -923,7 +953,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "cR" = (
@@ -934,7 +965,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cT" = (
@@ -945,7 +977,6 @@
 	name = "Room Number 2";
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cU" = (
@@ -961,57 +992,42 @@
 	name = "Room Number 1";
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
-"cX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
-"cY" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "cZ" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "da" = (
-/obj/machinery/door/airlock{
-	id_tag = "a2";
-	name = "Guest Room A2"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock{
+	id_tag = "Room2";
+	name = "Guest Room A2"
+	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_2)
-"db" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dc" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dd" = (
-/obj/machinery/door/airlock{
-	id_tag = "a1";
-	name = "Guest Room A1"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock{
+	id_tag = "Room1";
+	name = "Guest Room A1"
+	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_1)
-"de" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "df" = (
 /obj/machinery/door/airlock/public/glass,
@@ -1021,13 +1037,10 @@
 "dg" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
-"dh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/workroom)
 "di" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/workroom)
@@ -1039,8 +1052,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/workroom)
 "dk" = (
 /obj/machinery/shower{
@@ -1081,16 +1095,23 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dp" = (
 /obj/machinery/button/door{
-	id = "a2";
-	name = "privacy button";
+	id = "Room2";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dq" = (
@@ -1142,16 +1163,23 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dx" = (
 /obj/machinery/button/door{
-	id = "a1";
-	name = "privacy button";
+	id = "Room1";
+	name = "Door Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -8;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = 8;
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dy" = (
@@ -1174,12 +1202,12 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "dC" = (
 /obj/structure/table,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "dD" = (
@@ -1219,11 +1247,18 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dL" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "dM" = (
@@ -1250,11 +1285,18 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "dT" = (
@@ -1272,23 +1314,26 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "dX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/hotel/workroom)
-"dY" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -1297,20 +1342,24 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "ea" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/hotel/workroom)
-"eb" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
@@ -1340,11 +1389,8 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_2)
-"eh" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -1366,11 +1412,8 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/guestroom/room_1)
-"el" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -1388,30 +1431,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
-"eo" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/hotel/workroom)
 "ep" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
 "eq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/hotel/workroom)
-"er" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
@@ -1420,12 +1449,6 @@
 	name = "Bathroom"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/hotel/guestroom/room_2)
-"et" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_2)
 "eu" = (
 /obj/structure/table/wood,
@@ -1437,12 +1460,6 @@
 	name = "Bathroom"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/space/has_grav/hotel/guestroom/room_1)
-"ew" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_1)
 "ex" = (
 /obj/structure/table/wood,
@@ -1495,12 +1512,6 @@
 "eG" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/dock)
-"eH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
 "eI" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1508,7 +1519,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "eJ" = (
@@ -1542,10 +1554,9 @@
 	name = "Hotel Maintenance";
 	req_access_txt = "201"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "eO" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
@@ -1581,7 +1592,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "eW" = (
@@ -1626,7 +1637,12 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -1635,7 +1651,12 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 9
 	},
 /turf/open/floor/plating,
@@ -1666,67 +1687,26 @@
 	name = "Hotel Maintenance";
 	req_access_txt = "200,201"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
-"fk" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
-"fl" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel)
 "fm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/grass,
-/area/ruin/space/has_grav/hotel)
-"fn" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/hotel)
-"fo" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/ruin/space/has_grav/hotel)
-"fp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "fq" = (
 /obj/machinery/vending/cigarette,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
-"fr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/dock)
 "fs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "ft" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -1832,45 +1812,57 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-02"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "fJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
-"fK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
 "fL" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
 "fM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "fN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 10
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "fO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "fP" = (
@@ -1934,7 +1926,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
 "fV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor/carpet,
@@ -1942,13 +1939,23 @@
 "fW" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "fX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 9
 	},
 /turf/open/floor/carpet,
@@ -1984,11 +1991,12 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gd" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/rag,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
 "ge" = (
@@ -2026,7 +2034,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "gk" = (
@@ -2035,19 +2044,16 @@
 /area/ruin/space/has_grav/hotel/bar)
 "gl" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
 "gm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
-"gn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 8
 	},
 /turf/open/floor/plasteel/freezer,
@@ -2135,7 +2141,8 @@
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "gz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
 "gA" = (
@@ -2248,20 +2255,16 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "gU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "gV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/hotel/bar)
-"gW" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -2326,53 +2329,10 @@
 /obj/item/reagent_containers/food/drinks/mug/tea,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
-"he" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
-"hf" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel)
-"hg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/bar)
-"hh" = (
-/obj/structure/kitchenspike,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
 "hi" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
-"hj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
-"hk" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
 "hl" = (
@@ -2394,12 +2354,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "hn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/hotel/bar)
-"ho" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "hp" = (
@@ -2485,11 +2441,6 @@
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
-"hz" = (
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/hotel/bar)
 "hA" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
@@ -2556,8 +2507,9 @@
 	name = "Hotel Maintenance";
 	req_access_txt = "200,201"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
 "hJ" = (
 /obj/structure/table,
@@ -2598,7 +2550,12 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -2610,7 +2567,12 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -2619,7 +2581,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "hS" = (
@@ -2629,7 +2592,12 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -2639,10 +2607,6 @@
 	req_access_txt = "200"
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/hotel/bar)
-"hU" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
 /area/ruin/space/has_grav/hotel/bar)
 "hV" = (
 /obj/structure/table/wood,
@@ -2683,24 +2647,6 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
-"ia" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel)
-"ib" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/power)
-"ic" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/power)
 "id" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Power Storage";
@@ -2709,17 +2655,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
-"ie" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
-/turf/closed/wall,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "if" = (
 /obj/machinery/smartfridge/food,
@@ -2740,8 +2678,13 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/hotel/bar)
 "ij" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 1
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -2749,7 +2692,12 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -2760,7 +2708,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -2769,20 +2722,24 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "in" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel/dock)
-"io" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
@@ -2798,10 +2755,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
-"ir" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/power)
 "is" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/tile/yellow{
@@ -2822,13 +2775,14 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iu" = (
@@ -2905,7 +2859,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "iA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock{
 	name = "Theatre";
 	req_access_txt = "200"
@@ -2920,18 +2873,9 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
-"iD" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel)
 "iE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
@@ -2939,10 +2883,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel/dock)
-"iG" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "iH" = (
@@ -2964,7 +2904,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iJ" = (
@@ -2990,13 +2931,6 @@
 /obj/item/twohanded/required/kirbyplants,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
-"iN" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel)
 "iO" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -3005,10 +2939,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/dock)
-"iQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/dock)
 "iR" = (
@@ -3051,7 +2981,12 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3060,17 +2995,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel)
-"iW" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "iY" = (
@@ -3081,7 +3007,12 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3098,7 +3029,12 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3107,7 +3043,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -3116,7 +3057,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -3125,7 +3071,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "jd" = (
@@ -3152,11 +3097,8 @@
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/dock)
-"jh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -3178,20 +3120,35 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jk" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3206,93 +3163,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
-"jn" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/power)
-"jo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/security)
-"jp" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/security)
 "jq" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Hotel Security Checkpoint";
 	req_access_txt = "203"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
-"jr" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/security)
-"js" = (
-/obj/structure/closet,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel)
-"jt" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/pool)
 "ju" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/carpet,
-/area/ruin/space/has_grav/hotel/pool)
-"jv" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/pool)
 "jw" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/pool)
-"jx" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/pool)
-"jy" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/pool)
-"jz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/dock)
 "jA" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -3316,13 +3207,16 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jC" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -3362,7 +3256,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "jI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -3372,13 +3265,14 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "jJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "jK" = (
@@ -3451,10 +3345,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/security)
-"jP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/security)
 "jQ" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/pool)
@@ -3487,7 +3377,8 @@
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/pool)
 "jX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/pool)
 "jY" = (
@@ -3499,23 +3390,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
-"ka" = (
-/obj/machinery/computer/arcade,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/pool)
-"kb" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/power)
 "kc" = (
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -3546,7 +3423,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/components/binary/valve/on{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/binary/valve/on/layer1{
 	name = "Air Release Valve"
 	},
 /turf/open/floor/plasteel,
@@ -3558,6 +3439,10 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3573,13 +3458,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
-"ki" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/security)
 "kj" = (
 /obj/structure/chair,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kk" = (
@@ -3611,11 +3493,6 @@
 /area/ruin/space/has_grav/hotel/security)
 "ko" = (
 /obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/pool)
-"kp" = (
-/obj/structure/chair/stool,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
 "kq" = (
@@ -3664,11 +3541,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "ku" = (
@@ -3711,6 +3588,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kx" = (
@@ -3723,8 +3601,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "ky" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
@@ -3732,7 +3611,11 @@
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/folder/blue,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kA" = (
@@ -3805,13 +3688,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/pool)
 "kF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/pool)
 "kG" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
 "kH" = (
@@ -3822,7 +3704,7 @@
 	name = "Air Supply";
 	req_access_txt = "200,201"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kJ" = (
@@ -3831,7 +3713,8 @@
 	icon_state = "1-2"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kK" = (
 /obj/structure/table,
@@ -3847,7 +3730,10 @@
 "kL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/coffee,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "kM" = (
@@ -3903,9 +3789,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
 "kR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3915,13 +3798,18 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/pool)
 "kS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3932,11 +3820,24 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/pool)
 "kT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
@@ -3947,32 +3848,36 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
 "kV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 6
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kW" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kX" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 1
-	},
 /obj/structure/sign/plaques/atmos{
 	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kY" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "kZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -3984,6 +3889,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
 "lb" = (
@@ -4003,9 +3909,6 @@
 "lc" = (
 /obj/structure/table,
 /obj/item/papercutter,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/security)
 "ld" = (
@@ -4152,9 +4055,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/pool)
 "lv" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 2
-	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
 "lw" = (
@@ -4209,13 +4110,15 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/security)
 "lB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
 "lC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
@@ -4224,7 +4127,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
@@ -4233,8 +4137,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 10
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
@@ -4290,6 +4195,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
@@ -4364,6 +4273,7 @@
 /area/ruin/space/has_grav/hotel/pool)
 "lQ" = (
 /obj/structure/table,
+/obj/item/razor,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/pool)
 "lR" = (
@@ -4482,7 +4392,6 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/custodial)
 "me" = (
-/mob/living/simple_animal/bot/cleanbot,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4493,6 +4402,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
 "mf" = (
@@ -4605,10 +4515,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
-"mm" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/custodial)
 "mn" = (
 /obj/machinery/door/airlock{
 	name = "Women's Changing"
@@ -4616,9 +4522,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/pool)
 "mo" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4629,34 +4532,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
-"mp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/custodial)
-"mq" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/closed/wall,
-/area/ruin/space/has_grav/hotel/custodial)
-"mr" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/pool)
 "ms" = (
 /obj/structure/window,
 /obj/machinery/light{
@@ -4680,9 +4558,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/pool)
 "mu" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4692,13 +4567,14 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
 "mv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4708,6 +4584,14 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
@@ -4715,9 +4599,6 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4727,6 +4608,14 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
@@ -4738,20 +4627,31 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
 "my" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "mz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -4761,13 +4661,12 @@
 	name = "Hotel Maintenance";
 	req_access_txt = "201"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/pool)
-"mB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -4964,11 +4863,16 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -4976,6 +4880,70 @@
 /obj/effect/baseturf_helper/space,
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/pool)
+"nn" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/hotel/workroom)
+"nS" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"oz" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/hotel/bar)
+"qc" = (
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/pool)
+"rR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/dock)
+"sb" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"su" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/hotel/workroom)
+"sB" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
 "sN" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/structure/cable/yellow{
@@ -4984,8 +4952,342 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
+"tC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"tV" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
+"uD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"wk" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/pool)
+"xM" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"xO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"yc" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"yS" = (
+/obj/machinery/button/door{
+	id = "A5";
+	name = "Privacy Shutters";
+	pixel_x = 8;
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/guestroom/room_5)
+"za" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"zQ" = (
+/obj/machinery/button/door{
+	id = "A6";
+	name = "Privacy Shutters";
+	pixel_x = 8;
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/guestroom/room_6)
+"Ar" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"BP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 10
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/dock)
+"EN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"EP" = (
+/obj/machinery/button/door{
+	id = "A3";
+	name = "Privacy Shutters";
+	pixel_x = 8;
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/guestroom/room_3)
+"Hd" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"Iw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/pool)
+"Iz" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3;
+	name = "Hotel Bar Access";
+	req_access_txt = "200,201"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/bar)
+"JB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
+"Ko" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"KL" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
+"LI" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"Na" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel/dock)
+"Oo" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"ON" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/hotel/bar)
+"PZ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
+"QP" = (
+/turf/template_noop,
+/area/space)
+"Rz" = (
+/obj/machinery/button/door{
+	id = "A4";
+	name = "Privacy Shutters";
+	pixel_x = 8;
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/guestroom/room_4)
+"Uo" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
+"WP" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
+"Xu" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
+"XM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/pool)
+"Yr" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/custodial)
+"YC" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/hotel)
 
 (1,1,1) = {"
 aa
@@ -5435,19 +5737,19 @@ aa
 ac
 ac
 ag
-ct
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-he
-cH
-cH
-cH
-ia
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
 iq
 aj
 aj
@@ -5505,7 +5807,7 @@ aj
 aj
 aj
 al
-cw
+am
 fd
 cQ
 cQ
@@ -5513,22 +5815,22 @@ cQ
 gj
 cQ
 cQ
-hf
+cQ
 cQ
 cQ
 hP
-ib
-ir
-ir
-ir
-ir
-ir
-kb
-ir
-ir
-ir
-ir
-ir
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
 lE
 lJ
 aj
@@ -5566,16 +5868,16 @@ am
 am
 am
 am
-ct
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-eH
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
 cJ
 fi
 fi
@@ -5583,11 +5885,11 @@ fi
 fi
 fi
 fi
-hg
+fi
 fi
 fi
 cJ
-ic
+kH
 is
 iH
 iR
@@ -5600,7 +5902,7 @@ kV
 lp
 kH
 aa
-ag
+PZ
 aa
 aa
 lY
@@ -5636,7 +5938,7 @@ aw
 bC
 bL
 ck
-cu
+fg
 cI
 cQ
 cQ
@@ -5653,7 +5955,7 @@ fY
 gk
 gk
 gk
-hh
+gk
 ht
 fi
 hQ
@@ -5670,7 +5972,7 @@ kW
 lp
 kH
 aa
-ag
+PZ
 aa
 aa
 lY
@@ -5706,7 +6008,7 @@ aw
 aw
 aw
 aw
-cv
+aw
 cJ
 aw
 aw
@@ -5719,7 +6021,7 @@ eJ
 aw
 fj
 fQ
-fQ
+ON
 gl
 gz
 gz
@@ -5727,7 +6029,7 @@ hi
 gz
 hI
 hR
-ic
+kH
 iu
 iJ
 iS
@@ -5740,7 +6042,7 @@ kX
 lq
 kH
 aa
-ag
+PZ
 aa
 aa
 lY
@@ -5776,7 +6078,7 @@ an
 an
 an
 an
-cw
+am
 cK
 am
 cZ
@@ -5793,11 +6095,11 @@ fQ
 gm
 gA
 fQ
-hj
+fQ
 hu
 fi
-cJ
-ic
+xM
+kH
 iv
 iJ
 iS
@@ -5810,7 +6112,7 @@ kY
 lp
 kH
 aa
-ag
+PZ
 aa
 aa
 lY
@@ -5846,7 +6148,7 @@ az
 az
 az
 an
-cx
+cF
 cL
 cF
 cZ
@@ -5860,27 +6162,27 @@ ff
 fi
 fR
 fQ
-gn
+fQ
 gB
 fQ
-hk
+fQ
 hv
 fi
-cJ
-ic
+xM
+kH
 iw
 iK
 iK
-iK
+KL
 jD
-iK
+JB
 ku
 kH
 kZ
 lp
 kH
 aa
-ag
+PZ
 aa
 aa
 lZ
@@ -5916,7 +6218,7 @@ be
 be
 az
 an
-cx
+cF
 cL
 cF
 cZ
@@ -5936,21 +6238,21 @@ fQ
 fQ
 fQ
 fi
-cJ
-ic
+xM
+kH
 ix
 iL
 iT
 jm
 jE
-iK
+JB
 kv
 kH
 kH
 kH
 kH
 aa
-ag
+PZ
 aa
 aa
 ac
@@ -5986,7 +6288,7 @@ bf
 az
 bM
 an
-cx
+cF
 cL
 cF
 cZ
@@ -6006,21 +6308,21 @@ fQ
 gA
 fQ
 fi
-cJ
-ie
-ir
-ir
-ir
-jn
+xM
+kH
+kH
+kH
+kH
+kH
 jF
 kg
 kw
 kJ
 la
 sN
-aj
-aj
-al
+tV
+tV
+Uo
 aa
 aa
 ac
@@ -6056,7 +6358,7 @@ an
 an
 an
 an
-cx
+cF
 cL
 cR
 cZ
@@ -6077,11 +6379,11 @@ hl
 hw
 fi
 hS
-cQ
-cQ
-cQ
-hP
-jo
+Hd
+Hd
+Hd
+Oo
+jG
 jG
 jG
 jG
@@ -6121,12 +6423,12 @@ ab
 aa
 ag
 an
-aB
+EP
 bg
 bD
 bN
 an
-cx
+cF
 cL
 cF
 cZ
@@ -6150,8 +6452,8 @@ fi
 fi
 fi
 fi
-cJ
-jo
+xM
+jG
 jH
 kh
 kx
@@ -6203,7 +6505,7 @@ da
 do
 dK
 eg
-et
+dM
 cZ
 aw
 fi
@@ -6221,9 +6523,9 @@ if
 iy
 fi
 iU
-jp
+jG
 jI
-ki
+kk
 ky
 kk
 kk
@@ -6261,18 +6563,18 @@ ab
 aa
 ag
 ao
-aC
-bi
+aB
+aB
 bi
 bP
-cm
+an
 cz
-cN
+mS
 cT
-db
+cZ
 dp
 dL
-eh
+dM
 dM
 cZ
 aw
@@ -6281,7 +6583,7 @@ fx
 fx
 fx
 fx
-fx
+oz
 gU
 hn
 hn
@@ -6334,10 +6636,10 @@ ao
 aD
 aB
 aB
-bQ
+aB
 an
 cx
-cL
+mS
 cF
 cZ
 dq
@@ -6361,7 +6663,7 @@ fx
 fx
 fi
 cJ
-jo
+jG
 jK
 kk
 kA
@@ -6407,7 +6709,7 @@ bj
 bR
 an
 cx
-cL
+mS
 cF
 cZ
 dr
@@ -6422,7 +6724,7 @@ fx
 gc
 gq
 gE
-gV
+fx
 fx
 hy
 hK
@@ -6431,7 +6733,7 @@ fx
 iz
 fi
 cJ
-jo
+jG
 jL
 kl
 kl
@@ -6477,7 +6779,7 @@ an
 an
 an
 cx
-cL
+mS
 cU
 cZ
 cZ
@@ -6492,7 +6794,7 @@ fx
 fx
 fx
 fx
-gV
+fx
 fx
 fx
 fx
@@ -6501,7 +6803,7 @@ fx
 fx
 fi
 cJ
-jo
+jG
 jG
 km
 kB
@@ -6547,7 +6849,7 @@ aH
 aH
 ap
 cx
-cL
+mS
 cF
 dc
 ds
@@ -6562,16 +6864,16 @@ fx
 fA
 fA
 fA
-gW
-ho
-hz
-hz
-hU
-hU
+fA
+fA
+fA
+fA
+fi
+fi
 iA
-hU
-iW
-jr
+fi
+cJ
+jG
 jM
 kn
 kn
@@ -6585,8 +6887,8 @@ kO
 le
 jG
 mj
-mp
-mv
+ml
+Yr
 mI
 md
 ac
@@ -6617,7 +6919,7 @@ bk
 aH
 ap
 cx
-cL
+mS
 cR
 dc
 dt
@@ -6641,7 +6943,7 @@ ig
 ih
 fi
 cJ
-jo
+jG
 jN
 kn
 kn
@@ -6655,8 +6957,8 @@ kP
 lf
 jG
 mk
-mp
-mv
+ml
+Yr
 ml
 md
 aa
@@ -6687,7 +6989,7 @@ aH
 bS
 ap
 cx
-cL
+mS
 cF
 dc
 du
@@ -6711,7 +7013,7 @@ ih
 ih
 fi
 cJ
-jo
+jG
 jO
 kn
 kC
@@ -6725,7 +7027,7 @@ kn
 lg
 jG
 ml
-mp
+ml
 mw
 mJ
 md
@@ -6757,7 +7059,7 @@ ap
 ap
 ap
 cx
-cL
+mS
 cF
 dc
 dc
@@ -6776,26 +7078,26 @@ gY
 fG
 gY
 fG
-hW
+ih
 ih
 ih
 fi
 cJ
-jp
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-jP
-mm
-mq
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+jG
+md
+md
 mx
 md
 md
@@ -6821,13 +7123,13 @@ ab
 aa
 ag
 ap
-aJ
+Rz
 bm
 bF
 bT
 ap
 cx
-cL
+mS
 cF
 dc
 dv
@@ -6846,12 +7148,12 @@ gZ
 fG
 gZ
 fG
-hW
+ih
 ih
 iB
 fi
 cJ
-js
+ma
 ck
 bL
 aw
@@ -6862,10 +7164,10 @@ aw
 aw
 aw
 aw
-cI
-cQ
-cQ
-hf
+za
+Hd
+Hd
+Hd
 my
 aw
 aw
@@ -6896,14 +7198,14 @@ bn
 bG
 bU
 cn
-cy
-cM
+sB
+WP
 cS
 dd
 dw
 dR
 ek
-ew
+dT
 dc
 aw
 fi
@@ -6920,22 +7222,22 @@ hW
 ih
 ih
 fi
-hQ
-hf
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-cQ
-fe
+nS
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Hd
+Xu
 ma
 ck
-cv
+aw
 mz
 ed
 fg
@@ -6961,18 +7263,18 @@ ab
 aa
 ag
 aq
-aK
-bo
+aJ
+aJ
 bo
 bV
-co
+ap
 cA
-cN
+mS
 cV
-de
+dc
 dx
 dS
-el
+dT
 dT
 dc
 aw
@@ -6991,7 +7293,7 @@ ih
 ih
 fi
 cJ
-jt
+jQ
 mW
 jQ
 jQ
@@ -7005,7 +7307,7 @@ jQ
 jQ
 jQ
 jQ
-jt
+jQ
 mA
 jQ
 jQ
@@ -7034,10 +7336,10 @@ aq
 aL
 aJ
 aJ
-bW
+aJ
 ap
-cx
-cL
+uD
+mS
 cF
 dc
 dy
@@ -7048,7 +7350,7 @@ dc
 aw
 fi
 fH
-fU
+Iz
 fH
 gr
 fG
@@ -7061,7 +7363,7 @@ ii
 ii
 fi
 cJ
-jt
+jQ
 jR
 jR
 jR
@@ -7075,8 +7377,8 @@ kQ
 jR
 jR
 jR
-mr
-mB
+kG
+kT
 kQ
 jR
 jQ
@@ -7106,8 +7408,8 @@ bp
 bp
 bX
 ap
-cx
-cL
+uD
+mS
 cF
 dc
 dz
@@ -7116,7 +7418,7 @@ dU
 ex
 dc
 eM
-ct
+am
 fI
 cF
 cF
@@ -7131,7 +7433,7 @@ cF
 eT
 am
 cJ
-jt
+jQ
 jS
 ko
 jR
@@ -7146,7 +7448,7 @@ jR
 jR
 jR
 jR
-kT
+Iw
 jR
 mK
 jQ
@@ -7176,8 +7478,8 @@ ap
 ap
 ap
 ap
-cx
-cL
+uD
+mS
 cR
 dc
 dc
@@ -7186,9 +7488,9 @@ dc
 dc
 dc
 eN
-cw
+am
 fJ
-cF
+EN
 cF
 cF
 cF
@@ -7201,7 +7503,7 @@ cF
 eT
 am
 cJ
-jt
+jQ
 jS
 ko
 kD
@@ -7246,8 +7548,8 @@ aP
 aP
 aP
 ar
-cx
-cL
+uD
+mS
 cF
 df
 cF
@@ -7256,8 +7558,8 @@ em
 cF
 df
 cF
-cx
-fK
+cF
+uD
 cF
 cF
 di
@@ -7271,7 +7573,7 @@ cF
 iC
 am
 iY
-jt
+jQ
 jS
 ko
 kD
@@ -7303,9 +7605,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+QP
+QP
+QP
 aa
 ab
 aa
@@ -7316,8 +7618,8 @@ bq
 bq
 aP
 ar
-cx
-cL
+uD
+mS
 cF
 am
 cF
@@ -7326,8 +7628,8 @@ cF
 cF
 am
 cF
-cx
-fK
+cF
+uD
 cF
 cR
 di
@@ -7341,7 +7643,7 @@ cF
 eT
 am
 iZ
-jt
+jQ
 jR
 jR
 kE
@@ -7373,8 +7675,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+QP
+QP
 aa
 aa
 ab
@@ -7386,7 +7688,7 @@ br
 aP
 bY
 ar
-cx
+yc
 cO
 cW
 dg
@@ -7396,7 +7698,7 @@ cW
 cW
 dg
 cW
-fk
+cW
 fL
 cF
 cF
@@ -7411,7 +7713,7 @@ cF
 eT
 am
 cJ
-jt
+jQ
 jT
 jR
 kE
@@ -7456,17 +7758,17 @@ ar
 ar
 ar
 ar
-cB
-cN
-cX
-dh
-dh
-dh
-dh
-dh
-dh
+cx
+mS
+cF
+di
+di
+di
+di
+di
+di
 eO
-fl
+eT
 fM
 cF
 ge
@@ -7481,7 +7783,7 @@ cF
 eT
 am
 cJ
-jt
+jQ
 jU
 jR
 kE
@@ -7521,13 +7823,13 @@ ab
 aa
 ag
 ar
-aR
+yS
 bs
 bH
 bZ
 ar
-cx
-cL
+uD
+mS
 cF
 di
 dA
@@ -7551,7 +7853,7 @@ cF
 eT
 am
 cK
-jt
+jQ
 jR
 jR
 kD
@@ -7596,17 +7898,17 @@ bt
 bI
 ca
 cp
-cy
-cM
-cS
+YC
+tC
+sb
 dj
 dB
 dW
-eo
+dV
 ey
 di
 eQ
-fn
+eQ
 fM
 cF
 cF
@@ -7621,7 +7923,7 @@ cF
 eT
 iM
 ja
-jt
+jQ
 jV
 jY
 jY
@@ -7661,22 +7963,22 @@ ab
 aa
 ag
 as
-aS
-bu
+aR
+aR
 bu
 cb
-cq
+ar
 cC
-cN
-cY
-dh
+mS
+cR
+di
 dC
 dX
-ep
+dV
 ey
 di
 eQ
-fn
+eQ
 fM
 cF
 cF
@@ -7734,19 +8036,19 @@ as
 aT
 aR
 aR
-cc
+aR
 ar
-cx
-cL
+uD
+mS
 cF
 di
 dD
-dY
-ep
+dX
+dV
 ez
 di
 eR
-fo
+eS
 fM
 cF
 cF
@@ -7757,11 +8059,11 @@ gG
 hF
 di
 cF
+Ko
 cF
 cF
-cF
-cL
-jv
+Ar
+mN
 jW
 jW
 jY
@@ -7806,8 +8108,8 @@ bv
 bv
 cd
 ar
-cx
-cL
+uD
+mS
 cF
 di
 dE
@@ -7826,9 +8128,9 @@ gG
 gG
 hG
 di
-cF
+xO
 ij
-iD
+cW
 cW
 jb
 jw
@@ -7876,17 +8178,17 @@ ar
 ar
 ar
 ar
-cx
-cL
+uD
+mS
 cF
 di
 di
 ea
-ep
+dV
 dV
 di
 eT
-fp
+eT
 fN
 fV
 cF
@@ -7899,9 +8201,9 @@ di
 hZ
 ik
 iE
-iN
+iE
 jc
-jx
+jQ
 jY
 jY
 jY
@@ -7947,18 +8249,18 @@ aX
 aX
 at
 cD
-cL
+mS
 cF
 di
 dF
-ea
+su
 ep
 dF
 di
 eU
 fq
 am
-fK
+uD
 cF
 di
 gM
@@ -7971,7 +8273,7 @@ cL
 am
 iO
 jd
-jt
+jQ
 jZ
 jR
 kD
@@ -8016,17 +8318,17 @@ bw
 bw
 aX
 at
-cx
-cL
+uD
+mS
 cF
 di
 dG
-ea
-er
+nn
+dV
 dG
 di
 eG
-fr
+eG
 eG
 fW
 gf
@@ -8041,7 +8343,7 @@ il
 eG
 eG
 eG
-jt
+jQ
 jU
 jR
 kE
@@ -8086,12 +8388,12 @@ bx
 aX
 ce
 at
-cx
-cL
+uD
+mS
 cF
 di
 dF
-eb
+dV
 dV
 dF
 di
@@ -8111,7 +8413,7 @@ im
 iF
 iP
 je
-jt
+jQ
 jR
 jR
 kE
@@ -8156,8 +8458,8 @@ at
 at
 at
 at
-cx
-cL
+uD
+mS
 cF
 di
 di
@@ -8181,7 +8483,7 @@ in
 fu
 eW
 eW
-jt
+jQ
 jR
 jR
 kE
@@ -8221,13 +8523,13 @@ ab
 aa
 ag
 at
-aZ
+zQ
 by
 bJ
 cf
 at
-cx
-cL
+uD
+mS
 cR
 am
 ac
@@ -8251,7 +8553,7 @@ in
 fu
 fu
 eX
-jt
+jQ
 jS
 ko
 kD
@@ -8296,7 +8598,7 @@ bz
 bK
 cg
 cr
-cy
+LI
 cP
 cF
 cG
@@ -8321,7 +8623,7 @@ in
 fu
 fu
 eY
-jt
+jQ
 jS
 ko
 kD
@@ -8361,11 +8663,11 @@ ac
 aa
 ag
 au
-ba
-bA
+aZ
+aZ
 bA
 ch
-cs
+at
 cE
 cF
 cF
@@ -8391,9 +8693,9 @@ in
 fu
 fu
 eZ
-jy
-ka
-kp
+jQ
+jS
+ko
 kG
 kT
 jR
@@ -8434,7 +8736,7 @@ au
 bb
 aZ
 aZ
-ci
+aZ
 at
 cF
 cF
@@ -8461,19 +8763,19 @@ in
 fu
 fu
 eW
-jt
+jQ
 jR
 jR
 jR
-kU
+XM
 ll
 lt
 ll
 jR
 jR
-kU
+wk
 jR
-jR
+qc
 jR
 jR
 jR
@@ -8531,7 +8833,7 @@ in
 fu
 fu
 eW
-jt
+jQ
 jQ
 jQ
 jQ
@@ -8601,7 +8903,7 @@ in
 fu
 fu
 jf
-fr
+eG
 aa
 aa
 aa
@@ -8671,7 +8973,7 @@ in
 fu
 fu
 eW
-fr
+eG
 aa
 aa
 aa
@@ -8741,7 +9043,7 @@ in
 fu
 fu
 eX
-fr
+eG
 aa
 aa
 aa
@@ -8811,7 +9113,7 @@ in
 fu
 fu
 eY
-fr
+eG
 aa
 aa
 aa
@@ -8877,11 +9179,11 @@ fu
 fu
 fu
 fu
-in
-fu
-fu
+BP
+rR
+Na
 jg
-jz
+eG
 aa
 aa
 aa
@@ -8947,10 +9249,10 @@ hs
 gy
 gy
 gi
-io
-iG
-iQ
-jh
+fu
+fu
+ft
+eW
 eG
 aa
 aa
