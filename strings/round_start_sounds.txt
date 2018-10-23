@@ -3,10 +3,11 @@ sound/ambience/title-dontstopme.ogg
 sound/ambience/title-fivebombs.ogg
 sound/ambience/title-getlucky.ogg
 sound/ambience/title-mrbluesky.ogg
-sound/ambience/title-musique.ogg
 sound/ambience/title-nexttownover.ogg
 sound/ambience/title-plasmaattack.ogg
 sound/ambience/title-rasputin.ogg
 sound/ambience/title-turnthelightsoff.ogg
+sound/ambience/title-title-majortom.ogg
+sound/ambience/title-rulerofeverything.ogg
 sound/ambience/title-&.ogg
 sound/ambience/clown.ogg
