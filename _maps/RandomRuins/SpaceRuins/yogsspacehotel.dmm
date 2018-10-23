@@ -2329,6 +2329,9 @@
 /obj/item/reagent_containers/food/drinks/mug/tea,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
+"hh" = (
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "hi" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2909,9 +2912,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iJ" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iK" = (
@@ -2954,7 +2955,14 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iS" = (
-/obj/structure/tank_dispenser/oxygen,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iT" = (
@@ -3114,6 +3122,13 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jj" = (
@@ -3124,9 +3139,12 @@
 	icon_state = "intact";
 	dir = 5
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
-	dir = 5
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3135,9 +3153,8 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3146,9 +3163,8 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold";
-	dir = 1
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3207,17 +3223,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jC" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold";
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on";
-	dir = 8
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3238,6 +3249,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "jG" = (
@@ -3423,26 +3435,21 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
 /obj/machinery/atmospherics/components/binary/valve/on/layer1{
 	name = "Air Release Valve"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kg" = (
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/structure/closet/crate,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 10
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -3552,25 +3559,17 @@
 /obj/machinery/power/solar_control{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kv" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/sign/warning/vacuum{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -3578,17 +3577,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kw" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
+/obj/structure/closet/crate,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kx" = (
@@ -3706,15 +3701,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
-"kJ" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "kK" = (
 /obj/structure/table,
@@ -3882,16 +3868,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
-"la" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
 "lb" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -4054,10 +4030,6 @@
 "lu" = (
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/pool)
-"lv" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3,
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "lw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -4109,40 +4081,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/security)
-"lB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
-"lC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
-"lD" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
-"lE" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 10
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "lF" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Hotel Security Checkpoint";
@@ -4189,19 +4127,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/hotel/pool)
-"lJ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "lK" = (
 /obj/effect/mob_spawn/human/hotel_staff/security,
 /obj/effect/turf_decal/tile/red{
@@ -4944,17 +4869,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
-"sN" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
 "tC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4969,13 +4883,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
-"tV" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "uD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -4987,6 +4894,19 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
+"vJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
 "wk" = (
 /obj/machinery/light{
 	dir = 4
@@ -4996,6 +4916,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
+"xG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel/power)
 "xM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5025,6 +4957,20 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
+"yu" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
 "yS" = (
 /obj/machinery/button/door{
 	id = "A5";
@@ -5098,6 +5044,17 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
+"FW" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel/power)
+"Gd" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
 "Hd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5128,13 +5085,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
-"JB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/power)
 "Ko" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on";
@@ -5189,16 +5139,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
-"PZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/unpowered/no_grav)
 "QP" = (
 /turf/template_noop,
 /area/space)
@@ -5211,13 +5151,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
-"Uo" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 9
+"VF" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	icon_state = "inje_map";
+	dir = 4
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
@@ -5620,8 +5557,8 @@ ab
 ab
 ab
 aa
-lv
-lB
+aa
+aa
 ac
 aa
 aa
@@ -5683,15 +5620,15 @@ aj
 ip
 aa
 aa
-aa
+VF
 aa
 ac
 aa
 aa
 aa
 aa
-aa
-lC
+hh
+hh
 ac
 aa
 aa
@@ -5753,15 +5690,15 @@ am
 iq
 aj
 aj
+vJ
 aj
 aj
 aj
 aj
-aj
-aj
-aj
-aj
-lD
+ip
+aa
+aa
+hh
 ac
 aa
 aa
@@ -5822,17 +5759,17 @@ hP
 kH
 kH
 kH
+FW
+xG
+FW
 kH
 kH
 kH
-kH
-kH
-kH
-kH
-kH
-kH
-lE
-lJ
+iq
+aj
+aj
+aj
+aj
 aj
 aj
 lX
@@ -5898,11 +5835,11 @@ jA
 kc
 kq
 kH
-kV
-lp
-kH
+hh
 aa
-PZ
+aa
+aa
+ac
 aa
 aa
 lY
@@ -5962,17 +5899,17 @@ hQ
 id
 it
 iI
-iI
+yu
 jj
 jB
 kd
 kr
 kH
-kW
-lp
+kH
+kH
 kH
 aa
-PZ
+ac
 aa
 aa
 lY
@@ -6038,11 +5975,11 @@ iK
 ke
 ks
 kH
-kX
-lq
+kV
+lp
 kH
 aa
-PZ
+ac
 aa
 aa
 lY
@@ -6101,8 +6038,8 @@ fi
 xM
 kH
 iv
-iJ
-iS
+iK
+KL
 jl
 jC
 kf
@@ -6112,7 +6049,7 @@ kY
 lp
 kH
 aa
-PZ
+ac
 aa
 aa
 lY
@@ -6173,16 +6110,16 @@ kH
 iw
 iK
 iK
-KL
+Gd
 jD
-JB
+jD
 ku
 kH
-kZ
-lp
+kX
+lq
 kH
 aa
-PZ
+ac
 aa
 aa
 lZ
@@ -6245,14 +6182,14 @@ iL
 iT
 jm
 jE
-JB
+iK
 kv
 kH
-kH
-kH
+kW
+lp
 kH
 aa
-PZ
+ac
 aa
 aa
 ac
@@ -6317,12 +6254,12 @@ kH
 jF
 kg
 kw
-kJ
-la
-sN
-tV
-tV
-Uo
+kH
+kZ
+lp
+kH
+aa
+ac
 aa
 aa
 ac
