@@ -52,7 +52,7 @@
 	playsound(get_turf(src.mob), S, 50, 0, 0)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/play_web_sound()
+/* /client/proc/play_web_sound() //yogs - fuck yogurt he's a fucking moron
 	set category = "Fun"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUNDS))
@@ -130,7 +130,7 @@
 					else
 						C.chatOutput.stopMusic()
 
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound") */ //yogs - yogurt is still a fucking moron
 
 /client/proc/set_round_end_sound(S as sound)
 	set category = "Fun"
