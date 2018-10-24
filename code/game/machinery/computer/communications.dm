@@ -562,7 +562,10 @@
 				dat += "<BR>Lift access restrictions on maintenance and external airlocks? <BR>\[ <A HREF='?src=[REF(src)];operation=enableemergency'>OK</A> | <A HREF='?src=[REF(src)];operation=viewmessage'>Cancel</A> \]"
 
 		if(STATE_PURCHASE)
-			dat += "Budget: [SSshuttle.points] Credits.<BR>"
+			// yogs start - fix cargo balance
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			dat += "Budget: [D.account_balance] Credits.<BR>"
+			// yogs end
 			dat += "<BR>"
 			dat += "<b>Caution: Purchasing dangerous shuttles may lead to mutiny and/or death.</b><br>"
 			dat += "<BR>"

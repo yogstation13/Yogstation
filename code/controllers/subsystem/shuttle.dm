@@ -539,7 +539,10 @@ SUBSYSTEM_DEF(shuttle)
 
 	centcom_message = SSshuttle.centcom_message
 	ordernum = SSshuttle.ordernum
-	points = SSshuttle.points
+	// yogs start - fix cargo balance
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	points = D.account_balance
+	// yogs end
 	emergencyNoEscape = SSshuttle.emergencyNoEscape
 	emergencyCallAmount = SSshuttle.emergencyCallAmount
 	shuttle_purchased = SSshuttle.shuttle_purchased
