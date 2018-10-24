@@ -1,0 +1,4 @@
+author: " XDTM"
+delete-after: true 
+changes: 
+  - tweak: "Phobia trigger words are now more noticeable."
