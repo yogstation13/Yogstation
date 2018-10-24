@@ -49416,6 +49416,14 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"cOP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "cOT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -54426,6 +54434,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"mAO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "mBv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -85565,7 +85581,7 @@ aaC
 aat
 aat
 adO
-aat
+mAO
 aat
 acd
 acE
@@ -86079,7 +86095,7 @@ aaE
 aaJ
 aaN
 aaV
-aat
+cOP
 aat
 acd
 abL
