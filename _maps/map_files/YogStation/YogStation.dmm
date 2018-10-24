@@ -9158,7 +9158,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Vacant Office B APC";
-	areastring = "/area/security/vacantoffice/b";
+	areastring = "/area/vacant_room/office/office_b";
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -22803,7 +22803,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Vacant Office APC";
-	areastring = "/area/security/vacantoffice";
+	areastring = "/area/vacant_room";
 	pixel_x = -24
 	},
 /obj/structure/cable{
