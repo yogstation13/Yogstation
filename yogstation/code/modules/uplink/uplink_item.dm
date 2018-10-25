@@ -26,6 +26,8 @@
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
 
+/datum/uplink_item/dangerous/syndicate_minibomb
+	cost = 4
 
 /datum/uplink_item/device_tools/emag
 	cost = 8
