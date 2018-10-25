@@ -2811,6 +2811,7 @@
 #include "yogstation\code\game\objects\items\devices\radio\headset.dm"
 #include "yogstation\code\game\objects\items\devices\radio\radio.dm"
 #include "yogstation\code\game\objects\items\grenades\glitterbombs.dm"
+#include "yogstation\code\game\objects\items\grenades\smokebeacon.dm"
 #include "yogstation\code\game\objects\items\melee\energy.dm"
 #include "yogstation\code\game\objects\items\robot\robot_items.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
