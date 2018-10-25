@@ -4,7 +4,7 @@
 
 /datum/uplink_item/dangerous/smokebeacon
 	name = "Syndicate Smoke Beacon"
-	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small amount of smoke, \
+	desc = "The smoke beacon is a grenade with a five-second fuse. Upon detonation, it will create a small amount of smoke, \
 			to mark the location for a Blue Space Artillery attack. Looks just like a regular smoke grenade."
 	item = /obj/item/grenade/smokebeacon
 	cost = 7
