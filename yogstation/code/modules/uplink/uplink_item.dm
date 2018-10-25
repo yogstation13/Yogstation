@@ -2,6 +2,12 @@
 	var/list/include_objectives = list() //objectives to allow the buyer to buy this item
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 
+/datum/uplink_item/dangerous/smokebeacon
+	name = "Syndicate Smoke Beacon"
+	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small amount of smoke, \
+			to mark the location for a Blue Space Artillery attack. Looks just like a regular smoke grenade."
+	item = /obj/item/grenade/smokebeacon
+	cost = 7
 
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
