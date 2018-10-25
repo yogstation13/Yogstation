@@ -23,7 +23,7 @@
 	smoke.set_up(2, src)
 	smoke.start()
 
-	sleep(10)
+	sleep(20)
 	explosion(src.loc,2,4,8,flame_range = 4)
 	qdel(src)
 
