@@ -257,6 +257,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			prefs.toggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
+	// yogs start - mentor stuff
+	if(ckey in GLOB.mentor_datums)
+		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
+		src.mentor_datum = mentor
+		src.add_mentor_verbs()
+		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
+			GLOB.mentors += src
+	// yogs end
+	
 
 	. = ..()	//calls mob.Login()
 
