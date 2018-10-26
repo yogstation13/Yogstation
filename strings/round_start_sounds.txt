@@ -1,6 +1,5 @@
 sound/ambience/title-suprised.ogg
 sound/ambience/title-dontstopme.ogg
-sound/ambience/title-fivebombs.ogg
 sound/ambience/title-getlucky.ogg
 sound/ambience/title-mrbluesky.ogg
 sound/ambience/title-nexttownover.ogg
