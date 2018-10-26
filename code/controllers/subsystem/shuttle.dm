@@ -540,14 +540,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	centcom_message = SSshuttle.centcom_message
 	ordernum = SSshuttle.ordernum
-<<<<<<< HEAD
-	// yogs start - fix cargo balance
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	points = D.account_balance
-	// yogs end
-=======
-	points = D.account_balance
->>>>>>> 730ce67d63... Merge pull request #41138 from Youbar/master
 	emergencyNoEscape = SSshuttle.emergencyNoEscape
 	emergencyCallAmount = SSshuttle.emergencyCallAmount
 	shuttle_purchased = SSshuttle.shuttle_purchased
