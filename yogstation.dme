@@ -2917,6 +2917,7 @@
 #include "yogstation\code\modules\mentor\mentorhelp.dm"
 #include "yogstation\code\modules\mentor\mentorpm.dm"
 #include "yogstation\code\modules\mentor\mentorsay.dm"
+#include "yogstation\code\modules\mentor\mentortickets.dm"
 #include "yogstation\code\modules\mob\mob.dm"
 #include "yogstation\code\modules\mob\say.dm"
 #include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
