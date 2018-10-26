@@ -90,7 +90,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	var/value = 0
 	var/purchases = 0
+<<<<<<< HEAD
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR) // yogs - fix cargo balance
+=======
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+>>>>>>> 730ce67d63... Merge pull request #41138 from Youbar/master
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		if(!empty_turfs.len)
 			break
@@ -108,7 +112,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			message_admins("\A [SO.pack.name] ordered by [ADMIN_LOOKUPFLW(SO.orderer_ckey)] has shipped.")
 		purchases++
 
+<<<<<<< HEAD
 	investigate_log("[purchases] orders in this shipment, worth [value] credits. [D.account_balance] credits left.", INVESTIGATE_CARGO) // yogs - fix cargo balance
+=======
+	investigate_log("[purchases] orders in this shipment, worth [value] credits. [D.account_balance] credits left.", INVESTIGATE_CARGO)
+>>>>>>> 730ce67d63... Merge pull request #41138 from Youbar/master
 
 /obj/docking_port/mobile/supply/proc/sell()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
