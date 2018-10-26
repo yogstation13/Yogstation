@@ -3,9 +3,10 @@ SUBSYSTEM_DEF(Yogs)
 	flags = SS_BACKGROUND
 	init_order = -101 //last subsystem to initialize, and first to shut down
 
-	var/list/mentortickets = list() //less of a ticket, and more just a log of everything someone has mhelped, and the responses
+	var/list/mentortickets //less of a ticket, and more just a log of everything someone has mhelped, and the responses
 
 /datum/controller/subsystem/Yogs/Initialize()
+	mentortickets = list()
 	return ..()
 
 /datum.controller/subsystem/Yogs/fire(resumed = 0)
