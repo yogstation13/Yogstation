@@ -1,0 +1,4 @@
+author: " davethwave"
+delete-after: true 
+changes: 
+  - tweak: "reduces electrical storm chance by half"
