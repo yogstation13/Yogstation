@@ -40904,6 +40904,15 @@
 "bWQ" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/engineering)
+"bWR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "O2 Outlet Pump";
+	on = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "bWV" = (
 /obj/structure/door_assembly/door_assembly_mai,
 /turf/open/floor/plating,
@@ -51191,10 +51200,8 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "fNs" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Air Outlet Pump";
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -51757,13 +51764,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"gRM" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "CO2 Outlet Pump"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "gTG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on";
@@ -52051,6 +52051,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"hAY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "CO2 Outlet Pump"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "hCa" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on";
@@ -52076,10 +52084,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "hEY" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "O2 Outlet Pump";
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -54626,10 +54632,8 @@
 /area/science/misc_lab)
 "mQn" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "N2 Outlet Pump";
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -55442,7 +55446,7 @@
 	dir = 8;
 	external_pressure_bound = 0;
 	frequency = 1441;
-	id_tag = "n2_out";
+	id_tag = "n2o_out";
 	initialize_directions = 1;
 	internal_pressure_bound = 4000;
 	pressure_checks = 2;
@@ -55567,7 +55571,7 @@
 	dir = 8;
 	external_pressure_bound = 0;
 	frequency = 1441;
-	id_tag = "n2o_out";
+	id_tag = "co2_out";
 	initialize_directions = 1;
 	internal_pressure_bound = 4000;
 	pressure_checks = 2;
@@ -55616,13 +55620,6 @@
 "pkS" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/ai)
-"pmX" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Plasma Outlet Pump"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "pnj" = (
 /obj/machinery/light,
 /obj/machinery/rnd/production/techfab/department/medical,
@@ -57415,6 +57412,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"toc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "N2O Outlet Pump"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "tqk" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	icon_state = "connector_map";
@@ -58298,6 +58303,15 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
+"vct" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Air Outlet Pump";
+	on = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "vdf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -58398,6 +58412,15 @@
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"vnv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "N2 Outlet Pump";
+	on = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "voz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -59281,10 +59304,11 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"xiX" = (
+"xjq" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
-	name = "N2O Outlet Pump"
+	name = "Plasma Outlet Pump"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -93903,15 +93927,15 @@ kqT
 giW
 lfv
 dkF
-sBh
+vct
 uVg
 uIz
 muP
-qDt
+vnv
 wbH
 yjV
 foO
-qDt
+bWR
 lgk
 pxA
 ltJ
@@ -95188,15 +95212,15 @@ lzH
 xsN
 xnb
 psl
-gRM
+nhI
 bOd
 bOd
 bOd
-xiX
+nhI
 bOd
 bOd
 bOd
-pmX
+nhI
 bOd
 bOd
 vke
@@ -95445,15 +95469,15 @@ xQX
 eeK
 wRZ
 qcq
-qDt
+hAY
 mYT
 mAB
 cCQ
-qDt
+toc
 uwE
 nKq
 lBL
-qDt
+xjq
 xlK
 eAl
 dlH
