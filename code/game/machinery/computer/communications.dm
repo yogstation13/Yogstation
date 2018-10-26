@@ -562,10 +562,15 @@
 				dat += "<BR>Lift access restrictions on maintenance and external airlocks? <BR>\[ <A HREF='?src=[REF(src)];operation=enableemergency'>OK</A> | <A HREF='?src=[REF(src)];operation=viewmessage'>Cancel</A> \]"
 
 		if(STATE_PURCHASE)
+<<<<<<< HEAD
 			// yogs start - fix cargo balance
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			dat += "Budget: [D.account_balance] Credits.<BR>"
 			// yogs end
+=======
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			dat += "Budget: [D.account_balance] Credits.<BR>"
+>>>>>>> 730ce67d63... Merge pull request #41138 from Youbar/master
 			dat += "<BR>"
 			dat += "<b>Caution: Purchasing dangerous shuttles may lead to mutiny and/or death.</b><br>"
 			dat += "<BR>"
