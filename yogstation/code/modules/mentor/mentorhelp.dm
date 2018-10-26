@@ -2,6 +2,10 @@
 	set category = "Mentor"
 	set name = "Mentorhelp"
 
+	if(is_mentor())
+		to_chat(src, "<notice>Mentors cannot mentorhelp, use msay instead!</notice>")
+		return
+
 	//clean the input msg
 	if(!msg)	return
 
@@ -25,7 +29,14 @@
 
 	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
 	webhook_send_mhelp(key_name_mentor(src), msg)
-	return
+
+	var/datum/mentorticket/mt
+	if(ckey in SSYogs.mentortickets)
+		mt = SSYogs.mentortickets[ckey]
+
+	if(!mt)
+		mt = new(src)
+	mt.log += "<b>[src.key]:</b> [msg]"
 
 /proc/get_mentor_counts()
 	. = list("total" = 0, "afk" = 0, "present" = 0)

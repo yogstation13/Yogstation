@@ -1,7 +1,8 @@
 GLOBAL_PROTECT(mentor_verbs)
 GLOBAL_LIST_INIT(mentor_verbs, list(
 	/client/proc/cmd_mentor_say,
-	/client/proc/show_mentor_memo
+	/client/proc/show_mentor_memo,
+	/client/proc/show_mentor_tickets
 	))
 
 /client/proc/add_mentor_verbs()
@@ -32,5 +33,5 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 		var/ckey = query_load_mentors.item[1]
 		msg += "\t[ckey]"
 	qdel(query_load_mentors)
-	
+
 	to_chat(src, msg)
