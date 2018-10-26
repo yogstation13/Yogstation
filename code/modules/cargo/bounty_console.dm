@@ -38,14 +38,7 @@
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	dat += "<a href='?src=[REF(src)];refresh=1'>Refresh</a>"
 	dat += "<a href='?src=[REF(src)];refresh=1;choice=Print'>Print Paper</a>"
-<<<<<<< HEAD
-	// yogs start - fix cargo balance
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	dat += "<p>Credits: <b>[D.account_balance]</b></p>"
-	// yogs end
-=======
-	dat += "<p>Credits: <b>[D.account_balance]</b></p>"
->>>>>>> 730ce67d63... Merge pull request #41138 from Youbar/master
 	dat += {"<table style="text-align:center;" border="1" cellspacing="0" width="100%">"}
 	dat += "<tr><th>Name</th><th>Description</th><th>Reward</th><th>Completion</th><th>Status</th></tr>"
 	for(var/datum/bounty/B in GLOB.bounties_list)
