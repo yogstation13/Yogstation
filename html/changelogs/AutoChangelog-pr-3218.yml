@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Destruction on Lavaland will no longer reveal space in rare situations."
