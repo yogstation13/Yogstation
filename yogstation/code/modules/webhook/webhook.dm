@@ -33,7 +33,7 @@
 
 /proc/webhook_send_mhelp(var/ckey, var/message)
 	var/list/query = webhook(ckey, message)
-	webhook_send("msay", query)
+	webhook_send("mhelp", query)
 
 
 
