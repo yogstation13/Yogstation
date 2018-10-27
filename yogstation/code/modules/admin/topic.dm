@@ -58,6 +58,8 @@
 			return
 		qdel(query_add_admin_log)
 
+		webhook_send_mchange(owner.ckey, C.ckey, "add")
+
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
 
@@ -88,6 +90,8 @@
 		var/datum/DBQuery/query_remove_mentor = SSdbcore.NewQuery("DELETE FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
 		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
+
+		webhook_send_mchange(owner.ckey, C.ckey, "remove")
 
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
