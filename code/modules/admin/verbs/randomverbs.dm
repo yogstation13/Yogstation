@@ -1312,18 +1312,10 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			if(!puzzle_imprison(target))
 				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>")
 				return
-
-<<<<<<< HEAD
-	var/msg = "[key_name(usr)] punished [key_name(target)] with [punishment]." // yogs - Yog Tickets
-	message_admins(msg)
-	admin_ticket_log(target, msg)
-	log_admin("[key_name(usr)] punished [key_name(target)] with [punishment].")
-=======
 	punish_log(target, punishment)
->>>>>>> 62529acdde... Cleans up and adds more concise admin logging to the centcom podlauncher (#40696)
 
 /client/proc/punish_log(var/whom, var/punishment)
-	var/msg = "[key_name_admin(usr)] punished [key_name_admin(whom)] with [punishment]."
+	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(usr)] punished [key_name(whom)] with [punishment].")
