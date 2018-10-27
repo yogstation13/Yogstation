@@ -21,7 +21,7 @@
 	for(var/M in SSYogs.mentortickets)
 		var/datum/mentorticket/T = SSYogs.mentortickets[M]
 
-		dat += "<A href='?src=[REF(src)];[HrefToken()];showmticket=[T.owner]'>[T.owner]</A>"
+		dat += "<A href='?src=[REF(src)];[HrefToken()];showmticket=[T.owner]'>[T.owner]</A><BR>"
 
 	popup.set_content(dat)
 	popup.open()
