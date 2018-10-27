@@ -23,7 +23,7 @@
 	if(!usr.client)
 		return
 
-	if (!check_rights(0))
+	if (!check_rights(R_EVERYTHING))
 		return
 
 	if(!ckey)
@@ -68,7 +68,7 @@
 	if(!usr.client)
 		return
 
-	if (!check_rights(0))
+	if (!check_rights(R_EVERYTHING))
 		return
 
 	if(!ckey)
