@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Anti-magic items will now properly protect you from the tesla blast spell"
