@@ -36,3 +36,7 @@
 /proc/webhook_send_mres(var/ckey, var/ckey2, var/message)
 	var/query = list("to" = url_encode(ckey), "from" = url_encode(ckey2), "message" = url_encode(message))
 	webhook_send("mres", query)
+
+/proc/webhook_send_mchange(var/ckey, var/ckey2, var/action)
+	var/query = list("ckey" = url_encode(ckey), "ckey2" = url_encode(ckey2), "action" = url_encode(action))
+	webhook_send("mchange", query)
