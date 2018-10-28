@@ -379,14 +379,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Hooch"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
-<<<<<<< HEAD
-=======
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/carbon/M)
 	if(M.mind && M.mind.assigned_role == "Assistant")
 		M.heal_bodypart_damage(1,1)
 		. = 1
 	return ..() || .
->>>>>>> e1a311eadc... Fixed a dumb mistake.
 
 /datum/reagent/consumable/ethanol/ale
 	name = "Ale"
