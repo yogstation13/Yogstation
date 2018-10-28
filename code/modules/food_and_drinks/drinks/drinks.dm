@@ -236,20 +236,19 @@
 /obj/item/reagent_containers/food/drinks/mug/coco
 	name = "Dutch hot coco"
 	desc = "Made in Space South America."
-	list_reagents = list("hot_coco" = 15, "sugar" = 5)
+	list_reagents = list("hot_coco" = 30, "sugar" = 5)
 	foodtype = SUGAR
+
 	resistance_flags = FREEZE_PROOF
-	custom_price = 42
 
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
-	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years."
+	desc = "Just add 10ml of water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
-	list_reagents = list("dry_ramen" = 15)
+	list_reagents = list("dry_ramen" = 30)
 	foodtype = GRAIN
 	isGlass = FALSE
-	custom_price = 38
 
 /obj/item/reagent_containers/food/drinks/beer
 	name = "space beer"
@@ -401,7 +400,6 @@
 	container_type = NONE
 	spillable = FALSE
 	isGlass = FALSE
-	custom_price = 10
 
 /obj/item/reagent_containers/food/drinks/soda_cans/suicide_act(mob/living/carbon/human/H)
 	if(!reagents.total_volume)
@@ -448,6 +446,7 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/cola
 	name = "Space Cola"
 	desc = "Cola. in space."
+	custom_price = 10
 	icon_state = "cola"
 	list_reagents = list("cola" = 30)
 	foodtype = SUGAR
@@ -455,6 +454,7 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
 	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	custom_price = 10
 	icon_state = "tonic"
 	list_reagents = list("tonic" = 50)
 	foodtype = ALCOHOL
@@ -462,6 +462,7 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/sodawater
 	name = "soda water"
 	desc = "A can of soda water. Why not make a scotch and soda?"
+	custom_price = 10
 	icon_state = "sodawater"
 	list_reagents = list("sodawater" = 50)
 
@@ -522,6 +523,13 @@
 	desc = "~Shake me up some of that Shambler's Juice!~"
 	icon_state = "shamblers"
 	list_reagents = list("shamblers" = 30)
+	foodtype = SUGAR | JUNKFOOD
+
+/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull
+	name = "Grey Bull"
+	desc = "Grey Bull, it gives you gloves!"
+	icon_state = "energy_drink"
+	list_reagents = list("grey_bull" = 20)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/air
