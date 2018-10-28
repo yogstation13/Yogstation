@@ -98,6 +98,9 @@
 		next_channel = 1
 
 /mob/proc/stop_sound_channel(chan)
+	if(chan == CHANNEL_LOBBYMUSIC && src.client && src.client.chatOutput)
+		src.client.chatOutput.stopLobbyMusic()
+		return
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 
 /*/client/proc/playtitlemusic(vol = 85) //yogs start - moved to yogstation/code/game/sound.dm

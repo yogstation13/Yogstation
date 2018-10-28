@@ -726,6 +726,7 @@ $(function() {
 	if (savedConfig.smusicVolume) {
 		var newVolume = clamp(savedConfig.smusicVolume, 0, 100);
 		$('#adminMusic').prop('volume', newVolume / 100);
+		$('#lobbyMusic').prop('volume', newVolume / 100); //yogs
 		$('#musicVolume').val(newVolume);
 		opts.updatedVolume = newVolume;
 		sendVolumeUpdate();
@@ -733,6 +734,7 @@ $(function() {
 	}
 	else{
 		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
+		$('#lobbyMusic').prop('volume', opts.defaultMusicVolume / 100); //yogs
 	}
 	
 	if (savedConfig.smessagecombining) {
