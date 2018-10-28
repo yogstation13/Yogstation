@@ -19,7 +19,9 @@
 		/obj/effect/temp_visual,
 		/obj/effect/light_emitter/tendril,
 		/obj/effect/collapse,
-		/obj/effect/particle_effect/ion_trails
+		/obj/effect/particle_effect/ion_trails,
+		/obj/effect/dummy/phased_mob,
+		/obj/effect/dummy/crawling //yogs
 		))
 
 /datum/component/chasm/Initialize(turf/target)
