@@ -2,6 +2,7 @@
 	set category = "Mentor"
 	set name = "Mentorwho"
 	var/msg = "<b>Current Mentors:</b>\n"
+	var/list/lines = list()
 	for(var/X in GLOB.mentors)
 		var/client/C = X
 		if(!C)
@@ -18,7 +19,9 @@
 
 			if(C.is_afk())
 				suffix += " (AFK)"
-		msg += "\t[C][suffix]\n"
+		lines += "\t[C][suffix]\n"
+	for(var/line in lines)
+		msg += "[line]\n"
 	to_chat(src, msg)
 
 /client/verb/who()
