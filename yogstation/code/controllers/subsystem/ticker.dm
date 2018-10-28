@@ -1,6 +1,6 @@
 /datum/controller/subsystem/ticker/proc/choose_lobby_music()
 	var/list/songs = world.file2list("config/title_music/yogs_lobby_music.txt")
-	if(!songs)
+	if(!songs.len)
 		log_world("There are no songs in config/title_music/yogs_lobby_music.txt, add some!")
 		return
 	var/selected = pick(songs)
