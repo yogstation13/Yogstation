@@ -1,6 +1,9 @@
 sound/ambience/title-suprised.ogg
 sound/ambience/title-nightcall.ogg
 sound/ambience/title-thunderdome.ogg
+sound/ambience/ttle-mrroboto.ogg
+sound/ambience/title-wedidntstartthefire.ogg
+sound/ambience/title-windmillofyourmind.ogg
 sound/ambience/title-dontstopme.ogg
 sound/ambience/title-getlucky.ogg
 sound/ambience/title-mrbluesky.ogg
