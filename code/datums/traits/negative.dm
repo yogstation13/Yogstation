@@ -140,11 +140,7 @@
 
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
-<<<<<<< HEAD
-	desc = "You sleep like a rock! Whenever you're put to sleep, you sleep for a little bit longer."
-=======
 	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up."
->>>>>>> 2fed211e6d... i can't even get one line of text right
 	value = -1
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = "<span class='danger'>You feel sleepy.</span>"
