@@ -1075,6 +1075,7 @@ $(function() {
 		var newVolume = $('#musicVolume').val();
 		newVolume = clamp(newVolume, 0, 100);
 		$('#adminMusic').prop('volume', newVolume / 100);
+		$('#lobbyMusic').prop('volume', newVolume / 100); //yogs
 		setCookie('musicVolume', newVolume, 365);
 		opts.updatedVolume = newVolume;
 		if(!opts.volumeUpdating) {

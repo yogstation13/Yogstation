@@ -5,6 +5,7 @@
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
 		to_chat(world, "<span class='boldwarning'>Youtube-dl was not configured.</span>")
+		log_world("Could not play lobby song because youtube-dl is not configured properly, check the config.")
 		return
 
 	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" -g --no-playlist -- \"[selected]\"")
