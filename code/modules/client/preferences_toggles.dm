@@ -127,8 +127,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggletitlemusic)()
 			usr.client.playtitlemusic()
 	else
 		to_chat(usr, "You will no longer hear music in the game lobby.")
-		//usr.stop_sound_channel(CHANNEL_LOBBYMUSIC) //yogs start - lobby music
-		usr.client.chatOutput.stopLobbyMusic() //yogs end
+		usr.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Lobby Music", "[usr.client.prefs.toggles & SOUND_LOBBY ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /datum/verbs/menu/Settings/Sound/toggletitlemusic/Get_checked(client/C)
 	return C.prefs.toggles & SOUND_LOBBY
