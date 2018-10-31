@@ -13,6 +13,7 @@
 	var/list/welder_salvage = list(/obj/item/stack/sheet/plasteel, /obj/item/stack/sheet/metal, /obj/item/stack/rods)
 	var/list/wirecutters_salvage = list(/obj/item/stack/cable_coil)
 	var/list/crowbar_salvage = list()
+	var/salvage_num = 5
 	var/mob/living/silicon/ai/AI //AIs to be salvaged
 
 /obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)
@@ -34,8 +35,8 @@
 		to_chat(user, "<span class='notice'>The AI recovery beacon is active.</span>")
 
 /obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weldingtool))
-		if(!welder_salvage || !welder_salvage.len)
+	if(I.tool_behaviour == TOOL_WELDER)
+		if(salvage_num <= 0 || !length(welder_salvage))
 			to_chat(user, "<span class='warning'>You don't see anything that can be cut with [I]!</span>")
 			return
 
@@ -48,34 +49,34 @@
 			user.visible_message("[user] cuts [N] from [src].", "<span class='notice'>You cut [N] from [src].</span>")
 			if(istype(N, /obj/item/mecha_parts/part))
 				welder_salvage -= type
+			salvage_num--
 		else
 			to_chat(user, "<span class='warning'>You fail to salvage anything valuable from [src]!</span>")
 		return
 
-	else if(istype(I, /obj/item/wirecutters))
-		if(!wirecutters_salvage || !wirecutters_salvage.len)
+	else if(I.tool_behaviour == TOOL_WIRECUTTER)
+		if(salvage_num <= 0)
 			to_chat(user, "<span class='warning'>You don't see anything that can be cut with [I]!</span>")
 			return
-		else
+		else if(wirecutters_salvage && wirecutters_salvage.len)
 			var/type = prob(70) ? pick(wirecutters_salvage) : null
 			if(type)
 				var/N = new type(get_turf(user))
 				user.visible_message("[user] cuts [N] from [src].", "<span class='notice'>You cut [N] from [src].</span>")
-				wirecutters_salvage -= type
+				salvage_num--
 			else
 				to_chat(user, "<span class='warning'>You fail to salvage anything valuable from [src]!</span>")
 
-	else if(istype(I, /obj/item/crowbar))
-		if(!crowbar_salvage || !crowbar_salvage.len)
-			to_chat(user, "<span class='warning'>You don't see anything that can be pried with [I]!</span>")
-			return
-		else
-			var/type = pick(crowbar_salvage)
-			crowbar_salvage -= type
-			var/obj/S = new type()
+	else if(I.tool_behaviour == TOOL_CROWBAR)
+		if(crowbar_salvage && crowbar_salvage.len)
+			var/obj/S = pick(crowbar_salvage)
 			if(S)
 				S.forceMove(user.drop_location())
+				crowbar_salvage -= S
 				user.visible_message("[user] pries [S] from [src].", "<span class='notice'>You pry [S] from [src].</span>")
+			return
+		else
+			to_chat(user, "<span class='warning'>You don't see anything that can be pried with [I]!</span>")
 
 
 /obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, null, obj/item/aicard/card)
