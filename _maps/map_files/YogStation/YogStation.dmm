@@ -917,6 +917,14 @@
 	dir = 4
 	},
 /obj/machinery/suit_storage_unit/hos,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching checkpoints.";
+	dir = 8;
+	layer = 4;
+	name = "Security Checkpoint Monitor";
+	network = list("chpt");
+	pixel_x = 30
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "ack" = (
@@ -4222,7 +4230,8 @@
 "ail" = (
 /obj/machinery/camera{
 	c_tag = "Brig Interrogation";
-	dir = 8
+	dir = 8;
+	network = list("interrogation")
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -4925,6 +4934,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
 	dir = 4
+	},
+/obj/machinery/computer/security/telescreen/interrogation{
+	pixel_y = 30
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -15516,7 +15528,8 @@
 "aFI" = (
 /obj/machinery/camera{
 	c_tag = "Security Checkpoint";
-	dir = 1
+	dir = 1;
+	network = list("ss13","chpt")
 	},
 /obj/machinery/airalarm{
 	dir = 4;
@@ -15712,7 +15725,7 @@
 /obj/machinery/camera/motion{
 	c_tag = "Vault";
 	dir = 1;
-	network = list("ss13")
+	network = list("vault")
 	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -16505,7 +16518,8 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/camera{
 	c_tag = "Paramedic Staging";
-	dir = 8
+	dir = 8;
+	network = list("ss13","medbay")
 	},
 /obj/structure/closet/secure_closet/paramedic,
 /turf/open/floor/plasteel,
@@ -26317,7 +26331,8 @@
 "bhc" = (
 /obj/machinery/camera{
 	c_tag = "Chemistry";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /obj/machinery/firealarm{
 	dir = 2;
@@ -26363,7 +26378,8 @@
 "bhj" = (
 /obj/machinery/camera{
 	c_tag = "Security Post - Medbay";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay","chpt")
 	},
 /obj/machinery/requests_console{
 	department = "Security";
@@ -27330,12 +27346,13 @@
 	departmentType = 2;
 	pixel_y = 30
 	},
+/obj/item/clothing/head/soft,
+/obj/item/clothing/head/soft,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjn" = (
 /obj/structure/table,
-/obj/item/clothing/head/soft,
-/obj/item/clothing/head/soft,
+/obj/machinery/computer/stockexchange,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjo" = (
@@ -28278,7 +28295,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/camera{
 	c_tag = "Medbay Foyer";
-	dir = 8
+	dir = 8;
+	network = list("ss13","medbay")
 	},
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel/white,
@@ -29338,10 +29356,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "bnR" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
+/obj/machinery/computer/security/telescreen/vault{
 	pixel_y = 30
 	},
 /obj/machinery/disposal/bin,
@@ -30474,7 +30489,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay West";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -31143,6 +31159,7 @@
 /obj/machinery/camera{
 	c_tag = "Medbay East";
 	dir = 8;
+	network = list("ss13","medbay");
 	pixel_y = -22
 	},
 /turf/open/floor/plasteel/white,
@@ -32436,7 +32453,7 @@
 /obj/machinery/camera{
 	c_tag = "Genetics Research";
 	dir = 1;
-	network = list("ss13","rd")
+	network = list("ss13","medbay")
 	},
 /obj/machinery/firealarm{
 	dir = 1;
@@ -32472,22 +32489,11 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bvF" = (
-/obj/structure/table,
-/obj/item/cartridge/quartermaster{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/cartridge/quartermaster,
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
 /obj/machinery/requests_console{
 	department = "Cargo Bay";
 	departmentType = 2;
 	pixel_x = -30
 	},
-/obj/item/coin/silver,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -32496,6 +32502,9 @@
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
+	},
+/obj/machinery/computer/bounty{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -32795,7 +32804,8 @@
 "bww" = (
 /obj/structure/chair,
 /obj/machinery/camera{
-	c_tag = "Surgery Observation"
+	c_tag = "Surgery Observation";
+	network = list("ss13","medbay")
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on";
@@ -32889,7 +32899,8 @@
 /obj/structure/table/glass,
 /obj/machinery/camera{
 	c_tag = "Medbay Cryogenics";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -32907,7 +32918,8 @@
 "bwL" = (
 /obj/machinery/camera{
 	c_tag = "Genetics Cloning";
-	dir = 4
+	dir = 4;
+	network = list("ss13","medbay")
 	},
 /obj/structure/table,
 /obj/machinery/firealarm{
@@ -33167,7 +33179,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons and the AI's satellite from the safety of his office.";
 	name = "Research Monitor";
-	network = list("rd","minisat");
+	network = list("rd","aicore","aiupload","xeno","test");
 	pixel_y = 2
 	},
 /obj/structure/table,
@@ -33505,11 +33517,20 @@
 /area/crew_quarters/heads/hor)
 "byc" = (
 /obj/structure/table,
-/obj/machinery/computer/stockexchange,
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/item/cartridge/quartermaster{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/cartridge/quartermaster,
+/obj/item/cartridge/quartermaster{
+	pixel_x = -4;
+	pixel_y = 7
+	},
+/obj/item/coin/silver,
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "byd" = (
@@ -34522,7 +34543,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
-	dir = 8
+	dir = 8;
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
@@ -34630,7 +34652,7 @@
 /obj/machinery/camera{
 	c_tag = "Security Post - Science";
 	dir = 4;
-	network = list("ss13","rd")
+	network = list("ss13","rd","chpt")
 	},
 /obj/machinery/newscaster{
 	pixel_x = -30
@@ -34767,10 +34789,6 @@
 /turf/open/floor/engine,
 /area/science/explab)
 "bAS" = (
-/obj/machinery/computer/security/mining{
-	dir = 4;
-	network = list("mine","auxbase")
-	},
 /obj/machinery/camera{
 	c_tag = "Quartermaster's Office";
 	dir = 4
@@ -34788,6 +34806,9 @@
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
+	},
+/obj/machinery/computer/security/qm{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
@@ -34877,7 +34898,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Security Post - Cargo";
-	dir = 1
+	dir = 1;
+	network = list("ss13","chpt")
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -35579,7 +35601,8 @@
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/camera{
 	c_tag = "Medbay Storage";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -35648,7 +35671,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay South";
-	dir = 4
+	dir = 4;
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -36284,6 +36308,7 @@
 /obj/machinery/camera{
 	c_tag = "Chief Medical Office";
 	dir = 8;
+	network = list("ss13","medbay");
 	pixel_y = -22
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -39585,7 +39610,8 @@
 "bOn" = (
 /obj/machinery/camera{
 	c_tag = "Virology Module";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -39602,7 +39628,8 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
 	c_tag = "Virology Airlock";
-	dir = 2
+	dir = 2;
+	network = list("ss13","medbay")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -40139,7 +40166,8 @@
 "bQq" = (
 /obj/machinery/camera{
 	c_tag = "Security Post - Engineering";
-	dir = 8
+	dir = 8;
+	network = list("ss13","chpt")
 	},
 /obj/item/radio/intercom{
 	dir = 4;
@@ -40788,7 +40816,8 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/camera{
-	c_tag = "Virology Module"
+	c_tag = "Virology Module";
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -44716,8 +44745,8 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons from the safety of your own office.";
 	dir = 4;
-	name = "Research Monitor";
-	network = list("rd");
+	name = "Engineering Monitor";
+	network = list("engine","minisat");
 	pixel_x = -24
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -51169,7 +51198,7 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics  West";
 	dir = 4;
-	network = list("ss13","rd")
+	network = list("ss13")
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -51273,6 +51302,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
+"fEA" = (
+/obj/machinery/computer/security/telescreen/cmo{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "fFl" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -56698,7 +56740,7 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics South West";
 	dir = 4;
-	network = list("ss13","rd")
+	network = list("ss13")
 	},
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -56744,10 +56786,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/turbine_computer{
-	id = "incineratorturbine"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/computer/security/telescreen/turbine{
+	dir = 8;
+	icon_state = "telescreen";
+	pixel_x = 30;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "rVU" = (
@@ -57178,6 +57223,9 @@
 	},
 /obj/machinery/airalarm{
 	pixel_y = 23
+	},
+/obj/machinery/computer/turbine_computer{
+	id = "incineratorturbine"
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -58955,7 +59003,8 @@
 /obj/item/reagent_containers/blood/random,
 /obj/machinery/camera{
 	c_tag = "Virology Break Room";
-	dir = 8
+	dir = 8;
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -59336,6 +59385,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/machinery/camera{
+	c_tag = "Turbine Chamber";
+	network = list("turbine")
+	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "xpn" = (
@@ -59452,7 +59505,8 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Morgue";
-	dir = 8
+	dir = 8;
+	network = list("ss13","medbay")
 	},
 /obj/machinery/airalarm{
 	dir = 8;
@@ -100561,7 +100615,7 @@ bCY
 bEj
 bCY
 bGZ
-bCY
+fEA
 bBN
 bKS
 bMd
