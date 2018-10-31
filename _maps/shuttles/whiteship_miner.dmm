@@ -483,7 +483,6 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ck" = (
-/turf/open/space,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "cl" = (
@@ -903,7 +902,7 @@
 "ti" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/oil,
-/obj/structure/mecha_wreckage/ripley/loaded,
+/obj/structure/mecha_wreckage/loaded_ripley,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "vK" = (
