@@ -28,8 +28,7 @@
 	usr.reset_perspective()
 	verbs -= /client/proc/mentor_unfollow
 	if(mentor_datum)
-		mentor_datum.following = null
-
 		to_chat(GLOB.admins, "<span class='mentor'><span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)]</span>")
 		log_mentor("[key_name(usr)] stopped following [key_name(mentor_datum.following)]")
-	
+		
+		mentor_datum.following = null
