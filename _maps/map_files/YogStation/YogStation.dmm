@@ -4869,13 +4869,11 @@
 /obj/structure/table,
 /obj/machinery/button/ignition{
 	id = "testigniter";
-	pixel_x = 0;
 	pixel_y = 6
 	},
 /obj/machinery/button/door{
 	id = "testlab";
 	name = "Test Chamber Blast Doors";
-	pixel_x = 0;
 	pixel_y = -4;
 	req_access_txt = "55"
 	},
@@ -9845,7 +9843,6 @@
 /area/maintenance/port/fore)
 "atK" = (
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/white,
@@ -9856,14 +9853,12 @@
 /area/maintenance/port/fore)
 "atM" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "atN" = (
 /obj/structure/sign/poster/official/random{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -10767,7 +10762,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/science/circuit";
 	name = "Circuitry Lab APC";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/cable{
@@ -39679,7 +39673,6 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /obj/machinery/newscaster{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -47031,7 +47024,6 @@
 	name = "Output to Port"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -31
 	},
 /turf/open/floor/plasteel,
@@ -52128,7 +52120,6 @@
 	areastring = "/area/tcommsat/entrance";
 	dir = 8;
 	name = "Telecoms Satellite Access APC";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -52788,7 +52779,6 @@
 /obj/item/storage/belt/utility,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /obj/item/book/manual/wiki/atmospherics,
@@ -55071,7 +55061,6 @@
 /area/science/storage)
 "nFR" = (
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/dark,
@@ -55760,7 +55749,6 @@
 	dir = 4
 	},
 /obj/structure/fireaxecabinet{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -57972,7 +57960,6 @@
 	department = "Atmospherics";
 	departmentType = 4;
 	name = "Atmos RC";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/dark,
@@ -59168,7 +59155,6 @@
 "wIG" = (
 /obj/machinery/meter,
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
