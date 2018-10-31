@@ -21176,7 +21176,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/space)
+/area/crew_quarters/kitchen)
 "aTP" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/fyellow,
