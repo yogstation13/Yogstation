@@ -11953,6 +11953,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"axK" = (
+/mob/living/simple_animal/crab/kreb{
+	desc = "Here to lay down the hard claws of the law!";
+	name = "Officer Kreb";
+	real_name = "Officer Kreb"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "axL" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -12056,6 +12064,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
+"axX" = (
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "Much better at protecting the armory then your average warden.";
+	name = "Warden Jacob";
+	real_name = "Warden Jacob"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "axY" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -12121,6 +12137,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"ayd" = (
+/mob/living/simple_animal/bot/honkbot,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"aye" = (
+/mob/living/simple_animal/pet/fox/Renault,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "ayf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	icon_state = "intact";
@@ -12200,6 +12224,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ayp" = (
+/mob/living/simple_animal/sloth/citrus,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ayq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -12235,6 +12263,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
+"ayt" = (
+/mob/living/simple_animal/pet/penguin/emperor/shamebrero{
+	desc = "Was used in a experiment by the RD to test how a penguin with a sombrero would effect morale. Results were uncertain but is being kept as the science department's mascot anyway.";
+	name = "Anadear";
+	real_name = "Anadear"
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "ayu" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -80298,7 +80334,7 @@ bjr
 bjr
 bkt
 bmh
-bjr
+ayp
 bjr
 bjr
 bjr
@@ -88981,7 +89017,7 @@ aES
 aGK
 aIi
 agr
-agt
+axX
 ahy
 ahX
 aiL
@@ -91344,7 +91380,7 @@ bbZ
 bcP
 cBo
 mcz
-bbw
+aye
 bbw
 aZV
 bmA
@@ -92571,7 +92607,7 @@ aaa
 aaf
 abr
 abV
-acu
+axK
 acS
 adp
 adP
@@ -94412,7 +94448,7 @@ aHI
 aab
 ugf
 pCT
-aJm
+ayd
 aNH
 aOM
 aOM
@@ -108833,7 +108869,7 @@ btY
 bxn
 bqe
 bzO
-bzO
+ayt
 bzO
 bqe
 abg
