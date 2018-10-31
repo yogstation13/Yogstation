@@ -422,10 +422,11 @@
 	dir = 2
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/item/storage/firstaid/toxin,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/item/book/manual/wiki/toxins,
+/obj/item/storage/firstaid/toxin,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "abe" = (
@@ -9941,6 +9942,7 @@
 	network = list("rd");
 	pixel_y = 28
 	},
+/obj/item/book/manual/wiki/circuitry,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "atZ" = (
@@ -21169,8 +21171,12 @@
 "aTO" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_x = -4;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
+/area/space)
 "aTP" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/fyellow,
@@ -29202,7 +29208,7 @@
 "bnD" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table,
-/obj/item/book/manual/wiki/chemistry,
+/obj/item/book/manual/wiki/grenades,
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = 3;
 	pixel_y = 3
@@ -34314,11 +34320,12 @@
 /area/quartermaster/qm)
 "bzS" = (
 /obj/structure/table,
-/obj/item/cautery{
-	pixel_x = 4
-	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/item/book/manual/wiki/surgery,
+/obj/item/cautery{
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
@@ -37783,6 +37790,7 @@
 "bIj" = (
 /obj/structure/table,
 /obj/machinery/light,
+/obj/item/book/manual/wiki/medicine,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
@@ -52708,6 +52716,7 @@
 	pixel_x = 0;
 	pixel_y = 27
 	},
+/obj/item/book/manual/wiki/atmospherics,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "iSY" = (
@@ -57082,14 +57091,15 @@
 /area/crew_quarters/locker)
 "sDZ" = (
 /obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/radio{
-	pixel_x = -10
-	},
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/item/book/manual/wiki/tcomms,
+/obj/item/paper_bin,
+/obj/item/radio{
+	pixel_x = -10
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
