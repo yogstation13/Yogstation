@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - spellcheck: "Ammoboxes will no longer say 'there are 1 shell left'."
