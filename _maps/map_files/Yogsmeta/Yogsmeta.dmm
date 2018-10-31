@@ -14148,12 +14148,6 @@
 	},
 /area/maintenance/port/fore)
 "azp" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/storage/toolbox/emergency,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -14161,6 +14155,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "azq" = (
@@ -14284,6 +14279,7 @@
 	icon_state = "vent_map_on";
 	dir = 4
 	},
+/obj/effect/landmark/start/yogs/mining_medic,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "azA" = (
@@ -17718,8 +17714,6 @@
 /area/library)
 "aFF" = (
 /obj/structure/table,
-/obj/item/folder/yellow,
-/obj/item/pen,
 /obj/machinery/requests_console{
 	department = "Mining";
 	departmentType = 0;
@@ -17732,18 +17726,25 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
-"aFG" = (
-/obj/structure/table,
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
+/obj/item/folder/yellow,
+/obj/item/pen,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
+"aFG" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "aFH" = (
@@ -37222,6 +37223,7 @@
 	icon_state = "scrub_map_on";
 	dir = 1
 	},
+/obj/effect/landmark/start/yogs/signal_technician,
 /turf/open/floor/plasteel/dark,
 /area/storage/tcom)
 "bob" = (
@@ -81847,6 +81849,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"fvJ" = (
+/turf/open/space/basic,
+/area/quartermaster/miningdock)
 "fwb" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -98392,7 +98397,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+fvJ
 aaa
 aaa
 aaa
