@@ -2086,6 +2086,7 @@
 "aeo" = (
 /obj/machinery/sparker/toxmix{
 	dir = 2;
+	id = "mixingsparker";
 	pixel_x = 25
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -3396,13 +3397,13 @@
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "agO" = (
-/obj/machinery/sparker{
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
+	dir = 4
+	},
+/obj/machinery/sparker/toxmix{
 	dir = 2;
 	id = "mixingsparker";
 	pixel_x = 25
-	},
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
-	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
