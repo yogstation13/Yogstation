@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
-	/*var/list/byond_sound_formats = list( //yogs start - goonchat lobby music
+	var/list/byond_sound_formats = list(
 		"mid"  = TRUE,
 		"midi" = TRUE,
 		"mod"  = TRUE,
@@ -111,10 +111,8 @@ SUBSYSTEM_DEF(ticker)
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
 		login_music = pick(music)
 	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"*/
-	login_music = choose_lobby_music()
-	if(!login_music)
-		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
+		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
+
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase()
@@ -575,7 +573,7 @@ SUBSYSTEM_DEF(ticker)
 	round_end_sound_sent = TRUE
 
 // yogs start - Mods can reboot when last ticket is closed
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE)
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
 	set waitfor = FALSE
 	if(usr && !force)
 		if(!check_rights(R_SERVER, TRUE))
