@@ -48,7 +48,6 @@
 #include "code\__DEFINES\footsteps.dm"
 #include "code\__DEFINES\forensics.dm"
 #include "code\__DEFINES\hud.dm"
-#include "code\__DEFINES\integrated_electronics.dm"
 #include "code\__DEFINES\interaction_flags.dm"
 #include "code\__DEFINES\inventory.dm"
 #include "code\__DEFINES\is_helpers.dm"
@@ -264,7 +263,6 @@
 #include "code\controllers\subsystem\vis_overlays.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\controllers\subsystem\weather.dm"
-#include "code\controllers\subsystem\processing\circuit.dm"
 #include "code\controllers\subsystem\processing\fastprocess.dm"
 #include "code\controllers\subsystem\processing\fields.dm"
 #include "code\controllers\subsystem\processing\nanites.dm"
@@ -1709,6 +1707,7 @@
 #include "code\modules\hydroponics\grown\tobacco.dm"
 #include "code\modules\hydroponics\grown\tomato.dm"
 #include "code\modules\hydroponics\grown\towercap.dm"
+<<<<<<< HEAD
 #include "code\modules\integrated_electronics\core\analyzer.dm"
 #include "code\modules\integrated_electronics\core\assemblies.dm"
 #include "code\modules\integrated_electronics\core\debugger.dm"
@@ -1746,6 +1745,8 @@
 #include "code\modules\integrated_electronics\subtypes\text.dm"
 #include "code\modules\integrated_electronics\subtypes\time.dm"
 #include "code\modules\integrated_electronics\subtypes\trig.dm"
+=======
+>>>>>>> 9343d9e70a... [READY]Removal of circuits (#41108)
 #include "code\modules\jobs\access.dm"
 #include "code\modules\jobs\job_exp.dm"
 #include "code\modules\jobs\jobs.dm"
