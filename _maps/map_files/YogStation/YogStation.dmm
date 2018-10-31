@@ -393,14 +393,38 @@
 /obj/structure/grille/broken,
 /turf/open/space,
 /area/space/nearstation)
+"abb" = (
+/mob/living/simple_animal/crab/kreb{
+	desc = "Here to lay down the hard claws of the law!";
+	name = "Officer Kreb";
+	real_name = "Officer Kreb"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "abc" = (
 /turf/closed/wall,
 /area/security/execution/transfer)
+"abd" = (
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "Much better at protecting the armory then your average warden.";
+	name = "Warden Jacob";
+	real_name = "Warden Jacob"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
+"abe" = (
+/mob/living/simple_animal/bot/honkbot,
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "abf" = (
 /obj/machinery/vending/sustenance,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abg" = (
+/mob/living/simple_animal/pet/fox/Renault,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "abh" = (
 /obj/machinery/holopad,
 /obj/effect/decal/cleanable/dirt,
@@ -514,6 +538,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aby" = (
+/mob/living/simple_animal/sloth/citrus,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
+"abz" = (
+/mob/living/simple_animal/pet/penguin/emperor/shamebrero{
+	desc = "Was used in a experiment by the RD to test how a penguin with a sombrero would effect moral. Results were uncertain but is being kept as the science departments mascot anyway.";
+	name = "Anadear";
+	real_name = "Anadear"
+	},
+/turf/open/floor/engine,
+/area/science/explab)
 "abA" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -80233,7 +80269,7 @@ bjr
 bjr
 bkt
 bmh
-bjr
+aby
 bjr
 bjr
 bjr
@@ -88916,7 +88952,7 @@ aES
 aGK
 aIi
 agr
-agt
+abd
 ahy
 ahX
 aiL
@@ -91279,7 +91315,7 @@ bbZ
 bcP
 cBo
 mcz
-bbw
+abg
 bbw
 aZV
 bmA
@@ -92506,7 +92542,7 @@ aaa
 aaf
 abr
 abV
-acu
+abb
 acS
 adp
 adP
@@ -94347,7 +94383,7 @@ aHI
 aab
 ugf
 pCT
-aJm
+abe
 aNH
 aOM
 aOM
@@ -108768,7 +108804,7 @@ btY
 bxn
 bqe
 bzO
-bzO
+abz
 bzO
 bqe
 bEA
