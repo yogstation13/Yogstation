@@ -2086,6 +2086,7 @@
 "aeo" = (
 /obj/machinery/sparker/toxmix{
 	dir = 2;
+	id = "mixingsparker";
 	pixel_x = 25
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -2419,7 +2420,9 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3,
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3{
+	id_tag = "tox_airlock_pump"
+	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
 "aeT" = (
@@ -3396,13 +3399,13 @@
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "agO" = (
-/obj/machinery/sparker{
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
+	dir = 4
+	},
+/obj/machinery/sparker/toxmix{
 	dir = 2;
 	id = "mixingsparker";
 	pixel_x = 25
-	},
-/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
-	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
@@ -3452,8 +3455,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer1{
+	dir = 1;
 	icon_state = "vent_map";
-	dir = 1
+	id_tag = "tox_airlock_pump"
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
@@ -4865,13 +4869,11 @@
 /obj/structure/table,
 /obj/machinery/button/ignition{
 	id = "testigniter";
-	pixel_x = 0;
 	pixel_y = 6
 	},
 /obj/machinery/button/door{
 	id = "testlab";
 	name = "Test Chamber Blast Doors";
-	pixel_x = 0;
 	pixel_y = -4;
 	req_access_txt = "55"
 	},
@@ -9841,7 +9843,6 @@
 /area/maintenance/port/fore)
 "atK" = (
 /obj/machinery/light_switch{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/white,
@@ -9852,14 +9853,12 @@
 /area/maintenance/port/fore)
 "atM" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "atN" = (
 /obj/structure/sign/poster/official/random{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -10763,7 +10762,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/science/circuit";
 	name = "Circuitry Lab APC";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/cable{
@@ -26316,6 +26314,7 @@
 /area/medical/chemistry)
 "bha" = (
 /obj/structure/closet/secure_closet/chemical,
+/obj/item/radio/headset/headset_med,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bhb" = (
@@ -26343,6 +26342,13 @@
 /area/medical/chemistry)
 "bhd" = (
 /obj/machinery/chem_master,
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters";
+	pixel_x = 24;
+	pixel_y = -6;
+	req_one_access_txt = "5; 33"
+	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -26533,7 +26539,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/rnd/production/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter/department/science,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bhy" = (
@@ -26913,6 +26919,10 @@
 	req_access_txt = "33"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters"
+	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bis" = (
@@ -28255,6 +28265,10 @@
 	req_access_txt = "33"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters"
+	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bli" = (
@@ -28872,8 +28886,11 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
+/obj/item/book/manual/wiki/grenades,
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bmG" = (
@@ -29223,16 +29240,6 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"bnD" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/book/manual/wiki/grenades,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "bnE" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -29424,6 +29431,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "boc" = (
@@ -30089,8 +30098,8 @@
 /area/medical/genetics)
 "bpM" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/machinery/smartfridge/chemistry,
+/turf/closed/wall,
 /area/medical/chemistry)
 "bpN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -38438,12 +38447,8 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bJP" = (
-/obj/machinery/vending/boozeomat,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/wood,
 /area/maintenance/port/aft)
 "bJT" = (
 /obj/machinery/vending/cigarette,
@@ -39668,7 +39673,6 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /obj/machinery/newscaster{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -47020,7 +47024,6 @@
 	name = "Output to Port"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -31
 	},
 /turf/open/floor/plasteel,
@@ -50209,6 +50212,24 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"daW" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/effect/landmark/start/chemist,
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters";
+	pixel_x = 24;
+	pixel_y = -28;
+	req_one_access_txt = "5; 33"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dbN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold";
@@ -50693,6 +50714,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"eqZ" = (
+/obj/machinery/nuclearbomb/beer,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "erz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -52095,7 +52120,6 @@
 	areastring = "/area/tcommsat/entrance";
 	dir = 8;
 	name = "Telecoms Satellite Access APC";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -52755,7 +52779,6 @@
 /obj/item/storage/belt/utility,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = 27
 	},
 /obj/item/book/manual/wiki/atmospherics,
@@ -55038,7 +55061,6 @@
 /area/science/storage)
 "nFR" = (
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/dark,
@@ -55727,7 +55749,6 @@
 	dir = 4
 	},
 /obj/structure/fireaxecabinet{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -57939,7 +57960,6 @@
 	department = "Atmospherics";
 	departmentType = 4;
 	name = "Atmos RC";
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/dark,
@@ -59135,7 +59155,6 @@
 "wIG" = (
 /obj/machinery/meter,
 /obj/item/radio/intercom{
-	pixel_x = 0;
 	pixel_y = -27
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
@@ -94176,7 +94195,7 @@ bgP
 eaQ
 bkL
 bjL
-bnD
+bjL
 bpM
 bqT
 bFD
@@ -94687,7 +94706,7 @@ bfF
 bhd
 bis
 bjR
-bis
+daW
 bmI
 bod
 bpt
@@ -103912,7 +103931,7 @@ anf
 anf
 apE
 anf
-anf
+eqZ
 alP
 aDZ
 aFu
