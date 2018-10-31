@@ -12914,6 +12914,7 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/clothing/glasses/hud/health,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "awY" = (
@@ -13953,6 +13954,9 @@
 /area/hallway/primary/fore)
 "ayY" = (
 /obj/effect/landmark/start/yogs/paramedic,
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "ayZ" = (
@@ -13996,6 +14000,7 @@
 /obj/machinery/computer/med_data{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "azd" = (
@@ -16327,6 +16332,7 @@
 /obj/machinery/computer/crew{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "aDf" = (
@@ -47539,6 +47545,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "bHp" = (
@@ -82429,6 +82436,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"qde" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/medical/paramedic)
 "qdT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -109492,12 +109503,12 @@ coX
 cnL
 cga
 aeD
-azi
+qde
 awX
 azc
 aDe
 bHo
-azi
+qde
 bJY
 bZO
 ctB
