@@ -1,6 +1,7 @@
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
+	
 
 	to_chat(src, "All hotkeys can be viewed and modified under Preferences -> Keybindings. Click on Default to switch to hotkeys mode")
 
