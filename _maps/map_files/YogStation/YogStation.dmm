@@ -2420,7 +2420,9 @@
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3,
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer3{
+	id_tag = "tox_airlock_pump"
+	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
 "aeT" = (
@@ -3453,8 +3455,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/layer1{
+	dir = 1;
 	icon_state = "vent_map";
-	dir = 1
+	id_tag = "tox_airlock_pump"
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
