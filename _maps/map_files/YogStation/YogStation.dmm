@@ -54570,12 +54570,6 @@
 	dir = 4
 	},
 /area/engine/atmos)
-"myB" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	name = "Pure Gas Connector Port"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "myI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/grimy,
@@ -96578,7 +96572,7 @@ bOd
 wdE
 xei
 bOd
-myB
+bOd
 ppr
 tqk
 fuJ
