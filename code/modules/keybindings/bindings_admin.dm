@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 /datum/admins/key_down(_key, client/user)
 	switch(_key)
 		if("F3")
@@ -17,5 +18,8 @@
 				user.stealth()
 			else
 				user.invisimin()
+			return
+		if("F10")
+			user.get_dead_say()
 			return
 	..()

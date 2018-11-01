@@ -66,7 +66,7 @@
 /obj/structure/fluff/bus/passable/seat{
 	icon_state = "backseat"
 	},
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -90,7 +90,7 @@
 /obj/structure/fluff/bus/passable/seat{
 	icon_state = "backseat"
 	},
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
@@ -128,7 +128,7 @@
 /area/ruin/unpowered/no_grav)
 "av" = (
 /obj/structure/table,
-/obj/item/device/paicard,
+/obj/item/paicard,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aw" = (
@@ -158,9 +158,9 @@
 "aA" = (
 /obj/structure/fluff/bus/passable,
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/faggot,
-/obj/item/reagent_containers/food/snacks/faggot,
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
+/obj/item/reagent_containers/food/snacks/meatball,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -182,7 +182,7 @@
 /area/ruin/unpowered/no_grav)
 "aD" = (
 /obj/structure/fluff/bus/passable,
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -256,7 +256,7 @@
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aP" = (
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
 "aQ" = (
@@ -282,7 +282,7 @@
 	icon_state = "backseat"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -318,7 +318,7 @@
 "aZ" = (
 /obj/structure/fluff/bus/passable,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/faggot,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
@@ -333,6 +333,16 @@
 "bb" = (
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
+"XA" = (
+/obj/structure/fluff/bus/passable/seat{
+	icon_state = "backseat"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/awakenedplushie,
+/turf/open/floor/plasteel/airless/dark{
+	icon_state = "bus"
+	},
 /area/ruin/unpowered/no_grav)
 
 (1,1,1) = {"
@@ -484,7 +494,7 @@ ab
 ae
 ad
 aj
-am
+XA
 az
 aK
 ad

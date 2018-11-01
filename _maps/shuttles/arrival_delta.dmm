@@ -211,14 +211,14 @@
 	},
 /area/shuttle/arrival)
 "u" = (
-/obj/structure/chair{
+/obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "v" = (
-/obj/structure/chair{
+/obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
@@ -300,7 +300,7 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/bot,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_x = -30
 	},
 /turf/open/floor/plasteel,

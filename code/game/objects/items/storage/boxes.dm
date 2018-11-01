@@ -101,7 +101,7 @@
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
-	new /obj/item/device/radio/off(src)
+	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/survival_mining/PopulateContents()
 	new /obj/item/clothing/mask/gas/explorer(src)
@@ -118,7 +118,7 @@
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
-	new /obj/item/device/radio/off(src)
+	new /obj/item/radio/off(src)
 
 // Syndie survival box
 /obj/item/storage/box/syndie/PopulateContents()
@@ -133,7 +133,7 @@
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
-	new /obj/item/device/radio/off(src)
+	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -189,6 +189,14 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/beaker( src )
 
+/obj/item/storage/box/beakers/bluespace
+	name = "box of bluespace beakers"
+	illustration = "beaker"
+
+/obj/item/storage/box/beakers/bluespace/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/beaker/bluespace(src)
+
 /obj/item/storage/box/medsprays
 	name = "box of medical sprayers"
 	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."
@@ -225,7 +233,7 @@
 
 /obj/item/storage/box/flashes/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/device/assembly/flash/handheld(src)
+		new /obj/item/assembly/flash/handheld(src)
 
 /obj/item/storage/box/wall_flash
 	name = "wall-mounted flash kit"
@@ -238,11 +246,11 @@
 
 	new /obj/item/wallframe/button(src)
 	new /obj/item/electronics/airlock(src)
-	var/obj/item/device/assembly/control/flasher/remote = new(src)
+	var/obj/item/assembly/control/flasher/remote = new(src)
 	remote.id = id
 	var/obj/item/wallframe/flasher/frame = new(src)
 	frame.id = id
-	new /obj/item/device/assembly/flash/handheld(src)
+	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/screwdriver(src)
 
 
@@ -399,10 +407,10 @@
 	illustration = "pda"
 
 /obj/item/storage/box/PDAs/PopulateContents()
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
+	new /obj/item/pda(src)
+	new /obj/item/pda(src)
+	new /obj/item/pda(src)
+	new /obj/item/pda(src)
 	new /obj/item/cartridge/head(src)
 
 	var/newcart = pick(	/obj/item/cartridge/engineering,
@@ -453,7 +461,7 @@
 
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/device/firing_pin(src)
+		new /obj/item/firing_pin(src)
 
 /obj/item/storage/box/lasertagpins
 	name = "box of laser tag firing pins"
@@ -462,8 +470,8 @@
 
 /obj/item/storage/box/lasertagpins/PopulateContents()
 	for(var/i in 1 to 3)
-		new /obj/item/device/firing_pin/tag/red(src)
-		new /obj/item/device/firing_pin/tag/blue(src)
+		new /obj/item/firing_pin/tag/red(src)
+		new /obj/item/firing_pin/tag/blue(src)
 
 /obj/item/storage/box/handcuffs
 	name = "box of spare handcuffs"
@@ -511,7 +519,7 @@
 
 /obj/item/storage/box/mousetraps/PopulateContents()
 	for(var/i in 1 to 6)
-		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/assembly/mousetrap(src)
 
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"
@@ -535,7 +543,7 @@
 	STR.max_items = 8
 
 /obj/item/storage/box/snappops/PopulateContents()
-	SendSignal(COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/toy/snappop)
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/toy/snappop)
 
 /obj/item/storage/box/matches
 	name = "matchbox"
@@ -544,7 +552,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	w_class = WEIGHT_CLASS_TINY
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
@@ -553,7 +561,7 @@
 	STR.can_hold = typecacheof(list(/obj/item/match))
 
 /obj/item/storage/box/matches/PopulateContents()
-	SendSignal(COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
 
 /obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/match))
@@ -644,7 +652,7 @@
 	user.visible_message("<span class='notice'>[user] hugs \the [src].</span>","<span class='notice'>You hug \the [src].</span>")
 
 /////clown box & honkbot assembly
-obj/item/storage/box/clown
+/obj/item/storage/box/clown
 	name = "clown box"
 	desc = "A colorful cardboard box for the clown"
 	illustration = "clown"
@@ -834,7 +842,7 @@ obj/item/storage/box/clown
 /obj/item/storage/box/ingredients/italian/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
-		new /obj/item/reagent_containers/food/snacks/faggot(src)
+		new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
 
 /obj/item/storage/box/ingredients/vegetarian
@@ -857,7 +865,7 @@ obj/item/storage/box/clown
 		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
-	new /obj/item/reagent_containers/food/snacks/faggot(src)
+	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/fruity
 	theme_name = "fruity"
@@ -913,7 +921,7 @@ obj/item/storage/box/clown
 	new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/xeno(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/corgi(src)
-	new /obj/item/reagent_containers/food/snacks/faggot(src)
+	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
 
 /obj/item/storage/box/ingredients/exotic
 	theme_name = "exotic"
@@ -966,3 +974,46 @@ obj/item/storage/box/clown
 /obj/item/storage/box/holy_grenades/PopulateContents()
 	for(var/i in 1 to 7)
 		new/obj/item/grenade/chem_grenade/holy(src)
+
+/obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible
+	name = "box of stock parts"
+	desc = "Contains a variety of basic stock parts."
+
+/obj/item/storage/box/stockparts/basic/PopulateContents()
+	new /obj/item/stock_parts/capacitor(src)
+	new /obj/item/stock_parts/capacitor(src)
+	new /obj/item/stock_parts/capacitor(src)
+	new /obj/item/stock_parts/scanning_module(src)
+	new /obj/item/stock_parts/scanning_module(src)
+	new /obj/item/stock_parts/scanning_module(src)
+	new /obj/item/stock_parts/manipulator(src)
+	new /obj/item/stock_parts/manipulator(src)
+	new /obj/item/stock_parts/manipulator(src)
+	new /obj/item/stock_parts/micro_laser(src)
+	new /obj/item/stock_parts/micro_laser(src)
+	new /obj/item/stock_parts/micro_laser(src)
+	new /obj/item/stock_parts/matter_bin(src)
+	new /obj/item/stock_parts/matter_bin(src)
+	new /obj/item/stock_parts/matter_bin(src)
+
+/obj/item/storage/box/stockparts/deluxe
+	name = "box of deluxe stock parts"
+	desc = "Contains a variety of deluxe stock parts."
+	icon_state = "syndiebox"
+
+/obj/item/storage/box/stockparts/deluxe/PopulateContents()
+	new /obj/item/stock_parts/capacitor/quadratic(src)
+	new /obj/item/stock_parts/capacitor/quadratic(src)
+	new /obj/item/stock_parts/capacitor/quadratic(src)
+	new /obj/item/stock_parts/scanning_module/triphasic(src)
+	new /obj/item/stock_parts/scanning_module/triphasic(src)
+	new /obj/item/stock_parts/scanning_module/triphasic(src)
+	new /obj/item/stock_parts/manipulator/femto(src)
+	new /obj/item/stock_parts/manipulator/femto(src)
+	new /obj/item/stock_parts/manipulator/femto(src)
+	new /obj/item/stock_parts/micro_laser/quadultra(src)
+	new /obj/item/stock_parts/micro_laser/quadultra(src)
+	new /obj/item/stock_parts/micro_laser/quadultra(src)
+	new /obj/item/stock_parts/matter_bin/bluespace(src)
+	new /obj/item/stock_parts/matter_bin/bluespace(src)
+	new /obj/item/stock_parts/matter_bin/bluespace(src)

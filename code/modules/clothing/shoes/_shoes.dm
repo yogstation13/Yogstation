@@ -6,7 +6,7 @@
 	var/chained = 0
 
 	body_parts_covered = FEET
-	slot_flags = SLOT_FEET
+	slot_flags = ITEM_SLOT_FEET
 
 	permeability_coefficient = 0.5
 	slowdown = SHOES_SLOWDOWN
@@ -17,7 +17,7 @@
 
 /obj/item/clothing/shoes/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
+	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
 
 /obj/item/clothing/shoes/suicide_act(mob/living/carbon/user)
 	if(rand(2)>1)

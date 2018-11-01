@@ -30,17 +30,12 @@
 /obj/structure/mineral_door/ComponentInitialize()
 	AddComponent(/datum/component/rad_insulation, RAD_MEDIUM_INSULATION)
 
-/obj/structure/mineral_door/Destroy()
-	density = FALSE
-	air_update_turf(1)
-	return ..()
-
 /obj/structure/mineral_door/Move()
 	var/turf/T = loc
 	. = ..()
 	move_update_air(T)
 
-/obj/structure/mineral_door/CollidedWith(atom/movable/AM)
+/obj/structure/mineral_door/Bumped(atom/movable/AM)
 	..()
 	if(!state)
 		return TryToSwitchState(AM)
@@ -204,8 +199,8 @@
 /obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot())
 		var/turf/T = get_turf(src)
-		message_admins("Plasma mineral door ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(T)]",0,1)
-		log_game("Plasma mineral door ignited by [key_name(user)] in [COORD(T)]")
+		message_admins("Plasma mineral door ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
+		log_game("Plasma mineral door ignited by [key_name(user)] in [AREACOORD(T)]")
 		TemperatureAct()
 	else
 		return ..()

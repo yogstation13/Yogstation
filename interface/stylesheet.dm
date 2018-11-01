@@ -29,7 +29,7 @@ em						{font-style: normal;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
-.adminobserver			{color: #996600;	font-weight: bold;}
+.adminsay				{color:	#996600;	font-weight: bold;} /* yogs - changed colour to poop */
 .admin					{color: #386aff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
@@ -168,4 +168,33 @@ h1.alert, h2.alert		{color: #000000;}
 
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
+
+// yogs start - Yog Tickets
+.ticket-status {
+	color: #000099;
+	font-weight: bold;
+}
+.ticket-text-sent {
+	color: #000099;
+	font-weight: bold;
+}
+.ticket-text-received {
+	color: #ff0000;
+	font-weight: bold;
+}
+.ticket-text-monitored {
+	color: #ff00ff;
+	font-weight: bold;
+}
+.ticket-header-recieved {
+	color: #ff0000;
+	font-weight: bold;
+	font-size: 15px;
+}
+.ticket-admin-reply {
+	color: #ff0000;
+	font-weight: bold;
+	font-style: italic;
+}
+// yogs end
 </style>"}

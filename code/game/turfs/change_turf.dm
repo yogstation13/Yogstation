@@ -38,6 +38,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		T.setDir(dir)
 	return T
 
+/turf/open/copyTurf(turf/T, copy_air = FALSE)
+	. = ..()
+	if (isopenturf(T))
+		GET_COMPONENT(slip, /datum/component/wet_floor)
+		if(slip)
+			var/datum/component/wet_floor/WF = T.AddComponent(/datum/component/wet_floor)
+			WF.InheritComponent(slip)
+		if (copy_air)
+			var/turf/open/openTurf = T
+			openTurf.air.copy_from(air)
+
 //wrapper for ChangeTurf()s that you want to prevent/affect without overriding ChangeTurf() itself
 /turf/proc/TerraformTurf(path, new_baseturf, flags)
 	return ChangeTurf(path, new_baseturf, flags)
@@ -68,10 +79,19 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	blueprint_data = null
 
 	var/list/old_baseturfs = baseturfs
-	changing_turf = TRUE
 
+	var/list/transferring_comps = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
+	for(var/i in transferring_comps)
+		var/datum/component/comp = i
+		comp.RemoveComponent()
+
+	changing_turf = TRUE
 	qdel(src)	//Just get the side effects and call Destroy
 	var/turf/W = new path(src)
+
+	for(var/i in transferring_comps)
+		W.TakeComponent(i)
 
 	if(new_baseturfs)
 		W.baseturfs = new_baseturfs
@@ -105,6 +125,23 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	return W
 
+/turf/open/ChangeTurf(path, list/new_baseturfs, flags)
+	if ((flags & CHANGETURF_INHERIT_AIR) && ispath(path, /turf/open))
+		SSair.remove_from_active(src)
+		var/stashed_air = air
+		air = null // so that it doesn't get deleted
+		. = ..()
+		if (!. || . == src) // changeturf failed or didn't do anything
+			air = stashed_air
+			return
+		var/turf/open/newTurf = .
+		if (!istype(newTurf.air, /datum/gas_mixture/immutable/space))
+			QDEL_NULL(newTurf.air)
+			newTurf.air = stashed_air
+		SSair.add_to_active(newTurf)
+	else
+		return ..()
+
 // Take off the top layer turf and replace it with the next baseturf down
 /turf/proc/ScrapeAway(amount=1, flags)
 	if(!amount)
@@ -121,7 +158,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if(new_baseturfs.len == 1)
 			new_baseturfs = new_baseturfs[1]
 		return ChangeTurf(turf_type, new_baseturfs, flags)
-	
+
 	if(baseturfs == type)
 		return src
 
@@ -162,7 +199,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 	var/turf/newT
 	if(flags & CHANGETURF_SKIP) // We haven't been initialized
-		if(initialized)
+		if(flags_1 & INITIALIZED_1)
 			stack_trace("CHANGETURF_SKIP was used in a PlaceOnTop call for a turf that's initialized. This is a mistake. [src]([type])")
 		assemble_baseturfs()
 	if(fake_turf_type)
@@ -201,14 +238,14 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 // Copy an existing turf and put it on top
 // Returns the new turf
-/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY)
+/turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY, copy_air = FALSE)
 	var/list/new_baseturfs = list()
 	new_baseturfs += baseturfs
 	new_baseturfs += type
 
 	if(depth)
 		var/list/target_baseturfs
-		if(length(copytarget.baseturfs)) 
+		if(length(copytarget.baseturfs))
 			// with default inputs this would be Copy(CLAMP(2, -INFINITY, baseturfs.len))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
 			target_baseturfs = copytarget.baseturfs.Copy(CLAMP(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
@@ -218,7 +255,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			target_baseturfs -= new_baseturfs & GLOB.blacklisted_automated_baseturfs
 			new_baseturfs += target_baseturfs
 
-	var/turf/newT = copytarget.copyTurf(src)
+	var/turf/newT = copytarget.copyTurf(src, copy_air)
 	newT.baseturfs = new_baseturfs
 	return newT
 
@@ -242,7 +279,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 /turf/open/AfterChange(flags)
 	..()
 	RemoveLattice()
-	if(!(flags & CHANGETURF_IGNORE_AIR))
+	if(!(flags & (CHANGETURF_IGNORE_AIR | CHANGETURF_INHERIT_AIR)))
 		Assimilate_Air()
 
 //////Assimilate Air//////

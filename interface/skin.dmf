@@ -70,13 +70,13 @@ window "mainwindow"
 		is-vert = true
 	elem "input"
 		type = INPUT
-		pos = 3,420
-		size = 517x20
+		pos = 5,420
+		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
+		font-size = 10
 		background-color = #d3b5b5
 		is-default = true
-		border = sunken
 		saved-params = "command"
 	elem "saybutton"
 		type = BUTTON
@@ -169,7 +169,7 @@ window "infowindow"
 	elem "changelog"
 		type = BUTTON
 		pos = 16,5
-		size = 104x20
+		size = 80x20
 		anchor1 = 3,0
 		anchor2 = 19,0
 		saved-params = "is-checked"
@@ -177,8 +177,8 @@ window "infowindow"
 		command = "changelog"
 	elem "rules"
 		type = BUTTON
-		pos = 120,5
-		size = 100x20
+		pos = 100,5
+		size = 80x20
 		anchor1 = 19,0
 		anchor2 = 34,0
 		saved-params = "is-checked"
@@ -186,8 +186,8 @@ window "infowindow"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
-		pos = 220,5
-		size = 100x20
+		pos = 180,5
+		size = 80x20
 		anchor1 = 34,0
 		anchor2 = 50,0
 		saved-params = "is-checked"
@@ -195,8 +195,8 @@ window "infowindow"
 		command = "wiki"
 	elem "forum"
 		type = BUTTON
-		pos = 320,5
-		size = 100x20
+		pos = 260,5
+		size = 80x20
 		anchor1 = 50,0
 		anchor2 = 66,0
 		saved-params = "is-checked"
@@ -204,8 +204,8 @@ window "infowindow"
 		command = "forum"
 	elem "github"
 		type = BUTTON
-		pos = 420,5
-		size = 100x20
+		pos = 340,5
+		size = 80x20
 		anchor1 = 66,0
 		anchor2 = 81,0
 		saved-params = "is-checked"
@@ -213,13 +213,40 @@ window "infowindow"
 		command = "github"
 	elem "report-issue"
 		type = BUTTON
-		pos = 520,5
-		size = 100x20
+		pos = 420,5
+		size = 80x20
 		anchor1 = 81,0
 		anchor2 = 97,0
 		saved-params = "is-checked"
 		text = "Report Issue"
 		command = "report-issue"
+	elem "tickets"
+		type = BUTTON
+		button-type = pushbutton
+		pos = 520,5
+		size = 80x20
+		anchor1 = 97,0
+		anchor2 = 113,0
+		font-family = ""
+		font-size = 0
+		font-style = ""
+		text-color = #000000
+		background-color = none
+		is-visible = true
+		is-disabled = false
+		is-transparent = false
+		is-default = false
+		border = none
+		drop-zone = false
+		right-click = false
+		saved-params = "is-checked"
+		on-size = ""
+		text = "Tickets"
+		image = ""
+		command = "tickets"
+		is-flat = false
+		stretch = false
+		is-checked = false
 
 window "outputwindow"
 	elem "outputwindow"

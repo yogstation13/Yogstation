@@ -30,6 +30,9 @@
 /obj/screen/orbit()
 	return
 
+/obj/screen/proc/component_click(obj/screen/component_button/component, params)
+	return
+
 /obj/screen/text
 	icon = null
 	icon_state = null
@@ -99,6 +102,7 @@
 	var/slot_id	// The indentifier for the slot. It has nothing to do with ID cards.
 	var/icon_empty // Icon when empty. For now used only by humans.
 	var/icon_full  // Icon when contains an item. For now used only by humans.
+	var/list/object_overlays = list()
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 
@@ -122,6 +126,14 @@
 		usr.update_inv_hands()
 	return 1
 
+/obj/screen/inventory/MouseEntered()
+	..()
+	add_overlays()
+
+/obj/screen/inventory/MouseExited()
+	..()
+	cut_overlay(object_overlays)
+
 /obj/screen/inventory/update_icon()
 	if(!icon_empty)
 		icon_empty = icon_state
@@ -131,6 +143,30 @@
 			icon_state = icon_full
 		else
 			icon_state = icon_empty
+
+/obj/screen/inventory/proc/add_overlays()
+	var/mob/user = hud.mymob
+
+	cut_overlay(object_overlays)
+	object_overlays.Cut()
+
+	if(hud && user && slot_id)
+		var/obj/item/holding = user.get_active_held_item()
+
+		if(!holding || user.get_item_by_slot(slot_id))
+			return
+
+		var/image/item_overlay = image(holding)
+		item_overlay.alpha = 191
+		object_overlays += item_overlay
+		
+		if(!user.can_equip(holding, slot_id, disable_warning = TRUE))
+			var/image/nope_overlay = image('icons/mob/screen_gen.dmi', "x")
+			nope_overlay.alpha = 128
+			nope_overlay.layer = item_overlay.layer + 1
+			object_overlays += nope_overlay
+
+		add_overlay(object_overlays)
 
 /obj/screen/inventory/hand
 	var/mutable_appearance/handcuff_overlay
@@ -264,7 +300,7 @@
 				var/obj/item/clothing/mask/M = C.wear_mask
 				if(M.mask_adjusted) // if mask on face but pushed down
 					M.adjustmask(C) // adjust it back
-				if( !(M.flags_1 & MASKINTERNALS_1) )
+				if( !(M.clothing_flags & MASKINTERNALS) )
 					to_chat(C, "<span class='warning'>You are not wearing an internals mask!</span>")
 					return
 
@@ -307,17 +343,21 @@
 /obj/screen/mov_intent/Click()
 	toggle(usr)
 
+/obj/screen/mov_intent/update_icon(mob/user)
+	if(!user && hud)
+		user = hud.mymob
+	if(!user)
+		return
+	switch(user.m_intent)
+		if(MOVE_INTENT_WALK)
+			icon_state = "walking"
+		if(MOVE_INTENT_RUN)
+			icon_state = "running"
+
 /obj/screen/mov_intent/proc/toggle(mob/user)
 	if(isobserver(user))
 		return
-	switch(user.m_intent)
-		if("run")
-			user.m_intent = MOVE_INTENT_WALK
-			icon_state = "walking"
-		if("walk")
-			user.m_intent = MOVE_INTENT_RUN
-			icon_state = "running"
-	user.update_icons()
+	user.toggle_move_intent(user)
 
 /obj/screen/pull
 	name = "stop pulling"
@@ -349,6 +389,27 @@
 		var/mob/living/L = usr
 		L.resist()
 
+/obj/screen/rest
+	name = "rest"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "act_rest"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/rest/Click()
+	if(isliving(usr))
+		var/mob/living/L = usr
+		L.lay_down()
+
+/obj/screen/rest/update_icon(mob/mymob)
+	if(!isliving(mymob))
+		return
+	var/mob/living/L = mymob
+	if(!L.resting)
+		icon_state = "act_rest"
+	else
+		icon_state = "act_rest0"
+
 /obj/screen/storage
 	name = "storage"
 	icon_state = "block"
@@ -363,7 +424,7 @@
 /obj/screen/storage/Click(location, control, params)
 	if(world.time <= usr.next_move)
 		return TRUE
-	if(usr.stat || usr.IsUnconscious() || usr.IsKnockdown() || usr.IsStun())
+	if(usr.incapacitated())
 		return TRUE
 	if (ismecha(usr.loc)) // stops inventory actions in a mech
 		return TRUE
@@ -556,11 +617,6 @@
 	icon_state = "mood5"
 	screen_loc = ui_mood
 
-/obj/screen/mood/Click()
-	GET_COMPONENT_FROM(mood, /datum/component/mood, usr)
-	if(mood)
-		mood.print_mood()
-
 /obj/screen/splash
 	icon = 'icons/blank_title.png'
 	icon_state = ""
@@ -604,3 +660,15 @@
 		holder.screen -= src
 		holder = null
 	return ..()
+
+
+/obj/screen/component_button
+	var/obj/screen/parent
+
+/obj/screen/component_button/Initialize(mapload, obj/screen/parent)
+	. = ..()
+	src.parent = parent
+
+/obj/screen/component_button/Click(params)
+	if(parent)
+		parent.component_click(src, params)

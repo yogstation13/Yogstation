@@ -31,7 +31,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
-	new /obj/item/device/radio/headset/headset_med(src)
+	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
 
 /obj/structure/closet/secure_closet/mmedical
@@ -53,12 +53,12 @@
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new /obj/item/cartridge/medical(src)
-	new /obj/item/device/radio/headset/headset_cargo(src)
+	new /obj/item/radio/headset/headset_cargo(src)
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/pickaxe(src)
-	new /obj/item/device/sensor_device(src)
+	new /obj/item/sensor_device(src)
 	new /obj/item/storage/box/bodybags(src)
 	new /obj/item/extinguisher/mini(src)
 	new /obj/item/clothing/glasses/hud/health(src)

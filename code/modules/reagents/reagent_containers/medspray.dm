@@ -6,10 +6,10 @@
 	item_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	flags_1 = NOBLUDGEON_1
+	item_flags = NOBLUDGEON
 	obj_flags = UNIQUE_RENAME
 	container_type = OPENCONTAINER
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
@@ -37,7 +37,7 @@
 		return
 
 	if(M == user)
-		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src] on themselves.</span>")
+		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src] on [user.p_them()]self.</span>")
 		if(self_delay)
 			if(!do_mob(user, M, self_delay))
 				return
@@ -46,7 +46,7 @@
 		to_chat(M, "<span class='notice'>You [apply_method] yourself with [src].</span>")
 
 	else
-		add_logs(user, M, "attempted to apply", src, reagents.log_list())
+		log_combat(user, M, "attempted to apply", src, reagents.log_list())
 		M.visible_message("<span class='danger'>[user] attempts to [apply_method] [src] on [M].</span>", \
 							"<span class='userdanger'>[user] attempts to [apply_method] [src] on [M].</span>")
 		if(!do_mob(user, M))
@@ -60,7 +60,7 @@
 		return
 
 	else
-		add_logs(user, M, "applied", src, reagents.log_list())
+		log_combat(user, M, "applied", src, reagents.log_list())
 		playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 		reagents.reaction(M, apply_type, fraction)

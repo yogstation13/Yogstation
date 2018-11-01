@@ -117,10 +117,6 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 
-/datum/outfit/job/mining/New()
-	..()
-	box = /obj/item/storage/box/engineer/radio
-
 //Service
 
 /datum/job/bartender/New()
@@ -166,3 +162,8 @@ MAP_REMOVE_JOB(rd)
 MAP_REMOVE_JOB(warden)
 MAP_REMOVE_JOB(lawyer)
 MAP_REMOVE_JOB(chemist)
+MAP_REMOVE_JOB(clerk) //YOGS start - yogjobs
+MAP_REMOVE_JOB(paramedic)
+MAP_REMOVE_JOB(psych)
+MAP_REMOVE_JOB(signal_tech)
+MAP_REMOVE_JOB(miningmedic) //YOGS end - yogjobs

@@ -32,7 +32,7 @@
 
 /obj/item/book/granter/action
 	var/granted_action
-	var/actionname = "catching bugs" //might not seem needed but this makes it so you can safely name aciton buttons toggle this or that without it fucking up the granter, also caps
+	var/actionname = "catching bugs" //might not seem needed but this makes it so you can safely name action buttons toggle this or that without it fucking up the granter, also caps
 
 /obj/item/book/granter/action/attack_self(mob/user)
 	. = ..()
@@ -73,7 +73,7 @@
 
 /datum/action/innate/drink_fling
 	name = "Drink Flinging"
-	desc = "Toggles your ability to satifyingly throw glasses without spilling them."
+	desc = "Toggles your ability to satisfyingly throw glasses without spilling them."
 	button_icon_state = "drinkfling_off"
 	check_flags = 0
 
@@ -122,7 +122,7 @@
 		if(do_after(user,50, user))
 			to_chat(user, "<span class='notice'>You feel like you've experienced enough to cast [spellname]!</span>")
 			user.mind.AddSpell(S)
-			user.log_message("<font color='orange'>learned the spell [spellname] ([S]).</font>", INDIVIDUAL_ATTACK_LOG)
+			user.log_message("learned the spell [spellname] ([S])", LOG_ATTACK, color="orange")
 			onlearned(user)
 		reading = FALSE
 
@@ -151,7 +151,7 @@
 	spellname = "sacred flame"
 	icon_state ="booksacredflame"
 	desc = "Become one with the flames that burn within... and invite others to do so as well."
-	remarks = list("Well, it's one way to stop an attacker...", "I'm gonna need some good gear to stop myself from burning to death...", "Keep a fire extingusher handy, got it...", "I think I just burned my hand...", "Apply flame directly to chest for proper ignition...", "No pain, no gain...", "One with the flame...")
+	remarks = list("Well, it's one way to stop an attacker...", "I'm gonna need some good gear to stop myself from burning to death...", "Keep a fire extinguisher handy, got it...", "I think I just burned my hand...", "Apply flame directly to chest for proper ignition...", "No pain, no gain...", "One with the flame...")
 
 /obj/item/book/granter/spell/smoke
 	spell = /obj/effect/proc_holder/spell/targeted/smoke
@@ -208,12 +208,13 @@
 	if(stored_swap == user)
 		to_chat(user,"<span class='notice'>You stare at the book some more, but there doesn't seem to be anything else to learn...</span>")
 		return
-
 	var/obj/effect/proc_holder/spell/targeted/mind_transfer/swapper = new
-	swapper.cast(user, stored_swap, TRUE)
+	if(swapper.cast(list(stored_swap), user, TRUE, TRUE))
+		to_chat(user,"<span class='warning'>You're suddenly somewhere else... and someone else?!</span>")
+		to_chat(stored_swap,"<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>")
+	else
+		user.visible_message("<span class='warning'>[src] fizzles slightly as it stops glowing!</span>") //if the mind_transfer failed to transfer mobs, likely due to the target being catatonic.
 
-	to_chat(stored_swap,"<span class='warning'>You're suddenly somewhere else... and someone else?!</span>")
-	to_chat(user,"<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>")
 	stored_swap = null
 
 /obj/item/book/granter/spell/forcewall
@@ -221,7 +222,7 @@
 	spellname = "forcewall"
 	icon_state ="bookforcewall"
 	desc = "This book has a dedication to mimes everywhere inside the front cover."
-	remarks = list("I can go through the wall! Neat.", "Why are there so many mime references...?", "This would cause much grief in a hallway...", "This is some suprisingly strong magic to create a wall nobody can pass through...", "Why the dumb stance? It's just a flick of the hand...", "Why are the pages so hard to turn, is this even paper?", "I can't mo Oh, i'm fine...")
+	remarks = list("I can go through the wall! Neat.", "Why are there so many mime references...?", "This would cause much grief in a hallway...", "This is some surprisingly strong magic to create a wall nobody can pass through...", "Why the dumb stance? It's just a flick of the hand...", "Why are the pages so hard to turn, is this even paper?", "I can't mo Oh, i'm fine...")
 
 /obj/item/book/granter/spell/forcewall/recoil(mob/living/user)
 	..()
@@ -234,7 +235,7 @@
 	spellname = "knock"
 	icon_state ="bookknock"
 	desc = "This book is hard to hold closed properly."
-	remarks = list("Open Sesame!", "So THAT'S the magic password!", "Slow down, book. I still haven't finished this page...", "The book won't stop moving!", "I think this is hurting the spine of the book...", "I can't get to the next page, it's stuck t I'm good, it just turned to the next page on it's own.", "Yeah, staff of doors does the same thing. Go figure...")
+	remarks = list("Open Sesame!", "So THAT'S the magic password!", "Slow down, book. I still haven't finished this page...", "The book won't stop moving!", "I think this is hurting the spine of the book...", "I can't get to the next page, it's stuck t- I'm good, it just turned to the next page on it's own.", "Yeah, staff of doors does the same thing. Go figure...")
 
 /obj/item/book/granter/spell/knock/recoil(mob/living/user)
 	..()
@@ -252,12 +253,12 @@
 	if(ishuman(user))
 		to_chat(user,"<font size='15' color='red'><b>HORSIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
-		magichead.flags_1 |= NODROP_1		//curses!
+		magichead.item_flags |= NODROP		//curses!
 		magichead.flags_inv &= ~HIDEFACE //so you can still see their face
 		magichead.voicechange = TRUE	//NEEEEIIGHH
 		if(!user.dropItemToGround(user.wear_mask))
 			qdel(user.wear_mask)
-		user.equip_to_slot_if_possible(magichead, slot_wear_mask, TRUE, TRUE)
+		user.equip_to_slot_if_possible(magichead, SLOT_WEAR_MASK, TRUE, TRUE)
 		qdel(src)
 	else
 		to_chat(user,"<span class='notice'>I say thee neigh</span>") //It still lives here
@@ -329,7 +330,7 @@
 		if(do_after(user,50, user))
 			to_chat(user, "[greet]")
 			MA.teach(user)
-			user.log_message("<font color='orange'>learned the martial art [martialname] ([MA]).</font>", INDIVIDUAL_ATTACK_LOG)
+			user.log_message("learned the martial art [martialname] ([MA])", LOG_ATTACK, color="orange")
 			onlearned(user)
 		reading = FALSE
 

@@ -1,5 +1,4 @@
 This file contains a list of maps for use in map rotation.
-This feature requires you are running a Windows OS (or can other wise run .bat files) and that you are using the tgstation-server toolset in tools/
 #Lines starting with # are ignored.
 Lines not inside map blocks are also ignored
 Duplicated entries use the latter one.
@@ -12,8 +11,10 @@ Format:
 	voteweight [number] (How much to count each player vote as, defaults to 1, setting to 0.5 counts each vote as half a vote, 2 as double, etc, Setting to 0 disables the map but allows players to still pick it)
 	disabled (disables the map)
 endmap
+
 map yogstation
 	default
+	voteweight 1.5
 endmap
 
 #map boxstation
@@ -21,21 +22,20 @@ endmap
 	#voteweight 1.5
 #endmap
 
-#map metastation
-	#minplayers 25
-	#voteweight 0.5
-#endmap
+map metastation
+	minplayers 25
+endmap
 
-#map pubbystation
-#endmap
+map pubbystation
+endmap
 
-#map omegastation
-	#maxplayers 35
-#endmap
+map omegastation
+	maxplayers 35
+endmap
 
-#map deltastation
-	#minplayers 50
-#endmap
+map deltastation
+	minplayers 50
+endmap
 
 map runtimestation
 endmap

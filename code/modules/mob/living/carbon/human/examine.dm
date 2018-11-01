@@ -19,7 +19,7 @@
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	//uniform
-	if(w_uniform && !(slot_w_uniform in obscured))
+	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -43,15 +43,15 @@
 
 	//Hands
 	for(var/obj/item/I in held_items)
-		if(!(I.flags_1 & ABSTRACT_1))
+		if(!(I.item_flags & ABSTRACT))
 			msg += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))].\n"
 
 	GET_COMPONENT(FR, /datum/component/forensics)
 	//gloves
-	if(gloves && !(slot_gloves in obscured))
+	if(gloves && !(SLOT_GLOVES in obscured))
 		msg += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands.\n"
 	else if(FR && length(FR.blood_DNA))
-		var/hand_number = get_num_arms()
+		var/hand_number = get_num_arms(FALSE)
 		if(hand_number)
 			msg += "<span class='warning'>[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!</span>\n"
 
@@ -69,22 +69,22 @@
 		msg += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist.\n"
 
 	//shoes
-	if(shoes && !(slot_shoes in obscured))
+	if(shoes && !(SLOT_SHOES in obscured))
 		msg += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet.\n"
 
 	//mask
-	if(wear_mask && !(slot_wear_mask in obscured))
+	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
 		msg += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face.\n"
 
-	if (wear_neck && !(slot_neck in obscured))
+	if (wear_neck && !(SLOT_NECK in obscured))
 		msg += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck.\n"
 
 	//eyes
-	if(glasses && !(slot_glasses in obscured))
+	if(glasses && !(SLOT_GLASSES in obscured))
 		msg += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes.\n"
 
 	//ears
-	if(ears && !(slot_ears in obscured))
+	if(ears && !(SLOT_EARS in obscured))
 		msg += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears.\n"
 
 	//ID
@@ -133,11 +133,24 @@
 	msg += "<span class='warning'>"
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	var/list/disabled = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
+		if(BP.disabled)
+			disabled += BP
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
 			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+
+	for(var/X in disabled)
+		var/obj/item/bodypart/BP = X
+		var/damage_text
+		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
+			damage_text = "limp and lifeless"
+		else
+			var/more_brute = BP.brute_dam >= BP.burn_dam
+			damage_text = more_brute ? "broken and mangled" : "burnt and blistered"
+		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
@@ -318,6 +331,7 @@
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
+	return msg
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()

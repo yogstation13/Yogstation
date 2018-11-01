@@ -89,7 +89,7 @@
 
 /obj/item/integrated_circuit/logic/binary/rslatch
 	name = "RS latch"
-	desc = "This gate is a synchronized RS latch. If both R and S are true, state will not change."
+	desc = "This gate is a synchronized RS latch. If both R and S are true, its state will not change."
 	icon_state = "sr_nor"
 	inputs = list("S" = IC_PINTYPE_ANY,"R" = IC_PINTYPE_ANY)
 	outputs = list("Q" = IC_PINTYPE_BOOLEAN,"!Q" = IC_PINTYPE_BOOLEAN)
@@ -203,7 +203,7 @@
 		return A.data > B.data
 
 /obj/item/integrated_circuit/logic/binary/greater_than_or_equal
-	name = "greater_than or equal gate"
+	name = "greater than or equal gate"
 	desc = "This will output TRUE if the first input is greater than, or equal to the second input."
 	icon_state = "greater_than_or_equal"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH

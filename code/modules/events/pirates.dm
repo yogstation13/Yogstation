@@ -47,7 +47,7 @@
 			paid_off = TRUE
 			return
 		else
-			priority_announce("Trying to cheat us ? You'll regret this!",sender_override = ship_name)
+			priority_announce("Trying to cheat us? You'll regret this!",sender_override = ship_name)
 	if(!shuttle_spawned)
 		spawn_shuttle()
 
@@ -60,7 +60,7 @@
 /datum/round_event/pirates/proc/spawn_shuttle()
 	shuttle_spawned = TRUE
 
-	var/list/candidates = pollGhostCandidates("Do you wish to be considered for pirate crew ?", ROLE_TRAITOR)
+	var/list/candidates = pollGhostCandidates("Do you wish to be considered for pirate crew?", ROLE_TRAITOR)
 	shuffle_inplace(candidates)
 
 	var/datum/map_template/shuttle/pirate/default/ship = new
@@ -81,6 +81,8 @@
 				candidates -= M
 			else
 				notify_ghosts("Space pirates are waking up!", source = spawner, action=NOTIFY_ATTACK, flashwindow = FALSE)
+		for(var/obj/docking_port/mobile/port in A)
+			port.register()
 
 	priority_announce("Unidentified armed ship detected near the station.")
 
@@ -92,15 +94,14 @@
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
-	anchored = TRUE
 	var/active = FALSE
-	var/obj/item/device/gps/gps
+	var/obj/item/gps/gps
 	var/credits_stored = 0
 	var/siphon_per_tick = 5
 
 /obj/machinery/shuttle_scrambler/Initialize(mapload)
 	. = ..()
-	gps = new/obj/item/device/gps/internal/pirate(src)
+	gps = new/obj/item/gps/internal/pirate(src)
 	gps.tracking = FALSE
 	update_icon()
 
@@ -121,12 +122,12 @@
 	gps.tracking = TRUE
 	active = TRUE
 	to_chat(user,"<span class='notice'>You toggle [src] [active ? "on":"off"].</span>")
-	to_chat(user,"<span class='warning'>The scrambling signal can be now tracked by gps.</span>")
+	to_chat(user,"<span class='warning'>The scrambling signal can be now tracked by GPS.</span>")
 	START_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(!active)
-		if(alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it ?", "Scrambler", "Yes", "Cancel") == "Cancel")
+		if(alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", "Yes", "Cancel") == "Cancel")
 			return
 		if(active || !user.canUseTopic(src))
 			return
@@ -174,7 +175,7 @@
 	QDEL_NULL(gps)
 	return ..()
 
-/obj/item/device/gps/internal/pirate
+/obj/item/gps/internal/pirate
 	gpstag = "Nautical Signal"
 	desc = "You can hear shanties over the static."
 
@@ -210,7 +211,7 @@
 
 /obj/docking_port/mobile/pirate/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
 	. = ..()
-	if(. == DOCKING_SUCCESS && !is_transit_level(new_dock.z))
+	if(. == DOCKING_SUCCESS && !is_reserved_level(new_dock.z))
 		engines_cooling = TRUE
 		addtimer(CALLBACK(src,.proc/reset_cooldown),engine_cooldown,TIMER_UNIQUE)
 
@@ -234,7 +235,6 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
-	anchored = TRUE
 	var/cooldown = 0
 	var/result_count = 3 //Show X results.
 

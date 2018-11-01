@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Removed health cost for Twisted Construction upon casting on a wrong object"

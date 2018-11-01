@@ -9,7 +9,7 @@
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
-	icon = 'icons/obj/food/containers.dmi'
+	icon = 'yogstation/icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	item_state = "pizzabox"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
@@ -269,9 +269,14 @@
 
 /obj/item/pizzabox/margherita/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita(src)
+	AddPizza()
 	boxtag = "Margherita Deluxe"
 
+/obj/item/pizzabox/margherita/proc/AddPizza()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita(src)
+
+/obj/item/pizzabox/margherita/robo/AddPizza()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita/robo(src)
 
 /obj/item/pizzabox/vegetable/Initialize()
 	. = ..()

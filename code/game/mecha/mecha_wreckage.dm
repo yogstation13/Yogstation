@@ -1,3 +1,4 @@
+// yogs - This file is mirrored to yogstation/game/mecha/mecha_wreckage.dm
 ///////////////////////////////////
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
@@ -5,7 +6,7 @@
 
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely unrepairable, but perhaps something can be salvaged."
+	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
@@ -79,7 +80,7 @@
 			to_chat(user, "<span class='warning'>You don't see anything that can be pried with [I]!</span>")
 
 
-/obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, null, obj/item/device/aicard/card)
+/obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, null, obj/item/aicard/card)
 	if(!..())
 		return
 

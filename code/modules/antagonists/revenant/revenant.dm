@@ -48,6 +48,7 @@
 	speed = 1
 	unique_name = TRUE
 	hud_possible = list(ANTAG_HUD)
+	hud_type = /datum/hud/revenant
 
 	var/essence = 75 //The resource, and health, of revenants.
 	var/essence_regen_cap = 75 //The regeneration cap of essence (go figure); regenerates every Life() tick up to this amount.
@@ -90,7 +91,7 @@
 	to_chat(src, "<b>You are invincible and invisible to everyone but other ghosts. Most abilities will reveal you, rendering you vulnerable.</b>")
 	to_chat(src, "<b>To function, you are to drain the life essence from humans. This essence is a resource, as well as your health, and will power all of your abilities.</b>")
 	to_chat(src, "<b><i>You do not remember anything of your past lives, nor will you remember anything about this one after your death.</i></b>")
-	to_chat(src, "<b>Be sure to read the wiki page at https://tgstation13.org/wiki/Revenant to learn more.</b>")
+	to_chat(src, "<b>Be sure to read <a href=\"https://tgstation13.org/wiki/Revenant\">the wiki page</a> to learn more.</b>")
 	if(!generated_objectives_and_spells)
 		generated_objectives_and_spells = TRUE
 		mind.assigned_role = ROLE_REVENANT
@@ -146,7 +147,7 @@
 /mob/living/simple_animal/revenant/say(message)
 	if(!message)
 		return
-	log_talk(src,"[key_name(src)] : [message]",LOGSAY)
+	src.log_talk(message, LOG_SAY)
 	var/rendered = "<span class='revennotice'><b>[src]</b> says, \"[message]\"</span>"
 	for(var/mob/M in GLOB.mob_list)
 		if(isrevenant(M))
@@ -199,7 +200,7 @@
 	if(!essence)
 		death()
 
-/mob/living/simple_animal/revenant/dust()
+/mob/living/simple_animal/revenant/dust(just_ash, drop_items, force)
 	death()
 
 /mob/living/simple_animal/revenant/gib()

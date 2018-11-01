@@ -4,7 +4,7 @@
 	desc = "A label on the side of this potato reads \"Product of DonkCo Service Wing. Activate far away from populated areas. Device will only attach to sapient creatures.\" <span class='boldnotice'>You can attack anyone with it to force it on them instead of yourself!</span>"
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "potato"
-	flags_1 = NOBLUDGEON_1
+	item_flags = NOBLUDGEON
 	force = 0
 	var/icon_off = "potato"
 	var/icon_on = "potato_active"
@@ -91,8 +91,9 @@
 		to_chat(user, "<span class='userdanger'>You have a really bad feeling about [src]!</span>")
 
 /obj/item/hot_potato/afterattack(atom/target, mob/user, adjacent, params)
+	. = ..()
 	if(!adjacent || !ismob(target))
-		return ..()
+		return
 	force_onto(target, user)
 
 /obj/item/hot_potato/proc/force_onto(mob/living/victim, mob/user)
@@ -116,11 +117,11 @@
 	else
 		. = TRUE
 	if(.)
-		add_logs(user, victim, "forced a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
+		log_combat(user, victim, "forced a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
 		user.visible_message("<span class='userdanger'>[user] forces [src] onto [victim]!</span>", "<span class='userdanger'>You force [src] onto [victim]!</span>", "<span class='boldwarning'>You hear a mechanical click and a beep.</span>")
 		colorize(null)
 	else
-		add_logs(user, victim, "tried to force a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
+		log_combat(user, victim, "tried to force a hot potato with explosive variables ([detonate_explosion]-[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_flash_range]/[detonate_fire_range]) onto")
 		user.visible_message("<span class='boldwarning'>[user] tried to force [src] onto [victim], but it could not attach!</span>", "<span class='boldwarning'>You try to force [src] onto [victim], but it is unable to attach!</span>", "<span class='boldwarning'>You hear a mechanical click and two buzzes.</span>")
 		user.put_in_hands(src)
 
@@ -133,20 +134,20 @@
 		return
 	update_icon()
 	if(sticky)
-		flags_1 |= NODROP_1
+		item_flags |= NODROP
 	name = "primed [name]"
 	activation_time = timer + world.time
 	detonation_timerid = addtimer(CALLBACK(src, .proc/detonate), delay, TIMER_STOPPABLE)
 	START_PROCESSING(SSfastprocess, src)
 	var/turf/T = get_turf(src)
-	message_admins("[user? "[ADMIN_LOOKUPFLW(user)] has primed [src]" : "A [src] has been primed"] (Timer:[delay],Explosive:[detonate_explosion],Range:[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_fire_range]) for detonation at [COORD(T)]([T.loc])")
-	log_game("[user? "[user] has primed [src]" : "A [src] has been primed"] ([detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_fire_range]) for detonation at [COORD(T)]([T.loc])")
+	message_admins("[user? "[ADMIN_LOOKUPFLW(user)] has primed [src]" : "A [src] has been primed"] (Timer:[delay],Explosive:[detonate_explosion],Range:[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_fire_range]) for detonation at [ADMIN_VERBOSEJMP(T)]")
+	log_game("[user ? "[key_name(user)] has primed [src]" : "A [src] has been primed"] ([detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_fire_range]) for detonation at [AREACOORD(T)]")
 	active = TRUE
 
 /obj/item/hot_potato/proc/deactivate()
 	update_icon()
 	name = initial(name)
-	flags_1 &= ~NODROP_1
+	item_flags &= ~NODROP
 	deltimer(detonation_timerid)
 	STOP_PROCESSING(SSfastprocess, src)
 	detonation_timerid = null

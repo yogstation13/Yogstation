@@ -4,7 +4,6 @@
 	icon = 'icons/obj/atmospherics/pipes/meter.dmi'
 	icon_state = "meterX"
 	layer = GAS_PUMP_LAYER
-	anchored = TRUE
 	power_channel = ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -41,11 +40,15 @@
 	return ..()
 
 /obj/machinery/meter/proc/reattach_to_layer()
+	var/obj/machinery/atmospherics/candidate
 	for(var/obj/machinery/atmospherics/pipe/pipe in loc)
 		if(pipe.piping_layer == target_layer)
-			target = pipe
-			setAttachLayer(pipe.piping_layer)
-			break
+			candidate = pipe
+			if(pipe.level == 2)
+				break
+	if(candidate)
+		target = candidate
+		setAttachLayer(candidate.piping_layer)
 
 /obj/machinery/meter/proc/setAttachLayer(var/new_layer)
 	target_layer = new_layer
@@ -141,6 +144,5 @@
 //	why are you yelling?
 /obj/machinery/meter/turf
 
-/obj/machinery/meter/turf/Initialize()
-	. = ..()
+/obj/machinery/meter/turf/reattach_to_layer()
 	target = loc

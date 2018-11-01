@@ -1,4 +1,0 @@
-author: " ninjanomnom"
-delete-after: true 
-changes: 
-  - bugfix: "Tiles placed on lavaland turfs should behave properly again."

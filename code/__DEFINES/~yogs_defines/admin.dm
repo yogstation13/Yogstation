@@ -1,0 +1,3 @@
+#define TICKET_FLAG_LIST_ALL		(1 << 0)
+#define TICKET_FLAG_LIST_MINE		(1 << 1)
+#define TICKET_FLAG_LIST_UNCLAIMED	(1 << 2)
