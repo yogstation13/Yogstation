@@ -18,7 +18,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
-	
+
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
 	var/dark_damage_multiplier = 1
@@ -30,7 +30,7 @@
 	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born on the core-worlds of G-D52, you are a distant relative of a vestige of humanity long discarded.</span>")
 	to_chat(H, "<span class='info'>Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race.</span>")
 	to_chat(H, "<span class='info'>Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe.</span>")
-	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match. You can communicate with other phytosians use <b>:P</b>.</span>")
+	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match.</span>")
 	to_chat(H, "<span class='info'>For more information on your race, see https://wiki.yogstation.net/index.php?title=Phytosian</span>")
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -44,7 +44,7 @@
 	C.faction -= "vines"
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
+	if(H.stat == DEAD || H.stat == UNCONSCIOUS || (H.mind && H.mind.has_antag_datum(ANTAG_DATUM_THRALL)))
 		return
 	var/turf/T = get_turf(H)
 	if(!T)
@@ -109,7 +109,7 @@
 		if(H.getOxyLoss() < 60)
 			H.adjustOxyLoss(min(5 * dark_damage_multiplier, 60 - H.getOxyLoss()), 1)
 			H.adjustToxLoss(1 * dark_damage_multiplier, 1)
-	
+
 	if(light_level != last_light_level)
 		last_light_level = light_level
 		if(light_msg)
@@ -131,7 +131,7 @@
 				last_light_message = -STATUS_MESSAGE_COOLDOWN
 				to_chat(H, "<span class='userdanger'>Your internal stores of light are depleted. Find a source to replenish your nourishment at once!</span>")
 			H.take_overall_damage(2, 0)
-	
+
 
 /datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")

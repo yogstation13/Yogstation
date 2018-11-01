@@ -116,7 +116,7 @@
 			p.on_refund(owner.current)
 
 	//MOVE THIS
-	if(owner.current.hud_used)
+	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
 		owner.current.hud_used.lingstingdisplay.icon_state = null
 		owner.current.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
 
@@ -371,21 +371,21 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = rand(1,3)
+	var/changeling_objective = rand(1,2) //yogs - fuck absorb most
 	switch(changeling_objective)
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
 			absorb_objective.owner = owner
-			absorb_objective.gen_amount_goal(6, 8)
+			absorb_objective.gen_amount_goal(3, 5) //yogs, 6-8 -> 3-5
 			objectives += absorb_objective
 		if(2)
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
-		if(3)
+		/* if(3) //yogs - fuck absorb most
 			var/datum/objective/absorb_most/ac = new
 			ac.owner = owner
-			objectives += ac
+			objectives += ac */ //yogs - fuck absorb most
 
 	if(prob(60))
 		if(prob(85))
@@ -410,7 +410,7 @@
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = owner
 			if(team_mode) //No backstabbing while in a team
-				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				kill_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)
 			else
 				kill_objective.find_target()
 			objectives += kill_objective
@@ -418,7 +418,7 @@
 			var/datum/objective/maroon/maroon_objective = new
 			maroon_objective.owner = owner
 			if(team_mode)
-				maroon_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				maroon_objective.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)
 			else
 				maroon_objective.find_target()
 			objectives += maroon_objective
@@ -440,13 +440,11 @@
 			var/datum/objective/escape/escape_with_identity/identity_theft = new
 			identity_theft.owner = owner
 			if(team_mode)
-				identity_theft.find_target_by_role(role = ROLE_CHANGELING, role_type = 1, invert = 1)
+				identity_theft.find_target_by_role(role = ROLE_CHANGELING, role_type = TRUE, invert = TRUE)
 			else
 				identity_theft.find_target()
 			objectives += identity_theft
 		escape_objective_possible = FALSE
-
-	owner.objectives |= objectives
 
 /datum/antagonist/changeling/proc/update_changeling_icons_added()
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_CHANGELING]

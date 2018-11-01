@@ -49,6 +49,15 @@
 		"bromine",
 		"stable_plasma"
 	)
+	//these become available once the manipulator has been upgraded to tier 4 (femto)
+	var/list/upgrade_reagents = list(
+		"oil",
+		"ash",
+		"acetone",
+		"saltpetre",
+		"ammonia",
+		"diethylamine"
+	)
 	var/list/emagged_reagents = list(
 		"space_drugs",
 		"morphine",
@@ -139,7 +148,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_dispenser", name, 550, 550, master_ui, state)
+		ui = new(user, src, ui_key, "chem_dispenser", name, 565, 550, master_ui, state)
 		if(user.hallucinating())
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
@@ -191,7 +200,7 @@
 		return
 	switch(action)
 		if("amount")
-			if(!is_operational())
+			if(!is_operational() || QDELETED(beaker))
 				return
 			var/target = text2num(params["target"])
 			if(target in beaker.possible_transfer_amounts)
@@ -348,6 +357,8 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if (M.rating > macrotier)
 			macrotier = M.rating
+		if (M.rating > 3)
+			dispensable_reagents |= upgrade_reagents
 	powerefficiency = round(newpowereff, 0.01)
 
 
@@ -450,6 +461,7 @@
 		"lemonjuice",
 		"menthol"
 	)
+	upgrade_reagents = null
 	emagged_reagents = list(
 		"thirteenloko",
 		"whiskeycola",
@@ -500,6 +512,7 @@
 		"triple_sec",
 		"sake"
 	)
+	upgrade_reagents = null
 	emagged_reagents = list(
 		"ethanol",
 		"iron",
@@ -530,6 +543,7 @@
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
 	dispensable_reagents = list("mutagen")
+	upgrade_reagents = null
 	emagged_reagents = list("plasma")
 
 
@@ -552,6 +566,7 @@
 		"ammonia",
 		"ash",
 		"diethylamine")
+	upgrade_reagents = null
 
 /obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
 	. = ..()

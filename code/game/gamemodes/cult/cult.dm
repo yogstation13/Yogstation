@@ -26,18 +26,19 @@
 			return FALSE
 	else
 		return FALSE
-	if(M.isloyal() || issilicon(M) || isbot(M) || isdrone(M) || is_servant_of_ratvar(M) || !M.client)
+	if(M.has_trait(TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || is_servant_of_ratvar(M) || !M.client)
 		return FALSE //can't convert machines, shielded, braindead, or ratvar's dogs
 	return TRUE
 
 /datum/game_mode/cult
 	name = "cult"
 	config_tag = "cult"
+	report_type = "cult"
 	antag_flag = ROLE_CULTIST
 	false_report_weight = 10
 	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
 	protected_jobs = list()
-	required_players = 24
+	required_players = 29
 	required_enemies = 4
 	recommended_enemies = 4
 	enemy_minimum_age = 14

@@ -57,7 +57,7 @@
 	var/mob/user = usr
 	. = FALSE
 
-	var/obj/item/card/id/ID = user.get_idcard()
+	var/obj/item/card/id/ID = user.get_idcard(TRUE)
 
 	if(!ID)
 		to_chat(user, "<span class='warning'>You don't have an ID.</span>")
@@ -74,12 +74,27 @@
 			. = authorize(user)
 
 		if("repeal")
-			authorized -= ID
+			// yogs start - added spam protection
+			if(ID in authorized)// if you have already submitted your authorization:
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
+					return
+				authorized -= ID
+				// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
+				last_early_auth = world.time
+			// yogs end
 
 		if("abort")
 			if(authorized.len)
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
+				// yogs start - added spam protection
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
+					return
+				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
+				last_early_auth = world.time
+				// yogs end
 				authorized.Cut()
 				. = TRUE
 
@@ -93,7 +108,7 @@
 			minor_announce("Early launch authorization revoked, [remaining] authorizations needed")
 
 /obj/machinery/computer/emergency_shuttle/proc/authorize(mob/user, source)
-	var/obj/item/card/id/ID = user.get_idcard()
+	var/obj/item/card/id/ID = user.get_idcard(TRUE)
 
 	if(ID in authorized)
 		return FALSE
@@ -259,7 +274,7 @@
 					has_people = TRUE
 					var/location = get_turf(player.mind.current)
 					//Non-antag present. Can't hijack.
-					if(!(player.mind.has_antag_datum(/datum/antagonist)) && !istype(location, /turf/open/floor/plasteel/shuttle/red) && !istype(location, /turf/open/floor/mineral/plastitanium/brig))
+					if(!(player.mind.has_antag_datum(/datum/antagonist)) && !istype(location, /turf/open/floor/plasteel/shuttle/red) && !istype(location, /turf/open/floor/mineral/plastitanium/red/brig))
 						return FALSE
 					//Antag present, doesn't stop but let's see if we actually want to hijack
 					var/prevent = FALSE
@@ -427,11 +442,11 @@
 	height = 4
 	launch_status = UNLAUNCHED
 
-/obj/docking_port/mobile/pod/request()
-	var/obj/machinery/computer/shuttle/S = getControlConsole()
-	if(!istype(S, /obj/machinery/computer/shuttle/pod))
+/obj/docking_port/mobile/pod/request(obj/docking_port/stationary/S)
+	var/obj/machinery/computer/shuttle/C = getControlConsole()
+	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
-	if(GLOB.security_level >= SEC_LEVEL_RED || (S && (S.obj_flags & EMAGGED)))
+	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
 			return ..()
@@ -570,6 +585,10 @@
 	. = ..()
 	SSshuttle.emergency = current_emergency
 	SSshuttle.backup_shuttle = src
+
+/obj/docking_port/mobile/emergency/shuttle_build/register()
+	. = ..()
+	initiate_docking(SSshuttle.getDock("emergency_home"))
 
 #undef TIME_LEFT
 #undef ENGINES_START_TIME

@@ -92,12 +92,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
+	// YOGS START - Mentor PMs
+	if(yogs_client_procs(href_list))
+		return
+	// YOGS END
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
+		if("mentor") // YOGS - Mentor stuff
+			hsrc = mentor_datum // YOGS - Mentor stuff
 		if("prefs")
 			if (inprefs)
 				return
@@ -252,6 +257,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			prefs.toggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
+	// yogs start - mentor stuff
+	if(ckey in GLOB.mentor_datums)
+		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
+		src.mentor_datum = mentor
+		src.add_mentor_verbs()
+		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
+			GLOB.mentors += src
+	// yogs end
+	
 
 	. = ..()	//calls mob.Login()
 
@@ -436,7 +450,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 
-	sync_logout_with_db(connection_number) // yogs - logout logging
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
@@ -444,6 +457,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	Master.UpdateTickRate()
+	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
@@ -546,14 +560,13 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	// yogs start - logout logging
 	var/serverip = "[world.internet_address]"
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
-	query_log_connection.Execute()
+	if(query_log_connection.Execute(async = FALSE))
+		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
+		query_getid.Execute(async = FALSE)
+		if(query_getid.NextRow())
+			connection_number = query_getid.item[1]
+		qdel(query_getid)
 	qdel(query_log_connection)
-
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
-	query_getid.Execute()
-	if(query_getid.NextRow())
-		connection_number = query_getid.item[1]
-	qdel(query_getid)
 	// yogs end
 	if(new_player)
 		player_age = -1
@@ -706,7 +719,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			qdel(query_get_notes)
 			return
 	qdel(query_get_notes)
-	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0)
+	//create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
+	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0) //yogs -
 
 
 /client/proc/check_ip_intel()
@@ -852,7 +866,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.auto_fit_viewport)
-		fit_viewport()
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)

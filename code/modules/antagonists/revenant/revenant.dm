@@ -25,6 +25,7 @@
 	healable = FALSE
 	spacewalk = TRUE
 	sight = SEE_SELF
+	throwforce = 0
 
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -42,7 +43,7 @@
 	wander = FALSE
 	density = FALSE
 	movement_type = FLYING
-	anchored = TRUE
+	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_TINY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	speed = 1
@@ -74,6 +75,7 @@
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/blight(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/malfunction(null))
 	random_revenant_name()
+	LoadComponent(/datum/component/walk/jaunt) //yogs
 
 /mob/living/simple_animal/revenant/proc/random_revenant_name()
 	var/built_name = ""
@@ -109,6 +111,9 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
+		GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+		if(incorp)
+			incorp.signal_enabled = TRUE //yogs end
 		invisibility = INVISIBILITY_REVENANT
 		to_chat(src, "<span class='revenboldnotice'>You are once more concealed.</span>")
 	if(unstun_time && world.time >= unstun_time)
@@ -144,7 +149,7 @@
 /mob/living/simple_animal/revenant/med_hud_set_status()
 	return //we use no hud
 
-/mob/living/simple_animal/revenant/say(message)
+/mob/living/simple_animal/revenant/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY)
@@ -240,6 +245,9 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
+	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	if(incorp)
+		incorp.signal_enabled = FALSE //yogs end
 	if(!unreveal_time)
 		to_chat(src, "<span class='revendanger'>You have been revealed!</span>")
 		unreveal_time = world.time + time
@@ -318,6 +326,9 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
+	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	if(incorp)
+		incorp.signal_enabled = TRUE //yogs end
 	invisibility = INVISIBILITY_REVENANT
 	alpha=255
 	stasis = FALSE

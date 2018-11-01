@@ -10,7 +10,7 @@
 	name = "Rezadone"
 	id = "rezadone"
 	results = list("rezadone" = 3)
-	required_reagents = list("carpotoxin" = 1, "cryptobiolin" = 1, "copper" = 1)
+	required_reagents = list("capsaicin" = 1, "cryptobiolin" = 1, "copper" = 1) // yogs - Makes recipe capsaicin
 
 /datum/chemical_reaction/spaceacillin
 	name = "Spaceacillin"

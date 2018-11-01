@@ -40,6 +40,10 @@
 		if(dna_cost <= 0)
 			continue
 
+		var/xenoling_available = initial(ability.xenoling_available) //yogs start - removing combat abilities from xenolings
+		if(istype(changeling, /datum/antagonist/changeling/xenobio) && !xenoling_available)
+			continue //yogs end - removing combat abilities from xenolings
+
 		var/list/AL = list()
 		AL["name"] = initial(ability.name)
 		AL["desc"] = initial(ability.desc)

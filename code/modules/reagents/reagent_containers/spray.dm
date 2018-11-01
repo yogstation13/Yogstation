@@ -42,7 +42,7 @@
 		return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, "<span class='warning'>Not enough left!</span>")
 		return
 
 	spray(A)
@@ -63,7 +63,7 @@
 	return
 
 
-/obj/item/reagent_containers/spray/proc/spray(atom/A)
+/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1) // yogs - makes log activate if a living mob is sprayed
 	var/range = max(min(current_range, get_dist(src, A)), 1)
 	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
@@ -73,6 +73,28 @@
 		puff_reagent_left = 1
 	else
 		reagents.trans_to(D, amount_per_transfer_from_this, 1/range)
+// yogs start - viruslist stuff
+	if(log && user)
+		var/list/sprayed = list()
+		var/viruslist = ""
+		for(var/datum/reagent/R in reagents.reagent_list)
+			sprayed += R.name
+			if(istype(R, /datum/reagent/blood))
+				var/datum/reagent/blood/RR = R
+				for(var/datum/disease/Disease in RR.data["viruses"])
+					if(viruslist)
+						viruslist += " and "
+					viruslist += "[Disease.name]"
+					if(istype(Disease, /datum/disease/advance))
+						var/datum/disease/advance/DD = Disease
+						viruslist += " \[ symptoms: "
+						for(var/datum/symptom/S in DD.symptoms)
+							viruslist += "[S.name] "
+						viruslist += "\]"
+		if(viruslist)
+			investigate_log("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]", INVESTIGATE_VIROLOGY)
+			log_game("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]")
+// yogs end
 	D.color = mix_color_from_reagents(D.reagents.reagent_list)
 	var/wait_step = max(round(2+3/range), 2)
 	do_spray(A, wait_step, D, range, puff_reagent_left)
@@ -92,9 +114,9 @@
 				break
 
 			if(stream_mode)
-				if(ismob(T))
-					var/mob/M = T
-					if(!M.lying || !range_left)
+				if(isliving(T))
+					var/mob/living/M = T
+					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
 						D.reagents.reaction(M, VAPOR)
 						puff_reagent_left -= 1
 				else if(!range_left)
@@ -143,6 +165,21 @@
 		reagents.reaction(usr.loc)
 		src.reagents.clear_reagents()
 
+/obj/item/reagent_containers/spray/on_reagent_change(changetype)
+	var/total_reagent_weight
+	var/amount_of_reagents
+	for (var/datum/reagent/R in reagents.reagent_list)
+		total_reagent_weight = total_reagent_weight + R.reagent_weight
+		amount_of_reagents++
+
+	if(total_reagent_weight && amount_of_reagents) //don't bother if the container is empty - DIV/0
+		var/average_reagent_weight = total_reagent_weight / amount_of_reagents
+		spray_range = CLAMP(round((initial(spray_range) / average_reagent_weight) - ((amount_of_reagents - 1) * 1)), 3, 5) //spray distance between 3 and 5 tiles rounded down; extra reagents lose a tile
+	else
+		spray_range = initial(spray_range)
+	if(stream_mode == 0)
+		current_range = spray_range
+
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
 	name = "space cleaner"
@@ -187,6 +224,9 @@
 	stream_range = 4
 	amount_per_transfer_from_this = 5
 	list_reagents = list("condensedcapsaicin" = 40)
+
+/obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
+	list_reagents = null
 
 /obj/item/reagent_containers/spray/pepper/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins huffing \the [src]! It looks like [user.p_theyre()] getting a dirty high!</span>")

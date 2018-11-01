@@ -79,6 +79,9 @@ ENABLE_LOCALHOST_RANK
 ## log OOC channel
 LOG_OOC
 
+## log LOOC channel
+LOG_LOOC
+
 ## log client Say
 LOG_SAY
 
@@ -134,6 +137,9 @@ LOG_MANIFEST
 ## Enable logging pictures
 # LOG_PICTURES
 
+## log mecha actions
+# LOG_MECHA
+
 ##Log camera pictures - Must have picture logging enabled
 PICTURE_LOGGING_CAMERA
 
@@ -148,6 +154,9 @@ PICTURE_LOGGING_CAMERA
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
 ALLOW_ADMIN_OOCCOLOR
+
+## Comment this out to stop admins being able to choose their personal asay color
+ALLOW_ADMIN_ASAYCOLOR
 
 ## Job slot open/close by identification consoles delay in seconds
 ID_CONSOLE_JOBSLOT_DELAY 30
@@ -373,10 +382,6 @@ AUTOADMIN_RANK Game Master
 ## Uncomment to automatically give that admin rank to all players
 #AUTOADMIN
 
-## GENERATE_MINIMAPS
-## Generating minimaps(For crew monitor) is slow and bogs down testing, so its disabled by default and must be enabled by uncommenting this config if you are running a production server.
-#GENERATE_MINIMAPS
-
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
 ## These trigger for any version below (non-inclusive) the given version, so 510 triggers on 509 or lower.
@@ -460,3 +465,11 @@ DEFAULT_VIEW 15x15
 ##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
 #WEBHOOK_ADRESS http://example.com
 #WEBHOOK_KEY webkey
+
+## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.
+## You need to set up your database to use the SQL based system.
+## This flag is automatically enabled if SQL_ENABLED isn't
+#MENTOR_LEGACY_SYSTEM
+
+#Mentors only see ckeys by default. Uncomment to have them only see mob name
+#MENTORS_MOBNAME_ONLY

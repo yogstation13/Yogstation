@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed a bug that caused fire extinguishers to often fail to extinguish people"

@@ -62,7 +62,7 @@
 
 /datum/SDQL_parser/proc/parse_error(error_message)
 	error = 1
-	to_chat(usr, "<span class='danger'>SQDL2 Parsing Error: [error_message]</span>")
+	to_chat(usr, "<span class='danger'>SDQL2 Parsing Error: [error_message]</span>")
 	return query.len + 1
 
 /datum/SDQL_parser/proc/parse()
@@ -294,8 +294,8 @@
 							break
 						parse_error("Expected ',' or ']' after array assoc value, but found '[token(i)]'")
 						return i
- 				i++
- 				continue
+				i++
+				continue
 			temp_expression_list = list()
 			i = expression(i, temp_expression_list)
 		while(token(i) && token(i) != "]")

@@ -43,7 +43,7 @@
 					O.forceMove(chassis)
 					O.anchored = FALSE
 					occupant_message("<span class='notice'>[target] successfully loaded.</span>")
-					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]", LOG_MECHA)
 				else
 					O.anchored = initial(O.anchored)
 			else
@@ -103,7 +103,7 @@
 					O.forceMove(chassis)
 					O.anchored = FALSE
 					occupant_message("<span class='notice'>[target] successfully loaded.</span>")
-					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]", LOG_MECHA)
 				else
 					O.anchored = initial(O.anchored)
 			else
@@ -240,8 +240,8 @@
 	GLOB.rcd_list += src
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Destroy()
- 	GLOB.rcd_list -= src
- 	return ..()
+	GLOB.rcd_list -= src
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/rcd/action(atom/target)
 	if(istype(target, /turf/open/space/transit))//>implying these are ever made -Sieve
@@ -386,7 +386,7 @@
 	if(href_list["toggle"])
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready?"dea":"a"]ctivated.")
-		log_message("[equip_ready?"Dea":"A"]ctivated.")
+		log_message("[equip_ready?"Dea":"A"]ctivated.", LOG_MECHA)
 		return
 	if(href_list["cut"])
 		if(cable && cable.amount)
@@ -409,7 +409,7 @@
 	if(!cable || cable.amount<1)
 		set_ready_state(1)
 		occupant_message("Cable depleted, [src] deactivated.")
-		log_message("Cable depleted, [src] deactivated.")
+		log_message("Cable depleted, [src] deactivated.", LOG_MECHA)
 		return
 	if(cable.amount < amount)
 		occupant_message("No enough cable to finish the task.")
