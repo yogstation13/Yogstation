@@ -981,6 +981,7 @@
 	var/stat_conscious = (stat == CONSCIOUS) || stat_softcrit
 	var/conscious = !IsUnconscious() && stat_conscious && !has_trait(TRAIT_DEATHCOMA)
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
+	var/restrained = restrained()
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
 	var/paralyzed = IsParalyzed()
@@ -996,15 +997,13 @@
 	var/canstand = canstand_involuntary && !resting
 
 	if(canstand)
-		mobility_flags |= (MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
+		mobility_flags |= MOBILITY_STAND
 		lying = 0
+		if(!restrained)
+			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
+		else
+			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 	else
-<<<<<<< HEAD
-		mobility_flags &= ~(MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
-		if(!lying)
-			lying = pick(90, 270)
-	var/canitem = !paralyzed && !stun && conscious && !chokehold && has_arms
-=======
 		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 
 		var/should_be_lying = (buckled && (buckled.buckle_lying != -1)) ? buckled.buckle_lying : TRUE //make lying match buckle_lying if it's not -1, else lay down
@@ -1019,7 +1018,6 @@
 				lying = 0
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
->>>>>>> 802da4584f... Fixes buckled mobs going prone when killed/stunned/ect (#41263)
 	if(canitem)
 		mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	else
