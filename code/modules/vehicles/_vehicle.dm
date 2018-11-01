@@ -109,7 +109,7 @@
 	vehicle_move(direction)
 
 /obj/vehicle/proc/vehicle_move(direction)
-	if(lastmove + movedelay > world.time)
+	if(lastmove + (movedelay * CONFIG_GET(number/movedelay/run_delay)) > world.time)
 		return FALSE
 	lastmove = world.time
 	if(trailer)
@@ -139,12 +139,12 @@
 			remove_controller_actions_by_flag(controller, i)
 	return TRUE
 
-/obj/vehicle/Collide(atom/movable/M)
+/obj/vehicle/Bump(atom/movable/M)
 	. = ..()
 	if(emulate_door_bumps)
 		if(istype(M, /obj/machinery/door) && has_buckled_mobs())
 			for(var/m in occupants)
-				M.CollidedWith(m)
+				M.Bumped(m)
 
 /obj/vehicle/Move(newloc, dir)
 	. = ..()

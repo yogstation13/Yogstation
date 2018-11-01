@@ -67,7 +67,6 @@
 	desc = "A small pool of sludge, containing trace amounts of leaper venom."
 	icon = 'icons/effects/tomatodecal.dmi'
 	icon_state = "tomato_floor1"
-	beauty = -200
 
 /obj/structure/leaper_bubble
 	name = "leaper bubble"
@@ -111,7 +110,7 @@
 	taste_description = "french cuisine"
 	taste_mult = 1.3
 
-/datum/reagent/toxin/leaper_venom/on_mob_life(mob/living/M)
+/datum/reagent/toxin/leaper_venom/on_mob_life(mob/living/carbon/M)
 	if(volume >= 10)
 		M.adjustToxLoss(5, 0)
 	..()
@@ -204,7 +203,7 @@
 	if(AIStatus == AI_ON && ranged_cooldown <= world.time)
 		projectile_ready = TRUE
 		update_icons()
-	throw_at(new_turf, max(3,get_dist(src,new_turf)), 1, src, FALSE, callback = CALLBACK(src, .FinishHop))
+	throw_at(new_turf, max(3,get_dist(src,new_turf)), 1, src, FALSE, callback = CALLBACK(src, .proc/FinishHop))
 
 /mob/living/simple_animal/hostile/jungle/leaper/proc/FinishHop()
 	density = TRUE

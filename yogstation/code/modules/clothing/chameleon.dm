@@ -1,0 +1,5 @@
+/datum/action/item_action/chameleon/change/update_item(obj/item/picked_item)
+	..()
+	if(ispath(picked_item, /obj/item/pda) && istype(target, /obj/item/pda))
+		target.light_color = initial(picked_item.light_color)
+		target.update_light()

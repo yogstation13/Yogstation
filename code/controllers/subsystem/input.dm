@@ -1,3 +1,4 @@
+// yogs - Replicated for custom keybindings
 SUBSYSTEM_DEF(input)
 	name = "Input"
 	wait = 1 //SS_TICKER means this runs every tick

@@ -25,7 +25,7 @@ If you need to mirror a file, or function into a yog-specific file, please leave
 ```
 // yogs start - Mirrored this function in <file> for <reason>
 bunch of shitcode here
-// yogs stop
+// yogs end
 ```
 
 Once you mirror a file, please follow the above for marking your changes, this way we know what needs to be updated when a file has been mirrored.

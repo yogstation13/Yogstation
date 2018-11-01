@@ -58,6 +58,14 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/neck/yogs/sith_cloak, \
 						/obj/item/clothing/suit/yogs/armor/sith_suit, \
 						/obj/item/clothing/suit/yogs/armor/hardsuit_clown, \
+						/obj/item/clothing/shoes/yogs/trainers, \
+						/obj/item/clothing/shoes/yogs/trainers/red, \
+						/obj/item/clothing/shoes/yogs/trainers/white, \
+						/obj/item/clothing/shoes/yogs/trainers/zebra, \
+						/obj/item/clothing/shoes/yogs/trainers/darkbrown, \
+						/obj/item/clothing/shoes/yogs/trainers/black, \
+						/obj/item/clothing/suit/yogs/zebrasweat, \
+						/obj/item/clothing/suit/yogs/blackwhitesweat, \
 						/obj/item/clothing/shoes/yogs/fuzzy_slippers
 						)
 

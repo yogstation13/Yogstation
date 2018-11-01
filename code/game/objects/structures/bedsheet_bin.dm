@@ -10,7 +10,7 @@ LINEN BINS
 	icon = 'icons/obj/bedsheets.dmi'
 	icon_state = "sheetwhite"
 	item_state = "bedsheet"
-	slot_flags = SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK
 	layer = MOB_LAYER
 	throwforce = 0
 	throw_speed = 1
@@ -27,6 +27,8 @@ LINEN BINS
 		..()
 
 /obj/item/bedsheet/attack_self(mob/user)
+	if(!user.CanReach(src))		//No telekenetic grabbing.
+		return
 	if(!user.dropItemToGround(src))
 		return
 	if(layer == initial(layer))

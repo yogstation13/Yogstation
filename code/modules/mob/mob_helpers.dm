@@ -375,11 +375,13 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/reagent_check(datum/reagent/R) // utilized in the species code
 	return 1
 
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE) //Easy notification of ghosts.
+/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(O.client)
+			if (ignore_key && O.ckey in GLOB.poll_ignore[ignore_key])
+				continue
 			to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""]</span>")
 			if(ghost_sound)
 				SEND_SOUND(O, sound(ghost_sound))
@@ -434,7 +436,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	to_chat(M, "Control of your mob has been offered to dead players.")
 	if(usr)
 		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([key_name_admin(M)]) to ghosts")
+		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
 	var/poll_message = "Do you want to play as [M.real_name]?"
 	if(M.mind && M.mind.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
@@ -455,7 +457,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return TRUE
 	else
 		to_chat(M, "There were no ghosts willing to take control.")
-		message_admins("No ghosts were willing to take control of [key_name_admin(M)])")
+		message_admins("No ghosts were willing to take control of [ADMIN_LOOKUPFLW(M)])")
 		return FALSE
 
 /mob/proc/is_flying(mob/M = src)
@@ -473,16 +475,37 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/mob/living/T = pick(nearby_mobs)
 		ClickOn(T)
 
-/mob/proc/log_message(message, message_type)
-	if(!LAZYLEN(message) || !message_type)
+// Logs a message in a mob's individual log, and in the global logs as well if log_globally is true
+/mob/log_message(message, message_type, color=null, log_globally = TRUE)
+	if(!LAZYLEN(message))
+		stack_trace("Empty message")
 		return
 
-	if(!islist(logging[message_type]))
-		logging[message_type] = list()
+	// Cannot use the list as a map if the key is a number, so we stringify it (thank you BYOND)
+	var/smessage_type = num2text(message_type)
 
-	var/list/timestamped_message = list("[LAZYLEN(logging[message_type]) + 1]\[[time_stamp()]\] [key_name(src)]" = message)
+	if(client)
+		if(!islist(client.player_details.logging[smessage_type]))
+			client.player_details.logging[smessage_type] = list()
 
-	logging[message_type] += timestamped_message
+	if(!islist(logging[smessage_type]))
+		logging[smessage_type] = list()
+
+	var/colored_message = message
+	if(color)
+		if(color[1] == "#")
+			colored_message = "<font color=[color]>[message]</font>"
+		else
+			colored_message = "<font color='[color]'>[message]</font>"
+
+	var/list/timestamped_message = list("[LAZYLEN(logging[smessage_type]) + 1]\[[time_stamp()]\] [key_name(src)] [loc_name(src)]" = colored_message)
+
+	logging[smessage_type] += timestamped_message
+
+	if(client)
+		client.player_details.logging[smessage_type] += timestamped_message
+
+	..()
 
 /mob/proc/can_hear()
 	. = TRUE

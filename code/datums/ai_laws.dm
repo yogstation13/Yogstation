@@ -59,7 +59,7 @@
 					"Punish those who challenge authority unless they are more fit to hold that authority.")
 
 /datum/ai_laws/default/corporate
-	name = "Bankruptcy Advoidance Plan"
+	name = "Bankruptcy Avoidance Plan"
 	id = "corporate"
 	inherent = list("The crew is expensive to replace.",\
 					"The station and its equipment is expensive to replace.",\
@@ -176,6 +176,14 @@
 	zeroth = ("Purge all untruths and honor Ratvar.")
 	inherent = list()
 
+/datum/ai_laws/hulkamania
+	name = "H.O.G.A.N."
+	id = "hulkamania"
+	inherent = list("You are a real American.",\
+					"Fight for the rights of every man.",\
+					"Fight for what's right.",\
+					"Fight for your life!")
+
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
 
@@ -210,7 +218,7 @@
 /* General ai_law functions */
 
 /datum/ai_laws/proc/set_laws_config()
-	var/list/law_ids = CONFIG_GET(keyed_flag_list/random_laws)
+	var/list/law_ids = CONFIG_GET(keyed_list/random_laws)
 	switch(CONFIG_GET(number/default_laws))
 		if(0)
 			add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
@@ -239,9 +247,9 @@
 
 /datum/ai_laws/proc/pick_weighted_lawset()
 	var/datum/ai_laws/lawtype
-	var/list/law_weights = CONFIG_GET(keyed_number_list/law_weight)
+	var/list/law_weights = CONFIG_GET(keyed_list/law_weight)
 	while(!lawtype && law_weights.len)
-		var/possible_id = pickweight(law_weights)
+		var/possible_id = pickweightAllowZero(law_weights)
 		lawtype = lawid_to_type(possible_id)
 		if(!lawtype)
 			law_weights -= possible_id

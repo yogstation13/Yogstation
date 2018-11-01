@@ -58,7 +58,7 @@
 			if(prob(botEmagChance))
 				bot.emag_act()
 
-/proc/generate_ion_law()
+/*/proc/generate_ion_law() //yogs - start mirrored in the yogs folder
 	//Threats are generally bad things, silly or otherwise. Plural.
 	var/ionthreats = pick_list(ION_FILE, "ionthreats")
 	//Objects are anything that can be found on the station or elsewhere, plural.
@@ -561,7 +561,7 @@
 						if(4)
 							message = "ALL [ionthreats] ARE NOW NAMED [ionobjects]."
 
-	return message
+	return message*/ //yogs end - mirrored in another file
 
 #undef ION_RANDOM
 #undef ION_ANNOUNCE

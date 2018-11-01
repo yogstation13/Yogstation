@@ -1,4 +1,0 @@
-author: " Xhuis"
-delete-after: true 
-changes: 
-  - bugfix: "Mood traits cannot be chosen if mood is disabled in the config."

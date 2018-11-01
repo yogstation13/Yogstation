@@ -18,4 +18,8 @@
 	access += ACCESS_CREMATORIUM
 	minimal_access += ACCESS_CREMATORIUM
 
-MAP_REMOVE_JOB(lawyer)
+MAP_REMOVE_JOB(clerk) //YOGS start - yogjobs
+MAP_REMOVE_JOB(paramedic)
+MAP_REMOVE_JOB(psych)
+MAP_REMOVE_JOB(signal_tech)
+MAP_REMOVE_JOB(miningmedic) //YOGS end - yogjobs

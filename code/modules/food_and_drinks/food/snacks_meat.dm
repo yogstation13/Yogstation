@@ -95,8 +95,8 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/faggot
-	name = "faggot"
+/obj/item/reagent_containers/food/snacks/meatball  //YOGS - Bigotry rule
+	name = "meatball"  //YOGS - Bigotry rule
 	desc = "A great meal all round. Not a cord of wood."
 	icon_state = "faggot"
 	list_reagents = list("nutriment" = 4, "vitamin" = 1)
@@ -189,7 +189,7 @@
 	var/mob/living/carbon/monkey/bananas = new(drop_location(), TRUE, spammer)
 	if (!QDELETED(bananas))
 		visible_message("<span class='notice'>[src] expands!</span>")
-		bananas.log_message("Spawned via [src] at [COORD(src)], Last attached mob: [key_name(spammer)].", INDIVIDUAL_ATTACK_LOG)
+		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 	else if (!spammer) // Visible message in case there are no fingerprints
 		visible_message("<span class='notice'>[src] fails to expand!</span>")
 	qdel(src)

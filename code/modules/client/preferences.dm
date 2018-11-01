@@ -29,9 +29,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 										//autocorrected this round, not that you'd need to check that.
 
 
-	var/UI_style = "Midnight"
+	var/UI_style = null
 	var/buttons_locked = FALSE
-	var/hotkeys = FALSE
+	var/hotkeys = TRUE // yogs - Rebindable Keybindings
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
 	var/windowflashing = TRUE
@@ -70,18 +70,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain")
 
-	var/list/custom_names = list("human", "clown", "mime", "ai", "cyborg", "religion", "deity")
+	var/list/custom_names = list()
 	var/prefered_security_department = SEC_DEPT_RANDOM
 
 		//Mob preview
 	var/icon/preview_icon = null
 
-		//Trait list
-	var/list/positive_traits = list()
-	var/list/negative_traits = list()
-	var/list/neutral_traits = list()
-	var/list/all_traits = list()
-	var/list/character_traits = list()
+		//Quirk list
+	var/list/positive_quirks = list()
+	var/list/negative_quirks = list()
+	var/list/neutral_quirks = list()
+	var/list/all_quirks = list()
+	var/list/character_quirks = list()
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -102,9 +102,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
 
-		// OOC Metadata:
-	var/metadata = ""
-
 	var/unlock_content = 0
 
 	var/list/ignoring = list()
@@ -112,6 +109,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/clientfps = 0
 
 	var/parallax
+
+	var/ambientocclusion = TRUE
+	var/auto_fit_viewport = FALSE
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
@@ -122,11 +122,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/New(client/C)
 	parent = C
-	custom_names["human"] = random_unique_name()
-	custom_names["ai"] = pick(GLOB.ai_names)
-	custom_names["cyborg"] = pick(GLOB.ai_names)
-	custom_names["clown"] = pick(GLOB.clown_names)
-	custom_names["mime"] = pick(GLOB.mime_names)
+
+	for(var/custom_name_id in GLOB.preferences_custom_names)
+		custom_names[custom_name_id] = get_default_name(custom_name_id)
+
+	UI_style = GLOB.available_ui_styles[1]
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
@@ -158,12 +158,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 	update_preview_icon()
 	user << browse_rsc(preview_icon, "previewicon.png")
-	var/dat = "<center>"
+	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Donator Preferences</a>" // yogs - Donor features
+	dat += "<a href='?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>Keybindings</a>" // yogs - Custom keybindings
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -195,9 +196,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<center><h2>Occupation Choices</h2>"
 			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br></center>"
 			if(CONFIG_GET(flag/roundstart_traits))
-				dat += "<center><h2>Trait Setup</h2>"
-				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Traits</a><br></center>"
-				dat += "<center><b>Current traits:</b> [all_traits.len ? all_traits.Join(", ") : "None"]</center>"
+				dat += "<center><h2>Quirk Setup</h2>"
+				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
+				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(jobban_isbanned(user, "appearance"))
@@ -212,17 +213,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
-			dat += "<a href ='?_src_=prefs;preference=human_name;task=input'><b>Backup Human Name:</b> [custom_names["human"]]</a> "
+			var/old_group
+			for(var/custom_name_id in GLOB.preferences_custom_names)
+				var/namedata = GLOB.preferences_custom_names[custom_name_id]
+				if(!old_group)
+					old_group = namedata["group"]
+				else if(old_group != namedata["group"])
+					old_group = namedata["group"]
+					dat += "<br>"
+				dat += "<a href ='?_src_=prefs;preference=[custom_name_id];task=input'><b>[namedata["pref_name"]]:</b> [custom_names[custom_name_id]]</a> "
 			dat += "<br>"
-			dat += "<a href ='?_src_=prefs;preference=clown_name;task=input'><b>Clown:</b> [custom_names["clown"]]</a> "
-			dat += "<a href ='?_src_=prefs;preference=mime_name;task=input'><b>Mime:</b> [custom_names["mime"]]</a>"
-			dat += "<br>"
-			dat += "<a href ='?_src_=prefs;preference=ai_name;task=input'><b>AI:</b> [custom_names["ai"]]</a> "
-			dat += "<a href ='?_src_=prefs;preference=cyborg_name;task=input'><b>Cyborg:</b> [custom_names["cyborg"]]</a>"
-			dat += "<br>"
-			dat += "<a href ='?_src_=prefs;preference=religion_name;task=input'><b>Chaplain religion:</b> [custom_names["religion"]] </a>"
-			dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR>"
-
 			dat += "<b>Custom job preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Prefered security department:</b> [prefered_security_department]</a><BR></td>"
 
@@ -301,7 +301,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//Mutant stuff
 			var/mutant_category = 0
 
-			if("tail_lizard" in pref_species.mutant_bodyparts)
+			if("tail_lizard" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -314,7 +314,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("snout" in pref_species.mutant_bodyparts)
+			if("snout" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("horns" in pref_species.mutant_bodyparts)
+			if("horns" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -340,7 +340,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("frills" in pref_species.mutant_bodyparts)
+			if("frills" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("spines" in pref_species.mutant_bodyparts)
+			if("spines" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -366,7 +366,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("body_markings" in pref_species.mutant_bodyparts)
+			if("body_markings" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("legs" in pref_species.mutant_bodyparts)
+			if("legs" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			if("moth_wings" in pref_species.mutant_bodyparts)
+			if("moth_wings" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -405,35 +405,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("tail_human" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Tail</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("ears" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Ears</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
-				if("tail_human" in pref_species.mutant_bodyparts)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
-
-					dat += "<h3>Tail</h3>"
-
-					dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
-
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
-
-				if("ears" in pref_species.mutant_bodyparts)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
-
-					dat += "<h3>Ears</h3>"
-
-					dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
-
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
-
-				if("wings" in pref_species.mutant_bodyparts && GLOB.r_wings_list.len >1)
+				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
 					if(!mutant_category)
 						dat += APPEARANCE_CATEGORY_COLUMN
 
@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
@@ -512,6 +512,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dat += "High"
 			dat += "</a><br>"
+
+			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
+
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
 				if (!p_map)
@@ -583,9 +587,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(unlock_content || check_rights_for(user.client, R_ADMIN))
 					dat += "<b>OOC Color:</b> <span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a><br>"
 
-			if(CONFIG_GET(flag/allow_metadata))
-				dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'>Edit </a><br>"
-
 			dat += "</td>"
 
 			if(user.client.holder)
@@ -617,8 +618,72 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=donor;task=purrbation'>[purrbation ? "Yes" : "No"]</a><BR>"
 			else
 				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
+			dat += "</tr></table>"
 		// yogs end
+		
+		// yogs start - Custom keybindings
+		if (4) // Keybindings
+			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a>"
+			dat += "<a href='?_src_=prefs;preference=reset_bindings'>Reset to default</a></center>"
+			if(hotkeys)
+				var/button
+				var/button_bound
 
+				dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+				dat += "<h2>Client</h2>"
+				BUTTON_KEY_MOVEMENT("Move North (up)", ACTION_MOVENORTH, NORTH)
+				BUTTON_KEY_MOVEMENT("Move West (left)", ACTION_MOVEWEST, WEST)
+				BUTTON_KEY_MOVEMENT("Move South (down)", ACTION_MOVESOUTH, SOUTH)
+				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
+				
+				BUTTON_KEY("OOC", ACTION_OOC)
+				BUTTON_KEY("Adminhelp", ACTION_AHELP)
+				BUTTON_KEY("Screenshot", ACTION_SCREENSHOT)
+				BUTTON_KEY("Minimal HUD", ACTION_MINHUD)
+
+
+				dat += "<h2>Mob</h2>"
+				BUTTON_KEY("Say", ACTION_SAY)
+				BUTTON_KEY("Emote", ACTION_ME)
+				BUTTON_KEY("Stop pulling", ACTION_STOPPULLING)
+				BUTTON_KEY("Cycle intent clockwise", ACTION_INTENTRIGHT)
+				BUTTON_KEY("Cycle intent counter-clockwise", ACTION_INTENTLEFT)
+				BUTTON_KEY("Swap hands", ACTION_SWAPHAND)
+				BUTTON_KEY("Use item on self", ACTION_USESELF)
+				BUTTON_KEY("Drop", ACTION_DROP)
+				BUTTON_KEY("Equip", ACTION_EQUIP)
+
+				dat += "</td><td width='300px' height='300px' valign='top'>"
+				dat += "<h2>Mob</h2>"
+
+				BUTTON_KEY("Target head", ACTION_TARGETHEAD)
+				BUTTON_KEY("Target right arm", ACTION_TARGETRARM)
+				BUTTON_KEY("Target chest", ACTION_TARGETCHEST)
+				BUTTON_KEY("Target left arm", ACTION_TARGETLARM)
+				BUTTON_KEY("Target right leg", ACTION_TARGETRLEG)
+				BUTTON_KEY("Target groin", ACTION_TARGETGROIN)
+				BUTTON_KEY("Target left leg", ACTION_TARGETLLEG)
+
+				BUTTON_KEY("Resist", ACTION_RESIST)
+				BUTTON_KEY("Toggle throw", ACTION_TOGGLETHROW)
+				BUTTON_KEY("Help intent", ACTION_INTENTHELP)
+				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
+				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
+				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
+				
+				if(parent && parent.holder)
+					dat += "<h2>Admin</h2>"
+					BUTTON_KEY("Adminchat", ACTION_ASAY)
+					BUTTON_KEY("Admin ghost", ACTION_AGHOST)
+					BUTTON_KEY("Player panel", ACTION_PLAYERPANEL)
+					BUTTON_KEY("Toggle build mode", ACTION_BUILDMODE)
+					BUTTON_KEY("Stealth mode", ACTION_STEALTHMIN)
+					BUTTON_KEY("Deadchat", ACTION_DSAY)
+
+				dat += "</td></tr></table>"
+			else
+				dat += "<b>Default keybindings selected</b>"
+		// yogs end
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -629,7 +694,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "</center>"
 
 	var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 770)
-	popup.set_content(dat)
+	popup.set_content(dat.Join())
 	popup.open(0)
 
 #undef APPEARANCE_CATEGORY_COLUMN
@@ -900,72 +965,72 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					return job_engsec_low
 	return 0
 
-/datum/preferences/proc/SetTraits(mob/user)
-	if(!SStraits)
-		to_chat(user, "<span class='danger'>The trait subsystem is still initializing! Try again in a minute.</span>")
+/datum/preferences/proc/SetQuirks(mob/user)
+	if(!SSquirks)
+		to_chat(user, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
 		return
 
 	var/list/dat = list()
-	if(!SStraits.traits.len)
-		dat += "The trait subsystem hasn't finished initializing, please hold..."
+	if(!SSquirks.quirks.len)
+		dat += "The quirk subsystem hasn't finished initializing, please hold..."
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center><br>"
 
 	else
-		dat += "<center><b>Choose trait setup</b></center><br>"
-		dat += "<div align='center'>Left-click to add or remove traits. You need one negative trait for every positive trait.<br>\
-		Traits are applied at roundstart and cannot normally be removed.</div>"
+		dat += "<center><b>Choose quirk setup</b></center><br>"
+		dat += "<div align='center'>Left-click to add or remove quirks. You need negative quirks to have positive ones.<br>\
+		Quirks are applied at roundstart and cannot normally be removed.</div>"
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center>"
 		dat += "<hr>"
-		dat += "<center><b>Current traits:</b> [all_traits.len ? all_traits.Join(", ") : "None"]</center>"
-		dat += "<center>[all_traits.len] / [MAX_TRAITS] max traits<br>\
-		<b>Trait balance remaining:</b> [GetTraitBalance()]</center><br>"
-		for(var/V in SStraits.traits)
-			var/datum/trait/T = SStraits.traits[V]
-			var/trait_name = initial(T.name)
-			var/has_trait
-			var/trait_cost = initial(T.value) * -1
+		dat += "<center><b>Current quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+		dat += "<center>[positive_quirks.len] / [MAX_QUIRKS] max positive quirks<br>\
+		<b>Quirk balance remaining:</b> [GetQuirkBalance()]</center><br>"
+		for(var/V in SSquirks.quirks)
+			var/datum/quirk/T = SSquirks.quirks[V]
+			var/quirk_name = initial(T.name)
+			var/has_quirk
+			var/quirk_cost = initial(T.value) * -1
 			var/lock_reason = "This trait is unavailable."
-			var/trait_conflict = FALSE
-			for(var/_V in all_traits)
-				if(_V == trait_name)
-					has_trait = TRUE
-			if(initial(T.mood_trait) && CONFIG_GET(flag/disable_human_mood))
+			var/quirk_conflict = FALSE
+			for(var/_V in all_quirks)
+				if(_V == quirk_name)
+					has_quirk = TRUE
+			if(initial(T.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
 				lock_reason = "Mood is disabled."
-				trait_conflict = TRUE
-			if(has_trait)
-				if(trait_conflict)
-					all_traits -= trait_name
-					has_trait = FALSE
+				quirk_conflict = TRUE
+			if(has_quirk)
+				if(quirk_conflict)
+					all_quirks -= quirk_name
+					has_quirk = FALSE
 				else
-					trait_cost *= -1 //invert it back, since we'd be regaining this amount
-			if(trait_cost > 0)
-				trait_cost = "+[trait_cost]"
+					quirk_cost *= -1 //invert it back, since we'd be regaining this amount
+			if(quirk_cost > 0)
+				quirk_cost = "+[quirk_cost]"
 			var/font_color = "#AAAAFF"
 			if(initial(T.value) != 0)
 				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
-			if(trait_conflict)
-				dat += "<font color='[font_color]'>[trait_name]</font> - [initial(T.desc)] \
+			if(quirk_conflict)
+				dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
 				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"
 			else
-				if(has_trait)
-					dat += "<b><font color='[font_color]'>[trait_name]</font></b> - [initial(T.desc)] \
-					<a href='?_src_=prefs;preference=trait;task=update;trait=[trait_name]'>[has_trait ? "Lose" : "Take"] ([trait_cost] pts.)</a><br>"
+				if(has_quirk)
+					dat += "<b><font color='[font_color]'>[quirk_name]</font></b> - [initial(T.desc)] \
+					<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Lose" : "Take"] ([quirk_cost] pts.)</a><br>"
 				else
-					dat += "<font color='[font_color]'>[trait_name]</font> - [initial(T.desc)] \
-					<a href='?_src_=prefs;preference=trait;task=update;trait=[trait_name]'>[has_trait ? "Lose" : "Take"] ([trait_cost] pts.)</a><br>"
+					dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
+					<a href='?_src_=prefs;preference=trait;task=update;trait=[quirk_name]'>[has_quirk ? "Lose" : "Take"] ([quirk_cost] pts.)</a><br>"
 		dat += "<br><center><a href='?_src_=prefs;preference=trait;task=reset'>Reset Traits</a></center>"
 
 	user << browse(null, "window=preferences")
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Trait Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Quirk Preferences</div>", 900, 600) //no reason not to reuse the occupation window, as it's cleaner that way
 	popup.set_window_options("can_close=0")
 	popup.set_content(dat.Join())
 	popup.open(0)
 	return
 
-/datum/preferences/proc/GetTraitBalance()
+/datum/preferences/proc/GetQuirkBalance()
 	var/bal = 0
-	for(var/V in all_traits)
-		var/datum/trait/T = SStraits.traits[V]
+	for(var/V in all_quirks)
+		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
 	return bal
 
@@ -973,21 +1038,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
 		var/sql_ckey = sanitizeSQL(user.ckey)
-		var/datum/DBQuery/query_get_jobban = SSdbcore.NewQuery("SELECT reason, bantime, duration, expiration_time, a_ckey FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned) AND job = '[job]'")
+		var/datum/DBQuery/query_get_jobban = SSdbcore.NewQuery("SELECT reason, bantime, duration, expiration_time, (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey) FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0) AND job = '[job]'") // yogs - Yog Bans
 		if(!query_get_jobban.warn_execute())
+			qdel(query_get_jobban)
 			return
 		if(query_get_jobban.NextRow())
 			var/reason = query_get_jobban.item[1]
 			var/bantime = query_get_jobban.item[2]
 			var/duration = query_get_jobban.item[3]
 			var/expiration_time = query_get_jobban.item[4]
-			var/a_ckey = query_get_jobban.item[5]
+			var/admin_key = query_get_jobban.item[5]
 			var/text
-			text = "<span class='redtext'>You, or another user of this computer, ([user.ckey]) is banned from playing [job]. The ban reason is:<br>[reason]<br>This ban was applied by [a_ckey] on [bantime]"
+			text = "<span class='redtext'>You, or another user of this computer, ([user.key]) is banned from playing [job]. The ban reason is:<br>[reason]<br>This ban was applied by [admin_key] on [bantime]"
 			if(text2num(duration) > 0)
 				text += ". The ban is for [duration] minutes and expires on [expiration_time] (server time)"
 			text += ".</span>"
 			to_chat(user, text)
+		qdel(query_get_jobban)
 		return
 	// yogs start - Donor features
 	if(href_list["preference"] == "donor")
@@ -1041,55 +1108,49 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				user << browse(null, "window=mob_occupation")
 				ShowChoices(user)
 			if("update")
-				var/trait = href_list["trait"]
-				if(!SStraits.traits[trait])
+				var/quirk = href_list["trait"]
+				if(!SSquirks.quirks[quirk])
 					return
-				var/value = SStraits.trait_points[trait]
+				var/value = SSquirks.quirk_points[quirk]
 				if(value == 0)
-					if(trait in neutral_traits)
-						neutral_traits -= trait
-						all_traits -= trait
+					if(quirk in neutral_quirks)
+						neutral_quirks -= quirk
+						all_quirks -= quirk
 					else
-						if(all_traits.len >= MAX_TRAITS)
-							to_chat(user, "<span class='warning'>You can't have more than [MAX_TRAITS] traits!</span>")
-							return
-						neutral_traits += trait
-						all_traits += trait
+						neutral_quirks += quirk
+						all_quirks += quirk
 				else
-					var/balance = GetTraitBalance()
-					if(trait in positive_traits)
-						positive_traits -= trait
-						all_traits -= trait
-					else if(trait in negative_traits)
+					var/balance = GetQuirkBalance()
+					if(quirk in positive_quirks)
+						positive_quirks -= quirk
+						all_quirks -= quirk
+					else if(quirk in negative_quirks)
 						if(balance + value < 0)
 							to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
 							return
-						negative_traits -= trait
-						all_traits -= trait
+						negative_quirks -= quirk
+						all_quirks -= quirk
 					else if(value > 0)
-						if(all_traits.len >= MAX_TRAITS)
-							to_chat(user, "<span class='warning'>You can't have more than [MAX_TRAITS] traits!</span>")
+						if(positive_quirks.len >= MAX_QUIRKS)
+							to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
 							return
 						if(balance - value < 0)
-							to_chat(user, "<span class='warning'>You don't have enough balance to gain this trait!</span>")
+							to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
 							return
-						positive_traits += trait
-						all_traits += trait
+						positive_quirks += quirk
+						all_quirks += quirk
 					else
-						if(all_traits.len >= MAX_TRAITS)
-							to_chat(user, "<span class='warning'>You can't have more than [MAX_TRAITS] traits!</span>")
-							return
-						negative_traits += trait
-						all_traits += trait
-				SetTraits(user)
+						negative_quirks += quirk
+						all_quirks += quirk
+				SetQuirks(user)
 			if("reset")
-				all_traits = list()
-				positive_traits = list()
-				negative_traits = list()
-				neutral_traits = list()
-				SetTraits(user)
+				all_quirks = list()
+				positive_quirks = list()
+				negative_quirks = list()
+				neutral_quirks = list()
+				SetQuirks(user)
 			else
-				SetTraits(user)
+				SetQuirks(user)
 		return TRUE
 
 	switch(href_list["task"])
@@ -1123,6 +1184,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					random_character()
 
 		if("input")
+
+			if(href_list["preference"] in GLOB.preferences_custom_names)
+				ask_for_custom_name(user,href_list["preference"])
+
+
 			switch(href_list["preference"])
 				if("ghostform")
 					if(unlock_content)
@@ -1167,16 +1233,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
-				if("metadata")
-					var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , metadata)  as message|null
-					if(new_metadata)
-						metadata = sanitize(copytext(new_metadata,1,MAX_MESSAGE_LEN))
-
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
 					if(new_hair)
 						hair_color = sanitize_hexcolor(new_hair)
-
 
 				if("hair_style")
 					var/new_hair_style
@@ -1363,55 +1423,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_loc)
 						uplink_spawn_loc = new_loc
 
-				if("human_name")
-					var/new_human_name = reject_bad_name( input(user, "Choose your character's backup human name, used in the event you are assigned a command role as another species:", "Character Preference")  as text|null )
-					if(new_human_name)
-						custom_names["human"] = new_human_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-
-				if("clown_name")
-					var/new_clown_name = reject_bad_name( input(user, "Choose your character's clown name:", "Character Preference")  as text|null )
-					if(new_clown_name)
-						custom_names["clown"] = new_clown_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-
-				if("mime_name")
-					var/new_mime_name = reject_bad_name( input(user, "Choose your character's mime name:", "Character Preference")  as text|null )
-					if(new_mime_name)
-						custom_names["mime"] = new_mime_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-
-				if("ai_name")
-					var/new_ai_name = reject_bad_name( input(user, "Choose your character's AI name:", "Character Preference")  as text|null, 1 )
-					if(new_ai_name)
-						custom_names["ai"] = new_ai_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, 0-9, -, ' and .</font>")
-
-				if("cyborg_name")
-					var/new_cyborg_name = reject_bad_name( input(user, "Choose your character's cyborg name:", "Character Preference")  as text|null, 1 )
-					if(new_cyborg_name)
-						custom_names["cyborg"] = new_cyborg_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, 0-9, -, ' and .</font>")
-
-				if("religion_name")
-					var/new_religion_name = reject_bad_name( input(user, "Choose your character's religion:", "Character Preference")  as text|null )
-					if(new_religion_name)
-						custom_names["religion"] = new_religion_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-
-				if("deity_name")
-					var/new_deity_name = reject_bad_name( input(user, "Choose your character's deity:", "Character Preference")  as text|null )
-					if(new_deity_name)
-						custom_names["deity"] = new_deity_name
-					else
-						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-
 				if("sec_dept")
 					var/department = input(user, "Choose your prefered security department:", "Security Departments") as null|anything in GLOB.security_depts_prefs
 					if(department)
@@ -1439,18 +1450,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						clientfps = desiredfps
 						parent.fps = desiredfps
 				if("ui")
-					var/pickedui = input(user, "Choose your UI style.", "Character Preference")  as null|anything in list("Midnight", "Plasmafire", "Retro", "Slimecore", "Operative", "Clockwork")
+					var/pickedui = input(user, "Choose your UI style.", "Character Preference", UI_style)  as null|anything in GLOB.available_ui_styles
 					if(pickedui)
 						UI_style = pickedui
+						if (parent && parent.mob && parent.mob.hud_used)
+							parent.mob.hud_used.update_ui_style(ui_style2icon(UI_style))
 				if("pda_style")
-					var/pickedPDAStyle = input(user, "Choose your PDA style.", "Character Preference")  as null|anything in list(MONO, SHARE, ORBITRON, VT)
+					var/pickedPDAStyle = input(user, "Choose your PDA style.", "Character Preference", pda_style)  as null|anything in GLOB.pda_styles
 					if(pickedPDAStyle)
 						pda_style = pickedPDAStyle
 				if("pda_color")
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
-
+			// yogs start - Custom keybindings
+			if(href_list["keybinding"])
+				update_keybindings(user, href_list["keybinding"], href_list["dir"])
+			// yogs end
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -1470,8 +1486,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
-						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")
+						bindings.bind_movement() // yogs - Rebindable keys
+						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default") // yogs - Rebindable keys
 					else
+						bindings.unbind_movement() // yogs - Rebindable keys
 						winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 				if("action_buttons")
 					buttons_locked = !buttons_locked
@@ -1506,7 +1524,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
-					if((toggles & SOUND_LOBBY) && user.client)
+					if((toggles & SOUND_LOBBY) && user.client && isnewplayer(user))
 						user.client.playtitlemusic()
 					else
 						user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
@@ -1542,6 +1560,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if (parent && parent.mob && parent.mob.hud_used)
 						parent.mob.hud_used.update_parallax_pref(parent.mob)
 
+				if("ambientocclusion")
+					ambientocclusion = !ambientocclusion
+					if(parent && parent.screen && parent.screen.len)
+						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
+						PM.backdrop(parent.mob)
+
+				if("auto_fit_viewport")
+					auto_fit_viewport = !auto_fit_viewport
+					if(auto_fit_viewport && parent)
+						parent.fit_viewport()
+
 				if("save")
 					save_preferences()
 					save_character()
@@ -1560,23 +1589,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
 
+				// yogs start - Custom keybindings
+				if("reset_bindings")
+					reset_keybindings()
+				// yogs end
+
 	ShowChoices(user)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE)
 	if(be_random_name)
 		real_name = pref_species.random_name(gender)
 
 	if(be_random_body)
 		random_character(gender)
 
-	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
-			real_name += " [pick(GLOB.last_names)]"
-		else if(firstspace == name_length)
-			real_name += "[pick(GLOB.last_names)]"
+	if(roundstart_checks)
+		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == "human"))
+			var/firstspace = findtext(real_name, " ")
+			var/name_length = length(real_name)
+			if(!firstspace)	//we need a surname
+				real_name += " [pick(GLOB.last_names)]"
+			else if(firstspace == name_length)
+				real_name += "[pick(GLOB.last_names)]"
 
 	character.real_name = real_name
 	character.name = character.real_name
@@ -1605,15 +1640,48 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.dna.features = features.Copy()
 	character.dna.real_name = character.real_name
 	var/datum/species/chosen_species
-	if(pref_species.id in GLOB.roundstart_races)
+	if(!roundstart_checks || (pref_species.id in GLOB.roundstart_races))
 		chosen_species = pref_species.type
 	else
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()
-	character.set_species(chosen_species, icon_update=0)
+	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
 
 	if(icon_updates)
 		character.update_body()
 		character.update_hair()
 		character.update_body_parts()
+
+/datum/preferences/proc/get_default_name(name_id)
+	switch(name_id)
+		if("human")
+			return random_unique_name()
+		if("ai")
+			return pick(GLOB.ai_names)
+		if("cyborg")
+			return DEFAULT_CYBORG_NAME
+		if("clown")
+			return pick(GLOB.clown_names)
+		if("mime")
+			return pick(GLOB.mime_names)
+	return random_unique_name()
+
+/datum/preferences/proc/ask_for_custom_name(mob/user,name_id)
+	var/namedata = GLOB.preferences_custom_names[name_id]
+	if(!namedata)
+		return
+
+	var/raw_name = input(user, "Choose your character's [namedata["qdesc"]]:","Character Preference") as text|null
+	if(!raw_name)
+		if(namedata["allow_null"])
+			custom_names[name_id] = get_default_name(name_id)
+		else
+			return
+	else
+		var/sanitized_name = reject_bad_name(raw_name,namedata["allow_numbers"])
+		if(!sanitized_name)
+			to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z,[namedata["allow_numbers"] ? ",0-9," : ""] -, ' and .</font>")
+			return
+		else
+			custom_names[name_id] = sanitized_name

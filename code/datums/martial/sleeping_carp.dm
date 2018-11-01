@@ -45,7 +45,7 @@
 		D.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		D.Stun(60)
 		return 1
-	add_logs(A, D, "wrist wrenched (Sleeping Carp)")
+	log_combat(A, D, "wrist wrenched (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -57,7 +57,7 @@
 		D.Knockdown(80)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
-	add_logs(A, D, "back-kicked (Sleeping Carp)")
+	log_combat(A, D, "back-kicked (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/kneeStomach(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -70,7 +70,7 @@
 		D.Stun(40)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
-	add_logs(A, D, "stomach kneed (Sleeping Carp)")
+	log_combat(A, D, "stomach kneed (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/headKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -83,7 +83,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
 		return 1
-	add_logs(A, D, "head kicked (Sleeping Carp)")
+	log_combat(A, D, "head kicked (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -96,7 +96,7 @@
 		D.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return 1
-	add_logs(A, D, "elbow dropped (Sleeping Carp)")
+	log_combat(A, D, "elbow dropped (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -111,12 +111,12 @@
 			D.drop_all_held_items()
 			D.stop_pulling()
 			if(A.a_intent == INTENT_GRAB)
-				add_logs(A, D, "grabbed", addition="aggressively")
+				log_combat(A, D, "grabbed", addition="aggressively")
 				D.visible_message("<span class='warning'>[A] violently grabs [D]!</span>", \
 				  "<span class='userdanger'>[A] violently grabs you!</span>")
 				A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
 			else
-				add_logs(A, D, "grabbed", addition="passively")
+				log_combat(A, D, "grabbed", addition="passively")
 				A.grab_state = GRAB_PASSIVE
 	return 1
 
@@ -133,7 +133,7 @@
 	if(prob(D.getBruteLoss()) && !D.lying)
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
 		D.Knockdown(80)
-	add_logs(A, D, "[atk_verb] (Sleeping Carp)")
+	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
 	return 1
 
 
@@ -161,7 +161,7 @@
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
 	force = 10
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 10
 	force_wielded = 24
 	throwforce = 20
@@ -219,7 +219,7 @@
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
-				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking them out cold!</span>", \
+				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!</span>", \
 									   "<span class='userdanger'>[user] knocks you unconscious!</span>")
 				H.SetSleeping(600)
 				H.adjustBrainLoss(15, 150)

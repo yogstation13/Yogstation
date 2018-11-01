@@ -13,6 +13,7 @@
 	name = "mineral floor"
 	icon_state = ""
 	var/list/icons
+	tiled_dirt = FALSE
 
 
 
@@ -44,8 +45,8 @@
 
 /turf/open/floor/mineral/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)//If the temperature of the object is over 300, then ignite
-		message_admins("Plasma flooring was ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(src)]",0,1)
-		log_game("Plasma flooring was ignited by [key_name(user)] in [COORD(src)]")
+		message_admins("Plasma flooring was ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+		log_game("Plasma flooring was ignited by [key_name(user)] in [AREACOORD(src)]")
 		ignite(W.is_hot())
 		return
 	..()
@@ -118,7 +119,7 @@
 	initial_gas_mix = "TEMP=2.7"
 
 /turf/open/floor/mineral/plastitanium/brig
-	name = "Brig floor"
+	name = "brig floor"
 
 //BANANIUM
 
@@ -133,7 +134,7 @@
 	.=..()
 	if(!.)
 		if(istype(L))
-			squeek()
+			squeak()
 
 /turf/open/floor/mineral/bananium/attackby(obj/item/W, mob/user, params)
 	.=..()
@@ -155,7 +156,7 @@
 		playsound(src, 'sound/items/bikehorn.ogg', 50, 1)
 		spam_flag = world.time + 20
 
-/turf/open/floor/mineral/bananium/proc/squeek()
+/turf/open/floor/mineral/bananium/proc/squeak()
 	if(spam_flag < world.time)
 		playsound(src, "clownstep", 50, 1)
 		spam_flag = world.time + 10
@@ -174,6 +175,7 @@
 //URANIUM
 
 /turf/open/floor/mineral/uranium
+	article = "a"
 	name = "uranium floor"
 	icon_state = "uranium"
 	floor_tile = /obj/item/stack/tile/mineral/uranium

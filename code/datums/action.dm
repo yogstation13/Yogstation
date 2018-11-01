@@ -85,8 +85,10 @@
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
-		return 0
-	return 1
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	return TRUE
 
 /datum/action/proc/Process()
 	return
@@ -273,8 +275,8 @@
 	desc = "Change the type of instrument your synthesizer is playing as."
 
 /datum/action/item_action/synthswitch/Trigger()
-	if(istype(target, /obj/item/device/instrument/piano_synth))
-		var/obj/item/device/instrument/piano_synth/synth = target
+	if(istype(target, /obj/item/instrument/piano_synth))
+		var/obj/item/instrument/piano_synth/synth = target
 		var/chosen = input("Choose the type of instrument you want to use", "Instrument Selection", "piano") as null|anything in synth.insTypes
 		if(!synth.insTypes[chosen])
 			return
@@ -433,8 +435,8 @@
 	desc = "Use the instrument specified"
 
 /datum/action/item_action/instrument/Trigger()
-	if(istype(target, /obj/item/device/instrument))
-		var/obj/item/device/instrument/I = target
+	if(istype(target, /obj/item/instrument))
+		var/obj/item/instrument/I = target
 		I.interact(usr)
 		return
 	return ..()
@@ -480,13 +482,36 @@
 			H.attack_self(owner)
 			return
 	var/obj/item/I = target
-	if(owner.can_equip(I, slot_hands))
+	if(owner.can_equip(I, SLOT_HANDS))
 		owner.temporarilyRemoveItemFromInventory(I)
 		owner.put_in_hands(I)
 		I.attack_self(owner)
 	else
 		to_chat(owner, "<span class='cultitalic'>Your hands are full!</span>")
 
+/datum/action/item_action/agent_box
+	name = "Deploy Box"
+	desc = "Find inner peace, here, in the box."
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	background_icon_state = "bg_agent"
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "deploy_box"
+	var/cooldown = 0
+	var/obj/structure/closet/cardboard/agent/box
+
+/datum/action/item_action/agent_box/Trigger()
+	if(!..())
+		return FALSE
+	if(!box)
+		if(cooldown < world.time - 100)
+			box = new(get_turf(owner))
+			owner.forceMove(box)
+			cooldown = world.time
+			owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
+	else
+		owner.forceMove(get_turf(box))
+		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
+		QDEL_NULL(box)
 
 //Preset for spells
 /datum/action/spell_action
@@ -563,19 +588,6 @@
 
 /datum/action/innate/proc/Deactivate()
 	return
-
-//Preset for action that call specific procs (consider innate).
-/datum/action/generic
-	check_flags = 0
-	var/procname
-
-/datum/action/generic/Trigger()
-	if(!..())
-		return 0
-	if(target && procname)
-		call(target, procname)(usr)
-	return 1
-
 
 //Preset for an action with a cooldown
 
@@ -710,7 +722,3 @@
 	target.layer = old_layer
 	target.plane = old_plane
 	current_button.appearance_cache = target.appearance
-
-/datum/action/item_action/storage_gather_mode/Trigger()
-	GET_COMPONENT_FROM(STR, /datum/component/storage, target)
-	STR.gather_mode_switch(owner)

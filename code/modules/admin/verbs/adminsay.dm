@@ -1,3 +1,4 @@
+//mirrored in the yogstation folder
 /client/proc/cmd_admin_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
@@ -9,14 +10,11 @@
 	if(!msg)
 		return
 
-	log_talk(mob,"[key_name(src)] : [msg]",LOGASAY)
+	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
+
 	msg = keywords_lookup(msg)
-	if(check_rights(R_ADMIN,0))
-		msg = "<span class='admin'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>"
-		to_chat(GLOB.admins, msg)
-	else
-		msg = "<span class='adminobserver'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>"
-		to_chat(GLOB.admins, msg)
+	msg = "<span class='adminsay'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>"
+	to_chat(GLOB.admins, msg)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Asay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

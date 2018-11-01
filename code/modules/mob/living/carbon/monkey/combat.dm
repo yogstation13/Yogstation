@@ -56,7 +56,7 @@
 		return 1
 	if(IsUnconscious())
 		return 1
-	if(IsStun())
+	if(IsStun() || IsKnockdown())
 		return 1
 	if(stat)
 		return 1
@@ -133,7 +133,7 @@
 
 /mob/living/carbon/monkey/proc/handle_combat()
 	if(pickupTarget)
-		if(restrained() || blacklistItems[pickupTarget] || (pickupTarget.flags_1 & NODROP_1))
+		if(restrained() || blacklistItems[pickupTarget] || (pickupTarget.item_flags & NODROP))
 			pickupTarget = null
 		else
 			pickupTimer++
@@ -220,12 +220,12 @@
 				return TRUE
 
 			if(target && target.stat == CONSCIOUS)		// make sure target exists
-				if(Adjacent(target) && isturf(target.loc))	// if right next to perp
+				if(Adjacent(target) && isturf(target.loc) && !IsDeadOrIncap())	// if right next to perp
 
 					// check if target has a weapon
 					var/obj/item/W
 					for(var/obj/item/I in target.held_items)
-						if(!(I.flags_1 & ABSTRACT_1))
+						if(!(I.item_flags & ABSTRACT))
 							W = I
 							break
 

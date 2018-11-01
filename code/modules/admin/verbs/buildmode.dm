@@ -142,6 +142,7 @@
 		if(ADV_BUILDMODE)
 			dat += "***********************************************************"
 			dat += "Right Mouse Button on buildmode button = Set object type"
+			dat += "Left Mouse Button + alt on turf/obj    = Copy object type"
 			dat += "Left Mouse Button on turf/obj          = Place objects"
 			dat += "Right Mouse Button                     = Delete objects"
 			dat += ""
@@ -260,7 +261,11 @@
 	var/alt_click = pa.Find("alt")
 	var/ctrl_click = pa.Find("ctrl")
 
-	. = 1
+	//Clicking on UI elements shouldn't try to build things in nullspace.
+	if(istype(object,/obj/screen))
+		return FALSE
+
+	. = TRUE
 	switch(mode)
 		if(BASIC_BUILDMODE)
 			if(isturf(object) && left_click && !alt_click && !ctrl_click)
@@ -273,10 +278,10 @@
 					T.PlaceOnTop(/turf/closed/wall)
 				else if(iswallturf(object))
 					T.PlaceOnTop(/turf/closed/wall/r_wall)
-				log_admin("Build Mode: [key_name(user)] built [T] at ([T.x],[T.y],[T.z])")
+				log_admin("Build Mode: [key_name(user)] built [T] at [AREACOORD(T)]")
 				return
 			else if(right_click)
-				log_admin("Build Mode: [key_name(user)] deleted [object] at ([object.x],[object.y],[object.z])")
+				log_admin("Build Mode: [key_name(user)] deleted [object] at [AREACOORD(object)]")
 				if(isturf(object))
 					var/turf/T = object
 					T.ScrapeAway()
@@ -284,7 +289,7 @@
 					qdel(object)
 				return
 			else if(isturf(object) && alt_click && left_click)
-				log_admin("Build Mode: [key_name(user)] built an airlock at ([object.x],[object.y],[object.z])")
+				log_admin("Build Mode: [key_name(user)] built an airlock at [AREACOORD(object)]")
 				new/obj/machinery/door/airlock(get_turf(object))
 			else if(isturf(object) && ctrl_click && left_click)
 				var/obj/structure/window/reinforced/window
@@ -293,20 +298,23 @@
 				else
 					window = new /obj/structure/window/reinforced(get_turf(object))
 				window.setDir(build_dir)
-				log_admin("Build Mode: [key_name(user)] built a window at ([object.x],[object.y],[object.z])")
+				log_admin("Build Mode: [key_name(user)] built a window at [AREACOORD(object)]")
 		if(ADV_BUILDMODE)
-			if(left_click)
+			if(left_click && alt_click)
+				objholder = object.type
+				to_chat(user, "<span class='notice'>[initial(object.name)] ([object.type]) selected.</span>")
+			else if(left_click)
 				if(ispath(objholder, /turf))
 					var/turf/T = get_turf(object)
-					log_admin("Build Mode: [key_name(user)] modified [T] ([T.x],[T.y],[T.z]) to [objholder]")
+					log_admin("Build Mode: [key_name(user)] modified [T] in [AREACOORD(object)] to [objholder]")
 					T.PlaceOnTop(objholder)
 				else
 					var/obj/A = new objholder (get_turf(object))
 					A.setDir(build_dir)
-					log_admin("Build Mode: [key_name(user)] modified [A]'s ([A.x],[A.y],[A.z]) dir to [build_dir]")
+					log_admin("Build Mode: [key_name(user)] modified [A]'s [COORD(A)] dir to [build_dir]")
 			else if(right_click)
 				if(isobj(object))
-					log_admin("Build Mode: [key_name(user)] deleted [object] at ([object.x],[object.y],[object.z])")
+					log_admin("Build Mode: [key_name(user)] deleted [object] at [AREACOORD(object)]")
 					qdel(object)
 
 		if(VAR_BUILDMODE)
@@ -335,7 +343,7 @@
 			if(right_click)
 				if(throw_atom)
 					throw_atom.throw_at(object, 10, 1,user)
-					log_admin("Build Mode: [key_name(user)] threw [throw_atom] at [object] ([object.x],[object.y],[object.z])")
+					log_admin("Build Mode: [key_name(user)] threw [throw_atom] at [object] in [AREACOORD(object)]")
 		if(AREA_BUILDMODE)
 			if(left_click) //rectangular
 				if(!cornerA)

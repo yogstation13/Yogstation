@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - experiment: "Limb-specific stamina damage (EG: getting shot by security for being bad at the game) now obeys limb damage caps. However, being stamina damaged won't stop that limb from being damaged."

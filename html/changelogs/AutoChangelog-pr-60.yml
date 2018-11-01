@@ -1,4 +1,0 @@
-author: " SailorDave"
-delete-after: true 
-changes: 
-  - bugfix: "Crayons and spraycans can no longer draw an unlimited amount of large graffiti regardless of uses left."

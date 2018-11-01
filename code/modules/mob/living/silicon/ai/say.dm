@@ -45,10 +45,10 @@
 		var/turf/padturf = get_turf(T)
 		var/padloc
 		if(padturf)
-			padloc = COORD(padturf)
+			padloc = AREACOORD(padturf)
 		else
 			padloc = "(UNKNOWN)"
-		log_talk(src,"HOLOPAD [padloc]: [key_name(src)] : [message]", LOGSAY)
+		src.log_talk(message, LOG_SAY, tag="HOLOPAD in [padloc]")
 		send_speech(message, 7, T, "robot", get_spans(), language)
 		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> <span class='message robot'>\"[message]\"</span></span></i>")
 	else
@@ -100,6 +100,8 @@
 
 	last_announcement = message
 
+	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female") //yogs - male vox
+
 	if(!message || announcing_vox > world.time)
 		return
 
@@ -121,8 +123,10 @@
 		if(!word)
 			words -= word
 			continue
-		if(!GLOB.vox_sounds[word])
+		if(!GLOB.vox_sounds[word] && voxType == "female") //yogs start - male vox
 			incorrect_words += word
+		if(!GLOB.vox_sounds_male[word] && voxType == "male")
+			incorrect_words += word  //yogs end- male vox
 
 	if(incorrect_words.len)
 		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
@@ -133,16 +137,22 @@
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
 
 	for(var/word in words)
-		play_vox_word(word, src.z, null)
+		play_vox_word(word, src.z, null, voxType) //yogs - male vox
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener)
+/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "female")
 
 	word = lowertext(word)
 
-	if(GLOB.vox_sounds[word])
+	if( (GLOB.vox_sounds[word] && voxType == "female") || (GLOB.vox_sounds_male[word] &&voxType == "male") ) //yogs - male vox
 
-		var/sound_file = GLOB.vox_sounds[word]
+		var/sound_file //yogs start - male vox
+
+		if(voxType == "female")
+			sound_file = GLOB.vox_sounds[word]
+		else
+			sound_file = GLOB.vox_sounds_male[word] //yogs end - male vox
+
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM
 

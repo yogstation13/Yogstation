@@ -11,14 +11,14 @@
 	STR.can_hold = typecacheof(list(
 		/obj/item/pickaxe,
 		/obj/item/bodybag,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/extinguisher/mini,
 		/obj/item/clothing/mask/breath,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/stack/medical/gauze,
 		/obj/item/lighter,
-		/obj/item/device/radio,
+		/obj/item/radio,
 		/obj/item/clothing/gloves/,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/dropper,
@@ -30,7 +30,7 @@
 		/obj/item/stack/sheet/animalhide,
 		/obj/item/stack/sheet/sinew,
 		/obj/item/stack/sheet/bone,
-		/obj/item/device/gps,
+		/obj/item/gps,
 		/obj/item/stack/ore/bluespace_crystal,
 		/obj/item/reagent_containers/food/drinks
 	))

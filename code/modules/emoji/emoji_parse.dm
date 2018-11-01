@@ -3,6 +3,7 @@
 	if(!CONFIG_GET(flag/emojis))
 		return
 	var/static/list/emojis = icon_states(icon('icons/emoji.dmi'))
+	var/static/list/yogmojis = icon_states(icon('yogstation/icons/emoji.dmi')) //YOGS - yogmoji
 	var/parsed = ""
 	var/pos = 1
 	var/search = 0
@@ -15,9 +16,14 @@
 			search = findtext(text, ":", pos+1)
 			if(search)
 				emoji = lowertext(copytext(text, pos+1, search))
-				if(emoji in emojis)
-					parsed += icon2html('icons/emoji.dmi', world, emoji)
+				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
+				var/tag = sheet.icon_tag("emoji-[emoji]")
+				if(tag)
+					parsed += tag
 					pos = search + 1
+				else if(emoji in yogmojis) //yogs start -yogmoji
+					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
+					pos = search + 1 //yogs end - yogmoji
 				else
 					parsed += copytext(text, pos, search)
 					pos = search

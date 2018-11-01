@@ -5,11 +5,11 @@
 	icon_state = "mw"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
-	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/microwave
+	pass_flags = PASSTABLE
 	var/operating = FALSE // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -49,8 +49,6 @@
 		if(default_deconstruction_screwdriver(user, "mw-o", "mw", O))
 			return
 		if(default_unfasten_wrench(user, O))
-			return
-		if(exchange_parts(user, O))
 			return
 
 	if(default_deconstruction_crowbar(O))
@@ -132,7 +130,7 @@
 			if (contents.len>=max_n_of_items)
 				to_chat(user, "<span class='warning'>[src] is full, you can't put anything in!</span>")
 				return 1
-			if(T.SendSignal(COMSIG_TRY_STORAGE_TAKE, S, src))
+			if(SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, S, src))
 				loaded++
 
 		if(loaded)

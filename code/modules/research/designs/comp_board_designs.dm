@@ -50,6 +50,7 @@
 	name = "Computer Design (AI Upload)"
 	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."
 	id = "aiupload"
+	materials = list(MAT_GLASS = 1000, MAT_GOLD = 2000)
 	build_path = /obj/item/circuitboard/computer/aiupload
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -58,6 +59,7 @@
 	name = "Computer Design (Cyborg Upload)"
 	desc = "Allows for the construction of circuit boards used to build a Cyborg Upload Console."
 	id = "borgupload"
+	materials = list(MAT_GLASS = 1000, MAT_GOLD = 2000)
 	build_path = /obj/item/circuitboard/computer/borgupload
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -222,11 +224,11 @@
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
-/datum/design/board/stockexchange
-	name = "Computer Design (Stock Exchange Console)"
-	desc = "Allows for the construction of circuit boards used to build a Stock Exchange Console."
-	id = "stockexchange"
-	build_path = /obj/item/circuitboard/computer/stockexchange
+/datum/design/board/bounty
+	name = "Computer Design (Bounty Console)"
+	desc = "Allows for the construction of circuit boards used to build a Bounty Console."
+	id = "bounty"
+	build_path = /obj/item/circuitboard/computer/bounty
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 

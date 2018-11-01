@@ -10,14 +10,14 @@
 
 /obj/item/gun/energy/beam_rifle
 	name = "particle acceleration rifle"
-	desc = "An energy-based anti material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targetted by one. \
+	desc = "An energy-based anti material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targeted by one. \
 		<span class='boldnotice'>Hold down left click while scoped to aim, when weapon is fully aimed (Tracer goes from red to green as it charges), release to fire. Moving while aiming or \
 		changing where you're pointing at while aiming will delay the aiming process depending on how much you changed.</span>"
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "esniper"
 	item_state = "esniper"
 	fire_sound = 'sound/weapons/beam_sniper.ogg'
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	force = 15
 	materials = list()
 	recoil = 4
@@ -58,7 +58,7 @@
 	var/projectile_damage = 30
 	var/projectile_stun = 0
 	var/projectile_setting_pierce = TRUE
-	var/delay = 65
+	var/delay = 25
 	var/lastfire = 0
 
 	//ZOOMING
@@ -82,7 +82,7 @@
 	cell_type = /obj/item/stock_parts/cell/infinite
 	aiming_time = 0
 	recoil = 0
-	pin = /obj/item/device/firing_pin
+	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/beam_rifle/equipped(mob/user)
 	set_user(user)
@@ -182,6 +182,7 @@
 
 /obj/item/gun/energy/beam_rifle/Initialize()
 	. = ..()
+	fire_delay = delay
 	current_tracers = list()
 	START_PROCESSING(SSprojectiles, src)
 	zoom_lock_action = new(src)
@@ -194,6 +195,9 @@
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
 	chambered = null
 	recharge_newshot()
 
@@ -243,17 +247,7 @@
 /obj/item/gun/energy/beam_rifle/proc/process_aim()
 	if(istype(current_user) && current_user.client && current_user.client.mouseParams)
 		var/angle = mouse_angle_from_client(current_user.client)
-		switch(angle)
-			if(316 to 360)
-				current_user.setDir(NORTH)
-			if(0 to 45)
-				current_user.setDir(NORTH)
-			if(46 to 135)
-				current_user.setDir(EAST)
-			if(136 to 225)
-				current_user.setDir(SOUTH)
-			if(226 to 315)
-				current_user.setDir(WEST)
+		current_user.setDir(angle2dir_cardinal(angle))
 		var/difference = abs(closer_angle_difference(lastangle, angle))
 		delay_penalty(difference * aiming_time_increase_angle_multiplier)
 		lastangle = angle
@@ -291,7 +285,7 @@
 	if(istype(user))
 		current_user = user
 		LAZYOR(current_user.mousemove_intercept_objects, src)
-		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED), CALLBACK(src, .proc/on_mob_move))
+		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/on_mob_move)))
 
 /obj/item/gun/energy/beam_rifle/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
 	if(aiming)
@@ -435,7 +429,7 @@
 
 /obj/item/projectile/beam/beam_rifle
 	name = "particle beam"
-	icon = ""
+	icon = null
 	hitsound = 'sound/effects/explosion3.ogg'
 	damage = 0				//Handled manually.
 	damage_type = BURN
@@ -531,7 +525,7 @@
 	if(!QDELETED(target))
 		handle_impact(target)
 
-/obj/item/projectile/beam/beam_rifle/Collide(atom/target)
+/obj/item/projectile/beam/beam_rifle/Bump(atom/target)
 	if(check_pierce(target))
 		permutated += target
 		trajectory_ignore_forcemove = TRUE
@@ -561,10 +555,10 @@
 	if(highlander && istype(gun))
 		QDEL_LIST(gun.current_tracers)
 		for(var/datum/point/p in beam_segments)
-			gun.current_tracers += generate_tracer_between_points(p, beam_segments[p], tracer_type, color, 0)
+			gun.current_tracers += generate_tracer_between_points(p, beam_segments[p], tracer_type, color, 0, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
 	else
 		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration)
+			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
 	if(cleanup)
 		QDEL_LIST(beam_segments)
 		beam_segments = null
@@ -578,6 +572,9 @@
 	nodamage = TRUE
 	damage = 0
 	constant_tracer = TRUE
+	hitscan_light_range = 0
+	hitscan_light_intensity = 0
+	hitscan_light_color_override = "#99ff99"
 
 /obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam/prehit(atom/target)
 	qdel(src)

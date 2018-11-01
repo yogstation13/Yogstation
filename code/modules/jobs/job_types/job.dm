@@ -49,7 +49,8 @@
 	var/exp_type_department = ""
 
 	//The amount of good boy points playing this role will earn you towards a higher chance to roll antagonist next round
-	var/antag_rep = 0
+	//can be overridden by antag_rep.txt config
+	var/antag_rep = 10
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
@@ -67,22 +68,26 @@
 /datum/job/proc/special_check_latejoin(client/C)
 	return TRUE
 
+/datum/job/proc/GetAntagRep()
+	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
+	if(. == null)
+		return antag_rep
+
 //Don't override this unless the job transforms into a non-human (Silicons do this for example)
-/datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE)
+/datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null)
 	if(!H)
 		return FALSE
 
 	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
-			H.rename_self("human", H.client)
-		purrbation_remove(H, silent=TRUE)
+			H.apply_pref_name("human", H.client)
 
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
-	if(outfit)
-		H.equipOutfit(outfit, visualsOnly)
+	if(outfit_override || outfit)
+		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
 
 	H.dna.species.after_equip_job(src, H, visualsOnly)
 
@@ -141,8 +146,8 @@
 
 	uniform = /obj/item/clothing/under/color/grey
 	id = /obj/item/card/id
-	ears = /obj/item/device/radio/headset
-	belt = /obj/item/device/pda
+	ears = /obj/item/radio/headset
+	belt = /obj/item/pda
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
@@ -151,7 +156,7 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 	var/box = /obj/item/storage/box/survival
 
-	var/pda_slot = slot_belt
+	var/pda_slot = SLOT_BELT
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -193,8 +198,16 @@
 		C.update_label()
 		H.sec_hud_set_ID()
 
-	var/obj/item/device/pda/PDA = H.get_item_by_slot(pda_slot)
+	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
 		PDA.ownjob = J.title
 		PDA.update_label()
+
+/datum/outfit/job/get_chameleon_disguise_info()
+	var/list/types = ..()
+	types -= /obj/item/storage/backpack //otherwise this will override the actual backpacks
+	types += backpack
+	types += satchel
+	types += duffelbag
+	return types

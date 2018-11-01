@@ -24,7 +24,7 @@
 				qdel(monster)
 			for(var/obj/structure/flora/ash/plant in T)
 				qdel(plant)
-		
+
 		load(central_turf,centered = TRUE)
 		loaded++
 
@@ -51,6 +51,7 @@
 
 	var/list/forced_ruins = list()		//These go first on the z level associated (same random one by default)
 	var/list/ruins_availible = list()	//we can try these in the current pass
+	var/list/ruins_placed = list() // yogs
 	var/forced_z	//If set we won't pick z level and use this one instead.
 
 	//Set up the starting ruin list
@@ -94,13 +95,14 @@
 			//TODO : handle forced ruins with multiple variants
 			forced_ruins -= current_pick
 			forced = FALSE
-		
+
 		if(failed_to_place)
 			for(var/datum/map_template/ruin/R in ruins_availible)
 				if(R.id == current_pick.id)
 					ruins_availible -= R
 			log_world("Failed to place [current_pick.name] ruin.")
 		else
+			ruins_placed[current_pick.type] = TRUE // yogs
 			budget -= current_pick.cost
 			if(!current_pick.allow_duplicates)
 				for(var/datum/map_template/ruin/R in ruins_availible)
@@ -113,6 +115,11 @@
 							ruins_availible -= possible_exclusion
 			if(current_pick.always_spawn_with)
 				for(var/v in current_pick.always_spawn_with)
+					// yogs start
+					var/datum/map_template/ruin/RT = v
+					if(!initial(RT.allow_duplicates) && ruins_placed[v])
+						continue
+					// yogs end
 					for(var/ruin_name in SSmapping.ruins_templates) //Because we might want to add space templates as linked of lava templates.
 						var/datum/map_template/ruin/linked = SSmapping.ruins_templates[ruin_name] //why are these assoc, very annoying.
 						if(istype(linked,v))
@@ -131,5 +138,5 @@
 		for(var/datum/map_template/ruin/R in ruins_availible)
 			if(R.cost > budget)
 				ruins_availible -= R
-	
+
 	log_world("Ruin loader finished with [budget] left to spend.")

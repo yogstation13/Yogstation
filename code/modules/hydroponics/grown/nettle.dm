@@ -67,6 +67,7 @@
 	return TRUE
 
 /obj/item/grown/nettle/afterattack(atom/A as mob|obj, mob/user,proximity)
+	. = ..()
 	if(!proximity)
 		return
 	if(force > 0)
@@ -106,7 +107,7 @@
 		return
 	if(isliving(M))
 		to_chat(M, "<span class='danger'>You are stunned by the powerful acid of the Deathnettle!</span>")
-		add_logs(user, M, "attacked", src)
+		log_combat(user, M, "attacked", src)
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))

@@ -9,12 +9,8 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#AsV9
-
-/yogstation/code/modules/telesci/ @AsV9
-
-#GrayRachnid
-/_maps/map_files/ @GrayRachnid
+#Partheo
+#/yogstation/icons/ @Partheo
 
 #ThatLing
 
@@ -23,15 +19,9 @@
 /code/controllers/failsafe.dm @ThatLing
 /code/controllers/subsystem.dm @ThatLing
 /code/controllers/subsystem/ @ThatLing
+/code/modules/keybindings/ @ThatLing
 /yogstation/code/controllers/ @ThatLing
-
-
-#Nichlas0010
-
-/code/modules/shuttle/ @Nichlas0010
-/code/datums/shuttles.dm @Nichlas0010
-/code/controllers/subsystem/shuttle.dm @Nichlas0010
-/_maps/shuttles/ @Nichlas0010
+/yogstation/code/modules/keybindings/ @ThatLing
 
 #Multiple Owners
 

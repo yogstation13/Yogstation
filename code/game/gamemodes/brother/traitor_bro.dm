@@ -43,7 +43,7 @@
 			team.add_member(bro)
 			bro.special_role = "brother"
 			bro.restricted_roles = restricted_jobs
-			log_game("[bro.key] (ckey) has been selected as a Brother")
+			//log_game("[key_name(bro)] has been selected as a Brother") | yogs - redundant
 		pre_brother_teams += team
 	return ..()
 

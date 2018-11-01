@@ -4,7 +4,7 @@
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">We are constantly seeking dedicated new <span style="font-weight: bold; color: #dd4400;">admins</span>, <span style="font-weight: bold; color: #dd4400;">coders</span>, <span style="font-weight: bold; color: #dd4400;">spriters</span> and <span style="font-weight: bold; color: #dd4400;">mappers</span> to improve our server. Without them, you wouldn't have a server to play on. If you feel you may be a good addition to our team, please apply:</span>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">
  ¤ <a href="https://forums.yogstation.net/index.php?forms/admin-application-form.4/respond">Admin Application</a>
- ¤ <a href="https://github.com/yogstation13/tg-rebase">GitHub Repo</a>
+ ¤ <a href="https://github.com/yogstation13/Yogstation-TG">GitHub Repo</a>
 </span>
 <span style="font-family: Verdana; margin: 0px; padding: 0px;">We are running a high power server, we need <a href="http://www.yogstation.net/index.php?do=donate">donations to keep the server running</a>. Donators get <i>multiple benefits</i>, one such benefit is <b>fun hats</b>!</span>
 

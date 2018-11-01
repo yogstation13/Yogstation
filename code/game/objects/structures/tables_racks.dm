@@ -60,24 +60,31 @@
 	return attack_hand(user)
 
 /obj/structure/table/attack_hand(mob/living/user)
-	if(Adjacent(user) && user.pulling && isliving(user.pulling))
-		var/mob/living/pushed_mob = user.pulling
-		if(pushed_mob.buckled)
-			to_chat(user, "<span class='warning'>[pushed_mob] is buckled to [pushed_mob.buckled]!</span>")
-			return
-		if(user.a_intent == INTENT_GRAB)
-			if(user.grab_state < GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+	if(Adjacent(user) && user.pulling)
+		if(isliving(user.pulling))
+			var/mob/living/pushed_mob = user.pulling
+			if(pushed_mob.buckled)
+				to_chat(user, "<span class='warning'>[pushed_mob] is buckled to [pushed_mob.buckled]!</span>")
 				return
-			tablepush(user, pushed_mob)
-		if(user.a_intent == INTENT_HELP)
-			pushed_mob.visible_message("<span class='notice'>[user] begins to place [pushed_mob] onto [src]...</span>", \
-								"<span class='userdanger'>[user] begins to place [pushed_mob] onto [src]...</span>")
-			if(do_after(user, 35, target = pushed_mob))
-				tableplace(user, pushed_mob)
-			else
-				return
-		user.stop_pulling()
+			if(user.a_intent == INTENT_GRAB)
+				if(user.grab_state < GRAB_AGGRESSIVE)
+					to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+					return
+				tablepush(user, pushed_mob)
+			if(user.a_intent == INTENT_HELP)
+				pushed_mob.visible_message("<span class='notice'>[user] begins to place [pushed_mob] onto [src]...</span>", \
+									"<span class='userdanger'>[user] begins to place [pushed_mob] onto [src]...</span>")
+				if(do_after(user, 35, target = pushed_mob))
+					tableplace(user, pushed_mob)
+				else
+					return
+			user.stop_pulling()
+		else if(user.pulling.pass_flags & PASSTABLE)
+			user.Move_Pulled(src)
+			if (user.pulling.loc == loc)
+				user.visible_message("<span class='notice'>[user] places [user.pulling] onto [src].</span>",
+					"<span class='notice'>You place [user.pulling] onto [src].</span>")
+				user.stop_pulling()
 	return ..()
 
 /obj/structure/table/attack_tk()
@@ -111,21 +118,22 @@
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(src.loc)
-	pushed_mob.lay_down()
+	pushed_mob.resting = TRUE
+	pushed_mob.update_canmove()
 	pushed_mob.visible_message("<span class='notice'>[user] places [pushed_mob] onto [src].</span>", \
 								"<span class='notice'>[user] places [pushed_mob] onto [src].</span>")
-	add_logs(user, pushed_mob, "placed")
+	log_combat(user, pushed_mob, "placed")
 
 /obj/structure/table/proc/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(src.loc)
 	pushed_mob.Knockdown(40)
 	pushed_mob.visible_message("<span class='danger'>[user] pushes [pushed_mob] onto [src].</span>", \
 								"<span class='userdanger'>[user] pushes [pushed_mob] onto [src].</span>")
-	add_logs(user, pushed_mob, "pushed")
+	log_combat(user, pushed_mob, "pushed")
 	if(!ishuman(pushed_mob))
 		return
 	var/mob/living/carbon/human/H = pushed_mob
-	H.SendSignal(COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -145,12 +153,12 @@
 	if(istype(I, /obj/item/storage/bag/tray))
 		var/obj/item/storage/bag/tray/T = I
 		if(T.contents.len > 0) // If the tray isn't empty
-			I.SendSignal(COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
+			SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
 			user.visible_message("[user] empties [I] on [src].")
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
-	if(user.a_intent != INTENT_HARM && !(I.flags_1 & ABSTRACT_1))
+	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
 		if(user.transferItemToLoc(I, drop_location()))
 			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
@@ -196,8 +204,7 @@
 	debris += new /obj/item/shard
 
 /obj/structure/table/glass/Destroy()
-	for(var/i in debris)
-		qdel(i)
+	QDEL_LIST(debris)
 	. = ..()
 
 /obj/structure/table/glass/Crossed(atom/movable/AM)
@@ -390,7 +397,7 @@
 	obj_integrity = max_integrity
 
 /obj/structure/table/bronze
-	name = "brass table"
+	name = "bronze table"
 	desc = "A solid table made out of bronze."
 	icon = 'icons/obj/smooth_structures/brass_table.dmi'
 	icon_state = "brass_table"

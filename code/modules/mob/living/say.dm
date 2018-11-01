@@ -60,27 +60,26 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 ))
 
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
-    if(chance <= 0)
-        return "..."
-    if(chance >= 100)
-        return original_msg
+	if(chance <= 0)
+		return "..."
+	if(chance >= 100)
+		return original_msg
 
-    var/list
-        words = splittext(original_msg," ")
-        new_words = list()
+	var/list/words = splittext(original_msg," ")
+	var/list/new_words = list()
 
-    var/new_msg = ""
+	var/new_msg = ""
 
-    for(var/w in words)
-        if(prob(chance))
-            new_words += "..."
-            if(!keep_words)
-                continue
-        new_words += w
+	for(var/w in words)
+		if(prob(chance))
+			new_words += "..."
+			if(!keep_words)
+				continue
+		new_words += w
 
-    new_msg = jointext(new_words," ")
+	new_msg = jointext(new_words," ")
 
-    return new_msg
+	return new_msg
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE)
 	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
@@ -164,7 +163,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if((InCritical() && !fullcrit) || message_mode == MODE_WHISPER)
 		message_range = 1
 		message_mode = MODE_WHISPER
-		log_talk(src,"[key_name(src)] : [message]",LOGWHISPER)
+		src.log_talk(message, LOG_WHISPER)
 		if(fullcrit)
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
@@ -175,7 +174,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			message_mode = MODE_WHISPER_CRIT
 			succumbed = TRUE
 	else
-		log_talk(src,"[name]/[key] : [message]",LOGSAY)
+		src.log_talk(message, LOG_SAY)
 
 	message = treat_message(message)
 	if(!message)
@@ -186,9 +185,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
 		spans |= L.spans
-
-	//Log what we've said with an associated timestamp, using the list's len for safety/to prevent overwriting messages
-	log_message(message, INDIVIDUAL_SAY_LOG)
 
 	var/radio_return = radio(message, message_mode, spans, language)
 	if(radio_return & ITALICS)
@@ -223,7 +219,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/deaf_type
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear them."
+			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
 			deaf_type = 1
 	else
 		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
@@ -307,16 +303,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	return 1
 
-/mob/living/proc/get_message_mode(message)
-	var/key = copytext(message, 1, 2)
-	if(key == "#")
-		return MODE_WHISPER
-	else if(key == ";")
-		return MODE_HEADSET
-	else if(length(message) > 2 && (key in GLOB.department_radio_prefixes))
-		var/key_symbol = lowertext(copytext(message, 2, 3))
-		return GLOB.department_radio_keys[key_symbol]
-
 /mob/living/proc/get_key(message)
 	var/key = copytext(message, 1, 2)
 	if(key in GLOB.department_radio_prefixes)
@@ -373,7 +359,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 				return ITALICS | REDUCE_RANGE
 
 		if(MODE_INTERCOM)
-			for (var/obj/item/device/radio/intercom/I in view(1, null))
+			for (var/obj/item/radio/intercom/I in view(1, null))
 				I.talk_into(src, message, , spans, language)
 			return ITALICS | REDUCE_RANGE
 

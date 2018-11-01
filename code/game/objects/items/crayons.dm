@@ -241,12 +241,15 @@
 	return jointext(out,"")
 
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
+	. = ..()
 	if(!proximity || !check_allowed_items(target))
 		return
 
 	var/cost = 1
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		cost = 5
+	if(istype(target, /obj/item/canvas))
+		cost = 0
 	var/charges_used = use_charges(user, cost)
 	if(!charges_used)
 		return

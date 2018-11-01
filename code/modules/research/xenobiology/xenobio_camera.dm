@@ -50,7 +50,7 @@
 	scan_action = new
 	potion_action = new
 	stored_slimes = list()
-	listener = AddComponent(/datum/component/redirect, COMSIG_ATOM_CONTENTS_DEL, CALLBACK(src, .proc/on_contents_del))
+	listener = AddComponent(/datum/component/redirect, list(COMSIG_ATOM_CONTENTS_DEL = CALLBACK(src, .proc/on_contents_del)))
 
 /obj/machinery/computer/camera_advanced/xenobio/Destroy()
 	stored_slimes = null
@@ -220,7 +220,7 @@
 	if(GLOB.cameranet.checkTurfVis(remote_eye.loc))
 		for(var/mob/living/carbon/monkey/M in remote_eye.loc)
 			if(M.stat)
-				M.visible_message("[M] vanishes as they are reclaimed for recycling!")
+				M.visible_message("[M] vanishes as [M.p_theyre()] reclaimed for recycling!")
 				X.monkeys = round(X.monkeys + 0.2,0.1)
 				qdel(M)
 	else

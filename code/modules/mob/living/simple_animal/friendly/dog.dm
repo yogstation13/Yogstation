@@ -45,6 +45,16 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/pug = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "pug"
+	
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	name = "Exotic Corgi"
+	desc = "As cute as it is colorful!"
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "corgigrey"
+	icon_living = "corgigrey"
+	icon_dead = "corgigrey_dead"
+	animal_species = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	nofur = TRUE
 
 /mob/living/simple_animal/pet/dog/Initialize()
 	. = ..()
@@ -58,6 +68,10 @@
 	. = ..()
 	regenerate_icons()
 
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi/Initialize()
+		. = ..()
+		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
+		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
 /mob/living/simple_animal/pet/dog/corgi/death(gibbed)
 	..(gibbed)
@@ -232,7 +246,7 @@
 		return
 	if(!item_to_add)
 		user.visible_message("[user] pets [src].","<span class='notice'>You rest your hand on [src]'s head for a moment.</span>")
-		user.SendSignal(COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
 		return
 
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
@@ -558,7 +572,7 @@
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
-	desc = "It's a corgi with a cute pink bow."
+	desc = "She's tearing you apart."
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	icon_state = "lisa"
@@ -615,7 +629,7 @@
 			if(M && stat != DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
 				new /obj/effect/temp_visual/heart(loc)
 				emote("me", 1, "yaps happily!")
-				M.SendSignal(COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
 		else
 			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
 				emote("me", 1, "growls!")

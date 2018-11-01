@@ -13,7 +13,7 @@
 	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/sandwich
 	filling_color = "#FFA500"
 	list_reagents = list("nutriment" = 2)
-	slot_flags = SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD
 	customfoodfilling = 0 //to avoid infinite bread-ception
 	foodtype = GRAIN
 
@@ -181,22 +181,45 @@
 /obj/item/reagent_containers/food/snacks/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
 	desc = "If you can see this description the code for the deep fryer fucked up."
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'yogstation/icons/obj/food/food.dmi'
 	icon_state = ""
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/deepfryholder/Initialize(mapload, obj/item/fried)
 	. = ..()
 	name = fried.name //We'll determine the other stuff when it's actually removed
-	icon = fried.icon
-	overlays = fried.copy_overlays()
-	icon_state = fried.icon_state
+	appearance = fried.appearance
+	layer = initial(layer)
+	plane = initial(plane)
+	lefthand_file = fried.lefthand_file
+	righthand_file = fried.righthand_file
+	item_state = fried.item_state
 	desc = fried.desc
+	w_class = fried.w_class
+	slowdown = fried.slowdown
+	equip_delay_self = fried.equip_delay_self
+	equip_delay_other = fried.equip_delay_other
+	strip_delay = fried.strip_delay
+	species_exception = fried.species_exception
+	item_flags = fried.item_flags
+	obj_flags = fried.obj_flags
+
 	if(istype(fried, /obj/item/reagent_containers/food/snacks))
 		fried.reagents.trans_to(src, fried.reagents.total_volume)
 		qdel(fried)
 	else
 		fried.forceMove(src)
+		trash = fried
+
+/obj/item/reagent_containers/food/snacks/deepfryholder/Destroy()
+	if(trash)
+		QDEL_NULL(trash)
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/deepfryholder/On_Consume(mob/living/eater)
+	if(trash)
+		QDEL_NULL(trash)
+	..()
 
 /obj/item/reagent_containers/food/snacks/deepfryholder/proc/fry(cook_time = 30)
 	switch(cook_time)
@@ -222,7 +245,7 @@
 /obj/item/reagent_containers/food/snacks/butteredtoast
 	name = "buttered toast"
 	desc = "Butter lightly spread over a piece of toast."
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'yogstation/icons/obj/food/food.dmi'
 	icon_state = "butteredtoast"
 	bitesize = 3
 	filling_color = "#FFA500"
@@ -233,7 +256,7 @@
 /obj/item/reagent_containers/food/snacks/butterbiscuit
 	name = "butter biscuit"
 	desc = "Well butter my biscuit!"
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'yogstation/icons/obj/food/food.dmi'
 	icon_state = "butterbiscuit"
 	filling_color = "#F0E68C"
 	list_reagents = list("nutriment" = 5)
@@ -243,7 +266,7 @@
 /obj/item/reagent_containers/food/snacks/butterdog
 	name = "butterdog"
 	desc = "Made from exotic butters."
-	icon = 'icons/obj/food/food.dmi'
+	icon = 'yogstation/icons/obj/food/food.dmi'
 	icon_state = "butterdog"
 	bitesize = 1
 	filling_color = "#F1F49A"

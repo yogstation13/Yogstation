@@ -1,12 +1,12 @@
 ## Yogstation codebase
 
-[![Build Status](https://travis-ci.org/yogstation13/tg-rebase.png)](https://travis-ci.org/yogstation13/tg-rebase)  
+[![Build Status](https://travis-ci.org/yogstation13/Yogstation-TG.png)](https://travis-ci.org/yogstation13/Yogstation-TG)  
 [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-**Website:** https://yogstation.net <BR>
-**Code:** https://github.com/yogstation13/yogstation <BR>
-**Wiki:** https://wiki.yogstation.net <BR>
-**Discord:** https://discord.gg/0keg6hQH05Ha8OfO<BR>
+**Website:** https://yogstation.net
+**Code:** https://github.com/yogstation13/yogstation
+**Wiki:** https://wiki.yogstation.net
+**Discord:** https://discord.gg/0keg6hQH05Ha8OfO
 
  
 ## DOWNLOADING
@@ -17,7 +17,7 @@ Option 1:
 Follow this: https://wiki.yogstation.net/wiki/Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/yogstation13/tg-rebase
+code tab of https://github.com/yogstation13/Yogstation-TG
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
@@ -64,7 +64,7 @@ where the admin rank must be properly capitalised.
 This codebase also depends on a native library called rust-g. A precompiled
 Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation13/rust-g).
+repo](https://github.com/tgstation/rust-g).
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled tgstation.dmb file. Make sure to set the port to the one you

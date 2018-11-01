@@ -22,6 +22,33 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
+	if(href_list["afreeze"]) //yogs start - afreeze
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/M = locate(href_list["afreeze"]) in GLOB.mob_list
+		if(!M || !M.client)
+			return
+		var/message
+		if(M.client.prefs.afreeze)
+			to_chat(M, "<span class='userdanger'>You are no longer frozen.</span>")
+			M.client.prefs.afreeze = FALSE
+			M.client.show_popup_menus = TRUE
+			M.client.show_verb_panel = TRUE
+			M.notransform = FALSE
+			M.verbs += M.client.afreeze_stored_verbs
+			message = "[key_name(usr)] has unfrozen [key_name(M)]."
+		else
+			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
+			M.client.prefs.afreeze = TRUE
+			M.client.show_popup_menus = FALSE
+			M.client.show_verb_panel = FALSE
+			M.notransform = TRUE
+			M.client.afreeze_stored_verbs = M.verbs.Copy()
+			M.verbs.Cut()
+			message = "[key_name(usr)] has frozen [key_name(M)]."
+		log_admin(message)
+		message_admins(message) //yogs end
+
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
@@ -72,7 +99,7 @@
 					message_admins("[key_name_admin(usr)] tried to create traitors. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create traitors.")
 			if("changelings")
-				if(src.makeChanglings())
+				if(src.makeChangelings())
 					message_admins("[key_name(usr)] created changelings.")
 					log_admin("[key_name(usr)] created changelings.")
 				else
@@ -206,14 +233,13 @@
 		if(!check_rights(R_BAN))
 			return
 		var/bantype = text2num(href_list["dbbanaddtype"])
-		var/banckey = href_list["dbbanaddckey"]
+		var/bankey = href_list["dbbanaddkey"]
+		var/banckey = ckey(bankey)
 		var/banip = href_list["dbbanaddip"]
 		var/bancid = href_list["dbbanaddcid"]
 		var/banduration = text2num(href_list["dbbaddduration"])
 		var/banjob = href_list["dbbanaddjob"]
 		var/banreason = href_list["dbbanreason"]
-
-		banckey = ckey(banckey)
 
 		switch(bantype)
 			if(BANTYPE_PERMA)
@@ -264,12 +290,27 @@
 			if(bancid)
 				banreason = "[banreason] (CUSTOM CID)"
 		else
-			message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob.")
+			message_admins("Ban process: A mob matching [playermob.key] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob.")
 
-		if(!DB_ban_record(bantype, playermob, banduration, banreason, banjob, banckey, banip, bancid ))
+		if(!DB_ban_record(bantype, playermob, banduration, banreason, banjob, bankey, banip, bancid ))
 			to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 			return
-		create_message("note", banckey, null, banreason, null, null, 0, 0)
+		create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0)
+
+	else if(href_list["editrightsbrowser"])
+		edit_admin_permissions(0)
+
+	else if(href_list["editrightsbrowserlog"])
+		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+
+	if(href_list["editrightsbrowsermanage"])
+		if(href_list["editrightschange"])
+			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
+		else if(href_list["editrightsremove"])
+			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
+		else if(href_list["editrightsremoverank"])
+			remove_rank(href_list["editrightsremoverank"])
+		edit_admin_permissions(2)
 
 	else if(href_list["editrights"])
 		edit_rights_topic(href_list)
@@ -324,7 +365,7 @@
 	else if(href_list["toggle_continuous"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/list/continuous = CONFIG_GET(keyed_flag_list/continuous)
+		var/list/continuous = CONFIG_GET(keyed_list/continuous)
 		if(!continuous[SSticker.mode.config_tag])
 			continuous[SSticker.mode.config_tag] = TRUE
 		else
@@ -337,7 +378,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/list/midround_antag = CONFIG_GET(keyed_flag_list/midround_antag)
+		var/list/midround_antag = CONFIG_GET(keyed_list/midround_antag)
 		if(!midround_antag[SSticker.mode.config_tag])
 			midround_antag[SSticker.mode.config_tag] = TRUE
 		else
@@ -382,7 +423,7 @@
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))
+		if(!check_rights(R_ADMIN)) //YOGS - R_SERVER -> R_ADMIN
 			return
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
@@ -430,6 +471,8 @@
 			if("Yes")
 				delmob = 1
 
+		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -482,8 +525,6 @@
 				M.change_mob_type( /mob/living/simple_animal/hostile/construct/wraith , null, null, delmob )
 			if("shade")
 				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
-		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
 
 
 	/////////////////////////////////////new ban stuff
@@ -520,7 +561,7 @@
 
 		var/duration
 
-		switch(alert("Temporary Ban?",,"Yes","No"))
+		switch(alert("Temporary Ban for [banned_key]?",,"Yes","No"))
 			if("Yes")
 				temp = 1
 				var/mins = 0
@@ -532,13 +573,13 @@
 					return
 				minutes = GLOB.CMinutes + mins
 				duration = GetExp(minutes)
-				reason = input(usr,"Please State Reason.","Reason",reason2) as message|null
+				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
 				if(!reason)
 					return
 			if("No")
 				temp = 0
 				duration = "Perma"
-				reason = input(usr,"Please State Reason.","Reason",reason2) as message|null
+				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
 				if(!reason)
 					return
 
@@ -576,9 +617,9 @@
 					if(M.client)
 						jobban_buildcache(M.client)
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s appearance ban.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.ckey] has removed your appearance ban.</BIG></span>")
+					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.key] has removed your appearance ban.</BIG></span>")
 
-		else switch(alert("Appearance ban [M.ckey]?",,"Yes","No", "Cancel"))
+		else switch(alert("Appearance ban [M.key]?",,"Yes","No", "Cancel"))
 			if("Yes")
 				var/reason = input(usr,"Please State Reason.","Reason") as message|null
 				if(!reason)
@@ -590,14 +631,14 @@
 					jobban_buildcache(M.client)
 				ban_unban_log_save("[key_name(usr)] appearance banned [key_name(M)]. reason: [reason]")
 				log_admin_private("[key_name(usr)] appearance banned [key_name(M)]. \nReason: [reason]")
-				create_message("note", M.ckey, null, "Appearance banned - [reason]", null, null, 0, 0)
+				create_message("note", M.key, null, "Appearance banned - [reason]", null, null, 0, 0, null, 0)
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] appearance banned [key_name_admin(M)].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been appearance banned by [usr.client.ckey].</BIG></span>")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been appearance banned by [usr.client.key].</BIG></span>")
 				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 				to_chat(M, "<span class='danger'>Appearance ban can be lifted only upon request.</span>")
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
+					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums.</span>") //yogs
 				else
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
 			if("No")
@@ -819,8 +860,8 @@
 		var/isbanned_dept = jobban_isbanned(M, ROLE_SYNDICATE)
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a> | "
-		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a></th>"
-		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=convertantags;jobban4=[REF(M)]'>Conversion Antagonists</a></th></tr><tr align='center'>"
+		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a> | "
+		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=convertantags;jobban4=[REF(M)]'>Conversion Antagonists</a></th></tr><tr align='center'></th>"
 
 		//Traitor
 		if(jobban_isbanned(M, ROLE_TRAITOR) || isbanned_dept)
@@ -953,13 +994,13 @@
 
 		//Banning comes first
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
-			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
+			switch(alert("Temporary Ban for [M.key]?",,"Yes","No", "Cancel"))
 				if("Yes")
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(mins <= 0)
 						to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
 						return
-					var/reason = input(usr,"Please State Reason.","Reason") as message|null
+					var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 					if(!reason)
 						return
 
@@ -976,15 +1017,15 @@
 							msg = job
 						else
 							msg += ", [job]"
-					create_message("note", M.ckey, null, "Banned  from [msg] - [reason]", null, null, 0, 0)
+					create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0)
 					message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.ckey] from: [msg].</BIG></span>")
+					to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.key] from: [msg].</BIG></span>")
 					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 					to_chat(M, "<span class='danger'>This jobban will be lifted in [mins] minutes.</span>")
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
-					var/reason = input(usr,"Please State Reason","Reason") as message|null
+					var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
@@ -999,9 +1040,9 @@
 								msg = job
 							else
 								msg += ", [job]"
-						create_message("note", M.ckey, null, "Banned  from [msg] - [reason]", null, null, 0, 0)
+						create_message("note", M.key, null, "Banned  from [msg] - [reason]", null, null, 0, 0, null, 0)
 						message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg].</span>")
-						to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.ckey] from: [msg].</BIG></span>")
+						to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.key] from: [msg].</BIG></span>")
 						to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
 						to_chat(M, "<span class='danger'>Jobban can be lifted only upon request.</span>")
 						href_list["jobban2"] = 1 // lets it fall through and refresh
@@ -1032,7 +1073,7 @@
 						continue
 			if(msg)
 				message_admins("<span class='adminnotice'>[key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been un-jobbanned by [usr.client.ckey] from [msg].</BIG></span>")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been un-jobbanned by [usr.client.key] from [msg].</BIG></span>")
 				href_list["jobban2"] = 1 // lets it fall through and refresh
 			return 1
 		return 0 //we didn't do anything!
@@ -1041,33 +1082,40 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["boot2"])
-		if (ismob(M))
+		if(ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, "<span class='danger'>Error: They have more rights than you do.</span>")
 				return
-			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.ckey]"].</span>")
+			/* yogs - admins don't need handholding if(alert(usr, "Kick [key_name(M)]?", "Confirm", "Yes", "No") != "Yes")
+				return yogs - admins don't need handholding */
+			if(!M)
+				to_chat(usr, "<span class='danger'>Error: [M] no longer exists!</span>")
+				return
+			if(!M.client)
+				to_chat(usr, "<span class='danger'>Error: [M] no longer has a client!</span>")
+				return
+			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
 			log_admin("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] kicked [key_name_admin(M)].</span>")
-			//M.client = null
 			qdel(M.client)
 
 	else if(href_list["addmessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addmessage"]
-		create_message("message", target_ckey, secret = 0)
+		var/target_key = href_list["addmessage"]
+		create_message("message", target_key, secret = 0)
 
 	else if(href_list["addnote"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addnote"]
-		create_message("note", target_ckey)
+		var/target_key = href_list["addnote"]
+		create_message("note", target_key)
 
 	else if(href_list["addwatch"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addwatch"]
-		create_message("watchlist entry", target_ckey, secret = 1)
+		var/target_key = href_list["addwatch"]
+		create_message("watchlist entry", target_key, secret = 1)
 
 	else if(href_list["addmemo"])
 		if(!check_rights(R_ADMIN))
@@ -1116,6 +1164,18 @@
 			return
 		var/message_id = href_list["editmessageempty"]
 		edit_message(message_id, browse = 1)
+
+	else if(href_list["editmessageexpiry"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiry"]
+		edit_message_expiry(message_id)
+
+	else if(href_list["editmessageexpiryempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiryempty"]
+		edit_message_expiry(message_id, browse = 1)
 
 	else if(href_list["secretmessage"])
 		if(!check_rights(R_ADMIN))
@@ -1176,10 +1236,13 @@
 		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
 		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
 		if(!query_get_message_edits.warn_execute())
+			qdel(query_get_message_edits)
 			return
 		if(query_get_message_edits.NextRow())
 			var/edit_log = query_get_message_edits.item[1]
-			usr << browse(edit_log,"window=noteedits")
+			if(!QDELETED(usr))
+				usr << browse(edit_log,"window=noteedits")
+		qdel(query_get_message_edits)
 
 	else if(href_list["newban"])
 		if(!check_rights(R_BAN))
@@ -1192,13 +1255,13 @@
 		if(M.client && M.client.holder)
 			return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
-		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
+		switch(alert("Temporary Ban for [M.key]?",,"Yes","No", "Cancel"))
 			if("Yes")
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(mins <= 0)
 					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
 					return
-				var/reason = input(usr,"Please State Reason.","Reason") as message|null
+				var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 				if(!reason)
 					return
 				if(!DB_ban_record(BANTYPE_TEMP, M, mins, reason))
@@ -1206,14 +1269,14 @@
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 				ban_unban_log_save("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This will be removed in [mins] minutes.")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.ckey].\nReason: [reason]</BIG></span>")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.key].\nReason: [reason]</BIG></span>")
 				to_chat(M, "<span class='danger'>This is a temporary ban, it will be removed in [mins] minutes. The round ID is [GLOB.round_id].</span>")
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
 					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
 				else
 					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
-				log_admin_private("[key_name(usr)] has banned [M.ckey].\nReason: [key_name(M)]\nThis will be removed in [mins] minutes.")
+				log_admin_private("[key_name(usr)] has banned [key_name(M)].\nReason: [key_name(M)]\nThis will be removed in [mins] minutes.")
 				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>"
 				message_admins(msg)
 				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
@@ -1221,7 +1284,7 @@
 					AH.Resolve()
 				qdel(M.client)
 			if("No")
-				var/reason = input(usr,"Please State Reason.","Reason") as message|null
+				var/reason = input(usr,"Please State Reason For Banning [M.key].","Reason") as message|null
 				if(!reason)
 					return
 				switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
@@ -1231,7 +1294,7 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 					if("No")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.ckey].\nReason: [reason]</BIG></span>")
+				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.key].\nReason: [reason]</BIG></span>")
 				to_chat(M, "<span class='danger'>This is a permanent ban. The round ID is [GLOB.round_id].</span>")
 				var/bran = CONFIG_GET(string/banappeals)
 				if(bran)
@@ -1491,8 +1554,8 @@
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/observer = L
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), slot_shoes)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), SLOT_SHOES)
 		L.Unconscious(100)
 		sleep(5)
 		L.forceMove(pick(GLOB.tdomeobserve))
@@ -1597,7 +1660,11 @@
 		if(!isobserver(usr))
 			C.admin_ghost()
 		var/mob/dead/observer/A = C.mob
-		A.ManualFollow(AM)
+		var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+		if(istype(I) && I.eyeobj)
+			A.ManualFollow(I.eyeobj)
+		else
+			A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
 
 	else if(href_list["admingetmovable"])
 		if(!check_rights(R_ADMIN))
@@ -1798,43 +1865,25 @@
 		usr.client.smite(H)
 
 	else if(href_list["CentComReply"])
-		var/mob/living/carbon/human/H = locate(href_list["CentComReply"]) in GLOB.mob_list
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-			return
-		if(!istype(H.ears, /obj/item/device/radio/headset))
-			to_chat(usr, "The person you are trying to contact is not wearing a headset.")
+		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins("[src.owner] has started answering [key_name(H)]'s CentCom request.")
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from CentCom", "")
-		if(!input)
-			message_admins("[src.owner] decided not to answer [key_name(H)]'s CentCom request.")
-			return
-
-		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
-		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. [input].  Message ends.\"")
+		var/mob/M = locate(href_list["CentComReply"])
+		usr.client.admin_headset_message(M, "CentCom")
 
 	else if(href_list["SyndicateReply"])
-		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
-			return
-		if(!istype(H.ears, /obj/item/device/radio/headset))
-			to_chat(usr, "The person you are trying to contact is not wearing a headset.")
+		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins("[src.owner] has started answering [key_name(H)]'s syndicate request.")
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from The Syndicate", "")
-		if(!input)
-			message_admins("[src.owner] decided not to answer [key_name(H)]'s syndicate request.")
+		var/mob/M = locate(href_list["SyndicateReply"])
+		usr.client.admin_headset_message(M, "Syndicate")
+
+	else if(href_list["HeadsetMessage"])
+		if(!check_rights(R_ADMIN))
 			return
 
-		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
-		log_admin("[src.owner] replied to [key_name(H)]'s Syndicate message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s Syndicate message with: \"[input]\"")
-		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from your benefactor.  Message as follows, agent. [input].  Message ends.\"")
+		var/mob/M = locate(href_list["HeadsetMessage"])
+		usr.client.admin_headset_message(M)
 
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
@@ -1888,7 +1937,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
 
-		show_individual_logging_panel(M, href_list["log_type"])
+		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 	else if(href_list["languagemenu"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1997,10 +2046,9 @@
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
 		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
-		var/tmp_dir = href_list["object_dir"]
-		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
-		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
-			obj_dir = 2
+		var/obj_dir = text2num(href_list["object_dir"])
+		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
+			obj_dir = null
 		var/obj_name = sanitize(href_list["object_name"])
 
 
@@ -2043,9 +2091,10 @@
 							N.name = obj_name
 					else
 						var/atom/O = new path(target)
-						if(O)
-							O.admin_spawned = TRUE
-							O.setDir(obj_dir)
+						if(!QDELETED(O))
+							O.flags_1 |= ADMIN_SPAWNED_1
+							if(obj_dir)
+								O.setDir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
 								if(ismob(O))
@@ -2342,7 +2391,7 @@
 			if(alert("Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby??","Message","Yes","Cancel") != "Yes")
 				to_chat(usr, "Kick clients from lobby aborted")
 				return
-			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.ckey]"].</span>", afkonly)
+			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>", afkonly)
 
 			var/strkicked = ""
 			for(var/name in listkicked)
@@ -2445,6 +2494,19 @@
 		var/client/C = M.client
 		usr.client.cmd_admin_mod_antag_rep(C, href_list["modantagrep"])
 		show_player_panel(M)
+
+	else if(href_list["slowquery"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/answer = href_list["slowquery"]
+		if(answer == "yes")
+			log_query_debug("[usr.key] | Reported a server hang")
+			if(alert(usr, "Had you just press any admin buttons?", "Query server hang report", "Yes", "No") == "Yes")
+				var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+				if(response)
+					log_query_debug("[usr.key] | [response]")
+		else if(answer == "no")
+			log_query_debug("[usr.key] | Reported no server hang")
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

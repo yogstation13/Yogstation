@@ -164,7 +164,7 @@
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 				Robot.clear_inherent_laws(0)
 				Robot.clear_zeroth_law(0)
-        
+
 		if("slime")
 			new_mob = new /mob/living/simple_animal/slime/random(M.loc)
 
@@ -231,14 +231,12 @@
 	if(!new_mob)
 		return
 	new_mob.grant_language(/datum/language/common)
-	new_mob.flags_2 |= OMNITONGUE_2
-	new_mob.logging = M.logging
 
 	// Some forms can still wear some items
 	for(var/obj/item/W in contents)
 		new_mob.equip_to_appropriate_slot(W)
 
-	M.log_message("<font color='orange'>became [new_mob.real_name].</font>", INDIVIDUAL_ATTACK_LOG)
+	M.log_message("became [new_mob.real_name]", LOG_ATTACK, color="orange")
 
 	new_mob.a_intent = INTENT_HARM
 
@@ -246,7 +244,7 @@
 
 	to_chat(new_mob, "<span class='warning'>Your form morphs into that of a [randomize].</span>")
 
-	var/poly_msg = CONFIG_GET(keyed_string_list/policy)["polymorph"]
+	var/poly_msg = CONFIG_GET(keyed_list/policy)["polymorph"]
 	if(poly_msg)
 		to_chat(new_mob, poly_msg)
 
@@ -347,7 +345,7 @@
 	if(proxdet)
 		for(var/mob/living/L in range(1, get_turf(src)))
 			if(L.stat != DEAD && L != firer && !L.anti_magic_check())
-				return Collide(L)
+				return Bump(L)
 	..()
 
 /obj/item/projectile/magic/aoe/lightning
@@ -361,7 +359,7 @@
 
 	var/tesla_power = 20000
 	var/tesla_range = 15
-	var/tesla_boom = FALSE
+	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
 	var/chain
 	var/mob/living/caster
 
@@ -378,7 +376,7 @@
 			visible_message("<span class='warning'>[src] fizzles on contact with [target]!</span>")
 			qdel(src)
 			return
-	tesla_zap(src, tesla_range, tesla_power, tesla_boom)
+	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
 	qdel(src)
 
 /obj/item/projectile/magic/aoe/lightning/Destroy()
