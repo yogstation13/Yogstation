@@ -11,8 +11,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
-	canmove = 0
-	anchored = TRUE	//  don't get pushed around
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
@@ -92,7 +90,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-		suiciding = body.suiciding // Transfer whether they committed suicide.
+		set_suicide(body.suiciding) // Transfer whether they committed suicide.
 
 		if(ishuman(body))
 			var/mob/living/carbon/human/body_human = body
@@ -263,6 +261,8 @@ Works together with spawning an observer, noted above.
 	if(key)
 		if(!cmptext(copytext(key,1,2),"@")) // Skip aghosts.
 			stop_sound_channel(CHANNEL_HEARTBEAT) //Stop heartbeat sounds because You Are A Ghost Now
+			if(can_reenter_corpse && client) //yogs start
+				oobe_client = client //yogs end
 			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
@@ -335,6 +335,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.change_view(CONFIG_GET(string/default_view))
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
+	mind.current.oobe_client = null //yogs
 	return 1
 
 /mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
@@ -415,9 +416,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/orbitsize = (I.Width()+I.Height())*0.5
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
 
-	if(orbiting && orbiting.orbiting != target)
-		to_chat(src, "<span class='notice'>Now orbiting [target].</span>")
-
 	var/rot_seg
 
 	switch(ghost_orbit)
@@ -436,10 +434,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/orbit()
 	setDir(2)//reset dir so the right directional sprites show up
-	..()
+	return ..()
 
-/mob/dead/observer/stop_orbit()
-	..()
+/mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 10, loop = -1)
@@ -735,7 +733,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	update_icon()
 
-/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)
 
 /mob/dead/observer/is_literate()

@@ -20,6 +20,7 @@
 	return QDEL_HINT_HARDDEL
 
 /mob/Initialize()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)
 	GLOB.mob_list += src
 	GLOB.mob_directory[tag] = src
 	if(stat == DEAD)
@@ -184,7 +185,7 @@
 /mob/proc/restrained(ignore_grab)
 	return
 
-/mob/proc/incapacitated(ignore_restraints, ignore_grab)
+/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
 	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
@@ -325,11 +326,6 @@
 		return FALSE
 
 	new /obj/effect/temp_visual/point(A,invisibility)
-	
-	// yogs start
-	for(var/atom/on_tile in A.contents + A)
-		on_tile.pointed_at(src)
-	// yogs end
 
 	return TRUE
 
@@ -519,7 +515,7 @@
 	if(statpanel("Status"))
 		if (client)
 			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
-		stat(null, "Map: [SSmapping.config.map_name]")
+		stat(null, "Map: [SSmapping.config?.map_name || "Loading..."]")
 		var/datum/map_config/cached = SSmapping.next_map_config
 		if(cached)
 			stat(null, "Next Map: [cached.map_name]")
@@ -610,8 +606,6 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)
-		return FALSE
 	if(world.time < client.last_turn)
 		return FALSE
 	if(stat == DEAD || stat == UNCONSCIOUS)
@@ -624,8 +618,10 @@
 		return FALSE
 	return TRUE
 
-/mob/proc/fall(forced)
-	drop_all_held_items()
+/mob/living/canface()
+	if(!(mobility_flags & MOBILITY_MOVE))
+		return FALSE
+	return ..()
 
 /mob/verb/eastface()
 	set hidden = TRUE
@@ -671,9 +667,9 @@
 /mob/proc/assess_threat(judgement_criteria, lasercolor = "", datum/callback/weaponcheck=null) //For sec bot threat assessment
 	return 0
 
-/mob/proc/get_ghost(even_if_they_cant_reenter = 0)
+/mob/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
 	if(mind)
-		return mind.get_ghost(even_if_they_cant_reenter)
+		return mind.get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
 
 /mob/proc/grab_ghost(force)
 	if(mind)
@@ -774,8 +770,11 @@
 	return 0
 
 //Can the mob use Topic to interact with machines
-/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return
+
+/mob/proc/canUseStorage()
+	return FALSE
 
 /mob/proc/faction_check_mob(mob/target, exact_match)
 	if(exact_match) //if we need an exact match, we need to do some bullfuckery.
@@ -807,10 +806,15 @@
 	log_message("[src] name changed from [oldname] to [newname]", LOG_OWNERSHIP)
 	if(!newname)
 		return 0
+
+	log_played_names(ckey,newname)
+
 	real_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname
+		if(mind.key)
+			log_played_names(mind.key,newname) //Just in case the mind is unsynced at the moment. 
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
@@ -820,7 +824,7 @@
 		replace_identification_name(oldname,newname)
 
 		for(var/datum/mind/T in SSticker.minds)
-			for(var/datum/objective/obj in T.objectives)
+			for(var/datum/objective/obj in T.get_all_objectives())
 				// Only update if this player is a target
 				if(obj.target && obj.target.current && obj.target.current.real_name == name)
 					obj.update_explanation_text()
@@ -841,6 +845,8 @@
 			if(ID.registered_name == oldname)
 				ID.registered_name = newname
 				ID.update_label()
+				if(ID.registered_account?.account_holder == oldname)
+					ID.registered_account.account_holder = newname
 				if(!search_pda)
 					break
 				search_id = 0
@@ -861,14 +867,7 @@
 	return
 
 /mob/proc/update_sight()
-	for(var/O in orbiters)
-		var/datum/orbit/orbit = O
-		var/obj/effect/wisp/wisp = orbit.orbiter
-		if (istype(wisp))
-			sight |= wisp.sight_flags
-			if(!isnull(wisp.lighting_alpha))
-				lighting_alpha = min(lighting_alpha, wisp.lighting_alpha)
-
+	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_alpha()
 
 /mob/proc/sync_lighting_plane_alpha()
@@ -885,6 +884,12 @@
 		var/obj/mecha/M = loc
 		if(M.mouse_pointer)
 			client.mouse_pointer_icon = M.mouse_pointer
+	else if (istype(loc, /obj/vehicle/sealed))
+		var/obj/vehicle/sealed/E = loc
+		if(E.mouse_pointer)
+			client.mouse_pointer_icon = E.mouse_pointer
+
+
 
 /mob/proc/is_literate()
 	return 0
@@ -892,9 +897,8 @@
 /mob/proc/can_hold_items()
 	return FALSE
 
-/mob/proc/get_idcard()
+/mob/proc/get_idcard(hand_first)
 	return
-
 
 /mob/vv_get_dropdown()
 	. = ..()
@@ -923,3 +927,7 @@
 
 	var/datum/language_holder/H = get_language_holder()
 	H.open_language_menu(usr)
+
+/mob/setMovetype(newval)
+	. = ..()
+	update_movespeed(FALSE)

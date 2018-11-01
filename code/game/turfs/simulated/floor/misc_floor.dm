@@ -47,10 +47,6 @@
 /turf/open/floor/circuit/airless
 	initial_gas_mix = "TEMP=2.7"
 
-/turf/open/floor/circuit/killroom
-	name = "killroom floor"
-	initial_gas_mix = "n2=500;TEMP=80"
-
 /turf/open/floor/circuit/telecomms
 	initial_gas_mix = "n2=100;TEMP=80"
 
@@ -144,6 +140,11 @@
 	desc = "Tightly-pressed brass tiles. They emit minute vibration."
 	icon_state = "plating"
 	baseturfs = /turf/open/floor/clockwork
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	var/dropped_brass
 	var/uses_overlay = TRUE
 	var/obj/effect/clockwork/overlay/floor/realappearence
 
@@ -201,7 +202,10 @@
 	return
 
 /turf/open/floor/clockwork/crowbar_act(mob/living/user, obj/item/I)
-	if(baseturfs == type)
+	if(islist(baseturfs))
+		if(type in baseturfs)
+			return TRUE
+	else if(baseturfs == type)
 		return TRUE
 	user.visible_message("<span class='notice'>[user] begins slowly prying up [src]...</span>", "<span class='notice'>You begin painstakingly prying up [src]...</span>")
 	if(I.use_tool(src, user, 70, volume=80))
@@ -210,7 +214,14 @@
 	return TRUE
 
 /turf/open/floor/clockwork/make_plating()
-	new /obj/item/stack/tile/brass(src)
+	if(!dropped_brass)
+		new /obj/item/stack/tile/brass(src)
+		dropped_brass = TRUE
+	if(islist(baseturfs))
+		if(type in baseturfs)
+			return
+	else if(baseturfs == type)
+		return
 	return ..()
 
 /turf/open/floor/clockwork/narsie_act()

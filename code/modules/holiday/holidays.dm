@@ -257,7 +257,7 @@
 	name = "Beer Day"
 
 /datum/holiday/beer/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if(mm == 8 && ddd == FRIDAY) //First Friday in August
+	if(mm == 8 && ddd == FRIDAY && ww == 1) //First Friday in August
 		return TRUE
 	return FALSE
 
@@ -322,7 +322,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 28
+	begin_day = 10 // yogs - Changed halloween start day
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER

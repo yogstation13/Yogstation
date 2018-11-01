@@ -8,6 +8,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
+	report_type = "changeling"
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
@@ -72,7 +73,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	for(var/datum/mind/changeling in changelings)
 		//log_game("[key_name(changeling)] has been selected as a changeling") | yogs - redundant
 		var/datum/antagonist/changeling/new_antag = new()
-		new_antag.team_mode = TRUE
+		//new_antag.team_mode = TRUE //yogs - lol
 		changeling.add_antag_datum(new_antag)
 	..()
 

@@ -35,6 +35,7 @@
 
 /obj/item/electronics/airalarm
 	name = "air alarm electronics"
+	custom_price = 5
 	icon_state = "airalarm_electronics"
 
 /obj/item/wallframe/airalarm
@@ -89,6 +90,7 @@
 		/datum/gas/oxygen			= new/datum/tlv(16, 19, 135, 140), // Partial pressure, kpa
 		/datum/gas/nitrogen			= new/datum/tlv(-1, -1, 1000, 1000),
 		/datum/gas/carbon_dioxide	= new/datum/tlv(-1, -1, 5, 10),
+		/datum/gas/miasma			= new/datum/tlv/(-1, -1, 2, 5),
 		/datum/gas/plasma			= new/datum/tlv/dangerous,
 		/datum/gas/nitrous_oxide	= new/datum/tlv/dangerous,
 		/datum/gas/bz				= new/datum/tlv/dangerous,
@@ -107,6 +109,7 @@
 		/datum/gas/oxygen			= new/datum/tlv/no_checks,
 		/datum/gas/nitrogen			= new/datum/tlv/no_checks,
 		/datum/gas/carbon_dioxide	= new/datum/tlv/no_checks,
+		/datum/gas/miasma			= new/datum/tlv/no_checks,
 		/datum/gas/plasma			= new/datum/tlv/no_checks,
 		/datum/gas/nitrous_oxide	= new/datum/tlv/no_checks,
 		/datum/gas/bz				= new/datum/tlv/no_checks,
@@ -125,6 +128,7 @@
 		/datum/gas/oxygen			= new/datum/tlv(16, 19, 135, 140), // Partial pressure, kpa
 		/datum/gas/nitrogen			= new/datum/tlv(-1, -1, 1000, 1000),
 		/datum/gas/carbon_dioxide	= new/datum/tlv(-1, -1, 5, 10),
+		/datum/gas/miasma			= new/datum/tlv/(-1, -1, 2, 5),
 		/datum/gas/plasma			= new/datum/tlv/dangerous,
 		/datum/gas/nitrous_oxide	= new/datum/tlv/dangerous,
 		/datum/gas/bz				= new/datum/tlv/dangerous,
@@ -160,6 +164,9 @@
 
 /obj/machinery/airalarm/syndicate //general syndicate access
 	req_access = list(ACCESS_SYNDICATE)
+
+/obj/machinery/airalarm/away //general away mission access
+	req_access = list(ACCESS_AWAY_GENERAL)
 
 /obj/machinery/airalarm/directional/north //Pixel offsets get overwritten on New()
 	dir = SOUTH
@@ -210,6 +217,16 @@
 /obj/machinery/airalarm/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
+
+/obj/machinery/airalarm/examine(mob/user)
+	. = ..()
+	switch(buildstage)
+		if(0)
+			to_chat(user, "<span class='notice'>It is missing air alarm electronics.</span>")
+		if(1)
+			to_chat(user, "<span class='notice'>It is missing wiring.</span>")
+		if(2)
+			to_chat(user, "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>")
 
 /obj/machinery/airalarm/ui_status(mob/user)
 	if(user.has_unlimited_silicon_privilege && aidisabled)
@@ -497,7 +514,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(/datum/gas/carbon_dioxide),
+					"set_filters" = list(/datum/gas/carbon_dioxide, /datum/gas/miasma),
 					"scrubbing" = 1,
 					"widenet" = 0,
 				))
@@ -513,6 +530,7 @@
 					"power" = 1,
 					"set_filters" = list(
 						/datum/gas/carbon_dioxide,
+						/datum/gas/miasma,
 						/datum/gas/plasma,
 						/datum/gas/water_vapor,
 						/datum/gas/hypernoblium,
@@ -549,7 +567,7 @@
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(/datum/gas/carbon_dioxide),
+					"set_filters" = list(/datum/gas/carbon_dioxide, /datum/gas/miasma),
 					"scrubbing" = 1,
 					"widenet" = 0,
 				))
@@ -702,14 +720,14 @@
 /obj/machinery/airalarm/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
 		if(2)
-			if(istype(W, /obj/item/wirecutters) && panel_open && wires.is_all_cut())
+			if(W.tool_behaviour == TOOL_WIRECUTTER && panel_open && wires.is_all_cut())
 				W.play_tool_sound(src)
 				to_chat(user, "<span class='notice'>You cut the final wires.</span>")
 				new /obj/item/stack/cable_coil(loc, 5)
 				buildstage = 1
 				update_icon()
 				return
-			else if(istype(W, /obj/item/screwdriver))  // Opening that Air Alarm up.
+			else if(W.tool_behaviour == TOOL_SCREWDRIVER)  // Opening that Air Alarm up.
 				W.play_tool_sound(src)
 				panel_open = !panel_open
 				to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
@@ -721,7 +739,7 @@
 				wires.interact(user)
 				return
 		if(1)
-			if(istype(W, /obj/item/crowbar))
+			if(W.tool_behaviour == TOOL_CROWBAR)
 				user.visible_message("[user.name] removes the electronics from [src.name].",\
 									"<span class='notice'>You start prying out the circuit...</span>")
 				W.play_tool_sound(src)
@@ -773,7 +791,7 @@
 				update_icon()
 				return
 
-			if(istype(W, /obj/item/wrench))
+			if(W.tool_behaviour == TOOL_WRENCH)
 				to_chat(user, "<span class='notice'>You detach \the [src] from the wall.</span>")
 				W.play_tool_sound(src)
 				new /obj/item/wallframe/airalarm( user.loc )
@@ -796,6 +814,7 @@
 		if(src.allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the air alarm interface.</span>")
+			updateUsrDialog()
 		else
 			to_chat(user, "<span class='danger'>Access denied.</span>")
 	return

@@ -8,9 +8,10 @@
 			<B>General Secrets</B><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=admin_log'>Admin Log</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
 			<BR>
-			"}
+			"}   // YOGS - Added mentor logs
 
 	if(check_rights(R_ADMIN,0))
 		dat += {"
@@ -61,6 +62,7 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=eagles'>Egalitarian Station Mode</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=ancap'>Anarcho-Capitalist Station Mode</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=blackout'>Break all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=whiteout'>Fix all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
@@ -105,6 +107,9 @@
 			if(!GLOB.admin_log.len)
 				dat += "No-one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
+
+		if("mentor_log") // YOGS - Get in those mentor logs
+			YogMentorLogs() // YOGS - Same as above
 
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"
@@ -464,6 +469,20 @@
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/commandreport.ogg')
+
+		if("ancap")
+			if(!check_rights(R_FUN))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Anarcho-capitalist Station"))
+			SSeconomy.full_ancap = !SSeconomy.full_ancap
+			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
+			if(SSeconomy.full_ancap)
+				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
+			else
+				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
+
+
+
 
 		if("guns")
 			if(!check_rights(R_FUN))

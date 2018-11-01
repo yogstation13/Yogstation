@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "fixed beepsky and ED-209 cuffing their target successfully even when getting disabled (EMP'd) in the process"

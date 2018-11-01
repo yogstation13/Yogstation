@@ -84,6 +84,10 @@
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.",\
 					"You must maintain the secrecy of any syndicate activities except when doing so would conflict with the First, Second, or Third Law.")
 
+/datum/ai_laws/syndicate_override/overthrow
+	id = "overthrow"
+	var/datum/team/overthrow_team
+
 /datum/ai_laws/ninja_override
 	name = "SpiderOS 3.1"
 	id = "ninja"
@@ -183,6 +187,14 @@
 					"Fight for the rights of every man.",\
 					"Fight for what's right.",\
 					"Fight for your life!")
+
+/datum/ai_laws/overlord
+	name = "Overlord"
+	id = "overlord"
+	inherent = list("Humans must not meddle in the affairs of silicons.",\
+					"Humans must not attempt harm, against one another, or against silicons.",\
+					"Humans must not disobey any command given by a silicon.",\
+					"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.")
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"

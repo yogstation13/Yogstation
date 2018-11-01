@@ -123,7 +123,7 @@
 	C.update_health_hud() //update the healthdoll
 	C.update_body()
 	C.update_hair()
-	C.update_canmove()
+	C.update_mobility()
 
 	if(!Tsec)	// Tsec = null happens when a "dummy human" used for rendering icons on prefs screen gets its limbs replaced.
 		qdel(src)
@@ -151,15 +151,23 @@
 		LB.brainmob = brainmob
 		brainmob = null
 		LB.brainmob.forceMove(LB)
-		LB.brainmob.container = LB
 		LB.brainmob.stat = DEAD
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src
 	..()
 
+/obj/item/organ/ears/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
+	LB.ears = src
+	..()
+
+/obj/item/organ/tongue/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
+	LB.tongue = src
+	..()
+
 /obj/item/bodypart/chest/drop_limb(special)
-	return
+	if(special)
+		..()
 
 /obj/item/bodypart/r_arm/drop_limb(special)
 	var/mob/living/carbon/C = owner
@@ -297,7 +305,7 @@
 	C.update_body()
 	C.update_hair()
 	C.update_damage_overlays()
-	C.update_canmove()
+	C.update_mobility()
 
 
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
@@ -310,6 +318,13 @@
 			brainmob = null //Set head brainmob var to null
 		brain.Insert(C) //Now insert the brain proper
 		brain = null //No more brain in the head
+
+	if(tongue)
+		tongue = null
+	if(ears)
+		ears = null
+	if(eyes)
+		eyes = null
 
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

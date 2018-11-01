@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Cult floors will not deconstruct to space"
-  - bugfix: "Cult floors do not spawn rods when deconstructed"

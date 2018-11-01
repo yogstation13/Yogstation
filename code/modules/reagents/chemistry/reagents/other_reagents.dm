@@ -131,7 +131,7 @@
 	var/CT = cooling_temperature
 
 	if(reac_volume >= 5)
-		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
+		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume*3 SECONDS, 300 SECONDS)) //yogs
 
 	for(var/mob/living/simple_animal/slime/M in T)
 		M.apply_water()
@@ -219,7 +219,7 @@
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"))
+			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
 				M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 				M.Unconscious(120)
@@ -244,6 +244,21 @@
 			M.stuttering = 0
 			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
+	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
+		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		if(!V.get_ability(/datum/vampire_passive/full))
+			switch(data)
+				if(1 to 4)
+					to_chat(M, "<span class='warning'>Something sizzles in your veins!</span>")
+					M.adjustFireLoss(0.5)
+				if(5 to 12)
+					to_chat(M, "<span class='danger'>You feel an intense burning inside of you!</span>")
+					M.adjustFireLoss(1)
+				if(13 to INFINITY)
+					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", "<span class='userdanger'>You suddenly ignite in a holy fire!</span>")
+					M.adjust_fire_stacks(3)
+					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
+					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
 	holder.remove_reagent(id, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -270,9 +285,7 @@
 /datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
 	if(iscultist(M))
 		M.drowsyness = max(M.drowsyness-5, 0)
-		M.AdjustUnconscious(-20, 0)
-		M.AdjustStun(-40, 0)
-		M.AdjustKnockdown(-40, 0)
+		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-10, 0)
 		M.adjustToxLoss(-2, 0)
 		M.adjustOxyLoss(-2, 0)
@@ -414,7 +427,7 @@
 			else
 				M.visible_message("<b>[M]</b> flexes [M.p_their()] arms.")
 	if(prob(10))
-		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don’t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."))
+		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don’t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = "spraytan")
 	..()
 	return
 
@@ -434,7 +447,7 @@
 		return
 	to_chat(H, "<span class='warning'><b>You crumple in agony as your flesh wildly morphs into new forms!</b></span>")
 	H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
-	H.Knockdown(60)
+	H.Paralyze(60)
 	addtimer(CALLBACK(src, .proc/mutate, H), 30)
 	return
 
@@ -740,7 +753,7 @@
 	taste_mult = 0 // apparently tasteless.
 
 /datum/reagent/mercury/on_mob_life(mob/living/carbon/M)
-	if(M.canmove && !isspaceturf(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !isspaceturf(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -820,7 +833,7 @@
 	taste_description = "metal"
 
 /datum/reagent/lithium/on_mob_life(mob/living/carbon/M)
-	if(M.canmove && !isspaceturf(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !isspaceturf(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -972,7 +985,7 @@
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "welding_fuel"
-	description = "Required for welders. Flamable."
+	description = "Required for welders. Flammable."
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	glass_icon_state = "dr_gibb_glass"
@@ -996,6 +1009,7 @@
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	taste_description = "sourness"
+	reagent_weight = 0.6 //so it sprays further
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, reac_volume)
 	if(istype(O, /obj/effect/decal/cleanable))
@@ -1098,7 +1112,7 @@
 		M.emote("drool")
 	..()
 
-/datum/reagent/nanites
+/datum/reagent/nanomachines
 	name = "Nanomachines"
 	id = "nanomachines"
 	description = "Microscopic construction robots."
@@ -1106,7 +1120,7 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/nanomachines/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
@@ -1231,33 +1245,30 @@
 	id = "stimulum"
 	description = "An unstable experimental gas that greatly increases the energy of those that inhale it"
 	reagent_state = GAS
-	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
 	taste_description = "sourness"
 
 /datum/reagent/stimulum/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_GOTTAGOFAST, id)
+	L.add_trait(TRAIT_STUNIMMUNE, id)
+	L.add_trait(TRAIT_SLEEPIMMUNE, id)
 
 /datum/reagent/stimulum/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_GOTTAGOFAST, id)
+	L.remove_trait(TRAIT_STUNIMMUNE, id)
+	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
 	..()
 
-/datum/reagent/stimulum/on_mob_life(mob/living/carbon/M) // Has a speedup, and the anti-stun effects of nicotine.
-	M.AdjustStun(-20, 0)
-	M.AdjustKnockdown(-20, 0)
-	M.AdjustUnconscious(-20, 0)
-	M.adjustStaminaLoss(-0.5*REM, 0)
-	current_cycle++
-	holder.remove_reagent(id, 0.99)		//Gives time for the next tick of life().
-	. = TRUE //Update status effects.
+/datum/reagent/stimulum/on_mob_life(mob/living/carbon/M)
+	M.adjustStaminaLoss(-2*REM, 0)
+	..()
 
 /datum/reagent/nitryl
 	name = "Nitryl"
 	id = "no2"
 	description = "A highly reactive gas that makes you feel faster"
 	reagent_state = GAS
-	metabolization_rate = REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	taste_description = "burning"
 
@@ -1650,7 +1661,7 @@
 
 /datum/reagent/royal_bee_jelly/on_mob_life(mob/living/carbon/M)
 	if(prob(2))
-		M.say(pick("Bzzz...","BZZ BZZ","Bzzzzzzzzzzz..."))
+		M.say(pick("Bzzz...","BZZ BZZ","Bzzzzzzzzzzz..."), forced = "royal bee jelly")
 	..()
 
 //Misc reagents

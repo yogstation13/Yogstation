@@ -14,7 +14,9 @@
 #define INVESTIGATE_HALLUCINATIONS	"hallucinations"
 #define INVESTIGATE_RADIATION		"radiation"
 #define INVESTIGATE_EXONET			"exonet"
+#define INVESTIGATE_NANITES			"nanites"
 #define INVESTIGATE_CIRCUIT			"circuit"
+#define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
 
 // Logging types for log_message()
 #define LOG_ATTACK		(1 << 0)
@@ -31,6 +33,8 @@
 #define LOG_OWNERSHIP	(1 << 11)
 #define LOG_GAME		(1 << 12)
 #define LOG_ADMIN_PRIVATE (1 << 13)
+#define LOG_ASAY		(1 << 14)
+#define LOG_MECHA (1 << 15)
 
 //Individual logging panel pages
 #define INDIVIDUAL_ATTACK_LOG		(LOG_ATTACK)

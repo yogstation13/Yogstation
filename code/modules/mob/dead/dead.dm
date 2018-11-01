@@ -4,6 +4,8 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
+	move_resist = INFINITY
+	throwforce = 0
 
 /mob/dead/Initialize()
 	if(flags_1 & INITIALIZED_1)
@@ -19,6 +21,9 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	set_focus(src)
 	return INITIALIZE_HINT_NORMAL
 
+/mob/dead/canUseStorage()
+	return FALSE
+
 /mob/dead/dust(just_ash, drop_items, force)	//ghosts can't be vaporised.
 	return
 
@@ -29,7 +34,13 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	return
 
 /mob/dead/forceMove(atom/destination)
+	var/turf/old_turf = get_turf(src)
+	var/turf/new_turf = get_turf(destination)
+	if (old_turf?.z != new_turf?.z)
+		onTransitZ(old_turf?.z, new_turf?.z)
+	var/oldloc = loc
 	loc = destination
+	Moved(oldloc, NONE, TRUE)
 
 /mob/dead/Stat()
 	..()

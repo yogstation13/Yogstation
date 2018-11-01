@@ -39,6 +39,21 @@
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 		reagents.reaction(M, INJECT, fraction)
 		if(M.reagents)
+// yogs start -Adds viruslist stuff
+			var/viruslist = ""
+			for(var/datum/reagent/R in reagents.reagent_list)
+				injected += R.name
+				if(istype(R, /datum/reagent/blood))
+					var/datum/reagent/blood/RR = R
+					for(var/datum/disease/D in RR.data["viruses"])
+						viruslist += " [D.name]"
+						if(istype(D, /datum/disease/advance))
+							var/datum/disease/advance/DD = D
+							viruslist += " \[ symptoms: "
+							for(var/datum/symptom/S in DD.symptoms)
+								viruslist += "[S.name] "
+							viruslist += "\]"
+// yogs end
 			var/trans = 0
 			if(!infinite)
 				trans = reagents.trans_to(M, amount_per_transfer_from_this)
@@ -47,9 +62,12 @@
 
 			to_chat(user, "<span class='notice'>[trans] unit\s injected.  [reagents.total_volume] unit\s remaining in [src].</span>")
 
-
 			log_combat(user, M, "injected", src, "([contained])")
-
+// yogs start - makes logs if viruslist
+			if(viruslist)
+				investigate_log("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
+				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
+// yogs end
 /obj/item/reagent_containers/hypospray/CMO
 	list_reagents = list("omnizine" = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -64,9 +82,9 @@
 	list_reagents = list("epinephrine" = 30, "omnizine" = 30, "leporazine" = 15, "atropine" = 15)
 
 /obj/item/reagent_containers/hypospray/combat/nanites
-	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with expensive medical nanites for rapid healing."
+	desc = "A modified air-needle autoinjector for use in combat situations. Prefilled with experimental medical compounds for rapid healing."
 	volume = 100
-	list_reagents = list("nanites" = 80, "synaptizine" = 20)
+	list_reagents = list("quantum_heal" = 80, "synaptizine" = 20)
 
 /obj/item/reagent_containers/hypospray/magillitis
 	name = "experimental autoinjector"
@@ -91,6 +109,7 @@
 	container_type = DRAWABLE
 	flags_1 = null
 	list_reagents = list("epinephrine" = 10)
+	custom_price = 40
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -158,7 +177,7 @@
 	icon_state = "stimpen"
 	volume = 57
 	amount_per_transfer_from_this = 57
-	list_reagents = list("salbutamol" = 10, "leporazine" = 15, "tricordrazine" = 15, "epinephrine" = 10, "miningnanites" = 2, "omnizine" = 5)
+	list_reagents = list("salbutamol" = 10, "leporazine" = 15, "tricordrazine" = 15, "epinephrine" = 10, "lavaland_extract" = 2, "omnizine" = 5)
 
 /obj/item/reagent_containers/hypospray/medipen/species_mutator
 	name = "species mutator medipen"

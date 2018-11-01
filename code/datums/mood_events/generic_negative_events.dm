@@ -63,8 +63,8 @@
   timeout = 2400
 
 /datum/mood_event/noshoes
-	 description = "<span class='warning'>I am a disgrace to comedy everywhere!</span>\n"
-	 mood_change = -5
+	description = "<span class='warning'>I am a disgrace to comedy everywhere!</span>\n"
+	mood_change = -5
 
 /datum/mood_event/tased
 	description = "<span class='warning'>There's no \"z\" in \"taser\". It's in the zap.</span>\n"
@@ -112,6 +112,11 @@
 /datum/mood_event/family_heirloom_missing
 	description = "<span class='warning'>I'm missing my family heirloom...</span>\n"
 	mood_change = -4
+
+/datum/mood_event/healsbadman
+	description = "<span class='nicegreen'>You feel a lot better, but wow that was disgusting.</span>\n" //when you read the latest felinid removal PR and realize you're really not that much of a degenerate
+	mood_change = -4
+	timeout = 1200
 
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse

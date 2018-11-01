@@ -308,7 +308,7 @@
 		addiction_tick++
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
-		C.update_canmove()
+		C.update_mobility()
 		C.update_stamina()
 	update_total()
 
@@ -550,8 +550,8 @@
 	if(!D)
 		WARNING("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
-	
- 	update_total()
+
+	update_total()
 	var/cached_total = total_volume
 	if(cached_total + amount > maximum_volume)
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
@@ -594,9 +594,15 @@
 	if(data)
 		R.data = data
 		R.on_new(data)
-	
+
 	if(isliving(my_atom))
-		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete 
+		//yogs start - snowflake synth check
+		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) 
+			var/mob/living/carbon/human/H = my_atom
+			if(istype(H.dna.species, /datum/species/synth))
+				return
+		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
+		//yogs end
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)

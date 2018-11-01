@@ -17,7 +17,8 @@ GLOBAL_LIST_INIT(admin_verbs_default, world.AVerbsDefault())
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
-	/client/proc/stop_sounds
+	/client/proc/stop_sounds,
+	/client/proc/fix_air // yogs - fix air verb
 	)
 GLOBAL_PROTECT(admin_verbs_admin)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
@@ -32,6 +33,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
+	/datum/admins/proc/togglelooc,		/*toggles looc on/off for everyone*/ // yogs - LOOC
+	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead */ // yogs - LOOC
 	/datum/admins/proc/toggleenter,		/*toggles whether people can join the current game*/
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
@@ -44,6 +47,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/client/proc/cmd_admin_headset_message,	/*send an message to somebody through their headset as CentCom*/
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_admin_check_contents,	/*displays the contents of an instance*/
+	/client/proc/centcom_podlauncher,/*Open a window to launch a Supplypod and configure it or it's contents*/
 	/client/proc/check_antagonists,		/*shows all antags*/
 	/datum/admins/proc/access_news_network,	/*allows access of newscasters*/
 	/client/proc/jumptocoord,			/*we ghost and jump to a coordinate*/
@@ -67,12 +71,16 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/client/proc/open_shuttle_manipulator, /* Opens shuttle manipulator UI */
 	/client/proc/deadchat,
 	/client/proc/toggleprayers,
+	/client/proc/toggle_prayer_sound,
+	/client/proc/colorasay,
+	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
-	/client/proc/get_law_history //yogs
+	/client/proc/get_law_history, //yogs - silicon law history
+	/client/proc/show_mentors // yogs - mentors
 	)
 GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/DB_ban_panel, /client/proc/stickybanpanel))
@@ -101,6 +109,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/polymorph_all,
 	/client/proc/show_tip,
 	/client/proc/smite,
+	/client/proc/spawn_floor_cluwne, // Yogs
 	/client/proc/rejuv_all, // yogs - Revive All
 	/client/proc/admin_away
 	))
@@ -123,8 +132,8 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
-	/client/proc/fix_air, // yogs - fix air verb
-	/client/proc/toggle_hub
+	/client/proc/toggle_hub,
+	/client/proc/mentor_memo /* YOGS - something stupid about "Mentor memos" */
 	)
 GLOBAL_PROTECT(admin_verbs_debug)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
@@ -246,6 +255,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 
 		var/rights = holder.rank.rights
 		verbs += GLOB.admin_verbs_default
+		verbs += GLOB.mentor_verbs // yogs - give admins mentor verbs
 		if(rights & R_BUILDMODE)
 			verbs += /client/proc/togglebuildmodeself
 		if(rights & R_ADMIN)
@@ -461,7 +471,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
-	var/choice = input("What size explosion would you like to produce? WARNING: These ignore the maxcap") as null|anything in choices
+	var/choice = input("What size explosion would you like to produce? NOTE: You can do all this rapidly and in an IC manner (using cruise missiles!) with the Config/Launch Supplypod verb. WARNING: These ignore the maxcap") as null|anything in choices
 	var/turf/epicenter = mob.loc
 
 	switch(choice)

@@ -14,7 +14,7 @@
 	/datum/surgery_step/brainwash,
 	/datum/surgery_step/close)
 
-	species = list(/mob/living/carbon/human)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_HEAD)
 
 /datum/surgery/advanced/brainwashing/can_start(mob/user, mob/living/carbon/target)
@@ -41,7 +41,7 @@
 	if(!target.mind)
 		user.visible_message("[target] doesn't respond to the brainwashing, as if [target.p_they()] lacked a mind...")
 		return FALSE
-	if(target.isloyal())
+	if(target.has_trait(TRAIT_MINDSHIELD))
 		user.visible_message("You hear a faint buzzing from a device inside [target]'s brain, and the brainwashing is erased.")
 		return FALSE
 	user.visible_message("[user] successfully brainwashes [target]!", "<span class='notice'>You succeed in brainwashing [target].</span>")

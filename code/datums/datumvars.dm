@@ -1304,6 +1304,16 @@
 				var/msg = "[key_name(usr)] has removed [key_name(H)] from purrbation." // yogs - Yog Tickets
 				message_admins(msg)
 				admin_ticket_log(H, msg)
+				
+		else if(href_list["cluwneing"]) // yogs start -- adds cluwneify verb in VV
+			if(!check_rights(R_SPAWN))	return
+			var/mob/living/carbon/human/H = locate(href_list["cluwneing"])
+			if(!H)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+			H.cluwneify()
+			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
+			return // yogs end
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 			if(!check_rights(NONE))
@@ -1354,3 +1364,9 @@
 				message_admins(msg)
 				admin_ticket_log(L, msg)
 				vv_update_display(L, Text, "[newamt]")
+		else if(href_list["copyoutfit"])
+			if(!check_rights(R_SPAWN))
+				return
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"]) in GLOB.carbon_list
+			if(istype(H))
+				H.copy_outfit()

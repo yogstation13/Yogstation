@@ -80,8 +80,8 @@
 	. = ..()
 	var/slow = 0
 	if (bodytemperature < 283.222)
-		slow += (283.222 - bodytemperature) / 10 * 1.75
-	add_movespeed_modifier(MOVESPEED_ID_MONKEY_TEMPERATURE_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
+		slow += ((283.222 - bodytemperature) / 10) * 1.75
+	add_movespeed_modifier(MOVESPEED_ID_MONKEY_TEMPERATURE_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = slow)
 
 /mob/living/carbon/monkey/Stat()
 	..()
@@ -145,7 +145,7 @@
 			threatcount += 4 //trigger look_for_perp() since they're nonhuman and very likely hostile
 
 	//mindshield implants imply trustworthyness
-	if(isloyal())
+	if(has_trait(TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	return threatcount

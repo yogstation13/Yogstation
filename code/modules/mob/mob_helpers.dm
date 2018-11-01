@@ -1,13 +1,6 @@
 
 // see _DEFINES/is_helpers.dm for mob type checks
 
-/mob/proc/isloyal() //Checks to see if the person contains a mindshield implant, then checks that the implant is actually inside of them
-	return 0
-
-/mob/living/carbon/isloyal()
-	for(var/obj/item/implant/mindshield/L in implants)
-		return TRUE
-
 /mob/proc/lowest_buckled_mob()
 	. = src
 	if(buckled && ismob(buckled))
@@ -375,7 +368,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/reagent_check(datum/reagent/R) // utilized in the species code
 	return 1
 
-/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key) //Easy notification of ghosts.
+/proc/notify_ghosts(var/message, var/ghost_sound = null, var/enter_link = null, var/atom/source = null, var/mutable_appearance/alert_overlay = null, var/action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null,) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/mob/dead/observer/O in GLOB.player_list)
@@ -392,6 +385,8 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 				if(A)
 					if(O.client.prefs && O.client.prefs.UI_style)
 						A.icon = ui_style2icon(O.client.prefs.UI_style)
+					if (header)
+						A.name = header
 					A.desc = message
 					A.action = action
 					A.target = source
@@ -509,3 +504,10 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 /mob/proc/can_hear()
 	. = TRUE
+
+//Examine text for traits shared by multiple types. I wish examine was less copypasted.
+/mob/proc/common_trait_examine()
+	. = ""
+
+	if(has_trait(TRAIT_DISSECTED))
+		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"

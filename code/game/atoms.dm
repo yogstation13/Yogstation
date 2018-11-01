@@ -24,11 +24,20 @@
 	var/list/remove_overlays // a very temporary list of overlays to remove
 	var/list/add_overlays // a very temporary list of overlays to add
 
+	var/list/managed_vis_overlays //vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
+
 	var/datum/proximity_monitor/proximity_monitor
 	var/buckle_message_cooldown = 0
 	var/fingerprintslast
 
 	var/list/filter_data //For handling persistent filters
+
+	var/custom_price
+
+	var/datum/component/orbiter/orbiters
+
+	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to
+	var/rad_insulation = RAD_NO_INSULATION
 
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
@@ -44,10 +53,6 @@
 		if(SSatoms.InitAtom(src, args))
 			//we were deleted
 			return
-
-	var/list/created = SSatoms.created_atoms
-	if(created)
-		created += src
 
 //Called after New if the map is being loaded. mapload = TRUE
 //Called from base of New if the map is not being loaded. mapload = FALSE
@@ -76,6 +81,9 @@
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
+	if (canSmoothWith)
+		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
+
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
@@ -96,6 +104,8 @@
 
 	if(reagents)
 		qdel(reagents)
+
+	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
 	LAZYCLEARLIST(priority_overlays)
@@ -198,10 +208,10 @@
 /atom/proc/is_open_container()
 	return is_refillable() && is_drainable()
 
-/atom/proc/is_injectable(allowmobs = TRUE)
+/atom/proc/is_injectable(mob/user, allowmobs = TRUE)
 	return reagents && (container_type & (INJECTABLE | REFILLABLE))
 
-/atom/proc/is_drawable(allowmobs = TRUE)
+/atom/proc/is_drawable(mob/user, allowmobs = TRUE)
 	return reagents && (container_type & (DRAWABLE | DRAINABLE))
 
 /atom/proc/is_refillable()
@@ -284,8 +294,11 @@
 		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
 	return
 
+/atom/proc/prevent_content_explosion()
+	return FALSE
+
 /atom/proc/contents_explosion(severity, target)
-	return
+	return //For handling the effects of explosions on contents that would not normally be effected
 
 /atom/proc/ex_act(severity, target)
 	set waitfor = FALSE
@@ -300,7 +313,7 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, exposed_temperature, exposed_volume)
 	return
 
-/atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked)
+/atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
 		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
 
@@ -568,8 +581,16 @@
 /atom/proc/multitool_act(mob/living/user, obj/item/I)
 	return
 
+/atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
+	if(!istype(I, /obj/item/multitool))
+		if(user && !silent)
+			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+		return FALSE
+	return TRUE
+
+
 /atom/proc/screwdriver_act(mob/living/user, obj/item/I)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_SCREWDRIVER_ACT, user, I)
 
 /atom/proc/wrench_act(mob/living/user, obj/item/I)
 	return
@@ -584,6 +605,9 @@
 	return
 
 /atom/proc/GenerateTag()
+	return
+
+/atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
 // Generic logging helper
@@ -613,22 +637,29 @@
 			log_telecomms(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
+		if(LOG_LOOC) // yogs - LOOC log
+			log_looc(log_text) // yogs - LOOC log
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
+		if(LOG_ASAY)
+			log_adminsay(log_text)
 		if(LOG_OWNERSHIP)
 			log_game(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
+		if(LOG_MECHA)
+			log_mecha(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)
 
-// Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag=null, log_globally=TRUE)
+// Helper for logging chat messages or other logs with arbitrary inputs (e.g. announcements)
+/atom/proc/log_talk(message, message_type, tag=null, log_globally=TRUE, forced_by=null)
 	var/prefix = tag ? "([tag]) " : ""
-	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
+	var/suffix = forced_by ? " FORCED by [forced_by]" : ""
+	log_message("[prefix]\"[message]\"[suffix]", message_type, log_globally=log_globally)
 
 // Helper for logging of messages with only one sender and receiver
 /proc/log_directed_talk(atom/source, atom/target, message, message_type, tag)

@@ -1,0 +1,4 @@
+author: " Zxaber"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed borg organ bags causing brain damage when picking up brains."

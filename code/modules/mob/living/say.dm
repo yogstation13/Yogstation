@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	return new_msg
 
-/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE)
+/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/talk_key = get_key(message)
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			message_mode = MODE_WHISPER_CRIT
 			succumbed = TRUE
 	else
-		src.log_talk(message, LOG_SAY)
+		src.log_talk(message, LOG_SAY, forced_by=forced)
 
 	message = treat_message(message)
 	if(!message)
@@ -213,6 +213,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return 1
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 	if(!client)
 		return
 	var/deaf_message
@@ -227,7 +228,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
+	message = hear_intercept(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	show_message(message, 2, deaf_message, deaf_type)
+	return message
+
+/mob/living/proc/hear_intercept(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	return message
 
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, message_mode)
@@ -239,6 +244,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/list/the_dead = list()
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
+		if(!M)				//yogs
+			continue		//yogs | null in player_list for whatever reason :shrug:
 		if(M.stat != DEAD) //not dead, not important
 			continue
 		if(!M.client || !client) //client is so that ghosts don't have to listen to mice

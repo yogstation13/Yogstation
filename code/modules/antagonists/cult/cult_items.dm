@@ -23,7 +23,7 @@
 	actions_types = list(/datum/action/item_action/cult_dagger)
 
 /obj/item/melee/cultblade/dagger/Initialize()
-	..()
+	. = ..()
 	var/image/I = image(icon = 'icons/effects/blood.dmi' , icon_state = null, loc = src)
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_dagger", I)
@@ -49,7 +49,7 @@
 
 /obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!iscultist(user))
-		user.Knockdown(100)
+		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
 							 "<span class='cultlarge'>\"You shouldn't play with sharp things. You'll poke someone's eye out.\"</span>")
@@ -143,7 +143,7 @@
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			user.dropItemToGround(src, TRUE)
-			user.Knockdown(50)
+			user.Paralyze(50)
 			return
 	force = initial(force)
 	jaunt.Grant(user, src)
@@ -395,7 +395,7 @@
 			to_chat(user, "<span class='warning'>An overwhelming sense of nausea overpowers you!</span>")
 			user.dropItemToGround(src, TRUE)
 			user.Dizzy(30)
-			user.Knockdown(100)
+			user.Paralyze(100)
 		else
 			to_chat(user, "<span class='cultlarge'>\"Trying to use things you don't own is bad, you know.\"</span>")
 			to_chat(user, "<span class='userdanger'>The armor squeezes at your body!</span>")
@@ -447,7 +447,7 @@
 			to_chat(user, "<span class='warning'>An overwhelming sense of nausea overpowers you!</span>")
 			user.dropItemToGround(src, TRUE)
 			user.Dizzy(30)
-			user.Knockdown(100)
+			user.Paralyze(100)
 		else
 			to_chat(user, "<span class='cultlarge'>\"Trying to use things you don't own is bad, you know.\"</span>")
 			to_chat(user, "<span class='userdanger'>The robes squeeze at your body!</span>")
@@ -468,7 +468,7 @@
 		to_chat(user, "<span class='cultlarge'>\"You want to be blind, do you?\"</span>")
 		user.dropItemToGround(src, TRUE)
 		user.Dizzy(30)
-		user.Knockdown(100)
+		user.Paralyze(100)
 		user.blind_eyes(30)
 
 /obj/item/reagent_containers/glass/beaker/unholywater
@@ -489,7 +489,7 @@
 /obj/item/shuttle_curse/attack_self(mob/living/user)
 	if(!iscultist(user))
 		user.dropItemToGround(src, TRUE)
-		user.Knockdown(100)
+		user.Paralyze(100)
 		to_chat(user, "<span class='warning'>A powerful force shoves you away from [src]!</span>")
 		return
 	if(curselimit > 1)
@@ -686,9 +686,9 @@
 		else if(!..())
 			if(!L.anti_magic_check())
 				if(is_servant_of_ratvar(L))
-					L.Knockdown(100)
+					L.Paralyze(100)
 				else
-					L.Knockdown(50)
+					L.Paralyze(50)
 			break_spear(T)
 	else
 		..()
@@ -820,7 +820,7 @@
 		INVOKE_ASYNC(src, .proc/pewpew, user, params)
 		var/obj/structure/emergency_shield/invoker/N = new(user.loc)
 		if(do_after(user, 90, target = user))
-			user.Knockdown(40)
+			user.Paralyze(40)
 			to_chat(user, "<span class='cult italic'>You have exhausted the power of this spell!</span>")
 		firing = FALSE
 		if(N)
@@ -885,7 +885,7 @@
 				else
 					var/mob/living/L = target
 					if(L.density)
-						L.Knockdown(20)
+						L.Paralyze(20)
 						L.adjustBruteLoss(45)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
@@ -906,22 +906,22 @@
 	force = 5
 	throwforce = 15
 	throw_speed = 1
-	throw_range = 6
+	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
-	var/illusions = 3
+	var/illusions = 2
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
 		if(istype(hitby, /obj/item/projectile))
 			var/obj/item/projectile/P = hitby
-			if(P.damage >= 35)
+			if(P.damage >= 30)
 				var/turf/T = get_turf(owner)
 				T.visible_message("<span class='warning'>The sheer force from [P] shatters the mirror shield!</span>")
 				new /obj/effect/temp_visual/cult/sparks(T)
 				playsound(T, 'sound/effects/glassbr3.ogg', 100)
-				owner.Knockdown(20)
+				owner.Paralyze(25)
 				qdel(src)
 				return FALSE
 			if(P.is_reflectable)
@@ -978,10 +978,10 @@
 		else if(!..())
 			if(!L.anti_magic_check())
 				if(is_servant_of_ratvar(L))
-					L.Knockdown(60)
+					L.Paralyze(60)
 				else
-					L.Knockdown(30)
-				if(D.thrower)
+					L.Paralyze(30)
+				if(D?.thrower)
 					for(var/mob/living/Next in orange(2, T))
 						if(!Next.density || iscultist(Next))
 							continue

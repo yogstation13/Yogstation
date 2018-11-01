@@ -48,7 +48,7 @@
 		return
 	if(!isturf(user.loc))
 		return
-	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = 0))
+	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = FALSE))
 		return
 	return 1
 
@@ -160,7 +160,7 @@
 	qdel(blade)
 	target.update_inv_hands()
 
-/obj/effect/proc_holder/changeling/sting/extract_dna
+/*/obj/effect/proc_holder/changeling/sting/extract_dna //yogs start - removed extract dna sting
 	name = "Extract DNA Sting"
 	desc = "We stealthily sting a target and extract their DNA."
 	helptext = "Will give you the DNA of your target, allowing you to transform into them."
@@ -178,7 +178,7 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!(changeling.has_dna(target.dna)))
 		changeling.add_new_profile(target)
-	return TRUE
+	return TRUE*/ //yogs end
 
 /obj/effect/proc_holder/changeling/sting/mute
 	name = "Mute Sting"

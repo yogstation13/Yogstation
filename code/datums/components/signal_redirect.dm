@@ -18,7 +18,7 @@
 				. = COMPONENT_INCOMPATIBLE
 				CRASH("Redirect components must be given instanced callbacks, not proc paths.")
 		_signals[COMSIG_TURF_CHANGE] = CALLBACK(src, .proc/turf_change)
-	
+
 	signals = _signals
 
 /datum/component/redirect/RegisterWithParent()
@@ -28,6 +28,6 @@
 /datum/component/redirect/UnregisterFromParent()
 	UnregisterSignal(parent, signals)
 
-/datum/component/redirect/proc/turf_change(path, new_baseturfs, flags, list/transfers)
+/datum/component/redirect/proc/turf_change(datum/source, path, new_baseturfs, flags, list/transfers)
 	transfers += src
 	return turfchangeCB?.InvokeAsync(arglist(args))
