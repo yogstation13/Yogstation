@@ -56,7 +56,7 @@
 // yogs end
 			var/trans = 0
 			if(!infinite)
-				trans = reagents.trans_to(M, amount_per_transfer_from_this)
+				trans = reagents.trans_to(M, amount_per_transfer_from_this, transfered_by = user)
 			else
 				trans = reagents.copy_to(M, amount_per_transfer_from_this)
 
