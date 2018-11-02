@@ -10344,12 +10344,19 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "auV" = (
-/obj/structure/table,
-/obj/item/nanite_scanner,
+/obj/item/nanite_remote{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /obj/item/nanite_scanner{
-	pixel_x = -6;
+	pixel_x = 6;
 	pixel_y = -6
 	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/structure/table,
 /obj/effect/turf_decal/bot{
 	dir = 2
 	},
@@ -10720,15 +10727,10 @@
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
 "avM" = (
-/obj/structure/table,
-/obj/item/nanite_remote,
-/obj/item/nanite_remote{
-	pixel_x = -8;
-	pixel_y = 8
-	},
 /obj/effect/turf_decal/bot{
 	dir = 2
 	},
+/obj/machinery/nanite_programmer,
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
 "avN" = (
@@ -50492,10 +50494,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "eaI" = (
-/obj/item/nanite_remote{
-	pixel_x = -8;
-	pixel_y = 8
-	},
 /obj/item/nanite_remote{
 	pixel_x = -8;
 	pixel_y = 8
