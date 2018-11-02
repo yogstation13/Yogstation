@@ -83,17 +83,14 @@
 								viruslist += "\]"
 // yogs end
 			log_combat(user, M, "squirted", R)
-<<<<<<< HEAD
+
 // yogs start - Adds logs if it is viruslist
 			if(viruslist)
 				investigate_log("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) using a projectile with [viruslist]", INVESTIGATE_VIROLOGY)
 				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
 // yogs end
-		trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-=======
 
 		trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
->>>>>>> b101050540... Merge pull request #41253 from ShizCalev/reagent-transfer-logging
 		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution.</span>")
 		update_icon()
 
