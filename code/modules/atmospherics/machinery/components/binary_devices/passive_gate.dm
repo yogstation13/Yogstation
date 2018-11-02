@@ -119,6 +119,7 @@ Passive gate is similar to the regular pump except:
 		if("power")
 			on = !on
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
@@ -135,6 +136,7 @@ Passive gate is similar to the regular pump except:
 			if(.)
 				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/atmosinit()
@@ -159,6 +161,7 @@ Passive gate is similar to the regular pump except:
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
+		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 
 	if("status" in signal.data)
 		broadcast_status()
