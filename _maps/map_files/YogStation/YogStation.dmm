@@ -44255,14 +44255,12 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/glasses/meson,
-/obj/item/geiger_counter,
-/obj/item/geiger_counter,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/book/manual/wiki/supermatter,
+/obj/item/geiger_counter,
+/obj/item/geiger_counter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cij" = (
@@ -48074,12 +48072,14 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/radiation,
-/obj/item/clothing/head/radiation,
-/obj/item/clothing/glasses/meson,
-/obj/item/clothing/glasses/meson,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/clothing/suit/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/head/radiation,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cDj" = (
