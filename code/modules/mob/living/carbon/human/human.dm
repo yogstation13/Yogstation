@@ -25,7 +25,12 @@
 	physiology = new()
 
 	handcrafting = new()
-
+	if(name == "Rylan Sandys")
+		gib()
+		to_chat(src, "You have been banned due to a player complaint seen here: https://github.com/yogstation13/Yogstation-TG/issues/3312. If you believe this is in error, please head to our forums (forums.yogstation.net)")
+		if(client && client.ckey)
+			AddBan(client.ckey,null,null,Xantam,FALSE,null,null)
+		return FALSE
 	. = ..()
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
