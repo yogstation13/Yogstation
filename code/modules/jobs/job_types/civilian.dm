@@ -147,7 +147,7 @@ Curator
 	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
-		/obj/item/herobeacon = 1,
+		/obj/item/choice_beacon/hero = 1,
 		/obj/item/soapstone = 1,
 		/obj/item/barcodescanner = 1
 	)
@@ -274,4 +274,5 @@ Clerk
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head = /obj/item/clothing/head/yogs/clerkcap
+	backpack_contents = list(/obj/item/circuitboard/machine/paystand = 1)
 // yogs end
