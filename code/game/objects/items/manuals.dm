@@ -453,9 +453,9 @@
 
 //YOGS start
 /obj/item/book/manual/wiki/supermatter
-	name = "Easy Guide to the Supermatter Engine"
+	name = "Supermatter for Dummies"
 	icon_state = "book3"
 	author = "Engineering Encyclopedia"
-	title = "Supermatter for Dummies"
+	title = "Easy Guide to Setting up the Supermatter Engine"
 	page_link = "Supermatter"
 //YOGS end
