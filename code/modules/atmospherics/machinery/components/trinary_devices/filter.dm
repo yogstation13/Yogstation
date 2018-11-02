@@ -205,6 +205,7 @@
 		if("power")
 			on = !on
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
@@ -221,6 +222,7 @@
 			if(.)
 				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		if("filter")
 			filter_type = null
 			var/filter_name = "nothing"
@@ -229,6 +231,7 @@
 				filter_type = gas
 				filter_name	= GLOB.meta_gas_info[gas][META_GAS_NAME]
 			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 	update_icon()
 
