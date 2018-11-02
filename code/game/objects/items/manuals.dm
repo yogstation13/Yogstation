@@ -37,7 +37,7 @@
 				</ol>
 				<p>
 				It really is that easy! Good luck!
-	
+
 				</body>
 				</html>
 				"}
@@ -344,14 +344,14 @@
 	author = "Sir John Rose"
 	title = "Barman Recipes: Mixing Drinks and Changing Lives"
 	page_link = "Guide_to_food_and_drinks"
-	
+
 /obj/item/book/manual/wiki/robotics_cyborgs
 	name = "Robotics for Dummies"
 	icon_state = "borgbook"
 	author = "XISC"
 	title = "Robotics for Dummies"
 	page_link = "Guide_to_robotics"
-	
+
 /obj/item/book/manual/wiki/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
@@ -401,7 +401,7 @@
 	author = "the City-state of Atmosia"
 	title = "Lexica Atmosia"
 	page_link = "Guide_to_Atmospherics"
-	
+
 /obj/item/book/manual/wiki/medicine
 	name = "Medical Space Compendium, Volume 638"
 	icon_state = "book8"
@@ -450,3 +450,12 @@
 		H.spill_organs()
 		H.spread_bodyparts()
 	return (BRUTELOSS)
+
+//YOGS start
+/obj/item/book/manual/wiki/supermatter
+	name = "Easy Guide to the Supermatter Engine"
+	icon_state = "book3"
+	author = "Engineering Encyclopedia"
+	title = "Supermatter for Dummies"
+	page_link = "Supermatter"
+//YOGS end
