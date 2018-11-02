@@ -171,6 +171,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+	
+	//Yogs start - fucking internet sounds prevention brigade
+	var/list/ISabusers = list("groudonmaster")
+	if(ckey in ISabusers)
+		qdel(src)
+	//Yogs end - fucking internet sounds prevention brigade
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
