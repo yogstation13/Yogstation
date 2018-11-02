@@ -35,3 +35,35 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	qdel(query_load_mentors)
 
 	to_chat(src, msg)
+
+/client/verb/mentorwho()
+	set name = "Mentorwho"
+	set category = "Mentor"
+
+	var/msg = "<b>Current Mentors:</b>\n"
+	if(holder)
+		for(var/client/C in GLOB.mentors)
+			msg += "\t[C] is a [C.holder.rank]"
+
+			if(C.holder.fakekey)
+				msg += " <i>(as [C.holder.fakekey])</i>"
+
+			if(isobserver(C.mob))
+				msg += " - Observing"
+			else if(isnewplayer(C.mob))
+				msg += " - Lobby"
+			else
+				msg += " - Playing"
+
+			if(C.is_afk())
+				msg += " (AFK)"
+			msg += "\n"
+	else
+		for(var/client/C in GLOB.mentors)
+			if(C.is_afk())
+				continue
+			if(!C.holder.fakekey)
+				msg += "\t[C] is a [C.holder.rank]\n"
+		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
+	to_chat(src, msg)
+
