@@ -1,0 +1,6 @@
+author: "  Partheo"
+delete-after: true 
+changes: 
+  - tweak: "Various small tweaks to the atmos department"
+  - bugfix: "Gas meters are now visible on atmospherics' gas tanks."
+  - bugfix: "Various fixes to the atmos department"
