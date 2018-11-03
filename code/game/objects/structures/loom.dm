@@ -1,7 +1,7 @@
 /obj/structure/loom
 	name = "loom"
 	desc = "A simple device used to weave cloth and other thread-based fabrics together into usable material."
-	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon = 'yogstation/icons/obj/hydroponics/equipment.dmi'
 	icon_state = "loom"
 	density = TRUE
 	anchored = TRUE
