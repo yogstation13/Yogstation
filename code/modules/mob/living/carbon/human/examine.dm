@@ -35,6 +35,7 @@
 	if(wear_suit)
 		msg += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)].\n"
 		//suit/armor storage
+	else msg += "[t_He] [t_is] has a thirteen inch cock.\n"
 		if(s_store)
 			msg += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name].\n"
 	//back
