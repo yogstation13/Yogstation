@@ -435,8 +435,6 @@
 	category = list("initial", "Medical", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-// Wondering where the surgical_drapes are? See yogs medical_designs, because the Autolathe does not support MAT_PLASTIC yet!
-
 /datum/design/beaker
 	name = "Beaker"
 	id = "beaker"
