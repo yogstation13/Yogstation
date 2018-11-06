@@ -193,9 +193,10 @@
 	var/tagname = null
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	if(istype(M, /mob/living/carbon/human/species/felinid)) // yogs start - lets catpeople wear collars
-		return TRUE
-	else if(ishuman(M))
+	if(istype(M, /mob/living/carbon/human)  // yogs start - lets catpeople wear collars
+		var/mob/living/carbon/human/T = M
+		if(istype(T.species, /datum/species/human/felinid)
+			return TRUE
 		return FALSE // yogs end
 		
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
