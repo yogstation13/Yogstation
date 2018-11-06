@@ -60,8 +60,10 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 			msg += "\n"
 	else
 		for(var/client/C in GLOB.mentors)
-			if(C.is_afk())
-				continue
+			if(C.holder && C.holder.fakekey)
+				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
+			else
+				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg)
 
