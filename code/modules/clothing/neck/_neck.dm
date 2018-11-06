@@ -193,7 +193,7 @@
 	var/tagname = null
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	if(istype(M, /mob/living/carbon/human)  // yogs start - lets catpeople wear collars
+	if(istype(M, /mob/living/carbon/human))  // yogs start - lets catpeople wear collars
 		var/mob/living/carbon/human/T = M
 		if(iscatperson(T))
 			return TRUE
