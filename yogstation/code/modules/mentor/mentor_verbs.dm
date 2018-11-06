@@ -39,6 +39,8 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 /client/verb/mentorwho()
 	set name = "Mentorwho"
 	set category = "Mentor"
+	
+	var/list/Lines = list()
 
 	var/msg = "<b>Current Mentors:</b>\n"
 	if(holder)
