@@ -873,7 +873,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/failsafe
 	name = "Failsafe Uplink Code"
-	desc = "When entered the uplink will self-destruct immidiately."
+	desc = "When entered the uplink will self-destruct immediately." //yogs - fixes spelling error "immediately"
 	item = /obj/effect/gibspawner/generic
 	cost = 1
 	surplus = 0
