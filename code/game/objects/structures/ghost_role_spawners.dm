@@ -302,7 +302,7 @@
 	mob_name = "hotel staff member"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	//yogs objectives = "Cater to visiting guests with your fellow staff. Do not leave your assigned hotel and always remember: The customer is always right!"
+	//objectives = "Cater to visiting guests with your fellow staff. Do not leave your assigned hotel and always remember: The customer is always right!" //yogs - removed hotel staff objectives
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
@@ -325,7 +325,7 @@
 	outfit = /datum/outfit/hotelstaff/security
 	flavour_text = "<span class='big bold'>You are a peacekeeper</span><b> assigned to this hotel to protect the interests of the company while keeping the peace between \
 		guests and the staff. Do <font size=6>NOT</font> leave the hotel, as that is grounds for contract termination.</b>"
-	//yogs objectives = "Do not leave your assigned hotel. Try and keep the peace between staff and guests, non-lethal force heavily advised if possible."
+	//objectives = "Do not leave your assigned hotel. Try and keep the peace between staff and guests, non-lethal force heavily advised if possible." //yogs - removed hotel staff objectives
 
 /datum/outfit/hotelstaff/security
 	name = "Hotel Security"
