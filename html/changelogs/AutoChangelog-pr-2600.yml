@@ -1,0 +1,4 @@
+author: " ShizClaev"
+delete-after: true 
+changes: 
+  - bugfix: "Bloodcrawling and jaunting mobs will no longer be consumed by chasms."

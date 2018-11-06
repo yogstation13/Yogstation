@@ -106,14 +106,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishItem(obj/item/I, cold = FALSE) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
-	if(istype(I, /obj/item/electronic_assembly))
-		var/obj/item/electronic_assembly/EA = I
-		for(var/AC in EA.assembly_components)
-			if(istype(AC, /obj/item/integrated_circuit/output/light))
-				EA.remove_component(AC)
-				qdel(AC)
-				EA.visible_message("<span class='warning'>A puff of smoke rises from [EA].</span>")
-	else if(istype(I, /obj/item/flashlight))
+	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(cold)
@@ -320,7 +313,7 @@
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
 	if(!text)
 		return
-	var/my_message = "<font size=2><span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
+	var/my_message = "<span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
 		if(is_shadow_or_thrall(M))
 			to_chat(M, my_message)

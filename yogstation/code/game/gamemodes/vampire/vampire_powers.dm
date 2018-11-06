@@ -117,8 +117,7 @@
 		if(do_mob(user, target, 50))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
-			target.Knockdown(150)
-			target.Stun(150)
+			target.Paralyze(150)
 			target.stuttering = 10
 		else
 			revert_cast(usr)
@@ -273,6 +272,9 @@
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
+			continue
+		if(target.has_trait(TRAIT_MINDSHIELD))
+			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim

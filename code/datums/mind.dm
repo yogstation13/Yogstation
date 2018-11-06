@@ -433,7 +433,7 @@
 
 		if(!GLOB.admin_objective_list)
 			generate_admin_objective_list()
-		
+
 		if(old_objective)
 			if(old_objective.name in GLOB.admin_objective_list)
 				def_value = old_objective.name
@@ -451,7 +451,7 @@
 			target_antag.objectives += new_objective
 			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
 			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
-		else 
+		else
 			if(old_objective.type == selected_type)
 				//Edit the old
 				old_objective.admin_edit(usr)
@@ -520,7 +520,7 @@
 				memory = null//Remove any memory they may have had.
 				log_admin("[key_name(usr)] removed [current]'s uplink.")
 			if("crystals")
-				if(check_rights(R_FUN, 0))
+				if(check_rights(R_ADMIN, 0)) //YOGS - changes R_FUN to R_ADMIN
 					var/datum/component/uplink/U = find_syndicate_uplink()
 					if(U)
 						var/crystals = input("Amount of telecrystals for [key]","Syndicate uplink", U.telecrystals) as null | num
@@ -537,7 +537,7 @@
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
-	
+
 	// yogs start - Donor features, quiet round
 	else if (href_list["quiet_override"])
 		quiet_round = FALSE
@@ -679,8 +679,8 @@
 		S.updateButtonIcon()
 		INVOKE_ASYNC(S, /obj/effect/proc_holder/spell.proc/start_recharge)
 
-/datum/mind/proc/get_ghost(even_if_they_cant_reenter)
-	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
+/datum/mind/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
+	for(var/mob/dead/observer/G in (ghosts_with_clients ? GLOB.player_list : GLOB.dead_mob_list))
 		if(G.mind == src)
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G

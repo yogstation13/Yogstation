@@ -89,6 +89,11 @@
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
 
+/obj/machinery/power/emitter/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: Emitting one beam each <b>[fire_delay*0.1]</b> seconds.<br>Power consumption at <b>[active_power_usage]W</b>.<span>")
+
 /obj/machinery/power/emitter/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_FLIP ,null,CALLBACK(src, .proc/can_be_rotated))
@@ -105,6 +110,7 @@
 		message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(T)]")
 		log_game("Emitter deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_SINGULO)
+		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 	QDEL_NULL(sparks)
 	return ..()
 
@@ -137,7 +143,7 @@
 			message_admins("Emitter turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 			log_game("Emitter turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 			investigate_log("turned [active ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
-
+			investigate_log("turned [active ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			update_icon()
 
 		else
@@ -170,11 +176,13 @@
 				powered = TRUE
 				update_icon()
 				investigate_log("regained power and turned <font color='green'>ON</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
+				investigate_log("regained power and turned <font color='green'>ON</font> at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 		else
 			if(powered)
 				powered = FALSE
 				update_icon()
 				investigate_log("lost power and turned <font color='red'>OFF</font> at [AREACOORD(src)]", INVESTIGATE_SINGULO)
+				investigate_log("lost power and turned <font color='red'>OFF</font> at [AREACOORD(src)]", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 				log_game("Emitter lost power in [AREACOORD(src)]")
 			return
 		if(charge <= 80)

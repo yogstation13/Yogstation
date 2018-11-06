@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "CMO can now monitor medbay on yogbox."

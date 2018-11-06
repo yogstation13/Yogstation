@@ -24,7 +24,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/effect/portal,
 		/obj/item/shared_storage,
 		/obj/structure/extraction_point,
-		/obj/machinery/syndicatebomb
+		/obj/machinery/syndicatebomb,
+		/obj/item/hilbertshotel
 	)))
 
 /obj/docking_port/mobile/supply
@@ -90,7 +91,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	var/value = 0
 	var/purchases = 0
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR) // yogs - fix cargo balance
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		if(!empty_turfs.len)
 			break
@@ -108,7 +109,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			message_admins("\A [SO.pack.name] ordered by [ADMIN_LOOKUPFLW(SO.orderer_ckey)] has shipped.")
 		purchases++
 
-	investigate_log("[purchases] orders in this shipment, worth [value] credits. [D.account_balance] credits left.", INVESTIGATE_CARGO) // yogs - fix cargo balance
+	investigate_log("[purchases] orders in this shipment, worth [value] credits. [D.account_balance] credits left.", INVESTIGATE_CARGO)
 
 /obj/docking_port/mobile/supply/proc/sell()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)

@@ -26,6 +26,15 @@
 			mentor_follow(M)
 		return TRUE
 
+	//Mentor Ticket
+	if(href_list["showmticket"])
+		var/datum/mentorticket/T = SSYogs.mentortickets[href_list["showmticket"]]
+		show_mentor_ticket(T)
+
+	//Mentor Ticket Reply
+	if(href_list["replymticket"])
+		cmd_mentor_pm(href_list["replymticket"])
+
 /client/proc/mentor_datum_set(admin)
 	var/found_datum = GLOB.mentor_datums[ckey]
 	if(!found_datum) // admin with no mentor datum?let's fix that
