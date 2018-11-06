@@ -2906,6 +2906,7 @@
 #include "yogstation\code\modules\research\rdconsole.dm"
 #include "yogstation\code\modules\research\designs\comp_board_designs.dm"
 #include "yogstation\code\modules\research\designs\stock_parts_designs.dm"
+#include "yogstation\code\modules\research\designs\tool_designs.dm"
 #include "yogstation\code\modules\shuttle\emergency.dm"
 #include "yogstation\code\modules\spells\cluwnecurse.dm"
 #include "yogstation\code\modules\spells\spells.dm"
