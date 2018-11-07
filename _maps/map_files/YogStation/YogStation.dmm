@@ -24519,6 +24519,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/mob/living/simple_animal/pet/fox/Renault,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "ben" = (
