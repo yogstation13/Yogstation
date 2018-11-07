@@ -13,6 +13,8 @@
 					/obj/item/clothing/under/rank/yellowclown = 1,
 					/obj/item/clothing/under/rank/orangeclown = 1,
 					/obj/item/clothing/under/rank/purpleclown = 1,
+					/obj/item/clothing/under/yogs/ronaldmcdonald = 1, // Yogs Change Added Ronald Costume
+					/obj/item/clothing/mask/yogs/ronald = 1, //Yogs Change Added Ronald Costume
 					/obj/item/clothing/under/gladiator = 1,
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
