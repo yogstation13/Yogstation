@@ -9,6 +9,8 @@
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
 
+	var/static/list/label_colors = list("red", "green", "blue", "cyan", "magenta", "yellow", "white")
+	var/label_color = "green"
 	var/code = DEFAULT_SIGNALER_CODE
 	var/frequency = FREQ_SIGNALER
 	var/delay = 0
@@ -31,7 +33,7 @@
 /obj/item/assembly/signaler/Initialize()
 	. = ..()
 	set_frequency(frequency)
-
+	update_icon()
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
@@ -44,6 +46,12 @@
 	return TRUE
 
 /obj/item/assembly/signaler/update_icon()
+	cut_overlays()
+	attached_overlays = list()
+	var/mutable_appearance/A = mutable_appearance('icons/obj/assemblies/new_assemblies.dmi', "signaller_color")
+	A.color = label_color
+	add_overlay(A)
+	attached_overlays += A
 	if(holder)
 		holder.update_icon()
 	return
@@ -70,6 +78,7 @@ Code:
 [src.code]
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
+Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black; color: [src.label_color]'>[src.label_color]</A><BR>
 [t1]
 </TT>"}
 		user << browse(dat, "window=radio")
@@ -101,6 +110,15 @@ Code:
 		spawn( 0 )
 			signal()
 
+	if(href_list["color"])
+		var/idx = label_colors.Find(label_color)
+		if(idx == label_colors.len || idx == 0)
+			idx = 1
+		else
+			idx++
+		label_color = label_colors[idx]
+		update_icon()
+
 	if(usr)
 		attack_self(usr)
 
@@ -112,6 +130,8 @@ Code:
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)
+			label_color = signaler2.label_color
+			update_icon()
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
 
