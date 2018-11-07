@@ -9,8 +9,8 @@
 				to_chat(user, "<span class='warning'>You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!</span>")
 				return
 
-			if(M.brain && M.brain.decoy_override) //same message as them being braindead.
-				to_chat(user, "<span class='warning'>The MMI indicates that their mind is currently inactive; it might change!</span>")
+			if(M.brain && M.brain.decoy_override) //same message as them being jobbanned.
+				to_chat(user, "<span class='warning'>This [M.name] does not seem to fit!</span>")
 				return
 
 	.=..()
