@@ -2807,6 +2807,7 @@
 #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
 #include "yogstation\code\modules\antagonists\changeling\changeling_power.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\absorb.dm"
+#include "yogstation\code\modules\antagonists\changeling\powers\fakedeath.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\mutations.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\shriek.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\spiders.dm"
