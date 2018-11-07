@@ -1,5 +1,5 @@
 /obj/item/mmi/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/organ/brain)) //Time to stick a brain in it --NEO´
+	if(istype(O, /obj/item/organ/brain)) //Time to stick a brain in it --NEOÂ´
 		var/obj/item/organ/brain/newbrain = O
 		if(newbrain.decoy_override && !brain && user.transferItemToLoc(O, src))
 			user.changeNext_move(CLICK_CD_MELEE)
@@ -18,3 +18,5 @@
 		else
 			brain.forceMove(get_turf(src))
 		brain = null //No more brain in here
+		return
+	.=..()
