@@ -12141,10 +12141,6 @@
 /mob/living/simple_animal/bot/honkbot,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"aye" = (
-/mob/living/simple_animal/pet/fox/Renault,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "ayf" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	icon_state = "intact";
@@ -12224,10 +12220,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ayp" = (
-/mob/living/simple_animal/sloth/citrus,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "ayq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -80334,7 +80326,7 @@ bjr
 bjr
 bkt
 bmh
-ayp
+bjr
 bjr
 bjr
 bjr
@@ -91380,7 +91372,7 @@ bbZ
 bcP
 cBo
 mcz
-aye
+bbw
 bbw
 aZV
 bmA
