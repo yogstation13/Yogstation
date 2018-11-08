@@ -13711,13 +13711,13 @@
 /turf/closed/wall,
 /area/crew_quarters/theatre)
 "aCs" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "aCt" = (
@@ -33245,11 +33245,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "byT" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
 "byU" = (
@@ -34008,13 +34008,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "bAF" = (
@@ -39528,7 +39528,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -39537,6 +39536,7 @@
 	icon_state = "scrub_map_on";
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bQt" = (
