@@ -4,6 +4,7 @@
 /obj/structure/mecha_wreckage/loaded_ripley
 	name = "intact Ripley wreckage"
 	icon_state = "ripley-broken"
+	salvage_num = 20
 
 /obj/structure/mecha_wreckage/loaded_ripley/Initialize()
 	. = ..()
