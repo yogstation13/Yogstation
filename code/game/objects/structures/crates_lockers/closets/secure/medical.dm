@@ -96,3 +96,8 @@
 	new /obj/item/storage/box/pillbottles(src)
 	new /obj/item/storage/box/medsprays(src)
 	new /obj/item/storage/box/medsprays(src)
+	//yogs start - adds reagent bottles
+	new /obj/item/reagent_containers/glass/bottle/facid(src)
+	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
+	new /obj/item/reagent_containers/glass/bottle/mutagen(src)
+	//yogs end
