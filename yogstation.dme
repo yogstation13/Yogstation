@@ -2821,6 +2821,7 @@
 #include "yogstation\code\modules\antagonists\slaughter\slaughter.dm"
 #include "yogstation\code\modules\antagonists\swarmer\swarmer_event.dm"
 #include "yogstation\code\modules\antagonists\traitor\datum_traitor.dm"
+#include "yogstation\code\modules\assembly\signaler.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "yogstation\code\modules\cargo\cargo_packs.dm"
 #include "yogstation\code\modules\client\client_defines.dm"
