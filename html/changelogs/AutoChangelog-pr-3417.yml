@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - bugfix: "disposals is no longer done in a really retarded manner."
