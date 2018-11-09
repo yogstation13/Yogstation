@@ -7221,6 +7221,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"anW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock/security/glass{
+	name = "Interrogation";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "anX" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 5;
@@ -85859,7 +85868,7 @@ acd
 aeh
 nkE
 fbC
-agl
+anW
 agH
 ags
 lBD
