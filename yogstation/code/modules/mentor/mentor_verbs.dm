@@ -40,12 +40,11 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	set name = "Mentorwho"
 	set category = "Mentor"
 	
-	var/list/Lines = list()
-
 	var/msg = "<b>Current Mentors:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.mentors)
-			msg += "\t[C] is a [C.holder.rank]"
+			if(C.Holder && C.holder.rank)
+				msg += "\t[C] is a [C.holder.rank]"
 
 			if(C.holder.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
@@ -63,9 +62,9 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	else
 		for(var/client/C in GLOB.mentors)
 			if(C.holder && C.holder.fakekey)
-				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
+				Lines += "[C.holder.fakekey]"
 			else
-				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
+				Lines += "[C.key]"
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg)
 
