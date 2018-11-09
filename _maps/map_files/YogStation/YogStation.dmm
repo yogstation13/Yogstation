@@ -7224,7 +7224,7 @@
 "anW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/door/airlock/security/glass{
+/obj/machinery/door/airlock/security{
 	name = "Interrogation";
 	req_access_txt = "2"
 	},
