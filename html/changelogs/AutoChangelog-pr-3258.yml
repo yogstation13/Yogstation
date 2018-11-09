@@ -1,4 +1,0 @@
-author: " ShizCalev"
-delete-after: true 
-changes: 
-  - bugfix: "Droppers will now work when squirting into the eyes if a mob is wearing a hardsuit but doesn't have eye protection on."
