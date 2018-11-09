@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - rscadd: "You can now color-code remote signallers by using the UI. It also transfers colors when you click one signaller to another."
