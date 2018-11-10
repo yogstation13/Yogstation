@@ -2758,6 +2758,7 @@
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
 #include "yogstation\code\game\machinery\machinery.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
+#include "yogstation\code\game\machinery\computer\atmos_sim.dm"
 #include "yogstation\code\game\machinery\computer\crew.dm"
 #include "yogstation\code\game\machinery\computer\medical.dm"
 #include "yogstation\code\game\machinery\computer\Operating.dm"
