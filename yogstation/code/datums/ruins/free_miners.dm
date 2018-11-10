@@ -75,7 +75,7 @@
 /obj/effect/mob_spawn/human/free_miner/engi
 	name = "Free Miner Engineer"
 	id_job = "Free Miner Engineer"
-	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! After years of saving, you almost have enough parts to put your own mech together. Salvage the wreckage with a welder and a crowbar to get them."
+	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! After years of saving, you finally have just enough parts to put your own mech together. Salvage the wreckage with a welder and a crowbar to get them."
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
