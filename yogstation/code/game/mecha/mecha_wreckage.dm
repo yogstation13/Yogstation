@@ -13,5 +13,5 @@
 								/obj/item/mecha_parts/part/ripley_right_arm,
 								/obj/item/mecha_parts/part/ripley_left_leg,
 								/obj/item/mecha_parts/part/ripley_right_leg)
-	crowbar_salvage = list(/obj/item/circuitboard/mecha/ripley/peripherals,
-							/obj/item/circuitboard/mecha/ripley/main)
+	crowbar_salvage = list(new /obj/item/circuitboard/mecha/ripley/peripherals(),
+							new /obj/item/circuitboard/mecha/ripley/main())
