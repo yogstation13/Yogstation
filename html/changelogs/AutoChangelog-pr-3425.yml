@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "Adds an atmospherics simulator, found in the toxins lab. You enter 2 gas mixes and it calculates explosion size. Alternatively you can enter a gas mix and simulate the gas reactions such as fusion"
