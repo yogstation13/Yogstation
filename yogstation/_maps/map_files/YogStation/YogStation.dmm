@@ -37659,10 +37659,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"bJY" = (
-/obj/structure/tank_dispenser,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "bKc" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -55050,17 +55046,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
-"oai" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "oaW" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -60601,6 +60586,25 @@
 	},
 /turf/open/floor/engine,
 /area/science/misc_lab)
+"Dit" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
+"Hjt" = (
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 
 (1,1,1) = {"
 aaa
@@ -109068,8 +109072,8 @@ byt
 bEy
 bFU
 bFT
-oai
-bJY
+Dit
+Hjt
 ado
 aex
 age
