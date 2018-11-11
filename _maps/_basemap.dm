@@ -1,6 +1,6 @@
 //#define LOWMEMORYMODE //uncomment this to load centcom and runtime station and thats it.
 
-#include "map_files\generic\YogsCCdmm" //Yogs Centcomm is in the folder with the regular centcomm, all other yogs-maps are in the yogstation/_maps folder.
+#include "map_files\generic\YogsCC.dmm" //Yogs Centcomm is in the folder with the regular centcomm, all other yogs-maps are in the yogstation/_maps folder.
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
