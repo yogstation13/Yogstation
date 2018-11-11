@@ -10,8 +10,8 @@
 		#include "map_files\MetaStation\MetaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
-		#include "..\yogstation\_maps\map_files\YogStation\Yogstation.dmm"
-		#include "..\yogstation\_maps\map_files\YogsMeta\YogsMeta.dmm"
+		#include "../yogstation\_maps\map_files\YogStation\Yogstation.dmm"
+		#include "../yogstation\_maps\map_files\YogsMeta\YogsMeta.dmm"
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
