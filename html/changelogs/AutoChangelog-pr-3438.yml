@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "Silver slime extracts no longer spawn unintended items related to moths eating clothes."
