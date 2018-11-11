@@ -1,6 +1,6 @@
 {
     "map_name": "Yogsmeta",
-    "map_path": "map_files/Yogsmeta",
+    "map_path": "../yogstation/_maps/map_files/Yogsmeta",
     "map_file": "Yogsmeta.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
