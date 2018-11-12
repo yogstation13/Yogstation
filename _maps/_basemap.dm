@@ -12,8 +12,12 @@
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "yogstation\map_files\YogStation\Yogstation.dmm"
 		#include "yogstation\map_files\YogsMeta\YogsMeta.dmm"
+<<<<<<< HEAD
 		#include "yogstation\map_files\Yogspubby\Yogspubby.dmm"
 
+=======
+		#include "yogstation\map_files\YogsPubby\YogsPubby.dmm"
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif

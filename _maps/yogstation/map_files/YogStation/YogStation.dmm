@@ -7282,6 +7282,27 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"aoc" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 4;
+	sortType = 15
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "aod" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7766,6 +7787,32 @@
 "apd" = (
 /turf/closed/wall,
 /area/security/detectives_office)
+"ape" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft{
+	name = "Atmospherics Delivery";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"apf" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/camera/motion{
+	c_tag = "Vault";
+	dir = 8;
+	network = list("vault","ss13")
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/nuke_storage)
 "apg" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -26185,27 +26232,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
-"biF" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 6
-	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 8;
-	sortType = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "biG" = (
 /obj/machinery/mech_bay_recharge_port{
 	icon_state = "recharge_port";
@@ -50216,6 +50242,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"eWd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "eWl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -51816,18 +51854,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/yellow/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"hTi" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/camera/motion{
-	c_tag = "Vault";
-	dir = 8;
-	network = list("vault")
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/nuke_storage)
 "hTj" = (
 /turf/open/floor/plating,
 /area/space/nearstation)
@@ -52333,6 +52359,13 @@
 /obj/item/folder/documents,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"iXd" = (
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "iXI" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -58865,15 +58898,6 @@
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
-/area/engine/atmos)
-"vkK" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/engine/atmos)
 "vkW" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -82841,7 +82865,7 @@ aZK
 aZK
 aZK
 bgv
-biF
+aoc
 bkw
 bnE
 bny
@@ -84115,7 +84139,7 @@ pOw
 gXs
 aBa
 aUw
-hTi
+apf
 yiB
 lGF
 vra
@@ -90574,7 +90598,7 @@ bZN
 bLK
 ssY
 fIa
-vkK
+ape
 mqf
 vGW
 gUn
@@ -109072,8 +109096,13 @@ byt
 bEy
 bFU
 bFT
+<<<<<<< HEAD:_maps/yogstation/map_files/YogStation/YogStation.dmm
 Dit
 Hjt
+=======
+eWd
+iXd
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c:_maps/yogstation/map_files/YogStation/YogStation.dmm
 ado
 aex
 age

@@ -8947,11 +8947,14 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
+<<<<<<< HEAD
 "tQ" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien15"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "tR" = (
 /obj/machinery/status_display/ai,
 /turf/closed/indestructible/riveted,
@@ -8998,11 +9001,14 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+<<<<<<< HEAD
 "tZ" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien5"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "ud" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "nukeop_ready";
@@ -10019,11 +10025,14 @@
 /obj/item/clothing/head/helmet/space/plasmaman,
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "wj" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien24"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "wk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -11277,11 +11286,14 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+<<<<<<< HEAD
 "zt" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien16"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "zx" = (
 /obj/structure/closet/syndicate/personal,
 /obj/effect/turf_decal/stripes/line{
@@ -11979,6 +11991,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Bq" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien18"
@@ -11990,6 +12003,8 @@
 	icon_state = "black"
 	},
 /area/space)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Bs" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -12311,11 +12326,14 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+<<<<<<< HEAD
 "BT" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien20"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible{
@@ -12459,11 +12477,14 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+<<<<<<< HEAD
 "Cm" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien7"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Co" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -13091,11 +13112,14 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Dn" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien17"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Dq" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/turf_decal/stripes/line{
@@ -14243,11 +14267,14 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Ga" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien3"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Gb" = (
 /obj/machinery/shower{
 	dir = 4
@@ -14648,11 +14675,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+<<<<<<< HEAD
 "GN" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien8"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "GO" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/golden{
@@ -14848,9 +14878,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
+<<<<<<< HEAD
 "Hi" = (
 /turf/closed/indestructible/abductor,
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -16217,11 +16250,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
+<<<<<<< HEAD
 "JY" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien23"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "JZ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -17638,11 +17674,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+<<<<<<< HEAD
 "QR" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien9"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "QT" = (
 /obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible{
@@ -17651,11 +17690,14 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+<<<<<<< HEAD
 "QV" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien13"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "QW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	locked = 0
@@ -17886,11 +17928,14 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+<<<<<<< HEAD
 "Tf" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien4"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Tj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
@@ -18011,6 +18056,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+<<<<<<< HEAD
 "Up" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien14"
@@ -18023,6 +18069,8 @@
 	icon_state = "alien22"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Uw" = (
 /obj/machinery/light{
 	dir = 8
@@ -18075,18 +18123,24 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "UU" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien19"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "UV" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Va" = (
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Vk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -18119,11 +18173,14 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Vx" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien12"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Vz" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
@@ -18206,11 +18263,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+<<<<<<< HEAD
 "Wy" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien21"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "WJ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome Administration";
@@ -18357,20 +18417,26 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
 /area/centcom/supplypod)
+<<<<<<< HEAD
 "XV" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien10"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Ya" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Yd" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien6"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Yf" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/chawanmushi,
@@ -18433,11 +18499,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
+<<<<<<< HEAD
 "Yx" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien11"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "YA" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Supply";
@@ -18492,11 +18561,14 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+<<<<<<< HEAD
 "Zb" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien2"
 	},
 /area/bluespace_locker)
+=======
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 "Zc" = (
 /turf/open/indestructible/binary,
 /area/space)
@@ -37081,6 +37153,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Br
 Br
@@ -37088,6 +37161,15 @@ Br
 Br
 Br
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -37337,6 +37419,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Br
 zt
@@ -37346,6 +37429,17 @@ XV
 Yd
 Br
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -37594,6 +37688,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 BT
 Dn
@@ -37603,6 +37698,17 @@ Va
 Cm
 Hi
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -37851,6 +37957,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Wy
 Va
@@ -37860,6 +37967,17 @@ Va
 Va
 Zb
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -38108,6 +38226,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Ut
 Va
@@ -38117,6 +38236,17 @@ Va
 Va
 Ga
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -38365,6 +38495,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 JY
 Va
@@ -38374,6 +38505,17 @@ Va
 Va
 Tf
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -38622,6 +38764,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 wj
 Bq
@@ -38631,6 +38774,17 @@ Va
 GN
 tZ
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -38879,6 +39033,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Br
 UU
@@ -38888,6 +39043,17 @@ Yx
 QR
 Br
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
@@ -39137,6 +39303,7 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
 Br
 Br
 Br
@@ -39144,6 +39311,15 @@ Br
 Br
 Br
 Br
+=======
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> a24ccc42732e4bde9883734082f247800eb01f8c
 aa
 aa
 aa
