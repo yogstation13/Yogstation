@@ -1208,13 +1208,8 @@
 		for(var/option in optionlist)
 			optionlist[option] = image(icon = 'yogstation/icons/obj/interface.dmi', icon_state = option)
 
-<<<<<<< HEAD
-	var/paintjob = show_radial_menu(user,src,optionlist)
-	if(!paintjob || (!in_range(src, usr) && src.loc != usr) || !W.use_paint(user)) //yogs end
-=======
-	var/paintjob = input(user, "Please select a paintjob for this airlock.") in optionlist
+	var/paintjob = show_radial_menu(user,src,optionlist) //yogs end
 	if((!in_range(src, usr) && loc != usr) || !W.use_paint(user))
->>>>>>> 597bf9b557... [s] Improves AI, turret, and door logging (#41327)
 		return
 	switch(paintjob)
 		if("Standard")
