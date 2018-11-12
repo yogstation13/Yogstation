@@ -1,0 +1,4 @@
+author: " Mickyan"
+delete-after: true 
+changes: 
+  - tweak: "lowered the concentration of miasma required to display a warning message"
