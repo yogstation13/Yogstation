@@ -345,15 +345,19 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 			if(!onstation || account && account.account_job && account.account_job.paycheck_department == payment_department)
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
+				price_listed = "$[extra_price]"
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
 			dat += "<li>"
 			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && iscarbon(user))))
 				dat += "<a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a> "
-			else
-				dat += "<td><span class='linkOff'>Not Available</span></td>"
-			dat += "</tr>"
-		dat += "</table>" //yogs end - icon instead of colour
-	dat += "</div>"
+ 			else
+ 				dat += "<span class='linkOff'>Not Available</span> "
+			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>" //yogs
+ 			dat += "<font color = '[R.display_color]'><b>[sanitize(R.name)] ([price_listed])</b>:</font>"
+ 			dat += " <b>[R.amount]</b>"
+ 			dat += "</li>"
+ 		dat += "</ul>"
+ 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
 	if(istype(src, /obj/machinery/vending/snack))
