@@ -1622,7 +1622,7 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
-		set_electrified(ELECTRIFIED_PERMANENT, user)
+		set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
 		to_chat(user, "Door electrified") //yogs
 
 /obj/machinery/door/airlock/proc/emergency_on(mob/user)
