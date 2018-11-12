@@ -8947,6 +8947,11 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
+"tQ" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien15"
+	},
+/area/bluespace_locker)
 "tR" = (
 /obj/machinery/status_display/ai,
 /turf/closed/indestructible/riveted,
@@ -8993,6 +8998,11 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"tZ" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien5"
+	},
+/area/bluespace_locker)
 "ud" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "nukeop_ready";
@@ -10009,6 +10019,11 @@
 /obj/item/clothing/head/helmet/space/plasmaman,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"wj" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien24"
+	},
+/area/bluespace_locker)
 "wk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -11262,6 +11277,11 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"zt" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien16"
+	},
+/area/bluespace_locker)
 "zx" = (
 /obj/structure/closet/syndicate/personal,
 /obj/effect/turf_decal/stripes/line{
@@ -11959,6 +11979,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"Bq" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien18"
+	},
+/area/bluespace_locker)
+"Br" = (
+/turf/closed/indestructible{
+	icon = 'icons/turf/space.dmi';
+	icon_state = "black"
+	},
+/area/space)
 "Bs" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -12280,6 +12311,11 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"BT" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien20"
+	},
+/area/bluespace_locker)
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible{
@@ -12423,6 +12459,11 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"Cm" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien7"
+	},
+/area/bluespace_locker)
 "Co" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -13050,6 +13091,11 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Dn" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien17"
+	},
+/area/bluespace_locker)
 "Dq" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/turf_decal/stripes/line{
@@ -14197,6 +14243,11 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
+"Ga" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien3"
+	},
+/area/bluespace_locker)
 "Gb" = (
 /obj/machinery/shower{
 	dir = 4
@@ -14597,6 +14648,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+"GN" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien8"
+	},
+/area/bluespace_locker)
 "GO" = (
 /obj/structure/table/wood,
 /obj/structure/sign/plaques/golden{
@@ -14792,6 +14848,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
+"Hi" = (
+/turf/closed/indestructible/abductor,
+/area/bluespace_locker)
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -16158,6 +16217,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
+"JY" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien23"
+	},
+/area/bluespace_locker)
 "JZ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -17574,6 +17638,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"QR" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien9"
+	},
+/area/bluespace_locker)
 "QT" = (
 /obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible{
@@ -17582,6 +17651,11 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"QV" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien13"
+	},
+/area/bluespace_locker)
 "QW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	locked = 0
@@ -17812,6 +17886,11 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Tf" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien4"
+	},
+/area/bluespace_locker)
 "Tj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
@@ -17932,6 +18011,18 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"Up" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien14"
+	},
+/area/bluespace_locker)
+"Ut" = (
+/obj/structure/closet/bluespace/internal,
+/turf/open/indestructible{
+	icon = 'icons/turf/walls.dmi';
+	icon_state = "alien22"
+	},
+/area/bluespace_locker)
 "Uw" = (
 /obj/machinery/light{
 	dir = 8
@@ -17984,10 +18075,18 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UU" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien19"
+	},
+/area/bluespace_locker)
 "UV" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Va" = (
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "Vk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -18020,6 +18119,11 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Vx" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien12"
+	},
+/area/bluespace_locker)
 "Vz" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
@@ -18102,6 +18206,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Wy" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien21"
+	},
+/area/bluespace_locker)
 "WJ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Thunderdome Administration";
@@ -18248,10 +18357,20 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
 /area/centcom/supplypod)
+"XV" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien10"
+	},
+/area/bluespace_locker)
 "Ya" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Yd" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien6"
+	},
+/area/bluespace_locker)
 "Yf" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/chawanmushi,
@@ -18314,6 +18433,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
+"Yx" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien11"
+	},
+/area/bluespace_locker)
 "YA" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Supply";
@@ -18368,6 +18492,11 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Zb" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien2"
+	},
+/area/bluespace_locker)
 "Zc" = (
 /turf/open/indestructible/binary,
 /area/space)
@@ -36952,13 +37081,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Br
+Br
+Br
+Br
+Br
+Br
 aa
 aa
 aa
@@ -37208,15 +37337,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Br
+zt
+Up
+Vx
+XV
+Yd
+Br
+Br
 aa
 aa
 aa
@@ -37465,15 +37594,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+BT
+Dn
+Va
+Va
+Va
+Cm
+Hi
+Br
 aa
 aa
 aa
@@ -37722,15 +37851,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Wy
+Va
+Va
+Va
+Va
+Va
+Zb
+Br
 aa
 aa
 aa
@@ -37979,15 +38108,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Ut
+Va
+Va
+Va
+Va
+Va
+Ga
+Br
 aa
 aa
 aa
@@ -38236,15 +38365,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+JY
+Va
+Va
+Va
+Va
+Va
+Tf
+Br
 aa
 aa
 aa
@@ -38493,15 +38622,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+wj
+Bq
+Va
+Va
+Va
+GN
+tZ
+Br
 aa
 aa
 aa
@@ -38750,15 +38879,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Br
+UU
+tQ
+QV
+Yx
+QR
+Br
+Br
 aa
 aa
 aa
@@ -39008,13 +39137,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Br
+Br
+Br
+Br
+Br
+Br
+Br
 aa
 aa
 aa
