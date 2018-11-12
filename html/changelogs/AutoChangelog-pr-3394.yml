@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the bluespace locker. Every round, a random non-secure locker on the station becomes a bluespace locker. Bluespace lockers have entire rooms inside of them, and they are indistinguishable from normal lockers, except that when you go inside it you find yourself in a room. If you destroy the bluespace locker, it randomly replaces a different locker on the station."
