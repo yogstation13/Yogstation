@@ -1605,12 +1605,8 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "Can't un-electrify the airlock - The electrification wire is cut.")
 	else if(isElectrified())
-<<<<<<< HEAD
-		set_electrified(0)
-		to_chat(user, "Door un-electrified.") //yogs
-=======
 		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
->>>>>>> 597bf9b557... [s] Improves AI, turret, and door logging (#41327)
+		to_chat(user, "Door un-electrified.") //yogs
 
 /obj/machinery/door/airlock/proc/shock_temp(mob/user)
 	if(!user_allowed(user))
@@ -1626,14 +1622,8 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
-<<<<<<< HEAD
-		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)]"))
-		log_combat(user, src, "electrified")
-		set_electrified(ELECTRIFIED_PERMANENT)
+		set_electrified(ELECTRIFIED_PERMANENT, user)
 		to_chat(user, "Door electrified") //yogs
-=======
-		set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
->>>>>>> 597bf9b557... [s] Improves AI, turret, and door logging (#41327)
 
 /obj/machinery/door/airlock/proc/emergency_on(mob/user)
 	if(!user_allowed(user))
