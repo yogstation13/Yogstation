@@ -1,4 +1,4 @@
 /datum/map_template/shuttle/whiteship/miner
-	prefix = "yogstation/_maps/shuttles/"
+	prefix = "_maps/yogstation/shuttles/"
 	suffix = "miner"
 	name = "Free Miner Ship"
