@@ -30,7 +30,10 @@ map yogsmeta
 	minplayers 25
 endmap
 
-map pubbystation
+#map pubbystation
+#endmap
+
+map yogspubby
 endmap
 
 map deltastation
