@@ -1,6 +1,6 @@
 {
     "map_name": "Yog Station",
-    "map_path": "map_files/YogStation",
+    "map_path": "../yogstation/_maps/map_files/YogStation",
     "map_file": "YogStation.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
