@@ -1,5 +1,6 @@
 /datum/map_template/ruin/space/freeminer_asteroid
 	id = "freeminer_asteroid"
+	prefix = "yogstation/_maps/RandomRuins/SpaceRuins/"
 	suffix = "freeminer_asteroid.dmm"
 	name = "Free Miner Asteroid"
 	description = "Some space miners still cling to the old way of getting that \
