@@ -1,2 +1,2 @@
 /datum/map_template/ruin/space/spacehotel
-	prefix = "yogstation/_maps/RandomRuins/SpaceRuins/"
+	prefix = "_maps/yogstation/RandomRuins/SpaceRuins/"
