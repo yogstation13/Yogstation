@@ -20512,6 +20512,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/eastright{
+	name = "MULEbot Access";
+	req_one_access_txt = "48;50"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aKZ" = (
@@ -21310,6 +21314,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aMy" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/door/window/southleft{
+	name = "Cargo Disposal";
+	req_one_access_txt = "48;50"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aMz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -29373,14 +29393,24 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "ban" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/machinery/door/window/westright{
+	name = "Atmospherics Access";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/storage)
+/area/engine/atmos)
 "bao" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "packageSort2";
@@ -34540,6 +34570,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bjp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/door/window/westleft{
+	name = "Medical Delivery";
+	req_access_txt = "5"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "bjq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -46818,18 +46865,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bFG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "bFH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57501,18 +57536,6 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/medical/storage)
-"bZY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bZZ" = (
 /obj/structure/disposalpipe/segment{
@@ -100201,7 +100224,7 @@ aKQ
 aKQ
 aKQ
 aYL
-ban
+aMy
 bbO
 bdi
 beV
@@ -104859,7 +104882,7 @@ bUY
 bsg
 bXK
 bYR
-bZY
+bjp
 bvd
 cdp
 cev
@@ -122834,7 +122857,7 @@ byR
 bAB
 bCh
 bDO
-bFG
+ban
 blF
 aaO
 aaO
