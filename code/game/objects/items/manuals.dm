@@ -241,7 +241,7 @@
 /obj/item/book/manual/wiki/attack_self()
 	if(!dat)
 		initialize_wikibook()
-	..()
+	return ..()
 
 /obj/item/book/manual/wiki/proc/initialize_wikibook()
 	var/wikiurl = CONFIG_GET(string/wikiurl)
