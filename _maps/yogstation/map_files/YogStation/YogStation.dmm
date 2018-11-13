@@ -16946,9 +16946,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"aJI" = (
-/turf/closed/wall,
-/area/crew_quarters/kitchen)
 "aJJ" = (
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -17277,12 +17274,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"aKJ" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
 "aKK" = (
 /obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
@@ -17821,7 +17812,7 @@
 /area/crew_quarters/bar)
 "aMl" = (
 /turf/closed/wall,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aMm" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -17844,7 +17835,7 @@
 "aMp" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aMq" = (
 /obj/structure/table/wood,
 /obj/item/instrument/guitar{
@@ -18219,7 +18210,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aNv" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L4"
@@ -18283,18 +18274,18 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aNE" = (
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aNF" = (
 /obj/structure/kitchenspike,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aNG" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
@@ -18331,7 +18322,7 @@
 	name = "Pete"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aNN" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -18679,7 +18670,7 @@
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aOI" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/beach_ball/holoball,
@@ -18688,7 +18679,7 @@
 "aOJ" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "aOK" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -23434,7 +23425,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "bbz" = (
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -25863,7 +25854,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "bhM" = (
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -25880,7 +25871,7 @@
 /area/maintenance/port)
 "bhP" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "bhR" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -26028,7 +26019,7 @@
 "bij" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "bik" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -50216,6 +50207,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"eWd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "eWl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -50367,7 +50370,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen/backroom)
+/area/crew_quarters/kitchen)
 "flP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -52333,6 +52336,13 @@
 /obj/item/folder/documents,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"iXd" = (
+/obj/machinery/computer/atmos_sim{
+	dir = 4;
+	mode = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "iXI" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -60586,25 +60596,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/misc_lab)
-"Dit" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/structure/tank_dispenser,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
-"Hjt" = (
-/obj/machinery/computer/atmos_sim{
-	dir = 4;
-	mode = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 
 (1,1,1) = {"
 aaa
@@ -97988,15 +97979,15 @@ aKr
 aMi
 auX
 auX
-aJI
-aJI
+aMl
+aMl
 aSp
-aJI
+aMl
 aVw
-aJI
+aMl
 aXO
-aJI
-aJI
+aMl
+aMl
 bcs
 aYV
 aYV
@@ -98245,14 +98236,14 @@ aKz
 aMk
 auX
 aOI
-aJI
+aMl
 aQi
 aSq
 aSq
 aSq
 aSq
 aYI
-aJI
+aMl
 bbz
 aYV
 aYV
@@ -98497,19 +98488,19 @@ aaa
 alP
 aDZ
 alP
-aJI
-aJI
 aMl
 aMl
 aMl
-aJI
+aMl
+aMl
+aMl
 aQj
 aSq
 aSq
 aSq
 aSq
 aYJ
-aJI
+aMl
 bbz
 aYV
 bdq
@@ -98754,12 +98745,12 @@ alP
 alP
 aGN
 aIh
-aJI
+aMl
 aKC
 aMp
 aNF
 aOJ
-aJI
+aMl
 aQk
 aSG
 aSZ
@@ -99012,7 +99003,7 @@ alP
 aGB
 aIf
 ays
-aKJ
+aNu
 aNu
 fkL
 bby
@@ -99268,12 +99259,12 @@ aDV
 alP
 aGL
 aHY
-aJI
+aMl
 aKM
 aND
 aNM
 bhL
-aJI
+aMl
 aRu
 aSI
 aTN
@@ -99530,7 +99521,7 @@ aKN
 aNE
 bhP
 bhP
-aJI
+aMl
 aRv
 aSJ
 aTO
@@ -99782,19 +99773,19 @@ aDW
 aFn
 aGP
 avI
-aJI
-aJI
+aMl
+aMl
 aMl
 aOH
 bij
-aJI
+aMl
 aRw
 aSK
 aUf
 aUf
 aUf
 aYL
-aJI
+aMl
 bbA
 aYV
 bdr
@@ -100041,17 +100032,17 @@ aGJ
 aHY
 aJL
 aKX
-aJI
-aJI
-aJI
-aJI
+aMl
+aMl
+aMl
+aMl
 aRx
 aSq
 aSq
 aVA
 aXj
 aYM
-aJI
+aMl
 bbz
 aYV
 aYV
@@ -100301,15 +100292,15 @@ aKW
 aMG
 aIp
 aIp
-aJI
-aJI
+aMl
+aMl
 ava
 avS
-aJI
-aJI
-aJI
-aJI
-aJI
+aMl
+aMl
+aMl
+aMl
+aMl
 bcq
 bcq
 bcq
@@ -109072,8 +109063,8 @@ byt
 bEy
 bFU
 bFT
-Dit
-Hjt
+eWd
+iXd
 ado
 aex
 age
