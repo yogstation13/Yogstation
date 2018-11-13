@@ -9690,7 +9690,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "arc" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
@@ -12364,7 +12364,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "avY" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -13002,7 +13002,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = -24;
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -13308,7 +13308,7 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "axG" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13583,7 +13583,7 @@
 "aym" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Warehouse Maintenance";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "31;48"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13823,7 +13823,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = 24;
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -13868,7 +13868,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "ayQ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -13880,7 +13880,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "ayR" = (
 /obj/item/wrench,
 /turf/open/floor/plating,
@@ -13902,13 +13902,13 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "ayU" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "ayV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13917,7 +13917,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "ayW" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -14451,7 +14451,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "azO" = (
 /obj/structure/chair,
 /obj/effect/landmark/event_spawn,
@@ -14513,7 +14513,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "azT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16641,7 +16641,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aDI" = (
 /obj/machinery/requests_console{
 	department = "Detective's office";
@@ -16678,7 +16678,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aDK" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical{
@@ -16838,7 +16838,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aDZ" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/dice,
@@ -17178,7 +17178,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aEI" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -17206,7 +17206,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Storage Wing APC";
-	areastring = "/area/construction/storage/wing";
+	areastring = "/area/construction/storage_wing";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow{
@@ -17219,7 +17219,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aEM" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -17374,7 +17374,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aEY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -17388,7 +17388,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aEZ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -17812,7 +17812,7 @@
 /area/crew_quarters/locker)
 "aFN" = (
 /turf/closed/wall,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -17822,7 +17822,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -17832,7 +17832,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -17874,7 +17874,7 @@
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -17887,14 +17887,14 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aFV" = (
 /obj/structure/chair{
 	dir = 8
@@ -18599,7 +18599,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aHk" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
@@ -18734,7 +18734,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aHu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on";
@@ -19295,7 +19295,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "aIu" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -20512,6 +20512,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/eastright{
+	name = "MULEbot Access";
+	req_one_access_txt = "31;48"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aKZ" = (
@@ -21310,6 +21314,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aMy" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mining{
+	name = "Cargo Bay";
+	req_one_access_txt = "48;50"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/space)
 "aMz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -21928,7 +21944,8 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -27;
-	pixel_y = -5
+	pixel_y = -5;
+	req_access_txt = "31"
 	},
 /obj/machinery/button/door{
 	dir = 2;
@@ -21936,7 +21953,8 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -27;
-	pixel_y = 5
+	pixel_y = 5;
+	req_access_txt = "31"
 	},
 /obj/machinery/computer/cargo{
 	dir = 4
@@ -29348,7 +29366,7 @@
 "bak" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Maintenance";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "31;48"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -29378,6 +29396,13 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
+	},
+/obj/machinery/door/window/southleft{
+	name = "Cargo Disposal";
+	req_one_access_txt = "50"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -31142,7 +31167,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "50"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -46825,6 +46850,13 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
+/obj/machinery/door/window/westright{
+	name = "Atmospherics Access";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
@@ -48436,7 +48468,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "bIJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue{
@@ -49799,7 +49831,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "bLt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 2
@@ -49927,7 +49959,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
+/area/construction/storage_wing)
 "bLF" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -57512,6 +57544,11 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/door/window/westleft{
+	name = "Medical Delivery";
+	req_access_txt = "5"
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bZZ" = (
@@ -82277,18 +82314,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
-"nIb" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mining{
-	name = "Cargo Bay";
-	req_one_access_txt = "48;50"
-	},
-/obj/effect/turf_decal/delivery,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/construction/storage/wing)
 "nPc" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -103271,8 +103296,8 @@ aaf
 aaa
 aaa
 aFN
-nIb
-nIb
+aMy
+aMy
 dne
 doJ
 dne
