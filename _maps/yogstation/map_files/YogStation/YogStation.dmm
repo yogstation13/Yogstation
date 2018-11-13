@@ -8166,6 +8166,15 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+"apW" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/window/westleft{
+	name = "Cargo Desk";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "apX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -8432,6 +8441,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aqs" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Office";
+	req_access_txt = "50"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "aqt" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -8649,6 +8677,33 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aqW" = (
+/obj/machinery/camera{
+	c_tag = "Cargo Recieving Dock";
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "QMLoaddoor";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -24;
+	pixel_y = -8;
+	req_access_txt = "31"
+	},
+/obj/machinery/button/door{
+	dir = 2;
+	id = "QMLoaddoor2";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -24;
+	pixel_y = 8;
+	req_access_txt = "31"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "aqX" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -28935,15 +28990,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"boS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/westleft{
-	name = "Cargo Desk";
-	req_access_txt = "50"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "boU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -30678,31 +30724,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"btr" = (
-/obj/machinery/camera{
-	c_tag = "Cargo Recieving Dock";
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "QMLoaddoor";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -24;
-	pixel_y = -8
-	},
-/obj/machinery/button/door{
-	dir = 2;
-	id = "QMLoaddoor2";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -24;
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bts" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -38712,25 +38733,6 @@
 "bNJ" = (
 /turf/open/floor/plating,
 /area/construction)
-"bNK" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mining/glass{
-	name = "Cargo Office";
-	req_access_txt = "50"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "bNL" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -78997,7 +78999,7 @@ bnw
 boJ
 bql
 brL
-btr
+aqW
 fRF
 abn
 blW
@@ -83620,9 +83622,9 @@ bgE
 mJJ
 cNI
 bfm
-boS
+apW
 bfm
-bNK
+aqs
 bfm
 bml
 bwe
