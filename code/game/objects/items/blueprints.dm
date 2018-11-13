@@ -150,6 +150,8 @@
 		return AREA_SPACE
 	var/list/SPECIALS = list(
 		/area/shuttle,
+		/area/admin,
+		/area/arrival,
 		/area/centcom,
 		/area/asteroid,
 		/area/tdome,

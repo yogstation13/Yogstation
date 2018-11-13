@@ -151,6 +151,13 @@
 	name = "Derelict Outpost Docked Ship"
 	icon_state = "red"
 
+
+//Ruin of Space Bar
+
+/area/ruin/space/has_grav/powered/spacebar
+	name = "Space Bar"
+	icon_state = "bar"
+
 //Ruin of turretedoutpost
 
 /area/ruin/space/has_grav/turretedoutpost
@@ -161,7 +168,7 @@
 //Ruin of old teleporter
 
 /area/ruin/space/oldteleporter
-	name = "Old Teleporter"
+	name = "Old teleporter"
 	icon_state = "teleporter"
 
 
@@ -314,9 +321,20 @@
 /area/ruin/space/derelict/storage/equipment
 	name = "Derelict Equipment Storage"
 
+/area/ruin/space/derelict/storage/storage_access
+	name = "Derelict Storage Access"
+
+/area/ruin/space/derelict/storage/engine_storage
+	name = "Derelict Engine Storage"
+	icon_state = "green"
+
 /area/ruin/space/derelict/bridge
 	name = "Derelict Control Room"
 	icon_state = "bridge"
+
+/area/ruin/space/derelict/secret
+	name = "Derelict Secret Room"
+	icon_state = "library"
 
 /area/ruin/space/derelict/bridge/access
 	name = "Derelict Control Room Access"
@@ -334,13 +352,33 @@
 	name = "South East Solars"
 	icon_state = "engine"
 
+/area/ruin/space/derelict/crew_quarters
+	name = "Derelict Crew Quarters"
+	icon_state = "fitness"
+
 /area/ruin/space/derelict/medical
 	name = "Derelict Medbay"
 	icon_state = "medbay"
 
+/area/ruin/space/derelict/medical/morgue
+	name = "Derelict Morgue"
+	icon_state = "morgue"
+
 /area/ruin/space/derelict/medical/chapel
 	name = "Derelict Chapel"
 	icon_state = "chapel"
+
+/area/ruin/space/derelict/teleporter
+	name = "Derelict Teleporter"
+	icon_state = "teleporter"
+
+/area/ruin/space/derelict/eva
+	name = "Derelict EVA Storage"
+	icon_state = "eva"
+
+/area/ruin/space/derelict/ship
+	name = "Abandoned Ship"
+	icon_state = "yellow"
 
 /area/solar/derelict_starboard
 	name = "Derelict Starboard Solar Array"
@@ -362,6 +400,14 @@
 	name = "Derelict Atmospherics"
 	icon_state = "red"
 
+/area/ruin/space/derelict/assembly_line
+	name = "Assembly Line"
+	icon_state = "ass_line"
+	power_equip = FALSE
+	power_light = FALSE
+	power_environ = FALSE
+
+
 //DJSTATION
 
 /area/ruin/space/djstation
@@ -381,13 +427,28 @@
 /area/ruin/space/abandoned_tele
 	name = "Abandoned Teleporter"
 	icon_state = "teleporter"
-	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/signal.ogg')
+	music = "signal"
+	ambientsounds = list('sound/ambience/ambimalf.ogg')
 
 //OLD AI SAT
 
-/area/tcommsat/oldaisat
-	name = "Abandoned Satellite"
-	icon_state = "tcomsatcham"
+/area/ruin/space/old_ai_sat/ai
+	name = "AI Chamber"
+	icon_state = "ai"
+	ambientsounds = list('sound/ambience/ambimalf.ogg')
+
+/area/ruin/space/old_ai_sat/main
+	name = "Wreck"
+	icon_state = "storage"
+
+/area/ruin/space/old_ai_sat/engineering
+	name = "Power Room"
+	icon_state = "engine"
+
+/area/ruin/space/old_ai_sat/bridge
+	name = "Bridge"
+	icon_state = "bridge"
+
 
 //ABANDONED BOX WHITESHIP
 

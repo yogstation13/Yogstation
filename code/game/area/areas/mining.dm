@@ -7,6 +7,7 @@
 /area/mine/explored
 	name = "Mine"
 	icon_state = "explored"
+	music = null
 	always_unpowered = TRUE
 	requires_power = TRUE
 	poweralm = FALSE
@@ -20,6 +21,7 @@
 /area/mine/unexplored
 	name = "Mine"
 	icon_state = "unexplored"
+	music = null
 	always_unpowered = TRUE
 	requires_power = TRUE
 	poweralm = FALSE
@@ -84,6 +86,7 @@
 /area/lavaland/surface
 	name = "Lavaland"
 	icon_state = "explored"
+	music = null
 	always_unpowered = TRUE
 	poweralm = FALSE
 	power_environ = FALSE
@@ -95,6 +98,7 @@
 /area/lavaland/underground
 	name = "Lavaland Caves"
 	icon_state = "unexplored"
+	music = null
 	always_unpowered = TRUE
 	requires_power = TRUE
 	poweralm = FALSE
