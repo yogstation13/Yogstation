@@ -117,6 +117,9 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	QDEL_NULL(bill)
 	return ..()
 
+/obj/machinery/vending/can_speak()
+	return !shut_up
+
 /obj/machinery/vending/RefreshParts()         //Better would be to make constructable child
 	if(!component_parts)
 		return
