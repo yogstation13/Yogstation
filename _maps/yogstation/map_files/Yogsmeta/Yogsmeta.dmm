@@ -12995,18 +12995,16 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "axf" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Cargo Bay Warehouse Maintenance";
+	req_one_access_txt = "31;48"
+	},
 /obj/structure/cable/yellow{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/machinery/button/door{
-	id = "qm_warehouse";
-	name = "Warehouse Door Control";
-	pixel_y = -24;
-	req_access_txt = "50"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/quartermaster/warehouse)
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "axg" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13581,16 +13579,18 @@
 /turf/closed/wall,
 /area/quartermaster/warehouse)
 "aym" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Cargo Bay Warehouse Maintenance";
-	req_one_access_txt = "48;50"
-	},
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
+/obj/machinery/button/door{
+	id = "qm_warehouse";
+	name = "Warehouse Door Control";
+	pixel_y = -24;
+	req_access_txt = "31"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "ayn" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -13823,7 +13823,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = 24;
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -20514,7 +20514,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/window/eastright{
 	name = "MULEbot Access";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "31;48"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -21315,19 +21315,27 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMy" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
+/obj/machinery/button/door{
+	id = "QMLoaddoor";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -27;
+	pixel_y = -5;
+	req_access_txt = "31"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+/obj/machinery/button/door{
+	dir = 2;
+	id = "QMLoaddoor2";
+	layer = 4;
+	name = "Loading Doors";
+	pixel_x = -27;
+	pixel_y = 5;
+	req_access_txt = "31"
 	},
-/obj/machinery/door/window/southleft{
-	name = "Cargo Disposal";
-	req_one_access_txt = "48;50"
+/obj/machinery/computer/cargo{
+	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aMz" = (
@@ -21943,27 +21951,15 @@
 /turf/open/floor/wood,
 /area/clerk)
 "aNE" = (
-/obj/machinery/button/door{
-	id = "QMLoaddoor";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -27;
-	pixel_y = -5
+/obj/machinery/door/airlock/maintenance{
+	name = "Cargo Bay Maintenance";
+	req_one_access_txt = "31;48"
 	},
-/obj/machinery/button/door{
-	dir = 2;
-	id = "QMLoaddoor2";
-	layer = 4;
-	name = "Loading Doors";
-	pixel_x = -27;
-	pixel_y = 5
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/machinery/computer/cargo{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "aNF" = (
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
@@ -29366,15 +29362,21 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bak" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Cargo Bay Maintenance";
-	req_one_access_txt = "48;50"
-	},
 /obj/structure/cable/yellow{
-	icon_state = "4-8"
+	icon_state = "1-8"
 	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/door/window/southleft{
+	name = "Cargo Disposal";
+	req_one_access_txt = "50"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bal" = (
 /obj/item/radio/intercom{
 	pixel_y = -28
@@ -31172,7 +31174,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "50"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -99453,7 +99455,7 @@ aaf
 aUe
 aUe
 aUe
-bak
+aNE
 dmF
 bdf
 beU
@@ -99958,7 +99960,7 @@ aIh
 aJC
 aKP
 aMu
-aNE
+aMy
 aMu
 aQi
 aRH
@@ -100224,7 +100226,7 @@ aKQ
 aKQ
 aKQ
 aYL
-aMy
+bak
 bbO
 bdi
 beV
@@ -101493,7 +101495,7 @@ dhy
 axK
 bFd
 aAM
-axf
+aym
 ayl
 ayK
 aEC
@@ -102259,7 +102261,7 @@ avW
 ayk
 aAb
 awT
-aym
+axf
 azu
 aAO
 aCc
