@@ -702,6 +702,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/atom/movable/pulled_object = P
 			if(ishuman(P))
 				var/mob/living/carbon/human/H = P
+<<<<<<< HEAD
 				if(istype(H.shoes, /obj/item/clothing/shoes/magboots)) //yogs start
 					var/obj/item/clothing/shoes/magboots/MB = H.shoes
 					if(MB.magpulse)
@@ -710,6 +711,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 						H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
 				else
 					H.apply_effect(40, EFFECT_KNOCKDOWN, 0) //yogs end
+=======
+				H.apply_effect(40, EFFECT_PARALYZE, 0)
+>>>>>>> ceae7b3d5f... Restores supermatter shard stun (#41417)
 			if(pulled_object && !pulled_object.anchored && !ishuman(P))
 				step_towards(pulled_object,center)
 				step_towards(pulled_object,center)
