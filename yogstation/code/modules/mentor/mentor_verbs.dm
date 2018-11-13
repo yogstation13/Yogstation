@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 			if(C.holder && C.holder.rank)
 				msg += "\t[C] is a [C.holder.rank]"
 
-			if(C.holder.fakekey)
+			if(C.holder && C.holder.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
@@ -62,9 +62,10 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	else
 		for(var/client/C in GLOB.mentors)
 			if(C.holder && C.holder.fakekey)
-				msg += "\t[C] is a [C.holder.fakekey]"
+				msg += "\t[C.holder.fakekey] is a mentor"
 			else
-				msg += "\t[C] is a [C.key]"
+				msg += "\t[C] is a mentor"
+			msg += "\n"
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
 	to_chat(src, msg)
 
