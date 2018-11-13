@@ -16934,6 +16934,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"aJI" = (
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
 "aJJ" = (
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -17262,6 +17265,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"aKJ" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
 "aKK" = (
 /obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel,
@@ -17800,7 +17809,7 @@
 /area/crew_quarters/bar)
 "aMl" = (
 /turf/closed/wall,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aMm" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -17823,7 +17832,7 @@
 "aMp" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aMq" = (
 /obj/structure/table/wood,
 /obj/item/instrument/guitar{
@@ -18198,7 +18207,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aNv" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L4"
@@ -18262,18 +18271,18 @@
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aNE" = (
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aNF" = (
 /obj/structure/kitchenspike,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aNG" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
@@ -18310,7 +18319,7 @@
 	name = "Pete"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aNN" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -18658,7 +18667,7 @@
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aOI" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/beach_ball/holoball,
@@ -18667,7 +18676,7 @@
 "aOJ" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "aOK" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen/entertainment{
@@ -23413,7 +23422,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "bbz" = (
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -25842,7 +25851,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "bhM" = (
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -25859,7 +25868,7 @@
 /area/maintenance/port)
 "bhP" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "bhR" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -26007,7 +26016,7 @@
 "bij" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "bik" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -26179,9 +26188,9 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 4;
-	sortType = 15
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 8;
+	sortType = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -28893,7 +28902,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/westleft{
 	name = "Cargo Desk";
-	req_access_txt = "31"
+	req_access_txt = "50"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -30641,8 +30650,7 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -24;
-	pixel_y = -8;
-	req_access_txt = "31"
+	pixel_y = -8
 	},
 /obj/machinery/button/door{
 	dir = 2;
@@ -30650,8 +30658,7 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -24;
-	pixel_y = 8;
-	req_access_txt = "31"
+	pixel_y = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -50360,7 +50367,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/kitchen/backroom)
 "flP" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -51814,7 +51821,7 @@
 /obj/machinery/camera/motion{
 	c_tag = "Vault";
 	dir = 8;
-	network = list("vault","ss13")
+	network = list("vault")
 	},
 /obj/machinery/light{
 	dir = 4
@@ -58870,11 +58877,6 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
-/obj/machinery/door/window/westleft{
-	name = "Atmospherics Delivery";
-	req_access_txt = "24"
-	},
-/obj/structure/window/reinforced,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -97170,7 +97172,6 @@ aaf
 aaf
 aaf
 aaa
-<<<<<<< HEAD
 aaf
 aaf
 ahn
@@ -97209,26 +97210,6 @@ uel
 aOM
 aOM
 aRy
-=======
-alP
-aDZ
-alP
-auX
-aKr
-aMi
-auX
-auX
-aMl
-aMl
-aSp
-aMl
-aVw
-aMl
-aXO
-aMl
-aMl
-bcs
->>>>>>> upstream/master
 aYV
 aYV
 bes
@@ -97451,7 +97432,6 @@ aaa
 aaa
 aaa
 aaf
-<<<<<<< HEAD
 ahn
 anG
 ahn
@@ -97487,26 +97467,6 @@ aVE
 aXk
 aOM
 bak
-=======
-alP
-aDZ
-aIg
-axg
-aKz
-aMk
-auX
-aOI
-aMl
-aQi
-aSq
-aSq
-aSq
-aSq
-aYI
-aMl
-bbz
-aYV
->>>>>>> upstream/master
 aYV
 aYV
 bet
@@ -97748,7 +97708,6 @@ arj
 alP
 alP
 alP
-<<<<<<< HEAD
 aGy
 anf
 auX
@@ -97765,22 +97724,6 @@ aRB
 aOM
 bab
 bbx
-=======
-aMl
-aMl
-aMl
-aMl
-aMl
-aMl
-aQj
-aSq
-aSq
-aSq
-aSq
-aYJ
-aMl
-bbz
->>>>>>> upstream/master
 aYV
 aYV
 bet
@@ -98022,7 +97965,6 @@ arj
 aaf
 aaa
 alP
-<<<<<<< HEAD
 aGI
 aFx
 adq
@@ -98039,24 +97981,6 @@ aOM
 aOM
 bac
 auX
-=======
-aGN
-aIh
-aMl
-aKC
-aMp
-aNF
-aOJ
-aMl
-aQk
-aSG
-aSZ
-aVx
-aSq
-aSq
-bai
-bbz
->>>>>>> upstream/master
 aYV
 aYV
 bet
@@ -98144,102 +98068,7 @@ aaa
 qdN
 qdN
 aaa
-<<<<<<< HEAD
 uWd
-=======
-aaf
-arj
-auB
-auB
-arj
-arj
-arj
-anf
-anf
-anf
-awD
-alP
-aGB
-aIf
-ays
-aNu
-aNu
-fkL
-bby
-aPY
-aRg
-aSH
-aTM
-aVy
-aXi
-aSq
-baj
-bbz
-aYV
-bdp
-aYV
-bfL
-bhn
-biz
-biz
-biz
-bmR
-bfL
-bol
-bqQ
-bsx
-bst
-bfJ
-bhh
-bhh
-bwK
-bhh
-bhh
-bhh
-bEe
-bcW
-iLr
-lge
-vca
-vTE
-uDo
-bNd
-bOn
-pWY
-mNx
-bNd
-bNd
-bNd
-bAw
-bWV
-bAw
-bZN
-bHX
-bAw
-gaf
-iGw
-iGw
-iGw
-iGw
-pnx
-kyM
-veO
-kyM
-cjv
-cjv
-ckk
-cmf
-cna
-fFl
-rZf
-eMv
-gdi
-cmd
-ngP
-mWH
-rcY
-cmd
->>>>>>> upstream/master
 aaa
 aaa
 aaa
@@ -98393,7 +98222,6 @@ azp
 aCu
 aaf
 alP
-<<<<<<< HEAD
 aGH
 aIc
 auX
@@ -98411,24 +98239,6 @@ aOM
 bad
 auX
 bcr
-=======
-aGL
-aHY
-aMl
-aKM
-aND
-aNM
-bhL
-aMl
-aRu
-aSI
-aTN
-aVz
-aSq
-aYK
-baj
-bbz
->>>>>>> upstream/master
 aYV
 bet
 bfG
@@ -98639,95 +98449,6 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-=======
-alP
-aAq
-aAq
-aCy
-aCG
-alP
-aGL
-aHY
-ayu
-aKN
-aNE
-bhP
-bhP
-aMl
-aRv
-aSJ
-aTO
-aVz
-aSq
-aSq
-baj
-bbz
-aYV
-bdp
-bdc
-bfL
-beY
-pvl
-fOD
-psM
-bkR
-bfL
-boo
-rzx
-jHG
-bua
-bvn
-bwL
-bxX
-bsL
-bua
-bBJ
-bhh
-bEe
-bof
-xvm
-bof
-bof
-bof
-bof
-bNd
-eVv
-fVj
-fCx
-bNd
-bSU
-bUb
-bVa
-dkl
-qqA
-rvc
-bNd
-bNd
-iZI
-bBR
-bHX
-bzs
-bzs
-bzs
-bzs
-bLS
-bzs
-cfj
-cfj
-dXK
-gDN
-cfj
-cfj
-cfj
-ckf
-ckf
-cmd
-cmd
-xoA
-cmd
-cmd
->>>>>>> upstream/master
 aaa
 aaa
 aaa
@@ -98955,102 +98676,6 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-=======
-aaf
-aaf
-alO
-alO
-alO
-alP
-alP
-alP
-alP
-alP
-alP
-alP
-aDW
-aFn
-aGP
-avI
-aMl
-aMl
-aMl
-aOH
-bij
-aMl
-aRw
-aSK
-aUf
-aUf
-aUf
-aYL
-aMl
-bbA
-aYV
-bdr
-bdb
-bdN
-blr
-bho
-bho
-bho
-bkQ
-bfL
-bom
-bIq
-bri
-bsu
-fzU
-uoV
-bvo
-bzl
-bua
-bzd
-bhh
-bEe
-bCU
-bqQ
-bhh
-bGX
-bhh
-bhh
-bRN
-bIK
-bPq
-bLd
-bNd
-bST
-eDj
-eFU
-hDL
-bOr
-bOr
-rJj
-bNd
-caN
-ydd
-bHX
-bAw
-bzs
-cfm
-cgc
-bLS
-ciF
-bzs
-kJA
-bHd
-bAw
-bAw
-bzs
-bzs
-hTj
-hTj
-kWc
-cmd
-eGn
-cmd
->>>>>>> upstream/master
 aaa
 aaa
 aaa
@@ -99286,103 +98911,6 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
-=======
-aag
-alO
-arp
-alO
-awD
-anf
-anf
-awD
-anf
-aoP
-alP
-aBE
-alP
-aDX
-alP
-aGJ
-aHY
-aJL
-aKX
-aMl
-aMl
-aMl
-aMl
-aRx
-aSq
-aSq
-aVA
-aXj
-aYM
-aMl
-bbz
-aYV
-aYV
-bey
-bfL
-bhm
-biz
-biz
-biz
-bla
-bfL
-boq
-boq
-brj
-bpE
-btk
-ptY
-bvq
-bzn
-bua
-bBL
-bhh
-bBC
-vpy
-bDN
-bFM
-btR
-bJG
-bIa
-aXH
-bIL
-bOq
-bLf
-bRP
-bSW
-bMH
-bNi
-uUY
-sti
-wRK
-mZB
-bNd
-caO
-bDV
-ccI
-vTi
-ceI
-cfo
-bFr
-uFg
-nEK
-bzs
-bzs
-bHd
-bAw
-gIR
-bzs
-bzs
-aaf
-aaf
-gXs
-rkQ
-kzb
-rkQ
->>>>>>> upstream/master
 aaa
 aaa
 aaa
@@ -99618,97 +99146,6 @@ aaa
 "}
 (151,1,1) = {"
 aaa
-<<<<<<< HEAD
-=======
-aag
-cxW
-anf
-aqv
-anf
-anf
-anf
-aEl
-anf
-cVb
-cVb
-cVb
-cVb
-cVb
-cVb
-aGQ
-aIk
-aIp
-aKW
-aMG
-aIp
-aIp
-aMl
-aMl
-ava
-avS
-aMl
-aMl
-aMl
-aMl
-aMl
-bcq
-bcq
-bcq
-bfL
-bhp
-biB
-xFj
-cTL
-bkU
-bon
-bpE
-bpE
-bpE
-bpE
-bti
-bsL
-bvp
-bzm
-bua
-bBK
-bwz
-bwz
-bFL
-bDI
-bhh
-oiu
-bhh
-bHY
-bNf
-bOp
-bPr
-bQH
-bNd
-bSV
-sxo
-bNh
-xLv
-jDD
-gnZ
-bNd
-bNd
-bzs
-bzs
-gex
-bHd
-bzs
-cfn
-bHd
-bzs
-dGz
-cjy
-bzs
-bHd
-bAw
-bAw
-bAw
-ceI
->>>>>>> upstream/master
 aaa
 aaa
 aaa
@@ -108787,7 +108224,6 @@ aaa
 aaa
 aaa
 aaa
-<<<<<<< HEAD
 alP
 alP
 alP
@@ -108876,64 +108312,6 @@ atN
 frc
 pNy
 bMB
-=======
-aMZ
-aNZ
-aPp
-aQB
-aNa
-aTk
-aPq
-aPq
-aPq
-aPq
-baC
-aPq
-aPq
-bdy
-beH
-bgc
-bgc
-bgc
-bgc
-bgc
-bgc
-bgc
-bpp
-bgc
-brr
-bsE
-bvK
-bvK
-byt
-byt
-byt
-byt
-byt
-bEy
-bFU
-bFT
-eWd
-iXd
-ado
-aex
-age
-aex
-ado
-bQZ
-bQZ
-bQZ
-bQZ
-bQZ
-alY
-amX
-aqu
-asK
-bQZ
-cOe
-cNW
-cNW
->>>>>>> upstream/master
 cNW
 cOx
 cBL

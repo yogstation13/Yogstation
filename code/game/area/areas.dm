@@ -34,6 +34,7 @@
 	var/power_equip = TRUE
 	var/power_light = TRUE
 	var/power_environ = TRUE
+	var/music = null
 	var/used_equip = 0
 	var/used_light = 0
 	var/used_environ = 0
