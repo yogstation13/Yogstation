@@ -13002,7 +13002,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = -24;
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -13583,7 +13583,7 @@
 "aym" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Warehouse Maintenance";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "31;48"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13823,7 +13823,7 @@
 	id = "qm_warehouse";
 	name = "Warehouse Door Control";
 	pixel_y = 24;
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -20512,6 +20512,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/eastright{
+	name = "MULEbot Access";
+	req_one_access_txt = "31;48"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aKZ" = (
@@ -21940,7 +21944,8 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -27;
-	pixel_y = -5
+	pixel_y = -5;
+	req_access_txt = "31"
 	},
 /obj/machinery/button/door{
 	dir = 2;
@@ -21948,7 +21953,8 @@
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -27;
-	pixel_y = 5
+	pixel_y = 5;
+	req_access_txt = "31"
 	},
 /obj/machinery/computer/cargo{
 	dir = 4
@@ -29360,7 +29366,7 @@
 "bak" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Cargo Bay Maintenance";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "31;48"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -29390,6 +29396,13 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
+	},
+/obj/machinery/door/window/southleft{
+	name = "Cargo Disposal";
+	req_one_access_txt = "50"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -31154,7 +31167,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_one_access_txt = "48;50"
+	req_one_access_txt = "50"
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -46837,6 +46850,13 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
+/obj/machinery/door/window/westright{
+	name = "Atmospherics Access";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
@@ -57524,6 +57544,11 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/door/window/westleft{
+	name = "Medical Delivery";
+	req_access_txt = "5"
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bZZ" = (
