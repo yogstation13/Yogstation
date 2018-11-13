@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	var/msg = "<b>Current Mentors:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.mentors)
-			msg += "\t[C] is a mentor
+			msg += "\t[C] is a mentor"
 
 			if(C.holder && C.holder.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
