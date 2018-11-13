@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 /obj/item/circuitboard
 	var/onstation = TRUE //if the circuit board originated from a vendor off station or not.
 
- /obj/machinery/vending/Initialize(mapload)
+/obj/machinery/vending/Initialize(mapload)
 	var/build_inv = FALSE
 	if(!refill_canister)
 		circuit = null
