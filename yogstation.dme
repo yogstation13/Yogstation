@@ -2897,6 +2897,7 @@
 #include "yogstation\code\modules\mob\living\carbon\carbon.dm"
 #include "yogstation\code\modules\mob\living\carbon\life.dm"
 #include "yogstation\code\modules\mob\living\carbon\reindex_screams.dm"
+#include "yogstation\code\modules\mob\living\carbon\human\human_defense.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\life.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\halloween.dm"
