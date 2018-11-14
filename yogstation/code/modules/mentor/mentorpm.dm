@@ -56,7 +56,7 @@
 	log_mentor("Mentor PM: [key_name(src)]->[key_name(C)]: [msg]")
 
 	msg = emoji_parse(msg)
-	SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	SEND_SOUND(C, sound('yogstation/sound/misc/mentorhelp.ogg'))
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(C.is_mentor())
 		to_chat(C, "<font color='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</font>")
