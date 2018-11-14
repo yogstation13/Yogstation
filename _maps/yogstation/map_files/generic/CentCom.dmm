@@ -8949,7 +8949,8 @@
 /area/centcom/control)
 "tQ" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien15"
+	icon_state = "alien15";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "tR" = (
@@ -9000,7 +9001,8 @@
 /area/wizard_station)
 "tZ" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien5"
+	icon_state = "alien5";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "ud" = (
@@ -10021,7 +10023,8 @@
 /area/centcom/holding)
 "wj" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien24"
+	icon_state = "alien24";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "wk" = (
@@ -11277,11 +11280,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"zt" = (
-/turf/closed/indestructible/abductor{
-	icon_state = "alien16"
-	},
-/area/bluespace_locker)
 "zx" = (
 /obj/structure/closet/syndicate/personal,
 /obj/effect/turf_decal/stripes/line{
@@ -11981,15 +11979,10 @@
 /area/centcom/holding)
 "Bq" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien18"
+	icon_state = "alien18";
+	opacity = 0
 	},
 /area/bluespace_locker)
-"Br" = (
-/turf/closed/indestructible{
-	icon = 'icons/turf/space.dmi';
-	icon_state = "black"
-	},
-/area/space)
 "Bs" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -12313,7 +12306,8 @@
 /area/wizard_station)
 "BT" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien20"
+	icon_state = "alien20";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "BV" = (
@@ -12461,7 +12455,8 @@
 /area/wizard_station)
 "Cm" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien7"
+	icon_state = "alien7";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Co" = (
@@ -13093,7 +13088,8 @@
 /area/centcom/holding)
 "Dn" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien17"
+	icon_state = "alien17";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Dq" = (
@@ -14245,7 +14241,8 @@
 /area/centcom/holding)
 "Ga" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien3"
+	icon_state = "alien3";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Gb" = (
@@ -14650,7 +14647,8 @@
 /area/tdome/tdomeobserve)
 "GN" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien8"
+	icon_state = "alien8";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "GO" = (
@@ -14849,7 +14847,9 @@
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "Hi" = (
-/turf/closed/indestructible/abductor,
+/turf/closed/indestructible/abductor{
+	opacity = 0
+	},
 /area/bluespace_locker)
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -16219,7 +16219,8 @@
 /area/tdome/tdomeadmin)
 "JY" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien23"
+	icon_state = "alien23";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "JZ" = (
@@ -17385,6 +17386,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Ow" = (
+/obj/effect/landmark/bluespace_locker_origin,
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "OD" = (
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
@@ -17405,6 +17410,9 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
+"OQ" = (
+/turf/open/space/bluespace_locker_mirage,
+/area/bluespace_locker)
 "OU" = (
 /obj/item/clothing/under/jabroni,
 /obj/item/clothing/under/geisha,
@@ -17640,7 +17648,8 @@
 /area/centcom/supplypod)
 "QR" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien9"
+	icon_state = "alien9";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "QT" = (
@@ -17653,7 +17662,8 @@
 /area/centcom/holding)
 "QV" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien13"
+	icon_state = "alien13";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "QW" = (
@@ -17712,6 +17722,13 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Rn" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "Ro" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
@@ -17888,7 +17905,8 @@
 /area/centcom/supplypod/loading/two)
 "Tf" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien4"
+	icon_state = "alien4";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Tj" = (
@@ -18013,7 +18031,8 @@
 /area/tdome/tdomeobserve)
 "Up" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien14"
+	icon_state = "alien14";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Ut" = (
@@ -18077,7 +18096,8 @@
 /area/centcom/holding)
 "UU" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien19"
+	icon_state = "alien19";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "UV" = (
@@ -18121,7 +18141,8 @@
 /area/centcom/holding)
 "Vx" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien12"
+	icon_state = "alien12";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Vz" = (
@@ -18208,7 +18229,8 @@
 /area/centcom/supplypod/loading/four)
 "Wy" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien21"
+	icon_state = "alien21";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "WJ" = (
@@ -18251,6 +18273,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Xa" = (
+/turf/closed/indestructible/abductor{
+	icon_state = "alien16";
+	opacity = 0
+	},
+/area/bluespace_locker)
 "Xd" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -18353,13 +18381,20 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"XR" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/bluespace_locker)
 "XT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
 /area/centcom/supplypod)
 "XV" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien10"
+	icon_state = "alien10";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Ya" = (
@@ -18368,7 +18403,8 @@
 /area/centcom/holding)
 "Yd" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien6"
+	icon_state = "alien6";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Yf" = (
@@ -18435,7 +18471,8 @@
 /area/centcom/supplypod)
 "Yx" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien11"
+	icon_state = "alien11";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "YA" = (
@@ -18494,7 +18531,8 @@
 /area/centcom/holding)
 "Zb" = (
 /turf/closed/indestructible/abductor{
-	icon_state = "alien2"
+	icon_state = "alien2";
+	opacity = 0
 	},
 /area/bluespace_locker)
 "Zc" = (
@@ -35531,28 +35569,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -35788,28 +35826,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -36045,28 +36083,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -36302,28 +36340,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -36559,28 +36597,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -36816,28 +36854,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -37073,28 +37111,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
-Br
-Br
-Br
-Br
-Br
-Br
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -37330,28 +37368,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
-Br
-zt
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+Xa
 Up
 Vx
 XV
 Yd
-Br
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -37587,28 +37625,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 BT
 Dn
 Va
-Va
+Rn
 Va
 Cm
 Hi
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -37844,14 +37882,14 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 Wy
 Va
 Va
@@ -37859,13 +37897,13 @@ Va
 Va
 Va
 Zb
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -38101,28 +38139,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 Ut
 Va
 Va
-Va
+Ow
 Va
 Va
 Ga
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -38358,14 +38396,14 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 JY
 Va
 Va
@@ -38373,13 +38411,13 @@ Va
 Va
 Va
 Tf
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -38615,28 +38653,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 wj
 Bq
 Va
-Va
+XR
 Va
 GN
 tZ
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -38872,28 +38910,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
-Br
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 UU
 tQ
 QV
 Yx
 QR
-Br
-Br
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -39129,28 +39167,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-Br
-Br
-Br
-Br
-Br
-Br
-Br
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -39386,28 +39424,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -39643,28 +39681,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -39900,28 +39938,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -40157,28 +40195,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -40414,28 +40452,28 @@ Qe
 Qe
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}
@@ -40671,28 +40709,28 @@ Di
 Di
 Di
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
+OQ
 aa
 aa
 "}

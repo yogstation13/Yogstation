@@ -2746,6 +2746,7 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
+#include "yogstation\code\game\area\areas.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
 #include "yogstation\code\game\gamemodes\objective.dm"
 #include "yogstation\code\game\gamemodes\shadowling\shadowling.dm"
