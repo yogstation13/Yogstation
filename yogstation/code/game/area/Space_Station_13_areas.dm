@@ -22,10 +22,11 @@
 						 'yogstation/sound/misc/honk_echo_distant.ogg')
 
 /area/bluespace_locker
-  name = "Bluespace Locker"
-  icon_state = "away"
-  requires_power = FALSE
-  has_gravity = STANDARD_GRAVITY
+	name = "Bluespace Locker"
+	icon_state = "away"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/vacant_room/office/office_b
 	name = "Vacant Office - B"

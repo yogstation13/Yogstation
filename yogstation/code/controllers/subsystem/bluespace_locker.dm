@@ -52,7 +52,12 @@ SUBSYSTEM_DEF(bluespace_locker)
 	relink_lockers()
 
 /datum/controller/subsystem/bluespace_locker/proc/relink_lockers()
-	if(!internal_locker || !external_locker)
+	if(!internal_locker)
+		return
+	var/area/A = get_area(internal_locker)
+	A.global_turf_object = external_locker
+	internal_locker.update_mirage()
+	if(!external_locker)
 		return
 	if(external_locker.opened)
 		internal_locker.close()

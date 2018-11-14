@@ -117,7 +117,7 @@
 		"language" = lang_instance.name,
 		"spans" = spans
 	)
-	var/turf/T = get_turf(source)
+	var/turf/T = get_turf_global(source) // yogs - get_turf_global instead of get_turf
 	levels = list(T.z)
 
 /datum/signal/subspace/vocal/copy()
