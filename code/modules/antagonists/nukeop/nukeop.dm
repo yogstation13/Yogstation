@@ -59,9 +59,10 @@
 /datum/antagonist/nukeop/proc/assign_nuke()
 	if(nuke_team && !nuke_team.tracked_nuke)
 		nuke_team.memorized_code = random_nukecode()
-		var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in GLOB.nuke_list
+		var/obj/machinery/nuclearbomb/selfdestruct/nuke = locate() in GLOB.nuke_list //yogs - self-destruct instead of the regular nuke
 		if(nuke)
 			nuke_team.tracked_nuke = nuke
+			nuke.nuke_ops = TRUE //yogs
 			if(nuke.r_code == "ADMIN")
 				nuke.r_code = nuke_team.memorized_code
 			else //Already set by admins/something else?

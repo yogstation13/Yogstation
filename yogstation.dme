@@ -2818,6 +2818,7 @@
 #include "yogstation\code\modules\antagonists\changeling\powers\shriek.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\spiders.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\tiny_prick.dm"
+#include "yogstation\code\modules\antagonists\nukeop\equipment\nuclearbomb.dm"
 #include "yogstation\code\modules\antagonists\shadowling\ascendant_shadowling.dm"
 #include "yogstation\code\modules\antagonists\shadowling\shadowling.dm"
 #include "yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm"
