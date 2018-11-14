@@ -707,9 +707,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					if(MB.magpulse)
 						to_chat(H, "<span class='warning'>[MB] prevent you from falling over due to [src]'s pull!</span>")
 					else
-						H.apply_effect(40, EFFECT_KNOCKDOWN, 0)
+						H.apply_effect(40, EFFECT_PARALYZE, 0)
 				else
-					H.apply_effect(40, EFFECT_KNOCKDOWN, 0) //yogs end
+					H.apply_effect(40, EFFECT_PARALYZE, 0) //yogs end
 			if(pulled_object && !pulled_object.anchored && !ishuman(P))
 				step_towards(pulled_object,center)
 				step_towards(pulled_object,center)
