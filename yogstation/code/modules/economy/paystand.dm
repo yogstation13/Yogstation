@@ -11,12 +11,12 @@
 /obj/machinery/paystand_custom/Initialize()
 	check_access(null)
 	if(req_access.len || req_one_access.len)
-	board = new(src)
-	if(req_access.len)
-		board.accesses = req_access
-	else
-		board.one_access = 1
-		board.accesses = req_one_access
+		board = new(src)
+		if(req_access.len)
+			board.accesses = req_access
+		else
+			board.one_access = 1
+			board.accesses = req_one_access
 
 /obj/machinery/paystand_custom/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/card/id))
@@ -49,14 +49,8 @@
 			to_chat(user, "Bank account not found.Please link an account to your ID and try again.")
 			return
 	if(istype(W, /obj/item/holochip))
-		var/obj/item/holochip/H = W
-		if(H.spend(price, FALSE))
-			purchase(user)
-			to_chat(user, "Thanks for purchasing! The vendor has been informed.")
-			return
-		else
-			to_chat(user, "You trying to punk me, kid? Come back when you have the cash.")
-			return
+		to_chat(user, "Physical money is not accepted.Please use your ID card")
+		return
 	if(istype(W, /obj/item/stack/spacecash))
 		to_chat(user, "Physical money is not accepted.Please use your ID card")
 		return
@@ -92,7 +86,21 @@
 			to_chat(user, "<span class='notice'>You add [W] to the paystand.</span>")
 	else
 		return ..()
-		
+
+/obj/machinery/paystand_custom/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(user)
+	if(panel_open)
+		if(board)
+			if(board)
+				board.forceMove(drop_location())
+				req_access = list()
+				req_one_access = list()
+				board = null
+			to_chat(user, "<span class='notice'>You remove electronics from the paystand.</span>")
+
 /obj/machinery/paystand_custom/proc/purchase(buyer,paid)
 	my_card.registered_account.adjust_money(paid)
 	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [paid] credits.")
