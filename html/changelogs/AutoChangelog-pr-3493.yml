@@ -1,0 +1,5 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - bugfix: "GPS and telecomms inside the bluespace locker now act as if they at the location the bluespace locker is"
+  - rscadd: "You can now see out of the bluespace locker. It looks a bit janky though. Aliens coded the holograms hastily I guess."
