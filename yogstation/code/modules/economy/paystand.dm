@@ -36,6 +36,7 @@
 		if(payer_card.registered_account)
 			if(!allowed(user))
 				to_chat(user, "<span class='danger'>Access Denied</span>")
+				return
 			var/stuff = input(user, "Enter price.", "Paystand Paying", 25) as num
 			if(!stuff || stuff < 0)
 				return
@@ -65,7 +66,7 @@
 			update_icon()
 		else
 			to_chat(user, "<span class='danger'>Access Denied</span>")
-
+		return
 	else if(default_pry_open(W))
 		return
 
@@ -85,6 +86,7 @@
 			else
 				req_access = board.accesses
 			to_chat(user, "<span class='notice'>You add [W] to the paystand.</span>")
+			return
 	return ..()
 
 /obj/machinery/paystand_custom/attack_hand(mob/user)
