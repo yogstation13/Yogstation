@@ -9,6 +9,7 @@
 	var/obj/item/electronics/airlock/board
 
 /obj/machinery/paystand_custom/Initialize()
+	. = ..()
 	check_access(null)
 	if(req_access.len || req_one_access.len)
 		board = new(src)
@@ -84,8 +85,7 @@
 			else
 				req_access = board.accesses
 			to_chat(user, "<span class='notice'>You add [W] to the paystand.</span>")
-	else
-		return ..()
+	return ..()
 
 /obj/machinery/paystand_custom/attack_hand(mob/user)
 	. = ..()
@@ -104,3 +104,13 @@
 /obj/machinery/paystand_custom/proc/purchase(buyer,paid)
 	my_card.registered_account.adjust_money(paid)
 	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [paid] credits.")
+
+/obj/machinery/paystand_custom/security
+	name = "fine payer"
+	desc = "A paystand designed for paying fines on the go."
+	my_card = /obj/item/card/id
+	req_access = list(ACCESS_TOX)
+
+/obj/machinery/paystand_custom/security/purchase(buyer,paid)
+	var/datum/bank_account/security_account = SSeconomy.get_dep_account(ACCOUNT_SEC)
+	security_account.adjust_money(paid) 
