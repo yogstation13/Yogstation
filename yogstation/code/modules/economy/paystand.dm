@@ -111,7 +111,7 @@
 	name = "fine payer"
 	desc = "A paystand designed for paying fines on the go."
 	my_card = /obj/item/card/id
-	req_access = list(ACCESS_TOX)
+	req_access = list(ACCESS_SECURITY)
 
 /obj/machinery/paystand_custom/security/purchase(buyer,paid)
 	var/datum/bank_account/security_account = SSeconomy.get_dep_account(ACCOUNT_SEC)
