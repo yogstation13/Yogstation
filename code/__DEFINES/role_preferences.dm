@@ -36,6 +36,7 @@
 #define ROLE_DEATHSQUAD             "deathsquad"
 #define ROLE_LAVALAND               "lavaland"
 #define ROLE_SHADOWLING 		"shadowling" // Yogs
+#define ROLE_GANG				"gangster" // Yogs
 #define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -62,6 +63,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
+	ROLE_GANG = /datum/game_mode/gang // Yogs
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SENTIENCE

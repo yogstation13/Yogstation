@@ -267,6 +267,7 @@
 			out += a
 	return jointext(out,"")
 
+/* yogs - Look man im not good at this coding thing if the guy who first ported it cant do it without mirroring it neither can I
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
 	. = ..()
 	if(!proximity || !check_allowed_items(target))
@@ -409,7 +410,7 @@
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier)
 	check_empty(user)
-
+*/
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
