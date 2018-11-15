@@ -6,8 +6,19 @@
 	density = TRUE
 	anchored = TRUE
 	var/obj/item/card/id/my_card
+	var/obj/item/electronics/airlock/board
 
-/obj/machinery/paystand/attackby(obj/item/W, mob/user, params)
+/obj/machinery/paystand_custom/Initialize()
+	check_access(null)
+	if(req_access.len || req_one_access.len)
+	board = new(src)
+	if(req_access.len)
+		board.accesses = req_access
+	else
+		board.one_access = 1
+		board.accesses = req_one_access
+
+/obj/machinery/paystand_custom/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/card/id))
 		if(!my_card)
 			var/obj/item/card/id/owner_card = W
@@ -22,9 +33,11 @@
 				return
 		var/obj/item/card/id/payer_card = W
 		if(payer_card.registered_account)
-            var/stuff = input(user, "Enter price.", "Paystand Paying", 25) as num
+			if(!allowed(user))
+				to_chat(user, "<span class='danger'>Access Denied</span>")
+			var/stuff = input(user, "Enter price.", "Paystand Paying", 25) as num
 			if(!stuff || stuff < 0)
-					return
+				return
 			if(payer_card.registered_account.adjust_money(-stuff))
 				purchase(payer_card.registered_account.account_holder,stuff)
 				to_chat(user, "Thanks for purchasing! The vendor has been informed.")
@@ -51,8 +64,12 @@
 		to_chat(user, "Physical money is not accepted.Please use your ID card")
 		return
 
-	if(default_deconstruction_screwdriver(user, "card_scanner", "card_scanner", W))
-		return
+	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		if(panel_open || allowed(user))
+			default_deconstruction_screwdriver(user, "card_scanner", "card_scanner",W)
+			update_icon()
+		else
+			to_chat(user, "<span class='danger'>Access Denied</span>")
 
 	else if(default_pry_open(W))
 		return
@@ -62,9 +79,20 @@
 
 	else if(default_deconstruction_crowbar(W))
 		return
+	else if(panel_open)
+		if(!board && istype(W, /obj/item/electronics/airlock))
+			if(!user.transferItemToLoc(W, src))
+				to_chat(user, "<span class='warning'>\The [W] is stuck to you!</span>")
+				return
+			board = W
+			if(board.one_access)
+				req_one_access = board.accesses
+			else
+				req_access = board.accesses
+			to_chat(user, "<span class='notice'>You add [W] to the paystand.</span>")
 	else
 		return ..()
 		
-/obj/machinery/paystand/proc/purchase(buyer,paid)
+/obj/machinery/paystand_custom/proc/purchase(buyer,paid)
 	my_card.registered_account.adjust_money(paid)
 	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [paid] credits.")
