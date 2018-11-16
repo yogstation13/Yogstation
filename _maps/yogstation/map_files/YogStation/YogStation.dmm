@@ -49792,6 +49792,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"eJy" = (
+/obj/machinery/door/airlock{
+	name = "Gift Shop";
+	req_access_txt = "36"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "eKd" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Detective Maintenance";
@@ -50940,6 +50949,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"gCb" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "gCG" = (
 /obj/machinery/door/airlock/hatch{
 	autoclose = 0;
@@ -51990,6 +52006,14 @@
 "iMH" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos)
+"iMM" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "iNR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -52242,12 +52266,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space)
-"jmj" = (
-/obj/machinery/paystand,
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
-/area/clerk)
 "jmH" = (
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
@@ -52335,6 +52353,12 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/space/nearstation)
+"jvL" = (
+/obj/machinery/paystand,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "jyf" = (
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
@@ -53467,14 +53491,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"lyh" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
-/area/clerk)
 "lzH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53877,13 +53893,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
-"miD" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
-/area/clerk)
 "miX" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -55006,6 +55015,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"ovk" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "ovM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -55230,7 +55245,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
-"oZD" = (
+"pau" = (
 /obj/item/instrument/eguitar,
 /obj/structure/rack,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -55281,12 +55296,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"pcF" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
-/area/clerk)
 "pdz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -55899,13 +55908,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"qqY" = (
-/obj/machinery/door/airlock{
-	name = "Commissary";
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel,
-/area/vacant_room/commissary)
 "qrA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -56636,6 +56638,13 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"rQe" = (
+/obj/machinery/door/airlock{
+	name = "Commissary";
+	req_access_txt = "36"
+	},
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "rQW" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -56878,15 +56887,6 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
-"sox" = (
-/obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
-/area/clerk)
 "soO" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57499,6 +57499,17 @@
 "tiX" = (
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
+"tjF" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "tkb" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics North West";
@@ -59550,6 +59561,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"wJE" = (
+/obj/effect/landmark/start/yogs/clerk,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "wKE" = (
 /obj/structure/chair{
 	dir = 8
@@ -60290,17 +60307,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"yeO" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/machinery/vending/autodrobe,
-/turf/open/floor/plasteel,
-/area/vacant_room/commissary)
 "yfa" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83120,7 +83126,7 @@ arP
 arP
 kVU
 rPk
-yeO
+tjF
 xvj
 alu
 aHG
@@ -84404,7 +84410,7 @@ axo
 cCi
 aDz
 kVU
-qqY
+rQe
 kVU
 kVU
 kVU
@@ -84918,7 +84924,7 @@ axt
 ayG
 ayG
 ayG
-sox
+eJy
 ayG
 ayG
 ayG
@@ -85175,7 +85181,7 @@ axt
 ayG
 azK
 aBe
-kaU
+wJE
 aDj
 aER
 abN
@@ -85430,13 +85436,13 @@ aqR
 aqR
 axt
 ayG
-miD
-jmj
-lyh
+gCb
+jvL
+iMM
 aDi
 aEQ
 kaU
-pcF
+ovk
 kaU
 acF
 aLN
@@ -86203,7 +86209,7 @@ axt
 ayG
 azN
 xSu
-oZD
+pau
 aDy
 kaU
 aGf
