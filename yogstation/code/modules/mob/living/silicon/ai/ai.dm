@@ -9,8 +9,23 @@
 		return
 	if(is_donator(client))
 		PickAiSkin()
-	else
-		return ..()
+	else //Else, do what the og proc says except ..() didn't want to work for whatever reason :( ~Kmc
+		var/list/iconstates = GLOB.ai_core_display_screens
+		for(var/option in iconstates)
+			if(option == "Random")
+				iconstates[option] = image(icon = src.icon, icon_state = "ai-random")
+				continue
+			iconstates[option] = image(icon = src.icon, icon_state = resolve_ai_icon(option))
+
+		view_core() //Nice someone cleaned up this code
+		var/ai_core_icon = show_radial_menu(src, src , iconstates, radius = 42)
+
+		if(!ai_core_icon || incapacitated())
+			return
+
+		display_icon_override = ai_core_icon//Neato
+		set_core_display_icon(ai_core_icon)
+
 
 /mob/living/silicon/ai/proc/PickAiSkin(var/forced = FALSE)
 	icon = initial(icon)
@@ -28,8 +43,8 @@
 		if(!A)
 			return
 		if(A.name != "Cancel")
-			icon =  A.icon
-			icon_state = A.icon_state
+			set_core_display_icon(A.icon)
+			display_icon_override = A.icon
 			to_chat(src, "You have successfully applied the skin: [A.name]")
 			return TRUE
 		else
