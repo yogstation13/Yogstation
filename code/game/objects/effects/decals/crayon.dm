@@ -11,7 +11,6 @@
 
 /obj/effect/decal/cleanable/crayon/Initialize(mapload, main, type, e_name, graf_rot, alt_icon = null)
 	. = ..()
-
 	if(e_name)
 		name = e_name
 	desc = "A [name] vandalizing the station."

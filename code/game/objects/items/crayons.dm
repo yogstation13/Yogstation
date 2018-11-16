@@ -267,7 +267,6 @@
 			out += a
 	return jointext(out,"")
 
-/* yogs - Look man im not good at this coding thing if the guy who first ported it cant do it without mirroring it neither can I
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
 	. = ..()
 	if(!proximity || !check_allowed_items(target))
@@ -282,11 +281,12 @@
 		var/mob/living/carbon/human/H = user
 		if (H.has_trait(TRAIT_TAGGER))
 			cost *= 0.5
+	/* yogs start -- moved to the end of the proc, after the crayon is actually used.
 	var/charges_used = use_charges(user, cost)
 	if(!charges_used)
 		return
 	. = charges_used
-
+	yogs end */
 	if(istype(target, /obj/effect/decal/cleanable))
 		target = target.loc
 
@@ -328,6 +328,9 @@
 	else if(drawing in numerals)
 		temp = "number"
 
+	var/gang_check = hippie_gang_check(user,target) // yog start -- gang check and temp setting
+	if(!gang_check) return
+	else if(gang_check == "gang graffiti") temp = gang_check // yog end
 
 	var/graf_rot
 	if(drawing in oriented)
@@ -350,7 +353,7 @@
 		clicky = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 	if(!instant)
-		to_chat(user, "<span class='notice'>You start drawing a [temp] on the	[target.name]...</span>")
+		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>") // yogs -- removed a weird tab that had no reason to be here
 
 	if(pre_noise)
 		audible_message("<span class='notice'>You hear spraying.</span>")
@@ -359,6 +362,7 @@
 	var/wait_time = 50
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		wait_time *= 3
+	if(gang) instant = FALSE // hippie -- gang spraying must not be instant, balance reasons
 
 	if(!instant)
 		if(!do_after(user, 50, target = target))
@@ -369,6 +373,12 @@
 
 
 	var/list/turf/affected_turfs = list()
+
+	if(gang) // yogs start -- gang spraying is done differently
+		if(gang_final(user, target, affected_turfs))
+			return
+		actually_paints = FALSE // skip the next if check
+	// yogs end
 
 	if(actually_paints)
 		switch(paint_mode)
@@ -402,6 +412,12 @@
 	if(post_noise)
 		audible_message("<span class='notice'>You hear spraying.</span>")
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
+	// yogs start -- using changes moved to the end of the proc, so it won't use charges if the spraying fails for any reason.
+	var/charges_used = use_charges(user, cost)
+	if(!charges_used)
+		return
+	. = charges_used
+	// yogs end
 
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
@@ -410,7 +426,7 @@
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier)
 	check_empty(user)
-*/
+
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
