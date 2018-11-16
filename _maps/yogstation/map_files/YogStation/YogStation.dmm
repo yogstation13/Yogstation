@@ -720,10 +720,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -945,10 +941,6 @@
 /area/maintenance/fore)
 "acm" = (
 /obj/structure/piano,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -13824,6 +13816,7 @@
 /area/storage/primary)
 "aDi" = (
 /obj/structure/table/wood,
+/obj/item/stack/wrapping_paper,
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -13943,10 +13936,6 @@
 "aDy" = (
 /obj/item/instrument/guitar,
 /obj/structure/rack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -15102,10 +15091,6 @@
 "aGf" = (
 /obj/structure/table/wood,
 /obj/item/instrument/saxophone,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -15864,10 +15849,6 @@
 "aHL" = (
 /obj/structure/table/wood,
 /obj/item/instrument/trombone,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -16439,10 +16420,6 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -16479,10 +16456,6 @@
 "aJi" = (
 /obj/structure/table/wood,
 /obj/item/instrument/harmonica,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -17400,12 +17373,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"aLN" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aLO" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -17447,13 +17414,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aLT" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aLU" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/xeno_spawn,
@@ -49784,13 +49744,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "eJy" = (
-/obj/machinery/door/airlock{
-	name = "Gift Shop";
+/obj/machinery/door/airlock/maintenance{
 	req_access_txt = "36"
 	},
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
+/turf/open/floor/plating,
 /area/clerk)
 "eKd" = (
 /obj/machinery/door/airlock/maintenance{
@@ -50113,6 +50070,17 @@
 "fip" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
+"fki" = (
+/obj/machinery/camera{
+	c_tag = "Telecomms Life Support";
+	dir = 8;
+	network = list("ss13","minisat");
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "fkp" = (
 /obj/machinery/computer/telecomms/monitor{
 	dir = 8;
@@ -52826,6 +52794,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"kqS" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "kqT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -53730,7 +53711,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/clerk)
 "lVx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -55239,10 +55220,6 @@
 "pau" = (
 /obj/item/instrument/eguitar,
 /obj/structure/rack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -56630,11 +56607,10 @@
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "rQe" = (
-/obj/machinery/door/airlock{
-	name = "Commissary";
+/obj/machinery/door/airlock/maintenance{
 	req_access_txt = "36"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/vacant_room/commissary)
 "rQW" = (
 /obj/structure/window/reinforced{
@@ -57467,13 +57443,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	areastring = "/area/vacant_room/commissary";
-	dir = 4;
-	name = "Vacant Commissary APC";
-	pixel_x = 2;
-	pixel_y = -27
-	},
 /obj/structure/rack,
 /obj/item/wrench,
 /obj/item/screwdriver,
@@ -60121,10 +60090,6 @@
 "xSu" = (
 /obj/item/instrument/violin,
 /obj/structure/rack,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
@@ -60156,12 +60121,6 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"xWs" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "xWw" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -84665,7 +84624,7 @@ ayH
 ayH
 kpg
 ayH
-ayH
+kqS
 ayH
 aFV
 ayH
@@ -85185,7 +85144,7 @@ abN
 acm
 aJa
 ayG
-xWs
+aLE
 aLE
 aLE
 aLE
@@ -85442,7 +85401,7 @@ kaU
 ovk
 kaU
 acF
-aLN
+aLE
 aLE
 aLE
 aLE
@@ -85699,7 +85658,7 @@ kaU
 kaU
 kaU
 acF
-aLN
+aLE
 aLE
 aLE
 aLE
@@ -85956,7 +85915,7 @@ kaU
 kaU
 kaU
 acF
-aLN
+aLE
 aLE
 aOz
 aLE
@@ -86208,12 +86167,12 @@ azN
 xSu
 pau
 aDy
-kaU
+fki
 aGf
 aHL
 aJi
 ayG
-aLT
+aLF
 aLF
 aLF
 qLZ
