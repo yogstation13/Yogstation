@@ -22,3 +22,9 @@
 	name = "Black and white sweatshirt"
 	desc = "A fashionable sweatshirt with industrial lines all over it. This one's black."
 	icon_state = "blackwhitesweat"
+
+/obj/item/clothing/suit/yogs/jesus
+	name = "Messiah Robes"
+	desc = "They seem very holy."
+	icon_state = "jesus"
+	allowed = list(/obj/item/storage/book/bible)

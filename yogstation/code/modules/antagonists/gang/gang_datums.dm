@@ -88,7 +88,7 @@
 /datum/team/gang/tunnel
 	name = "Tunnel"
 	color = "#FF00FF"
-	inner_outfits = list(/obj/item/clothing/under/hippie/robbie)
+	inner_outfits = list(/obj/item/clothing/under/villain)
 	outer_outfits = list(/obj/item/clothing/suit/poncho/ponchoshame)
 
 /datum/team/gang/diablo
@@ -124,7 +124,7 @@
 	name = "H"
 	color = "#993333"
 	inner_outfits = list(/obj/item/clothing/under/rank/psyche)
-	outer_outfits = list(/obj/item/clothing/suit/hippie/jesus) // perfect
+	outer_outfits = list(/obj/item/clothing/suit/yogs/jesus) // perfect
 
 /datum/team/gang/rigatonifamily
 	name = "Rigatoni family"

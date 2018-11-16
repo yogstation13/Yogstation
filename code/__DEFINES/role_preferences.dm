@@ -62,8 +62,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
-	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
-	ROLE_GANG = /datum/game_mode/gang // Yogs
+	ROLE_SHADOWLING = /datum/game_mode/shadowling, // Yogs
+	ROLE_GANG = /datum/game_mode/gang, // Yogs
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SENTIENCE
