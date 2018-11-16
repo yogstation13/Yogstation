@@ -287,6 +287,7 @@
 		return
 	. = charges_used
 	yogs end */
+
 	if(istype(target, /obj/effect/decal/cleanable))
 		target = target.loc
 
@@ -327,10 +328,9 @@
 		temp = "graffiti"
 	else if(drawing in numerals)
 		temp = "number"
-
-	var/gang_check = hippie_gang_check(user,target) // yog start -- gang check and temp setting
+	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
 	if(!gang_check) return
-	else if(gang_check == "gang graffiti") temp = gang_check // yog end
+	else if(gang_check == "gang graffiti") temp = gang_check // yogs end
 
 	var/graf_rot
 	if(drawing in oriented)
@@ -362,8 +362,7 @@
 	var/wait_time = 50
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		wait_time *= 3
-	if(gang) instant = FALSE // hippie -- gang spraying must not be instant, balance reasons
-
+	if(gang) instant = FALSE // yogs -- gang spraying must not be instant, balance reasons
 	if(!instant)
 		if(!do_after(user, 50, target = target))
 			return
@@ -378,8 +377,7 @@
 		if(gang_final(user, target, affected_turfs))
 			return
 		actually_paints = FALSE // skip the next if check
-	// yogs end
-
+	// hippie end
 	if(actually_paints)
 		switch(paint_mode)
 			if(PAINT_NORMAL)
@@ -418,7 +416,6 @@
 		return
 	. = charges_used
 	// yogs end
-
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
