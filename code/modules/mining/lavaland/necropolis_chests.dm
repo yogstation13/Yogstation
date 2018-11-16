@@ -862,7 +862,7 @@
 
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
-	cure_text = "nothing"
+	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
 	cures = list("adminordrazine")
 	agent = "dragon's blood"
 	desc = "What do dragons have to do with Space Station 13?"
