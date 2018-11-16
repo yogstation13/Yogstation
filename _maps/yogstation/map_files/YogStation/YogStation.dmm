@@ -17268,15 +17268,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"aLm" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
 "aLn" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -60165,6 +60156,12 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"xWs" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "xWw" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -84931,7 +84928,7 @@ ayG
 ayG
 ayG
 ayG
-aLm
+aLl
 aLE
 aLE
 aPM
@@ -85188,7 +85185,7 @@ abN
 acm
 aJa
 ayG
-aLN
+xWs
 aLE
 aLE
 aLE
