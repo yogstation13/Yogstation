@@ -7282,6 +7282,20 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"aoc" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Labor Shuttle Dock APC";
+	areastring = "/area/security/processing";
+	pixel_x = -24
+	},
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "aod" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7766,6 +7780,36 @@
 "apd" = (
 /turf/closed/wall,
 /area/security/detectives_office)
+"ape" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"apf" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "apg" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -8119,6 +8163,31 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+"apW" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	areastring = "/area/vacant_room/commissary";
+	dir = 2;
+	name = "Vacant Commissary APC";
+	pixel_x = 2;
+	pixel_y = -27
+	},
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/screwdriver,
+/obj/machinery/camera{
+	c_tag = "Vacant Commissary";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "apX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -8385,6 +8454,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aqs" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
 "aqt" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -8569,27 +8647,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"aqT" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Labor Shuttle Dock APC";
-	areastring = "/area/security/processing";
-	pixel_x = -24
-	},
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold";
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "aqU" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory";
@@ -10741,26 +10798,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"awe" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold";
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold";
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -17482,21 +17519,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on";
 	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
-"aLl" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/port)
-"aLm" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
@@ -53052,24 +53074,6 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
-"kpg" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/power/apc{
-	areastring = "/area/vacant_room/office/office_b";
-	dir = 8;
-	name = "Vacant Office B APC";
-	pixel_x = -24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "kqT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -54239,17 +54243,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"mAn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "mAy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on";
@@ -57678,31 +57671,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"tix" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	areastring = "/area/vacant_room/commissary";
-	dir = 4;
-	name = "Vacant Commissary APC";
-	pixel_x = 2;
-	pixel_y = -27
-	},
-/obj/structure/rack,
-/obj/item/wrench,
-/obj/item/screwdriver,
-/obj/machinery/camera{
-	c_tag = "Vacant Commissary";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/vacant_room/commissary)
 "tiM" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -59290,14 +59258,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"vWA" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "vYE" = (
 /obj/machinery/telecomms/processor/preset_four,
 /obj/effect/turf_decal/tile/neutral{
@@ -82561,7 +82521,7 @@ wUw
 hDi
 lEj
 vVZ
-tix
+apW
 kVU
 aLE
 jaB
@@ -82820,7 +82780,7 @@ kVU
 kVU
 kVU
 kVU
-aLl
+aLE
 jaB
 aOi
 aPL
@@ -83069,7 +83029,7 @@ arP
 axu
 ayH
 ayH
-kpg
+ayH
 ayH
 ayH
 ayH
@@ -83334,7 +83294,7 @@ ayG
 ayG
 ayG
 ayG
-aLm
+aqs
 aLE
 aLE
 aPM
@@ -85373,12 +85333,12 @@ alq
 aot
 apc
 apS
-aqT
-vWA
-vWA
-mAn
-vWA
-awe
+aoc
+apS
+apS
+ape
+apS
+apf
 axw
 ayI
 azO
