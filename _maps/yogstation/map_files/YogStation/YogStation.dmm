@@ -715,26 +715,18 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "abN" = (
-/obj/structure/table/reinforced,
+/obj/structure/table/wood,
+/obj/item/instrument/accordion,
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "giftshop";
 	name = "gift shop shutters"
 	},
-/obj/machinery/camera{
-	c_tag = "Clerk's office";
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "abO" = (
 /turf/open/floor/plasteel/showroomfloor,
@@ -907,10 +899,21 @@
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "aci" = (
-/obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
+/obj/machinery/airalarm{
+	pixel_y = 23
 	},
-/turf/open/floor/plasteel,
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "acj" = (
 /obj/machinery/light{
@@ -940,51 +943,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"acl" = (
-/obj/structure/table,
-/obj/item/instrument/violin,
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "acm" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/piano,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "acn" = (
 /obj/item/storage/secure/safe/HoS{
@@ -1150,17 +1117,13 @@
 /area/security/prison)
 "acF" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "acG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1233,24 +1196,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
-"acL" = (
-/obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
-	},
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "acM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5187,27 +5132,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
-"ajX" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/stack/wrapping_paper{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "ajY" = (
 /obj/structure/girder,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7132,18 +7056,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
-"anO" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 2;
-	height = 5;
-	id = "laborcamp_home";
-	name = "fore bay 1";
-	roundstart_template = /datum/map_template/shuttle/labour/box;
-	width = 9
-	},
-/turf/open/space/basic,
-/area/space)
 "anP" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -12476,37 +12388,48 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "azK" = (
-/obj/structure/piano,
-/turf/open/floor/plating,
+/obj/machinery/button/door{
+	id = "giftshop";
+	name = "Gift Shop Lockdown";
+	pixel_y = 24
+	},
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "azL" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
-	dir = 6
+	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "azM" = (
 /obj/machinery/light,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "azN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "azO" = (
 /obj/structure/cable{
@@ -13145,9 +13068,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aBe" = (
-/obj/structure/chair/stool,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "aBf" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -13157,11 +13081,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aBg" = (
-/obj/structure/closet/crate,
-/obj/item/target/syndicate,
-/obj/item/target,
-/obj/item/target/alien,
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "aBh" = (
 /obj/machinery/camera{
@@ -13429,15 +13353,6 @@
 /obj/item/gun/energy/ionrifle,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aBY" = (
-/obj/machinery/door/airlock{
-	name = "Gift Shop";
-	req_access_txt = "36"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
-/area/clerk)
 "aBZ" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
@@ -13908,46 +13823,19 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDi" = (
-/obj/structure/table,
-/obj/item/instrument/guitar,
-/obj/machinery/button/door{
-	id = "giftshop";
-	name = "Gift Shop Button";
-	pixel_y = 24
+/obj/structure/table/wood,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 6
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aDj" = (
-/obj/machinery/vending/games,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/machinery/door/window/southleft{
+	name = "Clerk Desk";
+	req_access_txt = "36"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aDk" = (
 /obj/structure/table,
@@ -14037,17 +13925,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aDw" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on";
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "aDx" = (
 /obj/machinery/computer/upload/ai,
@@ -14057,18 +13941,15 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "aDy" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/item/instrument/guitar,
+/obj/structure/rack,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aDz" = (
 /obj/structure/rack,
@@ -14713,44 +14594,22 @@
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "aEQ" = (
-/obj/structure/chair,
-/obj/effect/landmark/start/yogs/clerk,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
-"aER" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on";
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
+"aER" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "aES" = (
 /obj/effect/turf_decal/stripes{
@@ -14763,41 +14622,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
-"aET" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/stack/sheet/cardboard,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
-"aEU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/filingcabinet/chestdrawer,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "aEV" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -15244,24 +15068,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"aFW" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "giftshop";
-	name = "gift shop shutters"
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "aFX" = (
 /obj/machinery/computer/upload/borg,
 /obj/machinery/airalarm{
@@ -15294,20 +15100,15 @@
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "aGf" = (
-/obj/structure/table,
-/obj/item/a_gift,
-/obj/item/a_gift,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/instrument/saxophone,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aGg" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -16061,20 +15862,15 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aHL" = (
-/obj/structure/table,
-/obj/item/bikehorn/rubberducky,
-/obj/item/camera,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/instrument/trombone,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aHN" = (
 /obj/structure/table,
@@ -16638,20 +16434,18 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aJa" = (
+/obj/structure/table/wood,
+/obj/item/instrument/glockenspiel,
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aJb" = (
 /obj/effect/turf_decal/delivery,
@@ -16683,20 +16477,15 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aJi" = (
-/obj/structure/table,
-/obj/item/key,
-/obj/item/camera_film,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/instrument/harmonica,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "aJj" = (
 /obj/structure/table,
@@ -17826,11 +17615,9 @@
 /area/crew_quarters/kitchen)
 "aMq" = (
 /obj/structure/table/wood,
-/obj/item/instrument/guitar{
-	pixel_x = -7
-	},
-/obj/item/instrument/eguitar{
-	pixel_x = 5
+/obj/item/paper/guides/recycler{
+	info = "Psst, you can check out more musical instruments from the Clerk's Shop!";
+	name = "paper - 'Musical Instruments'"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -18277,7 +18064,6 @@
 "aNG" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
-/obj/item/instrument/violin,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "aNH" = (
@@ -34651,24 +34437,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"bCx" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/hand_labeler,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "bCz" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -50966,27 +50734,6 @@
 "gfH" = (
 /turf/open/floor/plating,
 /area/tcommsat/computer)
-"ghg" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "giW" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -52495,6 +52242,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space)
+"jmj" = (
+/obj/machinery/paystand,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "jmH" = (
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
@@ -52838,9 +52591,9 @@
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "kaU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "kbp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53473,7 +53226,7 @@
 	icon_state = "vent_map_on";
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "lge" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -53714,6 +53467,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"lyh" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "lzH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -54116,6 +53877,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
+"miD" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "miX" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -55462,6 +55230,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/lounge)
+"oZD" = (
+/obj/item/instrument/eguitar,
+/obj/structure/rack,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "paA" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -55502,6 +55281,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"pcF" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "pdz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -56114,6 +55899,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"qqY" = (
+/obj/machinery/door/airlock{
+	name = "Commissary";
+	req_access_txt = "36"
+	},
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "qrA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -57086,6 +56878,15 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
+"sox" = (
+/obj/machinery/door/airlock{
+	name = "Gift Shop";
+	req_access_txt = "36"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
+/area/clerk)
 "soO" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59489,21 +59290,17 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "wsg" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
+/turf/open/floor/plasteel{
+	icon_state = "wood"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/clerk)
 "wsq" = (
 /obj/effect/turf_decal/tile/blue{
@@ -60314,9 +60111,15 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "xSu" = (
+/obj/item/instrument/violin,
 /obj/structure/rack,
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "giftshop";
+	name = "gift shop shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "wood"
+	},
 /area/clerk)
 "xUt" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -60487,6 +60290,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"yeO" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
 "yfa" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83306,7 +83120,7 @@ arP
 arP
 kVU
 rPk
-alu
+yeO
 xvj
 alu
 aHG
@@ -84590,7 +84404,7 @@ axo
 cCi
 aDz
 kVU
-kVU
+qqY
 kVU
 kVU
 kVU
@@ -85104,7 +84918,7 @@ axt
 ayG
 ayG
 ayG
-ayG
+sox
 ayG
 ayG
 ayG
@@ -85347,7 +85161,7 @@ aaa
 aaa
 aaa
 aaa
-anO
+aaa
 aaa
 aaa
 aaa
@@ -85361,13 +85175,13 @@ axt
 ayG
 azK
 aBe
-ayG
+kaU
 aDj
 aER
 abN
 acm
 aJa
-acF
+ayG
 aLN
 aLE
 aLE
@@ -85616,14 +85430,14 @@ aqR
 aqR
 axt
 ayG
-ayG
-ayG
-ayG
+miD
+jmj
+lyh
 aDi
 aEQ
-aFW
-aDw
-aDw
+kaU
+pcF
+kaU
 acF
 aLN
 aLE
@@ -85875,13 +85689,13 @@ axt
 ayG
 aci
 aBg
-ayG
-acl
+aBg
+aBg
 wsg
-aET
-bCx
-ajX
-ayG
+kaU
+kaU
+kaU
+acF
 aLN
 aLE
 aLE
@@ -86132,13 +85946,13 @@ axt
 ayG
 azL
 kaU
-aBY
-ghg
+kaU
+kaU
 aDw
-aDw
-aDw
-aDw
-acL
+kaU
+kaU
+kaU
+acF
 aLN
 aLE
 aOz
@@ -86389,9 +86203,9 @@ axt
 ayG
 azN
 xSu
-ayG
+oZD
 aDy
-aEU
+kaU
 aGf
 aHL
 aJi
