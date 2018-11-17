@@ -24,6 +24,7 @@
 	mob_size = MOB_SIZE_SMALL
 	gold_core_spawnable = FRIENDLY_SPAWN
 	do_footstep = FALSE
+	tame = 1
 	var/random_color = TRUE
 
 /mob/living/simple_animal/chocobo/Initialize()
@@ -32,6 +33,8 @@
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 		update_icon()
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
 
 /mob/living/simple_animal/chocobo/proc/update_icon()
 	if(!random_color) //icon override
