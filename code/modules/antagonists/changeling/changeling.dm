@@ -12,6 +12,7 @@
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
 	var/team_mode = FALSE //Should assign team objectives ?
+	var/competitive_objectives = FALSE //Should we assign objectives in competition with other lings?
 
 	//Changeling Stuff
 
@@ -27,6 +28,7 @@
 	var/sting_range = 2
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
+	var/was_absorbed = FALSE //if they were absorbed by another ling already.
 	var/isabsorbing = 0
 	var/islinking = 0
 	var/geneticpoints = 10
@@ -42,6 +44,15 @@
 	// wip stuff
 	var/static/list/all_powers = typecacheof(/obj/effect/proc_holder/changeling,TRUE)
 
+/datum/antagonist/changeling/New()
+	. = ..()
+	for(var/datum/antagonist/changeling/C in GLOB.antagonists)
+		if(!C.owner || C.owner == owner)
+			continue
+		if(C.was_absorbed) //make sure the other ling wasn't already killed by another one. only matters if the changeling that absorbed them was gibbed after.
+			continue
+		competitive_objectives = TRUE
+		break
 
 /datum/antagonist/changeling/Destroy()
 	QDEL_NULL(cellular_emporium)
@@ -371,21 +382,21 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = rand(1,2) //yogs - fuck absorb most
-	switch(changeling_objective)
+	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
 			absorb_objective.owner = owner
 			absorb_objective.gen_amount_goal(3, 5) //yogs, 6-8 -> 3-5
 			objectives += absorb_objective
 		if(2)
+			var/datum/objective/absorb_most/ac = new
+			ac.owner = owner
+			objectives += ac
+		if(3) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
-		/* if(3) //yogs - fuck absorb most
-			var/datum/objective/absorb_most/ac = new
-			ac.owner = owner
-			objectives += ac */ //yogs - fuck absorb most
 
 	if(prob(60))
 		if(prob(85))
