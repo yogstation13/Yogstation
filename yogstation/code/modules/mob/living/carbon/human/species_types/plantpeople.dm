@@ -1,5 +1,4 @@
 #define STATUS_MESSAGE_COOLDOWN 900
-#define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
 
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
