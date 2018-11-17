@@ -10,6 +10,6 @@ SUBSYSTEM_DEF(Yogs)
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	return ..()
 
-/datum.controller/subsystem/Yogs/fire(resumed = 0)
+/datum/controller/subsystem/Yogs/fire(resumed = 0)
 	return
 
