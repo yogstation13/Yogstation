@@ -2559,8 +2559,7 @@
 	pixel_y = 2
 	},
 /obj/structure/sign/warning/nosmoking{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -5664,8 +5663,7 @@
 	dir = 8;
 	name = "Test Chamber Monitor";
 	network = list("test");
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -6240,8 +6238,7 @@
 /area/science/misc_lab)
 "alZ" = (
 /obj/structure/sign/warning/securearea{
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -9763,7 +9760,6 @@
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30;
-	pixel_y = 0;
 	receive_ore_updates = 1
 	},
 /turf/open/floor/plasteel/white,
@@ -29973,7 +29969,7 @@
 	},
 /area/science/explab)
 "brE" = (
-/obj/machinery/door/airlock/maintenance
+/obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "8;12"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -47144,8 +47140,7 @@
 	dir = 8
 	},
 /obj/item/radio/intercom{
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
@@ -48836,8 +48831,7 @@
 "cSf" = (
 /obj/structure/sign/warning/vacuum{
 	name = "EXTERNAL AIRLOCK";
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -49613,8 +49607,7 @@
 	dir = 1
 	},
 /obj/structure/sign/warning/deathsposal{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -49799,8 +49792,7 @@
 	dir = 0
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4;
@@ -51717,8 +51709,7 @@
 	},
 /obj/item/pen,
 /obj/machinery/newscaster{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
@@ -54474,8 +54465,7 @@
 	dir = 8
 	},
 /obj/structure/sign/warning/nosmoking{
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -55593,8 +55583,7 @@
 "pmX" = (
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = -28;
-	pixel_y = 0
+	pixel_x = -28
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
@@ -56902,8 +56891,7 @@
 /obj/machinery/computer/security/telescreen/turbine{
 	dir = 8;
 	icon_state = "telescreen";
-	pixel_x = 30;
-	pixel_y = 0
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -57935,8 +57923,7 @@
 	areastring = "/area/storage/tools";
 	dir = 4;
 	name = "Auxiliary Tool Storage APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -60098,8 +60085,7 @@
 	dir = 4
 	},
 /obj/item/storage/secure/safe{
-	pixel_x = -24;
-	pixel_y = 0
+	pixel_x = -24
 	},
 /turf/open/floor/plating,
 /area/vacant_room/commissary)
@@ -60391,8 +60377,7 @@
 	areastring = "/area/ai_monitored/nuke_storage";
 	dir = 8;
 	name = "Vault APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
