@@ -23,13 +23,8 @@
 /datum/crafting_recipe/food/spaghettimeatball
 	name = "Spaghetti meatball"
 	reqs = list(
-<<<<<<< HEAD
-		/obj/item/reagent_containers/food/snacks/boiledspaghetti = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 2  //YOGS - Bigotry rule
-=======
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
-		/obj/item/reagent_containers/food/snacks/faggot = 2
->>>>>>> a6971e2673... You can put spaghetti in your pocket (#41517)
+		/obj/item/reagent_containers/food/snacks/meatball = 2  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti
 	subcategory = CAT_SPAGHETTI
@@ -37,13 +32,8 @@
 /datum/crafting_recipe/food/spesslaw
 	name = "Spesslaw"
 	reqs = list(
-<<<<<<< HEAD
-		/obj/item/reagent_containers/food/snacks/boiledspaghetti = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 4  //YOGS - Bigotry rule
-=======
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
-		/obj/item/reagent_containers/food/snacks/faggot = 4
->>>>>>> a6971e2673... You can put spaghetti in your pocket (#41517)
+		/obj/item/reagent_containers/food/snacks/meatball = 4  //YOGS - Bigotry rule
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/spesslaw
 	subcategory = CAT_SPAGHETTI
@@ -76,10 +66,5 @@
 		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
 		/obj/item/reagent_containers/food/snacks/butter = 1
 	)
-<<<<<<< HEAD
-	result = /obj/item/reagent_containers/food/snacks/butternoodles
-	subcategory = CAT_SPAGHETTI
-=======
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/butternoodles
 	subcategory = CAT_SPAGHETTI
->>>>>>> a6971e2673... You can put spaghetti in your pocket (#41517)
