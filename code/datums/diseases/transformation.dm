@@ -271,7 +271,7 @@
 
 /datum/disease/transformation/morph
 	name = "Gluttony's Blessing"
-	cure_text = "nothing"
+	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
 	cures = list("adminordrazine")
 	agent = "Gluttony's Blessing"
 	desc = "A 'gift' from somewhere terrible."
