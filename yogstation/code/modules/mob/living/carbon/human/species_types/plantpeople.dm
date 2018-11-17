@@ -255,5 +255,4 @@
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
-#undef HUMAN_CRIT_MAX_OXYLOSS
 #undef STATUS_MESSAGE_COOLDOWN
