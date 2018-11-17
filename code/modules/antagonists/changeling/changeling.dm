@@ -396,7 +396,7 @@
 		if(3) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
-			objectives += ac */ //yogs - fuck absorb most
+			objectives += ac
 
 	if(prob(60))
 		if(prob(85))
