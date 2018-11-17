@@ -34565,6 +34565,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bjp" = (
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Testing Range";
+	req_access_txt = "47"
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/science/misc_lab/range)
 "bjq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -68358,17 +68369,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"cqY" = (
-/obj/machinery/door/airlock/research/glass{
-	name = "Circuitry Lab";
-	req_access_txt = "47"
-	},
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab/range)
 "cqZ" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -118269,7 +118269,7 @@ cuZ
 cuZ
 cuZ
 cuZ
-cqY
+bjp
 vNW
 czD
 czD
