@@ -382,13 +382,8 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-<<<<<<< HEAD
-	var/changeling_objective = rand(1,2) //yogs - fuck absorb most
-	switch(changeling_objective)
-=======
-
-	switch(competitive_objectives ? (team_mode ? rand(1,2) : rand(1,3)) : 1)
->>>>>>> 796d7084c4... Fixes solo changelings getting kill other changeling objectives (#41486)
+	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
 			absorb_objective.owner = owner
@@ -398,13 +393,8 @@
 			var/datum/objective/absorb_most/ac = new
 			ac.owner = owner
 			objectives += ac
-<<<<<<< HEAD
-		/* if(3) //yogs - fuck absorb most
-			var/datum/objective/absorb_most/ac = new
-=======
 		if(3) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
->>>>>>> 796d7084c4... Fixes solo changelings getting kill other changeling objectives (#41486)
 			ac.owner = owner
 			objectives += ac */ //yogs - fuck absorb most
 
