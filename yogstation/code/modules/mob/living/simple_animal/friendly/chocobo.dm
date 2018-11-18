@@ -19,8 +19,8 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 	attacktext = "kicks"
-	health = 25
-	maxHealth = 25
+	health = 60
+	maxHealth = 60
 	mob_size = MOB_SIZE_SMALL
 	gold_core_spawnable = FRIENDLY_SPAWN
 	do_footstep = FALSE
