@@ -55,8 +55,8 @@
 	if(!target)
 		add_overlay("pinon[alert ? "alert" : ""]null")
 		return
-	var/turf/here = get_turf(src)
-	var/turf/there = get_turf(target)
+	var/turf/here = get_turf_global(src) // yogs - replace get_turf with get_turf_global
+	var/turf/there = get_turf_global(target) // yogs - replace get_turf with get_turf_global
 	if(here.z != there.z)
 		add_overlay("pinon[alert ? "alert" : ""]null")
 		return

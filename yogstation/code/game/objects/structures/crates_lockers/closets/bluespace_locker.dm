@@ -113,6 +113,15 @@
 		else
 			add_overlay(image(other.icon, "[other.icon_state]_open"))
 
+/obj/structure/closet/bluespace/external/onTransitZ(old_z,new_z)
+	var/obj/structure/closet/O = get_other_locker()
+	if(O)
+		var/area/A = get_area(O)
+		if(A)
+			for(var/atom/movable/M in A)
+				M.onTransitZ(old_z,new_z)
+	return ..()
+
 /obj/structure/closet/bluespace/internal/proc/update_mirage()
 	var/area/A = get_area(src)
 	for(var/atom/movable/M in A)
