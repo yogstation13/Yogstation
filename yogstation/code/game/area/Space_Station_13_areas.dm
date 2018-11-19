@@ -27,6 +27,7 @@
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	noteleport = TRUE
 
 /area/vacant_room/office/office_b
 	name = "Vacant Office - B"
