@@ -123,7 +123,7 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/Initialize()
 	. = ..()
-	eatverb = pick("bite","chew","nibble","deep throat","gobble","chomp")
+	eatverb = pick("bite","chew","nibble","gobble","chomp") //yogs - removes "deep throat"
 
 /obj/item/reagent_containers/food/snacks/kebab
 	trash = /obj/item/stack/rods
