@@ -1,0 +1,4 @@
+author: " Adds an AI Core Sprite"
+delete-after: true 
+changes: 
+  - imageadd: "Added an AI Core Sprite"
