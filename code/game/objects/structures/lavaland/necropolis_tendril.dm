@@ -10,22 +10,12 @@
 	max_mobs = 3
 	max_integrity = 250
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/tendril)
-<<<<<<< HEAD:code/modules/mob/living/simple_animal/hostile/mining_mobs/necropolis_tendril.dm
-	spawn_text = "emerges from"
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
-	maxbodytemp = INFINITY
-	loot = list(/obj/effect/collapse, /obj/structure/closet/crate/necropolis/tendril)
-	del_on_death = 1
-	//var/gps = null - yogs - removed tendril gps
-=======
 
 	move_resist=INFINITY // just killing it tears a massive hole in the ground, let's not move it
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
-	var/gps = null
->>>>>>> ce0828a98e... Tendrils are now structure based [READY] (#41554):code/game/objects/structures/lavaland/necropolis_tendril.dm
+	//var/gps = null - yogs - removed tendril gps
 	var/obj/effect/light_emitter/tendril/emitted_light
 
 
@@ -43,20 +33,12 @@ GLOBAL_LIST_INIT(tendrils, list())
 		if(ismineralturf(F))
 			var/turf/closed/mineral/M = F
 			M.ScrapeAway(null, CHANGETURF_IGNORE_AIR)
-<<<<<<< HEAD:code/modules/mob/living/simple_animal/hostile/mining_mobs/necropolis_tendril.dm
-	//gps = new /obj/item/gps/internal(src) - yogs - removed tendril gps
-
-/mob/living/simple_animal/hostile/spawner/lavaland/Destroy()
-	QDEL_NULL(emitted_light)
-	//QDEL_NULL(gps) - yogs - removed tendril gps
-=======
-	gps = new /obj/item/gps/internal(src)
+	//gps = new /obj/item/gps/internal(src) //yogs - lol
 	GLOB.tendrils += src
 
 /obj/structure/spawner/lavaland/deconstruct(disassembled)
 	new /obj/effect/collapse(loc)
 	new /obj/structure/closet/crate/necropolis/tendril(loc)
->>>>>>> ce0828a98e... Tendrils are now structure based [READY] (#41554):code/game/objects/structures/lavaland/necropolis_tendril.dm
 	return ..()
 
 
@@ -74,7 +56,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 				SSmedals.SetScore(TENDRIL_CLEAR_SCORE, L.client, 1)
 	GLOB.tendrils -= src
 	QDEL_NULL(emitted_light)
-	QDEL_NULL(gps)
+	//QDEL_NULL(gps) //yogs - lol
 	return ..()
 
 /obj/effect/light_emitter/tendril
