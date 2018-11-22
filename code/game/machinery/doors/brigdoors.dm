@@ -2,11 +2,11 @@
 #define FONT_SIZE "5pt"
 #define FONT_COLOR "#09f"
 #define FONT_STYLE "Arial Black"
-#define MAX_TIMER 9000
+#define MAX_TIMER 12000 //yogs - changed 9000 to 12000
 
-#define PRESET_SHORT 1200
-#define PRESET_MEDIUM 1800
-#define PRESET_LONG 3000
+#define PRESET_SHORT 1800 //yogs - changed 1200 to 1800
+#define PRESET_MEDIUM 3000 //yogs - changed 1800 to 3000
+#define PRESET_LONG 6000 //yogs - changed 3000 to 6000
 
 
 
