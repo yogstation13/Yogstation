@@ -230,46 +230,6 @@
 					if( !istype(item_to_add,  /obj/item/radio/headset) )
 						to_chat(usr, "<span class='warning'>This object won't fit!</span>")
 						return
-<<<<<<< HEAD
-					else
-						var/obj/item/item_to_add = usr.get_active_held_item()
-						if(!item_to_add)
-							return
-
-						if( !istype(item_to_add,  /obj/item/radio/headset) )
-							to_chat(usr, "<span class='warning'>This object won't fit!</span>")
-							return
-
-						var/obj/item/radio/headset/headset_to_add = item_to_add
-
-						if(!usr.transferItemToLoc(headset_to_add, src))
-							return
-						src.ears = headset_to_add
-						to_chat(usr, "<span class='notice'>You fit the headset onto [src].</span>")
-
-						clearlist(available_channels)
-						for(var/ch in headset_to_add.channels)
-							switch(ch)
-								if("Engineering")
-									available_channels.Add(":e")
-								if("Command")
-									available_channels.Add(":c")
-								if("Security")
-									available_channels.Add(":s")
-								if("Science")
-									available_channels.Add(":n")
-								if("Medical")
-									available_channels.Add(":m")
-								if("Supply")
-									available_channels.Add(":u")
-								if("Service")
-									available_channels.Add(":v")
-
-						if(headset_to_add.translate_binary)
-							available_channels.Add(":b")
-		else
-			..()
-=======
 
 					var/obj/item/radio/headset/headset_to_add = item_to_add
 
@@ -300,7 +260,6 @@
 						available_channels.Add(MODE_TOKEN_BINARY)
 	else
 		return ..()
->>>>>>> e8ea762ee4... Update corgi & parrot inventory panels to the same formatting as other mobs (#41544)
 
 
 /*
