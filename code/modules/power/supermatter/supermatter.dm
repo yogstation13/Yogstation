@@ -697,26 +697,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
-<<<<<<< HEAD
-	for(var/atom/P in orange(pull_range,center))
-		if(ismovableatom(P))
-			var/atom/movable/pulled_object = P
-			if(ishuman(P))
-				var/mob/living/carbon/human/H = P
-				if(istype(H.shoes, /obj/item/clothing/shoes/magboots)) //yogs start
-					var/obj/item/clothing/shoes/magboots/MB = H.shoes
-					if(MB.magpulse)
-						to_chat(H, "<span class='warning'>[MB] prevent you from falling over due to [src]'s pull!</span>")
-					else
-						H.apply_effect(40, EFFECT_PARALYZE, 0)
-				else
-					H.apply_effect(40, EFFECT_PARALYZE, 0) //yogs end
-			if(pulled_object && !pulled_object.anchored && !ishuman(P))
-				step_towards(pulled_object,center)
-				step_towards(pulled_object,center)
-				step_towards(pulled_object,center)
-				step_towards(pulled_object,center)
-=======
 	for(var/atom/movable/P in orange(pull_range,center))
 		if(P.anchored || P.move_resist >= MOVE_FORCE_EXTREMELY_STRONG) //move resist memes.
 			return
@@ -733,7 +713,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			step_towards(P,center)
 			step_towards(P,center)
 			step_towards(P,center)
->>>>>>> c49064bf62... Makes magboots effective in preventing gravitational movement effects, fixes magboots not working for singularity pull, eases the chainstun effect of overcharged supermatter (#41583)
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_anomaly_gen(turf/anomalycenter, type = FLUX_ANOMALY, anomalyrange = 5)
 	var/turf/L = pick(orange(anomalyrange, anomalycenter))
