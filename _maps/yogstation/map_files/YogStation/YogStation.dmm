@@ -8454,6 +8454,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aqs" = (
+/obj/machinery/camera{
+	c_tag = "Engineering Escape Pod";
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "aqt" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -58963,13 +58970,6 @@
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"vsa" = (
-/obj/machinery/camera{
-	c_tag = "Cargo Receiving Dock";
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "vtq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
@@ -94414,7 +94414,7 @@ xYC
 oqv
 tAu
 ciZ
-vsa
+aqs
 jmH
 uUM
 cig
