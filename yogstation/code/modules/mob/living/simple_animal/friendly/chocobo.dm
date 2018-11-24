@@ -6,15 +6,14 @@
 	icon = 'yogstation/icons/mob/chocobo.dmi'
 	icon_state = "chocobo"
 	icon_living = "chocobo"
-	icon_dead = "chocobo"
-	del_on_death = TRUE //no sprites ;(
+	icon_dead = "chocobo_dead"
 	speak_emote = list("clucks","croons","warks")
 	emote_hear = list("clucks.","warks.")
 	emote_see = list("warks violently.","flaps its wings viciously.")
 	density = TRUE
 	speak_chance = 2
 	turns_per_move = 5
-	loot = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
@@ -42,10 +41,28 @@
 	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
 
+/mob/living/simple_animal/chocobo/death(gibbed)
+	. = ..()
+	update_icon()
+	for(var/mob/living/N in buckled_mobs)
+		unbuckle_mob(N)
+	can_buckle = FALSE
+
+/mob/living/simple_animal/chocobo/revive(full_heal, admin_revive)
+	. = ..()
+	if(.)
+		can_buckle = initial(can_buckle)
+	update_icon()
+
 /mob/living/simple_animal/chocobo/proc/update_icon()
 	if(!random_color) //icon override
 		return
 	cut_overlays()
-	var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs")
-	base_overlay.appearance_flags = RESET_COLOR
-	add_overlay(base_overlay)
+	if(stat == DEAD)
+		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs_dead")
+		base_overlay.appearance_flags = RESET_COLOR
+		add_overlay(base_overlay)
+	else
+		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs")
+		base_overlay.appearance_flags = RESET_COLOR
+		add_overlay(base_overlay)
