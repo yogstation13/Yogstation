@@ -8645,6 +8645,18 @@
 	},
 /turf/open/floor/plating,
 /area/security/processing)
+"aqT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/window/southleft{
+	name = "Virology";
+	req_access_txt = "39"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aqU" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory";
@@ -53753,14 +53765,6 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/science/nanite)
-"lAT" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold";
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "lBe" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -102608,7 +102612,7 @@ inK
 mhb
 mdx
 enb
-lAT
+aqT
 dRN
 bZQ
 caP
