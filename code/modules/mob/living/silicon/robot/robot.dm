@@ -228,10 +228,9 @@
 
 	var/list/moduleicons = list() //yogs start
 	for(var/option in modulelist)
-		var/fuck = modulelist[option]
-		var/obj/item/robot_module/M = new fuck(src)
-		moduleicons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = M.cyborg_base_icon)
-		qdel(M)
+		var/obj/item/robot_module/M = modulelist[option]
+		var/is = initial(M.cyborg_base_icon)
+		moduleicons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = is)
 
 	var/input_module = show_radial_menu(src, src , moduleicons, radius = 42) //yogs end
 	if(!input_module || module.type != /obj/item/robot_module)
