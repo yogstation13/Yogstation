@@ -8646,16 +8646,17 @@
 /turf/open/floor/plating,
 /area/security/processing)
 "aqT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold";
+	dir = 8
 	},
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "surgery_shutters";
-	name = "Surgery shutters"
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/window/southleft{
+	name = "Virology";
+	req_access_txt = "39"
 	},
-/turf/open/floor/plating,
-/area/medical/sleeper)
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aqU" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory";
@@ -8669,15 +8670,11 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "aqW" = (
-/obj/structure/disposalpipe/segment{
+/obj/structure/chair,
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "surgery_shutters";
-	name = "Surgery shutters"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
 "aqX" = (
 /obj/structure/table,
@@ -8705,7 +8702,7 @@
 /area/maintenance/fore)
 "ara" = (
 /obj/structure/disposalpipe/segment{
-	dir = 9
+	dir = 6
 	},
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
@@ -8715,6 +8712,9 @@
 /turf/open/floor/plating,
 /area/medical/sleeper)
 "arb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
 	id = "surgery_shutters";
@@ -9237,22 +9237,15 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "aso" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/apron/surgical,
-/obj/machinery/button/door{
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
 	id = "surgery_shutters";
-	name = "Surgery shutters";
-	pixel_x = -24;
-	pixel_y = 28;
-	req_access_txt = "45";
-	req_one_access_txt = null
+	name = "Surgery shutters"
 	},
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
+/turf/open/floor/plating,
 /area/medical/sleeper)
 "asp" = (
 /obj/structure/table/wood,
@@ -9530,11 +9523,12 @@
 /turf/open/floor/plasteel,
 /area/science/nanite)
 "asY" = (
-/obj/structure/chair,
-/obj/machinery/light{
-	dir = 4
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "surgery_shutters";
+	name = "Surgery shutters"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/medical/sleeper)
 "asZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9898,6 +9892,24 @@
 "atN" = (
 /turf/closed/wall/r_wall,
 /area/science/nanite)
+"atO" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/apron/surgical,
+/obj/machinery/button/door{
+	id = "surgery_shutters";
+	name = "Surgery shutters";
+	pixel_x = -24;
+	pixel_y = 28;
+	req_access_txt = "45";
+	req_one_access_txt = null
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/medical/sleeper)
 "atQ" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm5";
@@ -53790,14 +53802,6 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/science/nanite)
-"lAT" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold";
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "lBe" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -96201,9 +96205,9 @@ bwx
 bvj
 bAl
 bxa
-aqT
+ara
 bzI
-aso
+atO
 bCF
 bDB
 bFB
@@ -96458,7 +96462,7 @@ bui
 bvj
 bww
 bAl
-aqW
+arb
 bzH
 bDR
 bDR
@@ -96715,7 +96719,7 @@ bJG
 bvl
 bwE
 bxc
-ara
+aso
 ats
 bDT
 cpG
@@ -96972,7 +96976,7 @@ bwy
 bvj
 bza
 bAl
-arb
+asY
 bCD
 bAY
 bCH
@@ -97227,9 +97231,9 @@ bEe
 bBL
 bwA
 bvj
-asY
+aqW
 bAl
-arb
+asY
 bzS
 bBc
 xwW
@@ -102645,7 +102649,7 @@ inK
 mhb
 mdx
 enb
-lAT
+aqT
 dRN
 bZQ
 caP
