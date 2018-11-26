@@ -118,6 +118,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/smoketime = 180 // 1 is 2 seconds, so a single cigarette will last 6 minutes.
 	var/chem_volume = 30
 	var/list/list_reagents = list("nicotine" = 15)
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/clothing/mask/cigarette/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is huffing [src] as quickly as [user.p_they()] can! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer.</span>")
@@ -310,6 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 120 // four minutes
 	chem_volume = 50
 	list_reagents = null
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/clothing/mask/cigarette/rollie/New()
 	..()
@@ -355,6 +357,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 300 // 11 minutes
 	chem_volume = 40
 	list_reagents = list("nicotine" = 25)
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
@@ -365,6 +368,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 600 // 20 minutes
 	chem_volume = 80
 	list_reagents =list("nicotine" = 40)
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/clothing/mask/cigarette/cigar/havana
 	name = "premium Havanian cigar"
@@ -375,6 +379,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 900 // 30 minutes
 	chem_volume = 50
 	list_reagents =list("nicotine" = 15)
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/cigbutt
 	name = "cigarette butt"
@@ -404,6 +409,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 100
 	list_reagents = null
 	var/packeditem = 0
+	species_exception = list(/datum/species/golem) //yogs
 
 /obj/item/clothing/mask/cigarette/pipe/Initialize()
 	. = ..()
@@ -486,6 +492,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
 	smoketime = 0
+	species_exception = list(/datum/species/golem) //yogs
 
 
 /////////
