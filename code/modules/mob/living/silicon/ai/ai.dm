@@ -194,9 +194,9 @@
 	var/list/iconstates = GLOB.ai_core_display_screens
 	for(var/option in iconstates)
 		if(option == "Random")
-			iconstates[option] = image(icon = 'icons/mob/ai.dmi', icon_state = "ai-random") //yogs start - AI donor icons
+			iconstates[option] = image(icon = initial(src.icon), icon_state = "ai-random") //yogs start - AI donor icons
 			continue
-		iconstates[option] = image(icon = 'icons/mob/ai.dmi', icon_state = resolve_ai_icon(option))
+		iconstates[option] = image(icon = initial(src.icon), icon_state = resolve_ai_icon(option))
 
 	if(is_donator(client))
 		for(var/datum/ai_skin/S in GLOB.DonorBorgHolder.skins)
