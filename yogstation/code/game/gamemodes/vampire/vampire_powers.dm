@@ -106,15 +106,13 @@
 	name = "Hypnotize (20)"
 	desc= "A piercing stare that incapacitates your victim for a good length of time."
 	action_icon_state = "hypnotize"
-	blood_used = 20
+	blood_used = 100
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
-	for(var/mob/living/target in targets)
-		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 50))
+		if(do_mob(user, target, 25))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
 			target.Paralyze(150)
