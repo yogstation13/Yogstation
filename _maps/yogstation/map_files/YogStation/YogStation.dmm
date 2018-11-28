@@ -4678,15 +4678,13 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajd" = (
-/obj/structure/sign/plaques/golden{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aje" = (
@@ -7173,9 +7171,18 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "anS" = (
-/obj/machinery/holopad,
+/obj/structure/sign/plaques/golden{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
-/area/hallway/primary/fore)
+/area/security/brig)
 "anT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -7194,32 +7201,21 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "anU" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Courtroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "anV" = (
-/obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "anW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -7249,14 +7245,17 @@
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "anY" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -22
+/obj/machinery/holopad,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "anZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -7520,9 +7519,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aoy" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=EVA";
-	location = "Security"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
@@ -8669,6 +8672,17 @@
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aqW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "aqX" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -8693,6 +8707,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"ara" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass{
+	name = "Courtroom"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
+"arb" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
 "arc" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -9207,6 +9232,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"aso" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "intact";
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
 "asp" = (
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -9482,6 +9522,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"asY" = (
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=EVA";
+	location = "Security"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "asZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -9678,6 +9727,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"ats" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "att" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -9834,6 +9889,19 @@
 "atN" = (
 /turf/closed/wall/r_wall,
 /area/science/nanite)
+"atO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
+"atP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "atQ" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm5";
@@ -10861,20 +10929,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"awk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "awl" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -50071,17 +50125,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"eJp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "eKd" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Detective Maintenance";
@@ -51210,17 +51253,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"gwU" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "gyl" = (
 /obj/machinery/light{
 	dir = 4
@@ -60345,17 +60377,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"xZx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
 "yaO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
@@ -90711,8 +90732,8 @@ agQ
 ahv
 ahQ
 aiI
-ajc
-ajb
+ajd
+anU
 akm
 akV
 aly
@@ -91233,16 +91254,16 @@ alw
 amk
 amR
 anw
-anS
-aoy
-apj
-anz
-anz
-anz
-anz
-anz
-anz
-awk
+anY
+asY
+ats
+atO
+atO
+atO
+atO
+atO
+atO
+atP
 axB
 anz
 anz
@@ -91490,7 +91511,7 @@ agj
 agj
 amS
 anx
-anz
+aoy
 aoz
 apm
 aqd
@@ -91747,7 +91768,7 @@ alz
 aml
 amT
 anw
-anz
+aoy
 aoz
 ahn
 ahn
@@ -92004,7 +92025,7 @@ alB
 amn
 amV
 anw
-anz
+aoy
 aoz
 ahn
 aqf
@@ -92261,7 +92282,7 @@ alA
 amm
 amB
 anw
-anz
+aoy
 aoA
 ahn
 aqe
@@ -92518,7 +92539,7 @@ alC
 alC
 amI
 anz
-anz
+aoy
 aoB
 ahn
 aqe
@@ -92767,15 +92788,15 @@ agW
 ahE
 aii
 agn
-ajd
-ajb
+anS
+anV
 aiG
 akW
 aiG
 amo
 amJ
 anz
-anz
+aoy
 aoz
 ahn
 aqe
@@ -93032,7 +93053,7 @@ agj
 agj
 amS
 anB
-eJp
+aqW
 aoD
 ahn
 aqe
@@ -93289,7 +93310,7 @@ lOC
 amp
 amP
 anA
-gwU
+anz
 aoC
 ahn
 aqe
@@ -93546,7 +93567,7 @@ ttY
 alx
 amP
 anA
-gwU
+anz
 aoF
 ahn
 aqh
@@ -93803,7 +93824,7 @@ alE
 amq
 amU
 anA
-gwU
+anz
 aoE
 ahn
 apt
@@ -94060,7 +94081,7 @@ aiX
 aiX
 aiX
 anC
-anU
+ara
 anC
 ajo
 apt
@@ -94317,7 +94338,7 @@ alG
 amr
 amY
 amY
-xZx
+ajp
 aoG
 ajo
 apt
@@ -94574,7 +94595,7 @@ alI
 amr
 amY
 amY
-xZx
+ajp
 aoH
 ajo
 apt
@@ -94831,7 +94852,7 @@ alH
 amr
 amY
 lcm
-anV
+arb
 ajo
 ajo
 apt
@@ -95088,7 +95109,7 @@ alJ
 amt
 iUt
 dFe
-anY
+aso
 ajo
 apq
 apt
