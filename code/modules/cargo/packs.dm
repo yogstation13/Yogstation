@@ -1980,7 +1980,7 @@
 					/obj/item/toy/plush/lizardplushie,
 					/obj/item/toy/plush/snakeplushie,
 					/obj/item/toy/plush/nukeplushie,
-					/obj/item/toy/plush/goatplushie/angry,
+					/obj/item/toy/plush/goatplushie,
 					/obj/item/toy/plush/slimeplushie)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden //YOGS end - plushie crate
