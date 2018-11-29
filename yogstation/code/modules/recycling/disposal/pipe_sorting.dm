@@ -33,13 +33,14 @@
 	if(panel_open)
 		add_overlay(image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open"))
 
+/obj/structure/disposalpipe/sorting/screwdriver_act(mob/living/user, obj/item/I)
+	panel_open = !panel_open
+	I.play_tool_sound(src)
+	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the wire panel.</span>")
+	update_icon()
+	return TRUE
+
 /obj/structure/disposalpipe/sorting/attackby(obj/item/I, mob/user)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		panel_open = !panel_open
-		I.play_tool_sound(src)
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the wire panel.</span>")
-		update_icon()
-		return TRUE
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return TRUE
