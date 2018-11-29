@@ -78699,10 +78699,7 @@
 /area/crew_quarters/locker)
 "cCc" = (
 /obj/structure/dresser,
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -78710,14 +78707,8 @@
 "cCd" = (
 /obj/structure/table_frame/wood,
 /obj/item/crowbar/red,
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
 "cCe" = (
@@ -79664,10 +79655,7 @@
 /area/crew_quarters/locker)
 "cDC" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "cDD" = (
@@ -80774,10 +80762,7 @@
 /area/crew_quarters/dorms)
 "cFx" = (
 /obj/structure/bed,
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/item/bedsheet/dorms,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
@@ -81580,10 +81565,7 @@
 	pixel_y = 7;
 	specialfunctions = 4
 	},
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "cGU" = (
@@ -82251,10 +82233,7 @@
 	id_tag = "Dorm5";
 	name = "Cabin 1"
 	},
-/obj/effect/decal/cleanable/dirt{
-	desc = "A thin layer of dust coating the floor.";
-	name = "dust"
-	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},

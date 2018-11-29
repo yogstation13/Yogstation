@@ -7341,9 +7341,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
 "aso" = (
@@ -13503,9 +13501,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aFR" = (
@@ -14173,7 +14169,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aHt" = (
-/obj/effect/decal/cleanable/egg_smudge,
+/obj/effect/decal/cleanable/food/egg_smudge,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aHu" = (
@@ -14580,9 +14576,7 @@
 "aIq" = (
 /obj/structure/closet/crate/coffin,
 /obj/item/toy/figure/lawyer,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aIr" = (
@@ -16197,9 +16191,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aME" = (
@@ -26528,9 +26520,7 @@
 /obj/item/retractor,
 /obj/item/cautery,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bkX" = (
@@ -37503,9 +37493,7 @@
 "bHS" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/engine)
 "bHT" = (
@@ -47849,9 +47837,7 @@
 /area/chapel/main/monastery)
 "cgN" = (
 /obj/structure/table/wood,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -48527,9 +48513,7 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "cjO" = (
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/stack/sheet/glass/fifty{
 	layer = 4
 	},
@@ -48665,9 +48649,7 @@
 /area/library)
 "ckp" = (
 /obj/structure/bookcase/random/religion,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "ckr" = (
@@ -52068,9 +52050,7 @@
 /turf/open/floor/carpet,
 /area/chapel/main/monastery)
 "cwl" = (
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/storage/fancy/candle_box,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
@@ -53856,9 +53836,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "ekU" = (
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
 "elk" = (
