@@ -34,3 +34,11 @@
 	contains = list(/obj/item/shoe_protector,
 					/obj/item/shoe_protector/ultra)
 	crate_name = "clearance level: AMBER 'cleaning spray' crate"
+
+/datum/supply_pack/critter/chocobo
+	name = "Chocobo Crate"
+	desc = "One of the most rare species in the universe.Chocobos were almost completly exterminated for their meat.Only a few select chocobos remain alive but they are unable to reproduce. They are rideable and come in almost every single color possible."
+	hidden = TRUE
+	cost = 8000
+	contains = list(/mob/living/simple_animal/chocobo)
+	crate_name = "chocobo crate"
