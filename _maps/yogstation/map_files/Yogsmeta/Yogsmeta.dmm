@@ -66706,20 +66706,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "coC" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Surgery APC";
-	areastring = "/area/medical/surgery";
-	pixel_x = 26
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "surgery_shutters";
+	name = "Surgery shutters"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/structure/table,
-/obj/item/surgical_drapes,
-/turf/open/floor/plasteel/white/side{
-	dir = 8
-	},
+/turf/open/floor/plating,
 /area/medical/surgery)
 "coD" = (
 /obj/structure/bed/roller,
@@ -74133,6 +74125,30 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science/central)
+"cAn" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Surgery APC";
+	areastring = "/area/medical/surgery";
+	pixel_x = 26
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/table,
+/obj/item/surgical_drapes,
+/obj/machinery/button/door{
+	id = "surgery_shutters";
+	name = "Surgery shutters";
+	pixel_x = 24;
+	pixel_y = 28;
+	req_access_txt = "45";
+	req_one_access_txt = null
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 8
+	},
+/area/medical/surgery)
 "cAo" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -82946,7 +82962,7 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "wmt" = (
-/obj/effect/decal/cleanable/flour,
+/obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "wxc" = (
@@ -101475,7 +101491,7 @@ bxQ
 cia
 bBE
 ckU
-cmk
+coC
 cnm
 coy
 cpU
@@ -101732,7 +101748,7 @@ bxP
 cia
 cjC
 cjC
-cmk
+coC
 bCY
 cpU
 bWa
@@ -101989,7 +102005,7 @@ bxR
 cia
 cjy
 ckW
-cmk
+coC
 cno
 coA
 bWb
@@ -102246,7 +102262,7 @@ bxP
 cia
 bAb
 ccf
-cmk
+coC
 bCZ
 cpU
 bWc
@@ -102503,9 +102519,9 @@ bxP
 cia
 cbT
 bOJ
-cmk
-cnq
 coC
+cnq
+cAn
 bWf
 cdg
 csn

@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Surgery observation rooms now have privacy shutters."

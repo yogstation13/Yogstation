@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "Disposals sorting pipes can now be hacked! Force them to always on or always off, or even temporarily force it with a remote signaller."
