@@ -5,10 +5,8 @@
 		var/obj/machinery/vending/n = V
 		icons[vending_names_paths[n]] = image(icon = initial(n.icon), icon_state = initial(n.icon_state))
 		inverse[vending_names_paths[n]] = n
-		to_chat(world, "fuck")
 
 	var/type = show_radial_menu(user, src, icons, radius = 42)
-	to_chat(world, "fuck")
 
 	if(type)
 		set_type(inverse[type])
