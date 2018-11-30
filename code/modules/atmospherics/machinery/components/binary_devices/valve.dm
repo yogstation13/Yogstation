@@ -30,7 +30,6 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		flick("[valve_type]valve_[on][!on]", src)
 	icon_state = "[valve_type]valve_[on ? "on" : "off"]"
 
-<<<<<<< HEAD
 /obj/machinery/atmospherics/components/binary/valve/proc/open()
 	on = TRUE
 	update_icon_nopipes()
@@ -46,17 +45,12 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
 	investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_SUPERMATTER)  // yogs - Makes supermatter invest useful
 
-/obj/machinery/atmospherics/components/binary/valve/proc/normalize_dir()
-	if(dir==SOUTH)
-		setDir(NORTH)
-	else if(dir==WEST)
-		setDir(EAST)
-=======
 /obj/machinery/atmospherics/components/binary/valve/proc/toggle()
 	if(on)
 		on = FALSE
 		update_icon_nopipes()
 		investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
+		investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_SUPERMATTER)  // yogs - Makes supermatter invest useful
 	else
 		on = TRUE
 		update_icon_nopipes()
@@ -64,7 +58,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		var/datum/pipeline/parent1 = parents[1]
 		parent1.reconcile_air()
 		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
->>>>>>> f7955352e4... Make pipe layers better, also some cleanups (#41664)
+		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
 
 /obj/machinery/atmospherics/components/binary/valve/interact(mob/user)
 	add_fingerprint(usr)
