@@ -183,6 +183,7 @@
 		icon_state = initial(icon_state)
 	else
 		var/preferred_icon = input ? input : C.prefs.preferred_ai_core_display
+		icon = initial(icon) //yogs
 		icon_state = resolve_ai_icon(preferred_icon)
 
 /mob/living/silicon/ai/verb/pick_icon()
@@ -193,15 +194,24 @@
 	var/list/iconstates = GLOB.ai_core_display_screens
 	for(var/option in iconstates)
 		if(option == "Random")
-			iconstates[option] = image(icon = src.icon, icon_state = "ai-random")
+			iconstates[option] = image(icon = initial(src.icon), icon_state = "ai-random") //yogs start - AI donor icons
 			continue
-		iconstates[option] = image(icon = src.icon, icon_state = resolve_ai_icon(option))
+		iconstates[option] = image(icon = initial(src.icon), icon_state = resolve_ai_icon(option))
+
+	if(is_donator(client))
+		for(var/datum/ai_skin/S in GLOB.DonorBorgHolder.skins)
+			if(S.owner == client.ckey || !S.owner) //We own this skin.
+				iconstates[S] = image(icon = S.icon, icon_state = S.icon_state)
 
 	view_core()
 	var/ai_core_icon = show_radial_menu(src, src , iconstates, radius = 42)
 
 	if(!ai_core_icon || incapacitated())
 		return
+
+	if(ai_core_icon in GLOB.DonorBorgHolder.skins)
+		set_core_display_icon_yogs(ai_core_icon)
+		return //yogs end - AI donor icons
 
 	display_icon_override = ai_core_icon
 	set_core_display_icon(ai_core_icon)
@@ -290,14 +300,17 @@
 
 /mob/living/silicon/ai/can_interact_with(atom/A)
 	. = ..()
+	var/turf/ai = get_turf(src)
+	var/turf/target = get_turf(A)	
 	if (.)
 		return
+	if ((ai.z != target.z) && !is_station_level(ai))
+		return FALSE
+
 	if (istype(loc, /obj/item/aicard))
-		var/turf/T0 = get_turf(src)
-		var/turf/T1 = get_turf(A)
-		if (!T0 || ! T1)
+		if (!ai || !target)
 			return FALSE
-		return ISINRANGE(T1.x, T0.x - interaction_range, T0.x + interaction_range) && ISINRANGE(T1.y, T0.y - interaction_range, T0.y + interaction_range)
+		return ISINRANGE(target.x, ai.x - interaction_range, ai.x + interaction_range) && ISINRANGE(target.y, ai.y - interaction_range, ai.y + interaction_range)
 	else
 		return GLOB.cameranet.checkTurfVis(get_turf(A))
 

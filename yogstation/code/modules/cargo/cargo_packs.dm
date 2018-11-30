@@ -34,3 +34,11 @@
 	contains = list(/obj/item/shoe_protector,
 					/obj/item/shoe_protector/ultra)
 	crate_name = "clearance level: AMBER 'cleaning spray' crate"
+
+/datum/supply_pack/critter/chocobo
+	name = "Chocobo Crate"
+	desc = "A rideable, flightless bird that comes in a variety of colors."
+	hidden = TRUE
+	cost = 8000
+	contains = list(/mob/living/simple_animal/chocobo)
+	crate_name = "chocobo crate"

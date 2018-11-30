@@ -1,0 +1,4 @@
+author: " TheDracheX"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes grenades not changing their detonation timer when attacked by a screwdriver."
