@@ -557,8 +557,8 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cz" = (
-/obj/effect/decal/cleanable/egg_smudge,
-/obj/effect/decal/cleanable/flour,
+/obj/effect/decal/cleanable/food/egg_smudge,
+/obj/effect/decal/cleanable/food/flour,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
