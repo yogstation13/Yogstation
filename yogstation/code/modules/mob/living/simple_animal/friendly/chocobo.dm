@@ -40,6 +40,7 @@
 	D.set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+	D.vehicle_move_delay = 1
 
 /mob/living/simple_animal/chocobo/death(gibbed)
 	. = ..()
