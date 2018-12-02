@@ -38978,12 +38978,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "byb" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "byc" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/brown,
@@ -44239,6 +44236,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/engineering)
+"bHT" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel,
+/area/security/main)
 "bHU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -44267,6 +44268,22 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"bHY" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
+"bHZ" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"bIa" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel,
+/area/bridge)
+"bIb" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "bIc" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 1
@@ -49986,13 +50003,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
-"clI" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "clJ" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -91514,7 +91524,7 @@ aRp
 aSB
 aTZ
 aZg
-aWU
+bIa
 cva
 eQU
 aeu
@@ -91729,7 +91739,7 @@ cKY
 acG
 agd
 aIG
-agt
+byb
 agt
 ahy
 aie
@@ -94302,7 +94312,7 @@ afT
 agz
 ahb
 ahI
-clI
+bHT
 abp
 ajh
 ajn
@@ -99993,7 +100003,7 @@ aOI
 aMl
 aQi
 aSq
-aSq
+bHZ
 aSq
 aSq
 aYI
@@ -107954,7 +107964,7 @@ aGU
 aIC
 aJU
 aSj
-aMX
+bHY
 aFw
 aCR
 aCR
@@ -110554,7 +110564,7 @@ bvK
 bxm
 byu
 bzN
-byb
+bIb
 aGs
 bvK
 abe
