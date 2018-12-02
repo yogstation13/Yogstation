@@ -73,3 +73,6 @@
 	item = /obj/item/reagent_containers/food/snacks/burger/cluwneburger
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
+
+/datum/uplink_item/device_tools/hypnotic_flash
+	restricted_roles = list("Psychiatrist")
