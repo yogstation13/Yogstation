@@ -67,9 +67,14 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 
 	for(var/i in 1 to device_type) //adds intact pieces
 		if(nodes[i])
-			connected |= icon_addintact(nodes[i])
+			var/obj/machinery/atmospherics/node = nodes[i]
+			var/image/img = get_pipe_underlay("pipe_intact", get_dir(src, node), node.pipe_color)
+			underlays += img
+			connected |= img.dir
 
-	icon_addbroken(connected) //adds broken pieces//adds broken pieces
+	for(var/direction in GLOB.cardinals)
+		if((initialize_directions & direction) && !(connected & direction))
+			underlays += get_pipe_underlay("pipe_exposed", direction)
 
 /obj/machinery/atmospherics/pipe/bluespace/paint()
 	return FALSE
