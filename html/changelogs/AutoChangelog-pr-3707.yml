@@ -1,0 +1,4 @@
+author: " coiax"
+delete-after: true 
+changes: 
+  - tweak: "Alien infestations are not limited to once per round only, but will never"

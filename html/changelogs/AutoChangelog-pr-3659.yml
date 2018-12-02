@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "Adds bluespace pipes. You make them using science, and you can specify a network to attach to by using it in your hand."
