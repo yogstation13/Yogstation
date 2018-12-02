@@ -74,9 +74,6 @@
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
-/datum/uplink_item/role_restricted/hypnotic_flash
-	name = "Hypnotic Flash"
-	desc = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
-	item = /obj/item/assembly/flash/hypnotic
-	cost = 7
+/datum/uplink_item/device_tools/hypnotic_flash
 	restricted_roles = list("Psychiatrist")
+	category = "Role-Restricted"
