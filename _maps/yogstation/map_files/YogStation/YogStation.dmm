@@ -232,10 +232,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaG" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/photocopier,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaH" = (
@@ -44272,14 +44269,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"bHZ" = (
-/obj/machinery/photocopier,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bIa" = (
-/obj/machinery/photocopier,
-/turf/open/floor/plasteel,
-/area/bridge)
 "bIb" = (
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/cafeteria,
@@ -91524,7 +91513,7 @@ aRp
 aSB
 aTZ
 aZg
-bIa
+aTX
 cva
 eQU
 aeu
@@ -100003,7 +99992,7 @@ aOI
 aMl
 aQi
 aSq
-bHZ
+aSq
 aSq
 aSq
 aYI
