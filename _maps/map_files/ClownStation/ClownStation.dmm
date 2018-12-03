@@ -68,7 +68,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aal" = (
 /obj/machinery/hydroponics/soil,
@@ -79,13 +79,13 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aam" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aan" = (
 /obj/machinery/hydroponics/soil,
@@ -96,7 +96,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aao" = (
 /obj/structure/sign/warning/electricshock{
@@ -115,51 +115,51 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aap" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaq" = (
 /obj/structure/sink{
 	pixel_y = 20
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aar" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aas" = (
 /obj/machinery/biogenerator,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aat" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aau" = (
 /turf/open/floor/mineral/bananium,
 /area/security/prison)
 "aav" = (
 /mob/living/simple_animal/mouse/brown/Tom,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaw" = (
 /obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aax" = (
 /obj/machinery/seed_extractor,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aay" = (
 /obj/structure/window/reinforced,
@@ -172,7 +172,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaz" = (
 /obj/structure/window/reinforced,
@@ -182,11 +182,11 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaA" = (
 /obj/structure/window/reinforced,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaB" = (
 /obj/structure/window/reinforced,
@@ -196,7 +196,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaC" = (
 /obj/structure/window/reinforced,
@@ -209,14 +209,14 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaD" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaE" = (
 /turf/open/floor/mineral/bananium,
@@ -224,12 +224,12 @@
 "aaF" = (
 /obj/structure/bookcase,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaG" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaH" = (
 /obj/structure/cable{
@@ -244,7 +244,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaI" = (
 /obj/machinery/washing_machine,
@@ -257,7 +257,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaJ" = (
 /obj/machinery/computer/libraryconsole/bookmanagement,
@@ -266,17 +266,17 @@
 	pixel_x = -32
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaK" = (
 /obj/structure/table/bananium,
 /obj/item/storage/pill_bottle/dice,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaL" = (
 /obj/structure/table/bananium,
 /obj/item/pen,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaM" = (
 /obj/structure/cable{
@@ -288,7 +288,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaN" = (
 /obj/structure/table/bananium,
@@ -299,7 +299,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaO" = (
 /obj/structure/sign/warning/securearea{
@@ -330,18 +330,18 @@
 "aaU" = (
 /obj/machinery/computer/arcade,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaV" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/event_spawn,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaW" = (
 /obj/structure/table/bananium,
 /obj/item/toy/cards/deck,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaX" = (
 /obj/structure/table/bananium,
@@ -350,7 +350,7 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaY" = (
 /obj/structure/window/reinforced,
@@ -363,7 +363,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aaZ" = (
 /obj/machinery/washing_machine,
@@ -374,7 +374,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "aba" = (
 /obj/structure/lattice,
@@ -439,12 +439,12 @@
 "abk" = (
 /obj/machinery/vending/sustenance,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abl" = (
 /obj/machinery/holopad,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abm" = (
 /obj/effect/decal/cleanable/dirt,
@@ -452,7 +452,7 @@
 	icon_state = "vent_map_on";
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -464,7 +464,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abo" = (
 /obj/effect/decal/cleanable/dirt,
@@ -472,7 +472,7 @@
 	icon_state = "scrub_map_on";
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abp" = (
 /obj/machinery/light/small{
@@ -481,14 +481,14 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abq" = (
 /obj/machinery/shower{
 	dir = 8
 	},
 /obj/item/soap/nanotrasen,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abr" = (
 /obj/machinery/light{
@@ -564,18 +564,18 @@
 "abD" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abE" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abG" = (
 /obj/machinery/door/window/westleft{
@@ -584,7 +584,7 @@
 	icon_state = "right";
 	name = "Unisex Showers"
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "abH" = (
 /obj/structure/window/reinforced{
@@ -810,7 +810,7 @@
 /obj/machinery/door/airlock/bananium/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acb" = (
 /obj/machinery/door/poddoor/preopen{
@@ -822,7 +822,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acc" = (
 /obj/structure/cable{
@@ -835,11 +835,11 @@
 /obj/machinery/door/airlock/bananium/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acd" = (
 /obj/machinery/door/airlock/bananium,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "ace" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -985,7 +985,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/mime,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acv" = (
 /obj/structure/chair/stool,
@@ -1000,7 +1000,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acw" = (
 /obj/structure/sign/warning/securearea{
@@ -1036,7 +1036,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/mime,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acA" = (
 /obj/structure/chair/stool,
@@ -1051,7 +1051,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acB" = (
 /obj/structure/bed,
@@ -1068,7 +1068,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/bedsheet/mime,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acC" = (
 /obj/structure/chair/stool,
@@ -1083,7 +1083,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acD" = (
 /obj/structure/sink{
@@ -1094,7 +1094,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "acE" = (
 /obj/effect/turf_decal/bot_red,
@@ -1296,7 +1296,7 @@
 	icon_state = "vent_map_on";
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "ada" = (
 /obj/structure/table/bananium,
@@ -1307,7 +1307,7 @@
 	icon_state = "scrub_map_on";
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "adb" = (
 /obj/machinery/flasher{
@@ -1319,7 +1319,7 @@
 	icon_state = "vent_map_on";
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "adc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1331,7 +1331,7 @@
 	icon_state = "manifold";
 	dir = 8
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "add" = (
 /obj/machinery/flasher{
@@ -1343,7 +1343,7 @@
 	icon_state = "vent_map_on";
 	dir = 4
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "ade" = (
 /obj/structure/cable{
@@ -1358,13 +1358,13 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "adf" = (
 /obj/structure/toilet{
 	dir = 1
 	},
-/turf/open/floor/mineral/bananium,
+/turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "adg" = (
 /obj/structure/cable{
@@ -3257,7 +3257,6 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/firstaid/regular,
 /obj/structure/table/bananium,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -19921,15 +19920,31 @@
 /area/storage/art)
 "aPf" = (
 /obj/structure/table/bananium,
-/obj/item/storage/crayons,
-/obj/item/storage/crayons,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/rainbow,
 /turf/open/floor/mineral/bananium,
 /area/storage/art)
 "aPg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/table/bananium,
-/obj/item/camera_film,
-/obj/item/camera,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
+/obj/item/toy/crayon/spraycan/lubecan,
 /turf/open/floor/mineral/bananium,
 /area/storage/art)
 "aPh" = (
@@ -53315,6 +53330,8 @@
 /obj/item/paper/crumpled/bloody/docsdeathnote{
 	info = "Hope you didnt need these medical supplies HONK! - Redshirt Mcbeat"
 	},
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "ceo" = (
@@ -55321,6 +55338,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "ciH" = (
@@ -55414,6 +55433,8 @@
 	red_alert_access = 1;
 	req_access_txt = "5"
 	},
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "ciT" = (
@@ -55574,6 +55595,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "cjj" = (
@@ -58200,6 +58223,14 @@
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
+"rpC" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/bananium,
+/area/medical/virology)
 "soP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -58237,6 +58268,9 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/engine/atmos)
+"ufc" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "uZc" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
@@ -58297,14 +58331,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"xVN" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mineral/bananium,
-/area/medical/virology)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -85610,7 +85636,7 @@ aag
 aaa
 aac
 aal
-aau
+ufc
 aaz
 aap
 aap
@@ -86124,7 +86150,7 @@ aag
 aaa
 aai
 aan
-aau
+ufc
 aaB
 aap
 aaK
@@ -86381,7 +86407,7 @@ aag
 aaf
 aad
 aao
-aau
+ufc
 aaC
 aaG
 aaL
@@ -86638,7 +86664,7 @@ aag
 aaa
 aai
 aap
-aau
+ufc
 aap
 aap
 aaG
@@ -87929,7 +87955,7 @@ aaa
 aaf
 aab
 abq
-aau
+ufc
 acd
 acD
 adf
@@ -101121,7 +101147,7 @@ bDp
 bFA
 bGM
 bHN
-xVN
+rpC
 bCM
 bLa
 bLX
