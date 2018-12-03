@@ -17555,12 +17555,8 @@
 /area/hallway/secondary/entry)
 "aJt" = (
 /obj/structure/table/bananium,
-/obj/item/instrument/guitar{
-	pixel_x = -7
-	},
-/obj/item/instrument/eguitar{
-	pixel_x = 5
-	},
+/obj/item/bikehorn/airhorn,
+/obj/item/bikehorn,
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/theatre)
 "aJu" = (
@@ -18083,7 +18079,7 @@
 "aKE" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/bananium,
-/obj/item/instrument/violin,
+/obj/item/bikehorn/golden,
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/theatre)
 "aKF" = (
@@ -29881,7 +29877,6 @@
 /area/medical/genetics)
 "bjH" = (
 /obj/structure/table/bananium,
-/obj/item/clothing/gloves/color/latex,
 /obj/item/surgical_drapes,
 /obj/item/razor,
 /turf/open/floor/mineral/bananium,
@@ -29950,10 +29945,9 @@
 /area/quartermaster/office)
 "bjP" = (
 /obj/structure/table/bananium,
-/obj/item/hemostat,
-/obj/item/cautery{
-	pixel_x = 4
-	},
+/obj/item/weldingtool,
+/obj/item/wirecutters,
+/obj/item/crowbar,
 /turf/open/floor/mineral/bananium,
 /area/science/robotics/lab)
 "bjQ" = (
@@ -30046,13 +30040,10 @@
 /area/security/checkpoint/supply)
 "bkd" = (
 /obj/structure/table/bananium,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/hatchet,
 /turf/open/floor/mineral/bananium,
 /area/science/robotics/lab)
 "bke" = (
@@ -30099,7 +30090,8 @@
 /area/medical/genetics)
 "bkj" = (
 /obj/structure/table/bananium,
-/obj/item/retractor,
+/obj/item/kitchen/knife,
+/obj/item/screwdriver,
 /turf/open/floor/mineral/bananium,
 /area/science/robotics/lab)
 "bkk" = (
@@ -35927,7 +35919,7 @@
 "bvt" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/bananium,
-/obj/item/surgicaldrill,
+/obj/item/pickaxe/drill,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "bvu" = (
@@ -35971,7 +35963,8 @@
 /area/crew_quarters/heads/hor)
 "bvy" = (
 /obj/structure/table/bananium,
-/obj/item/hemostat,
+/obj/item/wirecutters,
+/obj/item/crowbar,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "bvz" = (
@@ -36032,10 +36025,8 @@
 /area/maintenance/starboard)
 "bvG" = (
 /obj/structure/table/bananium,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/circular_saw,
+/obj/item/kitchen/knife,
+/obj/item/hatchet,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "bvH" = (
@@ -36108,7 +36099,7 @@
 /area/hallway/primary/central)
 "bvS" = (
 /obj/structure/table/bananium,
-/obj/item/retractor,
+/obj/item/screwdriver,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "bvT" = (
@@ -36117,9 +36108,7 @@
 	dir = 4
 	},
 /obj/item/book/manual/wiki/surgery,
-/obj/item/cautery{
-	pixel_x = 4
-	},
+/obj/item/weldingtool,
 /turf/open/floor/mineral/bananium,
 /area/medical/sleeper)
 "bvU" = (
@@ -36215,6 +36204,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/robot_module/clown,
+/obj/item/robot_module/clown,
+/obj/item/robot_module/clown,
 /turf/open/floor/mineral/bananium,
 /area/storage/tech)
 "bwf" = (
@@ -58067,14 +58059,6 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
-"itH" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mineral/bananium,
-/area/medical/virology)
 "iSY" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -58313,6 +58297,14 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"xVN" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/bananium,
+/area/medical/virology)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -101129,7 +101121,7 @@ bDp
 bFA
 bGM
 bHN
-itH
+xVN
 bCM
 bLa
 bLX
