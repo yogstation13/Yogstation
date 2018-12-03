@@ -42669,31 +42669,16 @@
 /area/medical/virology)
 "bIY" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/random,
 /obj/machinery/camera{
 	c_tag = "Virology Break Room";
 	dir = 8;
 	network = list("ss13","medbay")
 	},
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
 /turf/open/floor/mineral/bananium,
 /area/medical/virology)
 "bIZ" = (
@@ -43721,10 +43706,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mineral/bananium,
-/area/medical/virology)
-"bLc" = (
-/obj/machinery/vending/medical,
 /turf/open/floor/mineral/bananium,
 /area/medical/virology)
 "bLd" = (
@@ -58086,6 +58067,14 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
+"itH" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/bananium,
+/area/medical/virology)
 "iSY" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -101140,7 +101129,7 @@ bDp
 bFA
 bGM
 bHN
-bIW
+itH
 bCM
 bLa
 bLX
@@ -101399,7 +101388,7 @@ bGN
 bHO
 bIY
 bCM
-bLc
+bKZ
 bLZ
 bMV
 bMQ
