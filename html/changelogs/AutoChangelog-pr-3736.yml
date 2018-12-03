@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fix sensor set by reconnect button in atmos tank console."
+  - rscadd: "Add rate button to atmos tank console to set injection rate."
