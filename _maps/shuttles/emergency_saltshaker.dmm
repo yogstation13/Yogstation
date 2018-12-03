@@ -6,12 +6,11 @@
 /turf/closed/wall/clockwork,
 /area/shuttle/escape)
 "ac" = (
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ad" = (
-/obj/effect/spawner/structure/window/bananium,
+/obj/effect/spawner/structure/window/shuttle,
 /obj/effect/decal/cleanable/food/salt,
-/obj/structure/table/reinforced,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "ae" = (
@@ -41,7 +40,7 @@
 "aj" = (
 /obj/effect/decal/cleanable/food/salt,
 /obj/structure/table/reinforced,
-/obj/machinery/power/solar/fake,
+/obj/item/clothing/head/wizard/fake,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -265,11 +264,6 @@
 /obj/item/toy/syndicateballoon,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"aV" = (
-/obj/effect/spawner/structure/window/bananium,
-/obj/effect/decal/cleanable/food/salt,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
 "aW" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/food/salt,
@@ -287,11 +281,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/salad/validsalad,
 /obj/item/toy/figure/hos,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"aZ" = (
-/obj/effect/decal/cleanable/food/salt,
-/mob/living/simple_animal/chocobo,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "ba" = (
@@ -321,7 +310,6 @@
 	height = 18;
 	name = "Saltmine";
 	port_direction = 4;
-	!INVALID_VAR! = 1;
 	width = 14
 	},
 /obj/item/soap/deluxe,
@@ -393,23 +381,23 @@
 /area/shuttle/escape)
 "bn" = (
 /obj/structure/sign/poster/contraband/lizard,
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "bo" = (
 /obj/structure/sign/poster/contraband/lusty_xenomorph,
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "bp" = (
 /obj/structure/sign/poster/contraband/grey_tide,
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "bq" = (
 /obj/structure/sign/poster/contraband/fun_police,
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "br" = (
 /obj/structure/sign/poster/official/wtf_is_co2,
-/turf/closed/wall/mineral/bananium,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bs" = (
 /obj/effect/decal/cleanable/food/salt,
@@ -466,8 +454,7 @@
 /area/shuttle/escape)
 "by" = (
 /obj/effect/decal/cleanable/food/salt,
-/obj/item/bikehorn/golden,
-/turf/open/floor/fakespace,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bz" = (
 /obj/effect/decal/cleanable/food/salt,
@@ -563,10 +550,6 @@
 /obj/item/grenade/flashbang,
 /turf/open/floor/fakepit,
 /area/shuttle/escape)
-"bO" = (
-/obj/effect/decal/cleanable/food/salt,
-/turf/closed/wall/mineral/bananium,
-/area/shuttle/escape)
 "jz" = (
 /obj/effect/decal/cleanable/food/salt,
 /obj/structure/statue/plasma/scientist{
@@ -590,6 +573,12 @@
 "rH" = (
 /obj/effect/decal/cleanable/food/salt,
 /obj/item/mecha_parts/mecha_equipment/weapon/honker,
+/obj/structure/table/reinforced,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"vf" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/effect/decal/cleanable/food/salt,
 /obj/structure/table/reinforced,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -652,11 +641,21 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/corgi,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"Kr" = (
+/obj/effect/decal/cleanable/food/salt,
+/mob/living/simple_animal/chocobo,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "LR" = (
 /obj/effect/decal/cleanable/food/salt,
 /obj/mecha/combat/honker{
 	max_integrity = 60
 	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"OZ" = (
+/obj/effect/decal/cleanable/food/salt,
+/obj/item/bikehorn/golden,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Uc" = (
@@ -674,11 +673,11 @@ ac
 ac
 ac
 ac
-aV
-aV
-aV
-aV
-aV
+ad
+ad
+ad
+ad
+ad
 ac
 aa
 aa
@@ -689,13 +688,13 @@ ac
 ah
 LR
 CB
-ad
+vf
 jz
 aU
 aU
 aU
 jz
-ac
+ah
 ac
 aa
 "}
@@ -707,9 +706,9 @@ oC
 xi
 av
 Ac
-aZ
+Kr
 be
-by
+OZ
 Ac
 ak
 ac
@@ -760,7 +759,7 @@ bh
 bu
 bz
 bF
-ac
+ah
 ac
 "}
 (7,1,1) = {"
@@ -809,7 +808,7 @@ bw
 aK
 aK
 aK
-aV
+ad
 "}
 (10,1,1) = {"
 aa
@@ -825,7 +824,7 @@ bx
 bB
 bH
 bL
-aV
+ad
 "}
 (11,1,1) = {"
 aa
@@ -841,7 +840,7 @@ bt
 aK
 aK
 aK
-aV
+ad
 "}
 (12,1,1) = {"
 aa
@@ -869,9 +868,9 @@ aE
 aQ
 aQ
 bn
-ac
+ah
 bC
-aV
+ad
 ac
 ac
 "}
@@ -885,7 +884,7 @@ aF
 aR
 aR
 bo
-bO
+by
 bD
 bD
 bM
@@ -901,7 +900,7 @@ aG
 aQ
 aQ
 bp
-bO
+by
 bD
 bI
 bD
@@ -949,7 +948,7 @@ ac
 aT
 bd
 ac
-ac
+ah
 ag
 as
 ax
