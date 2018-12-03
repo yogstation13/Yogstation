@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/dog/pug/clown
 	name = "Pompey"
 	real_name = "Pompey"
-	desc = "It's a pug which has been made to look even siller then usual by a clown mask on its face."
+	desc = "It's a pug which has been made to look even sillier then usual by a clown mask on its face."
 	icon = 'yogstation/icons/mob/pets.dmi'
 	icon_state = "clown_pug"
 	icon_living = "clown_pug"
