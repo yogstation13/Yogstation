@@ -42,3 +42,7 @@ endmap
 
 map runtimestation
 endmap
+
+map clownstation
+	voteweight 0
+endmap
