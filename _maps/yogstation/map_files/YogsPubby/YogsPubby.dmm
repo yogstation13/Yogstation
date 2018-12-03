@@ -7203,6 +7203,8 @@
 	icon_state = "pipe11-1";
 	dir = 4
 	},
+/obj/machinery/paystand,
+/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "aon" = (

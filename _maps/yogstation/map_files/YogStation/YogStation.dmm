@@ -44281,6 +44281,22 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"bHZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
+/obj/item/paper/guides/jobs/security/paystand_setup,
+/obj/machinery/paystand,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "bIc" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 1
@@ -91481,7 +91497,7 @@ aGK
 aIi
 agr
 axX
-ahy
+bHZ
 ahX
 aiL
 ajc
