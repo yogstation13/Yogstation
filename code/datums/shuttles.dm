@@ -433,6 +433,13 @@
 	admin_notes = "Comes with turrets that will target any simplemob."
 	credit_cost = 12500
 
+/datum/map_template/shuttle/emergency/saltshaker //Yogs start
+	suffix = "saltshaker"
+	name = "The Saltshaker"
+	description = "This eye sore of a shuttle contains everything that can and will upset you good luck!"
+	admin_notes = "Will piss alot of people off."
+	credit_cost = 500000 // Yogs end
+
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
 	name = "arrival shuttle (Box)"
