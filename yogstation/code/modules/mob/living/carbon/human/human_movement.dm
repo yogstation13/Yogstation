@@ -12,5 +12,5 @@
 	if(m_intent == MOVE_INTENT_WALK)
 		mod = 4
 	else
-		mod = 1
+		mod = 1.5
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
