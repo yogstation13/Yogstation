@@ -12,3 +12,14 @@
 		set_type(inverse[type])
 
 	return TRUE
+
+/obj/item/circuitboard/machine/disposal_bluespace
+	name = "Disposals Teleporter Attachment (Machine Board)"
+	build_path = /obj/machinery/disposal_bluespace
+	needs_anchored = FALSE
+	req_components = list(
+		/obj/item/stack/ore/bluespace_crystal = 1,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/cable_coil = 1)
+	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
