@@ -216,6 +216,7 @@
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
+<<<<<<< HEAD
 	else if(href_list["dbsearchckey"] || href_list["dbsearchadmin"] || href_list["dbsearchip"] || href_list["dbsearchcid"])
 		var/adminckey = href_list["dbsearchadmin"]
 		var/playerckey = href_list["dbsearchckey"]
@@ -305,6 +306,8 @@
 		//create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0, banseverity)
 		create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0) //yogs - remove severity
 
+=======
+>>>>>>> 8a66665e95... Ban system and interface update (#41176)
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
 
@@ -536,6 +539,7 @@
 			if("shade")
 				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 
+<<<<<<< HEAD
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
@@ -1117,6 +1121,8 @@
 			return 1
 		return 0 //we didn't do anything!
 
+=======
+>>>>>>> 8a66665e95... Ban system and interface update (#41176)
 	else if(href_list["boot2"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1292,6 +1298,7 @@
 				usr << browse(edit_log,"window=noteedits") //yogs
 		qdel(query_get_message_edits)
 
+<<<<<<< HEAD
 	else if(href_list["newban"])
 		if(!check_rights(R_BAN))
 			return
@@ -1366,6 +1373,8 @@
 			if("Cancel")
 				return
 
+=======
+>>>>>>> 8a66665e95... Ban system and interface update (#41176)
 	else if(href_list["mute"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2613,6 +2622,59 @@
 		removeMentor(href_list["removementor"])
 	// yogs end
 
+	else if(href_list["newbankey"])
+		var/player_key = href_list["newbankey"]
+		var/player_ip = href_list["newbanip"]
+		var/player_cid = href_list["newbancid"]
+		ban_panel(player_key, player_ip, player_cid)
+
+	else if(href_list["intervaltype"]) //check for ban panel, intervaltype is used as it's the only value which will always be present
+		if(href_list["roleban_delimiter"])
+			ban_parse_href(href_list)
+		else
+			ban_parse_href(href_list, TRUE)
+
+	else if(href_list["searchunbankey"] || href_list["searchunbanadminkey"] || href_list["searchunbanip"] || href_list["searchunbancid"])
+		var/player_key = href_list["searchunbankey"]
+		var/admin_key = href_list["searchunbanadminkey"]
+		var/player_ip = href_list["searchunbanip"]
+		var/player_cid = href_list["searchunbancid"]
+		unban_panel(player_key, admin_key, player_ip, player_cid)
+
+	else if(href_list["unbanpagecount"])
+		var/page = href_list["unbanpagecount"]
+		var/player_key = href_list["unbankey"]
+		var/admin_key = href_list["unbanadminkey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		unban_panel(player_key, admin_key, player_ip, player_cid, page)
+
+	else if(href_list["editbanid"])
+		var/edit_id = href_list["editbanid"]
+		var/player_key = href_list["editbankey"]
+		var/player_ip = href_list["editbanip"]
+		var/player_cid = href_list["editbancid"]
+		var/role = href_list["editbanrole"]
+		var/duration = href_list["editbanduration"]
+		var/applies_to_admins = text2num(href_list["editbanadmins"])
+		var/reason = href_list["editbanreason"]
+		var/page = href_list["editbanpage"]
+		var/admin_key = href_list["editbanadminkey"]
+		ban_panel(player_key, player_ip, player_cid, role, duration, applies_to_admins, reason, edit_id, page, admin_key)
+
+	else if(href_list["unbanid"])
+		var/ban_id = href_list["unbanid"]
+		var/player_key = href_list["unbankey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		var/role = href_list["unbanrole"]
+		var/page = href_list["unbanpage"]
+		var/admin_key = href_list["unbanadminkey"]
+		unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
+
+	else if(href_list["unbanlog"])
+		var/ban_id = href_list["unbanlog"]
+		ban_log(ban_id)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

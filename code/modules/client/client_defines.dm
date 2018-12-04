@@ -11,7 +11,7 @@
 	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc
 	var/AI_Interact		= 0
 
-	var/jobbancache = null //Used to cache this client's jobbans to save on DB queries
+	var/ban_cache = null //Used to cache this client's bans to save on DB queries
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
 	var/ircreplyamount = 0
@@ -73,5 +73,8 @@
 	var/list/credits //lazy list of all credit object bound to this client
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
+<<<<<<< HEAD
 	
 	var/encoding = "1252" // yogs - LibVG
+=======
+>>>>>>> 8a66665e95... Ban system and interface update (#41176)
