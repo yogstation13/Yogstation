@@ -41166,15 +41166,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bCf" = (
-/obj/machinery/power/apc{
+/obj/machinery/airalarm{
 	dir = 8;
-	name = "RD Office APC";
-	areastring = "/area/crew_quarters/heads/hor";
-	pixel_x = -25
-	},
-/obj/structure/cable,
-/obj/machinery/light_switch{
-	pixel_y = -23
+	pixel_x = 24
 	},
 /obj/item/twohanded/required/kirbyplants/dead,
 /turf/open/floor/plasteel/cafeteria,
@@ -44274,9 +44268,15 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bHY" = (
-/obj/machinery/airalarm{
+/obj/machinery/power/apc{
 	dir = 8;
-	pixel_x = 24
+	name = "RD Office APC";
+	areastring = "/area/crew_quarters/heads/hor";
+	pixel_x = -25
+	},
+/obj/structure/cable,
+/obj/machinery/light_switch{
+	pixel_y = -23
 	},
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/cafeteria,
@@ -109277,7 +109277,7 @@ bCk
 byo
 aDH
 bqb
-bCf
+bHY
 bvK
 bEs
 bGc
@@ -110561,7 +110561,7 @@ bvK
 bxm
 byu
 bzN
-bHY
+bCf
 aGs
 bvK
 abe
