@@ -31908,10 +31908,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /turf/open/floor/mineral/bananium,
 /area/medical/medbay/central)
-"bnW" = (
-/obj/item/seeds/banana,
-/turf/open/floor/mineral/bananium,
-/area/hallway/primary/starboard)
 "bnX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57926,6 +57922,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"cKm" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/chasm/ballpit/sec3prt3,
+/area/crew_quarters/fitness)
 "cTB" = (
 /obj/structure/transit_tube/curved{
 	dir = 8
@@ -58004,12 +58006,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"jhZ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/chasm/ballpit/sec3prt3,
-/area/crew_quarters/fitness)
 "jlq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -58053,12 +58049,6 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
-"kVq" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mineral/bananium,
-/area/crew_quarters/fitness)
 "lbw" = (
 /obj/structure/transit_tube/crossing,
 /obj/structure/lattice/catwalk,
@@ -58100,20 +58090,18 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/space/nearstation)
-"lTj" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mineral/bananium,
-/area/medical/virology)
 "ngM" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"nqE" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "nuS" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment{
@@ -58145,10 +58133,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"pZR" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/mineral/bananium,
-/area/crew_quarters/fitness)
 "qdN" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -58158,14 +58142,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/space/basic,
 /area/maintenance/disposal/incinerator)
+"qmg" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/bananium,
+/area/medical/virology)
 "quT" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
-"qBg" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/security/prison)
 "soP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -58221,6 +58210,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"vrv" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "vMA" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 1
@@ -58263,6 +58256,9 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"xVW" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -85568,7 +85564,7 @@ aag
 aaa
 aac
 aal
-qBg
+xVW
 aaz
 aap
 aap
@@ -86082,7 +86078,7 @@ aag
 aaa
 aai
 aan
-qBg
+xVW
 aaB
 aap
 aaK
@@ -86339,7 +86335,7 @@ aag
 aaf
 aad
 aao
-qBg
+xVW
 aaC
 aaG
 aaL
@@ -86596,7 +86592,7 @@ aag
 aaa
 aai
 aap
-qBg
+xVW
 aap
 aap
 aaG
@@ -87887,7 +87883,7 @@ aaa
 aaf
 aab
 abq
-qBg
+xVW
 acd
 acD
 adf
@@ -95113,7 +95109,7 @@ aro
 asm
 ata
 atQ
-jhZ
+cKm
 avQ
 awV
 axX
@@ -95624,10 +95620,10 @@ ahi
 ahi
 aqo
 arq
-pZR
-kVq
-kVq
-kVq
+vrv
+nqE
+nqE
+nqE
 avS
 awX
 axZ
@@ -101079,7 +101075,7 @@ bDp
 bFA
 bGM
 bHN
-lTj
+qmg
 bCM
 bLa
 bLX
@@ -101307,7 +101303,7 @@ aUz
 aUe
 aUe
 aUe
-bnW
+aZb
 bas
 bbS
 bdp
