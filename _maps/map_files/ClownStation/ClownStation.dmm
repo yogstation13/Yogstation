@@ -8973,6 +8973,7 @@
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "asm" = (
+/obj/structure/window/reinforced,
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "asn" = (
@@ -9320,57 +9321,22 @@
 	icon_state = "intact";
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "asY" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	dir = 8;
-	icon_state = "left";
-	name = "Fitness Ring"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 10
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec1prt1,
 /area/crew_quarters/fitness)
 "asZ" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec1prt2,
 /area/crew_quarters/fitness)
 "ata" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 10
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec1prt3,
 /area/crew_quarters/fitness)
 "atb" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec1prt4,
 /area/crew_quarters/fitness)
 "atc" = (
 /obj/machinery/door/firedoor,
@@ -9729,44 +9695,23 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3;
+	name = "Ball Pit"
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "atO" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec2prt1,
 /area/crew_quarters/fitness)
 "atP" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec2prt2,
 /area/crew_quarters/fitness)
 "atQ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec2prt3,
 /area/crew_quarters/fitness)
 "atR" = (
 /obj/effect/landmark/carpspawn,
@@ -9774,14 +9719,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "atS" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold";
-	dir = 4
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec2prt4,
 /area/crew_quarters/fitness)
 "atT" = (
 /obj/machinery/computer/holodeck{
@@ -10197,42 +10135,23 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/holopad,
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3;
+	name = "Ball Pit"
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "auH" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 5
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec3prt1,
 /area/crew_quarters/fitness)
 "auI" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 10
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec3prt2,
 /area/crew_quarters/fitness)
 "auJ" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec3prt4,
 /area/crew_quarters/fitness)
 "auK" = (
 /obj/effect/landmark/start/clown,
@@ -10819,48 +10738,22 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "avO" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on";
-	dir = 4
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec4prt1,
 /area/crew_quarters/fitness)
 "avP" = (
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec4prt2,
 /area/crew_quarters/fitness)
 "avQ" = (
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec4prt3,
 /area/crew_quarters/fitness)
 "avR" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	icon_state = "left";
-	name = "Fitness Ring"
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "intact";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "intact";
-	dir = 4
-	},
-/turf/open/floor/mineral/bananium,
+/turf/open/chasm/ballpit/sec4prt4,
 /area/crew_quarters/fitness)
 "avS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10870,6 +10763,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	icon_state = "manifold";
 	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
@@ -11217,6 +11113,11 @@
 "awG" = (
 /obj/structure/table/bananium,
 /obj/item/storage/firstaid/regular,
+/obj/structure/window/reinforced{
+	resistance_flags = 3;
+	color = "#008000";
+	dir = 1
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "awH" = (
@@ -11332,6 +11233,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/structure/window/reinforced{
+	resistance_flags = 3;
+	color = "#008000";
+	dir = 1
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "awU" = (
@@ -11346,6 +11252,11 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
+/obj/structure/window/reinforced{
+	resistance_flags = 3;
+	color = "#008000";
+	dir = 1
+	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
 "awW" = (
@@ -11356,6 +11267,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "intact";
 	dir = 6
+	},
+/obj/structure/window/reinforced{
+	resistance_flags = 3;
+	color = "#008000";
+	dir = 1
 	},
 /turf/open/floor/mineral/bananium,
 /area/crew_quarters/fitness)
@@ -58088,6 +58004,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"jhZ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/chasm/ballpit/sec3prt3,
+/area/crew_quarters/fitness)
 "jlq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -58131,6 +58053,12 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
+"kVq" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "lbw" = (
 /obj/structure/transit_tube/crossing,
 /obj/structure/lattice/catwalk,
@@ -58172,6 +58100,14 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/space/nearstation)
+"lTj" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/bananium,
+/area/medical/virology)
 "ngM" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -58209,6 +58145,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"pZR" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "qdN" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -58223,14 +58163,9 @@
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
-"rpC" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mineral/bananium,
-/area/medical/virology)
+"qBg" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "soP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -58268,9 +58203,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/engine/atmos)
-"ufc" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/security/prison)
 "uZc" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
@@ -85636,7 +85568,7 @@ aag
 aaa
 aac
 aal
-ufc
+qBg
 aaz
 aap
 aap
@@ -86150,7 +86082,7 @@ aag
 aaa
 aai
 aan
-ufc
+qBg
 aaB
 aap
 aaK
@@ -86407,7 +86339,7 @@ aag
 aaf
 aad
 aao
-ufc
+qBg
 aaC
 aaG
 aaL
@@ -86664,7 +86596,7 @@ aag
 aaa
 aai
 aap
-ufc
+qBg
 aap
 aap
 aaG
@@ -87955,7 +87887,7 @@ aaa
 aaf
 aab
 abq
-ufc
+qBg
 acd
 acD
 adf
@@ -95181,7 +95113,7 @@ aro
 asm
 ata
 atQ
-atP
+jhZ
 avQ
 awV
 axX
@@ -95692,10 +95624,10 @@ ahi
 ahi
 aqo
 arq
-asm
-asm
-asm
-asm
+pZR
+kVq
+kVq
+kVq
 avS
 awX
 axZ
@@ -101147,7 +101079,7 @@ bDp
 bFA
 bGM
 bHN
-rpC
+lTj
 bCM
 bLa
 bLX
