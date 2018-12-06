@@ -1,0 +1,5 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - bugfix: "Shadowling bug where they did not get increased movespeed in the dark has been fixed."
+  - bugfix: "Shadowling bug where they could be stunned while in the dark has been fixed."
