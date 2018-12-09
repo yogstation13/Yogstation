@@ -1,0 +1,4 @@
+author: " XDTM"
+delete-after: true 
+changes: 
+  - bugfix: "Hypnosis now shows the proper alert instead of Curse of Normality."
