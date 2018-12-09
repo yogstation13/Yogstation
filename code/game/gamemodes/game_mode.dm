@@ -371,13 +371,8 @@
 
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-<<<<<<< HEAD
-			if(role in player.client.prefs.be_special ) //&& !(player.mind.quiet_round)) // yogs - Donor features, quiet round
-				if(!jobban_isbanned(player, ROLE_SYNDICATE) && !QDELETED(player) && !jobban_isbanned(player, role) && !QDELETED(player)) //Nodrak/Carn: Antag Job-bans
-=======
 			if(role in player.client.prefs.be_special)
 				if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
->>>>>>> 8a66665e95... Ban system and interface update (#41176)
 					if(age_check(player.client)) //Must be older than the minimum age
 						candidates += player.mind				// Get a list of all the people who want to be the antagonist for this round
 
