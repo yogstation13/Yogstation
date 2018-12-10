@@ -430,13 +430,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/origami_bundle
 	cost = 14
 	surplus = 0
-<<<<<<< HEAD
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs - turned from exclude to include.
-	player_minimum = 25
-	restricted = TRUE
-=======
 	exclude_modes = list(/datum/game_mode/nuclear) //clown ops intentionally left in, because that seems like some s-tier shenanigans.
->>>>>>> f95270404e... Reorganizes the uplink, adds grenades and explosives category. (#41834)
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
