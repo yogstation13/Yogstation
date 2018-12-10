@@ -226,7 +226,13 @@
 	if(!CONFIG_GET(flag/disable_secborg))
 		modulelist["Security"] = /obj/item/robot_module/security
 
-	var/input_module = input("Please, select a module!", "Robot", null, null) as null|anything in modulelist
+	var/list/moduleicons = list() //yogs start
+	for(var/option in modulelist)
+		var/obj/item/robot_module/M = modulelist[option]
+		var/is = initial(M.cyborg_base_icon)
+		moduleicons[option] = image(icon = 'icons/mob/robots.dmi', icon_state = is)
+
+	var/input_module = show_radial_menu(src, src , moduleicons, radius = 42) //yogs end
 	if(!input_module || module.type != /obj/item/robot_module)
 		return
 
