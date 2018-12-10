@@ -1,0 +1,4 @@
+author: " Skoglol"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed gibber exploit."

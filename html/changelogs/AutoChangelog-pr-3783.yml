@@ -1,0 +1,4 @@
+author: " imsxz"
+delete-after: true 
+changes: 
+  - bugfix: "glitter now uses the updated atmos overlays"

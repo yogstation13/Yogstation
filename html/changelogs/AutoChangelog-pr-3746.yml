@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed sparks and igniters not properly igniting plasma."
