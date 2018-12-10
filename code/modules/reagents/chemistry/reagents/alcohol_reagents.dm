@@ -644,7 +644,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Beepsky Smash"
 	glass_desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
 
-/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_add(mob/living/L)
 	if(M.has_trait(TRAIT_ALCOHOL_TOLERANCE))
 		M.Stun(30, 0) //this realistically does nothing to prevent chainstunning but will cause them to recover faster once it's out of their system
 	else
@@ -1337,7 +1337,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink that is guaranteed to knock you silly."
 
 /datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/carbon/M)
-	M.Paralyze(60, 1, 0)
 	M.dizziness +=2
 	switch(current_cycle)
 		if(15 to 45)
