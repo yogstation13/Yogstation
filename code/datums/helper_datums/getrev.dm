@@ -77,7 +77,8 @@
 		msg += "No commit information"
 
 	if(world.TgsAvailable())
-		msg += "Server tools version: [world.TgsVersion()]"
+		var/datum/tgs_version/version = world.TgsVersion()
+		msg += "Server tools version: [version.raw_parameter]"
 
 	if(!check_rights_for(src, R_ADMIN)) //yogs
 		to_chat(src, msg.Join("<br>"))
