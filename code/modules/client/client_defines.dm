@@ -73,8 +73,5 @@
 	var/list/credits //lazy list of all credit object bound to this client
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
-<<<<<<< HEAD
-	
+
 	var/encoding = "1252" // yogs - LibVG
-=======
->>>>>>> 8a66665e95... Ban system and interface update (#41176)

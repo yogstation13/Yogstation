@@ -13,7 +13,7 @@
 				continue
 			if(applicant.mind.special_role)
 				continue
-			if(jobban_isbanned(applicant, "shadowling") || jobban_isbanned(applicant, "Syndicate"))
+			if(is_banned_from(applicant.ckey, "shadowling") || is_banned_from(applicant.ckey, "Syndicate"))
 				continue
 			if(!temp.age_check(applicant.client) || applicant.job in temp.restricted_jobs)
 				continue
@@ -36,7 +36,7 @@
 	var/mob/living/carbon/human/H
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if((ROLE_VAMPIRE in applicant.client.prefs.be_special) && !applicant.stat && applicant.mind && !applicant.mind.special_role)
-			if(!jobban_isbanned(applicant, "vampire") && !jobban_isbanned(applicant, "Syndicate"))
+			if(!is_banned_from(applicant.ckey, "vampire") && !is_banned_from(applicant.ckey, "Syndicate"))
 				if(temp.age_check(applicant.client) && !(applicant.job in temp.restricted_jobs) && !is_vampire(applicant))
 					candidates += applicant
 	if(LAZYLEN(candidates))

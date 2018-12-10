@@ -69,7 +69,7 @@
 		return
 	if(SSticker.mode.vampires.len <= (vampcap - 2) || prob(100 / (CONFIG_GET(number/traitor_scaling_coeff) * 4)))
 		if(ROLE_VAMPIRE in character.client.prefs.be_special)
-			if(!jobban_isbanned(character, ROLE_VAMPIRE) && !jobban_isbanned(character, "Syndicate"))
+			if(!is_banned_from(character.ckey, ROLE_VAMPIRE) && !is_banned_from(character.ckey, "Syndicate"))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
 						add_vampire(character)
