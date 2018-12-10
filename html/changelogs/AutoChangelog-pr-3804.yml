@@ -1,0 +1,4 @@
+author: " coiax"
+delete-after: true 
+changes: 
+  - rscadd: "Gibs will now rot if not cleaned, and produce small amounts of miasma, approximately"
