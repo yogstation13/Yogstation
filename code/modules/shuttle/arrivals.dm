@@ -143,7 +143,7 @@
 		if(!force_depart)
 			var/cancel_reason
 			if(PersonCheck())
-				cancel_reason = "lifeform dectected on board"
+				cancel_reason = "lifeform detected on board"
 			else if(NukeDiskCheck())
 				cancel_reason = "critical station device detected on board"
 			if(cancel_reason)
