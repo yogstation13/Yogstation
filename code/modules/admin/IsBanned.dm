@@ -51,62 +51,6 @@
 			var/msg = "Ban database connection failure. Key [ckey] not checked"
 			log_world(msg)
 			message_admins(msg)
-<<<<<<< HEAD
-			return
-
-		var/ipquery = ""
-		var/cidquery = ""
-		if(address)
-			ipquery = " OR ip = INET_ATON('[address]') "
-
-		if(computer_id)
-			cidquery = " OR computerid = '[computer_id]' "
-
-		var/datum/DBQuery/query_ban_check = SSdbcore.NewQuery("SELECT (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].ckey), (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey), reason, expiration_time, duration, bantime, bantype, id, round_id FROM [format_table_name("ban")] WHERE (ckey = '[ckey]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN' OR bantype = 'ADMIN_PERMABAN' OR ((bantype = 'TEMPBAN' OR bantype = 'ADMIN_TEMPBAN') AND expiration_time > Now())) AND (isnull(unbanned) OR unbanned = 0)") // yogs - Yog Bans
-		if(!query_ban_check.Execute(async = TRUE))
-			qdel(query_ban_check)
-			return
-		while(query_ban_check.NextRow())
-			var/pkey = query_ban_check.item[1]
-			var/akey = query_ban_check.item[2]
-			var/reason = query_ban_check.item[3]
-			var/expiration = query_ban_check.item[4]
-			var/duration = text2num(query_ban_check.item[5])
-			var/bantime = query_ban_check.item[6]
-			var/bantype = query_ban_check.item[7]
-			var/banid = query_ban_check.item[8]
-			var/ban_round_id = query_ban_check.item[9]
-			if (bantype == "ADMIN_PERMABAN" || bantype == "ADMIN_TEMPBAN")
-				//admin bans MUST match on ckey to prevent cid-spoofing attacks
-				//	as well as dynamic ip abuse
-				if (ckey(pkey) != ckey)
-					continue
-			if (admin)
-				if (bantype == "ADMIN_PERMABAN" || bantype == "ADMIN_TEMPBAN")
-					log_admin("The admin [key] is admin banned (#[banid]), and has been disallowed access")
-					message_admins("<span class='adminnotice'>The admin [key] is admin banned (#[banid]), and has been disallowed access</span>")
-				else
-					log_admin("The admin [key] has been allowed to bypass a matching ban on [pkey] (#[banid])")
-					message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass a matching ban on [pkey] (#[banid])</span>")
-					addclientmessage(ckey,"<span class='adminnotice'>You have been allowed to bypass a matching ban on [pkey] (#[banid])</span>")
-					continue
-			var/expires = ""
-			if(duration > 0)
-				expires = "\nThe ban is for [DisplayTimeText(duration MINUTES)] and expires on [expiration] (server time)."  //convert from minutes into deciseconds to display the amount of time in days, hours, minutes, ect.
-			else
-				expires = "\nThis is a permanent ban."
-
-			var/desc = "\nReason: You, or another user of this computer or connection ([pkey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban (BanID #[banid]) was applied by [akey] on [bantime] during round ID [ban_round_id]. [expires]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums." //yogs
-
-			. = list("reason"="[bantype]", "desc"="[desc]")
-
-
-			log_access("Failed Login: [key] [computer_id] [address] - Banned (#[banid]) [.["reason"]]")
-			qdel(query_ban_check)
-			return .
-		qdel(query_ban_check)
-
-=======
 		else
 			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
 			for(var/i in ban_details)
@@ -130,7 +74,6 @@
 				[expires]"}
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				return list("reason"="Banned","desc"="[desc]")
->>>>>>> 8a66665e95... Ban system and interface update (#41176)
 	var/list/ban = ..()	//default pager ban stuff
 	if (ban)
 		var/bannedckey = "ERROR"
