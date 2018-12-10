@@ -129,7 +129,7 @@
 					if (istype(R, /datum/reagent/consumable))
 						var/datum/reagent/consumable/nutri_check = R
 						if(nutri_check.nutriment_factor >0)
-							H.nutrition += nutri_check.nutriment_factor * nutri_check.volume
+							H.adjust_nutrition(nutri_check.nutriment_factor * nutri_check.volume)
 							reagents.remove_reagent(nutri_check.id,nutri_check.volume)
 			reagents.trans_to(H, reagents.total_volume, transfered_by = user)
 			qdel(src)
@@ -174,15 +174,15 @@
 
 /obj/effect/decal/cleanable/glitter/pink
 	name = "pink glitter"
-	icon_state = "plasma_old"
+	icon_state = "plasma"
 
 /obj/effect/decal/cleanable/glitter/white
 	name = "white glitter"
-	icon_state = "nitrous_oxide_old"
+	icon_state = "nitrous_oxide"
 
 /obj/effect/decal/cleanable/glitter/blue
 	name = "blue glitter"
-	icon_state = "freon_old"
+	icon_state = "freon"
 
 /obj/effect/decal/cleanable/plasma
 	name = "stabilized plasma"
