@@ -331,6 +331,10 @@
 		if(!changes.len)
 			error_state += "No changes were detected."
 	else
+		// yogs - removed severity
+		/*severity = href_list["radioseverity"]
+		if(!severity)
+			error_state += "No severity was selected."*/
 		switch(href_list["radioban"])
 			if("server")
 				roles_to_ban += "Server"
