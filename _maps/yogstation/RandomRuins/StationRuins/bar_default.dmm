@@ -908,7 +908,7 @@
 /area/crew_quarters/bar)
 "cn" = (
 /obj/effect/landmark/event_spawn,
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
