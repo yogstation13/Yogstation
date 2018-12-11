@@ -34,7 +34,6 @@
 	subcategory = CAT_WEAPON
 
 /* - yogs change: removes explosive lance for being stupid
-
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
 	result = /obj/item/twohanded/spear
