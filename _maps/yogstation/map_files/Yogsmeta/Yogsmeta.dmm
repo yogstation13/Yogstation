@@ -55802,7 +55802,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/chapel/main)
 "bWC" = (
@@ -69741,7 +69741,7 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/obj/effect/landmark/xmastree/rdrod,
+/obj/effect/spawner/xmastree/rdrod,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -78521,7 +78521,7 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "cTR" = (
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cTT" = (
