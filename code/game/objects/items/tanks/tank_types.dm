@@ -154,13 +154,10 @@
 	..() // Plasma asserted in parent
 	air_contents.gases[/datum/gas/plasma][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
-<<<<<<< HEAD
-=======
 	
 /obj/item/tank/internals/plasmaman/belt/empty/Initialize()
 	. = ..() // Plasma asserted in parent
 	air_contents.gases[/datum/gas/plasma][MOLES] = 0
->>>>>>> c8cbc8d89e... Merge pull request #41549 from tralezab/patch-12
 
 
 
@@ -184,35 +181,25 @@
 	air_contents.assert_gas(/datum/gas/oxygen)
 	air_contents.gases[/datum/gas/oxygen][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 	return
-<<<<<<< HEAD
-=======
 	
 /obj/item/tank/internals/emergency_oxygen/empty/Initialize()
 	. = ..()
 	air_contents.gases[/datum/gas/oxygen][MOLES] = 0
->>>>>>> c8cbc8d89e... Merge pull request #41549 from tralezab/patch-12
 
 /obj/item/tank/internals/emergency_oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
 	icon_state = "emergency_engi"
 	volume = 2 // should last a bit over 30 minutes if full
 
-<<<<<<< HEAD
-=======
 /obj/item/tank/internals/emergency_oxygen/engi/empty/Initialize()
 	. = ..()
 	air_contents.gases[/datum/gas/oxygen][MOLES] = 0
 
->>>>>>> c8cbc8d89e... Merge pull request #41549 from tralezab/patch-12
 /obj/item/tank/internals/emergency_oxygen/double
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_double"
 	volume = 8
-<<<<<<< HEAD
-=======
 	
 /obj/item/tank/internals/emergency_oxygen/double/empty/Initialize()
 	. = ..()
 	air_contents.gases[/datum/gas/oxygen][MOLES] = 0
-	
->>>>>>> c8cbc8d89e... Merge pull request #41549 from tralezab/patch-12
