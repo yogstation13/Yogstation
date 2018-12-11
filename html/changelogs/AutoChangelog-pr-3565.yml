@@ -1,5 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - bugfix: "If you put the nuke disk inside the bluespace locker then the pinpointer will pinpoint to the bluespace locker instead of not pinpointing to anything at all"
-  - bugfix: "you can no longer space the nuke disk using a bluespace locker."
