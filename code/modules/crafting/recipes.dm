@@ -33,7 +33,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-// - yogs change: removes explosive lance for being stupid
+/* - yogs change: removes explosive lance for being stupid
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
@@ -42,13 +42,12 @@
 				/obj/item/grenade = 1)
 	blacklist = list(/obj/item/twohanded/spear/explosive,
 					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
-
 	parts = list(/obj/item/twohanded/spear = 1,
 				/obj/item/grenade = 1)
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-//
+*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
