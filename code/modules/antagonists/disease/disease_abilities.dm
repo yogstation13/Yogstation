@@ -433,7 +433,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 //yogs start
 
 /datum/disease_ability/symptom/powerful/undead_adaptation
-	symptoms = list(/datum/symptom/undead_adaption)
+	symptoms = list(/datum/symptom/undead_adaptation)
 
 //yogs end
 
