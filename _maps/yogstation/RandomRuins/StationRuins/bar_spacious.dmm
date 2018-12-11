@@ -996,7 +996,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "cC" = (
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1

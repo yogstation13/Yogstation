@@ -1,5 +1,0 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - bugfix: "AI donor skins now work properly"
-  - rscadd: "instead of having just a text choice, the AI donor skins now show up in the icon-choice radial, with all the other skins"
