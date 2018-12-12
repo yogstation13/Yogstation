@@ -1291,7 +1291,7 @@
 	M.confused = max(0, M.confused-6)
 	M.disgust = max(0, M.disgust-6)
 	GET_COMPONENT_FROM(mood, /datum/component/mood, M)
-	if(mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
+	if(mood && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
 		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
 	..()
 	. = 1
