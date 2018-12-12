@@ -22332,10 +22332,6 @@
 /area/science/robotics/mechbay)
 "bcb" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/research/glass{
-	name = "Robotics Lab";
-	req_access_txt = "29"
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -22350,6 +22346,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
+/obj/machinery/door/airlock/bananium/glass,
 /turf/open/floor/mineral/bananium,
 /area/science/robotics/lab)
 "bcc" = (
@@ -51522,10 +51519,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
-"dQD" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/mineral/bananium,
-/area/crew_quarters/fitness)
 "efn" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -51537,9 +51530,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/space/basic,
 /area/tcommsat/computer)
-"eGH" = (
-/turf/open/chasm/ballpit/sec3prt3,
-/area/crew_quarters/fitness)
 "eQx" = (
 /obj/structure/transit_tube/crossing/horizontal,
 /obj/structure/lattice,
@@ -51550,12 +51540,6 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
-"fgn" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mineral/bananium,
-/area/crew_quarters/fitness)
 "fRC" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -51705,15 +51689,26 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"pQb" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/security/prison)
 "pXS" = (
 /obj/structure/transit_tube/crossing,
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"pZV" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "qdN" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"qfs" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "qkq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -51724,10 +51719,6 @@
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
-"qAA" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/mineral/bananium,
-/area/crew_quarters/fitness)
 "soP" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -51735,6 +51726,9 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos)
+"sJv" = (
+/turf/open/chasm/ballpit/sec3prt3,
+/area/crew_quarters/fitness)
 "sRa" = (
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
@@ -51825,9 +51819,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"xtx" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/security/prison)
+"xAL" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/crew_quarters/fitness)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -79133,7 +79130,7 @@ aag
 aaa
 aac
 aal
-xtx
+pQb
 aaz
 aap
 aap
@@ -79444,7 +79441,7 @@ aFY
 aFY
 aFY
 aFY
-aFY
+aGc
 aIu
 aSe
 aIu
@@ -79647,7 +79644,7 @@ aag
 aaa
 aai
 aan
-xtx
+pQb
 aaB
 aap
 aaK
@@ -79904,7 +79901,7 @@ aag
 aaf
 aad
 aao
-xtx
+pQb
 aaB
 aaG
 aaL
@@ -80161,7 +80158,7 @@ aag
 aaa
 aai
 aap
-xtx
+pQb
 aap
 aap
 aaG
@@ -80979,7 +80976,7 @@ awH
 aCZ
 axa
 aFY
-aFY
+aGc
 aIu
 aIu
 aLa
@@ -81452,7 +81449,7 @@ aaa
 aaf
 aab
 abq
-xtx
+pQb
 acd
 acD
 adf
@@ -84063,7 +84060,7 @@ aqm
 amQ
 ahi
 aFY
-aFY
+aGc
 aIu
 aIu
 aLb
@@ -85612,7 +85609,7 @@ aFY
 aFY
 aFY
 aFY
-aFY
+aGc
 aIu
 aSy
 aIu
@@ -88161,7 +88158,7 @@ aoM
 apA
 aqo
 arm
-dQD
+qfs
 asY
 atO
 auH
@@ -88418,7 +88415,7 @@ aoN
 ahi
 aqo
 arn
-dQD
+qfs
 asZ
 atP
 auI
@@ -88675,10 +88672,10 @@ aoO
 apB
 aqo
 aro
-dQD
+qfs
 ata
 atQ
-eGH
+sJv
 avQ
 awV
 axX
@@ -88932,7 +88929,7 @@ aoP
 apC
 aqo
 arp
-dQD
+qfs
 atb
 atS
 auJ
@@ -89189,10 +89186,10 @@ ahi
 ahi
 aqo
 arq
-qAA
-fgn
-fgn
-fgn
+pZV
+xAL
+xAL
+xAL
 avS
 awX
 axZ
