@@ -62,3 +62,5 @@
 	var/damageoverlaytemp = 0
 
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
+
+	var/mob/living/simple_animal/borer/borer //yog change- Stores the borer inside someone, if one exists

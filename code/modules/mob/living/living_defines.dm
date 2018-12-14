@@ -117,3 +117,5 @@
 	//List of active diseases
 	var/list/diseases = list() // list of all diseases in a mob
 	var/list/disease_resistances = list()
+
+	var/controlled = FALSE // yog change- are they being controlled by a borer currently?
