@@ -64,7 +64,7 @@
 
 	var output = "<!DOCTYPE html><html><body>"
 	if(polltype == POLLTYPE_MULTI || polltype == POLLTYPE_OPTION)
-		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = poll_option.id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
+		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
 		select_query.Execute()
 		var/list/options = list()
 		var/total_votes = 1
@@ -110,7 +110,7 @@
 		<tr bgcolor='#ddffdd'>
 			<th colspan='4' align='center'>[question]<br><font size='1'><b>[starttime] - [endtime]</b></font></th>
 		</tr>"}
-		select_query = SSdbcore.NewQuery("SELECT id, text, (SELECT AVG(rating) FROM [format_table_name("poll_vote")] WHERE optionid = poll_option.id AND rating != 'abstain') AS avgrating, (SELECT COUNT(rating) FROM [format_table_name("poll_vote")] WHERE optionid = poll_option.id AND rating != 'abstain') AS countvotes, minval, maxval FROM [format_table_name("poll_option")] WHERE pollid = [pollid]")
+		select_query = SSdbcore.NewQuery("SELECT id, text, (SELECT AVG(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS avgrating, (SELECT COUNT(rating) FROM [format_table_name("poll_vote")] WHERE optionid = [format_table_name("poll_option")].id AND rating != 'abstain') AS countvotes, minval, maxval FROM [format_table_name("poll_option")] WHERE pollid = [pollid]")
 		select_query.Execute()
 		while(select_query.NextRow())
 			output += {"
