@@ -64,7 +64,7 @@
 
 	var output = "<!DOCTYPE html><html><body>"
 	if(polltype == POLLTYPE_MULTI || polltype == POLLTYPE_OPTION)
-		select_query = SSdbcore.NewQuery("SELECT text, percentagecalc, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = poll_option.id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
+		select_query = SSdbcore.NewQuery("SELECT text, (SELECT COUNT(optionid) FROM [format_table_name("poll_vote")] WHERE optionid = poll_option.id GROUP BY optionid) AS votecount FROM [format_table_name("poll_option")] WHERE pollid = [pollid]");
 		select_query.Execute()
 		var/list/options = list()
 		var/total_votes = 1
@@ -72,14 +72,12 @@
 		var/max_votes = 1
 		while(select_query.NextRow())
 			var/text = select_query.item[1]
-			var/percentagecalc = select_query.item[2]
-			var/votecount = text2num(select_query.item[3])
-			if(percentagecalc)
-				total_percent_votes += votecount
+			var/votecount = text2num(select_query.item[2])
+			total_percent_votes += votecount
 			total_votes += votecount
 			if(votecount > max_votes)
 				max_votes = votecount
-			options[++options.len] = list(text, percentagecalc, votecount)
+			options[++options.len] = list(text, votecount)
 		// fuck ie.
 		output += {"
 		<table width='900' align='center' bgcolor='#eeffee' cellspacing='0' cellpadding='4'>
@@ -91,18 +89,18 @@
 		var/list/colors = list("#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3")
 		var/color_index = 0
 		for(var/list/option in options)
-			var/bar_width = option[3] * 700 / total_votes
-			var/percentage = option[2] ? "[round(option[3] * 100 / total_percent_votes)]%" : "N/A"
+			var/bar_width = option[2] * 700 / total_votes
+			var/percentage = "[round(option[2] * 100 / total_percent_votes)]%"
 			color_index++
 			if(color_index > colors.len)
 				color_index = 1
 			output += "<div style='width:[bar_width]px;height:[5]px;background-color:[colors[color_index]];float:left' title='[option[1]] ([percentage])'></div>"
 		output += "</div><br><font size='2'><b>(Hover over the colored bar to read description)</b></font></tr>"
 		for(var/list/option in options)
-			var/bar_width = option[3] * 390 / max_votes
-			var/percentage = option[2] ? "[round(option[3] * 100 / total_percent_votes)]%" : "N/A"
+			var/bar_width = option[2] * 390 / max_votes
+			var/percentage = "[round(option[2] * 100 / total_percent_votes)]%"
 			output += "<tr><td width='300' align='right'>[option[1]]</td>"
-			output += "<td width='100' align='center'><b>[option[3]]</b></td>"
+			output += "<td width='100' align='center'><b>[option[2]]</b></td>"
 			output += "<td width='100' align='center'><b>[percentage]</b></td>"
 			output += "<td width='400' align='left'><div style='width:[bar_width]px;height:10px;display:inline-block;background-color:#08b000'></div></td>"
 		output += "</table>"
