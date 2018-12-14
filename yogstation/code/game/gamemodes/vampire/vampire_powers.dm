@@ -93,7 +93,13 @@
 	if(!V) //sanity check
 		return
 	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-10)
+		U.adjustStaminaLoss(-100)
+		U.SetStun(0)
+		U.SetKnockdown(0)
+		U.SetParalyzed(0)
+		U.SetImmobilized(0)
+		U.set_resting(FALSE)
+		U.update_mobility()
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
@@ -205,10 +211,10 @@
 		if(C == user || (ishuman(C) && C.get_ear_protection()) || is_vampire(C))
 			continue
 		to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
-		C.Knockdown(4)
+		C.Knockdown(40)
 		C.adjustEarDamage(0, 30)
 		C.stuttering = 250
-		C.Stun(4)
+		C.Paralyze(40)
 		C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
