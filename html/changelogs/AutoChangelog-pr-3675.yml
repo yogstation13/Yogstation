@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed an issue that could cause a tesla ball submitted for the tesla ball bounty to not be deleted"
