@@ -1,6 +1,6 @@
 
 var/list/mob/living/simple_animal/borer/borers = list()
-var/total_borer_hosts_needed = rand(5, 7)
+GLOBAL_VAR_INIT(total_borer_hosts_needed, rand(5,7))
 var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surrenders")
 
 /mob/living/simple_animal/borer
@@ -28,15 +28,15 @@ var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surren
 	var/mob/living/carbon/victim = null
 	var/mob/living/captive_brain/host_brain = null
 	var/next_spawn_time = 0
-	var/docile = 0
-	var/controlling = 0
+	var/docile = FALSE
+	var/controlling = FALSE
 	var/chemicals = 50
 	var/used_dominate
 	var/used_control
 	var/borer_chems = list()
 	var/dominate_cooldown = 150
 	var/control_cooldown = 3000
-	var/leaving = 0
+	var/leaving = FALSE
 	var/obj/item/organ/borer_home/vessel = null
 
 
@@ -110,14 +110,14 @@ var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surren
 						to_chat(victim, "<span class='warning'>You feel the soporific flow of sugar in your host's blood, lulling you into docility.</span>")
 					else
 						to_chat(src, "<span class='warning'>You feel the soporific flow of sugar in your host's blood, lulling you into docility.</span>")
-					docile = 1
+					docile = TRUE
 			else
 				if(docile)
 					if(controlling)
 						to_chat(victim, "<span class='warning'>You shake off your lethargy as the sugar leaves your host's blood.</span>")
 					else
 						to_chat(src, "<span class='warning'>You shake off your lethargy as the sugar leaves your host's blood.</span>")
-					docile = 0
+					docile = FALSE
 			if(controlling)
 
 				if(docile)
@@ -214,7 +214,7 @@ var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surren
 			if(hud.icon_state == "borer")
 				victim.client.images -= hud
 
-	leaving = 0
+	leaving = FALSE
 	var/obj/item/organ/borer_home/oldhome = vessel
 	oldhome.borer = null
 	vessel = null
@@ -234,17 +234,17 @@ var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surren
 	ckey = candidate.ckey
 
 	if(mind)
-		mind.store_memory("You <b>MUST</b> escape with atleast [total_borer_hosts_needed] borers with hosts on the shuttle.")
+		mind.store_memory("You <b>MUST</b> escape with atleast [GLOB.total_borer_hosts_needed] borers with hosts on the shuttle.")
 
 	to_chat(src, "<span class='notice'>You are a cortical borer!</span> You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, your host and your eventual spawn safe and warm.")
 	to_chat(src, "You can speak to your victim with <b>say</b> and your fellow borers by prefixing your message with ';'. You can also force a host you have infested to speak by prefixing messages with *. Check out your borer tab to see your powers as a borer.")
-	to_chat(src, "You <b>MUST</b> escape with atleast [total_borer_hosts_needed] borers with hosts on the shuttle.")
+	to_chat(src, "You <b>MUST</b> escape with atleast [GLOB.total_borer_hosts_needed] borers with hosts on the shuttle.")
 
 /mob/living/simple_animal/borer/proc/detatch()
 	if(!victim || !controlling) return
 
-	controlling = 0
+	controlling = FALSE
 	victim.controlled = FALSE
 
 	victim.verbs -= /mob/living/carbon/proc/release_control

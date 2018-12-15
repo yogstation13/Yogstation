@@ -49,7 +49,7 @@
 	spawncount = round(2 + total_humans / 10)	// 2 + 1 for every 10 alive humans
 	spawncount = CLAMP(spawncount, 0, candidates.len)
 	spawncount = CLAMP(spawncount, 0, vents.len)
-	total_borer_hosts_needed += spawncount
+	GLOB.total_borer_hosts_needed += spawncount
 
 	while(spawncount > 0)
 		var/obj/vent = pick_n_take(vents)

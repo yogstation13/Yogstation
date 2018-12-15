@@ -15,7 +15,7 @@
 	max_integrity = INFINITY
 
 /obj/effect/proc_holder/spell/self/shadowling_hatch/cast(list/targets,mob/user = usr)
-	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
+	if(user.stat || !ishuman(user) || !user || !is_sling(user || isinspace(user)))
 		return
 	var/mob/living/carbon/human/H = user
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
@@ -75,7 +75,7 @@
 			var/hatchannounce = "<font size=3><span class='shadowling'><b>[oldName] has hatched into the Shadowling [newNameId]!</b></span></font>"
 			for(var/T in GLOB.alive_mob_list)
 				var/mob/M = T
-				if(is_shadow_or_thrall(M))
+				if(is_sling_or_thrall(M))
 					to_chat(M, hatchannounce)
 			for(var/T in GLOB.dead_mob_list)
 				var/mob/M = T

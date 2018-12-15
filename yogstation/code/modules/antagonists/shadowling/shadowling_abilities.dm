@@ -2,11 +2,11 @@
 
 /obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
 	if(!H || !istype(H)) return
-	if(H.dna && H.dna.species && H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
+	if(H.dna && H.dna.species && H.dna.species.id == "shadowling" && is_sling(H)) return TRUE
 	if(H.dna && H.dna.species && H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
-	if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
+	if(!is_sling_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
 	else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
-	else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
+	else if(is_sling(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
 	return 0
 
 /obj/effect/proc_holder/spell/targeted/sling //Stuns and mutes a human target for 10 seconds
@@ -68,7 +68,7 @@
 		to_chat(usr, "<span class='warning'>[target] must be conscious!</span>")
 		revert_cast()
 		return
-	if(is_shadow_or_thrall(target))
+	if(is_sling_or_thrall(target))
 		to_chat(usr, "<span class='warning'>You cannot glare at allies!</span>")
 		revert_cast()
 		return
@@ -184,7 +184,7 @@
 	to_chat(user, "<span class='shadowling'>You freeze the nearby air.</span>")
 	for(var/turf/T in targets)
 		for(var/mob/living/carbon/M in T.contents)
-			if(is_shadow_or_thrall(M))
+			if(is_sling_or_thrall(M))
 				if(M == user) //No message for the user, of course
 					continue
 				else
@@ -233,7 +233,7 @@
 			to_chat(user, "<span class='warning'>The target must be conscious!</span>")
 			revert_cast()
 			return
-		if(is_shadow_or_thrall(target))
+		if(is_sling_or_thrall(target))
 			to_chat(user, "<span class='warning'>You can not enthrall allies!</span>")
 			revert_cast()
 			return
@@ -307,7 +307,7 @@
 	action_icon_state = "commune"
 
 /obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
-	if(!is_shadow(user))
+	if(!is_sling(user))
 		to_chat(user, "<span class='warning'>You must be a shadowling to do that!</span>")
 		return
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
@@ -315,7 +315,7 @@
 		return
 	var/my_message = "<span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
-		if(is_shadow_or_thrall(M))
+		if(is_sling_or_thrall(M))
 			to_chat(M, my_message)
 		if(M in GLOB.dead_mob_list)
 			to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [my_message]")
@@ -332,7 +332,7 @@
 	action_icon_state = "regen_armor"
 
 /obj/effect/proc_holder/spell/self/shadowling_regenarmor/cast(mob/living/carbon/human/user)
-	if(!is_shadow(user))
+	if(!is_sling(user))
 		to_chat(user, "<span class='warning'>You must be a shadowling to do this!</span>")
 		revert_cast()
 		return
@@ -391,7 +391,7 @@
 		to_chat(user, "<span class='shadowling'><b>You are now powerful enough to ascend. Use the Ascendance ability when you are ready. <i>This will kill all of your thralls.</i></span>")
 		to_chat(user, "<span class='shadowling'><b>You may find Ascendance in the Shadowling Evolution tab.</b></span>")
 		for(M in GLOB.alive_mob_list)
-			if(is_shadow(M))
+			if(is_sling(M))
 				var/obj/effect/proc_holder/spell/self/collective_mind/CM
 				if(CM in M.mind.spell_list)
 					M.mind.spell_list -= CM
@@ -450,7 +450,7 @@
 	user.audible_message("<span class='warning'><b>[user] lets out a horrible scream!</b></span>")
 	for(var/turf/T in targets)
 		for(var/mob/target in T.contents)
-			if(is_shadow_or_thrall(target))
+			if(is_sling_or_thrall(target))
 				if(target == user) //No message for the user, of course
 					continue
 				else
@@ -650,7 +650,7 @@
 			to_chat(user, "<span class='warning'>[target] must be conscious!</span>")
 			revert_cast()
 			return
-		if(is_shadow_or_thrall(target))
+		if(is_sling_or_thrall(target))
 			to_chat(user, "<span class='warning'>You cannot glare at allies!</span>")
 			revert_cast()
 			return
@@ -694,7 +694,7 @@
 	charge_max = 0
 
 /obj/effect/proc_holder/spell/self/thrall_night_vision/cast(mob/living/carbon/human/user)
-	if(!is_shadow_or_thrall(user))
+	if(!is_sling_or_thrall(user))
 		revert_cast()
 		return
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
@@ -724,7 +724,7 @@
 	action_icon_state = "commune"
 
 /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind/cast(mob/living/carbon/human/user)
-	if(!is_shadow_or_thrall(user))
+	if(!is_sling_or_thrall(user))
 		to_chat(user, "<span class='warning'><b>As you attempt to commune with the others, an agonizing spike of pain drives itself into your head!</b></span>")
 		user.apply_damage(10, BRUTE, "head")
 		return
@@ -734,7 +734,7 @@
 	text = "<span class='shadowling'><b>\[Thrall\]</b><i> [user.real_name]</i>: [text]</span>"
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
-		if(is_shadow_or_thrall(M))
+		if(is_sling_or_thrall(M))
 			to_chat(M, text)
 		if(isobserver(M))
 			to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [text]")
@@ -763,7 +763,7 @@
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		revert_cast()
 		return
-	if(is_shadow(boom)) //Used to not work on thralls. Now it does so you can PUNISH THEM LIKE THE WRATHFUL GOD YOU ARE.
+	if(is_sling(boom)) //Used to not work on thralls. Now it does so you can PUNISH THEM LIKE THE WRATHFUL GOD YOU ARE.
 		to_chat(user, "<span class='warning'>Making an ally explode seems unwise.<span>")
 		revert_cast()
 		return
@@ -798,7 +798,7 @@
 		revert_cast()
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		return
-	if(is_shadow_or_thrall(target))
+	if(is_sling_or_thrall(target))
 		to_chat(user, "<span class='warning'>You cannot enthrall an ally.<span>")
 		revert_cast()
 		return
@@ -838,7 +838,7 @@
 	user.visible_message("<span class='warning'><b>A massive ball of lightning appears in [user]'s hands and flares out!</b></span>", \
 						"<span class='shadowling'>You conjure a ball of lightning and release it.</span>")
 	for(var/mob/living/carbon/human/target in view(6))
-		if(is_shadow_or_thrall(target))
+		if(is_sling_or_thrall(target))
 			continue
 		to_chat(target, "<span class='userdanger'>You're struck by a bolt of lightning!</span>")
 		target.apply_damage(10, BURN)
@@ -861,7 +861,7 @@
 		return
 	text = "<font size=4><span class='shadowling'><b>\[Ascendant\]<i> [user.real_name]</i>: [text]</b></span></font>"
 	for(var/mob/M in GLOB.mob_list)
-		if(is_shadow_or_thrall(M))
+		if(is_sling_or_thrall(M))
 			to_chat(M, text)
 		if(isobserver(M))
 			to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [text]")

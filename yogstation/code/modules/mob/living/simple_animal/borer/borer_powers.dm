@@ -37,18 +37,18 @@
 
 /mob/living/simple_animal/borer/proc/CanInfect(var/mob/living/carbon/human/H)
 	if(!Adjacent(H))
-		return 0
+		return FALSE
 
 	if(!H.mind)
 		to_chat(src, "<span class='warning'>[H] does not have a mind.</span>")
-		return 0
+		return FALSE
 
 	if(!checkStrength())
-		return 0
+		return FALSE
 
 	if(stat != CONSCIOUS)
 		to_chat(src, "<span class='warning'>I must be conscious to do this...</span>")
-		return 0
+		return FALSE
 
 	/*if(H.mind.devilinfo)
 		to_chat(src, "<span class='warning'>This being has a strange presence, it would be unwise to enter their body.")
@@ -56,11 +56,11 @@
 
 	if(isshadow(H))
 		to_chat(src, "<span class='warning'>[H] cannot be infected! Retreating!</span>")
-		return 0
+		return FALSE
 
 	if(!H.mind.active)
 		to_chat(src, "<span class='warning'>[H] does not have an active mind.</span>")
-		return 0
+		return FALSE
 
 	var/unprotected = TRUE
 
@@ -92,7 +92,7 @@
 		return
 
 	if(!checkStrength())
-		return 0
+		return FALSE
 
 	var content = ""
 	content += "<p>Chemicals: <span id='chemicals'>[chemicals]</span></p>"
@@ -173,7 +173,7 @@
 
 	to_chat(src, "<span class='warning'>You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread.</span>")
 	to_chat(M, "<span class='userdanger'>You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing.</span>")
-	M.Stun(4)
+	M.Stun(40)
 
 	used_dominate = world.time
 
@@ -192,7 +192,7 @@
 	if(!victim || !src) return
 
 	if(leaving)
-		leaving = 0
+		leaving = FALSE
 		to_chat(src, "<span class='userdanger'>You decide against leaving your host.</span>")
 		return
 
@@ -201,7 +201,7 @@
 	if(victim.stat != DEAD)
 		to_chat(victim, "<span class='userdanger'>An odd, uncomfortable pressure begins to build inside your skull, behind your ear...</span>")
 
-	leaving = 1
+	leaving = TRUE
 
 	spawn(100)
 
@@ -294,70 +294,72 @@
 		return
 
 	if(!checkStrength())
-		return 0
+		return FALSE
 	if(client.prefs.afreeze)
 		to_chat(src, "<span class='warning'>You are frozen by an administrator.</span>")
 		return
 
 	to_chat(src, "<span class='danger'>You begin delicately adjusting your connection to the host brain...</span>")
 
-	spawn(100+(victim.getBrainLoss()*5))
+	addtimer(CALLBACK(src,.proc/full_control), 100 + victim.getBrainLoss()*5)
 
-		if(!victim || !src || controlling || victim.stat == DEAD)
-			return
-		if(docile)
-			src <<"<span class='warning'>You are feeling far too docile to do that.</span>"
-			return
-		else
+/mob/living/simple_animal/borer/proc/full_control()
+	if(!victim || !src || controlling || victim.stat == DEAD)
+		return
 
+	if(docile)
+		src <<"<span class='warning'>You are feeling far too docile to do that.</span>"
+		return
 
-			log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with borer powers.")
-			to_chat(src, "<span class='warning'>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</span>")
-			to_chat(victim, "<span class='userdanger'>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</span>")
+	else
 
-			// host -> brain
-			var/h2b_id = victim.computer_id
-			var/h2b_ip= victim.lastKnownIP
-			victim.computer_id = null
-			victim.lastKnownIP = null
+		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with borer powers.")
+		to_chat(src, "<span class='warning'>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</span>")
+		to_chat(victim, "<span class='userdanger'>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</span>")
 
-			qdel(host_brain)
-			host_brain = new(src)
+		// host -> brain
+		var/h2b_id = victim.computer_id
+		var/h2b_ip= victim.lastKnownIP
+		victim.computer_id = null
+		victim.lastKnownIP = null
 
-			host_brain.ckey = victim.ckey
+		qdel(host_brain)
+		host_brain = new(src)
 
-			host_brain.name = victim.name
+		host_brain.ckey = victim.ckey
 
-			if(victim.mind)
-				host_brain.mind = victim.mind
+		host_brain.name = victim.name
 
-			if(!host_brain.computer_id)
-				host_brain.computer_id = h2b_id
+		if(victim.mind)
+			host_brain.mind = victim.mind
 
-			if(!host_brain.lastKnownIP)
-				host_brain.lastKnownIP = h2b_ip
+		if(!host_brain.computer_id)
+			host_brain.computer_id = h2b_id
 
-			// self -> host
-			var/s2h_id = src.computer_id
-			var/s2h_ip= src.lastKnownIP
-			src.computer_id = null
-			src.lastKnownIP = null
+		if(!host_brain.lastKnownIP)
+			host_brain.lastKnownIP = h2b_ip
 
-			victim.ckey = src.ckey
-			victim.mind = src.mind
+		// self -> host
+		var/s2h_id = src.computer_id
+		var/s2h_ip= src.lastKnownIP
+		src.computer_id = null
+		src.lastKnownIP = null
 
-			if(!victim.computer_id)
-				victim.computer_id = s2h_id
+		victim.ckey = src.ckey
+		victim.mind = src.mind
 
-			if(!victim.lastKnownIP)
-				victim.lastKnownIP = s2h_ip
+		if(!victim.computer_id)
+			victim.computer_id = s2h_id
 
-			controlling = 1
+		if(!victim.lastKnownIP)
+			victim.lastKnownIP = s2h_ip
 
-			victim.verbs += /mob/living/carbon/proc/release_control
-			victim.verbs += /mob/living/carbon/proc/spawn_larvae
+		controlling = TRUE
 
-			victim.med_hud_set_status()
+		victim.verbs += /mob/living/carbon/proc/release_control
+		victim.verbs += /mob/living/carbon/proc/spawn_larvae
+
+		victim.med_hud_set_status()
 
 /mob/living/simple_animal/borer/verb/punish()
 	set category = "Borer"
@@ -381,7 +383,7 @@
 		return
 
 	if(!checkStrength())
-		return 0
+		return FALSE
 
 	var/punishment = input("Select a punishment:.", "Punish") as null|anything in list("Blindness","Deafness","Stun")
 
@@ -394,12 +396,12 @@
 
 	switch(punishment) //Hardcoding this stuff.
 		if("Blindness")
-			victim.blind_eyes(2)
+			victim.blind_eyes(200)
 		if("Deafness")
 			var/obj/item/organ/ears/ears = victim.getorganslot(ORGAN_SLOT_EARS)
-			ears.deaf = 20
+			ears.deaf = 200
 		if("Stun")
-			victim.Paralyze(10)
+			victim.Paralyze(100)
 
 	log_game("[src]/([src.ckey]) punished [victim]/([victim.ckey] with [punishment]")
 
@@ -457,7 +459,7 @@ mob/living/carbon/proc/release_control()
 		log_game("[src]/([src.ckey]) has spawned a new borer via reproducing.")
 		var/mob/living/simple_animal/borer/newborer = new(get_turf(src))
 		var/mob/dead/observer/O = pick(Bcandidates)
-		newborer.key = O.key
+		newborer.transfer_personality(O.client)
 	else
 		to_chat(src, "<span class='warning'>You do not have enough chemicals stored to reproduce.</span>")
 		return
