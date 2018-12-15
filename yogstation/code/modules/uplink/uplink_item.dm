@@ -69,7 +69,25 @@
 
 /datum/uplink_item/role_restricted/cluwneburger
 	name = "Cluwne Burger"
-	desc = "A burger infused with the tears of thousands of cluwnes infects anyone who takes a bite with a cluwnification virus which will turn them into a cluwne"
-	item = /obj/item/reagent_containers/food/snacks/burger/cluwneburger
+	desc = "A burger infused with the tears of thousands of cluwnes infects anyone who takes a bite and pretty much everyone else on the station with a cluwnification virus which will turn them into a cluwne can only be cured with mimanas."
+	item = /obj/item/storage/box/syndie_kit/cluwnification
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
+
+/////////////////////////////
+/////////New Implants////////
+/////////////////////////////
+
+/datum/uplink_item/implants/mindslave
+	name = "Mindslave Implant"
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user for around 15 to 20 mintues."
+	exclude_modes = list(/datum/game_mode/nuclear)
+	item = /obj/item/storage/box/syndie_kit/imp_mindslave
+	cost = 6
+	surplus = 20
+
+/datum/uplink_item/implants/greatermindslave
+	name = "Greater Mindslave Implant"
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user, it does not expire like a regular mindslave implant."
+	item = /obj/item/storage/box/syndie_kit/imp_gmindslave
+	cost = 10
