@@ -9,7 +9,7 @@
 
 /datum/round_event/borer
 	announceWhen = 3000 //Borers get 5 minutes till the crew tries to murder them.
-	var/spawned = 0
+	var/spawned = FALSE
 
 	var/spawncount
 
