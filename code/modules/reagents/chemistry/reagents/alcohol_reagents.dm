@@ -636,20 +636,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	id = "beepskysmash"
 	description = "Drink this and prepare for the LAW."
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
+	boozepwr = 120 //yogs - made the fist of the law even stronger to compensate for it no longer stunning
 	quality = DRINK_GOOD
 	metabolization_rate = 0.8
 	taste_description = "JUSTICE"
 	glass_icon_state = "beepskysmashglass"
 	glass_name = "Beepsky Smash"
 	glass_desc = "Heavy, hot and strong. Just like the Iron fist of the LAW."
-
-/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/carbon/M)
+	
+// yogs - removed for balance
+/*/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/carbon/M)
 	if(M.has_trait(TRAIT_ALCOHOL_TOLERANCE))
 		M.Stun(30, 0) //this realistically does nothing to prevent chainstunning but will cause them to recover faster once it's out of their system
 	else
 		M.Stun(40, 0)
-	return ..()
+	return ..()*/
 
 /datum/reagent/consumable/ethanol/irish_cream
 	name = "Irish Cream"
@@ -1337,7 +1338,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A drink that is guaranteed to knock you silly."
 
 /datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/carbon/M)
-	M.Paralyze(60, 1, 0)
+	//M.Paralyze(60, 1, 0) // yogs - removed for balance
 	M.dizziness +=2
 	switch(current_cycle)
 		if(15 to 45)
