@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Plasma cutters will no longer accept infinite plasma, and will stop you when they are full."
