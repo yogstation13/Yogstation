@@ -133,6 +133,13 @@ var/banned_borer_emotes = list("*collapse", "*collapses", "*surrender", "*surren
 	if(staminaloss) // stamina loss will mute borers
 		return
 
+	var/oldmsg = message
+	message = pretty_filter(message)
+	if(oldmsg != message)
+		to_chat(src, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
+		return
+
 	if(dd_hasprefix(message, ";"))
 		message = copytext(message,2)
 		for(var/borer in borers)
