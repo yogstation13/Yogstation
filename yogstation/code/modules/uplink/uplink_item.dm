@@ -92,6 +92,6 @@
 
 /datum/uplink_item/implants/greatermindslave
 	name = "Greater Mindslave Implant"
-	desc = "An implant injected into another body, forcing the victim to obey any command by the user, it does not expire like a regular mindslave implant."
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user. It does not expire, unlike a regular mindslave implant."
 	item = /obj/item/storage/box/syndie_kit/imp_gmindslave
 	cost = 10
