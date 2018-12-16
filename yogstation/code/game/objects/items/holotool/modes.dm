@@ -2,7 +2,7 @@
 	var/name = "???"
 	var/sound
 	var/behavior
-	var/speed = 0.55
+	var/speed = 0.75
 
 /datum/holotool_mode/proc/can_be_used(var/obj/item/holotool/H)
 	return TRUE
