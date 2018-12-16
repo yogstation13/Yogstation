@@ -1,7 +1,7 @@
 /obj/item/storage/box/syndie_kit/cluwnification
 	name = "Cluwne Burger Happy Meal (with mimanas)"
 
- /obj/item/storage/box/syndie_kit/cluwnification/PopulateContents()
+/obj/item/storage/box/syndie_kit/cluwnification/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/burger/cluwneburger(src)
 	new /obj/item/reagent_containers/food/snacks/grown/banana/mime(src)
 	new /obj/item/reagent_containers/food/snacks/grown/banana/mime(src)
