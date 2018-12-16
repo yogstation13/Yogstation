@@ -30225,6 +30225,9 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/mob/living/simple_animal/pet/fox/fennec{
+	name = "Autumn"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "biw" = (
