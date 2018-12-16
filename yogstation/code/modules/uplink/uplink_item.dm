@@ -70,6 +70,6 @@
 /datum/uplink_item/role_restricted/cluwneburger
 	name = "Cluwne Burger"
 	desc = "A burger infused with the tears of thousands of cluwnes infects anyone who takes a bite with a cluwnification virus which will turn them into a cluwne"
-	item = /obj/item/reagent_containers/food/snacks/burger/cluwneburger
+	item = /obj/item/storage/box/syndie_kit/cluwnification
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
