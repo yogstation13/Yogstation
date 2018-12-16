@@ -29,8 +29,8 @@
 			to_chat(user,"<span class='danger'>[target] somehow rejects the mindslave implant!</span>")
 			return FALSE
 		if(target.mind.has_antag_datum(/datum/antagonist/changeling))
-			to_chat(holder, "<span class='warning'>[target]'s skin thickens where you try to inject them. Odd...</span>")
-			to_chat(target, "<span class='warning'>We instinctively prevent [holder]'s injector from penetrating our skin.</span>")
+			to_chat(user, "<span class='warning'>[target]'s skin thickens where you try to inject them. Odd...</span>")
+			to_chat(target, "<span class='warning'>We instinctively prevent [user]'s injector from penetrating our skin.</span>")
 			return FALSE
 		if(..())
 			to_chat(target,"<span class='notice'>You feel a surge of loyalty towards [user].</span>")
