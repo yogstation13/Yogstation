@@ -16,11 +16,8 @@
 #define INVESTIGATE_EXONET			"exonet"
 #define INVESTIGATE_NANITES			"nanites"
 #define INVESTIGATE_CIRCUIT			"circuit"
-<<<<<<< HEAD
-#define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
-=======
 #define INVESTIGATE_PRESENTS        "presents"
->>>>>>> d27c64c3a8... Christmas code changes (#41763)
+#define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
 
 // Logging types for log_message()
 #define LOG_ATTACK		(1 << 0)
