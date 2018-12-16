@@ -1,7 +1,7 @@
 /obj/item/implant/mindslave
 	name = "mindslave implant"
 	desc = "Now YOU too can have your very own mindslave! Pop this implant into anybody and they'll obey any command you give for around 15 to 20 minutes."
-	activated = 0
+	activated = FALSE
 	var/permanent = FALSE
 	var/time = 10200 // 1020 seconds aka 17 mins
 	var/timerid
@@ -23,11 +23,11 @@
 	if(target.mind)
 		if(target == user)
 			to_chat(target,"<span class='notice'>You can't implant yourself!</span>")
-			return 0
+			return FALSE
 		if(target.mind.current.has_trait(TRAIT_MINDSHIELD))
 			to_chat(target,"<span class='danger'>Your loyalty implant rejects [user]'s mindslave!</span>")
 			to_chat(user,"<span class='danger'>[target] somehow rejects the mindslave implant!</span>")
-			return 0
+			return FALSE
 		if(..())
 			to_chat(target,"<span class='notice'>You feel a surge of loyalty towards [user].</span>")
 			to_chat(target,"<span class='userdanger'> You MUST obey any command given to you by your master (that doesn't violate any rules). You are an antag while mindslaved.</span>")
@@ -46,9 +46,9 @@
 			M.master_ckey = user.ckey
 			M.objectives |= protect_objective
 			message_admins("[user]/([user.ckey]) made a mindslave out of [target]/([target.ckey]).")
-			return 1
+			return TRUE
 	to_chat(user,"<span class='notice'>[target] has no mind!</span>")
-	return 0
+	return FALSE
 
 /obj/item/implant/mindslave/removed(mob/source)
 	deltimer(timerid)
