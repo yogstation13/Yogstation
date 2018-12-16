@@ -8,5 +8,5 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	butcher_results = list(/obj/item/stack/ore/bananium = 3, /obj/item/reagent_containers/food/snacks/meat/slab = 1)

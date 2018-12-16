@@ -1,4 +1,5 @@
 /mob/living/simple_animal/pet/cat/clown
+	gold_core_spawnable = FRIENDLY_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2, /obj/item/clothing/mask/gas/clown_hat = 1, /mob/living/simple_animal/hostile/retaliate/clown = 3)
 	name = "Honkers"
 	desc = "A goofy little clown cat."
