@@ -224,8 +224,17 @@
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
+<<<<<<< HEAD
 	if((mob_occupant.has_trait(TRAIT_NOCLONE)) && (src.scanner.scan_level < 2))
 		scantemp = "<font class='bad'>Subject no longer contains the fundamental materials required to create a living clone.</font>"
+=======
+	if((mob_occupant.has_trait(TRAIT_HUSK)) && (src.scanner.scan_level < 2))
+		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
+		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+		return
+	if(mob_occupant.has_trait(TRAIT_BADDNA))
+		scantemp = "<font class='bad'>Subject's DNA is damaged beyond any hope of recovery.</font>"
+>>>>>>> c05b0eaef9... Turns TRAIT_NOCLONE into TRAIT_BADDNA for consistency (#41819)
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if ((!mob_occupant.ckey) || (!mob_occupant.client))
