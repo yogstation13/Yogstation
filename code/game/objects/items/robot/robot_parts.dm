@@ -8,7 +8,7 @@
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "robo_suit"
-	w_class = WEIGHT_CLASS_BULKY //YOGS can not fit in backpacks
+	w_class = WEIGHT_CLASS_BULKY // yogs - can not fit in backpacks
 	var/obj/item/bodypart/l_arm/robot/l_arm = null
 	var/obj/item/bodypart/r_arm/robot/r_arm = null
 	var/obj/item/bodypart/l_leg/robot/l_leg = null
