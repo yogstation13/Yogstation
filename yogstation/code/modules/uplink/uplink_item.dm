@@ -69,8 +69,8 @@
 
 /datum/uplink_item/role_restricted/cluwneburger
 	name = "Cluwne Burger"
-	desc = "A burger infused with the tears of thousands of cluwnes infects anyone who takes a bite with a cluwnification virus which will turn them into a cluwne"
-	item = /obj/item/reagent_containers/food/snacks/burger/cluwneburger
+	desc = "A burger infused with the tears of thousands of cluwnes. Infects anyone who takes a bite and pretty much everyone else on the station with a cluwnification virus which will quickly turn them into a cluwne. Can only be cured with Mimanas."
+	item = /obj/item/storage/box/syndie_kit/cluwnification
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
