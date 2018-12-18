@@ -2829,6 +2829,7 @@
 #include "yogstation\code\game\objects\items\robot\robot_items.dm"
 #include "yogstation\code\game\objects\items\robot\robot_parts.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
+#include "yogstation\code\game\objects\items\storage\uplink_kits.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\bluespace_locker.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\job_closets.dm"
