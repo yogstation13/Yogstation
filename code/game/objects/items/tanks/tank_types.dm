@@ -203,4 +203,3 @@
 /obj/item/tank/internals/emergency_oxygen/double/empty/Initialize()
 	. = ..()
 	air_contents.gases[/datum/gas/oxygen][MOLES] = 0
-	
