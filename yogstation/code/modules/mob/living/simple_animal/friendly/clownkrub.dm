@@ -2,7 +2,7 @@
 	name = "Mr Krebs"
 	desc = "Its shell seems to be made out of pure bananium this kreb sure is living the high life!"
 	real_name = "Fancy Kreb"
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'yogstation/icons/mob/clownpets.dmi'
 	icon_state = "clown_kreb"
 	icon_living = "clown_kreb"
 	response_help  = "pets"

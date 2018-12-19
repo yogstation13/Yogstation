@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/fox/clown
 	name = "Honkault"
 	desc = "The funniest fox around."
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'yogstation/icons/mob/clownpets.dmi'
 	icon_state = "clown_fox"
 	icon_living = "clown_fox"
 	gender = FEMALE
