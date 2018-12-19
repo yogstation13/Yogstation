@@ -4,7 +4,7 @@
 	name = "Honkers"
 	desc = "A goofy little clown cat."
 	var/emagged = FALSE
-	icon = 'yogstation/icons/mob/pets.dmi'
+	icon = 'yogstation/icons/mob/clownpets.dmi'
 	icon_state = "clown_cat"
 	icon_living = "clown_cat"
 	icon_dead = "clown_cat_dead"
