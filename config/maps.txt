@@ -47,5 +47,9 @@ endmap
 map runtimestation
 endmap
 
+map clownstation
+	voteweight 0
+endmap
+
 map multiz_debug
 endmap

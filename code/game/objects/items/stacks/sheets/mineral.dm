@@ -265,7 +265,10 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	new/datum/stack_recipe("bananium tile", /obj/item/stack/tile/mineral/bananium, 1, 4, 20), \
 	new/datum/stack_recipe("Clown Statue", /obj/structure/statue/bananium/clown, 5, one_per_turf = 1, on_floor = 1), \
-	))
+	new/datum/stack_recipe("Bananium Window", /obj/structure/window/bananium/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("Bananium Table Frame", /obj/structure/table_frame/bananium, 1, time = 15, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("Bananium Chair", /obj/structure/chair/bananium, 2, one_per_turf = TRUE, on_floor = TRUE), \
+	)) //Yogstation added bananium recipes
 
 /obj/item/stack/sheet/mineral/bananium/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.bananium_recipes
