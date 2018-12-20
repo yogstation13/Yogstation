@@ -62,7 +62,7 @@
 	return TRUE
 
 /obj/effect/landmark/stationroom/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Default")
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box")
 
 /obj/effect/landmark/stationroom/foreportmaint1
 	template_names = list("Maintenance Surgery")
