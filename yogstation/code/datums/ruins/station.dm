@@ -12,7 +12,7 @@
 
 /datum/map_template/ruin/station/box/bar
 	id = "bar_box"
-	suffix = "bar_default.dmm"
+	suffix = "bar_box.dmm"
 	name = "Bar Box"
 
 /datum/map_template/ruin/station/box/bar/trek
