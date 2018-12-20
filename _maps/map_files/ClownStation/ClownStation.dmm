@@ -9374,10 +9374,6 @@
 	},
 /turf/open/floor/mineral/bananium,
 /area/hallway/secondary/entry)
-"awm" = (
-/obj/effect/landmark/stationroom/foreportmaint1,
-/turf/open/floor/mineral/bananium,
-/area/maintenance/port/fore)
 "awn" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -67346,7 +67342,7 @@ alj
 alQ
 alQ
 alQ
-awm
+alQ
 alj
 arH
 azo
