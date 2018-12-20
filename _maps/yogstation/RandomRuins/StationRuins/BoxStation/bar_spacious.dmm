@@ -35,19 +35,19 @@
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "ag" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "ah" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -58,7 +58,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/space)
+/area/crew_quarters/bar)
 "aj" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -96,12 +96,12 @@
 /area/crew_quarters/kitchen)
 "an" = (
 /turf/closed/wall,
-/area/space)
+/area/crew_quarters/theatre)
 "ao" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "ap" = (
 /obj/machinery/door/airlock{
 	name = "Theatre Backstage";
@@ -110,7 +110,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/space)
+/area/crew_quarters/theatre)
 "aq" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -119,13 +119,13 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "ar" = (
 /obj/machinery/camera{
 	c_tag = "Bar Storage"
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "as" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -140,7 +140,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "at" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -168,15 +168,15 @@
 	dir = 5
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "av" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "aw" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "ax" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/plasteel/showroomfloor,
@@ -212,24 +212,24 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aC" = (
 /obj/machinery/airalarm{
 	dir = 2;
 	pixel_y = 24
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aD" = (
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "aE" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "aF" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -239,7 +239,7 @@
 	dir = 2
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aG" = (
 /obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
@@ -248,7 +248,7 @@
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "aH" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -258,12 +258,12 @@
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
-/area/space)
+/area/crew_quarters/bar)
 "aI" = (
 /obj/effect/landmark/blobstart,
 /obj/item/toy/beach_ball/holoball,
 /turf/open/floor/plating,
-/area/space)
+/area/crew_quarters/bar)
 "aJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -296,19 +296,19 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aO" = (
 /obj/structure/piano{
 	icon_state = "piano"
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aP" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "aQ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -692,7 +692,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "ca" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -703,7 +703,7 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cb" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -935,10 +935,10 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cH" = (
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/bar)
 "cI" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/tile/bar,
@@ -969,39 +969,49 @@
 	pixel_x = 5
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cP" = (
 /mob/living/simple_animal/bot/honkbot,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cQ" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cR" = (
 /obj/machinery/door/window{
 	dir = 4;
 	name = "Theatre Stage"
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cS" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
 /obj/item/instrument/violin,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cT" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
 "cU" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/crew_quarters/theatre)
+"Lp" = (
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"Wu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 ac
@@ -1039,7 +1049,7 @@ ab
 ac
 ac
 aP
-cH
+Lp
 cT
 ba
 ba
@@ -1055,7 +1065,7 @@ ab
 an
 aq
 bZ
-cH
+Lp
 cT
 ba
 ba
@@ -1102,8 +1112,8 @@ ct
 (7,1,1) = {"
 an
 aF
-cH
-cH
+Lp
+Lp
 cT
 ba
 cI
@@ -1180,11 +1190,11 @@ cn
 ab
 "}
 (12,1,1) = {"
-an
-an
-an
-an
-an
+ab
+ab
+ab
+ab
+ab
 bk
 cA
 cy
@@ -1200,7 +1210,7 @@ af
 ao
 as
 aD
-an
+ab
 by
 bj
 bj
@@ -1230,9 +1240,9 @@ ab
 (15,1,1) = {"
 ah
 cH
-cG
+Wu
 aG
-an
+ab
 bB
 cx
 bj
@@ -1244,11 +1254,11 @@ ba
 ab
 "}
 (16,1,1) = {"
-an
+ab
 ar
 av
-an
-an
+ab
+ab
 aj
 aj
 bC
@@ -1263,7 +1273,7 @@ aj
 ai
 cH
 aw
-an
+ab
 aI
 aj
 bo
@@ -1276,11 +1286,11 @@ aj
 aa
 "}
 (18,1,1) = {"
-an
-an
-an
-an
-an
+aj
+aj
+aj
+aj
+aj
 aj
 bp
 bC
