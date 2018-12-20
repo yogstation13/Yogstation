@@ -10,17 +10,17 @@
 	suffix = "maint_surgery.dmm"
 	name = "Maintenance Surgery"
 
-/datum/map_template/ruin/box/station/bar
+/datum/map_template/ruin/station/box/bar
 	id = "bar_box"
 	suffix = "bar_default.dmm"
 	name = "Bar Box"
 
-/datum/map_template/ruin/box/station/bar/trek
+/datum/map_template/ruin/station/box/bar/trek
 	id = "bar_trek"
 	suffix = "bar_trek.dmm"
 	name = "Bar Trek"
 
-/datum/map_template/ruin/box/station/bar/spacious
+/datum/map_template/ruin/station/box/bar/spacious
 	id = "bar_spacious"
 	suffix = "bar_spacious.dmm"
 	name = "Bar Spacious"
