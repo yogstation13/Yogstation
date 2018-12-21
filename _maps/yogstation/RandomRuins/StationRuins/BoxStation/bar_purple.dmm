@@ -1861,6 +1861,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"dJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/table/glass{
+	color = "purple"
+	},
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1946,7 +1956,7 @@ aa
 ad
 ap
 aF
-aV
+dJ
 bh
 bx
 bh

@@ -277,6 +277,9 @@
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
 	},
+/obj/item/gun/energy/laser/retro/old{
+	desc = "First generation lasergun, developed by Nanotrasen. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate. You really hope someone has developed a better lasergun while you were in cryo. It seems the self recharger is broken beyond repair..."
+	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aP" = (
@@ -491,6 +494,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
+"bq" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/mineral/titanium/blue,
+/area/crew_quarters/bar)
 "br" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -1073,7 +1081,7 @@ ag
 ac
 aF
 bj
-bJ
+bq
 bJ
 aI
 bJ
