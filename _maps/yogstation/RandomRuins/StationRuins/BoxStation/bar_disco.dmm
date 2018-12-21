@@ -187,7 +187,8 @@
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aB" = (
-/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/structure/table/abductor,
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aC" = (
@@ -211,7 +212,7 @@
 /area/crew_quarters/bar)
 "aE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/structure/table/reinforced,
+/obj/structure/table/abductor,
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aF" = (
@@ -324,7 +325,7 @@
 	tag = "icon-manifold-r-f (NORTH)";
 	dir = 1
 	},
-/obj/structure/table/reinforced,
+/obj/structure/table/abductor,
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aT" = (
@@ -565,8 +566,8 @@
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "bA" = (
-/obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/abductor,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bB" = (
@@ -695,8 +696,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
+/obj/structure/table/abductor,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bU" = (
@@ -813,7 +814,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
+/obj/structure/table/abductor,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ci" = (
@@ -911,7 +912,7 @@
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
 "cu" = (
-/obj/structure/table/reinforced,
+/obj/structure/table/abductor,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cv" = (
@@ -991,8 +992,8 @@
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
 "cI" = (
-/obj/structure/table/reinforced,
 /obj/machinery/light_switch,
+/obj/structure/table/abductor,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cJ" = (
@@ -1163,7 +1164,7 @@
 /area/crew_quarters/bar)
 "df" = (
 /obj/machinery/light/small,
-/obj/structure/table/reinforced,
+/obj/structure/table/abductor,
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "dg" = (
@@ -1218,7 +1219,15 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"fY" = (
+"mw" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall{
+	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall,/obj/structure/falsewall/reinforced,/turf/closed/wall/rust,/turf/closed/wall/clockwork);
+	icon = 'icons/turf/walls/abductor_wall.dmi';
+	icon_state = "abductor"
+	},
+/area/crew_quarters/bar)
+"uJ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1230,7 +1239,20 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"gB" = (
+"FQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/storage/secure/safe,
+/turf/closed/wall{
+	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall,/obj/structure/falsewall/reinforced,/turf/closed/wall/rust,/turf/closed/wall/clockwork);
+	icon = 'icons/turf/walls/abductor_wall.dmi';
+	icon_state = "abductor"
+	},
+/area/crew_quarters/bar)
+"La" = (
+/obj/structure/table/abductor,
+/turf/open/floor/mineral/plasma,
+/area/crew_quarters/bar)
+"VJ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1242,28 +1264,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"rW" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/hardhat/cakehat,
-/turf/open/floor/mineral/plasma,
-/area/crew_quarters/bar)
-"xo" = (
-/obj/structure/sign/plaques/deempisi,
-/turf/closed/wall{
-	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall,/obj/structure/falsewall/reinforced,/turf/closed/wall/rust,/turf/closed/wall/clockwork);
-	icon = 'icons/turf/walls/abductor_wall.dmi';
-	icon_state = "abductor"
-	},
-/area/crew_quarters/bar)
-"Nd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/item/storage/secure/safe,
-/turf/closed/wall{
-	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall,/obj/structure/falsewall/reinforced,/turf/closed/wall/rust,/turf/closed/wall/clockwork);
-	icon = 'icons/turf/walls/abductor_wall.dmi';
-	icon_state = "abductor"
-	},
-/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1300,8 +1300,8 @@ ab
 (3,1,1) = {"
 ab
 ab
-rW
 aB
+La
 an
 an
 an
@@ -1310,7 +1310,7 @@ ar
 ar
 cF
 cO
-aB
+La
 ab
 "}
 (4,1,1) = {"
@@ -1446,7 +1446,7 @@ ab
 ab
 ab
 ab
-xo
+mw
 bo
 bA
 bT
@@ -1462,7 +1462,7 @@ af
 au
 aI
 aW
-Nd
+FQ
 bp
 bB
 bU
@@ -1566,7 +1566,7 @@ co
 cA
 cy
 cy
-fY
+uJ
 dl
 "}
 (20,1,1) = {"
@@ -1582,7 +1582,7 @@ cp
 cA
 cy
 cy
-gB
+VJ
 dl
 "}
 (21,1,1) = {"
