@@ -64,3 +64,8 @@
 	id = "bar_space"
 	suffix = "bar_space.dmm"
 	name = "Bar Space"
+
+/datum/map_template/ruin/station/box/bar/xeno
+	id = "bar_xeno"
+	suffix = "bar_xeno.dmm"
+	name = "Bar Xeno"
