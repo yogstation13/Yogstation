@@ -3,8 +3,9 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/wall,
-/area/template_noop)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "ac" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -1180,15 +1181,7 @@
 /area/crew_quarters/kitchen)
 "dd" = (
 /obj/machinery/door/airlock/gold/glass,
-/turf/open/space/basic,
-/area/crew_quarters/bar)
-"de" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/space/basic,
-/area/crew_quarters/bar)
-"df" = (
-/obj/machinery/door/airlock/gold/glass,
-/turf/template_noop,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
 "dg" = (
 /obj/structure/sign/barsign,
@@ -1251,17 +1244,17 @@
 
 (1,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
+ac
+ac
+ac
+ac
 ab
-aa
+ac
+ab
+ac
+ab
 ac
 ac
 "}
@@ -1359,7 +1352,7 @@ ck
 cz
 cK
 ap
-de
+ab
 "}
 (8,1,1) = {"
 ac
@@ -1375,7 +1368,7 @@ ap
 cy
 cK
 ap
-df
+dd
 "}
 (9,1,1) = {"
 ae
@@ -1620,7 +1613,7 @@ dj
 (24,1,1) = {"
 aa
 aa
-aa
+am
 am
 am
 am

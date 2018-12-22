@@ -1259,12 +1259,16 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"ru" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/item/storage/secure/safe,
-/turf/closed/wall,
+"vM" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
 /area/crew_quarters/bar)
-"vz" = (
+"wV" = (
+/obj/structure/table,
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/plasteel/blackwhite,
+/area/crew_quarters/bar)
+"xG" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1276,28 +1280,18 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"CF" = (
-/obj/structure/sign/plaques/deempisi,
-/turf/closed/wall,
-/area/crew_quarters/bar)
-"CQ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
+"AX" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
 	},
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"DX" = (
-/obj/structure/table,
-/obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/blackwhite,
 /area/crew_quarters/bar)
-"IK" = (
+"Fy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/storage/secure/safe,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"HK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1305,6 +1299,26 @@
 	name = "kitchen shutters"
 	},
 /obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"NB" = (
+/obj/effect/spawner/structure/window,
+/turf/template_noop,
+/area/crew_quarters/bar)
+"RF" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"Vh" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -1318,11 +1332,11 @@ ab
 ab
 ab
 ab
-aa
+vM
 ab
-aa
+vM
 ab
-aa
+vM
 ab
 ab
 "}
@@ -1368,7 +1382,7 @@ bd
 az
 bI
 ca
-DX
+wV
 cF
 az
 da
@@ -1404,7 +1418,7 @@ az
 aQ
 az
 az
-aa
+AX
 "}
 (7,1,1) = {"
 ab
@@ -1420,7 +1434,7 @@ cs
 cG
 az
 az
-aa
+NB
 "}
 (8,1,1) = {"
 ab
@@ -1436,7 +1450,7 @@ aO
 cG
 az
 az
-aa
+AX
 "}
 (9,1,1) = {"
 ad
@@ -1491,7 +1505,7 @@ ab
 ab
 ab
 ab
-CF
+RF
 bn
 bv
 bO
@@ -1507,7 +1521,7 @@ af
 at
 aG
 aV
-ru
+Fy
 bo
 bw
 bP
@@ -1627,7 +1641,7 @@ cn
 cz
 cx
 cx
-CQ
+Vh
 dl
 "}
 (21,1,1) = {"
@@ -1643,7 +1657,7 @@ co
 cz
 cx
 cU
-vz
+xG
 dl
 "}
 (22,1,1) = {"
@@ -1659,7 +1673,7 @@ cp
 cA
 cN
 cV
-IK
+HK
 dl
 "}
 (23,1,1) = {"
@@ -1681,7 +1695,7 @@ dm
 (24,1,1) = {"
 aa
 aa
-aa
+aj
 aj
 aj
 aj

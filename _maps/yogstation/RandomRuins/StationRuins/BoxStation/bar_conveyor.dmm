@@ -7,7 +7,7 @@
 /area/crew_quarters/bar)
 "ac" = (
 /obj/structure/sign/poster/contraband/have_a_puff,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "ad" = (
 /obj/machinery/door/airlock{
@@ -19,11 +19,11 @@
 /area/crew_quarters/theatre)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "af" = (
 /obj/item/radio/intercom,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "ag" = (
 /obj/machinery/door/airlock/maintenance{
@@ -368,7 +368,6 @@
 	},
 /area/crew_quarters/kitchen)
 "bc" = (
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 5;
 	icon_state = "conveyor0";
@@ -378,7 +377,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bd" = (
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "conveyorbar"
@@ -386,7 +384,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "be" = (
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "conveyorbar"
@@ -395,7 +392,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bf" = (
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "conveyorbar"
@@ -407,7 +403,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bg" = (
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 6;
 	icon_state = "conveyor0";
@@ -424,12 +419,12 @@
 /area/crew_quarters/bar)
 "bi" = (
 /obj/structure/sign/plaques/deempisi,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "bj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/item/storage/secure/safe,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "bk" = (
 /obj/machinery/door/airlock{
@@ -443,7 +438,7 @@
 /area/crew_quarters/bar)
 "bl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/bar)
 "bm" = (
 /obj/effect/landmark/xeno_spawn,
@@ -494,7 +489,6 @@
 	dir = 1;
 	id = "conveyorbar"
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bt" = (
@@ -529,7 +523,6 @@
 	dir = 2;
 	id = "conveyorbar"
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "bx" = (
@@ -728,7 +721,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "conveyorbar"
@@ -764,7 +756,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 2;
 	id = "conveyorbar"
@@ -827,10 +818,8 @@
 "cd" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/conveyor{
-	dir = 6;
-	icon_state = "conveyor0";
-	id = "conveyorbar";
-	tag = "icon-conveyor0 (SOUTHEAST)"
+	dir = 8;
+	id = "conveyorbar"
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1023,7 +1012,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/closed/wall,
+/turf/closed/wall/vault,
 /area/crew_quarters/kitchen)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -1204,7 +1193,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 9;
 	icon_state = "conveyor0";
@@ -1217,7 +1205,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "conveyorbar"
@@ -1230,7 +1217,6 @@
 	icon_state = "conveyor0";
 	id = "conveyorbar"
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "cY" = (
@@ -1471,8 +1457,8 @@
 /area/crew_quarters/kitchen)
 "dB" = (
 /obj/structure/sign/barsign,
-/turf/template_noop,
-/area/template_noop)
+/turf/closed/wall/vault,
+/area/crew_quarters/bar)
 "dC" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -1490,26 +1476,40 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"tG" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"Pt" = (
+/turf/closed/wall/vault,
+/area/crew_quarters/bar)
+"VW" = (
+/obj/effect/spawner/structure/window/plasma,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"VX" = (
+/turf/closed/wall/vault,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+VW
+Pt
+VW
+Pt
+VW
+Pt
+Pt
 "}
 (2,1,1) = {"
 aa
-ab
+Pt
 aC
 ao
 ao
@@ -1521,11 +1521,11 @@ ao
 cT
 ao
 dp
-aa
+Pt
 "}
 (3,1,1) = {"
-ab
-ab
+Pt
+Pt
 aD
 aP
 aP
@@ -1537,7 +1537,7 @@ co
 cU
 de
 ao
-aa
+Pt
 "}
 (4,1,1) = {"
 ac
@@ -1553,7 +1553,7 @@ bs
 cV
 aP
 dq
-aa
+Pt
 "}
 (5,1,1) = {"
 ad
@@ -1569,7 +1569,7 @@ cH
 cW
 df
 dr
-aa
+Pt
 "}
 (6,1,1) = {"
 ae
@@ -1585,7 +1585,7 @@ cI
 cW
 df
 ao
-aa
+tG
 "}
 (7,1,1) = {"
 af
@@ -1601,10 +1601,10 @@ cJ
 cW
 df
 ao
-aa
+VW
 "}
 (8,1,1) = {"
-ab
+Pt
 as
 aG
 aR
@@ -1617,7 +1617,7 @@ bw
 cX
 aP
 ao
-aa
+tG
 "}
 (9,1,1) = {"
 ae
@@ -1649,10 +1649,10 @@ ap
 cY
 dg
 dt
-aa
+Pt
 "}
 (11,1,1) = {"
-ab
+Pt
 av
 aI
 aV
@@ -1665,13 +1665,13 @@ ao
 cs
 aP
 du
-aa
+Pt
 "}
 (12,1,1) = {"
-ab
-ab
-ab
-ab
+Pt
+Pt
+Pt
+Pt
 bi
 by
 bI
@@ -1681,7 +1681,7 @@ ao
 cs
 aP
 ao
-aa
+Pt
 "}
 (13,1,1) = {"
 ah
@@ -1697,7 +1697,7 @@ cK
 cs
 dh
 dv
-aa
+Pt
 "}
 (14,1,1) = {"
 ai
@@ -1713,7 +1713,7 @@ cL
 cZ
 ao
 dw
-aa
+Pt
 "}
 (15,1,1) = {"
 aj
@@ -1729,23 +1729,23 @@ cL
 da
 ao
 dx
-aa
+Pt
 "}
 (16,1,1) = {"
 ab
 ay
 ax
 ab
-ab
-al
-al
+Pt
+VX
+VX
 cg
 cz
 cM
-al
+VX
 di
-al
-aa
+VX
+VX
 "}
 (17,1,1) = {"
 ak
@@ -1862,7 +1862,7 @@ dE
 (24,1,1) = {"
 aa
 aa
-aa
+al
 al
 al
 al

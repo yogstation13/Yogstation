@@ -1437,8 +1437,8 @@
 /area/crew_quarters/kitchen)
 "dE" = (
 /obj/structure/sign/barsign,
-/turf/template_noop,
-/area/template_noop)
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "dF" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -1456,22 +1456,33 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"zN" = (
+/turf/template_noop,
+/area/crew_quarters/kitchen)
+"HX" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Vs" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/plasteel/darkblue,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+HX
+ab
+HX
+ab
+HX
+ab
+ab
 "}
 (2,1,1) = {"
 aa
@@ -1487,7 +1498,7 @@ aQ
 cU
 aQ
 ds
-aa
+ab
 "}
 (3,1,1) = {"
 ab
@@ -1503,7 +1514,7 @@ cJ
 cV
 dg
 dt
-aa
+ab
 "}
 (4,1,1) = {"
 ab
@@ -1519,7 +1530,7 @@ cv
 cW
 aQ
 du
-aa
+ab
 "}
 (5,1,1) = {"
 ac
@@ -1535,7 +1546,7 @@ cK
 cX
 aQ
 dv
-aa
+ab
 "}
 (6,1,1) = {"
 ad
@@ -1551,7 +1562,7 @@ aQ
 cy
 aQ
 be
-aa
+Vs
 "}
 (7,1,1) = {"
 ab
@@ -1567,7 +1578,7 @@ cL
 cY
 aQ
 be
-aa
+HX
 "}
 (8,1,1) = {"
 ab
@@ -1583,7 +1594,7 @@ cv
 cW
 aQ
 be
-aa
+Vs
 "}
 (9,1,1) = {"
 ad
@@ -1615,7 +1626,7 @@ by
 cZ
 dh
 dx
-aa
+ab
 "}
 (11,1,1) = {"
 ab
@@ -1631,7 +1642,7 @@ cM
 da
 di
 dy
-aa
+ab
 "}
 (12,1,1) = {"
 ab
@@ -1647,7 +1658,7 @@ aQ
 da
 di
 be
-aa
+ab
 "}
 (13,1,1) = {"
 af
@@ -1663,7 +1674,7 @@ aQ
 da
 dj
 be
-aa
+ab
 "}
 (14,1,1) = {"
 ag
@@ -1679,7 +1690,7 @@ aQ
 db
 aQ
 dz
-aa
+ab
 "}
 (15,1,1) = {"
 ah
@@ -1695,7 +1706,7 @@ aQ
 dc
 dk
 dA
-aa
+ab
 "}
 (16,1,1) = {"
 ab
@@ -1711,7 +1722,7 @@ cN
 aj
 dl
 aj
-aa
+zN
 "}
 (17,1,1) = {"
 ai
@@ -1828,7 +1839,7 @@ dH
 (24,1,1) = {"
 aa
 aa
-aa
+aj
 aj
 aj
 aj
