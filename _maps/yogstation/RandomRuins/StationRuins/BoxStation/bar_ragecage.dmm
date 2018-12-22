@@ -88,7 +88,7 @@
 /area/crew_quarters/kitchen)
 "an" = (
 /obj/structure/sign/poster/contraband/communist_state,
-/turf/closed/wall,
+/turf/closed/wall/rust,
 /area/crew_quarters/bar)
 "ao" = (
 /turf/open/floor/plasteel/dark,
@@ -1549,8 +1549,8 @@
 /area/crew_quarters/kitchen)
 "dw" = (
 /obj/structure/sign/barsign,
-/turf/template_noop,
-/area/template_noop)
+/turf/closed/wall,
+/area/crew_quarters/bar)
 "dx" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
@@ -1568,6 +1568,13 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"Df" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"FC" = (
+/turf/closed/wall/rust,
+/area/crew_quarters/kitchen)
 "Gf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1580,6 +1587,15 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"OK" = (
+/turf/closed/wall/rust,
+/area/crew_quarters/bar)
+"QB" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "Te" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1603,19 +1619,19 @@
 
 (1,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+OK
+ab
+ab
+ab
+Df
+OK
+Df
+ab
+Df
+ab
+ab
 "}
 (2,1,1) = {"
 aa
@@ -1631,7 +1647,7 @@ cB
 cM
 cZ
 aC
-aa
+OK
 "}
 (3,1,1) = {"
 ab
@@ -1647,7 +1663,7 @@ bz
 cN
 da
 aC
-aa
+ab
 "}
 (4,1,1) = {"
 ab
@@ -1663,7 +1679,7 @@ bx
 cO
 da
 dl
-aa
+ab
 "}
 (5,1,1) = {"
 ac
@@ -1679,7 +1695,7 @@ by
 cP
 da
 dm
-aa
+OK
 "}
 (6,1,1) = {"
 ad
@@ -1695,7 +1711,7 @@ by
 cQ
 db
 dn
-aa
+QB
 "}
 (7,1,1) = {"
 ae
@@ -1711,10 +1727,10 @@ cC
 cR
 da
 do
-aa
+Df
 "}
 (8,1,1) = {"
-ab
+OK
 ao
 aG
 aV
@@ -1727,7 +1743,7 @@ bx
 cO
 da
 do
-aa
+QB
 "}
 (9,1,1) = {"
 ad
@@ -1759,7 +1775,7 @@ bA
 cT
 dc
 dq
-aa
+ab
 "}
 (11,1,1) = {"
 ab
@@ -1775,12 +1791,12 @@ cD
 aC
 aB
 dr
-aa
+ab
 "}
 (12,1,1) = {"
 ab
 ab
-ab
+OK
 aY
 bm
 bB
@@ -1791,7 +1807,7 @@ cE
 bJ
 ao
 ao
-aa
+OK
 "}
 (13,1,1) = {"
 ag
@@ -1807,7 +1823,7 @@ ao
 cE
 dd
 ds
-aa
+ab
 "}
 (14,1,1) = {"
 ah
@@ -1823,7 +1839,7 @@ ao
 ao
 ao
 dt
-aa
+ab
 "}
 (15,1,1) = {"
 ai
@@ -1839,7 +1855,7 @@ ao
 cU
 ao
 du
-aa
+ab
 "}
 (16,1,1) = {"
 ab
@@ -1847,15 +1863,15 @@ aw
 ao
 ab
 ab
-ak
+FC
 ak
 ce
 ct
 cF
 cV
 de
+FC
 ak
-aa
 "}
 (17,1,1) = {"
 aj
@@ -1972,7 +1988,7 @@ dz
 (24,1,1) = {"
 aa
 aa
-aa
+ak
 ak
 ak
 ak

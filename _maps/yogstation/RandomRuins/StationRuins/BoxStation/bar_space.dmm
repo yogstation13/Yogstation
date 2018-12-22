@@ -801,10 +801,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/fakespace,
 /area/crew_quarters/kitchen)
-"cm" = (
-/obj/structure/piano,
-/turf/open/floor/fakespace,
-/area/crew_quarters/bar)
 "cn" = (
 /obj/machinery/holopad,
 /turf/open/floor/fakespace,
@@ -1124,6 +1120,22 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall/mineral/abductor,
 /area/crew_quarters/bar)
+"dn" = (
+/obj/structure/table/reinforced,
+/obj/machinery/camera{
+	c_tag = "Kitchen";
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"eo" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"iy" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1183,7 +1195,7 @@ au
 bz
 bO
 cb
-cm
+au
 cz
 bl
 cS
@@ -1395,7 +1407,7 @@ bU
 bU
 cL
 bv
-aa
+iy
 "}
 (18,1,1) = {"
 al
@@ -1411,7 +1423,7 @@ bU
 bU
 cM
 bv
-aa
+iy
 "}
 (19,1,1) = {"
 al
@@ -1427,7 +1439,7 @@ ct
 bU
 bU
 da
-aa
+eo
 "}
 (20,1,1) = {"
 ai
@@ -1443,7 +1455,7 @@ cu
 cF
 bU
 db
-aa
+eo
 "}
 (21,1,1) = {"
 al
@@ -1459,7 +1471,7 @@ cv
 bU
 cN
 dc
-aa
+eo
 "}
 (22,1,1) = {"
 ao
@@ -1475,7 +1487,7 @@ cv
 bU
 bU
 dc
-aa
+eo
 "}
 (23,1,1) = {"
 al
@@ -1491,7 +1503,7 @@ cl
 cl
 cO
 bv
-aa
+dn
 "}
 (24,1,1) = {"
 aa
@@ -1507,5 +1519,5 @@ cw
 cG
 cP
 bv
-aa
+iy
 "}
