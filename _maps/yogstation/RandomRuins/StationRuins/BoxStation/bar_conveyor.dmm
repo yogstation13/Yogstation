@@ -7,7 +7,7 @@
 /area/crew_quarters/bar)
 "ac" = (
 /obj/structure/sign/poster/contraband/have_a_puff,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "ad" = (
 /obj/machinery/door/airlock{
@@ -19,11 +19,11 @@
 /area/crew_quarters/theatre)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "af" = (
 /obj/item/radio/intercom,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "ag" = (
 /obj/machinery/door/airlock/maintenance{
@@ -419,12 +419,12 @@
 /area/crew_quarters/bar)
 "bi" = (
 /obj/structure/sign/plaques/deempisi,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "bj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/item/storage/secure/safe,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "bk" = (
 /obj/machinery/door/airlock{
@@ -432,13 +432,11 @@
 	req_access_txt = "25"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel{
-	icon_state = "wood"
-	},
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "bl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "bm" = (
 /obj/effect/landmark/xeno_spawn,
@@ -1012,7 +1010,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/kitchen)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -1457,7 +1455,7 @@
 /area/crew_quarters/kitchen)
 "dB" = (
 /obj/structure/sign/barsign,
-/turf/closed/wall/vault,
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "dC" = (
 /obj/structure/table/reinforced,
@@ -1476,40 +1474,40 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"tG" = (
+"BQ" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"Pt" = (
-/turf/closed/wall/vault,
+"GS" = (
+/turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
-"VW" = (
+"Jd" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/kitchen)
+"Nd" = (
 /obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"VX" = (
-/turf/closed/wall/vault,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
-Pt
-Pt
-Pt
-Pt
-Pt
-Pt
-VW
-Pt
-VW
-Pt
-VW
-Pt
-Pt
+GS
+GS
+GS
+GS
+GS
+GS
+Nd
+GS
+Nd
+GS
+Nd
+GS
+GS
 "}
 (2,1,1) = {"
 aa
-Pt
+GS
 aC
 ao
 ao
@@ -1521,11 +1519,11 @@ ao
 cT
 ao
 dp
-Pt
+GS
 "}
 (3,1,1) = {"
-Pt
-Pt
+GS
+GS
 aD
 aP
 aP
@@ -1537,7 +1535,7 @@ co
 cU
 de
 ao
-Pt
+GS
 "}
 (4,1,1) = {"
 ac
@@ -1553,7 +1551,7 @@ bs
 cV
 aP
 dq
-Pt
+GS
 "}
 (5,1,1) = {"
 ad
@@ -1569,7 +1567,7 @@ cH
 cW
 df
 dr
-Pt
+GS
 "}
 (6,1,1) = {"
 ae
@@ -1585,7 +1583,7 @@ cI
 cW
 df
 ao
-tG
+BQ
 "}
 (7,1,1) = {"
 af
@@ -1601,10 +1599,10 @@ cJ
 cW
 df
 ao
-VW
+Nd
 "}
 (8,1,1) = {"
-Pt
+GS
 as
 aG
 aR
@@ -1617,7 +1615,7 @@ bw
 cX
 aP
 ao
-tG
+BQ
 "}
 (9,1,1) = {"
 ae
@@ -1649,10 +1647,10 @@ ap
 cY
 dg
 dt
-Pt
+GS
 "}
 (11,1,1) = {"
-Pt
+GS
 av
 aI
 aV
@@ -1665,13 +1663,13 @@ ao
 cs
 aP
 du
-Pt
+GS
 "}
 (12,1,1) = {"
-Pt
-Pt
-Pt
-Pt
+GS
+GS
+GS
+GS
 bi
 by
 bI
@@ -1681,7 +1679,7 @@ ao
 cs
 aP
 ao
-Pt
+GS
 "}
 (13,1,1) = {"
 ah
@@ -1697,7 +1695,7 @@ cK
 cs
 dh
 dv
-Pt
+GS
 "}
 (14,1,1) = {"
 ai
@@ -1713,7 +1711,7 @@ cL
 cZ
 ao
 dw
-Pt
+GS
 "}
 (15,1,1) = {"
 aj
@@ -1729,23 +1727,23 @@ cL
 da
 ao
 dx
-Pt
+GS
 "}
 (16,1,1) = {"
 ab
 ay
 ax
 ab
-Pt
-VX
-VX
+GS
+Jd
+Jd
 cg
 cz
 cM
-VX
+Jd
 di
-VX
-VX
+Jd
+Jd
 "}
 (17,1,1) = {"
 ak
