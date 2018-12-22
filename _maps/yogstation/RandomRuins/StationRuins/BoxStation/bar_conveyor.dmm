@@ -1098,10 +1098,10 @@
 /area/crew_quarters/bar)
 "cK" = (
 /obj/machinery/conveyor{
-	tag = "icon-conveyor0 (NORTHEAST)";
-	icon_state = "conveyor_map";
 	dir = 9;
-	id = "conveyorbar"
+	icon_state = "conveyor_map";
+	id = "conveyorbar";
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1474,47 +1474,47 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"fB" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/bar)
-"EM" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/kitchen)
-"Nt" = (
+"hc" = (
 /obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"PN" = (
+"iu" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"Rx" = (
+"zH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"UL" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/bar)
+"Wf" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
-fB
-fB
-fB
-fB
-fB
-fB
-Nt
-fB
-Nt
-fB
-Nt
-fB
-fB
+UL
+UL
+UL
+UL
+UL
+UL
+hc
+UL
+hc
+UL
+hc
+UL
+UL
 "}
 (2,1,1) = {"
 aa
-fB
+UL
 aC
 ao
 ao
@@ -1526,11 +1526,11 @@ ao
 cT
 ao
 dp
-fB
+UL
 "}
 (3,1,1) = {"
-fB
-fB
+UL
+UL
 aD
 aP
 aP
@@ -1542,7 +1542,7 @@ co
 cU
 de
 ao
-fB
+UL
 "}
 (4,1,1) = {"
 ac
@@ -1558,7 +1558,7 @@ bs
 cV
 aP
 dq
-fB
+UL
 "}
 (5,1,1) = {"
 ad
@@ -1574,7 +1574,7 @@ cH
 cW
 df
 dr
-fB
+UL
 "}
 (6,1,1) = {"
 ae
@@ -1590,7 +1590,7 @@ cI
 cW
 df
 ao
-PN
+iu
 "}
 (7,1,1) = {"
 af
@@ -1606,10 +1606,10 @@ cJ
 cW
 df
 ao
-Nt
+hc
 "}
 (8,1,1) = {"
-fB
+UL
 as
 aG
 aR
@@ -1622,11 +1622,11 @@ bw
 cX
 aP
 ao
-PN
+iu
 "}
 (9,1,1) = {"
 ae
-Rx
+zH
 aH
 aT
 at
@@ -1654,10 +1654,10 @@ ap
 cY
 dg
 dt
-fB
+UL
 "}
 (11,1,1) = {"
-fB
+UL
 av
 aI
 aV
@@ -1670,13 +1670,13 @@ ao
 cs
 aP
 du
-fB
+UL
 "}
 (12,1,1) = {"
-fB
-fB
-fB
-fB
+UL
+UL
+UL
+UL
 bi
 by
 bI
@@ -1686,7 +1686,7 @@ ao
 cs
 aP
 ao
-fB
+UL
 "}
 (13,1,1) = {"
 ah
@@ -1702,7 +1702,7 @@ cK
 cs
 dh
 dv
-fB
+UL
 "}
 (14,1,1) = {"
 ai
@@ -1718,7 +1718,7 @@ cL
 cZ
 ao
 dw
-fB
+UL
 "}
 (15,1,1) = {"
 aj
@@ -1734,23 +1734,23 @@ cL
 da
 ao
 dx
-fB
+UL
 "}
 (16,1,1) = {"
 ab
 ay
 ax
 ab
-fB
-EM
-EM
+UL
+Wf
+Wf
 cg
 cz
 cM
-EM
+Wf
 di
-EM
-EM
+Wf
+Wf
 "}
 (17,1,1) = {"
 ak
