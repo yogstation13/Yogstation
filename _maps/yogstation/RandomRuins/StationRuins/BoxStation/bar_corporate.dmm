@@ -590,7 +590,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bD" = (
 /obj/machinery/firealarm{
@@ -1456,14 +1456,11 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"zN" = (
-/turf/template_noop,
-/area/crew_quarters/kitchen)
-"HX" = (
+"rP" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"Vs" = (
+"MM" = (
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/darkblue,
 /area/crew_quarters/bar)
@@ -1476,11 +1473,11 @@ ab
 ab
 ab
 ab
-HX
+rP
 ab
-HX
+rP
 ab
-HX
+rP
 ab
 ab
 "}
@@ -1562,7 +1559,7 @@ aQ
 cy
 aQ
 be
-Vs
+MM
 "}
 (7,1,1) = {"
 ab
@@ -1578,7 +1575,7 @@ cL
 cY
 aQ
 be
-HX
+rP
 "}
 (8,1,1) = {"
 ab
@@ -1594,7 +1591,7 @@ cv
 cW
 aQ
 be
-Vs
+MM
 "}
 (9,1,1) = {"
 ad
@@ -1722,7 +1719,7 @@ cN
 aj
 dl
 aj
-zN
+aj
 "}
 (17,1,1) = {"
 ai
