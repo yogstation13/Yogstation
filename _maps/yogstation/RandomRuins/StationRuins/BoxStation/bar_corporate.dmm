@@ -276,8 +276,8 @@
 /area/crew_quarters/bar)
 "aH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	tag = "icon-manifold-b-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/plasteel/blue,
 /area/crew_quarters/bar)
@@ -361,8 +361,8 @@
 /area/crew_quarters/bar)
 "aU" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (NORTH)";
-	dir = 1
+	dir = 1;
+	tag = ""
 	},
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
@@ -377,8 +377,8 @@
 /area/crew_quarters/bar)
 "aW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
@@ -956,8 +956,8 @@
 /area/crew_quarters/bar)
 "cw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (WEST)";
-	dir = 8
+	dir = 8;
+	tag = ""
 	},
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel/darkblue,
@@ -1456,11 +1456,11 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"rP" = (
+"li" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"MM" = (
+"Wq" = (
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/darkblue,
 /area/crew_quarters/bar)
@@ -1473,11 +1473,11 @@ ab
 ab
 ab
 ab
-rP
+li
 ab
-rP
+li
 ab
-rP
+li
 ab
 ab
 "}
@@ -1559,7 +1559,7 @@ aQ
 cy
 aQ
 be
-MM
+Wq
 "}
 (7,1,1) = {"
 ab
@@ -1575,7 +1575,7 @@ cL
 cY
 aQ
 be
-rP
+li
 "}
 (8,1,1) = {"
 ab
@@ -1591,7 +1591,7 @@ cv
 cW
 aQ
 be
-MM
+Wq
 "}
 (9,1,1) = {"
 ad

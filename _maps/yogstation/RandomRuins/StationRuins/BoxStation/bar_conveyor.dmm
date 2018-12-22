@@ -213,8 +213,8 @@
 /area/crew_quarters/bar)
 "aH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	tag = "icon-manifold-b-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -294,8 +294,8 @@
 /area/crew_quarters/bar)
 "aS" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (NORTH)";
-	dir = 1
+	dir = 1;
+	tag = ""
 	},
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/vaporwave,
@@ -309,8 +309,8 @@
 /area/crew_quarters/bar)
 "aU" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -372,7 +372,7 @@
 	dir = 5;
 	icon_state = "conveyor0";
 	id = "conveyorbar";
-	tag = "icon-conveyor0 (NORTHEAST)"
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -407,7 +407,7 @@
 	dir = 6;
 	icon_state = "conveyor0";
 	id = "conveyorbar";
-	tag = "icon-conveyor0 (SOUTHEAST)"
+	tag = ""
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/open/floor/plasteel/vaporwave,
@@ -952,8 +952,8 @@
 /area/crew_quarters/bar)
 "ct" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (WEST)";
-	dir = 8
+	dir = 8;
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1195,7 +1195,7 @@
 	dir = 9;
 	icon_state = "conveyor0";
 	id = "conveyorbar";
-	tag = "icon-conveyor0 (NORTHWEST)"
+	tag = ""
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -1474,40 +1474,47 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"BQ" = (
+"fB" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/bar)
+"EM" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/kitchen)
+"Nt" = (
+/obj/effect/spawner/structure/window/plasma,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"PN" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"GS" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/bar)
-"Jd" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/kitchen)
-"Nd" = (
-/obj/effect/spawner/structure/window/plasma,
-/turf/open/floor/plating,
+"Rx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
-GS
-GS
-GS
-GS
-GS
-GS
-Nd
-GS
-Nd
-GS
-Nd
-GS
-GS
+fB
+fB
+fB
+fB
+fB
+fB
+Nt
+fB
+Nt
+fB
+Nt
+fB
+fB
 "}
 (2,1,1) = {"
 aa
-GS
+fB
 aC
 ao
 ao
@@ -1519,11 +1526,11 @@ ao
 cT
 ao
 dp
-GS
+fB
 "}
 (3,1,1) = {"
-GS
-GS
+fB
+fB
 aD
 aP
 aP
@@ -1535,7 +1542,7 @@ co
 cU
 de
 ao
-GS
+fB
 "}
 (4,1,1) = {"
 ac
@@ -1551,7 +1558,7 @@ bs
 cV
 aP
 dq
-GS
+fB
 "}
 (5,1,1) = {"
 ad
@@ -1567,7 +1574,7 @@ cH
 cW
 df
 dr
-GS
+fB
 "}
 (6,1,1) = {"
 ae
@@ -1583,7 +1590,7 @@ cI
 cW
 df
 ao
-BQ
+PN
 "}
 (7,1,1) = {"
 af
@@ -1599,10 +1606,10 @@ cJ
 cW
 df
 ao
-Nd
+Nt
 "}
 (8,1,1) = {"
-GS
+fB
 as
 aG
 aR
@@ -1615,11 +1622,11 @@ bw
 cX
 aP
 ao
-BQ
+PN
 "}
 (9,1,1) = {"
 ae
-at
+Rx
 aH
 aT
 at
@@ -1647,10 +1654,10 @@ ap
 cY
 dg
 dt
-GS
+fB
 "}
 (11,1,1) = {"
-GS
+fB
 av
 aI
 aV
@@ -1663,13 +1670,13 @@ ao
 cs
 aP
 du
-GS
+fB
 "}
 (12,1,1) = {"
-GS
-GS
-GS
-GS
+fB
+fB
+fB
+fB
 bi
 by
 bI
@@ -1679,7 +1686,7 @@ ao
 cs
 aP
 ao
-GS
+fB
 "}
 (13,1,1) = {"
 ah
@@ -1695,7 +1702,7 @@ cK
 cs
 dh
 dv
-GS
+fB
 "}
 (14,1,1) = {"
 ai
@@ -1711,7 +1718,7 @@ cL
 cZ
 ao
 dw
-GS
+fB
 "}
 (15,1,1) = {"
 aj
@@ -1727,23 +1734,23 @@ cL
 da
 ao
 dx
-GS
+fB
 "}
 (16,1,1) = {"
 ab
 ay
 ax
 ab
-GS
-Jd
-Jd
+fB
+EM
+EM
 cg
 cz
 cM
-Jd
+EM
 di
-Jd
-Jd
+EM
+EM
 "}
 (17,1,1) = {"
 ak
