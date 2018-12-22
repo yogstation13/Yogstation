@@ -180,9 +180,9 @@
 /area/crew_quarters/kitchen)
 "aA" = (
 /obj/structure/chair/americandiner/booth/end_right{
-	tag = "icon-ameribooth-end2 (EAST)";
+	dir = 4;
 	icon_state = "ameribooth-end2";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -193,9 +193,9 @@
 /area/crew_quarters/bar)
 "aC" = (
 /obj/structure/chair/americandiner/booth/end_right{
-	tag = "icon-ameribooth-end2 (WEST)";
+	dir = 8;
 	icon_state = "ameribooth-end2";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -204,9 +204,9 @@
 	dir = 5
 	},
 /obj/structure/chair/americandiner/booth/end_right{
-	tag = "icon-ameribooth-end2 (EAST)";
+	dir = 4;
 	icon_state = "ameribooth-end2";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -220,16 +220,16 @@
 	dir = 4
 	},
 /obj/structure/chair/americandiner/booth/end_right{
-	tag = "icon-ameribooth-end2 (WEST)";
+	dir = 8;
 	icon_state = "ameribooth-end2";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	tag = "icon-manifold-b-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -289,17 +289,17 @@
 /area/crew_quarters/kitchen)
 "aO" = (
 /obj/structure/chair/americandiner/booth/end_left{
-	tag = "icon-ameribooth-end1 (EAST)";
+	dir = 4;
 	icon_state = "ameribooth-end1";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aP" = (
 /obj/structure/chair/americandiner/booth/end_left{
-	tag = "icon-ameribooth-end1 (WEST)";
+	dir = 8;
 	icon_state = "ameribooth-end1";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -314,16 +314,16 @@
 	dir = 4
 	},
 /obj/structure/chair/americandiner/booth/end_left{
-	tag = "icon-ameribooth-end1 (EAST)";
+	dir = 4;
 	icon_state = "ameribooth-end1";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 "aS" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (NORTH)";
-	dir = 1
+	dir = 1;
+	tag = ""
 	},
 /obj/structure/table/abductor,
 /turf/open/floor/mineral/plasma,
@@ -333,9 +333,9 @@
 	dir = 4
 	},
 /obj/structure/chair/americandiner/booth/end_left{
-	tag = "icon-ameribooth-end1 (WEST)";
+	dir = 8;
 	icon_state = "ameribooth-end1";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -349,8 +349,8 @@
 "aV" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (EAST)";
-	dir = 4
+	dir = 4;
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -559,9 +559,9 @@
 /area/crew_quarters/bar)
 "bz" = (
 /obj/structure/chair/americandiner/black{
-	tag = "icon-americhair_black (EAST)";
+	dir = 4;
 	icon_state = "americhair_black";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -686,9 +686,9 @@
 	dir = 4
 	},
 /obj/structure/chair/americandiner/black{
-	tag = "icon-americhair_black (EAST)";
+	dir = 4;
 	icon_state = "americhair_black";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -794,8 +794,8 @@
 /area/crew_quarters/bar)
 "cf" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-manifold-r-f (WEST)";
-	dir = 8
+	dir = 8;
+	tag = ""
 	},
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/crew_quarters/bar)
@@ -804,9 +804,9 @@
 	dir = 4
 	},
 /obj/structure/chair/americandiner/black{
-	tag = "icon-americhair_black (EAST)";
+	dir = 4;
 	icon_state = "americhair_black";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -1103,9 +1103,9 @@
 /area/crew_quarters/kitchen)
 "cY" = (
 /obj/structure/chair/americandiner/booth/single{
-	tag = "icon-ameribooth_single (EAST)";
+	dir = 4;
 	icon_state = "ameribooth_single";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -1114,9 +1114,9 @@
 	pixel_y = -28
 	},
 /obj/structure/chair/americandiner/booth/single{
-	tag = "icon-ameribooth_single (WEST)";
+	dir = 8;
 	icon_state = "ameribooth_single";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -1156,9 +1156,9 @@
 	pixel_y = -22
 	},
 /obj/structure/chair/americandiner/black{
-	tag = "icon-americhair_black (EAST)";
+	dir = 4;
 	icon_state = "americhair_black";
-	dir = 4
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -1173,9 +1173,9 @@
 	pixel_y = -30
 	},
 /obj/structure/chair/americandiner/black{
-	tag = "icon-americhair_black (WEST)";
+	dir = 8;
 	icon_state = "americhair_black";
-	dir = 8
+	tag = ""
 	},
 /turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
@@ -1219,19 +1219,7 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"eo" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"fJ" = (
+"eg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1243,11 +1231,19 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"mI" = (
-/obj/structure/table/abductor,
-/turf/open/floor/mineral/plasma,
-/area/crew_quarters/bar)
-"IU" = (
+"lb" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/mint,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"pu" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall{
 	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall,/obj/structure/falsewall/reinforced,/turf/closed/wall/rust,/turf/closed/wall/clockwork);
@@ -1255,7 +1251,7 @@
 	icon_state = "abductor"
 	},
 /area/crew_quarters/bar)
-"TW" = (
+"py" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/item/storage/secure/safe,
 /turf/closed/wall{
@@ -1263,6 +1259,10 @@
 	icon = 'icons/turf/walls/abductor_wall.dmi';
 	icon_state = "abductor"
 	},
+/area/crew_quarters/bar)
+"PO" = (
+/obj/structure/table/abductor,
+/turf/open/floor/mineral/plasma,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
@@ -1301,7 +1301,7 @@ ab
 ab
 ab
 aB
-mI
+PO
 an
 an
 an
@@ -1310,7 +1310,7 @@ ar
 ar
 cF
 cO
-mI
+PO
 ab
 "}
 (4,1,1) = {"
@@ -1446,7 +1446,7 @@ ab
 ab
 ab
 ab
-IU
+pu
 bo
 bA
 bT
@@ -1462,7 +1462,7 @@ af
 au
 aI
 aW
-TW
+py
 bp
 bB
 bU
@@ -1566,7 +1566,7 @@ co
 cA
 cy
 cy
-fJ
+eg
 dl
 "}
 (20,1,1) = {"
@@ -1582,7 +1582,7 @@ cp
 cA
 cy
 cy
-eo
+lb
 dl
 "}
 (21,1,1) = {"
