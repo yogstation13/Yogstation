@@ -1256,7 +1256,10 @@
 /area/crew_quarters/kitchen)
 "di" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/abductor,
+/obj/machinery/door/airlock/abductor{
+	assemblytype = /obj/structure/door_assembly;
+	name = "Space Diner"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "dj" = (
