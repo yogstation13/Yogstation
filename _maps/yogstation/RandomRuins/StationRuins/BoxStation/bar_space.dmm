@@ -303,6 +303,7 @@
 	pixel_x = 5
 	},
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -410,6 +411,7 @@
 /obj/structure/window/reinforced,
 /obj/item/instrument/violin,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -447,6 +449,7 @@
 	},
 /obj/item/clothing/head/hardhat/cakehat,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -561,6 +564,7 @@
 "bB" = (
 /obj/item/lighter,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -654,6 +658,7 @@
 "bO" = (
 /obj/item/kitchen/fork,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -668,6 +673,7 @@
 "bQ" = (
 /obj/item/toy/cards/deck,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -680,6 +686,7 @@
 /obj/item/storage/box/fakesyndiesuit,
 /obj/item/storage/box/fakesyndiesuit,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -774,6 +781,7 @@
 	throwforce = 1
 	},
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -885,6 +893,7 @@
 "cs" = (
 /obj/item/toy/minimeteor,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -940,6 +949,7 @@
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/item/toy/cards/deck,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -965,6 +975,7 @@
 	pixel_y = 2
 	},
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -972,6 +983,7 @@
 /area/crew_quarters/bar)
 "cC" = (
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -1130,6 +1142,7 @@
 	name = "kitchen shutters"
 	},
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -1145,6 +1158,7 @@
 /obj/item/reagent_containers/food/snacks/donut/chaos,
 /obj/item/reagent_containers/food/snacks/donut/chaos,
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -1157,6 +1171,7 @@
 	name = "kitchen shutters"
 	},
 /obj/structure/table/abductor{
+	buildstack = /obj/item/stack/sheet/metal;
 	frame = /obj/structure/table_frame;
 	framestack = /obj/item/stack/sheet/metal
 	},
@@ -1176,17 +1191,7 @@
 	sheet_type = /obj/item/stack/sheet/metal
 	},
 /area/crew_quarters/bar)
-"vk" = (
-/obj/structure/chair/stool,
-/turf/closed/wall/mineral/abductor{
-	sheet_type = /obj/item/stack/sheet/metal
-	},
-/area/crew_quarters/kitchen)
-"Mh" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"Ph" = (
+"tV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/camera{
 	c_tag = "Kitchen";
@@ -1194,7 +1199,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"Xi" = (
+"xU" = (
+/obj/structure/chair/stool,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
+/area/crew_quarters/kitchen)
+"KZ" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"Rb" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
@@ -1469,7 +1484,7 @@ bU
 bU
 cL
 bv
-Xi
+Rb
 "}
 (18,1,1) = {"
 al
@@ -1485,7 +1500,7 @@ bU
 bU
 cM
 bv
-Xi
+Rb
 "}
 (19,1,1) = {"
 al
@@ -1501,7 +1516,7 @@ ct
 bU
 bU
 da
-Mh
+KZ
 "}
 (20,1,1) = {"
 ai
@@ -1517,7 +1532,7 @@ cu
 cF
 bU
 db
-vk
+xU
 "}
 (21,1,1) = {"
 al
@@ -1533,7 +1548,7 @@ cv
 bU
 cN
 dc
-Mh
+KZ
 "}
 (22,1,1) = {"
 ao
@@ -1549,7 +1564,7 @@ cv
 bU
 bU
 dc
-Mh
+KZ
 "}
 (23,1,1) = {"
 al
@@ -1565,7 +1580,7 @@ cl
 cl
 cO
 bv
-Ph
+tV
 "}
 (24,1,1) = {"
 aa
@@ -1581,5 +1596,5 @@ cw
 cG
 cP
 bv
-Xi
+Rb
 "}

@@ -122,6 +122,9 @@
 "as" = (
 /obj/structure/table,
 /obj/item/clothing/head/hardhat/cakehat,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "at" = (
@@ -1474,47 +1477,40 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"hc" = (
+"DU" = (
 /obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"iu" = (
+"Wl" = (
+/turf/closed/wall/mineral/wood,
+/area/crew_quarters/kitchen)
+"Ww" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"zH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"UL" = (
+"Zb" = (
 /turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
-"Wf" = (
-/turf/closed/wall/mineral/wood,
-/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
-UL
-UL
-UL
-UL
-UL
-UL
-hc
-UL
-hc
-UL
-hc
-UL
-UL
+Zb
+Zb
+Zb
+Zb
+Zb
+Zb
+DU
+Zb
+DU
+Zb
+DU
+Zb
+Zb
 "}
 (2,1,1) = {"
 aa
-UL
+Zb
 aC
 ao
 ao
@@ -1526,11 +1522,11 @@ ao
 cT
 ao
 dp
-UL
+Zb
 "}
 (3,1,1) = {"
-UL
-UL
+Zb
+Zb
 aD
 aP
 aP
@@ -1542,7 +1538,7 @@ co
 cU
 de
 ao
-UL
+Zb
 "}
 (4,1,1) = {"
 ac
@@ -1558,7 +1554,7 @@ bs
 cV
 aP
 dq
-UL
+Zb
 "}
 (5,1,1) = {"
 ad
@@ -1574,7 +1570,7 @@ cH
 cW
 df
 dr
-UL
+Zb
 "}
 (6,1,1) = {"
 ae
@@ -1590,7 +1586,7 @@ cI
 cW
 df
 ao
-iu
+Ww
 "}
 (7,1,1) = {"
 af
@@ -1606,10 +1602,10 @@ cJ
 cW
 df
 ao
-hc
+DU
 "}
 (8,1,1) = {"
-UL
+Zb
 as
 aG
 aR
@@ -1622,11 +1618,11 @@ bw
 cX
 aP
 ao
-iu
+Ww
 "}
 (9,1,1) = {"
 ae
-zH
+at
 aH
 aT
 at
@@ -1654,10 +1650,10 @@ ap
 cY
 dg
 dt
-UL
+Zb
 "}
 (11,1,1) = {"
-UL
+Zb
 av
 aI
 aV
@@ -1670,13 +1666,13 @@ ao
 cs
 aP
 du
-UL
+Zb
 "}
 (12,1,1) = {"
-UL
-UL
-UL
-UL
+Zb
+Zb
+Zb
+Zb
 bi
 by
 bI
@@ -1686,7 +1682,7 @@ ao
 cs
 aP
 ao
-UL
+Zb
 "}
 (13,1,1) = {"
 ah
@@ -1702,7 +1698,7 @@ cK
 cs
 dh
 dv
-UL
+Zb
 "}
 (14,1,1) = {"
 ai
@@ -1718,7 +1714,7 @@ cL
 cZ
 ao
 dw
-UL
+Zb
 "}
 (15,1,1) = {"
 aj
@@ -1734,23 +1730,23 @@ cL
 da
 ao
 dx
-UL
+Zb
 "}
 (16,1,1) = {"
 ab
 ay
 ax
 ab
-UL
-Wf
-Wf
+Zb
+Wl
+Wl
 cg
 cz
 cM
-Wf
+Wl
 di
-Wf
-Wf
+Wl
+Wl
 "}
 (17,1,1) = {"
 ak
