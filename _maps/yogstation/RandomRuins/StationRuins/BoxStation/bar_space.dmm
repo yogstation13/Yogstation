@@ -12,7 +12,9 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "ac" = (
-/turf/closed/wall/mineral/abductor,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
 /area/crew_quarters/theatre)
 "ad" = (
 /obj/machinery/door/airlock/maintenance{
@@ -25,7 +27,9 @@
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "ae" = (
-/turf/closed/wall/mineral/abductor,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
 /area/crew_quarters/bar)
 "af" = (
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -298,7 +302,10 @@
 /obj/item/instrument/eguitar{
 	pixel_x = 5
 	},
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/theatre)
 "aR" = (
@@ -402,7 +409,10 @@
 "bf" = (
 /obj/structure/window/reinforced,
 /obj/item/instrument/violin,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/theatre)
 "bg" = (
@@ -436,7 +446,10 @@
 	pixel_x = -31
 	},
 /obj/item/clothing/head/hardhat/cakehat,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "bl" = (
@@ -509,7 +522,9 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "bv" = (
-/turf/closed/wall/mineral/abductor,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
 /area/crew_quarters/kitchen)
 "bw" = (
 /obj/machinery/door/airlock{
@@ -523,7 +538,9 @@
 /area/crew_quarters/kitchen)
 "bx" = (
 /obj/effect/landmark/event_spawn,
-/turf/closed/wall/mineral/abductor,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
 /area/crew_quarters/bar)
 "by" = (
 /obj/machinery/light{
@@ -543,7 +560,10 @@
 /area/crew_quarters/bar)
 "bB" = (
 /obj/item/lighter,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "bC" = (
@@ -633,7 +653,10 @@
 /area/crew_quarters/bar)
 "bO" = (
 /obj/item/kitchen/fork,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "bP" = (
@@ -644,7 +667,10 @@
 /area/crew_quarters/bar)
 "bQ" = (
 /obj/item/toy/cards/deck,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "bR" = (
@@ -653,7 +679,10 @@
 /obj/item/storage/box/fakesyndiesuit,
 /obj/item/storage/box/fakesyndiesuit,
 /obj/item/storage/box/fakesyndiesuit,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "bS" = (
@@ -744,7 +773,10 @@
 /obj/item/clothing/head/that{
 	throwforce = 1
 	},
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "cf" = (
@@ -852,7 +884,10 @@
 /area/crew_quarters/bar)
 "cs" = (
 /obj/item/toy/minimeteor,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "ct" = (
@@ -904,7 +939,10 @@
 "cz" = (
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/item/toy/cards/deck,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "cA" = (
@@ -926,11 +964,17 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "cC" = (
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/fakespace,
 /area/crew_quarters/bar)
 "cD" = (
@@ -1085,7 +1129,10 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "db" = (
@@ -1097,7 +1144,10 @@
 /obj/item/reagent_containers/food/snacks/donut/chaos,
 /obj/item/reagent_containers/food/snacks/donut/chaos,
 /obj/item/reagent_containers/food/snacks/donut/chaos,
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "dc" = (
@@ -1106,21 +1156,37 @@
 	id = "kitchen";
 	name = "kitchen shutters"
 	},
-/obj/structure/table/abductor,
+/obj/structure/table/abductor{
+	frame = /obj/structure/table_frame;
+	framestack = /obj/item/stack/sheet/metal
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "dd" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/abductor{
+	assemblytype = /obj/structure/door_assembly;
 	name = "Space Diner"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "de" = (
 /obj/structure/sign/barsign,
-/turf/closed/wall/mineral/abductor,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
 /area/crew_quarters/bar)
-"dn" = (
+"vk" = (
+/obj/structure/chair/stool,
+/turf/closed/wall/mineral/abductor{
+	sheet_type = /obj/item/stack/sheet/metal
+	},
+/area/crew_quarters/kitchen)
+"Mh" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
+"Ph" = (
 /obj/structure/table/reinforced,
 /obj/machinery/camera{
 	c_tag = "Kitchen";
@@ -1128,11 +1194,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"eo" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"iy" = (
+"Xi" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
@@ -1146,9 +1208,9 @@ ac
 ae
 bx
 bM
-ag
+ae
 bM
-ag
+ae
 bM
 ae
 ae
@@ -1407,7 +1469,7 @@ bU
 bU
 cL
 bv
-iy
+Xi
 "}
 (18,1,1) = {"
 al
@@ -1423,7 +1485,7 @@ bU
 bU
 cM
 bv
-iy
+Xi
 "}
 (19,1,1) = {"
 al
@@ -1439,7 +1501,7 @@ ct
 bU
 bU
 da
-eo
+Mh
 "}
 (20,1,1) = {"
 ai
@@ -1455,7 +1517,7 @@ cu
 cF
 bU
 db
-eo
+vk
 "}
 (21,1,1) = {"
 al
@@ -1471,7 +1533,7 @@ cv
 bU
 cN
 dc
-eo
+Mh
 "}
 (22,1,1) = {"
 ao
@@ -1487,7 +1549,7 @@ cv
 bU
 bU
 dc
-eo
+Mh
 "}
 (23,1,1) = {"
 al
@@ -1503,7 +1565,7 @@ cl
 cl
 cO
 bv
-dn
+Ph
 "}
 (24,1,1) = {"
 aa
@@ -1519,5 +1581,5 @@ cw
 cG
 cP
 bv
-iy
+Xi
 "}
