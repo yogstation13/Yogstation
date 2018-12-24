@@ -1522,7 +1522,9 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/mob/living/simple_animal/hostile/retaliate/dolphin/bouncer,
+/mob/living/simple_animal/hostile/retaliate/dolphin/bouncer{
+	desc = "A bouncer in space."
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "dt" = (
@@ -1568,24 +1570,24 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"lp" = (
+"ju" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"lQ" = (
+"jS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"kY" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"pL" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Diner"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
-"Ax" = (
+"yj" = (
 /turf/closed/wall/rust,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "Gf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1598,6 +1600,12 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"Ln" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "Te" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1618,23 +1626,23 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"WR" = (
+"Zw" = (
 /turf/closed/wall/rust,
-/area/crew_quarters/bar)
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
 ab
 ab
-WR
+yj
 ab
 ab
 ab
-lp
-WR
-lp
+ju
+yj
+ju
 ab
-lp
+ju
 ab
 ab
 "}
@@ -1652,7 +1660,7 @@ cB
 cM
 cZ
 aC
-WR
+yj
 "}
 (3,1,1) = {"
 ab
@@ -1672,7 +1680,7 @@ ab
 "}
 (4,1,1) = {"
 ab
-lQ
+kY
 aC
 aR
 bg
@@ -1700,7 +1708,7 @@ by
 cP
 da
 dm
-WR
+yj
 "}
 (6,1,1) = {"
 ad
@@ -1716,7 +1724,7 @@ by
 cQ
 db
 dn
-pL
+Ln
 "}
 (7,1,1) = {"
 ae
@@ -1732,11 +1740,11 @@ cC
 cR
 da
 do
-lp
+ju
 "}
 (8,1,1) = {"
-WR
-ao
+yj
+jS
 aG
 aV
 bg
@@ -1748,7 +1756,7 @@ bx
 cO
 da
 do
-pL
+Ln
 "}
 (9,1,1) = {"
 ad
@@ -1801,7 +1809,7 @@ ab
 (12,1,1) = {"
 ab
 ab
-WR
+yj
 aY
 bm
 bB
@@ -1812,7 +1820,7 @@ cE
 bJ
 ao
 ao
-WR
+yj
 "}
 (13,1,1) = {"
 ag
@@ -1868,14 +1876,14 @@ aw
 ao
 ab
 ab
-Ax
+Zw
 ak
 ce
 ct
 cF
 cV
 de
-Ax
+Zw
 ak
 "}
 (17,1,1) = {"

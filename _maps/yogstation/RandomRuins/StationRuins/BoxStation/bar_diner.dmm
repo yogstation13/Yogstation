@@ -1259,39 +1259,26 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"dx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
+"nb" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
 	},
-/obj/item/reagent_containers/food/snacks/burger/plain,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"kH" = (
-/obj/structure/sign/plaques/deempisi,
-/turf/closed/wall,
+/turf/open/floor/plasteel/blackwhite,
 /area/crew_quarters/bar)
-"vv" = (
+"pX" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"xM" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/obj/item/reagent_containers/food/snacks/burger/superbite,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"Bh" = (
+"sw" = (
+/obj/structure/table,
+/obj/item/clothing/head/hardhat/cakehat,
+/turf/open/floor/plasteel/blackwhite,
+/area/crew_quarters/bar)
+"vU" = (
+/obj/structure/sign/plaques/deempisi,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"wk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1303,25 +1290,38 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"Bz" = (
-/obj/effect/spawner/structure/window,
-/turf/template_noop,
-/area/crew_quarters/bar)
-"TV" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Diner"
-	},
-/turf/open/floor/plasteel/blackwhite,
-/area/crew_quarters/bar)
-"Xd" = (
-/obj/structure/table,
-/obj/item/clothing/head/hardhat/cakehat,
-/turf/open/floor/plasteel/blackwhite,
-/area/crew_quarters/bar)
-"YR" = (
+"Cl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/item/storage/secure/safe,
 /turf/closed/wall,
+/area/crew_quarters/bar)
+"Cw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/burger/plain,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"GG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/obj/item/reagent_containers/food/snacks/burger/superbite,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
+"Yf" = (
+/obj/effect/spawner/structure/window,
+/turf/template_noop,
 /area/crew_quarters/bar)
 
 (1,1,1) = {"
@@ -1332,11 +1332,11 @@ ab
 ab
 ab
 ab
-vv
+pX
 ab
-vv
+pX
 ab
-vv
+pX
 ab
 ab
 "}
@@ -1374,7 +1374,7 @@ ab
 "}
 (4,1,1) = {"
 ab
-am
+az
 aB
 aO
 aO
@@ -1382,7 +1382,7 @@ bd
 az
 bI
 ca
-Xd
+sw
 cF
 az
 da
@@ -1418,7 +1418,7 @@ az
 aQ
 az
 az
-TV
+nb
 "}
 (7,1,1) = {"
 ab
@@ -1434,7 +1434,7 @@ cs
 cG
 az
 az
-Bz
+Yf
 "}
 (8,1,1) = {"
 ab
@@ -1450,7 +1450,7 @@ aO
 cG
 az
 az
-TV
+nb
 "}
 (9,1,1) = {"
 ad
@@ -1505,7 +1505,7 @@ ab
 ab
 ab
 ab
-kH
+vU
 bn
 bv
 bO
@@ -1521,7 +1521,7 @@ af
 at
 aG
 aV
-YR
+Cl
 bo
 bw
 bP
@@ -1641,7 +1641,7 @@ cn
 cz
 cx
 cx
-Bh
+wk
 dl
 "}
 (21,1,1) = {"
@@ -1657,7 +1657,7 @@ co
 cz
 cx
 cU
-xM
+GG
 dl
 "}
 (22,1,1) = {"
@@ -1673,7 +1673,7 @@ cp
 cA
 cN
 cV
-dx
+Cw
 dl
 "}
 (23,1,1) = {"
