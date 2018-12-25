@@ -66,8 +66,7 @@
 /datum/quirk/family_heirloom
 	name = "Family Heirloom"
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
-	value = -1
-	mood_quirk = TRUE
+	value = 0
 	var/obj/item/heirloom
 	var/where
 
