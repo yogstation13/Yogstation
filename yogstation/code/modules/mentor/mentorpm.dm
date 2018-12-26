@@ -78,6 +78,6 @@
 	//we don't use message_Mentors here because the sender/receiver might get it too
 	var/show_char_sender = !is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
-	for(var/client/X in GLOB.mentors | GLOB.admins)
+	for(var/client/X in GLOB.mentors | (GLOB.admins - GLOB.deadmins))
 		if(X.key != key && X.key != C.key)	//check client/X is an Mentor and isn't the sender or recipient
 			to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>") //inform X
