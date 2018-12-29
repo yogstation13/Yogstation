@@ -30327,23 +30327,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"bla" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 "blb" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
@@ -30760,15 +30743,15 @@
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold-3";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -33981,7 +33964,16 @@
 	},
 /area/science/explab)
 "brB" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Experimentation Lab APC";
+	areastring = "/area/science/explab";
+	pixel_y = 24
+	},
 /obj/structure/closet/l3closet/scientist,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
@@ -34633,16 +34625,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"bsI" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Experimentation Lab APC";
-	areastring = "/area/science/explab";
-	pixel_x = 26
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 "bsJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -111256,7 +111238,7 @@ bky
 bjT
 bqe
 brB
-bla
+blO
 bsG
 aOt
 bxn
@@ -111513,8 +111495,8 @@ bky
 bjT
 bqe
 brD
-blO
-bsI
+blN
+bvO
 bvO
 bxs
 byw
