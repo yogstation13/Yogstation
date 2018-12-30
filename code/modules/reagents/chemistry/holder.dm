@@ -341,6 +341,7 @@
 		var/datum/reagent/R = reagent
 		R.on_update (A)
 	update_total()
+/* yogstation start -- this has been modified and moved over to the hippie folder to allow for custom reaction conditions
 
 /datum/reagents/proc/handle_reactions()
 	var/list/cached_reagents = reagent_list
@@ -459,7 +460,7 @@
 	while(reaction_occurred)
 	update_total()
 	return 0
-
+yogstation end */
 /datum/reagents/proc/isolate_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
@@ -606,7 +607,7 @@
 
 	if(isliving(my_atom))
 		//yogs start - snowflake synth check
-		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom)) 
+		if(!istype(R, /datum/reagent/medicine/synthflesh) && ishuman(my_atom))
 			var/mob/living/carbon/human/H = my_atom
 			if(istype(H.dna.species, /datum/species/synth))
 				return

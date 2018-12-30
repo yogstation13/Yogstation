@@ -1,0 +1,220 @@
+/datum/reagent/drug/burpinate
+    name = "Burpinate"
+    id = "burpinate"
+    description = "They call me gaseous clay."
+    reagent_state = LIQUID
+    color = "#bfe8a7" // rgb: 191, 232, 167
+    metabolization_rate = 0.9 * REAGENTS_METABOLISM
+    taste_description = "wet hot dogs"
+
+/datum/reagent/drug/burpinate/on_mob_life(mob/living/M)
+    if(ishuman(M))
+        var/mob/living/carbon/human/H = M
+        if(prob(5+(current_cycle*0.6))) //burping intensifies
+            H.emote("burp")
+            if(prob(5))
+                to_chat(H, "<span class='danger'>You feel your bloated stomach rumble with gas.</span>")
+
+        if(current_cycle>90) //chance to burp = 55% (you can't stop burping)
+            if(prob(5))
+                to_chat(H, "<span class='danger'>Your throat is sore from all the gas coming out!</span>")
+    return ..()
+
+/datum/reagent/drug/nicotine
+	description = "Slightly increases stamina regeneration and reduces hunger. If overdosed it will deal toxin and oxygen damage."
+
+/datum/reagent/drug/nicotine/on_mob_life(mob/living/M)
+	if(prob(1))
+		var/smoke_message = pick("You feel relaxed.", "You feel calmed.","You feel alert.","You feel rugged.")
+		to_chat(M, "<span class='notice'>[smoke_message]</span>")
+	M.adjustStaminaLoss(-0.5*REM, 0)
+	return FINISHONMOBLIFE(M)
+
+/datum/reagent/drug/crank/on_mob_life(mob/living/M)
+	var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	M.AdjustStun(-20, 0)
+	M.AdjustParalyzed(-20, 0)
+	M.AdjustUnconscious(-20, 0)
+	M.adjustToxLoss(2)
+	M.adjustBrainLoss(1*REM)
+	return FINISHONMOBLIFE(M)
+
+/datum/reagent/drug/methamphetamine
+	description = "Reduces stun times by about 300% and allows the user to quickly recover stamina while dealing a small amount of Brain damage. Breaks down slowly into histamine and hits the user with a large amount of histamine if they are stunned. Reacts badly with Ephedrine. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
+
+/datum/reagent/drug/methamphetamine/on_mob_life(mob/living/M)
+	var/high_message = pick("You feel hyper.", "You feel like you're unstoppable!", "You feel like you can take on the world.")
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	M.reagents.remove_reagent("diphenhydramine",2) //Greatly increases rate of decay
+	if(M.IsStun() || M.IsParalyzed() || M.IsUnconscious())
+		M.AdjustStun(-40, 0)
+		M.AdjustParalyzed(-40, 0)
+		M.AdjustUnconscious(-40, 0)
+		var/amount2replace = rand(2,6)
+		M.reagents.add_reagent("histamine",amount2replace)
+		M.reagents.remove_reagent("methamphetamine",amount2replace)
+	M.adjustStaminaLoss(-2, 0)
+	M.Jitter(2)
+	M.adjustBrainLoss(0.25)
+	if(prob(5))
+		M.emote(pick("twitch", "shiver"))
+		M.reagents.add_reagent("histamine", rand(1,5))
+	return FINISHONMOBLIFE(M)
+
+/datum/reagent/drug/bath_salts/on_mob_life(mob/living/M)
+	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+	M.AdjustUnconscious(-100, 0)
+	M.AdjustStun(-100, 0)
+	M.AdjustParalyzed(-100, 0)
+	M.adjustStaminaLoss(-100, 0)
+	M.adjustBrainLoss(5)
+	M.adjustToxLoss(4)
+	M.hallucination += 20
+	if((M.mobility_flags & MOBILITY_MOVE) && !istype(M.loc, /atom/movable))
+		step(M, pick(GLOB.cardinals))
+		step(M, pick(GLOB.cardinals))
+	if(prob(40))
+		var/obj/item/I = M.get_active_held_item()
+		if(I)
+			M.dropItemToGround(M.get_active_held_item())
+	return FINISHONMOBLIFE(M)
+
+/datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
+	if (istype(M))
+		M.remove_movespeed_modifier(id)
+	..()
+
+/datum/reagent/drug/flipout
+	name = "Flipout"
+	id = "flipout"
+	description = "A chemical compound that causes uncontrolled and extremely violent flipping."
+	color = "#ff33cc" // rgb: 255, 51, 204
+	reagent_state = LIQUID
+	overdose_threshold = 40
+	addiction_threshold = 30
+
+
+/datum/reagent/drug/flipout/on_mob_life(mob/living/M)
+	var/high_message = pick("You have the uncontrollable, all consuming urge to FLIP!.", "You feel as if you are flipping to a higher plane of existence.", "You just can't stop FLIPPING.")
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(80))
+			H.SpinAnimation(10,1)
+		if(prob(10))
+			M << "<span class='notice'>[high_message].</span>"
+
+	..()
+	return
+
+/datum/reagent/drug/flipout/overdose_process(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.SpinAnimation(16,100)
+		if(prob(70))
+			H.Dizzy(20)
+			if((M.mobility_flags & MOBILITY_MOVE) && !istype(M.loc, /atom/movable))
+				for(var/i = 0, i < 4, i++)
+				step(M, pick(GLOB.cardinals))
+		if(prob(15))
+			M << "<span class='danger'>The flipping is so intense you begin to tire </span>"
+			H.confused +=4
+			M.adjustStaminaLoss(10)
+			H.transform *= -1
+	..()
+	return
+
+/datum/reagent/drug/flipout/addiction_act_stage1(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(85))
+			H.SpinAnimation(12,1)
+		else
+			H.Dizzy(16)
+	..()
+
+/datum/reagent/drug/flipout/addiction_act_stage2(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(90))
+			H.SpinAnimation(10,3)
+		else
+			H.Dizzy(20)
+			M.adjustStaminaLoss(25)
+	..()
+
+/datum/reagent/drug/flipout/addiction_act_stage3(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(95))
+			H.SpinAnimation(7,20)
+		else
+			H.Dizzy(30)
+			M.adjustStaminaLoss(40)
+	..()
+
+/datum/reagent/drug/flipout/addiction_act_stage4(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.SpinAnimation(2,100)
+		if(prob(10))
+			M << "<span class='danger'>Your flipping has become so intense you've become an improvised generator </span>"
+			H.Dizzy(25)
+			M.electrocute_act(rand(1,5), 1, 1)
+			playsound(M, "sparks", 50, 1)
+			H.emote("scream")
+			H.Jitter(-100)
+
+		else
+			H.Dizzy(60)
+	..()
+
+/datum/reagent/drug/flipout/reaction_obj(obj/O, reac_volume)
+	if(istype(O,/obj))
+		O.SpinAnimation(16,40)
+
+/datum/reagent/drug/yespowder
+	name = "Yes Powder"
+	id = "yespowder"
+	description = "Powder that makes you say yes."
+	color = "#fffae0"
+	reagent_state = LIQUID
+
+/datum/reagent/drug/yespowder/on_mob_life(mob/living/M)
+	var/high_message = pick("Agreement fills your mind.", "'No' is so last year. 'Yes' is in.", "Yes.")
+	if(prob(5))
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	if(prob(20))
+		M.say("Yes.", forced = "yes powder")
+	..()
+
+/datum/reagent/drug/pupupipi
+	name = "Sweet Brown"
+	id = "sweetbrown"
+	description = "A fetid concoction often huffed or drank by vagrants and bums. High dosages have... interesting effects."
+	color = "#602101" // rgb: 96, 33, 1
+	reagent_state = LIQUID
+	overdose_threshold = 100
+	addiction_threshold = 50 // doesn't do shit though
+
+/datum/reagent/drug/pupupipi/on_mob_life(mob/living/M)
+	if(prob(5))
+		var/high_message = pick("You need mo' o' dat sweet brown juice...", "Your guts tingle...", "You feel lightheaded...")
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	M.Jitter(30)
+	if(prob(15)) //once every six-ish ticks. is that ok?
+		M.emote("burp")
+	..()
+
+/datum/reagent/drug/pupupipi/overdose_process(mob/living/carbon/human/H)
+	CHECK_DNA_AND_SPECIES(H)
+	H.setBrainLoss(30)
+	if(ishuman(H))
+		to_chat(H, "<span class= 'userdanger'>Oh shit!</span>")
+		H.set_species(/datum/species/krokodil_addict)
+	..()

@@ -59,3 +59,7 @@
 /area/ai_monitored/turret_protected/tcomeast
 	name = "Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
+
+/area/maintenance/forge
+	name = "Forge room"
+	icon_state = "red"
