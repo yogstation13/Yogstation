@@ -9,8 +9,8 @@
 	vend_reply = "Thank you for using Gift Vendor!"
 	products = list(/obj/item/toy/heartballoon = 3,
 					/obj/item/toy/toyballoon = 3,
-					/obj/item/toy/toyglock = 3,
-					/obj/item/toy/toyflaregun = 3,
+					/obj/item/toy/gun/toyglock = 3,
+					/obj/item/toy/gun/toyflaregun = 3,
 					/obj/item/toy/toygrenade = 15,
 					/obj/item/toy/plush/teddybear = 5,
 					/obj/item/toy/plush/stuffedmonkey = 5,
