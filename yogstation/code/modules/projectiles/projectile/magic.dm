@@ -2,7 +2,7 @@
 	name = "bolt of utter chaos"
 	icon_state = "pulse1_bl"
 
-GLOBAL_LIST_INIT(exceptionally_fun_vars_and_procs, list("Destroy", "ckey", "holder", "reload_admins", "load_admins", "restart", "Reboot", "standard_reboot", "cinematic", "Cinematic", "create_ban", "unban", "edit_ban", "end_round", "toggle_nuke", "panicbunker", "RemoveBan", "random_string", "load_admin_ranks", "load_mentors", "ClearTempbans", "ClearAllBans", "CreateBans", "ending_helper", "force_ending", "check_finished", "station_was_nuked", "cult_ending_helper", "KillEveryoneOnZLevel))
+GLOBAL_LIST_INIT(exceptionally_fun_vars_and_procs, list("Destroy", "ckey", "holder", "reload_admins", "load_admins", "restart", "Reboot", "standard_reboot", "cinematic", "Cinematic", "create_ban", "unban", "edit_ban", "end_round", "toggle_nuke", "panicbunker", "RemoveBan", "random_string", "load_admin_ranks", "load_mentors", "ClearTempbans", "ClearAllBans", "CreateBans", "ending_helper", "force_ending", "check_finished", "station_was_nuked", "cult_ending_helper", "KillEveryoneOnZLevel"))
 /obj/item/projectile/magic/variables/on_hit(target)
 	. = ..()
 	var/atom/unsafe_cast_hey = target
