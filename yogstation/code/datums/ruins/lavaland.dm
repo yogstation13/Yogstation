@@ -1,3 +1,7 @@
+/datum/map_template/ruin/lavaland
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"
+	cost = 0
+
 /datum/map_template/ruin/lavaland/toyshop
 	name = "Toy Shop"
 	id = "toyshop"
