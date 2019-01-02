@@ -63,6 +63,7 @@
 /obj/item/toy/plush/inorixplushie
 	name = "inorix plushie"
 	desc = "An adorable stuffed toy that resembles a giant robotic squid. It squirms around in your hand with realistic, buggy motion."
+	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "plushie_inorix"
 	attack_verb = list("harkened", "glared", "erased")
 
