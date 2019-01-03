@@ -1,13 +1,8 @@
 /datum/action/changeling/adrenaline
 	name = "Adrenaline Sacs"
-<<<<<<< HEAD
-	desc = "We evolve additional sacs of adrenaline throughout our body."
-	helptext = "Removes all stuns instantly. Can be used while unconscious. Continued use poisons the body." //yogs - changed text to suit the below change
-=======
 	desc = "We evolve additional sacs of adrenaline throughout our body. Costs 30 chemicals."
-	helptext = "Removes all stuns instantly and adds a short-term reduction in further stuns. Can be used while unconscious. Continued use poisons the body."
+	helptext = "Removes all stuns instantly. Can be used while unconscious. Continued use poisons the body." //yogs - changed text to suit the below change
 	button_icon_state = "adrenaline"
->>>>>>> 00762e4851... [I GUESS THIS MIGHT BE TESTMERGED? I DUNNO] return of the ling action buttons (#41928)
 	chemical_cost = 30
 	dna_cost = 2
 	req_human = 1
