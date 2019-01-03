@@ -1,9 +1,9 @@
 /obj/item/extinguisher/attack_self(mob/user)
 	..()
 	if(safety)
-		container_type = AMOUNT_VISIBLE
+		reagents.flags = AMOUNT_VISIBLE
 	else
-		container_type = OPENCONTAINER
+		reagents.flags = OPENCONTAINER
 
 /obj/item/extinguisher/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers))
@@ -41,7 +41,7 @@
 		return 1
 	else
 		return 0
-		
+
 /obj/item/extinguisher/suicide_act(mob/living/carbon/user)
 	if (!safety && (reagents.total_volume >= 1))
 		user.visible_message("<span class='suicide'>[user] puts the nozzle to [user.p_their()] mouth. It looks like [user.p_theyre()] trying to extinguish the spark of life!</span>")

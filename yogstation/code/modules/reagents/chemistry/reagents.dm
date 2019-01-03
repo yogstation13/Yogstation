@@ -79,8 +79,8 @@
 					c.reagents.add_reagent("[src.id]", volume)
 					var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
 					c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
-					if(c.reagents && c.reagents.total_volume < 5 & REAGENT_NOREACT)
-						c.reagents.set_reacting(TRUE)
+					if(c.reagents && c.reagents.total_volume < 5 & NO_REACT)
+						DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
 					return TRUE
 
 			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
