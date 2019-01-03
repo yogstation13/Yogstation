@@ -74,8 +74,6 @@
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
-<<<<<<< HEAD
-	var/encoding = "1252" // yogs - LibVG
-=======
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
->>>>>>> 620db42963... Refactors the Preferences window to use appearances  (#41978)
+	
+	var/encoding = "1252" // yogs - LibVG
