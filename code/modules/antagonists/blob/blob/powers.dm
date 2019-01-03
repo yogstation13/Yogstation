@@ -120,13 +120,8 @@
 /mob/camera/blob/proc/create_shield(turf/T)
 	var/obj/structure/blob/shield/S = locate(/obj/structure/blob/shield) in T
 	if(S)
-<<<<<<< HEAD
-		//if(!can_buy(15))
-			//return //yog change
-=======
 		if(!can_buy(BLOB_REFLECTOR_COST))
 			return
->>>>>>> 1305e25e33... Buffs blob [READY] (#42067)
 		if(S.obj_integrity < S.max_integrity * 0.5)
 			add_points(BLOB_REFLECTOR_COST)	
 			to_chat(src, "<span class='warning'>This shield blob is too damaged to be modified properly!</span>")
