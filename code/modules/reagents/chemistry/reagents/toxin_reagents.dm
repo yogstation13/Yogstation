@@ -905,7 +905,7 @@
 /datum/reagent/toxin/mimesbane/on_mob_delete(mob/living/L)
 	L.remove_trait(TRAIT_EMOTEMUTE, id)
 
-/datum/reagent/toxin/bonehurtingjuice //oof ouch
+/*/datum/reagent/toxin/bonehurtingjuice //oof ouch //Yogs Change Commited Out this cause redundant
 	name = "Bone Hurting Juice"
 	id = "bonehurtingjuice"
 	description = "A strange substance that looks a lot like water. Drinking it is oddly tempting. Oof ouch."
@@ -966,4 +966,4 @@
 			else
 				to_chat(M, "<span class='warning'>Your missing arm aches from wherever you left it.</span>")
 				M.emote("sigh")
-	return ..()
+	return ..() */ // Yogs End
