@@ -8,7 +8,7 @@
 	name = "Yes Powder"
 	id = "yespowder"
 	results = list("yespowder" = 1)
-	required_reagents = list("itching_powder" = 1)
+	required_reagents = list("itching_powder" = 2)
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/burpinate
