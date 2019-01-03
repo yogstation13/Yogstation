@@ -350,18 +350,12 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
-<<<<<<< HEAD
 			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
 			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
 			if(R.amount <= 0)
 				dat += "<td><span class='linkOff'>Sold out</span></td>"
-			else if ((C && C.registered_account && onstation) || (!onstation && iscarbon(user)))
+			else if ((C && C.registered_account && onstation) || (!onstation && isliving(user)))
 				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
-=======
-			dat += "<li>"
-			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
-				dat += "<a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a> "
->>>>>>> b6be6eff5e... Allow non-carbons to use off-station vending machines (#42153)
 			else
 				dat += "<td><span class='linkOff'>Not Available</span></td>"
 			dat += "</tr>"
