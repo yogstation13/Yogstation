@@ -11,10 +11,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
-"ac" = (
-/obj/structure/alien/resin/wall,
-/turf/closed/wall,
-/area/template_noop)
 "ad" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -1267,10 +1263,15 @@
 /obj/structure/alien/resin/wall,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"Or" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/alien/maid/barmaid,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
-ac
+aj
 aj
 aj
 aj
@@ -1286,7 +1287,7 @@ am
 "}
 (2,1,1) = {"
 aa
-ac
+aj
 az
 aV
 bj
@@ -1301,8 +1302,8 @@ cY
 am
 "}
 (3,1,1) = {"
-ac
-ac
+aj
+aj
 aD
 aN
 bk
@@ -1467,7 +1468,7 @@ aE
 bd
 am
 bw
-bh
+Or
 bn
 ck
 bh
