@@ -132,22 +132,12 @@ GLOBAL_PROTECT(protected_ranks)
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
-<<<<<<< HEAD
-	var/previous_rights = 0
-	//load text from file and process each line separately
-	for(var/line in world.file2list("[global.config.directory]/admin_ranks.txt"))
-		if(!line || findtextEx(line,"#",1,2) || line == " ") //YOGS - added our DB support
-			continue
-		var/next = findtext(line, "=")
-		var/datum/admin_rank/R = new(ckeyEx(copytext(line, 1, next)))
-=======
 	//load text from file and process each entry
 	var/ranks_text = file2text("[global.config.directory]/admin_ranks.txt")
 	var/datum/admin_rank/previous_rank
 	var/regex/admin_ranks_regex = new(@"^Name\s*=\s*(.+?)\s*\n+Include\s*=\s*([\l @]*?)\s*\n+Exclude\s*=\s*([\l @]*?)\s*\n+Edit\s*=\s*([\l @]*?)\s*\n*$", "gm")
 	while(admin_ranks_regex.Find(ranks_text))
 		var/datum/admin_rank/R = new(admin_ranks_regex.group[1])
->>>>>>> 4c3053d5eb... Merge pull request #42041 from Jordie0608/alliwantforchristmasisaspaceinGameMaster
 		if(!R)
 			continue
 		var/count = 1
@@ -237,25 +227,10 @@ GLOBAL_PROTECT(protected_ranks)
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		rank_names[R.name] = R
 	//ckeys listed in admins.txt are always made admins before sql loading is attempted
-<<<<<<< HEAD
-	var/list/lines = world.file2list("[global.config.directory]/admins.txt")
-	for(var/line in lines)
-		if(!length(line) || findtextEx(line, "#", 1, 2) || line == " ") //yogs - added our DB support
-			continue
-		var/list/entry = splittext(line, "=")
-		if(entry.len < 2)
-			continue
-		var/ckey = ckey(entry[1])
-		var/rank = ckeyEx(entry[2])
-		if(!ckey || !rank)
-			continue
-		new /datum/admins(rank_names[rank], ckey, 0, 1)
-=======
 	var/admins_text = file2text("[global.config.directory]/admins.txt")
 	var/regex/admins_regex = new(@"^(?!#)(.+?)\s+=\s+(.+)", "gm")
 	while(admins_regex.Find(admins_text))
 		new /datum/admins(rank_names[admins_regex.group[2]], ckey(admins_regex.group[1]), FALSE, TRUE)
->>>>>>> 4c3053d5eb... Merge pull request #42041 from Jordie0608/alliwantforchristmasisaspaceinGameMaster
 	if(!CONFIG_GET(flag/admin_legacy_system) || dbfail)
 		var/datum/DBQuery/query_load_admins = SSdbcore.NewQuery("SELECT ckey, rank FROM [format_table_name("admin")] ORDER BY rank")
 		if(!query_load_admins.Execute())
