@@ -331,9 +331,7 @@
 /area/crew_quarters/kitchen)
 "bb" = (
 /obj/machinery/computer/slot_machine/casino,
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/bar)
 "be" = (
 /obj/item/storage/secure/safe,
@@ -402,9 +400,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/bar)
 "bo" = (
 /obj/structure/disposalpipe/segment{
@@ -466,9 +462,7 @@
 /area/crew_quarters/bar)
 "by" = (
 /obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/kitchen)
 "bz" = (
 /obj/structure/extinguisher_cabinet{
@@ -524,9 +518,7 @@
 /area/crew_quarters/kitchen)
 "bF" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/kitchen)
 "bM" = (
 /mob/living/carbon/monkey{
@@ -709,20 +701,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"cy" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/mineral/silver,
+/area/crew_quarters/bar)
 "cz" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck{
 	pixel_x = 2
 	},
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/bar)
 "cB" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/bar)
 "cC" = (
 /obj/machinery/door/window/southright{
@@ -770,12 +762,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"cK" = (
-/obj/structure/table/wood/poker,
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
-/area/crew_quarters/bar)
 "cM" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4;
@@ -791,9 +777,7 @@
 /obj/machinery/light_switch{
 	pixel_y = -25
 	},
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/kitchen)
 "cO" = (
 /obj/machinery/light,
@@ -822,9 +806,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/plasteel{
-	icon_state = "gold"
-	},
+/turf/open/floor/mineral/silver,
 /area/crew_quarters/kitchen)
 "cT" = (
 /obj/structure/table/reinforced,
@@ -903,7 +885,7 @@
 	},
 /area/crew_quarters/kitchen)
 "dd" = (
-/obj/machinery/door/airlock/gold/glass,
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "dg" = (
@@ -927,13 +909,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"hx" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/bar)
 "ij" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall{
@@ -953,13 +928,7 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"xN" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel/rockvault,
-/area/crew_quarters/bar)
-"Eg" = (
+"pr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	icon_state = "manifold-3";
@@ -976,7 +945,20 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
-"Nt" = (
+"Qz" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel/rockvault,
+/area/crew_quarters/bar)
+"Sb" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/bar)
+"SW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 9
@@ -1051,7 +1033,7 @@ ac
 (4,1,1) = {"
 ac
 ap
-hx
+Sb
 ap
 aE
 aE
@@ -1067,7 +1049,7 @@ ac
 (5,1,1) = {"
 ad
 aq
-Nt
+SW
 ap
 bb
 bb
@@ -1091,8 +1073,8 @@ aE
 ap
 ap
 ap
-cK
-cK
+cy
+cy
 ap
 dd
 "}
@@ -1108,7 +1090,7 @@ bW
 ap
 ck
 cz
-cK
+cy
 ap
 ab
 "}
@@ -1123,8 +1105,8 @@ aE
 ap
 bW
 ap
-cK
-cK
+cy
+cy
 ap
 dd
 "}
@@ -1209,8 +1191,8 @@ cZ
 ac
 "}
 (14,1,1) = {"
-xN
-xN
+Qz
+Qz
 aL
 ai
 bf
@@ -1308,7 +1290,7 @@ di
 an
 aB
 aB
-Eg
+pr
 bj
 bs
 bB
