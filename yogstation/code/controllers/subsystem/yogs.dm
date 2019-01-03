@@ -8,8 +8,10 @@ SUBSYSTEM_DEF(Yogs)
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
+	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2
+	GLOB.arcade_prize_pool[/obj/item/stack/tile/ballpit] = 2
 	return ..()
 
-/datum.controller/subsystem/Yogs/fire(resumed = 0)
+/datum/controller/subsystem/Yogs/fire(resumed = 0)
 	return
 

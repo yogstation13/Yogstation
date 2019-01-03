@@ -61,7 +61,7 @@
 			affected_mob.dropItemToGround(I)
 		var/mob/living/new_mob = new new_form(affected_mob.loc)
 		if(istype(new_mob))
-			if(bantype && jobban_isbanned(affected_mob, bantype))
+			if(bantype && is_banned_from(affected_mob.ckey, bantype))
 				replace_banned_player(new_mob)
 			new_mob.a_intent = INTENT_HARM
 			if(affected_mob.mind)
@@ -271,7 +271,7 @@
 
 /datum/disease/transformation/morph
 	name = "Gluttony's Blessing"
-	cure_text = "nothing"
+	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
 	cures = list("adminordrazine")
 	agent = "Gluttony's Blessing"
 	desc = "A 'gift' from somewhere terrible."

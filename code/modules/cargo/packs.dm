@@ -1098,7 +1098,8 @@
 					/obj/item/reagent_containers/blood/BMinus,
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
-					/obj/item/reagent_containers/blood/lizard)
+					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
@@ -1943,6 +1944,7 @@
 					/obj/item/clothing/gloves/color/white,
 					/obj/item/clothing/mask/gas/mime,
 					/obj/item/clothing/head/beret,
+					/obj/item/clothing/head/frenchberet,
 					/obj/item/clothing/suit/suspenders,
 					/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
 					/obj/item/storage/backpack/mime)
@@ -1979,6 +1981,7 @@
 					/obj/item/toy/plush/lizardplushie,
 					/obj/item/toy/plush/snakeplushie,
 					/obj/item/toy/plush/nukeplushie,
+					/obj/item/toy/plush/goatplushie,
 					/obj/item/toy/plush/slimeplushie)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden //YOGS end - plushie crate
