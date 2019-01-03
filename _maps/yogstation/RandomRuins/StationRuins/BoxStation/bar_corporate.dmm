@@ -224,16 +224,59 @@
 /area/crew_quarters/kitchen)
 "aA" = (
 /obj/structure/piano,
-/turf/open/floor/plasteel/blue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aB" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/turf/open/floor/plasteel/blue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aC" = (
-/turf/open/floor/plasteel/blue,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -244,18 +287,73 @@
 	icon_state = "pipe11-3";
 	dir = 9
 	},
-/turf/open/floor/plasteel/blue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
-/turf/open/floor/plasteel/blue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"aF" = (
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aI" = (
 /obj/machinery/space_heater,
-/turf/open/floor/plasteel/blue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aJ" = (
 /obj/machinery/airalarm{
@@ -390,12 +488,39 @@
 	},
 /area/crew_quarters/kitchen)
 "be" = (
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bf" = (
 /obj/structure/table,
 /obj/item/paper_bin,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bg" = (
 /obj/structure/table,
@@ -405,29 +530,113 @@
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bh" = (
 /obj/structure/table,
 /obj/item/folder/red,
 /obj/item/gavelblock,
 /obj/item/gavelhammer,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bi" = (
 /obj/structure/table,
 /obj/item/folder/red,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bj" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"bk" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bm" = (
 /obj/structure/grille,
 /obj/structure/window/fulltile,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bn" = (
 /obj/structure/sign/plaques/deempisi,
@@ -443,7 +652,7 @@
 	req_access_txt = "25"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/darkblue,
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "br" = (
 /obj/effect/landmark/blobstart,
@@ -539,42 +748,131 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bH" = (
 /obj/structure/chair/office/light,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bI" = (
 /obj/structure/chair/office/light,
 /obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bK" = (
 /obj/structure/chair/stool/bar,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bL" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bM" = (
 /obj/structure/chair/stool,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bO" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bP" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel{
-	icon_state = "bar"
-	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "bQ" = (
 /obj/machinery/vending/dinnerware,
@@ -758,28 +1056,97 @@
 	dir = 4;
 	network = list("SS13")
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cr" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cs" = (
 /obj/structure/table,
 /obj/item/folder,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "ct" = (
 /obj/structure/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/darkblue,
-/area/crew_quarters/bar)
-"cu" = (
-/obj/structure/chair/office/light{
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
 	dir = 4
 	},
-/turf/open/floor/plasteel/darkblue,
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cv" = (
 /obj/structure/table,
 /obj/item/folder,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cw" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cx" = (
@@ -788,11 +1155,37 @@
 	throwforce = 1;
 	throwing = 1
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cz" = (
 /obj/effect/landmark/start/bartender,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cA" = (
 /obj/machinery/requests_console{
@@ -808,7 +1201,20 @@
 	},
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "cE" = (
 /obj/machinery/deepfryer,
@@ -891,11 +1297,93 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -31
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cV" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cW" = (
+/obj/structure/table,
+/obj/item/folder,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
+"cX" = (
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "da" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "db" = (
 /obj/machinery/door/window/southright{
@@ -903,14 +1391,40 @@
 	req_access_txt = "0";
 	req_one_access_txt = "25;28"
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dc" = (
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
 /obj/machinery/smartfridge/drinks,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue,
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/slightlydarkerblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "df" = (
 /obj/structure/table,
@@ -973,12 +1487,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"dp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
 "dq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -1006,20 +1514,59 @@
 /area/crew_quarters/kitchen)
 "ds" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dt" = (
 /obj/machinery/vending/cigarette{
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "du" = (
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dv" = (
 /obj/machinery/light,
@@ -1028,36 +1575,114 @@
 	pixel_y = -24
 	},
 /obj/item/station_charter/flag,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dw" = (
 /obj/machinery/light,
 /obj/item/station_charter/flag,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dx" = (
 /obj/machinery/camera{
 	c_tag = "Bar South";
 	dir = 1
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dy" = (
 /obj/structure/noticeboard{
 	pixel_y = -27
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dz" = (
 /obj/machinery/light/small,
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dA" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 0;
 	pixel_y = -30
 	},
-/turf/open/floor/plasteel/darkblue,
+/obj/effect/turf_decal/tile/darkblue,
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "dB" = (
 /obj/structure/table/reinforced,
@@ -1115,39 +1740,17 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"eD" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel/darkblue,
-/area/crew_quarters/bar)
-"kz" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
-"vS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 4
-	},
-/turf/open/floor/plasteel/blue,
-/area/crew_quarters/bar)
-"OV" = (
+"to" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"WA" = (
+"HT" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"ZI" = (
+"KR" = (
 /obj/effect/turf_decal/tile/blue{
 	icon_state = "tile_corner";
 	dir = 1
@@ -1161,6 +1764,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
+"Pr" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"RG" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold-3";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1170,11 +1788,11 @@ ab
 ab
 ab
 ab
-OV
+to
 ab
-OV
+to
 ab
-OV
+to
 ab
 ab
 "}
@@ -1201,11 +1819,11 @@ aB
 aQ
 be
 aQ
-be
+aF
 bY
-cu
+cr
 bY
-cu
+cV
 aQ
 dt
 ab
@@ -1213,7 +1831,7 @@ ab
 (4,1,1) = {"
 ab
 am
-vS
+aC
 aR
 bf
 aQ
@@ -1221,7 +1839,7 @@ bH
 cv
 cs
 cv
-cs
+cW
 aQ
 du
 ab
@@ -1233,11 +1851,11 @@ aD
 aS
 bg
 aQ
-be
+aF
 cK
 ct
 cK
-ct
+cX
 aQ
 dv
 ab
@@ -1249,59 +1867,59 @@ aE
 aS
 bh
 aQ
-be
+aF
 aQ
 be
 aQ
-be
+aF
 aQ
 be
-eD
+Pr
 "}
 (7,1,1) = {"
 ab
 ap
-aC
+aF
 aS
 bi
 aQ
-be
+aF
 cc
-cu
+cr
 cL
-cu
+cV
 aQ
 be
-OV
+to
 "}
 (8,1,1) = {"
 ab
-ZI
-aC
+KR
+aF
 aS
 bj
 aQ
 bI
 cv
-cv
-cv
 cs
+cv
+cW
 aQ
 be
-eD
+Pr
 "}
 (9,1,1) = {"
 ab
 aq
-aC
+aF
 aR
-bf
+bk
 aQ
-be
+aF
 cd
 ct
 cK
-ct
+cX
 aQ
 dw
 dE
@@ -1309,13 +1927,13 @@ dE
 (10,1,1) = {"
 ae
 as
-aC
+aF
 aQ
 be
 di
 bK
 di
-bK
+cw
 di
 bK
 aQ
@@ -1361,7 +1979,7 @@ aJ
 aY
 bo
 bB
-be
+aF
 aQ
 cz
 aQ
@@ -1371,8 +1989,8 @@ be
 ab
 "}
 (14,1,1) = {"
-WA
-WA
+HT
+HT
 aK
 ag
 bp
@@ -1470,7 +2088,7 @@ dG
 ak
 ay
 ay
-kz
+RG
 bt
 bF
 bT
@@ -1510,7 +2128,7 @@ co
 cO
 cQ
 cO
-dp
+cO
 dD
 dG
 "}

@@ -7,7 +7,7 @@
 	resistance_flags = NONE
 	buildstackamount = 2
 	item_chair = null
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/chair/americandiner/black
 	name = "leather chair"
@@ -76,16 +76,6 @@ turf/open/floor/plasteel/ameridiner
 	desc = "Gambling for the antisocial."
 	icon = 'yogstation/icons/obj/special_slot_machine.dmi'
 	icon_state = "slots1"
-
-turf/open/floor/plasteel/darkblue
-	name = "darkblue floor"
-	icon = 'yogstation/icons/turf/floors.dmi'
-	icon_state = "darkbluefull"
-
-turf/open/floor/plasteel/blue
-	name = "blue floor"
-	icon = 'yogstation/icons/turf/floors.dmi'
-	icon_state = "bluefull"
 
 /turf/open/floor/alien
 	desc = "A thick resin surface covers the floor."
