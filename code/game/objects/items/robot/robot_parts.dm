@@ -8,6 +8,7 @@
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon = 'icons/mob/augmentation/augments.dmi'
 	icon_state = "robo_suit"
+	w_class = WEIGHT_CLASS_BULKY // yogs - can not fit in backpacks
 	var/obj/item/bodypart/l_arm/robot/l_arm = null
 	var/obj/item/bodypart/r_arm/robot/r_arm = null
 	var/obj/item/bodypart/l_leg/robot/l_leg = null
@@ -262,7 +263,7 @@
 				to_chat(user, "<span class='warning'>The MMI indicates that the brain is damaged!</span>")
 				return
 
-			if(jobban_isbanned(BM, "Cyborg") || QDELETED(src) || QDELETED(BM) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
+			if(is_banned_from(BM.ckey, "Cyborg") || QDELETED(src) || QDELETED(BM) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
 				if(!QDELETED(M))
 					to_chat(user, "<span class='warning'>This [M.name] does not seem to fit!</span>")
 				return
@@ -389,7 +390,7 @@
 
 	var/mob/living/living_user = usr
 	var/obj/item/item_in_hand = living_user.get_active_held_item()
-	if(!item_in_hand || !item_in_hand.tool_behaviour == TOOL_MULTITOOL)
+	if(!item_in_hand || item_in_hand.tool_behaviour != TOOL_MULTITOOL)
 		to_chat(living_user, "<span class='warning'>You need a multitool!</span>")
 		return
 

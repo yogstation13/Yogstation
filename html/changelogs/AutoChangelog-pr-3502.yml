@@ -1,4 +1,0 @@
-author: " MrDoomBringer"
-delete-after: true 
-changes: 
-  - bugfix: "Events now announce follow-able atoms to ghosts much more reliably"

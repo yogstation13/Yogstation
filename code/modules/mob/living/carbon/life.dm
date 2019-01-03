@@ -33,7 +33,7 @@
 
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
-		rot()
+		LoadComponent(/datum/component/rot/corpse)
 
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
@@ -121,7 +121,9 @@
 
 //Third link in a breath chain, calls handle_breath_temperature()
 /mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)
-	if((status_flags & GODMODE))
+	if(status_flags & GODMODE)
+		return
+	if(has_trait(TRAIT_NOBREATH))
 		return
 
 	var/lungs = getorganslot(ORGAN_SLOT_LUNGS)
@@ -301,37 +303,6 @@
 			if(!.)
 				return FALSE //to differentiate between no internals and active, but empty internals
 
-// Make corpses rot, emitting miasma
-/mob/living/carbon/proc/rot()
-	// Properly stored corpses shouldn't create miasma
-	if(istype(loc, /obj/structure/closet/crate/coffin)|| istype(loc, /obj/structure/closet/body_bag) || istype(loc, /obj/structure/bodycontainer))
-		return
-
-	// No decay if formaldehyde in corpse or when the corpse is charred
-	if(reagents.has_reagent("formaldehyde", 15) || has_trait(TRAIT_HUSK))
-		return
-
-	// Also no decay if corpse chilled or not organic/undead
-	if(bodytemperature <= T0C-10 || (!(MOB_ORGANIC in mob_biotypes) && !(MOB_UNDEAD in mob_biotypes)))
-		return
-
-	// Wait a bit before decaying
-	if(world.time - timeofdeath < 1200)
-		return
-
-	var/deceasedturf = get_turf(src)
-
-	// Closed turfs don't have any air in them, so no gas building up
-	if(!istype(deceasedturf,/turf/open))
-		return
-
-	var/turf/open/miasma_turf = deceasedturf
-
-	var/list/cached_gases = miasma_turf.air.gases
-
-	ASSERT_GAS(/datum/gas/miasma, miasma_turf.air)
-	cached_gases[/datum/gas/miasma][MOLES] += 0.02
-
 /mob/living/carbon/proc/handle_blood()
 	return
 
@@ -369,7 +340,6 @@
 
 /mob/living/carbon/handle_mutations_and_radiation()
 	if(dna && dna.temporary_mutations.len)
-		var/datum/mutation/human/HM
 		for(var/mut in dna.temporary_mutations)
 			if(dna.temporary_mutations[mut] < world.time)
 				if(mut == UI_CHANGED)
@@ -392,9 +362,9 @@
 						dna.previous.Remove("blood_type")
 					dna.temporary_mutations.Remove(mut)
 					continue
-				HM = GLOB.mutations_list[mut]
-				HM.force_lose(src)
-				dna.temporary_mutations.Remove(mut)
+		for(var/datum/mutation/human/HM in dna.mutations)
+			if(HM && HM.timed)
+				dna.remove_mutation(HM.type)
 
 	radiation -= min(radiation, RAD_LOSS_PER_TICK)
 	if(radiation > RAD_MOB_SAFE)
@@ -415,7 +385,7 @@
 			if(SSmobs.times_fired%3==1)
 				if(!(M.status_flags & GODMODE))
 					M.adjustBruteLoss(5)
-				nutrition += 10
+				adjust_nutrition(10)
 
 
 /*
@@ -445,7 +415,10 @@ GLOBAL_LIST_INIT(ballmer_good_msg, list("Hey guys, what if we rolled out a blues
 GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put a webserver that's automatically turned on with default admin passwords into every PDA?",
 												"So like, you know how we separate our codebase from the master copy that runs on our consumer boxes? What if we merged the two and undid the separation between codebase and server?",
 												"Dude, radical idea: H.O.N.K mechs but with no bananium required.",
-												"Best idea ever: Disposal pipes instead of hallways."))
+												"Best idea ever: Disposal pipes instead of hallways.",
+												"We should store bank records in a webscale datastore, like /dev/null.",
+												"You ever wonder if /dev/null supports sharding?",
+												"What if we use a language that was written on a napkin and created over 1 weekend for all of our servers?"))
 
 //this updates all special effects: stun, sleeping, knockdown, druggy, stuttering, etc..
 /mob/living/carbon/handle_status_effects()

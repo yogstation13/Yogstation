@@ -1,5 +1,4 @@
 #define STATUS_MESSAGE_COOLDOWN 900
-#define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
 
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
@@ -166,9 +165,9 @@
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		if(prob(10))
 			if(prob(95))
-				H.randmutb()
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.randmutg()
+				H.easy_randmut(POSITIVE)
 
 		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
@@ -249,12 +248,11 @@
 			H.adjustFireLoss(5)
 			H.visible_message("<span class='warning'>[H] writhes in pain as [H.p_their()] vacuoles boil.</span>", "<span class='userdanger'>You writhe in pain as your vacuoles boil!</span>", "<span class='italics'>You hear the crunching of leaves.</span>")
 			if(prob(80))
-				H.randmutb()
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.randmutg()
+				H.easy_randmut(POSITIVE)
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
-#undef HUMAN_CRIT_MAX_OXYLOSS
 #undef STATUS_MESSAGE_COOLDOWN
