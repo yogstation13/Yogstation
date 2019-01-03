@@ -172,6 +172,7 @@
 	pixel_y = 1;
 	d2 = 2
 	},
+/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "aB" = (
@@ -1223,31 +1224,53 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"fo" = (
+"eY" = (
 /turf/closed/wall/rust,
 /area/crew_quarters/kitchen)
-"vq" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"yd" = (
-/obj/effect/spawner/structure/window,
+"hw" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 20
+	},
+/obj/item/wrench,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"Dm" = (
+"ie" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"DB" = (
+"pV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"qA" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"vt" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+"CQ" = (
+/turf/closed/wall/rust,
+/area/crew_quarters/bar)
+"Ep" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold-3";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "showroomfloor"
+	},
+/area/crew_quarters/kitchen)
 "Gf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1260,20 +1283,18 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"Lq" = (
-/turf/closed/wall/rust,
-/area/crew_quarters/bar)
-"OK" = (
+"Hf" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
+"OJ" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plasteel{
-	icon_state = "showroomfloor"
-	},
-/area/crew_quarters/kitchen)
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "Te" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/champion,
@@ -1291,32 +1312,20 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"Wy" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar)
-"YT" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Diner"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
 ab
 ab
-Lq
+CQ
 ab
 ab
 ab
-yd
-Lq
-yd
+qA
+CQ
+qA
 ab
-yd
+qA
 ab
 ab
 "}
@@ -1334,12 +1343,12 @@ cB
 cM
 cZ
 aC
-Lq
+CQ
 "}
 (3,1,1) = {"
 ab
 an
-aB
+hw
 aQ
 bf
 bw
@@ -1354,8 +1363,8 @@ ab
 "}
 (4,1,1) = {"
 ab
-Dm
-DB
+ie
+pV
 aR
 bg
 bx
@@ -1382,7 +1391,7 @@ by
 bh
 da
 dm
-Lq
+CQ
 "}
 (6,1,1) = {"
 ab
@@ -1398,7 +1407,7 @@ by
 bi
 db
 dn
-YT
+vt
 "}
 (7,1,1) = {"
 ae
@@ -1414,11 +1423,11 @@ cC
 cR
 da
 do
-yd
+qA
 "}
 (8,1,1) = {"
-Lq
-Wy
+CQ
+OJ
 aC
 aU
 bg
@@ -1430,7 +1439,7 @@ bx
 cO
 da
 do
-YT
+vt
 "}
 (9,1,1) = {"
 ab
@@ -1483,7 +1492,7 @@ ab
 (12,1,1) = {"
 ab
 ab
-Lq
+CQ
 aY
 bm
 bB
@@ -1494,7 +1503,7 @@ cE
 bJ
 ao
 ao
-Lq
+CQ
 "}
 (13,1,1) = {"
 ag
@@ -1513,8 +1522,8 @@ ds
 ab
 "}
 (14,1,1) = {"
-vq
-vq
+Hf
+Hf
 aK
 ah
 bo
@@ -1550,14 +1559,14 @@ aw
 ao
 ab
 ab
-fo
+eY
 ak
 ce
 cV
 cF
 cV
 de
-fo
+eY
 ak
 "}
 (17,1,1) = {"
@@ -1612,7 +1621,7 @@ dy
 al
 ay
 ay
-OK
+Ep
 bs
 bG
 bP
