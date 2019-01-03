@@ -36,12 +36,9 @@
 	// THESE OVERRIDE THE HIDEHAIR FLAGS
 	var/dynamic_hair_suffix = ""//head > mask for head hair
 	var/dynamic_fhair_suffix = ""//mask > head for facial hair
-	
-<<<<<<< HEAD
+
 	var/tearable //can this particular item be torn down to be used for cloth? | yogs
 	var/tearhealth = 100 //health regarding tearing clothes to get torn cloth | yogs
-=======
->>>>>>> 7354908bc1... Merge pull request #42113 from coiax/peaceful-haircut-bug
 
 /obj/item/clothing/Initialize()
 	. = ..()
