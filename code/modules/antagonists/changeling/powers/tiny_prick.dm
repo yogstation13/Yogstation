@@ -165,11 +165,7 @@
 	qdel(blade)
 	target.update_inv_hands()
 
-<<<<<<< HEAD
-/*/obj/effect/proc_holder/changeling/sting/extract_dna //yogs start - removed extract dna sting
-=======
-/datum/action/changeling/sting/extract_dna
->>>>>>> 00762e4851... [I GUESS THIS MIGHT BE TESTMERGED? I DUNNO] return of the ling action buttons (#41928)
+/*/datum/action/changeling/sting/extract_dna //yogs start - removed extract dna sting
 	name = "Extract DNA Sting"
 	desc = "We stealthily sting a target and extract their DNA. Costs 25 chemicals."
 	helptext = "Will give you the DNA of your target, allowing you to transform into them."
