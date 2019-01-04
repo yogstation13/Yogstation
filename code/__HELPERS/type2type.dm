@@ -195,7 +195,7 @@
 //Converts a rights bitfield into a string
 /proc/rights2text(rights, seperator="", prefix = "+")
 	seperator += prefix
-	if(rights & R_BUILD)
+	if(rights & R_BUILDMODE)
 		. += "[seperator]BUILDMODE"
 	if(rights & R_ADMIN)
 		. += "[seperator]ADMIN"
@@ -217,11 +217,11 @@
 		. += "[seperator]POLL"
 	if(rights & R_VAREDIT)
 		. += "[seperator]VAREDIT"
-	if(rights & R_SOUND)
+	if(rights & R_SOUNDS)
 		. += "[seperator]SOUND"
 	if(rights & R_SPAWN)
 		. += "[seperator]SPAWN"
-	if(rights & R_AUTOADMIN)
+	if(rights & R_AUTOLOGIN)
 		. += "[seperator]AUTOLOGIN"
 	if(rights & R_DBRANKS)
 		. += "[seperator]DBRANKS"
