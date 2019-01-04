@@ -18,7 +18,7 @@
 
 /datum/design/pod_armor_civ
 	name = "Spacepod Armor (civilian)"
-	desc = "Allows for the construction of spcaepod armor. This is the civilian version."
+	desc = "Allows for the construction of spacepod armor. This is the civilian version."
 	id = "podarmor_civ"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000)

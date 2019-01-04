@@ -106,10 +106,5 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/toolbox/artistic = 2,
 	/obj/item/toy/eightball = 1,
 	/obj/item/reagent_containers/pill/floorpill = 1,
-	// yogs start
-	/obj/item/pod_parts/core = 1,
-	/obj/item/pod_parts/armor = 1,
-	/obj/item/circuitboard/mecha/pod = 1,
-	// yogs end
 	"" = 3
 	))
