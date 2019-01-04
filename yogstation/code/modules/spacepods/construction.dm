@@ -2,11 +2,11 @@
 	..()
 	switch(construction_state) // more construction states than r-walls!
 		if(SPACEPOD_EMPTY)
-			to_chat(user, "<span class='notice'>The strits holding it together can be <b>cut</b> and i't is missing <i>wires</i>.</span>")
+			to_chat(user, "<span class='notice'>The struts holding it together can be <b>cut</b> and it is missing <i>wires</i>.</span>")
 		if(SPACEPOD_WIRES_LOOSE)
 			to_chat(user, "<span class='notice'>The <b>wires</b> need to be <i>screwed</i> on.</span>")
 		if(SPACEPOD_WIRES_SECURED)
-			to_chat(user, "<span class='notice'>The wires are <b>screwed</b> on and needs a <i>circuit board</i>.</span>")
+			to_chat(user, "<span class='notice'>The wires are <b>screwed</b> on and need a <i>circuit board</i>.</span>")
 		if(SPACEPOD_CIRCUIT_LOOSE)
 			to_chat(user, "<span class='notice'>The circuit board is <b>loosely attached</b> and needs to be <i>screwed</i> on.</span>")
 		if(SPACEPOD_CIRCUIT_SECURED)
@@ -28,14 +28,14 @@
 		if(SPACEPOD_ARMOR_WELDED)
 			if(hatch_open)
 				if(cell || internal_tank || equipment.len)
-					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> and there are parts inside that can be <b>removed</b>.")
+					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.")
 				else
 					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.</span>")
 			else
 				if(locked)
 					to_chat(user, "<span class='notice'>[src] is <b>locked</b>.</span>")
 				else
-					to_chat(user, "<span class='notice'>The maintenance hatch is <b>pried</b> closed.")
+					to_chat(user, "<span class='notice'>The maintenance hatch is <b>closed</b>.")
 
 /obj/spacepod/proc/handle_spacepod_construction(obj/item/W, mob/living/user)
 	// time for a construction/deconstruction process to rival r-walls
@@ -45,6 +45,7 @@
 			if(W.tool_behaviour == TOOL_WIRECUTTER)
 				. = TRUE
 				user.visible_message("[user] deconstructs [src].", "You deconstruct [src].")
+				W.play_tool_sound(src)
 				deconstruct(TRUE)
 			else if(istype(W, /obj/item/stack/cable_coil))
 				. = TRUE
@@ -66,7 +67,7 @@
 				. = TRUE
 				W.play_tool_sound(src)
 				construction_state++
-				user.visible_message("[user] adjusts the wiring.", "You adjust [src]'s wiring.")
+				user.visible_message("[user] screws on [src]'s wiring harnesses.", "You screw on [src]'s wiring harnesses.")
 		if(SPACEPOD_WIRES_SECURED)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				. = TRUE
@@ -88,12 +89,12 @@
 				construction_state--
 				var/obj/item/circuitboard/mecha/pod/B = new
 				B.forceMove(loc)
-				user.visible_message("[user] pries out the mainboard.", "You pry out the mainboard.")
+				user.visible_message("[user] pries out the mainboard from [src].", "You pry out the mainboard from [src].")
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				. = TRUE
 				W.play_tool_sound(src)
 				construction_state++
-				user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
+				user.visible_message("[user] secures the mainboard to [src].", "You secure the mainboard to [src].")
 		if(SPACEPOD_CIRCUIT_SECURED)
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				. = TRUE
@@ -115,12 +116,12 @@
 				var/obj/item/pod_parts/core/C = new
 				C.forceMove(loc)
 				construction_state--
-				user.visible_message("[user] delicately removes the core from [src] with a crowbar.", "You delicately remove the core from [src] with a crowbar.")
+				user.visible_message("[user] delicately removes the core from [src].", "You delicately remove the core from [src].")
 			else if(W.tool_behaviour == TOOL_WRENCH)
 				. = TRUE
 				W.play_tool_sound(src)
 				construction_state++
-				user.visible_message("[user] secures the core's bolts.", "You secure the core's bolts.")
+				user.visible_message("[user] secures [src]'s core bolts.", "You secure [src]'s core bolts.")
 		if(SPACEPOD_CORE_SECURED)
 			if(W.tool_behaviour == TOOL_WRENCH)
 				. = TRUE
@@ -157,7 +158,7 @@
 				. = TRUE
 				if(W.use_tool(src, user, 20, amount=3, volume = 50))
 					construction_state = SPACEPOD_ARMOR_WELDED
-					user.visible_message("[user] seals [src]'s bulkhead panelling with a weld.", "You seal [src]'s bulkhead panelling with a weld.")
+					user.visible_message("[user] seals [src]'s bulkhead panelling.", "You seal [src]'s bulkhead panelling.")
 		if(SPACEPOD_BULKHEAD_WELDED)
 			if(W.tool_behaviour == TOOL_WELDER)
 				. = TRUE

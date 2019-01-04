@@ -9,8 +9,8 @@
 
 /obj/item/pod_parts/pod_frame
 	name = "space pod frame"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	var/link_to = null
 	var/link_angle = 0
 
@@ -43,13 +43,13 @@
 			linked = pointer
 			pointer = null
 	if(connectedparts.len < 4)
-		return 0
+		return FALSE
 	for(var/i = 1; i <=4; i++)
 		var/obj/item/pod_parts/pod_frame/F = connectedparts[i]
 		if(F.type in neededparts) //if one of the items can be founded in neededparts
 			neededparts -= F.type
 		else //because neededparts has 4 distinct items, this must be called if theyre not all in place and wrenched
-			return 0
+			return FALSE
 	return connectedparts
 
 /obj/item/pod_parts/pod_frame/attackby(var/obj/item/O, mob/user)

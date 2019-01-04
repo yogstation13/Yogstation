@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	bound_height = 64
 	animate_movement = NO_STEPS // we do our own gliding here
 
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // it floats above lava or something, I dunno
 
 	max_integrity = 50
@@ -141,18 +141,18 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		if(lock && istype(W, /obj/item/device/lock_buster))
 			var/obj/item/device/lock_buster/L = W
 			if(L.on)
-				user.visible_message(user, "<span class='warning'>[user] is drilling through the [src]'s lock!</span>",
-					"<span class='notice'>You start drilling through the [src]'s lock!</span>")
+				user.visible_message(user, "<span class='warning'>[user] is drilling through [src]'s lock!</span>",
+					"<span class='notice'>You start drilling through [src]'s lock!</span>")
 				if(do_after(user, 100 * W.toolspeed, target = src))
 					if(lock)
 						var/obj/O = lock
 						lock.on_uninstall()
 						qdel(O)
-						user.visible_message(user, "<span class='warning'>[user] has destroyed the [src]'s lock!</span>",
-							"<span class='notice'>You destroy the [src]'s lock!</span>")
+						user.visible_message(user, "<span class='warning'>[user] has destroyed [src]'s lock!</span>",
+							"<span class='notice'>You destroy [src]'s lock!</span>")
 				else
-					user.visible_message(user, "<span class='warning'>[user] fails to break through the [src]'s lock!</span>",
-					"<span class='notice'>You were unable to break through the [src]'s lock!</span>")
+					user.visible_message(user, "<span class='warning'>[user] fails to break through [src]'s lock!</span>",
+					"<span class='notice'>You were unable to break through [src]'s lock!</span>")
 				return TRUE
 			to_chat(user, "<span class='notice'>Turn the [L] on first.</span>")
 			return TRUE
@@ -185,16 +185,16 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			target = passengers[1]
 
 		if(target && istype(target))
-			src.visible_message("<span class='warning'>[user] is trying to rip the door open and pull [target] out of the [src]!</span>",
+			src.visible_message("<span class='warning'>[user] is trying to rip the door open and pull [target] out of [src]!</span>",
 				"<span class='warning'>You see [user] outside the door trying to rip it open!</span>")
 			if(do_after(user, 50, target = src) && construction_state == SPACEPOD_ARMOR_WELDED)
 				if(remove_rider(target))
 					target.Stun(20)
-					target.visible_message("<span class='warning'>[user] flings the door open and tears [target] out of the [src]</span>",
-						"<span class='warning'>The door flies open and you are thrown out of the [src] and to the ground!</span>")
+					target.visible_message("<span class='warning'>[user] flings the door open and tears [target] out of [src]</span>",
+						"<span class='warning'>The door flies open and you are thrown out of [src] and to the ground!</span>")
 				return
 			target.visible_message("<span class='warning'>[user] was unable to get the door open!</span>",
-					"<span class='warning'>You manage to keep [user] out of the [src]!</span>")
+					"<span class='warning'>You manage to keep [user] out of [src]!</span>")
 
 	if(!hatch_open)
 		//if(cargo_hold.storage_slots > 0)
@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		var/mob/living/M = A
 		if(M != user && !locked)
 			if(passengers.len >= max_passengers && !pilot)
-				to_chat(user, "<span class='danger'><b>That person can't fly the pod!</b></span>")
+				to_chat(user, "<span class='danger'><b>[A.p_they()] can't fly the pod!</b></span>")
 				return
 			if(passengers.len < max_passengers)
 				visible_message("<span class='danger'>[user] starts loading [M] into [src]!</span>")
@@ -542,9 +542,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		return
 
 	if(usr.restrained())
-		to_chat(usr, "<span class='notice'>You attempt to stumble out of the [src]. This will take two minutes.</span>")
+		to_chat(usr, "<span class='notice'>You attempt to stumble out of [src]. This will take two minutes.</span>")
 		if(pilot)
-			to_chat(pilot, "<span class='warning'>[usr] is trying to escape the [src].</span>")
+			to_chat(pilot, "<span class='warning'>[usr] is trying to escape [src].</span>")
 		if(!do_after(usr, 1200, target = src))
 			return
 
