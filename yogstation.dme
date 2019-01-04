@@ -2820,6 +2820,7 @@
 #include "yogstation\code\game\objects\items\crayons.dm"
 #include "yogstation\code\game\objects\items\plushes.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
+#include "yogstation\code\game\objects\items\tool_switcher.dm"
 #include "yogstation\code\game\objects\items\toys.dm"
 #include "yogstation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "yogstation\code\game\objects\items\circuitboards\machine_circuitboards.dm"
