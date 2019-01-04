@@ -25749,10 +25749,14 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aXu" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/autolathe,
-/turf/open/floor/plasteel/dark,
-/area/quartermaster/office)
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = null
+	},
+/obj/machinery/light/small{
+	dir = 2
+	},
+/turf/open/floor/plasteel,
+/area/chapel/main/monastery)
 "aXv" = (
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/machinery/airalarm{
@@ -48377,6 +48381,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
+"bKw" = (
+/obj/effect/spawner/xmastree,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/carpet,
+/area/library)
 "bKz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
@@ -55384,13 +55393,6 @@
 /obj/item/seeds/carrot,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
-"cuG" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/machinery/light/small{
-	dir = 2
-	},
-/turf/open/floor/plasteel,
-/area/chapel/main/monastery)
 "cuJ" = (
 /obj/item/shovel/spade,
 /turf/open/floor/plasteel,
@@ -73339,7 +73341,7 @@ kfM
 bWV
 cuk
 cus
-cuG
+aXu
 bWV
 chC
 chV
@@ -78508,7 +78510,7 @@ bAz
 bAz
 bAz
 bAz
-bAz
+bKw
 bAP
 bJv
 bBj
@@ -97944,7 +97946,7 @@ aAz
 aSr
 aPY
 aWu
-aXu
+aPW
 aYq
 aVp
 bav
