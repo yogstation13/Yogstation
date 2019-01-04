@@ -7,8 +7,8 @@
 //complaint form
 /obj/item/paper/paperwork/complaint_form
 	name = "Complaint Form (Form NT-021)"
-	fields = 4
-	info = "<b>Complainant:</b> <span class=\"paper_field\"></span><br><b>Complainant's Job: </b><span class=\"paper_field\"></span><br><b>Complainee:</b> <span class=\"paper_field\"></span><br><b>Complainee Job:</b> <span class=\"paper_field\"></span><br><b>Reason for Complaint:</b> "
+	fields = 6
+	info = "<b>Complainant:</b> <span class=\"paper_field\"></span><br><b>Complainant's Job: </b><span class=\"paper_field\"></span><br><b>Complainee:</b> <span class=\"paper_field\"></span><br><b>Complainee Job:</b> <span class=\"paper_field\"></span><br><b>Reason for Complaint:</b><span class=\"paper_field\"></span><br><b>Complainant Signature: </b><span class=\"paper_field\"></span><br><b>Reviewed By: </b>"
 
 //general item request form
 /obj/item/paper/paperwork/item_form
@@ -20,8 +20,8 @@
 //cyborgization request form
 /obj/item/paper/paperwork/cyborg_request_form
 	name = "Cyborgization Consent Form (Form NT-203)"
-	fields = 1
-	info = "<b>I, <span class=\"paper_field\"></span> hereby consent and authorize Robotics to remove my brain and install it via an MMI into a cybernetic shell.</b><br>Signed, "
+	fields = 2
+	info = "<b>I, <span class=\"paper_field\"></span> hereby consent and authorize Robotics to remove my brain and install it via an MMI into a cybernetic shell.</b><br>Signed, <span class=\"paper_field\"></span><br><b>Roboticist: </b>"
 
 //HOP access request form
 /obj/item/paper/paperwork/hopaccessrequestform
