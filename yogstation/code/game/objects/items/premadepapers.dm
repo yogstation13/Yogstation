@@ -2,7 +2,7 @@
 /obj/item/paper/paperwork/general_request_form
 	name = "General Requests Form (Form NT-010)"
 	fields = 3
-	info = "<b>Full Name:</b> <span class=\"paper_field\"></span><br><b>Request:</b> <span class=\"paper_field\"></span><br><b>Reason for Request: </b><span class=\"paper_field\"></span><br><br><u>Sign Below:<u>"
+	info = "<b>Full Name:</b> <span class=\"paper_field\"></span><br><b>Request:</b> <span class=\"paper_field\"></span><br><b>Reason for Request: </b><span class=\"paper_field\"></span><br><br><u>Sign Below:</u>"
 
 //complaint form
 /obj/item/paper/paperwork/complaint_form
