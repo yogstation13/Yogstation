@@ -1,0 +1,4 @@
+author: " coiax"
+delete-after: true 
+changes: 
+  - tweak: "The Shuffle Race wizard event no longer changes people's names."

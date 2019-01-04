@@ -61,8 +61,8 @@
 	qdel(src)
 	return TRUE
 
-/obj/effect/landmark/stationroom/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Default")
+/obj/effect/landmark/stationroom/box/bar
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box")
 
-/obj/effect/landmark/stationroom/foreportmaint1
+/obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")
