@@ -2,6 +2,14 @@
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
+"aab" = (
+/obj/item/storage/secure/safe/HoS{
+	pixel_x = 35
+	},
+/obj/structure/closet/secure_closet/hos,
+/obj/item/paper/redd/complaint_form,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "aac" = (
 /obj/effect/landmark/stationroom/box/foreportmaint1,
 /turf/open/floor/plating,
@@ -974,12 +982,15 @@
 /turf/open/floor/plasteel,
 /area/clerk)
 "acn" = (
-/obj/item/storage/secure/safe/HoS{
-	pixel_x = 35
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
 	},
-/obj/structure/closet/secure_closet/hos,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
+/obj/structure/filingcabinet/chestdrawer,
+/obj/item/paper/redd/hopaccessrequestform,
+/obj/item/paper/redd/hop_job_change_form,
+/obj/item/paper/redd/complaint_form,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "aco" = (
 /obj/structure/closet/bombcloset/security,
 /turf/open/floor/plasteel/showroomfloor,
@@ -1522,6 +1533,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"adq" = (
+/obj/structure/filingcabinet/chestdrawer,
+/obj/item/paper/redd/rd_form,
+/obj/item/paper/redd/mech_form,
+/obj/item/paper/redd/cyborg_request_form,
+/obj/item/paper/redd/complaint_form,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "adr" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -10358,6 +10377,27 @@
 /obj/effect/landmark/stationroom/box/bar,
 /turf/template_noop,
 /area/template_noop)
+"auY" = (
+/obj/structure/closet/secure_closet/CMO,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/paper/redd/complaint_form,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
+"auZ" = (
+/obj/structure/table,
+/obj/item/multitool,
+/obj/item/electronics/firelock,
+/obj/item/paper/redd/atmos_tech_spacesuit_form,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "ava" = (
 /obj/machinery/smartfridge,
 /turf/closed/wall,
@@ -11543,6 +11583,35 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"axe" = (
+/obj/structure/closet/secure_closet/engineering_chief{
+	req_access_txt = "0"
+	},
+/obj/machinery/power/apc/highcap/five_k{
+	dir = 4;
+	name = "CE Office APC";
+	areastring = "/area/crew_quarters/heads/chief";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/paper/redd/complaint_form,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
 "axf" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
@@ -31894,13 +31963,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bnO" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "bnP" = (
 /obj/machinery/button/flasher{
 	id = "hopflash";
@@ -39950,10 +40012,6 @@
 /obj/structure/closet/secure_closet/RD,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
-"bCk" = (
-/obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
 "bCl" = (
 /obj/machinery/camera{
 	c_tag = "Experimentor Lab Chamber";
@@ -43204,19 +43262,6 @@
 /obj/machinery/computer/security/telescreen/entertainment,
 /turf/closed/wall,
 /area/maintenance/port/aft)
-"bIw" = (
-/obj/structure/closet/secure_closet/CMO,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "bIx" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
@@ -46836,34 +46881,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"cbp" = (
-/obj/structure/closet/secure_closet/engineering_chief{
-	req_access_txt = "0"
-	},
-/obj/machinery/power/apc/highcap/five_k{
-	dir = 4;
-	name = "CE Office APC";
-	areastring = "/area/crew_quarters/heads/chief";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/chief)
 "cbq" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/effect/turf_decal/tile/neutral{
@@ -54288,12 +54305,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"hVc" = (
-/obj/structure/table,
-/obj/item/multitool,
-/obj/item/electronics/firelock,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "hZy" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -87609,7 +87620,7 @@ aZP
 bjC
 bkX
 bmo
-bnO
+acn
 bqz
 bqz
 bqq
@@ -91759,7 +91770,7 @@ bZy
 bAX
 bVm
 bZC
-cbp
+axe
 cck
 cin
 bCV
@@ -94312,7 +94323,7 @@ btO
 bLK
 gVe
 qtN
-hVc
+auZ
 bvr
 gYP
 gFn
@@ -94488,7 +94499,7 @@ abq
 abW
 abk
 acj
-acn
+aab
 adh
 adm
 afk
@@ -102273,7 +102284,7 @@ bDa
 bEl
 bFH
 bHb
-bIw
+auY
 bBN
 bAw
 btT
@@ -108175,7 +108186,7 @@ boB
 bta
 bmU
 bvJ
-bCk
+adq
 byo
 aDH
 bqb
