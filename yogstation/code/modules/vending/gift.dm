@@ -61,7 +61,6 @@
 					/obj/item/cartridge/quartermaster = 2)
 	contraband = list(/obj/item/clothing/under/rank/psyche = 1,
 					  /obj/item/instrument/violin/golden = 1,
-					  /obj/item/reagent_containers/hypospray/medipen/stimpack = 1,
 					  /obj/item/clothing/gloves/color/fyellow = 1,
 					  /obj/item/airlock_painter = 1,
 					  /obj/item/cartridge/security = 2,
