@@ -34,7 +34,7 @@
 	// calculate drag and shit
 
 	var/velocity_mag = sqrt(velocity_x*velocity_x+velocity_y*velocity_y) // magnitude
-	if(velocity_mag || angular_velocity != 0)
+	if(velocity_mag || angular_velocity)
 		var/drag = 0
 		for(var/turf/T in locs)
 			if(isspaceturf(T))
@@ -48,6 +48,7 @@
 				if(velocity_mag > 5 && prob(velocity_mag * 4) && istype(T, /turf/open/floor))
 					var/turf/open/floor/TF = T
 					TF.make_plating() // pull up some floor tiles. Stop going so fast, ree.
+					take_damage(3, BRUTE, "melee", FALSE)
 			var/datum/gas_mixture/env = T.return_air()
 			if(env)
 				var/pressure = env.return_pressure()
@@ -244,9 +245,9 @@
 		strength = min(strength, 5) // don't want the explosions *too* big
 		// wew lad, might wanna slow down there
 		explosion(A, -1, round((strength - 1) / 2), round(strength))
-		message_admins("[key_name_admin(pilot)] has impacted a spacepod into a wall with velocity [bump_velocity]")
+		message_admins("[key_name_admin(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
 		take_damage(strength*10, BRUTE, "melee", TRUE)
-		log_game("[key_name(pilot)] has impacted a spacepod into a wall with velocity [bump_velocity]")
+		log_game("[key_name(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
 		visible_message("<span class='danger'>The force of the impact causes a shockwave</span>")
 	else if(isliving(A) && bump_velocity > 5)
 		var/mob/living/M = A

@@ -34,7 +34,7 @@
 	build_path = /obj/item/pod_parts/armor/black
 	category = list("Spacepod Designs")
 	materials = list(MAT_METAL=15000,MAT_GLASS=5000,MAT_PLASMA=10000)
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pod_armor_industrial
 	name = "Spacepod Armor (industrial)"
