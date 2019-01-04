@@ -255,12 +255,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 
 		var/rights = holder.rank.rights
 		verbs += GLOB.admin_verbs_default
-<<<<<<< HEAD
 		verbs += GLOB.mentor_verbs // yogs - give admins mentor verbs
-		if(rights & R_BUILDMODE)
-=======
 		if(rights & R_BUILD)
->>>>>>> 4c3053d5eb... Merge pull request #42041 from Jordie0608/alliwantforchristmasisaspaceinGameMaster
 			verbs += /client/proc/togglebuildmodeself
 		if(rights & R_ADMIN)
 			verbs += GLOB.admin_verbs_admin
