@@ -9,7 +9,7 @@
 		dummy.overlays = snap.overlays
 		names[entry] = dummy
 
-	var/chosen_name = show_radial_menu(owner.current, owner.current, names, radius = 42)
+	var/chosen_name = show_radial_menu(owner.current, owner.current, names, radius = 42, tooltips = TRUE)
 	if(!chosen_name)
 		return
 
