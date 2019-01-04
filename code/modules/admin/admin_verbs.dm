@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 		var/rights = holder.rank.rights
 		verbs += GLOB.admin_verbs_default
 		verbs += GLOB.mentor_verbs // yogs - give admins mentor verbs
-		if(rights & R_BUILDMODE)
+		if(rights & R_BUILD)
 			verbs += /client/proc/togglebuildmodeself
 		if(rights & R_ADMIN)
 			verbs += GLOB.admin_verbs_admin
@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 			verbs += /client/proc/stealth
 		if(rights & R_ADMIN)
 			verbs += GLOB.admin_verbs_poll
-		if(rights & R_SOUNDS)
+		if(rights & R_SOUND)
 			verbs += GLOB.admin_verbs_sounds
 			if(CONFIG_GET(string/invoke_youtubedl))
 				verbs += /client/proc/play_web_sound
@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
-	if (!(holder.rank.rights & R_BUILDMODE))
+	if (!(holder.rank.rights & R_BUILD))
 		return
 	if(src.mob)
 		togglebuildmode(src.mob)
