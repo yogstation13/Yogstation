@@ -1,4 +1,0 @@
-author: " coiax"
-delete-after: true 
-changes: 
-  - bugfix: "Humans with the Void mutation will no longer be able to enter the void"

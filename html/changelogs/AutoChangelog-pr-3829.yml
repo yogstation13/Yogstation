@@ -1,4 +1,0 @@
-author: " Kyep"
-delete-after: true 
-changes: 
-  - bugfix: "Fix an AI-related href exploit."
