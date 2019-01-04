@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - rscadd: "Adds tool switcher. Load it up with tools, and program a sequence of tools, then use it in your hand to play through that sequence"

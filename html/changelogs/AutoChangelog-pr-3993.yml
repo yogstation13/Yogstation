@@ -1,5 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - tweak: "Using non-critical items in the experimentor prevents certain malfunctions from being suppressed via upgrades"
-  - tweak: "Using a failed reaction in the experimentor prevents the onboard detection system malfunction from being suppressed via upgrades"
