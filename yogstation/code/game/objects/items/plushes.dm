@@ -47,3 +47,28 @@
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
+
+/obj/item/toy/plush/teddybear
+	name = "teddy bear"
+	desc = "A soft brown bear you can cuddle with anywhere."
+	icon = 'yogstation/icons/obj/toy.dmi'
+	icon_state = "teddybear"
+
+/obj/item/toy/plush/stuffedmonkey
+	name = "stuffed monkey"
+	desc = "Looks just like the live ones on station. Except this one is made from plush."
+	icon = 'yogstation/icons/obj/toy.dmi'
+	icon_state = "stuffedmonkey"
+
+/obj/item/toy/plush/inorixplushie
+	name = "inorix plushie"
+	desc = "An adorable stuffed toy that resembles a giant robotic squid. It squirms around in your hand with realistic, buggy motion."
+	icon = 'yogstation/icons/obj/toy.dmi'
+	icon_state = "plushie_inorix"
+	attack_verb = list("harkened", "glared", "erased")
+
+/obj/item/toy/plush/flowerbunch
+	name = "flower bunch"
+	desc = "Oh, a bunch of flowers to show you care!"
+	icon = 'yogstation/icons/obj/toy.dmi'
+	icon_state = "flowerbunch"
