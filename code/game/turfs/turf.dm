@@ -216,14 +216,20 @@
 		for(var/i in contents)
 			if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 				continue
+			if(QDELETED(mover))
+				break
 			var/atom/movable/thing = i
-			if(thing.Cross(mover))
-				continue
-			if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_1 & ON_BORDER_1) && !(firstbump.flags_1 & ON_BORDER_1)))
-				firstbump = thing
+			if(!thing.Cross(mover))
+				if(CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+					mover.Bump(thing)
+					continue
+				else
+					if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_1 & ON_BORDER_1) && !(firstbump.flags_1 & ON_BORDER_1)))
+						firstbump = thing
 	if(firstbump)
-		mover.Bump(firstbump)
-		return FALSE
+		if(!QDELETED(mover))
+			mover.Bump(firstbump)
+		return CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE)
 	return TRUE
 
 /turf/Exit(atom/movable/mover, atom/newloc)
@@ -231,13 +237,16 @@
 	if(!.)
 		return FALSE
 	for(var/i in contents)
+		if(QDELETED(mover))
+			break
 		if(i == mover)
 			continue
 		var/atom/movable/thing = i
 		if(!thing.Uncross(mover, newloc))
 			if(thing.flags_1 & ON_BORDER_1)
 				mover.Bump(thing)
-			return FALSE
+			if(!CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+				return FALSE
 
 /turf/Entered(atom/movable/AM)
 	..()
