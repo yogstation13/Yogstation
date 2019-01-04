@@ -2777,6 +2777,7 @@
 #include "yogstation\code\datums\ruins\lavaland.dm"
 #include "yogstation\code\datums\ruins\space.dm"
 #include "yogstation\code\datums\ruins\station.dm"
+#include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
