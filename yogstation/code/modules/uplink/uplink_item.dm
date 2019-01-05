@@ -73,7 +73,6 @@
 	item = /obj/item/storage/box/syndie_kit/cluwnification
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
-	surplus = 5
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	restricted_roles = list("Psychiatrist")
@@ -82,6 +81,6 @@
 /datum/uplink_item/dangerous/gremlin
 	name = "Gremlin delivery grenade"
 	desc = "This grenade is filled with several gremlins. Fun for RnD and engineering!"
-	cost = 2
+	cost = 4
 	item = /obj/item/grenade/spawnergrenade/gremlin
 	surplus = 30
