@@ -1,7 +1,0 @@
-author: " coiax"
-delete-after: true 
-changes: 
-  - bugfix: "Abductors created by abductor mutation toxin will be able to talk"
-  - tweak: "Abductor tongues now have distinct \"channels\". A person with an"
-  - tweak: "Speaking on the abductor channel will always use your mob's"
-  - rscadd: "Abductor teams can now purchase additional superlingual matricies"
