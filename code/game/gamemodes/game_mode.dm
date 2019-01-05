@@ -360,10 +360,10 @@
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			players += player
-			/* yogs start - Donor features, quiet round
+			// yogs start - Donor features, quiet round
 			if(player.client.prefs.toggles & QUIET_ROUND)
 				player.mind.quiet_round = TRUE
-			*/ //yogs end
+			//yogs end
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
@@ -388,11 +388,11 @@
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
 					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
 						drafted += player.mind
-						/* yogs start - Donor features, quiet round
+						// yogs start - Donor features, quiet round
 						if(player.mind.quiet_round)
 							to_chat(player, "<span class='userdanger'>There aren't enough antag volunteers, so your quiet round setting will not be considered!</span>")
 							player.mind.quiet_round = FALSE
-						*/ //yogs end
+						//yogs end
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
