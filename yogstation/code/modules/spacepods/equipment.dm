@@ -87,16 +87,40 @@
 	// a much more descriptive and less scary name than fucking "COMSIG". But noooooooooo
 	// the TG coders were too self important to pick a descriptive name and wanted to sound all scientific
 	RegisterSignal(SP, COMSIG_MOUSEDROPPED_ONTO, .proc/spacepod_mousedrop)
+	SP.verbs |= /obj/spacepod/proc/unload_cargo
 
 /obj/item/spacepod_equipment/cargo/large/on_uninstall()
 	UnregisterSignal(spacepod, COMSIG_MOUSEDROPPED_ONTO)
 	..()
+	if(!(locate(/obj/item/spacepod_equipment/cargo/large) in spacepod.equipment))
+		spacepod.verbs -= /obj/spacepod/proc/unload_cargo
 
 /obj/item/spacepod_equipment/cargo/large/can_uninstall(mob/user)
 	if(storage)
 		to_chat(user, "<span class='warning'>Unload the cargo first!</span>")
 		return FALSE
 	return ..()
+
+/obj/spacepod/proc/unload_cargo() // if I could i'd put this on spacepod_equipment but unfortunately BYOND is stupid
+	set name = "Unload Cargo"
+	set category = "Spacepod"
+	set src = usr.loc
+
+	if(!verb_check())
+		return
+
+	var/used_key_list = list()
+	var/cargo_map = list()
+	for(var/obj/item/spacepod_equipment/cargo/large/E in equipment)
+		if(!E.storage)
+			continue
+		cargo_map[avoid_assoc_duplicate_keys("[E.name] ([E.storage.name])", used_key_list)] = E
+	var/selection = input(usr, "Unload which cargo?", null, null) as null|anything in cargo_map
+	var/obj/item/spacepod_equipment/cargo/large/E = cargo_map[selection]
+	if(!selection || !verb_check() || !E || !(E in equipment) || !E.storage)
+		return
+	E.storage.forceMove(loc)
+	E.storage = null
 
 /obj/item/spacepod_equipment/cargo/large/proc/spacepod_mousedrop(obj/spacepod/SP, obj/A, mob/user)
 	if(user == SP.pilot || user in SP.passengers)
