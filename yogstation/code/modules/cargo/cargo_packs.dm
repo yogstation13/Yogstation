@@ -45,8 +45,8 @@
 
 /datum/supply_pack/misc/sphere
 	name = "Advanced Crates"
-	desc = "Contains Advanced Crates that defy all known cargo standards!"
-	cost = 1000000
+	desc = "Contains a Advanced Crate that defies all known cargo standards!"
+	cost = 10000
 	contains = list(/obj/structure/closet/crate/sphere)
 	crate_name = "Advanced Crate Container"
 	crate_type = /obj/structure/closet/crate/large
