@@ -26,3 +26,11 @@
 	new /obj/item/door_remote/research_director(src)
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
 	new /obj/item/storage/photo_album/RD(src)
+	//yogs code begins - paperwork
+	new /obj/item/paper/paperwork/general_request_form(src)
+	new /obj/item/paper/paperwork/complaint_form(src)
+	new /obj/item/paper/paperwork/item_form(src)
+	new /obj/item/paper/paperwork/rd_form(src)
+	new /obj/item/paper/paperwork/mech_form(src)
+	new /obj/item/paper/paperwork/cyborg_request_form(src)
+	//yogs code ends

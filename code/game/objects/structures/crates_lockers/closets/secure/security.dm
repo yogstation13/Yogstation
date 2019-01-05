@@ -33,6 +33,10 @@
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
+	//yogs code begins - paperwork
+	new /obj/item/paper/paperwork/general_request_form(src)
+	new /obj/item/paper/paperwork/complaint_form(src)
+	//yogs code ends
 
 /obj/structure/closet/secure_closet/hop
 	name = "\proper head of personnel's locker"
@@ -60,6 +64,12 @@
 	new /obj/item/door_remote/civillian(src)
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/HoP(src)
+	//yogs code begins - paperwork
+	new /obj/item/paper/paperwork/general_request_form(src)
+	new /obj/item/paper/paperwork/complaint_form(src)
+	new /obj/item/paper/paperwork/hopaccessrequestform(src)
+	new /obj/item/paper/paperwork/hop_job_change_form(src)
+	//yogs code ends
 
 /obj/structure/closet/secure_closet/hos
 	name = "\proper head of security's locker"
@@ -93,6 +103,12 @@
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/HoS(src)
+	//yogs code begins - paperwork
+	new /obj/item/paper/paperwork/general_request_form(src)
+	new /obj/item/paper/paperwork/complaint_form(src)
+	new /obj/item/paper/paperwork/item_form(src)
+	//yogs code ends
+
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -117,6 +133,11 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
+	//yogs code begins - paperwork
+	new /obj/item/paper/paperwork/general_request_form(src)
+	new /obj/item/paper/paperwork/complaint_form(src)
+	new /obj/item/paper/paperwork/item_form(src)
+	//yogs code ends
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
