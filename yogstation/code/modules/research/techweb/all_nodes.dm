@@ -7,6 +7,15 @@
 	prereq_ids = list("base")
 	design_ids = list("podcore", "podarmor_civ", "podarmor_dark", "spacepod_main")
 
+/datum/techweb_node/spacepod_lock
+	id = "spacepod_lock"
+	display_name = "Spacepod Security"
+	description = "Keeps greytiders out of your spacepods."
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2750)
+	export_price = 2750
+	prereq_ids = list("spacepod_basic", "engineering")
+	design_ids = list("podlock_keyed", "podkey", "podmisc_tracker")
+
 /datum/techweb_node/spacepod_disabler
 	id = "spacepod_disabler"
 	display_name = "Spacepod Weaponry"

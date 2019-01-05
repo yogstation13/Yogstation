@@ -207,8 +207,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/list/items = list(cell, internal_tank)
 	items += equipment
 	var/list/item_map = list()
+	var/list/used_key_list = list()
 	for(var/obj/I in items)
-		item_map[I.name] = I
+		item_map[avoid_assoc_duplicate_keys(I.name, used_key_list)] = I
 	var/selection = input(user, "Remove which equipment?", null, null) as null|anything in item_map
 	var/obj/O = item_map[selection]
 	if(O && istype(O) && O in contents)
@@ -336,6 +337,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	cell = null
 	internal_tank = null
 	for(var/atom/movable/AM in contents)
+		if(AM in equipment)
+			var/obj/item/spacepod_equipment/SE = AM
+			if(istype(SE))
+				SE.on_uninstall(src)
 		if(ismob(AM))
 			forceMove(AM, loc)
 			remove_rider(AM)
@@ -347,7 +352,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			var/obj/O = AM
 			O.forceMove(loc)
 			O.deconstruct()
-
 
 /obj/spacepod/deconstruct(disassembled = FALSE)
 	if(!get_turf(src))
