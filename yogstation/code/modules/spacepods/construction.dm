@@ -157,7 +157,7 @@
 			else if(W.tool_behaviour == TOOL_WELDER)
 				. = TRUE
 				if(W.use_tool(src, user, 20, amount=3, volume = 50))
-					construction_state = SPACEPOD_ARMOR_WELDED
+					construction_state = SPACEPOD_BULKHEAD_WELDED
 					user.visible_message("[user] seals [src]'s bulkhead panelling.", "You seal [src]'s bulkhead panelling.")
 		if(SPACEPOD_BULKHEAD_WELDED)
 			if(W.tool_behaviour == TOOL_WELDER)
