@@ -1,4 +1,4 @@
-//yogs code begins. Paperwork pre-made edition. What a pain this was. Most of these were taken from the wiki.
+//Paperwork pre-made edition. What a pain this was. Most of these were taken from the wiki.
 /obj/item/paper/paperwork/general_request_form
 	name = "General Requests Form (Form NT-010)"
 	fields = 3
@@ -47,4 +47,3 @@
 	name = "R&D Mech Request Form (Form SCI-9)"
 	fields = 5
 	info = "<b>Name: </b><span class=\"paper_field\"></span><br><b>Job: </b><span class=\"paper_field\"></span><br><b>Requested Mech: </b><span class=\"paper_field\"></span><br><b>Requested Equipment: </b><span class=\"paper_field\"></span><br><b>Reason: </b><span class=\"paper_field\"></span><br>Signed: "
-//end yogs code
