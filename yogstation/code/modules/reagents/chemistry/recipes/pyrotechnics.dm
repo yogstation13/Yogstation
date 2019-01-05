@@ -276,3 +276,44 @@
 	e.set_up(modifier + round(created_volume/strengthdiv, 1), T, 0, 0)
 	e.start(log)
 	holder.clear_reagents()
+
+
+/datum/chemical_reaction/reagent_explosion/remove_all
+	var/chem_to_remove
+	modifier = 1
+
+/datum/chemical_reaction/reagent_explosion/remove_all/on_reaction(datum/reagents/holder, created_volume, var/log=TRUE)
+	. = ..()
+	holder.remove_reagent(chem_to_remove)
+
+/datum/chemical_reaction/reagent_explosion/remove_all/meth_a
+	name = "Meth Collapse"
+	chem_to_remove = "methamphetamine"
+	required_catalysts = list("methamphetamine" = 1, "smoke_powder" = 1)
+
+/datum/chemical_reaction/reagent_explosion/remove_all/meth_b
+	name = "Meth Collapse"
+	chem_to_remove = "methamphetamine"
+	required_catalysts = list("methamphetamine" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+
+/datum/chemical_reaction/reagent_explosion/remove_all/blackpowder_a
+	name = "Black Powder Collapse"
+	chem_to_remove = "blackpowder"
+	required_catalysts = list("blackpowder" = 1, "smoke_powder" = 1)
+
+/datum/chemical_reaction/reagent_explosion/remove_all/blackpowder_b
+	name = "Black Powder Collapse"
+	chem_to_remove = "blackpowder"
+	required_catalysts = list("blackpowder" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+
+/datum/chemical_reaction/reagent_explosion/remove_all/superboom_a
+	name = "N-amino azidotetrazole Collapse"
+	chem_to_remove = "superboom"
+	required_catalysts = list("superboom" = 1, "smoke_powder" = 1)
+	modifier = 4
+
+/datum/chemical_reaction/reagent_explosion/remove_all/superboom_b
+	name = "N-amino azidotetrazole Collapse"
+	chem_to_remove = "superboom"
+	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	modifier = 4
