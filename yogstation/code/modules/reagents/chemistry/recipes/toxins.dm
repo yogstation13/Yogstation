@@ -32,7 +32,7 @@
 	name = "Golem Mutation Toxin"
 	id = "golemmutationtoxin"
 	results = list("golemmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "silver" = 1)
+	required_reagents = list("unstablemutationtoxin" = 1, "diamond" = 1)
 
 /datum/chemical_reaction/abductormutationtoxin
 	name = "Abductor Mutation Toxin"
@@ -50,13 +50,13 @@
 	name = "Skeleton Mutation Toxin"
 	id = "skeletonmutationtoxin"
 	results = list("skeletonmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "milk" = 1)
+	required_reagents = list("unstablemutationtoxin" = 1, "bonehurtingjuice" = 1) // Ironic
 
 /datum/chemical_reaction/zombiemutationtoxin
 	name = "Zombie Mutation Toxin"
 	id = "zombiemutationtoxin"
 	results = list("zombiemutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "toxin" = 1)
+	required_reagents = list("unstablemutationtoxin" = 1, "zombiepowder" = 1) // I mean it makes sense
 
 /datum/chemical_reaction/ashmutationtoxin
 	name = "Ash Mutation Toxin"
