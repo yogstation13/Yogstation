@@ -437,6 +437,10 @@ SUBSYSTEM_DEF(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+		//YOGS start
+		if(job.space_law_notify)
+			to_chat(M, "<FONT color='red'><b>Space Law has been updated! </font><a href='https://wiki.yogstation.net/wiki/Space_Law'>Click here to view the updates.</a></b>")
+		//YOGS end
 		if(CONFIG_GET(number/minimal_access_threshold))
 			to_chat(M, "<FONT color='blue'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></font>")
 	if(ishuman(H))
@@ -448,7 +452,7 @@ SUBSYSTEM_DEF(job)
 
 	log_game("[H.real_name]/[M.client.ckey] joined the round as [H.job].") //yogs - Job logging
 	job.give_donor_stuff(H, M) // yogs - Donor Features
-	
+
 	return H
 
 
