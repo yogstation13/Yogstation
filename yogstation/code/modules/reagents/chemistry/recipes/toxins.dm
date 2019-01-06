@@ -32,7 +32,7 @@
 	name = "Golem Mutation Toxin"
 	id = "golemmutationtoxin"
 	results = list("golemmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "diamond" = 1)
+	required_reagents = list("unstablemutationtoxin" = 1, "bluespace" = 1)
 
 /datum/chemical_reaction/abductormutationtoxin
 	name = "Abductor Mutation Toxin"
@@ -75,3 +75,9 @@
 	id = "plasmamutationtoxin"
 	results = list("plasmamutationtoxin" = 1)
 	required_reagents = list("unstablemutationtoxin" = 1, "uranium" = 1, "plasma" = 1)
+
+/datum/chemical_reaction/felinidmutationtoxin
+	name = "Felinid Mutation Toxin"
+	id = "felinidmutationtoxin"
+	results = list("felinidmutationtoxin" = 1)
+	required_reagents = list("unstablemutationtoxin" = 1, "soymilk" = 1)
