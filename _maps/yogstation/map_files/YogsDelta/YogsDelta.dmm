@@ -112317,6 +112317,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"dnk" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rndlab1";
+	name = "Research and Development Shutter"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/lab)
 "dnl" = (
 /obj/machinery/clonepod,
 /obj/structure/window/reinforced{
@@ -125882,23 +125890,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"loI" = (
-/obj/machinery/autolathe,
-/obj/machinery/door/window/southleft{
-	name = "Research Lab Desk";
-	req_one_access_txt = "7;29"
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rndlab1";
-	name = "Research and Development Shutter"
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "lti" = (
 /obj/machinery/atmospherics/components/trinary/mixer/flipped,
 /obj/effect/turf_decal/tile/neutral{
@@ -164616,7 +164607,7 @@ cQP
 cCx
 cQP
 kwx
-loI
+dnk
 daV
 dcJ
 dei
