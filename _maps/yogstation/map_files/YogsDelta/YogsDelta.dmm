@@ -62159,9 +62159,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/transit_tube)
 "bRq" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
@@ -62171,6 +62168,8 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/paystand,
+/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bRr" = (
@@ -63254,7 +63253,6 @@
 	pixel_x = -23
 	},
 /obj/item/clipboard,
-/obj/item/toy/figure/warden,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -63264,6 +63262,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/toy/figure/warden,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bTg" = (

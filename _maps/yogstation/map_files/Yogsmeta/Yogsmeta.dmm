@@ -9012,9 +9012,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/photocopier{
-	pixel_y = 3
-	},
+/obj/machinery/paystand,
+/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "apL" = (
@@ -10366,18 +10365,20 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "asn" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -30
+	},
+/obj/item/folder/red,
+/obj/item/folder/red,
 /obj/structure/table,
 /obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
 /obj/item/pen,
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 1
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -3;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -10423,15 +10424,15 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "ass" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = -30
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = -32
 	},
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -3;
-	pixel_y = 5
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 1
+	},
+/obj/machinery/photocopier{
+	pixel_y = 3
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -109601,7 +109602,7 @@ adY
 adY
 apL
 apZ
-ass
+asn
 adY
 alW
 asx
@@ -109858,7 +109859,7 @@ ann
 adY
 apM
 arN
-asn
+ass
 adY
 alW
 asx
