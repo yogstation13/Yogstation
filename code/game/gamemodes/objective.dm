@@ -129,6 +129,10 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in get_crewmember_minds())
 		if(!(possible_target in owners) && ishuman(possible_target.current))
+		// yogs start
+			if(possible_target.quiet_round == TRUE)
+				continue
+		// yogs end
 			var/is_role = FALSE
 			if(role_type)
 				if(possible_target.special_role == role)
@@ -136,9 +140,6 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			else
 				if(possible_target.assigned_role == role)
 					is_role = TRUE
-			else
-				if(possible_target.quiet_round == TRUE)
-					continue
 
 			if(invert)
 				if(is_role)
