@@ -1,0 +1,4 @@
+author: " Denton"
+delete-after: true 
+changes: 
+  - tweak: "Reduced the volume for some ghost notification sounds."
