@@ -1,9 +1,9 @@
 /obj/item/extinguisher/attack_self(mob/user)
 	..()
 	if(safety)
-		reagent.flags = AMOUNT_VISIBLE
+		reagents.flags = AMOUNT_VISIBLE
 	else
-		reagent.flags = OPENCONTAINER
+		reagents.flags = OPENCONTAINER
 
 /obj/item/extinguisher/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers))
