@@ -3745,10 +3745,16 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "ahw" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/machinery/button/door{
+	id = "qm_warehouse";
+	name = "Warehouse Door Control";
+	pixel_x = -1;
+	pixel_y = 24;
+	req_access_txt = "31"
+	},
+/obj/machinery/rnd/production/techfab/department/cargo,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ahx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5707,6 +5713,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
 /obj/item/crowbar,
+/obj/item/hand_labeler,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "akT" = (
@@ -27893,16 +27900,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bgu" = (
-/obj/machinery/button/door{
-	id = "qm_warehouse";
-	name = "Warehouse Door Control";
-	pixel_x = -1;
-	pixel_y = 24;
-	req_access_txt = "31"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bgv" = (
 /turf/closed/wall,
 /area/quartermaster/office)
@@ -54815,10 +54812,6 @@
 /obj/machinery/atmospherics/components/unary/tank/toxins,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"jlm" = (
-/obj/machinery/rnd/production/techfab/department/cargo,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "jlq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -82828,7 +82821,7 @@ aBG
 baS
 bex
 gjl
-bgu
+ahw
 bjr
 bjh
 bmh
@@ -84378,7 +84371,7 @@ bnz
 bpA
 blp
 bbR
-jlm
+bbR
 bud
 eyM
 kSb
@@ -101909,7 +101902,7 @@ oGO
 bDX
 pEf
 pEf
-ahw
+pEf
 bVI
 bVI
 pcb
