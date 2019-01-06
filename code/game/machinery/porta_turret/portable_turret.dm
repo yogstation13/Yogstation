@@ -411,6 +411,14 @@
 			if(Mech.occupant && !in_faction(Mech.occupant)) //If there is a user and they're not in our faction
 				if(assess_perp(Mech.occupant) >= 4)
 					targets += Mech
+	// yogs start
+	for(var/A in GLOB.spacepods_list)
+		if((get_dist(A, base) < scan_range) && can_see(base, A, scan_range))
+			var/obj/spacepod/SP = A
+			if(SP.pilot && !in_faction(SP.pilot))
+				if(assess_perp(SP.pilot) >= 4)
+					targets += SP
+	// yogs end
 
 	if(check_anomalies && GLOB.blobs.len && (mode == TURRET_LETHAL))
 		for(var/obj/structure/blob/B in view(scan_range, base))
