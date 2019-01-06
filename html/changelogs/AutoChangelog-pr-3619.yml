@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - tweak: "Brig cell default timer lengths are now slightly higher."
