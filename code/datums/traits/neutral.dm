@@ -95,7 +95,11 @@
 	mob_trait = TRAIT_NEAT
 	gain_text = "<span class='notice'>You feel like you have to stay clean.</span>"
 	lose_text = "<span class='danger'>You no longer feel the need to always be clean.</span>"
+<<<<<<< HEAD
 	mood_quirk = TRUE //yogs - this affects mood which we disabled by config.
+=======
+	mood_quirk = TRUE
+>>>>>>> c2262fc8c9... Merge pull request #42226 from nichlas0010/mood_quirk
 
 /datum/quirk/monochromatic
 	name = "Monochromacy"
