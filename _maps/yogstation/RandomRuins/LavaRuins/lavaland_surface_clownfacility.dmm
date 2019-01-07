@@ -121,8 +121,8 @@
 /area/ruin/unpowered)
 "av" = (
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
-	icon_state = "wood-broken4"
+	icon_state = "wood-broken4";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aw" = (
@@ -135,8 +135,8 @@
 /area/ruin/unpowered)
 "ay" = (
 /turf/open/floor/wood{
-	tag = "icon-wood-broken6";
-	icon_state = "wood-broken6"
+	icon_state = "wood-broken6";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "az" = (
@@ -210,15 +210,15 @@
 /obj/structure/girder,
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
-	icon_state = "wood-broken4"
+	icon_state = "wood-broken4";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aL" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
-	icon_state = "wood-broken4"
+	icon_state = "wood-broken4";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aM" = (
@@ -247,15 +247,15 @@
 /obj/item/stack/rods,
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
-	icon_state = "wood-broken4"
+	icon_state = "wood-broken4";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aS" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken6";
-	icon_state = "wood-broken6"
+	icon_state = "wood-broken6";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aT" = (
@@ -269,8 +269,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood{
-	tag = "icon-wood-broken6";
-	icon_state = "wood-broken6"
+	icon_state = "wood-broken6";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "aV" = (
@@ -297,8 +297,8 @@
 /obj/item/stack/rods,
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
-	icon_state = "wood-broken4"
+	icon_state = "wood-broken4";
+	tag = ""
 	},
 /area/ruin/unpowered)
 "ba" = (
