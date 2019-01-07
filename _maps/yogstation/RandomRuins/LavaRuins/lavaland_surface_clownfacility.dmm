@@ -617,6 +617,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"lb" = (
+/mob/living/simple_animal/crab/clown{
+	name = "Mr Krebs"
+	},
+/turf/open/floor/mineral/bananium,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 aa
@@ -777,7 +783,7 @@ ac
 aa
 ad
 al
-am
+lb
 ad
 am
 am
