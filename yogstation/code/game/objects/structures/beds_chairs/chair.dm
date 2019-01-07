@@ -1,4 +1,5 @@
 /obj/structure/chair/bananium
+	icon = 'yogstation/icons/obj/chairs.dmi'
 	icon_state = "bananium_chair"
 	name = "bananium chair"
 	desc = "A chair made out of bananium alot more confortable then you would think."
@@ -9,10 +10,11 @@
 
 /obj/item/chair/bananium
 	name = "bananium chair"
+	icon = 'yogstation/icons/obj/chairs.dmi'
 	icon_state = "bananium_chair_toppled"
 	item_state = "woodenchair"
 	resistance_flags = NONE
 	max_integrity = 70
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/vox_fem/honk.ogg'
 	origin_type = /obj/structure/chair/bananium
 	materials = null
