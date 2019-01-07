@@ -10,7 +10,6 @@
 		#include "map_files\MetaStation\MetaStation.dmm"
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
-		#include "map_files\ClownStation\ClownStation.dmm"
 		#include "map_files\Donutstation\Donutstation.dmm"
 		#include "yogstation\map_files\YogStation\Yogstation.dmm"
 		#include "yogstation\map_files\YogsMeta\YogsMeta.dmm"
