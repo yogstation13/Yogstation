@@ -2851,6 +2851,7 @@
 #include "yogstation\code\game\objects\structures\window.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\chair.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
+#include "yogstation\code\game\objects\structures\crates_lockers\crates.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\bluespace_locker.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\job_closets.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\command.dm"
