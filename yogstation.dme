@@ -2822,6 +2822,7 @@
 #include "yogstation\code\game\objects\items\cards_ids.dm"
 #include "yogstation\code\game\objects\items\clown_items.dm"
 #include "yogstation\code\game\objects\items\crayons.dm"
+#include "yogstation\code\game\objects\items\extinguisher.dm"
 #include "yogstation\code\game\objects\items\plushes.dm"
 #include "yogstation\code\game\objects\items\premadepapers.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
