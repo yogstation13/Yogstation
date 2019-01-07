@@ -6,3 +6,13 @@
 	max_integrity = 70
 	buildstacktype = /obj/item/stack/sheet/mineral/bananium
 	buildstackamount = 3
+
+/obj/item/chair/bananium
+	name = "bananium chair"
+	icon_state = "bananium_chair_toppled"
+	item_state = "woodenchair"
+	resistance_flags = NONE
+	max_integrity = 70
+	hitsound = 'sound/weapons/genhit1.ogg'
+	origin_type = /obj/structure/chair/bananium
+	materials = null
