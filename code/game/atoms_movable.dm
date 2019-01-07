@@ -209,11 +209,28 @@
 		direct = get_dir(src, newloc)
 	setDir(direct)
 
-	if(!loc.Exit(src, newloc))
-		return
+	// yogs start - multi tile object handling
+	if(bound_width != world.icon_size || bound_height != world.icon_size)
+		var/list/newlocs = isturf(newloc) ? block(locate(newloc.x+(-bound_x)/world.icon_size,newloc.y+(-bound_y)/world.icon_size,newloc.z),locate(newloc.x+(-bound_x+bound_width)/world.icon_size-1,newloc.y+(-bound_y+bound_height)/world.icon_size-1,newloc.z)) : list(newloc)
+		if(!newlocs)
+			return // we're trying to cross into the edge of space
+		var/bothturfs = isturf(newloc) && isturf(loc)
+		var/dx = bothturfs ? newloc.x - loc.x : 0
+		var/dy = bothturfs ? newloc.y - loc.y : 0
+		var/dz = bothturfs ? newloc.z - loc.z : 0
+		for(var/atom/A in (locs - newlocs))
+			if(!A.Exit(src, bothturfs ? locate(A.x+dx,A.y+dy,A.z+dz) : newloc))
+				return
+		for(var/atom/A in (newlocs - locs))
+			if(!A.Enter(src, bothturfs ? locate(A.x-dx,A.y-dy,A.z+dz) : loc))
+				return
+	else
+		if(!loc.Exit(src, newloc))
+			return
 
-	if(!newloc.Enter(src, src.loc))
-		return
+		if(!newloc.Enter(src, src.loc))
+			return
+	// yogs end
 
 	// Past this is the point of no return
 	var/atom/oldloc = loc

@@ -129,6 +129,10 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in get_crewmember_minds())
 		if(!(possible_target in owners) && ishuman(possible_target.current))
+		// yogs start
+			if(possible_target.quiet_round)
+				continue
+		// yogs end
 			var/is_role = FALSE
 			if(role_type)
 				if(possible_target.special_role == role)
@@ -755,7 +759,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		var/total_genetic_points = changeling.geneticpoints
 
-		for(var/obj/effect/proc_holder/changeling/p in changeling.purchasedpowers)
+		for(var/datum/action/changeling/p in changeling.purchasedpowers)
 			total_genetic_points += p.dna_cost
 
 		if(total_genetic_points > initial(changeling.geneticpoints))

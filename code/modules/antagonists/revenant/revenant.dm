@@ -78,6 +78,9 @@
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
 
+/mob/living/simple_animal/revenant/canUseTopic()
+	return FALSE
+
 /mob/living/simple_animal/revenant/proc/random_revenant_name()
 	var/built_name = ""
 	built_name += pick(strings(REVENANT_NAME_FILE, "spirit_type"))
@@ -357,8 +360,8 @@
 	var/old_key //key of the previous revenant, will have first pick on reform.
 	var/mob/living/simple_animal/revenant/revenant
 
-/obj/item/ectoplasm/revenant/New()
-	..()
+/obj/item/ectoplasm/revenant/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/try_reform), 600)
 
 /obj/item/ectoplasm/revenant/proc/scatter()
