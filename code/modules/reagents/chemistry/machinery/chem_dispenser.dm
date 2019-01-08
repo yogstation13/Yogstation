@@ -234,19 +234,9 @@
 				work_animation()
 				. = TRUE
 		if("eject")
-<<<<<<< HEAD
-			if(beaker)
-				beaker.forceMove(drop_location())
-				if(Adjacent(usr) && !issilicon(usr))
-					usr.put_in_hands(beaker)
-				beaker = null
-				update_icon()
-				. = TRUE
-		/* yogs - removes chem recipes
-=======
 			replace_beaker(usr)
 			. = TRUE
->>>>>>> b0038caf76... add alt click to eject beaker + beaker swapping to chem dispenser and chem master [READY] (#41969)
+		/* yogs - removes chem recipes
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
