@@ -555,17 +555,14 @@
 		// yogs start - Yogs Ticket
 		/*if(statpanel("Tickets"))
 			GLOB.ahelp_tickets.stat_entry()
-<<<<<<< HEAD
 		*/
 		// yogs end
-=======
 		if(length(GLOB.sdql2_queries))
 			if(statpanel("SDQL2"))
 				stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
 				for(var/i in GLOB.sdql2_queries)
 					var/datum/SDQL2_query/Q = i
 					Q.generate_stat()
->>>>>>> a7e974f9d3... [READY]Ports yet another SDQL2 upgrade, refactors SDQL2 to a datum, adds SDQL2 options/more features (#42008)
 
 	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))
