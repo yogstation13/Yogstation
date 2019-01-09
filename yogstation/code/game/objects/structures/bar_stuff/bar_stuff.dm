@@ -76,24 +76,3 @@ turf/open/floor/plasteel/ameridiner
 	desc = "Gambling for the antisocial."
 	icon = 'yogstation/icons/obj/special_slot_machine.dmi'
 	icon_state = "slots1"
-
-/turf/open/floor/alien
-	desc = "A thick resin surface covers the floor."
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/alien)
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "weeds"
-
-/turf/open/floor/aliennode
-	desc = "Blue bioluminescence shines from beneath the surface."
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/aliennode)
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "weednode"
-
-/turf/closed/wall/mineral/xeno
-	name = "resin wall"
-	desc = "A wall with rough metal plating."
-	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
-	icon_state = "smooth"
-	canSmoothWith = list(/turf/closed/wall/mineral/xeno)
