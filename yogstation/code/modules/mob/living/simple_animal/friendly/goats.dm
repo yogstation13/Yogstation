@@ -10,8 +10,8 @@
 /mob/living/simple_animal/hostile/retaliate/goat/test
 	name = "PLACE HOLDER"
 	desc = "ERROR."
-	icon = 'yogstation/icons/mob/goats/star_goat.dmi'
-	icon_state = "star_goat"
-	icon_living = "star_goat"
+	icon = 'yogstation/icons/mob/goats/ras_goat.dmi'
+	icon_state = "ras_goat"
+	icon_living = "ras_goat"
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/clothing/mask/gas/clown_hat = 1)
