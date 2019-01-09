@@ -32,6 +32,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_hud_enabled = 1 //did this ghost disable the on-screen HUD?
 	var/data_huds_on = 0 //Are data HUDs currently enabled?
 	var/health_scan = FALSE //Are health scans currently enabled?
+	//yogs start
+	var/antag_hud = FALSE //Are Antag HUDs currently enabled?
+	//yogs end
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -61,7 +64,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	verbs += list(
 		/mob/dead/observer/proc/dead_tele,
 		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/view_gas)
+		/mob/dead/observer/proc/view_gas,
+		/mob/dead/observer/proc/tray_view)
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)
 		ghostimage_default = image(src.icon,src,src.icon_state + "_nodir")
@@ -354,7 +358,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else
 			to_chat(usr, "<span class='warning'>You're already stuck out of your body!</span>")
 			return FALSE
-			
+
 	can_reenter_corpse = FALSE
 	do_not_resuscitate = TRUE
 	to_chat(src, "You can now no longer be brought back into your body. You can undo this at any time by using the Do Not Resuscitate verb again.")
@@ -722,7 +726,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		to_chat(src, "<span class='notice'>Health scan enabled.</span>")
 		health_scan = TRUE
+//yogs start
+/mob/dead/observer/verb/toggle_antag_hud()
+	set name = "Toggle AntagHUD"
+	set desc = "Toggles whether you see antagonists"
+	set category = "Ghost"
 
+	if(antag_hud)
+		to_chat(src, "<span class='notice'>Antag HUD disabled.</span>")
+		for(var/datum/atom_hud/antag/H in GLOB.huds)
+			H.remove_hud_from(usr)
+		antag_hud = FALSE
+	else
+		to_chat(src, "<span class='notice'>Antag HUD enabled.</span>")
+		for(var/datum/atom_hud/antag/H in GLOB.huds)
+			H.add_hud_to(usr)
+		antag_hud = TRUE
+//yogs end
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
 	set desc = "Sets your deadchat name and ghost appearance to your \
@@ -866,3 +886,31 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		spawners_menu = new(src)
 
 	spawners_menu.ui_interact(src)
+
+/mob/dead/observer/proc/tray_view()
+	set category = "Ghost"
+	set name = "T-ray view"
+	set desc = "Toggles a view of sub-floor objects"
+
+	var/static/t_ray_view = FALSE
+	t_ray_view = !t_ray_view
+
+	var/list/t_ray_images = list()
+	var/static/list/stored_t_ray_images = list()
+	for(var/obj/O in orange(client.view, src) )
+		if(O.level != 1)
+			continue
+
+		if(O.invisibility == INVISIBILITY_MAXIMUM)
+			var/image/I = new(loc = get_turf(O))
+			var/mutable_appearance/MA = new(O)
+			MA.alpha = 128
+			MA.dir = O.dir
+			I.appearance = MA
+			t_ray_images += I
+	stored_t_ray_images += t_ray_images
+	if(t_ray_images.len)
+		if(t_ray_view)
+			client.images += t_ray_images
+		else
+			client.images -= stored_t_ray_images
