@@ -19,12 +19,14 @@ Head of Security
 	supervisors = "the captain"
 	selection_color = "#ffdddd"
 	req_admin_notify = 1
+	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/hos
+	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY,
 			            ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_ATMOSPHERICS, // yogs - HoS needs same access as engineering armband
@@ -52,7 +54,7 @@ Head of Security
 	suit_store = /obj/item/gun/energy/e_gun
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/card/id/departmental_budget/sec=1)
+	backpack_contents = list(/obj/item/melee/baton/loaded=1) //yogs - removed departmental budget ID
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
@@ -84,6 +86,7 @@ Warden
 	spawn_positions = 1
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
+	space_law_notify = 1 //Yogs
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
@@ -94,6 +97,7 @@ Warden
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM) //SEE /DATUM/JOB/WARDEN/GET_ACCESS()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
+	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 /datum/job/warden/get_access()
 	var/list/L = list()
@@ -115,7 +119,7 @@ Warden
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
 	suit_store = /obj/item/gun/energy/e_gun/advtaser
-	backpack_contents = list(/obj/item/melee/baton/loaded=1)
+	backpack_contents = list(/obj/item/melee/baton/loaded=1, /obj/item/card/id/departmental_budget/sec=1) //yogs - added departmental budget ID
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
@@ -139,6 +143,7 @@ Detective
 	spawn_positions = 1
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
+	space_law_notify = 1 //Yogs
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
@@ -149,6 +154,7 @@ Detective
 	minimal_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SEC
+	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 /datum/outfit/job/detective
 	name = "Detective"
@@ -194,6 +200,7 @@ Security Officer
 	spawn_positions = 5 //Handled in /datum/controller/occupations/proc/setup_officer_positions()
 	supervisors = "the head of security, and the head of your assigned department (if applicable)"
 	selection_color = "#ffeeee"
+	space_law_notify = 1 //Yogs
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
@@ -204,6 +211,7 @@ Security Officer
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) //BUT SEE /DATUM/JOB/OFFICER/GET_ACCESS()
 	paycheck = PAYCHECK_HARD
 	paycheck_department = ACCOUNT_SEC
+	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 /datum/job/officer/get_access()
 	var/list/L = list()
@@ -213,6 +221,7 @@ Security Officer
 GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
 	// Assign department security
 	var/department
 	if(M && M.client && M.client.prefs)
