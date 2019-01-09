@@ -730,7 +730,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/toggle_antag_hud()
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles whether you see antagonists"
-	set caregory = "Ghost"
+	set category = "Ghost"
 
 	if(antag_hud)
 		to_chat(src, "<span class='notice'>Antag HUD disabled.</span>")
