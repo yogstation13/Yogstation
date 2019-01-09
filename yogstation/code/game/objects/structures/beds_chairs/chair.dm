@@ -15,6 +15,6 @@
 	item_state = "woodenchair"
 	resistance_flags = NONE
 	max_integrity = 70
-	hitsound = 'sound/vox_fem/honk.ogg'
+	hitsound = 'sound/items/bikehorn.ogg'
 	origin_type = /obj/structure/chair/bananium
 	materials = null
