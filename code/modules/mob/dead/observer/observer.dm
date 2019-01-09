@@ -739,7 +739,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		antag_hud = TRUE
 	else
 		to_chat(src, "<span class='notice'>Antag HUD enabled.</span>")
-		for var/datum/atom_hud/antag/H in GLOB.huds)
+		for(var/datum/atom_hud/antag/H in GLOB.huds)
 			H.add_hud_to(usr)
 		antag_hud = FALSE
 //yogs end
