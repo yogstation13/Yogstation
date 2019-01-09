@@ -32,6 +32,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_hud_enabled = 1 //did this ghost disable the on-screen HUD?
 	var/data_huds_on = 0 //Are data HUDs currently enabled?
 	var/health_scan = FALSE //Are health scans currently enabled?
+	//yogs start
+	var/antag_hud = FALSE //Are Antag HUDs currently enabled?
+	//yogs end
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -723,7 +726,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		to_chat(src, "<span class='notice'>Health scan enabled.</span>")
 		health_scan = TRUE
+//yogs start
+/mob/dead/observer/verb/toggle_antag_hud()
+	set name = "Toggle AntagHUD"
+	set desc = "Toggles whether you see antagonists"
+	set caregory = "Ghost"
 
+	if(antag_hud)
+		to_chat(src, "<span class='notice'>Antag HUD disabled.</span>")
+		for(var/datum/atom_hud/antag/H in GLOB.huds)
+			H.add_hud_to(usr)
+		antag_hud = TRUE
+	else
+		to_chat(src, "<span class='notice'>Antag HUD enabled.</span>")
+		for var/datum/atom_hud/antag/H in GLOB.huds)
+			H.add_hud_to(usr)
+		antag_hud = FALSE
+//yogs end
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
 	set desc = "Sets your deadchat name and ghost appearance to your \
