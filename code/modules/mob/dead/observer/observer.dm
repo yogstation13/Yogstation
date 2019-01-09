@@ -735,13 +735,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(antag_hud)
 		to_chat(src, "<span class='notice'>Antag HUD disabled.</span>")
 		for(var/datum/atom_hud/antag/H in GLOB.huds)
-			H.add_hud_to(usr)
-		antag_hud = TRUE
+			H.remove_hud_from(usr)
+		antag_hud = FALSE
 	else
 		to_chat(src, "<span class='notice'>Antag HUD enabled.</span>")
 		for(var/datum/atom_hud/antag/H in GLOB.huds)
 			H.add_hud_to(usr)
-		antag_hud = FALSE
+		antag_hud = TRUE
 //yogs end
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"
