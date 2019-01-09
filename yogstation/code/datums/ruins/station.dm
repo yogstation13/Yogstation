@@ -30,7 +30,7 @@
 	suffix = "engine_sm.dmm"
 	name = "Engine SM"
 
-/datum/map_template/ruin/station/box/engine/Singulo
+/datum/map_template/ruin/station/box/engine/singulo
 	id = "engine_singulo"
 	suffix = "engine_singulo.dmm"
 	name = "Engine Singulo"
