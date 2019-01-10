@@ -95,7 +95,7 @@ def process(settings, verb, *, modify=True, backup=None):
     if modify:
         print(f"Maps WILL{'' if settings.tgm else ' NOT'} be converted to tgm.")
         if backup:
-            print("Backups will be created with a \".before\" extension.")
+            print("Backups will be created with a \".backup\" extension.")
         else:
             print("Warning: backups are NOT being taken.")
 
@@ -115,7 +115,7 @@ def process(settings, verb, *, modify=True, backup=None):
         print(f' - {pretty_path(settings, path_str)}')
 
         if backup:
-            shutil.copyfile(path_str, path_str + ".before")
+            shutil.copyfile(path_str, path_str + ".backup")
 
         try:
             yield path_str
