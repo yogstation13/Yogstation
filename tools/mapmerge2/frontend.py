@@ -115,7 +115,7 @@ def process(settings, verb, *, modify=True, backup=None):
         print(f' - {pretty_path(settings, path_str)}')
 
         if backup:
-            shutil.copyfile(path_str, path_str + ".before")
+            shutil.copyfile(path_str, path_str + ".backup")
 
         try:
             yield path_str
