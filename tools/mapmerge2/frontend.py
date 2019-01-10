@@ -95,7 +95,7 @@ def process(settings, verb, *, modify=True, backup=None):
     if modify:
         print(f"Maps WILL{'' if settings.tgm else ' NOT'} be converted to tgm.")
         if backup:
-            print("Backups will be created with a \".before\" extension.")
+            print("Backups will be created with a \".backup\" extension.")
         else:
             print("Warning: backups are NOT being taken.")
 
