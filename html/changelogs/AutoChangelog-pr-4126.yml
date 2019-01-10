@@ -1,0 +1,4 @@
+author: "  Theos"
+delete-after: true 
+changes: 
+  - bugfix: "lavaland ruins will spawn again"
