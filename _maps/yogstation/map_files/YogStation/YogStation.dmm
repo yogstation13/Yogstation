@@ -3752,7 +3752,6 @@
 	pixel_y = 24;
 	req_access_txt = "31"
 	},
-/obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "ahx" = (
@@ -53387,6 +53386,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"fha" = (
+/obj/machinery/rnd/production/techfab/department/cargo,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "fip" = (
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -84387,7 +84390,7 @@ bnz
 bpA
 blp
 bbR
-bbR
+fha
 bud
 eyM
 kSb
