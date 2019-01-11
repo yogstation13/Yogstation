@@ -779,7 +779,7 @@
 	name = "LEGAL NOTICE!!"
 	},
 /mob/living/simple_animal/pet/cat/clown{
-	desc = "It seems its been living off of nothing but spaghetti since its master died poor cat.";
+	desc = "Has been living off of nothing but spaghetti since its master died. Poor cat!";
 	name = "Honkbottom"
 	},
 /turf/open/floor/wood{
