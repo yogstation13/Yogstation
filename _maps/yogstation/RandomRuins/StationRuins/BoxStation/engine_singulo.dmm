@@ -394,43 +394,44 @@
 /area/engine/engineering)
 "aT" = (
 /turf/open/floor/plating,
-/area/space/nearstation)
+/area/engine/engineering)
 "aU" = (
+/obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
-/area/space/nearstation)
+/area/engine/engineering)
 "aV" = (
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "aW" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "aX" = (
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "aY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "aZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "ba" = (
 /obj/structure/particle_accelerator/particle_emitter/right,
 /turf/open/floor/engine,
@@ -447,7 +448,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bd" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 4;
@@ -457,7 +458,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "be" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/decal/cleanable/dirt,
@@ -537,7 +538,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -547,21 +548,21 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bp" = (
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bq" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "br" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -585,7 +586,7 @@
 "bu" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -767,7 +768,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -777,7 +778,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bR" = (
 /obj/item/weldingtool,
 /turf/open/space/basic,
@@ -785,7 +786,7 @@
 "bS" = (
 /obj/item/radio,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/engine/engineering)
 "bT" = (
 /obj/structure/lattice,
 /obj/item/clothing/head/hardhat,
@@ -891,6 +892,28 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"du" = (
+/obj/structure/sign/warning/radiation/rad_area,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
+"xH" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"yi" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"Kv" = (
+/obj/item/wrench,
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"WN" = (
+/obj/structure/sign/warning/securearea,
+/turf/closed/wall/r_wall,
 /area/engine/engineering)
 
 (1,1,1) = {"
@@ -1069,20 +1092,20 @@ ab
 bb
 bb
 ad
+ad
+ad
+ad
+ad
+ad
+ad
+du
+ad
+ad
+ad
+ad
 aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
+ad
+WN
 aQ
 aQ
 aa
@@ -1102,15 +1125,15 @@ aZ
 bc
 aZ
 bp
-aU
-aU
-aU
+ad
+ad
+ad
 aV
 aZ
 bp
 bu
 bu
-aU
+ad
 aa
 aa
 aa
@@ -1126,20 +1149,20 @@ bi
 bj
 bl
 aW
-aR
+yi
 bd
-aR
+yi
 aY
 aZ
 bP
 aZ
 bq
-aR
+yi
 bd
-aR
-aR
-aU
-bu
+yi
+yi
+xH
+yi
 aa
 aa
 aa
@@ -1150,24 +1173,24 @@ ab
 cb
 an
 bL
-ad
+du
 ad
 ad
 ce
 aa
-aR
-aR
-aR
-aR
-aR
-aR
-aR
+yi
+yi
+yi
+yi
+yi
+yi
+yi
 bS
-aR
-aR
-aR
-aU
-aU
+yi
+yi
+yi
+ad
+ad
 bu
 aa
 aa
@@ -1194,8 +1217,8 @@ aa
 aQ
 aa
 aa
-aR
-aU
+yi
+ad
 bu
 aa
 aa
@@ -1223,7 +1246,7 @@ aQ
 aa
 aa
 aQ
-aU
+ad
 bu
 aa
 aa
@@ -1251,7 +1274,7 @@ aQ
 aQ
 aa
 aQ
-aU
+ad
 bu
 aQ
 aa
@@ -1279,14 +1302,14 @@ bm
 aQ
 aQ
 aQ
-aU
-aU
+ad
+du
 aQ
 aa
 aa
 "}
 (15,1,1) = {"
-ad
+du
 ad
 aB
 ad
@@ -1307,7 +1330,7 @@ aa
 aQ
 aa
 aa
-aU
+ad
 bu
 aQ
 aa
@@ -1335,7 +1358,7 @@ aa
 aQ
 aa
 aa
-aU
+ad
 bu
 aa
 aa
@@ -1363,7 +1386,7 @@ bm
 aQ
 aa
 aa
-aU
+ad
 bu
 aa
 aa
@@ -1391,7 +1414,7 @@ aa
 aQ
 aa
 aa
-aU
+ad
 bu
 aa
 aa
@@ -1419,7 +1442,7 @@ aa
 aQ
 aa
 aa
-aU
+ad
 bu
 aa
 aa
@@ -1447,14 +1470,14 @@ aa
 aQ
 aa
 aa
-aU
+ad
 bu
 aQ
 aa
 aa
 "}
 (21,1,1) = {"
-ad
+du
 ad
 aI
 ad
@@ -1475,7 +1498,7 @@ aa
 aQ
 aa
 aQ
-aU
+ad
 bu
 aQ
 aa
@@ -1503,8 +1526,8 @@ bm
 aQ
 aQ
 aQ
-aU
-aU
+ad
+du
 aQ
 aa
 aa
@@ -1531,7 +1554,7 @@ aQ
 aQ
 aa
 aQ
-aU
+ad
 bu
 aQ
 aa
@@ -1559,7 +1582,7 @@ bU
 aa
 aa
 aQ
-aU
+ad
 bu
 aa
 aa
@@ -1587,7 +1610,7 @@ aQ
 aa
 aa
 aT
-aU
+ad
 bu
 aa
 aa
@@ -1598,24 +1621,24 @@ ac
 ac
 an
 bL
-ad
+du
 ad
 ad
 cf
 aa
-aR
-aR
-aR
-aR
-aR
-aR
-aR
-aR
-aR
-aR
-aR
-aU
-aU
+yi
+yi
+yi
+yi
+yi
+yi
+yi
+yi
+yi
+yi
+yi
+ad
+ad
 bu
 aa
 aa
@@ -1630,20 +1653,20 @@ bi
 bk
 bl
 aX
-bM
+Kv
 bn
-aR
+yi
 aV
 aZ
 bQ
 aZ
 bp
-aR
+yi
 bn
-aR
-aR
-aU
-bu
+yi
+yi
+xH
+yi
 aa
 aa
 aa
@@ -1662,15 +1685,15 @@ aZ
 bo
 aZ
 bq
-aU
-aU
-aU
+ad
+ad
+ad
 aY
 aZ
 bq
 bu
 bu
-aU
+ad
 aQ
 aa
 aa
@@ -1691,14 +1714,14 @@ ad
 ad
 ad
 ad
+du
+ad
+ad
 ad
 ad
 aU
-aU
-aU
-aU
-aU
-aU
+ad
+WN
 aQ
 aQ
 aQ
