@@ -579,7 +579,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 		for (var/X in temp_pod.explosionSize)
 			explosionString += "[X]|"
 	
-	var/msg = "launched [podString][whomString].[delayString][damageString][explosionString]]"
+	var/msg = "launched [podString][whomString][delayString][damageString][explosionString]" //yogs - removed a "]" and "."
 	message_admins("[key_name_admin(usr)] [msg] in [AREACOORD(specificTarget)].")
 	if (!isemptylist(whoDyin))
 		for (var/mob/living/M in whoDyin)
