@@ -4,3 +4,4 @@
 
 /datum/job/hop/New()
 	minimal_access += ACCESS_CAPTAIN
+	return ..()
