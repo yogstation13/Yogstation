@@ -1,4 +1,0 @@
-author: " coiax"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes bug where sufferers of monophobia would enter negative"

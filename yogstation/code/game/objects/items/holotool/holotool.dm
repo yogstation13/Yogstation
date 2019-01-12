@@ -87,7 +87,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/holotool/CtrlClick(mob/user)
+/obj/item/holotool/attack_self(mob/user)
 	update_listing()
 	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
 	if(!check_menu(user))

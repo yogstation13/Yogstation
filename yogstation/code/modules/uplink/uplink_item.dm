@@ -24,6 +24,11 @@
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
 
+/datum/uplink_item/device_tools/hypnotic_flash
+	restricted_roles = list("Psychiatrist")
+	category = "Role-Restricted"
+
+
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
 
@@ -74,6 +79,9 @@
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
-/datum/uplink_item/device_tools/hypnotic_flash
-	restricted_roles = list("Psychiatrist")
-	category = "Role-Restricted"
+/datum/uplink_item/implants/mindslave
+	name = "Mindslave Implant"
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
+	item = /obj/item/storage/box/syndie_kit/imp_mindslave
+	cost = 12
+	surplus = 20

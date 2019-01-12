@@ -1,2 +1,2 @@
-/obj/effect/proc_holder/changeling/spiders
+/datum/action/changeling/spiders
 	xenoling_available = FALSE

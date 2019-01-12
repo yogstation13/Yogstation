@@ -1,4 +1,0 @@
-author: "AdamElTablawy"
-delete-after: true 
-changes: 
-  - rscdel: "Explosive lances have been commented out until such time as I give enough of a fuck to actually figure out how to blacklist a grenade based on the contents of the grenade itself"
