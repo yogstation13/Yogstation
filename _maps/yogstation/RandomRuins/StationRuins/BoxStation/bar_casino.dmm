@@ -505,7 +505,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bE" = (
 /obj/structure/table,
@@ -514,7 +514,7 @@
 	pixel_y = 6
 	},
 /obj/item/storage/box/donkpockets,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bF" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
