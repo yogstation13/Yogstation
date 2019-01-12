@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Entertainment telescreens in the bar indicate when they will show something interesting."
+  - tweak: "Entertainment telescreens can be viewed from a distance."

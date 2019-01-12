@@ -32,9 +32,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	world.log = file("[GLOB.log_directory]/dd.log")
 #endif
 
-	load_admins()
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
+	load_admins()
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
@@ -263,10 +263,10 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
-	s += " ("
-	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
-	s += "</a>"
+	s += " (" //yog start hub message
+	s += "<a href=\"https://forums.yogstation.net/index.php\">" //Change this to wherever you want the hub to link to.
+	s += "Forums"
+	s += "</a>" //yog end
 	s += ")"
 
 	var/n = 0

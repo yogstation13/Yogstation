@@ -1,2 +1,2 @@
-/obj/effect/proc_holder/changeling
+/datum/action/changeling
 	var/xenoling_available = TRUE

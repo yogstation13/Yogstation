@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
 			if(R.amount <= 0)
 				dat += "<td><span class='linkOff'>Sold out</span></td>"
-			else if ((C && C.registered_account && onstation) || (!onstation && iscarbon(user)))
+			else if ((C && C.registered_account && onstation) || (!onstation && isliving(user)))
 				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
 				dat += "<td><span class='linkOff'>Not Available</span></td>"

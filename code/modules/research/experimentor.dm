@@ -241,6 +241,7 @@
 	smoke.start()
 
 
+/* yogs start - moved to yogstation/ folder
 /obj/machinery/rnd/experimentor/proc/experiment(exp,obj/item/exp_on)
 	recentlyExperimented = 1
 	icon_state = "h_lathe_wloop"
@@ -519,6 +520,7 @@
 			investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
 
 	addtimer(CALLBACK(src, .proc/reset_exp), resetTime)
+*/ // yogs end
 
 /obj/machinery/rnd/experimentor/proc/reset_exp()
 	update_icon()
