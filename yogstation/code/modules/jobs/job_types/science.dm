@@ -1,3 +1,3 @@
 /datum/job/rd/New()
-	minimal_access += ACCESS_CAPTAIN
+	access += ACCESS_CAPTAIN
 	return ..()
