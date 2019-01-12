@@ -12108,7 +12108,7 @@
 /area/crew_quarters/fitness)
 "axX" = (
 /mob/living/simple_animal/pet/dog/pug{
-	desc = "Much better at protecting the armory then your average warden.";
+	desc = "Much better at protecting the armory than your average warden.";
 	name = "Warden Jacob";
 	real_name = "Warden Jacob"
 	},
