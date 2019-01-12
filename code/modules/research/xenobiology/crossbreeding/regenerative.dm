@@ -128,7 +128,7 @@ Regenerative extracts:
 	colour = "silver"
 
 /obj/item/slimecross/regenerative/silver/core_effect(mob/living/target, mob/user)
-	target.nutrition = NUTRITION_LEVEL_FULL - 1
+	target.set_nutrition(NUTRITION_LEVEL_FULL - 1)
 	to_chat(target, "<span class='notice'>You feel satiated.</span>")
 
 /obj/item/slimecross/regenerative/bluespace
@@ -142,7 +142,7 @@ Regenerative extracts:
 	do_sparks(5,FALSE,target)
 
 /obj/item/slimecross/regenerative/bluespace/Initialize()
-	..()
+	. = ..()
 	T = get_turf(src)
 
 /obj/item/slimecross/regenerative/sepia

@@ -19,7 +19,7 @@
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-	if(jobban_isbanned(src.mob, "OOC"))
+	if(is_banned_from(ckey, "OOC"))
 		to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
 		return
 	if(QDELETED(src))
@@ -51,13 +51,11 @@
 		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
 		return
 
-
-	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
+	mob.log_talk(raw_msg, LOG_OOC)
 	if(holder && holder.fakekey) //YOGS start - webhook support
 		webhook_send_ooc(holder.fakekey, msg)
 	else
 		webhook_send_ooc(key, msg) //YOGS end - webhook support
-	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
 
 	var/keyname = key
 	if(prefs.unlock_content)
@@ -74,13 +72,14 @@
 						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
 				else
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
+			else if(is_mentor()) // YOGS START - Mentor and Donor colors
+				to_chat(C, "<font color='[GLOB.mentor_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
 			else if(!(key in C.prefs.ignoring))
-				// yogs start - Donor OOC tag
 				if(is_donator(src))
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>\[Donator\] OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
 				else
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-				// yogs end
+				// YOGS END
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
@@ -102,6 +101,7 @@
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
 GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
@@ -119,7 +119,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 	set name = "Set Your OOC Color"
 	set category = "Preferences"
 
-	if(!holder || check_rights_for(src, R_ADMIN))
+	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!is_content_unlocked())
 			return
 
@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 	set desc = "Returns your OOC Color to default"
 	set category = "Preferences"
 
-	if(!holder || check_rights_for(src, R_ADMIN))
+	if(!holder || !check_rights_for(src, R_ADMIN))
 		if(!is_content_unlocked())
 			return
 

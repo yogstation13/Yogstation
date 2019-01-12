@@ -31,11 +31,11 @@
 		return
 	else if(isliving(target))
 		if(ishuman(target))
-			check_infection(target, user)
+			try_to_zombie_infect(target)
 		else
 			check_feast(target, user)
 
-/obj/item/zombie_hand/proc/check_infection(mob/living/carbon/human/target, mob/user)
+/proc/try_to_zombie_infect(mob/living/carbon/human/target)
 	CHECK_DNA_AND_SPECIES(target)
 
 	if(NOZOMBIE in target.dna.species.species_traits)
@@ -48,6 +48,7 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(target)
+
 
 
 /obj/item/zombie_hand/suicide_act(mob/user)
@@ -70,4 +71,4 @@
 		user.adjustCloneLoss(-hp_gained, 0)
 		user.updatehealth()
 		user.adjustBrainLoss(-hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
-		user.nutrition = min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL)
+		user.set_nutrition(min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL))

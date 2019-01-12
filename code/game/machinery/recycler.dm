@@ -41,6 +41,11 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>Reclaiming <b>[amount_produced]%</b> of materials salvaged.<span>")
+
+/obj/machinery/recycler/examine(mob/user)
+	..()
 	to_chat(user, "The power light is [(stat & NOPOWER) ? "off" : "on"].")
 	to_chat(user, "The safety-mode light is [safety_mode ? "on" : "off"].")
 	to_chat(user, "The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"].")
@@ -171,7 +176,7 @@
 	// By default, the emagged recycler will gib all non-carbons. (human simple animal mobs don't count)
 	if(iscarbon(L))
 		if(L.stat == CONSCIOUS)
-			L.say("ARRRRRRRRRRRGH!!!")
+			L.say("ARRRRRRRRRRRGH!!!", forced="recycler grinding")
 		add_mob_blood(L)
 
 	if(!blood && !issilicon(L))

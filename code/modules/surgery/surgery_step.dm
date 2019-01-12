@@ -14,6 +14,16 @@
 	if(accept_hand)
 		if(!tool)
 			success = TRUE
+		if(iscyborg(user))
+			success = TRUE
+
+// yogs start - tool switcher
+	if(istype(tool, /obj/item/storage/belt/tool_switcher))
+		var/obj/item/storage/belt/tool_switcher/S = tool
+		tool = S.find_current_tool()
+		if(!tool)
+			tool = S
+// yogs end
 
 	if(accept_any_item)
 		if(tool && tool_check(user, tool))

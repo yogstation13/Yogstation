@@ -85,7 +85,7 @@
 	
 	var/do_gib = FALSE
 	var/emagged = obj_flags & EMAGGED
-	if(L in GLOB.antagonists)
+	if(L.mind && LAZYLEN(L.mind.antag_datums))
 		if(!emagged)
 			do_gib = TRUE
 	else
@@ -133,7 +133,7 @@
 	if(typeofskin)
 		skin = new typeofskin
 	
-	add_logs(user, L, "gibbed")
+	log_combat(user, occupant, "gibbed")
 	L.death(1)
 	L.ghostize()
 	qdel(L)

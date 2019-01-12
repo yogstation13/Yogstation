@@ -9,7 +9,7 @@
 	if(!msg)
 		return
 
-	log_talk(mob,"[key_name(src)] : [msg]",LOGASAY)
+	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
 	webhook_send_asay(key_name(src), msg)
 	msg = emoji_parse(msg)
 	msg = keywords_lookup(msg)

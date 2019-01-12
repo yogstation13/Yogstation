@@ -229,6 +229,30 @@
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjustmask(user)
 
+/obj/item/clothing/mask/bandana/AltClick(mob/user)
+	. = ..()
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
+			to_chat(user, "<span class='warning'>You can't tie [src] while wearing it!</span>")
+			return
+	if(slot_flags & ITEM_SLOT_HEAD)
+		to_chat(user, "<span class='warning'>You must undo [src] before you can tie it into a neckerchief!</span>")
+	else
+		if(user.is_holding(src))
+			var/obj/item/clothing/neck/neckerchief/nk = new(src)
+			nk.name = "[name] neckerchief"
+			nk.desc = "[desc] It's tied up like a neckerchief."
+			nk.icon_state = icon_state
+			nk.sourceBandanaType = src.type
+			var/currentHandIndex = user.get_held_index_of_item(src)
+			user.transferItemToLoc(src, null)
+			user.put_in_hand(nk, currentHandIndex)
+			user.visible_message("<span class='notice'>You tie [src] up like a neckerchief.</span>", "<span class='notice'>[user] ties [src] up like a neckerchief.</span>")
+			qdel(src)
+		else
+			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!")
+
 /obj/item/clothing/mask/bandana/red
 	name = "red bandana"
 	desc = "A fine red bandana with nanotech lining."
@@ -259,6 +283,11 @@
 	desc = "A fine black bandana with nanotech lining and a skull emblem."
 	icon_state = "bandskull"
 
+/obj/item/clothing/mask/bandana/durathread
+	name = "durathread bandana"
+	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
+	icon_state = "banddurathread"
+
 /obj/item/clothing/mask/mummy
 	name = "mummy mask"
 	desc = "Ancient bandages."
@@ -272,3 +301,24 @@
 	icon_state = "scarecrow_sack"
 	item_state = "scarecrow_sack"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+
+/obj/item/clothing/mask/gondola
+	name = "gondola mask"
+	desc = "Genuine gondola fur."
+	icon_state = "gondola"
+	item_state = "gondola"
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/clothing/mask/gondola/speechModification(M)
+	if(copytext(M, 1, 2) != "*")
+		M = " [M]"
+		var/list/spurdo_words = strings("spurdo_replacement.json", "spurdo")
+		for(var/key in spurdo_words)
+			var/value = spurdo_words[key]
+			if(islist(value))
+				value = pick(value)
+			M = replacetextEx(M,regex(uppertext(key),"g"), "[uppertext(value)]")
+			M = replacetextEx(M,regex(capitalize(key),"g"), "[capitalize(value)]")
+			M = replacetextEx(M,regex(key,"g"), "[value]")
+	return trim(M)
