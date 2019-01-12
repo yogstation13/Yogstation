@@ -838,22 +838,23 @@
 		to_chat(user, "<span class='warning'>The potion can only be used on items or vehicles!</span>")
 		return
 	if(isitem(C))
+		// yogs start - change speed potion
 		var/obj/item/I = C
-		if(I.slowdown <= 0 || I.obj_flags & IMMUTABLE_SLOW)
+		if(I.slowdown <= 2 || I.obj_flags & IMMUTABLE_SLOW)
 			to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 			return ..()
-		I.slowdown = 0
+		I.slowdown--
+		// yogs end
 
 	if(istype(C, /obj/vehicle))
 		var/obj/vehicle/V = C
 		var/datum/component/riding/R = V.GetComponent(/datum/component/riding)
 		if(R)
 			// yogs start - change speed potion
-			R.vehicle_move_delay--
 			if(R.vehicle_move_delay <= 2 )
 				to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 				return ..()
-			R.vehicle_move_delay = 2
+			R.vehicle_move_delay--
 			// yogs end
 
 	to_chat(user, "<span class='notice'>You slather the red gunk over the [C], making it faster.</span>")
