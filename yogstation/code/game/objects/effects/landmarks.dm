@@ -63,7 +63,7 @@
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Box")
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple")
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
 
