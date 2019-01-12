@@ -576,7 +576,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "bV" = (
 /obj/machinery/airalarm{
@@ -799,7 +799,7 @@
 	pixel_y = -24;
 	req_access_txt = "28"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cS" = (
 /obj/machinery/disposal/bin,
