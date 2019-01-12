@@ -952,6 +952,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"kL" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar)
 "uq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -1147,8 +1151,8 @@ ab
 (11,1,1) = {"
 ai
 at
-an
-an
+kL
+kL
 an
 an
 bz

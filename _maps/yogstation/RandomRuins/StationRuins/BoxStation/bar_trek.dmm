@@ -334,6 +334,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/computer/slot_machine,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/bar)
 "aW" = (
@@ -1024,6 +1025,10 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
+"vl" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/plasteel/white,
+/area/crew_quarters/bar)
 
 (1,1,1) = {"
 aa
@@ -1188,7 +1193,7 @@ ag
 (11,1,1) = {"
 ag
 at
-am
+vl
 aV
 bK
 cJ

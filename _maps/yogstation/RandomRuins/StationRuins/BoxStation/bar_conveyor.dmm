@@ -1188,6 +1188,10 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"jO" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "nw" = (
 /obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
@@ -1357,7 +1361,7 @@ KU
 "}
 (9,1,1) = {"
 Nt
-ao
+jO
 ao
 ao
 ao
