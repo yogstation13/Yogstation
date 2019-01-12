@@ -32,9 +32,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	world.log = file("[GLOB.log_directory]/dd.log")
 #endif
 
-	load_admins()
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
+	load_admins()
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()

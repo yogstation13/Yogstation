@@ -44,7 +44,8 @@
 		handle_bandaged_limbs()
 	//yogs end
 
-	handle_hygiene()
+	if(stat != DEAD)
+		handle_hygiene()
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
@@ -330,14 +331,18 @@
 	adjustBruteLoss(2)
 
 /mob/living/carbon/human/proc/handle_hygiene()
+	if(has_trait(TRAIT_ALWAYS_CLEAN))
+		set_hygiene(HYGIENE_LEVEL_CLEAN)
+		return
+
 	var/hygiene_loss = -HYGIENE_FACTOR
-	
+
 	//If you're covered in blood, you'll start smelling like shit faster.
 	var/obj/item/head = get_item_by_slot(SLOT_HEAD)
 	if(head)
 		IF_HAS_BLOOD_DNA(head)
 			hygiene_loss -= 2 * HYGIENE_FACTOR
-	
+
 	var/obj/item/mask = get_item_by_slot(SLOT_HEAD)
 	if(mask)
 		IF_HAS_BLOOD_DNA(mask)
@@ -352,14 +357,14 @@
 	if(suit)
 		IF_HAS_BLOOD_DNA(suit)
 			hygiene_loss -= 3 * HYGIENE_FACTOR
-	
+
 	var/obj/item/feet = get_item_by_slot(SLOT_SHOES)
 	if(feet)
 		IF_HAS_BLOOD_DNA(feet)
 			hygiene_loss -= 2 * HYGIENE_FACTOR
 
 	adjust_hygiene(hygiene_loss)
-	
+
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

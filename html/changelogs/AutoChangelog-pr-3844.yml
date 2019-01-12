@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Goliaths, legions and pAI will no longer block clicks on the entire turf."

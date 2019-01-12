@@ -12,6 +12,7 @@ Captain
 	supervisors = "Nanotrasen officials and Space law"
 	selection_color = "#ccccff"
 	req_admin_notify = 1
+	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
@@ -23,11 +24,10 @@ Captain
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 
+	mind_traits = list(TRAIT_DISK_VERIFIER)
+
 /datum/job/captain/get_access()
 	return get_all_accesses()
-
-/datum/job/captain/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	H.mind.add_trait(TRAIT_DISK_VERIFIER, JOB_TRAIT)
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()

@@ -38,6 +38,11 @@
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
 
+	//Yogs start
+	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
+	var/space_law_notify
+	//Yogs end
+
 	//If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age = 0
 
@@ -55,10 +60,15 @@
 	var/paycheck = PAYCHECK_MINIMAL
 	var/paycheck_department = ACCOUNT_CIV
 
+	var/list/mind_traits // Traits added to the mind of the mob assigned this job
+
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
+	if(mind_traits)
+		for(var/t in mind_traits)
+			H.mind.add_trait(t, JOB_TRAIT)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

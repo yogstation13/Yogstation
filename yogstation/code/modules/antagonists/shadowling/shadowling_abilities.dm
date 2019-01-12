@@ -127,39 +127,49 @@
 	return I.luminosity
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
-	var/blacklistLuminosity = 0
 	for(var/obj/item/F in H)
 		if(cold)
 			extinguishItem(F, TRUE)
-		blacklistLuminosity += extinguishItem(F)
-	H.set_light(blacklistLuminosity) //I hate lightcode for making me do it this way
+		extinguishItem(F)
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
 		revert_cast()
 		return
 	to_chat(user, "<span class='shadowling'>You silently disable all nearby lights.</span>")
-	for(var/turf/T in view(4))
-		for(var/obj/item/F in T.contents)
-			extinguishItem(F)
-		for(var/obj/machinery/light/L in T.contents)
+	var/turf/T = get_turf(user)
+	for(var/datum/light_source/LS in T.affecting_lights)
+		var/atom/LO = LS.source_atom
+		if(isitem(LO))
+			extinguishItem(LO)
+			continue
+		if(istype(LO, /obj/machinery/light))
+			var/obj/machinery/light/L = LO
 			L.on = FALSE
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
 			L.update(0)
 			L.set_light(0)
-		for(var/obj/machinery/computer/C in T.contents)
-			C.set_light(0)
-			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")
-		for(var/mob/living/H in T.contents)
-			extinguishMob(H)
-		for(var/mob/living/silicon/robot/borg in T.contents)
+			continue
+		if(istype(LO, /obj/machinery/computer) || istype(LO, /obj/machinery/power/apc))
+			LO.set_light(0)
+			LO.visible_message("<span class='warning'>[LO] grows dim, its screen barely readable.</span>")
+			continue
+		if(ismob(LO))
+			extinguishMob(LO)
+		if(istype(LO, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
 				borg.update_headlamp(TRUE, INFINITY)
 				to_chat(borg, "<span class='userdanger'>The lightbulb in your headlamp is fried! You'll need a human to help replace it.</span>")
-		for(var/obj/machinery/camera/cam in T.contents)
-			cam.set_light(0)
+		if(istype(LO, /obj/machinery/camera))
+			LO.set_light(0)
 			if(prob(10))
-				cam.emp_act(2)
+				LO.emp_act(2)
+			continue
+		if(istype(LO, /obj/structure/glowshroom))
+			LO.visible_message("<span class='warning'>[LO] withers away!</span>")
+			qdel(LO)
+			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		G.visible_message("<span class='warning'>[G] withers away!</span>")
 		qdel(G)

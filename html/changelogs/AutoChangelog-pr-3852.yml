@@ -1,5 +1,0 @@
-author: "AdamElTablawy"
-delete-after: true 
-changes: 
-  - bugfix: "Chiropteran Screech now actually stuns humans as intended for a total of 4 seconds."
-  - bugfix: "Rejuvenate now actually removes stuns, where it did literally nothing previously because fluffee couldn't be arsed to check to see if hippie handled stuns like we do."
