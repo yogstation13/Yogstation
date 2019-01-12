@@ -194,6 +194,7 @@
 	value = -1
 	gain_text = "<span class='danger'>You seem to make a big deal out of everything.</span>"
 	lose_text = "<span class='notice'>You don't seem to make a big deal out of everything anymore.</span>"
+	mood_quirk = TRUE //yogs
 
 /datum/quirk/hypersensitive/add()
 	GET_COMPONENT_FROM(mood, /datum/component/mood, quirk_holder)
