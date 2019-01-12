@@ -4,6 +4,7 @@
 	name = "telecommunications traffic control console"
 
 	var/screen = 0				// the screen number:
+	var/emagged = FALSE
 	var/list/servers = list()	// the servers located by the computer
 	var/mob/editingcode
 	var/mob/lasteditor
@@ -14,12 +15,12 @@
 	var/temp = ""				// temporary feedback messages
 
 	var/storedcode = ""			// code stored
-	var/obj/item/weapon/card/id/auth = null
+	var/obj/item/card/id/auth = null
 	var/list/access_log = list()
 	var/process = 0
-	circuit = /obj/item/weapon/circuitboard/computer/telecomms/comm_traffic
+	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
-	req_access = list(access_tcomadmin)
+	req_access = list(ACCESS_TCOM_ADMIN)
 
 /obj/machinery/computer/telecomms/traffic/proc/stop_editing()
 	if(editingcode)
@@ -145,7 +146,7 @@
 
 /obj/machinery/computer/telecomms/traffic/proc/create_log(entry, mob/user)
 	var/id = null
-	if(isaiorborg(user))
+	if(issilicon(user) || isAI(user))
 		id = "System Administrator"
 	else if(ispAI(user))
 		id = "[user.name] (pAI)"
@@ -174,12 +175,11 @@
 		if(iscarbon(usr))
 			var/mob/living/carbon/C = usr
 			if(!auth)
-				var/obj/item/weapon/card/id/I = C.get_active_hand()
+				var/obj/item/card/id/I = C.get_active_held_item()
 				if(istype(I))
 					if(check_access(I))
-						if(!C.drop_item())
+						if(!C.transferItemToLoc(I, src))
 							return
-						I.loc = src
 						auth = I
 						create_log("has logged in.", usr)
 			else
@@ -247,7 +247,7 @@
 					screen = 0
 
 			if("editcode")
-				if(jobban_isbanned(usr, "ntsl"))
+				if(is_banned_from(usr.ckey, "Signal Technician"))
 					to_chat(usr, "<span class='warning'>You are banned from using NTSL.</span>")
 					return
 				if(editingcode == usr)
@@ -295,8 +295,7 @@
 	return
 
 /obj/machinery/computer/telecomms/traffic/attackby(obj/O, mob/user, params)
-	if(istype(O, /obj/item/weapon/card/id) && check_access(O) && user.drop_item())
-		O.loc = src
+	if(istype(O, /obj/item/card/id) && check_access(O) && user.transferItemToLoc(O, src))
 		auth = O
 		create_log("has logged in.", usr)
 	else
@@ -306,7 +305,7 @@
 /obj/machinery/computer/telecomms/traffic/emag_act(mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
 
 /obj/machinery/computer/telecomms/traffic/proc/canAccess(mob/user)

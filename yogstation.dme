@@ -688,6 +688,7 @@
 #include "code\game\machinery\telecomms\computers\logbrowser.dm"
 #include "code\game\machinery\telecomms\computers\message.dm"
 #include "code\game\machinery\telecomms\computers\telemonitor.dm"
+#include "code\game\machinery\telecomms\computers\traffic_control.dm"
 #include "code\game\machinery\telecomms\machines\allinone.dm"
 #include "code\game\machinery\telecomms\machines\broadcaster.dm"
 #include "code\game\machinery\telecomms\machines\bus.dm"
