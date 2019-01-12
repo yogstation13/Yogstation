@@ -465,11 +465,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
-"bl" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/hardhat/cakehat,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/bar)
 "bm" = (
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
@@ -892,8 +887,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "cy" = (
+/obj/structure/table,
 /obj/machinery/chem_dispenser/drinks,
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "cz" = (
@@ -1007,14 +1002,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"rr" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "kitchen";
-	name = "kitchen shutters"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1114,7 +1101,7 @@ cQ
 cT
 ba
 cI
-bl
+bz
 cD
 cF
 bz
@@ -1274,9 +1261,9 @@ ab
 ab
 aj
 aj
-rr
-rr
-rr
+bC
+bC
+bC
 aj
 cb
 aj
