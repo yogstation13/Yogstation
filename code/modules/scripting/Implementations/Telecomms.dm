@@ -117,17 +117,17 @@ var/allowed_translateable_langs = ALL
 	interpreter.SetVar("$commanding",	SPAN_COMMAND) //Bolding from high-volume mode on command headsets
 
 	//Language bitflags
-	interpreter.SetVar("HUMAN"   ,	HUMAN)
-	interpreter.SetVar("MONKEY"   ,	MONKEY)
-	interpreter.SetVar("ALIEN"   ,	ALIEN)
-	interpreter.SetVar("ROBOT"   ,	ROBOT)
-	interpreter.SetVar("SLIME"   ,	SLIME)
-	interpreter.SetVar("DRONE"   ,	DRONE)
+	interpreter.SetVar("HUMAN"   ,	1)
+	interpreter.SetVar("MONKEY"   ,	2)
+	interpreter.SetVar("ALIEN"   ,	4)
+	interpreter.SetVar("ROBOT"   ,	8)
+	interpreter.SetVar("SLIME"   ,	16)
+	interpreter.SetVar("DRONE"   ,	32)
 
-	var/curlang = HUMAN
+	var/datum/language/curlang = /datum/language/common
 	if(istype(signal.data["mob"], /atom/movable))
 		var/atom/movable/M = signal.data["mob"]
-		curlang = M.languages_spoken
+		curlang = M.get_default_language()
 
 	interpreter.SetVar("$language", curlang)
 
@@ -248,7 +248,7 @@ var/allowed_translateable_langs = ALL
 	signal.data["verb_ask"]		= interpreter.GetCleanVar("$ask")
 	signal.data["verb_yell"]	= interpreter.GetCleanVar("$yell")
 	signal.data["verb_exclaim"]	= interpreter.GetCleanVar("$exclaim")
-	signal.data["languages"]	= (interpreter.GetCleanVar("$language") & (allowed_translateable_langs | curlang)) //we can only translate to certain languages, but we can always use the one that was sent in.
+	signal.data["languages"]	= (interpreter.GetCleanVar("$language") ? interpreter.GetCleanVar("$language") : curlang) //we can only translate to certain languages, but we can always use the one that was sent in.
 	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -301,7 +301,7 @@ var/const/MAX_MEM_VARS	 = 500
 		freq = sanitize_frequency(freq)
 
 		code = round(code)
-		code = Clamp(code, 0, 100)
+		code = CLAMP(code, 0, 100)
 
 		var/datum/signal/signal = new
 		signal.source = S
