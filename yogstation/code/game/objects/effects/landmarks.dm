@@ -27,6 +27,7 @@
 
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
+	layer = BULLET_HOLE_LAYER
 
 /obj/effect/landmark/stationroom/New()
 	..()
@@ -63,6 +64,12 @@
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box")
+	icon = 'yogstation/icons/rooms/box/bar.dmi'
+	icon_state = "bar_box"
+
+/obj/effect/landmark/stationroom/box/engine
+	template_names = list("Engine SM", "Engine Singulo")
+	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")
