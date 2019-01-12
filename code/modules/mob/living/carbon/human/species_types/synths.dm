@@ -4,7 +4,7 @@
 	say_mod = "beep boops" //inherited from a user's real species
 	sexes = 0
 	species_traits = list(NOTRANSSTING) //all of these + whatever we inherit from the real species
-	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOBREATH)
+	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	dangerous_existence = 1
 	blacklisted = 1
@@ -12,7 +12,7 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	var/list/initial_species_traits = list(NOTRANSSTING) //for getting these values back for assume_disguise()
-	var/list/initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOBREATH)
+	var/list/initial_inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species = null //a species to do most of our work for us, unless we're damaged
 
@@ -30,12 +30,14 @@
 	assume_disguise(old_species, H)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == "synthflesh")
+	H.reagents.remove_reagent(chem.id, chem.volume) //yogs start - synths don't process chems
+	return TRUE
+	/*if(chem.id == "synthflesh")
 		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
 		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 		return 1
 	else
-		return ..()
+		return ..()*/ //yogs end
 
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H)

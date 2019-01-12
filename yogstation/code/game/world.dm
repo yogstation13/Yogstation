@@ -1,4 +1,7 @@
 GLOBAL_LIST_EMPTY(donators)
+/world/proc/load_yogs_stuff()
+	load_donators()
+	load_mentors()
 
 /world/proc/load_donators()
 	var/list/donatorskeys = list()

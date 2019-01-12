@@ -126,12 +126,12 @@
  */
 
 /datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
-	if (!istype(T))
+	if(!istype(T))
 		return
 	var/CT = cooling_temperature
 
 	if(reac_volume >= 5)
-		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
+		T.MakeSlippery(TURF_WET_WATER, 120 SECONDS, min(reac_volume*3 SECONDS, 300 SECONDS)) //yogs
 
 	for(var/mob/living/simple_animal/slime/M in T)
 		M.apply_water()
@@ -219,7 +219,7 @@
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"))
+			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
 				M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 				M.Unconscious(120)
@@ -244,6 +244,21 @@
 			M.stuttering = 0
 			holder.remove_reagent(id, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
+	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
+		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		if(!V.get_ability(/datum/vampire_passive/full))
+			switch(data)
+				if(1 to 4)
+					to_chat(M, "<span class='warning'>Something sizzles in your veins!</span>")
+					M.adjustFireLoss(0.5)
+				if(5 to 12)
+					to_chat(M, "<span class='danger'>You feel an intense burning inside of you!</span>")
+					M.adjustFireLoss(1)
+				if(13 to INFINITY)
+					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", "<span class='userdanger'>You suddenly ignite in a holy fire!</span>")
+					M.adjust_fire_stacks(3)
+					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
+					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
 	holder.remove_reagent(id, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -270,9 +285,7 @@
 /datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
 	if(iscultist(M))
 		M.drowsyness = max(M.drowsyness-5, 0)
-		M.AdjustUnconscious(-20, 0)
-		M.AdjustStun(-40, 0)
-		M.AdjustKnockdown(-40, 0)
+		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-10, 0)
 		M.adjustToxLoss(-2, 0)
 		M.adjustOxyLoss(-2, 0)
@@ -414,7 +427,7 @@
 			else
 				M.visible_message("<b>[M]</b> flexes [M.p_their()] arms.")
 	if(prob(10))
-		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don’t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."))
+		M.say(pick("Shit was SO cash.", "You are everything bad in the world.", "What sports do you play, other than 'jack off to naked drawn Japanese people?'", "Don’t be a stranger. Just hit me with your best shot.", "My name is John and I hate every single one of you."), forced = "spraytan")
 	..()
 	return
 
@@ -434,7 +447,7 @@
 		return
 	to_chat(H, "<span class='warning'><b>You crumple in agony as your flesh wildly morphs into new forms!</b></span>")
 	H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
-	H.Knockdown(60)
+	H.Paralyze(60)
 	addtimer(CALLBACK(src, .proc/mutate, H), 30)
 	return
 
@@ -456,6 +469,13 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	race = /datum/species/jelly/slime
 	mutationtext = "<span class='danger'>The pain subsides. Your whole body feels like slime.</span>"
+
+/datum/reagent/mutationtoxin/felinid
+	name = "Felinid Mutation Toxin"
+	id = "felinidmutationtoxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/human/felinid
+	mutationtext = "<span class='danger'>The pain subsides. You feel... like a degenerate.</span>"
 
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
@@ -733,7 +753,7 @@
 	taste_mult = 0 // apparently tasteless.
 
 /datum/reagent/mercury/on_mob_life(mob/living/carbon/M)
-	if(M.canmove && !isspaceturf(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !isspaceturf(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -751,7 +771,7 @@
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
-	description = "A crumbly black solid that, while unexciting on an physical level, forms the base of all known life. Kind of a big deal."
+	description = "A crumbly black solid that, while unexciting on a physical level, forms the base of all known life. Kind of a big deal."
 	reagent_state = SOLID
 	color = "#1C1300" // rgb: 30, 20, 0
 	taste_description = "sour chalk"
@@ -813,7 +833,7 @@
 	taste_description = "metal"
 
 /datum/reagent/lithium/on_mob_life(mob/living/carbon/M)
-	if(M.canmove && !isspaceturf(M.loc))
+	if((M.mobility_flags & MOBILITY_MOVE) && !isspaceturf(M.loc))
 		step(M, pick(GLOB.cardinals))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -825,26 +845,6 @@
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "sweetness"
-
-/datum/reagent/radium
-	name = "Radium"
-	id = "radium"
-	description = "Radium is an alkaline earth metal. It is extremely radioactive."
-	reagent_state = SOLID
-	color = "#C7C7C7" // rgb: 199,199,199
-	taste_description = "the colour blue and regret"
-
-/datum/reagent/radium/on_mob_life(mob/living/carbon/M)
-	M.apply_effect(2*REM/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
-	..()
-
-/datum/reagent/radium/reaction_turf(turf/T, reac_volume)
-	if(reac_volume >= 3)
-		if(!isspaceturf(T))
-			var/obj/effect/decal/cleanable/greenglow/GG = locate() in T.contents
-			if(!GG)
-				GG = new/obj/effect/decal/cleanable/greenglow(T)
-			GG.reagents.add_reagent("radium", reac_volume)
 
 /datum/reagent/space_cleaner/sterilizine
 	name = "Sterilizine"
@@ -909,9 +909,10 @@
 	reagent_state = SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
+	var/irradiation_level = 1
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
-	M.apply_effect(1/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
+	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
 	..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -920,7 +921,16 @@
 			var/obj/effect/decal/cleanable/greenglow/GG = locate() in T.contents
 			if(!GG)
 				GG = new/obj/effect/decal/cleanable/greenglow(T)
-			GG.reagents.add_reagent("uranium", reac_volume)
+			GG.reagents.add_reagent(id, reac_volume)
+
+/datum/reagent/uranium/radium
+	name = "Radium"
+	id = "radium"
+	description = "Radium is an alkaline earth metal. It is extremely radioactive."
+	reagent_state = SOLID
+	color = "#C7C7C7" // rgb: 199,199,199
+	taste_description = "the colour blue and regret"
+	irradiation_level = 2*REM
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
@@ -932,7 +942,7 @@
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
-		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg') //4 tiles per crystal
+		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
 	..()
 
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
@@ -944,7 +954,7 @@
 	..()
 
 /mob/living/proc/bluespace_shuffle()
-	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg')
+	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /datum/reagent/aluminium
 	name = "Aluminium"
@@ -965,7 +975,7 @@
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "welding_fuel"
-	description = "Required for welders. Flamable."
+	description = "Required for welders. Flammable."
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "gross metal"
 	glass_icon_state = "dr_gibb_glass"
@@ -989,6 +999,7 @@
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	taste_description = "sourness"
+	reagent_weight = 0.6 //so it sprays further
 
 /datum/reagent/space_cleaner/reaction_obj(obj/O, reac_volume)
 	if(istype(O, /obj/effect/decal/cleanable))
@@ -1091,7 +1102,7 @@
 		M.emote("drool")
 	..()
 
-/datum/reagent/nanites
+/datum/reagent/nanomachines
 	name = "Nanomachines"
 	id = "nanomachines"
 	description = "Microscopic construction robots."
@@ -1099,7 +1110,7 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/nanomachines/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
@@ -1224,42 +1235,39 @@
 	id = "stimulum"
 	description = "An unstable experimental gas that greatly increases the energy of those that inhale it"
 	reagent_state = GAS
-	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
 	taste_description = "sourness"
 
 /datum/reagent/stimulum/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_GOTTAGOFAST, id)
+	L.add_trait(TRAIT_STUNIMMUNE, id)
+	L.add_trait(TRAIT_SLEEPIMMUNE, id)
 
 /datum/reagent/stimulum/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_GOTTAGOFAST, id)
+	L.remove_trait(TRAIT_STUNIMMUNE, id)
+	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
 	..()
 
-/datum/reagent/stimulum/on_mob_life(mob/living/carbon/M) // Has a speedup, and the anti-stun effects of nicotine.
-	M.AdjustStun(-20, 0)
-	M.AdjustKnockdown(-20, 0)
-	M.AdjustUnconscious(-20, 0)
-	M.adjustStaminaLoss(-0.5*REM, 0)
-	current_cycle++
-	holder.remove_reagent(id, 0.99)		//Gives time for the next tick of life().
-	. = TRUE //Update status effects.
+/datum/reagent/stimulum/on_mob_life(mob/living/carbon/M)
+	M.adjustStaminaLoss(-2*REM, 0)
+	..()
 
 /datum/reagent/nitryl
 	name = "Nitryl"
 	id = "no2"
 	description = "A highly reactive gas that makes you feel faster"
 	reagent_state = GAS
-	metabolization_rate = REAGENTS_METABOLISM
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	taste_description = "burning"
 
 /datum/reagent/nitryl/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_GOTTAGOFAST, id)
+	L.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/reagent/nitryl/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_GOTTAGOFAST, id)
+	L.remove_movespeed_modifier(id)
 	..()
 
 /////////////////////////Coloured Crayon Powder////////////////////////////
@@ -1543,7 +1551,7 @@
 		if(M && ishuman(M))
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
-			H.facial_hair_style = "Very Long Beard"
+			H.facial_hair_style = "Beard (Very Long)"
 			H.update_hair()
 
 /datum/reagent/saltpetre
@@ -1643,7 +1651,7 @@
 
 /datum/reagent/royal_bee_jelly/on_mob_life(mob/living/carbon/M)
 	if(prob(2))
-		M.say(pick("Bzzz...","BZZ BZZ","Bzzzzzzzzzzz..."))
+		M.say(pick("Bzzz...","BZZ BZZ","Bzzzzzzzzzzz..."), forced = "royal bee jelly")
 	..()
 
 //Misc reagents
@@ -1665,7 +1673,7 @@
 /datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, method=TOUCH, reac_volume)
 	// Silently add the zombie infection organ to be activated upon death
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
-		var/obj/item/organ/zombie_infection/ZI = new()
+		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
 		ZI.Insert(H)
 	..()
 
@@ -1781,10 +1789,14 @@
 /datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
 	..()
 	L.add_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
 	..()
 	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
+		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
 	if(L.mind)
@@ -1829,3 +1841,15 @@
 	if(prob(30))
 		to_chat(M, "You should sit down and take a rest...")
 	..()
+
+/datum/reagent/tranquility
+	name = "Tranquility"
+	id = "tranquility"
+	description = "A highly mutative liquid of unknown origin."
+	color = "#9A6750" //RGB: 154, 103, 80
+	taste_description = "inner peace"
+	can_synth = FALSE
+
+/datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)

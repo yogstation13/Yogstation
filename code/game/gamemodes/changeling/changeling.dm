@@ -8,6 +8,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 /datum/game_mode/changeling
 	name = "changeling"
 	config_tag = "changeling"
+	report_type = "changeling"
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
@@ -72,7 +73,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	for(var/datum/mind/changeling in changelings)
 		//log_game("[key_name(changeling)] has been selected as a changeling") | yogs - redundant
 		var/datum/antagonist/changeling/new_antag = new()
-		new_antag.team_mode = TRUE
+		//new_antag.team_mode = TRUE //yogs - lol
 		changeling.add_antag_datum(new_antag)
 	..()
 
@@ -83,7 +84,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 		return
 	if(changelings.len <= (changelingcap - 2) || prob(100 - (csc * 2)))
 		if(ROLE_CHANGELING in character.client.prefs.be_special)
-			if(!jobban_isbanned(character, ROLE_CHANGELING) && !QDELETED(character) && !jobban_isbanned(character, ROLE_SYNDICATE) && !QDELETED(character))
+			if(!is_banned_from(character.ckey, list(ROLE_CHANGELING, ROLE_SYNDICATE)) && !QDELETED(character))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
 						character.mind.make_Changeling()

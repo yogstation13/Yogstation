@@ -36,6 +36,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(src.prefs && src.prefs.afreeze && !href_list["priv_msg"] && href_list["_src_"] != "chat" && !src.holder) //yogs start - afreeze
+		to_chat(src, "<span class='userdanger'>You have been frozen by an administrator.</span>")
+		return //yogs end
+
 	// asset_cache
 	if(href_list["asset_cache_confirm_arrival"])
 		var/job = text2num(href_list["asset_cache_confirm_arrival"])
@@ -88,12 +92,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
+	// YOGS START - Mentor PMs
+	if(yogs_client_procs(href_list))
+		return
+	// YOGS END
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
+		if("mentor") // YOGS - Mentor stuff
+			hsrc = mentor_datum // YOGS - Mentor stuff
 		if("prefs")
 			if (inprefs)
 				return
@@ -117,7 +126,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	..()	//redirect to hsrc.Topic()
 
 /client/proc/is_content_unlocked()
-	if(!prefs.unlock_content)
+	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
 		to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
 		return 0
 	return 1
@@ -248,6 +257,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			prefs.toggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
+	// yogs start - mentor stuff
+	if(ckey in GLOB.mentor_datums)
+		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
+		src.mentor_datum = mentor
+		src.add_mentor_verbs()
+		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
+			GLOB.mentors += src
+	// yogs end
+	
 
 	. = ..()	//calls mob.Login()
 
@@ -349,6 +367,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			send2irc_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)
 	check_ip_intel()
+	validate_key_in_db()
 
 	send_resources()
 
@@ -431,14 +450,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 
-	sync_logout_with_db(connection_number) // yogs - logout logging
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	Master.UpdateTickRate()
+	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
@@ -458,6 +478,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	qdel(query_get_related_ip)
 	var/datum/DBQuery/query_get_related_cid = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE computerid = '[computer_id]' AND ckey != '[sql_ckey]'")
 	if(!query_get_related_cid.Execute())
+		qdel(query_get_related_cid)
 		return
 	related_accounts_cid = ""
 	while (query_get_related_cid.NextRow())
@@ -495,7 +516,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 		new_player = 1
 		account_join_date = sanitizeSQL(findJoinDate())
-		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery("INSERT INTO [format_table_name("player")] (`ckey`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`) VALUES ('[sql_ckey]', Now(), '[GLOB.round_id]', Now(), '[GLOB.round_id]', INET_ATON('[sql_ip]'), '[sql_computerid]', '[sql_admin_rank]', [account_join_date ? "'[account_join_date]'" : "NULL"])")
+		var/sql_key = sanitizeSQL(key)
+		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery("INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`) VALUES ('[sql_ckey]', '[sql_key]', Now(), '[GLOB.round_id]', Now(), '[GLOB.round_id]', INET_ATON('[sql_ip]'), '[sql_computerid]', '[sql_admin_rank]', [account_join_date ? "'[account_join_date]'" : "NULL"])")
 		if(!query_add_player.Execute())
 			qdel(query_client_in_db)
 			qdel(query_add_player)
@@ -539,14 +561,13 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	// yogs start - logout logging
 	var/serverip = "[world.internet_address]"
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
-	query_log_connection.Execute()
+	if(query_log_connection.Execute(async = FALSE))
+		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
+		query_getid.Execute(async = FALSE)
+		if(query_getid.NextRow())
+			connection_number = query_getid.item[1]
+		qdel(query_getid)
 	qdel(query_log_connection)
-
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
-	query_getid.Execute()
-	if(query_getid.NextRow())
-		connection_number = query_getid.item[1]
-	qdel(query_getid)
 	// yogs end
 	if(new_player)
 		player_age = -1
@@ -555,7 +576,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
 	if(!http)
-		log_world("Failed to connect to byond age check for [ckey]")
+		log_world("Failed to connect to byond member page to age check [ckey]")
 		return
 	var/F = file2text(http["CONTENT"])
 	if(F)
@@ -564,6 +585,32 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			. = R.group[1]
 		else
 			CRASH("Age check regex failed for [src.ckey]")
+
+/client/proc/validate_key_in_db()
+	var/sql_ckey = sanitizeSQL(ckey)
+	var/sql_key
+	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery("SELECT byond_key FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	if(!query_check_byond_key.Execute())
+		qdel(query_check_byond_key)
+		return
+	if(query_check_byond_key.NextRow())
+		sql_key = query_check_byond_key.item[1]
+	qdel(query_check_byond_key)
+	if(key != sql_key)
+		var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+		if(!http)
+			log_world("Failed to connect to byond member page to get changed key for [ckey]")
+			return
+		var/F = file2text(http["CONTENT"])
+		if(F)
+			var/regex/R = regex("\\tkey = \"(.+)\"")
+			if(R.Find(F))
+				var/web_key = sanitizeSQL(R.group[1])
+				var/datum/DBQuery/query_update_byond_key = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET byond_key = '[web_key]' WHERE ckey = '[sql_ckey]'")
+				query_update_byond_key.Execute()
+				qdel(query_update_byond_key)
+			else
+				CRASH("Key check regex failed for [ckey]")
 
 /client/proc/check_randomizer(topic)
 	. = FALSE
@@ -655,7 +702,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/sql_system_ckey = sanitizeSQL(system_ckey)
 	var/sql_ckey = sanitizeSQL(ckey)
 	//check to see if we noted them in the last day.
-	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0")
+	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -664,7 +711,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		return
 	qdel(query_get_notes)
 	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
-	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 ORDER BY timestamp DESC LIMIT 1")
+	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1")
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -673,7 +720,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			qdel(query_get_notes)
 			return
 	qdel(query_get_notes)
-	create_message("note", ckey, system_ckey, message, null, null, 0, 0)
+	//create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
+	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0) //yogs -
 
 
 /client/proc/check_ip_intel()
@@ -819,7 +867,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.auto_fit_viewport)
-		fit_viewport()
+		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)
@@ -834,3 +882,23 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/AnnouncePR(announcement)
 	if(prefs && prefs.chat_toggles & CHAT_PULLR)
 		to_chat(src, announcement)
+
+/client/proc/show_character_previews(mutable_appearance/MA)
+	var/pos = 0
+	for(var/D in GLOB.cardinals)
+		pos++
+		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		if(!O)
+			O = new
+			LAZYSET(char_render_holders, "[D]", O)
+			screen |= O
+		O.appearance = MA
+		O.dir = D
+		O.screen_loc = "character_preview_map:0,[pos]"
+
+/client/proc/clear_character_previews()
+	for(var/index in char_render_holders)
+		var/obj/screen/S = char_render_holders[index]
+		screen -= S
+		qdel(S)
+	char_render_holders = null

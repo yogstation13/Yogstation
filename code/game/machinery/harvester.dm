@@ -86,6 +86,7 @@
 	operation_order = reverseList(C.bodyparts)   //Chest and head are first in bodyparts, so we invert it to make them suffer more
 	harvesting = TRUE
 	visible_message("<span class='notice'>The [name] begins warming up!</span>")
+	say("Initializing harvest protocol.")
 	update_icon(TRUE)
 	addtimer(CALLBACK(src, .proc/harvest), interval)
 
@@ -126,19 +127,28 @@
 /obj/machinery/harvester/proc/end_harvesting()
 	harvesting = FALSE
 	open_machine()
-	say("Subject has been succesfuly harvested.")
+	say("Subject has been successfully harvested.")
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, 0)
 
 /obj/machinery/harvester/screwdriver_act(mob/living/user, obj/item/I)
-	if(!state_open && !occupant)
-		if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
-			return
+	. = TRUE
+	if(..())
+		return
+	if(occupant)
+		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		return
+	if(state_open)
+		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		return
+	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
+		return
+	return FALSE
 
 /obj/machinery/harvester/crowbar_act(mob/living/user, obj/item/I)
 	if(default_pry_open(I))
-		return
+		return TRUE
 	if(default_deconstruction_crowbar(I))
-		return
+		return TRUE
 
 /obj/machinery/harvester/default_pry_open(obj/item/I) //wew
 	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR //We removed is_operational() here
@@ -172,7 +182,11 @@
 
 /obj/machinery/harvester/examine(mob/user)
 	..()
+	if(stat & BROKEN)
+		return
 	if(state_open)
 		to_chat(user, "<span class='notice'>[src] must be closed before harvesting.</span>")
-	else
+	else if(!harvesting)
 		to_chat(user, "<span class='notice'>Alt-click [src] to start harvesting.</span>")
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: Harvest speed at <b>[interval*0.1]</b> seconds per organ.<span>")

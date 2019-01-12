@@ -63,7 +63,7 @@ There are several things that need to be remembered:
 	..()
 
 /mob/living/carbon/human/update_fire()
-	..((fire_stacks > 3) ? "Standing" : "Generic_mob_burning")
+	..((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM) ? "Standing" : "Generic_mob_burning")
 
 
 /* --------------------------------------- */
@@ -301,7 +301,7 @@ There are several things that need to be remembered:
 		if(!t_state)
 			t_state = s_store.icon_state
 		overlays_standing[SUIT_STORE_LAYER]	= mutable_appearance('icons/mob/belt_mirror.dmi', t_state, -SUIT_STORE_LAYER)
-		var/mutable_appearance/s_store_overlay = overlays_standing[SUIT_LAYER]
+		var/mutable_appearance/s_store_overlay = overlays_standing[SUIT_STORE_LAYER]
 		if(OFFSET_S_STORE in dna.species.offset_features)
 			s_store_overlay.pixel_x += dna.species.offset_features[OFFSET_S_STORE][1]
 			s_store_overlay.pixel_y += dna.species.offset_features[OFFSET_S_STORE][2]
@@ -479,8 +479,13 @@ There are several things that need to be remembered:
 		client.screen += I
 	update_observer_view(I)
 
-
-
+//Update whether we smell
+/mob/living/carbon/human/proc/update_smell(var/smelly_icon = "generic_mob_smell")
+	remove_overlay(SMELL_LAYER)
+	if(hygiene <= HYGIENE_LEVEL_DIRTY)
+		var/mutable_appearance/new_smell_overlay = mutable_appearance('icons/mob/smelly.dmi', smelly_icon, -SMELL_LAYER)
+		overlays_standing[SMELL_LAYER] = new_smell_overlay
+ 	apply_overlay(SMELL_LAYER)
 
 /*
 Does everything in relation to building the /mutable_appearance used in the mob's overlays list

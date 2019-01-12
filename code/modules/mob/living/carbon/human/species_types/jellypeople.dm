@@ -1,6 +1,6 @@
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
-	name = "Xenobiological Jelly Entity"
+	name = "Jellyperson"
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
@@ -42,7 +42,7 @@
 	if(H.blood_volume < BLOOD_VOLUME_NORMAL)
 		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
 			H.blood_volume += 3
-			H.nutrition -= 2.5
+			H.adjust_nutrition(-2.5)
 	if(H.blood_volume < BLOOD_VOLUME_OKAY)
 		if(prob(5))
 			to_chat(H, "<span class='danger'>You feel drained!</span>")
@@ -170,7 +170,7 @@
 			to_chat(H, "<span class='notice'>You feel very bloated!</span>")
 	else if(H.nutrition >= NUTRITION_LEVEL_WELL_FED)
 		H.blood_volume += 3
-		H.nutrition -= 2.5
+		H.adjust_nutrition(-2.5)
 
 	..()
 
@@ -330,7 +330,8 @@
 		return
 	switch(action)
 		if("swap")
-			var/mob/living/carbon/human/selected = locate(params["ref"])
+			var/datum/species/jelly/slime/SS = H.dna.species
+			var/mob/living/carbon/human/selected = locate(params["ref"]) in SS.bodies
 			if(!can_swap(selected))
 				return
 			SStgui.close_uis(src)
@@ -587,7 +588,7 @@
 /datum/species/jelly/stargazer/proc/link_mob(mob/living/M)
 	if(QDELETED(M) || M.stat == DEAD)
 		return FALSE
-	if(M.isloyal()) //mindshield implant, no dice
+	if(M.has_trait(TRAIT_MINDSHIELD)) //mindshield implant, no dice
 		return FALSE
 	if(M in linked_mobs)
 		return FALSE
@@ -640,7 +641,7 @@
 
 	if(message)
 		var/msg = "<i><font color=#008CA2>\[[species.slimelink_owner.real_name]'s Slime Link\] <b>[H]:</b> [message]</font></i>"
-		log_talk(H,"SlimeLink: [key_name(H)] : [msg]",LOGSAY)
+		log_directed_talk(H, species.slimelink_owner, msg, LOG_SAY, "slime link")
 		for(var/X in species.linked_mobs)
 			var/mob/living/M = X
 			if(QDELETED(M) || M.stat == DEAD)
@@ -677,7 +678,7 @@
 
 	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
 	if(msg)
-		log_talk(H,"SlimeTelepathy: [key_name(H)]->[key_name(M)] : [msg]",LOGSAY)
+		log_directed_talk(H, M, msg, LOG_SAY, "slime telepathy")
 		to_chat(M, "<span class='notice'>You hear an alien voice in your head... </span><font color=#008CA2>[msg]</font>")
 		to_chat(H, "<span class='notice'>You telepathically said: \"[msg]\" to [M]</span>")
 		for(var/dead in GLOB.dead_mob_list)

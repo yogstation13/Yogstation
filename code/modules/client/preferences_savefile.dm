@@ -71,6 +71,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return 0
 
 	//general preferences
+	S["asaycolor"]			>> asaycolor
 	S["ooccolor"]			>> ooccolor
 	S["lastchangelog"]		>> lastchangelog
 	S["UI_style"]			>> UI_style
@@ -107,6 +108,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	S["donor_pda"]			>> donor_pda
 	S["donor_hat"]          >> donor_hat
+	S["donor_item"]          >> donor_item
 	S["purrbation"]			>> purrbation
 	// yogs end
 
@@ -115,6 +117,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
 
 	//Sanitize
+	asaycolor		= sanitize_ooccolor(sanitize_hexcolor(asaycolor, 6, 1, initial(asaycolor)))
 	ooccolor		= sanitize_ooccolor(sanitize_hexcolor(ooccolor, 6, 1, initial(ooccolor)))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	UI_style		= sanitize_inlist(UI_style, GLOB.available_ui_styles, GLOB.available_ui_styles[1])
@@ -141,6 +144,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
+	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 	// yogs end
 	
@@ -159,6 +163,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["version"] , SAVEFILE_VERSION_MAX)		//updates (or failing that the sanity checks) will ensure data is not invalid at load. Assume up-to-date
 
 	//general preferences
+	WRITE_FILE(S["asaycolor"], asaycolor)
 	WRITE_FILE(S["ooccolor"], ooccolor)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["UI_style"], UI_style)
@@ -193,6 +198,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// yogs start - Donor features
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
+	WRITE_FILE(S["donor_item"], donor_item)
 	WRITE_FILE(S["purrbation"], purrbation)
 	// yogs end
 	
@@ -226,10 +232,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["species"]			>> species_id
 	if(species_id)
 		var/newtype = GLOB.species_list[species_id]
-		pref_species = new newtype()
+		if(newtype)
+			pref_species = new newtype
 
 	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000")
 		WRITE_FILE(S["features["mcolor"]"]	, "#FFF")
+	
+	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000")
+		WRITE_FILE(S["feature_ethcolor"]	, "#9c3030")
 
 	//Character
 	S["real_name"]			>> real_name
@@ -249,6 +259,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["backbag"]			>> backbag
 	S["uplink_loc"]			>> uplink_spawn_loc
 	S["feature_mcolor"]					>> features["mcolor"]
+	S["feature_ethcolor"]					>> features["ethcolor"]
 	S["feature_lizard_tail"]			>> features["tail_lizard"]
 	S["feature_lizard_snout"]			>> features["snout"]
 	S["feature_lizard_horns"]			>> features["horns"]
@@ -263,12 +274,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else
 		S["feature_human_tail"]				>> features["tail_human"]
 		S["feature_human_ears"]				>> features["ears"]
-	
+
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		var/savefile_slot_name = custom_name_id + "_name" //TODO remove this
-		S[savefile_slot_name] >> custom_names[custom_name_id] 
-	
+		S[savefile_slot_name] >> custom_names[custom_name_id]
+
+	S["preferred_ai_core_display"] >> preferred_ai_core_display
 	S["prefered_security_department"] >> prefered_security_department
 
 	//Jobs
@@ -308,10 +320,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if(!features["mcolor"] || features["mcolor"] == "#000")
 		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+	
+	if(!features["ethcolor"] || features["ethcolor"] == "#000")
+		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	be_random_body	= sanitize_integer(be_random_body, 0, 1, initial(be_random_body))
-	
+
 	if(gender == MALE)
 		hair_style			= sanitize_inlist(hair_style, GLOB.hair_styles_male_list)
 		facial_hair_style			= sanitize_inlist(facial_hair_style, GLOB.facial_hair_styles_male_list)
@@ -331,6 +346,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	backbag			= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
 	uplink_spawn_loc = sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list, initial(uplink_spawn_loc))
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
+	features["ethcolor"]	= copytext(features["ethcolor"],1,7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
 	features["snout"]	= sanitize_inlist(features["snout"], GLOB.snouts_list)
@@ -389,6 +405,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["uplink_loc"]			, uplink_spawn_loc)
 	WRITE_FILE(S["species"]			, pref_species.id)
 	WRITE_FILE(S["feature_mcolor"]					, features["mcolor"])
+	WRITE_FILE(S["feature_ethcolor"]					, features["ethcolor"])
 	WRITE_FILE(S["feature_lizard_tail"]			, features["tail_lizard"])
 	WRITE_FILE(S["feature_human_tail"]				, features["tail_human"])
 	WRITE_FILE(S["feature_lizard_snout"]			, features["snout"])
@@ -404,7 +421,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		var/savefile_slot_name = custom_name_id + "_name" //TODO remove this
 		WRITE_FILE(S[savefile_slot_name],custom_names[custom_name_id])
-	
+
+	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
 
 	//Jobs

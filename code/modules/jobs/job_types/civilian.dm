@@ -16,8 +16,12 @@ Clown
 
 	access = list(ACCESS_THEATRE)
 	minimal_access = list(ACCESS_THEATRE)
+	paycheck = PAYCHECK_MINIMAL
+	paycheck_department = ACCOUNT_SRV
+
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
 	H.apply_pref_name("clown", M.client)
 
 /datum/outfit/job/clown
@@ -46,19 +50,12 @@ Clown
 
 	chameleon_extras = /obj/item/stamp/clown
 
-
-/datum/outfit/job/clown/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	if(visualsOnly)
-		return
-
-	H.fully_replace_character_name(H.real_name, pick(GLOB.clown_names))
-
 /datum/outfit/job/clown/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	if(visualsOnly)
 		return
 
+	H.fully_replace_character_name(H.real_name, pick(GLOB.clown_names)) //rename the mob AFTER they're equipped so their ID gets updated properly.
 	H.dna.add_mutation(CLOWNMUT)
 
 /*
@@ -79,6 +76,9 @@ Mime
 
 	access = list(ACCESS_THEATRE)
 	minimal_access = list(ACCESS_THEATRE)
+	paycheck = PAYCHECK_MINIMAL
+	paycheck_department = ACCOUNT_SRV
+
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	H.apply_pref_name("mime", M.client)
@@ -133,6 +133,9 @@ Curator
 
 	access = list(ACCESS_LIBRARY)
 	minimal_access = list(ACCESS_LIBRARY, ACCESS_CONSTRUCTION,ACCESS_MINING_STATION)
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_CIV
+
 
 /datum/outfit/job/curator
 	name = "Curator"
@@ -145,7 +148,7 @@ Curator
 	l_pocket = /obj/item/laser_pointer
 	accessory = /obj/item/clothing/accessory/pocketprotector/full
 	backpack_contents = list(
-		/obj/item/melee/curator_whip = 1,
+		/obj/item/choice_beacon/hero = 1,
 		/obj/item/soapstone = 1,
 		/obj/item/barcodescanner = 1
 	)
@@ -158,7 +161,6 @@ Curator
 		return
 
 	H.grant_all_languages(omnitongue=TRUE)
-	H.gain_trauma(/datum/brain_trauma/mild/phobia, TRAUMA_RESILIENCE_SURGERY, "snakes") //why does it have to be snakes...
 /*
 Lawyer
 */
@@ -172,12 +174,17 @@ Lawyer
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
+	space_law_notify = 1 //Yogs
 	var/lawyers = 0 //Counts lawyer amount
 
 	outfit = /datum/outfit/job/lawyer
 
 	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_CIV
+	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
+
 
 /datum/outfit/job/lawyer
 	name = "Lawyer"
@@ -223,6 +230,8 @@ Tourist
 	minimal_access = list()
 
 	outfit = /datum/outfit/job/tourist
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_CIV
 
 /datum/outfit/job/tourist
 	name = "Tourist"
@@ -256,6 +265,8 @@ Clerk
 	minimal_access = list(ACCESS_MANUFACTURING)
 
 	outfit = /datum/outfit/job/clerk
+	paycheck = PAYCHECK_EASY
+	paycheck_department = ACCOUNT_SRV
 
 /datum/outfit/job/clerk
 	name = "Clerk"
@@ -266,4 +277,5 @@ Clerk
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head = /obj/item/clothing/head/yogs/clerkcap
+	backpack_contents = list(/obj/item/circuitboard/machine/paystand = 1)
 // yogs end

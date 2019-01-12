@@ -17,6 +17,7 @@
 	var/custom_pixel_y_offset = 0
 	var/sneaking = 0 //For sneaky-sneaky mode and appropriate slowdown
 	var/drooling = 0 //For Neruotoxic spit overlays
+	deathsound = 'sound/voice/hiss6.ogg'
 	bodyparts = list(/obj/item/bodypart/chest/alien, /obj/item/bodypart/head/alien, /obj/item/bodypart/l_arm/alien,
 					 /obj/item/bodypart/r_arm/alien, /obj/item/bodypart/r_leg/alien, /obj/item/bodypart/l_leg/alien)
 
@@ -26,16 +27,8 @@
 	AddAbility(new/obj/effect/proc_holder/alien/regurgitate(null))
 	. = ..()
 
-/mob/living/carbon/alien/humanoid/movement_delay()
-	. = ..()
-	var/static/config_alien_delay
-	if(isnull(config_alien_delay))
-		config_alien_delay = CONFIG_GET(number/alien_delay)
-	. += move_delay_add + config_alien_delay + sneaking //move_delay_add is used to slow aliens with stun
-
 /mob/living/carbon/alien/humanoid/restrained(ignore_grab)
-	. = handcuffed
-
+	return handcuffed
 
 /mob/living/carbon/alien/humanoid/show_inv(mob/user)
 	user.set_machine(src)
@@ -63,15 +56,16 @@
 
 
 /mob/living/carbon/alien/humanoid/Topic(href, href_list)
-	..()
 	//strip panel
-	if(usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
-		if(href_list["pouches"])
-			visible_message("<span class='danger'>[usr] tries to empty [src]'s pouches.</span>", \
-							"<span class='userdanger'>[usr] tries to empty [src]'s pouches.</span>")
-			if(do_mob(usr, src, POCKET_STRIP_DELAY * 0.5))
-				dropItemToGround(r_store)
-				dropItemToGround(l_store)
+	if(href_list["pouches"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+		visible_message("<span class='danger'>[usr] tries to empty [src]'s pouches.</span>", \
+						"<span class='userdanger'>[usr] tries to empty [src]'s pouches.</span>")
+		if(do_mob(usr, src, POCKET_STRIP_DELAY * 0.5))
+			dropItemToGround(r_store)
+			dropItemToGround(l_store)
+
+	..()
+
 
 /mob/living/carbon/alien/humanoid/cuff_resist(obj/item/I)
 	playsound(src, 'sound/voice/hiss5.ogg', 40, 1, 1)  //Alien roars when starting to break free

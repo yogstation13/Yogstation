@@ -1,0 +1,2 @@
+GLOBAL_LIST_EMPTY(mentors) // Mentors???? I DONT KNOW WHY THIS IS HERE BUT OK
+GLOBAL_PROTECT(mentors)

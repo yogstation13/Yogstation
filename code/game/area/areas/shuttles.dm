@@ -10,6 +10,8 @@
 	always_unpowered = FALSE
 	valid_territory = FALSE
 	icon_state = "shuttle"
+	// Loading the same shuttle map at a different time will produce distinct area instances.
+	unique = FALSE
 
 /area/shuttle/Initialize()
 	if(!canSmoothWithAreas)
@@ -58,10 +60,6 @@
 	requires_power = TRUE
 	canSmoothWithAreas = /area/shuttle/pirate
 
-/area/shuttle/pirate/vault
-	name = "Pirate Shuttle Vault"
-	requires_power = FALSE
-
 ////////////////////////////White Ship////////////////////////////
 
 /area/shuttle/abandoned
@@ -103,6 +101,7 @@
 
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
+	unique = TRUE  // SSjob refers to this area for latejoiners
 
 /area/shuttle/pod_1
 	name = "Escape Pod One"

@@ -18,8 +18,8 @@
 	to_chat(user, "<span class='notice'>The pages of [title] have been cut out!</span>")
 
 GLOBAL_LIST_INIT(biblenames, list("Bible", "Quran", "Scrapbook", "Burning Bible", "Clown Bible", "Banana Bible", "Creeper Bible", "White Bible", "Holy Light",  "The God Delusion", "Tome",        "The King in Yellow", "Ithaqua", "Scientology", "Melted Bible", "Necronomicon"))
-GLOBAL_LIST_INIT(biblestates, list("bible", "koran", "scrapbook", "burning",       "honk1",       "honk2",        "creeper",       "white",       "holylight",   "atheist",          "tome",        "kingyellow",         "ithaqua", "scientology", "melted",       "necronomicon"))
-GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",         "bible",       "bible",        "syringe_kit",   "syringe_kit", "syringe_kit", "syringe_kit",      "syringe_kit", "kingyellow",         "ithaqua", "scientology", "melted",       "necronomicon"))
+GLOBAL_LIST_INIT(biblestates, list("bible", "koran", "scrapbook", "burning", "honk1", "honk2", "creeper", "white", "holylight", "atheist", "tome", "kingyellow", "ithaqua", "scientology", "melted", "necronomicon"))
+GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible", "bible", "bible", "kingyellow", "ithaqua", "scientology", "melted", "necronomicon"))
 
 /mob/proc/bible_check() //The bible, if held, might protect against certain things
 	var/obj/item/storage/book/bible/B = locate() in src
@@ -50,6 +50,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 /obj/item/storage/book/bible/attack_self(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
+	if(!H.can_read(src))
+		return FALSE
 	// If H is the Chaplain, we can set the icon_state of the bible (but only once!)
 	if(!SSreligion.bible_icon_state && H.job == "Chaplain")
 		var/dat = "<html><head><title>Pick Bible Style</title></head><body><center><h2>Pick a bible style</h2></center><table>"
@@ -67,17 +69,16 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 	if(href_list["seticon"] && SSreligion && !SSreligion.bible_icon_state)
 		var/iconi = text2num(href_list["seticon"])
 		var/biblename = GLOB.biblenames[iconi]
-		var/obj/item/storage/book/bible/B = locate(href_list["src"])
-		B.icon_state = GLOB.biblestates[iconi]
-		B.item_state = GLOB.bibleitemstates[iconi]
+		icon_state = GLOB.biblestates[iconi]
+		item_state = GLOB.bibleitemstates[iconi]
 
-		if(B.icon_state == "honk1" || B.icon_state == "honk2")
+		if(icon_state == "honk1" || icon_state == "honk2")
 			var/mob/living/carbon/human/H = usr
 			H.dna.add_mutation(CLOWNMUT)
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
 
-		SSreligion.bible_icon_state = B.icon_state
-		SSreligion.bible_item_state = B.item_state
+		SSreligion.bible_icon_state = icon_state
+		SSreligion.bible_item_state = item_state
 
 		SSblackbox.record_feedback("text", "religion_book", 1, "[biblename]")
 		usr << browse(null, "window=editicon")
@@ -90,12 +91,12 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 			return 0
 
 	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1)
+	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
 
 	if(hurt_limbs.len)
 		for(var/X in hurt_limbs)
 			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt))
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
 				H.update_damage_overlays()
 		H.visible_message("<span class='notice'>[user] heals [H] with the power of [deity_name]!</span>")
 		to_chat(H, "<span class='boldnotice'>May the power of [deity_name] compel you to be healed!</span>")
@@ -146,7 +147,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 			M.visible_message("<span class='danger'>[user] beats [M] over the head with [src]!</span>", \
 					"<span class='userdanger'>[user] beats [M] over the head with [src]!</span>")
 			playsound(src.loc, "punch", 25, 1, -1)
-			add_logs(user, M, "attacked", src)
+			log_combat(user, M, "attacked", src)
 
 	else
 		M.visible_message("<span class='danger'>[user] smacks [M]'s lifeless corpse with [src].</span>")
@@ -187,9 +188,23 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 				SS.release_shades(user)
 				qdel(SS)
 			new /obj/item/nullrod/claymore(get_turf(sword))
-			user.visible_message("<span class='notice'>[user] has purified the [sword]!!</span>")
+			user.visible_message("<span class='notice'>[user] has purified the [sword]!</span>")
 			qdel(sword)
 
+	else if(istype(A, /obj/item/soulstone) && !iscultist(user))
+		var/obj/item/soulstone/SS = A
+		to_chat(user, "<span class='notice'>You begin to exorcise [SS].</span>")
+		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
+		if(do_after(user, 40, target = SS))
+			playsound(src,'sound/effects/pray_chaplain.ogg',60,1)
+			SS.usability = TRUE
+			for(var/mob/living/simple_animal/shade/EX in SS)
+				SSticker.mode.remove_cultist(EX.mind, 1, 0)
+				EX.icon_state = "ghost1"
+				EX.name = "Purified [EX.name]"
+				SS.release_shades(user)
+			user.visible_message("<span class='notice'>[user] has purified the [SS]!</span>")
+			qdel(SS)
 
 /obj/item/storage/book/bible/booze
 	desc = "To be applied to the head repeatedly."

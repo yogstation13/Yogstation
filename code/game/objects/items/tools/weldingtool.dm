@@ -87,7 +87,7 @@
 
 
 /obj/item/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		flamethrower_screwdriver(I, user)
 	else if(istype(I, /obj/item/stack/rods))
 		flamethrower_rods(I, user)
@@ -124,13 +124,13 @@
 	if(!proximity)
 		return
 	if(!status && O.is_refillable())
-		reagents.trans_to(O, reagents.total_volume)
+		reagents.trans_to(O, reagents.total_volume, transfered_by = user)
 		to_chat(user, "<span class='notice'>You empty [src]'s fuel tank into [O].</span>")
 		update_icon()
 	if(isOn())
 		use(1)
 		var/turf/location = get_turf(user)
-		location.hotspot_expose(550, 10, 1)
+		location.hotspot_expose(700, 50, 1)
 		if(get_fuel() <= 0)
 			set_light(0)
 
@@ -266,10 +266,10 @@
 	status = !status
 	if(status)
 		to_chat(user, "<span class='notice'>You resecure [src] and close the fuel tank.</span>")
-		container_type = NONE
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 	else
 		to_chat(user, "<span class='notice'>[src] can now be attached, modified, and refuelled.</span>")
-		container_type = OPENCONTAINER
+		ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 	add_fingerprint(user)
 
 /obj/item/weldingtool/proc/flamethrower_rods(obj/item/I, mob/user)

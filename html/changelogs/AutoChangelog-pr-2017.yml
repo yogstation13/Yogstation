@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Cigarettes now always transfer a valid amount of reagents."
-  - bugfix: " Reagent order of operations is no longer completely insane"

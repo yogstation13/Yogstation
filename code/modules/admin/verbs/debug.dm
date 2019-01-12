@@ -494,7 +494,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set desc = "Direct intervention"
 
 	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+		if(alert("This mob is being controlled by [M.key]. Are you sure you wish to assume control of it? [M.key] will be made a ghost.",,"Yes","No") != "Yes")
 			return
 		else
 			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
@@ -740,8 +740,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		H = M.change_mob_type(/mob/living/carbon/human, null, null, TRUE)
 	else
 		H = M
-		if(alert("Drop Items in Pockets? No will delete them.", "Robust quick dress shop", "Yes", "No") == "No")
-			delete_pocket = TRUE
+		if(H.l_store || H.r_store || H.s_store) //saves a lot of time for admins and coders alike
+			if(alert("Drop Items in Pockets? No will delete them.", "Robust quick dress shop", "Yes", "No") == "No")
+				delete_pocket = TRUE
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Select Equipment") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	for (var/obj/item/I in H.get_equipped_items(delete_pocket))
@@ -755,7 +756,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] changed the equipment of [ADMIN_LOOKUPFLW(H)] to [dresscode].</span>")
 
 /client/proc/robust_dress_shop()
-	var/list/outfits = list("Cancel","Naked","Custom","As Job...")
+	var/list/outfits = list("Naked","Custom","As Job...")
 	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
@@ -768,9 +769,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	if (outfits[dresscode])
 		dresscode = outfits[dresscode]
-
-	if(dresscode == "Cancel")
-		return
 
 	if (dresscode == "As Job...")
 		var/list/job_paths = subtypesof(/datum/outfit/job)
@@ -1091,3 +1089,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 	sort = sortlist[sort]
 	profile_show(src, sort)
+
+/client/proc/reload_configuration()
+	set category = "Debug"
+	set name = "Reload Configuration"
+	set desc = "Force config reload to world default"
+	if(!check_rights(R_DEBUG))
+		return
+	if(alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", "No", "Yes") == "Yes")
+		config.admin_reload()

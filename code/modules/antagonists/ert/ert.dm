@@ -34,6 +34,12 @@
 	. = ..()
 	name_source = GLOB.commando_names
 
+/datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
+	owner.add_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+
+/datum/antagonist/ert/deathsquad/remove_innate_effects(mob/living/mob_override)
+	owner.remove_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 
 /datum/antagonist/ert/security/red
@@ -101,7 +107,6 @@
 /datum/antagonist/ert/proc/forge_objectives()
 	if(ert_team)
 		objectives |= ert_team.objectives
-	owner.objectives |= objectives
 
 /datum/antagonist/ert/proc/equipERT()
 	var/mob/living/carbon/human/H = owner.current
