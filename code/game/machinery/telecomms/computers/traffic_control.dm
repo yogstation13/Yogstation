@@ -119,13 +119,6 @@
 					dat += "<center><a href='?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a>     <a href='?src=\ref[src];operation=refresh'>\[Refresh\]</a></center>"
 					dat += "<br>Current Network: [network]"
 					dat += "<br>Selected Server: [SelectedServer.id]"
-					dat += "<br>Encryption Mode: [SelectedServer.encryption ? "<a href='?src=\ref[src];encryption=0'>\[OFF\]</A>" : "<b>\[OFF\]</b>"]"
-					if(SelectedServer.encryptionkey)
-						for(var/E in SelectedServer.encryptionkey.encryption_keys)
-							if(E == SelectedServer.encryption)
-								dat += "<b> \[[E]\]</b>"
-							else
-								dat += "<a href='?src=\ref[src];encryption=[E]'>\[[E]\]</A>"
 					dat += "<br><br>"
 					dat += "<br><a href='?src=\ref[src];operation=editcode'>\[Edit Code\]</a>"
 					dat += "<br>Signal Execution: "
@@ -205,20 +198,6 @@
 				SelectedServer = T
 				create_log("selected server [T.name]", usr)
 				break
-
-	if(href_list["encryption"])
-		if(SelectedServer)
-			var/E = href_list["encryption"]
-			var/set_e = ""
-			if(E == "0")
-				SelectedServer.encryption = ""
-				set_e = "OFF"
-			else if(SelectedServer.encryptionkey && (E in SelectedServer.encryptionkey.encryption_keys))
-				SelectedServer.encryption = E
-				set_e = E
-			if(set_e)
-				create_log("has set [SelectedServer] to encryption mode: [set_e].", usr)
-
 	if(href_list["operation"])
 		create_log("has performed action: [href_list["operation"]].", usr)
 		switch(href_list["operation"])

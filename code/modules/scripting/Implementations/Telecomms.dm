@@ -248,7 +248,7 @@ var/allowed_translateable_langs = ALL
 	signal.data["verb_ask"]		= interpreter.GetCleanVar("$ask")
 	signal.data["verb_yell"]	= interpreter.GetCleanVar("$yell")
 	signal.data["verb_exclaim"]	= interpreter.GetCleanVar("$exclaim")
-	signal.data["languages"]	= (interpreter.GetCleanVar("$language") ? interpreter.GetCleanVar("$language") : curlang) //we can only translate to certain languages, but we can always use the one that was sent in.
+	signal.data["language"]	= (interpreter.GetCleanVar("$language") ? interpreter.GetCleanVar("$language") : curlang) //we can only translate to certain languages, but we can always use the one that was sent in.
 	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -305,19 +305,17 @@ var/const/MAX_MEM_VARS	 = 500
 
 		var/datum/signal/signal = new
 		signal.source = S
-		signal.encryption = code
 		signal.data["message"] = "ACTIVATE"
 
 		connection.post_signal(S, signal)
 
-		var/time = time2text(world.realtime,"hh:mm:ss")
-		lastsignalers.Add("[time] <B>:</B> [S.id] sent a signal command, which was triggered by NTSL.<B>:</B> [format_frequency(freq)]/[code]")
+		message_admins("Telecomms server \"[S.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
 
-/datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", languages = HUMAN)
-	languages &= allowed_translateable_langs //we can only translate to certain languages
+/datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", language = /datum/language/common)
+	//languages &= allowed_translateable_langs //we can only translate to certain languages
 	var/datum/signal/newsign = new
 	var/obj/machinery/telecomms/server/S = data["server"]
-	var/obj/item/device/radio/hradio = S.server_radio
+	var/obj/item/radio/headset/hradio = S.server_radio
 
 	if(!hradio)
 		throw EXCEPTION("tcombroadcast(): signal has no radio")
@@ -329,7 +327,7 @@ var/const/MAX_MEM_VARS	 = 500
 		message = "*beep*"
 	if(!source)
 		source = "[html_encode(uppertext(S.id))]"
-		hradio = new // sets the hradio as a radio intercom
+		//hradio = new // sets the hradio as a radio intercom
 	if(!job)
 		job = "Unknown"
 	if(!freq || (!isnum(freq) && text2num(freq) == null))
@@ -349,11 +347,13 @@ var/const/MAX_MEM_VARS	 = 500
 
 	//SAY REWRITE RELATED CODE.
 	//This code is a little hacky, but it *should* work. Even though it'll result in a virtual speaker referencing another virtual speaker. vOv
-	var/atom/movable/virtualspeaker/virt = PoolOrNew(/atom/movable/virtualspeaker,null)
+	var/atom/movable/virtualspeaker/virt = new
 	virt.name = source
 	virt.job = job
-	virt.languages_spoken = languages
+	/*
+	virt.languages_spoken = language
 	virt.languages_understood = virt.languages_spoken //do not remove this or everything turns to jibberish
+	*/
 	//END SAY REWRITE RELATED CODE.
 
 	//Now we set up the signal
@@ -365,9 +365,9 @@ var/const/MAX_MEM_VARS	 = 500
 	newsign.data["job"] = "[job]"
 	newsign.data["compression"] = 0
 	newsign.data["message"] = message
-	newsign.data["type"] = BROADCAST_ARTIFICIAL // artificial broadcast
+	//newsign.data["type"] = BROADCAST_ARTIFICIAL // artificial broadcast
 	newsign.data["spans"] = spans
-	newsign.data["languages"] = virt.languages_spoken
+	newsign.data["language"] = language
 	newsign.data["verb_say"] = say
 	newsign.data["verb_ask"] = ask
 	newsign.data["verb_yell"]= yell

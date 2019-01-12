@@ -197,3 +197,9 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 /datum/signal/New(data, transmission_method = TRANSMISSION_RADIO)
 	src.data = data || list()
 	src.transmission_method = transmission_method
+	
+/datum/signal/proc/sanitize_data()
+	for(var/d in data)
+		var/val = data[d]
+		if(istext(val))
+			data[d] = html_encode(val)
