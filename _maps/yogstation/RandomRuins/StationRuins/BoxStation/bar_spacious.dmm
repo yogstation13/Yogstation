@@ -435,6 +435,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"bf" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bg" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -502,6 +511,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"br" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "bt" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -612,11 +627,6 @@
 "bN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bO" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bP" = (
@@ -1284,7 +1294,7 @@ aj
 "}
 (17,1,1) = {"
 ai
-cH
+br
 aw
 ab
 aI
@@ -1371,7 +1381,7 @@ bg
 aj
 bt
 bc
-bO
+bf
 bU
 bC
 bC
