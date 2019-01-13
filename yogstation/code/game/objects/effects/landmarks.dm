@@ -73,3 +73,121 @@
 
 /obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")
+
+/obj/effect/landmark/event_spawn/proc/spawnroyale(drop = FALSE)
+	if(drop)
+		new /obj/effect/DPtarget(src, /obj/structure/closet/crate/royale, 0)
+		priority_announce("Supply drop located in [get_area(src)]", "Nanotrasen Battle Royale Committee")
+	else
+		var/droptype = rand(1, 32)
+		switch(droptype)
+
+			if(1) //double barreled shotgun and 2 rubbershots
+				new /obj/item/gun/ballistic/revolver/doublebarrel(src.loc)
+				new /obj/item/ammo_casing/shotgun/rubbershot(src.loc)
+				new /obj/item/ammo_casing/shotgun/rubbershot(src.loc)
+
+			if(2) //miniature energy gun
+				new /obj/item/gun/energy/e_gun/mini(src.loc)
+
+			if(3) //snare launcher
+				new /obj/item/gun/energy/e_gun/dragnet/snare(src.loc)
+
+			if(4) //syringe gun, morphine and two syringes
+				new /obj/item/gun/syringe(src.loc)
+				new /obj/item/reagent_containers/glass/bottle/morphine(src.loc)
+				new /obj/item/reagent_containers/syringe(src.loc)
+				new /obj/item/reagent_containers/syringe(src.loc)
+
+			if(5) //syndicate toolbox
+				new /obj/item/storage/toolbox/syndicate(src.loc)
+
+			if(6) //medkit
+				new /obj/item/storage/firstaid/regular(src.loc)
+
+			if(7) //stechkin
+				new /obj/item/gun/ballistic/automatic/pistol(src.loc)
+
+			if(8) //ammo and silencer for the stechkin
+				new /obj/item/ammo_box/magazine/m10mm(src.loc)
+				new /obj/item/ammo_box/magazine/m10mm(src.loc)
+				new /obj/item/suppressor(src.loc)
+
+			if(9) //fire medkit
+				new /obj/item/storage/firstaid/fire(src.loc)
+
+			if(10) //toxins medkit
+				new /obj/item/storage/firstaid/toxin(src.loc)
+
+			if(11) //o2 medkit
+				new /obj/item/storage/firstaid/o2(src.loc)
+
+			if(12) //brute medikit
+				new /obj/item/storage/firstaid/brute
+
+			if(13) //bulletproof armour
+				new /obj/item/clothing/suit/armor/bulletproof(src.loc)
+
+			if(14) //bulletproof helmet
+				new /obj/item/clothing/head/helmet/alt(src.loc)
+
+			if(15) //mosin and 5 bulets
+				new /obj/item/gun/ballistic/shotgun/boltaction(src.loc)
+				new /obj/item/ammo_casing/a762(src.loc)
+				new /obj/item/ammo_casing/a762(src.loc)
+				new /obj/item/ammo_casing/a762(src.loc)
+				new /obj/item/ammo_casing/a762(src.loc)
+				new /obj/item/ammo_casing/a762(src.loc)
+
+			if(16) //m1911
+				new /obj/item/gun/ballistic/automatic/pistol/m1911(src.loc)
+
+			if(17) // two mags for the m1911
+				new /obj/item/ammo_box/magazine/m45(src.loc)
+				new /obj/item/ammo_box/magazine/m45(src.loc)
+
+			if(18) //beartrap
+				new /obj/item/restraints/legcuffs/beartrap(src.loc)
+
+			if(19) //wood
+				new /obj/item/stack/sheet/mineral/wood/fifty(src.loc)
+
+			if(20) //sandbags
+				new /obj/item/stack/sheet/mineral/sandbags(src.loc)
+
+			if(21) //flashbang and sunglasses (intentionally doesn't have a bowman)
+				new /obj/item/grenade/flashbang(src.loc)
+				new /obj/item/clothing/glasses/sunglasses(src.loc)
+
+			if(22) //EMP grenade
+				new /obj/item/grenade/empgrenade(src.loc)
+
+			if(23) //minibomb
+				new /obj/item/grenade/syndieminibomb(src.loc)
+
+			if(24) //c4
+				new /obj/item/grenade/plastic/c4(src.loc)
+
+			if(25) //syndie soap
+				new /obj/item/soap/syndie(src.loc)
+
+			if(26) //thermals
+				new /obj/item/clothing/glasses/thermal/syndi(src.loc)
+
+			if(27) //agent ID
+				new /obj/item/card/id/syndicate(src.loc)
+
+			if(28) //powersink
+				new /obj/item/sbeacondrop/powersink(src.loc)
+
+			if(29) //syndiekey
+				new /obj/item/encryptionkey/syndicate(src.loc)
+
+			if(30) //doorcharge
+				new /obj/item/doorCharge(src.loc)
+
+			if(31) //pizzabomb
+				new /obj/item/pizzabox/bomb(src.loc)
+
+			if(32) //ninja throwing star
+				new /obj/item/throwing_star(src.loc)
