@@ -1,8 +1,7 @@
-/*
 /datum/action/changeling/headcrab
 	name = "Last Resort"
 	desc = "We sacrifice our current body in a moment of need, placing us in control of a vessel that can plant our likeness in a new host. Costs 20 chemicals."
-	helptext = "We will be placed in control of a small, fragile creature. We may attack a corpse like this to plant an egg which will slowly mature into a new form for us."
+	helptext = "We will be placed in control of a small, fragile creature. We may attack a corpse like this to plant an egg which will slowly mature into a new form for us. Can be used while unconscious or dead." // yogs - added "Can be used while unconscious or dead."
 	button_icon_state = "last_resort"
 	chemical_cost = 20
 	dna_cost = 1
@@ -41,4 +40,3 @@
 		crab.origin.active = 1
 		crab.origin.transfer_to(crab)
 		to_chat(crab, "<span class='warning'>You burst out of the remains of your former body in a shower of gore!</span>")
-		*/
