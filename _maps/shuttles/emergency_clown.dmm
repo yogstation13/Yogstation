@@ -109,7 +109,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "au" = (
-/turf/open/chasm,
+/turf/open/chasm/ballpit/sec1prt1,
 /area/shuttle/escape)
 "av" = (
 /obj/machinery/light{
@@ -131,7 +131,10 @@
 /obj/item/greentext/quiet{
 	anchored = 1
 	},
-/turf/open/floor/mineral/plastitanium/red/brig,
+/turf/open/floor/ballpit{
+	icon = 'yogstation/icons/turf/floors/ballpit.dmi';
+	icon_state = "ballpitsec3prt3"
+	},
 /area/shuttle/escape)
 "aA" = (
 /obj/machinery/door/airlock/bananium/glass{
@@ -338,6 +341,27 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"cI" = (
+/turf/open/chasm/ballpit/sec4prt4,
+/area/shuttle/escape)
+"ep" = (
+/turf/open/chasm/ballpit/sec1prt2,
+/area/shuttle/escape)
+"mC" = (
+/turf/open/chasm/ballpit/sec2prt1,
+/area/shuttle/escape)
+"oq" = (
+/turf/open/chasm/ballpit/sec1prt4,
+/area/shuttle/escape)
+"uk" = (
+/turf/open/chasm/ballpit/sec3prt4,
+/area/shuttle/escape)
+"uA" = (
+/turf/open/chasm/ballpit/sec4prt1,
+/area/shuttle/escape)
+"Ds" = (
+/turf/open/chasm/ballpit/sec4prt2,
+/area/shuttle/escape)
 "Zf" = (
 /obj/structure/closet/emcloset,
 /obj/item/toy/sword,
@@ -375,8 +399,8 @@ ab
 ab
 ab
 au
-au
-au
+mC
+uA
 ab
 aJ
 aM
@@ -398,9 +422,9 @@ ad
 ai
 an
 ab
-au
+ep
 az
-au
+Ds
 ab
 aK
 ak
@@ -422,9 +446,9 @@ ae
 aj
 ao
 ab
-au
-au
-au
+oq
+uk
+cI
 ab
 ak
 aN
