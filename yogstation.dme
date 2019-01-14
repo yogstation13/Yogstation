@@ -2820,6 +2820,7 @@
 #include "yogstation\code\game\mecha\makeshift\makeshift_tools.dm"
 #include "yogstation\code\game\objects\effects\landmarks.dm"
 #include "yogstation\code\game\objects\effects\decals\turfdecal.dm"
+#include "yogstation\code\game\objects\effects\decals\turfdecal\markings.dm"
 #include "yogstation\code\game\objects\effects\decals\turfdecal\tilecoloring.dm"
 #include "yogstation\code\game\objects\effects\spawner\structure.dm"
 #include "yogstation\code\game\objects\items\bandage.dm"
