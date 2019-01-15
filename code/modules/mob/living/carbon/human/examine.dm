@@ -255,7 +255,7 @@
 	if(!skipface && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
 		msg += "[t_His] features seem unnaturally tight and drawn.\n"
 	if(!skipface && is_revolutionary(src) && !is_head_revolutionary(src))
-		msg += "[t_His] face displays a clear, blind hatred for NT.\n"
+		msg += "[t_His] face displays a clear, blind hatred for those in charge.\n"
 	msg += "</span>"
 
 	if(!appears_dead)
