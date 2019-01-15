@@ -193,9 +193,9 @@
 	required_container = /obj/item/slime_extract/blue
 	required_other = TRUE
 
-/datum/chemical_reaction/slime/slimestabilizer/on_reaction(datum/reagents/holder)
+/* Yogs /datum/chemical_reaction/slime/slimestabilizer/on_reaction(datum/reagents/holder)
 	new /obj/item/slimepotion/slime/stabilizer(get_turf(holder.my_atom))
-	..()
+	..() Yogs */
 
 /datum/chemical_reaction/slime/slimefoam
 	name = "Slime Foam"
