@@ -838,13 +838,11 @@
 		to_chat(user, "<span class='warning'>The potion can only be used on items or vehicles!</span>")
 		return
 	if(isitem(C))
-		// yogs start - change speed potion
 		var/obj/item/I = C
-		if(I.slowdown <= 2 || I.obj_flags & IMMUTABLE_SLOW)
+		if(I.slowdown <= 0 || I.obj_flags & IMMUTABLE_SLOW)
 			to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 			return ..()
-		I.slowdown--
-		// yogs end
+		I.slowdown = 0
 
 	if(istype(C, /obj/vehicle))
 		var/obj/vehicle/V = C
