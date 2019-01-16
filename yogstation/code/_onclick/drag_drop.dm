@@ -6,6 +6,6 @@
 	var/list/L = params2list(params)
 	if (L["middle"])
 		if(cachedmiddragtime <= middragtime - 20)
-			cachedmiddragtime =middragtime
+			cachedmiddragtime = middragtime
 			log_game("[key_name(src)] is possibly using the middle click aimbot exploit")
 			message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is possibly using the middle click aimbot exploit</span>")
