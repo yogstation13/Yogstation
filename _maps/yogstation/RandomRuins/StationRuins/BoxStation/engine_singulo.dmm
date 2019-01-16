@@ -239,23 +239,11 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aB" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/engine/supermatter)
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "aC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -801,6 +789,24 @@
 /obj/structure/closet/wardrobe/engineering_yellow,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"bW" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/supermatter)
 "ca" = (
 /obj/item/tank/internals/emergency_oxygen/engi{
 	pixel_x = 5
@@ -1311,7 +1317,7 @@ aa
 (15,1,1) = {"
 du
 ad
-aB
+bW
 ad
 ad
 aJ
@@ -1674,7 +1680,7 @@ aa
 "}
 (28,1,1) = {"
 ab
-ac
+aB
 aH
 aE
 bb
