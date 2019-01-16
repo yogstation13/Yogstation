@@ -1272,7 +1272,7 @@
 "acF" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	dir = 4;
-	icon_state = "inje_map";
+	icon_state = "inje_map-2";
 	name = "Waste Ejector"
 	},
 /turf/open/floor/plating/airless,
@@ -39342,7 +39342,7 @@
 "bvD" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	dir = 4;
-	icon_state = "inje_map";
+	icon_state = "inje_map-2";
 	name = "Waste Ejector"
 	},
 /turf/open/floor/plating/airless,
@@ -39968,12 +39968,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bwG" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	icon_state = "inje_map";
-	dir = 8
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
 	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "bwH" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -40474,6 +40475,13 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bxz" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"bxA" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -40481,7 +40489,6 @@
 	icon_state = "pipe11-3";
 	dir = 4
 	},
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 6
@@ -40489,14 +40496,6 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/maintenance/department/engine)
-"bxA" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
 /area/maintenance/department/engine)
 "bxB" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -42142,23 +42141,14 @@
 /turf/open/floor/engine,
 /area/medical/chemistry)
 "bAj" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
 	},
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	icon_state = "inje_map";
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/maintenance/department/engine)
 "bAk" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Library"
@@ -44002,15 +43992,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bDw" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 4
-	},
-/obj/machinery/meter,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/maintenance/department/engine)
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
 "bDx" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -48380,6 +48364,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet,
 /area/library)
+"bKx" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
+"bKy" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
 "bKz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
@@ -48527,6 +48520,24 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"bKP" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	icon_state = "inje_map-2";
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "bKQ" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
@@ -48567,6 +48578,13 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"bKV" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	icon_state = "inje_map-2";
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "bKW" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -50519,13 +50537,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"bTc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/maintenance/department/engine)
 "bTd" = (
 /obj/item/stack/sheet/cardboard{
 	amount = 14
@@ -52499,10 +52510,6 @@
 "cby" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos)
-"cbz" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "cbA" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -53073,11 +53080,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cec" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "ced" = (
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plating,
@@ -54903,10 +54905,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cqy" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/maintenance/department/engine)
 "cqG" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -54952,10 +54950,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"crb" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/chapel/office)
 "cre" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -55236,10 +55230,6 @@
 	},
 /obj/structure/chair/wood/normal,
 /turf/open/floor/plasteel/dark,
-/area/chapel/main/monastery)
-"csU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
 /area/chapel/main/monastery)
 "csY" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -56047,10 +56037,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"cBT" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "cCl" = (
 /turf/closed/wall/r_wall,
 /area/science/lab)
@@ -73315,7 +73301,7 @@ aaa
 aaa
 aaa
 aaa
-crb
+cBM
 crg
 bew
 crv
@@ -75144,7 +75130,7 @@ bIn
 bzJ
 bzV
 bzX
-bAj
+bKP
 aaa
 aaa
 aaa
@@ -80262,7 +80248,7 @@ bOw
 bOw
 bOw
 bWV
-csU
+fIT
 bWV
 bWV
 bWV
@@ -83073,14 +83059,14 @@ bOz
 bHQ
 bIZ
 abI
-bxA
-cqy
-bTc
-cqy
+bwG
+bIZ
+bxz
+bIZ
 bva
 bVs
 bVC
-cqy
+bIZ
 aaa
 bva
 crB
@@ -83330,7 +83316,7 @@ bJb
 bPq
 bva
 bva
-bxA
+bwG
 bSo
 bSq
 bTX
@@ -85389,9 +85375,9 @@ bxl
 bva
 bNS
 bSw
-bxz
+bxA
 byV
-bDw
+bAj
 bVw
 bva
 iEQ
@@ -89801,7 +89787,7 @@ aaa
 aaa
 aaa
 aaa
-bwG
+bKV
 clw
 clw
 clw
@@ -98762,7 +98748,7 @@ bwd
 bYw
 bYw
 bYw
-cBT
+bDw
 bYw
 bYw
 bYw
@@ -99022,7 +99008,7 @@ bwk
 cbA
 ccp
 cdg
-cbz
+bKx
 aaa
 aaa
 aby
@@ -99536,7 +99522,7 @@ bCv
 cbC
 ccr
 cdi
-cec
+bKy
 ceA
 aaa
 aaa
