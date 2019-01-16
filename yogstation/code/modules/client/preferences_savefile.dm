@@ -36,8 +36,11 @@
 			value += initial(T.value)
 
 	if(value < 0)
+		to_chat(parent, "<span class='userdanger'>Your quirks have been reset due to an insufficient balance because certain quirks have been disabled.</span>")
+		to_chat(parent, "<span class='notice'>Your previously selected quirks:</span>")
+		for(var/V in all_quirks)
+			to_chat(parent, "<span class='notice'>[V]</span>")
 		all_quirks = list()
 		positive_quirks = list()
 		negative_quirks = list()
 		neutral_quirks = list()
-		to_chat(parent, "<span class='userdanger'>Your quirks have been reset due to an insufficient balance because certain quirks have been disabled.</span>")
