@@ -17,6 +17,7 @@
 
 /datum/preferences/update_character(current_version, savefile/S)
 	.=..()
+	var/value = 0
 	for(var/V in all_quirks)
 		var/datum/quirk/T
 		for(var/datum/quirk/T2 in subtypesof(/datum/quirk)) //SSquirks may not have loaded yet so we have to find the quirks manually
@@ -31,3 +32,12 @@
 			if(T in neutral_quirks)
 				neutral_quirks -= V
 			all_quirks -= V
+		else
+			value += initial(T.value)
+
+	if(value < 0)
+		all_quirks = list()
+		positive_quirks = list()
+		negative_quirks = list()
+		neutral_quirks = list()
+		to_chat(parent, "<span class='userdanger'>Your quirks have been reset due to an insufficient balance because certain quirks have been disabled.</span>")
