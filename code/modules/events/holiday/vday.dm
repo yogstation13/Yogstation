@@ -1,6 +1,7 @@
 // Valentine's Day events //
 // why are you playing spessmens on valentine's day you wizard //
 
+#define VALENTINE_FILE "valentines.json"
 
 // valentine / candy heart distribution //
 
@@ -61,6 +62,7 @@
 
 /obj/item/valentine/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	message = pick("Roses are red / Violets are good / One day while Andy...",
 	               "My love for you is like the singularity. It cannot be contained.",
 	               "Will you be my lusty xenomorph maid?",
@@ -118,6 +120,9 @@
 	               "Wanna empty out my tool storage?",
 	               "Did you visit the medbay after you fell from heaven?",
 	               "Are you wearing space pants? Wanna not be?" )
+=======
+	message = pick(strings(VALENTINE_FILE, "valentines"))
+>>>>>>> ed3f3af978... Moves valentines/candyheart messages to json; adds new text (#42358)
 
 /obj/item/valentine/attackby(obj/item/W, mob/user, params)
 	..()
@@ -156,25 +161,5 @@
 
 /obj/item/reagent_containers/food/snacks/candyheart/Initialize()
 	. = ..()
-	desc = pick("A heart-shaped candy that reads: HONK ME",
-                "A heart-shaped candy that reads: ERP",
-                "A heart-shaped candy that reads: LEWD",
-                "A heart-shaped candy that reads: LUSTY",
-                "A heart-shaped candy that reads: SPESS LOVE",
-                "A heart-shaped candy that reads: AYY LMAO",
-                "A heart-shaped candy that reads: TABLE ME",
-                "A heart-shaped candy that reads: HAND CUFFS",
-                "A heart-shaped candy that reads: SHAFT MINER",
-                "A heart-shaped candy that reads: BANGING DONK",
-                "A heart-shaped candy that reads: Y-YOU T-TOO",
-                "A heart-shaped candy that reads: GOT WOOD",
-                "A heart-shaped candy that reads: TFW NO GF",
-                "A heart-shaped candy that reads: WAG MY TAIL",
-                "A heart-shaped candy that reads: VALIDTINES",
-                "A heart-shaped candy that reads: FACEHUGGER",
-                "A heart-shaped candy that reads: BOX OF HUGS",
-                "A heart-shaped candy that reads: REEBE MINE",
-                "A heart-shaped candy that reads: PET ME",
-                "A heart-shaped candy that reads: TO THE DORMS",
-                "A heart-shaped candy that reads: DIS MEMBER")
+	desc = pick(strings(VALENTINE_FILE, "candyhearts"))
 	icon_state = pick("candyheart", "candyheart2", "candyheart3", "candyheart4")
