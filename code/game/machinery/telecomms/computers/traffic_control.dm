@@ -82,7 +82,7 @@
 				winshow(M, "Telecomms IDE", 0) // hide the windows
 
 
-/obj/machinery/computer/telecomms/traffic/attack_hand(mob/user)
+/obj/machinery/computer/telecomms/traffic/ui_interact(mob/user)
 	if(..())
 		return
 	user.set_machine(src)
@@ -274,12 +274,12 @@
 	return
 
 /obj/machinery/computer/telecomms/traffic/attackby(obj/O, mob/user, params)
+	src.updateUsrDialog()
 	if(istype(O, /obj/item/card/id) && check_access(O) && user.transferItemToLoc(O, src))
 		auth = O
 		create_log("has logged in.", usr)
 	else
 		..()
-	src.updateUsrDialog()
 
 /obj/machinery/computer/telecomms/traffic/emag_act(mob/user)
 	if(!emagged)
