@@ -91,7 +91,7 @@
 		query_remove_mentor.warn_execute()
 		qdel(query_remove_mentor)
 
-		webhook_send_mchange(owner.ckey, C.ckey, "remove")
+		webhook_send_mchange(owner.ckey, C.ckey, "remove")	
 
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
