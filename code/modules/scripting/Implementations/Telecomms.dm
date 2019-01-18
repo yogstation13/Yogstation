@@ -3,9 +3,7 @@
 
 /* --- Traffic Control Scripting Language --- */
 	// Nanotrasen TCS Language - Made by Doohl
-
-var/list/allowed_custom_spans = list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND) //Span classes that players are allowed to set in a radio transmission.
-var/allowed_translateable_langs = ALL
+GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND))//Span classes that players are allowed to set in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
@@ -251,7 +249,7 @@ var/allowed_translateable_langs = ALL
 	signal.data["language"]	= (interpreter.GetCleanVar("$language") ? interpreter.GetCleanVar("$language") : curlang) //we can only translate to certain languages, but we can always use the one that was sent in.
 	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
-		setspans &= allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
+		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
 		signal.data["spans"]	= setspans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
 
 	// If the message is invalid, just don't broadcast it!
@@ -260,8 +258,8 @@ var/allowed_translateable_langs = ALL
 
 /*  -- Actual language proc code --  */
 
-var/const/SIGNAL_COOLDOWN = 20 // 2 seconds
-var/const/MAX_MEM_VARS	 = 500
+#define SIGNAL_COOLDOWN 20 // 2 seconds
+#define MAX_MEM_VARS 500 // The maximum number of variables that can be stored by NTSL via mem()
 
 /datum/signal
 
@@ -343,7 +341,7 @@ var/const/MAX_MEM_VARS	 = 500
 	if(!islist(spans))
 		spans = list()
 	else
-		spans &= allowed_custom_spans //Removes any spans not on the allowed list. Comment this out if want to let players use ANY span in stylesheet.dm!
+		spans &= GLOB.allowed_custom_spans //Removes any spans not on the allowed list. Comment this out if want to let players use ANY span in stylesheet.dm!
 
 	//SAY REWRITE RELATED CODE.
 	//This code is a little hacky, but it *should* work. Even though it'll result in a virtual speaker referencing another virtual speaker. vOv
@@ -384,3 +382,6 @@ var/const/MAX_MEM_VARS	 = 500
 	var/pass = S.relay_information(newsign, "/obj/machinery/telecomms/hub")
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
 		S.relay_information(newsign, "/obj/machinery/telecomms/broadcaster") // send this message to broadcasters directly
+
+#undef SIGNAL_COOLDOWN
+#undef MAX_MEM_VARS
