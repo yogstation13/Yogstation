@@ -18,7 +18,7 @@
 	
 //NTSL-related stuffs
 	var/datum/TCS_Compiler/Compiler	// the compiler that compiles and runs the code
-	var/autoruncode = 0		// 1 if the code is set to run every time a signal is picked up
+	var/autoruncode = FALSE		// 1 if the code is set to run every time a signal is picked up
 	var/list/memory = list()	// stored memory, for mem() in NTSL
 	var/rawcode = ""	// the code to compile (raw-ass text)
 	var/obj/item/radio/headset/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
@@ -63,6 +63,8 @@
 	log.name = "data packet ([md5(identifier)])"
 	log_entries.Add(log)
 
+	if(Compiler && autoruncode)
+		Compiler.Run(signal)
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)

@@ -313,7 +313,7 @@ var/const/MAX_MEM_VARS	 = 500
 
 /datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", language = /datum/language/common)
 	//languages &= allowed_translateable_langs //we can only translate to certain languages
-	var/datum/signal/newsign = new
+	var/datum/signal/subspace/newsign = new
 	var/obj/machinery/telecomms/server/S = data["server"]
 	var/obj/item/radio/headset/hradio = S.server_radio
 
