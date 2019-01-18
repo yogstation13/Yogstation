@@ -36175,10 +36175,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 8;
-	sortType = 23
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 8
@@ -36186,6 +36182,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/zone2)
@@ -39346,7 +39345,7 @@
 	name = "Waste Ejector"
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/maintenance/department/engine)
 "bvE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -40028,16 +40027,21 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bwM" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump/on/layer3{
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Port Aft";
 	dir = 1;
-	icon_state = "pump_on_map";
-	name = "Waste to Space"
+	network = list("ss13")
 	},
 /turf/open/floor/plasteel,
-/area/tcommsat/computer)
+/area/engine/engineering)
 "bwN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -48579,12 +48583,19 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "bKV" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	icon_state = "inje_map-2";
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Starboard Aft";
+	dir = 1;
+	network = list("ss13")
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "bKW" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -48691,6 +48702,13 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"bLj" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	icon_state = "inje_map-2";
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/tcommsat/computer)
 "bLk" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -48878,6 +48896,17 @@
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
+"bLK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/binary/pump/on/layer3{
+	name = "Waste to Space";
+	icon_state = "pump_on_map-3";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/tcommsat/computer)
 "bLM" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
@@ -52966,21 +52995,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cdQ" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera{
-	c_tag = "Engineering Port Aft";
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "cdR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -54930,10 +54944,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/dock)
-"cqS" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/space/nearstation)
 "cqU" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -58480,19 +58490,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"ogX" = (
-/obj/machinery/camera{
-	c_tag = "Engineering Starboard Aft";
-	dir = 1
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ohR" = (
 /obj/item/chair,
 /turf/open/floor/plating,
@@ -79978,7 +79975,7 @@ aby
 abI
 bSn
 bSZ
-cqS
+bNs
 bNs
 bQe
 bOw
@@ -89277,7 +89274,7 @@ bJu
 bwH
 bwI
 bwJ
-bwM
+bLK
 bIv
 bIm
 bAO
@@ -89787,7 +89784,7 @@ aaa
 aaa
 aaa
 aaa
-bKV
+bLj
 clw
 clw
 clw
@@ -90527,7 +90524,7 @@ cam
 bDX
 bEf
 bph
-cdQ
+bwM
 bXk
 bTE
 bXk
@@ -93611,7 +93608,7 @@ cci
 cam
 cci
 cam
-ogX
+bKV
 bXk
 bXk
 bXk
