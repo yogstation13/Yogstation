@@ -2,8 +2,12 @@
 	The server logs all traffic and signal data. Once it records the signal, it sends
 	it to the subspace broadcaster.
 
-	Store a maximum of 100 logs and then deletes them.
+	Store a maximum of some hundreds of logs and then deletes them.
 */
+/obj/item/radio/server
+
+/obj/item/radio/server/can_receive(frequency,levels)
+	return FALSE // The server's radio isn't for receiving, it's for outputting. For now.
 
 /obj/machinery/telecomms/server
 	name = "telecommunication server"
@@ -21,7 +25,7 @@
 	var/autoruncode = FALSE		// 1 if the code is set to run every time a signal is picked up
 	var/list/memory = list()	// stored memory, for mem() in NTSL
 	var/rawcode = ""	// the code to compile (raw-ass text)
-	var/obj/item/radio/headset/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
+	var/obj/item/radio/server/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
 	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
 //End-NTSL
 
@@ -43,6 +47,8 @@
 	if (log_entries.len >= 400)
 		log_entries.Cut(1, 2)
 
+	signal.data["server"] = src;
+	
 	var/datum/comm_log_entry/log = new
 	log.parameters["mobtype"] = signal.virt.source.type
 	log.parameters["name"] = signal.data["name"]
