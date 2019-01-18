@@ -169,7 +169,11 @@
 				if(start_T && end_T)
 					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
 
+<<<<<<< HEAD
 	else if(!(I.item_flags & (NODROP | ABSTRACT)))
+=======
+	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !I.has_trait(TRAIT_NODROP))
+>>>>>>> c3e948495b... Fixes not being able to insert objects into closets, and being unable to throw (#42407)
 		thrown_thing = I
 		dropItemToGround(I)
 
