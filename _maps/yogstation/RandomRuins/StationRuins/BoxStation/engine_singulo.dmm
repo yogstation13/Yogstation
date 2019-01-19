@@ -339,7 +339,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aJ" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aK" = (
