@@ -279,9 +279,9 @@
 	})
 "aP" = (
 /obj/structure/chair{
-	tag = "icon-chair (EAST)";
+	dir = 4;
 	icon_state = "chair";
-	dir = 4
+	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar{
 	icon_state = "tile_corner";
@@ -303,9 +303,9 @@
 	})
 "aR" = (
 /obj/structure/chair{
-	tag = "icon-chair (WEST)";
+	dir = 8;
 	icon_state = "chair";
-	dir = 8
+	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar{
 	icon_state = "tile_corner";
@@ -368,9 +368,9 @@
 	})
 "ba" = (
 /obj/structure/chair{
-	tag = "icon-chair (EAST)";
+	dir = 4;
 	icon_state = "chair";
-	dir = 4
+	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -394,9 +394,9 @@
 	})
 "bc" = (
 /obj/structure/chair{
-	tag = "icon-chair (WEST)";
+	dir = 8;
 	icon_state = "chair";
-	dir = 8
+	tag = ""
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{

@@ -15,9 +15,9 @@
 /area/ruin/powered)
 "f" = (
 /obj/structure/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
+	dir = 1;
 	icon_state = "comfychair";
-	dir = 1
+	tag = ""
 	},
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/titanium/blue,
@@ -33,9 +33,9 @@
 /area/ruin/powered)
 "i" = (
 /obj/structure/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
+	dir = 1;
 	icon_state = "comfychair";
-	dir = 1
+	tag = ""
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
