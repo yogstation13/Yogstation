@@ -211,7 +211,7 @@
 /area/ruin/unpowered)
 "aP" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/space_ninja,
+/obj/item/clothing/suit/space/space_ninja/lavaland,
 /turf/open/floor/pod,
 /area/ruin/unpowered)
 "aQ" = (
