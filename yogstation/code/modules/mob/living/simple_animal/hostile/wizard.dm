@@ -8,4 +8,3 @@
 	speak_emote = list("stutters")
 	speak = list("o-oh god", "p-please d-ie", "ei n-nath?")
 	speak_chance = 1
-	del_on_death = 0
