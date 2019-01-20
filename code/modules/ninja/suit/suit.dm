@@ -97,10 +97,10 @@ Contents:
 /obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
-	if(!is_ninja(H))
+	/*if(!is_ninja(H))
 		to_chat(H, "<span class='danger'><B>fÄTaL ÈÈRRoR</B>: 382200-*#00CÖDE <B>RED</B>\nUNAUHORIZED USÈ DETÈCeD\nCoMMÈNCING SUB-R0UIN3 13...\nTÈRMInATING U-U-USÈR...</span>")
 		H.gib()
-		return FALSE
+		return FALSE */ // Yogs change needed to be removed for the ninja suit prize from the russian bunker ruin to you know be a actual prize and not a giant bloody middle finger
 	if(!istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
 		to_chat(H, "<span class='userdanger'>ERROR</span>: 100113 UNABLE TO LOCATE HEAD GEAR\nABORTING...")
 		return FALSE
