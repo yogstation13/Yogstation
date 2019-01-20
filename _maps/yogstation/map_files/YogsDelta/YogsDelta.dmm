@@ -112376,6 +112376,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"dnp" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/packageWrap,
+/obj/item/hand_labeler,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/clothing/head/welding,
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "dnq" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/bodybags{
@@ -114885,9 +114900,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"dri" = (
-/turf/open/space/basic,
-/area/maintenance/department/medical/morgue)
 "drj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -116392,20 +116404,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hor)
-"dwv" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/stack/packageWrap,
-/obj/item/hand_labeler,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
 "dww" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -163081,7 +163079,7 @@ dqL
 cYS
 dtw
 cmq
-dwv
+dnp
 dyc
 dzF
 dAJ
@@ -167983,7 +167981,7 @@ aaa
 aaa
 aaa
 aaa
-dri
+aaa
 aaa
 aaa
 aaa
