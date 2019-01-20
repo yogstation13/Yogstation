@@ -122,5 +122,5 @@
 			n_gloves.lights_colour = pickedNinjaColor
 		affecting.regenerate_icons()
 
-/obj/item/clothing/suit/space/space_ninja/lavaland/is_ninja(mob/living/M)
+/obj/item/clothing/suit/space/space_ninja/lavaland/proc/is_ninja(mob/living/M)
 	return TRUE
