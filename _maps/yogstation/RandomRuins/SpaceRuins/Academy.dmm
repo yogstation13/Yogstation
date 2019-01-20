@@ -2571,7 +2571,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -2727,7 +2726,6 @@
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2900,7 +2898,6 @@
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /obj/structure/cable,
 /obj/structure/window/reinforced/fulltile,
@@ -3038,7 +3035,6 @@
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -3961,7 +3957,6 @@
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-4";
-	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
