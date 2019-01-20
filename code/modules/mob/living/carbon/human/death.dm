@@ -48,6 +48,7 @@
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+	update_face_dependant_huds() // Yogs change
 	set_species(/datum/species/skeleton)
 	return 1
 
