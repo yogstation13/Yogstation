@@ -83,7 +83,7 @@
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
 	to_chat(old_owner, "<span class='userdanger'>You have proved your devotion to revolution! You are a head revolutionary now!</span>")
- /*	SSticker.mode.explain_rev_hud(owner) // yogs change */
+ /*	SSticker.mode.explain_rev_hud(owner) */ // yogs change
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
