@@ -43,7 +43,7 @@
 
 /datum/antagonist/rev/greet()
 	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters!</span>") // yogs change made description shorter
- /*	SSticker.mode.explain_rev_hud(owner) */
+ /*	SSticker.mode.explain_rev_hud(owner) */ // yogs change
 	owner.announce_objectives()
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
