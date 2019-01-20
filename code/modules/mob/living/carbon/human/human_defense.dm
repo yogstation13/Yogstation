@@ -631,6 +631,7 @@
 				hair_style = "Bald"
 				update_hair()
 				add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+				update_face_dependant_huds() // yogs change
 
 		update_damage_overlays()
 

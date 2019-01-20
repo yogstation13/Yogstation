@@ -25,6 +25,7 @@
 #define DIAG_NANITE_FULL_HUD "21"
 //for antag huds. these are used at the /mob level
 #define ANTAG_HUD		"22"
+#define REV_APPEARANCE_HUD	"15" // yogs change
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
@@ -59,6 +60,7 @@
 #define ANTAG_HUD_BROTHER		23
 #define ANTAG_HUD_HIVE			24
 #define ANTAG_HUD_CREEP			25
+#define DATA_HUD_REV			10 // yogs change
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

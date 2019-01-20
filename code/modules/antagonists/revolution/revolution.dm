@@ -42,7 +42,8 @@
 	. = ..()
 
 /datum/antagonist/rev/greet()
-	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</span>")
+	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters!</span>")
+	SSticker.mode.explain_rev_hud(owner)
 	owner.announce_objectives()
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
@@ -82,6 +83,7 @@
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
 	to_chat(old_owner, "<span class='userdanger'>You have proved your devotion to revolution! You are a head revolutionary now!</span>")
+	SSticker.mode.explain_rev_hud(owner)
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
@@ -159,11 +161,22 @@
 	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
 	revhud.join_hud(M)
 	set_antag_hud(M,hud_type)
+	var/datum/atom_hud/data/human/rev/rev_datahud = GLOB.huds[DATA_HUD_REV] // yogs start
+	rev_datahud.add_hud_to(owner.current)
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		H.update_rev_hud() // yogs end
 
 /datum/antagonist/rev/proc/update_rev_icons_removed(mob/living/M)
 	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
 	revhud.leave_hud(M)
 	set_antag_hud(M, null)
+
+	var/datum/atom_hud/data/human/rev/rev_datahud = GLOB.huds[DATA_HUD_REV] // yogs start
+	rev_datahud.remove_hud_from(owner.current)
+	if(ishuman(owner.current))
+		var/mob/living/carbon/human/H = owner.current
+		H.update_rev_hud() // yogs end
 
 /datum/antagonist/rev/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)

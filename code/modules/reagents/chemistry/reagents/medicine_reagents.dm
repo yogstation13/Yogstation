@@ -141,6 +141,9 @@
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
 		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
+		if(ishuman(M)) // yogs start
+			var/mob/living/carbon/human/H = M
+			H.update_face_dependant_huds() // yogs end
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
@@ -157,6 +160,9 @@
 	if(M.bodytemperature < T0C)
 		M.adjustCloneLoss(0.00006 * (M.bodytemperature ** 2) - 6, 0)
 		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		if(ishuman(M)) // yogs start
+			var/mob/living/carbon/human/H = M
+			H.update_face_dependant_huds() // yogs end
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
 	..()
@@ -187,6 +193,9 @@
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
 		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		if(ishuman(M)) // yogs start
+			var/mob/living/carbon/human/H = M
+			H.update_face_dependant_huds() // yogs end
 		. = 1
 	..()
 
@@ -203,6 +212,9 @@
 	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
 	M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+	if(ishuman(M)) // yogs start
+		var/mob/living/carbon/human/H = M
+		H.update_face_dependant_huds() // yogs end
 	..()
 	. = 1
 
