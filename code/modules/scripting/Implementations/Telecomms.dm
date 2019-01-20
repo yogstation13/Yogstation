@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("$sector" , 	signal.data["level"])
 	interpreter.SetVar("$job"    , 	signal.data["job"])
 	interpreter.SetVar("$sign"   ,	signal)
-	interpreter.SetVar("$pass"	 ,  !(signal.data["reject"])) // if the signal isn't rejected, pass = 1; if the signal IS rejected, pass = 0
+	interpreter.SetVar("$pass"	 ,  !(signal.data["reject"])) // Being passed is the opposite of being rejected, so they're logical not of each other.
 	interpreter.SetVar("$filters"  ,	signal.data["spans"]) //Important, this is given as a vector! (a list)
 	interpreter.SetVar("$say"    , 	signal.data["verb_say"])
 	interpreter.SetVar("$ask"    , 	signal.data["verb_ask"])
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	//languages &= allowed_translateable_langs //we can only translate to certain languages
 	var/datum/signal/subspace/newsign = new
 	var/obj/machinery/telecomms/server/S = data["server"]
-	var/obj/item/radio/hradio = S.server_radio
+	var/obj/item/radio/server/hradio = S.server_radio
 
 	if(!hradio)
 		throw EXCEPTION("tcombroadcast(): signal has no radio")

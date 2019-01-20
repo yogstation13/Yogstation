@@ -13,6 +13,18 @@
 #define RETURNING  1
 #define BREAKING   2
 #define CONTINUING 4
+
+/*
+	Macros: Maximums
+	MAX_STATEMENTS fuckin'... holds the maximum statements. I'unno, dude, I'm not the guy who made NTSL, I don't do fuckin verbose-ass comments line this.
+	Figure it out yourself, fuckface.
+*/
+#define MAX_STATEMENTS 900 // maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation
+#define MAX_ITERATIONS 100 // max number of uninterrupted loops possible
+#define MAX_RECURSION 10 // max recursions without returning anything (or completing the code block)
+#define MAX_STRINGLEN 1024
+#define MAX_LISTLEN 256
+
 /n_Interpreter
 	var
 		scope
@@ -32,15 +44,10 @@
 */
 		status=0
 		returnVal
-
-		max_statements=900 // maximum amount of statements that can be called in one execution. this is to prevent massive crashes and exploitation
+		
 		cur_statements=0    // current amount of statements called
 		alertadmins=0		// set to 1 if the admins shouldn't be notified of anymore issues
-		max_iterations=100 	// max number of uninterrupted loops possible
-		max_recursion=10   	// max recursions without returning anything (or completing the code block)
 		cur_recursion=0	   	// current amount of recursion
-		max_stringlen=1024
-		max_listlen=256
 /*
 	Var: persist
 	If 0, global variables will be reset after Run() finishes.
@@ -62,11 +69,11 @@
 	Trims strings and vectors down to an acceptable size, to prevent runaway memory usage
 */
 		Trim(value)
-			if(istext(value) && (length(value) > max_stringlen))
-				value = copytext(value, 1, max_stringlen+1)
-			else if(islist(value) && (length(value) > max_listlen))
+			if(istext(value) && (length(value) > MAX_STRINGLEN))
+				value = copytext(value, 1, MAX_STRINGLEN+1)
+			else if(islist(value) && (length(value) > MAX_LISTLEN))
 				var/list/L = value
-				value = L.Copy(1, max_listlen+1)
+				value = L.Copy(1, MAX_LISTLEN+1)
 			return value
 
 /*
@@ -126,13 +133,13 @@
 					CreateGlobalScope()
 				curScope = globalScope
 
-			if(cur_statements < max_statements)
+			if(cur_statements < MAX_STATEMENTS)
 
 				for(var/node/statement/S in Block.statements)
 					while(paused) sleep(10)
 
 					cur_statements++
-					if(cur_statements >= max_statements)
+					if(cur_statements >= MAX_STATEMENTS)
 						RaiseError(new/runtimeError/MaxCPU())
 						AlertAdmins()
 						break
@@ -196,7 +203,7 @@
 			//Note that anywhere /node/statement/FunctionCall/stmt is used so may /node/expression/FunctionCall
 
 			// If recursion gets too high (max 50 nested functions) throw an error
-			if(cur_recursion >= max_recursion)
+			if(cur_recursion >= MAX_RECURSION)
 				AlertAdmins()
 				RaiseError(new/runtimeError/RecursionLimitReached())
 				return 0
@@ -282,7 +289,7 @@
 */
 		Iterate(node/BlockDefinition/block, count)
 			RunBlock(block)
-			if(max_iterations > 0 && count >= max_iterations)
+			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
 				RaiseError(new/runtimeError/IterationLimitReached())
 				return 0
 			if(status & (BREAKING|RETURNING))
@@ -352,4 +359,8 @@
 			//TODO: check for invalid name
 			S.variables["[name]"] = Trim(value)
 
-
+#undef MAX_STATEMENTS
+#undef MAX_ITERATIONS
+#undef MAX_RECURSION
+#undef MAX_STRINGLEN
+#undef MAX_LISTLEN 
