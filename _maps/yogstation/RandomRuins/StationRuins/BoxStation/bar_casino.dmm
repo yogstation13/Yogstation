@@ -313,9 +313,10 @@
 "aR" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/window/eastleft{
+/obj/machinery/door/window/eastright{
+	base_state = "left";
 	dir = 8;
-	icon_state = "right";
+	icon_state = "left";
 	name = "Soda Dispenser";
 	req_access_txt = "0"
 	},
