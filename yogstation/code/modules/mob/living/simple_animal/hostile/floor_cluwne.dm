@@ -288,6 +288,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 			if(prob(3))
 				to_chat(H, "<i>KNOH ?od nottub siht seod tahW</i>")
+				for(var/obj/machinery/M in range(H, 6))
+					M.npc_tamper_act(src)
+
+			if(prob(3))
 				for(var/turf/open/O in range(src, 6))
 					O.MakeSlippery(TURF_WET_WATER, 10)
 					playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
@@ -336,10 +340,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	for(var/I in 1 to get_dist(src, H))
 
 		if(do_after(src, 10, target = H))
-			if(get_dist(src,H) >= 7)
-				Acquire_Victim()
-				eating = FALSE
-				return
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			H.emote("scream")
@@ -367,8 +367,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Kill(mob/living/carbon/human/H)
-	if(!H)
-		return
 	playsound(H, 'yogstation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
 	var/old_color = H.client.color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
