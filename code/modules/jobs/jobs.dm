@@ -145,6 +145,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = mine_expand.Replace(job, "shaft miner")
 	job = chef_expand.Replace(job, "cook")
 	job = borg_expand.Replace(job, "cyborg")
+<<<<<<< HEAD
 	// yogs start - Yog jobs
 	job = tour_expand.Replace(job, "tourist")
 	job = mm_expand.Replace(job, "mining medic")
@@ -153,3 +154,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = para_expand.Replace(job, "paramedic")
 	// yogs end
 	return job
+=======
+	return job
+>>>>>>> b7c5559146... [READY] fixes roles that shouldn't be creepy being creepy and the jealousy objective asking you to assassinate the obsession + missed sanity (#42389)
