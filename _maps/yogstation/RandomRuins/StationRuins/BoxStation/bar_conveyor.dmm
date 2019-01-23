@@ -965,9 +965,13 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "cC" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public{
-	name = "Bar"
+/obj/machinery/camera{
+	c_tag = "Bar South";
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
@@ -979,6 +983,26 @@
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cE" = (
+/obj/machinery/light,
+/obj/machinery/airalarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"cF" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass{
+	name = "Bar"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
+"cG" = (
+/obj/structure/sign/barsign,
+/turf/closed/wall,
 /area/crew_quarters/bar)
 "cH" = (
 /obj/structure/window/reinforced{
@@ -1062,27 +1086,6 @@
 /area/crew_quarters/bar)
 "ds" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"dt" = (
-/obj/machinery/camera{
-	c_tag = "Bar South";
-	dir = 1
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"du" = (
-/obj/structure/noticeboard{
-	pixel_y = -27
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/bar)
-"dv" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "dx" = (
@@ -1230,7 +1233,7 @@ cI
 cL
 df
 ao
-cC
+cF
 "}
 (7,1,1) = {"
 ae
@@ -1262,7 +1265,7 @@ bw
 cX
 aP
 ao
-cC
+cF
 "}
 (9,1,1) = {"
 ab
@@ -1293,8 +1296,8 @@ ao
 ao
 cY
 aP
-dt
-ab
+ao
+nw
 "}
 (11,1,1) = {"
 ab
@@ -1309,7 +1312,7 @@ cu
 ao
 cs
 aP
-du
+cC
 ab
 "}
 (12,1,1) = {"
@@ -1326,7 +1329,7 @@ ao
 cs
 aP
 ao
-ab
+cG
 "}
 (13,1,1) = {"
 ah
@@ -1341,7 +1344,7 @@ ao
 ao
 ch
 dh
-dv
+ao
 ab
 "}
 (14,1,1) = {"
@@ -1357,7 +1360,7 @@ ce
 ao
 cz
 ao
-ds
+cE
 ab
 "}
 (15,1,1) = {"
