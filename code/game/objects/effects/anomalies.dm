@@ -175,6 +175,8 @@
 
 /obj/effect/anomaly/flux/detonate()
 	if(explosive)
+		message_admins("An anomaly has detonated.") //yogs
+		log_game("An anomaly has detonated.") //yogs
 		explosion(src, 1, 4, 16, 18) //Low devastation, but hits a lot of stuff.
 	else
 		new /obj/effect/particle_effect/sparks(loc)

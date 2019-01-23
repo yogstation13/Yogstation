@@ -8,8 +8,8 @@
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "heartballoon"
 	item_state = "heartballoon"
-	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/balloons_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/balloons_righthand.dmi'
 
 
 /obj/item/toy/toyballoon
@@ -22,8 +22,8 @@
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "toyballoon"
 	item_state = "toyballoon"
-	lefthand_file = 'icons/mob/inhands/antag/balloons_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/antag/balloons_righthand.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/antag/balloons_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/antag/balloons_righthand.dmi'
 
 /obj/item/toy/toygrenade
 	name = "toy grenade"
