@@ -12,7 +12,7 @@
 	var/list/immune = list() // the one who creates the timestop is immune
 	var/turf/target
 	var/freezerange = 2
-	var/duration = 140
+	var/duration = 70
 	var/datum/proximity_monitor/advanced/timestop/chronofield
 	alpha = 125
 	var/check_anti_magic = FALSE
