@@ -67,8 +67,6 @@
 	desc = "An integrated tracking device, jury-rigged to search for living Syndicate operatives."
 	flags_1 = NONE
 
-<<<<<<< HEAD
-=======
 /obj/item/pinpointer/syndicate_cyborg/Initialize()
 	. = ..()
 	add_trait(TRAIT_NODROP, CYBORG_ITEM_TRAIT)
@@ -78,7 +76,6 @@
 		return
 	toggle_on()
 
->>>>>>> 881e8c1ab9... Refactors NODROP flag into TRAIT_NODROP (#42109)
 /obj/item/pinpointer/syndicate_cyborg/scan_for_target()
 	target = null
 	var/list/possible_targets = list()
