@@ -67,7 +67,7 @@
 	.=..()
 	if(.)
 		n_mask = H.wear_mask
-		n_mask.item_flags |= NODROP
+		n_mask.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_mask.lights_on = TRUE
 		n_shoes.lights_on = TRUE
 		n_gloves.lights_on = TRUE
@@ -77,7 +77,7 @@
 /obj/item/clothing/suit/space/space_ninja/unlock_suit()
 	.=..()
 	if(n_mask)
-		n_mask.item_flags &= ~NODROP
+		n_mask.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_mask.lights_on = FALSE
 
 	if(n_shoes)
