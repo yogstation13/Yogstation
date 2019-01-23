@@ -8,5 +8,6 @@
 		"https://www.youtube.com/watch?v=cW38y4AFGyI", // Let's Go
 		"https://www.youtube.com/watch?v=zgKazTrhXmI", // Red Army is the Strongest
 		"https://www.youtube.com/watch?v=Q_iIeFWJszY", // Shchors' Song
-		"https://www.youtube.com/watch?v=maYCStVzjDs"  // Sacred War
+		"https://www.youtube.com/watch?v=maYCStVzjDs",  // Sacred War
+		"https://www.youtube.com/watch?v=LYo9mIo54Vs" // Red Alert 3 theme
 		)
