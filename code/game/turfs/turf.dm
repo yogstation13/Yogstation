@@ -549,3 +549,7 @@
 //Should return new turf
 /turf/proc/Melt()
 	return ScrapeAway()
+/turf/bullet_act(obj/item/projectile/P)
+	. = ..()
+	if(. != BULLET_ACT_FORCE_PIERCE)
+		. =  BULLET_ACT_TURF
