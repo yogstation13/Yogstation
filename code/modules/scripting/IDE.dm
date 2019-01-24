@@ -43,7 +43,7 @@
 				spawn(0)
 					// Output all the compile-time errors
 					src << output(null, "tcserror")
-					src << output("<font color = black>Please wait, compiling...</font>", "tcserror")
+					src << output("Please wait, compiling...", "tcserror")
 
 					var/list/compileerrors = Server.compile(mob) // then compile the code!
 					if(!telecomms_check(mob))
