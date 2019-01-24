@@ -12,7 +12,7 @@
 		for(var/holidayname in SSevents.holidays)
 			var/datum/holiday/holiday = SSevents.holidays[holidayname]
 			if(LAZYLEN(holiday.lobby_music))
-				selected = pick(holiday.lobby_music)
+				selected_lobby_music = pick(holiday.lobby_music)
 				break
 
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
