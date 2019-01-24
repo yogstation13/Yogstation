@@ -5,6 +5,13 @@
 		return
 	var/selected = pick(songs)
 
+	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
+		for(var/holidayname in SSevents.holidays)
+			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+			if(LAZYLEN(holiday.lobby_music))
+				selected = pick(holiday.lobby_music)
+				break
+
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
 		to_chat(world, "<span class='boldwarning'>Youtube-dl was not configured.</span>")
