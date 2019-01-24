@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 /datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", language = /datum/language/common)
 	//languages &= allowed_translateable_langs //we can only translate to certain languages
-	var/datum/signal/subspace/newsign = new
+	
 	var/obj/machinery/telecomms/server/S = data["server"]
 	var/obj/item/radio/server/hradio = S.server_radio
 
@@ -355,6 +355,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	var/atom/movable/virtualspeaker/virt = new
 	virt.name = source
 	virt.job = job
+	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans,list(S.z))
 	/*
 	virt.languages_spoken = language
 	virt.languages_understood = virt.languages_spoken //do not remove this or everything turns to jibberish
@@ -382,7 +383,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	newsign.data["vmessage"] = message
 	newsign.data["vname"] = source
 	newsign.data["vmask"] = 0
-	newsign.data["level"] = data["level"]
 	newsign.data["broadcast_levels"] = data["broadcast_levels"]
 	newsign.sanitize_data()
 
