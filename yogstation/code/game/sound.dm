@@ -5,3 +5,4 @@
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
 		chatOutput.sendLobbyMusic(SSticker.login_music)
+		to_chat(src, "<span class='notice'>Currently playing: </span>[SSticker.selected_lobby_music]")
