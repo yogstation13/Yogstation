@@ -18,14 +18,18 @@
 		/obj/effect/landmark,
 		/obj/effect/temp_visual,
 		/obj/effect/light_emitter/tendril,
-		/obj/effect/collapse))
+		/obj/effect/collapse,
+		/obj/effect/particle_effect/ion_trails,
+		/obj/effect/dummy/phased_mob,
+		/obj/effect/dummy/crawling //yogs
+		))
 
 /datum/component/chasm/Initialize(turf/target)
-	RegisterSignal(list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
-/datum/component/chasm/proc/Entered(atom/movable/AM)
+/datum/component/chasm/proc/Entered(datum/source, atom/movable/AM)
 	START_PROCESSING(SSobj, src)
 	drop_stuff(AM)
 
@@ -62,7 +66,7 @@
 		return FALSE
 	if(!isliving(AM) && !isobj(AM))
 		return FALSE
-	if(is_type_in_typecache(AM, forbidden_types) || AM.throwing || AM.floating)
+	if(is_type_in_typecache(AM, forbidden_types) || AM.throwing || (AM.movement_type & FLOATING))
 		return FALSE
 	//Flies right over the chasm
 	if(ismob(AM))
@@ -97,7 +101,7 @@
 		AM.forceMove(T)
 		if(isliving(AM))
 			var/mob/living/L = AM
-			L.Knockdown(100)
+			L.Paralyze(100)
 			L.adjustBruteLoss(30)
 		falling_atoms -= AM
 

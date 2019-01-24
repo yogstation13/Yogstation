@@ -24,7 +24,7 @@
 	return MANUAL_SUICIDE
 
 /obj/item/assembly/signaler/proc/manual_suicide(mob/living/carbon/user)
-	user.visible_message("<span class='suicide'>[user]'s \the [src] recieves a signal, killing [user.p_them()] instantly!</span>")
+	user.visible_message("<span class='suicide'>[user]'s \the [src] receives a signal, killing [user.p_them()] instantly!</span>")
 	user.adjustOxyLoss(200)//it sends an electrical pulse to their heart, killing them. or something.
 	user.death(0)
 
@@ -70,9 +70,10 @@ Code:
 [src.code]
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
+Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black; color: [src.label_color]'>[src.label_color]</A><BR>
 [t1]
 </TT>"}
-		user << browse(dat, "window=radio")
+		user << browse(dat, "window=radio") // yogs - signaller colors
 		onclose(user, "radio")
 		return
 
@@ -101,6 +102,17 @@ Code:
 		spawn( 0 )
 			signal()
 
+	// yogs start - signaller colors
+	if(href_list["color"])
+		var/idx = label_colors.Find(label_color)
+		if(idx == label_colors.len || idx == 0)
+			idx = 1
+		else
+			idx++
+		label_color = label_colors[idx]
+		update_icon()
+	// yogs end
+
 	if(usr)
 		attack_self(usr)
 
@@ -112,6 +124,10 @@ Code:
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)
+			// yogs start - signaller colors
+			label_color = signaler2.label_color
+			update_icon()
+			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
 
@@ -158,21 +174,21 @@ Code:
 // Embedded signaller used in grenade construction.
 // It's necessary because the signaler doens't have an off state.
 // Generated during grenade construction.  -Sayu
-/obj/item/assembly/signaler/reciever
+/obj/item/assembly/signaler/receiver
 	var/on = FALSE
 
-/obj/item/assembly/signaler/reciever/proc/toggle_safety()
+/obj/item/assembly/signaler/receiver/proc/toggle_safety()
 	on = !on
 
-/obj/item/assembly/signaler/reciever/activate()
+/obj/item/assembly/signaler/receiver/activate()
 	toggle_safety()
 	return TRUE
 
-/obj/item/assembly/signaler/reciever/examine(mob/user)
+/obj/item/assembly/signaler/receiver/examine(mob/user)
 	..()
 	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
 
-/obj/item/assembly/signaler/reciever/receive_signal(datum/signal/signal)
+/obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
 	if(!on)
 		return
 	return ..(signal)
@@ -186,6 +202,7 @@ Code:
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	resistance_flags = FIRE_PROOF
 	var/anomaly_type = /obj/effect/anomaly
 
 /obj/item/assembly/signaler/anomaly/receive_signal(datum/signal/signal)

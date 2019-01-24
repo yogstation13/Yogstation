@@ -4,7 +4,7 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
-	req_access_txt = "29"
+	req_access = list(ACCESS_ROBOTICS)
 	products = list(/obj/item/clothing/suit/toggle/labcoat = 4,
 		            /obj/item/clothing/under/rank/roboticist = 4,
 		            /obj/item/stack/cable_coil = 4,
@@ -21,3 +21,6 @@
 					/obj/item/crowbar = 5)
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
+	default_price = 50
+	extra_price = 75
+	payment_department = ACCOUNT_SCI

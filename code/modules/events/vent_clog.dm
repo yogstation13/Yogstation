@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/vent_clog
 	weight = 10
 	max_occurrences = 3
-	min_players = 25
+	min_players = 10
 
 /datum/round_event/vent_clog
 	announceWhen	= 1
@@ -54,7 +54,7 @@
 	name = "Clogged Vents: Threatening"
 	typepath = /datum/round_event/vent_clog/threatening
 	weight = 4
-	min_players = 35
+	min_players = 25
 	max_occurrences = 1
 	earliest_start = 35 MINUTES
 
@@ -66,7 +66,7 @@
 	name = "Clogged Vents: Catastrophic"
 	typepath = /datum/round_event/vent_clog/catastrophic
 	weight = 2
-	min_players = 45
+	min_players = 35
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
 
@@ -77,6 +77,11 @@
 /datum/round_event_control/vent_clog/beer
 	name = "Foamy beer stationwide"
 	typepath = /datum/round_event/vent_clog/beer
+	max_occurrences = 0
+
+/datum/round_event_control/vent_clog/plasma_decon
+	name = "Plasma decontamination"
+	typepath = /datum/round_event/vent_clog/plasma_decon
 	max_occurrences = 0
 
 /datum/round_event/vent_clog/beer
@@ -95,4 +100,15 @@
 			var/datum/effect_system/foam_spread/foam = new
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
+		CHECK_TICK
+
+/datum/round_event/vent_clog/plasma_decon/announce()
+	priority_announce("We are deploying an experimental plasma decontamination system. Please stand away from the vents and do not breathe the smoke that comes out.", "Central Command Update")
+
+/datum/round_event/vent_clog/plasma_decon/start()
+	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
+		if(vent && vent.loc)
+			var/datum/effect_system/smoke_spread/freezing/decon/smoke = new
+			smoke.set_up(7, get_turf(vent), 7)
+			smoke.start()
 		CHECK_TICK

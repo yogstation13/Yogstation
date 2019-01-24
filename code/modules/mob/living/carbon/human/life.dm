@@ -23,7 +23,12 @@
 	if (notransform)
 		return
 
-	if(..()) //not dead
+	. = ..()
+
+	if (QDELETED(src))
+		return 0
+
+	if(.) //not dead
 		handle_active_genes()
 
 	if(stat != DEAD)
@@ -33,6 +38,14 @@
 	if(stat != DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
+		
+	//yogs start - bandage memes
+	if(stat != DEAD)
+		handle_bandaged_limbs()
+	//yogs end
+
+	if(stat != DEAD)
+		handle_hygiene()
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
@@ -61,15 +74,10 @@
 	else if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
-	if (getBrainLoss() >= 60 && !incapacitated(TRUE))
-		SendSignal(COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
-		if(prob(3))
-			if(prob(25))
-				emote("drool")
-			else
-				say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
+	if (getBrainLoss() >= 60)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
 	else
-		SendSignal(COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
@@ -84,7 +92,7 @@
 	var/L = getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(!L)
-		if(health >= HEALTH_THRESHOLD_CRIT)
+		if(health >= crit_threshold)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
 		else if(!has_trait(TRAIT_NOCRITDAMAGE))
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -113,9 +121,19 @@
 
 ///FIRE CODE
 /mob/living/carbon/human/handle_fire()
-	..()
+	. = ..()
+	if(.) //if the mob isn't on fire anymore
+		return
+
 	if(dna)
-		dna.species.handle_fire(src)
+		. = dna.species.handle_fire(src) //do special handling based on the mob's species. TRUE = they are immune to the effects of the fire.
+
+	if(!last_fire_update)
+		last_fire_update = fire_stacks
+	if((fire_stacks > HUMAN_FIRE_STACK_ICON_NUM && last_fire_update <= HUMAN_FIRE_STACK_ICON_NUM) || (fire_stacks <= HUMAN_FIRE_STACK_ICON_NUM && last_fire_update > HUMAN_FIRE_STACK_ICON_NUM))
+		last_fire_update = fire_stacks
+		update_fire()
+
 
 /mob/living/carbon/human/proc/get_thermal_protection()
 	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures
@@ -137,6 +155,7 @@
 
 /mob/living/carbon/human/ExtinguishMob()
 	if(!dna || !dna.species.ExtinguishMob(src))
+		last_fire_update = null
 		..()
 //END FIRE CODE
 
@@ -224,9 +243,6 @@
 	return thermal_protection_flags
 
 /mob/living/carbon/human/proc/get_cold_protection(temperature)
-	if(has_trait(TRAIT_RESISTCOLD))
-		return TRUE
-
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 
@@ -296,24 +312,16 @@
 				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
-					SendSignal(COMSIG_CLEAR_MOOD_EVENT, "embedded")
+					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /mob/living/carbon/human/proc/handle_active_genes()
 	for(var/datum/mutation/human/HM in dna.mutations)
-		HM.on_life(src)
+		HM.on_life()
 
 /mob/living/carbon/human/proc/handle_heart()
-	if(!can_heartattack())
-		return
-
 	var/we_breath = !has_trait(TRAIT_NOBREATH, SPECIES_TRAIT)
 
-
 	if(!undergoing_cardiac_arrest())
-		return
-
-	// Cardiac arrest, unless heart is stabilized
-	if(has_trait(TRAIT_STABLEHEART))
 		return
 
 	if(we_breath)
@@ -322,108 +330,41 @@
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
 
-/*
-Alcohol Poisoning Chart
-Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
-In addition, severe effects won't always trigger unless the drink is poisonously strong
-All effects don't start immediately, but rather get worse over time; the rate is affected by the imbiber's alcohol tolerance
+/mob/living/carbon/human/proc/handle_hygiene()
+	if(has_trait(TRAIT_ALWAYS_CLEAN))
+		set_hygiene(HYGIENE_LEVEL_CLEAN)
+		return
 
-0: Non-alcoholic
-1-10: Barely classifiable as alcohol - occassional slurring
-11-20: Slight alcohol content - slurring
-21-30: Below average - imbiber begins to look slightly drunk
-31-40: Just below average - no unique effects
-41-50: Average - mild disorientation, imbiber begins to look drunk
-51-60: Just above average - disorientation, vomiting, imbiber begins to look heavily drunk
-61-70: Above average - small chance of blurry vision, imbiber begins to look smashed
-71-80: High alcohol content - blurry vision, imbiber completely shitfaced
-81-90: Extremely high alcohol content - light brain damage, passing out
-91-100: Dangerously toxic - swift death
-*/
-#define BALLMER_POINTS 5
-GLOBAL_LIST_INIT(ballmer_good_msg, list("Hey guys, what if we rolled out a bluespace wiring system so mice can't destroy the powergrid anymore?",
-										"Hear me out here. What if, and this is just a theory, we made R&D controllable from our PDAs?",
-										"I'm thinking we should roll out a git repository for our research under the AGPLv3 license so that we can share it among the other stations freely.",
-										"I dunno about you guys, but IDs and PDAs being separate is clunky as fuck. Maybe we should merge them into a chip in our arms? That way they can't be stolen easily.",
-										"Why the fuck aren't we just making every pair of shoes into galoshes? We have the technology."))
-GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put a webserver that's automatically turned on with default admin passwords into every PDA?",
-												"So like, you know how we separate our codebase from the master copy that runs on our consumer boxes? What if we merged the two and undid the separation between codebase and server?",
-												"Dude, radical idea: H.O.N.K mechs but with no bananium required.",
-												"Best idea ever: Disposal pipes instead of hallways."))
-/mob/living/carbon/human/handle_status_effects()
-	..()
+	var/hygiene_loss = -HYGIENE_FACTOR * 0.25 //Small loss per life
 
+	//If you're covered in blood, you'll start smelling like shit faster.
+	var/obj/item/head = get_item_by_slot(SLOT_HEAD)
+	if(head)
+		IF_HAS_BLOOD_DNA(head)
+			hygiene_loss -= 1 * HYGIENE_FACTOR
 
-	if(drunkenness)
-		drunkenness = max(drunkenness - (drunkenness * 0.04), 0)
-		if(drunkenness >= 6)
-			if(prob(25))
-				slurring += 2
-			jitteriness = max(jitteriness - 3, 0)
-			if(has_trait(TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-0.12, FALSE)
-				adjustFireLoss(-0.06, FALSE)
+	var/obj/item/mask = get_item_by_slot(SLOT_HEAD)
+	if(mask)
+		IF_HAS_BLOOD_DNA(mask)
+			hygiene_loss -= 1 * HYGIENE_FACTOR
 
-		if(drunkenness >= 11 && slurring < 5)
-			slurring += 1.2
+	var/obj/item/uniform = get_item_by_slot(SLOT_W_UNIFORM)
+	if(uniform)
+		IF_HAS_BLOOD_DNA(uniform)
+			hygiene_loss -= 4 * HYGIENE_FACTOR
 
-		if(mind && (mind.assigned_role == "Scientist" || mind.assigned_role == "Research Director"))
-			if(SSresearch.science_tech)
-				if(drunkenness >= 12.9 && drunkenness <= 13.8)
-					drunkenness = round(drunkenness, 0.01)
-					var/ballmer_percent = 0
-					if(drunkenness == 13.35) // why run math if I dont have to
-						ballmer_percent = 1
-					else
-						ballmer_percent = (-abs(drunkenness - 13.35) / 0.9) + 1
-					if(prob(5))
-						say(pick(GLOB.ballmer_good_msg))
-					SSresearch.science_tech.add_points_all(TECHWEB_POINT_TYPE_DEFAULT, (BALLMER_POINTS * ballmer_percent))
-				if(drunkenness > 26) // by this point you're into windows ME territory
-					if(prob(5))
-						SSresearch.science_tech.remove_points_all(TECHWEB_POINT_TYPE_DEFAULT, BALLMER_POINTS)
-						say(pick(GLOB.ballmer_windows_me_msg))
+	var/obj/item/suit = get_item_by_slot(SLOT_WEAR_SUIT)
+	if(suit)
+		IF_HAS_BLOOD_DNA(suit)
+			hygiene_loss -= 3 * HYGIENE_FACTOR
 
-		if(drunkenness >= 41)
-			if(prob(25))
-				confused += 2
-			Dizzy(10)
-			if(has_trait(TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
-				adjustBruteLoss(-0.3, FALSE)
-				adjustFireLoss(-0.15, FALSE)
+	var/obj/item/feet = get_item_by_slot(SLOT_SHOES)
+	if(feet)
+		IF_HAS_BLOOD_DNA(feet)
+			hygiene_loss -= 0.5 * HYGIENE_FACTOR
 
-		if(drunkenness >= 51)
-			if(prob(5))
-				confused += 10
-				vomit()
-			Dizzy(25)
+	adjust_hygiene(hygiene_loss)
 
-		if(drunkenness >= 61)
-			if(prob(50))
-				blur_eyes(5)
-			if(has_trait(TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-0.4, FALSE)
-				adjustFireLoss(-0.2, FALSE)
-
-		if(drunkenness >= 71)
-			blur_eyes(5)
-
-		if(drunkenness >= 81)
-			adjustToxLoss(0.2)
-			if(prob(5) && !stat)
-				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
-
-		if(drunkenness >= 91)
-			adjustBrainLoss(0.4, 60)
-			if(prob(20) && !stat)
-				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, "<span class='warning'>You're so tired... but you can't miss that shuttle...</span>")
-				else
-					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-					Sleeping(900)
-
-		if(drunkenness >= 101)
-			adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

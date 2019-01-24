@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The destructive analyzer no longer consumes entire stacks to give the benefit of one sheet."

@@ -22,6 +22,33 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
+	if(href_list["afreeze"]) //yogs start - afreeze
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/M = locate(href_list["afreeze"]) in GLOB.mob_list
+		if(!M || !M.client)
+			return
+		var/message
+		if(M.client.prefs.afreeze)
+			to_chat(M, "<span class='userdanger'>You are no longer frozen.</span>")
+			M.client.prefs.afreeze = FALSE
+			M.client.show_popup_menus = TRUE
+			M.client.show_verb_panel = TRUE
+			M.notransform = FALSE
+			M.verbs += M.client.afreeze_stored_verbs
+			message = "[key_name(usr)] has unfrozen [key_name(M)]."
+		else
+			to_chat(M, "<span class='userdanger'>You have been frozen by an administrator.</span>")
+			M.client.prefs.afreeze = TRUE
+			M.client.show_popup_menus = FALSE
+			M.client.show_verb_panel = FALSE
+			M.notransform = TRUE
+			M.client.afreeze_stored_verbs = M.verbs.Copy()
+			M.verbs.Cut()
+			message = "[key_name(usr)] has frozen [key_name(M)]."
+		log_admin(message)
+		message_admins(message) //yogs end
+
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
@@ -72,7 +99,7 @@
 					message_admins("[key_name_admin(usr)] tried to create traitors. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create traitors.")
 			if("changelings")
-				if(src.makeChanglings())
+				if(src.makeChangelings())
 					message_admins("[key_name(usr)] created changelings.")
 					log_admin("[key_name(usr)] created changelings.")
 				else
@@ -161,7 +188,13 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
-
+			if("shadowling")
+				if(makeShadowling())
+					message_admins("[key_name(usr)] created a shadowling.")
+					log_admin("[key_name(usr)] created a shadowling.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a shadowling. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a shadowling.")
 	else if(href_list["forceevent"])
 		if(!check_rights(R_FUN))
 			return
@@ -183,94 +216,6 @@
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
-	else if(href_list["dbsearchckey"] || href_list["dbsearchadmin"] || href_list["dbsearchip"] || href_list["dbsearchcid"])
-		var/adminckey = href_list["dbsearchadmin"]
-		var/playerckey = href_list["dbsearchckey"]
-		var/ip = href_list["dbsearchip"]
-		var/cid = href_list["dbsearchcid"]
-		var/page = href_list["dbsearchpage"]
-
-		DB_ban_panel(playerckey, adminckey, ip, cid, page)
-		return
-
-	else if(href_list["dbbanedit"])
-		var/banedit = href_list["dbbanedit"]
-		var/banid = text2num(href_list["dbbanid"])
-		if(!banedit || !banid)
-			return
-
-		DB_ban_edit(banid, banedit)
-		return
-
-	else if(href_list["dbbanaddtype"])
-		if(!check_rights(R_BAN))
-			return
-		var/bantype = text2num(href_list["dbbanaddtype"])
-		var/banckey = href_list["dbbanaddckey"]
-		var/banip = href_list["dbbanaddip"]
-		var/bancid = href_list["dbbanaddcid"]
-		var/banduration = text2num(href_list["dbbaddduration"])
-		var/banjob = href_list["dbbanaddjob"]
-		var/banreason = href_list["dbbanreason"]
-
-		banckey = ckey(banckey)
-
-		switch(bantype)
-			if(BANTYPE_PERMA)
-				if(!banckey || !banreason)
-					to_chat(usr, "Not enough parameters (Requires ckey and reason).")
-					return
-				banduration = null
-				banjob = null
-			if(BANTYPE_TEMP)
-				if(!banckey || !banreason || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration).")
-					return
-				banjob = null
-			if(BANTYPE_JOB_PERMA)
-				if(!banckey || !banreason || !banjob)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and job).")
-					return
-				banduration = null
-			if(BANTYPE_JOB_TEMP)
-				if(!banckey || !banreason || !banjob || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and job).")
-					return
-			if(BANTYPE_ADMIN_PERMA)
-				if(!banckey || !banreason)
-					to_chat(usr, "Not enough parameters (Requires ckey and reason).")
-					return
-				banduration = null
-				banjob = null
-			if(BANTYPE_ADMIN_TEMP)
-				if(!banckey || !banreason || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration).")
-					return
-				banjob = null
-
-		var/mob/playermob
-
-		for(var/mob/M in GLOB.player_list)
-			if(M.ckey == banckey)
-				playermob = M
-				break
-
-
-		banreason = "(MANUAL BAN) "+banreason
-
-		if(!playermob)
-			if(banip)
-				banreason = "[banreason] (CUSTOM IP)"
-			if(bancid)
-				banreason = "[banreason] (CUSTOM CID)"
-		else
-			message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob.")
-
-		if(!DB_ban_record(bantype, playermob, banduration, banreason, banjob, banckey, banip, bancid ))
-			to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-			return
-		create_message("note", banckey, null, banreason, null, null, 0, 0)
-
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
 
@@ -279,9 +224,9 @@
 
 	if(href_list["editrightsbrowsermanage"])
 		if(href_list["editrightschange"])
-			change_admin_rank(href_list["editrightschange"], TRUE)
+			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
 		else if(href_list["editrightsremove"])
-			remove_admin(href_list["editrightsremove"], TRUE)
+			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
 		edit_admin_permissions(2)
@@ -339,7 +284,7 @@
 	else if(href_list["toggle_continuous"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/list/continuous = CONFIG_GET(keyed_flag_list/continuous)
+		var/list/continuous = CONFIG_GET(keyed_list/continuous)
 		if(!continuous[SSticker.mode.config_tag])
 			continuous[SSticker.mode.config_tag] = TRUE
 		else
@@ -352,7 +297,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/list/midround_antag = CONFIG_GET(keyed_flag_list/midround_antag)
+		var/list/midround_antag = CONFIG_GET(keyed_list/midround_antag)
 		if(!midround_antag[SSticker.mode.config_tag])
 			midround_antag[SSticker.mode.config_tag] = TRUE
 		else
@@ -438,13 +383,15 @@
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
 
-		var/delmob = 0
+		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
 			if("Cancel")
 				return
 			if("Yes")
-				delmob = 1
+				delmob = TRUE
 
+		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -462,6 +409,8 @@
 				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if("human")
 				var/posttransformoutfit = usr.client.robust_dress_shop()
+				if (!posttransformoutfit)
+					return
 				var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, delmob )
 				if(posttransformoutfit && istype(newmob))
 					newmob.equipOutfit(posttransformoutfit)
@@ -497,592 +446,45 @@
 				M.change_mob_type( /mob/living/simple_animal/hostile/construct/wraith , null, null, delmob )
 			if("shade")
 				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
-		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
-
-
-	/////////////////////////////////////new ban stuff
-	else if(href_list["unbanf"])
-		if(!check_rights(R_BAN))
-			return
-
-		var/banfolder = href_list["unbanf"]
-		GLOB.Banlist.cd = "/base/[banfolder]"
-		var/key = GLOB.Banlist["key"]
-		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
-			if(RemoveBan(banfolder))
-				unbanpanel()
-			else
-				alert(usr, "This ban has already been lifted / does not exist.", "Error", "Ok")
-				unbanpanel()
-
-	else if(href_list["unbane"])
-		if(!check_rights(R_BAN))
-			return
-
-		UpdateTime()
-		var/reason
-
-		var/banfolder = href_list["unbane"]
-		GLOB.Banlist.cd = "/base/[banfolder]"
-		var/reason2 = GLOB.Banlist["reason"]
-		var/temp = GLOB.Banlist["temp"]
-
-		var/minutes = GLOB.Banlist["minutes"]
-
-		var/banned_key = GLOB.Banlist["key"]
-		GLOB.Banlist.cd = "/base"
-
-		var/duration
-
-		switch(alert("Temporary Ban for [banned_key]?",,"Yes","No"))
-			if("Yes")
-				temp = 1
-				var/mins = 0
-				if(minutes > GLOB.CMinutes)
-					mins = minutes - GLOB.CMinutes
-				mins = input(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440) as num|null
-				if(mins <= 0)
-					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
-					return
-				minutes = GLOB.CMinutes + mins
-				duration = GetExp(minutes)
-				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
-				if(!reason)
-					return
-			if("No")
-				temp = 0
-				duration = "Perma"
-				reason = input(usr,"Please State Reason For Banning [banned_key].","Reason",reason2) as message|null
-				if(!reason)
-					return
-
-		log_admin_private("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-		ban_unban_log_save("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]</span>")
-		GLOB.Banlist.cd = "/base/[banfolder]"
-		WRITE_FILE(GLOB.Banlist["reason"], reason)
-		WRITE_FILE(GLOB.Banlist["temp"], temp)
-		WRITE_FILE(GLOB.Banlist["minutes"], minutes)
-		WRITE_FILE(GLOB.Banlist["bannedby"], usr.ckey)
-		GLOB.Banlist.cd = "/base"
-		unbanpanel()
-
-	/////////////////////////////////////new ban stuff
-
-	else if(href_list["appearanceban"])
-		if(!check_rights(R_BAN))
-			return
-		var/mob/M = locate(href_list["appearanceban"])
-		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
-			return
-		if(!M.ckey)	//sanity
-			to_chat(usr, "This mob has no ckey")
-			return
-
-
-		if(jobban_isbanned(M, "appearance"))
-			switch(alert("Remove appearance ban?","Please Confirm","Yes","No"))
-				if("Yes")
-					ban_unban_log_save("[key_name(usr)] removed [key_name(M)]'s appearance ban.")
-					log_admin_private("[key_name(usr)] removed [key_name(M)]'s appearance ban.")
-					DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, "appearance")
-					if(M.client)
-						jobban_buildcache(M.client)
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed [key_name_admin(M)]'s appearance ban.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>[usr.client.ckey] has removed your appearance ban.</BIG></span>")
-
-		else switch(alert("Appearance ban [M.ckey]?",,"Yes","No", "Cancel"))
-			if("Yes")
-				var/reason = input(usr,"Please State Reason.","Reason") as message|null
-				if(!reason)
-					return
-				if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, "appearance"))
-					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-					return
-				if(M.client)
-					jobban_buildcache(M.client)
-				ban_unban_log_save("[key_name(usr)] appearance banned [key_name(M)]. reason: [reason]")
-				log_admin_private("[key_name(usr)] appearance banned [key_name(M)]. \nReason: [reason]")
-				create_message("note", M.ckey, null, "Appearance banned - [reason]", null, null, 0, 0)
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] appearance banned [key_name_admin(M)].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been appearance banned by [usr.client.ckey].</BIG></span>")
-				to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-				to_chat(M, "<span class='danger'>Appearance ban can be lifted only upon request.</span>")
-				var/bran = CONFIG_GET(string/banappeals)
-				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]. If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums.</span>") //yogs
-				else
-					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
-			if("No")
-				return
-
-	else if(href_list["jobban2"])
-		if(!check_rights(R_BAN))
-			return
-		var/mob/M = locate(href_list["jobban2"])
-		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.")
-			return
-
-		if(!M.ckey)	//sanity
-			to_chat(usr, "This mob has no ckey.")
-			return
-
-		var/dat = "<head><title>Job-Ban Panel: [key_name(M)]</title></head>"
-
-	/***********************************WARNING!************************************
-				      The jobban stuff looks mangled and disgusting
-						      But it looks beautiful in-game
-						                -Nodrak
-	************************************WARNING!***********************************/
-		var/counter = 0
-//Regular jobs
-	//Command (Blue)
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr align='center' bgcolor='ccccff'><th colspan='[length(GLOB.command_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=commanddept;jobban4=[REF(M)]'>Command Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.command_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='15%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='15%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 6) //So things dont get squiiiiished!
-				dat += "</tr><tr>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Security (Red)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='ffddf0'><th colspan='[length(GLOB.security_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=securitydept;jobban4=[REF(M)]'>Security Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.security_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Engineering (Yellow)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='fff5cc'><th colspan='[length(GLOB.engineering_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=engineeringdept;jobban4=[REF(M)]'>Engineering Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.engineering_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Medical (White)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='ffeef0'><th colspan='[length(GLOB.medical_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=medicaldept;jobban4=[REF(M)]'>Medical Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.medical_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Science (Purple)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='e79fff'><th colspan='[length(GLOB.science_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=sciencedept;jobban4=[REF(M)]'>Science Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.science_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Supply (Brown)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='DDAA55'><th colspan='[length(GLOB.supply_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=supplydept;jobban4=[REF(M)]'>Supply Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.supply_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get COPYPASTE!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Civilian (Grey)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='dddddd'><th colspan='[length(GLOB.civilian_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=civiliandept;jobban4=[REF(M)]'>Civilian Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.civilian_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-		dat += "</tr></table>"
-
-	//Non-Human (Green)
-		counter = 0
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='ccffcc'><th colspan='[length(GLOB.nonhuman_positions)]'><a href='?src=[REF(src)];[HrefToken()];jobban3=nonhumandept;jobban4=[REF(M)]'>Non-human Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in GLOB.nonhuman_positions)
-			if(!jobPos)
-				continue
-			if(jobban_isbanned(M, jobPos))
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'><font color=red>[jobPos]</font></a></td>"
-				counter++
-			else
-				dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[jobPos];jobban4=[REF(M)]'>[jobPos]</a></td>"
-				counter++
-
-			if(counter >= 5) //So things dont get squiiiiished!
-				dat += "</tr><tr align='center'>"
-				counter = 0
-
-		dat += "</tr></table>"
-
-		//Ghost Roles (light light gray)
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='eeeeee'><th colspan='5'><a href='?src=[REF(src)];[HrefToken()];jobban3=ghostroles;jobban4=[REF(M)]'>Ghost Roles</a></th></tr><tr align='center'>"
-
-		//pAI
-		if(jobban_isbanned(M, ROLE_PAI))
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=pAI;jobban4=[REF(M)]'><font color=red>pAI</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=pAI;jobban4=[REF(M)]'>pAI</a></td>"
-
-
-		//Drones
-		if(jobban_isbanned(M, "drone"))
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=drone;jobban4=[REF(M)]'><font color=red>Drone</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=drone;jobban4=[REF(M)]'>Drone</a></td>"
-
-
-		//Positronic Brains
-		if(jobban_isbanned(M, "posibrain"))
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=posibrain;jobban4=[REF(M)]'><font color=red>Posibrain</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=posibrain;jobban4=[REF(M)]'>Posibrain</a></td>"
-
-
-		//Deathsquad
-		if(jobban_isbanned(M, "deathsquad"))
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=deathsquad;jobban4=[REF(M)]'><font color=red>Deathsquad</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=deathsquad;jobban4=[REF(M)]'>Deathsquad</a></td>"
-
-		//Lavaland roles
-		if(jobban_isbanned(M, "lavaland"))
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=lavaland;jobban4=[REF(M)]'><font color=red>Lavaland</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=lavaland;jobban4=[REF(M)]'>Lavaland</a></td>"
-
-		dat += "</tr></table>"
-
-	//Antagonist (Orange)
-		var/isbanned_dept = jobban_isbanned(M, ROLE_SYNDICATE)
-		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a> | "
-		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a> | "
-		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=convertantags;jobban4=[REF(M)]'>Conversion Antagonists</a></th></tr><tr align='center'></th>"
-
-		//Traitor
-		if(jobban_isbanned(M, ROLE_TRAITOR) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=traitor;jobban4=[REF(M)]'><font color=red>Traitor</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];jobban3=traitor;jobban4=[REF(M)]'>Traitor</a></td>"
-
-		//Changeling
-		if(jobban_isbanned(M, ROLE_CHANGELING) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=changeling;jobban4=[REF(M)]'><font color=red>Changeling</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=changeling;jobban4=[REF(M)]'>Changeling</a></td>"
-
-		//Nuke Operative
-		if(jobban_isbanned(M, ROLE_OPERATIVE) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=operative;jobban4=[REF(M)]'><font color=red>Nuke Operative</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=operative;jobban4=[REF(M)]'>Nuke Operative</a></td>"
-
-		//Revolutionary
-		if(jobban_isbanned(M, ROLE_REV) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=revolutionary;jobban4=[REF(M)]'><font color=red>Revolutionary</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=revolutionary;jobban4=[REF(M)]'>Revolutionary</a></td>"
-
-		//Cultist
-		if(jobban_isbanned(M, ROLE_CULTIST) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cultist;jobban4=[REF(M)]'><font color=red>Cultist</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cultist;jobban4=[REF(M)]'>Cultist</a></td>"
-
-		dat += "</tr><tr align='center'>" //So things dont get squished.
-
-		//Servant of Ratvar
-		if(jobban_isbanned(M, ROLE_SERVANT_OF_RATVAR) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=servant of Ratvar;jobban4=[REF(M)]'><font color=red>Servant</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=servant of Ratvar;jobban4=[REF(M)]'>Servant</a></td>"
-
-		//Wizard
-		if(jobban_isbanned(M, ROLE_WIZARD) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=wizard;jobban4=[REF(M)]'><font color=red>Wizard</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=wizard;jobban4=[REF(M)]'>Wizard</a></td>"
-
-		//Abductor
-		if(jobban_isbanned(M, ROLE_ABDUCTOR) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=abductor;jobban4=[REF(M)]'><font color=red>Abductor</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=abductor;jobban4=[REF(M)]'>Abductor</a></td>"
-
-		//Alien
-		if(jobban_isbanned(M, ROLE_ALIEN) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'><font color=red>Alien</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
-
-		dat += "</tr></table>"
-		usr << browse(dat, "window=jobban2;size=800x450")
-		return
-
-	//JOBBAN'S INNARDS
-	else if(href_list["jobban3"])
-		if(!check_rights(R_BAN))
-			return
-		var/mob/M = locate(href_list["jobban4"])
-		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
-			return
-		if(!SSjob)
-			to_chat(usr, "Jobs subsystem not initialized yet!")
-			return
-		//get jobs for department if specified, otherwise just return the one job in a list.
-		var/list/joblist = list()
-		switch(href_list["jobban3"])
-			if("commanddept")
-				for(var/jobPos in GLOB.command_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("securitydept")
-				for(var/jobPos in GLOB.security_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("engineeringdept")
-				for(var/jobPos in GLOB.engineering_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("medicaldept")
-				for(var/jobPos in GLOB.medical_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("sciencedept")
-				for(var/jobPos in GLOB.science_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("supplydept")
-				for(var/jobPos in GLOB.supply_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("civiliandept")
-				for(var/jobPos in GLOB.civilian_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("nonhumandept")
-				for(var/jobPos in GLOB.nonhuman_positions)
-					if(!jobPos)
-						continue
-					joblist += jobPos
-			if("ghostroles")
-				joblist += list(ROLE_PAI, "posibrain", "drone", "deathsquad", "lavaland")
-			if("teamantags")
-				joblist += list(ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ABDUCTOR, ROLE_ALIEN)
-			if("convertantags")
-				joblist += list(ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ALIEN)
-			else
-				joblist += href_list["jobban3"]
-
-		//Create a list of unbanned jobs within joblist
-		var/list/notbannedlist = list()
-		for(var/job in joblist)
-			if(!jobban_isbanned(M, job))
-				notbannedlist += job
-
-		//Banning comes first
-		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
-			switch(alert("Temporary Ban for [M.ckey]?",,"Yes","No", "Cancel"))
-				if("Yes")
-					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
-					if(mins <= 0)
-						to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
-						return
-					var/reason = input(usr,"Please State Reason For Banning [M.ckey].","Reason") as message|null
-					if(!reason)
-						return
-
-					var/msg
-					for(var/job in notbannedlist)
-						if(!DB_ban_record(BANTYPE_JOB_TEMP, M, mins, reason, job))
-							to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-							return
-						if(M.client)
-							jobban_buildcache(M.client)
-						ban_unban_log_save("[key_name(usr)] temp-jobbanned [key_name(M)] from [job] for [mins] minutes. reason: [reason]")
-						log_admin_private("[key_name(usr)] temp-jobbanned [key_name(M)] from [job] for [mins] minutes.")
-						if(!msg)
-							msg = job
-						else
-							msg += ", [job]"
-					create_message("note", M.ckey, null, "Banned  from [msg] - [reason]", null, null, 0, 0)
-					message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes.</span>")
-					to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.ckey] from: [msg].</BIG></span>")
-					to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-					to_chat(M, "<span class='danger'>This jobban will be lifted in [mins] minutes.</span>")
-					href_list["jobban2"] = 1 // lets it fall through and refresh
-					return 1
-				if("No")
-					var/reason = input(usr,"Please State Reason For Banning [M.ckey].","Reason") as message|null
-					if(reason)
-						var/msg
-						for(var/job in notbannedlist)
-							if(!DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, job))
-								to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-								return
-							if(M.client)
-								jobban_buildcache(M.client)
-							ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [reason]")
-							log_admin_private("[key_name(usr)] perma-banned [key_name(M)] from [job]")
-							if(!msg)
-								msg = job
-							else
-								msg += ", [job]"
-						create_message("note", M.ckey, null, "Banned  from [msg] - [reason]", null, null, 0, 0)
-						message_admins("<span class='adminnotice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg].</span>")
-						to_chat(M, "<span class='boldannounce'><BIG>You have been [(msg == ("ooc" || "appearance")) ? "banned" : "jobbanned"] by [usr.client.ckey] from: [msg].</BIG></span>")
-						to_chat(M, "<span class='boldannounce'>The reason is: [reason]</span>")
-						to_chat(M, "<span class='danger'>Jobban can be lifted only upon request.</span>")
-						href_list["jobban2"] = 1 // lets it fall through and refresh
-						return 1
-				if("Cancel")
-					return
-
-		//Unbanning joblist
-		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
-		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-			var/msg
-			for(var/job in joblist)
-				var/reason = jobban_isbanned(M, job)
-				if(!reason)
-					continue //skip if it isn't jobbanned anyway
-				switch(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No"))
-					if("Yes")
-						ban_unban_log_save("[key_name(usr)] unjobbanned [key_name(M)] from [job]")
-						log_admin_private("[key_name(usr)] unbanned [key_name(M)] from [job]")
-						DB_ban_unban(M.ckey, BANTYPE_ANY_JOB, job)
-						if(M.client)
-							jobban_buildcache(M.client)
-						if(!msg)
-							msg = job
-						else
-							msg += ", [job]"
-					else
-						continue
-			if(msg)
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been un-jobbanned by [usr.client.ckey] from [msg].</BIG></span>")
-				href_list["jobban2"] = 1 // lets it fall through and refresh
-			return 1
-		return 0 //we didn't do anything!
 
 	else if(href_list["boot2"])
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["boot2"])
-		if (ismob(M))
+		if(ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, "<span class='danger'>Error: They have more rights than you do.</span>")
 				return
-			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.ckey]"].</span>")
+			/* yogs - admins don't need handholding if(alert(usr, "Kick [key_name(M)]?", "Confirm", "Yes", "No") != "Yes")
+				return yogs - admins don't need handholding */
+			if(!M)
+				to_chat(usr, "<span class='danger'>Error: [M] no longer exists!</span>")
+				return
+			if(!M.client)
+				to_chat(usr, "<span class='danger'>Error: [M] no longer has a client!</span>")
+				return
+			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
 			log_admin("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] kicked [key_name_admin(M)].</span>")
-			//M.client = null
 			qdel(M.client)
 
 	else if(href_list["addmessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addmessage"]
-		create_message("message", target_ckey, secret = 0)
+		var/target_key = href_list["addmessage"]
+		create_message("message", target_key, secret = 0)
 
 	else if(href_list["addnote"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addnote"]
-		create_message("note", target_ckey)
+		var/target_key = href_list["addnote"]
+		create_message("note", target_key)
 
 	else if(href_list["addwatch"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/target_ckey = href_list["addwatch"]
-		create_message("watchlist entry", target_ckey, secret = 1)
+		var/target_key = href_list["addwatch"]
+		create_message("watchlist entry", target_key, secret = 1)
 
 	else if(href_list["addmemo"])
 		if(!check_rights(R_ADMIN))
@@ -1131,6 +533,24 @@
 			return
 		var/message_id = href_list["editmessageempty"]
 		edit_message(message_id, browse = 1)
+
+	else if(href_list["editmessageexpiry"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiry"]
+		edit_message_expiry(message_id)
+
+	else if(href_list["editmessageexpiryempty"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageexpiryempty"]
+		edit_message_expiry(message_id, browse = 1)
+
+	/*else if(href_list["editmessageseverity"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/message_id = href_list["editmessageseverity"]
+		edit_message_severity(message_id)*/ //yogs - remove severity
 
 	else if(href_list["secretmessage"])
 		if(!check_rights(R_ADMIN))
@@ -1191,81 +611,16 @@
 		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
 		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
 		if(!query_get_message_edits.warn_execute())
+			qdel(query_get_message_edits)
 			return
 		if(query_get_message_edits.NextRow())
 			var/edit_log = query_get_message_edits.item[1]
-			usr << browse(edit_log,"window=noteedits")
-
-	else if(href_list["newban"])
-		if(!check_rights(R_BAN))
-			return
-
-		var/mob/M = locate(href_list["newban"])
-		if(!ismob(M))
-			return
-
-		if(M.client && M.client.holder)
-			return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
-
-		switch(alert("Temporary Ban for [M.ckey]?",,"Yes","No", "Cancel"))
-			if("Yes")
-				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
-				if(mins <= 0)
-					to_chat(usr, "<span class='danger'>[mins] is not a valid duration.</span>")
-					return
-				var/reason = input(usr,"Please State Reason For Banning [M.ckey].","Reason") as message|null
-				if(!reason)
-					return
-				if(!DB_ban_record(BANTYPE_TEMP, M, mins, reason))
-					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-					return
-				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-				ban_unban_log_save("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This will be removed in [mins] minutes.")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.ckey].\nReason: [reason]</BIG></span>")
-				to_chat(M, "<span class='danger'>This is a temporary ban, it will be removed in [mins] minutes. The round ID is [GLOB.round_id].</span>")
-				var/bran = CONFIG_GET(string/banappeals)
-				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
-				else
-					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
-				log_admin_private("[key_name(usr)] has banned [M.ckey].\nReason: [key_name(M)]\nThis will be removed in [mins] minutes.")
-				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>"
-				message_admins(msg)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
-				qdel(M.client)
-			if("No")
-				var/reason = input(usr,"Please State Reason For Banning [M.ckey].","Reason") as message|null
-				if(!reason)
-					return
-				switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
-					if("Cancel")
-						return
-					if("Yes")
-						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
-					if("No")
-						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-				to_chat(M, "<span class='boldannounce'><BIG>You have been banned by [usr.client.ckey].\nReason: [reason]</BIG></span>")
-				to_chat(M, "<span class='danger'>This is a permanent ban. The round ID is [GLOB.round_id].</span>")
-				var/bran = CONFIG_GET(string/banappeals)
-				if(bran)
-					to_chat(M, "<span class='danger'>To try to resolve this matter head to [bran]</span>")
-				else
-					to_chat(M, "<span class='danger'>No ban appeals URL has been set.</span>")
-				if(!DB_ban_record(BANTYPE_PERMA, M, -1, reason))
-					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-					return
-				ban_unban_log_save("[key_name(usr)] has permabanned [key_name(M)]. - Reason: [reason] - This is a permanent ban.")
-				log_admin_private("[key_name(usr)] has banned [key_name(M)].\nReason: [reason]\nThis is a permanent ban.")
-				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis is a permanent ban.</span>"
-				message_admins(msg)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
-				qdel(M.client)
-			if("Cancel")
-				return
+			if(!QDELETED(usr))
+				/*var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				browser.set_content(jointext(edit_log, ""))
+				browser.open()*/ //yogs - simple fast interface thanks
+				usr << browse(edit_log,"window=noteedits") //yogs
+		qdel(query_get_message_edits)
 
 	else if(href_list["mute"])
 		if(!check_rights(R_ADMIN))
@@ -1354,10 +709,10 @@
 		if(!ismob(M))
 			to_chat(usr, "this can only be used on instances of type /mob.")
 
-		var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input("What will [key_name(M)] say?", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
-		M.say(speech)
+		M.say(speech, forced = "admin speech")
 		speech = sanitize(speech) // Nah, we don't trust them
 		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]</span>")
@@ -1540,7 +895,7 @@
 
 		message_admins("<span class='danger'>Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!</span>")
 		log_admin("[key_name(usr)] AIized [key_name(H)].")
-		H.AIize()
+		H.AIize(H.client)
 
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))
@@ -1612,7 +967,11 @@
 		if(!isobserver(usr))
 			C.admin_ghost()
 		var/mob/dead/observer/A = C.mob
-		A.ManualFollow(AM)
+		var/mob/living/silicon/ai/I = AM //yogs start - adminfollow now follows AI eyes instead of the core
+		if(istype(I) && I.eyeobj)
+			A.ManualFollow(I.eyeobj)
+		else
+			A.ManualFollow(AM) //yogs stop - adminfollow now follows AI eyes instead of the core
 
 	else if(href_list["admingetmovable"])
 		if(!check_rights(R_ADMIN))
@@ -1813,43 +1172,25 @@
 		usr.client.smite(H)
 
 	else if(href_list["CentComReply"])
-		var/mob/living/carbon/human/H = locate(href_list["CentComReply"]) in GLOB.mob_list
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-			return
-		if(!istype(H.ears, /obj/item/radio/headset))
-			to_chat(usr, "The person you are trying to contact is not wearing a headset.")
+		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins("[src.owner] has started answering [key_name(H)]'s CentCom request.")
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from CentCom", "")
-		if(!input)
-			message_admins("[src.owner] decided not to answer [key_name(H)]'s CentCom request.")
-			return
-
-		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
-		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. [input].  Message ends.\"")
+		var/mob/M = locate(href_list["CentComReply"])
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_CENTCOM)
 
 	else if(href_list["SyndicateReply"])
-		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
-		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
-			return
-		if(!istype(H.ears, /obj/item/radio/headset))
-			to_chat(usr, "The person you are trying to contact is not wearing a headset.")
+		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins("[src.owner] has started answering [key_name(H)]'s syndicate request.")
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from The Syndicate", "")
-		if(!input)
-			message_admins("[src.owner] decided not to answer [key_name(H)]'s syndicate request.")
+		var/mob/M = locate(href_list["SyndicateReply"])
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_SYNDICATE)
+
+	else if(href_list["HeadsetMessage"])
+		if(!check_rights(R_ADMIN))
 			return
 
-		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
-		log_admin("[src.owner] replied to [key_name(H)]'s Syndicate message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s Syndicate message with: \"[input]\"")
-		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from your benefactor.  Message as follows, agent. [input].  Message ends.\"")
+		var/mob/M = locate(href_list["HeadsetMessage"])
+		usr.client.admin_headset_message(M)
 
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
@@ -1903,7 +1244,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
 
-		show_individual_logging_panel(M, href_list["log_type"])
+		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 	else if(href_list["languagemenu"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2020,7 +1361,7 @@
 
 		var/atom/target //Where the object will be spawned
 		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","inhand","inmarked") ))
+		if (!( where in list("onfloor","frompod","inhand","inmarked") ))
 			where = "onfloor"
 
 
@@ -2031,7 +1372,7 @@
 					where = "onfloor"
 				target = usr
 
-			if("onfloor")
+			if("onfloor", "frompod")
 				switch(href_list["offset_type"])
 					if ("absolute")
 						target = locate(0 + X,0 + Y,0 + Z)
@@ -2047,7 +1388,12 @@
 				else
 					target = marked_datum
 
+		var/obj/structure/closet/supplypod/centcompod/pod
+
 		if(target)
+			if(where == "frompod")
+				pod = new()
+
 			for (var/path in paths)
 				for (var/i = 0; i < number; i++)
 					if(path in typesof(/turf))
@@ -2056,7 +1402,12 @@
 						if(N && obj_name)
 							N.name = obj_name
 					else
-						var/atom/O = new path(target)
+						var/atom/O
+						if(where == "frompod")
+							O = new path(pod)
+						else
+							O = new path(target)
+
 						if(!QDELETED(O))
 							O.flags_1 |= ADMIN_SPAWNED_1
 							if(obj_dir)
@@ -2076,6 +1427,8 @@
 										R.module.add_module(I, TRUE, TRUE)
 										R.activate_module(I)
 
+		if(pod)
+			new /obj/effect/DPtarget(target, pod)
 
 		if (number == 1)
 			log_admin("[key_name(usr)] created a [english_list(paths)]")
@@ -2357,7 +1710,7 @@
 			if(alert("Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby??","Message","Yes","Cancel") != "Yes")
 				to_chat(usr, "Kick clients from lobby aborted")
 				return
-			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.ckey]"].</span>", afkonly)
+			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>", afkonly)
 
 			var/strkicked = ""
 			for(var/name in listkicked)
@@ -2473,6 +1826,114 @@
 					log_query_debug("[usr.key] | [response]")
 		else if(answer == "no")
 			log_query_debug("[usr.key] | Reported no server hang")
+
+	else if(href_list["check_teams"])
+		if(!check_rights(R_ADMIN))
+			return
+		check_teams()
+
+	else if(href_list["team_command"])
+		if(!check_rights(R_ADMIN))
+			return
+		switch(href_list["team_command"])
+			if("create_team")
+				admin_create_team(usr)
+			if("rename_team")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_rename(usr)
+			if("communicate")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_communicate(usr)
+			if("delete_team")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_delete(usr)
+			if("add_objective")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_add_objective(usr)
+			if("remove_objective")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(!T)
+					return
+				var/datum/objective/O = locate(href_list["tobjective"]) in T.objectives
+				if(O)
+					T.admin_remove_objective(usr,O)
+			if("add_member")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_add_member(usr)
+			if("remove_member")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(!T)
+					return
+				var/datum/mind/M = locate(href_list["tmember"]) in T.members
+				if(M)
+					T.admin_remove_member(usr,M)
+		check_teams()
+	// yogs start - mentors
+	else if(href_list["makementor"])
+		makeMentor(href_list["makementor"])
+
+	else if(href_list["removementor"])
+		removeMentor(href_list["removementor"])
+	// yogs end
+
+	else if(href_list["newbankey"])
+		var/player_key = href_list["newbankey"]
+		var/player_ip = href_list["newbanip"]
+		var/player_cid = href_list["newbancid"]
+		ban_panel(player_key, player_ip, player_cid)
+
+	else if(href_list["intervaltype"]) //check for ban panel, intervaltype is used as it's the only value which will always be present
+		if(href_list["roleban_delimiter"])
+			ban_parse_href(href_list)
+		else
+			ban_parse_href(href_list, TRUE)
+
+	else if(href_list["searchunbankey"] || href_list["searchunbanadminkey"] || href_list["searchunbanip"] || href_list["searchunbancid"])
+		var/player_key = href_list["searchunbankey"]
+		var/admin_key = href_list["searchunbanadminkey"]
+		var/player_ip = href_list["searchunbanip"]
+		var/player_cid = href_list["searchunbancid"]
+		unban_panel(player_key, admin_key, player_ip, player_cid)
+
+	else if(href_list["unbanpagecount"])
+		var/page = href_list["unbanpagecount"]
+		var/player_key = href_list["unbankey"]
+		var/admin_key = href_list["unbanadminkey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		unban_panel(player_key, admin_key, player_ip, player_cid, page)
+
+	else if(href_list["editbanid"])
+		var/edit_id = href_list["editbanid"]
+		var/player_key = href_list["editbankey"]
+		var/player_ip = href_list["editbanip"]
+		var/player_cid = href_list["editbancid"]
+		var/role = href_list["editbanrole"]
+		var/duration = href_list["editbanduration"]
+		var/applies_to_admins = text2num(href_list["editbanadmins"])
+		var/reason = url_decode(href_list["editbanreason"])
+		var/page = href_list["editbanpage"]
+		var/admin_key = href_list["editbanadminkey"]
+		ban_panel(player_key, player_ip, player_cid, role, duration, applies_to_admins, reason, edit_id, page, admin_key)
+
+	else if(href_list["unbanid"])
+		var/ban_id = href_list["unbanid"]
+		var/player_key = href_list["unbankey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		var/role = href_list["unbanrole"]
+		var/page = href_list["unbanpage"]
+		var/admin_key = href_list["unbanadminkey"]
+		unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
+
+	else if(href_list["unbanlog"])
+		var/ban_id = href_list["unbanlog"]
+		ban_log(ban_id)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

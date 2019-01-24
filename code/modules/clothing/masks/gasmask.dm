@@ -68,6 +68,7 @@
 	options["The Feminist"] = "sexyclown"
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"
+	options["The Jester"] ="chaos" //Nepeta33Leijon is holding me captive and forced me to help with this please send help
 
 	var/choice = input(user,"To what form do you wish to Morph this mask?","Morph Mask") in options
 
@@ -174,7 +175,7 @@
 	dog_fashion = null
 
 
-obj/item/clothing/mask/gas/tiki_mask/ui_action_click(mob/user)
+/obj/item/clothing/mask/gas/tiki_mask/ui_action_click(mob/user)
 
 	var/mob/M = usr
 	var/list/options = list()

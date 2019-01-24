@@ -14,6 +14,12 @@
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
 
+/obj/item/assembly_holder/ComponentInitialize()
+	. = ..()
+	AddComponent(
+		/datum/component/simple_rotation,
+		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS)
+
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
 
@@ -44,18 +50,39 @@
 	if(a_left)
 		add_overlay("[a_left.icon_state]_left")
 		for(var/O in a_left.attached_overlays)
-			add_overlay("[O]_l")
+			// yogs start - signaller colors
+			if(istext(O))
+				add_overlay("[O]_l")
+			else
+				var/mutable_appearance/A = new(O)
+				A.icon_state = "[A.icon_state]_l"
+				add_overlay(A)
+			// yogs end
 
 	if(a_right)
 		if(a_right.is_position_sensitive)
 			add_overlay("[a_right.icon_state]_right")
 			for(var/O in a_right.attached_overlays)
-				add_overlay("[O]_r")
+				// yogs start - signaller colors
+				if(istext(O))
+					add_overlay("[O]_r")
+				else
+					var/mutable_appearance/A = new(O)
+					A.icon_state = "[A.icon_state]_r"
+					add_overlay(A)
+				// yogs end
 		else
 			var/mutable_appearance/right = mutable_appearance(icon, "[a_right.icon_state]_left")
 			right.transform = matrix(-1, 0, 0, 0, 1, 0)
 			for(var/O in a_right.attached_overlays)
-				right.add_overlay("[O]_l")
+				// yogs start - signaller colors
+				if(istext(O))
+					right.add_overlay("[O]_l")
+				else
+					var/mutable_appearance/A = new(O)
+					A.icon_state = "[A.icon_state]_l"
+					right.add_overlay(A)
+				// yogs end
 			add_overlay(right)
 
 	if(master)
@@ -73,7 +100,7 @@
 	if(a_right)
 		a_right.on_found(finder)
 
-/obj/item/assembly_holder/Move()
+/obj/item/assembly_holder/setDir()
 	. = ..()
 	if(a_left)
 		a_left.holder_movement()
@@ -97,6 +124,8 @@
 		a_right.attack_hand()
 
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
+	if(..())
+		return TRUE
 	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
 	if(a_left)
 		a_left.on_detach()

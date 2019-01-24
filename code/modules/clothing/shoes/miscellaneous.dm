@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/proc/step_action() //this was made to rewrite clown shoes squeaking
-	SendSignal(COMSIG_SHOES_STEP_ACTION)
+	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
 /obj/item/clothing/shoes/sneakers/mime
 	name = "mime shoes"
@@ -27,7 +27,7 @@
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 50)
 
 /obj/item/clothing/shoes/sandal
-	desc = "A pair of rather plain, wooden sandals."
+	desc = "A pair of rather plain wooden sandals."
 	name = "sandals"
 	icon_state = "wizard"
 	strip_delay = 50
@@ -56,6 +56,8 @@
 	equip_delay_other = 50
 	resistance_flags = NONE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 75)
+	can_be_bloody = FALSE
+	custom_price = 100
 
 /obj/item/clothing/shoes/galoshes/dry
 	name = "absorbent galoshes"
@@ -64,16 +66,18 @@
 
 /obj/item/clothing/shoes/galoshes/dry/step_action()
 	var/turf/open/t_loc = get_turf(src)
-	t_loc.SendSignal(COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE, INFINITY)
+	SEND_SIGNAL(t_loc, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE, INFINITY)
 
 /obj/item/clothing/shoes/clown_shoes
-	desc = "The prankster's standard-issue clowning shoes. Damn, they're huge!"
+	desc = "The prankster's standard-issue clowning shoes. Damn, they're huge! Ctrl-click to toggle waddle dampeners."
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
 	item_color = "clown"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
+	var/datum/component/waddle
+	var/enabled_waddle = FALSE
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
@@ -81,17 +85,33 @@
 
 /obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
 	. = ..()
+	if(slot == SLOT_SHOES && enabled_waddle)
+		waddle = user.AddComponent(/datum/component/waddling)
 	if(user.mind && user.mind.assigned_role == "Clown")
-		user.SendSignal(COMSIG_CLEAR_MOOD_EVENT, "noshoes")
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "noshoes")
 
 /obj/item/clothing/shoes/clown_shoes/dropped(mob/user)
 	. = ..()
+	QDEL_NULL(waddle)
 	if(user.mind && user.mind.assigned_role == "Clown")
-		user.SendSignal(COMSIG_ADD_MOOD_EVENT, "noshoes", /datum/mood_event/noshoes)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "noshoes", /datum/mood_event/noshoes)
+
+/obj/item/clothing/shoes/clown_shoes/CtrlClick(mob/living/user)
+	if(!isliving(user))
+		return
+	if(user.get_active_held_item() != src)
+		to_chat(user, "You must hold the [src] in your hand to do this.")
+		return
+	if (!enabled_waddle)
+		to_chat(user, "<span class='notice'>You switch off the waddle dampeners!</span>")
+		enabled_waddle = TRUE
+	else
+		to_chat(user, "<span class='notice'>You switch on the waddle dampeners!</span>")
+		enabled_waddle = FALSE
 
 /obj/item/clothing/shoes/clown_shoes/jester
 	name = "jester shoes"
-	desc = "A court jesters shoes, updated with modern squeaking technology."
+	desc = "A court jester's shoes, updated with modern squeaking technology."
 	icon_state = "jester_shoes"
 
 /obj/item/clothing/shoes/jackboots
@@ -157,7 +177,11 @@
 	icon_state = "cultalt"
 
 /obj/item/clothing/shoes/cult/alt/ghost
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
+
+/obj/item/clothing/shoes/cult/alt/ghost/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/shoes/cyborg
 	name = "cyborg boots"

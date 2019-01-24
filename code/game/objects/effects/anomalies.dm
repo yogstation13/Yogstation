@@ -75,7 +75,7 @@
 
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/analyzer))
+	if(I.tool_behaviour == TOOL_ANALYZER)
 		to_chat(user, "<span class='notice'>Analyzing... [src]'s unstable field is fluctuating along frequency [format_frequency(aSignal.frequency)], code [aSignal.code].</span>")
 
 ///////////////////////
@@ -86,9 +86,6 @@
 	density = FALSE
 	var/boing = 0
 
-/obj/effect/anomaly/grav/New()
-	..()
-
 /obj/effect/anomaly/grav/anomalyEffect()
 	..()
 	boing = 1
@@ -98,7 +95,8 @@
 	for(var/mob/living/M in range(0, src))
 		gravShock(M)
 	for(var/mob/living/M in orange(4, src))
-		step_towards(M,src)
+		if(!M.mob_negates_gravity())
+			step_towards(M,src)
 	for(var/obj/O in range(0,src))
 		if(!O.anchored)
 			var/mob/living/target = locate() in view(4,src)
@@ -108,18 +106,32 @@
 /obj/effect/anomaly/grav/Crossed(mob/A)
 	gravShock(A)
 
-/obj/effect/anomaly/grav/Collide(mob/A)
+/obj/effect/anomaly/grav/Bump(mob/A)
 	gravShock(A)
 
-/obj/effect/anomaly/grav/CollidedWith(atom/movable/AM)
+/obj/effect/anomaly/grav/Bumped(atom/movable/AM)
 	gravShock(AM)
 
 /obj/effect/anomaly/grav/proc/gravShock(mob/living/A)
 	if(boing && isliving(A) && !A.stat)
-		A.Knockdown(40)
+		A.Paralyze(40)
 		var/atom/target = get_edge_target_turf(A, get_dir(src, get_step_away(A, src)))
 		A.throw_at(target, 5, 1)
 		boing = 0
+
+/obj/effect/anomaly/grav/high
+	var/grav_field
+
+/obj/effect/anomaly/grav/high/Initialize(mapload, new_lifespan)
+	. = ..()
+	setup_grav_field()
+
+/obj/effect/anomaly/grav/high/proc/setup_grav_field()
+	grav_field = make_field(/datum/proximity_monitor/advanced/gravity, list("current_range" = 7, "host" = src, "gravity_value" = rand(0,3)))
+
+/obj/effect/anomaly/grav/high/Destroy()
+	QDEL_NULL(grav_field)
+	. = ..()
 
 /////////////////////
 
@@ -131,9 +143,6 @@
 	var/shockdamage = 20
 	var/explosive = TRUE
 
-/obj/effect/anomaly/flux/New()
-	..()
-
 /obj/effect/anomaly/flux/anomalyEffect()
 	..()
 	canshock = 1
@@ -143,10 +152,10 @@
 /obj/effect/anomaly/flux/Crossed(mob/living/M)
 	mobShock(M)
 
-/obj/effect/anomaly/flux/Collide(mob/living/M)
+/obj/effect/anomaly/flux/Bump(mob/living/M)
 	mobShock(M)
 
-/obj/effect/anomaly/flux/CollidedWith(atom/movable/AM)
+/obj/effect/anomaly/flux/Bumped(atom/movable/AM)
 	mobShock(AM)
 
 /obj/effect/anomaly/flux/proc/mobShock(mob/living/M)
@@ -166,6 +175,8 @@
 
 /obj/effect/anomaly/flux/detonate()
 	if(explosive)
+		message_admins("An anomaly has detonated.") //yogs
+		log_game("An anomaly has detonated.") //yogs
 		explosion(src, 1, 4, 16, 18) //Low devastation, but hits a lot of stuff.
 	else
 		new /obj/effect/particle_effect/sparks(loc)
@@ -179,17 +190,14 @@
 	icon_state = "bluespace"
 	density = TRUE
 
-/obj/effect/anomaly/bluespace/New()
-	..()
-
 /obj/effect/anomaly/bluespace/anomalyEffect()
 	..()
 	for(var/mob/living/M in range(1,src))
-		do_teleport(M, locate(M.x, M.y, M.z), 4)
+		do_teleport(M, locate(M.x, M.y, M.z), 4, channel = TELEPORT_CHANNEL_BLUESPACE)
 
-/obj/effect/anomaly/bluespace/CollidedWith(atom/movable/AM)
+/obj/effect/anomaly/bluespace/Bumped(atom/movable/AM)
 	if(isliving(AM))
-		do_teleport(AM, locate(AM.x, AM.y, AM.z), 8)
+		do_teleport(AM, locate(AM.x, AM.y, AM.z), 8, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/anomaly/bluespace/detonate()
 	var/turf/T = safepick(get_area_turfs(impact_area))
@@ -252,9 +260,6 @@
 	icon_state = "mustard"
 	var/ticks = 0
 
-/obj/effect/anomaly/pyro/New()
-	..()
-
 /obj/effect/anomaly/pyro/anomalyEffect()
 	..()
 	ticks++
@@ -286,9 +291,6 @@
 	name = "vortex anomaly"
 	icon_state = "bhole3"
 	desc = "That's a nice station you have there. It'd be a shame if something happened to it."
-
-/obj/effect/anomaly/bhole/New()
-	..()
 
 /obj/effect/anomaly/bhole/anomalyEffect()
 	..()

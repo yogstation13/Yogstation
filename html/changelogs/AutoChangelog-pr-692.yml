@@ -1,4 +1,0 @@
-author: " Garen"
-delete-after: true 
-changes: 
-  - bugfix: "Removes unintentional pins from the constant circuit."

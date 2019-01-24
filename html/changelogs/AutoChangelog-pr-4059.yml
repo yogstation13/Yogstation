@@ -1,0 +1,4 @@
+author: " coiax"
+delete-after: true 
+changes: 
+  - bugfix: "The Spontaneous Brain Trauma event now has a range of possible severities,"

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - tweak: "Clicking on the viewport to focus it no longer leaves the input bar red."

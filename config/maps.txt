@@ -1,5 +1,4 @@
 This file contains a list of maps for use in map rotation.
-This feature requires you are running a Windows OS (or can other wise run .bat files) and that you are using the tgstation-server toolset in tools/
 #Lines starting with # are ignored.
 Lines not inside map blocks are also ignored
 Duplicated entries use the latter one.
@@ -23,20 +22,38 @@ endmap
 	#voteweight 1.5
 #endmap
 
-map metastation
+#map metastation
+	#minplayers 25
+#endmap
+
+map yogsmeta
 	minplayers 25
 endmap
 
-map pubbystation
+#map pubbystation
+#endmap
+
+map yogspubby
 endmap
 
-map omegastation
-	maxplayers 35
+#map deltastation
+	#minplayers 50
+#endmap
+
+map yogsdelta
+	minplayers 50
 endmap
 
-map deltastation
+map donutstation
 	minplayers 50
 endmap
 
 map runtimestation
+endmap
+
+map clownstation
+	voteweight 0
+endmap
+
+map multiz_debug
 endmap

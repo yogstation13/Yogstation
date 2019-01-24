@@ -58,6 +58,8 @@
 			var/needed_amount = R.reqs[A]
 			for(var/B in contents)
 				if(ispath(B, A))
+					if (R.blacklist.Find(B))
+						continue
 					if(contents[B] >= R.reqs[A])
 						continue main_loop
 					else
@@ -183,7 +185,7 @@
 
 	After its done loop over deletion list and delete all the shit that wasnt taken by parts loop
 
-	del_reqs return the list of parts resulting object will recieve as argument of CheckParts proc, on the atom level it will add them all to the contents, on all other levels it calls ..() and does whatever is needed afterwards but from contents list already
+	del_reqs return the list of parts resulting object will receive as argument of CheckParts proc, on the atom level it will add them all to the contents, on all other levels it calls ..() and does whatever is needed afterwards but from contents list already
 */
 
 /datum/personal_crafting/proc/del_reqs(datum/crafting_recipe/R, mob/user)
@@ -331,7 +333,7 @@
 		return
 	switch(action)
 		if("make")
-			var/datum/crafting_recipe/TR = locate(params["recipe"])
+			var/datum/crafting_recipe/TR = locate(params["recipe"]) in GLOB.crafting_recipes
 			busy = TRUE
 			ui_interact(usr) //explicit call to show the busy display
 			var/fail_msg = construct_item(usr, TR)

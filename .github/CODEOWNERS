@@ -9,16 +9,14 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Nichlas0010
+#Ktlwjec
+/_maps/map_files/ @Ktlwjec
 
-/code/modules/shuttle/ @Nichlas0010
-/code/datums/shuttles.dm @Nichlas0010
-/code/controllers/subsystem/shuttle.dm @Nichlas0010
-/_maps/shuttles/ @Nichlas0010
+#Nichlas0010
+/_maps/map_files/generic/ @Nichlas0010
 
 #Partheo
-/icons/ @Partheo
-/yogstation/icons/ @Partheo
+#/yogstation/icons/ @Partheo
 
 #ThatLing
 

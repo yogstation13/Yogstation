@@ -17,8 +17,8 @@ AI
 	exp_type_department = EXP_TYPE_SILICON
 	var/do_special_check = TRUE
 
-/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin)
-	. = H.AIize(latejoin)
+/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source = null)
+	. = H.AIize(latejoin,preference_source)
 
 /datum/job/ai/after_spawn(mob/H, mob/M, latejoin)
 	. = ..()
@@ -34,7 +34,8 @@ AI
 			H.forceMove(lateJoinCore.loc)
 			qdel(lateJoinCore)
 	var/mob/living/silicon/ai/AI = H
-	AI.rename_self("ai", M.client)			//If this runtimes oh well jobcode is fucked.
+	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
+	AI.set_core_display_icon(null, M.client)
 
 	//we may have been created after our borg
 	if(SSticker.current_state == GAME_STATE_SETTING_UP)
@@ -82,9 +83,12 @@ Cyborg
 	exp_requirements = 120
 	exp_type = EXP_TYPE_CREW
 
-/datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE)
+/datum/job/cyborg/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source = null)
 	return H.Robotize(FALSE, latejoin)
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
-	if(CONFIG_GET(flag/rename_cyborg))	//name can't be set in robot/New without the client
-		R.rename_self("cyborg", M.client)
+	R.updatename(M.client)
+	R.gender = NEUTER
+
+/datum/job/cyborg/radio_help_message(mob/M)
+	to_chat(M, "<b>Prefix your message with :b to speak with other cyborgs and AI.</b>")

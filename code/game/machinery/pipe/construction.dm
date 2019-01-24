@@ -21,6 +21,7 @@ Buildable meters
 	level = 2
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/RPD_type
+	var/disposable = TRUE // yogs
 
 /obj/item/pipe/directional
 	RPD_type = PIPE_UNARY
@@ -43,7 +44,7 @@ Buildable meters
 /obj/item/pipe/Initialize(mapload, _pipe_type, _dir, obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
-	else
+	else if(_pipe_type) // yogs - only change if _pipe_type is set
 		pipe_type = _pipe_type
 		setDir(_dir)
 
@@ -75,8 +76,7 @@ Buildable meters
 		new_layer = PIPING_LAYER_DEFAULT
 	piping_layer = new_layer
 
-	pixel_x += (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X
-	pixel_y += (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y
+	PIPING_LAYER_SHIFT(src, piping_layer)
 	layer = initial(layer) + ((piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE)
 
 /obj/item/pipe/proc/update()
@@ -91,7 +91,7 @@ Buildable meters
 	set name = "Flip Pipe"
 	set src in view(1)
 
-	if ( usr.stat || usr.restrained() || !usr.canmove )
+	if ( usr.incapacitated() )
 		return
 
 	do_a_flip()
@@ -196,7 +196,7 @@ Buildable meters
 	w_class = WEIGHT_CLASS_BULKY
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/wrench/W)
+/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/wrench/W)
 
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)
@@ -211,7 +211,11 @@ obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/wrench/W)
 	to_chat(user, "<span class='notice'>You fasten the meter to the pipe.</span>")
 	qdel(src)
 
-obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
+/obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
+	. = ..()
+	if(.)
+		return TRUE
+
 	if(!isturf(loc))
 		to_chat(user, "<span class='warning'>You need to fasten it to the floor!</span>")
 		return TRUE
@@ -228,5 +232,4 @@ obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
 
 /obj/item/pipe_meter/proc/setAttachLayer(new_layer = PIPING_LAYER_DEFAULT)
 	piping_layer = new_layer
-	pixel_x = (new_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X
-	pixel_y = (new_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y
+	PIPING_LAYER_DOUBLE_SHIFT(src, piping_layer)

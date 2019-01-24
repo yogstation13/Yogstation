@@ -1,11 +1,12 @@
-/obj/effect/proc_holder/changeling/absorbDNA
+/datum/action/changeling/absorbDNA
 	name = "Absorb DNA"
-	desc = "Absorb the DNA of our victim."
+	desc = "Absorb the DNA of our victim. Requires us to strangle them."
+	button_icon_state = "absorb_dna"
 	chemical_cost = 0
 	dna_cost = 0
 	req_human = 1
 
-/obj/effect/proc_holder/changeling/absorbDNA/can_sting(mob/living/carbon/user)
+/datum/action/changeling/absorbDNA/can_sting(mob/living/carbon/user)
 	if(!..())
 		return
 
@@ -26,7 +27,7 @@
 
 
 
-/obj/effect/proc_holder/changeling/absorbDNA/sting_action(mob/user)
+/datum/action/changeling/absorbDNA/sting_action(mob/user)
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	var/mob/living/carbon/human/target = user.pulling
 	changeling.isabsorbing = 1
@@ -42,7 +43,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[i]"))
-		if(!do_mob(user, target, 150))
+		if(!do_mob(user, target, absorbtimer))
 			to_chat(user, "<span class='warning'>Our absorption of [target] has been interrupted!</span>")
 			changeling.isabsorbing = 0
 			return
@@ -56,7 +57,7 @@
 		changeling.trueabsorbs++
 
 	if(user.nutrition < NUTRITION_LEVEL_WELL_FED)
-		user.nutrition = min((user.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED)
+		user.set_nutrition(min((user.nutrition + target.nutrition), NUTRITION_LEVEL_WELL_FED))
 
 	if(target.mind)//if the victim has got a mind
 		// Absorb a lizard, speak Draconic.
@@ -66,9 +67,17 @@
 
 		//Some of target's recent speech, so the changeling can attempt to imitate them better.
 		//Recent as opposed to all because rounds tend to have a LOT of text.
-		var/list/recent_speech = list()
 
-		var/list/say_log = target.logging[INDIVIDUAL_SAY_LOG]
+		var/list/recent_speech = list()
+		var/list/say_log = list()
+		var/log_source = target.logging
+		for(var/log_type in log_source)
+			var/nlog_type = text2num(log_type)
+			if(nlog_type & LOG_SAY)
+				var/list/reversed = log_source[log_type]
+				if(islist(reversed))
+					say_log = reverseRange(reversed.Copy())
+					break
 
 		if(LAZYLEN(say_log) > LING_ABSORB_RECENT_SPEECH)
 			recent_speech = say_log.Copy(say_log.len-LING_ABSORB_RECENT_SPEECH+1,0) //0 so len-LING_ARS+1 to end of list
@@ -102,6 +111,7 @@
 			changeling.absorbedcount += (target_ling.absorbedcount)
 			target_ling.stored_profiles.len = 1
 			target_ling.absorbedcount = 0
+			target_ling.was_absorbed = TRUE
 
 
 	changeling.chem_charges=min(changeling.chem_charges+10, changeling.chem_storage)
@@ -112,10 +122,3 @@
 	target.death(0)
 	target.Drain()
 	return TRUE
-
-
-
-//Absorbs the target DNA.
-//datum/changeling/proc/absorb_dna(mob/living/carbon/T, mob/user)
-
-//datum/changeling/proc/store_dna(datum/dna/new_dna, mob/user)

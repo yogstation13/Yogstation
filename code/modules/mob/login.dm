@@ -16,7 +16,8 @@
 	next_move = 1
 
 	..()
-
+	if (client && key != client.key)
+		key = client.key
 	reset_perspective(loc)
 
 	if(loc)
@@ -41,15 +42,15 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		client.click_intercept = null
-
 		client.change_view(CONFIG_GET(string/default_view)) // Resets the client.view in case it was changed.
 
 		if(client.player_details.player_actions.len)
 			for(var/datum/action/A in client.player_details.player_actions)
 				A.Grant(src)
+		
+		for(var/foo in client.player_details.post_login_callbacks)
+			var/datum/callback/CB = foo
+			CB.Invoke()
+		log_played_names(client.ckey,name,real_name)
 
-	if(!GLOB.individual_log_list[ckey])
-		GLOB.individual_log_list[ckey] = logging
-	else
-		logging = GLOB.individual_log_list[ckey]
+	log_message("Client [key_name(src)] has taken ownership of mob [src]", LOG_OWNERSHIP)

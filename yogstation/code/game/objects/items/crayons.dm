@@ -10,9 +10,10 @@
 		return
 
 	if(istype(target, /obj/machinery/light))
+		var/obj/machinery/light/light = target
 		if(actually_paints)
-			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
-			target.light_color = paint_color
-			target.update_light()
+			light.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
+			light.bulb_colour = paint_color
+			light.update()
 		. = use_charges(user, 2)
 	..()

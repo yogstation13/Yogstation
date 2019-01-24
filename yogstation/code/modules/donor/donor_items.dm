@@ -58,7 +58,51 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/neck/yogs/sith_cloak, \
 						/obj/item/clothing/suit/yogs/armor/sith_suit, \
 						/obj/item/clothing/suit/yogs/armor/hardsuit_clown, \
+						/obj/item/clothing/shoes/yogs/trainers, \
+						/obj/item/clothing/shoes/yogs/trainers/red, \
+						/obj/item/clothing/shoes/yogs/trainers/white, \
+						/obj/item/clothing/shoes/yogs/trainers/zebra, \
+						/obj/item/clothing/shoes/yogs/trainers/darkbrown, \
+						/obj/item/clothing/shoes/yogs/trainers/black, \
+						/obj/item/clothing/suit/yogs/zebrasweat, \
+						/obj/item/clothing/suit/yogs/blackwhitesweat, \
 						/obj/item/clothing/shoes/yogs/fuzzy_slippers
 						)
 
 var/list/donor_pdas = list("Normal", "Transparent", "Pip Boy", "Rainbow")
+
+var/list/donor_start_tools = list(\
+						/obj/item/banhammer, \
+						/obj/item/bedsheet/wiz, \
+						/obj/item/bedsheet/nanotrasen, \
+						/obj/item/bedsheet/syndie, \
+						/obj/item/bikehorn/airhorn, \
+						/obj/item/camera, \
+						/obj/item/cane, \
+						/obj/item/clothing/shoes/sneakers/rainbow, \
+						/obj/item/clothing/gloves/color/rainbow, \
+						/obj/item/clothing/under/color/rainbow, \
+						/obj/item/grown/sunflower, \
+						/obj/item/hot_potato/harmless/toy, \
+						/obj/item/instrument/accordion, \
+						/obj/item/instrument/glockenspiel, \
+						/obj/item/instrument/harmonica, \
+						/obj/item/instrument/recorder, \
+						/obj/item/instrument/saxophone, \
+						/obj/item/latexballon, \
+						/obj/item/lighter, \
+						/obj/item/lipstick/random, \
+						/obj/item/poster/random_contraband, \
+						/obj/item/poster/random_official, \
+						/obj/item/razor, \
+						/obj/item/toy/balloon, \
+						/obj/item/toy/beach_ball, \
+						/obj/item/toy/clockwork_watch, \
+						/obj/item/toy/dummy, \
+						/obj/item/toy/eightball, \
+						/obj/item/toy/katana, \
+						/obj/item/toy/gun, \
+						/obj/item/toy/plush/plushvar, \
+						/obj/item/toy/plush/narplush, \
+						/obj/item/toy/sword
+						)

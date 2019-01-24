@@ -186,8 +186,8 @@
 	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT
 	spam_enabled = 1
 
-/obj/item/cartridge/captain/New()
-	..()
+/obj/item/cartridge/captain/Initialize()
+	. = ..()
 	radio = new(src)
 
 /obj/item/cartridge/proc/post_status(command, data1, data2)
@@ -454,6 +454,24 @@ Code:
 				menu += "<li>#[SO.id] - [SO.pack.name] requested by [SO.orderer]</li>"
 			menu += "</ol><font size=\"-3\">Upgrade NOW to Space Parts & Space Vendors PLUS for full remote order control and inventory management."
 
+		if (48) // quartermaster ore logs
+			menu = list("<h4>[PDAIMG(crate)] Ore Silo Logs</h4>")
+			if (GLOB.ore_silo_default)
+				var/list/logs = GLOB.silo_access_logs[REF(GLOB.ore_silo_default)]
+				var/len = LAZYLEN(logs)
+				var/i = 0
+				for(var/M in logs)
+					if (++i > 30)
+						menu += "(... older logs not shown ...)"
+						break
+					var/datum/ore_silo_log/entry = M
+					menu += "[len - i]. [entry.formatted]<br><br>"
+				if(i == 0)
+					menu += "Nothing!"
+			else
+				menu += "<b>No ore silo detected!</b>"
+			menu = jointext(menu, "")
+
 		if (49) //janitorial locator
 			menu = "<h4>[PDAIMG(bucket)] Persistent Custodial Object Locator</h4>"
 
@@ -549,7 +567,7 @@ Code:
 /obj/item/cartridge/Topic(href, href_list)
 	..()
 
-	if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if(!usr.canUseTopic(src, !issilicon(usr)))
 		usr.unset_machine()
 		usr << browse(null, "window=pda")
 		return
@@ -634,7 +652,7 @@ Code:
 		switch(href_list["op"])
 
 			if("control")
-				active_bot = locate(href_list["bot"])
+				active_bot = locate(href_list["bot"]) in GLOB.bots_list
 
 			if("botlist")
 				active_bot = null
@@ -653,10 +671,6 @@ Code:
 
 
 /obj/item/cartridge/proc/bot_control()
-
-
-	var/mob/living/simple_animal/bot/Bot
-
 	if(active_bot)
 		menu += "<B>[active_bot]</B><BR> Status: (<A href='byond://?src=[REF(src)];op=control;bot=[REF(active_bot)]'>[PDAIMG(refresh)]<i>refresh</i></A>)<BR>"
 		menu += "Model: [active_bot.model]<BR>"
@@ -700,7 +714,8 @@ Code:
 		var/turf/current_turf = get_turf(src)
 		var/zlevel = current_turf.z
 		var/botcount = 0
-		for(Bot in GLOB.alive_mob_list) //Git da botz
+		for(var/B in GLOB.bots_list) //Git da botz
+			var/mob/living/simple_animal/bot/Bot = B
 			if(!Bot.on || Bot.z != zlevel || Bot.remote_disabled || !(bot_access_flags & Bot.bot_type)) //Only non-emagged bots on the same Z-level are detected!
 				continue //Also, the PDA must have access to the bot type.
 			menu += "<A href='byond://?src=[REF(src)];op=control;bot=[REF(Bot)]'><b>[Bot.name]</b> ([Bot.get_mode()])<BR>"

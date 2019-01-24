@@ -19,6 +19,7 @@
 		gun = newloc
 
 /obj/item/firing_pin/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
 	if(proximity_flag)
 		if(istype(target, /obj/item/gun))
 			var/obj/item/gun/G = target
@@ -58,8 +59,9 @@
 /obj/item/firing_pin/proc/auth_fail(mob/living/user)
 	user.show_message(fail_message, 1)
 	if(selfdestruct)
-		user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", 1)
-		to_chat(user, "<span class='userdanger'>[gun] explodes!</span>")
+		if(user)
+			user.show_message("<span class='danger'>SELF-DESTRUCTING...</span><br>", 1)
+			to_chat(user, "<span class='userdanger'>[gun] explodes!</span>")
 		explosion(get_turf(gun), -1, 0, 2, 3)
 		if(gun)
 			qdel(gun)
@@ -147,7 +149,7 @@
 
 
 // DNA-keyed pin.
-// When you want to keep your toys for youself.
+// When you want to keep your toys for yourself.
 /obj/item/firing_pin/dna
 	name = "DNA-keyed firing pin"
 	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link."
@@ -156,7 +158,7 @@
 	var/unique_enzymes = null
 
 /obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
-	..()
+	. = ..()
 	if(proximity_flag && iscarbon(target))
 		var/mob/living/carbon/M = target
 		if(M.dna && M.dna.unique_enzymes)

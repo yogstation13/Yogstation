@@ -72,7 +72,7 @@
 			put_in_hands(I)
 			update_inv_hands()
 		if(SLOT_IN_BACKPACK)
-			if(!back.SendSignal(COMSIG_TRY_STORAGE_INSERT, I, src, TRUE))
+			if(!SEND_SIGNAL(back, COMSIG_TRY_STORAGE_INSERT, I, src, TRUE))
 				not_handled = TRUE
 		else
 			not_handled = TRUE
@@ -118,11 +118,12 @@
 			update_inv_legcuffed()
 
 //handle stuff to update when a mob equips/unequips a mask.
-/mob/living/proc/wear_mask_update(obj/item/clothing/C, toggle_off = 1)
+/mob/living/proc/wear_mask_update(obj/item/I, toggle_off = 1)
 	update_inv_wear_mask()
 
-/mob/living/carbon/wear_mask_update(obj/item/clothing/C, toggle_off = 1)
-	if(C.tint || initial(C.tint))
+/mob/living/carbon/wear_mask_update(obj/item/I, toggle_off = 1)
+	var/obj/item/clothing/C = I
+	if(istype(C) && (C.tint || initial(C.tint)))
 		update_tint()
 	update_inv_wear_mask()
 
@@ -137,3 +138,6 @@
 		update_inv_wear_mask()
 	update_inv_head()
 
+/mob/living/carbon/proc/get_holding_bodypart_of_item(obj/item/I)
+	var/index = get_held_index_of_item(I)
+	return index && hand_bodyparts[index]

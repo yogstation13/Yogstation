@@ -21,6 +21,7 @@
 	var/l_hand = null
 	var/internals_slot = null //ID of slot containing a gas tank
 	var/list/backpack_contents = null // In the list(path=count,otherpath=count) format
+	var/box // Internals box. Will be inserted at the start of backpack_contents
 	var/list/implants = null
 	var/accessory = null
 
@@ -28,11 +29,11 @@
 	var/list/chameleon_extras //extra types for chameleon outfit changes, mostly guns
 
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	//to be overriden for customization depending on client prefs,species etc
+	//to be overridden for customization depending on client prefs,species etc
 	return
 
 /datum/outfit/proc/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	//to be overriden for toggling internals, id binding, access etc
+	//to be overridden for toggling internals, id binding, access etc
 	return
 
 /datum/outfit/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -83,6 +84,13 @@
 			H.equip_to_slot_or_del(new l_pocket(H),SLOT_L_STORE)
 		if(r_pocket)
 			H.equip_to_slot_or_del(new r_pocket(H),SLOT_R_STORE)
+
+		if(box)
+			if(!backpack_contents)
+				backpack_contents = list()
+			backpack_contents.Insert(1, box)
+			backpack_contents[box] = 1
+
 		if(backpack_contents)
 			for(var/path in backpack_contents)
 				var/number = backpack_contents[path]

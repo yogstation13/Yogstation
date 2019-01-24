@@ -28,6 +28,8 @@
 	new /obj/item/pipe_dispenser(src)
 	new /obj/item/inducer(src)
 	new /obj/item/circuitboard/machine/techfab/department/engineering(src)
+	new /obj/item/extinguisher/advanced(src)
+	new /obj/item/storage/photo_album/CE(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"
@@ -37,16 +39,13 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical/PopulateContents()
 	..()
-	new /obj/item/clothing/gloves/color/yellow(src)
-	new /obj/item/clothing/gloves/color/yellow(src)
-	new /obj/item/inducer(src)
-	new /obj/item/inducer(src)
-	for(var/i in 1 to 3)
-		new /obj/item/storage/toolbox/electrical(src)
-	for(var/i in 1 to 3)
-		new /obj/item/electronics/apc(src)
-	for(var/i in 1 to 3)
-		new /obj/item/multitool(src)
+	var/static/items_inside = list(
+		/obj/item/clothing/gloves/color/yellow = 2,
+		/obj/item/inducer = 2,
+		/obj/item/storage/toolbox/electrical = 3,
+		/obj/item/electronics/apc = 3,
+		/obj/item/multitool = 3)
+	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies locker"
@@ -94,3 +93,4 @@
 	new /obj/item/clothing/suit/fire/atmos(src)
 	new /obj/item/clothing/head/hardhat/atmos(src)
 	new /obj/item/clothing/glasses/meson/engine/tray(src)
+	new /obj/item/extinguisher/advanced(src)

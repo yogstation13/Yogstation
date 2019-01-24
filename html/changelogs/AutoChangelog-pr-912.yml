@@ -1,6 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Family heirlooms which can fit in pockets will now spawn there."
-  - bugfix: "Family heirlooms which only fit in the backpack now show the backpack at roundstart."
-  - bugfix: "Family heirlooms which do not fit in the backpack are no longer gone forever."

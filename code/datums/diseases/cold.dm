@@ -1,6 +1,7 @@
 /datum/disease/cold
 	name = "The Cold"
 	max_stages = 3
+	spread_text = "On contact" //Yogs
 	cure_text = "Rest & Spaceacillin"
 	cures = list("spaceacillin")
 	agent = "XY-rhinovirus"
@@ -13,7 +14,7 @@
 	..()
 	switch(stage)
 		if(2)
-			if(affected_mob.lying && prob(40))  //changed FROM prob(10) until sleeping is fixed
+			if(!(affected_mob.mobility_flags & MOBILITY_STAND) && prob(40))  //changed FROM prob(10) until sleeping is fixed
 				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				cure()
 				return
@@ -30,7 +31,7 @@
 			if(prob(1))
 				to_chat(affected_mob, "<span class='danger'>Mucous runs down the back of your throat.</span>")
 		if(3)
-			if(affected_mob.lying && prob(25))  //changed FROM prob(5) until sleeping is fixed
+			if(!(affected_mob.mobility_flags & MOBILITY_STAND) && prob(25))  //changed FROM prob(5) until sleeping is fixed
 				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				cure()
 				return

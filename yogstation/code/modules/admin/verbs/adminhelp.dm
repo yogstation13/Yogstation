@@ -301,7 +301,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ticketAmount -= 1
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 10)
+			SSticker.Reboot(delay = 100, force = TRUE)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 
@@ -344,7 +344,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		if(alert(usr,"Restart the round?.","Round restart","Yes","No") == "Yes")
-			SSticker.Reboot(delay = 100)
+			SSticker.Reboot(delay = 100, force = TRUE)
 		else
 			message_admins("All tickets have been closed, round can be restarted")
 
@@ -725,8 +725,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()
-	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as text
-	adminhelp(msg)
+	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as text|null
+	if(msg)
+		adminhelp(msg)
 
 /client/verb/adminhelp(msg as text)
 	set category = "Admin"
@@ -836,7 +837,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message["key"] = comms_key
 	message += type
 
-	var/list/servers = CONFIG_GET(keyed_string_list/cross_server)
+	var/list/servers = CONFIG_GET(keyed_list/cross_server)
 	for(var/I in servers)
 		world.Export("[servers[I]]?[list2params(message)]")
 

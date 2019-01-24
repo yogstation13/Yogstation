@@ -5,6 +5,7 @@
 	var/special_role = ROLE_BROTHER
 	var/datum/team/brother_team/team
 	antag_moodlet = /datum/mood_event/focused
+	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/brother/create_team(datum/team/brother_team/new_team)
 	if(!new_team)
@@ -19,7 +20,6 @@
 /datum/antagonist/brother/on_gain()
 	SSticker.mode.brothers += owner
 	objectives += team.objectives
-	owner.objectives += objectives
 	owner.special_role = special_role
 	finalize_brother()
 	return ..()
@@ -75,8 +75,8 @@
 	new_owner.add_antag_datum(/datum/antagonist/brother,T)
 	bro.add_antag_datum(/datum/antagonist/brother, T)
 	T.update_name()
-	message_admins("[key_name_admin(admin)] made [new_owner.current] and [bro.current] into blood brothers.")
-	log_admin("[key_name(admin)] made [new_owner.current] and [bro.current] into blood brothers.")
+	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
+	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
 
 /datum/team/brother_team
 	name = "brotherhood"
@@ -124,7 +124,7 @@
 /datum/team/brother_team/proc/add_objective(datum/objective/O, needs_target = FALSE)
 	O.team = src
 	if(needs_target)
-		O.find_target()
+		O.find_target(dupe_search_range = list(src))
 	O.update_explanation_text()
 	objectives += O
 

@@ -1,0 +1,4 @@
+author: " Dax Dupont"
+delete-after: true 
+changes: 
+  - bugfix: "The supermatter scalpel now isn't infinite usage."

@@ -19,6 +19,8 @@
 					WRITE_FILE(ranksFile, " ")
 				WRITE_FILE(ranksFile, "[rank_name]\t=\t[rank_byond]")
 
+		qdel(query_ranks)
+
 		var/datum/DBQuery/query_admin = SSdbcore.NewQuery("SELECT `web_admins`.`username` AS admin, `web_groups`.`name` AS rank, `web_groups`.`rank_group` AS rank_group FROM `web_admins`, `web_groups` WHERE `web_admins`.`rank` = `web_groups`.`rankid` ORDER BY `web_groups`.`rank_group` ASC, rank DESC")
 		if(query_admin.Execute())
 			fdel("config/admins.txt")
@@ -35,3 +37,5 @@
 					lastGroup = rank_group
 					WRITE_FILE(adminsFile, " ")
 				WRITE_FILE(adminsFile, "[name]\t=\t[rank]")
+
+		qdel(query_admin)

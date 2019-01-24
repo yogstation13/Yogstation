@@ -8,6 +8,11 @@
 	var/give_objectives = TRUE
 	var/give_equipment = TRUE
 
+/datum/antagonist/ninja/New()
+	if(helping_station)
+		can_hijack = HIJACK_PREVENT
+	. = ..()
+
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_ninja_icons_added(M)
@@ -23,6 +28,7 @@
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
 	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing. (//initialize your suit by clicking the initialize UI button, to use abilities like stealth)!<br>"
 	antag_memory += "Officially, [helping_station?"Nanotrasen":"The Syndicate"] are my employer.<br>"
+	name = "[helping_station?"Nanotrasen Ninja":"Syndicate Ninja"]" // yogs - ninja disposition
 
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
@@ -91,7 +97,6 @@
 	var/datum/objective/O = new /datum/objective/survive()
 	O.owner = owner
 	objectives += O
-	owner.objectives |= objectives
 
 /proc/remove_ninja(mob/living/L)
 	if(!L || !L.mind)
@@ -137,11 +142,13 @@
 			adj = "objectiveless"
 		else
 			return
+	if(helping_station)
+		can_hijack = HIJACK_PREVENT
 	new_owner.assigned_role = ROLE_NINJA
 	new_owner.special_role = ROLE_NINJA
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [new_owner.current].")
-	log_admin("[key_name(admin)] has [adj] ninja'ed [new_owner.current].")
+	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [key_name_admin(new_owner)].")
+	log_admin("[key_name(admin)] has [adj] ninja'ed [key_name(new_owner)].")
 
 /datum/antagonist/ninja/proc/update_ninja_icons_added(var/mob/living/carbon/human/ninja)
 	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]

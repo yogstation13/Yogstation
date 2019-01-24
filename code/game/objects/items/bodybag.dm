@@ -11,6 +11,7 @@
 	deploy_bodybag(user, user.loc)
 
 /obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
+	. = ..()
 	if(proximity)
 		if(isopenturf(target))
 			deploy_bodybag(user, target)
@@ -42,7 +43,14 @@
 	unfoldedbag_path = /obj/structure/closet/body_bag/bluespace
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NO_MAT_REDEMPTION
+	var/static/datum/callback/canreach_blocking_callback = CALLBACK(GLOBAL_PROC, .proc/__bluespace_bodybag_canreach_block)
 
+/obj/item/bodybag/bluespace/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_CANREACH, canreach_blocking_callback)
+
+/proc/__bluespace_bodybag_canreach_block()
+	return COMPONENT_BLOCK_REACH
 
 /obj/item/bodybag/bluespace/examine(mob/user)
 	..()

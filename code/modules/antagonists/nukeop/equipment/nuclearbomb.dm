@@ -28,8 +28,8 @@
 	var/deconstruction_state = NUKESTATE_INTACT
 	var/lights = ""
 	var/interior = ""
+	var/proper_bomb = TRUE //Please
 	var/obj/effect/countdown/nuclearbomb/countdown
-	var/static/bomb_set
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
@@ -111,7 +111,7 @@
 				return
 
 		if(NUKESTATE_PANEL_REMOVED)
-			if(istype(I, /obj/item/weldingtool))
+			if(I.tool_behaviour == TOOL_WELDER)
 				if(!I.tool_start_check(user, amount=1))
 					return
 				to_chat(user, "<span class='notice'>You start cutting [src]'s inner plate...</span>")
@@ -227,7 +227,6 @@
 
 /obj/machinery/nuclearbomb/process()
 	if(timing && !exploding)
-		bomb_set = TRUE
 		if(detonation_timer < world.time)
 			explode()
 		else
@@ -344,10 +343,10 @@
 
 
 /obj/machinery/nuclearbomb/proc/set_anchor()
-	if(!isinspace())
-		anchored = !anchored
-	else
+	if(isinspace() && !anchored)
 		to_chat(usr, "<span class='warning'>There is nothing to anchor to!</span>")
+	else
+		anchored = !anchored
 
 /obj/machinery/nuclearbomb/proc/set_safety()
 	safety = !safety
@@ -358,26 +357,23 @@
 				S.switch_mode_to(initial(S.mode))
 				S.alert = FALSE
 		timing = FALSE
-		bomb_set = TRUE
 		detonation_timer = null
 		countdown.stop()
 	update_icon()
 
 /obj/machinery/nuclearbomb/proc/set_active()
-	if(safety && !bomb_set)
+	if(safety)
 		to_chat(usr, "<span class='danger'>The safety is still on.</span>")
 		return
 	timing = !timing
 	if(timing)
 		previous_level = get_security_level()
-		bomb_set = TRUE
-		set_security_level("delta")
 		detonation_timer = world.time + (timer_set * 10)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
+		set_security_level("delta")
 	else
-		bomb_set = FALSE
 		detonation_timer = null
 		set_security_level(previous_level)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
@@ -428,7 +424,10 @@
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
 	var/area/A = get_area(bomb_location)
-	if(bomb_location && is_station_level(bomb_location.z))
+	if(istype(A, /area/fabric_of_reality))
+		var/area/fabric_of_reality/fabric = A
+		new /obj/singularity(fabric.origin, 2000) // Stage five singulo back on the station, as a gift
+	else if(bomb_location && is_station_level(bomb_location.z))
 		if(istype(A, /area/space))
 			off_station = NUKE_NEAR_MISS
 		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
@@ -449,7 +448,13 @@
 
 /obj/machinery/nuclearbomb/proc/really_actually_explode(off_station)
 	Cinematic(get_cinematic_type(off_station),world,CALLBACK(SSticker,/datum/controller/subsystem/ticker/proc/station_explosion_detonation,src))
-	INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, z)
+	var/area/A = get_area(src)
+	if(istype(A, /area/fabric_of_reality))
+		var/area/fabric_of_reality/fabric = A
+		var/turf/T = fabric.origin
+		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, T.z)
+	else
+		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, z)
 
 /obj/machinery/nuclearbomb/proc/get_cinematic_type(off_station)
 	if(off_station < 2)
@@ -460,6 +465,7 @@
 /obj/machinery/nuclearbomb/beer
 	name = "Nanotrasen-brand nuclear fission explosive"
 	desc = "One of the more successful achievements of the Nanotrasen Corporate Warfare Division, their nuclear fission explosives are renowned for being cheap to produce and devastatingly effective. Signs explain that though this particular device has been decommissioned, every Nanotrasen station is equipped with an equivalent one, just in case. All Captains carefully guard the disk needed to detonate them - at least, the sign says they do. There seems to be a tap on the back."
+	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 
 /obj/machinery/nuclearbomb/beer/Initialize()
@@ -498,7 +504,6 @@
 		addtimer(CALLBACK(src, .proc/fizzbuzz), 110)
 
 /obj/machinery/nuclearbomb/beer/proc/disarm()
-	bomb_set = FALSE
 	detonation_timer = null
 	exploding = FALSE
 	exploded = TRUE
@@ -588,26 +593,30 @@ This is here to make the tiles around the station mininuke change when it's arme
 		CRASH("A fake nuke disk tried to call process(). Who the fuck and how the fuck")
 	var/turf/newturf = get_turf(src)
 	if(newturf && lastlocation == newturf)
-		if(last_disk_move < world.time - 5000 && prob((world.time - 5000 - last_disk_move)*0.00001))
+		if(last_disk_move < world.time - 5000 && prob((world.time - 5000 - last_disk_move)*0.0001))
 			var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 			if(istype(loneop))
 				loneop.weight += 1
+				if(loneop.weight % 5 == 0)
+					message_admins("[src] is stationary in [ADMIN_VERBOSEJMP(newturf)]. The weight of Lone Operative is now [loneop.weight].")
+				log_game("[src] is stationary for too long in [loc_name(newturf)], and has increased the weight of the Lone Operative event to [loneop.weight].")
+
 	else
 		lastlocation = newturf
 		last_disk_move = world.time
 		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 		if(istype(loneop) && prob(loneop.weight))
 			loneop.weight = max(loneop.weight - 1, 0)
+			if(loneop.weight % 5 == 0)
+				message_admins("[src] is on the move (currently in [ADMIN_VERBOSEJMP(newturf)]). The weight of Lone Operative is now [loneop.weight].")
+			log_game("[src] being on the move has reduced the weight of the Lone Operative event to [loneop.weight].")
 
 /obj/item/disk/nuclear/examine(mob/user)
 	. = ..()
 	if(!fake)
 		return
 
-	var/ghost = isobserver(user)
-	var/captain = user.mind && user.mind.assigned_role == "Captain"
-	var/nukie = user.mind && user.mind.has_antag_datum(/datum/antagonist/nukeop)
-	if(ghost || captain || nukie)
+	if(isobserver(user) || user.has_trait(TRAIT_DISK_VERIFIER))
 		to_chat(user, "<span class='warning'>The serial numbers on [src] are incorrect.</span>")
 
 /obj/item/disk/nuclear/attackby(obj/item/I, mob/living/user, params)
@@ -646,3 +655,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 
 /obj/item/disk/nuclear/fake
 	fake = TRUE
+
+/obj/item/disk/nuclear/fake/obvious
+	name = "cheap plastic imitation of the nuclear authentication disk"
+	desc = "How anyone could mistake this for the real thing is beyond you."

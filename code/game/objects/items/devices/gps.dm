@@ -9,7 +9,6 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	obj_flags = UNIQUE_RENAME
 	var/gpstag = "COM0"
 	var/emped = FALSE
-	var/turf/locked_location
 	var/tracking = TRUE
 	var/updating = TRUE //Automatic updating of GPS list. Can be set to manual by user.
 	var/global_mode = TRUE //If disabled, only GPS signals of the same Z level are shown
@@ -35,7 +34,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	emped = TRUE
 	cut_overlay("working")
 	add_overlay("emp")
-	addtimer(CALLBACK(src, .proc/reboot), 300, TIMER_OVERRIDE) //if a new EMP happens, remove the old timer so it doesn't reactivate early
+	addtimer(CALLBACK(src, .proc/reboot), 300, TIMER_UNIQUE|TIMER_OVERRIDE) //if a new EMP happens, remove the old timer so it doesn't reactivate early
 	SStgui.close_uis(src) //Close the UI control if it is open.
 
 /obj/item/gps/proc/reboot()
@@ -86,7 +85,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!tracking || emped) //Do not bother scanning if the GPS is off or EMPed
 		return data
 
-	var/turf/curr = get_turf(src)
+	var/turf/curr = get_turf_global(src) // yogs - get_turf_global instead of get_turf
 	data["current"] = "[get_area_name(curr, TRUE)] ([curr.x], [curr.y], [curr.z])"
 
 	var/list/signals = list()
@@ -96,7 +95,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		var/obj/item/gps/G = gps
 		if(G.emped || !G.tracking || G == src)
 			continue
-		var/turf/pos = get_turf(G)
+		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
 		if(!global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
@@ -157,7 +156,10 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-b"
 	gpstag = "BORG0"
 	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
-	item_flags = NODROP
+
+/obj/item/gps/cyborg/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/gps/internal
 	icon_state = null

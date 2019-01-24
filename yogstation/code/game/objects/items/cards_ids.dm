@@ -60,5 +60,17 @@
 /obj/item/card/id/silver
 	icon_state = "id_silver"
 
+/obj/item/card/id/gold
+	icon_state = "id_gold"
+
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
+
+/obj/item/card/emag/emag_act(mob/user)
+	var/otherEmag = user.get_active_held_item()
+	if(!otherEmag)
+		return
+	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
+	playsound(src.loc, "sparks", 50, 1)
+	qdel(otherEmag)
+	qdel(src)

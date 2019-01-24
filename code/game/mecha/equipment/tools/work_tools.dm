@@ -43,7 +43,7 @@
 					O.forceMove(chassis)
 					O.anchored = FALSE
 					occupant_message("<span class='notice'>[target] successfully loaded.</span>")
-					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]", LOG_MECHA)
 				else
 					O.anchored = initial(O.anchored)
 			else
@@ -64,7 +64,7 @@
 			target.visible_message("<span class='danger'>[chassis] squeezes [target].</span>", \
 								"<span class='userdanger'>[chassis] squeezes [target].</span>",\
 								"<span class='italics'>You hear something crack.</span>")
-			add_logs(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
@@ -78,6 +78,14 @@
 	name = "\improper KILL CLAMP"
 	desc = "They won't know what clamped them!"
 	energy_drain = 0
+	dam_force = 0
+	var/real_clamp = FALSE
+
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real
+	desc = "They won't know what clamped them! This time for real!"
+	energy_drain = 10
+	dam_force = 20
+	real_clamp = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/action(atom/target)
 	if(!action_checks(target))
@@ -95,7 +103,7 @@
 					O.forceMove(chassis)
 					O.anchored = FALSE
 					occupant_message("<span class='notice'>[target] successfully loaded.</span>")
-					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]", LOG_MECHA)
 				else
 					O.anchored = initial(O.anchored)
 			else
@@ -108,11 +116,41 @@
 		if(M.stat == DEAD)
 			return
 		if(chassis.occupant.a_intent == INTENT_HARM)
-			target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \
-								"<span class='userdanger'>[chassis] destroys [target] in an unholy fury.</span>")
-		if(chassis.occupant.a_intent == INTENT_DISARM)
-			target.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>", \
-								"<span class='userdanger'>[chassis] rips [target]'s arms off.</span>")
+			if(real_clamp)
+				M.take_overall_damage(dam_force)
+				if(!M)
+					return
+				M.adjustOxyLoss(round(dam_force/2))
+				M.updatehealth()
+				target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \
+									"<span class='userdanger'>[chassis] destroys [target] in an unholy fury.</span>")
+				log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			else
+				target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \
+									"<span class='userdanger'>[chassis] destroys [target] in an unholy fury.</span>")
+		else if(chassis.occupant.a_intent == INTENT_DISARM)
+			if(real_clamp)
+				var/mob/living/carbon/C = target
+				var/play_sound = FALSE
+				var/limbs_gone = ""
+				var/obj/item/bodypart/affected = C.get_bodypart(BODY_ZONE_L_ARM)
+				if(affected != null)
+					affected.dismember(damtype)
+					play_sound = TRUE
+					limbs_gone = ", [affected]"
+				affected = C.get_bodypart(BODY_ZONE_R_ARM)
+				if(affected != null)
+					affected.dismember(damtype)
+					play_sound = TRUE
+					limbs_gone = "[limbs_gone], [affected]"
+				if(play_sound)
+					playsound(src, get_dismember_sound(), 80, TRUE)
+					target.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>", \
+								   "<span class='userdanger'>[chassis] rips [target]'s arms off.</span>")
+					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			else
+				target.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>", \
+								   "<span class='userdanger'>[chassis] rips [target]'s arms off.</span>")
 		else
 			step_away(M,chassis)
 			target.visible_message("[chassis] tosses [target] like a piece of paper.")
@@ -160,7 +198,7 @@
 					var/datum/reagents/R = new/datum/reagents(5)
 					W.reagents = R
 					R.my_atom = W
-					reagents.trans_to(W,1)
+					reagents.trans_to(W,1, transfered_by = chassis.occupant)
 					for(var/b=0, b<4, b++)
 						if(!W)
 							return
@@ -202,8 +240,8 @@
 	GLOB.rcd_list += src
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Destroy()
- 	GLOB.rcd_list -= src
- 	return ..()
+	GLOB.rcd_list -= src
+	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/rcd/action(atom/target)
 	if(istype(target, /turf/open/space/transit))//>implying these are ever made -Sieve
@@ -348,7 +386,7 @@
 	if(href_list["toggle"])
 		set_ready_state(!equip_ready)
 		occupant_message("[src] [equip_ready?"dea":"a"]ctivated.")
-		log_message("[equip_ready?"Dea":"A"]ctivated.")
+		log_message("[equip_ready?"Dea":"A"]ctivated.", LOG_MECHA)
 		return
 	if(href_list["cut"])
 		if(cable && cable.amount)
@@ -371,7 +409,7 @@
 	if(!cable || cable.amount<1)
 		set_ready_state(1)
 		occupant_message("Cable depleted, [src] deactivated.")
-		log_message("Cable depleted, [src] deactivated.")
+		log_message("Cable depleted, [src] deactivated.", LOG_MECHA)
 		return
 	if(cable.amount < amount)
 		occupant_message("No enough cable to finish the task.")
