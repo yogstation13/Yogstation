@@ -93,10 +93,12 @@
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
 	desc = "The traditional mime's mask. It has an eerie facial posture."
-	clothing_flags = MASKINTERNALS
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	icon_state = "mime"
 	item_state = "mime"
-	flags_cover = MASKCOVERSEYES
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
+	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 	resistance_flags = FLAMMABLE
 	actions_types = list(/datum/action/item_action/adjust)
 
