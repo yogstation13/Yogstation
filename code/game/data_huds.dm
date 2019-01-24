@@ -49,6 +49,9 @@
 /datum/atom_hud/data/human/security/advanced
 	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD, NANITE_HUD)
 
+/datum/atom_hud/data/human/rev
+	hud_icons = list(REV_APPEARANCE_HUD) // yogs change
+
 /datum/atom_hud/data/diagnostic
 
 /datum/atom_hud/data/diagnostic/basic
