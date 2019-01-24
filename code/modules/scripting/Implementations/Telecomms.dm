@@ -230,7 +230,14 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	// Backwards-apply variables onto signal data
 	/* sanitize EVERYTHING. fucking players can't be trusted with SHIT */
 
-	signal.data["message"] 	= interpreter.GetCleanVar("$content", signal.data["message"])
+	var/msg = interpreter.GetCleanVar("$content", signal.data["message"])
+	if(isnum(msg))
+		msg = "[msg]"
+	else if(!msg)
+		msg = "*beep*"
+	signal.data["message"] = msg
+	
+	
 	signal.frequency 		= interpreter.GetCleanVar("$freq", signal.frequency)
 
 	var/setname = interpreter.GetCleanVar("$source", signal.data["name"])
