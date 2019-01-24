@@ -9,8 +9,6 @@
 /datum/controller/subsystem/research/proc/initialize_techweb_layout()
 	// do the techweb layout.
 	// forgive me please
-	// basically the thing is laid out in invisible rings/layers/whatever
-	// that way the base node is in the middle and super advanced nodes are way out there.
 	techweb_pixel_size = 0
 	var/dot_file = "strict digraph {\n"
 	for(var/node_id in techweb_nodes)
@@ -18,7 +16,6 @@
 			continue
 		var/datum/techweb_node/node = techweb_nodes[node_id]
 		node.ui_resolved = initial(node.ui_resolved)
-		max_layer = max(max_layer, node.ui_layer)
 		for(var/unlock_id in node.unlock_ids)
 			dot_file += "\t[node_id] -> [unlock_id];\n"
 	dot_file += "}"

@@ -10,7 +10,7 @@
 	l += "<div id='techweb-container' unselectable='on'><div id='techweb'>[RDSCREEN_NOBREAK]"
 	for (var/node_ in stored_research.tiers)
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_)
-		if(node.ui_layer < 0)
+		if(!node.ui_resolved)
 			continue
 		var/class = ""
 		if(stored_research.researched_nodes[node_])
@@ -34,7 +34,7 @@
 		// now for the LINES
 		for(var/prereq_id in node.prereq_ids)
 			var/datum/techweb_node/prereq = SSresearch.techweb_node_by_id(prereq_id)
-			if(prereq.ui_layer < 0)
+			if(!node.ui_resolved)
 				continue
 			var/line_class = ""
 			if(stored_research.researched_nodes[prereq_id])
