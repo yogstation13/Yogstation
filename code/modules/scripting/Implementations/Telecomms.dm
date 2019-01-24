@@ -386,9 +386,9 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	newsign.data["broadcast_levels"] = data["broadcast_levels"]
 	newsign.sanitize_data()
 
-	var/pass = S.relay_information(newsign, "/obj/machinery/telecomms/hub")
+	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
-		S.relay_information(newsign, "/obj/machinery/telecomms/broadcaster") // send this message to broadcasters directly
-
+		pass = S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this message to broadcasters directly
+	return pass // Returns, as of Jan 23 2019, the number of machines that received this broadcast's message.
 #undef SIGNAL_COOLDOWN
 #undef MAX_MEM_VARS
