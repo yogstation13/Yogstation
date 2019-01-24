@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 	/* -- Execute the compiled code -- */
 
-/datum/TCS_Compiler/proc/Run(datum/signal/signal) // Runs the already-compiled code on an incoming signal.
+/datum/TCS_Compiler/proc/Run(datum/signal/subspace/vocal/signal) // Runs the already-compiled code on an incoming signal.
 
 	if(!ready)
 		return
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("$freq"   , 	signal.frequency)
 	interpreter.SetVar("$source" , 	signal.data["name"])
 	interpreter.SetVar("$uuid"   , 	signal.data["uuid"])
-	interpreter.SetVar("$sector" , 	signal.data["level"])
+	interpreter.SetVar("$sector" , 	signal.levels)
 	interpreter.SetVar("$job"    , 	signal.data["job"])
 	interpreter.SetVar("$sign"   ,	signal)
 	interpreter.SetVar("$pass"	 ,  !(signal.data["reject"])) // Being passed is the opposite of being rejected, so they're logical not of each other.
@@ -243,10 +243,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	var/setname = interpreter.GetCleanVar("$source", signal.data["name"])
 
 	if(signal.data["name"] != setname)
-		signal.data["realname"] = setname
+		signal.data["realname"] = signal.data["name"]
+		signal.virt.name = setname
 	signal.data["name"]			= setname
 	signal.data["uuid"]			= interpreter.GetCleanVar("$uuid", signal.data["uuid"])
-	signal.data["level"]		= interpreter.GetCleanVar("$sector", signal.data["level"])
+	signal.levels 					= interpreter.GetCleanVar("$sector", signal.levels)
 	signal.data["job"]			= interpreter.GetCleanVar("$job", signal.data["job"])
 	signal.data["reject"]		= !(interpreter.GetCleanVar("$pass")) // set reject to the opposite of $pass
 	signal.data["verb_say"]		= interpreter.GetCleanVar("$say")
