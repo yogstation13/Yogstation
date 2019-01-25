@@ -38,7 +38,6 @@
 	. = ..()
 	if(.)
 		update_hair()
-		update_face_dependant_huds() // yogs change
 
 /mob/living/carbon/human/set_drugginess(amount)
 	..()

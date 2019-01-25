@@ -8,7 +8,9 @@
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
+	
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
+	
 	//initialize limbs first
 	create_bodyparts()
 
@@ -50,7 +52,7 @@
 	//...sec hud images...
 	sec_hud_set_ID()
 	sec_hud_set_implants()
-	update_face_dependant_huds() // yogs changed replaced sec_hud_set_security_status()
+	sec_hud_set_security_status()
 	//...and display them.
 	add_to_all_human_data_huds()
 
@@ -194,7 +196,7 @@
 		if (org.bandaged)
 			dat += "<tr><td><i>[org.name]</i> wrapped with:</td><td><a href='byond://?src=\ref[src];unwrap=\ref[org.bandaged]'>[org.bandaged]</a></td></tr>"
 	// yogs end
-
+		
 	if(handcuffed)
 		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Remove</A></td></tr>"
 	if(legcuffed)
@@ -396,7 +398,7 @@
 												if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 													investigate_log("[key_name(src)] has been set from [R.fields["criminal"]] to [setcriminal] by [key_name(usr)].", INVESTIGATE_RECORDS)
 													R.fields["criminal"] = setcriminal
-													update_face_dependant_huds() // yogs change
+													sec_hud_set_security_status()
 									return
 
 								if(href_list["view"])
@@ -784,7 +786,6 @@
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
-	update_face_dependant_huds() // yogs change
 	..()
 
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/attacker)
