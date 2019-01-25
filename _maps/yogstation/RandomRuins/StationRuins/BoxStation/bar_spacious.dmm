@@ -435,6 +435,15 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"bf" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bg" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -463,6 +472,11 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/bar)
+"bl" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "bm" = (
@@ -497,6 +511,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"br" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "bt" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -607,11 +627,6 @@
 "bN" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"bO" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bP" = (
@@ -887,8 +902,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "cy" = (
-/obj/structure/table,
 /obj/machinery/chem_dispenser/drinks,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/bar)
 "cz" = (
@@ -1002,6 +1017,14 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"rr" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchen";
+	name = "kitchen shutters"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "Lp" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -1101,7 +1124,7 @@ cQ
 cT
 ba
 cI
-bz
+bl
 cD
 cF
 bz
@@ -1261,9 +1284,9 @@ ab
 ab
 aj
 aj
-bC
-bC
-bC
+rr
+rr
+rr
 aj
 cb
 aj
@@ -1271,7 +1294,7 @@ aj
 "}
 (17,1,1) = {"
 ai
-cH
+br
 aw
 ab
 aI
@@ -1358,7 +1381,7 @@ bg
 aj
 bt
 bc
-bO
+bf
 bU
 bC
 bC
