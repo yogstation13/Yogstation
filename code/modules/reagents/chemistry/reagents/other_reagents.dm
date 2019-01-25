@@ -126,7 +126,7 @@
  */
 
 /datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
-	if (!istype(T))
+	if(!istype(T))
 		return
 	var/CT = cooling_temperature
 
@@ -1763,7 +1763,7 @@
 	glitter_type = /obj/effect/decal/cleanable/glitter/blue
 
 /datum/reagent/pax
-	name = "pax"
+	name = "Pax"
 	id = "pax"
 	description = "A colorless liquid that suppresses violence on the subjects."
 	color = "#AAAAAA55"

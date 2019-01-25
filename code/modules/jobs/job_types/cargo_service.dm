@@ -152,7 +152,7 @@ Bartender
 	outfit = /datum/outfit/job/bartender
 
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_BAR, ACCESS_MINERAL_STOREROOM, ACCESS_WEAPONS) //yogs - adds ACCESS_WEAPONS
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -165,7 +165,7 @@ Bartender
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/bartender
 	suit = /obj/item/clothing/suit/armor/vest
-	backpack_contents = list(/obj/item/storage/box/beanbag=1,/obj/item/book/granter/action/drink_fling=1)
+	backpack_contents = list(/obj/item/storage/box/beanbag=1)
 	shoes = /obj/item/clothing/shoes/laceup
 
 /*

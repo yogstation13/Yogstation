@@ -97,6 +97,12 @@
 	icon_state = "paladin"
 	module_locked = "Security"
 
+/datum/borg_skin/rainbowpeace
+	name = "Rainbow Peacekeeper"
+	icon_state = "rainbow_peace"
+	owner = "fluffe9911"
+	module_locked = "Peacekeeper"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
