@@ -168,8 +168,13 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 				@param value:		The value to store to the memory address
 	*/
 	interpreter.SetProc("mem", "mem", signal, list("address", "value"))
-
-
+	
+	/*
+		-> Wipe all the mem() variables on this server (for garbage collection purposes)
+	*/
+	interpreter.SetProc("clearmem","clearmem",signal, list())
+	
+	
 	/*
 	General NTSL procs
 	Should probably be moved to its own place
@@ -276,15 +281,20 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	if(istext(address))
 		var/obj/machinery/telecomms/server/S = data["server"]
 
-		if(!value && value != 0)
+		if(!value && value != 0) // Getting the value
 			return S.memory[address]
 
-		else
+		else // Setting the value
 			if(S.memory.len >= MAX_MEM_VARS)
 				if(!(address in S.memory))
-					return
+					return FALSE
 			S.memory[address] = value
+			return TRUE
 
+/datum/signal/proc/clearmem()
+	var/obj/machinery/telecomms/server/S = data["server"]
+	S.memory = list()
+	return TRUE
 
 /datum/signal/proc/signaler(freq = 1459, code = 30)
 
