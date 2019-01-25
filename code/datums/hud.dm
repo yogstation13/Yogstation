@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_SENTIENT_DISEASE = new/datum/atom_hud/sentient_disease(),
 	DATA_HUD_AI_DETECT = new/datum/atom_hud/ai_detector(),
 	ANTAG_HUD_CULT = new/datum/atom_hud/antag(),
-	ANTAG_HUD_REV = new/datum/atom_hud/antag/hidden(), // yogs change added hidden to front
+	ANTAG_HUD_REV = new/datum/atom_hud/antag(),
 	ANTAG_HUD_OPS = new/datum/atom_hud/antag(),
 	ANTAG_HUD_WIZ = new/datum/atom_hud/antag(),
 	ANTAG_HUD_SHADOW = new/datum/atom_hud/antag(),
@@ -29,8 +29,7 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // Yogs
 	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
-	ANTAG_HUD_CREEP = new/datum/atom_hud/antag/hidden(),
-	DATA_HUD_REV = new/datum/atom_hud/data/human/rev() // yogs change
+	ANTAG_HUD_CREEP = new/datum/atom_hud/antag/hidden()
 	))
 
 /datum/atom_hud
