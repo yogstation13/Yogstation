@@ -275,4 +275,24 @@
 			var/obj/structure/grille/G = new(src)
 			G.anchored = TRUE
 			return TRUE
+<<<<<<< HEAD
+=======
+		if(RCD_MACHINE)
+			if(locate(/obj/structure/frame/machine) in src)
+				return FALSE
+			var/obj/structure/frame/machine/M = new(src)
+			M.state = 2
+			M.icon_state = "box_1"
+			M.anchored = TRUE
+			return TRUE
+		if(RCD_COMPUTER)
+			if(locate(/obj/structure/frame/computer) in src)
+				return FALSE
+			var/obj/structure/frame/computer/C = new(src)
+			C.anchored = TRUE
+			C.state = 1
+			C.setDir(the_rcd.computer_dir)
+			return TRUE
+
+>>>>>>> 0f8ce85748... fix (#42500)
 	return FALSE
