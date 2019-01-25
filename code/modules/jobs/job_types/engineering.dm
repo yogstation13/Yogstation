@@ -176,7 +176,6 @@ Atmospheric Technician
 /*
 Signal Technician
 */
-/*
 /datum/job/signal_tech
 	title = "Signal Technician"
 	flag = SIGNALTECH
@@ -213,5 +212,4 @@ Signal Technician
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 	pda_slot = SLOT_L_STORE
-*/
 // yogs end
