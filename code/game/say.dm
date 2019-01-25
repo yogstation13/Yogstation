@@ -206,8 +206,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/GetJob()
 	return job
 
+/* 
+// Commented because this was causing NTSL to not properly be capable of editing verb_say & al.
+// However, I don't exactly know why it was even in here in the first place, so,
+// if there's some weird bugs involving virtualspeaker, check here first.
 /atom/movable/virtualspeaker/GetSource()
 	return source
+*/
 
 /atom/movable/virtualspeaker/GetRadio()
 	return radio

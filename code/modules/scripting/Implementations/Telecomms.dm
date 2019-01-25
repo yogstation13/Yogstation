@@ -102,10 +102,10 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("$sign"   ,	signal)
 	interpreter.SetVar("$pass"	 ,  !(signal.data["reject"])) // Being passed is the opposite of being rejected, so they're logical not of each other.
 	interpreter.SetVar("$filters"  ,	signal.data["spans"]) //Important, this is given as a vector! (a list)
-	interpreter.SetVar("$say"    , 	signal.data["verb_say"])
-	interpreter.SetVar("$ask"    , 	signal.data["verb_ask"])
-	interpreter.SetVar("$yell"    , 	signal.data["verb_yell"])
-	interpreter.SetVar("$exclaim"    , 	signal.data["verb_exclaim"])
+	interpreter.SetVar("$say"    , 	signal.virt.verb_say)
+	interpreter.SetVar("$ask"    , 	signal.virt.verb_ask)
+	interpreter.SetVar("$yell"    , 	signal.virt.verb_yell)
+	interpreter.SetVar("$exclaim"    , 	signal.virt.verb_exclaim)
 
 	//Current allowed span classes
 	interpreter.SetVar("$robot",	SPAN_ROBOT) //The font used by silicons!
@@ -252,14 +252,14 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		signal.virt.name = setname
 	signal.data["name"]			= setname
 	signal.data["uuid"]			= interpreter.GetCleanVar("$uuid", signal.data["uuid"])
-	signal.levels 					= interpreter.GetCleanVar("$sector", signal.levels)
+	signal.levels 				= interpreter.GetCleanVar("$sector", signal.levels)
 	signal.data["job"]			= interpreter.GetCleanVar("$job", signal.data["job"])
 	signal.data["reject"]		= !(interpreter.GetCleanVar("$pass")) // set reject to the opposite of $pass
-	signal.data["verb_say"]		= interpreter.GetCleanVar("$say")
-	signal.data["verb_ask"]		= interpreter.GetCleanVar("$ask")
-	signal.data["verb_yell"]	= interpreter.GetCleanVar("$yell")
-	signal.data["verb_exclaim"]	= interpreter.GetCleanVar("$exclaim")
-	signal.data["language"]	= (interpreter.GetCleanVar("$language") ? interpreter.GetCleanVar("$language") : curlang) //we can only translate to certain languages, but we can always use the one that was sent in.
+	signal.virt.verb_say		= interpreter.GetCleanVar("$say")
+	signal.virt.verb_ask		= interpreter.GetCleanVar("$ask")
+	signal.virt.verb_yell		= interpreter.GetCleanVar("$yell")
+	signal.virt.verb_exclaim	= interpreter.GetCleanVar("$exclaim")
+	ASSERT(signal.virt.verb_say == interpreter.GetCleanVar("$say"))
 	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
