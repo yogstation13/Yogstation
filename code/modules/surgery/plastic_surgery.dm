@@ -34,5 +34,5 @@
 		user.visible_message("[user] alters [oldname]'s appearance completely, [target.p_they()] is now [newname]!", "<span class='notice'>You alter [oldname]'s appearance completely, [target.p_they()] is now [newname].</span>")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.update_face_dependant_huds() // yogs change
+		H.sec_hud_set_ID()
 	return 1
