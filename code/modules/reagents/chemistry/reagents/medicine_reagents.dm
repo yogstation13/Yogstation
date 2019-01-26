@@ -534,6 +534,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
+	M.adjustOxyLoss(-12*REM, 0)
 	// yogs start
 	M.silent = max(M.silent, 5)
 	if(prob(33))
