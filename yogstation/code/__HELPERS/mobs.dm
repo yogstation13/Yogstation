@@ -18,7 +18,7 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client)
-			if(temp.is_mentor()
+			if(temp.is_mentor())
 				return TRUE
 			if(temp.client.prefs)
 				return (temp.client.prefs.unlock_content & 2)
