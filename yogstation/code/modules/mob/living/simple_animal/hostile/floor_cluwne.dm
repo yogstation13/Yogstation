@@ -94,12 +94,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/turf/T = get_turf(current_victim)
 	if(prob(5))//checks roughly every 20 ticks
 		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(get_area(T), invalid_area_typecache) || !is_station_level(current_victim.z))
-			for(var/obj/structure/closet/hiding_spot in orange(7,src))
-				hiding_spot.bust_open()
-				current_victim.Paralyze(40)
-				to_chat(current_victim, "<span class='warning'>...edih tnac uoY</span>")
-				return
-			Acquire_Victim()
+			if(!Found_You())
+				Acquire_Victim()
 
 	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(get_area(T), invalid_area_typecache))//if cluwne gets stuck he just teleports
 		do_teleport(src, T)
@@ -145,6 +141,14 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE)//prevents runtimes with machine fuckery
 	return FALSE
 
+/mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()
+	for(var/obj/structure/closet/hiding_spot in orange(7,src))
+		if(current_victim.loc == hiding_spot)
+			hiding_spot.bust_open()
+			current_victim.Paralyze(40)
+			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY...</span>")
+			return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
@@ -315,6 +319,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 		if(STAGE_ATTACK)
 			if(!eating)
+				Found_You()
 				for(var/I in getline(src,H))
 					var/turf/T = I
 					if(T.density)
@@ -342,8 +347,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		if(do_after(src, 5, target = H))
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
-			H.emote("scream")
+			if(prob(50))
+				H.emote("scream")
 			if(prob(25))
+				H.forcesay(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
 				playsound(src, pick('yogstation/sound/voice/cluwnelaugh1.ogg', 'yogstation/sound/voice/cluwnelaugh2.ogg', 'yogstation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
