@@ -22,8 +22,11 @@
 
 	else if(istype(user, /client))
 		var/client/temp = user
-		if(temp && temp.prefs)
-			return (temp.prefs.unlock_content & 2)
+		if(temp)
+			if(temp.is_mentor())
+				return TRUE
+			if(temp.prefs)
+				return (temp.prefs.unlock_content & 2)
 
 	return FALSE
 
