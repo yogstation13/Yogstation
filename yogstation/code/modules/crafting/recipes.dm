@@ -55,3 +55,35 @@
 	tools = list(/obj/item/screwdriver)
 	time = 50
 	category = CAT_ROBOT
+
+/datum/crafting_recipe/chitintreads // Whats funny about these is that they require something only ashwalkers have to make but ashwalkers cant even wear em heh
+	name = "Chitin Boots"
+	result = /obj/item/clothing/shoes/chitintreads
+	time = 40
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/animalhide/weaver_chitin = 1,
+				/obj/item/stack/sheet/sinew = 1,
+				/obj/item/stack/sheet/mineral/mythril = 1)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/chitinarmor
+	name = "Chitin Plate Armor"
+	result = /obj/item/clothing/suit/armor/chitinplate
+	time = 100
+	reqs = list (/obj/item/stack/sheet/bone = 5,
+				 /obj/item/stack/sheet/animalhide/weaver_chitin = 2,
+				 /obj/item/stack/sheet/sinew = 3,
+				 /obj/item/stack/sheet/mineral/mythril = 1,
+				 /obj/item/clothing/suit/armor/bone = 1)
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/chitinhands
+	name = "Chitin Gauntlets"
+	result = /obj/item/clothing/gloves/chitinhands
+	time = 30
+	reqs = list (/obj/item/stack/sheet/bone = 3,
+				 /obj/item/stack/sheet/animalhide/weaver_chitin = 1,
+				 /obj/item/stack/sheet/sinew = 1,
+				 /obj/item/stack/sheet/mineral/mythril = 1,
+				 /obj/item/clothing/gloves/bracer = 1)
+	category = CAT_PRIMAL

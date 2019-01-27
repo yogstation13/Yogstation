@@ -1,0 +1,750 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/cult,
+/area/ruin/powered)
+"b" = (
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"c" = (
+/obj/item/coin/gold,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"d" = (
+/obj/item/stack/sheet/mineral/gold{
+	amount = 25
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"e" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"f" = (
+/obj/item/clothing/head/helmet/chaplain,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"g" = (
+/obj/item/clothing/suit/armor/riot/chaplain,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"h" = (
+/turf/closed/wall/mineral/gold,
+/area/ruin/powered)
+"i" = (
+/obj/item/coin/gold,
+/obj/item/clothing/gloves/plate,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"j" = (
+/obj/structure/closet/crate/necropolis/tendril,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"k" = (
+/mob/living/simple_animal/hostile/megafauna/dragon{
+	move_to_delay = 100;
+	name = "Vasgrul The Forge"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"l" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/powered)
+"m" = (
+/obj/item/coin/gold,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"n" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"o" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"p" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered)
+"q" = (
+/obj/machinery/door/airlock/cult/friendly,
+/obj/structure/barricade/wooden,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"r" = (
+/obj/structure/falsewall/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/ruin/powered)
+"s" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/ruin/powered)
+"t" = (
+/turf/open/floor/wood,
+/area/ruin/powered)
+"u" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/powered)
+"v" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"w" = (
+/obj/structure/chair/comfy/black{
+	name = "DMs Chair"
+	},
+/obj/effect/mob_spawn/human/skeleton,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"x" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/powered)
+"y" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/powered)
+"z" = (
+/obj/structure/chair/stool,
+/obj/effect/mob_spawn/human/skeleton,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"A" = (
+/obj/structure/table/glass,
+/obj/item/shield/riot/roman,
+/obj/item/clothing/shoes/roman,
+/obj/item/clothing/under/roman,
+/obj/item/clothing/head/helmet/roman,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"B" = (
+/obj/structure/table/glass,
+/obj/item/paper_bin{
+	pixel_y = 9
+	},
+/obj/item/pen,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"C" = (
+/obj/structure/table/glass,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"D" = (
+/obj/structure/table/glass,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/powered)
+"E" = (
+/obj/structure/destructible/cult/pylon,
+/turf/open/floor/engine/cult,
+/area/ruin/powered)
+"F" = (
+/obj/structure/table/glass,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"G" = (
+/obj/structure/table/glass,
+/obj/item/clothing/shoes/plate,
+/obj/item/clothing/gloves/plate,
+/obj/item/clothing/head/helmet/chaplain,
+/obj/item/clothing/suit/armor/riot/chaplain,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"H" = (
+/obj/structure/table/glass,
+/obj/item/paper{
+	info = "Quest: Slay Vasgrul the Forge. Reward: Lots of gold and wenches";
+	name = "paper"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"I" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered)
+"J" = (
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"K" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"L" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/powered)
+"M" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"N" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"O" = (
+/obj/item/claymore{
+	name = "Excalibur"
+	},
+/obj/item/clothing/shoes/plate,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/skeleton,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+l
+b
+a
+b
+b
+b
+l
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(4,1,1) = {"
+a
+c
+h
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(5,1,1) = {"
+a
+d
+e
+e
+h
+e
+b
+b
+b
+a
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(6,1,1) = {"
+a
+e
+c
+e
+e
+e
+c
+e
+m
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(7,1,1) = {"
+a
+f
+i
+e
+m
+c
+b
+e
+m
+e
+b
+b
+a
+p
+r
+p
+p
+r
+p
+p
+r
+p
+o
+"}
+(8,1,1) = {"
+a
+g
+O
+d
+e
+b
+a
+l
+b
+b
+a
+b
+a
+p
+s
+u
+t
+t
+t
+t
+s
+p
+o
+"}
+(9,1,1) = {"
+a
+e
+e
+h
+b
+d
+b
+b
+e
+m
+b
+b
+a
+p
+t
+t
+z
+z
+z
+I
+s
+r
+o
+"}
+(10,1,1) = {"
+a
+e
+k
+e
+e
+m
+e
+e
+b
+m
+b
+a
+a
+p
+b
+v
+A
+D
+G
+t
+L
+p
+N
+"}
+(11,1,1) = {"
+a
+j
+e
+e
+c
+a
+b
+m
+h
+e
+b
+n
+b
+q
+b
+w
+B
+E
+H
+J
+t
+M
+N
+"}
+(12,1,1) = {"
+a
+c
+e
+e
+c
+e
+b
+e
+b
+b
+b
+a
+a
+p
+b
+b
+C
+F
+F
+K
+t
+p
+N
+"}
+(13,1,1) = {"
+a
+c
+c
+h
+e
+e
+e
+m
+e
+b
+b
+b
+a
+p
+t
+x
+z
+z
+z
+t
+s
+p
+o
+"}
+(14,1,1) = {"
+a
+e
+d
+e
+b
+d
+h
+b
+b
+e
+a
+b
+a
+p
+s
+y
+t
+t
+t
+t
+x
+p
+o
+"}
+(15,1,1) = {"
+a
+e
+e
+c
+e
+c
+e
+e
+e
+b
+b
+b
+a
+p
+p
+r
+p
+p
+p
+p
+r
+p
+o
+"}
+(16,1,1) = {"
+a
+e
+e
+c
+a
+b
+e
+m
+e
+b
+l
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(17,1,1) = {"
+a
+c
+d
+b
+e
+b
+b
+e
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(18,1,1) = {"
+a
+e
+h
+b
+h
+b
+l
+b
+b
+b
+a
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(19,1,1) = {"
+a
+e
+b
+b
+b
+b
+b
+a
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(20,1,1) = {"
+a
+b
+b
+l
+b
+b
+b
+b
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(21,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
+(22,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+"}
