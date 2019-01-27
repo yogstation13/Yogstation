@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/chitinhands
+/obj/item/clothing/gloves/yogs/chitinhands
 	name = "chitin gauntlets"
 	desc = "The idea of badass sharp spikes sticking out of your elbows sounded great in theory."
 	icon_state = "chitinhands"

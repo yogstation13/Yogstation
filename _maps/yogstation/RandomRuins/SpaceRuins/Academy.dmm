@@ -375,7 +375,6 @@
 /area/awaymission/academy/academyengine)
 "bs" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/dice/d20/fate,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bt" = (
@@ -2570,7 +2569,7 @@
 	pixel_y = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -2725,7 +2724,7 @@
 "hR" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2897,7 +2896,7 @@
 "io" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable,
 /obj/structure/window/reinforced/fulltile,
@@ -3034,7 +3033,7 @@
 /obj/structure/grille,
 /obj/structure/cable,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -3956,7 +3955,7 @@
 "kQ" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -4643,6 +4642,7 @@
 "nc" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
+/obj/item/dice/d20/fate,
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
 "nd" = (

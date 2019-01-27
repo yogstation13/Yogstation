@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/armor/chitinplate
+/obj/item/clothing/suit/yogs/armor/chitinplate
 	name = "chitin plate"
 	desc = "A heavily protected and padded version of the bone armor, reinforced with chitin, sinew and bone."
 	icon_state = "chitenplate"

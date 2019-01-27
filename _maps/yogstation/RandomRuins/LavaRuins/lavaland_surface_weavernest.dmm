@@ -172,9 +172,9 @@
 /area/ruin/unpowered)
 "aC" = (
 /obj/effect/mob_spawn/human/corpse/damaged{
-	gloves = /obj/item/clothing/gloves/chitinhands;
-	shoes = /obj/item/clothing/shoes/chitintreads;
-	suit = /obj/item/clothing/suit/armor/chitinplate
+	gloves = /obj/item/clothing/gloves/yogs/chitinhands;
+	shoes = /obj/item/clothing/shoes/yogs/chitintreads;
+	suit = /obj/item/clothing/suit/yogs/armor/chitinplate
 	},
 /obj/item/pickaxe/drill/diamonddrill,
 /obj/effect/turf_decal/sand,
