@@ -4,7 +4,7 @@
 	icon_state = "fuzzyslippers"
 	item_state = "fuzzyslippers"
 
-/obj/item/clothing/shoes/chitintreads // Whats funny about these is that they require something only ashwalkers have to make but ashwalkers cant even wear em heh
+/obj/item/clothing/shoes/yogs/chitintreads // Whats funny about these is that they require something only ashwalkers have to make but ashwalkers cant even wear em heh
 	name = "chitin boots"
 	desc = "Compact boots crafted from a weaver's chitin with interlacing sinew."
 	icon_state = "chitentreads"

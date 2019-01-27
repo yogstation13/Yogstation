@@ -194,7 +194,7 @@
 	},
 /obj/item/clothing/shoes/plate,
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/mob_spawn/human/skeleton,
+/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
 

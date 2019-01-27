@@ -10,8 +10,8 @@
 	speak_chance = 1
 
 /mob/living/simple_animal/hostile/wizard/cloaked
-	name = "Malarky the Mad"
-	desc = "Malarky the Mad, former space wizard who was recently disbanded from the wizards federation. He uses unholy magic to preserve his body trapped up in his bubble made of magic slowly decaying. Now he spends his days hallucinating in his old abandoned wizard den plotting his revenge."
+	name = "Malarky The Mad"
+	desc = "Malarky The Mad, former space wizard who was recently disbanded from the wizards federation. He uses unholy magic to preserve his body trapped up in his bubble made of magic slowly decaying. Now he spends his days hallucinating in his old abandoned wizard den plotting his revenge."
 	stat_attack = 1
 	robust_searching = 1
 	speed = 1 // they are slow

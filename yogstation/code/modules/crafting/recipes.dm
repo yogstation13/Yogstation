@@ -58,7 +58,7 @@
 
 /datum/crafting_recipe/chitintreads // Whats funny about these is that they require something only ashwalkers have to make but ashwalkers cant even wear em heh
 	name = "Chitin Boots"
-	result = /obj/item/clothing/shoes/chitintreads
+	result = /obj/item/clothing/shoes/yogs/chitintreads
 	time = 40
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 1,
@@ -68,7 +68,7 @@
 
 /datum/crafting_recipe/chitinarmor
 	name = "Chitin Plate Armor"
-	result = /obj/item/clothing/suit/armor/chitinplate
+	result = /obj/item/clothing/suit/yogs/armor/chitinplate
 	time = 100
 	reqs = list (/obj/item/stack/sheet/bone = 5,
 				 /obj/item/stack/sheet/animalhide/weaver_chitin = 2,
@@ -79,7 +79,7 @@
 
 /datum/crafting_recipe/chitinhands
 	name = "Chitin Gauntlets"
-	result = /obj/item/clothing/gloves/chitinhands
+	result = /obj/item/clothing/gloves/yogs/chitinhands
 	time = 30
 	reqs = list (/obj/item/stack/sheet/bone = 3,
 				 /obj/item/stack/sheet/animalhide/weaver_chitin = 1,
