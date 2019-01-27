@@ -45,7 +45,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/wizardden
+/datum/map_template/ruin/lavaland/yogstation/wizardden
 	name = "Wizard Den"
 	id = "wizardden"
 	description = "Only Malarky the mad would be mad enough to live in a wooden shack on this planet"
@@ -53,7 +53,7 @@
 	cost = 15
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/watcherspiral
+/datum/map_template/ruin/lavaland/yogstation/watcherspiral
 	name = "Watcher Spiral"
 	id = "watcherspiral"
 	description = "These watchers were left here to guard some ancient artifact"
@@ -61,7 +61,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/weavernest
+/datum/map_template/ruin/lavaland/yogstation/weavernest
 	name = "Weaver Nest"
 	id = "weavernest"
 	description = "An eerie cavern full of deadly Marrow Weavers and the corpses of their victims"
@@ -69,7 +69,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/goliathmound
+/datum/map_template/ruin/lavaland/yogstation/goliathmound
 	name = "Goliath Mound"
 	id = "goliathmound"
 	description = "More tentacles than one of my japanese animes"
@@ -77,7 +77,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/I
+/datum/map_template/ruin/lavaland/yogstation/I
 	name = "Necromancer Tower"
 	id = "I"
 	description = "It contains the secrets of life and death"
@@ -85,7 +85,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/legionbarracks
+/datum/map_template/ruin/lavaland/yogstation/legionbarracks
 	name = "Legion Barracks"
 	id = "legionbarracks"
 	description = "Once a structure containing stalwart soldiers, it now contains their lost souls"
@@ -93,7 +93,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/cultritual
+/datum/map_template/ruin/lavaland/yogstation/cultritual
 	name = "Cult Ritual"
 	id = "cultritual"
 	description = "A group of mortal cultist nerds sacrifice their souls to become one with the realm of medieval fantasy and fiction causing a tear in the fabric of reality."
@@ -101,7 +101,7 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/ntsurveyor
+/datum/map_template/ruin/lavaland/yogstation/ntsurveyor
 	name = "Nanotrasen Surveyor"
 	id = "ntsurveyo"
 	description = "The most tragic part about it all is the ship didnt even have any donuts"
@@ -109,7 +109,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/researchoutpost
+/datum/map_template/ruin/lavaland/yogstation/researchoutpost
 	name = "Research Outpost"
 	id = "researchoutpost"
 	description = "While mystery enshrouds as to why this place is here, the real question is should you wear the carp hardsuit..or the engineering one?"
@@ -117,7 +117,7 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/syndicatepod
+/datum/map_template/ruin/lavaland/yogstation/syndicatepod
 	name = "Syndicate Pod"
 	id = "syndicatepod"
 	description = "The Syndicate would pay handsomely for its contents"
