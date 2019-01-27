@@ -1,6 +1,3 @@
-/datum/map_template/ruin/lavaland/ash_walker
-	prefix = "_maps/yogstation/RandomRuins/LavaRuins/lavaland_surface_ash_walker1.dmm"
-
 /datum/map_template/ruin/lavaland/yogstation
 	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"
 	cost = 0
@@ -48,7 +45,7 @@
 /datum/map_template/ruin/lavaland/yogstation/wizardden
 	name = "Wizard Den"
 	id = "wizardden"
-	description = "Only Malarky the mad would be mad enough to live in a wooden shack on this planet"
+	description = "Only Malarky The Mad would be mad enough to live in a wooden shack on this planet"
 	suffix = "lavaland_surface_wizardden.dmm"
 	cost = 15
 	allow_duplicates = FALSE
