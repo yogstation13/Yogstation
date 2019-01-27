@@ -17,6 +17,10 @@
 /obj/effect/proc_holder/spell/self/shadowling_hatch/cast(list/targets,mob/user = usr)
 	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
 		return
+	if(world.time - SSticker.round_start_time < 18000)
+		to_chat(user, "<span class='shadowling'>It's too early to hatch! Wait until 30 minutes have passed.</span>")
+		charge_counter = charge_max
+		return
 	var/mob/living/carbon/human/H = user
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
 	switch(hatch_or_no)
