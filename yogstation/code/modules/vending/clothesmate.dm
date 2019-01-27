@@ -2,6 +2,7 @@
 	products = list(/obj/item/clothing/head/that = 2,
 		            /obj/item/clothing/head/fedora = 1,
 		            /obj/item/clothing/glasses/monocle = 1,
+		            /obj/item/clothing/suit/hooded/wintercoat/bluecoat = 2,
 		            /obj/item/clothing/suit/jacket = 2,
 		            /obj/item/clothing/suit/jacket/puffer/vest = 2,
 		            /obj/item/clothing/suit/jacket/puffer = 2,
