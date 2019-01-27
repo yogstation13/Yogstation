@@ -2880,6 +2880,7 @@
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\admin\verbs\one_click_antag.dm"
 #include "yogstation\code\modules\admin\verbs\spawnfloorcluwne.dm"
+#include "yogstation\code\modules\admin\verbs\telecomms.dm"
 #include "yogstation\code\modules\antagonists\_common\antag_datum.dm"
 #include "yogstation\code\modules\antagonists\abductor\equipment\abduction_outfits.dm"
 #include "yogstation\code\modules\antagonists\blob\blob\blobs\core.dm"
