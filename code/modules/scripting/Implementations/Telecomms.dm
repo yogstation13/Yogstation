@@ -3,6 +3,13 @@
 
 /* --- Traffic Control Scripting Language --- */
 	// Nanotrasen TCS Language - Made by Doohl
+
+#define HUMAN 1
+#define MONKEY 2
+#define ALIEN 4
+#define ROBOT 8
+#define SLIME 16
+#define DRONE 32
 GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND))//Span classes that players are allowed to set in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
@@ -115,19 +122,41 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("$commanding",	SPAN_COMMAND) //Bolding from high-volume mode on command headsets
 
 	//Language bitflags
-	interpreter.SetVar("HUMAN"   ,	1)
-	interpreter.SetVar("MONKEY"   ,	2)
-	interpreter.SetVar("ALIEN"   ,	4)
-	interpreter.SetVar("ROBOT"   ,	8)
-	interpreter.SetVar("SLIME"   ,	16)
-	interpreter.SetVar("DRONE"   ,	32)
+	/* (Following comment written 26 Jan 2019)
+	So, language doesn't work with bitflags anymore
+	But having them be bitflags inside of NTSL makes more sense in its context
+	So, when we get the signal back from NTSL, if the language has been altered, we'll set it to a new language datum,
+	based on the bitflag the guy used.
+	
+	However, I think the signal can only have one language
+	So, the lowest bit set within $language overrides any higher ones that are set.
+	*/
+	interpreter.SetVar("HUMAN"   ,	HUMAN)
+	interpreter.SetVar("MONKEY"   ,	MONKEY)
+	interpreter.SetVar("ALIEN"   ,	ALIEN)
+	interpreter.SetVar("ROBOT"   ,	ROBOT)
+	interpreter.SetVar("SLIME"   ,	SLIME)
+	interpreter.SetVar("DRONE"   ,	DRONE)
 
-	var/datum/language/curlang = /datum/language/common
+	var/datum/language/oldlang = /datum/language/common
 	if(istype(signal.data["mob"], /atom/movable))
 		var/atom/movable/M = signal.data["mob"]
-		curlang = M.get_default_language()
-
-	interpreter.SetVar("$language", curlang)
+		oldlang = M.get_default_language()
+	
+	if(oldlang == /datum/language/common)
+		oldlang = HUMAN
+	else if(oldlang == /datum/language/monkey)
+		oldlang = MONKEY
+	else if(oldlang == /datum/language/xenocommon)
+		oldlang = ALIEN
+	else if(oldlang == /datum/language/machine)
+		oldlang = ROBOT
+	else if(oldlang == /datum/language/slime)
+		oldlang = SLIME
+	else if(oldlang == /datum/language/drone)
+		oldlang = DRONE
+	//And then if none of these work, $language will just straight-up store the datum
+	interpreter.SetVar("$language", oldlang)
 
 
 	/*
@@ -259,7 +288,8 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.virt.verb_ask		= interpreter.GetCleanVar("$ask")
 	signal.virt.verb_yell		= interpreter.GetCleanVar("$yell")
 	signal.virt.verb_exclaim	= interpreter.GetCleanVar("$exclaim")
-	ASSERT(signal.virt.verb_say == interpreter.GetCleanVar("$say"))
+	var/newlang = interpreter.GetCleanVar("$language")
+	signal.language = signal.LangBit2Datum(newlang) || oldlang
 	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -276,6 +306,21 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 /datum/signal
 
+/datum/signal/proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
+	switch(langbits)
+		if(HUMAN)
+			return /datum/language/common
+		if(MONKEY)
+			return /datum/language/monkey
+		if(ALIEN)
+			return /datum/language/xenocommon
+		if(ROBOT)
+			return /datum/language/machine
+		if(SLIME)
+			return /datum/language/slime
+		if(DRONE)
+			return /datum/language/drone
+	
 /datum/signal/proc/mem(address, value)
 
 	if(istext(address))
@@ -355,7 +400,8 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		// "But wait, wouldn't floating point mess this up?" You ask.
 		// Nah. That actually can't happen when you multiply by a whole number.
 		// Think about it.
-
+	if(isnum(language)) // If the language was a lang bit instead of a datum
+		language = LangBit2Datum(language)
 	if(!islist(spans))
 		spans = list()
 	else
@@ -366,6 +412,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	var/atom/movable/virtualspeaker/virt = new
 	virt.name = source
 	virt.job = job
+	virt.verb_say = say
+	virt.verb_ask = ask
+	virt.verb_exclaim = exclaim
+	virt.verb_yell = yell
+	
 	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans,list(S.z))
 	/*
 	virt.languages_spoken = language
@@ -385,10 +436,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	//newsign.data["type"] = BROADCAST_ARTIFICIAL // artificial broadcast
 	newsign.data["spans"] = spans
 	newsign.data["language"] = language
-	newsign.data["verb_say"] = say
-	newsign.data["verb_ask"] = ask
-	newsign.data["verb_yell"]= yell
-	newsign.data["verb_exclaim"] = exclaim
 	newsign.frequency = freq
 	newsign.data["radio"] = hradio
 	newsign.data["vmessage"] = message
@@ -403,3 +450,9 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	return pass // Returns, as of Jan 23 2019, the number of machines that received this broadcast's message.
 #undef SIGNAL_COOLDOWN
 #undef MAX_MEM_VARS
+#undef HUMAN
+#undef MONKEY
+#undef ALIEN
+#undef ROBOT
+#undef SLIME
+#undef DRONE
