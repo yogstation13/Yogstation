@@ -7,7 +7,7 @@
 	icon_aggro = "weaver"
 	icon_dead = "weaver_dead"
 	throw_message = "bounces harmlessly off the"
-	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2, /obj/item/reagent_containers/glass/bottle/charcoal = 1)
+	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
 	loot = list()
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
