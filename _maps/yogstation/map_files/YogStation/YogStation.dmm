@@ -10067,15 +10067,13 @@
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "auj" = (
-/obj/structure/table/wood,
-/obj/item/storage/firstaid/regular,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	icon_state = "manifold-3";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -11220,16 +11218,15 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "aws" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
+/obj/structure/table/wood,
+/obj/item/storage/firstaid/regular,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -12022,11 +12019,16 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "axM" = (
-/obj/structure/table/wood,
-/obj/item/paicard,
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
-	dir = 9
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -12036,10 +12038,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "axO" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/effect/landmark/start/assistant,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "axP" = (
@@ -13105,13 +13104,8 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
 "azV" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
+/obj/structure/table/wood,
+/obj/item/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "azW" = (
@@ -21928,6 +21922,34 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"aRz" = (
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
+/obj/effect/landmark/start/assistant,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
+"aRA" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
+"aRB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/disposal/incinerator)
 "aRC" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -21962,6 +21984,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"aRF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/portable_atmospherics/canister,
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	icon_state = "connector_map-2";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "aRG" = (
 /obj/machinery/camera{
 	c_tag = "Security Post - Engineering";
@@ -21987,6 +22018,15 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
+"aRH" = (
+/obj/machinery/portable_atmospherics/canister,
+/obj/machinery/atmospherics/components/unary/portables_connector{
+	dir = 8;
+	icon_state = "connector_map-2";
+	name = "Output Gas Connector Port"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "aRI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -53270,15 +53310,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"jUx" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 8;
-	icon_state = "connector_map";
-	name = "Output Gas Connector Port"
-	},
-/obj/machinery/portable_atmospherics/canister,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jWu" = (
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -55987,12 +56018,6 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space)
-"sRH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/maintenance/disposal/incinerator)
 "sSH" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/engine/plasma,
@@ -56185,15 +56210,6 @@
 /obj/effect/turf_decal/bot_white/right,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
-"tqk" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	icon_state = "connector_map";
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "trb" = (
 /obj/machinery/light{
 	dir = 4
@@ -91314,10 +91330,10 @@ arf
 arf
 arf
 auU
-awn
-awr
-awr
-azV
+auj
+axO
+axO
+aRA
 aAh
 aAh
 aAh
@@ -92085,8 +92101,8 @@ ari
 avZ
 arf
 auW
-auj
-axM
+aws
+azV
 awu
 aAf
 aAh
@@ -92599,8 +92615,8 @@ ask
 aEK
 arf
 avl
-aws
-axO
+axM
+aRz
 aza
 aAh
 aAh
@@ -96003,7 +96019,7 @@ xei
 pGF
 bOd
 ppr
-tqk
+aRF
 fuJ
 aaf
 doK
@@ -96260,7 +96276,7 @@ xei
 bOd
 bOd
 ppr
-tqk
+aRF
 fuJ
 aoV
 doK
@@ -96283,7 +96299,7 @@ cfj
 cfj
 ckf
 ckf
-sRH
+aRB
 cfj
 aaa
 aaa
@@ -96517,7 +96533,7 @@ eeX
 jcS
 jcS
 ulJ
-tqk
+aRF
 fuJ
 aaf
 doK
@@ -98335,7 +98351,7 @@ cfj
 dMP
 dpD
 aSt
-jUx
+aRH
 cmd
 bHn
 ulE
