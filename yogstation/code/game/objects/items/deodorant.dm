@@ -56,3 +56,19 @@
 		H.adjust_hygiene(HYGIENE_LEVEL_CLEAN * 0.5)
 		user.visible_message("<span class='notice'>[user] sprays [H] with [src].</span>", "<span class='notice'>You spray [H] with [src]. Sheesh, how hard is it to take a shower?</span>")
 		uses--
+
+/obj/item/deodorant/suicide_act(mob/user)
+	switch(rand(1,3))
+		if(1)
+			user.visible_message("<span class='danger'>[user] smells [src] in [user.p_their()] hand.</span>", "<span class='userdanger'>You smell the cap. It reminds you of the locker room after gym class.</span>")
+			sleep(30)
+			return OXYLOSS
+		if(2)
+			user.visible_message("<span class='danger'>[user] is huffing [src], it looks like [user.p_theyre()] trying to commit suicide!")
+			return OXYLOSS
+		if(3)
+			user.visible_message("<span class='danger'>[user] is rapidly shaking [src], it looks like [user.p_theyre()] trying to commit suicide!")
+			sleep(15)
+			playsound(user, 'sound/effects/explosion3.ogg', 50)
+			qdel(src)
+			return BRUTELOSS
