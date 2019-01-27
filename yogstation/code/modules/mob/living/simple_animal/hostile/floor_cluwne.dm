@@ -153,7 +153,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		if(current_victim.loc == hiding_spot)
 			hiding_spot.bust_open()
 			current_victim.Paralyze(40)
-			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY...</span>")
+			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY</span>")
 			return TRUE
 	return FALSE
 
