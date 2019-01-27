@@ -22,3 +22,20 @@
 	name = "Black and white sweatshirt"
 	desc = "A fashionable sweatshirt with industrial lines all over it. This one's black."
 	icon_state = "blackwhitesweat"
+
+////Colors winter coats!
+
+/obj/item/clothing/suit/hooded/wintercoat/bluecoat
+    alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+    icon = 'yogstation/icons/obj/clothing/suits.dmi'
+
+    name = "Blue winter coat"
+    icon_state = "coatwinterblue"
+    allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+    hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
+
+/obj/item/clothing/head/hooded/winterhood/bluecoat
+    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+    icon = 'yogstation/icons/obj/clothing/hats.dmi'
+
+    icon_state = "winterhood_blue"
