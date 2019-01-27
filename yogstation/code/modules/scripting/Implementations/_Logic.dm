@@ -207,8 +207,7 @@
 	return prob(chance)
 
 /proc/n_randseed(seed)
-	//rand_seed(seed)	// Commented out because there is literally no reason NTSL should have access to this.
-	return 0
+	rand_seed(seed)
 
 /proc/n_rand(low, high)
 	if(isnull(low) && isnull(high))

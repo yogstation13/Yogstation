@@ -2,7 +2,7 @@
 
 
 /* --- Traffic Control Scripting Language --- */
-	// Nanotrasen TCS Language - Made by Doohl
+	// Nanotrasen TCS Language - Made by Doohl, ported to Yogs by Altoids
 
 #define HUMAN 1
 #define MONKEY 2
