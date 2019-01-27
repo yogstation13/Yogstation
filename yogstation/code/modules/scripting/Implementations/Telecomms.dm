@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("$content", 	html_decode(signal.data["message"]))
 	interpreter.SetVar("$freq"   , 	signal.frequency)
 	interpreter.SetVar("$source" , 	signal.data["name"])
-	interpreter.SetVar("$uuid"   , 	signal.data["uuid"])
+	interpreter.SetVar("$uuid"   , 	signal.data["name"]) // RIP UUID
 	interpreter.SetVar("$sector" , 	signal.levels)
 	interpreter.SetVar("$job"    , 	signal.data["job"])
 	interpreter.SetVar("$sign"   ,	signal)
@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		signal.data["realname"] = signal.data["name"]
 		signal.virt.name = setname
 	signal.data["name"]			= setname
-	signal.data["uuid"]			= interpreter.GetCleanVar("$uuid", signal.data["uuid"])
+	//signal.data["uuid"]			= interpreter.GetCleanVar("$uuid", signal.data["uuid"])
 	signal.levels 				= interpreter.GetCleanVar("$sector", signal.levels)
 	signal.data["job"]			= interpreter.GetCleanVar("$job", signal.data["job"])
 	signal.data["reject"]		= !(interpreter.GetCleanVar("$pass")) // set reject to the opposite of $pass
