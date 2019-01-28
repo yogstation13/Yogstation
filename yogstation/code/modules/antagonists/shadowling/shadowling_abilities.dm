@@ -323,7 +323,7 @@
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
 	if(!text)
 		return
-	var/my_message = "<span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
+	var/my_message = "<span class='shadowling command_headset'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
 		if(is_shadow_or_thrall(M))
 			to_chat(M, my_message)
