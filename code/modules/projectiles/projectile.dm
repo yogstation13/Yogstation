@@ -245,6 +245,7 @@
 			if(hitscan)
 				store_hitscan_collision(pcache)
 			return TRUE
+<<<<<<< HEAD
 	if(firer && !ignore_source_check)
 		var/mob/checking = firer
 		if((A == firer) || (((A in firer.buckled_mobs) || (istype(checking) && (A == checking.buckled))) && (A != original)) || (A == firer.loc && (ismecha(A) || isspacepod(A)))) //cannot shoot yourself or your mech // yogs - or your spacepod
@@ -259,6 +260,8 @@
 			// yogs end
 			trajectory_ignore_forcemove = FALSE
 			return FALSE
+=======
+>>>>>>> 5d4143f923... Emergency projectile fix #42544
 
 	var/distance = get_dist(get_turf(A), starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
@@ -533,8 +536,34 @@
 		homing_offset_y = -homing_offset_y
 
 //Returns true if the target atom is on our current turf and above the right layer
+<<<<<<< HEAD
 /obj/item/projectile/proc/can_hit_target(atom/target, var/list/passthrough)
 	return (target && ((target.layer >= PROJECTILE_HIT_THRESHHOLD_LAYER) || ismob(target)) && (loc == get_turf(target)) && (!(target in passthrough)))
+=======
+//If direct target is true it's the originally clicked target.
+/obj/item/projectile/proc/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
+	if(QDELETED(target))
+		return FALSE
+	if(!ignore_source_check && firer)
+		var/mob/M = firer
+		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target)))
+			return FALSE
+	if(!ignore_loc && (loc != target.loc))
+		return FALSE
+	if(target in passthrough)
+		return FALSE
+	if(target.density)		//This thing blocks projectiles, hit it regardless of layer/mob stuns/etc.
+		return TRUE
+	if(!isliving(target))
+		if(target.layer < PROJECTILE_HIT_THRESHHOLD_LAYER)
+			return FALSE
+	else
+		var/mob/living/L = target
+		if(!direct_target)
+			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
+				return FALSE
+	return TRUE
+>>>>>>> 5d4143f923... Emergency projectile fix #42544
 
 //Spread is FORCED!
 /obj/item/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
