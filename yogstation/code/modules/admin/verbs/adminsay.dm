@@ -5,12 +5,16 @@
 	if(!check_rights(0))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext(1, MAX_MESSAGE_LEN)
 	if(!msg)
 		return
 
-	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
 	webhook_send_asay(key_name(src), msg)
+	
+	msg = sanitize(msg)
+
+	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
+	
 	msg = emoji_parse(msg)
 	msg = keywords_lookup(msg)
 	if(check_rights(R_ADMIN,0))
