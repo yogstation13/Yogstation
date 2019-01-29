@@ -5,7 +5,7 @@
 	if(!check_rights(0))
 		return
 
-	msg = copytext(1, MAX_MESSAGE_LEN)
+	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 	if(!msg)
 		return
 
