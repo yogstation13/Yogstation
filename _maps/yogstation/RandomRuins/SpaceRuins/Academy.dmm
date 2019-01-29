@@ -4642,7 +4642,6 @@
 "nc" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
-/obj/item/dice/d20/fate,
 /turf/open/floor/wood,
 /area/awaymission/academy/academycellar)
 "nd" = (
@@ -4746,10 +4745,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
-"Xv" = (
+"WF" = (
 /mob/living/simple_animal/hostile/carp/ranged,
 /turf/open/space,
 /area/space)
+"ZO" = (
+/obj/structure/table/wood,
+/obj/item/dice/d20/fate,
+/turf/open/floor/wood,
+/area/awaymission/academy/classrooms)
 
 (1,1,1) = {"
 aa
@@ -9183,7 +9187,7 @@ hm
 gc
 eL
 hP
-eO
+ZO
 fc
 hP
 eO
@@ -16011,7 +16015,7 @@ ac
 ac
 ac
 ac
-Xv
+WF
 aa
 aa
 aa
