@@ -24,23 +24,19 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/borderstage = 0
 
 /datum/game_mode/fortnite/pre_setup()
-	var/fortnite_gamers = GLOB.player_list.len //How many fortnut gamers are there
-	var/virgins = GLOB.player_list.Copy() //List of all players
-	for(var/i = 0, i < fortnite_gamers, ++i) //Iterate for number of lobby-ers
-		var/mob/dead/new_player/newvirgin = pick(virgins)
-		if(isobserver(newvirgin) || !newvirgin.mind || !newvirgin.client)
-			virgins -= newvirgin //No ghosts or AFKS please
-			continue
-		var/datum/mind/virgin = newvirgin.mind
-		queued += virgin
-		virgin.assigned_role = ROLE_BATTLEROYALE
-		virgin.special_role = ROLE_BATTLEROYALE
-		log_game("[key_name(virgin)] has been forcibly conscripted into battle royale.")
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
-	var/num = (fortnite_gamers * 3) //Multiple crates per person due to the erratic nature of their spawn
+	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
+		if(!L.mind || !L.client)
+			if(isobserver(L) || !L.mind || !L.client)
+				continue
+		var/datum/mind/virgin = L.mind
+		queued += virgin
+		virgin.assigned_role = ROLE_BATTLEROYALE
+		virgin.special_role = ROLE_BATTLEROYALE
+	var/num = (GLOB.player_list.len * 3) //Multiple crates per person due to the erratic nature of their spawn
 	for(var/I = 0, I < num, I++)
 		var/area/AA = pick(GLOB.teleportlocs)
 		var/list/turfs = list()
