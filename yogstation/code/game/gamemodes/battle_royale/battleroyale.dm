@@ -14,9 +14,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
-	<span class='danger'><b>John wick</b></span> is in grave danger and he NEEDS your help to wipe all the squads in the tilted towers. To do this, he'll need\n\
+	<span class='danger'><b>John Wick</b></span> is in grave danger and he NEEDS your help to wipe all the squads in the tilted towers. To do this, he'll need\n\
 	<span class='notice'><i>your credit card number, the three numbers on the back and the expiration month <b> AND </b> year</i></span>. But you gotta be <b>quick</b>, so that John can secure the bag and achieve the epic victory ROYAL.\n\
-	<i>Be the last man standing at the end of the game to win</i>"
+	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		virgin.current.forceMove(GLOB.thebattlebus)
 		virgin.current.add_trait(TRAIT_XRAY_VISION) //so they can see where theyre dropping
 		virgin.current.update_sight()
-		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit </b></font>")
+		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
 	addtimer(CALLBACK(src, .proc/check_win), 300)
 	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 	to_chat(owner.current, "<span_class='bigbold'>Welcome contestant!</span>")
-	to_chat(owner.current, "<span_class='danger'>You have been entered into nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE!. Attempting to leave the station will disqualify you from the round!</span>")
+	to_chat(owner.current, "<span_class='danger'>You have been entered into Nanotrasen's up and coming TV show! : <b> LAST MAN STANDING </b>. \n\ KILL YOUR COWORKERS TO ACHIEVE THE VICTORY ROYALE! Attempting to leave the station will disqualify you from the round!</span>")
 	owner.announce_objectives()
 
 /datum/outfit/battleroyale
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /obj/structure/battle_bus
 	name = "The battle bus"
-	desc = "Quit screwin' around!. Can we get some of that jumping music?. Click it to exit!"
+	desc = "Quit screwin' around!. Can we get some of that jumping music? Click it to exit!"
 	icon = 'yogstation/icons/battleroyale/battlebus.dmi'
 	icon_state = "battlebus"
 	density = FALSE
