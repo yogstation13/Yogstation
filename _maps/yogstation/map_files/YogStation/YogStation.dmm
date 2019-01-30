@@ -22304,10 +22304,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/lawoffice)
-"aSp" = (
-/obj/item/bedsheet/orange,
-/turf/closed/wall,
-/area/security/courtroom)
 "aSq" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -91332,7 +91328,7 @@ aiX
 anC
 auo
 anC
-aSp
+ajo
 apt
 arf
 arf
