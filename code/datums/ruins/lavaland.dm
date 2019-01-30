@@ -57,6 +57,7 @@
 	name = "Syndicate Lava Base"
 	id = "lava-base"
 	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"//yogs - use Yogs custom syndicate lava base instead of upstream
 	suffix = "lavaland_surface_syndicate_base1.dmm"
 	cost = 20
 	allow_duplicates = FALSE

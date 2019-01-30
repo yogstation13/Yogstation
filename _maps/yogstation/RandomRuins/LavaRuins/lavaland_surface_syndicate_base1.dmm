@@ -91,6 +91,45 @@
 /obj/machinery/vending/medical/syndicate_access,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/medbay)
+"am" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/syndi_cakes{
+	pixel_y = 7
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered/syndicate_lava_base/main)
+"an" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel/white/side{
+	dir = 5
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
+"ao" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/defibrillator{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 4
+	},
+/area/ruin/unpowered/syndicate_lava_base/medbay)
 "ap" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -4449,18 +4488,6 @@
 	dir = 1
 	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
-"lo" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/storage/firstaid/fire,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 5
-	},
-/area/ruin/unpowered/syndicate_lava_base/medbay)
 "lp" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -4629,14 +4656,6 @@
 "lJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/ruin/unpowered/syndicate_lava_base/medbay)
-"lK" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
 /area/ruin/unpowered/syndicate_lava_base/medbay)
 "lL" = (
 /obj/machinery/airalarm/syndicate{
@@ -7654,7 +7673,7 @@ iB
 iU
 jg
 jp
-jp
+am
 jQ
 kd
 jy
@@ -8009,8 +8028,8 @@ if
 kj
 kw
 kT
-lo
-lK
+an
+ao
 kQ
 mE
 nb
