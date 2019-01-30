@@ -86784,7 +86784,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -86795,6 +86794,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/dark,
 /area/medical/virology)
 "cDj" = (
@@ -91966,7 +91966,6 @@
 /area/science/research)
 "cKL" = (
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -91980,6 +91979,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 4
 	},
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "cKM" = (
@@ -92088,7 +92088,6 @@
 /area/medical/virology)
 "cKS" = (
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -92100,6 +92099,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "cKT" = (

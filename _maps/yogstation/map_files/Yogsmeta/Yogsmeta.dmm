@@ -53930,13 +53930,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bTb" = (
-/obj/item/bedsheet/medical,
 /obj/structure/bed,
-/turf/open/floor/plasteel/freezer,
-/area/medical/virology)
-"bTc" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "bTd" = (
@@ -100421,7 +100416,7 @@ bPY
 ctt
 bRV
 bSO
-bTc
+bTb
 cac
 cKS
 cBR

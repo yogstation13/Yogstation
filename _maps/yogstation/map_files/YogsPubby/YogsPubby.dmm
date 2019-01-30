@@ -48101,6 +48101,17 @@
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"bJQ" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/freezer,
+/area/medical/virology)
+"bJR" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/freezer,
+/area/medical/virology)
 "bJT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -48782,12 +48793,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"bLz" = (
-/obj/item/bedsheet/medical,
-/obj/structure/bed,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plasteel/freezer,
-/area/medical/virology)
 "bLA" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -48798,11 +48803,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bLB" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/turf/open/floor/plasteel/freezer,
-/area/medical/virology)
 "bLC" = (
 /obj/machinery/air_sensor/atmos/toxin_tank,
 /turf/open/floor/engine/plasma,
@@ -85087,7 +85087,7 @@ bGO
 bHU
 aWq
 bKn
-bLz
+bJQ
 bnq
 aYL
 bOD
@@ -86115,7 +86115,7 @@ bAW
 bHA
 bvI
 bKn
-bLB
+bJR
 bmh
 aYP
 bOD

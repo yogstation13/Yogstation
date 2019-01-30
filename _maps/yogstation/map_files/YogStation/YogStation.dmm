@@ -1148,6 +1148,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acD" = (
@@ -1179,6 +1180,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acF" = (
@@ -1224,6 +1226,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acI" = (
@@ -6292,7 +6295,6 @@
 /area/security/courtroom)
 "amf" = (
 /obj/structure/bed,
-/obj/item/bedsheet,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -6301,6 +6303,7 @@
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amg" = (
@@ -6313,12 +6316,12 @@
 /area/security/brig)
 "amh" = (
 /obj/structure/bed,
-/obj/item/bedsheet,
 /obj/machinery/flasher{
 	id = "Cell 2";
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ami" = (
@@ -6331,12 +6334,12 @@
 /area/security/brig)
 "amj" = (
 /obj/structure/bed,
-/obj/item/bedsheet,
 /obj/machinery/flasher{
 	id = "Cell 3";
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/orange,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amk" = (
@@ -22291,6 +22294,36 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"aSo" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Law Office";
+	req_access_txt = "38"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/wood,
+/area/lawoffice)
+"aSp" = (
+/obj/item/bedsheet/orange,
+/turf/closed/wall,
+/area/security/courtroom)
+"aSq" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/pen/red,
+/obj/machinery/button/door{
+	id = "lawyer_blast";
+	name = "Privacy Shutters";
+	pixel_x = 25;
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/lawoffice)
 "aSr" = (
 /turf/open/floor/plasteel,
 /area/storage/tools)
@@ -22425,6 +22458,11 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"aSI" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aSQ" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/item/flashlight,
@@ -25246,20 +25284,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"aYZ" = (
-/obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/pen/red,
-/obj/machinery/button/door{
-	id = "lawyer_blast";
-	name = "Privacy Shutters";
-	pixel_x = 25;
-	pixel_y = 8
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/wood,
-/area/lawoffice)
 "aZc" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -52510,16 +52534,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"hrS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Law Office";
-	req_access_txt = "38"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/lawoffice)
 "htC" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -56986,11 +57000,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"vLa" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "vMA" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 1
@@ -85155,7 +85164,7 @@ afN
 aiX
 anz
 anY
-hrS
+aSo
 qBq
 qBq
 asj
@@ -85927,7 +85936,7 @@ anw
 anz
 anZ
 ard
-aYZ
+aSq
 fCS
 asl
 ata
@@ -91323,7 +91332,7 @@ aiX
 anC
 auo
 anC
-ajo
+aSp
 apt
 arf
 arf
@@ -100128,7 +100137,7 @@ bRQ
 dRm
 bwh
 qbE
-vLa
+aSI
 aRC
 aFp
 bNd
@@ -100642,7 +100651,7 @@ bRQ
 dRm
 bwh
 qbE
-vLa
+aSI
 aRD
 aFq
 bNd
@@ -100892,7 +100901,7 @@ bBN
 bAw
 btT
 bNd
-vLa
+aSI
 bPt
 wyh
 bRQ
