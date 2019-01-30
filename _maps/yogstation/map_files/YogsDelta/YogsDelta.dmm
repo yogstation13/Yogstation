@@ -32963,9 +32963,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
-"baV" = (
-/turf/open/floor/plasteel,
-/area/security/prison)
 "baW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -180996,7 +180993,7 @@ aHT
 dpA
 aPz
 aQx
-baV
+aCH
 bcT
 aFm
 aaa
