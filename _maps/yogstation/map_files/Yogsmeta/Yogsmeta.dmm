@@ -1698,6 +1698,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adt" = (
@@ -1722,6 +1723,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adv" = (
@@ -1768,6 +1770,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
@@ -15211,6 +15214,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aAZ" = (
@@ -53930,13 +53934,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bTb" = (
-/obj/item/bedsheet/medical,
 /obj/structure/bed,
-/turf/open/floor/plasteel/freezer,
-/area/medical/virology)
-"bTc" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "bTd" = (
@@ -100421,7 +100420,7 @@ bPY
 ctt
 bRV
 bSO
-bTc
+bTb
 cac
 cKS
 cBR
