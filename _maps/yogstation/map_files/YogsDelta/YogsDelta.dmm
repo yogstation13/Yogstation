@@ -28641,13 +28641,13 @@
 /area/engine/atmos)
 "aUv" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aUw" = (
@@ -28674,7 +28674,6 @@
 /area/engine/atmos)
 "aUy" = (
 /obj/structure/bed,
-/obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -28682,6 +28681,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aUz" = (
@@ -32964,17 +32964,8 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "baV" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/prison)
 "baW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -112422,6 +112413,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"dns" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "dnv" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue{
@@ -177159,11 +177163,11 @@ bEb
 bnG
 beX
 bEu
-baV
+dns
 bNj
 bJt
 bXt
-baV
+dns
 bNj
 dkq
 bZM
@@ -180992,7 +180996,7 @@ aHT
 dpA
 aPz
 aQx
-aCH
+baV
 bcT
 aFm
 aaa

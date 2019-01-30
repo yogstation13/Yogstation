@@ -1148,7 +1148,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acD" = (
@@ -1180,7 +1180,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acF" = (
@@ -1226,7 +1226,7 @@
 	prison_radio = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acI" = (
@@ -6303,7 +6303,7 @@
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amg" = (
@@ -6321,7 +6321,7 @@
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ami" = (
@@ -6339,7 +6339,8 @@
 	pixel_x = -28
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/orange,
+/obj/item/bedsheet,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "amk" = (
