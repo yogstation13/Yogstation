@@ -219,6 +219,7 @@
 	"Engineering" = /obj/item/robot_module/engineering, \
 	"Medical" = /obj/item/robot_module/medical, \
 	"Miner" = /obj/item/robot_module/miner, \
+	"Clown" = /obj/item/robot_module/clown, // Yogs change added clown module to default select
 	"Janitor" = /obj/item/robot_module/janitor, \
 	"Service" = /obj/item/robot_module/butler)
 	if(!CONFIG_GET(flag/disable_peaceborg))

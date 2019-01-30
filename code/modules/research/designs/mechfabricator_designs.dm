@@ -651,14 +651,14 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_transform_clown
+/*/datum/design/borg_transform_clown
 	name = "Cyborg Upgrade (Clown Module)"
 	id = "borg_transform_clown"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/clown
 	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_BANANIUM = 1000)
 	construction_time = 120
-	category = list("Cyborg Upgrade Modules")
+	category = list("Cyborg Upgrade Modules")*/ // No longer needed due to clown being a round start thing now
 
 /datum/design/borg_upgrade_selfrepair
 	name = "Cyborg Upgrade (Self-repair)"
@@ -677,7 +677,7 @@
 	materials = list(MAT_METAL = 15000, MAT_GLASS = 15000, MAT_PLASMA = 8000, MAT_URANIUM = 8000)
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
-	
+
 /datum/design/borg_upgrade_piercinghypospray
 	name = "Cyborg Upgrade (Piercing Hypospray)"
 	id = "borg_upgrade_piercinghypospray"
@@ -695,7 +695,7 @@
 	materials = list(MAT_METAL = 8000, MAT_GLASS = 5000, MAT_SILVER = 4000, MAT_GOLD = 3000)
 	construction_time = 80
 	category = list("Cyborg Upgrade Modules")
-	
+
 /datum/design/borg_upgrade_surgicalprocessor
 	name = "Cyborg Upgrade (Surgical Processor)"
 	id = "borg_upgrade_surgicalprocessor"
