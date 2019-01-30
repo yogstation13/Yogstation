@@ -10,7 +10,7 @@
 #define ROBOT 8
 #define SLIME 16
 #define DRONE 32
-GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND))//Span classes that players are allowed to set in a radio transmission.
+GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS,SPAN_COMMAND,SPAN_CLOWN))//Span classes that players are allowed to set in a radio transmission.
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
@@ -138,11 +138,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("SLIME"   ,	SLIME)
 	interpreter.SetVar("DRONE"   ,	DRONE)
 
-	var/datum/language/oldlang = /datum/language/common
-	if(istype(signal.data["mob"], /atom/movable))
-		var/atom/movable/M = signal.data["mob"]
-		oldlang = M.get_default_language()
-	
+	var/datum/language/oldlang = signal.language
 	if(oldlang == /datum/language/common)
 		oldlang = HUMAN
 	else if(oldlang == /datum/language/monkey)
@@ -155,6 +151,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		oldlang = SLIME
 	else if(oldlang == /datum/language/drone)
 		oldlang = DRONE
+	
 	//And then if none of these work, $language will just straight-up store the datum
 	interpreter.SetVar("$language", oldlang)
 
