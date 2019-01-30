@@ -119,6 +119,9 @@
 			var/x = GetVar(name)
 			if(istext(x) && compare && x != compare) // Was changed
 				x = sanitize(x)
+				if(isnotpretty(x)) // Pretty filter stuff
+					message_admins("An NTSL script just tripped the pretty filter, setting variable [name] to value [x]!")
+					return FALSE
 			return x
 
 /*
