@@ -2856,6 +2856,7 @@
 #include "yogstation\code\game\objects\items\stacks\tiles\tile_types.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
 #include "yogstation\code\game\objects\items\storage\uplink_kits.dm"
+#include "yogstation\code\game\objects\structures\bedsheet_bin.dm"
 #include "yogstation\code\game\objects\structures\table_frames.dm"
 #include "yogstation\code\game\objects\structures\tables_racks.dm"
 #include "yogstation\code\game\objects\structures\window.dm"
