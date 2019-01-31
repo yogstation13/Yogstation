@@ -11216,6 +11216,9 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/obj/item/deodorant{
+	pixel_x = -8
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "awr" = (
@@ -12794,6 +12797,10 @@
 "azn" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
+/obj/item/deodorant{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "azo" = (
