@@ -2947,6 +2947,7 @@
 #include "yogstation\code\modules\events\ion_storm.dm"
 #include "yogstation\code\modules\events\weightless.dm"
 #include "yogstation\code\modules\food_and_drinks\food\snacks_burger.dm"
+#include "yogstation\code\modules\food_and_drinks\food\snacks_egg.dm"
 #include "yogstation\code\modules\food_and_drinks\food\snacks_meat.dm"
 #include "yogstation\code\modules\goonchat\browserOutput.dm"
 #include "yogstation\code\modules\holidays\holidays.dm"
