@@ -40,8 +40,7 @@
 		else if(iscarbon(target))
 			playsound(user, 'yogstation/sound/effects/burning.wav', 50)
 			var/mob/living/carbon/C = target
-			user.visible_message("<span class='danger'>[user] sprays [C] with fire!</span>", "<span class='danger'><b>BURN BABY BURN!!</b></span>")
-			to_chat(target, "<span class='userdanger'>[user] sprays you with fire!</span>")
+			C.visible_message("<span class='danger'>[user] sprays [C] with fire!</span>", "<span class='userdanger'>[user] sprays you with fire!</span>")
 			C.adjust_fire_stacks(0.2)
 			C.IgniteMob()
 			uses--
@@ -69,6 +68,6 @@
 		if(3)
 			user.visible_message("<span class='danger'>[user] is rapidly shaking [src], it looks like [user.p_theyre()] trying to commit suicide!")
 			sleep(15)
-			playsound(user, 'sound/effects/explosion3.ogg', 50)
+			explosion(get_turf(src), 0, 0, 1, smoke=TRUE)
 			qdel(src)
 			return BRUTELOSS
