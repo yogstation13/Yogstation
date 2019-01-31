@@ -1,3 +1,4 @@
+
 #define AUTOCLONING_MINIMAL_LEVEL 3
 
 /obj/machinery/computer/cloning
@@ -594,3 +595,7 @@
 	if(old_record)
 		records -= old_record
 		scantemp = "Record updated."
+	else
+		scantemp = "Subject successfully scanned."
+	records += R
+	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)
