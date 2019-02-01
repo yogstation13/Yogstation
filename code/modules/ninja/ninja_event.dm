@@ -60,6 +60,7 @@ Contents:
 	Mind.assigned_role = ROLE_NINJA
 	Mind.special_role = ROLE_NINJA
 	Mind.active = 1
+	Mind.miming = TRUE //yogs
 
 	//spawn the ninja and assign the candidate
 	var/mob/living/carbon/human/Ninja = create_space_ninja(spawn_loc)
