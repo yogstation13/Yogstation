@@ -21,7 +21,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
 	var/stage_interval = 1800 //Copied from Nich's homework. Storm shrinks every 3 minutes
 	var/borderstage = 0
-	var/station_z = 0 //What Z did the bus start on? This way we ignore multiz memes
 	var/finished = FALSE
 
 /datum/game_mode/fortnite/pre_setup()
@@ -29,7 +28,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
-		station_z = T.z
 	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
 		if(!L.mind || !L.client)
 			if(isobserver(L) || !L.mind || !L.client)
@@ -75,15 +73,15 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue //No AFKS allowed!!!
 		if(player.onCentCom())
 			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station Z-level! You have been disqualified from battle royale.")
+			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
 		else if(player.onSyndieBase())
 			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station Z-level! You have been disqualified from battle royale.")
+			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
-		if(player.z != station_z)
+		if(!is_station_level(player.z))
 			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station Z-level! You have been disqualified from battle royale.")
+			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
 		royalers += player
 
