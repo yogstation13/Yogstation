@@ -27,3 +27,4 @@ wbu=what about you
 idk=I don't know
 idc=I don't care
 hbu=how about you
+brt=be right there
