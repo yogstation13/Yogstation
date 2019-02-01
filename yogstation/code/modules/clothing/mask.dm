@@ -6,11 +6,15 @@
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = MASKINTERNALS
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
 	var/voicechange = TRUE
 	var/last_sound = 0
 	var/delay = 15
+
+/obj/item/clothing/mask/yogs/cluwne/Initialize()
+	.=..()
+	add_trait(TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/mask/yogs/cluwne/proc/play_laugh1()
 	if(world.time - delay > last_sound)

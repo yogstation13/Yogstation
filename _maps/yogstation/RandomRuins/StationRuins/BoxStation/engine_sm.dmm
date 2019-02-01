@@ -527,7 +527,6 @@
 /area/engine/engineering)
 "ba" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	icon_state = "intact";
 	dir = 9
 	},
 /turf/closed/wall,

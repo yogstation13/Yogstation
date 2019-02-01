@@ -1698,6 +1698,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adt" = (
@@ -1722,6 +1723,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adv" = (
@@ -1768,6 +1770,7 @@
 	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
@@ -15211,6 +15214,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aAZ" = (
@@ -50055,6 +50059,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"bLB" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/aft)
+"bLC" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	icon_state = "inje_map-2";
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/medical/virology)
 "bLD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -53917,13 +53934,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bTb" = (
-/obj/item/bedsheet/medical,
 /obj/structure/bed,
-/turf/open/floor/plasteel/freezer,
-/area/medical/virology)
-"bTc" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "bTd" = (
@@ -54925,6 +54937,14 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"bUZ" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
+	dir = 4;
+	icon_state = "inje_map-2";
+	name = "Waste Ejector"
+	},
+/turf/open/floor/plating/airless,
+/area/science/xenobiology)
 "bVa" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -56819,14 +56839,30 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bYu" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28;
+	pixel_y = 5
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 2
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
+/obj/structure/table,
+/obj/item/wrench,
+/obj/item/screwdriver{
+	pixel_y = 10
+	},
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/obj/item/stack/cable_coil,
+/obj/effect/turf_decal/delivery,
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "bYv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/light{
@@ -57556,12 +57592,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/atmos)
-"bZN" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/airless,
-/area/maintenance/solars/port/aft)
 "bZO" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/blue,
@@ -67932,13 +67962,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"cqj" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	icon_state = "inje_map";
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/medical/virology)
 "cqk" = (
 /obj/structure/sink{
 	dir = 8;
@@ -67998,14 +68021,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"cqp" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
-	dir = 4;
-	icon_state = "inje_map";
-	name = "Waste Ejector"
-	},
-/turf/open/floor/plating/airless,
-/area/science/xenobiology)
 "cqq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -74967,27 +74982,6 @@
 /area/science/robotics/lab)
 "cFh" = (
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
-"cFj" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28;
-	pixel_y = 5
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/wrench,
-/obj/item/screwdriver{
-	pixel_y = 10
-	},
-/obj/item/multitool{
-	pixel_x = 3
-	},
-/obj/item/stack/cable_coil,
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cFn" = (
@@ -96796,7 +96790,7 @@ ciy
 bvw
 bXu
 bYD
-bZN
+bLB
 jyQ
 cda
 cej
@@ -100426,12 +100420,12 @@ bPY
 ctt
 bRV
 bSO
-bTc
+bTb
 cac
 cKS
 cBR
 cpZ
-cqj
+bLC
 aaf
 aaa
 aaf
@@ -113014,7 +113008,7 @@ cBl
 cDi
 cQD
 cEo
-cFj
+bYu
 cGf
 bRE
 cuI
@@ -115092,7 +115086,7 @@ cqk
 cqn
 bXz
 cRi
-cqp
+bUZ
 cRi
 cRi
 cRi

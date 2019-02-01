@@ -1,3 +1,18 @@
+/datum/techweb_node/mmi // so we don't have nodes floating in the middle of nowhere.
+	prereq_ids = list("base")
+
+/datum/techweb_node/cyborg
+	prereq_ids = list("base")
+
+/datum/techweb_node/mech
+	prereq_ids = list("base")
+
+/datum/techweb_node/mech_tools
+	prereq_ids = list("base")
+
+/datum/techweb_node/basic_tools
+	prereq_ids = list("base")
+
 /datum/techweb_node/spacepod_basic
 	id = "spacepod_basic"
 	display_name = "Spacepod Construction"
