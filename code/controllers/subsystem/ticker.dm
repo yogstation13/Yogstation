@@ -590,7 +590,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 	//yogs start - yogs tickets
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
-		var/list/adm = get_admin_counts(R_ADMIN)
+		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
 		if(activemins.len > 0)
 			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
