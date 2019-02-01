@@ -11,7 +11,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	recommended_enemies = 1
 	antag_flag = ROLE_BATTLEROYALE
 	enemy_minimum_age = 0
-
 	announce_span = "warning"
 	announce_text = "Attention ALL space station 13 crewmembers,\n\
 	<span class='danger'><b>John Wick</b></span> is in grave danger and he NEEDS your help to wipe all the squads in the tilted towers. To do this, he'll need\n\
@@ -20,14 +19,17 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
-	var/stage_interval = 3000 //Copied from Nich's homework. Storm shrinks every 3 minutes
+	var/stage_interval = 1800 //Copied from Nich's homework. Storm shrinks every 3 minutes
 	var/borderstage = 0
+	var/station_z = 0 //What Z did the bus start on? This way we ignore multiz memes
+	var/finished = FALSE
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
+		station_z = T.z
 	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
 		if(!L.mind || !L.client)
 			if(isobserver(L) || !L.mind || !L.client)
@@ -36,16 +38,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		queued += virgin
 		virgin.assigned_role = ROLE_BATTLEROYALE
 		virgin.special_role = ROLE_BATTLEROYALE
-	var/num = (GLOB.player_list.len * 3) //Multiple crates per person due to the erratic nature of their spawn
-	for(var/I = 0, I < num, I++)
-		var/area/AA = pick(GLOB.teleportlocs)
-		var/list/turfs = list()
-		for(var/turf/open/TT in get_area_turfs(AA))
-			if(!is_blocked_turf(TT))
-				turfs += TT
-		if(turfs.len)
-			var/turf/turfy = pick(turfs)
-			new /obj/structure/closet/crate/battleroyale(turfy)
 	return TRUE
 
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
@@ -70,10 +62,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/check_win()
 	. = ..()
+	if(finished)
+		return
 	var/list/royalers = list()
-	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas
-	var/turf/T = pick(get_area_turfs(A)) //Work out the station's Z based on arrivals. Don't want people running off now!
-	var/station_z = T.z
 	if(GLOB.player_list.len <= 1) //It's a localhost testing
 		return
 	for(var/mob/living/player in GLOB.battleroyale_players)
@@ -109,10 +100,12 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")
 		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [dub] </span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
+		finished = TRUE
 		return
 	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
 /datum/game_mode/fortnite/proc/shrinkborders()
+	loot_spawn()
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -129,9 +122,19 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			SSweather.run_weather("royale centre", 2)
 
 	borderstage++
+
 	if(borderstage <= 6)
 		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
 
+/datum/game_mode/fortnite/proc/loot_spawn()
+	var/num = rand(1,3)
+	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
+		var/area/AR = get_area(es)
+		var/turf/turfy = pick(get_area_turfs(AR))
+		for(var/I = 0, I < num, I++)
+			var/obj/structure/closet/supplypod/centcompod/pod = new()
+			new /obj/structure/closet/crate/battleroyale(pod)
+			new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
 
@@ -164,7 +167,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/crowbar
 	back = /obj/item/storage/backpack
-	id = /obj/item/card/id/syndicate
+	id = /obj/item/card/id/captains_spare
 
 /obj/structure/battle_bus
 	name = "The battle bus"
@@ -177,15 +180,12 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_range = 10 //light up the darkness, oh battle bus.
 	layer = 4 //Above everything
+	var/starter_z = 0 //What Z level did we start on?
 
 /obj/structure/battle_bus/attack_hand(mob/user)
 	if(!user in contents)
 		return
-	var/mob/living/carbon/human/Ltaker = user
-	user.forceMove(get_turf(src))
-	Ltaker.remove_trait(TRAIT_XRAY_VISION)
-	Ltaker.update_sight()
-	SEND_SOUND(user, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
+	exit(user)
 
 /obj/structure/battle_bus/Initialize()
 	. = ..()
@@ -193,18 +193,29 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		qdel(src) //There can be ONLY ONE
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.thebattlebus = src //So the GM code knows where to move people to!
+	starter_z = z
 
 /obj/structure/battle_bus/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	GLOB.thebattlebus = null
 	. = ..()
 
+/obj/structure/battle_bus/relaymove(mob/living/user, direction)
+	exit(user)
+
+/obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
+	Ltaker.forceMove(get_turf(src))
+	Ltaker.remove_trait(TRAIT_XRAY_VISION)
+	Ltaker.update_sight()
+	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
+
 /obj/structure/battle_bus/process()
 	forceMove(get_step(src, EAST)) //Move right.
-	if(x >= 256) //Bigger than the maximum size of a byond map, so we'd best die so we don't loop on FOREVER and EVER.
+	if(z != starter_z)
 		for(var/mob/M in contents)
-			to_chat(M, "You feel your insides churn as the battle bus explosively decompresses.")
-			M.gib()
+			to_chat(M, "You feel your insides churn as the battle bus throws you out forcefully!")
+			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
+			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)

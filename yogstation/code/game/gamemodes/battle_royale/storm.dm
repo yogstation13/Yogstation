@@ -3,7 +3,8 @@
 	weather_message = null
 	protected_areas = list(/area/shuttle/arrival)
 	area_type = /area
-	weather_overlay = "acid_rain"
+	weather_overlay = "ash_storm"
+	telegraph_overlay = "light_ash"
 	end_message = null
 	telegraph_duration = 1
 	end_duration = 1
