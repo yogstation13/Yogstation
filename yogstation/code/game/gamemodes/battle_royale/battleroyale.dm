@@ -90,6 +90,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.force_ending = 1
 		to_chat(world, "<span_class='ratvar'>L. Nobody wins!</span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/L.ogg')
+		finished = TRUE
 		return
 	if(royalers.len == 1) //We have a wiener!
 		SSticker.mode.check_finished(TRUE)
