@@ -71,6 +71,7 @@
 				var/desc = {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
 				The ban reason is: [i["reason"]]
 				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
+				If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums. //yogs
 				[expires]"}
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				return list("reason"="Banned","desc"="[desc]")
