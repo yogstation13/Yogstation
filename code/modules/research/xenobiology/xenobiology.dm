@@ -850,12 +850,20 @@
 		var/obj/vehicle/V = C
 		var/datum/component/riding/R = V.GetComponent(/datum/component/riding)
 		if(R)
+<<<<<<< HEAD
 			// yogs start - change speed potion
 			if(R.vehicle_move_delay <= 2 )
 				to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 				return ..()
 			R.vehicle_move_delay--
 			// yogs end
+=======
+			var/vehicle_speed_mod = round(CONFIG_GET(number/movedelay/run_delay) * 0.85, 0.01)
+			if(R.vehicle_move_delay <= vehicle_speed_mod)
+				to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
+				return ..()
+			R.vehicle_move_delay = vehicle_speed_mod
+>>>>>>> 76e17b18c6... Nerfs Speed Potion (#42447)
 
 	to_chat(user, "<span class='notice'>You slather the red gunk over the [C], making it faster.</span>")
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
