@@ -8,7 +8,7 @@
 
 /datum/map_template/ruin/space/yogstation/hippie_shuttle
 	id = "hippie_shuttle"
-	suffix = "hippie_shuttle"
+	suffix = "hippie_shuttle.dmm"
 	name= "Hippie Shuttle"
 	description = "These hippies went a little too far out..."
 
