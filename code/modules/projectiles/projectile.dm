@@ -540,7 +540,7 @@
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
-		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))|| isspacepod(A)) //cannot shoot yourself or your mech // yogs - or your spacepod)
+		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))|| isspacepod(firer.loc)) //cannot shoot yourself or your mech // yogs - or your spacepod)
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
