@@ -177,6 +177,10 @@
 /obj/structure/stone_tile{
 	dir = 4
 	},
+/obj/structure/closet/crate/necropolis,
+/obj/item/stack/sheet/mineral/mythril{
+	amount = 50
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "aC" = (
