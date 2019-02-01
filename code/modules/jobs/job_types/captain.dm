@@ -1,6 +1,3 @@
-/*
-Captain
-*/
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
@@ -25,6 +22,8 @@ Captain
 	paycheck_department = ACCOUNT_SEC
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
+
+	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
@@ -63,6 +62,7 @@ Captain
 	mask = /obj/item/clothing/mask/gas/sechailer
 	suit = /obj/item/clothing/suit/space/hardsuit/swat/captain
 	suit_store = /obj/item/tank/internals/oxygen
+<<<<<<< HEAD
 
 /*
 Head of Personnel
@@ -117,3 +117,5 @@ Head of Personnel
 		/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1, /obj/item/card/id/departmental_budget/srv=1)
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/hop)
+=======
+>>>>>>> 3cb0ac0c5e... Merge pull request #42531 from coiax/seperate-job-files
