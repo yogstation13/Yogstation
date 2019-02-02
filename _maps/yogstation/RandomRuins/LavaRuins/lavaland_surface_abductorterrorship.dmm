@@ -42,7 +42,6 @@
 /obj/item/stack/sheet/mineral/uranium{
 	amount = 5
 	},
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "al" = (
@@ -78,7 +77,6 @@
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "aq" = (
@@ -104,7 +102,6 @@
 /obj/structure/kitchenspike,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "au" = (
@@ -213,7 +210,6 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "aN" = (
@@ -262,7 +258,6 @@
 /obj/structure/bed/abductor,
 /obj/item/clothing/under/soviet,
 /obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "aW" = (
@@ -325,18 +320,10 @@
 /obj/machinery/abductor/gland_dispenser,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"bU" = (
-/obj/machinery/door/airlock/abductor{
-	locked = 1
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors)
 "bZ" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/xeno,
 /obj/effect/decal/cleanable/xenoblood,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "ce" = (
@@ -383,7 +370,6 @@
 "ch" = (
 /obj/structure/bed/abductor,
 /obj/effect/mob_spawn/human/ash_walker/cosmic,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "ci" = (
@@ -416,15 +402,18 @@
 /obj/item/stack/ore/bananium,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"dK" = (
-/obj/structure/table/abductor,
-/obj/item/switchblade,
+"dj" = (
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"ed" = (
-/obj/structure/closet/abductor,
-/obj/machinery/light/floor,
+"ds" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"dK" = (
+/obj/structure/table/abductor,
+/obj/item/switchblade,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "ex" = (
@@ -471,14 +460,6 @@
 "gd" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"gm" = (
-/obj/structure/closet/abductor,
-/obj/item/stack/tile/mineral/abductor{
-	amount = 50
-	},
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "gq" = (
@@ -545,7 +526,6 @@
 /obj/item/stack/sheet/animalhide/human{
 	amount = 1
 	},
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "nl" = (
@@ -558,29 +538,27 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
+"om" = (
+/obj/structure/closet/abductor,
+/obj/item/stock_parts/cell/infinite/abductor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "pi" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/animalhide/xeno{
 	amount = 25
 	},
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "pv" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "px" = (
 /obj/structure/table/abductor,
 /obj/item/toy/syndicateballoon,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"pA" = (
-/obj/structure/closet/abductor,
-/obj/item/clothing/under/gimmick/rank/captain/suit,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "pC" = (
@@ -616,11 +594,6 @@
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"tA" = (
-/obj/machinery/computer/camera_advanced/abductor,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
 "vj" = (
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/mineral/abductor,
@@ -628,7 +601,6 @@
 "vs" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/human,
-/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "vA" = (
@@ -683,15 +655,6 @@
 	},
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"xy" = (
-/mob/living/simple_animal/hostile/abomination/altform4,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"xQ" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
 "xZ" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/sexymime,
@@ -738,22 +701,14 @@
 /obj/item/gun/energy/kinetic_accelerator/crossbow,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"Da" = (
-/obj/structure/bed/abductor,
-/obj/machinery/light/floor,
+"CK" = (
+/obj/structure/closet/abductor,
+/obj/item/clothing/under/gimmick/rank/captain/suit,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "Dx" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/xeno,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"DT" = (
-/obj/structure/closet/abductor,
-/obj/item/gun/energy/alien{
-	pin = /obj/item/firing_pin
-	},
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "Et" = (
@@ -815,31 +770,21 @@
 	},
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"IB" = (
-/obj/structure/closet/abductor,
-/obj/item/stock_parts/cell/infinite/abductor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"Jg" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"KA" = (
+"NH" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"Lr" = (
-/obj/structure/showcase/horrific_experiment,
-/obj/machinery/light/floor,
+"SS" = (
+/obj/structure/closet/abductor,
+/obj/item/gun/energy/alien{
+	pin = /obj/item/firing_pin
+	},
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"Ud" = (
-/obj/effect/decal/remains/human,
-/obj/machinery/light/floor,
+"Wc" = (
+/mob/living/simple_animal/hostile/abomination/altform4,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 
@@ -1750,7 +1695,7 @@ aW
 ae
 aW
 aW
-IB
+om
 aW
 gd
 aW
@@ -1802,10 +1747,10 @@ aF
 ae
 fM
 aW
-ed
+gt
 an
 aQ
-gm
+eF
 aW
 Hz
 ae
@@ -1957,13 +1902,13 @@ ae
 ae
 ae
 ae
-bo
-bo
-bo
 ae
-bo
-bU
-bo
+ae
+ae
+ae
+ae
+aq
+ae
 ae
 ac
 ab
@@ -2010,7 +1955,7 @@ ae
 aW
 aW
 aX
-bo
+ae
 px
 kQ
 aW
@@ -2050,23 +1995,23 @@ ac
 ac
 ac
 ae
-ah
 aW
 aW
-ah
+aW
+aW
 aW
 an
 an
-xQ
+an
 bh
 aI
 aM
 aW
 ay
 aW
-ah
 aW
-Ud
+aW
+aY
 aU
 ae
 ac
@@ -2119,7 +2064,7 @@ aP
 xZ
 aS
 aW
-pA
+CK
 ae
 ac
 ab
@@ -2127,11 +2072,11 @@ ac
 ac
 ae
 aW
-ah
+aW
 aW
 ae
 aW
-ah
+aW
 aW
 ae
 ab
@@ -2182,9 +2127,9 @@ ye
 aW
 bb
 ae
-DT
+SS
 aW
-xy
+Wc
 ae
 ab
 ab
@@ -2216,12 +2161,12 @@ ae
 aW
 aW
 ae
-ah
+aW
 ae
 nn
 ay
-ah
-ah
+aW
+aW
 ay
 aW
 ae
@@ -2263,10 +2208,10 @@ ae
 ae
 ae
 aW
-ah
+aW
 ae
 ai
-Jg
+ai
 ae
 aW
 ae
@@ -2285,7 +2230,7 @@ cj
 aW
 aW
 aW
-ah
+aW
 aW
 aW
 am
@@ -2362,7 +2307,7 @@ ae
 ae
 aW
 aW
-ah
+aW
 aW
 aW
 ae
@@ -2384,7 +2329,7 @@ ae
 ab
 ab
 ae
-ah
+aW
 ae
 ag
 aW
@@ -2426,17 +2371,17 @@ aN
 ae
 aW
 ae
-Da
+vA
 ae
 aW
 aW
 ae
-Da
+vA
 ae
 ab
 ab
 ae
-ah
+aW
 ae
 aZ
 aW
@@ -2493,7 +2438,7 @@ ae
 aW
 am
 aW
-ah
+aW
 aW
 aW
 be
@@ -2562,30 +2507,30 @@ aa
 (34,1,1) = {"
 aa
 ae
-tA
+Et
 aW
-ah
 aW
-ah
+aW
+aW
 aq
 aW
 aW
-ah
+aW
 aW
 aW
 ay
-ah
+aW
 ae
 at
 aY
 nb
 mU
-ah
+aW
 ay
 aW
 aW
-ah
-ah
+aW
+aW
 zF
 eE
 ae
@@ -2636,8 +2581,8 @@ aW
 ae
 aW
 aW
-ah
-ah
+aW
+aW
 aW
 rL
 ae
@@ -2748,7 +2693,7 @@ ae
 aW
 ce
 cf
-aW
+ds
 aY
 ce
 aW
@@ -2778,7 +2723,7 @@ ae
 ae
 aW
 aW
-ah
+aW
 aW
 aW
 ae
@@ -2799,9 +2744,9 @@ aV
 ae
 aW
 ce
-aW
+ah
 ch
-aW
+ah
 ce
 an
 ae
@@ -2852,7 +2797,7 @@ ae
 aW
 ce
 cg
-aW
+ds
 aW
 ce
 aW
@@ -2887,10 +2832,10 @@ ae
 ae
 ae
 ai
-ah
+aW
 ae
 aW
-Ud
+aY
 ae
 aW
 ae
@@ -2944,22 +2889,22 @@ ae
 aY
 aX
 ae
-ah
+aW
 ae
 Dx
 ae
-ah
-ah
+aW
+aW
 ae
-Da
+vA
 ae
-KA
+NH
 aW
 aW
 am
 BF
 an
-xQ
+dj
 ae
 ac
 ac
@@ -3048,7 +2993,7 @@ ae
 FZ
 aW
 aK
-ah
+aW
 aW
 aW
 ae
@@ -3106,11 +3051,11 @@ aW
 ae
 aW
 aW
-Lr
+aR
 aW
 zW
 ae
-ah
+aW
 ae
 ac
 ac
@@ -3162,7 +3107,7 @@ Bc
 Bc
 Bc
 ae
-xQ
+an
 ae
 ab
 ab
@@ -3210,7 +3155,7 @@ aW
 ay
 aW
 aW
-ah
+aW
 aW
 aW
 ay
@@ -3256,7 +3201,7 @@ ae
 aB
 aW
 EA
-ah
+aW
 aW
 aW
 ae
@@ -3314,7 +3259,7 @@ gt
 ae
 aR
 zW
-ah
+aW
 aR
 aW
 ae
@@ -3464,7 +3409,7 @@ ae
 aD
 aH
 aH
-ah
+aW
 aW
 gt
 ae
