@@ -84,7 +84,7 @@
 
 /obj/item/rune_scimmy
 	name = "rune scimitar"
-	desc = "A curved sword smelted from an unknown metal. Looking at it gives you the otherworldly urge to pawn it off for '30k,' whatever that means."
+	desc = "A curved sword smelted from an unknown metal. Looking at it gives you the otherworldly urge to pawn it off for '30k', whatever that means."
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
