@@ -121,3 +121,38 @@
 	suffix = "lavaland_surface_syndicatepod.dmm"
 	cost = 5
 	allow_duplicates = FALSE
+
+/datum/map_template/ruin/lavaland/yogstation/prisoners
+	name = "Prisoner Crash"
+	id = "prisoner-crash"
+	description = "This incredibly high security shuttle clearly didn't have \
+		'avoiding lavafilled hellscapes' as a design priority. As such, it \
+		has crashed, waking the prisoners from their cryostasis, and setting \
+		them loose on the wastes. If they live long enough, that is."
+	suffix = "lavaland_surface_prisoner_crash.dmm"
+	cost = 20
+	allow_duplicates = FALSE
+
+/datum/map_template/ruin/lavaland/yogstation/abductorterrorship
+	name = "Abductor Terror Ship"
+	id = "abductorterrorship"
+	description = "Abductors are not a rare sight in remote and sparsely populated regions of the galaxy, however no being has managed to survive an encounter with a terrorship, but who ever thought a primitive spear could be so robust?"
+	suffix = "lavaland_surface_abductorterrorship.dmm"
+	allow_duplicates = FALSE
+	cost = 20
+
+/datum/map_template/ruin/lavaland/yogstation/medical
+	name = "Orion Medical Outpost"
+	id = "medical"
+	description = "One of the Orion Medical Outposts was teleported after a bluespace anomaly"
+	suffix = "lavaland_surface_medical.dmm"
+	allow_duplicates = FALSE
+	cost = 15
+
+/datum/map_template/ruin/lavaland/yogstation/travellingbard
+	name = "Travelling Bard"
+	id = "travellingbard"
+	description = "A travelling space bard who only wishes to tell tales of adventure and play catchy songs"
+	suffix = "lavaland_surface_travellingbard.dmm"
+	allow_duplicates = FALSE
+	cost = 5

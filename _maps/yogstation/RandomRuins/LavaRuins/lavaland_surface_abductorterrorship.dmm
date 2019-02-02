@@ -6,7 +6,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ac" = (
-/turf/open/floor/plating/lava/smooth/lava_land_surface,
+/turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ad" = (
 /turf/closed/indestructible/abductor{
@@ -21,9 +21,66 @@
 	icon_state = "alien7"
 	},
 /area/ruin/powered)
+"ag" = (
+/obj/structure/table/abductor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"ah" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"ai" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "aj" = (
 /turf/open/floor/mineral/abductor,
 /area/lavaland/surface/outdoors)
+"ak" = (
+/obj/structure/closet/abductor,
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 5
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"al" = (
+/obj/structure/table/abductor,
+/obj/item/firing_pin/abductor,
+/obj/item/firing_pin/abductor,
+/obj/item/firing_pin/abductor,
+/obj/item/firing_pin/abductor,
+/obj/item/firing_pin/abductor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"am" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"an" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"ao" = (
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_animal/hostile/abomination,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"ap" = (
+/obj/structure/table/abductor,
+/obj/item/organ/brain{
+	pixel_x = 4
+	},
+/obj/item/organ/tongue,
+/obj/item/organ/tongue/alien{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "aq" = (
 /obj/machinery/door/airlock/abductor{
 	locked = 1
@@ -31,14 +88,181 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
+"ar" = (
+/obj/structure/closet/abductor,
+/obj/item/organ/appendix,
+/obj/item/organ/appendix,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"as" = (
+/obj/structure/closet/abductor,
+/obj/item/reagent_containers/food/snacks/burger/human,
+/obj/item/reagent_containers/food/snacks/burger/human,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"at" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"au" = (
+/obj/structure/closet/abductor,
+/obj/item/reagent_containers/food/snacks/meat/slab/human,
+/obj/item/reagent_containers/food/snacks/meat/slab/human,
+/obj/item/reagent_containers/food/snacks/meat/slab/human,
+/obj/item/reagent_containers/food/snacks/meat/slab/human,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"av" = (
+/mob/living/simple_animal/hostile/abomination/altform1,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aw" = (
+/obj/item/organ/appendix,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "ay" = (
 /obj/machinery/door/airlock/abductor,
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
+"aA" = (
+/obj/structure/table/abductor,
+/obj/item/stack/ore/diamond,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aB" = (
+/obj/structure/table/abductor,
+/obj/item/stack/ore/gold,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aC" = (
+/obj/structure/table/abductor,
+/obj/item/stack/ore/silver,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aD" = (
+/obj/structure/table/abductor,
+/obj/item/pickaxe/drill,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aE" = (
+/obj/structure/closet/abductor,
+/obj/item/organ/appendix,
+/obj/item/organ/tongue,
+/obj/item/organ/tongue,
+/obj/item/organ/brain/alien{
+	pixel_x = 5
+	},
+/obj/item/organ/brain/alien{
+	pixel_x = 5
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aF" = (
+/obj/structure/closet/abductor,
+/obj/item/stack/sheet/animalhide/human{
+	amount = 35
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aG" = (
+/obj/structure/table/abductor,
+/obj/item/circular_saw/alien,
+/obj/item/surgicaldrill/alien,
+/obj/item/scalpel/alien,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aH" = (
+/obj/structure/table/abductor,
+/obj/item/pickaxe/drill,
+/obj/item/clothing/glasses/meson/night,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aI" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aJ" = (
+/obj/structure/table/abductor,
+/obj/item/organ/tongue/fly{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/organ/tongue/alien{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aK" = (
+/obj/structure/table/abductor,
+/obj/item/stack/ore/uranium,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aL" = (
+/obj/structure/closet/abductor,
+/obj/item/stack/sheet/mineral/abductor{
+	amount = 50
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aM" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "aN" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/restraints/handcuffs/alien,
+/obj/item/restraints/handcuffs/alien,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aO" = (
+/obj/item/gps/mining{
+	gpstag = "COSMIC_READING"
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aP" = (
+/obj/structure/closet/abductor,
+/obj/item/clothing/under/yogs/ronaldmcdonald,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aQ" = (
+/mob/living/simple_animal/hostile/abomination/altform2,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aR" = (
+/obj/structure/showcase/horrific_experiment,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aS" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/yogs/tourist,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aT" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/schoolgirl,
+/obj/item/clothing/under/schoolgirl/green,
+/obj/item/clothing/under/schoolgirl/orange,
+/obj/item/clothing/under/schoolgirl/red,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aU" = (
+/obj/structure/closet/abductor,
+/obj/item/clothing/under/syndicate/sniper,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aV" = (
+/obj/structure/bed/abductor,
+/obj/item/clothing/under/soviet,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "aW" = (
@@ -50,6 +274,42 @@
 /area/ruin/powered)
 "aY" = (
 /obj/effect/decal/remains/human,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"aZ" = (
+/obj/structure/table/abductor,
+/obj/item/stack/sheet/mineral/bananium{
+	amount = 30
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"ba" = (
+/obj/structure/table/abductor,
+/obj/item/gun/energy/temperature{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"bb" = (
+/mob/living/simple_animal/hostile/abomination/altform3,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"bc" = (
+/obj/structure/table/abductor,
+/obj/item/gun/energy/gravity_gun,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"bd" = (
+/obj/structure/table/abductor,
+/obj/item/gun/energy/decloner{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"be" = (
+/obj/structure/table/abductor,
+/obj/item/gun/energy/kinetic_accelerator,
+/obj/item/borg/upgrade/modkit/chassis_mod,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "bh" = (
@@ -76,6 +336,7 @@
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/xeno,
 /obj/effect/decal/cleanable/xenoblood,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "ce" = (
@@ -113,7 +374,7 @@
 /obj/structure/closet/abductor{
 	name = "Weapon Code: Primitive"
 	},
-/obj/item/weapon/shield/riot/roman{
+/obj/item/shield/riot/roman{
 	desc = "Bears an inscription on the inside: <i>\"Ashwalker venio domus\"</i>.";
 	name = "Cosmic Ashwalker Shield"
 	},
@@ -122,6 +383,7 @@
 "ch" = (
 /obj/structure/bed/abductor,
 /obj/effect/mob_spawn/human/ash_walker/cosmic,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "ci" = (
@@ -146,246 +408,251 @@
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "cC" = (
-/mob/living/simple_animal/hostile/abomination,
+/mob/living/simple_animal/hostile/abomination/super,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "cV" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/ore/bananium,
+/obj/item/stack/ore/bananium,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "dK" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/switchblade,
-/obj/effect/spawner/mapset,
+/obj/item/switchblade,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"ed" = (
+/obj/structure/closet/abductor,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "ex" = (
 /obj/structure/closet/abductor,
 /obj/item/clothing/suit/armor/abductor/vest,
 /obj/item/clothing/suit/armor/abductor/vest,
 /obj/item/clothing/suit/armor/abductor/vest,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "eE" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/cautery/alien,
-/obj/item/weapon/circular_saw/alien,
-/obj/item/weapon/hemostat/alien,
-/obj/item/weapon/retractor/alien,
-/obj/item/weapon/scalpel/alien,
-/obj/item/weapon/surgicaldrill/alien,
-/obj/item/weapon/surgical_drapes,
+/obj/item/cautery/alien,
+/obj/item/circular_saw/alien,
+/obj/item/hemostat/alien,
+/obj/item/retractor/alien,
+/obj/item/scalpel/alien,
+/obj/item/surgicaldrill/alien,
+/obj/item/surgical_drapes,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "eF" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/tile/mineral/abductor{
 	amount = 50
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"eN" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/restraints/handcuffs/alien,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "fa" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/storage/box/alienhandcuffs,
-/obj/item/weapon/storage/box/alienhandcuffs,
+/obj/item/storage/box/alienhandcuffs,
+/obj/item/storage/box/alienhandcuffs,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "fM" = (
 /obj/structure/table/abductor,
 /obj/item/toy/figure/clown,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "ga" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "gd" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"gp" = (
-/obj/structure/table/abductor,
+/area/ruin/powered)
+"gm" = (
+/obj/structure/closet/abductor,
+/obj/item/stack/tile/mineral/abductor{
+	amount = 50
+	},
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "gq" = (
 /obj/machinery/abductor/pad,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "gt" = (
 /obj/structure/closet/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "hi" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/head/helmet/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "iw" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/mineral/silver,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "jW" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 10
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"kM" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/gun/energy/decloner{
-	pin = /obj/item/device/firing_pin
-	},
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "kN" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/ore/iron,
+/obj/item/stack/ore/iron,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "kQ" = (
 /obj/structure/closet/abductor,
-/obj/item/clothing/under/tourist,
+/obj/item/clothing/under/geisha,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "lo" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"mb" = (
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "md" = (
 /obj/structure/table/abductor,
 /obj/item/toy/figure/secofficer,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "mN" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/xenochitin{
 	amount = 35
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "mU" = (
 /obj/structure/table/abductor,
 /obj/item/stack/sheet/animalhide/lizard{
 	amount = 1
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "nb" = (
 /obj/structure/table/abductor,
 /obj/item/stack/sheet/animalhide/human{
 	amount = 1
 	},
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "nl" = (
 /obj/structure/table/abductor,
 /obj/item/organ/tongue/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "nn" = (
-/obj/item/weapon/storage/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "pi" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/animalhide/xeno{
 	amount = 25
 	},
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "pv" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "px" = (
 /obj/structure/table/abductor,
 /obj/item/toy/syndicateballoon,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"pA" = (
+/obj/structure/closet/abductor,
+/obj/item/clothing/under/gimmick/rank/captain/suit,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "pC" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/cloth{
 	amount = 50
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "pE" = (
 /obj/structure/table/abductor,
 /obj/item/organ/lungs,
 /obj/item/organ/lungs,
 /obj/item/organ/tongue,
-/obj/item/severedtail,
+/obj/item/organ/tail,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "rL" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/abductor_baton,
+/obj/item/abductor/baton,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "sf" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/mineral/gold{
 	amount = 10
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "sB" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"tA" = (
+/obj/machinery/computer/camera_advanced/abductor,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "vj" = (
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "vs" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/human,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "vA" = (
 /obj/structure/bed/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "vT" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/mineral/diamond{
 	amount = 10
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "vX" = (
 /obj/structure/closet/abductor,
-/obj/item/weapon/storage/box/alienhandcuffs,
-/obj/item/weapon/paper/abductor,
+/obj/item/storage/box/alienhandcuffs,
+/obj/item/paper/guides/antag/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "wG" = (
 /obj/structure/table/abductor,
 /obj/item/toy/figure/mime,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "xq" = (
 /obj/structure/table/abductor,
 /obj/item/organ/lungs{
@@ -403,7 +670,7 @@
 	pixel_y = -3
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "xt" = (
 /obj/structure/closet/abductor,
 /obj/item/organ/heart,
@@ -415,88 +682,96 @@
 	pixel_y = -3
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"xy" = (
+/mob/living/simple_animal/hostile/abomination/altform4,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"xQ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "xZ" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/sexymime,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "ye" = (
 /obj/structure/closet/abductor,
-/obj/item/weapon/gun/energy/alien,
+/obj/item/clothing/suit/space/freedom,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "yO" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/grenade/spawnergrenade/syndiesoap,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
+/obj/item/grenade/spawnergrenade/syndiesoap,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "yX" = (
 /obj/structure/table/abductor,
-/obj/item/device/radio/headset/syndicate/alt/abductor,
+/obj/item/radio/headset/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "zF" = (
 /obj/structure/table/optable/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "zW" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "AB" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/throwing_star,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
+/obj/item/throwing_star,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "Bc" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "BF" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "CJ" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/gun/energy/crossbow/large,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
+/obj/item/gun/energy/kinetic_accelerator/crossbow,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"Da" = (
+/obj/structure/bed/abductor,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "Dx" = (
 /obj/structure/bed/abductor,
 /obj/effect/decal/remains/xeno,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"DT" = (
+/obj/structure/closet/abductor,
+/obj/item/gun/energy/alien{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "Et" = (
 /obj/machinery/computer/camera_advanced/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "EA" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/stack/ore/bluespace_crystal,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"EU" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/clothing/head/helmet/space/abomination,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "Fv" = (
 /obj/structure/closet/abductor,
 /obj/item/clothing/head/helmet/abductor,
 /obj/item/clothing/head/helmet/abductor,
 /obj/item/clothing/head/helmet/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "FV" = (
 /obj/structure/table/abductor,
 /obj/item/organ/brain/alien{
@@ -507,26 +782,26 @@
 	pixel_y = 6
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "FZ" = (
 /obj/structure/table/abductor,
-/obj/item/weapon/ore/plasma,
+/obj/item/stack/ore/plasma,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "Hc" = (
 /obj/structure/table/abductor,
 /obj/item/organ/tongue,
 /obj/item/organ/tongue,
 /obj/item/organ/appendix,
-/obj/item/severedtail,
-/obj/item/severedtail,
+/obj/item/organ/tail,
+/obj/item/organ/tail,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "Hz" = (
 /obj/structure/closet/abductor,
-/obj/item/weapon/paper/abductor,
+/obj/item/paper/guides/antag/abductor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 "HP" = (
 /obj/structure/closet/abductor,
 /obj/item/stack/sheet/animalhide/corgi{
@@ -539,267 +814,34 @@
 	amount = 10
 	},
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
+"IB" = (
+/obj/structure/closet/abductor,
+/obj/item/stock_parts/cell/infinite/abductor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "Jg" = (
-/obj/item/device/gps/mining{
-	gpstag = "COSMIC_READING";
-	in_use = 1
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Jk" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/ore/gold,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"JH" = (
-/obj/structure/closet/abductor,
-/obj/item/organ/appendix,
-/obj/item/organ/appendix,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Ke" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/gun/energy/temperature{
-	pin = /obj/item/device/firing_pin
-	},
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Kq" = (
-/obj/structure/table/abductor,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Lk" = (
-/obj/item/clothing/head/helmet/space/abomination,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Me" = (
-/obj/structure/closet/abductor,
-/obj/item/stack/sheet/mineral/uranium{
-	amount = 5
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"MB" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/circular_saw/alien,
-/obj/item/weapon/surgicaldrill/alien,
-/obj/item/weapon/scalpel/alien,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"ME" = (
-/obj/structure/table/abductor,
-/obj/item/organ/tongue/fly{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/organ/tongue/alien{
-	pixel_x = -5;
-	pixel_y = -3
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"MO" = (
-/obj/structure/closet/abductor,
-/obj/item/weapon/reagent_containers/food/snacks/burger/human,
-/obj/item/weapon/reagent_containers/food/snacks/burger/human,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"NA" = (
-/obj/structure/closet/abductor,
-/obj/item/organ/appendix,
-/obj/item/organ/tongue,
-/obj/item/organ/tongue,
-/obj/item/organ/brain/alien{
-	pixel_x = 5
-	},
-/obj/item/organ/brain/alien{
-	pixel_x = 5
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"NZ" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Ob" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/ore/diamond,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Oq" = (
-/obj/structure/table/abductor,
-/obj/item/organ/brain{
-	pixel_x = 4
-	},
-/obj/item/organ/tongue,
-/obj/item/organ/tongue/alien{
-	pixel_x = -5;
-	pixel_y = -3
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Qj" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Qw" = (
-/obj/structure/closet/abductor,
-/obj/item/clothing/under/syndicate/sniper,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"QB" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/ore/uranium,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Re" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/tourist,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Rj" = (
-/obj/effect/decal/cleanable/blood/drip,
-/mob/living/simple_animal/hostile/abomination,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Sh" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/pickaxe/drill,
-/obj/item/clothing/glasses/meson/night,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"SK" = (
-/obj/structure/kitchenspike,
+/area/ruin/powered)
+"KA" = (
 /obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Tf" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/ore/silver,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"TS" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/schoolgirl,
-/obj/item/clothing/under/schoolgirl/green,
-/obj/item/clothing/under/schoolgirl/orange,
-/obj/item/clothing/under/schoolgirl/red,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"UI" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"UU" = (
-/obj/structure/closet/abductor,
-/obj/item/stack/sheet/mineral/abductor{
-	amount = 50
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Vv" = (
-/obj/structure/bed/abductor,
-/obj/item/clothing/under/soviet,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Vz" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"VQ" = (
+/area/ruin/powered)
+"Lr" = (
 /obj/structure/showcase/horrific_experiment,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"VV" = (
-/obj/item/organ/appendix,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Wb" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"WN" = (
-/obj/structure/table/abductor,
-/obj/item/device/firing_pin/abductor,
-/obj/item/device/firing_pin/abductor,
-/obj/item/device/firing_pin/abductor,
-/obj/item/device/firing_pin/abductor,
-/obj/item/device/firing_pin/abductor,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Xb" = (
+/area/ruin/powered)
+"Ud" = (
 /obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"XE" = (
-/obj/structure/closet/abductor,
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/slab/human,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"XO" = (
-/obj/structure/closet/abductor,
-/obj/item/stack/sheet/animalhide/human{
-	amount = 35
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"XW" = (
-/obj/structure/closet/abductor,
-/obj/item/clothing/under/ronaldmcdonald,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"YN" = (
-/obj/structure/table/abductor,
-/obj/item/stack/sheet/mineral/bananium{
-	amount = 30
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Zv" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/pickaxe/drill,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"Zw" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"ZE" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/gun/energy/kinetic_accelerator,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
-/obj/item/kinetic_part/barrel/super,
-/obj/item/kinetic_part/barrel_end/super,
-/obj/item/kinetic_part/charger/super,
-/obj/item/kinetic_part/grip/super,
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
-"ZZ" = (
-/obj/structure/table/abductor,
-/obj/item/weapon/gun/energy/gravity_gun,
-/obj/effect/spawner/mapset{
-	prob_nothing = 60
-	},
-/turf/open/floor/mineral/abductor,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/ruin/powered)
 
 (1,1,1) = {"
 aa
@@ -1645,22 +1687,22 @@ ac
 ab
 ae
 mN
-mb
+aW
 Hc
 sB
-mb
-mb
+aW
+aW
 HP
-mb
-NA
+aW
+aE
 ae
-UU
-mb
-mb
-mb
-mb
+aL
+aW
+aW
+aW
+aW
 eF
-mb
+aW
 Hz
 ae
 ac
@@ -1697,23 +1739,23 @@ ac
 ab
 ae
 jW
-mb
-mb
-Xb
+aW
+aW
+am
 pC
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
 ae
-mb
-mb
-gt
-mb
+aW
+aW
+IB
+aW
 gd
-mb
-mb
-mb
+aW
+aW
+aW
 ae
 ac
 ac
@@ -1749,22 +1791,22 @@ ac
 ab
 ae
 sf
-mb
-Me
-Vz
-Oq
-mb
+aW
+ak
+an
+ap
+aW
 pi
-cC
-XO
+av
+aF
 ae
 fM
-mb
-gt
-Vz
-cC
-eF
-mb
+aW
+ed
+an
+aQ
+gm
+aW
 Hz
 ae
 ac
@@ -1800,23 +1842,23 @@ ac
 ac
 ac
 ae
-mb
-mb
+aW
+aW
 iw
-Rj
-JH
-Xb
+ao
+ar
+am
 pE
-mb
-XO
+aW
+aF
 ae
 wG
-mb
-mb
-Vz
+aW
+aW
+an
 eF
-mb
-mb
+aW
+aW
 gt
 ae
 ac
@@ -1853,23 +1895,23 @@ ac
 ab
 ae
 vT
-mb
-mb
-EU
-mb
-mb
-mb
-mb
+aW
+aW
+an
+aW
+aW
+aW
+aW
 xt
 ae
 md
-mb
-UU
-mb
-Vz
-mb
-NZ
-gp
+aW
+aL
+aW
+an
+aW
+aY
+ag
 ae
 ac
 ac
@@ -1956,24 +1998,24 @@ ac
 ac
 ab
 ae
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
 lo
-Vz
-mb
-mb
+an
+aW
+aW
 ae
-mb
-mb
-Wb
+aW
+aW
+aX
 bo
 px
 kQ
-mb
-mb
-TS
+aW
+aW
+aT
 ae
 ac
 ac
@@ -2008,37 +2050,37 @@ ac
 ac
 ac
 ae
-mb
-mb
-mb
-mb
-mb
-Vz
-Vz
-Vz
+ah
+aW
+aW
+ah
+aW
+an
+an
+xQ
 bh
-UI
-Zw
-mb
+aI
+aM
+aW
 ay
-mb
-mb
-mb
-NZ
-Qw
+aW
+ah
+aW
+Ud
+aU
 ae
 ac
 ac
 ac
 ab
 ae
-Kq
-Kq
-Ke
+ag
+ag
+ba
 ae
-ZZ
+bc
 yO
-kM
+bd
 ae
 ab
 ab
@@ -2060,37 +2102,37 @@ ac
 ac
 ac
 ae
-mb
-mb
-mb
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
 ae
-mb
-mb
-mb
+aW
+aW
+aW
 ae
-XW
+aP
 xZ
-Re
-mb
-gt
+aS
+aW
+pA
 ae
 ac
 ab
 ac
 ac
 ae
-mb
-mb
-mb
+aW
+ah
+aW
 ae
-mb
-mb
-mb
+aW
+ah
+aW
 ae
 ab
 ab
@@ -2137,12 +2179,12 @@ ac
 ab
 ae
 ye
-mb
-cC
+aW
+bb
 ae
-ye
-mb
-cC
+DT
+aW
+xy
 ae
 ab
 ab
@@ -2168,20 +2210,20 @@ ab
 ab
 ab
 ae
-mb
-Qj
+aW
+ai
 ae
-mb
-mb
+aW
+aW
 ae
-mb
+ah
 ae
 nn
 ay
-mb
-mb
+ah
+ah
 ay
-mb
+aW
 ae
 ac
 ac
@@ -2220,33 +2262,33 @@ ae
 ae
 ae
 ae
-mb
-mb
+aW
+ah
 ae
-Qj
-Qj
+ai
+Jg
 ae
-mb
+aW
 ae
 vs
 ae
-mb
-mb
+aW
+aW
 ae
 bZ
 ae
 ab
 ac
 ae
-mb
+aW
 cj
-mb
-mb
-mb
-mb
-mb
-mb
-Xb
+aW
+aW
+aW
+ah
+aW
+aW
+am
 ae
 ab
 ab
@@ -2268,29 +2310,29 @@ ac
 ae
 rL
 rL
-mb
+aW
 ex
 gt
 ae
-Qj
-mb
+ai
+aW
 ae
-mb
-mb
+aW
+aW
 ae
-mb
+aW
 ae
 ae
 ae
-mb
-mb
+aW
+aW
 ae
 ae
 ae
 ab
 ab
 ae
-mb
+aW
 ae
 ae
 ae
@@ -2318,11 +2360,11 @@ ae
 ae
 ae
 ae
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+ah
+aW
+aW
 ae
 ae
 ay
@@ -2330,27 +2372,27 @@ ae
 ay
 ae
 ae
-Qj
+ai
 ae
-mb
+aW
 ay
-mb
-mb
+aW
+aW
 ay
-mb
+aW
 ae
 ab
 ab
 ae
-mb
+ah
 ae
-gp
-mb
-mb
-mb
-mb
-gp
-gp
+ag
+aW
+aW
+aW
+aW
+ag
+ag
 ae
 ab
 ab
@@ -2366,43 +2408,43 @@ aa
 aa
 ae
 gt
-gp
-gp
+ag
+ag
 gt
 ae
 Fv
-mb
-mb
+aW
+aW
 fa
-WN
+al
 ae
 aN
-mb
+aW
 ae
-mb
-eN
+aW
+aN
 ae
-mb
+aW
 ae
-vA
+Da
 ae
-mb
-mb
+aW
+aW
 ae
-vA
+Da
 ae
 ab
 ab
 ae
-mb
+ah
 ae
-YN
-mb
-gp
+aZ
+aW
+ag
 dK
 cC
-mb
-mb
+aW
+aW
 ae
 ab
 ab
@@ -2417,10 +2459,10 @@ aa
 aa
 ad
 ae
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
 ae
 ae
 ae
@@ -2428,33 +2470,33 @@ aq
 ae
 ae
 ae
-mb
-mb
-mb
-mb
-Wb
-mb
-mb
+aW
+aW
+aW
+aW
+aX
+aW
+aW
 ae
 ae
 ae
-mb
-mb
+aW
+aW
 ae
 ae
 ae
 ab
 ac
 ae
-mb
+aW
 ae
-mb
-Xb
-mb
-mb
-mb
-mb
-ZE
+aW
+am
+aW
+ah
+aW
+aW
+be
 ae
 ac
 ac
@@ -2469,44 +2511,44 @@ aa
 aa
 ae
 Et
-mb
-mb
-Qj
-Lk
+aW
+aW
+ai
+aW
 ae
 gq
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
 ae
-mb
+aW
 ae
-MO
-VV
-MB
-ME
-mb
+as
+aw
+aG
+aJ
+aW
 ae
 bE
 bE
-mb
-mb
-mb
+aW
+aW
+aW
 vX
 ae
 ab
 ac
 ae
-mb
+aW
 ae
-gp
-gp
+ag
+ag
 ga
 AB
 CJ
-mb
-Zv
+aW
+aD
 ae
 ab
 ab
@@ -2520,30 +2562,30 @@ aa
 (34,1,1) = {"
 aa
 ae
-Et
-mb
-mb
-mb
-mb
+tA
+aW
+ah
+aW
+ah
 aq
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+ah
+aW
+aW
 ay
-mb
+ah
 ae
-SK
-NZ
+at
+aY
 nb
 mU
-mb
+ah
 ay
 aW
 aW
-mb
-mb
+ah
+ah
 zF
 eE
 ae
@@ -2572,40 +2614,40 @@ aa
 (35,1,1) = {"
 aa
 ae
-gp
-mb
-mb
-mb
-mb
+ag
+aW
+aW
+aW
+aW
 ae
 gq
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
 ae
-mb
+aW
 ae
-XE
-mb
+au
+aW
 xq
 FV
-mb
+aW
 ae
 aW
 aW
-mb
-mb
-mb
+ah
+ah
+aW
 rL
 ae
-mb
+ah
 BF
-mb
-mb
+aW
+aW
 BF
-mb
-mb
+aW
+ah
 ae
 ab
 ab
@@ -2625,10 +2667,10 @@ aa
 aa
 af
 ae
-mb
-Lk
-mb
-mb
+aW
+aW
+aW
+aW
 ae
 ae
 ae
@@ -2636,28 +2678,28 @@ ay
 ae
 ae
 ae
-mb
-mb
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
+aW
+aW
+aW
 ae
 ae
 ae
-mb
-mb
+aW
+aW
 ae
 ae
 ae
-mb
+aW
 ce
 ce
 ce
 ce
 ce
-Xb
+am
 ae
 ab
 ab
@@ -2684,32 +2726,32 @@ rL
 ae
 vA
 vA
-mb
+aW
 vA
 vA
 ae
 aN
-mb
+aW
 ae
 aW
 aN
 ae
-mb
+aW
 ae
-Jg
+aO
 ay
-mb
-mb
+aW
+aW
 ay
-NZ
+aY
 ae
-mb
+aW
 ce
 cf
 aW
 aY
 ce
-mb
+aW
 ae
 ac
 ab
@@ -2734,11 +2776,11 @@ ae
 ae
 ae
 ae
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+ah
+aW
+aW
 ae
 ae
 ay
@@ -2746,22 +2788,22 @@ ae
 ay
 ae
 ae
-mb
+aW
 ae
 pv
 ae
-mb
-mb
+aW
+aW
 ae
-Vv
+aV
 ae
-mb
+aW
 ce
 aW
 ch
 aW
 ce
-Vz
+an
 ae
 ab
 ab
@@ -2792,28 +2834,28 @@ vA
 vA
 vA
 ae
-mb
-mb
+aW
+aW
 ae
-Wb
+aX
 aY
 ae
-mb
+aW
 ae
 ae
 ae
-mb
-mb
+aW
+aW
 ae
 ae
 ae
-mb
+aW
 ce
 cg
 aW
 aW
 ce
-mb
+aW
 ae
 ac
 ac
@@ -2844,28 +2886,28 @@ ae
 ae
 ae
 ae
-Qj
-mb
+ai
+ah
 ae
 aW
-aY
+Ud
 ae
-mb
+aW
 ae
 vj
 ay
-mb
-mb
+aW
+aW
 ay
-mb
+aW
 ae
-mb
+aW
 ce
 ce
 ci
 ce
 ce
-Vz
+an
 ae
 ac
 ac
@@ -2896,28 +2938,28 @@ ac
 ac
 ac
 ae
-mb
-Qj
+aW
+ai
 ae
 aY
 aX
 ae
-mb
+ah
 ae
 Dx
 ae
-mb
-mb
+ah
+ah
 ae
-vA
+Da
 ae
-Xb
-mb
-mb
-Xb
+KA
+aW
+aW
+am
 BF
-Vz
-Vz
+an
+xQ
 ae
 ac
 ac
@@ -3004,19 +3046,19 @@ ac
 ac
 ae
 FZ
-mb
-QB
-mb
-mb
-mb
+aW
+aK
+ah
+aW
+aW
 ae
-VQ
-mb
-VQ
-mb
-VQ
+aR
+aW
+aR
+aW
+aR
 ae
-Vz
+an
 ae
 ab
 ac
@@ -3055,20 +3097,20 @@ ac
 ac
 ac
 ae
-mb
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
+aW
+aW
 ae
-mb
-mb
-VQ
-mb
+aW
+aW
+Lr
+aW
 zW
 ae
-mb
+ah
 ae
 ac
 ac
@@ -3107,12 +3149,12 @@ ac
 ac
 ac
 ae
-Ob
-mb
+aA
+aW
 cV
-mb
-mb
-mb
+aW
+aW
+aW
 ae
 Bc
 Bc
@@ -3120,7 +3162,7 @@ Bc
 Bc
 Bc
 ae
-Vz
+xQ
 ae
 ab
 ab
@@ -3159,20 +3201,20 @@ ac
 ac
 ac
 ae
-mb
-Qj
-mb
-mb
-Qj
-mb
+aW
+ai
+aW
+aW
+ai
+aW
 ay
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+ah
+aW
+aW
 ay
-Xb
+am
 ae
 ab
 ab
@@ -3211,12 +3253,12 @@ ac
 ac
 ac
 ae
-Jk
-mb
+aB
+aW
 EA
-mb
-mb
-mb
+ah
+aW
+aW
 ae
 Bc
 Bc
@@ -3263,18 +3305,18 @@ ac
 ac
 ac
 ae
-mb
-mb
-mb
-mb
-mb
+aW
+aW
+aW
+aW
+aW
 gt
 ae
-VQ
+aR
 zW
-mb
-VQ
-mb
+ah
+aR
+aW
 ae
 ab
 ab
@@ -3315,18 +3357,18 @@ ac
 ac
 ac
 ae
-Tf
-mb
+aC
+aW
 kN
-mb
-mb
+aW
+aW
 gt
 ae
-VQ
-mb
-VQ
-mb
-VQ
+aR
+aW
+aR
+aW
+aR
 ae
 ab
 ab
@@ -3367,11 +3409,11 @@ ac
 ac
 ac
 ae
-mb
-mb
-mb
-mb
-Qj
+aW
+aW
+aW
+aW
+ai
 gt
 ae
 ae
@@ -3419,11 +3461,11 @@ ac
 ac
 ab
 ae
-Zv
-Sh
-Sh
-mb
-mb
+aD
+aH
+aH
+ah
+aW
 gt
 ae
 ab

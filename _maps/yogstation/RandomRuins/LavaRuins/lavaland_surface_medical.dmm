@@ -1,9 +1,9 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/wall/shuttle/smooth,
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "ac" = (
 /obj/machinery/computer/operating,
@@ -15,9 +15,9 @@
 /area/ruin/powered)
 "ae" = (
 /obj/structure/table,
-/obj/item/weapon/surgicaldrill,
-/obj/item/weapon/surgical_drapes,
-/obj/item/weapon/book/manual/wiki/surgery,
+/obj/item/surgicaldrill,
+/obj/item/surgical_drapes,
+/obj/item/book/manual/wiki/surgery,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "af" = (
@@ -42,6 +42,10 @@
 "aj" = (
 /obj/structure/table,
 /obj/item/stack/medical/gauze,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "ak" = (
@@ -55,19 +59,19 @@
 /area/ruin/powered)
 "al" = (
 /obj/structure/table,
-/obj/item/weapon/retractor,
-/obj/item/weapon/hemostat,
+/obj/item/retractor,
+/obj/item/hemostat,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "am" = (
 /obj/structure/table,
-/obj/item/weapon/scalpel,
-/obj/item/weapon/circular_saw,
-/obj/item/weapon/cautery,
+/obj/item/scalpel,
+/obj/item/circular_saw,
+/obj/item/cautery,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "an" = (
-/turf/closed/wall/shuttle/smooth/nodiagonal,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/powered)
 "ao" = (
 /obj/machinery/door/airlock/shuttle{
@@ -78,46 +82,69 @@
 /area/ruin/powered)
 "ap" = (
 /obj/structure/table,
-/obj/item/weapon/lighter,
+/obj/item/lighter,
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "aq" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/effect/mob_spawn/human/orion_doctor,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "ar" = (
 /obj/structure/table,
-/obj/item/weapon/storage/box/monkeycubes,
-/obj/item/weapon/reagent_containers/food/snacks/honeybun,
+/obj/item/storage/box/monkeycubes,
+/obj/item/reagent_containers/food/snacks/honeybun,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "as" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/effect/mob_spawn/human/orion_doctor,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
 /mob/living/carbon/monkey,
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "at" = (
-/obj/machinery/disposal/bin/toilet{
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/structure/toilet{
+	icon_state = "toilet00";
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "au" = (
 /obj/effect/mob_spawn/human/orion_doctor,
-/turf/open/floor/plasteel/bar,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "av" = (
 /obj/structure/table,
-/obj/item/weapon/storage/bag/chemistry,
-/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
-/obj/item/weapon/reagent_containers/syringe/bluespace,
+/obj/item/storage/bag/chemistry,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/syringe/bluespace,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aw" = (
@@ -136,12 +163,16 @@
 	dir = 8
 	},
 /obj/machinery/door/window/southleft,
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 1
+	},
 /mob/living/carbon/monkey,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "az" = (
-/obj/structure/sign/chemistry,
-/turf/closed/wall/shuttle/smooth,
+/obj/structure/sign/departments/chemistry,
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "aA" = (
 /turf/open/floor/carpet,
@@ -151,8 +182,13 @@
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "aC" = (
-/obj/item/weapon/lipstick/random,
-/turf/open/floor/plasteel/bar,
+/obj/item/lipstick/random,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "aD" = (
 /obj/structure/sink{
@@ -161,14 +197,19 @@
 	pixel_x = 11;
 	pixel_y = 0
 	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	icon_state = "tile_corner";
+	dir = 1
+	},
 /mob/living/carbon/monkey,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "aE" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 4
 	},
-/turf/closed/wall/shuttle/smooth,
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "aF" = (
 /obj/structure/chair/office/light{
@@ -202,7 +243,7 @@
 	name = "Resting Room 3"
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "aK" = (
 /obj/machinery/chem_heater,
@@ -231,11 +272,11 @@
 /area/ruin/powered)
 "aN" = (
 /obj/structure/table,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/gun/syringe,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/book/manual/wiki/chemistry,
+/obj/item/storage/box/syringes,
+/obj/item/gun/syringe,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/book/manual/wiki/chemistry,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aO" = (
@@ -265,11 +306,19 @@
 /area/ruin/powered)
 "aS" = (
 /obj/machinery/vending/snack,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aT" = (
 /obj/structure/table,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aU" = (
@@ -278,8 +327,8 @@
 /area/ruin/powered)
 "aV" = (
 /obj/structure/table,
-/obj/item/weapon/reagent_containers/glass/beaker/large/epinephrine,
-/obj/item/weapon/reagent_containers/glass/beaker/large/epinephrine,
+/obj/item/reagent_containers/glass/beaker/large/epinephrine,
+/obj/item/reagent_containers/glass/beaker/large/epinephrine,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aW" = (
@@ -290,7 +339,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aX" = (
-/obj/item/weapon/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "aY" = (
@@ -311,8 +360,12 @@
 /area/ruin/powered)
 "bb" = (
 /obj/structure/table,
-/obj/item/weapon/reagent_containers/glass/beaker/large/charcoal,
-/obj/item/weapon/reagent_containers/glass/beaker/large/charcoal,
+/obj/item/reagent_containers/glass/beaker/large/charcoal,
+/obj/item/reagent_containers/glass/beaker/large/charcoal,
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bc" = (
@@ -325,15 +378,15 @@
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple,
 /obj/structure/table,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "be" = (
 /obj/structure/table,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bf" = (
@@ -356,11 +409,11 @@
 /area/ruin/powered)
 "bi" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/blood/random,
-/obj/item/weapon/reagent_containers/blood/random,
-/obj/item/weapon/reagent_containers/blood/random,
-/obj/item/weapon/reagent_containers/blood/random,
-/obj/item/weapon/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bj" = (
@@ -377,6 +430,10 @@
 /area/ruin/powered)
 "bm" = (
 /obj/machinery/computer/cloning,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bn" = (
@@ -385,12 +442,13 @@
 /area/ruin/powered)
 "bo" = (
 /obj/machinery/vending/cola,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bp" = (
 /obj/structure/table,
-/obj/item/weapon/wrench/medical,
-/obj/item/weapon/paper{
+/obj/item/wrench/medical,
+/obj/item/paper{
 	info = "Wrench both O2 tanks and turn on the freezer, don't forget to set it to the lowest temperature possible by hitting the minus buttons! Once you've done that take the cryoxadone beakers and slot them into the cryotubes, keep in mind that any chem works in cryo not just cryoxadone; this means you can create medical concoctions to heal an individual much much faster.";
 	name = "Cryo Setup"
 	},
@@ -406,6 +464,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/northleft,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "br" = (
@@ -418,6 +477,7 @@
 	dir = 4
 	},
 /obj/machinery/door/window/northright,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bs" = (
@@ -432,7 +492,11 @@
 /area/ruin/powered)
 "bu" = (
 /obj/structure/table,
-/obj/item/weapon/defibrillator/loaded,
+/obj/item/defibrillator/loaded,
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bv" = (
@@ -443,21 +507,50 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bw" = (
-/turf/open/floor/plasteel/blueyellow,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bx" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "Foyer Desk"
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/blueyellow,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "by" = (
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bz" = (
-/obj/item/weapon/cigbutt/cigarbutt,
-/turf/open/floor/plasteel/cmo,
+/obj/item/cigbutt/cigarbutt,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bA" = (
 /obj/machinery/smartfridge,
@@ -476,214 +569,691 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bD" = (
-/obj/structure/sign/nosmoking_2,
-/turf/closed/wall/shuttle/smooth,
+/obj/structure/sign/warning/nosmoking,
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "bE" = (
 /obj/structure/table/glass,
-/obj/item/weapon/coin/silver,
+/obj/item/coin/silver,
 /obj/item/clothing/head/festive,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bF" = (
 /obj/structure/chair/comfy/teal{
 	dir = 8
 	},
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bG" = (
 /obj/structure/table,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bH" = (
 /obj/structure/table,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/soap/deluxe,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/soap/deluxe,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bI" = (
-/obj/structure/flora/kirbyplants,
+/obj/item/twohanded/required/kirbyplants,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bJ" = (
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/blueyellow,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bK" = (
 /obj/structure/table/reinforced,
 /obj/structure/bedsheetbin,
-/obj/item/weapon/reagent_containers/food/snacks/honeybar,
-/turf/open/floor/plasteel/blueyellow,
+/obj/item/reagent_containers/food/snacks/honeybar,
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bL" = (
 /obj/structure/table/glass,
-/obj/item/weapon/dice/d20,
-/turf/open/floor/plasteel/cmo,
+/obj/item/dice/d20,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bM" = (
 /obj/structure/closet/crate/bin,
-/obj/item/weapon/folder/white,
-/turf/open/floor/plasteel/blueyellow,
+/obj/item/folder/white,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bN" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/phone,
-/obj/item/device/flashlight/pen,
-/turf/open/floor/plasteel/blueyellow,
+/obj/item/paper_bin,
+/obj/item/phone,
+/obj/item/flashlight/pen,
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bO" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
-/turf/open/floor/plasteel/red,
+/obj/item/bedsheet,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bP" = (
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bQ" = (
-/obj/machinery/door/airlock/glass_security{
-	name = "Holding Cell";
-	req_access_txt = "63"
+/obj/machinery/door/airlock/security/glass,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
 	},
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bR" = (
 /obj/structure/showcase,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bS" = (
-/obj/machinery/door/airlock/glass_security{
-	name = "Spaceport Security";
-	req_access_txt = "63"
-	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/red,
+/obj/machinery/door/airlock/security/glass,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bT" = (
 /obj/machinery/door/airlock/glass_large,
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bU" = (
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "bV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/grille,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bW" = (
-/obj/item/device/flashlight/seclite,
-/turf/open/floor/plasteel/red,
+/obj/item/flashlight/seclite,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bX" = (
-/obj/item/weapon/tank/internals/emergency_oxygen/double,
-/turf/open/floor/plasteel/red,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bY" = (
 /obj/effect/mob_spawn/human/orion_security,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "bZ" = (
 /obj/structure/table,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "ca" = (
 /obj/structure/bed/roller,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "cb" = (
 /obj/structure/chair/office/light,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "cc" = (
 /obj/structure/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "cd" = (
 /obj/structure/table,
-/obj/item/weapon/storage/box/handcuffs,
-/obj/item/weapon/shield/riot,
-/obj/item/weapon/melee/baton/loaded,
-/turf/open/floor/plasteel/red,
+/obj/item/storage/box/handcuffs,
+/obj/item/shield/riot,
+/obj/item/melee/baton/loaded,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "ce" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "cf" = (
 /obj/structure/table,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/weapon/reagent_containers/food/snacks/donut/jelly{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/reagent_containers/food/snacks/donut/jelly{
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "cg" = (
 /obj/structure/closet{
 	name = "Contraband Locker"
 	},
 /obj/item/clothing/head/collectable/HoS,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "ch" = (
 /obj/structure/closet{
 	name = "Contraband Locker"
 	},
-/obj/item/weapon/storage/belt/security,
-/turf/open/floor/plasteel/red,
+/obj/item/storage/belt/security,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "ci" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/gauze,
 /obj/item/stack/medical/ointment,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "cj" = (
 /obj/structure/table,
 /obj/machinery/recharger,
-/turf/open/floor/plasteel/red,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered)
 "ck" = (
-/obj/structure/sign/bluecross_2,
-/turf/closed/wall/shuttle/smooth,
+/obj/structure/sign/departments/medbay/alt,
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "cl" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Orion Medical Outpost V"
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "cm" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "cn" = (
-/obj/item/weapon/emptysandbag,
+/obj/item/emptysandbag,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "co" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor/plasteel/cmo,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "cp" = (
-/obj/item/weapon/emptysandbag,
-/turf/open/floor/plasteel/cmo,
+/obj/item/emptysandbag,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "cq" = (
 /obj/structure/table,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"hA" = (
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"kw" = (
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"qn" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"tl" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"wO" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"yM" = (
+/obj/structure/fans/tiny/invisible,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"za" = (
+/obj/structure/chair/comfy/teal{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"Aw" = (
+/obj/structure/bed/roller,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"BI" = (
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"Hy" = (
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"Lk" = (
+/obj/structure/bed/roller,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 
@@ -829,8 +1399,8 @@ ab
 ab
 ab
 bO
-bO
-bO
+tl
+tl
 bO
 ab
 aa
@@ -841,15 +1411,15 @@ aa
 aa
 ab
 ac
-ai
+BI
 ak
 ab
 av
-ai
+kw
 aK
 ab
 av
-ai
+kw
 aK
 ab
 bk
@@ -978,7 +1548,7 @@ bv
 ab
 ab
 ab
-ab
+an
 bY
 bP
 ch
@@ -995,7 +1565,7 @@ aj
 ai
 ao
 ai
-ai
+Hy
 ai
 aQ
 ai
@@ -1006,7 +1576,7 @@ ai
 aQ
 bw
 bw
-bw
+wO
 bw
 bS
 bP
@@ -1102,7 +1672,7 @@ ab
 ca
 ce
 ck
-by
+hA
 cn
 by
 ab
@@ -1116,7 +1686,7 @@ ab
 ab
 ab
 an
-ai
+qn
 ab
 aU
 aY
@@ -1161,7 +1731,7 @@ by
 bU
 by
 by
-bU
+yM
 by
 cp
 by
@@ -1186,13 +1756,13 @@ bs
 ab
 by
 bF
-bF
+za
 bF
 ab
-ca
-ca
+Lk
+Aw
 ck
-by
+hA
 by
 ab
 cm
@@ -1266,7 +1836,7 @@ ab
 au
 aD
 ab
-ai
+Hy
 ab
 ai
 ai
