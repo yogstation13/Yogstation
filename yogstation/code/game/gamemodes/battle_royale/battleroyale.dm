@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale north", "royale south", "royale east")
-	var/stage_interval = 1800 //Copied from Nich's homework. Storm shrinks every 3 minutes
+	var/stage_interval = 1200 //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/borderstage = 0
 	var/finished = FALSE
 
@@ -54,6 +54,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
+		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
 	addtimer(CALLBACK(src, .proc/check_win), 300)
 	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
 	return ..()
@@ -129,8 +130,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/num = rand(1,3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
-		var/turf/turfy = pick(get_area_turfs(AR))
 		for(var/I = 0, I < num, I++)
+			var/turf/turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			new /obj/structure/closet/crate/battleroyale(pod)
 			new /obj/effect/DPtarget(turfy, pod)
