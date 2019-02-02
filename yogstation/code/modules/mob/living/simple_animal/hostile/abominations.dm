@@ -61,7 +61,7 @@
 	icon_living = "horror4"
 	icon_dead = "horror_dead"
 
-/mob/living/simple_animal/hostile/abomination/altform1
+/mob/living/simple_animal/hostile/abomination/altform4
 	icon = 'yogstation/icons/mob/horrors.dmi'
 	icon_state = "horror5"
 	icon_living = "horror5"

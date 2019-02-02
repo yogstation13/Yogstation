@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -6,11 +6,11 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "c" = (
-/obj/item/weapon/shard,
+/obj/item/shard,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "d" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "medium"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -21,117 +21,106 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
+/area/ruin/powered)
 "h" = (
 /turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered)
 "j" = (
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/pickaxe,
-/obj/item/device/flashlight/lantern,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/flashlight/lantern,
 /obj/structure/closet/crate/engineering{
 	name = "Mining Supplies"
 	},
-/obj/item/device/barometer,
-/obj/item/device/barometer,
-/obj/item/device/barometer,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "k" = (
 /obj/effect/mob_spawn/human/prisoner_transport,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
-"l" = (
-/obj/machinery/suit_storage_unit/ert/security,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "m" = (
 /obj/structure/closet/wardrobe/red{
 	desc = "The Pilot won't be needing any of this....";
 	name = "Pilots Belongings"
 	},
 /obj/item/ammo_box/c45,
-/obj/item/weapon/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/toy/figure/secofficer,
-/obj/item/weapon/tank/internals/oxygen/red,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
+/obj/item/tank/internals/oxygen/red,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered)
 "n" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood,
-/obj/item/device/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /obj/effect/light_emitter,
-/obj/item/device/barometer,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "o" = (
-/obj/item/weapon/gun/projectile/automatic/pistol/m1911,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/obj/item/gun/energy/pulse/pistol/m1911,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "p" = (
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered)
 "q" = (
 /obj/machinery/door/airlock/shuttle,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "s" = (
 /obj/machinery/door/airlock/shuttle,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth;
-	initial_gas_mix = "o2=16;n2=23"
-	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered)
 "t" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
-/obj/item/weapon/gun/projectile/automatic/pistol/m1911{
+/obj/item/gun/energy/pulse/pistol/m1911{
 	desc = "A classic .45 handgun with a small magazine capacity, this one has a name engraved on it that reads 'Samantha'";
 	name = "Samantha"
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth;
-	initial_gas_mix = "o2=16;n2=23"
-	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered)
 "u" = (
 /obj/structure/closet/crate/internals{
 	desc = "An emergency supply crate with the NT logo attached to it, it has a small reading below which seems to signify that you probably shouldn't open this incase of an emergency. It also says only for security personell"
 	},
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/tank/internals/emergency_oxygen,
-/obj/item/weapon/tank/internals/emergency_oxygen,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/weapon/tank/internals/emergency_oxygen,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/tank/internals/emergency_oxygen,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/gauze,
 /obj/item/stack/medical/ointment,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth
-	},
-/area/ruin/unpowered)
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"v" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 "w" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -143,60 +132,60 @@
 /area/lavaland/surface/outdoors)
 "A" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/device/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "B" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "D" = (
-/obj/item/weapon/shard,
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth;
-	initial_gas_mix = "o2=16;n2=23"
-	},
-/area/lavaland/surface/outdoors/mapgen_protected)
+/obj/item/shard,
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors/explored)
 "E" = (
-/obj/item/weapon/shard,
+/obj/item/shard,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "G" = (
-/obj/item/weapon/gun/projectile/automatic/pistol/m1911,
+/obj/item/gun/energy/pulse/pistol/m1911,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "I" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "K" = (
 /turf/closed/indestructible/opshuttle,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
+"L" = (
+/turf/closed/indestructible/opshuttle,
+/area/ruin/powered)
 "N" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion";
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "O" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "R" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
 "V" = (
-/turf/open/floor/plasteel/shuttle/red{
-	baseturf = /turf/open/floor/plating/lava/smooth;
-	initial_gas_mix = "o2=16;n2=23"
-	},
-/area/lavaland/surface/outdoors/mapgen_protected)
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors/explored)
 "Y" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "small"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/mapgen_protected)
+/area/lavaland/surface/outdoors/explored)
+"Z" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -275,9 +264,9 @@ a
 b
 b
 g
-h
+L
 g
-h
+L
 g
 b
 b
@@ -296,11 +285,11 @@ b
 b
 I
 I
-h
-h
-h
-h
-h
+L
+L
+L
+L
+L
 I
 I
 I
@@ -318,11 +307,11 @@ b
 b
 K
 N
-h
+L
 j
 n
 u
-h
+L
 N
 K
 I
@@ -340,11 +329,11 @@ b
 b
 I
 K
-h
+L
 k
 o
 k
-h
+L
 K
 I
 I
@@ -362,11 +351,11 @@ b
 b
 O
 O
-h
+L
 k
-p
+v
 k
-h
+L
 I
 I
 B
@@ -384,11 +373,11 @@ b
 b
 O
 O
-h
+L
 k
-p
+Z
 k
-h
+L
 I
 I
 B
@@ -406,11 +395,11 @@ b
 b
 O
 O
-h
+L
 k
-p
+Z
 k
-h
+L
 I
 I
 I
@@ -428,11 +417,11 @@ b
 b
 O
 O
-h
-h
+L
+L
 q
-h
-h
+L
+L
 I
 I
 I
