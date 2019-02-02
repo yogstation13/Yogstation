@@ -41,7 +41,7 @@
 /datum/weather/royale/two
 	name = "royale north" //North wave, takes out security, EVA, dorms and associated areas.
 	telegraph_message = "<span class='userdanger'><i>The storm is closing in, get away from the north!</i></span>"
-	areasToWeather = list(/area/security/execution/transfer, /area/security/prison, /area/security/processing, /area/ai_monitored/security/armory, /area/security/main, /area/crew_quarters/heads/hos,
+	areasToWeather = list(/area/security/execution/transfer, /area/security/prison,/area/security/detectives_office, /area/security/processing, /area/ai_monitored/security/armory, /area/security/main, /area/crew_quarters/heads/hos,
 	/area/security/warden, /area/security/brig, /area/security/courtroom, /area/vacant_room/office/office_b, /area/lawoffice, /area/ai_monitored/storage/eva, /area/crew_quarters/dorms, /area/crew_quarters/toilet,
 	/area/crew_quarters/fitness, /area/holodeck/rec_center, /area/hallway/primary/fore)
 
@@ -63,7 +63,7 @@
 	name = "royale west" //West wave, takes out arrivals and cargo
 	telegraph_message = "<span class='userdanger'><i>The storm is closing in, get away from the west!</i></span>"
 	areasToWeather = list(/area/construction/mining/aux_base, /area/security/checkpoint/auxiliary, /area/hydroponics/garden, /area/storage/primary, /area/ai_monitored/nuke_storage, /area/clerk, /area/vacant_room,
-	/area/crew_quarters/toilet/locker, /area/crew_quarters/locker, /area/storage/art, /area/storage/emergency/port, /area/storage/tools, /area/security/detectives_office, /area/quartermaster/warehouse,
+	/area/crew_quarters/toilet/locker, /area/crew_quarters/locker, /area/storage/art, /area/storage/emergency/port, /area/storage/tools, /area/quartermaster/warehouse,
 	/area/quartermaster/sorting, /area/quartermaster/storage, /area/quartermaster/office, /area/quartermaster/qm, /area/quartermaster/miningdock, /area/security/checkpoint/supply, /area/hallway/secondary/entry, /area/hallway/primary/port)
 
 /datum/weather/royale/six
