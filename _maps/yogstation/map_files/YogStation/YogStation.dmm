@@ -41879,7 +41879,7 @@
 "bFD" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Telecoms Satellite Monitoring";
-	req_access_txt = "10"
+	req_one_access_txt = "10;61"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -53537,7 +53537,7 @@
 "fEn" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Telecoms Satellite Monitoring";
-	req_access_txt = "61"
+	req_one_access_txt = "10;61"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)

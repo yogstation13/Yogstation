@@ -43,7 +43,7 @@
 				spawn(0)
 					// Output all the compile-time errors
 					src << output(null, "tcserror")
-					src << output("Please wait, compiling...", "tcserror")
+					src << output("Compiling on [Server.name]...", "tcserror")
 
 					var/list/compileerrors = Server.compile(mob) // then compile the code!
 					if(!telecomms_check(mob))
