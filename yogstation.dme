@@ -1755,6 +1755,7 @@
 #include "code\modules\jobs\job_types\medical.dm"
 #include "code\modules\jobs\job_types\science.dm"
 #include "code\modules\jobs\job_types\security.dm"
+#include "code\modules\jobs\job_types\signal_technician.dm"
 #include "code\modules\jobs\job_types\silicon.dm"
 #include "code\modules\jobs\map_changes\map_changes.dm"
 #include "code\modules\keybindings\focus.dm"
