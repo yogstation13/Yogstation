@@ -1,21 +1,27 @@
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
+/proc/playsound(atom/source, input, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
 
 	var/turf/turf_source = get_turf(source)
 
+<<<<<<< HEAD
+=======
+	if (!turf_source)
+		return
+
+>>>>>>> cecf676684... [Ready] Outputs datum (#41535)
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange)
 	var/list/listeners = GLOB.player_list
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/P in listeners)
 		var/mob/M = P
+<<<<<<< HEAD
 		if(!M || !M.client)
 			continue
 		var/distance = get_dist(M, turf_source)
@@ -25,7 +31,24 @@
 
 			if(T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
+=======
+		if(get_dist(M, turf_source) <= maxdistance)
+			sound_or_datum(M, turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected)
+	for(var/P in SSmobs.dead_players_by_zlevel[z])
+		var/mob/M = P
+		if(get_dist(M, turf_source) <= maxdistance)
+			sound_or_datum(M, turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected)
 
+/proc/sound_or_datum(mob/receiver, turf/turf_source, input, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
+	if(istype(input,/datum))
+		var/datum/outputs/O = input
+		O.send_info(receiver, turf_source, vol, vary, frequency, falloff, channel, pressure_affected)
+	else
+		var/sound/S = sound(get_sfx(input))
+		receiver.playsound_local(turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected, S)
+>>>>>>> cecf676684... [Ready] Outputs datum (#41535)
+
+//kept for legacy support and uploaded admin sounds
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S)
 	if(!client || !can_hear())
 		return
