@@ -402,15 +402,6 @@
 /obj/item/stack/ore/bananium,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"dj" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"ds" = (
-/obj/item/flashlight/lantern,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
 "dK" = (
 /obj/structure/table/abductor,
 /obj/item/switchblade,
@@ -538,9 +529,20 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"om" = (
+"nw" = (
 /obj/structure/closet/abductor,
-/obj/item/stock_parts/cell/infinite/abductor,
+/obj/item/gun/energy/alien{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"nX" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
+"os" = (
+/obj/structure/closet/abductor,
+/obj/item/clothing/under/gimmick/rank/captain/suit,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "pi" = (
@@ -625,6 +627,12 @@
 /obj/item/toy/figure/mime,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
+"wO" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "xq" = (
 /obj/structure/table/abductor,
 /obj/item/organ/lungs{
@@ -675,6 +683,10 @@
 /obj/item/radio/headset/abductor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
+"zC" = (
+/mob/living/simple_animal/hostile/abomination/altform4,
+/turf/open/floor/mineral/abductor,
+/area/ruin/powered)
 "zF" = (
 /obj/structure/table/optable/abductor,
 /turf/open/floor/mineral/abductor,
@@ -694,16 +706,6 @@
 /area/ruin/powered)
 "BF" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"CJ" = (
-/obj/structure/table/abductor,
-/obj/item/gun/energy/kinetic_accelerator/crossbow,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"CK" = (
-/obj/structure/closet/abductor,
-/obj/item/clothing/under/gimmick/rank/captain/suit,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 "Dx" = (
@@ -770,21 +772,14 @@
 	},
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"NH" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/abductor,
-/area/ruin/powered)
-"SS" = (
+"JN" = (
 /obj/structure/closet/abductor,
-/obj/item/gun/energy/alien{
-	pin = /obj/item/firing_pin
-	},
+/obj/item/stock_parts/cell/infinite/abductor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
-"Wc" = (
-/mob/living/simple_animal/hostile/abomination/altform4,
+"MQ" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/light/floor,
 /turf/open/floor/mineral/abductor,
 /area/ruin/powered)
 
@@ -1695,7 +1690,7 @@ aW
 ae
 aW
 aW
-om
+JN
 aW
 gd
 aW
@@ -2064,7 +2059,7 @@ aP
 xZ
 aS
 aW
-CK
+os
 ae
 ac
 ab
@@ -2127,9 +2122,9 @@ ye
 aW
 bb
 ae
-SS
+nw
 aW
-Wc
+zC
 ae
 ab
 ab
@@ -2491,7 +2486,7 @@ ag
 ag
 ga
 AB
-CJ
+ag
 aW
 aD
 ae
@@ -2693,7 +2688,7 @@ ae
 aW
 ce
 cf
-ds
+nX
 aY
 ce
 aW
@@ -2797,7 +2792,7 @@ ae
 aW
 ce
 cg
-ds
+nX
 aW
 ce
 aW
@@ -2898,13 +2893,13 @@ aW
 ae
 vA
 ae
-NH
+wO
 aW
 aW
 am
 BF
 an
-dj
+MQ
 ae
 ac
 ac
