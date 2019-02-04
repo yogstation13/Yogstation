@@ -47,9 +47,13 @@
 		chambered.forceMove(src)
 
 /obj/item/gun/ballistic/can_shoot()
+<<<<<<< HEAD
 	if(!magazine || !magazine.ammo_count(FALSE))
 		return 0
 	return 1
+=======
+	return chambered
+>>>>>>> ecf9e538ed... Gun (Hot)Fixes (#42666)
 
 /obj/item/gun/ballistic/attackby(obj/item/A, mob/user, params)
 	..()
