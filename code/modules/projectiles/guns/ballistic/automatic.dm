@@ -329,6 +329,7 @@
 /obj/item/gun/ballistic/automatic/l6_saw/attack_hand(mob/user)
 	if(loc != user)
 		..()
+<<<<<<< HEAD
 		return	//let them pick it up
 	if(!cover_open || (cover_open && !magazine))
 		..()
@@ -341,6 +342,13 @@
 		update_icon()
 		to_chat(user, "<span class='notice'>You remove the magazine from [src].</span>")
 		playsound(user, 'sound/weapons/magout.ogg', 60, 1)
+=======
+		return
+	if (!cover_open)
+		to_chat(user, "<span class='warning'>[src]'s cover is closed! Open it before trying to remove the magazine!</span>")
+		return
+	..()
+>>>>>>> ecf9e538ed... Gun (Hot)Fixes (#42666)
 
 /obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
 	if(!cover_open && istype(A, mag_type))
