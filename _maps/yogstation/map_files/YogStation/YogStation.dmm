@@ -53954,6 +53954,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"mea" = (
+/obj/structure/spirit_board,
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "mfN" = (
 /obj/machinery/door/window/brigdoor/westleft{
 	req_access_txt = "61"
@@ -105233,7 +105237,7 @@ aGU
 aIC
 aJU
 aSj
-aMX
+mea
 aFw
 aCR
 aCR
