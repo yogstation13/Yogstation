@@ -535,12 +535,16 @@
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
 	M.adjustOxyLoss(-12*REM, 0)
+<<<<<<< HEAD
 	// yogs start
 	M.silent = max(M.silent, 5)
 	if(prob(33))
 		M.adjustBruteLoss(-0.5*REM, 0)
 		M.adjustFireLoss(-0.5*REM, 0)
 	// yogs end
+=======
+	M.adjustToxLoss(0.3*REM, 0)
+>>>>>>> 9b1ff3f4c3... Rebalances perfluorodecalin (#42528)
 	..()
 	return TRUE
 
