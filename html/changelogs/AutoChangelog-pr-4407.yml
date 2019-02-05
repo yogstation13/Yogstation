@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "You can now swap slime person bodies by alt-clicking on the spare body if it is within view."
