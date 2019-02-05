@@ -1,0 +1,4 @@
+author: "monster860"
+delete-after: true 
+changes: 
+  - bugfix: "you no longer get scientific notation when view amount of metal in protolathe"

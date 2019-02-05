@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "some syndicate operatives simple mobs no longer have an invisible shield"

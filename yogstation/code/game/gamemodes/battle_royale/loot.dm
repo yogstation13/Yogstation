@@ -27,7 +27,7 @@
 					new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src)
 					return
 				if(6)
-					new /obj/item/gun/ballistic/revolver/doublebarrel/improvised(src)
+					new /obj/item/gun/ballistic/shotgun/doublebarrel/improvised(src)
 					return
 		else if(prob(30))
 			var/num = rand(1,8)
@@ -45,7 +45,7 @@
 					new /obj/item/melee/transforming/energy/sword(src)
 					return
 				if(5)
-					new /obj/item/gun/ballistic/revolver/doublebarrel(src)
+					new /obj/item/gun/ballistic/shotgun/doublebarrel(src)
 					return
 				if(6)
 					new /obj/item/gun/energy/laser/retro/old(src)
@@ -125,7 +125,7 @@
 					new /obj/item/gun/ballistic/automatic/mini_uzi(src)
 					return
 				if(4)
-					new /obj/item/gun/ballistic/automatic/shotgun/bulldog/unrestricted(src)
+					new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src)
 					return
 				if(5)
 					new /obj/item/gun/ballistic/automatic/tommygun(src)
