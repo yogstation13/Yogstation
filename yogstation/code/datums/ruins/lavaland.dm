@@ -130,16 +130,16 @@
 		has crashed, waking the prisoners from their cryostasis, and setting \
 		them loose on the wastes. If they live long enough, that is."
 	suffix = "lavaland_surface_prisoner_crash.dmm"
-	cost = 20
+	cost = 15
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/yogstation/abductorterrorship
-	name = "Abductor Terror Ship"
-	id = "abductorterrorship"
-	description = "Abductors are not a rare sight in remote and sparsely populated regions of the galaxy, however no being has managed to survive an encounter with a terrorship, but who ever thought a primitive spear could be so robust?"
-	suffix = "lavaland_surface_abductorterrorship.dmm"
+/datum/map_template/ruin/lavaland/yogstation/cosmicashwalkerpod
+	name = "Cosmic Ashwalker Pod"
+	id = "cosmicashwalkerpod"
+	description = "A escape pod that branched off from a crashing abductor terror ship. The fate of the main vessel is unknown but most of the crew should of escaped. Although maybe containing your experiments in escape pod capsules was a bad idea in hindsight..."
+	suffix = "lavaland_surface_cosmicashwalkerpod.dmm"
 	allow_duplicates = FALSE
-	cost = 20
+	cost = 15
 
 /datum/map_template/ruin/lavaland/yogstation/medical
 	name = "Orion Medical Outpost"
