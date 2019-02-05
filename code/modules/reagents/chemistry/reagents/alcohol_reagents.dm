@@ -1344,11 +1344,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return (pick(TRAIT_PARALYSIS_L_ARM,TRAIT_PARALYSIS_R_ARM,TRAIT_PARALYSIS_R_LEG,TRAIT_PARALYSIS_L_LEG))
 
 /datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/carbon/M)
-<<<<<<< HEAD
-	//M.Paralyze(60, 1, 0) // yogs - removed for balance
-=======
 	M.set_drugginess(50)
->>>>>>> 3e99cc4119... [READY] reworked neurotoxin (#42507)
 	M.dizziness +=2
 	M.adjustBrainLoss(1*REM, 150)
 	if(prob(20))
