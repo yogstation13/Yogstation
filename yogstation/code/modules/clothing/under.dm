@@ -29,3 +29,11 @@
 	item_color = "ronald_s"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/soviet_dress_uniform
+	name = "soviet dress uniform"
+	desc = "Seize the means of production in style!"
+	icon_state = "soviet_dress_uniform"
+	item_state = "soviet_dress_uniform"
+	item_color = "soviet_dress_uniform"
+	can_adjust = FALSE
