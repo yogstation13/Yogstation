@@ -490,6 +490,7 @@
 	return ..()
 
 /obj/machinery/nuclearbomb/beer/actually_explode()
+	SSticker.roundend_check_paused = FALSE // yogs - TG is a bag of dicks.
 	var/turf/bomb_location = get_turf(src)
 	if(!bomb_location)
 		disarm()
