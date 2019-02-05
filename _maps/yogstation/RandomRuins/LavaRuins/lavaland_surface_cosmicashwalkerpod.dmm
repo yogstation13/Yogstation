@@ -7,7 +7,7 @@
 /area/ruin/powered)
 "c" = (
 /obj/machinery/computer/camera_advanced/abductor{
-	desc = "Used to fly the abductor emergency pods. It is too complex for you to use anything but the inbuilt cameras";
+	desc = "Used to fly the abductor emergency pods. It is too complex for you to use anything it seems";
 	name = "Abductor Pod Control Console"
 	},
 /turf/open/floor/plating/abductor,
@@ -20,6 +20,7 @@
 /turf/open/floor/plating/abductor,
 /area/ruin/powered)
 "f" = (
+/obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/abductor,
 /turf/open/floor/plating/abductor,
 /area/ruin/powered)
