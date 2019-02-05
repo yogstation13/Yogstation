@@ -287,6 +287,10 @@
 		switch(body.stat)
 			if(CONSCIOUS)
 				stat = "Conscious"
+			//yogs start
+			if(SOFT_CRIT)
+				stat = "Barely Conscious"
+			//yogs end
 			if(UNCONSCIOUS)
 				stat = "Unconscious"
 			if(DEAD)
@@ -335,7 +339,7 @@
 			var/mob/living/carbon/human/selected = locate(params["ref"]) in SS.bodies
 			if(!can_swap(selected))
 				return
-			SStgui.close_uis(src)
+			// SStgui.close_uis(src) // yogs - don't.
 			swap_to_dupe(H.mind, selected)
 
 /datum/action/innate/swap_body/proc/can_swap(mob/living/carbon/human/dupe)
