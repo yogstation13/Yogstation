@@ -10,4 +10,4 @@
 		to_chat(user, "<span class='notice'>You raise your hand for a high-five.</span>")
 	else
 		qdel(N)
-		to_chat(user, "<span class='warning'>You don't have any free hands high-five with.</span>")
+		to_chat(user, "<span class='warning'>You don't have any free hands to high-five with.</span>")
