@@ -23,7 +23,10 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	var/product_path = null
 	var/amount = 0
 	var/max_amount = 0
+<<<<<<< HEAD
 	//var/display_color = "blue" //yogs - use icons instead of colours
+=======
+>>>>>>> 0ceeee4d0c... Port vendor icon display instead of color from Yogs (#42653)
 	var/custom_price
 	var/custom_premium_price
 
@@ -169,6 +172,15 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				if (dump_amount >= 16)
 					return
 
+/obj/machinery/vending/proc/GetIconForProduct(datum/data/vending_product/P)
+	if(GLOB.vending_cache[P.product_path])
+		return GLOB.vending_cache[P.product_path]
+
+	var/product = new P.product_path()
+	GLOB.vending_cache[P.product_path] = icon2base64(getFlatIcon(product, no_anim = TRUE))
+	qdel(product)
+	return GLOB.vending_cache[P.product_path]
+
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
@@ -182,7 +194,10 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
+<<<<<<< HEAD
 		//R.display_color = pick("#ff8080","#80ff80","#8080ff") //yogs - icon instead of colour
+=======
+>>>>>>> 0ceeee4d0c... Port vendor icon display instead of color from Yogs (#42653)
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
 		recordlist += R
@@ -338,7 +353,11 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		var/list/display_records = product_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
+<<<<<<< HEAD
 		dat += "<table>" //yogs start - icon instead of colour
+=======
+		dat += "<table>"
+>>>>>>> 0ceeee4d0c... Port vendor icon display instead of color from Yogs (#42653)
 		for (var/datum/data/vending_product/R in display_records)
 			var/price_listed = "$[default_price]"
 			var/is_hidden = hidden_records.Find(R)
@@ -352,6 +371,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
 			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
 			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
+<<<<<<< HEAD
 			if(R.amount <= 0)
 				dat += "<td><span class='linkOff'>Sold out</span></td>"
 			else if ((C && C.registered_account && onstation) || (!onstation && isliving(user)))
@@ -360,6 +380,14 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				dat += "<td><span class='linkOff'>Not Available</span></td>"
 			dat += "</tr>"
 		dat += "</table>" //yogs end - icon instead of colour
+=======
+			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
+				dat += "<td align='right'><b>[R.amount]&nbsp;</b><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
+			else
+				dat += "<td align='right'><span class='linkOff'>Not&nbsp;Available</span></td>"
+			dat += "</tr>"
+		dat += "</table>"
+>>>>>>> 0ceeee4d0c... Port vendor icon display instead of color from Yogs (#42653)
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
