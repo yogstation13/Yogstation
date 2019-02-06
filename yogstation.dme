@@ -13,7 +13,7 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "_maps\_basemap.dm"
+#include "_maps\yogstation.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -3039,8 +3039,8 @@
 #include "yogstation\code\modules\mob\living\carbon\human\life.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\halloween.dm"
-#include "yogstation\code\modules\mob\living\carbon\human\species_types\lizard.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\jellypeople.dm"
+#include "yogstation\code\modules\mob\living\carbon\human\species_types\lizard.dm"
 #include "yogstation\code\modules\mob\living\carbon\human\species_types\plantpeople.dm"
 #include "yogstation\code\modules\mob\living\silicon\silicon.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\ai.dm"
