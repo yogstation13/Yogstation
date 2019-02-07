@@ -46,12 +46,12 @@
 		message = "Unexpected end of file."
 
 	ExpectedToken
-		message="Expected: '"
+		message="Expected: "
 		New(id, token/T)
-			if(T && T.line) message="[T.line]: [message]"
-			message+="[id]'. "
-			if(T)message+="Found '[T.value]'."
-
+			if(T)
+				message = "[T.line ? T.line : "???"]: [message]'[id]'. Found '[T.value]'."
+			else
+				message = "???: [message]'[id]'. Token did not exist!"
 
 	UnterminatedComment
 		message="Unterminated multi-line comment statement: expected */"
@@ -64,7 +64,7 @@
 		message = "You cannot use a function inside a parameter."
 
 		New(token/t)
-			var/line = "?"
+			var/line = "???"
 			if(t)
 				line = t.line
 			message = "[line]: [message]"
@@ -142,4 +142,5 @@
 
 	MaxCPU
 		name="MaxComputationalUse"
-		message="Maximum amount of computational cycles reached (>= 1000)."
+		New(maxcycles)
+			message="Maximum amount of computational cycles reached (>= [maxcycles])."

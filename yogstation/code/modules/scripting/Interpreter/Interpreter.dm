@@ -140,7 +140,7 @@
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/runtimeError/MaxCPU())
+						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS))
 						AlertAdmins()
 						break
 
