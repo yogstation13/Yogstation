@@ -1,0 +1,629 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"b" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"c" = (
+/obj/item/shard,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"d" = (
+/obj/item/shard{
+	icon_state = "medium"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"g" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"h" = (
+/turf/closed/indestructible/opshuttle,
+/area/ruin/unpowered)
+"j" = (
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/flashlight/lantern,
+/obj/structure/closet/crate/engineering{
+	name = "Mining Supplies"
+	},
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"k" = (
+/obj/effect/mob_spawn/human/prisoner_transport,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"m" = (
+/obj/structure/closet/wardrobe/red{
+	desc = "The Pilot won't be needing any of this....";
+	name = "Pilots Belongings"
+	},
+/obj/item/ammo_box/c45,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/toy/figure/secofficer,
+/obj/item/tank/internals/oxygen/red,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered)
+"n" = (
+/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood,
+/obj/item/flashlight/seclite,
+/obj/effect/light_emitter,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"o" = (
+/obj/item/gun/energy/pulse/pistol/m1911,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"p" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered)
+"q" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"s" = (
+/obj/machinery/door/airlock/shuttle,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered)
+"t" = (
+/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/item/gun/energy/pulse/pistol/m1911{
+	desc = "A classic .45 handgun with a small magazine capacity, this one has a name engraved on it that reads 'Samantha'";
+	name = "Samantha"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/unpowered)
+"u" = (
+/obj/structure/closet/crate/internals{
+	desc = "An emergency supply crate with the NT logo attached to it, it has a small reading below which seems to signify that you probably shouldn't open this incase of an emergency. It also says only for security personell"
+	},
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/ointment,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"v" = (
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+"w" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"z" = (
+/obj/effect/mob_spawn/human/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"A" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/flashlight/seclite,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"B" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"D" = (
+/obj/item/shard,
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors/explored)
+"E" = (
+/obj/item/shard,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"G" = (
+/obj/item/gun/energy/pulse/pistol/m1911,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"I" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"K" = (
+/turf/closed/indestructible/opshuttle,
+/area/lavaland/surface/outdoors/explored)
+"L" = (
+/turf/closed/indestructible/opshuttle,
+/area/ruin/powered)
+"N" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"O" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"R" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"V" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors/explored)
+"Y" = (
+/obj/item/shard{
+	icon_state = "small"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"Z" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+a
+b
+b
+b
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+b
+"}
+(3,1,1) = {"
+b
+b
+c
+b
+b
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+b
+b
+b
+b
+b
+b
+a
+b
+b
+g
+L
+g
+L
+g
+b
+b
+b
+Y
+b
+b
+"}
+(5,1,1) = {"
+b
+b
+a
+a
+a
+b
+b
+I
+I
+L
+L
+L
+L
+L
+I
+I
+I
+G
+b
+b
+"}
+(6,1,1) = {"
+b
+b
+a
+a
+a
+b
+b
+K
+N
+L
+j
+n
+u
+L
+N
+K
+I
+b
+z
+b
+"}
+(7,1,1) = {"
+b
+b
+b
+b
+b
+b
+b
+I
+K
+L
+k
+o
+k
+L
+K
+I
+I
+w
+A
+b
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+O
+O
+L
+k
+v
+k
+L
+I
+I
+B
+w
+b
+b
+"}
+(9,1,1) = {"
+b
+b
+b
+d
+b
+b
+b
+O
+O
+L
+k
+Z
+k
+L
+I
+I
+B
+w
+b
+b
+"}
+(10,1,1) = {"
+b
+b
+b
+b
+b
+b
+b
+O
+O
+L
+k
+Z
+k
+L
+I
+I
+I
+b
+a
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+O
+O
+L
+L
+q
+L
+L
+I
+I
+I
+b
+a
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+I
+I
+K
+V
+V
+V
+R
+I
+I
+I
+b
+a
+a
+"}
+(13,1,1) = {"
+b
+b
+b
+a
+b
+b
+b
+O
+I
+V
+V
+D
+V
+R
+I
+I
+I
+E
+a
+a
+"}
+(14,1,1) = {"
+b
+a
+a
+b
+b
+a
+a
+O
+O
+V
+V
+V
+V
+V
+I
+I
+I
+b
+a
+a
+"}
+(15,1,1) = {"
+b
+b
+b
+a
+a
+a
+a
+a
+a
+h
+h
+s
+K
+K
+I
+I
+I
+b
+a
+a
+"}
+(16,1,1) = {"
+b
+b
+b
+a
+a
+a
+a
+a
+a
+h
+p
+t
+O
+K
+I
+b
+b
+b
+a
+a
+"}
+(17,1,1) = {"
+b
+b
+b
+a
+a
+a
+a
+a
+a
+h
+m
+p
+O
+K
+b
+b
+b
+b
+a
+a
+"}
+(18,1,1) = {"
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+K
+a
+a
+b
+a
+a
+a
+a
+"}
+(19,1,1) = {"
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+a
+a
+a
+"}
+(20,1,1) = {"
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
