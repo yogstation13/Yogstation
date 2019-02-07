@@ -388,13 +388,13 @@
 /area/ruin/powered)
 "aW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "cashiershutters";
-	name = "Cashier Shutters"
-	},
 /obj/machinery/paystand/register{
 	icon_state = "register";
 	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "cashiershutters";
+	name = "Cash Register Blast Door"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
@@ -450,6 +450,8 @@
 /obj/structure/table,
 /obj/item/storage/box/pillbottles,
 /obj/item/clothing/neck/stethoscope,
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/item/borg/sight/meson,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "bc" = (
@@ -722,28 +724,34 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"iJ" = (
-/obj/machinery/computer/arcade/orion_trail,
+"fS" = (
 /obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
+	dir = 4;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"li" = (
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
+"hd" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"im" = (
+/obj/machinery/door/airlock/hatch{
+	req_access = null;
+	req_access_txt = "36"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"mC" = (
+"iB" = (
 /obj/machinery/button{
 	id = "cashiershutters";
 	name = "Cashier Lockdown";
@@ -751,11 +759,7 @@
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"pl" = (
-/obj/structure/sign/poster/official/foam_force_ad,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"tV" = (
+"jT" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
@@ -766,11 +770,63 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"wr" = (
+"ok" = (
+/obj/structure/sign/poster/contraband/space_cola,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"oT" = (
+/obj/structure/sign/poster/contraband/smoke,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"yH" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"yS" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"CA" = (
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"FJ" = (
+/obj/machinery/computer/arcade/orion_trail,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Ja" = (
+/obj/structure/sign/poster/contraband/robust_softdrinks,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Nw" = (
 /obj/machinery/light_switch,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"zV" = (
+"OS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "cashiershutters";
@@ -781,65 +837,11 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Bn" = (
-/obj/structure/sign/poster/contraband/robust_softdrinks,
+"Qk" = (
+/obj/structure/sign/poster/official/foam_force_ad,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"Gj" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Lp" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Qh" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Qq" = (
-/obj/structure/sign/poster/contraband/space_cola,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"Xt" = (
-/obj/structure/sign/poster/contraband/smoke,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"XK" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"YK" = (
-/obj/machinery/door/airlock/hatch{
-	req_access = null;
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Zj" = (
+"TL" = (
 /obj/machinery/button{
 	id = "gasstation";
 	name = "Gas Station Lockdown";
@@ -958,7 +960,7 @@ ab
 af
 aj
 ar
-Qh
+yH
 aD
 aj
 aN
@@ -1013,9 +1015,9 @@ aj
 aA
 aj
 aj
-Zj
-YK
-mC
+TL
+im
+iB
 aj
 aj
 aj
@@ -1039,12 +1041,12 @@ ao
 ar
 aj
 aG
-tV
+jT
 ar
-Lp
+yS
 bi
 ar
-wr
+Nw
 af
 ac
 ac
@@ -1068,7 +1070,7 @@ aH
 ar
 ar
 ar
-zV
+OS
 ar
 aj
 bu
@@ -1094,9 +1096,9 @@ aI
 aP
 aW
 bd
-zV
-Gj
-Bn
+OS
+hd
+Ja
 af
 ac
 bB
@@ -1112,10 +1114,10 @@ aa
 ab
 af
 af
-Xt
-iJ
+oT
+FJ
 ar
-Lp
+yS
 ar
 ar
 ar
@@ -1164,8 +1166,8 @@ aa
 ac
 af
 af
-Qq
-li
+ok
+CA
 ar
 ar
 ar
@@ -1173,8 +1175,8 @@ ar
 ar
 ar
 ar
-Gj
-pl
+hd
+Qk
 af
 ac
 bz
@@ -1277,7 +1279,7 @@ ar
 ar
 ar
 ar
-Gj
+hd
 aj
 bv
 ac
@@ -1354,7 +1356,7 @@ ar
 ar
 ar
 ar
-XK
+fS
 bq
 aj
 af

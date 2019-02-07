@@ -153,7 +153,6 @@
 "az" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -189,7 +188,6 @@
 /area/ruin/unpowered)
 "aG" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
 	icon_state = "tracks";
 	dir = 5
 	},
@@ -225,7 +223,6 @@
 /area/ruin/unpowered)
 "aL" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -233,7 +230,6 @@
 /area/ruin/unpowered)
 "aM" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -341,7 +337,6 @@
 /area/ruin/unpowered)
 "be" = (
 /obj/effect/decal/cleanable/cobweb{
-	tag = "icon-cobweb2";
 	icon_state = "cobweb2"
 	},
 /turf/open/floor/engine,
@@ -354,7 +349,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -377,7 +371,6 @@
 /area/ruin/unpowered)
 "bk" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -390,7 +383,6 @@
 /area/ruin/unpowered)
 "bm" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -402,7 +394,6 @@
 /area/ruin/unpowered)
 "bo" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -414,7 +405,6 @@
 /area/ruin/unpowered)
 "bp" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTHEAST)";
 	icon_state = "tracks";
 	dir = 5
 	},
@@ -435,7 +425,6 @@
 /area/ruin/unpowered)
 "bs" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHWEST)";
 	icon_state = "tracks";
 	dir = 10
 	},
@@ -471,7 +460,6 @@
 /area/ruin/unpowered)
 "bx" = (
 /obj/structure/sign/directions/evac{
-	tag = "icon-direction_evac (NORTH)";
 	icon_state = "direction_evac";
 	dir = 1
 	},
@@ -538,8 +526,7 @@
 	dir = 1;
 	icon_state = "direction_sec";
 	pixel_x = 32;
-	pixel_y = 40;
-	tag = "icon-direction_sec (NORTH)"
+	pixel_y = 40
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -575,7 +562,6 @@
 /area/ruin/unpowered)
 "bP" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -585,7 +571,6 @@
 /area/ruin/unpowered)
 "bQ" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -593,7 +578,6 @@
 /area/ruin/unpowered)
 "bR" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -606,7 +590,6 @@
 "bT" = (
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -616,7 +599,6 @@
 /area/ruin/unpowered)
 "bU" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -641,7 +623,6 @@
 /area/ruin/unpowered)
 "bY" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -675,7 +656,6 @@
 	icon_state = "direction_med";
 	pixel_x = -32;
 	pixel_y = -24;
-	tag = "icon-direction_med (EAST)"
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered)
@@ -890,7 +870,6 @@
 /area/ruin/unpowered)
 "cR" = (
 /obj/structure/sign/directions/evac{
-	tag = "icon-direction_evac (WEST)";
 	icon_state = "direction_evac";
 	dir = 8
 	},
@@ -957,7 +936,6 @@
 /area/ruin/unpowered)
 "cZ" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -1077,7 +1055,6 @@
 	name = "dust"
 	},
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -1092,7 +1069,6 @@
 	name = "dust"
 	},
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (WEST)";
 	icon_state = "tracks";
 	dir = 8
 	},
@@ -1103,7 +1079,6 @@
 /area/ruin/unpowered)
 "do" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	tag = "icon-tracks (SOUTHEAST)";
 	icon_state = "tracks";
 	dir = 6
 	},

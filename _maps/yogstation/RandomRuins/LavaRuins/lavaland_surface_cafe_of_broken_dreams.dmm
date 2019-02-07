@@ -26,7 +26,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/lavaland/surface/outdoors)
@@ -40,7 +39,6 @@
 "aj" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast,
 /turf/open/floor/wood{
-	tag = "icon-wood-broken6";
 	icon_state = "wood-broken6"
 	},
 /area/ruin/powered)
@@ -75,13 +73,11 @@
 "ap" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/ruin/powered)
 "aq" = (
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/ruin/powered)
@@ -103,7 +99,6 @@
 /area/ruin/powered)
 "au" = (
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/lavaland/surface/outdoors)
@@ -139,7 +134,6 @@
 "aA" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/lavaland/surface/outdoors)
@@ -183,7 +177,6 @@
 "aI" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/ruin/powered)
@@ -250,7 +243,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
-	tag = "icon-platingdmg3";
 	icon_state = "platingdmg3"
 	},
 /area/ruin/powered)
@@ -336,13 +328,11 @@
 /area/ruin/powered)
 "bj" = (
 /turf/open/floor/wood{
-	tag = "icon-wood-broken6";
 	icon_state = "wood-broken6"
 	},
 /area/ruin/powered)
 "bk" = (
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
 	icon_state = "wood-broken4"
 	},
 /area/ruin/powered)
@@ -460,7 +450,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood{
-	tag = "icon-wood-broken4";
 	icon_state = "wood-broken4"
 	},
 /area/ruin/powered)

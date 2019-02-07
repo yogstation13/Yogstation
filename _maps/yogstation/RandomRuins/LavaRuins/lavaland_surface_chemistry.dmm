@@ -21,7 +21,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (EAST)";
 	icon_state = "twindow";
 	dir = 4
 	},
