@@ -1,142 +1,3310 @@
-"aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
-"ac" = (/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"ad" = (/obj/effect/turf_decal/sand,/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"ae" = (/obj/item/reagent_containers/syringe/stimulants,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"af" = (/turf/closed/wall/r_wall/rust,/area/lavaland/surface/outdoors)
-"ag" = (/obj/structure/grille,/obj/structure/window/reinforced/fulltile,/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/lavaland/surface/outdoors)
-"ah" = (/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
-"ai" = (/turf/open/floor/wood,/area/ruin/powered)
-"aj" = (/mob/living/simple_animal/hostile/asteroid/goliath/beast,/turf/open/floor/wood{tag = "icon-wood-broken6"; icon_state = "wood-broken6"},/area/ruin/powered)
-"ak" = (/obj/item/crowbar,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"al" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"am" = (/obj/structure/grille/broken,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"an" = (/obj/vehicle/ridden/atv,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"ao" = (/obj/structure/table/wood/bar,/obj/item/toy/cards/deck/cas,/turf/open/floor/wood,/area/ruin/powered)
-"ap" = (/obj/structure/girder/reinforced,/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/ruin/powered)
-"aq" = (/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/ruin/powered)
-"ar" = (/obj/structure/table/wood/bar,/obj/item/toy/cards/deck/cas/black,/turf/open/floor/wood,/area/ruin/powered)
-"as" = (/obj/machinery/light/small{dir = 8},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/powered)
-"at" = (/mob/living/simple_animal/hostile/asteroid/goliath/beast,/turf/open/floor/wood,/area/ruin/powered)
-"au" = (/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/lavaland/surface/outdoors)
-"av" = (/obj/structure/table/wood,/obj/item/reagent_containers/glass/bottle/potass_iodide{desc = "Fixes your radiation problems. Doesn't come with a vault."; name = "rad-away"},/turf/open/floor/wood,/area/ruin/powered)
-"aw" = (/obj/structure/table/wood/bar,/turf/open/floor/wood,/area/ruin/powered)
-"ax" = (/obj/structure/table/wood/bar,/obj/item/reagent_containers/syringe/stimulants,/turf/open/floor/wood,/area/ruin/powered)
-"ay" = (/obj/machinery/door/airlock,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood,/area/ruin/powered)
-"az" = (/obj/machinery/light/small{dir = 4},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/powered)
-"aA" = (/obj/structure/girder/reinforced,/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/lavaland/surface/outdoors)
-"aB" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/wood,/area/ruin/powered)
-"aC" = (/obj/machinery/light/small{dir = 1},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/powered)
-"aD" = (/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/wood,/area/ruin/powered)
-"aE" = (/obj/structure/bookcase/random,/turf/open/floor/wood,/area/ruin/powered)
-"aF" = (/obj/item/reagent_containers/glass/bottle/potass_iodide{desc = "War. War never changes. But this can take away your radiation problems!"; name = "rad-away"},/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
-"aG" = (/obj/structure/closet/cardboard,/turf/open/floor/wood,/area/ruin/powered)
-"aH" = (/obj/machinery/light/small,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/powered)
-"aI" = (/obj/structure/bookcase/random,/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/ruin/powered)
-"aJ" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/suppressor,/turf/open/floor/wood,/area/ruin/powered)
-"aK" = (/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,/turf/open/floor/wood,/area/ruin/powered)
-"aL" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
-"aM" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/toy/plush/teddybear,/turf/open/floor/wood,/area/ruin/powered)
-"aN" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/reagent_containers/syringe/stimulants,/obj/item/clothing/under/scratch,/turf/open/floor/wood,/area/ruin/powered)
-"aO" = (/obj/item/clothing/suit/jacket/leather,/obj/item/switchblade,/turf/open/floor/wood,/area/ruin/powered)
-"aP" = (/obj/machinery/light/small,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered)
-"aQ" = (/obj/item/reagent_containers/glass/bottle/potass_iodide,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"aR" = (/obj/machinery/light/small{dir = 8},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"aS" = (/obj/structure/dresser,/turf/open/floor/wood,/area/ruin/powered)
-"aT" = (/obj/structure/table/wood/bar,/obj/item/pda/chameleon,/turf/open/floor/wood,/area/ruin/powered)
-"aU" = (/obj/structure/grille,/obj/structure/window/reinforced/fulltile,/turf/open/floor/plating{tag = "icon-platingdmg3"; icon_state = "platingdmg3"},/area/ruin/powered)
-"aV" = (/obj/structure/sink{desc = "Clean off your radiation."; dir = 8; icon_state = "sink"; pixel_x = -12; pixel_y = 2},/turf/open/floor/wood,/area/ruin/powered)
-"aW" = (/turf/closed/wall/r_wall/rust,/area/ruin/powered)
-"aX" = (/obj/item/wrench,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"aY" = (/obj/item/clothing/suit/jacket/leather,/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/wood,/area/ruin/powered)
-"aZ" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/switchblade,/turf/open/floor/wood,/area/ruin/powered)
-"ba" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/clothing/under/color/blue,/turf/open/floor/wood,/area/ruin/powered)
-"bb" = (/obj/machinery/computer/slot_machine,/turf/open/floor/wood,/area/ruin/powered)
-"bc" = (/obj/machinery/computer/slot_machine,/obj/machinery/light/small{dir = 1},/turf/open/floor/wood,/area/ruin/powered)
-"bd" = (/obj/structure/fans/tiny/invisible,/obj/machinery/door/airlock/wood/glass,/turf/open/floor/wood,/area/ruin/powered)
-"be" = (/obj/structure/chair/comfy/beige,/turf/open/floor/wood,/area/ruin/powered)
-"bf" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/wood,/area/ruin/powered)
-"bg" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/kitchen/knife/combat,/turf/open/floor/wood,/area/ruin/powered)
-"bh" = (/obj/structure/barricade/wooden{name = "wooden barricade (CLOSED)"},/turf/open/floor/wood,/area/ruin/powered)
-"bi" = (/obj/machinery/light{icon_state = "tube"; dir = 1},/turf/open/floor/wood,/area/ruin/powered)
-"bj" = (/turf/open/floor/wood{tag = "icon-wood-broken6"; icon_state = "wood-broken6"},/area/ruin/powered)
-"bk" = (/turf/open/floor/wood{tag = "icon-wood-broken4"; icon_state = "wood-broken4"},/area/ruin/powered)
-"bl" = (/obj/structure/table/wood,/turf/open/floor/wood,/area/ruin/powered)
-"bm" = (/obj/structure/chair/comfy/beige{dir = 8},/turf/open/floor/wood,/area/ruin/powered)
-"bn" = (/obj/structure/closet/secure_closet/bar{pixel_x = -3; pixel_y = -1; req_access_txt = "25"},/turf/open/floor/wood,/area/ruin/powered)
-"bo" = (/obj/structure/mineral_door/wood,/turf/open/floor/wood,/area/ruin/powered)
-"bp" = (/obj/structure/table/wood/poker,/obj/effect/holodeck_effect/cards,/turf/open/floor/wood,/area/ruin/powered)
-"bq" = (/obj/structure/table/wood/poker,/obj/item/toy/cards/cardhand,/turf/open/floor/wood,/area/ruin/powered)
-"br" = (/obj/machinery/light/small{dir = 4},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"bs" = (/obj/structure/ladder,/turf/open/floor/wood,/area/ruin/powered)
-"bt" = (/obj/structure/table/wood/poker,/turf/open/floor/wood,/area/ruin/powered)
-"bu" = (/obj/vehicle/ridden/scooter,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"bv" = (/obj/structure/chair/comfy/beige{dir = 4; icon_state = "comfychair"},/turf/open/floor/wood,/area/ruin/powered)
-"bw" = (/obj/structure/table/wood/bar,/obj/item/reagent_containers/food/drinks/beer,/turf/open/floor/wood,/area/ruin/powered)
-"bx" = (/obj/structure/barricade/wooden,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"by" = (/mob/living/simple_animal/pet/dog/corgi/Ian{atmos_requirements = list("min_oxy" = 4, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 3, "min_co2" = 0, "max_co2" = 7, "min_n2" = 0, "max_n2" = 1); desc = "It's the Lone Wonderer's beloved Corgmeat. Some say it's seen it all. The Colossus, the Ash Drakes, the Bubblegum, and even the legion. Somehow, it's escaped every encounter."; name = "Dillan"; real_name = "Corgmeat"},/turf/open/floor/wood,/area/ruin/powered)
-"bz" = (/obj/structure/chair/comfy/beige{dir = 1; icon_state = "comfychair"},/turf/open/floor/wood,/area/ruin/powered)
-"bA" = (/obj/structure/closet/crate/bin,/obj/item/reagent_containers/food/snacks/deadmouse,/obj/item/trash/can,/obj/item/trash/can,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/lavaland/surface/outdoors)
-"bB" = (/obj/machinery/light{icon_state = "tube"; dir = 8},/turf/open/floor/wood,/area/ruin/powered)
-"bC" = (/obj/structure/chair/comfy/brown{dir = 4},/obj/machinery/light{icon_state = "tube"; dir = 8},/turf/open/floor/wood,/area/ruin/powered)
-"bD" = (/obj/structure/table/wood,/obj/item/reagent_containers/glass/bottle/potass_iodide,/turf/open/floor/wood,/area/ruin/powered)
-"bE" = (/obj/machinery/light{icon_state = "tube"; dir = 4},/turf/open/floor/wood{tag = "icon-wood-broken4"; icon_state = "wood-broken4"},/area/ruin/powered)
-"bF" = (/obj/structure/table/wood,/obj/machinery/light{icon_state = "tube"; dir = 8},/turf/open/floor/wood,/area/ruin/powered)
-"bG" = (/obj/machinery/light,/turf/open/floor/wood,/area/ruin/powered)
-"bI" = (/obj/structure/table/wood/bar,/obj/item/reagent_containers/food/snacks/cookie,/obj/item/reagent_containers/food/snacks/cookie,/obj/item/reagent_containers/food/snacks/cookie,/turf/open/floor/wood,/area/ruin/powered)
-"bM" = (/obj/structure/chair/comfy/brown,/turf/open/floor/wood,/area/ruin/powered)
-"bN" = (/obj/structure/chair/comfy/brown{dir = 4},/turf/open/floor/wood,/area/ruin/powered)
-"bO" = (/obj/structure/table/wood/bar,/obj/item/cookiesynth,/turf/open/floor/wood,/area/ruin/powered)
-"bP" = (/obj/structure/reagent_dispensers/beerkeg,/turf/open/floor/wood,/area/ruin/powered)
-"bU" = (/obj/machinery/light/small,/turf/open/floor/wood,/area/ruin/powered)
-"bW" = (/mob/living/simple_animal/hostile/asteroid/marrowweaver,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
-"LG" = (/obj/structure/sign/barsign{icon_state = "maltesefalcon"},/turf/closed/wall/r_wall/rust,/area/ruin/powered)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ac" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"ad" = (
+/obj/effect/turf_decal/sand,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"ae" = (
+/obj/item/reagent_containers/syringe/stimulants,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"af" = (
+/turf/closed/wall/r_wall/rust,
+/area/lavaland/surface/outdoors)
+"ag" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"ah" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ai" = (
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aj" = (
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+/turf/open/floor/wood{
+	tag = "icon-wood-broken6";
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"ak" = (
+/obj/item/crowbar,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"al" = (
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"am" = (
+/obj/structure/grille/broken,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"an" = (
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"ao" = (
+/obj/structure/table/wood/bar,
+/obj/item/toy/cards/deck/cas,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"ap" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"aq" = (
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"ar" = (
+/obj/structure/table/wood/bar,
+/obj/item/toy/cards/deck/cas/black,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"as" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"at" = (
+/mob/living/simple_animal/hostile/asteroid/goliath/beast,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"au" = (
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"av" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/potass_iodide{
+	desc = "Fixes your radiation problems. Doesn't come with a vault.";
+	name = "rad-away"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aw" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"ax" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/syringe/stimulants,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"ay" = (
+/obj/machinery/door/airlock,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"az" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"aA" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
+"aB" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aC" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"aD" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aE" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aF" = (
+/obj/item/reagent_containers/glass/bottle/potass_iodide{
+	desc = "War. War never changes. But this can take away your radiation problems!";
+	name = "rad-away"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"aG" = (
+/obj/structure/closet/cardboard,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aH" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"aI" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"aJ" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/suppressor,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aK" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aL" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"aM" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/toy/plush/teddybear,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aN" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/reagent_containers/syringe/stimulants,
+/obj/item/clothing/under/scratch,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aO" = (
+/obj/item/clothing/suit/jacket/leather,
+/obj/item/switchblade,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aP" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"aQ" = (
+/obj/item/reagent_containers/glass/bottle/potass_iodide,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"aR" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"aS" = (
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aT" = (
+/obj/structure/table/wood/bar,
+/obj/item/pda/chameleon,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating{
+	tag = "icon-platingdmg3";
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"aV" = (
+/obj/structure/sink{
+	desc = "Clean off your radiation.";
+	dir = 8;
+	icon_state = "sink";
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aW" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/powered)
+"aX" = (
+/obj/item/wrench,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"aY" = (
+/obj/item/clothing/suit/jacket/leather,
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"aZ" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/switchblade,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"ba" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/clothing/under/color/blue,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bb" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bc" = (
+/obj/machinery/computer/slot_machine,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bd" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"be" = (
+/obj/structure/chair/comfy/beige,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bf" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bg" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bh" = (
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bi" = (
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bj" = (
+/turf/open/floor/wood{
+	tag = "icon-wood-broken6";
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"bk" = (
+/turf/open/floor/wood{
+	tag = "icon-wood-broken4";
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered)
+"bl" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bm" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bn" = (
+/obj/structure/closet/secure_closet/bar{
+	pixel_x = -3;
+	pixel_y = -1;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bo" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bp" = (
+/obj/structure/table/wood/poker,
+/obj/effect/holodeck_effect/cards,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bq" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"br" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"bs" = (
+/obj/structure/ladder,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bt" = (
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bu" = (
+/obj/vehicle/ridden/scooter,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"bv" = (
+/obj/structure/chair/comfy/beige{
+	dir = 4;
+	icon_state = "comfychair"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bw" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bx" = (
+/obj/structure/barricade/wooden,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"by" = (
+/mob/living/simple_animal/pet/dog/corgi/Ian{
+	atmos_requirements = list("min_oxy" = 4, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 3, "min_co2" = 0, "max_co2" = 7, "min_n2" = 0, "max_n2" = 1);
+	desc = "It's the Lone Wonderer's beloved Corgmeat. Some say it's seen it all. The Colossus, the Ash Drakes, the Bubblegum, and even the legion. Somehow, it's escaped every encounter.";
+	name = "Dillan";
+	real_name = "Corgmeat"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bz" = (
+/obj/structure/chair/comfy/beige{
+	dir = 1;
+	icon_state = "comfychair"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bA" = (
+/obj/structure/closet/crate/bin,
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/trash/can,
+/obj/item/trash/can,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface/outdoors)
+"bC" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bD" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/potass_iodide,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bE" = (
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 4
+	},
+/turf/open/floor/wood{
+	tag = "icon-wood-broken4";
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered)
+"bI" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/cookie,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bM" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bN" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bO" = (
+/obj/structure/table/wood/bar,
+/obj/item/cookiesynth,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bP" = (
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bR" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bU" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/powered)
+"bW" = (
+/mob/living/simple_animal/hostile/asteroid/marrowweaver,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"zW" = (
+/obj/machinery/light{
+	icon_state = "tube";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"FQ" = (
+/obj/structure/sign/barsign{
+	icon_state = "maltesefalcon"
+	},
+/turf/closed/wall/r_wall/rust,
+/area/ruin/powered)
+"Vo" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/powered)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaabacacacababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaabacacacadabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaabababababababababacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaababababababababababacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaabababababababababababacacacababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaabacacacacacacacabababababacababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaababacacacacacacacababababababacacababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaabababababababababababababababacacacaeababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaababababababababababababababacaWaWaWaWaWaWaWaWaUaWaWababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaabababababababababababahabababacaWaiaiaiaiajbebMaiaiaWakababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaababababacacacacacacabababababacacaUaiaoaiaiaiaiaibjaiaWalabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaabababacacacacacacacabababababacacaWaiarbkaiaiaiaiaiaiaWamabauababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaababacacacacabababanacacababababacacaWawaxaiaibeaiblbmaiaWacacaAabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaababacacacacacacacacacacacabababacacaWbNaiaibvblaiaiaiaiaWacacafabababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaabababacacaWaWapaqapaWaWasacabababacacaUaiaibjaiaiaiataiaiaWacacagabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaababababacaWaiaibkaiaiaWacacabababacacaWaiataiaiaiaibkaiaiaWacacafaFababababababababaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaababababababapaiblblavaiayacacabababacazaWaWaUaWaWayaWaWaUaWaWacacafafagafafafagafaAauababaaaaaaaaaaaaaaaaaaaaaa
-aaaaababababababaqbkaiaiaiaBaWacacabababacacababacacacacaCacacacacababacacacabacacacaLabababababaaaaaaaaaaaaaaaaaaaa
-aaabababababababapaiaiaiaiaiaUacacabababacabababacacacacacacacacababababacababacacacacacacacababababaaaaaaaaaaaaaaaa
-aaabababababababaWaiaiaiaiaDaWacacababababababababababababababababababababababababababababababababababaaaaaaaaaaaaaa
-ababacacacabababaWaWaWaiaWaWaWasacababababababababababababababababababababababababababababababababababaaaaaaaaaaaaaa
-abacacacacacababaWaEaiaibjaiaWacababababababababababababababababababababababababababababababababababababaaaaaaaaaaaa
-abacacacacacacacaWaibkaiaiaiaUabababababacacacacacacacacacacacacacacacababacacacacacacacacacacacacabacababaaaaaaaaaa
-ababacacacacacacaWaGaiaiaiaiaWabababaPacacacacacacacaHacacacacacacacacabababacacacacacacacacaHacacabacabababaaaaaaaa
-ababababacacacacaWaGaibUaiaiaWaWaUaWaWaWaUaWaWaWaUaWaWaWaUaWaWaWaULGaWabababaWaWaUaWaWaWaUaWaWacacacacabababababaaaa
-ababababababababaWaiaiaWaWaWaWaIaiaJaWaKaiaMaWaiaiaNaWaiaibbbcbbaiaiaWbdaWbdaWaiaibebiaiaiaiaWacacacacababababababaa
-acacacacacacacacaWaiaiaWaiaDaWbjaiaBaWaiaiaBaWaObjaBaWbBaiaiaibjaiaibkaibiaiaiaiaiblbmaibjaiaUaQacacacabababababauab
-aaaaacacacacababaWaiaiaiaiaiaWaWboaWaWaWboaWaWaWboaWaWaibpaiaibpbqaiaiaiaibjaiaiaiaiaiaiaiaiaWaWaWaWaRabababacabaAab
-aaaaaaacacacababapbjaiaWaibkaWaiaibjbfaiaiaibfaiaiaiaiaibtaiaiaiaiaiaiaiaiaibeaibkaiaiaiaiaibobkbiaWacabababacacafab
-aaaaaaaaacacababaqaiaiaWaSbUaWaiaiaiaiaibjaiaiaiaiaiaiaiaiaibjaiaibeaiaiaibvblaiaiaiaibwaTaxaWaiaiaUacabababacacagab
-aaaaaaaaaaacababaqapapaWaWaWaWaWboaWaWaWboaWaWaWboaWaWaibkaiaiaiaiblaiaibyaibzaiaiaiaibwaiaiaWaVaiaWacabababacacafab
-aaaaaaaaaaaaaaacacacacacacaXaWaiaiaBaWaiaiaBaWaibjaBaWbCblbDaibkaibzaiaiaiaiaiaiaiaiaibwaibEaWaiaiaWacabababacacafab
-aaaaaaaaaaaaaaaaaaacacacacacaWaYaiaZaWaiaibaaWaiaibgaWaiaiaiaiaiaiaibjaibeaiaibjaiaiaibIaibPaWbhbnaUacabababacbrafab
-aaaaaaaaaaaaaaaaaaaaacacacacaWaWaUaWaWaWaUaWaWaWaUaWaWaWaUaWaWblaibMaibNblbmaiaiaiaiaibOaibPaWbsbhaWacabababacacaAau
-aaaaaaaaaaaaaaaaaaaaaaaaacacacacacacamacacacacacacacacacacacaWbFbNblaiaibzaiaiaiaibeaiaiaiaiaWaWaWaWacabababacacacaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacbuacacacacacaUblaiaiaiaiaiaiaibkaiblaibkaiaiaUacbxacacabababacacaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacababababababababababababacacaWaiaibkaibGaiaiaiaiaibGaiaiaiaiaWacacabababababacaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababacacaWaWaUaWaWaWaWaWaUaWaWaWaWaWaUaWaWacacabababababacaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababacacacacacacacaCacbAacacacaCacacacacacacabababababaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababacacacacacacacacacacacacacacacacacacacababababaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababababababababababababababaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacabababbWababacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacabababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ab
+ab
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ab
+ab
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ab
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ab
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ab
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ab
+ac
+ab
+ab
+ab
+ab
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+aW
+aW
+ap
+aq
+ap
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+ap
+aq
+aq
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+aW
+ai
+ai
+bk
+ai
+ai
+aW
+aE
+ai
+aG
+aG
+ai
+ai
+ai
+bj
+ai
+ap
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ac
+ap
+ai
+bl
+ai
+ai
+ai
+aW
+ai
+bk
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ap
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ac
+aq
+bk
+bl
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+bU
+aW
+aW
+ai
+aW
+aW
+aW
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ac
+ap
+ai
+av
+ai
+ai
+ai
+aW
+bj
+ai
+ai
+ai
+aW
+ai
+ai
+ai
+aS
+aW
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+ab
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+an
+ac
+aW
+ai
+ai
+aB
+ai
+aD
+aW
+ai
+ai
+ai
+ai
+aW
+aD
+ai
+bk
+bU
+aW
+aX
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+aW
+aW
+ay
+aW
+aU
+aW
+aW
+aW
+aU
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+as
+ac
+ac
+ac
+ac
+ac
+as
+ac
+ab
+ab
+aW
+aI
+bj
+aW
+ai
+ai
+aW
+ai
+aY
+aW
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+ac
+ac
+ad
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+aU
+ai
+ai
+bo
+ai
+ai
+bo
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ah
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aW
+aJ
+aB
+aW
+bj
+ai
+aW
+aB
+aZ
+aW
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aP
+aW
+aW
+aW
+aW
+bf
+ai
+aW
+aW
+aW
+aW
+am
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+aW
+aK
+ai
+aW
+ai
+ai
+aW
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+ai
+bo
+ai
+bj
+bo
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+az
+ac
+ab
+ab
+ab
+ab
+ac
+ac
+aW
+aM
+aB
+aW
+ai
+ai
+aW
+aB
+ba
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+ab
+ac
+aW
+aW
+aU
+aW
+aW
+aW
+aU
+aW
+aW
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+aW
+aW
+aW
+aW
+bf
+ai
+aW
+aW
+aW
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+ai
+ai
+aw
+bN
+ai
+ai
+aW
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+aO
+aW
+ai
+ai
+aW
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+aW
+ai
+ao
+ar
+ax
+ai
+ai
+at
+aU
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+bj
+bo
+ai
+ai
+bo
+bj
+ai
+aU
+ac
+bu
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ae
+aW
+ai
+ai
+bk
+ai
+ai
+bj
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+aN
+aB
+aW
+ai
+ai
+aW
+aB
+bg
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+aW
+ai
+ai
+ai
+ai
+bv
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ac
+aH
+aW
+aW
+aW
+aW
+ai
+ai
+aW
+aW
+aW
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aW
+aj
+ai
+ai
+be
+bl
+ai
+ai
+ay
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+bi
+ai
+ai
+ai
+ai
+bC
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aW
+be
+ai
+ai
+ai
+ai
+ai
+ai
+aW
+aC
+ac
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+ai
+bp
+bt
+ai
+bk
+bl
+ai
+aU
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ac
+ab
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aW
+bM
+ai
+ai
+bl
+ai
+at
+bk
+aW
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+bb
+ai
+ai
+ai
+ai
+ai
+bD
+ai
+aW
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ac
+ab
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aU
+ai
+bj
+ai
+bm
+ai
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+bc
+ai
+ai
+ai
+bj
+ai
+ai
+ai
+aW
+aW
+aU
+aW
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aW
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+bb
+bj
+bp
+ai
+ai
+ai
+bk
+ai
+bl
+bR
+bl
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+aW
+ac
+ab
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+ai
+bq
+ai
+ai
+ai
+ai
+ai
+ai
+bN
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ak
+al
+am
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+FQ
+ai
+ai
+ai
+ai
+be
+bl
+bz
+ai
+bM
+bl
+ai
+bk
+aW
+ac
+ac
+ab
+ab
+ab
+bW
+ab
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+aW
+aW
+bk
+ai
+ai
+ai
+ai
+ai
+bj
+ai
+ai
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+"}
+(36,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+au
+aA
+af
+ag
+af
+af
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+bd
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+bN
+ai
+ai
+Vo
+aW
+aC
+ac
+ab
+ab
+ab
+ab
+ab
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aF
+af
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+aW
+zW
+ai
+ai
+ai
+by
+ai
+be
+bl
+bz
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+ac
+ab
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ag
+ac
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+bd
+ai
+bj
+ai
+bv
+ai
+ai
+ai
+bm
+ai
+ai
+ai
+aW
+bA
+ac
+ab
+ab
+ab
+ac
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+af
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+aW
+aW
+ai
+ai
+be
+bl
+bz
+ai
+ai
+ai
+ai
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+ab
+ac
+aa
+"}
+(40,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+af
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+bj
+ai
+ai
+bk
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+"}
+(41,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+af
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+ai
+ai
+bk
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+"}
+(42,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ag
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+be
+bl
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+be
+bl
+Vo
+aW
+aC
+ac
+ab
+ab
+ab
+aa
+aa
+"}
+(43,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+af
+aL
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+zW
+bm
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+aW
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+"}
+(44,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aA
+ab
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+ai
+ai
+ai
+bw
+bw
+bw
+bI
+bO
+ai
+bk
+ai
+aW
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+"}
+(45,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+au
+ab
+ac
+ab
+ab
+ab
+ac
+ac
+aU
+ai
+bj
+ai
+ai
+aT
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+aU
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+"}
+(46,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ab
+ab
+ab
+ac
+ac
+aW
+ai
+ai
+ai
+ai
+ax
+ai
+bE
+bP
+bP
+ai
+ai
+ai
+aW
+ac
+ac
+ab
+aa
+aa
+aa
+aa
+"}
+(47,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+aH
+aW
+aW
+aU
+aW
+bo
+aW
+aW
+aW
+aW
+aW
+aW
+aU
+aW
+aW
+ac
+ac
+ab
+aa
+aa
+aa
+aa
+"}
+(48,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+aQ
+aW
+bk
+ai
+aV
+ai
+bh
+bs
+aW
+ac
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(49,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+aW
+zW
+ai
+ai
+ai
+bn
+bh
+aW
+bx
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(50,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+aW
+aW
+aU
+aW
+aW
+aU
+aW
+aW
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(51,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+aR
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(52,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(53,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(54,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(55,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(56,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+br
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(57,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+au
+aA
+af
+ag
+af
+af
+af
+aA
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(58,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+au
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
