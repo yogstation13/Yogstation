@@ -3110,7 +3110,6 @@
 #include "yogstation\code\modules\surgery\tools.dm"
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
-#include "yogstation\code\modules\vending\_vending.dm"
 #include "yogstation\code\modules\vending\clothesmate.dm"
 #include "yogstation\code\modules\vending\gift.dm"
 #include "yogstation\code\modules\vending\megaseed.dm"
