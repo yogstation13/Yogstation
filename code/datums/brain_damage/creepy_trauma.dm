@@ -1,10 +1,11 @@
 /datum/brain_trauma/special/creep
 	name = "Erotomania"
 	desc = "Patient has a subtype of delusional disorder, becoming irrationally attached to someone."
-	scan_desc = "severe erotomaniac delusions"
+	scan_desc = "erotomaniac delusions"
 	gain_text = "If you see this message, make a github issue report. The trauma initialized wrong."
 	lose_text = "<span class='warning'>You no longer feel so attached.</span>"
 	can_gain = TRUE
+	random_gain = FALSE
 	resilience = TRAUMA_RESILIENCE_SURGERY
 	var/mob/living/obsession
 	var/datum/objective/spendtime/attachedcreepobj
@@ -109,8 +110,8 @@
 	var/chosen_victim
 	var/list/possible_targets = list()
 	var/list/viable_minds = list()
-	for(var/mob/Player in GLOB.player_list)//prevents crewmembers falling in love with nuke ops they never met
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && Player != owner && !(Player.mind.assigned_role in GLOB.exp_specialmap[EXP_TYPE_SPECIAL] || Player.mind.assigned_role in GLOB.exp_specialmap[EXP_TYPE_ANTAG]))
+	for(var/mob/Player in GLOB.player_list)//prevents crewmembers falling in love with nuke ops they never met, and other annoying hijinks
+		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && Player != owner && SSjob.GetJob(Player.mind.assigned_role))
 			viable_minds += Player.mind
 	for(var/datum/mind/possible_target in viable_minds)
 		if(possible_target != owner && ishuman(possible_target.current))

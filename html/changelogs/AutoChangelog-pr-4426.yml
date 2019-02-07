@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Screwing a disk compartmentalizer no longer makes it look like a smartfridge"

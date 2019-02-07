@@ -158,6 +158,7 @@
 
 /datum/map_template/ruin/space/oldshuttle
 	id = "spaceman-origins"
+	prefix = "_maps/yogstation/RandomRuins/SpaceRuins/"//yogs - use Yogs custom old shuttle instead of upstream
 	suffix = "shuttlerelic.dmm"
 	name = "Strange Ship"
 	description = "A ship seemingly lost, drifting along the stars. This thing looks like it belongs in ancient times."
