@@ -47688,7 +47688,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
-	req_access_txt = "10"
+	req_one_access_txt = "10;61"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -49977,7 +49977,7 @@
 	},
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
-	req_access_txt = "10"
+	req_one_access_txt = "10;61"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -51788,7 +51788,7 @@
 /turf/closed/wall,
 /area/hallway/primary/aft)
 "fkp" = (
-/obj/machinery/computer/telecomms/monitor{
+/obj/machinery/computer/telecomms/traffic{
 	dir = 8;
 	network = "tcommsat"
 	},
@@ -51922,7 +51922,7 @@
 "fEn" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Telecoms Satellite Monitoring";
-	req_access_txt = "61"
+	req_one_access_txt = "10;61"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/lounge)
