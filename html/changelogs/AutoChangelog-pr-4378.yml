@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed turrets targeting pAI devices."

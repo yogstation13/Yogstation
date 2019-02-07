@@ -29,7 +29,7 @@
 	new /obj/item/clothing/gloves/color/captain(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/storage/belt/sabre(src)
-	new /obj/item/gun/energy/e_gun(src)
+	// new /obj/item/gun/energy/e_gun(src) - yogs
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
@@ -104,6 +104,7 @@
 	new /obj/item/radio/headset/headset_sec(src)
 	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/warden/drill(src)
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
 	new /obj/item/clothing/under/rank/warden/navyblue(src)

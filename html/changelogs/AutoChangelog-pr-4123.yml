@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "The engine will now randomly be either a singulo or an SM"

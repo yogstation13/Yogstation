@@ -27,13 +27,21 @@ NANITE SCANNER
 	user.visible_message("<span class='suicide'>[user] begins to emit terahertz-rays into [user.p_their()] brain with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return TOXLOSS
 
-/obj/item/t_scanner/attack_self(mob/user)
-
+/obj/item/t_scanner/proc/toggle_on()
 	on = !on
 	icon_state = copytext(icon_state, 1, length(icon_state))+"[on]"
-
 	if(on)
 		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/t_scanner/attack_self(mob/user)
+	toggle_on()
+
+/obj/item/t_scanner/cyborg_unequip(mob/user)
+	if(!on)
+		return
+	toggle_on()
 
 /obj/item/t_scanner/process()
 	if(!on)
@@ -52,7 +60,7 @@ NANITE SCANNER
 		if(O.level != 1)
 			continue
 
-		if(O.invisibility == INVISIBILITY_MAXIMUM)
+		if(O.invisibility == INVISIBILITY_MAXIMUM || O.has_trait(TRAIT_T_RAY_VISIBLE))
 			var/image/I = new(loc = get_turf(O))
 			var/mutable_appearance/MA = new(O)
 			MA.alpha = 128
@@ -665,11 +673,15 @@ NANITE SCANNER
 	var/list/discovered = list() //hit a dna console to update the scanners database
 
 /obj/item/sequence_scanner/attack(mob/living/M, mob/living/carbon/human/user)
-	user.visible_message("<span class='notice'>[user] has analyzed [M]'s genetic sequence.</span>")
-
 	add_fingerprint(user)
+	if (!M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_BADDNA)) //no scanning if its a husk or DNA-less Species
+		user.visible_message("<span class='notice'>[user] has analyzed [M]'s genetic sequence.</span>")
+		
+		gene_scan(M, user, src)
+	else
 
-	gene_scan(M, user, src)
+		user.visible_message("<span class='notice'>[user] failed to analyse [M]'s genetic sequence.</span>", "<span class='warning'>[M] has no readable genetic sequence!</span>")
+		
 
 /obj/item/sequence_scanner/afterattack(obj/O, mob/user, proximity)
 	. = ..()

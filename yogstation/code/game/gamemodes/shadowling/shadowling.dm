@@ -56,7 +56,7 @@ Made by Xhuis
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
 
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
