@@ -23,3 +23,4 @@
 	desc = "Straight from the bark!"
 	icon = 'yogstation/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "cinnamon_stick"
+	bitesize_mod = 2

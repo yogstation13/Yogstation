@@ -1,0 +1,858 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"b" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"c" = (
+/turf/template_noop,
+/area/space)
+"d" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/lavaland/surface/outdoors)
+"e" = (
+/obj/machinery/door/airlock/centcom,
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors)
+"f" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	tag = "icon-twindow (EAST)";
+	icon_state = "twindow";
+	dir = 4
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/lavaland/surface/outdoors)
+"g" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors)
+"h" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors)
+"i" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors)
+"j" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/lavaland/surface/outdoors)
+"k" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"l" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/item/extinguisher,
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"m" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"n" = (
+/obj/item/paper/crumpled/bloody{
+	info = "Week 2, day 6. <B>Success!<B> I've managed to synthesize a small amount of solid plasma! The block I created took days to stabilize and cool down, but after running some tests it's exceeding all my expectactions. I'll have to refine the process more before sending a sample to CentComm, but soon we won't have to waste thousands of credits sending those miners to work in this... hellscape anymore. The rest of my mineral samples remained stable too. I'll just have to hope those Space Pirates won't track me down after I stole their trisulfideoxide again... I've hidden the recipe in the safe for now. Code is 8124."
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"o" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/item/reagent_containers/glass/bottle/plasma,
+/obj/item/reagent_containers/glass/bottle/plasma,
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"p" = (
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"q" = (
+/obj/structure/fans,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"r" = (
+/obj/item/clothing/under/pirate,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"s" = (
+/obj/item/clothing/head/helmet/space/pirate,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"t" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"u" = (
+/obj/structure/closet/wardrobe/chemistry_white,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"v" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"w" = (
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"x" = (
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"y" = (
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"z" = (
+/obj/item/storage/secure/safe,
+/obj/item/paper{
+	info = "Mix 30 units of O2 with precisely 12 units of \[br]\[i]*a few paragraphs are torn out*\[/i] \[br]within an oxygenated atmosphere of roughly 650-degree Chlorine. Once the gray mass has solidifed, carefully remove it (hot!) and place in distilled water. Check the object regularly. Once the outer layer peels off, the plasma should shine below! \[br]Note, the recipe is a work-in-progress and should not be attempted without proper safety precautions.";
+	name = "Plasma Synthetizing Recipe"
+	},
+/turf/closed/wall/r_wall,
+/area/lavaland/surface/outdoors)
+"A" = (
+/turf/closed/wall/r_wall,
+/area/lavaland/surface/outdoors)
+"B" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"C" = (
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/pirate,
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"D" = (
+/obj/effect/decal/cleanable/chem_pile,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"E" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"F" = (
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/pirate/ranged,
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"G" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/silver,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"H" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"I" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"J" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"K" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	pixel_x = 3
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"L" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/diamond,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"M" = (
+/obj/structure/table,
+/obj/item/stack/sheet/mineral/gold{
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/mineral/gold,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"N" = (
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"O" = (
+/obj/structure/table,
+/obj/item/stack/cable_coil/yellow,
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/lavaland/surface/outdoors)
+"P" = (
+/obj/machinery/chem_master,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"Q" = (
+/obj/machinery/chem_dispenser,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"R" = (
+/obj/machinery/chem_heater,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"S" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"T" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"W" = (
+/obj/machinery/power/port_gen/pacman{
+	sheets = 100
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+
+(1,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+"}
+(2,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+c
+c
+c
+c
+c
+c
+c
+c
+a
+c
+a
+c
+"}
+(3,1,1) = {"
+a
+b
+d
+f
+f
+d
+b
+a
+c
+c
+a
+a
+c
+a
+a
+c
+a
+a
+a
+c
+"}
+(4,1,1) = {"
+a
+b
+d
+g
+g
+d
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+"}
+(5,1,1) = {"
+a
+b
+e
+h
+h
+e
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+"}
+(6,1,1) = {"
+a
+b
+d
+i
+j
+d
+b
+a
+a
+A
+A
+A
+A
+A
+A
+A
+a
+a
+c
+c
+"}
+(7,1,1) = {"
+a
+b
+d
+d
+d
+d
+b
+a
+a
+A
+k
+B
+G
+p
+J
+A
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+A
+l
+C
+p
+D
+K
+A
+a
+a
+c
+c
+"}
+(9,1,1) = {"
+b
+a
+b
+b
+m
+m
+m
+A
+A
+A
+o
+p
+P
+C
+J
+A
+a
+a
+c
+c
+"}
+(10,1,1) = {"
+b
+b
+b
+b
+b
+r
+s
+v
+x
+v
+p
+D
+Q
+H
+L
+A
+a
+a
+a
+c
+"}
+(11,1,1) = {"
+b
+b
+b
+b
+n
+m
+m
+A
+A
+A
+q
+E
+R
+I
+M
+A
+a
+a
+a
+c
+"}
+(12,1,1) = {"
+b
+b
+b
+b
+b
+b
+m
+t
+y
+A
+u
+F
+S
+p
+O
+A
+a
+a
+c
+c
+"}
+(13,1,1) = {"
+b
+b
+b
+b
+b
+m
+t
+w
+x
+A
+p
+N
+T
+W
+J
+A
+a
+a
+c
+c
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+m
+x
+x
+A
+z
+A
+A
+A
+A
+A
+a
+a
+a
+c
+"}
+(15,1,1) = {"
+c
+c
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+"}
+(16,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+"}
+(17,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+a
+c
+c
+c
+a
+a
+c
+c
+c
+c
+"}
+(18,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+a
+a
+c
+c
+c
+c
+"}
+(19,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+"}
+(20,1,1) = {"
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+"}
