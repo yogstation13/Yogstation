@@ -159,7 +159,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/lavaland/surface)
+/area/ruin/powered)
 "aA" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plasteel{
@@ -304,11 +304,13 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "aO" = (
-/obj/structure/safe,
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/closet/crate/secure{
+	req_access_txt = "36"
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /obj/item/ammo_box/magazine/m50,
 /obj/item/ammo_box/magazine/m50,
 /obj/item/ammo_box/magazine/m50,
@@ -370,7 +372,8 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/toy/figure,
+/obj/item/toy/toyballoon,
+/obj/item/toy/heartballoon,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -381,7 +384,7 @@
 	req_access_txt = "36"
 	},
 /obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/ruin/powered)
 "aV" = (
 /turf/open/floor/plating,
@@ -724,24 +727,14 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"fS" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"hd" = (
+"jt" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"im" = (
+"md" = (
 /obj/machinery/door/airlock/hatch{
 	req_access = null;
 	req_access_txt = "36"
@@ -751,82 +744,7 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"iB" = (
-/obj/machinery/button{
-	id = "cashiershutters";
-	name = "Cashier Lockdown";
-	req_access_txt = "36"
-	},
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"jT" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/obj/effect/mob_spawn/human/gasstation_clerk,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"ok" = (
-/obj/structure/sign/poster/contraband/space_cola,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"oT" = (
-/obj/structure/sign/poster/contraband/smoke,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"yH" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"yS" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"CA" = (
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"FJ" = (
-/obj/machinery/computer/arcade/orion_trail,
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Ja" = (
-/obj/structure/sign/poster/contraband/robust_softdrinks,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"Nw" = (
-/obj/machinery/light_switch,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"OS" = (
+"pk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "cashiershutters";
@@ -837,17 +755,126 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Qk" = (
-/obj/structure/sign/poster/official/foam_force_ad,
+"qj" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/storage/box/snappops,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"qw" = (
+/obj/structure/sign/poster/contraband/space_cola,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"TL" = (
+"uV" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/gasstation_clerk,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"wR" = (
+/obj/structure/sign/poster/contraband/robust_softdrinks,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"yu" = (
 /obj/machinery/button{
 	id = "gasstation";
 	name = "Gas Station Lockdown";
 	req_access_txt = "36"
 	},
 /turf/closed/wall/rust,
+/area/ruin/powered)
+"BO" = (
+/obj/structure/sign/poster/official/foam_force_ad,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Eh" = (
+/obj/machinery/computer/arcade/orion_trail,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"GZ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Lj" = (
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"NM" = (
+/obj/machinery/light_switch,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"NY" = (
+/obj/structure/sign/poster/contraband/smoke,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"TP" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"YL" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"YX" = (
+/obj/machinery/button{
+	id = "cashiershutters";
+	name = "Cashier Lockdown";
+	req_access_txt = "36"
+	},
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"ZY" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/toy/figure/clown,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -960,7 +987,7 @@ ab
 af
 aj
 ar
-yH
+GZ
 aD
 aj
 aN
@@ -1015,9 +1042,9 @@ aj
 aA
 aj
 aj
-TL
-im
-iB
+yu
+md
+YX
 aj
 aj
 aj
@@ -1041,12 +1068,12 @@ ao
 ar
 aj
 aG
-jT
+uV
 ar
-yS
+YL
 bi
 ar
-Nw
+NM
 af
 ac
 ac
@@ -1070,7 +1097,7 @@ aH
 ar
 ar
 ar
-OS
+pk
 ar
 aj
 bu
@@ -1096,9 +1123,9 @@ aI
 aP
 aW
 bd
-OS
-hd
-Ja
+pk
+jt
+wR
 af
 ac
 bB
@@ -1114,10 +1141,10 @@ aa
 ab
 af
 af
-oT
-FJ
+NY
+Eh
 ar
-yS
+YL
 ar
 ar
 ar
@@ -1166,8 +1193,8 @@ aa
 ac
 af
 af
-ok
-CA
+qw
+Lj
 ar
 ar
 ar
@@ -1175,8 +1202,8 @@ ar
 ar
 ar
 ar
-hd
-Qk
+jt
+BO
 af
 ac
 bz
@@ -1279,7 +1306,7 @@ ar
 ar
 ar
 ar
-hd
+jt
 aj
 bv
 ac
@@ -1328,8 +1355,8 @@ ar
 ar
 aM
 aT
-aT
-aT
+ZY
+qj
 bm
 ar
 aj
@@ -1356,7 +1383,7 @@ ar
 ar
 ar
 ar
-fS
+TP
 bq
 aj
 af
