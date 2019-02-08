@@ -77,7 +77,7 @@
 /area/lavaland/surface/outdoors)
 "n" = (
 /obj/item/paper/crumpled/bloody{
-	info = "Week 2, day 6. <B>Success!<B> I've managed to synthesize a small amount of solid plasma! The block I created took days to stabilize and cool down, but after running some tests it's exceeding all my expectactions. I'll have to refine the process more before sending a sample to CentComm, but soon we won't have to waste thousands of credits sending those miners to work in this... hellscape anymore. The rest of my mineral samples remained stable too. I'll just have to hope those Space Pirates won't track me down after I stole their trisulfideoxide again... I've hidden the recipe in the safe for now. Code is 8124."
+	info = "Week 2, day 6. <B>Success!<B> I've managed to synthesize a small amount of solid plasma! The block I created took days to stabilize and cool down, but after running some tests it's exceeding all my expectactions. I'll have to refine the process more before sending a sample to Centcom, but soon we won't have to waste thousands of credits sending those miners to work in this... hellscape anymore. The rest of my mineral samples remained stable too. I'll just have to hope those Space Pirates won't track me down after I stole their trisulfideoxide again... I've hidden the recipe in the safe for now. Code is 8124."
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,

@@ -13,7 +13,7 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/lavaland/surface)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -248,11 +248,11 @@
 "aJ" = (
 /obj/structure/table,
 /obj/structure/window,
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/burrito,
 /obj/item/reagent_containers/food/snacks/carneburrito,
 /obj/item/reagent_containers/food/snacks/poppypretzel,
 /obj/item/reagent_containers/food/snacks/poppypretzel,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -261,10 +261,10 @@
 "aK" = (
 /obj/structure/table,
 /obj/structure/window,
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/popcorn,
 /obj/item/reagent_containers/food/snacks/popcorn,
 /obj/item/reagent_containers/food/snacks/nachos,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -273,9 +273,9 @@
 "aL" = (
 /obj/structure/table,
 /obj/structure/window,
-/obj/structure/rack,
 /obj/item/toy/cards/deck/cas,
 /obj/item/toy/cards/deck/cas/black,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -284,11 +284,11 @@
 "aM" = (
 /obj/structure/table,
 /obj/structure/window,
-/obj/structure/rack,
 /obj/item/toy/plush/teddybear,
 /obj/item/toy/plush/goatplushie,
 /obj/item/toy/plush/flowerbunch,
 /obj/item/toy/plush/stuffedmonkey,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -333,8 +333,8 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/syndicake,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -345,10 +345,10 @@
 /obj/structure/window{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/snacks/dolphincereal,
+/obj/item/reagent_containers/food/snacks/dolphincereal,
+/obj/item/reagent_containers/food/snacks/dolphincereal,
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/dolphincereal,
-/obj/item/reagent_containers/food/snacks/dolphincereal,
-/obj/item/reagent_containers/food/snacks/dolphincereal,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -359,8 +359,8 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/structure/rack,
 /obj/item/toy/foamblade,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -371,9 +371,9 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/structure/rack,
 /obj/item/toy/toyballoon,
 /obj/item/toy/heartballoon,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -416,8 +416,8 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/donut,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -428,10 +428,10 @@
 /obj/structure/window{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -442,8 +442,8 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/structure/rack,
 /obj/item/toy/katana,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -484,9 +484,9 @@
 /obj/structure/window{
 	dir = 4
 	},
+/obj/item/reagent_containers/food/snacks/honeybun,
+/obj/item/reagent_containers/food/snacks/honeybun,
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/honeybun,
-/obj/item/reagent_containers/food/snacks/honeybun,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -497,9 +497,9 @@
 /obj/structure/window{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/sosjerky,
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/sosjerky,
-/obj/item/reagent_containers/food/snacks/sosjerky,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -510,9 +510,9 @@
 /obj/structure/window{
 	dir = 4
 	},
+/obj/item/toy/sword,
+/obj/item/toy/sword,
 /obj/structure/rack,
-/obj/item/toy/sword,
-/obj/item/toy/sword,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -546,12 +546,12 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/item/reagent_containers/food/snacks/candy,
 /obj/item/reagent_containers/food/snacks/candy,
 /obj/item/reagent_containers/food/snacks/candy_corn,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -562,10 +562,10 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -576,9 +576,9 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/structure/rack,
 /obj/item/toy/gun,
 /obj/item/toy/gun/toyglock,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -589,9 +589,9 @@
 	dir = 1
 	},
 /obj/structure/table,
+/obj/item/toy/ammo/gun,
+/obj/item/toy/ammo/gun,
 /obj/structure/rack,
-/obj/item/toy/ammo/gun,
-/obj/item/toy/ammo/gun,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -727,51 +727,35 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"jt" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"md" = (
-/obj/machinery/door/airlock/hatch{
-	req_access = null;
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"pk" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "cashiershutters";
-	name = "Cashier Shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"qj" = (
+"ca" = (
 /obj/structure/table,
 /obj/structure/window{
 	dir = 8
 	},
-/obj/structure/rack,
 /obj/item/storage/box/snappops,
+/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"qw" = (
-/obj/structure/sign/poster/contraband/space_cola,
+"cC" = (
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"uV" = (
+"jF" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/toy/figure/clown,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"lU" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
@@ -782,23 +766,70 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"wR" = (
-/obj/structure/sign/poster/contraband/robust_softdrinks,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"yu" = (
-/obj/machinery/button{
-	id = "gasstation";
-	name = "Gas Station Lockdown";
-	req_access_txt = "36"
+"nM" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
 	},
-/turf/closed/wall/rust,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
-"BO" = (
+"uO" = (
 /obj/structure/sign/poster/official/foam_force_ad,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"Eh" = (
+"vK" = (
+/obj/machinery/door/airlock/hatch{
+	req_access = null;
+	req_access_txt = "36"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"xV" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"yd" = (
+/obj/structure/sign/poster/contraband/space_cola,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Az" = (
+/obj/structure/sign/poster/contraband/robust_softdrinks,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Fx" = (
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"GS" = (
+/obj/machinery/light_switch,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"HB" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"MY" = (
 /obj/machinery/computer/arcade/orion_trail,
 /obj/machinery/light{
 	dir = 1;
@@ -809,44 +840,7 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"GZ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"Lj" = (
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"NM" = (
-/obj/machinery/light_switch,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"NY" = (
-/obj/structure/sign/poster/contraband/smoke,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"TP" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"YL" = (
+"Ny" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
@@ -856,25 +850,31 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"YX" = (
-/obj/machinery/button{
+"Sz" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Tc" = (
+/obj/machinery/button/door{
+	id = "gasstation";
+	name = "Gas Station Lockdown";
+	req_access_txt = "36"
+	},
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"YF" = (
+/obj/machinery/button/door{
 	id = "cashiershutters";
 	name = "Cashier Lockdown";
 	req_access_txt = "36"
 	},
 /turf/closed/wall/rust,
-/area/ruin/powered)
-"ZY" = (
-/obj/structure/table,
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/toy/figure/clown,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -987,7 +987,7 @@ ab
 af
 aj
 ar
-GZ
+xV
 aD
 aj
 aN
@@ -1042,9 +1042,9 @@ aj
 aA
 aj
 aj
-yu
-md
-YX
+Tc
+vK
+YF
 aj
 aj
 aj
@@ -1068,12 +1068,12 @@ ao
 ar
 aj
 aG
-uV
+lU
 ar
-YL
+Ny
 bi
 ar
-NM
+GS
 af
 ac
 ac
@@ -1097,7 +1097,7 @@ aH
 ar
 ar
 ar
-pk
+nM
 ar
 aj
 bu
@@ -1123,9 +1123,9 @@ aI
 aP
 aW
 bd
-pk
-jt
-wR
+nM
+HB
+Az
 af
 ac
 bB
@@ -1141,10 +1141,10 @@ aa
 ab
 af
 af
-NY
-Eh
+cC
+MY
 ar
-YL
+Ny
 ar
 ar
 ar
@@ -1193,8 +1193,8 @@ aa
 ac
 af
 af
-qw
-Lj
+yd
+Fx
 ar
 ar
 ar
@@ -1202,8 +1202,8 @@ ar
 ar
 ar
 ar
-jt
-BO
+HB
+uO
 af
 ac
 bz
@@ -1306,7 +1306,7 @@ ar
 ar
 ar
 ar
-jt
+HB
 aj
 bv
 ac
@@ -1355,8 +1355,8 @@ ar
 ar
 aM
 aT
-ZY
-qj
+jF
+ca
 bm
 ar
 aj
@@ -1383,7 +1383,7 @@ ar
 ar
 ar
 ar
-TP
+Sz
 bq
 aj
 af
