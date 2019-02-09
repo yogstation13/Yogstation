@@ -28,7 +28,7 @@
 					playsound(src, 'sound/items/nuke_toy_lowpower.ogg', 50, 0)
 					if(isliving(loc))
 						var/mob/living/L = loc
-						to_chat(L, "<span class='userdanger'>Your [name] vibrates and lets out a tinny alarm. Uh oh.</span>")
+						to_chat(L, "<span class='userdanger'>Your [name] vibrates and lets out a tiny alarm. Uh oh.</span>")
 
 /obj/item/pinpointer/nuke/scan_for_target()
 	target = null
