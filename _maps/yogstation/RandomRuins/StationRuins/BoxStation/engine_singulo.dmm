@@ -21,7 +21,7 @@
 "af" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Telecoms Satellite Monitoring";
-	req_access_txt = "10"
+	req_one_access_txt = "10;61"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
