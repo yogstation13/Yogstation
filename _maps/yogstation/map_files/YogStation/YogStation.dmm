@@ -20291,17 +20291,16 @@
 /area/chapel/main)
 "aNZ" = (
 /obj/machinery/camera{
-	c_tag = "Xenobiology Kill Room";
-	dir = 4;
-	network = list("ss13","rd")
+	c_tag = "Escape Podbay"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/button/door{
+	id = "escapepodbay";
+	name = "Pod Door Control";
+	pixel_x = 6;
+	pixel_y = 24
 	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
+/turf/open/floor/engine,
+/area/escapepodbay)
 "aOa" = (
 /obj/machinery/light{
 	dir = 1
@@ -22312,6 +22311,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/wood,
 /area/lawoffice)
+"aSp" = (
+/obj/machinery/camera{
+	c_tag = "Escape North";
+	dir = 4;
+	network = list("ss13","rd")
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "aSq" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/wiki/security_space_law,
@@ -55844,18 +55856,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"stU" = (
-/obj/machinery/camera{
-	c_tag = "Dormitory North"
-	},
-/obj/machinery/button/door{
-	id = "escapepodbay";
-	name = "Pod Door Control";
-	pixel_x = 6;
-	pixel_y = 24
-	},
-/turf/open/floor/engine,
-/area/escapepodbay)
 "szl" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -108065,7 +108065,7 @@ uev
 rFp
 mvE
 wrk
-aNZ
+aSp
 aPp
 aQB
 aQB
@@ -109602,7 +109602,7 @@ aoV
 aaf
 aaa
 ptH
-stU
+aNZ
 sHo
 sHo
 sHo
