@@ -82,7 +82,18 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 
 	return text
 
+/proc/isnotpretty(var/text) // A simpler version of pretty_filter(), where all it returns is whether it had to replace something or not.
+	//Useful for the "You fumble your words..." business.
+	for(var/line in GLOB.pretty_filter_items)
+		var/list/parts = splittext(line, "=")
+		var/pattern = parts[1]
+		var/regex/R = new(pattern, "ig")
+		if(R.Find(text)) //If found
+			return TRUE // Yes, it isn't pretty.
+	return FALSE // No, it is pretty.
+
 //Filter out and replace unwanted but not important words, like WTF or LOL
 /proc/minor_filter(text)
 	text = text + " " //necessary since some words like "lol" have words like lollard, which means we need to only trigger if there's a space after it, which won't happen at the end of the sentence
 	return pretty_filter(text, GLOB.minor_filter_items)
+
