@@ -2985,6 +2985,7 @@
 #include "yogstation\code\modules\events\floorcluwne.dm"
 #include "yogstation\code\modules\events\immovable_duck.dm"
 #include "yogstation\code\modules\events\ion_storm.dm"
+#include "yogstation\code\modules\events\probabilistic_anomaly.dm"
 #include "yogstation\code\modules\events\weightless.dm"
 #include "yogstation\code\modules\food_and_drinks\food\condiment.dm"
 #include "yogstation\code\modules\food_and_drinks\food\snacks_bread.dm"
