@@ -1,0 +1,119 @@
+"aa" = (/turf/open/space,/area/space)
+"ab" = (/turf/closed/wall/shuttle{icon_state = "swall_s6";dir = 2},/area/shuttle/escape)
+"ac" = (/turf/closed/wall/shuttle{icon_state = "swall12";dir = 2},/area/shuttle/escape)
+"ad" = (/obj/structure/grille,/obj/structure/window/shuttle,/turf/open/floor/plating,/area/shuttle/escape)
+"ae" = (/turf/closed/wall/shuttle{icon_state = "swall_s10";dir = 2},/area/shuttle/escape)
+"af" = (/turf/closed/wall/shuttle{icon_state = "swallc4";dir = 2},/area/shuttle/escape)
+"ag" = (/obj/machinery/computer/communications,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ah" = (/obj/structure/table,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ai" = (/obj/machinery/computer/emergency_shuttle,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aj" = (/obj/machinery/computer/security,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ak" = (/turf/closed/wall/shuttle{icon_state = "swallc3"},/area/shuttle/escape)
+"al" = (/turf/closed/wall/shuttle{icon_state = "swall3";dir = 2},/area/shuttle/escape)
+"am" = (/obj/structure/chair{dir = 1;name = "Communications Station"},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"an" = (/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"ao" = (/obj/structure/chair{dir = 1;name = "Command Station"},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ap" = (/obj/structure/chair{dir = 1;name = "Security Station"},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"aq" = (/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ar" = (/obj/machinery/computer/atmos_alert,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"as" = (/obj/structure/chair{dir = 8;name = "Engineering Station"},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"at" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"au" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"av" = (/obj/structure/chair{dir = 4;name = "Medical Station"},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"aw" = (/obj/machinery/computer/crew,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"ax" = (/turf/closed/wall/shuttle{icon_state = "swall_s5";dir = 2},/area/shuttle/escape)
+"ay" = (/turf/closed/wall/shuttle{icon_state = "swallc1"},/area/shuttle/escape)
+"az" = (/obj/machinery/button/flasher{id = "cockpit_flasher";pixel_x = 6;pixel_y = -24},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aA" = (/turf/closed/wall/shuttle{icon_state = "swallc2"},/area/shuttle/escape)
+"aB" = (/turf/closed/wall/shuttle{icon_state = "swall_s9";dir = 2},/area/shuttle/escape)
+"aC" = (/turf/closed/wall/shuttle{icon_state = "swall14";dir = 2},/area/shuttle/escape)
+"aD" = (/obj/machinery/door/airlock/glass{name = "Emergency Shuttle Cockpit";req_access_txt = "19"},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aE" = (/obj/machinery/flasher{id = "cockpit_flasher";pixel_x = 6;pixel_y = 24},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"aF" = (/turf/closed/wall/shuttle{icon_state = "swall11"},/area/shuttle/escape)
+"aG" = (/turf/closed/wall/shuttle{icon_state = "swall7";dir = 2},/area/shuttle/escape)
+"aH" = (/obj/structure/grille,/obj/structure/grille,/obj/structure/window/shuttle,/turf/open/floor/plating,/area/shuttle/escape)
+"aI" = (/turf/open/floor/plasteel/shuttle/red,/turf/closed/wall/shuttle{icon_state = "swall_f9";dir = 2},/area/shuttle/escape)
+"aJ" = (/obj/structure/chair,/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"aK" = (/turf/open/floor/plasteel/shuttle/red,/turf/closed/wall/shuttle{icon_state = "swall_f5";dir = 2},/area/shuttle/escape)
+"aL" = (/turf/closed/wall/shuttle{icon_state = "swall15";dir = 2},/area/shuttle/escape)
+"aM" = (/turf/open/floor/plasteel/shuttle,/turf/closed/wall/shuttle{icon_state = "swall_f9";dir = 2},/area/shuttle/escape)
+"aN" = (/turf/open/floor/plasteel/shuttle,/turf/closed/wall/shuttle{icon_state = "swall_f5";dir = 2},/area/shuttle/escape)
+"aO" = (/turf/closed/wall/shuttle{icon_state = "swall13";dir = 2},/area/shuttle/escape)
+"aP" = (/obj/structure/chair,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aQ" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"aR" = (/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"aS" = (/obj/machinery/flasher{id = "shuttlebrig";pixel_y = -24},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"aT" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aU" = (/obj/structure/chair{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aV" = (/obj/structure/chair{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aW" = (/turf/closed/wall/shuttle{icon_state = "swall12"},/area/shuttle/escape)
+"aX" = (/obj/machinery/door/airlock/glass_security{name = "Holding Area"},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"aY" = (/obj/structure/chair{dir = 1},/obj/structure/window/reinforced,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"aZ" = (/obj/structure/chair,/obj/machinery/button/flasher{id = "shuttlebrig";pixel_x = 0;pixel_y = 22;req_access_txt = "2"},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"ba" = (/obj/structure/chair,/obj/structure/window/reinforced{dir = 1;layer = 2.9},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"bb" = (/obj/machinery/door/airlock/shuttle{name = "Emergency Shuttle Airlock"},/turf/open/space,/area/shuttle/escape)
+"bc" = (/obj/structure/extinguisher_cabinet{pixel_y = -30},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"bd" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"be" = (/obj/structure/extinguisher_cabinet{pixel_x = 24},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bf" = (/obj/machinery/door/airlock/glass{name = "Emergency Shuttle Brig";req_access_txt = "2"},/turf/open/floor/plasteel/shuttle/red,/area/shuttle/escape)
+"bg" = (/obj/machinery/door/airlock/shuttle{name = "Emergency Shuttle Airlock"},/obj/docking_port/stationary{dir = 4;dwidth = 12;height = 18;id = "emergency_home";name = "Minsky emergency evac bay";width = 32},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bh" = (/obj/machinery/door/airlock/shuttle{name = "Emergency Shuttle Airlock"},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bi" = (/turf/open/floor/plasteel/shuttle,/turf/closed/wall/shuttle{dir = 3;icon_state = "swall_f10";layer = 2},/area/shuttle/escape)
+"bj" = (/turf/open/floor/plasteel/shuttle,/turf/closed/wall/shuttle{icon_state = "swall_f6";dir = 2},/area/shuttle/escape)
+"bk" = (/obj/machinery/door/airlock/glass_large,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"bl" = (/turf/closed/wall/shuttle{icon_state = "swall2"},/area/shuttle/escape)
+"bm" = (/obj/machinery/door/airlock/shuttle{name = "Emergency Shuttle Airlock"},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"bn" = (/obj/structure/table,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/fire{pixel_x = 4},/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bo" = (/obj/structure/table,/obj/item/weapon/reagent_containers/blood/random,/obj/item/weapon/reagent_containers/blood/random,/obj/item/weapon/reagent_containers/blood/random,/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bp" = (/obj/structure/table,/turf/open/floor/plasteel/shuttle,/area/shuttle/escape)
+"bq" = (/obj/machinery/sleeper{icon_state = "sleeper-open";dir = 4},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"br" = (/obj/machinery/sleeper{icon_state = "sleeper-open";dir = 8},/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"bs" = (/obj/machinery/door/airlock/shuttle{name = "Emergency Shuttle Airlock"},/turf/open/floor/plating,/area/shuttle/escape)
+"bt" = (/obj/structure/closet,/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bu" = (/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bv" = (/obj/structure/closet/firecloset/full,/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bw" = (/obj/structure/closet/emcloset,/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bx" = (/obj/structure/bodycontainer/morgue,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"by" = (/obj/structure/closet/emcloset,/turf/open/floor/plasteel/shuttle/white,/area/shuttle/escape)
+"bz" = (/obj/machinery/vending/snack,/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bA" = (/obj/machinery/vending/cola,/turf/open/floor/plasteel/shuttle/yellow,/area/shuttle/escape)
+"bB" = (/turf/open/space,/area/shuttle/escape)
+"bC" = (/obj/structure/shuttle/engine/propulsion,/turf/open/space,/area/shuttle/escape)
+
+(1,1,1) = {"
+aaaaaaaaaaabacadadadadadacaeaaaaaaaaaa
+aaaaaaaaabafagahahaiahahajakaeaaaaaaaa
+aaaaaaaaalahamananaoananapahalaaaaaaaa
+aaaaaaaaadaqanananaqanananaqadaaaaaaaa
+aaaaaaaaalarasanatauatanavawalaaaaaaaa
+aaaaaaaaaxayahaqazaqaqaqahaAaBaaaaaaaa
+aaaaaaaaaaaxadaCacaDacaCadaBaaaaaaaaaa
+aaaaaaaaaaaaaaalaEaqanalaaaaaaaaaaaaaa
+aaabadadadaeabaFanaqanaGaeabaHaHaHaeaa
+abaIaJaJaJaKaLaManaqanaNaOaMaPaPaPaNae
+adaQaRaSaRaRadaTanaqanaUaVanananananad
+aGaWaWaWaWaXaFaTanaqanaUaVanaYaYaYanal
+adaZaJaRaRaRadaTanaqanaUaVanbababaanad
+bbaRbcaRbdbdadaTanaqanaUaVananananbeal
+aGacacbfacacafananaqananananaYaYaYanal
+bganananananananaYaYaYanananbababaanbh
+axbianaPaPaPananbababaananananananbjaB
+aaaxbianananananananananananananbjaBaa
+aaaaadaYaYaYananaYaYaYananaYaYaYadaaaa
+aaaaadbababaananbababaananbababaadaaaa
+aaabaManananananananananananananaNaeaa
+abaManaqaqaqananaYaYaYananaqaqaqanaNae
+bhanananananananbababaanananananananbh
+aGacadbkaqadayanananananblanananananal
+bmaqaqaqaqaPalanaYaYaYanalanaYaYaYbeal
+adaqaqaqaqaqalanbababaanalanbababaanad
+alaqbnbobpaqalanananananalanananananal
+adaqaqanaqaqaGadadadadadaFanauauaqanad
+albqaqanaqbralaaaaaaaaaaaGacacacbsacaF
+albqaqanaqbralaaaaaaaaaaalbtbtbububval
+alaqaqanaqaqalaaaaaaaaaaalbububububwal
+albxaqanaqbyalaaaaaaaaaaalbzbubububwal
+albxaqanaqbyalaaaaaaaaaaalbAbubububval
+axaCadadadaCaBaaaaaaaaaaaxaCadadadaCaB
+bBaxbCbCbCaBbBaaaaaaaaaaaaaxbCbCbCaBaa
+"}
