@@ -77,7 +77,7 @@
 
 /obj/item/reagent_containers/food/snacks/popcorn/Initialize()
 	. = ..()
-	eatverb = pick("bite","crunch","nibble","gnaw","gobble","chomp")
+	eatverb = pick("bite","nibble","gnaw","gobble","chomp")
 
 /obj/item/reagent_containers/food/snacks/loadedbakedpotato
 	name = "loaded baked potato"
@@ -164,7 +164,7 @@
 	icon_state = "mint"
 	bitesize = 1
 	trash = /obj/item/trash/plate
-	list_reagents = list("minttoxin" = 1)
+	list_reagents = list("minttoxin" = 2)
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 
@@ -467,8 +467,8 @@
 	head.color = C
 	add_overlay(head)
 
-/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/A)
-	..(A)
+/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	..(hit_atom)
 	throw_speed = 1
 	throwforce = 0
 

@@ -29,6 +29,8 @@ em						{font-style: normal;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
+.looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
+
 .adminsay				{color:	#996600;	font-weight: bold;} /* yogs - changed colour to poop */
 .admin					{color: #386aff;	font-weight: bold;}
 
@@ -41,12 +43,12 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
 .radio					{color: #008000;}
 .sciradio				{color: #993399;}
-.comradio				{color: #0011BF;} /* yogs - Colour change */
+.comradio				{color: #948f02;}
 .secradio				{color: #a30000;}
 .medradio				{color: #337296;}
 .engradio				{color: #fb5613;}
 .suppradio				{color: #a8732b;}
-.servradio				{color: #105000;} /* yogs - Colour change */
+.servradio				{color: #6eaa2c;}
 .syndradio				{color: #6d3f40;}
 .centcomradio			{color: #686868;}
 .aiprivradio			{color: #ff00ff;}
@@ -135,6 +137,7 @@ h1.alert, h2.alert		{color: #000000;}
 .noticealien			{color: #00c000;}
 .alertalien				{color: #00c000;	font-weight: bold;}
 .changeling				{color: #800080;	font-style: italic;}
+.assimilator			{color: #800080;	font-size: 2 ; font-weight: bold;}
 
 .spider					{color: #4d004d;}
 
@@ -159,6 +162,14 @@ h1.alert, h2.alert		{color: #000000;}
     25% { color: #410194; }
     50% { color: #7f17d8; }
 	75% { color: #410194; }
+	100% { color: #3bb5d3; }
+}
+
+.phobia			{color: #dd0000;	font-weight: bold; animation: phobia 750ms infinite;}
+	@keyframes phobia {
+		0% { color: #0d0d0d; }
+		50% { color: #dd0000; }
+		100% { color: #0d0d0d; }
 }
 
 .icon 					{height: 1em;	width: auto;}
@@ -176,7 +187,7 @@ h1.alert, h2.alert		{color: #000000;}
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
 
-/* yogs start - Yog Tickets */
+// yogs start - Yog Tickets
 .ticket-status {
 	color: #000099;
 	font-weight: bold;
@@ -203,5 +214,5 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 	font-style: italic;
 }
-/* yogs end */
+// yogs end
 </style>"}

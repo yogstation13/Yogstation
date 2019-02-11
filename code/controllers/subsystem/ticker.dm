@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
-	var/list/byond_sound_formats = list(
+	/*var/list/byond_sound_formats = list( //yogs start - goonchat lobby music
 		"mid"  = TRUE,
 		"midi" = TRUE,
 		"mod"  = TRUE,
@@ -111,8 +111,10 @@ SUBSYSTEM_DEF(ticker)
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
 		login_music = pick(music)
 	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
-
+		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"*/
+	login_music = choose_lobby_music()
+	if(!login_music)
+		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase()
@@ -134,8 +136,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			if(CONFIG_GET(flag/irc_announce_new_game))
-				world.TgsTargetedChatBroadcast("New round starting on [SSmapping.config.map_name]!", FALSE)
+			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
@@ -186,6 +187,7 @@ SUBSYSTEM_DEF(ticker)
 				current_state = GAME_STATE_FINISHED
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
+				toggle_looc(TRUE) // yogs - turn LOOC on at roundend
 				declare_completion(force_ending)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
@@ -250,6 +252,9 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!CONFIG_GET(flag/ooc_during_round))
 		toggle_ooc(FALSE) // Turn it off
+
+	if(!CONFIG_GET(flag/looc_during_round))
+		toggle_looc(FALSE) // yogs - Turn it off
 
 	CHECK_TICK
 	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
@@ -569,7 +574,7 @@ SUBSYSTEM_DEF(ticker)
 	round_end_sound_sent = TRUE
 
 // yogs start - Mods can reboot when last ticket is closed
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE)
 	set waitfor = FALSE
 	if(usr && !force)
 		if(!check_rights(R_SERVER, TRUE))
@@ -585,7 +590,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 	//yogs start - yogs tickets
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
-		var/list/adm = get_admin_counts(R_ADMIN)
+		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
 		if(activemins.len > 0)
 			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
@@ -630,8 +635,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/leavingtg.ogg',
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
-		'sound/roundend/disappointed.ogg',
-		'sound/roundend/gondolabridge.ogg'\
+		'sound/roundend/disappointed.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))

@@ -41,6 +41,7 @@
 	if(!bitcoinmining)
 		if(!loaded_tank.air_contents.gases[/datum/gas/plasma])
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
+			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			eject()
 		else
@@ -82,6 +83,7 @@
 				fuel = loaded_tank.air_contents.gases[/datum/gas/plasma]
 			fuel = fuel ? fuel[MOLES] : 0
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SINGULO)
+			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			return
 		else
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")

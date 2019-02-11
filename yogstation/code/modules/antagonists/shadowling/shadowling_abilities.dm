@@ -78,7 +78,7 @@
 	if (distance <= 2)
 		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Knockdown(100)
+		target.Paralyze(100)
 		M.silent += 10
 	else //Distant glare
 		var/loss = 100 - (distance * 10)
@@ -106,14 +106,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishItem(obj/item/I, cold = FALSE) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
-	if(istype(I, /obj/item/electronic_assembly))
-		var/obj/item/electronic_assembly/EA = I
-		for(var/AC in EA.assembly_components)
-			if(istype(AC, /obj/item/integrated_circuit/output/light))
-				EA.remove_component(AC)
-				qdel(AC)
-				EA.visible_message("<span class='warning'>A puff of smoke rises from [EA].</span>")
-	else if(istype(I, /obj/item/flashlight))
+	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(cold)
@@ -134,39 +127,49 @@
 	return I.luminosity
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/extinguishMob(mob/living/H, cold = FALSE)
-	var/blacklistLuminosity = 0
 	for(var/obj/item/F in H)
 		if(cold)
 			extinguishItem(F, TRUE)
-		blacklistLuminosity += extinguishItem(F)
-	H.set_light(blacklistLuminosity) //I hate lightcode for making me do it this way
+		extinguishItem(F)
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
 		revert_cast()
 		return
 	to_chat(user, "<span class='shadowling'>You silently disable all nearby lights.</span>")
-	for(var/turf/T in view(4))
-		for(var/obj/item/F in T.contents)
-			extinguishItem(F)
-		for(var/obj/machinery/light/L in T.contents)
+	var/turf/T = get_turf(user)
+	for(var/datum/light_source/LS in T.affecting_lights)
+		var/atom/LO = LS.source_atom
+		if(isitem(LO))
+			extinguishItem(LO)
+			continue
+		if(istype(LO, /obj/machinery/light))
+			var/obj/machinery/light/L = LO
 			L.on = FALSE
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
 			L.update(0)
 			L.set_light(0)
-		for(var/obj/machinery/computer/C in T.contents)
-			C.set_light(0)
-			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")
-		for(var/mob/living/H in T.contents)
-			extinguishMob(H)
-		for(var/mob/living/silicon/robot/borg in T.contents)
+			continue
+		if(istype(LO, /obj/machinery/computer) || istype(LO, /obj/machinery/power/apc))
+			LO.set_light(0)
+			LO.visible_message("<span class='warning'>[LO] grows dim, its screen barely readable.</span>")
+			continue
+		if(ismob(LO))
+			extinguishMob(LO)
+		if(istype(LO, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/borg = LO
 			if(!borg.lamp_cooldown)
 				borg.update_headlamp(TRUE, INFINITY)
 				to_chat(borg, "<span class='userdanger'>The lightbulb in your headlamp is fried! You'll need a human to help replace it.</span>")
-		for(var/obj/machinery/camera/cam in T.contents)
-			cam.set_light(0)
+		if(istype(LO, /obj/machinery/camera))
+			LO.set_light(0)
 			if(prob(10))
-				cam.emp_act(2)
+				LO.emp_act(2)
+			continue
+		if(istype(LO, /obj/structure/glowshroom))
+			LO.visible_message("<span class='warning'>[LO] withers away!</span>")
+			qdel(LO)
+			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
 		G.visible_message("<span class='warning'>[G] withers away!</span>")
 		qdel(G)
@@ -320,7 +323,7 @@
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
 	if(!text)
 		return
-	var/my_message = "<font size=2><span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
+	var/my_message = "<span class='shadowling command_headset'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
 		if(is_shadow_or_thrall(M))
 			to_chat(M, my_message)
@@ -474,7 +477,7 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Knockdown(6)
+				S.Paralyze(6)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
 

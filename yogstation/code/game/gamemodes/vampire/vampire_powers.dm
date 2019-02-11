@@ -93,7 +93,13 @@
 	if(!V) //sanity check
 		return
 	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-10)
+		U.adjustStaminaLoss(-100)
+		U.SetStun(0)
+		U.SetKnockdown(0)
+		U.SetParalyzed(0)
+		U.SetImmobilized(0)
+		U.set_resting(FALSE)
+		U.update_mobility()
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
@@ -117,8 +123,7 @@
 		if(do_mob(user, target, 50))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
-			target.Knockdown(150)
-			target.Stun(150)
+			target.Paralyze(150)
 			target.stuttering = 10
 		else
 			revert_cast(usr)
@@ -171,13 +176,13 @@
 	to_chat(user, "<span class='notice'>You will now be [V.iscloaking ? "hidden" : "seen"] in darkness.</span>")
 
 /obj/effect/proc_holder/spell/targeted/disease
-	name = "Diseased Touch (100)"
+	name = "Diseased Touch (50)"
 	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
 	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
 	action_icon_state = "disease"
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 100
+	blood_used = 50
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/disease/cast(list/targets, mob/user = usr)
@@ -191,13 +196,13 @@
 		target.ForceContractDisease(D)
 
 /obj/effect/proc_holder/spell/self/screech
-	name = "Chiropteran Screech (30)"
+	name = "Chiropteran Screech (20)"
 	desc = "An extremely loud shriek that stuns nearby humans and breaks windows as well."
 	gain_desc = "You have gained the Chiropteran Screech ability which stuns anything with ears in a large radius and shatters glass in the process."
 	action_icon_state = "reeee"
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 30
+	blood_used = 20
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
@@ -206,17 +211,17 @@
 		if(C == user || (ishuman(C) && C.get_ear_protection()) || is_vampire(C))
 			continue
 		to_chat(C, "<span class='warning'><font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b></span>")
-		C.Knockdown(4)
+		C.Knockdown(40)
 		C.adjustEarDamage(0, 30)
 		C.stuttering = 250
-		C.Stun(4)
+		C.Paralyze(40)
 		C.Jitter(150)
 	for(var/obj/structure/window/W in view(4))
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
 
 /obj/effect/proc_holder/spell/bats
-	name = "Summon Bats (75)"
+	name = "Summon Bats (30)"
 	desc = "You summon a pair of space bats who attack nearby targets until they or their target is dead."
 	gain_desc = "You have gained the Summon Bats ability."
 	action_icon_state = "bats"
@@ -224,7 +229,7 @@
 	action_background_icon_state = "bg_demon"
 	charge_max = 1200
 	vamp_req = TRUE
-	blood_used = 75
+	blood_used = 30
 	var/num_bats = 2
 
 /obj/effect/proc_holder/spell/bats/choose_targets(mob/user = usr)
@@ -260,19 +265,22 @@
 	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
 
 /obj/effect/proc_holder/spell/targeted/vampirize
-	name = "Lilith's Pact (500)"
+	name = "Lilith's Pact (400)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	action_icon = 'yogstation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "oath"
-	blood_used = 500
+	blood_used = 400
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/vampirize/cast(list/targets, mob/user = usr)
 	for(var/mob/living/carbon/target in targets)
 		if(is_vampire(target))
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
+			continue
+		if(target.has_trait(TRAIT_MINDSHIELD))
+			to_chat(user, "<span class='warning'>[target]'s mind is too strong!</span>")
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
 		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim

@@ -74,12 +74,27 @@
 			. = authorize(user)
 
 		if("repeal")
-			authorized -= ID
+			// yogs start - added spam protection
+			if(ID in authorized)// if you have already submitted your authorization:
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
+					return
+				authorized -= ID
+				// Record this time so we can remember how long ago this repeal occured, and restrict announcement spam.
+				last_early_auth = world.time
+			// yogs end
 
 		if("abort")
 			if(authorized.len)
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
+				// yogs start - added spam protection
+				if(last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME > world.time) // this action was performed before cooldown expired
+					to_chat(user, "<span class='warning'>The emergency shuttle console is recharging, please wait [((last_early_auth + SHUTTLE_EARLY_AUTHORIZATION_COOLDOWN_TIME) - world.time)*0.1] seconds.</span>")
+					return
+				// Record this time so we can remember how long ago this abortion occured, and restrict announcement spam.
+				last_early_auth = world.time
+				// yogs end
 				authorized.Cut()
 				. = TRUE
 
@@ -119,7 +134,7 @@
 
 	if(SSshuttle.emergency.mode == SHUTTLE_STRANDED)
 		authorized.Cut()
-		obj_flags &= ~EMAGGED
+		DISABLE_BITFIELD(obj_flags, EMAGGED)
 
 	if(ENGINES_STARTED || (!IS_DOCKED))
 		return .
@@ -138,14 +153,15 @@
 	if(!IS_DOCKED)
 		return
 
-	if((obj_flags & EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
+	if(CHECK_BITFIELD(obj_flags, EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
 		to_chat(user, "<span class='warning'>The shuttle is already about to launch!</span>")
 		return
 
 	var/time = TIME_LEFT
 	message_admins("[ADMIN_LOOKUPFLW(user.client)] has emagged the emergency shuttle [time] seconds before launch.")
 	log_game("[key_name(user)] has emagged the emergency shuttle in [COORD(src)] [time] seconds before launch.")
-	obj_flags |= EMAGGED
+
+	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	SSshuttle.emergency.movement_force = list("KNOCKDOWN" = 60, "THROW" = 20)//YOUR PUNY SEATBELTS can SAVE YOU NOW, MORTAL
 	var/datum/species/S = new
 	for(var/i in 1 to 10)
@@ -312,7 +328,7 @@
 					return
 				mode = SHUTTLE_DOCKED
 				setTimer(SSshuttle.emergencyDockTime)
-				send2irc("Server", "The Emergency Shuttle has docked with the station.")
+				send2irc("Server", "The Emergency Shuttle ([name]) has docked with the station.") // yogs - make it say the name of the shuttle
 				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
 
@@ -458,7 +474,7 @@
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	obj_flags |= EMAGGED
+	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, "<span class='warning'>You fry the pod's alert level checking system.</span>")
 
 /obj/machinery/computer/shuttle/pod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
@@ -546,10 +562,15 @@
 	if(can_interact(usr))
 		return ..()
 
+/obj/item/storage/pod/AltClick(mob/user)
+	if(!can_interact(user))
+		return
+	..()
+
 /obj/item/storage/pod/can_interact(mob/user)
 	if(!..())
 		return FALSE
-	if(GLOB.security_level == SEC_LEVEL_RED || GLOB.security_level == SEC_LEVEL_DELTA || unlocked)
+	if(GLOB.security_level >= SEC_LEVEL_RED || unlocked)
 		return TRUE
 	to_chat(user, "The storage unit will only unlock during a Red or Delta security alert.")
 

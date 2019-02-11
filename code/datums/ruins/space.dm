@@ -158,6 +158,7 @@
 
 /datum/map_template/ruin/space/oldshuttle
 	id = "spaceman-origins"
+	prefix = "_maps/yogstation/RandomRuins/SpaceRuins/"//yogs - use Yogs custom old shuttle instead of upstream
 	suffix = "shuttlerelic.dmm"
 	name = "Strange Ship"
 	description = "A ship seemingly lost, drifting along the stars. This thing looks like it belongs in ancient times."
@@ -281,3 +282,9 @@
 	suffix = "cloning_facility.dmm"
 	name = "Ancient Cloning Lab"
 	description = "An experimental cloning lab snapped off from an ancient ship. The cloner model inside lacks many modern functionalities and security measures."
+
+/datum/map_template/ruin/space/hilbertresearchfacility
+	id = "hilbert_facility"
+	suffix = "hilbertshoteltestingsite.dmm"
+	name = "Hilbert Research Facility"
+	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."

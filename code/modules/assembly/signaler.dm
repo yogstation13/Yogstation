@@ -70,9 +70,10 @@ Code:
 [src.code]
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
+Color: <A href='byond://?src=[REF(src)];color=1' style='background-color: black; color: [src.label_color]'>[src.label_color]</A><BR>
 [t1]
 </TT>"}
-		user << browse(dat, "window=radio")
+		user << browse(dat, "window=radio") // yogs - signaller colors
 		onclose(user, "radio")
 		return
 
@@ -101,6 +102,17 @@ Code:
 		spawn( 0 )
 			signal()
 
+	// yogs start - signaller colors
+	if(href_list["color"])
+		var/idx = label_colors.Find(label_color)
+		if(idx == label_colors.len || idx == 0)
+			idx = 1
+		else
+			idx++
+		label_color = label_colors[idx]
+		update_icon()
+	// yogs end
+
 	if(usr)
 		attack_self(usr)
 
@@ -112,6 +124,10 @@ Code:
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)
+			// yogs start - signaller colors
+			label_color = signaler2.label_color
+			update_icon()
+			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()
 

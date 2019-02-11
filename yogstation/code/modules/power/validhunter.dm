@@ -85,7 +85,7 @@
 	
 	var/do_gib = FALSE
 	var/emagged = obj_flags & EMAGGED
-	if(L in GLOB.antagonists)
+	if(L.mind && LAZYLEN(L.mind.antag_datums))
 		if(!emagged)
 			do_gib = TRUE
 	else

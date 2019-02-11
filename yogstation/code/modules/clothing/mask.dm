@@ -6,11 +6,15 @@
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = MASKINTERNALS
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
 	var/voicechange = TRUE
 	var/last_sound = 0
 	var/delay = 15
+
+/obj/item/clothing/mask/yogs/cluwne/Initialize()
+	.=..()
+	add_trait(TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/mask/yogs/cluwne/proc/play_laugh1()
 	if(world.time - delay > last_sound)
@@ -60,7 +64,7 @@
 	flags_1 = MASKINTERNALS
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
 	item_flags = ABSTRACT
-	var/can_cluwne = TRUE
+	var/can_cluwne = FALSE
 	var/is_cursed = FALSE //i don't care that this is *slightly* memory wasteful, it's just one more byte and it's not like some madman is going to spawn thousands of these
 	var/is_very_cursed = FALSE
 
@@ -100,3 +104,12 @@
 			to_chat(H, "<span class='warning'>The mask suddenly slips off your face and... slides under the floor?</span>")
 			to_chat(H, "<i>...dneirf uoy ot gnoleb ton seod tahT</i>")
 			qdel(src)
+
+/obj/item/clothing/mask/yogs/ronald
+	name = "ronald mask"
+	desc = "A mask worn by the popular children fast food salesman."
+	clothing_flags = MASKINTERNALS
+	icon_state = "ronald"
+	item_state = "ronald"
+	flags_cover = MASKCOVERSEYES
+	resistance_flags = FLAMMABLE

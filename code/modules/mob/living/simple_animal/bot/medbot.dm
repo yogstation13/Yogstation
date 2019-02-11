@@ -17,7 +17,7 @@
 	status_flags = (CANPUSH | CANSTUN)
 
 	radio_key = /obj/item/encryptionkey/headset_med
-	radio_channel = "Medical"
+	radio_channel = RADIO_CHANNEL_MEDICAL
 
 	bot_type = MED_BOT
 	model = "Medibot"
@@ -85,7 +85,7 @@
 	if(!on)
 		icon_state = "medibot0"
 		return
-	if(IsStun())
+	if(IsStun() || IsParalyzed())
 		icon_state = "medibota"
 		return
 	if(mode == BOT_HEALING)
@@ -105,7 +105,7 @@
 	skin = new_skin
 	update_icon()
 
-/mob/living/simple_animal/bot/medbot/update_canmove()
+/mob/living/simple_animal/bot/medbot/update_mobility()
 	. = ..()
 	update_icon()
 
@@ -277,7 +277,7 @@
 	if(mode == BOT_HEALING)
 		return
 
-	if(IsStun())
+	if(IsStun() || IsParalyzed())
 		oldpatient = patient
 		patient = null
 		mode = BOT_IDLE
@@ -549,7 +549,7 @@
 	if(declare_cooldown > world.time)
 		return
 	var/area/location = get_area(src)
-	speak("Medical emergency! [crit_patient ? "<b>[crit_patient]</b>" : "A patient"] is in critical condition at [location]!",radio_channel)
+	speak("Medical emergency! [crit_patient || "A patient"] is in critical condition at [location]!",radio_channel)
 	declare_cooldown = world.time + 200
 
 /obj/machinery/bot_core/medbot

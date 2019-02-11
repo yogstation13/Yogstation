@@ -21,6 +21,9 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	set_focus(src)
 	return INITIALIZE_HINT_NORMAL
 
+/mob/dead/canUseStorage()
+	return FALSE
+
 /mob/dead/dust(just_ash, drop_items, force)	//ghosts can't be vaporised.
 	return
 
@@ -100,3 +103,28 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	winset(src, null, "command=.options") //other wise the user never knows if byond is downloading resources
 
 	C << link("[addr]?server_hop=[key]")
+
+/mob/dead/proc/update_z(new_z) // 1+ to register, null to unregister
+	if (registered_z != new_z)
+		if (registered_z)
+			SSmobs.dead_players_by_zlevel[registered_z] -= src
+		if (client)
+			if (new_z)
+				SSmobs.dead_players_by_zlevel[new_z] += src
+			registered_z = new_z
+		else
+			registered_z = null
+
+/mob/dead/Login()
+	. = ..()
+	var/turf/T = get_turf(src)
+	if (isturf(T))
+		update_z(T.z)
+
+/mob/dead/Logout()
+	update_z(null)
+	return ..()
+
+/mob/dead/onTransitZ(old_z,new_z)
+	..()
+	update_z(new_z)

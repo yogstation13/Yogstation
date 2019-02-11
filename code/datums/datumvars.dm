@@ -1060,6 +1060,8 @@
 				var/chosenart = artnames[result]
 				var/datum/martial_art/MA = new chosenart
 				MA.teach(C)
+				log_admin("[key_name(usr)] has taught [MA] to [key_name(C)].")
+				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(C)].</span>")
 
 		else if(href_list["givetrauma"])
 			if(!check_rights(NONE))
@@ -1078,8 +1080,13 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 
-			if(result)
-				C.gain_trauma(result)
+			if(!result)
+				return
+
+			var/datum/brain_trauma/BT = C.gain_trauma(result)
+			if(BT)
+				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
+				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
 
 		else if(href_list["curetraumas"])
 			if(!check_rights(NONE))
@@ -1091,6 +1098,8 @@
 				return
 
 			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
+			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
+			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
 
 		else if(href_list["hallucinate"])
 			if(!check_rights(NONE))
@@ -1359,10 +1368,10 @@
 					return
 
 			if(amount != 0)
-				log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
-				var/msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [L]" // yogs - Yog Tickets
-				message_admins(msg)
-				admin_ticket_log(L, msg)
+				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
+				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
+				log_admin(log_msg)
+				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
 				vv_update_display(L, Text, "[newamt]")
 		else if(href_list["copyoutfit"])
 			if(!check_rights(R_SPAWN))

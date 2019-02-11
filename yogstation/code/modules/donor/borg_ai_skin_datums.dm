@@ -97,6 +97,12 @@
 	icon_state = "paladin"
 	module_locked = "Security"
 
+/datum/borg_skin/rainbowpeace
+	name = "Rainbow Peacekeeper"
+	icon_state = "rainbow_peace"
+	owner = "fluffe9911"
+	module_locked = "Peacekeeper"
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
@@ -130,7 +136,7 @@
 	name = "You spin me right round right round nich like a record baby round round"
 	icon_state = "oneofourcouncilmembers"
 	owner = "nichlas0010"
-	
+
 /datum/ai_skin/ling
 	name = "You spin me right round right round nich like a record baby round round"
 	icon_state = "oneofourcouncilmembers"
@@ -139,10 +145,6 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
-
-/datum/ai_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null
 
 /datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
 	name = "Cancel"

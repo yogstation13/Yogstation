@@ -92,12 +92,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
+	// YOGS START - Mentor PMs
+	if(yogs_client_procs(href_list))
+		return
+	// YOGS END
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
+		if("mentor") // YOGS - Mentor stuff
+			hsrc = mentor_datum // YOGS - Mentor stuff
 		if("prefs")
 			if (inprefs)
 				return
@@ -121,7 +126,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	..()	//redirect to hsrc.Topic()
 
 /client/proc/is_content_unlocked()
-	if(!prefs.unlock_content)
+	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
 		to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
 		return 0
 	return 1
@@ -252,6 +257,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			prefs.toggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
+	// yogs start - mentor stuff
+	if(ckey in GLOB.mentor_datums)
+		var/datum/mentors/mentor = GLOB.mentor_datums[ckey]
+		src.mentor_datum = mentor
+		src.add_mentor_verbs()
+		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
+			GLOB.mentors += src
+	// yogs end
+	
 
 	. = ..()	//calls mob.Login()
 
@@ -287,12 +301,13 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	connection_timeofday = world.timeofday
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
 	var/cev = CONFIG_GET(number/client_error_version)
+	var/ceb = CONFIG_GET(number/client_error_build)
 	var/cwv = CONFIG_GET(number/client_warn_version)
-	if (byond_version < cev)		//Out of date client.
+	if (byond_version < cev || byond_build < ceb)		//Out of date client.
 		to_chat(src, "<span class='danger'><b>Your version of BYOND is too old:</b></span>")
 		to_chat(src, CONFIG_GET(string/client_error_message))
-		to_chat(src, "Your version: [byond_version]")
-		to_chat(src, "Required version: [cev] or later")
+		to_chat(src, "Your version: [byond_version].[byond_build]")
+		to_chat(src, "Required version: [cev].[ceb] or later")
 		to_chat(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
 		if (connecting_admin)
 			to_chat(src, "Because you are an admin, you are being allowed to walk past this limitation, But it is still STRONGLY suggested you upgrade")
@@ -436,14 +451,15 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 
-	sync_logout_with_db(connection_number) // yogs - logout logging
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
 		movingmob.client_mobs_in_contents -= mob
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	Master.UpdateTickRate()
+	sync_logout_with_db(connection_number) // yogs - logout logging
 	return ..()
 
 /client/Destroy()
@@ -546,14 +562,13 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	// yogs start - logout logging
 	var/serverip = "[world.internet_address]"
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`, `datetime`, `server_ip`, `server_port`, `round_id`, `ckey`, `ip`, `computerid`) VALUES(null, Now(), INET_ATON('[serverip]'), '[world.port]', '[GLOB.round_id]', '[sql_ckey]', INET_ATON('[sql_ip]'), '[sql_computerid]')")
-	query_log_connection.Execute()
+	if(query_log_connection.Execute(async = FALSE))
+		var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
+		query_getid.Execute(async = FALSE)
+		if(query_getid.NextRow())
+			connection_number = query_getid.item[1]
+		qdel(query_getid)
 	qdel(query_log_connection)
-
-	var/datum/DBQuery/query_getid = SSdbcore.NewQuery("SELECT `id` FROM `[format_table_name("connection_log")]` WHERE `server_ip` = INET_ATON('[serverip]') AND `ckey` = '[sql_ckey]' ORDER BY datetime DESC LIMIT 1;")
-	query_getid.Execute()
-	if(query_getid.NextRow())
-		connection_number = query_getid.item[1]
-	qdel(query_getid)
 	// yogs end
 	if(new_player)
 		player_age = -1
@@ -688,7 +703,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/sql_system_ckey = sanitizeSQL(system_ckey)
 	var/sql_ckey = sanitizeSQL(ckey)
 	//check to see if we noted them in the last day.
-	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND expire_timestamp > NOW()")
+	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -697,7 +712,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		return
 	qdel(query_get_notes)
 	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
-	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND expire_timestamp > NOW() ORDER BY timestamp DESC LIMIT 1")
+	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1")
 	if(!query_get_notes.Execute())
 		qdel(query_get_notes)
 		return
@@ -721,8 +736,14 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/Click(atom/object, atom/location, control, params)
 	var/ab = FALSE
 	var/list/L = params2list(params)
+
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
 	if (object && object == middragatom && L["left"])
 		ab = max(0, 5 SECONDS-(world.time-middragtime)*0.1)
+
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if (!holder && mcl)
 		var/minute = round(world.time, 600)
@@ -742,7 +763,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
 					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
 					add_system_note("aimbot", "Is using the middle click aimbot exploit")
-
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 			to_chat(src, "<span class='danger'>[msg]</span>")
@@ -868,3 +888,23 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/AnnouncePR(announcement)
 	if(prefs && prefs.chat_toggles & CHAT_PULLR)
 		to_chat(src, announcement)
+
+/client/proc/show_character_previews(mutable_appearance/MA)
+	var/pos = 0
+	for(var/D in GLOB.cardinals)
+		pos++
+		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		if(!O)
+			O = new
+			LAZYSET(char_render_holders, "[D]", O)
+			screen |= O
+		O.appearance = MA
+		O.dir = D
+		O.screen_loc = "character_preview_map:0,[pos]"
+
+/client/proc/clear_character_previews()
+	for(var/index in char_render_holders)
+		var/obj/screen/S = char_render_holders[index]
+		screen -= S
+		qdel(S)
+	char_render_holders = null

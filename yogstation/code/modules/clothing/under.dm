@@ -6,8 +6,12 @@
 	item_state = "cluwne"
 	item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
 	can_adjust = 0
+
+/obj/item/clothing/under/yogs/cluwne/Initialize()
+	.=..()
+	add_trait(TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/under/yogs/cluwne/equipped(mob/living/carbon/user, slot)
 	if(!ishuman(user))
@@ -16,3 +20,20 @@
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
 	return ..()
+
+/obj/item/clothing/under/yogs/ronaldmcdonald
+	name = "ronald mcdonald uniform"
+	desc = "<i>'An old uniform that was used as a mascot in commercial advertising to make children smile while in other places slaughtering children.'</i>"
+	icon_state = "ronald_s"
+	item_state = "clown"
+	item_color = "ronald_s"
+	fitted = FEMALE_UNIFORM_TOP
+	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/soviet_dress_uniform
+	name = "soviet dress uniform"
+	desc = "Seize the means of production in style!"
+	icon_state = "soviet_dress_uniform"
+	item_state = "soviet_dress_uniform"
+	item_color = "soviet_dress_uniform"
+	can_adjust = FALSE

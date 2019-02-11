@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!tracking || emped) //Do not bother scanning if the GPS is off or EMPed
 		return data
 
-	var/turf/curr = get_turf(src)
+	var/turf/curr = get_turf_global(src) // yogs - get_turf_global instead of get_turf
 	data["current"] = "[get_area_name(curr, TRUE)] ([curr.x], [curr.y], [curr.z])"
 
 	var/list/signals = list()
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		var/obj/item/gps/G = gps
 		if(G.emped || !G.tracking || G == src)
 			continue
-		var/turf/pos = get_turf(G)
+		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
 		if(!global_mode && pos.z != curr.z)
 			continue
 		var/list/signal = list()
@@ -156,7 +156,10 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	icon_state = "gps-b"
 	gpstag = "BORG0"
 	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
-	item_flags = NODROP
+
+/obj/item/gps/cyborg/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/gps/internal
 	icon_state = null

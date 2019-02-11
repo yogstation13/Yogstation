@@ -8,7 +8,9 @@
 	if(oldmsg != message)
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
-		return //yogs end - pretty filter
+		return
+	if(isliving(src))
+		message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
@@ -26,7 +28,8 @@
 	if(oldmsg != message)
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
-		return //yogs end - pretty filter
+		return
+	message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
@@ -56,7 +59,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	var/jb = jobban_isbanned(src, "OOC")
+	var/jb = is_banned_from(ckey, "OOC")
 	if(QDELETED(src))
 		return
 
@@ -91,7 +94,7 @@
 		K = src.key
 
 	var/spanned = src.say_quote(message, get_spans())
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>"
+	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[(src.client.prefs.chat_toggles & GHOST_CKEY) ? "" : "([K]) "][name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>" //yogs
 	log_talk(message, LOG_SAY, tag="DEAD")
 	deadchat_broadcast(rendered, follow_target = src, speaker_key = K)
 

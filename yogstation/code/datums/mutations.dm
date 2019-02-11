@@ -2,7 +2,7 @@
 
 	name = "Cluwne"
 	quality = NEGATIVE
-	dna_block = NON_SCANNABLE
+	locked = TRUE
 	text_gain_indication = "<span class='danger'>You feel like your brain is tearing itself apart.</span>"
 
 /datum/mutation/human/cluwne/on_acquiring(mob/living/carbon/human/owner)
