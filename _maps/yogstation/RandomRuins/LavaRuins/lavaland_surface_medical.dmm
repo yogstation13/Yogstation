@@ -716,7 +716,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "bQ" = (
-/obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/airlock/security/glass{
+	req_access_txt = "63"
+	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	icon_state = "tile_corner";
@@ -751,7 +753,9 @@
 /area/ruin/powered)
 "bS" = (
 /obj/structure/fans/tiny/invisible,
-/obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/airlock/security/glass{
+	req_one_access_txt = "63"
+	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	icon_state = "tile_corner";

@@ -38,7 +38,7 @@
 	amount = 50
 	},
 /obj/item/stack/cable_coil,
-/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ag" = (
