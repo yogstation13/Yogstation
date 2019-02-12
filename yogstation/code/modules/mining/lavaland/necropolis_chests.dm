@@ -90,7 +90,6 @@
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "rune_scimmy"
 	force = 35
-	block_chance = 35
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = IS_SHARP
