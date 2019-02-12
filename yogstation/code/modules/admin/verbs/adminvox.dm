@@ -10,7 +10,7 @@
 
 	var/message = input(src, "WARNING: Misuse of this verb can result in you being yelled at by Ross.", "Announcement") as text
 	//^ Remember to replace "Ross" with whoever owns the server in 20,000 years after Ross either dies of natural causes or is assassinated by Oakboscage
-	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female") //yogs - male vox
+	var/voxType = input(src, "Male or female VOX?", "VOX-gender") in list("male", "female")
 
 	if(!message)
 		return
