@@ -1,0 +1,5 @@
+author: " Altoids (Gary Lafortune)"
+delete-after: true 
+changes: 
+  - rscadd: "NTSL has finally returned, with new features and a snazzy look!"
+  - rscadd: "The Signal Technician job is back!"

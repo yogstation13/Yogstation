@@ -1,0 +1,4 @@
+author: " TheMythicGhost"
+delete-after: true 
+changes: 
+  - rscadd: "Adds an in-hand sprite for package wrapped parcels."

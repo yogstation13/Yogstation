@@ -1,0 +1,7 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscdel: "Removed the mime's Pocket Protector."
+  - imagedel: "Swapped the french beret sprite over to the standard beret sprite."
+  - imageadd: "Improves upon the current beret sprites."
+  - rscdel: "Removed the standard beret from the standard costume crate."

@@ -3,7 +3,6 @@
  */
 
 /*
-
 /obj/machinery/vending/[vendors name here]   // --vending machine template   :)
 	name = ""
 	desc = ""
@@ -12,18 +11,14 @@
 	products = list()
 	contraband = list()
 	premium = list()
-
 IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY CANISTER CHARGES in vending_items.dm
 */
-
-GLOBAL_LIST_EMPTY(vending_cache) //yogs
 
 /datum/data/vending_product
 	name = "generic"
 	var/product_path = null
 	var/amount = 0
 	var/max_amount = 0
-	//var/display_color = "blue" //yogs - use icons instead of colours
 	var/custom_price
 	var/custom_premium_price
 
@@ -110,7 +105,6 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 	else if(circuit && (circuit.onstation != onstation)) //check if they're not the same to minimize the amount of edited values.
 		onstation = circuit.onstation //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.
 
-
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
 	QDEL_NULL(coin)
@@ -169,6 +163,15 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				if (dump_amount >= 16)
 					return
 
+/obj/machinery/vending/proc/GetIconForProduct(datum/data/vending_product/P)
+	if(GLOB.vending_cache[P.product_path])
+		return GLOB.vending_cache[P.product_path]
+
+	var/product = new P.product_path()
+	GLOB.vending_cache[P.product_path] = icon2base64(getFlatIcon(product, no_anim = TRUE))
+	qdel(product)
+	return GLOB.vending_cache[P.product_path]
+
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
@@ -182,7 +185,6 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
-		//R.display_color = pick("#ff8080","#80ff80","#8080ff") //yogs - icon instead of colour
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
 		recordlist += R
@@ -338,7 +340,7 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 		var/list/display_records = product_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
-		dat += "<table>" //yogs start - icon instead of colour
+		dat += "<table>"
 		for (var/datum/data/vending_product/R in display_records)
 			var/price_listed = "$[default_price]"
 			var/is_hidden = hidden_records.Find(R)
@@ -352,14 +354,12 @@ GLOBAL_LIST_EMPTY(vending_cache) //yogs
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
 			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
 			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
-			if(R.amount <= 0)
-				dat += "<td><span class='linkOff'>Sold out</span></td>"
-			else if ((C && C.registered_account && onstation) || (!onstation && isliving(user)))
-				dat += "<td><b>[R.amount]&nbsp;</b></td><td><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
+			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
+				dat += "<td align='right'><b>[R.amount]&nbsp;</b><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
-				dat += "<td><span class='linkOff'>Not Available</span></td>"
+				dat += "<td align='right'><span class='linkOff'>Not&nbsp;Available</span></td>"
 			dat += "</tr>"
-		dat += "</table>" //yogs end - icon instead of colour
+		dat += "</table>"
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"

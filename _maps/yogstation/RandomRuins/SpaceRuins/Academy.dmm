@@ -375,7 +375,6 @@
 /area/awaymission/academy/academyengine)
 "bs" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/dice/d20/fate,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bt" = (
@@ -2570,7 +2569,7 @@
 	pixel_y = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -2725,7 +2724,7 @@
 "hR" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2897,7 +2896,7 @@
 "io" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable,
 /obj/structure/window/reinforced/fulltile,
@@ -3034,7 +3033,7 @@
 /obj/structure/grille,
 /obj/structure/cable,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -3956,7 +3955,7 @@
 "kQ" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -4746,6 +4745,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"WF" = (
+/mob/living/simple_animal/hostile/carp/ranged,
+/turf/open/space,
+/area/space)
+"ZO" = (
+/obj/structure/table/wood,
+/obj/item/dice/d20/fate,
+/turf/open/floor/wood,
+/area/awaymission/academy/classrooms)
 
 (1,1,1) = {"
 aa
@@ -9179,7 +9187,7 @@ hm
 gc
 eL
 hP
-eO
+ZO
 fc
 hP
 eO
@@ -14749,7 +14757,7 @@ ac
 aa
 aa
 aa
-aj
+aa
 aa
 "}
 (88,1,1) = {"
@@ -16007,7 +16015,7 @@ ac
 ac
 ac
 ac
-aa
+WF
 aa
 aa
 aa
