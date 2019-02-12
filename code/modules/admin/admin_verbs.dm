@@ -111,6 +111,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/smite,
 	/client/proc/spawn_floor_cluwne, // Yogs
 	/client/proc/rejuv_all, // yogs - Revive All
+	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away
 	))
 GLOBAL_PROTECT(admin_verbs_spawn)
