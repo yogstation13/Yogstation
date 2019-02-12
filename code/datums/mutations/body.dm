@@ -59,6 +59,19 @@
 		owner.emote("cough")
 
 
+/datum/mutation/human/paranoia
+	name = "Paranoia"
+	desc = "Subject is easily terrified, and may suffer from hallucinations."
+	quality = NEGATIVE
+	text_gain_indication = "<span class='danger'>You feel screams echo through your mind...</span>"
+	text_lose_indication = "<span class'notice'>The screaming in your mind fades.</span>"
+
+/datum/mutation/human/paranoia/on_life()
+	if(prob(5) && owner.stat == CONSCIOUS)
+		owner.emote("scream")
+		if(prob(25))
+			owner.hallucination += 20
+
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/human/dwarfism
 	name = "Dwarfism"
