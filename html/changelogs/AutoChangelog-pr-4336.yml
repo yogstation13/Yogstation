@@ -1,0 +1,4 @@
+author: " Pubby"
+delete-after: true 
+changes: 
+  - tweak: "Drop \"universal\" from suppressors name"

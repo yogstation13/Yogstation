@@ -5,6 +5,7 @@
 	icon = 'yogstation/icons/mob/clownpets.dmi'
 	icon_state = "clown_pug"
 	icon_living = "clown_pug"
+	icon_dead = "clown_pug_dead"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/pug = 3, /obj/item/clothing/mask/gas/clown_hat = 1)
 	unique_pet = TRUE
 	gold_core_spawnable = NO_SPAWN

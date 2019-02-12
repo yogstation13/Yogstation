@@ -12,7 +12,7 @@
 /area/crew_quarters/bar)
 "ac" = (
 /obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c100,
 /obj/structure/table,
