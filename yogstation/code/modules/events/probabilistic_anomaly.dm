@@ -14,7 +14,7 @@
 	priority_announce(alert)
 
 /datum/round_event/prob_anomaly/start()
-	endWhen = rand(30,90) // About 30 to 90 seconds, more or less
+	endWhen = rand(45,120) // About 45 to 120 seconds, more or less
 	seed = rand(1,1e9)
 	rand_seed(seed)
 	
