@@ -2922,6 +2922,7 @@
 #include "yogstation\code\modules\admin\verbs\admin_ticket_templates.dm"
 #include "yogstation\code\modules\admin\verbs\adminhelp.dm"
 #include "yogstation\code\modules\admin\verbs\adminsay.dm"
+#include "yogstation\code\modules\admin\verbs\adminvox.dm"
 #include "yogstation\code\modules\admin\verbs\fix_air.dm"
 #include "yogstation\code\modules\admin\verbs\one_click_antag.dm"
 #include "yogstation\code\modules\admin\verbs\spawnfloorcluwne.dm"
