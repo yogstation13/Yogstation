@@ -70,9 +70,10 @@
 			return
 		last_ping_time = world.time
 	var/list/pinged = ping.group
-	
+	for(var/x in pinged)
+		x = ckey(x)
 	var/oocmsg = ""; // The message sent to normal people
-	var/oocmsg_toadmins = FALSE; // The message sent to admins. A value of FALSE should default to the loop giving admins $oocmsg instead.
+	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
 		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
 			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
@@ -104,7 +105,7 @@
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			if(C.key in pinged)
+			if(ckey(C.key) in pinged)
 				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
 				pingsound.volume = 50
 				pingsound.pan = 80
