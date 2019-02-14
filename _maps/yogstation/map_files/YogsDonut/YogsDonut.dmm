@@ -15349,6 +15349,8 @@
 /area/medical/virology)
 "aGP" = (
 /obj/structure/bed,
+/obj/effect/landmark/start/virologist,
+/obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "aGQ" = (
@@ -15709,6 +15711,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"aHz" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aHA" = (
 /obj/machinery/disposal/bin,
 /obj/machinery/newscaster/security_unit{
@@ -15928,6 +15935,16 @@
 "aHW" = (
 /turf/closed/wall,
 /area/medical/chemistry)
+"aHX" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Medical - Virology Isolation A";
+	dir = 2;
+	network = list("ss13","Medical","Virology")
+	},
+/obj/item/bedsheet/medical/virology,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aHY" = (
 /obj/machinery/smartfridge/chemistry/preloaded,
 /turf/closed/wall,
@@ -16972,15 +16989,6 @@
 	dir = 8
 	},
 /area/medical/surgery)
-"aKm" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Medical - Virology Isolation A";
-	dir = 2;
-	network = list("ss13","Medical","Virology")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aKn" = (
 /turf/open/floor/plasteel/white/side{
 	dir = 1
@@ -20293,11 +20301,6 @@
 	},
 /turf/open/floor/circuit,
 /area/engine/engineering)
-"aRz" = (
-/obj/structure/bed,
-/obj/effect/landmark/start/virologist,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aRA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -75153,7 +75156,7 @@ ano
 bXr
 cbF
 aGE
-aGP
+aHz
 aGO
 bdM
 bdS
@@ -75667,7 +75670,7 @@ ano
 bMs
 cbF
 aGE
-aKm
+aHX
 aGO
 bdM
 bdS
@@ -77208,7 +77211,7 @@ bZf
 bMs
 cbF
 aGE
-aRz
+aGP
 aHh
 bdT
 aGO
