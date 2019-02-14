@@ -69,6 +69,9 @@
 				line = t.line
 			message = "[line]: [message]"
 
+	InvalidAssignment
+		message="Left side of assignment cannot be assigned to."
+
 /*
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.
@@ -139,6 +142,9 @@
 	DivisionByZero
 		name="DivideByZeroError"
 		message="Division by zero (or a NULL value) attempted."
+
+	InvalidAssignment
+		message="Left side of assignment cannot be assigned to."
 
 	MaxCPU
 		name="MaxComputationalUse"

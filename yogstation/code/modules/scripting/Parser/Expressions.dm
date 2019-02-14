@@ -36,7 +36,7 @@
 			if(istype(top))
 				top=top.precedence
 			if(istype(input))
-				input=input:precedence
+				input=input.precedence
 			if(top>=input)
 				return REDUCE
 			return SHIFT
@@ -52,26 +52,6 @@
 			switch(T.type)
 				if(/token/word)
 					return new/node/expression/value/variable(T.value)
-				if(/token/accessor)
-					var
-						token/accessor/A=T
-						node/expression/value/variable/E//=new(A.member)
-						stack/S=new()
-					while(istype(A.object, /token/accessor))
-						S.Push(A)
-						A=A.object
-					ASSERT(istext(A.object))
-
-					while(A)
-						var/node/expression/value/variable/V=new()
-						V.id=new(A.member)
-						if(E)
-							V.object=E
-						else
-							V.object=new/node/identifier(A.object)
-						E=V
-						A=S.Pop()
-					return E
 
 				if(/token/number, /token/string)
 					return new/node/expression/value/literal(T.value)
@@ -143,6 +123,8 @@
 				B.exp2=val.Pop()
 				B.exp =val.Pop()
 				val.Push(B)
+				if(istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable))
+					errors += new/scriptError/InvalidAssignment()
 			else
 				O.exp=val.Pop()
 				val.Push(O)

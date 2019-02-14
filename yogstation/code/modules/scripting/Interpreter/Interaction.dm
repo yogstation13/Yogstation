@@ -32,7 +32,7 @@
 			cur_statements = 0 // reset CPU tracking
 
 			ASSERT(src.program)
-			RunBlock(src.program)
+			. = RunBlock(src.program)
 
 /*
 	Proc: SetVar
@@ -49,7 +49,7 @@
 			if(!istext(name))
 				//CRASH("Invalid variable name")
 				return
-			AssignVariable(name, value)
+			globalScope.variables[name] = value
 
 /*
 	Proc: SetProc
@@ -108,7 +108,7 @@
 				//CRASH("No variable named '[name]'.")
 				return
 			var/x = globalScope.variables[name]
-			return Eval(x)
+			return x
 
 /*
 	Proc: GetCleanVar

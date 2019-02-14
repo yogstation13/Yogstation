@@ -16,7 +16,7 @@
 /*
 	Macros: Operator Precedence
 	The higher the value, the lower the priority in the precedence.
-	
+
 	OOP_OR				- Logical or
 	OOP_AND				- Logical and
 	OOP_BIT				- Bitwise operations
@@ -28,6 +28,7 @@
 	OOP_UNARY			- Unary Operators
 	OOP_GROUP			- Parentheses
 */
+#define OOP_ASSIGN 0
 #define OOP_OR 1			//||
 #define OOP_AND 2			//&&
 #define OOP_BIT 3			//&, |

@@ -127,6 +127,28 @@ Represents a special statement in the code triggered by a keyword.
 				stmt.block=new
 				parser.AddBlock(stmt.block)
 
+		kwFor
+			Parse(n_Parser/nS_Parser/parser)
+				.=KW_PASS
+				var/node/statement/ForLoop/stmt = new
+				parser.NextToken()
+				if(!parser.CheckToken("(", /token/symbol))
+					return KW_FAIL
+				stmt.init = parser.ParseExpression()
+				if(!parser.CheckToken(";", /token/end))
+					return KW_FAIL
+				stmt.test = parser.ParseExpression()
+				if(!parser.CheckToken(";", /token/end))
+					return KW_FAIL
+				stmt.increment = parser.ParseExpression(list(")"))
+				if(!parser.CheckToken(")", /token/symbol))
+					return KW_FAIL
+				if(!parser.CheckToken("{", /token/symbol, skip=0))
+					return KW_ERR
+				parser.curBlock.statements += stmt
+				stmt.block = new
+				parser.AddBlock(stmt.block)
+
 		kwBreak
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
