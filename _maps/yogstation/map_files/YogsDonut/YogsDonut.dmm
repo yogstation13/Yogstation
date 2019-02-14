@@ -652,15 +652,23 @@
 /turf/open/floor/plating,
 /area/construction)
 "abx" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Security - Cell 1";
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
 	dir = 2;
-	network = list("ss13","Security")
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
 	},
+/obj/machinery/camera{
+	c_tag = "Security Perma - Cell 3";
+	dir = 4;
+	network = list("ss13","Security","Prison")
+	},
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
-/area/security/brig)
+/area/security/prison)
 "aby" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -4287,10 +4295,11 @@
 	prison_radio = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Security Perma - Cell 3";
+	c_tag = "Security Perma - Cell 2";
 	dir = 4;
 	network = list("ss13","Security","Prison")
 	},
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ajY" = (
@@ -4868,6 +4877,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"ali" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Security - Cell 1";
+	dir = 2;
+	network = list("ss13","Security")
+	},
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "alj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -4938,6 +4958,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"alt" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	dir = 2;
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Security Perma - Cell 1";
+	dir = 4;
+	network = list("ss13","Security","Prison")
+	},
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "alu" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -5452,6 +5490,21 @@
 /obj/item/lighter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"ams" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed,
+/obj/machinery/flasher{
+	id = "Cell 2";
+	pixel_y = 28
+	},
+/obj/machinery/camera{
+	c_tag = "Security - Cell 2";
+	dir = 2;
+	network = list("ss13","Security")
+	},
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "amt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -12007,6 +12060,17 @@
 "aAh" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"aAi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Security - Cell 3";
+	dir = 2;
+	network = list("ss13","Security")
+	},
+/obj/item/bedsheet/prisoner,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "aAj" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "cargoright"
@@ -13879,22 +13943,16 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "aEg" = (
-/obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
+/obj/structure/bed,
 /obj/machinery/camera{
-	c_tag = "Security Perma - Cell 2";
-	dir = 4;
-	network = list("ss13","Security","Prison")
+	c_tag = "Security - Cell 4";
+	dir = 2;
+	network = list("ss13","Security")
 	},
+/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
-/area/security/prison)
+/area/security/brig)
 "aEh" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
@@ -18952,23 +19010,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/courtroom)
-"aOR" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Security Perma - Cell 1";
-	dir = 4;
-	network = list("ss13","Security","Prison")
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aOS" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -28406,20 +28447,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"bgI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed,
-/obj/machinery/flasher{
-	id = "Cell 2";
-	pixel_y = 28
-	},
-/obj/machinery/camera{
-	c_tag = "Security - Cell 2";
-	dir = 2;
-	network = list("ss13","Security")
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "bgJ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -29363,16 +29390,6 @@
 	},
 /turf/open/floor/plating,
 /area/solar/aft)
-"biD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Security - Cell 3";
-	dir = 2;
-	network = list("ss13","Security")
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "biE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
@@ -30827,16 +30844,6 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"bld" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Security - Cell 4";
-	dir = 2;
-	network = list("ss13","Security")
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "ble" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -98799,7 +98806,7 @@ aqz
 aWa
 aWb
 aqz
-bld
+aEg
 cbW
 aqA
 aPh
@@ -99053,7 +99060,7 @@ aUp
 aWu
 aWb
 aqz
-biD
+aAi
 cbV
 aqA
 biR
@@ -99564,7 +99571,7 @@ aqz
 aYS
 ahQ
 aqA
-bgI
+ams
 aEj
 aqA
 biE
@@ -99817,7 +99824,7 @@ akt
 aqB
 aAu
 aqA
-abx
+ali
 aVS
 asW
 aqA
@@ -105720,15 +105727,15 @@ aaa
 aaa
 aaa
 aij
-ajX
+abx
 alI
 ajR
 aiN
-aEg
+ajX
 aZw
 ajR
 aiN
-aOR
+alt
 alI
 ajR
 aiN
