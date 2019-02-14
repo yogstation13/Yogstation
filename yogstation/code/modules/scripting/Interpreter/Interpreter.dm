@@ -95,6 +95,13 @@
 		CreateGlobalScope()
 			var/scope/S = new(program, null)
 			globalScope = S
+			for(var/datum/n_function/default/functype in subtypesof(/datum/n_function/default))
+				if(!istype(src, initial(functype.interp_type))
+					continue
+				var/datum/n_function/default/func = new functype()
+				globalScope.init_var(func.name, func)
+				for(var/alias in func.aliases)
+					globalScope.init_var(alias, func)
 			return S
 
 /*
@@ -133,7 +140,8 @@
 						var/node/statement/VariableDeclaration/dec=S
 						scope.init_var(dec.var_name.id_name)
 					else if(istype(S, /node/statement/FunctionDefinition))
-						//do nothing
+						var/node/statement/FunctionDefinition/dec=S
+						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src))
 					else if(istype(S, /node/statement/WhileLoop))
 						. = RunWhile(S, scope)
 					else if(istype(S, /node/statement/ForLoop))
@@ -168,57 +176,23 @@
 	Proc: RunFunction
 	Runs a function block or a proc with the arguments specified in the script.
 */
-		RunFunction(node/statement/FunctionCall/stmt, scope/scope)
-			//Note that anywhere /node/statement/FunctionCall/stmt is used so may /node/expression/FunctionCall
-
-			// If recursion gets too high (max 50 nested functions) throw an error
-			if(scope.recursion >= MAX_RECURSION)
-				AlertAdmins()
-				RaiseError(new/runtimeError/RecursionLimitReached())
-				return 0
-
-			var/node/statement/FunctionDefinition/def
-			if(!stmt.object)							//A scope's function is being called, stmt.object is null
-				def = scope.get_function(stmt.func_name)
-			else if(istype(stmt.object))				//A method of an object exposed as a variable is being called, stmt.object is a /node/identifier
-				var/O = scope.get_var(stmt.object.id_name)	//Gets a reference to the object which is the target of the function call.
-				if(!O) return							//Error already thrown in GetVariable()
-				def = Eval(O, scope)
-
-			if(!def) return
-
-			cur_recursion++ // add recursion
-			if(istype(def))
-				if(curFunction) functions.Push(curFunction)
-				scope = scope.push(def.block, globalScope, RESET_STATUS | RETURNING)
-				for(var/i=1 to def.parameters.len)
-					var/val
-					if(stmt.parameters.len>=i)
-						val = stmt.parameters[i]
-					//else
-					//	unspecified param
-					scope.init_var(def.parameters[i], Eval(val, scope))
-				curFunction=stmt
-				RunBlock(def.block, scope)
-				//Handle return value
-				. = scope.return_val
-				scope = scope.pop(0) // keep nothing
-				curFunction=functions.Pop()
-				cur_recursion--
+		RunFunction(node/expression/FunctionCall/stmt, scope/scope)
+			var/datum/n_function/func
+			var/this_obj
+			if(istype(stmt.function, /node/expression/member))
+				var/node/expression/member/M = stmt.function
+				this_obj = M.temp_object = Eval(M.object)
+				func = Eval(M)
 			else
-				cur_recursion--
-				var/list/params=new
-				for(var/node/expression/P in stmt.parameters)
-					params+=list(Eval(P, scope))
-				if(isobject(def))	//def is an object which is the target of a function call
-					if( !hascall(def, stmt.func_name) )
-						RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.id_name].[stmt.func_name]"))
-						return
-					return call(def, stmt.func_name)(arglist(params))
-				else										//def is a path to a global proc
-					return call(def)(arglist(params))
-			//else
-			//	RaiseError(new/runtimeError/UnknownInstruction())
+				func = Eval(stmt.function)
+			if(!istype(func))
+				RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.ToString()]"))
+				return
+			var/list/params = list()
+			for(var/node/expression/P in stmt.parameters)
+				params+=list(Eval(P, scope))
+
+			return func.execute(this_obj, params, scope, src)
 
 /*
 	Proc: RunIf

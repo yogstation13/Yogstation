@@ -83,15 +83,24 @@
 	ToString()
 		return "operator: [name]"
 
+/node/expression/member
+	var/node/expression/object
+	var/tmp/temp_object // so you can pre-eval it, used for function calls and assignments
+
+/node/expression/member/dot
+	var/node/identifier/id
+
+/node/expression/member/brackets
+	var/node/expression/index
+
+
 /*
 	Class: FunctionCall
 */
 /node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
-	var
-		func_name
-		node/identifier/object
-		list/parameters=new
+	var/node/expression/function
+	var/list/parameters=list()
 
 /*
 	Class: literal

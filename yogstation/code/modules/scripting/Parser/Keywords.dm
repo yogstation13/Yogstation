@@ -205,7 +205,7 @@ Represents a special statement in the code triggered by a keyword.
 					parser.curBlock.statements+=def
 				else if(parser.curToken.value=="{" && istype(parser.curToken, /token/symbol))
 					def.block = new
-					parser.curBlock.statements+=def
+					parser.curBlock.statements.Insert(1, def) // insert into the beginning so that all functions are defined first
 					parser.curBlock.functions[def.func_name]=def
 					parser.AddBlock(def.block)
 				else

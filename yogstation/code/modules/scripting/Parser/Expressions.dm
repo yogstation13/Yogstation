@@ -194,6 +194,7 @@
 						NextToken()
 						continue
 					val.Push(ParseParenExpression())
+				else if(istype(curToken, /token/symbol) && curToken.value == ".")
 
 				else if(istype(curToken, /token/symbol))												//Operator found.
 					var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.

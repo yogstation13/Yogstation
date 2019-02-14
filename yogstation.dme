@@ -3115,6 +3115,7 @@
 #include "yogstation\code\modules\scripting\Interpreter\Evaluation.dm"
 #include "yogstation\code\modules\scripting\Interpreter\Interaction.dm"
 #include "yogstation\code\modules\scripting\Interpreter\Interpreter.dm"
+#include "yogstation\code\modules\scripting\Interpreter\Objects.dm"
 #include "yogstation\code\modules\scripting\Interpreter\Scope.dm"
 #include "yogstation\code\modules\scripting\Parser\Expressions.dm"
 #include "yogstation\code\modules\scripting\Parser\Keywords.dm"

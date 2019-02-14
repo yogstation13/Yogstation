@@ -11,6 +11,7 @@
 	var/status = 0
 	var/allowed_status = 0
 	var/recursion = 0
+	var/node/statement/FunctionDefinition/function
 	var/return_val
 
 /scope/New(node/BlockDefinition/B, scope/parent, scope/variables_parent, allowed_status = 0)
@@ -25,7 +26,8 @@
 		src.functions = list()
 	if(parent)
 		src.status = parent.status
-		recursion = parent.recursion + 1
+		recursion = parent.recursion
+
 	if(allowed_status & RESET_STATUS || !parent)
 		src.allowed_status = allowed_status & ~RESET_STATUS
 	else
