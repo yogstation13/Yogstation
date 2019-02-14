@@ -9,11 +9,13 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 "ad" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 6
-	},
 /obj/effect/turf_decal/sand,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	icon_state = "connector_map-2";
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel,
 /area/lavaland/surface)
 "ae" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -31,13 +33,6 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
-"ah" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 4
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "ai" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/sand,
@@ -52,11 +47,21 @@
 /area/ruin/powered)
 "al" = (
 /obj/machinery/door/airlock,
-/obj/structure/fans/tiny/invisible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "gasstation"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
+/area/ruin/powered)
+"am" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
 "an" = (
 /obj/item/trash/syndi_cakes,
@@ -77,6 +82,8 @@
 /area/ruin/powered)
 "ap" = (
 /obj/structure/mopbucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -162,6 +169,7 @@
 /area/ruin/powered)
 "aA" = (
 /obj/machinery/door/airlock/hatch,
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -192,13 +200,6 @@
 /obj/structure/mirror{
 	pixel_x = -28
 	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"aE" = (
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -308,12 +309,16 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/secure{
+	name = "Emergency Supplies Crate";
 	req_access_txt = "36"
 	},
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /obj/item/ammo_box/magazine/m50,
 /obj/item/ammo_box/magazine/m50,
 /obj/item/ammo_box/magazine/m50,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil/random,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "aP" = (
@@ -335,6 +340,9 @@
 	},
 /obj/item/reagent_containers/food/snacks/syndicake,
 /obj/structure/rack,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -383,7 +391,7 @@
 /obj/machinery/door/airlock/centcom{
 	req_access_txt = "36"
 	},
-/obj/structure/fans/tiny/invisible,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "aV" = (
@@ -412,38 +420,32 @@
 	},
 /area/ruin/powered)
 "aY" = (
-/obj/structure/table,
 /obj/structure/window{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/structure/rack,
+/obj/structure/displaycase/labcage{
+	desc = "For displaying of more valuable items you have acquired.";
+	name = "Shop Display Case";
+	req_access = null;
+	req_access_txt = "36";
+	start_showpiece_type = null
+	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
 "aZ" = (
-/obj/structure/table,
 /obj/structure/window{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/structure/rack,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
+/obj/structure/displaycase/labcage{
+	desc = "For displaying of more valuable items you have acquired.";
+	name = "Shop Display Case";
+	req_access = null;
+	req_access_txt = "36";
+	start_showpiece_type = null
 	},
-/area/ruin/powered)
-"ba" = (
-/obj/structure/table,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/item/toy/katana,
-/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -455,15 +457,19 @@
 /obj/item/clothing/neck/stethoscope,
 /obj/item/pickaxe/drill/diamonddrill,
 /obj/item/clothing/glasses/meson,
+/obj/item/key{
+	name = "ATV Key"
+	},
 /turf/open/floor/plating,
 /area/ruin/powered)
 "bc" = (
 /obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
 /obj/item/clothing/mask/gas,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/megaphone,
 /obj/item/radio,
+/obj/item/storage/belt,
+/obj/item/storage/toolbox/mechanical/old/clean,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "bd" = (
@@ -513,6 +519,7 @@
 /obj/item/toy/sword,
 /obj/item/toy/sword,
 /obj/structure/rack,
+/obj/item/toy/katana,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -637,20 +644,20 @@
 /obj/machinery/door/airlock/glass_large{
 	doorOpen = 'sound/machines/defib_success.ogg'
 	},
-/obj/structure/fans/tiny/invisible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "gasstation"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
 "bs" = (
-/obj/structure/fans/tiny/invisible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "gasstation"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
@@ -727,36 +734,19 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"cU" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
+"bW" = (
+/obj/machinery/button/door{
+	id = "cashiershutters";
+	name = "Cashier Lockdown";
+	req_access_txt = "36"
 	},
+/turf/closed/wall/rust,
 /area/ruin/powered)
-"sk" = (
-/obj/structure/table,
-/obj/structure/window{
-	dir = 8
-	},
-/obj/item/toy/figure/clown,
-/obj/structure/rack,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
+"ir" = (
+/obj/structure/sign/poster/contraband/smoke,
+/turf/closed/wall/rust,
 /area/ruin/powered)
-"su" = (
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"tZ" = (
+"iM" = (
 /obj/machinery/light{
 	dir = 1;
 	light_color = "#c1caff"
@@ -766,11 +756,11 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"wF" = (
-/obj/structure/sign/poster/contraband/smoke,
+"iT" = (
+/obj/structure/sign/poster/official/foam_force_ad,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"wQ" = (
+"lR" = (
 /obj/machinery/computer/arcade/orion_trail,
 /obj/machinery/light{
 	dir = 1;
@@ -781,33 +771,9 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"xf" = (
-/obj/machinery/door/airlock/hatch{
-	req_access = null;
-	req_access_txt = "36"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"AD" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "cashiershutters";
-	name = "Cashier Shutters"
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"FJ" = (
-/obj/machinery/light_switch,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"Hu" = (
+"mj" = (
 /obj/machinery/light/small{
+	brightness = 3;
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -815,15 +781,58 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Lb" = (
+"nY" = (
+/obj/machinery/light_switch,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"oc" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/storage/box/snappops,
+/obj/structure/rack,
+/obj/item/toy/figure/clown,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"qz" = (
 /obj/machinery/button/door{
-	id = "cashiershutters";
-	name = "Cashier Lockdown";
+	id = "gasstation";
+	name = "Gas Station Lockdown";
 	req_access_txt = "36"
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"Lo" = (
+"rC" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"vk" = (
+/obj/machinery/door/airlock/hatch{
+	req_access = null;
+	req_access_txt = "36"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"xK" = (
+/obj/structure/sign/poster/contraband/donut_corp,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Hx" = (
+/obj/structure/sign/poster/contraband/robust_softdrinks,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Jo" = (
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
@@ -834,23 +843,26 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Mq" = (
-/obj/structure/sign/poster/contraband/robust_softdrinks,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"NI" = (
-/obj/structure/table,
-/obj/structure/window{
-	dir = 8
+"JU" = (
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 1
 	},
-/obj/item/storage/box/snappops,
-/obj/structure/rack,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Ql" = (
+"Me" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"OJ" = (
 /obj/machinery/light{
 	dir = 4;
 	light_color = "#e8eaff"
@@ -860,21 +872,23 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Wf" = (
-/obj/machinery/button/door{
-	id = "gasstation";
-	name = "Gas Station Lockdown";
-	req_access_txt = "36"
+"RG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
 	},
-/turf/closed/wall/rust,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
-"Xr" = (
-/obj/structure/sign/poster/official/foam_force_ad,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"Xt" = (
-/obj/structure/sign/poster/contraband/space_cola,
-/turf/closed/wall/rust,
+"Xx" = (
+/obj/item/instrument/piano_synth,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -986,8 +1000,8 @@ aa
 ab
 af
 aj
-ar
-Hu
+am
+Me
 aD
 aj
 aN
@@ -1014,7 +1028,7 @@ af
 aj
 an
 ar
-ar
+JU
 aj
 aO
 aV
@@ -1042,9 +1056,9 @@ aj
 aA
 aj
 aj
-Wf
-xf
-Lb
+qz
+vk
+bW
 aj
 aj
 aj
@@ -1066,14 +1080,14 @@ af
 aj
 ao
 ar
-aj
+nY
 aG
-Lo
+Jo
 ar
-su
+mj
 bi
 ar
-FJ
+aj
 af
 ac
 ac
@@ -1088,16 +1102,16 @@ aa
 (9,1,1) = {"
 ab
 ad
-ah
+af
 aj
 ap
 ar
 aj
 aH
+Xx
 ar
 ar
-ar
-AD
+RG
 ar
 aj
 bu
@@ -1123,9 +1137,9 @@ aI
 aP
 aW
 bd
-AD
-cU
-Mq
+RG
+rC
+Hx
 af
 ac
 bB
@@ -1141,10 +1155,10 @@ aa
 ab
 af
 af
-wF
-wQ
+ir
+lR
 ar
-su
+mj
 ar
 ar
 ar
@@ -1170,7 +1184,7 @@ af
 al
 ar
 ar
-aE
+ar
 ar
 ar
 aX
@@ -1193,8 +1207,8 @@ aa
 ac
 af
 af
-Xt
-tZ
+xK
+iM
 ar
 ar
 ar
@@ -1202,8 +1216,8 @@ ar
 ar
 ar
 ar
-cU
-Xr
+rC
+iT
 af
 ac
 bz
@@ -1306,7 +1320,7 @@ ar
 ar
 ar
 ar
-cU
+rC
 aj
 bv
 ac
@@ -1329,7 +1343,7 @@ ar
 ar
 aL
 aS
-ba
+aY
 bg
 bl
 ar
@@ -1355,8 +1369,8 @@ ar
 ar
 aM
 aT
-sk
-NI
+aZ
+oc
 bm
 ar
 aj
@@ -1383,7 +1397,7 @@ ar
 ar
 ar
 ar
-Ql
+OJ
 bq
 aj
 af

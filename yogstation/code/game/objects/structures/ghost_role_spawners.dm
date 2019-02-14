@@ -4,7 +4,7 @@
 	mob_name = "a cosmic ashwalker"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
-	mob_species = /datum/species/lizard/ashwalker/cosmic
+	mob_species = /datum/species/lizard/cosmic
 	flavour_text = "<font size=3><b>Y</b></font><b>ou are an ash walker. You were <span class='danger'>Abducted</span>. Taken from your home by strange beings, so they could take you apart and then put you back together as something which they could control. They failed, and paid the price. Your prison screamed and shook as ash storms dashed it to the ground. Now you are free, but... something is different.</b>"
 	uniform = null
 
@@ -25,15 +25,15 @@
 	density = 1
 	var/health = 100
 	var/progress = 0
-	var/mob/living/ashwalker
+	var/mob/living/lizard
 
 /obj/effect/cyrogenicbubble/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/cyrogenicbubble/Destroy()
-	if(ashwalker)
-		qdel(ashwalker) // haha, you're not getting out of this one.
+	if(lizard)
+		qdel(lizard) // haha, you're not getting out of this one.
 	if(health)
 		health = 0
 	STOP_PROCESSING(SSobj, src)
@@ -48,12 +48,12 @@
 		ejectEgg()
 
 /obj/effect/cyrogenicbubble/proc/reset_rebirth()
-	if(!ashwalker)
+	if(!lizard)
 		return
 
-	if(ishuman(ashwalker))
-		var/mob/living/carbon/human/H = ashwalker
-		var/datum/species/lizard/ashwalker/cosmic/C = H.dna.species
+	if(ishuman(lizard))
+		var/mob/living/carbon/human/H = lizard
+		var/datum/species/lizard/cosmic/C = H.dna.species
 		C.rebirth = FALSE
 
 /obj/effect/cyrogenicbubble/attackby(obj/item/weapon, mob/user)
@@ -76,24 +76,24 @@
 		health -= damage
 
 /obj/effect/cyrogenicbubble/proc/ejectEgg()
-	if(ashwalker)
+	if(lizard)
 		if(progress == 50)
-			ashwalker.revive(1) // full heal
+			lizard.revive(1) // full heal
 		else
 			// if they didn't make it to 50, then they'll be healed, but not completely
 			// scaling is multiplied by 2, based on the fact that damage varies and I don't want to exactly set their brute/fire/tox/oxy damage
-			ashwalker.adjustToxLoss(-progress*2, 0)
-			ashwalker.adjustOxyLoss(-progress*2, 0)
-			ashwalker.adjustBruteLoss(-progress*2, 0)
-			ashwalker.adjustFireLoss(-progress*2, 0)
-			ashwalker.revive()
-		ashwalker.forceMove(get_turf(src))
-		ashwalker.real_name = name
-		ashwalker.name = name
-		ashwalker.blood_volume = BLOOD_VOLUME_NORMAL
+			lizard.adjustToxLoss(-progress*2, 0)
+			lizard.adjustOxyLoss(-progress*2, 0)
+			lizard.adjustBruteLoss(-progress*2, 0)
+			lizard.adjustFireLoss(-progress*2, 0)
+			lizard.revive()
+		lizard.forceMove(get_turf(src))
+		lizard.real_name = name
+		lizard.name = name
+		lizard.blood_volume = BLOOD_VOLUME_NORMAL
 		reset_rebirth()
-		ashwalker.grab_ghost()
-		ashwalker = null
+		lizard.grab_ghost()
+		lizard = null
 	qdel(src)
 
 /obj/effect/cyrogenicbubble/return_air()
