@@ -80,7 +80,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
-	/client/proc/show_mentors // yogs - mentors
+	/client/proc/show_mentors, // yogs - mentors
+	/client/proc/reset_all_tcs // yogs - NTSL, resets all NTSL scripts in world
 	)
 GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
@@ -111,6 +112,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/smite,
 	/client/proc/spawn_floor_cluwne, // Yogs
 	/client/proc/rejuv_all, // yogs - Revive All
+	/client/proc/admin_vox, // yogs - Admin AI Vox
 	/client/proc/admin_away
 	))
 GLOBAL_PROTECT(admin_verbs_spawn)

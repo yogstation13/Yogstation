@@ -1,0 +1,4 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "New random event, \"Probabilistic Anomaly,\" in which RNGesus gives up and moves to Mount Fuji."

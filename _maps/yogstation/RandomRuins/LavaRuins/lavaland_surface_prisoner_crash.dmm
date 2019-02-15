@@ -70,7 +70,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "o" = (
-/obj/item/gun/energy/pulse/pistol/m1911,
+/obj/item/gun/ballistic/automatic/pistol/m1911,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered)
 "p" = (
@@ -87,7 +87,7 @@
 /area/ruin/unpowered)
 "t" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
-/obj/item/gun/energy/pulse/pistol/m1911{
+/obj/item/gun/ballistic/automatic/pistol/m1911{
 	desc = "A classic .45 handgun with a small magazine capacity, this one has a name engraved on it that reads 'Samantha'";
 	name = "Samantha"
 	},
@@ -148,7 +148,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "G" = (
-/obj/item/gun/energy/pulse/pistol/m1911,
+/obj/item/gun/ballistic/automatic/pistol/m1911,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
 "I" = (
