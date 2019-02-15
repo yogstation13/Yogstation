@@ -36,7 +36,7 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(8)) //keep this consistent with the amount of loadouts.
+	switch(rand(9)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
@@ -70,6 +70,10 @@
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+
+		if(9) // 5x Mouse Shapeshift 5x Mindswap (From Men to Mice)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/shapeshift/mouse, 4)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/mind_transfer, 4)
 
 /datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 0, custom_name) //0 is the first level (cause logic (arrays start at one))
 	var/obj/effect/proc_holder/spell/S = new spellType
