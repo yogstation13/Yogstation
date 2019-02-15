@@ -56,19 +56,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter 		= new(program)
 	interpreter.persist	= 1
 	interpreter.Compiler= src
-
-	return returnerrors
-
-	/* -- Execute the compiled code -- */
-
-/datum/TCS_Compiler/proc/Run(datum/signal/subspace/vocal/signal) // Runs the already-compiled code on an incoming signal.
-
-	if(!ready)
-		return
-
-	if(!interpreter)
-		return
-
 	interpreter.container = src
 
 	interpreter.SetVar("PI"		, 	3.141592653)	// value of pi
@@ -85,41 +72,30 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetVar("WEST" 	, 	WEST)			// WEST  (8)
 
 	// Channel macros
-	interpreter.SetVar("$common",	1459)
-	interpreter.SetVar("$science",	1351)
-	interpreter.SetVar("$command",	1353)
-	interpreter.SetVar("$medical",	1355)
-	interpreter.SetVar("$engineering",1357)
-	interpreter.SetVar("$security",	1359)
-	interpreter.SetVar("$supply",	1347)
-	interpreter.SetVar("$service",	1349)
-	interpreter.SetVar("$centcom",	1337) // Yes, that is the real Centcom freq.
-	//This whole game is a big fuckin' meme.
-	interpreter.SetVar("$aiprivate", 1447) // The Common Server is the one...
-	// ...that handles the AI Private Channel, btw.
+	interpreter.SetVar("channels", new /datum/n_enum(list(
+		"common" = 1459,
+		"science" = 1351,
+		"command" = 1353,
+		"medical" = 1355,
+		"engineering" = 1357,
+		"security" = 1359,
+		"supply" = 1347,
+		"service" = 1349,
+		"centcom" = 1337,// Yes, that is the real Centcom freq.
+		//This whole game is a big fuckin' meme.
+		"aiprivate" = 1447 // The Common Server is the one...
+		// ...that handles the AI Private Channel, btw.
+	)))
 
-	// Signal data
 
-	interpreter.SetVar("$content", 	html_decode(signal.data["message"]))
-	interpreter.SetVar("$freq"   , 	signal.frequency)
-	interpreter.SetVar("$source" , 	signal.data["name"])
-	interpreter.SetVar("$uuid"   , 	signal.data["name"]) // RIP UUID
-	interpreter.SetVar("$sector" , 	signal.levels)
-	interpreter.SetVar("$job"    , 	signal.data["job"])
-	interpreter.SetVar("$sign"   ,	signal)
-	interpreter.SetVar("$pass"	 ,  !(signal.data["reject"])) // Being passed is the opposite of being rejected, so they're logical not of each other.
-	interpreter.SetVar("$filters"  ,	signal.data["spans"]) //Important, this is given as a vector! (a list)
-	interpreter.SetVar("$say"    , 	signal.virt.verb_say)
-	interpreter.SetVar("$ask"    , 	signal.virt.verb_ask)
-	interpreter.SetVar("$yell"    , 	signal.virt.verb_yell)
-	interpreter.SetVar("$exclaim"    , 	signal.virt.verb_exclaim)
-
+	interpreter.SetVar("filter_types", new /datum/n_enum(list(
+		"robot" = SPAN_ROBOT,
+		"loud" = SPAN_YELL,
+		"emphasis" = SPAN_ITALICS,
+		"wacky" = SPAN_SANS,
+		"commanding" = SPAN_COMMAND
+	)))
 	//Current allowed span classes
-	interpreter.SetVar("$robot",	SPAN_ROBOT) //The font used by silicons!
-	interpreter.SetVar("$loud",		SPAN_YELL)	//Bolding, applied when ending a message with several exclamation marks.
-	interpreter.SetVar("$emphasis",	SPAN_ITALICS) //Italics
-	interpreter.SetVar("$wacky",	SPAN_SANS) //Comic sans font, normally seen from the genetics power.
-	interpreter.SetVar("$commanding",	SPAN_COMMAND) //Bolding from high-volume mode on command headsets
 
 	//Language bitflags
 	/* (Following comment written 26 Jan 2019)
@@ -131,12 +107,31 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	However, I think the signal can only have one language
 	So, the lowest bit set within $language overrides any higher ones that are set.
 	*/
-	interpreter.SetVar("HUMAN"   ,	HUMAN)
-	interpreter.SetVar("MONKEY"   ,	MONKEY)
-	interpreter.SetVar("ALIEN"   ,	ALIEN)
-	interpreter.SetVar("ROBOT"   ,	ROBOT)
-	interpreter.SetVar("SLIME"   ,	SLIME)
-	interpreter.SetVar("DRONE"   ,	DRONE)
+	interpreter.SetVar("languages", new /datum/n_enum(list(
+		"human" = HUMAN,
+		"monkey" = MONKEY,
+		"alien" = ALIEN,
+		"robot" = ROBOT,
+		"slime" = SLIME,
+		"drone" = DRONE
+	)))
+
+	interpreter.Run() // run the thing
+
+	return returnerrors
+
+	/* -- Execute the compiled code -- */
+
+/datum/TCS_Compiler/proc/Run(datum/signal/subspace/vocal/signal) // Runs the already-compiled code on an incoming signal.
+
+	if(!ready)
+		return
+
+	if(!interpreter)
+		return
+
+	if(!interpreter.ProcExists("process_signal"))
+		return
 
 	var/datum/language/oldlang = signal.language
 	if(oldlang == /datum/language/common)
@@ -152,8 +147,23 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	else if(oldlang == /datum/language/drone)
 		oldlang = DRONE
 
-	//And then if none of these work, $language will just straight-up store the datum
-	interpreter.SetVar("$language", oldlang)
+	// Signal data
+
+	var/datum/n_struct/signal/script_signal = new(list(
+		"content" = html_decode(signal.data["message"]),
+		"freq" = signal.frequency,
+		"source" = signal.data["name"],
+		"uuid" = signal.data["name"],
+		"sector" = signal.levels,
+		"job" = signal.data["job"],
+		"pass" = !(signal.data["reject"]),
+		"filters" = signal.data["spans"],
+		"language" = oldlang,
+		"say" = signal.virt.verb_say,
+		"ask" = signal.virt.verb_ask,
+		"yell" = signal.virt.verb_yell,
+		"exclaim" = signal.virt.verb_exclaim
+	))
 
 
 	/*
@@ -201,12 +211,15 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	interpreter.SetProc("clearmem","clearmem",signal, list())
 
 	// Run the compiled code
-	interpreter.Run()
+	script_signal = interpreter.CallProc("process_signal", list(script_signal))
+	if(!istype(script_signal))
+		signal.data["reject"] = 1
+		return
 
 	// Backwards-apply variables onto signal data
 	/* sanitize EVERYTHING. fucking players can't be trusted with SHIT */
 
-	var/msg = interpreter.GetCleanVar("$content", signal.data["message"])
+	var/msg = script_signal.get_clean_property("content", signal.data["message"])
 	if(isnum(msg))
 		msg = "[msg]"
 	else if(!msg)
@@ -214,32 +227,51 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.data["message"] = msg
 
 
-	signal.frequency 		= interpreter.GetCleanVar("$freq", signal.frequency)
+	signal.frequency 		= script_signal.get_clean_property("freq", signal.frequency)
 
-	var/setname = interpreter.GetCleanVar("$source", signal.data["name"])
+	var/setname = script_signal.get_clean_property("source", signal.data["name"])
 
 	if(signal.data["name"] != setname)
 		signal.data["realname"] = signal.data["name"]
 		signal.virt.name = setname
 	signal.data["name"]			= setname
-	//signal.data["uuid"]			= interpreter.GetCleanVar("$uuid", signal.data["uuid"])
-	signal.levels 				= interpreter.GetCleanVar("$sector", signal.levels)
-	signal.data["job"]			= interpreter.GetCleanVar("$job", signal.data["job"])
-	signal.data["reject"]		= !(interpreter.GetCleanVar("$pass")) // set reject to the opposite of $pass
-	signal.virt.verb_say		= interpreter.GetCleanVar("$say")
-	signal.virt.verb_ask		= interpreter.GetCleanVar("$ask")
-	signal.virt.verb_yell		= interpreter.GetCleanVar("$yell")
-	signal.virt.verb_exclaim	= interpreter.GetCleanVar("$exclaim")
-	var/newlang = interpreter.GetCleanVar("$language")
+	//signal.data["uuid"]			= script_signal.get_clean_property("$uuid", signal.data["uuid"])
+	signal.levels 				= script_signal.get_clean_property("sector", signal.levels)
+	signal.data["job"]			= script_signal.get_clean_property("job", signal.data["job"])
+	signal.data["reject"]		= !(script_signal.get_clean_property("pass")) // set reject to the opposite of $pass
+	signal.virt.verb_say		= script_signal.get_clean_property("say")
+	signal.virt.verb_ask		= script_signal.get_clean_property("ask")
+	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
+	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
+	var/newlang = script_signal.get_clean_property("language")
 	signal.language = signal.LangBit2Datum(newlang) || oldlang
-	var/list/setspans 			= interpreter.GetCleanVar("$filters") //Save the span vector/list to a holder list
+	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
 		signal.data["spans"]	= setspans //Apply new span to the signal only if it is a valid list, made using $filters & vector() in the script.
+	else
+		signal.data["spans"] = list()
 
 	// If the message is invalid, just don't broadcast it!
 	if(signal.data["message"] == "" || !signal.data["message"])
 		signal.data["reject"] = 1
+
+/datum/n_struct/signal/New(list/P)
+	properties = P | list(
+		"content" = "",
+		"freq" = 1459,
+		"source" = "",
+		"uuid" = "",
+		"sector" = list(),
+		"job" = "",
+		"pass" = TRUE,
+		"filters" = list(),
+		"language" = HUMAN,
+		"say" = "says",
+		"ask" = "asks",
+		"yell" = "yells",
+		"exclaim" = "exclaims"
+	)
 
 /*  -- Actual language proc code --  */
 

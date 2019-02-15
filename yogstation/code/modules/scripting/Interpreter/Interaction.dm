@@ -118,6 +118,8 @@
 		CallProc(name, list/params)
 			var/datum/n_function/func = globalScope.get_var(name)
 			if(istype(func))
+				cur_recursion = 0 // reset recursion
+				cur_statements = 0 // reset CPU tracking
 				func.execute(null, params, new /scope(program, null), src)
 			//CRASH("Unknown function type '[name]'.")
 

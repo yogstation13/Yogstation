@@ -54,9 +54,9 @@
 /datum/n_function/default/copy
 	name = "copy"
 /datum/n_function/default/copy/execute(this_obj, list/params)
-	list/L = params.len >= 1 ? params[1] : null
-	start = params.len >= 2 ? params[2] : null
-	end = params.len >= 3 ? params[3] : null
+	var/list/L = params.len >= 1 ? params[1] : null
+	var/start = params.len >= 2 ? params[2] : null
+	var/end = params.len >= 3 ? params[3] : null
 	if(!istype(L, /list)) return
 	return L.Copy(start, end)
 
@@ -77,7 +77,9 @@
 				chosenlist.Add(e)
 
 // Removes arg 2,3,4,5... from list at arg 1
-/proc/remove()
+/datum/n_function/default/remove
+	name = "remove"
+/datum/n_function/default/remove/execute(this_obj, list/params)
 	var/list/chosenlist
 	var/i = 1
 	for(var/e in params)
@@ -94,9 +96,9 @@
 /datum/n_function/default/cut
 	name = "cut"
 /datum/n_function/default/cut/execute(this_obj, list/params)
-	list/L = params.len >= 1 ? params[1] : null
-	start = params.len >= 2 ? params[2] : null
-	end = params.len >= 3 ? params[3] : null
+	var/list/L = params.len >= 1 ? params[1] : null
+	var/start = params.len >= 2 ? params[2] : null
+	var/end = params.len >= 3 ? params[3] : null
 	if(!istype(L, /list)) return
 	return L.Cut(start, end)
 
@@ -104,9 +106,9 @@
 /datum/n_function/default/swap
 	name = "swap"
 /datum/n_function/default/swap/execute(this_obj, list/params)
-	list/L = params.len >= 1 ? params[1] : null
-	firstindex = params.len >= 2 ? params[2] : null
-	secondindex = params.len >= 3 ? params[3] : null
+	var/list/L = params.len >= 1 ? params[1] : null
+	var/firstindex = params.len >= 2 ? params[2] : null
+	var/secondindex = params.len >= 3 ? params[3] : null
 	if(!istype(L, /list)) return
 	if(L.len >= secondindex && L.len >= firstindex)
 		return L.Swap(firstindex, secondindex)
@@ -115,9 +117,9 @@
 /datum/n_function/default/insert
 	name = "insert"
 /datum/n_function/default/insert/execute(this_obj, list/params)
-	list/L = params.len >= 1 ? params[1] : null
-	index = params.len >= 2 ? params[2] : null
-	element = params.len >= 3 ? params[3] : null
+	var/list/L = params.len >= 1 ? params[1] : null
+	var/index = params.len >= 2 ? params[2] : null
+	var/element = params.len >= 3 ? params[3] : null
 	if(!istype(L, /list)) return
 	return L.Insert(index, element)
 
@@ -127,10 +129,10 @@
 /datum/n_function/default/find
 	name = "find"
 /datum/n_function/default/find/execute(this_obj, list/params)
-	haystack = params.len >= 1 ? params[1] : null
-	needle = params.len >= 2 ? params[2] : null
-	start  = params.len >= 3 ? params[3] :  1
-	end  = params.len >= 4 ? params[4] :  0
+	var/haystack = params.len >= 1 ? params[1] : null
+	var/needle = params.len >= 2 ? params[2] : null
+	var/start  = params.len >= 3 ? params[3] :  1
+	var/end  = params.len >= 4 ? params[4] :  0
 	if(haystack && needle)
 		if(isobject(haystack))
 			if(istype(haystack, /list))
@@ -147,9 +149,9 @@
 /datum/n_function/default/substr
 	name = "substr"
 /datum/n_function/default/substr/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
-	start  = params.len >= 2 ? params[2] :  1
-	end  = params.len >= 3 ? params[3] :  0
+	var/string = params.len >= 1 ? params[1] : null
+	var/start  = params.len >= 2 ? params[2] :  1
+	var/end  = params.len >= 3 ? params[3] :  0
 	if(istext(string) && isnum(start) && isnum(end))
 		if(start > 0)
 			return copytext(string, start, end)
@@ -158,7 +160,7 @@
 /datum/n_function/default/length
 	name = "length"
 /datum/n_function/default/length/execute(this_obj, list/params)
-	container = params.len >= 1 ? params[1] : null
+	var/container = params.len >= 1 ? params[1] : null
 	if(container)
 		if(istype(container, /list) || istext(container))
 			return length(container)
@@ -168,7 +170,7 @@
 /datum/n_function/default/lower
 	name = "lower"
 /datum/n_function/default/lower/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
+	var/string = params.len >= 1 ? params[1] : null
 	if(istext(string))
 		return lowertext(string)
 
@@ -176,7 +178,7 @@
 /datum/n_function/default/upper
 	name = "upper"
 /datum/n_function/default/upper/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
+	var/string = params.len >= 1 ? params[1] : null
 	if(istext(string))
 		return uppertext(string)
 
@@ -184,8 +186,8 @@
 /datum/n_function/default/explode
 	name = "explode"
 /datum/n_function/default/explode/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
-	separator  = params.len >= 2 ? params[2] :  ""
+	var/string = params.len >= 1 ? params[1] : null
+	var/separator  = params.len >= 2 ? params[2] :  ""
 	if(istext(string) && (istext(separator) || isnull(separator)))
 		return splittext(string, separator)
 
@@ -202,8 +204,8 @@
 /datum/n_function/default/repeat
 	name = "repeat"
 /datum/n_function/default/repeat/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
-	amount = params.len >= 2 ? params[2] : null
+	var/string = params.len >= 1 ? params[1] : null
+	var/amount = params.len >= 2 ? params[2] : null
 	if(istext(string) && isnum(amount))
 		var/i
 		var/newstring = ""
@@ -220,7 +222,7 @@
 /datum/n_function/default/reverse
 	name = "reverse"
 /datum/n_function/default/reverse/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
+	var/string = params.len >= 1 ? params[1] : null
 	if(istext(string))
 		var/newstring = ""
 		var/i
@@ -235,14 +237,14 @@
 /datum/n_function/default/tonum
 	name = "tonum"
 /datum/n_function/default/tonum/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
+	var/string = params.len >= 1 ? params[1] : null
 	if(istext(string))
 		return text2num(string)
 
 /datum/n_function/default/proper
 	name = "proper"
 /datum/n_function/default/proper/execute(this_obj, list/params)
-	string = params.len >= 1 ? params[1] : null
+	var/string = params.len >= 1 ? params[1] : null
 	if(!istext(string))
 		return ""
 
@@ -282,20 +284,20 @@
 /datum/n_function/default/prob
 	name = "prob"
 /datum/n_function/default/prob/execute(this_obj, list/params)
-	chance = params.len >= 1 ? params[1] : null
+	var/chance = params.len >= 1 ? params[1] : null
 	return prob(chance)
 
 /datum/n_function/default/randseed
 	name = "randseed"
 /datum/n_function/default/randseed/execute(this_obj, list/params)
-	seed = params.len >= 1 ? params[1] : null
+	var/seed = params.len >= 1 ? params[1] : null
 	rand_seed(seed)
 
 /datum/n_function/default/n_rand
 	name = "n_rand"
 /datum/n_function/default/n_rand/execute(this_obj, list/params)
-	low = params.len >= 1 ? params[1] : null
-	high = params.len >= 2 ? params[2] : null
+	var/low = params.len >= 1 ? params[1] : null
+	var/high = params.len >= 2 ? params[2] : null
 	if(isnull(low) && isnull(high))
 		return rand()
 
@@ -305,7 +307,7 @@
 /datum/n_function/default/tostring
 	name = "tostring"
 /datum/n_function/default/tostring/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return num2text(num)
 
@@ -313,7 +315,7 @@
 /datum/n_function/default/sqrt
 	name = "sqrt"
 /datum/n_function/default/sqrt/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return sqrt(num)
 
@@ -321,7 +323,7 @@
 /datum/n_function/default/abs
 	name = "abs"
 /datum/n_function/default/abs/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return abs(num)
 
@@ -329,7 +331,7 @@
 /datum/n_function/default/floor
 	name = "floor"
 /datum/n_function/default/floor/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return round(num)
 
@@ -337,7 +339,7 @@
 /datum/n_function/default/ceil
 	name = "ceil"
 /datum/n_function/default/ceil/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return round(num)+1
 
@@ -345,19 +347,19 @@
 /datum/n_function/default/round
 	name = "round"
 /datum/n_function/default/round/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		if(num-round(num)<0.5)
 			return round(num)
-		return n_ceil(num)
+		return round(num) + 1
 
 // Clamps N between min and max
 /datum/n_function/default/clamp
 	name = "clamp"
 /datum/n_function/default/clamp/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
-	min = params.len >= 2 ? params[2] : -1
-	max = params.len >= 3 ? params[3] : 1
+	var/num = params.len >= 1 ? params[1] : null
+	var/min = params.len >= 2 ? params[2] : -1
+	var/max = params.len >= 3 ? params[3] : 1
 	if(isnum(num)&&isnum(min)&&isnum(max))
 		if(num<=min)
 			return min
@@ -369,9 +371,9 @@
 /datum/n_function/default/inrange
 	name = "inrange"
 /datum/n_function/default/inrange/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
-	min = params.len >= 2 ? params[2] : -1
-	max = params.len >= 3 ? params[3] : 1
+	var/num = params.len >= 1 ? params[1] : null
+	var/min = params.len >= 2 ? params[2] : -1
+	var/max = params.len >= 3 ? params[3] : 1
 	if(isnum(num)&&isnum(min)&&isnum(max))
 		return ((min <= num) && (num <= max))
 
@@ -379,7 +381,7 @@
 /datum/n_function/default/sin
 	name = "sin"
 /datum/n_function/default/sin/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return sin(num)
 
@@ -387,7 +389,7 @@
 /datum/n_function/default/cos
 	name = "cos"
 /datum/n_function/default/cos/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num))
 		return cos(num)
 
@@ -395,7 +397,7 @@
 /datum/n_function/default/asin
 	name = "asin"
 /datum/n_function/default/asin/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num)&&-1<=num&&num<=1)
 		return arcsin(num)
 
@@ -403,7 +405,7 @@
 /datum/n_function/default/acos
 	name = "acos"
 /datum/n_function/default/acos/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num)&&-1<=num&&num<=1)
 		return arccos(num)
 
@@ -411,7 +413,7 @@
 /datum/n_function/default/log
 	name = "log"
 /datum/n_function/default/log/execute(this_obj, list/params)
-	num = params.len >= 1 ? params[1] : null
+	var/num = params.len >= 1 ? params[1] : null
 	if(isnum(num)&&0<num)
 		return log(num)
 
@@ -419,9 +421,9 @@
 /datum/n_function/default/replace
 	name = "replace"
 /datum/n_function/default/replace/execute(this_obj, list/params)
-	text = params.len >= 1 ? params[1] : null
-	find = params.len >= 2 ? params[2] : null
-	replacement = params.len >= 3 ? params[3] : null
+	var/text = params.len >= 1 ? params[1] : null
+	var/find = params.len >= 2 ? params[2] : null
+	var/replacement = params.len >= 3 ? params[3] : null
 	if(istext(text) && istext(find) && istext(replacement))
 		var/find_len = length(find)
 		if(find_len < 1)	return text
@@ -453,5 +455,5 @@
 /datum/n_function/default/sleep
 	name = "sleep"
 /datum/n_function/default/sleep/execute(this_obj, list/params)
-	time = params.len >= 1 ? params[1] : null
+	var/time = params.len >= 1 ? params[1] : null
 	sleep(time)
