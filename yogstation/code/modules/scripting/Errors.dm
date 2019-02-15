@@ -93,11 +93,11 @@
 */
 		ToString()
 			. = "[name]: [message]"
-			if(!stack.Top()) return
-			.+="\nStack:"
-			while(stack.Top())
-				var/node/statement/FunctionCall/stmt=stack.Pop()
-				. += "\n\t [stmt.func_name]()"
+			//if(!stack.Top()) return
+			//.+="\nStack:"
+			//while(stack.Top())
+			//	var/node/statement/FunctionCall/stmt=stack.Pop()
+			//	. += "\n\t [stmt.function.ToString]()"
 
 	TypeMismatch
 		name="TypeMismatchError"

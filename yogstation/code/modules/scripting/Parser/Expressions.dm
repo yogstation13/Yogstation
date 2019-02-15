@@ -189,13 +189,21 @@
 					ntok=tokens[index+1]
 
 				if(istype(curToken, /token/symbol) && curToken.value=="(")			//Parse parentheses expression
-					if(expecting!=VALUE)
-						errors+=new/scriptError/ExpectedToken("operator", curToken)
+					if(expecting == VALUE)
+						val.Push(ParseParenExpression())
+					else
+						val.Push(ParseFunctionExpression(val.Pop())) // you can call *anything*! You can even call "2()". It'll runtime though so just don't please.
+						expecting = OPERATOR
+				else if(istype(curToken, /token/symbol) && curToken.value == "." && ntok && istype(ntok, /token/word))
+					if(expecting == VALUE)
+						errors+=new/scriptError/ExpectedToken("expression", curToken)
 						NextToken()
 						continue
-					val.Push(ParseParenExpression())
-				else if(istype(curToken, /token/symbol) && curToken.value == ".")
-
+					var/node/expression/member/dot/E = new()
+					E.object = val.Pop()
+					NextToken()
+					E.id = new(curToken.value)
+					val.Push(E)
 				else if(istype(curToken, /token/symbol))												//Operator found.
 					var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.
 					if(src.expecting==OPERATOR)
@@ -216,23 +224,6 @@
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-
-				else if(ntok && ntok.value=="(" && istype(ntok, /token/symbol)\
-											&& istype(curToken, /token/word))								//Parse function call
-
-					if(!check_functions)
-
-						var/token/preToken=curToken
-						var/old_expect=src.expecting
-						var/fex=ParseFunctionExpression()
-						if(old_expect!=VALUE)
-							errors+=new/scriptError/ExpectedToken("operator", preToken)
-							NextToken()
-							continue
-						val.Push(fex)
-					else
-						errors+=new/scriptError/ParameterFunction(curToken)
-						break
 
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
@@ -271,10 +262,9 @@
 	See Also:
 	- <ParseExpression()>
 */
-		ParseFunctionExpression()
+		ParseFunctionExpression(func_exp)
 			var/node/expression/FunctionCall/exp=new
-			exp.func_name=curToken.value
-			NextToken() //skip function name
+			exp.function = func_exp
 			NextToken() //skip open parenthesis, already found
 			var/loops = 0
 

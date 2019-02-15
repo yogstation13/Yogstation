@@ -17,20 +17,12 @@
 				. = ref.value
 			else if(istype(exp, /node/expression/value/variable))
 				var/node/expression/value/variable/v=exp
-				if(!v.object)
-					. = scope.get_var(v.id.id_name)
-				else
-					var/datum/D
-					if(istype(v.object, /node/identifier))
-						D=scope.get_var(v.object:id_name)
-					else
-						D=v.object
-					if(isnull(D))
-						return null
-					if(!D.vars.Find(v.id.id_name))
-						RaiseError(new/runtimeError/UndefinedVariable("[v.object.ToString()].[v.id.id_name]"))
-						return null
-					. = Eval(D.vars[v.id.id_name], scope)
+				. = scope.get_var(v.id.id_name)
+			else if(istype(exp, /node/expression/member/dot))
+				var/node/expression/member/dot/D = exp
+				var/object = D.temp_object || Eval(D.object, scope)
+				D.temp_object = null
+				. = get_property(object, D.id.id_name, scope)
 			else if(istype(exp, /node/expression))
 				RaiseError(new/runtimeError/UnknownInstruction())
 			else

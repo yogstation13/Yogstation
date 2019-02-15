@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	But having them be bitflags inside of NTSL makes more sense in its context
 	So, when we get the signal back from NTSL, if the language has been altered, we'll set it to a new language datum,
 	based on the bitflag the guy used.
-	
+
 	However, I think the signal can only have one language
 	So, the lowest bit set within $language overrides any higher ones that are set.
 	*/
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		oldlang = SLIME
 	else if(oldlang == /datum/language/drone)
 		oldlang = DRONE
-	
+
 	//And then if none of these work, $language will just straight-up store the datum
 	interpreter.SetVar("$language", oldlang)
 
@@ -194,66 +194,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 				@param value:		The value to store to the memory address
 	*/
 	interpreter.SetProc("mem", "mem", signal, list("address", "value"))
-	
+
 	/*
 		-> Wipe all the mem() variables on this server (for garbage collection purposes)
 	*/
 	interpreter.SetProc("clearmem","clearmem",signal, list())
-	
-	
-	/*
-	General NTSL procs
-	Should probably be moved to its own place
-	*/
-	// Vector
-	interpreter.SetProc("vector", /proc/n_list)
-	interpreter.SetProc("at", /proc/n_listpos)
-	interpreter.SetProc("copy", /proc/n_listcopy)
-	interpreter.SetProc("push_back", /proc/n_listadd)
-	interpreter.SetProc("remove", /proc/n_listremove)
-	interpreter.SetProc("cut", /proc/n_listcut)
-	interpreter.SetProc("swap", /proc/n_listswap)
-	interpreter.SetProc("insert", /proc/n_listinsert)
-	interpreter.SetProc("pick", /proc/n_pick)
-	interpreter.SetProc("prob", /proc/n_prob)
-	interpreter.SetProc("substr", /proc/n_substr)
-	interpreter.SetProc("find", /proc/n_smartfind)
-	interpreter.SetProc("length", /proc/n_smartlength)
-
-	// Strings
-	interpreter.SetProc("lower", /proc/n_lower)
-	interpreter.SetProc("upper", /proc/n_upper)
-	interpreter.SetProc("explode", /proc/n_explode)
-	interpreter.SetProc("implode", /proc/n_implode)
-	interpreter.SetProc("repeat", /proc/n_repeat)
-	interpreter.SetProc("reverse", /proc/n_reverse)
-	interpreter.SetProc("tonum", /proc/n_str2num)
-	interpreter.SetProc("replace", /proc/n_replace)
-	interpreter.SetProc("proper", /proc/n_proper)
-
-	// Numbers
-	interpreter.SetProc("tostring", /proc/n_num2str)
-	interpreter.SetProc("sqrt", /proc/n_sqrt)
-	interpreter.SetProc("abs", /proc/n_abs)
-	interpreter.SetProc("floor", /proc/n_floor)
-	interpreter.SetProc("ceil", /proc/n_ceil)
-	interpreter.SetProc("round", /proc/n_round)
-	interpreter.SetProc("clamp", /proc/n_clamp)
-	interpreter.SetProc("inrange", /proc/n_inrange)
-	interpreter.SetProc("rand", /proc/n_rand)
-	interpreter.SetProc("randseed", /proc/n_randseed)
-	interpreter.SetProc("min", /proc/n_min)
-	interpreter.SetProc("max", /proc/n_max)
-	interpreter.SetProc("sin", /proc/n_sin)
-	interpreter.SetProc("cos", /proc/n_cos)
-	interpreter.SetProc("asin", /proc/n_asin)
-	interpreter.SetProc("acos", /proc/n_acos)
-	interpreter.SetProc("log", /proc/n_log)
-
-	// Time
-	interpreter.SetProc("time", /proc/n_time)
-	interpreter.SetProc("sleep", /proc/n_delay)
-	interpreter.SetProc("timestamp", /proc/gameTimestamp)
 
 	// Run the compiled code
 	interpreter.Run()
@@ -267,8 +212,8 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	else if(!msg)
 		msg = "*beep*"
 	signal.data["message"] = msg
-	
-	
+
+
 	signal.frequency 		= interpreter.GetCleanVar("$freq", signal.frequency)
 
 	var/setname = interpreter.GetCleanVar("$source", signal.data["name"])
@@ -317,7 +262,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 			return /datum/language/slime
 		if(DRONE)
 			return /datum/language/drone
-	
+
 /datum/signal/proc/mem(address, value)
 
 	if(istext(address))
@@ -371,7 +316,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 /datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", language = /datum/language/common)
 	//languages &= allowed_translateable_langs //we can only translate to certain languages
-	
+
 	var/obj/machinery/telecomms/server/S = data["server"]
 	var/obj/item/radio/server/hradio = S.server_radio
 
@@ -413,7 +358,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	virt.verb_ask = ask
 	virt.verb_exclaim = exclaim
 	virt.verb_yell = yell
-	
+
 	var/datum/signal/subspace/vocal/newsign = new(hradio,freq,virt,language,message,spans,list(S.z))
 	/*
 	virt.languages_spoken = language

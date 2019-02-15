@@ -65,23 +65,6 @@
 			if(!istext(name))
 				//CRASH("Invalid function name")
 				return
-			if(!object)
-				globalScope.functions[name] = path
-			else
-				var/node/statement/FunctionDefinition/S = new()
-				S.func_name		= name
-				S.parameters	= params
-				S.block			= new()
-				S.block.SetVar("src", object)
-				var/node/expression/FunctionCall/C = new()
-				C.func_name	= path
-				C.object		= new("src")
-				for(var/p in params)
-					C.parameters += new/node/expression/value/variable(p)
-				var/node/statement/ReturnStatement/R=new()
-				R.value=C
-				S.block.statements += R
-				globalScope.functions[name] = S
 /*
 	Proc: VarExists
 	Checks whether a global variable with the specified name exists.
@@ -94,7 +77,7 @@
 	Checks whether a global function with the specified name exists.
 */
 		ProcExists(name)
-			return globalScope.functions.Find(name)
+			return istype(globalScope.get_var(name), /datum/n_function)
 
 /*
 	Proc: GetVar
@@ -132,18 +115,10 @@
 	See Also:
 	- <ProcExists()>
 */
-		CallProc(name, params[]=null)
-			if(!ProcExists(name))
-				//CRASH("No function named '[name]'.")
-				return
-			var/node/statement/FunctionDefinition/func = globalScope.functions[name]
+		CallProc(name, list/params)
+			var/datum/n_function/func = globalScope.get_var(name)
 			if(istype(func))
-				var/node/statement/FunctionCall/stmt = new
-				stmt.func_name  = func.func_name
-				stmt.parameters = params
-				return RunFunction(stmt)
-			else
-				return call(func)(arglist(params))
+				func.execute(null, params, new /scope(program, null), src)
 			//CRASH("Unknown function type '[name]'.")
 
 /*

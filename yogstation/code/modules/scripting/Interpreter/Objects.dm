@@ -1,9 +1,27 @@
-/n_Interpreter/proc/get_property(object, propertyname, scope/scope)
+/n_Interpreter/proc/get_property(object, key, scope/scope)
+	if(islist(object))
+		var/list/L = object
+		if(key == "len")
+			return L.len
+	else if(isdatum(object))
+		var/datum/D = object
+		return D.ntsl_get(key, scope, src)
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"))
 
+/n_Interpreter/proc/set_property(object, key, val, scope/scope)
+	if(isdatum(object))
+		var/datum/D = object
+		D.ntsl_set(key, val, scope, src)
+		return
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"))
 
-/n_Interpreter/proc/set_property(object, propertyname, val, scope/scope)
+/datum/ntsl_get(key, scope/scope, n_Interpreter/interp)
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"))
+	return
 
-
+/datum/ntsl_set(key, val, scope/scope, n_Interpreter/interp)
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"))
+	return
 
 /datum/n_function
 	var/name = ""
@@ -23,12 +41,12 @@
 
 /datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp)
 	if(scope.recursion >= 10)
-		AlertAdmins()
+		interp.AlertAdmins()
 		interp.RaiseError(new/runtimeError/RecursionLimitReached())
 		return 0
 	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
-	scope.
+	scope.function = def
 	for(var/i=1 to def.parameters.len)
 		var/val
 		if(params.len>=i)
@@ -37,7 +55,7 @@
 		//	unspecified param
 		scope.init_var(def.parameters[i], val)
 	scope.init_var("src", this_obj);
-	RunBlock(def.block, scope)
+	interp.RunBlock(def.block, scope)
 	//Handle return value
 	. = scope.return_val
 	scope = scope.pop(0) // keep nothing
@@ -46,4 +64,3 @@
 	// functions included on compilation
 	var/interp_type = /n_Interpreter // include this function in this kind of interpreter.
 	var/list/aliases // in case you want to give it multiple "names"
-

@@ -95,8 +95,9 @@
 		CreateGlobalScope()
 			var/scope/S = new(program, null)
 			globalScope = S
-			for(var/datum/n_function/default/functype in subtypesof(/datum/n_function/default))
-				if(!istype(src, initial(functype.interp_type))
+			for(var/functype in subtypesof(/datum/n_function/default))
+				var/datum/n_function/default/god_damn_it_byond = functype
+				if(!istype(src, initial(god_damn_it_byond.interp_type)))
 					continue
 				var/datum/n_function/default/func = new functype()
 				globalScope.init_var(func.name, func)
@@ -181,12 +182,12 @@
 			var/this_obj
 			if(istype(stmt.function, /node/expression/member))
 				var/node/expression/member/M = stmt.function
-				this_obj = M.temp_object = Eval(M.object)
-				func = Eval(M)
+				this_obj = M.temp_object = Eval(M.object, scope)
+				func = Eval(M, scope)
 			else
-				func = Eval(stmt.function)
+				func = Eval(stmt.function, scope)
 			if(!istype(func))
-				RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.ToString()]"))
+				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"))
 				return
 			var/list/params = list()
 			for(var/node/expression/P in stmt.parameters)
