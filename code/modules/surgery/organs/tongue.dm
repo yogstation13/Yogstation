@@ -18,6 +18,7 @@
 		/datum/language/ratvar,
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
+		/datum/language/japanese //yogs
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

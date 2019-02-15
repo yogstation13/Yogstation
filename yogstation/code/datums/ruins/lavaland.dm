@@ -156,3 +156,35 @@
 	suffix = "lavaland_surface_travellingbard.dmm"
 	allow_duplicates = FALSE
 	cost = 5
+
+/datum/map_template/ruin/lavaland/yogstation/chemistry
+	name= "Abandoned Chemistry Lab"
+	id = "chemistry"
+	description = "A seemingly innocent-looking lab, with an assault pod outside..."
+	suffix = "lavaland_surface_chemistry.dmm"
+	allow_duplicates = FALSE
+	cost = 10
+
+/datum/map_template/ruin/lavaland/yogstation/scp_facility
+	name = "Anomalous Object Site"
+	id = "scp_facility"
+	description = "An abandoned storage site for dangerous and paranormal objects and creatures."
+	suffix = "lavaland_surface_scp_facility.dmm"
+	allow_duplicates = FALSE
+	cost = 20
+
+/datum/map_template/ruin/lavaland/yogstation/cafe_of_broken_dreams
+	name = "Cafe of Broken Dreams"
+	id = "cafe-of-broken-dreams"
+	description = "Nothing's better the sweet taste of coffee in such an apocalyptic world. The only catch is that there isn't any coffee. But there's lots of fauna. "
+	suffix = "lavaland_surface_cafe_of_broken_dreams.dmm"
+	allow_duplicates = FALSE
+	cost = 10
+
+/datum/map_template/ruin/lavaland/yogstation/gas_station
+	name = "Gas Station"
+	id = "gas-station"
+	description = "An old gas station that's somehow managed to survive in the deteriorating hellscape of lavaland. If you've managed to find it than you've lucked out assuming the mad man running it is willing to sell his goods of course."
+	suffix = "lavaland_surface_gas_station.dmm"
+	allow_duplicates = FALSE
+	cost = 10
