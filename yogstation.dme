@@ -3134,6 +3134,7 @@
 #include "yogstation\code\modules\spacepods\spacepod.dm"
 #include "yogstation\code\modules\spells\cluwnecurse.dm"
 #include "yogstation\code\modules\spells\spells.dm"
+#include "yogstation\code\modules\spells\spell_types\aimed.dm"
 #include "yogstation\code\modules\spells\spell_types\mime.dm"
 #include "yogstation\code\modules\stock_market\articles.dm"
 #include "yogstation\code\modules\stock_market\computer.dm"

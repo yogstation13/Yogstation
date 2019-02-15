@@ -36,7 +36,7 @@
 	make_spells()
 
 /datum/antagonist/wizard/meme/proc/make_spells()
-	switch(rand(6)) //keep this consistent with the amount of loadouts.
+	switch(rand(8)) //keep this consistent with the amount of loadouts.
 
 		if(1) //5x jaunt
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt, 4)
@@ -61,6 +61,15 @@
 		if(6) //5x forcewall, and 5x repulse (AKA the safe space loadout)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/forcewall, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/repulse, 4)
+
+		if(7) //5x Cluwne Curse and 2x blind
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/cluwnecurse, 4)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+
+		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
+			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
 
 /datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 0, custom_name) //0 is the first level (cause logic (arrays start at one))
 	var/obj/effect/proc_holder/spell/S = new spellType
