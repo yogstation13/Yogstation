@@ -61,6 +61,7 @@
 		{
 			object_list.options.length = 0;
 			
+			//Yogs start -- Faster create_object
             var str = "";
             var i;
             for (i = 0; i < from_list.length; i++)
@@ -69,6 +70,7 @@
             }
             object_list.innerHTML = str
 			document.spawner.innerHTML += "";
+			//Yogs end
 		}
 		
 		function updateSearch()
