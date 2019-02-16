@@ -84,5 +84,5 @@
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
-	cost = 6
+	cost = 8
 	surplus = 20
