@@ -594,7 +594,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/item/dice/d20,
+/obj/item/dice/d6,
 /turf/open/floor/carpet,
 /area/awaymission/academy/headmaster)
 "ch" = (
@@ -2075,6 +2075,7 @@
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/item/dice/d20/fate,
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/classrooms)
 "gp" = (
@@ -4751,7 +4752,7 @@
 /area/space)
 "ZO" = (
 /obj/structure/table/wood,
-/obj/item/dice/d20/fate,
+/obj/item/dice/d20,
 /turf/open/floor/wood,
 /area/awaymission/academy/classrooms)
 
