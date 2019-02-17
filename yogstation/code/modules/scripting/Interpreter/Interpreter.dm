@@ -135,8 +135,8 @@
 						break
 
 					if(istype(S, /node/expression))
-						. =Eval(S, scope)
-					if(istype(S, /node/statement/VariableDeclaration))
+						. = Eval(S, scope)
+					else if(istype(S, /node/statement/VariableDeclaration))
 						//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
 						var/node/statement/VariableDeclaration/dec=S
 						scope.init_var(dec.var_name.id_name)
@@ -154,7 +154,7 @@
 							RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
 						scope.status |= RETURNING
-						. = (returnVal=Eval(S:value, scope))
+						. = (scope.return_val=Eval(S:value, scope))
 						break
 					else if(istype(S, /node/statement/BreakStatement))
 						if(!scope.allowed_status & BREAKING)
@@ -169,7 +169,7 @@
 						scope.status |= CONTINUING
 						break
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
+						RaiseError(new/runtimeError/UnknownInstruction(S))
 					if(scope.status)
 						break
 
@@ -193,7 +193,10 @@
 			for(var/node/expression/P in stmt.parameters)
 				params+=list(Eval(P, scope))
 
-			return func.execute(this_obj, params, scope, src)
+			try
+				return func.execute(this_obj, params, scope, src)
+			catch(var/exception/E)
+				RaiseError(new /runtimeError/Internal(E))
 
 /*
 	Proc: RunIf

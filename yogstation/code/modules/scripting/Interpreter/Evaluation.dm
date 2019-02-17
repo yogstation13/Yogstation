@@ -24,7 +24,7 @@
 				D.temp_object = null
 				. = get_property(object, D.id.id_name, scope)
 			else if(istype(exp, /node/expression))
-				RaiseError(new/runtimeError/UnknownInstruction())
+				RaiseError(new/runtimeError/UnknownInstruction(exp))
 			else
 				. = exp
 
@@ -33,13 +33,20 @@
 		EvalOperator(node/expression/operator/exp, scope/scope)
 			if(istype(exp, /node/expression/operator/binary/Assign))
 				var/node/expression/operator/binary/Assign/ass=exp
+				var/member_obj
 				if(istype(ass.exp, /node/expression/value/variable))
 					var/node/expression/value/variable/var_exp = ass.exp
 					if(!scope.get_scope(var_exp.id.id_name))
 						scope.init_var(var_exp.id.id_name, null)
+				else if(istype(ass.exp, /node/expression/member))
+					var/node/expression/member/M = ass.exp
+					member_obj = Eval(M.object, scope)
 				var/out_value
 				var/in_value
 				if(ass.type != /node/expression/operator/binary/Assign)
+					if(istype(ass.exp, /node/expression/member))
+						var/node/expression/member/M = ass.exp
+						M.temp_object = member_obj
 					in_value = Eval(ass.exp, scope)
 					if(islist(in_value))
 						out_value = in_value
@@ -79,11 +86,14 @@
 						if(/node/expression/operator/binary/Assign/Modulo)
 							out_value = Modulo(in_value, Eval(ass.exp2, scope))
 						else
-							RaiseError(new/runtimeError/UnknownInstruction())
+							RaiseError(new/runtimeError/UnknownInstruction(ass))
 					// write it to the var
 					if(istype(ass.exp, /node/expression/value/variable))
 						var/node/expression/value/variable/var_exp = ass.exp
 						scope.set_var(var_exp.id.id_name, out_value)
+					else if(istype(ass.exp, /node/expression/member/dot))
+						var/node/expression/member/dot/dot_exp = ass.exp
+						set_property(member_obj, dot_exp.id.id_name, out_value, scope)
 					else
 						RaiseError(new/runtimeError/InvalidAssignment())
 				return out_value
@@ -127,7 +137,7 @@
 					if(/node/expression/operator/binary/Modulo)
 						return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope))
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
+						RaiseError(new/runtimeError/UnknownInstruction(bin))
 			else
 				switch(exp.type)
 					if(/node/expression/operator/unary/Minus)
@@ -139,7 +149,7 @@
 					if(/node/expression/operator/unary/group)
 						return Eval(exp.exp, scope)
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
+						RaiseError(new/runtimeError/UnknownInstruction(exp))
 
 
 	//Binary//

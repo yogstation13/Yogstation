@@ -123,7 +123,7 @@
 				B.exp2=val.Pop()
 				B.exp =val.Pop()
 				val.Push(B)
-				if(istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable))
+				if(istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
 					errors += new/scriptError/InvalidAssignment()
 			else
 				O.exp=val.Pop()
@@ -224,7 +224,7 @@
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-
+				
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw(inline=1)

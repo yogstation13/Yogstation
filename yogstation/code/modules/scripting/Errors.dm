@@ -114,7 +114,8 @@
 
 	UnknownInstruction
 		name="UnknownInstructionError"
-		message="Unknown instruction type. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
+		New(node/op)
+			message="Unknown instruction type '[op.type]'. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
 	UndefinedVariable
 		name="UndefinedVariableError"
@@ -150,3 +151,8 @@
 		name="MaxComputationalUse"
 		New(maxcycles)
 			message="Maximum amount of computational cycles reached (>= [maxcycles])."
+
+	Internal
+		name="InternalError"
+		New(exception/E)
+			message = E.name

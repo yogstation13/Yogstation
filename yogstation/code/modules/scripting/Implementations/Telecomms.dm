@@ -165,51 +165,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		"exclaim" = signal.virt.verb_exclaim
 	))
 
-
-	/*
-	Telecomms procs
-	*/
-
-	/*
-		-> Send another signal to a server
-				@format: broadcast(content, frequency, source, job, lang)
-
-				@param content:		Message to broadcast
-				@param frequency:	Frequency to broadcast to
-				@param source:		The name of the source you wish to imitate. Must be stored in stored_names list.
-				@param job:			The name of the job.
-				@param spans		What span classes you want to apply to your message. Must be in the "allowed_custom_spans" list.
-				@param say			Say verb used in messages ending in ".".
-				@param ask			Say verb used in messages ending in "?".
-				@param yell			Say verb used in messages ending in "!!" (or more).
-				@param exclaim		Say verb used in messages ending in "!".
-
-	*/
-	interpreter.SetProc("broadcast", "tcombroadcast", signal, list("message", "freq", "source", "job","spans","say","ask","yell","exclaim","language"))
-
-	/*
-		-> Send a code signal.
-				@format: signal(frequency, code)
-
-				@param frequency:		Frequency to send the signal to
-				@param code:			Encryption code to send the signal with
-	*/
-	interpreter.SetProc("signal", "signaler", signal, list("freq", "code"))
-
-	/*
-		-> Store a value permanently to the server machine (not the actual game hosting machine, the ingame machine)
-				@format: mem(address, value)
-
-				@param address:		The memory address (string index) to store a value to
-				@param value:		The value to store to the memory address
-	*/
-	interpreter.SetProc("mem", "mem", signal, list("address", "value"))
-
-	/*
-		-> Wipe all the mem() variables on this server (for garbage collection purposes)
-	*/
-	interpreter.SetProc("clearmem","clearmem",signal, list())
-
 	// Run the compiled code
 	script_signal = interpreter.CallProc("process_signal", list(script_signal))
 	if(!istype(script_signal))
@@ -244,7 +199,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	signal.virt.verb_yell		= script_signal.get_clean_property("yell")
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
 	var/newlang = script_signal.get_clean_property("language")
-	signal.language = signal.LangBit2Datum(newlang) || oldlang
+	signal.language = LangBit2Datum(newlang) || oldlang
 	var/list/setspans 			= script_signal.get_clean_property("filters") //Save the span vector/list to a holder list
 	if(islist(setspans)) //Players cannot be trusted with ANYTHING. At all. Ever.
 		setspans &= GLOB.allowed_custom_spans //Prune out any illegal ones. Go ahead, comment this line out. See the horror you can unleash!
@@ -273,6 +228,26 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		"exclaim" = "exclaims"
 	)
 
+// makes a new signal object
+
+// arguments: message, freq, source, job
+// if you want to change anything else do it yourself
+/datum/n_function/default/signal
+	name = "signal"
+	interp_type = /n_Interpreter/TCS_Interpreter
+/datum/n_function/default/signal/execute(this_obj, list/params)
+	var/datum/n_struct/signal/S = new
+	if(params.len >= 1)
+		S.properties["content"] = params[1]
+	if(params.len >= 2)
+		S.properties["freq"] = params[2]
+	if(params.len >= 3)
+		S.properties["source"] = params[3]
+	if(params.len >= 4)
+		S.properties["job"] = params[4]
+	return S
+
+
 /*  -- Actual language proc code --  */
 
 #define SIGNAL_COOLDOWN 20 // 2 seconds
@@ -280,7 +255,7 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 /datum/signal
 
-/datum/signal/proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
+/proc/LangBit2Datum(langbits) // Takes in the set language bits, returns the datum to use
 	switch(langbits)
 		if(HUMAN)
 			return /datum/language/common
@@ -295,14 +270,20 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 		if(DRONE)
 			return /datum/language/drone
 
-/datum/signal/proc/mem(address, value)
-
+/datum/n_function/default/mem
+	name = "mem"
+	interp_type = /n_Interpreter/TCS_Interpreter
+/datum/n_function/default/mem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	var/address = params.len >= 1 ? params[1] : 1459
+	var/value = params.len >= 2 ? params[2] : 30
 	if(istext(address))
-		var/obj/machinery/telecomms/server/S = data["server"]
+		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 
-		if(!value && value != 0) // Getting the value
+		if(params.len == 1) // Getting the value
 			return S.memory[address]
-
+		else if(value == null) // setting it to null? You must be trying to remove it! Since altoids added this fancy ass memory thing might as well
+			S.memory -= address
+			return TRUE
 		else // Setting the value
 			if(S.memory.len >= MAX_MEM_VARS)
 				if(!(address in S.memory))
@@ -310,22 +291,28 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 			S.memory[address] = value
 			return TRUE
 
-/datum/signal/proc/clearmem()
-	var/obj/machinery/telecomms/server/S = data["server"]
+/datum/n_function/default/clearmem
+	name = "clearmem"
+	interp_type = /n_Interpreter/TCS_Interpreter
+/datum/n_function/default/clearmem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	S.memory = list()
 	return TRUE
 
-/datum/signal/proc/signaler(freq = 1459, code = 30)
+/datum/n_function/default/remote_signal
+	name = "remote_signal"
+	interp_type = /n_Interpreter/TCS_Interpreter
+/datum/n_function/default/remote_signal/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	var/freq = params.len >= 1 ? params[1] : 1459
+	var/code = params.len >= 2 ? params[2] : 30
 
 	if(isnum(freq) && isnum(code))
 
-		var/obj/machinery/telecomms/server/S = data["server"]
+		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 
 		if(S.last_signal + SIGNAL_COOLDOWN > world.timeofday && S.last_signal < MIDNIGHT_ROLLOVER)
 			return
 		S.last_signal = world.timeofday
-
-		var/datum/radio_frequency/connection = SSradio.return_frequency(freq)
 
 		if(findtext(num2text(freq), ".")) // if the frequency has been set as a decimal
 			freq *= 10 // shift the decimal one place
@@ -335,21 +322,42 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 		freq = sanitize_frequency(freq)
 
+		var/datum/radio_frequency/connection = SSradio.return_frequency(freq)
+
 		code = round(code)
 		code = CLAMP(code, 0, 100)
 
 		var/datum/signal/signal = new
 		signal.source = S
+		signal.data["code"] = code
 		signal.data["message"] = "ACTIVATE"
 
 		connection.post_signal(S, signal)
 
 		message_admins("Telecomms server \"[S.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
 
-/datum/signal/proc/tcombroadcast(message, freq, source, job, spans, say = "says", ask = "asks", yell = "yells", exclaim = "exclaims", language = /datum/language/common)
-	//languages &= allowed_translateable_langs //we can only translate to certain languages
+/datum/n_function/default/broadcast
+	name = "broadcast"
+	interp_type = /n_Interpreter/TCS_Interpreter
+/datum/n_function/default/broadcast/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
+	if(params.len < 1)
+		return
+	var/datum/n_struct/signal/script_signal = params[1]
+	if(!istype(script_signal))
+		return
 
-	var/obj/machinery/telecomms/server/S = data["server"]
+	var/message = script_signal.get_clean_property("content")
+	var/freq = script_signal.get_clean_property("freq")
+	var/source = script_signal.get_clean_property("source")
+	var/job = script_signal.get_clean_property("job")
+	var/spans = script_signal.get_clean_property("filters")
+	var/say = script_signal.get_clean_property("say")
+	var/ask = script_signal.get_clean_property("ask")
+	var/yell = script_signal.get_clean_property("yell")
+	var/exclaim = script_signal.get_clean_property("exclaim")
+	var/language = script_signal.get_clean_property("language")
+
+	var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 	var/obj/item/radio/server/hradio = S.server_radio
 
 	if(!hradio)
@@ -415,8 +423,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	newsign.data["vmessage"] = message
 	newsign.data["vname"] = source
 	newsign.data["vmask"] = 0
-	newsign.data["broadcast_levels"] = data["broadcast_levels"]
-	newsign.sanitize_data()
 
 	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
