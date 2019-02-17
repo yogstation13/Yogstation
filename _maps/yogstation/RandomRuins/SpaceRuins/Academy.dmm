@@ -1400,7 +1400,7 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/wizard{
-	name = "Lion The Narcissistic"
+	name = "Larry The Master of Satchels"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
