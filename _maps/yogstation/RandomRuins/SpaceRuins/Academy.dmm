@@ -2868,7 +2868,8 @@
 /area/awaymission/academy/academyaft)
 "ij" = (
 /obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/hostile/wizard{
+/mob/living/simple_animal/hostile/wizard/cloaked{
+	desc = "EI NATH?";
 	name = "Cali The Stubborn"
 	},
 /turf/open/floor/plasteel/cafeteria,
