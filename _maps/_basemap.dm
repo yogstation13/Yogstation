@@ -15,6 +15,7 @@
 		#include "yogstation\map_files\YogsMeta\YogsMeta.dmm"
 		#include "yogstation\map_files\YogsPubby\YogsPubby.dmm"
 		#include "yogstation\map_files\YogsDelta\YogsDelta.dmm"
+		#include "yogstation\map_files\YogsDonut\YogsDonut.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif
