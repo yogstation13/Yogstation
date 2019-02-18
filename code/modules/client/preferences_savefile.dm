@@ -5,11 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-<<<<<<< HEAD
-#define SAVEFILE_VERSION_MAX	20.1 //yogs - this has been edited so that I know to change it if /tg/ does :)
-=======
 #define SAVEFILE_VERSION_MAX	21
->>>>>>> 98fd2f6b8d... Fixes bad default ethereal preference color (#42756)
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
