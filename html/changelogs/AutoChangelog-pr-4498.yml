@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Restricted VR uplinks from buying syndicate cash briefcases."
