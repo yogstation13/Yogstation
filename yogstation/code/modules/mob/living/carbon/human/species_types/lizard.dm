@@ -1,9 +1,10 @@
-/datum/species/lizard/cosmic
+/datum/species/lizard/ashwalker/cosmic
 	name = "Cosmic Ashwalker"
 	var/rebirth
 	var/rebirthcount = 0
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
 
-/datum/species/lizard/cosmic/spec_life(mob/living/carbon/human/H)
+/datum/species/lizard/ashwalker/cosmic/spec_life(mob/living/carbon/human/H)
 	. = ..()
 	if(H.health < 0)
 		if(rebirthcount >= 3)
@@ -24,4 +25,4 @@
 		var/obj/effect/cyrogenicbubble/CB = new(get_turf(H))
 		CB.name = H.real_name
 		H.forceMove(CB)
-		CB.lizard = H
+		CB.ashwalker = H
