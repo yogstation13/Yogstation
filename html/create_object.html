@@ -61,14 +61,16 @@
 		{
 			object_list.options.length = 0;
 			
-			var i;
-			for (i in from_list)
-			{
-				var new_option = document.createElement("option");
-				new_option.value = from_list[i];
-				new_option.text = from_list[i];
-				object_list.options.add(new_option);
-			}
+			//Yogs start -- Faster create_object
+            var str = "";
+            var i;
+            for (i = 0; i < from_list.length; i++)
+            {
+                str += "<option value='" + from_list[i] + "'>" + from_list[i] + "</option>";
+            }
+            object_list.innerHTML = str
+			document.spawner.innerHTML += "";
+			//Yogs end
 		}
 		
 		function updateSearch()

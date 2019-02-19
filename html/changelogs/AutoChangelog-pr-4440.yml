@@ -1,0 +1,6 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - rscadd: "You can now split a bag of holding in half. Simply use a scalpel while it's on a floor, and then use the scalpel again on it (the second time, cancelling the progress bar will result in a small tear) and it becomes split in half."
+  - rscadd: "You can make a split bag of holding look like a whole bag by taking another bag of holding, then using scalpel followed by hemostat to \"disable\" it (again don't cancel during hemostat part), then \"graft\" it onto a split bag to make it look whole. You can even split it again if you really want."
+  - rscadd: "You can wear a bag of holding on your head to look out the other side."
