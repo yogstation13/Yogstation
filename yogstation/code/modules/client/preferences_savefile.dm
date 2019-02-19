@@ -9,12 +9,6 @@
 /datum/preferences/proc/save_keybindings(var/savefile/S)
 	WRITE_FILE(S["keybindings"], bindings.to_list())
 
-/datum/preferences/update_preferences(current_version, savefile/S)
-	.=..()
-	if(chat_toggles & CHAT_LOOC)
-		return .
-	chat_toggles ^= CHAT_LOOC
-
 /datum/preferences/update_character(current_version, savefile/S)
 	.=..()
 	var/value = 0
