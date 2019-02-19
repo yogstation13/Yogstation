@@ -62,11 +62,11 @@
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/forcewall, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aoe_turf/repulse, 4)
 
-		if(7) //5x Cluwne Curse and 2x blind
+		if(7) //5x Cluwne Curse and 2x blink
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/cluwnecurse, 4)
-			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
+			SpellAdd(/obj/effect/proc_holder/spell/targeted/turf_teleport/blink, 1)
 
-		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind
+		if(8) // 5x Flesh to stone 5x Animation Spell 2x Blind (Weeping Angels)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/aimed/animation, 4)
 			SpellAdd(/obj/effect/proc_holder/spell/targeted/trigger/blind, 1)
