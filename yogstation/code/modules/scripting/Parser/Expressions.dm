@@ -204,6 +204,16 @@
 					NextToken()
 					E.id = new(curToken.value)
 					val.Push(E)
+				else if(istype(curToken, /token/symbol) && curToken.value == "\[")
+					if(expecting == VALUE)
+						errors+=new/scriptError/ExpectedToken("expression", curToken)
+						NextToken()
+						continue
+					var/node/expression/member/brackets/B = new()
+					B.object = val.Pop()
+					NextToken()
+					B.index = ParseExpression(list("]"))
+					val.Push(B)
 				else if(istype(curToken, /token/symbol))												//Operator found.
 					var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.
 					if(src.expecting==OPERATOR)
@@ -224,7 +234,7 @@
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-				
+
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw(inline=1)

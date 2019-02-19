@@ -20,7 +20,9 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 				return ntsl_method(/list, /datum/n_function/list_remove)
 			if("Swap")
 				return ntsl_method(/list, /datum/n_function/list_swap)
-
+	else if(istext(object))
+		if(key == "len")
+			return length(object)
 	else if(istype(object, /datum))
 		var/datum/D = object
 		return D.ntsl_get(key, scope, src)
@@ -32,6 +34,24 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 		D.ntsl_set(key, val, scope, src)
 		return
 	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"))
+
+/n_Interpreter/proc/get_index(object, index, scope/scope)
+	if(islist(object))
+		var/list/L = object
+		if(!isnum(index) || (index <= L.len && index >= 1))
+			return L[index]
+	else if(istext(object))
+		if(isnum(index) && index >= 1 && index <= length(object))
+			return object[index]
+	RaiseError(new/runtimeError/IndexOutOfRange(object, index))
+
+/n_Interpreter/proc/set_index(object, index, val, scope/scope)
+	if(islist(object))
+		var/list/L = object
+		if(!isnum(index) || (index <= L.len && index >= 1))
+			L[index] = val
+			return
+	RaiseError(new/runtimeError/IndexOutOfRange(object, index))
 
 /datum/proc/ntsl_get(key, scope/scope, n_Interpreter/interp)
 	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"))

@@ -122,6 +122,11 @@
 		New(variable)
 			message="Variable '[variable]' has not been declared."
 
+	IndexOutOfRange
+		name="IndexOutOfRangeError"
+		New(obj, idx)
+			message="Index [obj]\[[idx]] is out of range."
+
 	UndefinedFunction
 		name="UndefinedFunctionError"
 		New(function)

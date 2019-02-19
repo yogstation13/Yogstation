@@ -92,6 +92,7 @@
 
 /node/expression/member/brackets
 	var/node/expression/index
+	var/tmp/temp_index
 
 
 /*
