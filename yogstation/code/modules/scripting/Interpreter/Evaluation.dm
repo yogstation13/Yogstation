@@ -17,7 +17,17 @@
 				. = ref.value
 			else if(istype(exp, /node/expression/value/variable))
 				var/node/expression/value/variable/v=exp
-				. = scope.get_var(v.id.id_name, src, v.id)
+				. = scope.get_var(v.id.id_name, src, v)
+			else if(istype(exp, /node/expression/value/list_init))
+				var/node/expression/value/list_init/list_exp = exp
+				. = list()
+				for(var/key in list_exp.init_list)
+					var/key_eval = Eval(key, scope)
+					var/val = list_exp.init_list[key]
+					if(val)
+						set_index(., key_eval, Eval(val, scope), scope, key)
+					else
+						. += list(key_eval)
 			else if(istype(exp, /node/expression/member/dot))
 				var/node/expression/member/dot/D = exp
 				var/object = D.temp_object || Eval(D.object, scope)
@@ -44,7 +54,7 @@
 				if(istype(ass.exp, /node/expression/value/variable))
 					var/node/expression/value/variable/var_exp = ass.exp
 					if(!scope.get_scope(var_exp.id.id_name))
-						scope.init_var(var_exp.id.id_name, null, src, var_exp.id)
+						scope.init_var(var_exp.id.id_name, null, src, var_exp)
 				else if(istype(ass.exp, /node/expression/member))
 					var/node/expression/member/M = ass.exp
 					member_obj = Eval(M.object, scope)
@@ -103,7 +113,7 @@
 					// write it to the var
 					if(istype(ass.exp, /node/expression/value/variable))
 						var/node/expression/value/variable/var_exp = ass.exp
-						scope.set_var(var_exp.id.id_name, out_value, src, var_exp.id)
+						scope.set_var(var_exp.id.id_name, out_value, src, var_exp)
 					else if(istype(ass.exp, /node/expression/member/dot))
 						var/node/expression/member/dot/dot_exp = ass.exp
 						set_property(member_obj, dot_exp.id.id_name, out_value, scope)

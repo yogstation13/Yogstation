@@ -114,7 +114,7 @@
 			if(last_line)
 				. += "\n\tat \[global]([last_line]:[last_col])"
 			else
-				. += "\n\tat \[internal](null:null)"
+				. += "\n\tat \[internal]"
 
 	TypeMismatch
 		name="TypeMismatchError"

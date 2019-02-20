@@ -113,7 +113,7 @@
 	Takes the operator on top of the opr stack and assigns its operand(s). Then this proc pushes the value of that operation to the top
 	of the val stack.
 */
-		Reduce(stack/opr, stack/val)
+		Reduce(stack/opr, stack/val, check_assignments = 1)
 			var/node/expression/operator/O=opr.Pop()
 			if(!O) return
 			if(!istype(O))
@@ -126,7 +126,7 @@
 				B.exp2=val.Pop()
 				B.exp =val.Pop()
 				val.Push(B)
-				if(istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
+				if(check_assignments && istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
 					errors += new/scriptError/InvalidAssignment()
 			else
 				O.exp=val.Pop()
@@ -165,7 +165,7 @@
 	- <ParseParenExpression()>
 	- <ParseParamExpression()>
 */
-		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"), check_functions = 0)
+		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"), check_functions = 0, check_assignments = 1)
 			var/stack
 				opr=new
 				val=new
@@ -233,11 +233,12 @@
 							continue
 
 					if(opr.Top() && Precedence(opr.Top(), curOperator)==REDUCE)		//Check order of operations and reduce if necessary
-						Reduce(opr, val)
+						Reduce(opr, val, check_assignments)
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-
+				else if(istype(curToken, /token/word) && curToken.value == "list" && ntok && ntok.value == "(" && expecting == VALUE)
+					val.Push(ParseListExpression())
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw(inline=1)
@@ -261,7 +262,7 @@
 
 				NextToken()
 
-			while(opr.Top()) Reduce(opr, val) 																//Reduce the value stack completely
+			while(opr.Top()) Reduce(opr, val, check_assignments) 																//Reduce the value stack completely
 			.=val.Pop()                       																//Return what should be the last value on the stack
 			if(val.Top())                     																//
 				var/node/N=val.Pop()
@@ -298,6 +299,33 @@
 					errors+=new/scriptError/ExpectedToken(")")
 					return exp
 
+		ParseListExpression()
+			var/node/expression/value/list_init/exp = new(curToken)
+			exp.init_list = list()
+			NextToken() // skip the "list" word
+			NextToken() // skip the open parenthesis
+			var/loops = 0
+			for()
+				loops++
+				if(loops >= 800)
+					errors += new /scriptError("Too many nested expressions.")
+					break
+
+				if(istype(curToken, /token/symbol) && curToken.value == ")")
+					return exp
+				var/node/expression/E = ParseParamExpression(check_assignments = FALSE)
+				if(E.type == /node/expression/operator/binary/Assign)
+					var/node/expression/operator/binary/Assign/A = E
+					exp.init_list[A.exp] = A.exp2
+				else
+					exp.init_list += E
+				if(errors.len)
+					return exp
+				if(curToken.value==","&&istype(curToken, /token/symbol))NextToken()	//skip comma
+				if(istype(curToken, /token/end))																		//Prevents infinite loop...
+					errors+=new/scriptError/ExpectedToken(")")
+					return exp
+
 /*
 	Proc: ParseParenExpression
 	Parses an expression that ends with a close parenthesis. This is used for parsing expressions inside of parentheses.
@@ -318,6 +346,7 @@
 	See Also:
 	- <ParseExpression()>
 */
-		ParseParamExpression(check_functions = 0)
+		ParseParamExpression(check_functions = 0, check_assignments = 1)
 			var/cf = check_functions
-			return ParseExpression(list(",", ")"), check_functions = cf)
+			var/ca = check_assignments
+			return ParseExpression(list(",", ")"), check_functions = cf, check_assignments = ca)

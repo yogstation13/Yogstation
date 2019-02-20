@@ -147,6 +147,13 @@
 	ToString()
 		return src.id.ToString()
 
+/node/expression/value/list_init
+	var/list/init_list
+
+	New(token)
+		. = ..()
+		src.token = token
+
 /*
 	Class: reference
 */
