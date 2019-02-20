@@ -54,7 +54,7 @@ Represents a special statement in the code triggered by a keyword.
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock)) // Exit out of the program by setting the tokens list size to the same as index.
 					parser.tokens.len = parser.index
 					return
-				var/node/statement/ReturnStatement/stmt=new(curToken)
+				var/node/statement/ReturnStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'return' token
 				stmt.value=parser.ParseExpression()
 				parser.curBlock.statements+=stmt
@@ -62,7 +62,7 @@ Represents a special statement in the code triggered by a keyword.
 		kwIf
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/IfStatement/stmt=new(curToken)
+				var/node/statement/IfStatement/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'if' token
 				stmt.cond=parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -85,7 +85,7 @@ Represents a special statement in the code triggered by a keyword.
 					parser.errors += new/scriptError/ExpectedToken("if statement", parser.curToken)
 					return KW_FAIL
 
-				var/node/statement/IfStatement/ElseIf/stmt = new(curToken)
+				var/node/statement/IfStatement/ElseIf/stmt = new(parser.curToken)
 				parser.NextToken()  //skip 'if' token
 				stmt.cond = parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -116,7 +116,7 @@ Represents a special statement in the code triggered by a keyword.
 		kwWhile
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/WhileLoop/stmt=new(curToken)
+				var/node/statement/WhileLoop/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'while' token
 				stmt.cond=parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -130,7 +130,7 @@ Represents a special statement in the code triggered by a keyword.
 		kwFor
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/ForLoop/stmt = new(curToken)
+				var/node/statement/ForLoop/stmt = new(parser.curToken)
 				parser.NextToken()
 				if(!parser.CheckToken("(", /token/symbol))
 					return KW_FAIL
@@ -155,7 +155,7 @@ Represents a special statement in the code triggered by a keyword.
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
-				var/node/statement/BreakStatement/stmt=new(curToken)
+				var/node/statement/BreakStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
 				parser.curBlock.statements+=stmt
 
@@ -165,14 +165,14 @@ Represents a special statement in the code triggered by a keyword.
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
-				var/node/statement/ContinueStatement/stmt=new(curToken)
+				var/node/statement/ContinueStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
 				parser.curBlock.statements+=stmt
 
 		kwDef
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/FunctionDefinition/def=new(curToken)
+				var/node/statement/FunctionDefinition/def=new(parser.curToken)
 				parser.NextToken() //skip 'def' token
 				if(!parser.options.IsValidID(parser.curToken.value))
 					parser.errors+=new/scriptError/InvalidID(parser.curToken)

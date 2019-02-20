@@ -51,12 +51,12 @@
 		parent.return_val = return_val
 	return parent
 
-/scope/proc/get_var(name, n_Interpreter/interp)
+/scope/proc/get_var(name, n_Interpreter/interp, node/node)
 	var/scope/S = get_scope(name)
 	if(S)
 		return S.variables[name]
 	else if(interp)
-		interp.RaiseError(new/runtimeError/UndefinedVariable(name))
+		interp.RaiseError(new/runtimeError/UndefinedVariable(name), src, node)
 
 /scope/proc/get_function(name)
 	var/scope/S = src
@@ -66,15 +66,15 @@
 			return
 		S = S.variables_parent
 
-/scope/proc/set_var(name, val)
+/scope/proc/set_var(name, val, n_Interpreter/interp, node/node)
 	var/scope/S = get_scope(name)
 	if(S)
 		S.variables[name] = val
 	else
-		init_var(name, val)
+		init_var(name, val, interp, node)
 	return val
 
-/scope/proc/init_var(name, val, n_Interpreter/interp)
+/scope/proc/init_var(name, val, n_Interpreter/interp, node/node)
 	if(variables.Find(name) && interp)
-		interp.RaiseError(new/runtimeError/DuplicateVariableDeclaration(name))
+		interp.RaiseError(new/runtimeError/DuplicateVariableDeclaration(name), src, node)
 	variables[name] = val

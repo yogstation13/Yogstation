@@ -283,24 +283,12 @@ def save_tgm(dmm, output):
 
     # thanks to YotaXP for finding out about this one
     max_x, max_y, max_z = dmm.size
-# yogs start - multi-column mode
-    columns_to_write = 1
-    total_tiles = max_x * max_y * max_z
-    while total_tiles > 65536:
-        columns_to_write += 1
-        total_tiles -= 65536
-# yogs end
     for z in range(1, max_z + 1):
         output.write("\n")
-        for x in range(1, max_x + 1, columns_to_write): # yogs - make the step be columns_to_write
+        for x in range(1, max_x + 1):
             output.write(f"({x},{1},{z}) = {{\"\n")
             for y in range(1, max_y + 1):
-# yogs start - multi-column mode
-                for xo in range(0, columns_to_write):
-                    if (xo + x) <= max_x:
-                        output.write(f"{num_to_key(dmm.grid[x+xo, y, z], dmm.key_length)}")
-                output.write("\n")
-# yogs end
+                output.write(f"{num_to_key(dmm.grid[x, y, z], dmm.key_length)}\n")
             output.write("\"}\n")
 
 # ----------

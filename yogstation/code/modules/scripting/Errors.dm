@@ -99,20 +99,22 @@
 			var/last_col
 			if(token)
 				last_line = token.line
-				last_col = token.col
+				last_col = token.column
 			var/scope/cur_scope = scope
 			while(cur_scope)
 				if(cur_scope.function)
-				. += "\n\tat [cur_scope.function.func_name]([last_line]:[last_col])"
-				cur_scope = scope.parent
+					. += "\n\tat [cur_scope.function.func_name]([last_line]:[last_col])"
 					if(cur_scope.call_node && cur_scope.call_node.token)
 						last_line = cur_scope.call_node.token.line
-						last_col = cur_scope.call_node.token.col
+						last_col = cur_scope.call_node.token.column
 					else
 						last_line = null
 						last_col = null
+				cur_scope = cur_scope.parent
 			if(last_line)
 				. += "\n\tat \[global]([last_line]:[last_col])"
+			else
+				. += "\n\tat \[internal](null:null)"
 
 	TypeMismatch
 		name="TypeMismatchError"

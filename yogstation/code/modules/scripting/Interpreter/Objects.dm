@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(ntsl_methods)
 
-/n_Interpreter/proc/get_property(object, key, scope/scope)
+/n_Interpreter/proc/get_property(object, key, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		switch(key)
@@ -25,17 +25,17 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 			return length(object)
 	else if(istype(object, /datum))
 		var/datum/D = object
-		return D.ntsl_get(key, scope, src)
-	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"))
+		return D.ntsl_get(key, scope, src, node)
+	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/n_Interpreter/proc/set_property(object, key, val, scope/scope)
+/n_Interpreter/proc/set_property(object, key, val, scope/scope, node)
 	if(istype(object, /datum))
 		var/datum/D = object
-		D.ntsl_set(key, val, scope, src)
+		D.ntsl_set(key, val, scope, src, node)
 		return
-	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"))
+	RaiseError(new/runtimeError/UndefinedVariable("[object].[key]"), scope, node)
 
-/n_Interpreter/proc/get_index(object, index, scope/scope)
+/n_Interpreter/proc/get_index(object, index, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
@@ -43,22 +43,22 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	else if(istext(object))
 		if(isnum(index) && index >= 1 && index <= length(object))
 			return object[index]
-	RaiseError(new/runtimeError/IndexOutOfRange(object, index))
+	RaiseError(new/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/n_Interpreter/proc/set_index(object, index, val, scope/scope)
+/n_Interpreter/proc/set_index(object, index, val, scope/scope, node)
 	if(islist(object))
 		var/list/L = object
 		if(!isnum(index) || (index <= L.len && index >= 1))
 			L[index] = val
 			return
-	RaiseError(new/runtimeError/IndexOutOfRange(object, index))
+	RaiseError(new/runtimeError/IndexOutOfRange(object, index), scope, node)
 
-/datum/proc/ntsl_get(key, scope/scope, n_Interpreter/interp)
-	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"))
+/datum/proc/ntsl_get(key, scope/scope, n_Interpreter/interp, node)
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
 	return
 
-/datum/proc/ntsl_set(key, val, scope/scope, n_Interpreter/interp)
-	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"))
+/datum/proc/ntsl_set(key, val, scope/scope, n_Interpreter/interp, node)
+	interp.RaiseError(new/runtimeError/UndefinedVariable("[src].[key]"), scope, node)
 	return
 
 /datum/n_enum
@@ -111,20 +111,21 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp, node/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
-		interp.RaiseError(new/runtimeError/RecursionLimitReached())
+		interp.RaiseError(new/runtimeError/RecursionLimitReached(), scope, node)
 		return 0
 	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
 	scope.function = def
-	scope.token = node.token
+	if(node)
+		scope.call_node = node
 	for(var/i=1 to def.parameters.len)
 		var/val
 		if(params.len>=i)
 			val = params[i]
 		//else
 		//	unspecified param
-		scope.init_var(def.parameters[i], val)
-	scope.init_var("src", this_obj);
+		scope.init_var(def.parameters[i], val, interp, node)
+	scope.init_var("src", this_obj, interp, node);
 	interp.RunBlock(def.block, scope)
 	//Handle return value
 	. = scope.return_val

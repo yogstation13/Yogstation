@@ -134,7 +134,7 @@
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS))
+						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
 						AlertAdmins()
 						break
 
@@ -143,10 +143,10 @@
 					else if(istype(S, /node/statement/VariableDeclaration))
 						//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
 						var/node/statement/VariableDeclaration/dec=S
-						scope.init_var(dec.var_name.id_name)
+						scope.init_var(dec.var_name.id_name, src, S)
 					else if(istype(S, /node/statement/FunctionDefinition))
 						var/node/statement/FunctionDefinition/dec=S
-						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src))
+						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src), src, S)
 					else if(istype(S, /node/statement/WhileLoop))
 						. = RunWhile(S, scope)
 					else if(istype(S, /node/statement/ForLoop))
@@ -155,7 +155,7 @@
 						. = RunIf(S, scope)
 					else if(istype(S, /node/statement/ReturnStatement))
 						if(!scope.allowed_status & RETURNING)
-							RaiseError(new/runtimeError/UnexpectedReturn())
+							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
 							continue
 						scope.status |= RETURNING
 						. = (scope.return_val=Eval(S:value, scope))
@@ -173,7 +173,7 @@
 						scope.status |= CONTINUING
 						break
 					else
-						RaiseError(new/runtimeError/UnknownInstruction(S))
+						RaiseError(new/runtimeError/UnknownInstruction(S), scope, S)
 					if(scope.status)
 						break
 
@@ -191,7 +191,7 @@
 			else
 				func = Eval(stmt.function, scope)
 			if(!istype(func))
-				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"))
+				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
 				return
 			var/list/params = list()
 			for(var/node/expression/P in stmt.parameters)
@@ -200,7 +200,7 @@
 			try
 				return func.execute(this_obj, params, scope, src, stmt)
 			catch(var/exception/E)
-				RaiseError(new /runtimeError/Internal(E))
+				RaiseError(new /runtimeError/Internal(E), scope, stmt)
 
 /*
 	Proc: RunIf
@@ -254,7 +254,7 @@
 		Iterate(node/BlockDefinition/block, scope/scope, count)
 			RunBlock(block, scope)
 			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
-				RaiseError(new/runtimeError/IterationLimitReached())
+				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)
 				return 0
 			if(status & (BREAKING|RETURNING))
 				return 0
