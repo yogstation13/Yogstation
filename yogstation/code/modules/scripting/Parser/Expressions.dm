@@ -51,10 +51,10 @@
 				return T
 			switch(T.type)
 				if(/token/word)
-					return new/node/expression/value/variable(T.value)
+					return new/node/expression/value/variable(T.value, T)
 
 				if(/token/number, /token/string)
-					return new/node/expression/value/literal(T.value)
+					return new/node/expression/value/literal(T.value, T)
 
 /*
 	Proc: GetOperator
@@ -72,12 +72,15 @@
 	- <GetUnaryOperator()>
 */
 		GetOperator(O, type=/node/expression/operator, L[])
+			var/token/T
 			if(istype(O, type)) return O		//O is already the desired type
-			if(istype(O, /token)) O=O:value //sets O to text
+			if(istype(O, /token))
+				T = O
+				O=O:value //sets O to text
 			if(istext(O))										//sets O to path
 				if(L.Find(O)) O=L[O]
 				else return null
-			if(ispath(O))O=new O						//catches path from last check
+			if(ispath(O))O=new O(T)						//catches path from last check
 			else return null								//Unknown type
 			return O
 
@@ -199,17 +202,17 @@
 						errors+=new/scriptError/ExpectedToken("expression", curToken)
 						NextToken()
 						continue
-					var/node/expression/member/dot/E = new()
+					var/node/expression/member/dot/E = new(curToken)
 					E.object = val.Pop()
 					NextToken()
-					E.id = new(curToken.value)
+					E.id = new(curToken.value, curToken)
 					val.Push(E)
 				else if(istype(curToken, /token/symbol) && curToken.value == "\[")
 					if(expecting == VALUE)
 						errors+=new/scriptError/ExpectedToken("expression", curToken)
 						NextToken()
 						continue
-					var/node/expression/member/brackets/B = new()
+					var/node/expression/member/brackets/B = new(curToken)
 					B.object = val.Pop()
 					NextToken()
 					B.index = ParseExpression(list("]"))
@@ -273,7 +276,7 @@
 	- <ParseExpression()>
 */
 		ParseFunctionExpression(func_exp)
-			var/node/expression/FunctionCall/exp=new
+			var/node/expression/FunctionCall/exp=new(curToken)
 			exp.function = func_exp
 			NextToken() //skip open parenthesis, already found
 			var/loops = 0
@@ -303,9 +306,10 @@
 	- <ParseExpression()>
 */
 		ParseParenExpression()
+			var/group_token = curToken
 			if(!CheckToken("(", /token/symbol))
 				return
-			return new/node/expression/operator/unary/group(ParseExpression(list(")")))
+			return new/node/expression/operator/unary/group(group_token, ParseExpression(list(")")))
 
 /*
 	Proc: ParseParamExpression

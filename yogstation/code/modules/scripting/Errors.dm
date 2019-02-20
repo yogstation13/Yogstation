@@ -84,7 +84,8 @@
 	A basic description as to what went wrong.
 */
 		message
-		stack/stack
+		scope/scope
+		token/token
 
 	proc
 /*
@@ -93,11 +94,25 @@
 */
 		ToString()
 			. = "[name]: [message]"
-			//if(!stack.Top()) return
-			//.+="\nStack:"
-			//while(stack.Top())
-			//	var/node/statement/FunctionCall/stmt=stack.Pop()
-			//	. += "\n\t [stmt.function.ToString]()"
+			if(!scope) return
+			var/last_line
+			var/last_col
+			if(token)
+				last_line = token.line
+				last_col = token.col
+			var/scope/cur_scope = scope
+			while(cur_scope)
+				if(cur_scope.function)
+				. += "\n\tat [cur_scope.function.func_name]([last_line]:[last_col])"
+				cur_scope = scope.parent
+					if(cur_scope.call_node && cur_scope.call_node.token)
+						last_line = cur_scope.call_node.token.line
+						last_col = cur_scope.call_node.token.col
+					else
+						last_line = null
+						last_col = null
+			if(last_line)
+				. += "\n\tat \[global]([last_line]:[last_col])"
 
 	TypeMismatch
 		name="TypeMismatchError"

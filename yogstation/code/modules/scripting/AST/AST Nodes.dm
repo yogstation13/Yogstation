@@ -44,6 +44,7 @@
 	Class: node
 */
 /node
+	var/token/token // for line number informatino
 	proc
 		ToString()
 			return "[src.type]"
@@ -54,9 +55,10 @@
 	var
 		id_name
 
-	New(id)
+	New(id, token)
 		.=..()
 		src.id_name=id
+		src.token = token
 
 	ToString()
 		return id_name
@@ -76,9 +78,11 @@
 			name
 			precedence
 
-	New()
+	New(token, exp)
 		.=..()
 		if(!src.name) src.name="[src.type]"
+		src.token = token
+		src.exp = exp
 
 	ToString()
 		return "operator: [name]"
@@ -86,6 +90,9 @@
 /node/expression/member
 	var/node/expression/object
 	var/tmp/temp_object // so you can pre-eval it, used for function calls and assignments
+	New(token)
+		src.token = token
+		return ..()
 
 /node/expression/member/dot
 	var/node/identifier/id
@@ -102,6 +109,9 @@
 	//Function calls can also be expressions or statements.
 	var/node/expression/function
 	var/list/parameters=list()
+	New(token)
+		.=..()
+		src.token = token
 
 /*
 	Class: literal
@@ -128,8 +138,9 @@
 			id
 
 
-	New(ident)
+	New(ident, token)
 		.=..()
+		src.token = token
 		id=ident
 		if(istext(id))id=new(id)
 
@@ -143,8 +154,9 @@
 	var
 		datum/value
 
-	New(value)
+	New(value, token)
 		.=..()
+		src.token = token
 		src.value=value
 
 	ToString()

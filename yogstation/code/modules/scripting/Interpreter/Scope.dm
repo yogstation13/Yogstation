@@ -12,6 +12,7 @@
 	var/allowed_status = 0
 	var/recursion = 0
 	var/node/statement/FunctionDefinition/function
+	var/node/expression/FunctionCall/call_node
 	var/return_val
 
 /scope/New(node/BlockDefinition/B, scope/parent, scope/variables_parent, allowed_status = 0)

@@ -87,9 +87,13 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-		RaiseError(runtimeError/e)
-			e.stack=functions.Copy()
-			e.stack.Push(curFunction)
+		RaiseError(runtimeError/e, scope/scope, token/token)
+			e.scope = scope
+			if(istype(token))
+				e.token = token
+			else if(istype(token, /node))
+				var/node/N = token
+				e.token = N.token
 			src.HandleError(e)
 
 		CreateGlobalScope()
@@ -194,7 +198,7 @@
 				params+=list(Eval(P, scope))
 
 			try
-				return func.execute(this_obj, params, scope, src)
+				return func.execute(this_obj, params, scope, src, stmt)
 			catch(var/exception/E)
 				RaiseError(new /runtimeError/Internal(E))
 

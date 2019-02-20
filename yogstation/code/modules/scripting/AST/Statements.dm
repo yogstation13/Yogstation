@@ -6,6 +6,9 @@
 	An object representing a single instruction run by an interpreter.
 */
 /node/statement
+	New(value)
+		.=..()
+		src.value=value
 
 /*
 	Class: FunctionDefinition

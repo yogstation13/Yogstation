@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	closure = S
 	context = C
 
-/datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp)
+/datum/n_function/defined/execute(this_obj, list/params, scope/scope, n_Interpreter/interp, node/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
 		interp.RaiseError(new/runtimeError/RecursionLimitReached())
@@ -116,6 +116,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	scope = scope.push(def.block, closure, RESET_STATUS | RETURNING)
 	scope.recursion++
 	scope.function = def
+	scope.token = node.token
 	for(var/i=1 to def.parameters.len)
 		var/val
 		if(params.len>=i)
