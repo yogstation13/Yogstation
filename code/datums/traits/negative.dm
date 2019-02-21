@@ -261,7 +261,10 @@
 	lose_text = "<span class='notice'>You think you can defend yourself again.</span>"
 	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3be9f4c165... removes double paraplegic (#42858)
 /datum/quirk/paraplegic
 	name = "Paraplegic"
 	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
@@ -296,7 +299,10 @@
 		if(I.fingerprintslast == quirk_holder.ckey)
 			quirk_holder.put_in_hands(I)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3be9f4c165... removes double paraplegic (#42858)
 /datum/quirk/poor_aim
 	name = "Poor Aim"
 	desc = "You're terrible with guns and can't line up a straight shot to save your life. Dual-wielding is right out."
