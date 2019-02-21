@@ -81,9 +81,3 @@
 	desc = "A clown hardsuit. The joke being that it is anything but."
 	icon_state = "hardsuit_clown"
 	item_state = "hardsuit_clown"
-
-/obj/item/storage/backpack/snail/green
-	name = "green shell backpack"
-	desc = "A emerald-green snail shell converted into a backpack. Still smells of salt"
-	item_state = "snail_green"
-	icon_state = "snail_green"
