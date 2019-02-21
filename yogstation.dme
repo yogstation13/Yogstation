@@ -2896,6 +2896,7 @@
 #include "yogstation\code\game\objects\items\stacks\sheets\leather.dm"
 #include "yogstation\code\game\objects\items\stacks\tiles\tile_types.dm"
 #include "yogstation\code\game\objects\items\storage\belt.dm"
+#include "yogstation\code\game\objects\items\storage\toolbox.dm"
 #include "yogstation\code\game\objects\items\storage\uplink_kits.dm"
 #include "yogstation\code\game\objects\structures\bedsheet_bin.dm"
 #include "yogstation\code\game\objects\structures\ghost_role_spawners.dm"
