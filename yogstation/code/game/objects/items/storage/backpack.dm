@@ -189,7 +189,7 @@
 
 /obj/item/storage/backpack/snail/green
 	name = "green shell backpack"
-	desc = "A emerald-green snail shell converted into a backpack. Still smells of salt"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
