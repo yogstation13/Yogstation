@@ -174,3 +174,22 @@
 /obj/item/disabled_boh/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
 	state = "brokenpack"
 	return ..()
+
+//Nick's snail shit
+
+/obj/item/storage/backpack/snail
+	name = "snail shell"
+	desc = "You wonder who this came from."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	item_state = "snail_green"
+	icon_state = "snail_green"
+	slowdown = 1
+
+
+/obj/item/storage/backpack/snail/green
+	name = "green shell backpack"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
+	item_state = "snail_green"
+	icon_state = "snail_green"
+
