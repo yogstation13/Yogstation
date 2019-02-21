@@ -23,7 +23,7 @@
 		if(BP)
 			var/type = donor_start_tools[C.prefs.donor_item]
 			var/obj/item = new type()
-			item.forceMove(put_in_hands)
+			H.put_in_hands(item)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
