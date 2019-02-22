@@ -4,15 +4,6 @@
 
 // --- List operations (lists known as vectors in n_script) ---
 
-// Creates a list out of all the arguments
-/datum/n_function/default/vector
-	name = "vector"
-/datum/n_function/default/vector/execute(this_obj, list/params)
-	var/list/returnlist = list()
-	for(var/e in params)
-		returnlist.Add(e)
-	return returnlist
-
 // Picks one random item from the list
 /datum/n_function/default/pick
 	name = "pick"
@@ -28,100 +19,6 @@
 		finalpick.Add(e)
 
 	return pick(finalpick)
-
-// Gets/Sets a value at a key in the list
-/datum/n_function/default/at
-	name = "at"
-/datum/n_function/default/at/execute(this_obj, list/params)
-	var/list/L = LAZYACCESS(params,1)
-	var/pos = LAZYACCESS(params,2)
-	var/value = LAZYACCESS(params,3)
-	if(!istype(L, /list)) return
-	if(isnum(pos))
-		if(!value)
-			if(L.len >= pos)
-				return L[pos]
-		else
-			if(L.len >= pos)
-				L[pos] = value
-	else if(istext(pos))
-		if(!value)
-			return L[pos]
-		else
-			L[pos] = value
-
-// Copies the list into a new one
-/datum/n_function/default/copy
-	name = "copy"
-/datum/n_function/default/copy/execute(this_obj, list/params)
-	var/list/L = params.len >= 1 ? params[1] : null
-	var/start = params.len >= 2 ? params[2] : null
-	var/end = params.len >= 3 ? params[3] : null
-	if(!istype(L, /list)) return
-	return L.Copy(start, end)
-
-// Adds arg 2,3,4,5... to the end of list at arg 1
-/datum/n_function/default/push_back
-	name = "push_back"
-/datum/n_function/default/push_back/execute(this_obj, list/params)
-	var/list/chosenlist
-	var/i = 1
-	for(var/e in params)
-		if(i == 1)
-			if(isobject(e))
-				if(istype(e, /list))
-					chosenlist = e
-			i = 2
-		else
-			if(chosenlist)
-				chosenlist.Add(e)
-
-// Removes arg 2,3,4,5... from list at arg 1
-/datum/n_function/default/remove
-	name = "remove"
-/datum/n_function/default/remove/execute(this_obj, list/params)
-	var/list/chosenlist
-	var/i = 1
-	for(var/e in params)
-		if(i == 1)
-			if(isobject(e))
-				if(istype(e, /list))
-					chosenlist = e
-			i = 2
-		else
-			if(chosenlist)
-				chosenlist.Remove(e)
-
-// Cuts out a copy of a list
-/datum/n_function/default/cut
-	name = "cut"
-/datum/n_function/default/cut/execute(this_obj, list/params)
-	var/list/L = params.len >= 1 ? params[1] : null
-	var/start = params.len >= 2 ? params[2] : null
-	var/end = params.len >= 3 ? params[3] : null
-	if(!istype(L, /list)) return
-	return L.Cut(start, end)
-
-// Swaps two values in the list
-/datum/n_function/default/swap
-	name = "swap"
-/datum/n_function/default/swap/execute(this_obj, list/params)
-	var/list/L = params.len >= 1 ? params[1] : null
-	var/firstindex = params.len >= 2 ? params[2] : null
-	var/secondindex = params.len >= 3 ? params[3] : null
-	if(!istype(L, /list)) return
-	if(L.len >= secondindex && L.len >= firstindex)
-		return L.Swap(firstindex, secondindex)
-
-// Inserts a value into the list
-/datum/n_function/default/insert
-	name = "insert"
-/datum/n_function/default/insert/execute(this_obj, list/params)
-	var/list/L = params.len >= 1 ? params[1] : null
-	var/index = params.len >= 2 ? params[2] : null
-	var/element = params.len >= 3 ? params[3] : null
-	if(!istype(L, /list)) return
-	return L.Insert(index, element)
 
 // --- String methods ---
 
@@ -293,9 +190,9 @@
 	var/seed = params.len >= 1 ? params[1] : null
 	rand_seed(seed)
 
-/datum/n_function/default/n_rand
-	name = "n_rand"
-/datum/n_function/default/n_rand/execute(this_obj, list/params)
+/datum/n_function/default/rand
+	name = "rand"
+/datum/n_function/default/rand/execute(this_obj, list/params)
 	var/low = params.len >= 1 ? params[1] : null
 	var/high = params.len >= 2 ? params[2] : null
 	if(isnull(low) && isnull(high))
@@ -457,3 +354,8 @@
 /datum/n_function/default/sleep/execute(this_obj, list/params)
 	var/time = params.len >= 1 ? params[1] : null
 	sleep(time)
+
+/datum/n_function/default/timestamp
+	name = "timestamp"
+/datum/n_function/default/timestamp/execute(this_obj, list/params)
+	return gameTimestamp(arglist(params))
