@@ -51,6 +51,7 @@
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 					twin_storage.max_combined_w_class = 35
+					twin_storage.max_items = 21
 					twin.cut = FALSE
 					twin.appears_split = TRUE
 					twin.name = "split [initial(twin.name)]"
@@ -90,6 +91,7 @@
 			m_storage.allow_big_nesting = TRUE
 			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 			m_storage.max_combined_w_class = 35
+			m_storage.max_items = 21
 			for(var/datum/component/storage/slave in new_slaves)
 				slave.change_master(m_storage)
 			for(var/obj/item/I in src)
