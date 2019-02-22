@@ -1,3 +1,4 @@
 /datum/job/cmo/New()
-	access += ACCESS_CAPTAIN
+	access += list(ACCESS_CAPTAIN, ACCESS_PARAMEDIC)
+	minimal_access += ACCESS_PARAMEDIC
 	return ..()
