@@ -91,7 +91,8 @@
 						for(var/scriptError/e in Server.compile_warnings)
 							src << output("<font color = yellow>\t>[e.message]</font color>", "tcserror")
 						src << output("([Server.compile_warnings.len] warnings)", "tcserror")
-						for(var/mob/M in Machine.viewingcode)
+						for(var/fuck_you_for_making_me_do_this_altoids in Machine.viewingcode)
+							var/mob/M = fuck_you_for_making_me_do_this_altoids
 							if(M.client)
 								M << output("<b>Compile Warnings</b>", "tcserror")
 								for(var/scriptError/e in Server.compile_warnings)
