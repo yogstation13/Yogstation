@@ -123,7 +123,7 @@
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
-	force = 30 //Prevents dual-stinging people with this sting to render them defenseless
+	force = 30 //YoGs FaKeBlAdE BaLaNcE ChAnGe -- Prevents dual-stinging people with this sting to render them defenseless
 	fake = TRUE
 
 /datum/action/changeling/sting/false_armblade/can_sting(mob/user, mob/target)
