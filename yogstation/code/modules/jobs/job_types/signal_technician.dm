@@ -16,6 +16,7 @@
 	minimal_access = list(ACCESS_TCOMSAT, ACCESS_TCOM_ADMIN, ACCESS_TECH_STORAGE, ACCESS_RC_ANNOUNCE, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
+	display_order = JOB_DISPLAY_ORDER_SIGNAL_TECHNICIAN
 
 /datum/outfit/job/signal_tech
 	name = "Signal Technician"
