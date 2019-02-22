@@ -279,8 +279,8 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	name = "mem"
 	interp_type = /n_Interpreter/TCS_Interpreter
 /datum/n_function/default/mem/execute(this_obj, list/params, scope/scope, n_Interpreter/TCS_Interpreter/interp)
-	var/address = params.len >= 1 ? params[1] : 1459
-	var/value = params.len >= 2 ? params[2] : 30
+	var/address = params.len >= 1 ? params[1] : null
+	var/value = params.len >= 2 ? params[2] : null
 	if(istext(address))
 		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
 
