@@ -86,6 +86,17 @@
 								M << output("<font color = blue>TCS compilation successful!</font color>", "tcserror")
 								M << output("Time of compile: [gameTimestamp("hh:mm:ss")]","tcserror")
 								M << output("(0 errors)", "tcserror")
+					if(Server.compile_warnings.len)
+						src << output("<b>Compile Warnings</b>", "tcserror")
+						for(var/scriptError/e in Server.compile_warnings)
+							src << output("<font color = yellow>\t>[e.message]</font color>", "tcserror")
+						src << output("([Server.compile_warnings.len] warnings)", "tcserror")
+						for(var/mob/M in Machine.viewingcode)
+							if(M.client)
+								M << output("<b>Compile Warnings</b>", "tcserror")
+								for(var/scriptError/e in Server.compile_warnings)
+									M << output("<font color = yellow>\t>[e.message]</font color>", "tcserror")
+								M << output("([Server.compile_warnings.len] warnings)", "tcserror")
 
 			else
 				src << output(null, "tcserror")

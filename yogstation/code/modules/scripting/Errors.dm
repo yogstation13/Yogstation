@@ -72,6 +72,9 @@
 	InvalidAssignment
 		message="Left side of assignment cannot be assigned to."
 
+	OutdatedScript
+		message = "Your script looks like it was for an older version of NTSL! Your script may not work as intended. See documentation for new syntax and API."
+
 /*
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.

@@ -118,6 +118,11 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 
 	interpreter.Run() // run the thing
 
+	if(Holder)
+		Holder.compile_warnings = parser.warnings || list()
+		if(!interpreter.ProcExists("process_signal")) // yell at the user if they need to update their scripts
+			Holder.compile_warnings += new /scriptError/OutdatedScript()
+
 	return returnerrors
 
 	/* -- Execute the compiled code -- */
