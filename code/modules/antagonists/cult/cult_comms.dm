@@ -28,7 +28,7 @@
 	if(!message)
 		return
 	user.whisper("O bidai nabora se[pick("'","`")]sma!", language = /datum/language/common)
-	user.whisper(html_decode(message), language = /datum/language/narsie)
+	user.whisper(html_decode(message), language = /datum/language/narsie) // yogs
 	var/title = "Acolyte"
 	var/span = "cult italic"
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/cult/master))
