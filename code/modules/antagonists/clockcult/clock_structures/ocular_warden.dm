@@ -59,8 +59,8 @@
 	if(target)
 		if(!(target in validtargets))
 			lose_target()
-		else
-			if(last_process + time_between_shots < world.time) //yogs: slows warden attack speed so it doesn't stop people from moving
+		else //yogs start: slows warden attack speed so it doesn't stop people from moving
+			if(last_process + time_between_shots < world.time)
 				if(isliving(target))
 					var/mob/living/L = target
 					if(!L.anti_magic_check(major = FALSE))
@@ -82,7 +82,7 @@
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
-					last_process = world.time
+					last_process = world.time //yogs end
 
 			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(target))
 
