@@ -4,11 +4,11 @@
 
 /n_Interpreter
 	proc
-		Eval(node/expression/exp)
+		Eval(node/expression/exp, scope/scope)
 			if(istype(exp, /node/expression/FunctionCall))
-				. = RunFunction(exp)
+				. = RunFunction(exp, scope)
 			else if(istype(exp, /node/expression/operator))
-				. = EvalOperator(exp)
+				. = EvalOperator(exp, scope)
 			else if(istype(exp, /node/expression/value/literal))
 				var/node/expression/value/literal/lit=exp
 				. = lit.value
@@ -17,82 +17,164 @@
 				. = ref.value
 			else if(istype(exp, /node/expression/value/variable))
 				var/node/expression/value/variable/v=exp
-				if(!v.object)
-					. = Eval(GetVariable(v.id.id_name))
-				else
-					var/datum/D
-					if(istype(v.object, /node/identifier))
-						D=GetVariable(v.object:id_name)
+				. = scope.get_var(v.id.id_name, src, v)
+			else if(istype(exp, /node/expression/value/list_init))
+				var/node/expression/value/list_init/list_exp = exp
+				. = list()
+				for(var/key in list_exp.init_list)
+					var/key_eval = Eval(key, scope)
+					var/val = list_exp.init_list[key]
+					if(val)
+						set_index(., key_eval, Eval(val, scope), scope, key)
 					else
-						D=v.object
-					D=Eval(D)
-					if(isnull(D))
-						return null
-					if(!D.vars.Find(v.id.id_name))
-						RaiseError(new/runtimeError/UndefinedVariable("[v.object.ToString()].[v.id.id_name]"))
-						return null
-					. = Eval(D.vars[v.id.id_name])
+						. += list(key_eval)
+			else if(istype(exp, /node/expression/member/dot))
+				var/node/expression/member/dot/D = exp
+				var/object = D.temp_object || Eval(D.object, scope)
+				D.temp_object = null
+				. = get_property(object, D.id.id_name, scope)
+			else if(istype(exp, /node/expression/member/brackets))
+				var/node/expression/member/brackets/B = exp
+				var/object = B.temp_object || Eval(B.object, scope)
+				B.temp_object = null
+				var/index = B.temp_index || Eval(B.index, scope)
+				. = get_index(object, index, scope)
 			else if(istype(exp, /node/expression))
-				RaiseError(new/runtimeError/UnknownInstruction())
+				RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
 			else
 				. = exp
 
 			return Trim(.)
 
-		EvalOperator(node/expression/operator/exp)
-			if(istype(exp, /node/expression/operator/binary))
+		EvalOperator(node/expression/operator/exp, scope/scope)
+			if(istype(exp, /node/expression/operator/binary/Assign))
+				var/node/expression/operator/binary/Assign/ass=exp
+				var/member_obj
+				var/member_idx
+				if(istype(ass.exp, /node/expression/value/variable))
+					var/node/expression/value/variable/var_exp = ass.exp
+					if(!scope.get_scope(var_exp.id.id_name))
+						scope.init_var(var_exp.id.id_name, null, src, var_exp)
+				else if(istype(ass.exp, /node/expression/member))
+					var/node/expression/member/M = ass.exp
+					member_obj = Eval(M.object, scope)
+					if(istype(M, /node/expression/member/brackets))
+						var/node/expression/member/brackets/B = M
+						member_idx = Eval(B.index, scope)
+				var/out_value
+				var/in_value
+				if(ass.type != /node/expression/operator/binary/Assign)
+					if(istype(ass.exp, /node/expression/member))
+						var/node/expression/member/M = ass.exp
+						M.temp_object = member_obj
+						if(istype(M, /node/expression/member/brackets))
+							var/node/expression/member/brackets/B = M
+							B.temp_index = member_idx
+					in_value = Eval(ass.exp, scope)
+					if(islist(in_value))
+						out_value = in_value
+						switch(ass.type)
+							if(/node/expression/operator/binary/Assign/BitwiseAnd)
+								in_value &= Eval(ass.exp2, scope)
+							if(/node/expression/operator/binary/Assign/BitwiseOr)
+								in_value |= Eval(ass.exp2, scope)
+							if(/node/expression/operator/binary/Assign/BitwiseXor)
+								in_value ^= Eval(ass.exp2, scope)
+							if(/node/expression/operator/binary/Assign/Add)
+								in_value += Eval(ass.exp2, scope)
+							if(/node/expression/operator/binary/Assign/Subtract)
+								in_value -= Eval(ass.exp2, scope)
+							else
+								out_value = null
+				if(!out_value)
+					switch(ass.type)
+						if(/node/expression/operator/binary/Assign)
+							out_value = Eval(ass.exp2, scope)
+						if(/node/expression/operator/binary/Assign/BitwiseAnd)
+							out_value = BitwiseAnd(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/BitwiseOr)
+							out_value = BitwiseOr(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/BitwiseXor)
+							out_value = BitwiseXor(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Add)
+							out_value = Add(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Subtract)
+							out_value = Subtract(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Multiply)
+							out_value = Multiply(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Divide)
+							out_value = Divide(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Power)
+							out_value = Power(in_value, Eval(ass.exp2, scope), scope, ass)
+						if(/node/expression/operator/binary/Assign/Modulo)
+							out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
+						else
+							RaiseError(new/runtimeError/UnknownInstruction(ass),scope, ass)
+					// write it to the var
+					if(istype(ass.exp, /node/expression/value/variable))
+						var/node/expression/value/variable/var_exp = ass.exp
+						scope.set_var(var_exp.id.id_name, out_value, src, var_exp)
+					else if(istype(ass.exp, /node/expression/member/dot))
+						var/node/expression/member/dot/dot_exp = ass.exp
+						set_property(member_obj, dot_exp.id.id_name, out_value, scope)
+					else if(istype(ass.exp, /node/expression/member/brackets))
+						set_index(member_obj, member_idx, out_value, scope)
+					else
+						RaiseError(new/runtimeError/InvalidAssignment(), scope, ass)
+				return out_value
+			else if(istype(exp, /node/expression/operator/binary))
 				var/node/expression/operator/binary/bin=exp
 				switch(bin.type)
 					if(/node/expression/operator/binary/Equal)
-						return Equal(Eval(bin.exp), Eval(bin.exp2))
+						return Equal(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/NotEqual)
-						return NotEqual(Eval(bin.exp), Eval(bin.exp2))
+						return NotEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Greater)
-						return Greater(Eval(bin.exp), Eval(bin.exp2))
+						return Greater(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Less)
-						return Less(Eval(bin.exp), Eval(bin.exp2))
+						return Less(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/GreaterOrEqual)
-						return GreaterOrEqual(Eval(bin.exp), Eval(bin.exp2))
+						return GreaterOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/LessOrEqual)
-						return LessOrEqual(Eval(bin.exp), Eval(bin.exp2))
+						return LessOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/LogicalAnd)
-						return LogicalAnd(Eval(bin.exp), Eval(bin.exp2))
+						return LogicalAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/LogicalOr)
-						return LogicalOr(Eval(bin.exp), Eval(bin.exp2))
+						return LogicalOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/LogicalXor)
-						return LogicalXor(Eval(bin.exp), Eval(bin.exp2))
+						return LogicalXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/BitwiseAnd)
-						return BitwiseAnd(Eval(bin.exp), Eval(bin.exp2))
+						return BitwiseAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/BitwiseOr)
-						return BitwiseOr(Eval(bin.exp), Eval(bin.exp2))
+						return BitwiseOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/BitwiseXor)
-						return BitwiseXor(Eval(bin.exp), Eval(bin.exp2))
+						return BitwiseXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Add)
-						return Add(Eval(bin.exp), Eval(bin.exp2))
+						return Add(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Subtract)
-						return Subtract(Eval(bin.exp), Eval(bin.exp2))
+						return Subtract(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Multiply)
-						return Multiply(Eval(bin.exp), Eval(bin.exp2))
+						return Multiply(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Divide)
-						return Divide(Eval(bin.exp), Eval(bin.exp2))
+						return Divide(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Power)
-						return Power(Eval(bin.exp), Eval(bin.exp2))
+						return Power(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					if(/node/expression/operator/binary/Modulo)
-						return Modulo(Eval(bin.exp), Eval(bin.exp2))
+						return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
+						RaiseError(new/runtimeError/UnknownInstruction(bin), scope, bin)
 			else
 				switch(exp.type)
 					if(/node/expression/operator/unary/Minus)
-						return Minus(Eval(exp.exp))
+						return Minus(Eval(exp.exp, scope), scope, exp)
 					if(/node/expression/operator/unary/LogicalNot)
-						return LogicalNot(Eval(exp.exp))
+						return LogicalNot(Eval(exp.exp, scope), scope, exp)
 					if(/node/expression/operator/unary/BitwiseNot)
-						return BitwiseNot(Eval(exp.exp))
+						return BitwiseNot(Eval(exp.exp, scope), scope, exp)
 					if(/node/expression/operator/unary/group)
-						return Eval(exp.exp)
+						return Eval(exp.exp, scope)
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
+						RaiseError(new/runtimeError/UnknownInstruction(exp), scope, exp)
 
 
 	//Binary//
@@ -112,44 +194,44 @@
 		BitwiseOr(a, b)			return a|b
 		BitwiseXor(a, b)		return a^b
 		//Arithmetic Operators
-		Add(a, b)
+		Add(a, b, scope, node)
 			if(istext(a)&&!istext(b))
 				b="[b]"
-			else if(istext(b)&&!istext(a))
+			else if(istext(b)&&!istext(a)&&!islist(a))
 				a="[a]"
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("+", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("+", a, b), scope, node)
 				return null
 			return a+b
-		Subtract(a, b)
+		Subtract(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("-", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("-", a, b), scope, node)
 				return null
 			return a-b
-		Divide(a, b)
+		Divide(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("/", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("/", a, b), scope, node)
 				return null
 			if(b)
 				return a/b
 			// If $b is 0 or Null or whatever, then the above if statement fails,
 			// and we got a divison by zero.
-			RaiseError(new/runtimeError/DivisionByZero())
+			RaiseError(new/runtimeError/DivisionByZero(), scope, node)
 			//ReleaseSingularity()
 			return null
-		Multiply(a, b)
+		Multiply(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("*", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("*", a, b), scope, node)
 				return null
 			return a*b
-		Modulo(a, b)
+		Modulo(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("%", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("%", a, b), scope, node)
 				return null
 			return a%b
-		Power(a, b)
+		Power(a, b, scope, node)
 			if(isnull(a) || isnull(b))
-				RaiseError(new/runtimeError/TypeMismatch("**", a, b))
+				RaiseError(new/runtimeError/TypeMismatch("**", a, b), scope, node)
 				return null
 			return a**b
 
