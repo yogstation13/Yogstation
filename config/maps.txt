@@ -36,11 +36,27 @@ endmap
 map yogspubby
 endmap
 
-map deltastation
+#map deltastation
+	#minplayers 50
+#endmap
+
+map yogsdelta
+	minplayers 50
+endmap
+
+#map donutstation
+	#minplayers 50
+#endmap
+
+map yogsdonut
 	minplayers 50
 endmap
 
 map runtimestation
+endmap
+
+map clownstation
+	voteweight 0
 endmap
 
 map multiz_debug

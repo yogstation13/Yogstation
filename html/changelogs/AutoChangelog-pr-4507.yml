@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Corrected a bad sanity check when removing hivemembers in the assimilation gamemode."

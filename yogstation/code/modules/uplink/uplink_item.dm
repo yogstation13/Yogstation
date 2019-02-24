@@ -20,9 +20,15 @@
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	category = "Conspicuous Weapons"
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
+
+/datum/uplink_item/device_tools/hypnotic_flash
+	restricted_roles = list("Psychiatrist")
+	category = "Role-Restricted"
+
 
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
@@ -69,11 +75,14 @@
 
 /datum/uplink_item/role_restricted/cluwneburger
 	name = "Cluwne Burger"
-	desc = "A burger infused with the tears of thousands of cluwnes infects anyone who takes a bite with a cluwnification virus which will turn them into a cluwne"
-	item = /obj/item/reagent_containers/food/snacks/burger/cluwneburger
+	desc = "A burger infused with the tears of thousands of cluwnes. Infects anyone who takes a bite and pretty much everyone else on the station with a cluwnification virus which will quickly turn them into a cluwne. Can only be cured with Mimanas."
+	item = /obj/item/storage/box/syndie_kit/cluwnification
 	cost = 25
 	restricted_roles = list("Clown", "Cook")
 
-/datum/uplink_item/device_tools/hypnotic_flash
-	restricted_roles = list("Psychiatrist")
-	category = "Role-Restricted"
+/datum/uplink_item/implants/mindslave
+	name = "Mindslave Implant"
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
+	item = /obj/item/storage/box/syndie_kit/imp_mindslave
+	cost = 12
+	surplus = 20
