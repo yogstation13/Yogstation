@@ -37,11 +37,8 @@
 	var/dynamic_hair_suffix = ""//head > mask for head hair
 	var/dynamic_fhair_suffix = ""//mask > head for facial hair
 
-<<<<<<< HEAD
 	var/tearable //can this particular item be torn down to be used for cloth? | yogs
 	var/tearhealth = 100 //health regarding tearing clothes to get torn cloth | yogs
-=======
->>>>>>> e3b5ee60e8... Merge pull request #42886 from AutomaticFrenzy/patch/parentcall
 
 /obj/item/clothing/Initialize()
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
