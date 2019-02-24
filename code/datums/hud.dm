@@ -29,7 +29,8 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // Yogs
 	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
-	))
+	ANTAG_HUD_CREEP = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_HIVEAWAKE = new/datum/atom_hud/antag()	))
 
 /datum/atom_hud
 	var/list/atom/hudatoms = list() //list of all atoms which display this hud

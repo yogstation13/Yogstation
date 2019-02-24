@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Veil now kills all lights affecting the turf you are standing on, instead of just the lights within 4 tiles"

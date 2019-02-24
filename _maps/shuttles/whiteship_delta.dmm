@@ -178,8 +178,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
 	dir = 8;
@@ -695,7 +694,7 @@
 /area/shuttle/abandoned/bar)
 "bk" = (
 /obj/effect/turf_decal/stripes/corner{
-	dir = 4
+	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/airalarm/all_access{
@@ -1107,7 +1106,7 @@
 "bV" = (
 /obj/machinery/light/small/built,
 /obj/effect/turf_decal/stripes/corner{
-	dir = 4
+	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/tank/air{
@@ -1304,7 +1303,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/corner{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/power/smes/engineering{
@@ -1432,8 +1431,7 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+	icon_state = "0-2"
 	},
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -1580,7 +1578,7 @@
 "cH" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/box/white/corners{
-	dir = 4
+	dir = 1
 	},
 /obj/structure/closet/crate,
 /obj/item/grenade/chem_grenade/metalfoam,
@@ -1640,7 +1638,7 @@
 	pixel_y = 24
 	},
 /obj/effect/turf_decal/box/white/corners{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/closet/crate/internals,
 /obj/effect/turf_decal/tile/neutral{
@@ -1679,7 +1677,7 @@
 /area/shuttle/abandoned/cargo)
 "cN" = (
 /obj/effect/turf_decal/stripes/corner{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/airalarm/all_access{
@@ -2430,7 +2428,7 @@
 "dW" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/box/white/corners{
-	dir = 1
+	dir = 8
 	},
 /obj/structure/spider/stickyweb,
 /obj/effect/turf_decal/tile/neutral{
@@ -2919,9 +2917,9 @@ aa
 aa
 cz
 cH
-dL
+cY
 ds
-dK
+dL
 dW
 cz
 "}
@@ -2959,7 +2957,7 @@ cy
 cJ
 da
 dC
-cY
+dK
 dY
 cy
 "}

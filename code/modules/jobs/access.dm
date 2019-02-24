@@ -149,7 +149,7 @@
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_LIVING)
 
 /proc/get_all_syndicate_access()
-	return list(ACCESS_SYNDICATE, ACCESS_SYNDICATE)
+	return list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 
 /proc/get_region_accesses(code)
 	switch(code)
@@ -357,7 +357,7 @@
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Signal Tech", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender")
+				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender")
 				// yogs end
 
 /proc/get_all_job_icons() //For all existing HUD icons

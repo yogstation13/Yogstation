@@ -24,6 +24,7 @@
 	var/inertia_move_delay = 5
 	var/pass_flags = 0
 	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
+	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/list/client_mobs_in_contents // This contains all the client mobs within this container
 	var/list/acted_explosions	//for explosion dodging
 	glide_size = 8
@@ -82,7 +83,7 @@
 	return T.zPassOut(src, direction, destination) && destination.zPassIn(src, direction, T)
 
 /atom/movable/vv_edit_var(var_name, var_value)
-	var/static/list/banned_edits = list("step_x", "step_y", "step_size")
+	var/static/list/banned_edits = list("step_x", "step_y", "step_size", "bounds")
 	var/static/list/careful_edits = list("bound_x", "bound_y", "bound_width", "bound_height")
 	if(var_name in banned_edits)
 		return FALSE	//PLEASE no.
@@ -192,6 +193,8 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+		pulledby.stop_pulling()
 
 ////////////////////////////////////////
 // Here's where we rewrite how byond handles movement except slightly different
@@ -206,11 +209,28 @@
 		direct = get_dir(src, newloc)
 	setDir(direct)
 
-	if(!loc.Exit(src, newloc))
-		return
+	// yogs start - multi tile object handling
+	if(bound_width != world.icon_size || bound_height != world.icon_size)
+		var/list/newlocs = isturf(newloc) ? block(locate(newloc.x+(-bound_x)/world.icon_size,newloc.y+(-bound_y)/world.icon_size,newloc.z),locate(newloc.x+(-bound_x+bound_width)/world.icon_size-1,newloc.y+(-bound_y+bound_height)/world.icon_size-1,newloc.z)) : list(newloc)
+		if(!newlocs)
+			return // we're trying to cross into the edge of space
+		var/bothturfs = isturf(newloc) && isturf(loc)
+		var/dx = bothturfs ? newloc.x - loc.x : 0
+		var/dy = bothturfs ? newloc.y - loc.y : 0
+		var/dz = bothturfs ? newloc.z - loc.z : 0
+		for(var/atom/A in (locs - newlocs))
+			if(!A.Exit(src, bothturfs ? locate(A.x+dx,A.y+dy,A.z+dz) : newloc))
+				return
+		for(var/atom/A in (newlocs - locs))
+			if(!A.Enter(src, bothturfs ? locate(A.x-dx,A.y-dy,A.z+dz) : loc))
+				return
+	else
+		if(!loc.Exit(src, newloc))
+			return
 
-	if(!newloc.Enter(src, src.loc))
-		return
+		if(!newloc.Enter(src, src.loc))
+			return
+	// yogs end
 
 	// Past this is the point of no return
 	var/atom/oldloc = loc
@@ -243,13 +263,8 @@
 /atom/movable/Move(atom/newloc, direct)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
-	if(pulling)
-		if(pullee && get_dist(src, pullee) > 1)
-			stop_pulling()
-
-		if(pullee && pullee.loc != loc && !isturf(pullee.loc) ) //to be removed once all code that changes an object's loc uses forceMove().
-			log_game("DEBUG:[src]'s pull on [pullee] wasn't broken despite [pullee] being in [pullee.loc]. Pull stopped manually.")
-			stop_pulling()
+	if(!moving_from_pull)
+		check_pulling()
 	if(!loc || !newloc)
 		return FALSE
 	var/atom/oldloc = loc
@@ -317,19 +332,17 @@
 
 	if(.)
 		Moved(oldloc, direct)
-	if(. && pulling && pulling == pullee) //we were pulling a thing and didn't lose it during our move.
+	if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
 		if(pulling.anchored)
 			stop_pulling()
 		else
 			var/pull_dir = get_dir(src, pulling)
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+				pulling.moving_from_pull = src
 				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
-				if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
-					stop_pulling()
-			if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
-				pulledby.stop_pulling()
-
+				pulling.moving_from_pull = null
+			check_pulling()
 
 	last_move = direct
 	setDir(direct)

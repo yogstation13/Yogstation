@@ -16,6 +16,7 @@
 #define INVESTIGATE_EXONET			"exonet"
 #define INVESTIGATE_NANITES			"nanites"
 #define INVESTIGATE_CIRCUIT			"circuit"
+#define INVESTIGATE_PRESENTS        "presents"
 #define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
 
 // Logging types for log_message()

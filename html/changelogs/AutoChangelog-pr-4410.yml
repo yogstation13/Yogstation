@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - rscadd: "the game will now tell you when you're allowed to call the shuttle for non-emergency purposes"

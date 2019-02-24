@@ -312,8 +312,8 @@
 	drop_loot()
 	if(dextrous)
 		drop_all_held_items()
-	if(!gibbed && !del_on_death)
-		if(deathsound || deathmessage)
+	if(!gibbed)
+		if(deathsound || deathmessage || !del_on_death)
 			emote("deathgasp")
 	if(del_on_death)
 		..()
@@ -342,6 +342,12 @@
 		var/obj/mecha/M = the_target
 		if (M.occupant)
 			return FALSE
+	// yogs start
+	if(isspacepod(the_target))
+		var/obj/spacepod/SP = the_target
+		if(SP.pilot || SP.passengers.len)
+			return FALSE
+	// yogs end
 	return TRUE
 
 /mob/living/simple_animal/handle_fire()

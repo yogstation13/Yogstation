@@ -1,11 +1,11 @@
-/obj/effect/proc_holder/changeling/suit/armor
+/datum/action/changeling/suit/armor
 	xenoling_available = FALSE
 
-/obj/effect/proc_holder/changeling/weapon/shield
+/datum/action/changeling/weapon/shield
 	xenoling_available = FALSE
 
-/obj/effect/proc_holder/changeling/weapon/tentacle
+/datum/action/changeling/weapon/tentacle
 	xenoling_available = FALSE
 
-/obj/effect/proc_holder/changeling/weapon/arm_blade
+/datum/action/changeling/weapon/arm_blade
 	xenoling_available = FALSE

@@ -1,0 +1,9 @@
+author: " Firewolf34"
+delete-after: true 
+changes: 
+  - rscadd: "Adds 2 new types of bedsheet: Prisoner's and Virology Blankets."
+  - bugfix: "Added a floor tile underneath the Lawyer's Office airlock."
+  - tweak: "Added a defib to Syndicate Lavaland Base Medical."
+  - tweak: "Changed Brig/Perma Cell bedsheets to Prisoner's Blankets in all maps."
+  - imageadd: "Added an icon for the Virology Blanket."
+  - imageadd: "Added an icon for the Prisoner's Blanket."

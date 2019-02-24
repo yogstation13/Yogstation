@@ -14,6 +14,7 @@
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
@@ -286,6 +287,10 @@
 		switch(body.stat)
 			if(CONSCIOUS)
 				stat = "Conscious"
+			//yogs start
+			if(SOFT_CRIT)
+				stat = "Barely Conscious"
+			//yogs end
 			if(UNCONSCIOUS)
 				stat = "Unconscious"
 			if(DEAD)
@@ -330,10 +335,11 @@
 		return
 	switch(action)
 		if("swap")
-			var/mob/living/carbon/human/selected = locate(params["ref"])
+			var/datum/species/jelly/slime/SS = H.dna.species
+			var/mob/living/carbon/human/selected = locate(params["ref"]) in SS.bodies
 			if(!can_swap(selected))
 				return
-			SStgui.close_uis(src)
+			// SStgui.close_uis(src) // yogs - don't.
 			swap_to_dupe(H.mind, selected)
 
 /datum/action/innate/swap_body/proc/can_swap(mob/living/carbon/human/dupe)

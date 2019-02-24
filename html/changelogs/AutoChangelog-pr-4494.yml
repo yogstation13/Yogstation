@@ -1,0 +1,4 @@
+author: "  Altoids and Monster860"
+delete-after: true 
+changes: 
+  - bugfix: "The Create Object menu should no longer hang for 2 millennia whenever you search without a search term."

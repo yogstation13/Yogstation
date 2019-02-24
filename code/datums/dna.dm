@@ -60,26 +60,30 @@
 	new_dna.mutations = mutations.Copy()
 
 //See mutation.dm for what 'class' does. 'time' is time till it removes itself in decimals. 0 for no timer
-/datum/dna/proc/add_mutation(mutation_type, class = MUT_OTHER, time)
+/datum/dna/proc/add_mutation(mutation, class = MUT_OTHER, time)
+	var/mutation_type = mutation
+	if(istype(mutation, /datum/mutation/human))
+		var/datum/mutation/human/HM = mutation
+		mutation_type = HM.type
 	if(get_mutation(mutation_type))
 		return
-	force_give(new mutation_type (class, time))
+	return force_give(new mutation_type (class, time, copymut = mutation))
 
 /datum/dna/proc/remove_mutation(mutation_type)
-	force_lose(get_mutation(mutation_type))
+	return force_lose(get_mutation(mutation_type))
 
 /datum/dna/proc/check_mutation(mutation_type)
 	return get_mutation(mutation_type)
 
-/datum/dna/proc/remove_all_mutations(list/classes = list(MUT_NORMAL, MUT_EXTRA, MUT_OTHER))
-	remove_mutation_group(mutations, classes)
+/datum/dna/proc/remove_all_mutations(list/classes = list(MUT_NORMAL, MUT_EXTRA, MUT_OTHER), mutadone = FALSE)
+	remove_mutation_group(mutations, classes, mutadone)
 	scrambled = FALSE
 
-/datum/dna/proc/remove_mutation_group(list/group, list/classes = list(MUT_NORMAL, MUT_EXTRA, MUT_OTHER))
+/datum/dna/proc/remove_mutation_group(list/group, list/classes = list(MUT_NORMAL, MUT_EXTRA, MUT_OTHER), mutadone = FALSE)
 	if(!group)
 		return
 	for(var/datum/mutation/human/HM in group)
-		if(HM.class in classes)
+		if((HM.class in classes) && !(HM.mutadone_proof && mutadone))
 			force_lose(HM)
 
 /datum/dna/proc/generate_uni_identity()
@@ -110,7 +114,7 @@
 /datum/dna/proc/generate_dna_blocks()
 	var/bonus
 	if(species && species.inert_mutation)
-		bonus = get_initialized_mutation(species.inert_mutation)
+		bonus = GET_INITIALIZED_MUTATION(species.inert_mutation)
 	var/list/mutations_temp = GLOB.good_mutations + GLOB.bad_mutations + GLOB.not_good_mutations + bonus
 	if(!LAZYLEN(mutations_temp))
 		return
@@ -118,12 +122,12 @@
 	shuffle_inplace(mutations_temp)
 	if(ismonkey(holder))
 		mutations |= new RACEMUT(MUT_NORMAL)
-		mutation_index[RACEMUT] = get_sequence(RACEMUT)
+		mutation_index[RACEMUT] = GET_SEQUENCE(RACEMUT)
 	else
 		mutation_index[RACEMUT] = create_sequence(RACEMUT, FALSE)
 	for(var/i in 2 to DNA_MUTATION_BLOCKS)
 		var/datum/mutation/human/M = mutations_temp[i]
-		mutation_index[M.type] = create_sequence(M.type, FALSE,M.difficulty)
+		mutation_index[M.type] = create_sequence(M.type, FALSE, M.difficulty)
 	shuffle_inplace(mutation_index)
 
 //Used to generate original gene sequences for every mutation
@@ -137,12 +141,12 @@
 //Used to create a chipped gene sequence
 /proc/create_sequence(mutation, active, difficulty)
 	if(!difficulty)
-		var/datum/mutation/human/A = get_initialized_mutation(mutation) //leaves the possibility to change difficulty mid-round
-		if(A)
+		var/datum/mutation/human/A = GET_INITIALIZED_MUTATION(mutation) //leaves the possibility to change difficulty mid-round
+		if(!A)
 			return
 		difficulty = A.difficulty
 	difficulty += rand(-2,4)
-	var/sequence = get_sequence(mutation)
+	var/sequence = GET_SEQUENCE(mutation)
 	if(active)
 		return sequence
 	while(difficulty)
@@ -188,12 +192,15 @@
 		. = HM.on_acquiring(holder)
 		if(.)
 			qdel(HM)
+		update_instability()
 
 //Use remove_mutation instead
 /datum/dna/proc/force_lose(datum/mutation/human/HM)
 	if(holder && (HM in mutations))
 		set_se(0, HM)
-		return HM.on_losing(holder)
+		. = HM.on_losing(holder)
+		update_instability(FALSE)
+		return
 
 /datum/dna/proc/mutations_say_mods(message)
 	if(message)
@@ -220,30 +227,31 @@
 			return 1
 	return 0
 
-/datum/dna/proc/update_instability(alert=FALSE)
+/datum/dna/proc/update_instability(alert=TRUE)
 	stability = 100
 	for(var/datum/mutation/human/M in mutations)
 		if(M.class == MUT_EXTRA)
-			stability -= M.instability
-	if(holder && alert)
+			stability -= M.instability * GET_MUTATION_STABILIZER(M)
+	if(holder)
 		var/message
-		switch(stability)
-			if(90 to 70)
-				message = "<span class='warning'>You shiver.</span>"
-			if(69 to 60)
-				message = "<span class='warning'>You feel cold.</span>"
-			if(59 to 40)
-				message = "<span class='warning'>You feel sick.</span>"
-			if(39 to 20)
-				message = "<span class='warning'>It feels like your skin is moving.</span>"
-			if(19 to 1)
-				message = "<span class='warning'>You can feel your cells burning.</span>"
-			if(0 to -INFINITY)
-				message = "<span class='boldwarning'>You can feel your DNA exploding, we need to do something fast!</span>"
-				addtimer(CALLBACK(src, .proc/something_horrible), 600) //you've got 60 seconds to get your shit togheter
-
+		if(alert)
+			switch(stability)
+				if(70 to 90)
+					message = "<span class='warning'>You shiver.</span>"
+				if(60 to 69)
+					message = "<span class='warning'>You feel cold.</span>"
+				if(40 to 59)
+					message = "<span class='warning'>You feel sick.</span>"
+				if(20 to 39)
+					message = "<span class='warning'>It feels like your skin is moving.</span>"
+				if(1 to 19)
+					message = "<span class='warning'>You can feel your cells burning.</span>"
+				if(-INFINITY to 0)
+					message = "<span class='boldwarning'>You can feel your DNA exploding, we need to do something fast!</span>"
+		if(stability <= 0)
+			addtimer(CALLBACK(src, .proc/something_horrible), 600) //you've got 60 seconds to get your shit togheter
 		if(message)
-			to_chat(holder,message)
+			to_chat(holder, message)
 
 /datum/dna/proc/something_horrible()
 	if(!holder || (stability > 0))
@@ -455,23 +463,28 @@
 	return is_gene_active(mutation)
 
 /datum/dna/proc/is_gene_active(mutation)
-	return (mutation_index[mutation] == get_sequence(mutation))
+	return (mutation_index[mutation] == GET_SEQUENCE(mutation))
 
 /datum/dna/proc/set_se(on=TRUE, datum/mutation/human/HM)
 	if(!HM || !(HM.type in mutation_index) || (LAZYLEN(mutation_index) < DNA_MUTATION_BLOCKS))
 		return
 	. = TRUE
 	if(on)
-		mutation_index[HM.type] = get_sequence(HM.type)
-	else if(get_sequence(HM.type) == mutation_index[HM.type])
+		mutation_index[HM.type] = GET_SEQUENCE(HM.type)
+	else if(GET_SEQUENCE(HM.type) == mutation_index[HM.type])
 		mutation_index[HM.type] = create_sequence(HM.type, FALSE, HM.difficulty)
 
-/datum/dna/proc/activate_mutation(mutation)
+/datum/dna/proc/activate_mutation(mutation) //note that this returns a boolean and not a new mob
 	if(!mutation)
-		return
-	if(!mutation_in_sequence(mutation, src)) //cant activate what we dont have, use add_mutation
 		return FALSE
-	return add_mutation(mutation, MUT_NORMAL)
+	var/mutation_type = mutation
+	if(istype(mutation, /datum/mutation/human))
+		var/datum/mutation/human/M = mutation
+		mutation_type = M.type
+	if(!mutation_in_sequence(mutation_type)) //cant activate what we dont have, use add_mutation
+		return FALSE
+	add_mutation(mutation, MUT_NORMAL)
+	return TRUE
 
 /////////////////////////// DNA HELPER-PROCS //////////////////////////////
 
@@ -491,6 +504,17 @@
 		return 0
 	return getleftblocks(istring, blocknumber, blocksize) + replacement + getrightblocks(istring, blocknumber, blocksize)
 
+/datum/dna/proc/mutation_in_sequence(mutation)
+	if(!mutation)
+		return
+	if(istype(mutation, /datum/mutation/human))
+		var/datum/mutation/human/HM = mutation
+		if(HM.type in mutation_index)
+			return TRUE
+	else if(mutation in mutation_index)
+		return TRUE
+
+
 /mob/living/carbon/proc/randmut(list/candidates, difficulty = 2)
 	if(!has_dna())
 		return
@@ -509,7 +533,7 @@
 		mutations += GLOB.not_good_mutations
 	var/list/possible = list()
 	for(var/datum/mutation/human/A in mutations)
-		if((!sequence || mutation_in_sequence(A.type, dna)) && !dna.get_mutation(A.type))
+		if((!sequence || dna.mutation_in_sequence(A.type)) && !dna.get_mutation(A.type))
 			possible += A.type
 	if(exclude_monkey)
 		possible.Remove(RACEMUT)
