@@ -54,6 +54,9 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/head/cone, \
 						/obj/item/clothing/head/collectable/beret, \
 						/obj/item/clothing/head/crown, \
+						/obj/item/clothing/head/wizard/fake/red, \
+						/obj/item/clothing/head/wizard/fake/yellow, \
+						/obj/item/clothing/head/wizard/fake/black, \
 						/obj/item/clothing/head/wizard/marisa/fake, \
 						/obj/item/clothing/neck/yogs/sith_cloak, \
 						/obj/item/clothing/suit/yogs/armor/sith_suit, \
@@ -72,6 +75,7 @@ var/list/donor_start_items = list(\
 var/list/donor_pdas = list("Normal", "Transparent", "Pip Boy", "Rainbow")
 
 var/list/donor_start_tools = list(\
+						/obj/item/storage/backpack/snail/green, \
 						/obj/item/banhammer, \
 						/obj/item/bedsheet/wiz, \
 						/obj/item/bedsheet/nanotrasen, \

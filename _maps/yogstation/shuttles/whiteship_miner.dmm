@@ -324,6 +324,8 @@
 	dir = 8
 	},
 /obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bd" = (

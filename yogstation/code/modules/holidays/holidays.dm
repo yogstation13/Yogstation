@@ -11,3 +11,11 @@
 		"https://www.youtube.com/watch?v=maYCStVzjDs",  // Sacred War
 		"https://www.youtube.com/watch?v=LYo9mIo54Vs" // Red Alert 3 theme
 		)
+
+/datum/holiday/labor
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=UXKr4HSPHT8", // Internationale - german
+		"https://www.youtube.com/watch?v=t8EMx7Y16Vo", // Internationale - russian
+		"https://www.youtube.com/watch?v=lyfhs42mdyA", // Internationale - japanese
+		"https://www.youtube.com/watch?v=5DTbashsKic" // Internationale - english
+		)

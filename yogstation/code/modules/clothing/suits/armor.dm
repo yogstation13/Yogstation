@@ -5,5 +5,5 @@
 	item_state = "chitenplate"
 	blood_overlay_type = "armor"
 	resistance_flags = FIRE_PROOF
-	armor = list(melee = 65, bullet = 35, laser = 15, energy = 10, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 35, laser = 15, energy = 10, bomb = 35, fire = 50, bio = 0, rad = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS

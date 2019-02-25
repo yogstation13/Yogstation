@@ -1,0 +1,13 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Assignemts in NTSL are now operators"
+  - bugfix: "sleep() in NTSL no longer breaks things horribly"
+  - rscadd: "Adds for loops to NTSL"
+  - rscadd: "Adds the \".\" and \"[]\" operator to NTSL. You can do \"sig.content\" or \"some_list[3]\" now."
+  - rscadd: "You can now create associative lists in NTSL using list()"
+  - tweak: "Signal processing is done in a function called \"process_signal\" that must be defined by the user - one argument is passed, the signal argument, change properties on it to change the signal."
+  - bugfix: "The stack traces in the runtime errors for NTSL actually contain line numbers now."
+  - tweak: "Broadcasting in NTSL is now done by calling broadcast() with an argument of a signal object, which can be created with a signal() function. Remote signalling is done with remote_signal()."
+  - bugfix: "You can do mem() in NTSL with the second argument null and it will remove the property"
+  - tweak: "several global vars in NTSL have been moved to objects. Languages are in the \"languages\" object, filters are in the \"filter_types\" object, and channels are in the \"channels\" object."

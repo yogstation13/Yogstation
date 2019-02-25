@@ -1,31 +1,40 @@
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
+/proc/playsound(atom/source, input, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
 
 	var/turf/turf_source = get_turf(source)
 
+	if (!turf_source)
+		return
+
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange)
-	var/list/listeners = GLOB.player_list
+	var/z = turf_source.z
+	var/list/listeners = SSmobs.clients_by_zlevel[z]
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/P in listeners)
 		var/mob/M = P
-		if(!M || !M.client)
-			continue
-		var/distance = get_dist(M, turf_source)
+		if(get_dist(M, turf_source) <= maxdistance)
+			sound_or_datum(M, turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected)
+	for(var/P in SSmobs.dead_players_by_zlevel[z])
+		var/mob/M = P
+		if(get_dist(M, turf_source) <= maxdistance)
+			sound_or_datum(M, turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected)
 
-		if(distance <= maxdistance)
-			var/turf/T = get_turf(M)
+/proc/sound_or_datum(mob/receiver, turf/turf_source, input, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
+	if(istype(input, /datum/outputs))
+		var/datum/outputs/O = input
+		O.send_info(receiver, turf_source, vol, vary, frequency, falloff, channel, pressure_affected)
+	else
+		var/sound/S = sound(get_sfx(input))
+		receiver.playsound_local(turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected, S)
 
-			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
-
+//kept for legacy support and uploaded admin sounds
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S)
 	if(!client || !can_hear())
 		return
@@ -98,18 +107,14 @@
 		next_channel = 1
 
 /mob/proc/stop_sound_channel(chan)
-	if(chan == CHANNEL_LOBBYMUSIC && src.client && src.client.chatOutput) //yogs start
-		src.client.chatOutput.stopLobbyMusic()
-		return //yogs end
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 
-/*/client/proc/playtitlemusic(vol = 85) //yogs start - moved to yogstation/code/game/sound.dm
+/* /client/proc/playtitlemusic(vol = 85)//yogs
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
-*/ //yogs end
+		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) */ //yogs
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
@@ -139,8 +144,6 @@
 				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 			if ("pageturn")
 				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
-			if ("gunshot")
-				soundin = pick('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg','sound/weapons/gunshot3.ogg','sound/weapons/gunshot4.ogg')
 			if ("ricochet")
 				soundin = pick(	'sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg','sound/weapons/effects/ric3.ogg','sound/weapons/effects/ric4.ogg','sound/weapons/effects/ric5.ogg')
 			if ("terminal_type")
