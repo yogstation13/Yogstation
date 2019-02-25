@@ -51,6 +51,7 @@
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 					twin_storage.max_combined_w_class = 35
+					twin_storage.max_items = 21
 					twin.cut = FALSE
 					twin.appears_split = TRUE
 					twin.name = "split [initial(twin.name)]"
@@ -90,6 +91,7 @@
 			m_storage.allow_big_nesting = TRUE
 			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 			m_storage.max_combined_w_class = 35
+			m_storage.max_items = 21
 			for(var/datum/component/storage/slave in new_slaves)
 				slave.change_master(m_storage)
 			for(var/obj/item/I in src)
@@ -174,3 +176,22 @@
 /obj/item/disabled_boh/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
 	state = "brokenpack"
 	return ..()
+
+//Nick's snail shit
+
+/obj/item/storage/backpack/snail
+	name = "snail shell"
+	desc = "You wonder who this came from."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	item_state = "snail_green"
+	icon_state = "snail_green"
+	slowdown = 1
+
+
+/obj/item/storage/backpack/snail/green
+	name = "green shell backpack"
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
+	item_state = "snail_green"
+	icon_state = "snail_green"
+

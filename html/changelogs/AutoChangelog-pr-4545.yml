@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - bugfix: "fixes bag of holding splits not being able to hold more than 7 items."
