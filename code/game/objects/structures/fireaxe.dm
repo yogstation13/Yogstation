@@ -12,11 +12,15 @@
 	var/open = FALSE
 	var/obj/item/twohanded/fireaxe/fireaxe
 
+//yogs NOTICE - Initialize() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//changes made to the below function will have no effect
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
 	fireaxe = new
 	update_icon()
 
+//yogs NOTICE - Destroy() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//changes made to the below function will have no effect
 /obj/structure/fireaxecabinet/Destroy()
 	if(fireaxe)
 		QDEL_NULL(fireaxe)
@@ -74,8 +78,11 @@
 			toggle_open()
 	//yogs start - adds unlock if authorized
 	else if (I.GetID())
+		if(obj_flags & EMAGGED)
+			to_chat(user, "<span class='notice'>The [name]'s locking modules are unresponsive.</span>")
+			return
 		if (allowed(user))
-			toggle_lock()
+			toggle_lock(user)
 		else
 			to_chat(user, "<span class='danger'>Access denied.</span>")
 	//yogs end
@@ -93,6 +100,10 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/structure/fireaxecabinet/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	//yogs start - adds sparks on damage
+	if(prob(30))
+		spark_system.start()
+	//yogs end
 	if(open)
 		return
 	. = ..()
@@ -174,8 +185,15 @@
 	else
 		add_overlay("glass_raised")
 
-//yogs NOTICE - toggle_lock function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
-//obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
+//yogs NOTICE - toggle_lock() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//changes made to the below function will have no effect
+/obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
+	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")
+	playsound(src, 'sound/machines/locktoggle.ogg', 50, 1)
+	if(do_after(user, 20, target = src))
+		to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
+		locked = !locked
+		update_icon()
 
 /obj/structure/fireaxecabinet/verb/toggle_open()
 	set name = "Open/Close"

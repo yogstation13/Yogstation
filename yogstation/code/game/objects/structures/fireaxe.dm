@@ -1,5 +1,21 @@
 /obj/structure/fireaxecabinet
-	req_access = list(ACCESS_ATMOSPHERICS)
+	req_access = list(ACCESS_ATMOSPHERICS) //adds ATMOSPHERICS access requirement for the lock on the cabinet.
+	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
+
+/obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
+	. = ..()
+	fireaxe = new
+	update_icon()
+	//Sets up a spark system
+	spark_system = new /datum/effect_system/spark_spread
+	spark_system.set_up(2, 1, src)
+	spark_system.attach(src)
+
+/obj/structure/fireaxecabinet/Destroy()//<-- mirrored/overwritten proc
+	if(fireaxe)
+		QDEL_NULL(fireaxe)
+	QDEL_NULL(spark_system)
+	return ..()
 
 /obj/structure/fireaxecabinet/proc/check_deconstruct(obj/item/I, mob/user)
 	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !fireaxe && (open || broken || obj_integrity >= max_integrity))
@@ -16,7 +32,10 @@
 			return
 
 /obj/structure/fireaxecabinet/proc/reset_lock(mob/user)
-	//this happens when you hack the lock as a synthetic/AI, or with a multitool or an emag.
+	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='notice'>You try to reset the [name]'s circuits, but they're completely burnt out.</span>")
+		return
 	if(!open)
 		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
 		if(do_after(user, 100, target = src))
@@ -38,10 +57,32 @@
 			//open the cabinet normally.
 			toggle_open()
 
-/obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)//<-- mirrored/overwritten proc
+/obj/structure/fireaxecabinet/toggle_lock(mob/user)//<-- mirrored/overwritten proc
 	//this happens when you actuate the lock status.
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='notice'>The [name]'s locking modules are unresponsive.</span>")
+		return
 	if(!open)
 		audible_message("You hear an audible clunk as the [name]'s bolt [locked ? "retracts" : "locks into place"].")
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
 		locked = !locked
 		update_icon()
+
+/obj/structure/fireaxecabinet/emag_act(mob/user)
+	//this allows you to emag the fireaxe cabinet, unlocking it immediately.
+	if(obj_flags & EMAGGED)
+		return
+	if(!open && locked)
+		to_chat(user, "<span class='caution'>You short out the [name]'s locking modules.</span>")
+		visible_message("Sparks fly out of the [src]'s locking modules!")
+		spark_system.start()
+
+		src.add_fingerprint(user)
+		obj_flags |= EMAGGED
+		desc += "<BR><span class='warning'>Its access panel is smoking slightly.</span>"
+
+		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
+		locked = 0
+		audible_message("You hear an audible clunk as the [name]'s bolt retracts.")
+		update_icon()
+		//Fireaxe Cabinet is now permanently unlocked.
