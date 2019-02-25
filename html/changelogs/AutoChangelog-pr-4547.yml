@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Blood cultists no longer speak in Common when they're actually speaking in their scary scary blood language."

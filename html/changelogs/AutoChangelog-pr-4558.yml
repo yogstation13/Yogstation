@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "The anti-combat mechanism in the Russian Revolver has been revised to prevent usage while dual wielding."
