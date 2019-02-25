@@ -1,6 +1,6 @@
 /obj/structure/fireaxecabinet
 	name = "fire axe cabinet"
-	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
+	desc = "There is a small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if.<BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "fireaxe"
 	anchored = TRUE
@@ -56,7 +56,7 @@
 			broken = 0
 			obj_integrity = max_integrity
 			update_icon()
-	//yogs start - warns you if you try to fix it with regular glass
+	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
 		to_chat(user, "<span class='warning'>You need reinforced glass sheets to fix [src]!</span>")
 	//yogs end

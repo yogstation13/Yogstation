@@ -19,6 +19,10 @@
 
 /obj/structure/fireaxecabinet/proc/check_deconstruct(obj/item/I, mob/user)
 	if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !fireaxe && (open || broken || obj_integrity >= max_integrity))
+		//User is attempting to wrench an open/broken fireaxe cabinet with NO fireaxe in it
+		user.visible_message("<span class='warning'>[user] disassembles the [name].</span>", \
+							 "You start to disassemble the [name]...", \
+							 "<span class='italics'>You hear wrenching.</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 40/I.toolspeed, target = src))
 			to_chat(user, "<span class='notice'>You disassemble the [name].</span>")
@@ -29,7 +33,17 @@
 			if (prob(50))
 				G.add_fingerprint(user)
 			deconstruct()//deconstruct then spawns an additional 2 metal, so you recover more mats using a wrench to decon than just destroying it.
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			return
+	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && !broken && !open)
+		//User is attempting to wrench a closed & non-broken fireaxe cab
+		to_chat(user, "<span class='warning'>You need to open the door first to access the [src]'s bolts!</span>")
+		//Still allow damage to pass through, in case they are trying to destroy the cab's window with the wrench.
+		return ..()
+	else if(istype(I, /obj/item/wrench) && !(flags_1 & NODECONSTRUCT_1) && (open || broken) && fireaxe)
+		//User is attempting to wrench an open and ready fireaxe cabinet, but the axe is still in it's slot.
+		to_chat(user, "<span class='warning'>You need to remove the fireaxe first to deconstruct the [src]!</span>")
+		return
 
 /obj/structure/fireaxecabinet/proc/reset_lock(mob/user)
 	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
@@ -73,8 +87,9 @@
 	if(obj_flags & EMAGGED)
 		return
 	if(!open && locked)
-		to_chat(user, "<span class='caution'>You short out the [name]'s locking modules.</span>")
-		visible_message("Sparks fly out of the [src]'s locking modules!")
+		user.visible_message("<span class='warning'>Sparks fly out of the [src]'s locking modules!</span>", \
+							 "<span class='caution'>You short out the [name]'s locking modules.</span>", \
+							 "<span class='italics'>You hear electricity arcing.</span>")
 		spark_system.start()
 
 		src.add_fingerprint(user)
