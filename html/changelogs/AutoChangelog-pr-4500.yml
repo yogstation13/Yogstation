@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "You can now print mutators and stuff again from storage if the occupant doesnt have it"

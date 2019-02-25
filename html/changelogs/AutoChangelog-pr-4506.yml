@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed some DNA console issues causing mutations breaking injector and disk printing."

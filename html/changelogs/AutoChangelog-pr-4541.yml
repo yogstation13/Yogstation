@@ -1,0 +1,4 @@
+author: "monster860"
+delete-after: true 
+changes: 
+  - bugfix: "The Create Object panel has been fixed!"
