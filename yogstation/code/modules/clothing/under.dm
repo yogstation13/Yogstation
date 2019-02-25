@@ -40,7 +40,7 @@
 
 /obj/item/clothing/under/yogs/lederhosen
 	name = "lederhosen"
-	desc = "<i>''</i>"
+	desc = "<i>'Nothing like wearing a lederhosen for another hard day at work on a space station.'</i>"
 	icon_state = "lederhosen"
 	item_state = "lederhosen"
 	item_color = "lederhosen"
