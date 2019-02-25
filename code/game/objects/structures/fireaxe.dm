@@ -52,6 +52,10 @@
 			broken = 0
 			obj_integrity = max_integrity
 			update_icon()
+	//yogs start - warns you if you try to fix it with regular glass
+	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
+		to_chat(user, "<span class='warning'>You need reinforced glass sheets to fix [src]!</span>")
+	//yogs end
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
 		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe)
@@ -102,6 +106,8 @@
 		playsound(src, 'sound/effects/glassbr3.ogg', 100, 1)
 		new /obj/item/shard(loc)
 		new /obj/item/shard(loc)
+		new /obj/item/stack/rods(loc)//yogs - adds metal rods for reinforced glass
+		new /obj/item/stack/rods(loc)//yogs - adds metal rods for reinforced glass
 
 /obj/structure/fireaxecabinet/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

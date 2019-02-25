@@ -12,20 +12,34 @@
 			var/obj/item/stack/sheet/rglass/G = new (loc, 2)//spawn two reinforced glass for it's window
 			if (prob(50))
 				G.add_fingerprint(user)
-			deconstruct()
+			deconstruct()//deconstruct then spawns an additional 2 metal, so you recover more mats using a wrench to decon than just destroying it.
 			return
 
 /obj/structure/fireaxecabinet/proc/reset_lock(mob/user)
-	//this happens when you hack the lock with a multitool, synthetic/AI, or an emag.
+	//this happens when you hack the lock as a synthetic/AI, or with a multitool or an emag.
 	if(!open)
 		to_chat(user, "<span class = 'caution'>Resetting circuitry...</span>")
-		if(do_after(user, 60, target = src))
+		if(do_after(user, 100, target = src))
 			to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
 			src.add_fingerprint(user)
 			toggle_lock(user)
 
+
+/obj/structure/fireaxecabinet/AltClick(mob/user)
+	//Alt-Click can be used to unlock without swiping your ID (assuming you have access), or open/close an unlocked cabinet
+	//This has the side-effect of allowing borgs to open it, once they unlock it. They still can't remove the axe from it though.
+	if(!broken)
+		if (locked)
+			if (allowed(user))
+				toggle_lock()
+			else
+				to_chat(user, "<span class='danger'>Access denied.</span>")
+		else
+			//open the cabinet normally.
+			toggle_open()
+
 /obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)//<-- mirrored/overwritten proc
-	//this happens when you actuate the lock normally (e.g., you have access to the fireaxe cab)
+	//this happens when you actuate the lock status.
 	if(!open)
 		audible_message("You hear an audible clunk as the [name]'s bolt [locked ? "retracts" : "locks into place"].")
 		playsound(loc, "sound/machines/locktoggle.ogg", 30, 1, -3)
