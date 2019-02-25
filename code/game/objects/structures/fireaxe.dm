@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = FALSE
 	armor = list("melee" = 50, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
-	max_integrity = 150
+	max_integrity = 200//yogs - increase durability to 200
 	integrity_failure = 50
 	var/locked = TRUE
 	var/open = FALSE
@@ -23,9 +23,12 @@
 	return ..()
 
 /obj/structure/fireaxecabinet/attackby(obj/item/I, mob/user, params)
+	check_deconstruct(I, user)//yogs - deconstructible cabinet
+
 	if(iscyborg(user) || I.tool_behaviour == TOOL_MULTITOOL)
-		toggle_lock(user)
+		reset_lock(user) //yogs - adds reset option
 	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
+		//Repairing light damage with a welder
 		if(obj_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
@@ -38,10 +41,11 @@
 		else
 			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
 		return
-	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
-		var/obj/item/stack/sheet/glass/G = I
+	else if(istype(I, /obj/item/stack/sheet/rglass) && broken)//yogs - change to reinforced glass
+		//Repairing a heavily damaged fireaxe cabinet with glass
+		var/obj/item/stack/sheet/rglass/G = I//yogs - change to reinforced glass
 		if(G.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need two glass sheets to fix [src]!</span>")
+			to_chat(user, "<span class='warning'>You need two reinforced glass sheets to fix [src]!</span>")//yogs - change to reinforced glass
 			return
 		to_chat(user, "<span class='notice'>You start fixing [src]...</span>")
 		if(do_after(user, 20, target = src) && G.use(2))
@@ -49,6 +53,7 @@
 			obj_integrity = max_integrity
 			update_icon()
 	else if(open || broken)
+		//Fireaxe cabinet is open or broken, so we can access it's axe slot
 		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe)
 			var/obj/item/twohanded/fireaxe/F = I
 			if(F.wielded)
@@ -61,7 +66,15 @@
 			update_icon()
 			return
 		else if(!broken)
+			//open the cabinet normally.
 			toggle_open()
+	//yogs start - adds unlock if authorized
+	else if (I.GetID())
+		if (allowed(user))
+			toggle_lock()
+		else
+			to_chat(user, "<span class='danger'>Access denied.</span>")
+	//yogs end
 	else
 		return ..()
 
@@ -116,13 +129,8 @@
 			src.add_fingerprint(user)
 			update_icon()
 			return
-	if(locked)
-		to_chat(user, "<span class='warning'>The [name] won't budge!</span>")
-		return
-	else
-		open = !open
-		update_icon()
-		return
+	toggle_open()//yogs - consolidates opening code
+	return
 
 /obj/structure/fireaxecabinet/attack_paw(mob/living/user)
 	return attack_hand(user)
@@ -132,13 +140,8 @@
 	return
 
 /obj/structure/fireaxecabinet/attack_tk(mob/user)
-	if(locked)
-		to_chat(user, "<span class='warning'>The [name] won't budge!</span>")
-		return
-	else
-		open = !open
-		update_icon()
-		return
+	toggle_open()//yogs - consolidates opening code
+	return
 
 /obj/structure/fireaxecabinet/update_icon()
 	cut_overlays()
@@ -165,13 +168,8 @@
 	else
 		add_overlay("glass_raised")
 
-/obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
-	to_chat(user, "<span class = 'caution'> Resetting circuitry...</span>")
-	playsound(src, 'sound/machines/locktoggle.ogg', 50, 1)
-	if(do_after(user, 20, target = src))
-		to_chat(user, "<span class='caution'>You [locked ? "disable" : "re-enable"] the locking modules.</span>")
-		locked = !locked
-		update_icon()
+//yogs NOTICE - toggle_lock function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//obj/structure/fireaxecabinet/proc/toggle_lock(mob/user)
 
 /obj/structure/fireaxecabinet/verb/toggle_open()
 	set name = "Open/Close"
@@ -182,6 +180,7 @@
 		to_chat(usr, "<span class='warning'>The [name] won't budge!</span>")
 		return
 	else
+		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)//yogs - adds open/close sound
 		open = !open
 		update_icon()
 		return
