@@ -199,13 +199,8 @@
 		message = replacetext(message," thanks "," thank you, thank you very much ")
 		message = replacetext(message," what are you "," whatcha ")
 		message = replacetext(message," yes ",pick(" sure", "yea "))
-<<<<<<< HEAD
 		message = replacetext(message," prick "," square ") //YOGS - bigotry rule
-		message = replacetext(message," muh valids "," getting my kicks ")
-=======
-		message = replacetext(message," faggot "," square ")
 		message = replacetext(message," muh valids "," my kicks ")
->>>>>>> a43c4acabc... Fixes some minor speech replacement stuff (#42783)
 	return trim(message)
 
 
