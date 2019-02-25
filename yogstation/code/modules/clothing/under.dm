@@ -29,3 +29,11 @@
 	item_color = "ronald_s"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/lederhosen
+	name = "lederhosen"
+	desc = "<i>''</i>"
+	icon_state = "lederhosen"
+	item_state = "lederhosen"
+	item_color = "lederhosen"
+	can_adjust = FALSE
