@@ -12,7 +12,6 @@
 		qdel(N)
 		to_chat(user, "<span class='warning'>You don't have any free hands to high-five with.</span>")
 
-
 /datum/emote/living/pose
 	key = "pose"
 	key_third_person = "poses"
@@ -60,14 +59,12 @@
 	key_third_person = "smirks"
 	message = "smirks."
 
-
 /datum/emote/living/dab
 	key = "dab"
 	key_third_person = "dabs"
 	message = "dabs."
 	message_param = "dabs on %t."
 	restraint_check = TRUE
-
 
 /datum/emote/living/dab/run_emote(mob/user, params)
 	. = ..()
