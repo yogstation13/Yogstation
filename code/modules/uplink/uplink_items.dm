@@ -173,12 +173,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 30
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/bundles_TC/bundle
-	name = "Syndicate Bundle"
-	desc = "Syndicate Bundles are specialized groups of items that arrive in a plain box. \
+/datum/uplink_item/bundles_TC/bundle_A
+	name = "Syndi-kit Tactical"
+	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
 			These items are collectively worth more than 20 telecrystals, but you do not know which specialization \
 			you will receive. May contain discontinued and/or exotic items."
-	item = /obj/item/storage/box/syndicate
+	item = /obj/item/storage/box/syndicate/bundle_A
+	cost = 20
+	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/bundles_TC/bundle_B
+	name = "Syndi-kit Special"
+	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
+			In Syndi-kit Special, you will recieve items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
+	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear)
 
@@ -764,14 +772,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/rocket/basic
 	name = "84mm HE Rocket"
 	desc = "A low-yield anti-personnel HE rocket. Gonna take you out in style!"
-	item = /obj/item/ammo_box/magazine/rocket
+	item = /obj/item/ammo_casing/caseless/rocket
 	cost = 4
 
 /datum/uplink_item/ammo/rocket/hedp
 	name = "84mm HEDP Rocket"
 	desc = "A high-yield HEDP rocket; extremely effective against armored targets, as well as surrounding personnel. \
 			Strike fear into the hearts of your enemies."
-	item = /obj/item/ammo_box/magazine/rocket/hedp
+	item = /obj/item/ammo_casing/caseless/rocket/hedp
 	cost = 6
 
 /datum/uplink_item/ammo/pistolaps
@@ -1760,6 +1768,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			manufactured to pack a little bit more of a punch if your client needs some convincing."
 	item = /obj/item/storage/secure/briefcase/syndie
 	cost = 1
+	restricted = TRUE
 
 /datum/uplink_item/badass/syndiecards
 	name = "Syndicate Playing Cards"

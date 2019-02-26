@@ -62,25 +62,57 @@
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
-	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(holder)
-				if(!holder.fakekey || C.holder)
-					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)] OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>") //Yogs - Added the [find_admin_rank(src)] below, to get the rank of the admin. check yogstation\code\module\client\verbs\ooc for the proc
-					else
-						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
-				else
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-			else if(is_mentor()) // YOGS START - Mentor and Donor colors
-				to_chat(C, "<font color='[GLOB.mentor_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
-			else if(!(key in C.prefs.ignoring))
-				if(is_donator(src))
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>\[Donator\] OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-				else
-					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-				// YOGS END
-
+	//YOG START - Yog OOC
+	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
+	if(ping.Find(msg))
+		if((world.time - last_ping_time) < 30)
+			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
+			return
+		last_ping_time = world.time
+	var/list/pinged = ping.group
+	for(var/x in pinged)
+		x = ckey(x)
+	var/oocmsg = ""; // The message sent to normal people
+	var/oocmsg_toadmins = FALSE; // The message sent to admins.
+	if(holder) // If the speaker is an admin or something
+		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
+			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
+		else // Else if they're an AdminObserver
+			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
+		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
+		
+		if(holder.fakekey) // If they're stealhminning
+			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
+			// ^ Message sent to people who should know when someone's stealthminning
+			oocmsg = "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			// ^ Message sent to normal people
+		else
+			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
+			oocmsg_toadmins = oocmsg
+	else
+		if(is_mentor()) // If the speaker is a mentor
+			oocmsg = "<font color='[GLOB.mentor_ooc_colour]'>"
+		else
+			oocmsg = "<font color='[GLOB.normal_ooc_colour]'>"
+		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+		oocmsg_toadmins = oocmsg
+	
+	for(var/c in GLOB.clients)
+		var/client/C = c // God bless typeless for-loops
+		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
+			var/sentmsg // The message we're sending to this specific person
+			if(C.holder) // If they're an admin-ish
+				sentmsg = oocmsg_toadmins // Get the admin one
+			else
+				sentmsg = oocmsg
+			if(ckey(C.key) in pinged)
+				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+				pingsound.volume = 50
+				pingsound.pan = 80
+				SEND_SOUND(C,pingsound)
+				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
+			to_chat(C,sentmsg)
+	//YOGS END
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
 		if(toggle != GLOB.ooc_allowed)
