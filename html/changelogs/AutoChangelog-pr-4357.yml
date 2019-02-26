@@ -1,5 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - tweak: "Paystand payments can now be processed using NTSL by placing the ID card used for the paystand next to an intercom, and then parsing the messages it generates when a payment is received."
-  - bugfix: "Oh yeah and the messaging actually works now."

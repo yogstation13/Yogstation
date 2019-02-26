@@ -1,5 +1,0 @@
-author: "  Theos"
-delete-after: true 
-changes: 
-  - bugfix: "Ocular wardens will now shoot people who are resting"
-  - bugfix: "Ocular wardens will also now not paralyze people from the legs down in most cases"
