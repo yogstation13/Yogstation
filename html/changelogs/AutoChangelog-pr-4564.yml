@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "the center blast of the hierophant club cross attack no longer deals reduced damage"
