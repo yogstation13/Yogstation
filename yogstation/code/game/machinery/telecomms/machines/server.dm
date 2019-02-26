@@ -2,7 +2,7 @@
 
 /obj/item/radio/server/can_receive(frequency,levels)
 	return FALSE // The server's radio isn't for receiving, it's for outputting. For now.
-	
+
 /obj/machinery/telecomms/server
 	//NTSL-related stuffs
 	var/datum/TCS_Compiler/Compiler	// the compiler that compiles and runs the code
@@ -11,8 +11,9 @@
 	var/rawcode = ""	// the code to compile (raw-ass text)
 	var/obj/item/radio/server/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
 	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
+	var/list/compile_warnings = list()
 	//End-NTSL
-	
+
 //NTSL-related procs
 /obj/machinery/telecomms/server/Initialize()
 	Compiler = new()

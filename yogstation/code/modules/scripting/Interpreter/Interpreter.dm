@@ -9,10 +9,12 @@
 	RETURNING  - Indicates that the current function is returning a value.
 	BREAKING   - Indicates that the current loop is being terminated.
 	CONTINUING - Indicates that the rest of the current iteration of a loop is being skipped.
+	RESET_STATUS - Indicates that we are entering a new function and the allowed_status var should be cleared
 */
 #define RETURNING  1
 #define BREAKING   2
 #define CONTINUING 4
+#define RESET_STATUS 8
 
 /*
 	Macros: Maximums
@@ -28,13 +30,11 @@
 /n_Interpreter
 	var
 		scope
-			curScope
 			globalScope
 		node
 			BlockDefinition/program
 			statement/FunctionDefinition/curFunction
 		stack
-			scopes		= new()
 			functions	= new()
 
 		datum/container // associated container for interpeter
@@ -44,7 +44,7 @@
 */
 		status=0
 		returnVal
-		
+
 		cur_statements=0    // current amount of statements called
 		alertadmins=0		// set to 1 if the admins shouldn't be notified of anymore issues
 		cur_recursion=0	   	// current amount of recursion
@@ -87,21 +87,26 @@
 	Proc: RaiseError
 	Raises a runtime error.
 */
-		RaiseError(runtimeError/e)
-			e.stack=functions.Copy()
-			e.stack.Push(curFunction)
+		RaiseError(runtimeError/e, scope/scope, token/token)
+			e.scope = scope
+			if(istype(token))
+				e.token = token
+			else if(istype(token, /node))
+				var/node/N = token
+				e.token = N.token
 			src.HandleError(e)
 
-		CreateScope(node/BlockDefinition/B)
-			var/scope/S = new(B, curScope)
-			scopes.Push(curScope)
-			curScope = S
-			return S
-
 		CreateGlobalScope()
-			scopes.Clear()
 			var/scope/S = new(program, null)
 			globalScope = S
+			for(var/functype in subtypesof(/datum/n_function/default))
+				var/datum/n_function/default/god_damn_it_byond = functype
+				if(!istype(src, initial(god_damn_it_byond.interp_type)))
+					continue
+				var/datum/n_function/default/func = new functype()
+				globalScope.init_var(func.name, func)
+				for(var/alias in func.aliases)
+					globalScope.init_var(alias, func)
 			return S
 
 /*
@@ -121,145 +126,91 @@
 	Proc: RunBlock
 	Runs each statement in a block of code.
 */
-		RunBlock(node/BlockDefinition/Block, scope/scope = null)
-			var/is_global = istype(Block, /node/BlockDefinition/GlobalBlock)
-			if(!is_global)
-				if(scope)
-					curScope = scope
-				else
-					CreateScope(Block)
-			else
-				if(!persist)
-					CreateGlobalScope()
-				curScope = globalScope
+		RunBlock(node/BlockDefinition/Block, scope/scope = globalScope)
 
 			if(cur_statements < MAX_STATEMENTS)
-
-				for(var/node/statement/S in Block.statements)
+				for(var/node/S in Block.statements)
 					while(paused) sleep(10)
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)
-						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS))
+						RaiseError(new/runtimeError/MaxCPU(MAX_STATEMENTS), scope, S)
 						AlertAdmins()
 						break
 
-					if(istype(S, /node/statement/VariableAssignment))
-						var/node/statement/VariableAssignment/stmt = S
-						var/name = stmt.var_name.id_name
-						if(!stmt.object)
-							// Below we assign the variable first to null if it doesn't already exist.
-							// This is necessary for assignments like +=, and when the variable is used in a function
-							// If the variable already exists in a different block, then AssignVariable will automatically use that one.
-							if(!IsVariableAccessible(name))
-								AssignVariable(name, null)
-							AssignVariable(name, Eval(stmt.value))
-						else
-							var/datum/D = Eval(GetVariable(stmt.object.id_name))
-							if(!D) return
-							D.vars[stmt.var_name.id_name] = Eval(stmt.value)
+					if(istype(S, /node/expression))
+						. = Eval(S, scope)
 					else if(istype(S, /node/statement/VariableDeclaration))
 						//VariableDeclaration nodes are used to forcibly declare a local variable so that one in a higher scope isn't used by default.
 						var/node/statement/VariableDeclaration/dec=S
-						if(!dec.object)
-							AssignVariable(dec.var_name.id_name, null, curScope)
-						else
-							var/datum/D = Eval(GetVariable(dec.object.id_name))
-							if(!D) return
-							D.vars[dec.var_name.id_name] = null
-					else if(istype(S, /node/statement/FunctionCall))
-						RunFunction(S)
+						scope.init_var(dec.var_name.id_name, src, S)
 					else if(istype(S, /node/statement/FunctionDefinition))
-						//do nothing
+						var/node/statement/FunctionDefinition/dec=S
+						scope.init_var(dec.func_name, new /datum/n_function/defined(dec, scope, src), src, S)
 					else if(istype(S, /node/statement/WhileLoop))
-						RunWhile(S)
+						. = RunWhile(S, scope)
+					else if(istype(S, /node/statement/ForLoop))
+						. = RunFor(S, scope)
 					else if(istype(S, /node/statement/IfStatement))
-						RunIf(S)
+						. = RunIf(S, scope)
 					else if(istype(S, /node/statement/ReturnStatement))
-						if(!curFunction)
-							RaiseError(new/runtimeError/UnexpectedReturn())
+						if(!scope.allowed_status & RETURNING)
+							RaiseError(new/runtimeError/UnexpectedReturn(), scope, S)
 							continue
-						status |= RETURNING
-						returnVal=Eval(S:value)
+						scope.status |= RETURNING
+						. = (scope.return_val=Eval(S:value, scope))
 						break
 					else if(istype(S, /node/statement/BreakStatement))
-						status |= BREAKING
+						if(!scope.allowed_status & BREAKING)
+							//RaiseError(new/runtimeError/UnexpectedReturn())
+							continue
+						scope.status |= BREAKING
 						break
 					else if(istype(S, /node/statement/ContinueStatement))
-						status |= CONTINUING
+						if(!scope.allowed_status & CONTINUING)
+							//RaiseError(new/runtimeError/UnexpectedReturn())
+							continue
+						scope.status |= CONTINUING
 						break
 					else
-						RaiseError(new/runtimeError/UnknownInstruction())
-					if(status)
+						RaiseError(new/runtimeError/UnknownInstruction(S), scope, S)
+					if(scope.status)
 						break
-
-			curScope = scopes.Pop()
 
 /*
 	Proc: RunFunction
 	Runs a function block or a proc with the arguments specified in the script.
 */
-		RunFunction(node/statement/FunctionCall/stmt)
-			//Note that anywhere /node/statement/FunctionCall/stmt is used so may /node/expression/FunctionCall
-
-			// If recursion gets too high (max 50 nested functions) throw an error
-			if(cur_recursion >= MAX_RECURSION)
-				AlertAdmins()
-				RaiseError(new/runtimeError/RecursionLimitReached())
-				return 0
-
-			var/node/statement/FunctionDefinition/def
-			if(!stmt.object)							//A scope's function is being called, stmt.object is null
-				def = GetFunction(stmt.func_name)
-			else if(istype(stmt.object))				//A method of an object exposed as a variable is being called, stmt.object is a /node/identifier
-				var/O = GetVariable(stmt.object.id_name)	//Gets a reference to the object which is the target of the function call.
-				if(!O) return							//Error already thrown in GetVariable()
-				def = Eval(O)
-
-			if(!def) return
-
-			cur_recursion++ // add recursion
-			if(istype(def))
-				if(curFunction) functions.Push(curFunction)
-				var/scope/S = CreateScope(def.block)
-				for(var/i=1 to def.parameters.len)
-					var/val
-					if(stmt.parameters.len>=i)
-						val = stmt.parameters[i]
-					//else
-					//	unspecified param
-					AssignVariable(def.parameters[i], new/node/expression/value/literal(Eval(val)), S)
-				curFunction=stmt
-				RunBlock(def.block, S)
-				//Handle return value
-				. = returnVal
-				status &= ~RETURNING
-				returnVal=null
-				curFunction=functions.Pop()
-				cur_recursion--
+		RunFunction(node/expression/FunctionCall/stmt, scope/scope)
+			var/datum/n_function/func
+			var/this_obj
+			if(istype(stmt.function, /node/expression/member))
+				var/node/expression/member/M = stmt.function
+				this_obj = M.temp_object = Eval(M.object, scope)
+				func = Eval(M, scope)
 			else
-				cur_recursion--
-				var/list/params=new
-				for(var/node/expression/P in stmt.parameters)
-					params+=list(Eval(P))
-				if(isobject(def))	//def is an object which is the target of a function call
-					if( !hascall(def, stmt.func_name) )
-						RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.id_name].[stmt.func_name]"))
-						return
-					return call(def, stmt.func_name)(arglist(params))
-				else										//def is a path to a global proc
-					return call(def)(arglist(params))
-			//else
-			//	RaiseError(new/runtimeError/UnknownInstruction())
+				func = Eval(stmt.function, scope)
+			if(!istype(func))
+				RaiseError(new/runtimeError/UndefinedFunction("[stmt.function.ToString()]"), scope, stmt)
+				return
+			var/list/params = list()
+			for(var/node/expression/P in stmt.parameters)
+				params+=list(Eval(P, scope))
+
+			try
+				return func.execute(this_obj, params, scope, src, stmt)
+			catch(var/exception/E)
+				RaiseError(new /runtimeError/Internal(E), scope, stmt)
 
 /*
 	Proc: RunIf
 	Checks a condition and runs either the if block or else block.
 */
-		RunIf(node/statement/IfStatement/stmt)
+		RunIf(node/statement/IfStatement/stmt, scope/scope)
 			if(!stmt.skip)
-				if(Eval(stmt.cond))
-					RunBlock(stmt.block)
+				scope = scope.push(stmt.block)
+				if(Eval(stmt.cond, scope))
+					. = RunBlock(stmt.block, scope)
 					// Loop through the if else chain and tell them to be skipped.
 					var/node/statement/IfStatement/i = stmt.else_if
 					var/fail_safe = 800
@@ -269,7 +220,8 @@
 						i = i.else_if
 
 				else if(stmt.else_block)
-					RunBlock(stmt.else_block)
+					. = RunBlock(stmt.else_block, scope)
+				scope = scope.pop()
 			// We don't need to skip you anymore.
 			stmt.skip = 0
 
@@ -277,90 +229,40 @@
 	Proc: RunWhile
 	Runs a while loop.
 */
-		RunWhile(node/statement/WhileLoop/stmt)
+		RunWhile(node/statement/WhileLoop/stmt, scope/scope)
 			var/i=1
-			while(Eval(stmt.cond) && Iterate(stmt.block, i++))
+			scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING)
+			while(Eval(stmt.cond, scope) && Iterate(stmt.block, scope, i++))
 				continue
-			status &= ~BREAKING
+			scope = scope.pop(RETURNING)
+
+		RunFor(node/statement/ForLoop/stmt, scope/scope)
+			var/i=1
+			scope = scope.push(stmt.block)
+			Eval(stmt.init, scope)
+			while(Eval(stmt.test, scope))
+				if(Iterate(stmt.block, scope, i++))
+					Eval(stmt.increment, scope)
+				else
+					break
+			scope = scope.pop(RETURNING)
 
 /*
 	Proc:Iterate
 	Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
 */
-		Iterate(node/BlockDefinition/block, count)
-			RunBlock(block)
+		Iterate(node/BlockDefinition/block, scope/scope, count)
+			RunBlock(block, scope)
 			if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
-				RaiseError(new/runtimeError/IterationLimitReached())
+				RaiseError(new/runtimeError/IterationLimitReached(), scope, block)
 				return 0
 			if(status & (BREAKING|RETURNING))
 				return 0
 			status &= ~CONTINUING
 			return 1
 
-/*
-	Proc: GetFunction
-	Finds a function in an accessible scope with the given name. Returns a <FunctionDefinition>.
-*/
-		GetFunction(name)
-			var/scope/S = curScope
-			while(S)
-				if(S.functions.Find(name))
-					return S.functions[name]
-				S = S.parent
-			RaiseError(new/runtimeError/UndefinedFunction(name))
-
-/*
-	Proc: GetVariable
-	Finds a variable in an accessible scope and returns its value.
-*/
-		GetVariable(name)
-			var/scope/S = curScope
-			while(S)
-				if(S.variables.Find(name))
-					return S.variables[name]
-				S = S.parent
-			RaiseError(new/runtimeError/UndefinedVariable(name))
-
-		GetVariableScope(name) //needed for when you reassign a variable in a higher scope
-			var/scope/S = curScope
-			while(S)
-				if(S.variables.Find(name))
-					return S
-				S = S.parent
-
-
-		IsVariableAccessible(name)
-			var/scope/S = curScope
-			while(S)
-				if(S.variables.Find(name))
-					return TRUE
-				S = S.parent
-			return FALSE
-
-
-/*
-	Proc: AssignVariable
-	Assigns a value to a variable in a specific block.
-
-	Parameters:
-	name  - The name of the variable to assign.
-	value - The value to assign to it.
-	S     - The scope the variable resides in. If it is null, a scope with the variable already existing is found. If no scopes have a variable of the given name, the current scope is used.
-*/
-		AssignVariable(name, node/expression/value, scope/S=null)
-			if(!S) S = GetVariableScope(name)
-			if(!S) S = curScope
-			if(!S) S = globalScope
-			ASSERT(istype(S))
-			if(istext(value) || isnum(value) || isnull(value))
-				value = new/node/expression/value/literal(value)
-			else if(!istype(value) && isobject(value))
-				value = new/node/expression/value/reference(value)
-			//TODO: check for invalid name
-			S.variables["[name]"] = Trim(value)
-
 #undef MAX_STATEMENTS
 #undef MAX_ITERATIONS
 #undef MAX_RECURSION
 #undef MAX_STRINGLEN
-#undef MAX_LISTLEN 
+#undef MAX_LISTLEN

@@ -44,7 +44,11 @@ map yogsdelta
 	minplayers 50
 endmap
 
-map donutstation
+#map donutstation
+	#minplayers 50
+#endmap
+
+map yogsdonut
 	minplayers 50
 endmap
 
