@@ -60,10 +60,6 @@
 	key_third_person = "smirks"
 	message = "smirks."
 
-/datum/emote/living/smug
-	key = "smug"
-	key_third_person = "smugsmiles"
-	message = "makes a smug smile."
 
 /datum/emote/living/dab
 	key = "dab"
