@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Bank cards can now talk again."
+  - rscadd: "There's now a client preference to ignore them."

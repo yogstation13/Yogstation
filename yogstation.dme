@@ -2974,6 +2974,7 @@
 #include "yogstation\code\modules\clothing\chameleon.dm"
 #include "yogstation\code\modules\clothing\clothing.dm"
 #include "yogstation\code\modules\clothing\donator.dm"
+#include "yogstation\code\modules\clothing\head.dm"
 #include "yogstation\code\modules\clothing\mask.dm"
 #include "yogstation\code\modules\clothing\shoe.dm"
 #include "yogstation\code\modules\clothing\under.dm"
