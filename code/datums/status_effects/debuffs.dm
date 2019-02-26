@@ -645,8 +645,6 @@
 	addtimer(CALLBACK(C, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, raw_message), 10)
 	addtimer(CALLBACK(C, /mob/living.proc/Stun, 60, TRUE, TRUE), 15) //Take some time to think about it
 	qdel(src)
-<<<<<<< HEAD
-=======
 
 /datum/status_effect/spasms
 	id = "spasms"
@@ -749,4 +747,3 @@
 	name = "TO THE STARS AND BEYOND!"
 	desc = "I must go, my people need me!"
 	icon_state = "high"
->>>>>>> 2f5a9ad416... Adds more genetic meltdown effects (#42864)

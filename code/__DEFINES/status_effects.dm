@@ -86,15 +86,12 @@
 
 #define STATUS_EFFECT_GONBOLAPACIFY /datum/status_effect/gonbolaPacify //Gives the user gondola traits while the gonbola is attached to them.
 
-<<<<<<< HEAD
-=======
 #define STATUS_EFFECT_SPASMS /datum/status_effect/spasms //causes random muscle spasms
 
 #define STATUS_EFFECT_DNA_MELT /datum/status_effect/dna_melt //usually does something horrible to you when you hit 100 genetic instability
 
 #define STATUS_EFFECT_GO_AWAY /datum/status_effect/go_away //makes you launch through walls in a single direction for a while
 
->>>>>>> 2f5a9ad416... Adds more genetic meltdown effects (#42864)
 /////////////
 // NEUTRAL //
 /////////////
