@@ -175,14 +175,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return ..()
 
 /datum/admin_help/proc/check_owner()
-	return
 	if(!handling_admin && state == AHELP_ACTIVE)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
 		for(var/client/X in GLOB.admins)
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 
-		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
+		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 450)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
