@@ -102,13 +102,6 @@
 		return T.return_air()
 	else
 		return null
-		
-		
-		
-		
-		
-		
-		
 
 /obj/effect/mob_spawn/human/bus/crewmember
 	name = "cryogenics pod"
