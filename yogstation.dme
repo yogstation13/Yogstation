@@ -3161,6 +3161,7 @@
 #include "yogstation\code\modules\stock_market\logs.dm"
 #include "yogstation\code\modules\stock_market\stockmarket.dm"
 #include "yogstation\code\modules\stock_market\stocks.dm"
+#include "yogstation\code\modules\surgery\healing_surgeries.dm"
 #include "yogstation\code\modules\surgery\tools.dm"
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
