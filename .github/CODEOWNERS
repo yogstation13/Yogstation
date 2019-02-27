@@ -18,18 +18,7 @@
 #Partheo
 #/yogstation/icons/ @Partheo
 
-#ThatLing
+#AsV9
 
-/code/__DEFINES/tick.dm @ThatLing
-/code/controllers/admin.dm @ThatLing
-/code/controllers/failsafe.dm @ThatLing
-/code/controllers/subsystem.dm @ThatLing
-/code/controllers/subsystem/ @ThatLing
-/code/modules/keybindings/ @ThatLing
-/yogstation/code/controllers/ @ThatLing
-/yogstation/code/modules/keybindings/ @ThatLing
-
-#Multiple Owners
-
-/code/__DEFINES/MC.dm @AsV9 @ThatLing
-/code/controllers/master.dm @AsV9 @ThatLing
+/code/__DEFINES/MC.dm @AsV9
+/code/controllers/master.dm @AsV9
