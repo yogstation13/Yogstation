@@ -242,7 +242,7 @@
 	death = FALSE
 	random = TRUE
 	mob_type = /mob/living/carbon/alien/larva
-	flavour_text = "<span class='big bold'>You are an alien.</span><b> You awoke on this metal bird. You have been in statis \
+	flavour_text = "<span class='big bold'>You are an alien.</span><b> You awoke on this metal bird. You have been in stasis \
 	since you arrived. But you detect heat onboard this vessel and have awoken. Be careful \
 	not to alert the natives of this vessel before you are strong enough. A feeling of fear envelops as you step out of your egg. \
 	Ensure that your hive survives this journey.. Do not attempt to leave this vessel unless instructed to.</b>"
