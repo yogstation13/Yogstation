@@ -168,6 +168,7 @@
 /obj/effect/mob_spawn/human/corpse/russian/ranged,
 /obj/item/storage/firstaid,
 /obj/effect/turf_decal/sand,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "aC" = (
@@ -183,12 +184,6 @@
 "aD" = (
 /obj/structure/spider,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aE" = (
-/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
-/obj/item/gun/ballistic/automatic/c20r/unrestricted,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "aF" = (
 /obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,
@@ -281,7 +276,7 @@
 "aU" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/item/melee/classic_baton,
-/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/gun/ballistic/automatic/pistol/deagle/camo,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
 "aV" = (
@@ -626,7 +621,7 @@ ag
 ar
 ag
 ag
-aE
+aF
 ae
 ad
 ad
