@@ -167,7 +167,34 @@
 		message = replacetext(message," your "," yer ")
 		message = replacetext(message," security "," coppers ")
 	return trim(message)
+	
+	/datum/mutation/human/communist
+	name = "Communism"
+	desc = "A horrible genetic condition that ruins lives, conversations, and countries."
+	quality = MINOR_NEGATIVE
+	text_gain_indication = "<span class='notice'>You hear the clash of tools, and see red.</span>"
+	text_lose_indication = "<span class='notice'>You see the red fade, and hear the tools dissapear...for now.</span>"
 
+ /datum/mutation/human/communist/say_mod(message)
+	if(message)
+		message = replacetext(message,"me","us")
+		message = replacetext(message,"food","potatoes")
+		message = replacetext(message,"their's","our's")
+		message = replacetext(message,"theirs","our's")
+		message = replacetext(message,"I","we")
+		message = replacetext(message,"you","we")
+		message = replacetext(message,"yes","da")
+		message = replacetext(message,"w","v")
+		message = replacetext(message,"w","б")
+		message = replacetext(message,"mine","ours")
+		message = replacetext(message,"your's","our's")
+		message = replacetext(message,"yours","our's")
+		message = replacetext(message,"yo","ё")
+		message = replacetext(message,"home","motherland")
+		message = replacetext(message,"e",pick("и","Э"))
+		if(prob(30))
+			message += "GLORY TO MOTHER COUNTRY!!"
+	return message
 
 /datum/mutation/human/elvis
 	name = "Elvis"
