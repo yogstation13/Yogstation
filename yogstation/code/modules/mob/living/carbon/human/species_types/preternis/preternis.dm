@@ -49,6 +49,9 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
+		BP.burn_reduction = 0
+		BP.brute_reduction = 0
+		BP.max_damage = 35
 	
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
