@@ -348,7 +348,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				continue
 			if(R.custom_price)
 				price_listed = "$[R.custom_price]"
-			if(!onstation || user.ignores_capitalism || account && account.account_job && account.account_job.paycheck_department == payment_department)
+			if(!onstation || user.ignores_capitalism || account && account.account_job && account.account_job.paycheck_department == payment_department) // Yogs -- adds ignore_capitalism
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
