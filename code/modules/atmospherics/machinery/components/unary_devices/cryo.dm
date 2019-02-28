@@ -404,7 +404,7 @@
 				beaker.forceMove(drop_location())
 				if(Adjacent(usr) && !issilicon(usr))
 					usr.put_in_hands(beaker)
-				log_game("[key_name(usr)] added an [beaker] to cryo containing [beaker.reagents.reagent_list]") // yogs -- Adds logging for when the beaker's removed from cryo
+				log_game("[key_name(usr)] removed an [beaker] to cryo containing [beaker.reagents.reagent_list]") // yogs -- Adds logging for when the beaker's removed from cryo
 				beaker = null
 				. = TRUE
 	update_icon()
