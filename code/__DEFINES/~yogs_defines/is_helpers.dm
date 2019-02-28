@@ -3,3 +3,5 @@
 #define is_shadow_or_thrall(M) (is_thrall(M) || is_shadow(M))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
+
+#define ispreternis(A) (is_species(A, /datum/species/preternis))
