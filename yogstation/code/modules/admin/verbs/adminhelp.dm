@@ -174,14 +174,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list -= src
 	return ..()
 
-/datum/admin_help/proc/check_owner()
+/datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
 		for(var/client/X in GLOB.admins)
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-
-		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 450)
+		return FALSE
+	return TRUE
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
@@ -238,7 +238,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
-	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
+	GLOB.unclaimed_tickets += src
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
