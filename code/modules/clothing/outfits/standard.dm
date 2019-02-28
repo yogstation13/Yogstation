@@ -227,6 +227,8 @@
 	W.assignment = "CentCom Commander"
 	W.registered_name = H.real_name
 	W.update_label()
+	
+	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/spec_ops
 	name = "Special Ops Officer"

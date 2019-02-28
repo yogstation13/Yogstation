@@ -348,7 +348,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				continue
 			if(R.custom_price)
 				price_listed = "$[R.custom_price]"
-			if(!onstation || account && account.account_job && account.account_job.paycheck_department == payment_department)
+			if(!onstation || user.ignores_capitalism || account && account.account_job && account.account_job.paycheck_department == payment_department)
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
@@ -452,7 +452,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			flick(icon_deny,src)
 			vend_ready = 1
 			return
-		if(onstation && ishuman(usr))
+		if(onstation && ishuman(usr) && !usr.ignores_capitalism) // Yogs -- Allows mobs to ignore capitalism sometimes
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/card/id/C = H.get_idcard(TRUE)
 
