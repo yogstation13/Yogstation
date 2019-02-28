@@ -12,3 +12,4 @@
 
 /mob
 	var/client/oobe_client //when someone aghosts/uses a scrying orb, this holds the client while it's somewhere else // How did this even get here?
+	var/ignores_capitalism = FALSE // Decides whether vending machines will just always give them shit for free or not
