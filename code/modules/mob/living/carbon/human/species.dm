@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/dynamic_fhair_suffix = ""
 
 	//for augmented heads
-	if(HD.status == BODYPART_ROBOTIC)
+	if(HD.status == BODYPART_ROBOTIC || yogs_draw_robot_hair) //yogs allow for robot head hair
 		return
 
 	//we check if our hat or helmet hides our facial hair.
