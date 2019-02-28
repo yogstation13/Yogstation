@@ -28,6 +28,7 @@
 #define SWEDISH		/datum/mutation/human/swedish
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
+#define COMMUNISM	/datum/mutation/human/communism
 #define RADIOACTIVE	/datum/mutation/human/radioactive
 #define GLOWY		/datum/mutation/human/glow
 #define TELEPATHY	/datum/mutation/human/telepathy
