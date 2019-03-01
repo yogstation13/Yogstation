@@ -566,7 +566,7 @@
 	dna.remove_all_mutations()
 	dna.stability = 100
 	if(prob(max(70-instability,0)))
-		switch(rand(0,10)) //not complete and utter death
+		switch(rand(0,8)) //not complete and utter death //yogs - fuck snails
 			if(0)
 				monkeyize()
 			if(1)
