@@ -184,8 +184,7 @@
 	phase3 = TRUE
 	spellscast = 0
 	maxHealth = 750
-	revive()
-	fully_heal()
+	revive(TRUE)
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
