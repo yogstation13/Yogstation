@@ -34,7 +34,7 @@ max 35 damage for limb failure //done tested
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_RADIMMUNE)
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
-	attack_verb = "assaults"
+	attack_verb = "assault"
 	meat = null
 	toxic_food = NONE
 	brutemod = 1.25
@@ -48,7 +48,7 @@ max 35 damage for limb failure //done tested
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/power_drain = 0.3 //probably going to have to tweak this shit
+	var/power_drain = 1.3 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	
 
