@@ -5,9 +5,9 @@ fixable by tools //done tested
 no need to eat //done tested
 purges chems after 30 cycles //done tested
 more resistant to plasma/lack of o2 //done tested
-more resistance to rads IMPLEMENT
-more resistance to viruses IMPLEMENT
-special preternis language IMPLEMENT
+resistance to rads //done
+more resistance to viruses //done
+special preternis language //done
 Oil heals 2 burn per cycle //done tested
 Welding fuel heals 1 per cycle but deals 1 toxic damage per cycle //done tested
 
@@ -22,7 +22,7 @@ needs welding helmet to fix themself //done tested
 150% burn damage //done tested
 125% brute damage //done tested
 less resistant to heat changes //done tested
-all viruses are resistance 10
+all viruses are resistance 10 //done
 max 35 damage for limb failure //done tested
 */
 
@@ -31,8 +31,8 @@ max 35 damage for limb failure //done tested
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER)
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_RADIMMUNE)
+	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assaults"
 	meat = null
@@ -42,12 +42,15 @@ max 35 damage for limb failure //done tested
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
-
+	yogs_virus_infect_chance = 20
+	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
 	var/power_drain = 0.3 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
+	
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -59,7 +62,8 @@ max 35 damage for limb failure //done tested
 		BP.burn_reduction = 0
 		BP.brute_reduction = 0
 		BP.max_damage = 35
-	
+	C.grant_language(/datum/language/machine) //learn it once,learn it forever i guess,this isnt removed on species loss to prevent curators from forgetting machine language
+
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	for (var/V in C.bodyparts)
@@ -159,6 +163,8 @@ max 35 damage for limb failure //done tested
 
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
+	for(var/datum/disease/advance/D in H.diseases)
+		D.properties["resistance"] = 10 //there isnt really a way to set the resistance 
 	handle_charge(H)
 
 /datum/species/preternis/proc/adjust_charge(var/newchange)
