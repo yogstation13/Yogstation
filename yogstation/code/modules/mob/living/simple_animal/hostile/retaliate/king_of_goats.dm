@@ -23,7 +23,7 @@
 	health = 500
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	maxHealth = 500
 	melee_damage_lower = 35
 	melee_damage_upper = 55
@@ -75,22 +75,12 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Found(atom/A)
 	if(isliving(A))
-		var/mob/living/L = A
-		if(L.stat != DEAD)
-			return L
-		else
-			enemies -= L
-			return
+		return A
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/Found(atom/A)
 	if(isliving(A))
-		var/mob/living/L = A
-		if(L.stat != DEAD)
-			return L
-		else
-			enemies -= L
-			return
+		return A
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard
@@ -103,7 +93,7 @@
 	faction = list("goat_king")
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
@@ -175,15 +165,15 @@
 			visible_message("<span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze.</span>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
-				var/health_holder = health
+				var/health_holder = getBruteLoss()
 				visible_message("<span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!</span>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
 				stop_automated_movement = FALSE
 				spellscast += 2
-				if(!health < health_holder)
-					health = health_holder //our own magicks cannot harm us
+				if(!getBruteLoss > health_holder)
+					setBruteLoss(health_holder) //our own magicks cannot harm us
 			else
 				visible_message("<span class='notice'>\The [src] loses concentration and huffs haughtily.</span>")
 				stop_automated_movement = FALSE
@@ -195,7 +185,11 @@
 	spellscast = 0
 	maxHealth = 750
 	revive()
-	health = 750
+	setOxyLoss(0)
+	setToxLoss(0)
+	setFireLoss(0)
+	setBruteLoss(0)
+	setCloneLoss(0)
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
