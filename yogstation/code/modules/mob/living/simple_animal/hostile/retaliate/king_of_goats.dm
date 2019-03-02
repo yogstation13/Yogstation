@@ -249,7 +249,7 @@
 		return FALSE
 	if(special_attacks >= 6 && melee_damage_type != BRUTE)
 		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
-			melee_damage_type = BRUTE
+		melee_damage_type = BRUTE
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
 	visible_message("<span class='cult'>\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!</span>")
