@@ -23,6 +23,7 @@
 	health = 500
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
+	stat_attack = UNCONSCIOUS
 	maxHealth = 500
 	melee_damage_lower = 35
 	melee_damage_upper = 55
@@ -101,6 +102,7 @@
 	faction = list("goat_king")
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
+	stat_attack = UNCONSCIOUS
 	health = 125
 	maxHealth = 125
 	melee_damage_lower = 10
@@ -127,7 +129,7 @@
 	set waitfor = FALSE
 	..()
 	if(spellscast < 5)
-		if(prob(5) && move_to_delay != 1) //speed buff
+		if(prob(5) && move_to_delay >= 3) //speed buff
 			spellscast++
 			visible_message("<span class='cult'>\The [src] shimmers and seems to phase in and out of reality itself!</span>")
 			move_to_delay = 1
@@ -189,8 +191,9 @@
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/phase3_transition()
 	phase3 = TRUE
 	spellscast = 0
-	health = 750
+	maxHealth = 750
 	revive()
+	health = 750
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
@@ -242,9 +245,10 @@
 			if(!L || !L.client)
 				continue
 			L.stop_sound_channel(CHANNEL_JUKEBOX)
+	if(move_to_delay < 3)
+		move_to_delay += 0.1
 	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
 		phase3_transition()
-
 	if(!.)
 		return FALSE
 	if(special_attacks >= 6 && melee_damage_type != BRUTE)
