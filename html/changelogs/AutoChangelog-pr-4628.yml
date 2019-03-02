@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Floorbots can now be crafted with other kinds of toolboxes"
+  - bugfix: "Tablecrafting floorbots now requires the intended amount of floor tiles"
