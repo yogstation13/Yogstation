@@ -35,7 +35,6 @@
 /obj/item/flashlight/seclite/flicker/process()
 	if(cell.use(5))
 		if(cell.percent() < 50 && !is_flickering)
-			visible_message("[src] flickers")
 			flashlight_power = 0.5 //strength of the light when on
 			update_brightness()
 			is_flickering = TRUE
