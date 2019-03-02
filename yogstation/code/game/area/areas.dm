@@ -7,8 +7,8 @@
 			if(M.get_item_by_slot(SLOT_WEAR_MASK).CanBreathe())
 				M.get_item_by_slot(SLOT_WEAR_MASK).Breathe(M)
 			else
-				M.adjustOxyLoss(rand(3,4))
-				M.adjustToxLoss(rand(1,2))
+				M.adjustOxyLoss(rand(3,5))
+				M.adjustToxLoss(rand(2,3))
 		else
-			M.adjustOxyLoss(rand(3,4))
-			M.adjustToxLoss(rand(2,3))
+			M.adjustOxyLoss(rand(3,5))
+			M.adjustToxLoss(rand(3,4))
