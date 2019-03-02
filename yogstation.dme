@@ -3091,6 +3091,7 @@
 #include "yogstation\code\modules\mob\living\simple_animal\hostile\mining_mobs\marrow_weaver.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\hostile\retaliate\clowngoat.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\hostile\retaliate\dolphin.dm"
+#include "yogstation\code\modules\mob\living\simple_animal\hostile\retaliate\king_of_goats.dm"
 #include "yogstation\code\modules\mob\new_player\poll.dm"
 #include "yogstation\code\modules\ninja\suit\ninja.dm"
 #include "yogstation\code\modules\paperwork\paper.dm"

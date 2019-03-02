@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
 	. = ..()
-	if(.)
+	if(. && sentience_type != SENTIENCE_BOSS) // yogs
 		//chance to go crazy and start wacking stuff
 		if(!enemies.len && prob(1))
 			Retaliate()
