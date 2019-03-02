@@ -19,8 +19,8 @@
 		W.forceMove(src)
 		to_chat(user, "<span class='info'>You insert [W] into [src]</span>")
 
-/obj/item/clothing/mask/gas/metro/proc/EmptyFilter(mob/user/M)
-	M.visible_message("[src] gas mask exclaims: Filter depleted, insert new filter.", "Your gas mask tells you that its filter is depleted. Insert a new one, quick!")
+/obj/item/clothing/mask/gas/metro/proc/EmptyFilter(mob/user)
+	user.visible_message("[src] gas mask exclaims: Filter depleted, insert new filter.", "Your gas mask tells you that its filter is depleted. Insert a new one, quick!")
 	qdel(filter)
 
 /obj/item/clothing/mask/gas/metro/proc/CanBreathe()
@@ -32,10 +32,10 @@
 	else
 		return FALSE
 
-/obj/item/clothing/mask/gas/metro/proc/Breathe(mob/user/M)
+/obj/item/clothing/mask/gas/metro/proc/Breathe(mob/user)
 	filter.time_remaining--
 	if(filter.time_remaining <= 0)
-		EmptyFilter(M)
+		EmptyFilter(user)
 
 /obj/item/filter
 	name = "filter"
