@@ -190,6 +190,7 @@
 	phase3 = TRUE
 	spellscast = 0
 	health = 750
+	revive()
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
@@ -247,7 +248,7 @@
 		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
 		melee_damage_type = BRUTE
 
-	if(health <= 150 && !phase3 && spellscast == 5) //begin phase 3, reset spell limit and heal
+	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
 		phase3_transition()
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
