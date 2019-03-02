@@ -242,14 +242,14 @@
 			if(!L || !L.client)
 				continue
 			L.stop_sound_channel(CHANNEL_JUKEBOX)
+	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
+		phase3_transition()
+
 	if(!.)
 		return FALSE
 	if(special_attacks >= 6 && melee_damage_type != BRUTE)
 		visible_message("<span class='cult'>The energy surrounding \the [src]'s horns dissipates.</span>")
-		melee_damage_type = BRUTE
-
-	if((health <= 150 && !phase3 && spellscast == 5) || (stat == DEAD && !phase3)) //begin phase 3, reset spell limit and heal
-		phase3_transition()
+			melee_damage_type = BRUTE
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
 	visible_message("<span class='cult'>\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!</span>")
