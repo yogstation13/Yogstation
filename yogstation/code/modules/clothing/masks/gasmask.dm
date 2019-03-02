@@ -17,9 +17,10 @@
 	if(istype(W, /obj/item/filter))
 		filter = W
 		W.forceMove(src)
+		to_chat(user, "<span class='info'>You insert [W] into [src]</span>")
 
 /obj/item/clothing/mask/gas/metro/proc/EmptyFilter()
-	src.visible_message("Filter depleted, insert new filter.", "<span class='danger'>Your gas mask notifies you that its <b>filter has run out!</b></span>")
+	visible_message("Filter depleted, insert new filter.")
 	qdel(filter)
 
 /obj/item/clothing/mask/gas/metro/proc/CanBreathe()
@@ -42,4 +43,4 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "film"
 
-	var/time_remaining = 6000
+	var/time_remaining = 300

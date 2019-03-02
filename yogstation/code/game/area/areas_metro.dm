@@ -4,13 +4,16 @@
 	hidden = TRUE 			//Hides area from player Teleport function.
 	safe = TRUE
 	requires_power = FALSE
+	ambientsounds = RUINS
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/metro/outside/Initialize()
+	START_PROCESSING(SSobj, src)
+	..()
 
 /area/metro/outside
 	name = "outside metro"
 
-/area/metro/outside/Entered(mob/living/M)
-
-/area/metro/outside/Exited(mob/living/M)
 
 /area/metro/inside
 	name = "inside metro"
