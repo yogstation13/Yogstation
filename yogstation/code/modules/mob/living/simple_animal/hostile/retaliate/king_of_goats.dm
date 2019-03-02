@@ -172,8 +172,8 @@
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
 				stop_automated_movement = FALSE
 				spellscast += 2
-				if(!getBruteLoss > health_holder)
-					setBruteLoss(health_holder) //our own magicks cannot harm us
+				if(!getBruteLoss() > health_holder)
+					adjustBruteLoss(health_holder - getBruteLoss()) //our own magicks cannot harm us
 			else
 				visible_message("<span class='notice'>\The [src] loses concentration and huffs haughtily.</span>")
 				stop_automated_movement = FALSE
@@ -185,11 +185,7 @@
 	spellscast = 0
 	maxHealth = 750
 	revive()
-	setOxyLoss(0)
-	setToxLoss(0)
-	setFireLoss(0)
-	setBruteLoss(0)
-	setCloneLoss(0)
+	fully_heal()
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
