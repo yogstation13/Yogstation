@@ -10,27 +10,25 @@
 	permeability_coefficient = 0.01
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 	resistance_flags = NONE
-	var/obj/item/filter/filter = NULL
+	var/obj/item/filter/filter
 
 
 /obj/item/clothing/mask/gas/metro/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/filter))
 		filter = W
-		W.MoveToNullspace()
+		W.forceMove(src)
 
 /obj/item/clothing/mask/gas/metro/proc/EmptyFilter()
 	src.visible_message("Filter depleted, insert new filter.", "<span class='danger'>Your gas mask notifies you that its <b>filter has run out!</b></span>")
-	filter = NULL
+	qdel(filter)
 
 /obj/item/clothing/mask/gas/metro/proc/CanBreathe()
 	if(filter)
 		if(filter.time_remaining > 0)
 			return TRUE
 		else
-			throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 			return FALSE
 	else
-		throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		return FALSE
 
 /obj/item/clothing/mask/gas/metro/proc/Breathe()
