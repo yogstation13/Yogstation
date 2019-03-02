@@ -274,19 +274,19 @@
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget(atom/A)
+/mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget()
 	. = ..()
-	if(isliving(A))
-		var/mob/living/L = A
+	if(isliving(target))
+		var/mob/living/L = target
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
 			visible_message("<span class='warning'>\The [L] is bowled over by the impact of [src]'s attack!</span>")
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget(atom/A)
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
-	if(isliving(A))
-		var/mob/living/L = A
+	if(isliving(target))
+		var/mob/living/L = target
 		if(L.stat == DEAD)
 			L.gib()
 		if(melee_damage_type != BRUTE)
