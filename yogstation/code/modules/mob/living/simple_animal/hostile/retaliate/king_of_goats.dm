@@ -35,6 +35,7 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	pull_force = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_LARGE
+	robust_searching = TRUE
 	//can_escape = 1
 	move_to_delay = 3
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -103,6 +104,7 @@
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = UNCONSCIOUS
+	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
 	melee_damage_lower = 10
