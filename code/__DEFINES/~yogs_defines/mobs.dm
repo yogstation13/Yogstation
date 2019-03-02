@@ -9,3 +9,5 @@
 
 #define PRETERNIS_NV_OFF 2
 #define PRETERNIS_NV_ON 8 
+
+#define BODYPART_ANY -1

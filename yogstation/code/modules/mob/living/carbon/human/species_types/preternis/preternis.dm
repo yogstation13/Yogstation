@@ -1,24 +1,29 @@
 /*
--emag level 1 = brain dmg //done //tested
--emag level 2 = flashing colors //done //tested
--125% brute dmg //done //tested
--150% shock dmg //done //tested
--cold and heat sensible //done //tested
--night vision if not hungry //done //tested
--feeds on power,gloves decresse and insulated prevent //done //tested
--fully augmented //done //tested
--weak to EMPS //done //tested
--teslium = meth but gives 200% dmg to shock //done //tested
--purge chem after a couple of seconds //done //tested
--oil heals burn at 2 per cycle //done //bugged
--welding fuel at 1 per cycle //done //bugged 
+upsides:
+NV //done tested
+fixable by tools //done tested
+no need to eat //done tested
+purges chems after 30 cycles //done tested
+more resistant to plasma/lack of o2 //done tested
+more resistance to rads IMPLEMENT
+more resistance to viruses IMPLEMENT
+special preternis language IMPLEMENT
+Oil heals 2 burn per cycle //done tested
+Welding fuel heals 1 per cycle but deals 1 toxic damage per cycle //done tested
 
 
--implant insertion
--rad immunity
--virus resistant
--all virus are airborne
--special robot lansguage
+downsides:
+emp does alot of damage and drains their cell alot //done tested
+emag is an instant stun and will fuck up their vision and brain //done tested
+not healable by chems //done tested
+damagable by chems //done tested
+needs to eat battery //done tested
+needs welding helmet to fix themself //done tested
+150% burn damage //done tested
+125% brute damage //done tested
+less resistant to heat changes //done tested
+all viruses are resistance 10
+max 35 damage for limb failure //done tested
 */
 
 /datum/species/preternis
@@ -49,6 +54,8 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
+		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
+			continue
 		BP.burn_reduction = 0
 		BP.brute_reduction = 0
 		BP.max_damage = 35
@@ -58,6 +65,7 @@
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
+		BP.burn_reduction = initial(BP.)
 	C.clear_alert("preternis_emag")
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
@@ -100,21 +108,17 @@
 	. = ..()
 
 	if(H.reagents.has_reagent("oil"))
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, 0)
-		metabolize(chem,H)
-		return TRUE
+		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent("welding_fuel"))
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, 0)
-		metabolize(chem,H)
-		return TRUE
+		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent("teslium",10)) //10 u otherwise it wont update and they will remain quikk
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 		if(H.health < 50 && H.health > 0)
 			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, 0)
-			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, 0)
+			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 		H.AdjustParalyzed(-3)
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
@@ -134,7 +138,7 @@
 			adjust_charge(nutrition)
 			if (!eating_msg_cooldown)
 				eating_msg_cooldown = TRUE
-				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 5 MINUTES)
+				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
 				to_chat(H,"<span class='info'>NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction.</span>")
 
 	if(chem.current_cycle >= 20)
@@ -142,10 +146,6 @@
 
 
 	return FALSE
-
-/datum/species/preternis/proc/metabolize(datum/reagent/chem,mob/living/carbon/human/H) //cant be assed to copy paste this everytime
-	chem.current_cycle++
-	H.reagents.remove_reagent(chem.id, chem.metabolization_rate * H.metabolism_efficiency)
 
 /datum/species/preternis/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
