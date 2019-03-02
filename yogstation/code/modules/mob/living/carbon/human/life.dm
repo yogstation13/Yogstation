@@ -3,3 +3,4 @@
 		if (L.bandaged)
 			var/obj/item/medical/bandage/B = L.bandaged
 			B.handle_bandage(src)
+
