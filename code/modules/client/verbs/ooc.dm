@@ -25,7 +25,7 @@
 	if(QDELETED(src))
 		return
 
-	msg = utf8_sanitize(msg, src, MAX_MESSAGE_LEN)
+	msg = utf8_sanitize(msg, src, MAX_MESSAGE_LEN) // yogs - libvg support yo
 	var/raw_msg = msg
 
 	if(!msg)
