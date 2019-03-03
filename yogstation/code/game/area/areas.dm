@@ -13,7 +13,7 @@
 			M.adjustOxyLoss(rand(3,5))
 			M.adjustToxLoss(rand(3,4))
 
-/area/metro/outside/process()
+/area/metro/outside/extreme/process()
 	for(var/mob/living/M in contents)
 		if(istype(M.get_item_by_slot(SLOT_WEAR_MASK), /obj/item/clothing/mask/gas/metro))
 			if(M.get_item_by_slot(SLOT_WEAR_MASK).CanBreathe())
