@@ -9,6 +9,6 @@
 	syllables = list(
 		"da", "dobraye", "ootro", "dobriy den'", "spaseeba", "eezveeneete"
 	)
-	icon = 'yogstation/icons/misc/language.dmi'
+	icon = 'icons/misc/language.dmi'
 	icon_state = "popcorn"
 	default_priority = 110
