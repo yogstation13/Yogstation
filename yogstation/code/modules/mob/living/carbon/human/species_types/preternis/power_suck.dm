@@ -10,11 +10,12 @@
 		return FALSE
 
 	if(draining)
-		to_chat(H,"<span class='info'>CONSUME protocols can only be used on one object at any single time.((If you are not currently consuming power from something,wait 1 minute and try again))")
+		to_chat(H,"<span class='info'>CONSUME protocols can only be used on one object at any single time.")
 		return FALSE
-
 	if(!A.can_consume_power_from())
 		return FALSE //if it returns text, we want it to continue so we can get the error message later.
+
+	draining = TRUE
 
 	var/siemens_coefficient = 1
 
@@ -23,11 +24,13 @@
 
 	if (charge >= PRETERNIS_LEVEL_FULL - 25) //just to prevent spam a bit
 		to_chat(H,"<span class='notice'>CONSUME protocol reports no need for additional power at this time.</span>")
+		draining = FALSE
 		return TRUE
 
 	if(H.gloves)
 		if(H.gloves.siemens_coefficient == 0)
 			to_chat(H,"<span class='info'>NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted.</span>")
+			draining = FALSE
 			return TRUE
 		else
 			if(H.gloves.siemens_coefficient < 1)
@@ -38,6 +41,7 @@
 	H.visible_message("<span class='warning'>[H] starts placing their hands on [A]...</span>", "<span class='warning'>You start placing your hands on [A]...</span>")
 	if(!do_after(H, 20, target = A))
 		to_chat(H,"<span class='info'>CONSUME protocol aborted.</span>")
+		draining = FALSE
 		return TRUE
 
 	to_chat(H,"<span class='info'>Extracutaneous implants detect viable power source. Initiating CONSUME protocol.</span>")
@@ -50,8 +54,7 @@
 	spark_system.attach(A)
 	spark_system.set_up(5, 0, A)
 
-	draining = TRUE
-	var/failsafetimer = addtimer(VARSET_CALLBACK(src, draining, TRUE),1 MINUTES) //in case the proc fails and it doesnt set draining back to false,locking them out of recharging
+
 
 	while(!done)
 		cycle++
@@ -88,7 +91,6 @@
 			done = 1
 	qdel(spark_system)
 	draining = FALSE
-	deltimer(failsafetimer)
 	return TRUE
 
 /atom/proc/can_consume_power_from()
