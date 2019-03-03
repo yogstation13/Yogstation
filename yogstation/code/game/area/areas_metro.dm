@@ -14,6 +14,8 @@
 /area/metro/outside
 	name = "outside metro"
 
-
+/area/metro/outside/extreme
+	name = "harsh outside metro"
+	
 /area/metro/inside
 	name = "inside metro"
