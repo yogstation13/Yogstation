@@ -7,7 +7,7 @@
 		var/mob/M = mob
 
 		if(!M || !M.job)
-			to_chat(src, "<p class='info-bar emboldened'>You do not appear to have a job, so reporting being AFK is not necessary.</p>")
+			to_chat(src, "<span class='boldnotice'>You do not appear to have a job, so reporting being AFK is not necessary.</span>")
 		else
 			var/time = input(src, "How long do you expect to be gone?") as anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
 
@@ -36,9 +36,9 @@
 				else if(time == "10 minutes")
 					text = "I need to shut my eyes for a short while."
 				else if(time == "15 minutes")
-					text = "I need to shut my eyes for a short while. Please keep an eye on the crew whilst I am resting."
+					text = "I need to shut my eyes for a bit. Please keep an eye on me while I am resting."
 				else if(time == "30 minutes")
-					text = "I need to shut my eyes for quite a while. Please keep an eye on the crew whilst I am resting."
+					text = "I need to shut my eyes for quite a while. Please keep an eye on me while I am resting."
 				else if(time == "Whole round")
 					text = "I need to shut my eyes for a long time... Someone please take over my station responsibilities."
 
@@ -56,6 +56,6 @@
 			if(alert_admins)
 				adminhelp("I need to go AFK as '[M.job]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 			else
-				to_chat(src, "<p class='info-bar emboldened'>Admins will not be specifically alerted, because you are not in a critical station role.</p>")
+				to_chat(src, "<span class='danger'>Admins will not be specifically alerted, because you are not in a critical station role.</span>")
 	else
-		to_chat(src, "<p class='info-bar emboldened'>It is not necessary to report being AFK if you are not in the game.</p>")
+		to_chat(src, "<span class='boldnotice'>It is not necessary to report being AFK if you are not in the game.</span>")
