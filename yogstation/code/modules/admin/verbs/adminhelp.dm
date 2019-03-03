@@ -178,7 +178,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!handling_admin && state == AHELP_ACTIVE)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
 		for(var/client/X in GLOB.admins)
-			if(X.prefs.toggles & SOUND_ADMINHELP)
+			if(check_rights_for(X,R_BAN) && (X.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		return FALSE
 	return TRUE
