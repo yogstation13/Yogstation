@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // Yogs
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, //yogs
-	ROLE_GANG = /datum/game_mode/gang // yogs
+	ROLE_GANG = /datum/game_mode/gang, // yogs
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SENTIENCE

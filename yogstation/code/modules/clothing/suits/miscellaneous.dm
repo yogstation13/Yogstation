@@ -37,5 +37,10 @@
 /obj/item/clothing/head/hooded/winterhood/bluecoat
     alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
-
     icon_state = "winterhood_blue"
+
+/obj/item/clothing/suit/yogs/jesus
+	name = "Messiah Robes"
+	desc = "They seem very holy."
+	icon_state = "jesus"
+	allowed = list(/obj/item/storage/book/bible)
