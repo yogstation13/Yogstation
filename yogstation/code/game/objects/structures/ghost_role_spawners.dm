@@ -278,3 +278,8 @@
 	head = /obj/item/clothing/head/ushanka
 	backpack_contents = list(/obj/item/clothing/mask/gas/metro = 1, /obj/item/filter = 2)
 	back = /obj/item/storage/backpack
+
+/obj/effect/mob_spawn/human/bus/russian/special(mob/living/spawner)
+	if(ishuman(spawner))
+		var/mob/living/carbon/human/H = spawner
+		H.grant_language(/datum/language/russian)
