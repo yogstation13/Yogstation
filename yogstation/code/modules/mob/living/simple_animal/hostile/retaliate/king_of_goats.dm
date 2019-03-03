@@ -23,7 +23,7 @@
 	health = 500
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	maxHealth = 500
 	melee_damage_lower = 35
 	melee_damage_upper = 55
@@ -75,22 +75,12 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Found(atom/A)
 	if(isliving(A))
-		var/mob/living/L = A
-		if(L.stat != DEAD)
-			return L
-		else
-			enemies -= L
-			return
+		return A
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/Found(atom/A)
 	if(isliving(A))
-		var/mob/living/L = A
-		if(L.stat != DEAD)
-			return L
-		else
-			enemies -= L
-			return
+		return A
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard
@@ -103,7 +93,7 @@
 	faction = list("goat_king")
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
-	stat_attack = UNCONSCIOUS
+	stat_attack = DEAD
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
@@ -175,15 +165,15 @@
 			visible_message("<span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze.</span>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
-				var/health_holder = health
+				var/health_holder = getBruteLoss()
 				visible_message("<span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!</span>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
 				stop_automated_movement = FALSE
 				spellscast += 2
-				if(!health < health_holder)
-					health = health_holder //our own magicks cannot harm us
+				if(!getBruteLoss() > health_holder)
+					adjustBruteLoss(health_holder - getBruteLoss()) //our own magicks cannot harm us
 			else
 				visible_message("<span class='notice'>\The [src] loses concentration and huffs haughtily.</span>")
 				stop_automated_movement = FALSE
@@ -194,8 +184,7 @@
 	phase3 = TRUE
 	spellscast = 0
 	maxHealth = 750
-	revive()
-	health = 750
+	revive(TRUE)
 	current_song = 'yogstation/sound/ambience/Visager-Miniboss_Fight.ogg'
 	current_song_length = 1759
 	var/sound/song_played = sound(current_song)
@@ -285,19 +274,19 @@
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	. = ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget(atom/A)
+/mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget()
 	. = ..()
-	if(isliving(A))
-		var/mob/living/L = A
+	if(isliving(target))
+		var/mob/living/L = target
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
 			visible_message("<span class='warning'>\The [L] is bowled over by the impact of [src]'s attack!</span>")
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget(atom/A)
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
-	if(isliving(A))
-		var/mob/living/L = A
+	if(isliving(target))
+		var/mob/living/L = target
 		if(L.stat == DEAD)
 			L.gib()
 		if(melee_damage_type != BRUTE)
