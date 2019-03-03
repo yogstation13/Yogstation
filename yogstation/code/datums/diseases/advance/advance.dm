@@ -1,7 +1,7 @@
 /datum/disease/advance/Refresh(new_name)
-	. = ..()
-	if(affected_mob.dna)
-		var/datum/species/S
+	..()
+	if(affected_mob?.dna)
+		var/datum/species/S = affected_mob.dna.species
 		properties["resistance"] += S.virus_resistance_boost
 		properties["stealth"] += S.virus_stealth_boost
 		properties["stage_rate"] += S.virus_stage_rate_boost

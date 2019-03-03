@@ -1,29 +1,8 @@
 /*
-upsides:
-NV //done tested
-fixable by tools //done tested
-no need to eat //done tested
-purges chems after 30 cycles //done tested
-more resistant to plasma/lack of o2 //done tested
-resistance to rads //done
-more resistance to viruses //done
-special preternis language //done
-Oil heals 2 burn per cycle //done tested
-Welding fuel heals 1 per cycle but deals 1 toxic damage per cycle //done tested
+procs:
 
-
-downsides:
-emp does alot of damage and drains their cell alot //done tested
-emag is an instant stun and will fuck up their vision and brain //done tested
-not healable by chems //done tested
-damagable by chems //done tested
-needs to eat battery //done tested
-needs welding helmet to fix themself //done tested
-150% burn damage //done tested
-125% brute damage //done tested
-less resistant to heat changes //done tested
-all viruses are resistance 10 //done
-max 35 damage for limb failure //done tested
+handle_charge - called in spec_life(),handles the alert indicators,the power loss death and decreasing the charge level
+adjust_charge - take a positive or negative value to adjust the charge level
 */
 
 /datum/species/preternis
@@ -48,8 +27,9 @@ max 35 damage for limb failure //done tested
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/power_drain = 1.3 //probably going to have to tweak this shit
+	var/power_drain = 0.7 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
+	var/draining = FALSE
 	
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
@@ -57,10 +37,10 @@ max 35 damage for limb failure //done tested
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
-		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
-			continue
 		BP.burn_reduction = 0
 		BP.brute_reduction = 0
+		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
+			continue
 		BP.max_damage = 35
 	C.grant_language(/datum/language/machine) //learn it once,learn it forever i guess,this isnt removed on species loss to prevent curators from forgetting machine language
 
@@ -69,8 +49,9 @@ max 35 damage for limb failure //done tested
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
-		BP.burn_reduction = initial(BP.)
-	C.clear_alert("preternis_emag")
+		BP.burn_reduction = initial(BP.burn_reduction)
+		BP.brute_reduction = initial(BP.brute_reduction)
+	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
 
@@ -127,7 +108,7 @@ max 35 damage for limb failure //done tested
 		H.AdjustStun(-3)
 		H.AdjustKnockdown(-3)
 		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
-		charge -= 10 * REAGENTS_METABOLISM
+		charge = CLAMP(charge - 10 * REAGENTS_METABOLISM,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 		burnmod = 200
 		tesliumtrip = TRUE
 	else if(tesliumtrip)
@@ -139,7 +120,7 @@ max 35 damage for limb failure //done tested
 		var/datum/reagent/consumable/food = chem
 		if (food.nutriment_factor)
 			var/nutrition = food.nutriment_factor * 0.2
-			adjust_charge(nutrition)
+			charge = CLAMP(charge + nutrition,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 			if (!eating_msg_cooldown)
 				eating_msg_cooldown = TRUE
 				addtimer(VARSET_CALLBACK(src, eating_msg_cooldown, FALSE), 2 MINUTES)
@@ -153,7 +134,7 @@ max 35 damage for limb failure //done tested
 
 /datum/species/preternis/spec_fully_heal(mob/living/carbon/human/H)
 	. = ..()
-	set_charge(PRETERNIS_LEVEL_FULL)
+	charge = PRETERNIS_LEVEL_FULL
 	emag_lvl = 0
 	H.clear_alert("preternis_emag")
 	H.clear_fullscreen("preternis_emag")
@@ -163,18 +144,10 @@ max 35 damage for limb failure //done tested
 
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	for(var/datum/disease/advance/D in H.diseases)
-		D.properties["resistance"] = 10 //there isnt really a way to set the resistance 
 	handle_charge(H)
 
-/datum/species/preternis/proc/adjust_charge(var/newchange)
-	charge = CLAMP(charge + newchange, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
-
-/datum/species/preternis/proc/set_charge(var/newchange)
-	charge = CLAMP(newchange, PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
-
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
-	adjust_charge(-power_drain)
+	charge = CLAMP(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 	if(charge == PRETERNIS_LEVEL_NONE)
 		to_chat(H,"<span class='danger'>Warning! System power criti-$#@$</span>")
 		H.death()
