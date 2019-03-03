@@ -1,5 +1,6 @@
 /mob/living/silicon
 	var/list/law_history = list()
+	ignores_capitalism = TRUE // Yogs -- Let the robits buy me a damned drink for Christ's sake
 
 /mob/living/silicon/proc/update_law_history(mob/uploader = null)
 	var/ai_law_sync = "UNKNOWN/Innate laws"
