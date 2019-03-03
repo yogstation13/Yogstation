@@ -259,3 +259,89 @@
 	icon_dead = "watercolorgoat_dead"
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/paint/anycolor = 1)
+
+/mob/living/simple_animal/hostile/retaliate/goat/brown
+	name = "Chestnut Goat"
+	desc = "A pretty fine looking goat."
+	icon = 'yogstation/icons/mob/goats/brown_goat.dmi'
+	icon_state = "browngoat"
+	icon_living = "browngoat"
+	icon_dead = "browngoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/panda
+	name = "Panda Goat"
+	desc = "What happens when you cross panda dna with goat dna atleast 10% the time."
+	icon = 'yogstation/icons/mob/goats/panda_goat.dmi'
+	icon_state = "pandagoat"
+	icon_living = "pandagoat"
+	icon_dead = "pandagoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/stack
+	name = "Goat Stack"
+	desc = "Seems some goats decided to stack up as a means of increasing attack power, worked out surprisingly well."
+	icon = 'yogstation/icons/mob/goats/stack_goat.dmi'
+	icon_state = "goatstack"
+	icon_living = "goatstack"
+	del_on_death = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat,/mob/living/simple_animal/hostile/retaliate/goat/panda,/mob/living/simple_animal/hostile/retaliate/goat/brown)
+	health = 100
+	maxHealth = 100
+	melee_damage_lower = 35
+	melee_damage_upper = 40
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/black
+	name = "Black Goat"
+	desc = "This goat has black fur not much else to say."
+	icon = 'yogstation/icons/mob/goats/black_goat.dmi'
+	icon_state = "blackgoat"
+	icon_living = "blackgoat"
+	icon_dead = "blackgoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/green
+	name = "Green Goat"
+	desc = "Reminds me of my front lawn."
+	icon = 'yogstation/icons/mob/goats/green_goat.dmi'
+	icon_state = "greengoat"
+	icon_living = "greengoat"
+	icon_dead = "greengoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/orange
+	name = "Orange Goat"
+	desc = "The most tasty of colors."
+	icon = 'yogstation/icons/mob/goats/orange_goat.dmi'
+	icon_state = "orangegoat"
+	icon_living = "orangegoat"
+	icon_dead = "orangegoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/purple
+	name = "Purple Goat"
+	desc = "Why purple?!?"
+	icon = 'yogstation/icons/mob/goats/purple_goat.dmi'
+	icon_state = "purplegoat"
+	icon_living = "purplegoat"
+	icon_dead = "purplegoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/red
+	name = "Red Goat"
+	desc = "Seems to be slightly more angry then your average goat."
+	icon = 'yogstation/icons/mob/goats/red_goat.dmi'
+	icon_state = "redgoat"
+	icon_living = "redgoat"
+	icon_dead = "redgoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/yellow
+	name = "Yellow Goat"
+	desc = "MY EYES THEY BURN."
+	icon = 'yogstation/icons/mob/goats/yellow_goat.dmi'
+	icon_state = "yellowgoat"
+	icon_living = "yellowgoat"
+	icon_dead = "yellowgoat_dead"
+	gold_core_spawnable = NO_SPAWN
