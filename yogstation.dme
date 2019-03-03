@@ -3054,6 +3054,7 @@
 #include "yogstation\code\modules\keybindings\bindings_mob.dm"
 #include "yogstation\code\modules\keybindings\bindings_robot.dm"
 #include "yogstation\code\modules\keybindings\keys.dm"
+#include "yogstation\code\modules\language\russian.dm"
 #include "yogstation\code\modules\language\japanese.dm"
 #include "yogstation\code\modules\libvg\utf8.dm"
 #include "yogstation\code\modules\mentor\follow.dm"
