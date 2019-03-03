@@ -3059,6 +3059,7 @@
 #include "yogstation\code\modules\mob\say.dm"
 #include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
 #include "yogstation\code\modules\mob\living\emote.dm"
+#include "yogstation\code\modules\mob\living\living_defines.dm"
 #include "yogstation\code\modules\mob\living\brain\brain_item.dm"
 #include "yogstation\code\modules\mob\living\brain\MMI.dm"
 #include "yogstation\code\modules\mob\living\carbon\carbon.dm"

@@ -322,6 +322,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/datum/bank_account/account
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
+	//yogs start -- ignores_capitalism stuff
+	var/mob/living/L
+	if(isliving(user))
+		L = user
+	//yogs end
 	if(ishuman(user))
 		H = user
 		C = H.get_idcard(TRUE)
@@ -348,13 +353,13 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				continue
 			if(R.custom_price)
 				price_listed = "$[R.custom_price]"
-			if(!onstation || user.ignores_capitalism || account && account.account_job && account.account_job.paycheck_department == payment_department) // Yogs -- adds ignore_capitalism
+			if(!onstation || (L && L.ignores_capitalism) || account && account.account_job && account.account_job.paycheck_department == payment_department) // Yogs -- adds ignore_capitalism
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
 			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
 			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
-			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
+			if(R.amount > 0 && ((C && C.registered_account && onstation) || (L && (!onstation || L.ignores_capitalism)))) // Yogs -- adds ignore_capitalism
 				dat += "<td align='right'><b>[R.amount]&nbsp;</b><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
 				dat += "<td align='right'><span class='linkOff'>Not&nbsp;Available</span></td>"
@@ -452,8 +457,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			flick(icon_deny,src)
 			vend_ready = 1
 			return
-		if(onstation && ishuman(usr) && !usr.ignores_capitalism) // Yogs -- Allows mobs to ignore capitalism sometimes
-			var/mob/living/carbon/human/H = usr
+		// Yogs start -- implements mobs ignoring Capitalism sometimes
+		var/mob/living/carbon/human/H 
+		if(ishuman(usr))
+			H = usr
+		if(onstation && H && !H.ignores_capitalism) // Yogs end
 			var/obj/item/card/id/C = H.get_idcard(TRUE)
 
 			if(!C)
