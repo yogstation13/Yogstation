@@ -33,9 +33,10 @@
 												"<span class='userdanger'>You have a panic attack!</span>")
 				affected_mob.confused += (rand(6,8))
 				affected_mob.jitteriness += (rand(6,8))
-			if(prob(2))
+			if(prob(2) && butterfly_count < 250) // Yogs -- Puts a maximum on the number of butterflies that can be spawned via this disease
 				affected_mob.visible_message("<span class='danger'>[affected_mob] coughs up butterflies!</span>", \
 													"<span class='userdanger'>You cough up butterflies!</span>")
 				new /mob/living/simple_animal/butterfly(affected_mob.loc)
 				new /mob/living/simple_animal/butterfly(affected_mob.loc)
+				butterfly_count += 2 // Yogs -- Puts a maximum on the number of butterflies that can be spawned via this disease
 	return
