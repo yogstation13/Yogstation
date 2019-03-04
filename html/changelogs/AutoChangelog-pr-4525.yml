@@ -1,0 +1,5 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - tweak: "Armblade stings will now give the victim a functional armblade, and not a chinese knockoff."
+  - tweak: "Changeling stings that apply muting or hallucination effects to their victim will actually inject the victim with chemicals that do that, instead of just magically making them unable to speak."
