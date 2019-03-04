@@ -6,7 +6,7 @@
 	if(mob)
 		var/mob/M = mob
 
-		if(!M || !M.job)
+		if(!M.job)
 			to_chat(src, "<span class='boldnotice'>You do not appear to have a job, so reporting being AFK is not necessary.</span>")
 		else
 			var/time = input(src, "How long do you expect to be gone?") as anything in list("5 minutes","10 minutes","15 minutes","30 minutes","Whole round","Unknown")
@@ -43,12 +43,13 @@
 					text = "I need to shut my eyes for a long time... Someone please take over my station responsibilities."
 
 			var/alert_admins = FALSE
-			if(M.job == "AI" || istype(M, /mob/living/silicon))
+			if(istype(M, /mob/living/silicon))
 				alert_admins = TRUE
 				M.say(".c [text] This is the [M.job] signing off for now.")
 				M.say(".o [text] This is the [M.job] signing off for now.")
-			else if(M.job == "Captain" || M.job == "Head of Personnel" || M.job == "Head of Security" || M.job == "Chief Engineer" || M.job == "Research Director" || M.job == "Chief Medical Officer")
+			else if(M.job in GLOB.command_positions)
 				alert_admins = TRUE
+				M.say(".c [text] This is the [M.job] signing off for now.")
 				M.say(".h [text] This is the [M.job] signing off for now.")
 			else
 				M.say(".h [text] This is the [M.job] signing off for now.")
