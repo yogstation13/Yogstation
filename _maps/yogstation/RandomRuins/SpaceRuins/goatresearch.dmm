@@ -24,8 +24,9 @@
 /turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered)
 "ah" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/remains/human,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/ruin/powered)
 "ai" = (
@@ -120,8 +121,13 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aC" = (
-/obj/machinery/chem_master,
-/turf/open/floor/mineral/titanium/white,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/remains/human,
+/obj/machinery/light/broken{
+	icon_state = "tube-broken";
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/ruin/powered)
 "aD" = (
 /obj/structure/shuttle/engine/huge{
@@ -198,10 +204,10 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aS" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/regular,
+/obj/machinery/chem_master,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aT" = (
@@ -242,9 +248,11 @@
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "bb" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large,
-/turf/open/floor/mineral/titanium/yellow,
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "bc" = (
 /obj/effect/turf_decal/delivery,
@@ -326,9 +334,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "bq" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/sphere,
-/turf/open/floor/mineral/titanium/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
 "br" = (
 /obj/effect/turf_decal/delivery,
@@ -454,8 +463,9 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bM" = (
-/obj/structure/showcase/machinery/tv,
-/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bN" = (
@@ -520,6 +530,96 @@
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/guard,
 /turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"bZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"ca" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"cb" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/powered)
+"cc" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/powered)
+"cd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"ce" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"cf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"cg" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/large,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"ch" = (
+/obj/machinery/light,
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"ci" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/sphere,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"cj" = (
+/obj/machinery/light,
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"ck" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"cl" = (
+/obj/structure/showcase/machinery/tv,
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"cm" = (
+/obj/machinery/light,
+/turf/open/floor/grass,
+/area/ruin/powered)
+"zw" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -1479,14 +1579,14 @@ aa
 aa
 aa
 ab
-ab
-ac
+zw
+cd
 ap
 ap
 ap
 ap
-ac
-ab
+cj
+zw
 ab
 aa
 aa
@@ -2012,26 +2112,26 @@ aa
 aa
 aa
 ab
-ac
+cd
 ap
 ap
 ap
+bq
 ap
 ap
 ap
+ce
 ap
-ac
 ap
-ap
-ac
-ap
+ce
 ap
 ap
 ap
+bq
 ap
 ap
 ap
-ac
+cj
 ab
 aa
 aa
@@ -2171,16 +2271,16 @@ ae
 ae
 aH
 aM
-aM
+bM
 aN
 ab
+bM
 aM
 aM
-aM
-aM
+bM
 ab
 aM
-aN
+ck
 aM
 aH
 ae
@@ -2243,7 +2343,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 aq
 ae
 aI
@@ -2262,7 +2362,7 @@ aM
 aI
 ae
 bO
-ae
+cm
 ab
 aa
 aa
@@ -2551,7 +2651,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 ar
 ae
 aI
@@ -2570,7 +2670,7 @@ aM
 aI
 ae
 bP
-ae
+cm
 ab
 aa
 aa
@@ -2636,10 +2736,10 @@ aN
 aM
 aM
 ab
+cf
 aM
 aM
-aM
-aM
+ca
 ab
 aM
 aM
@@ -2859,7 +2959,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 as
 ae
 aI
@@ -2878,7 +2978,7 @@ aM
 aI
 ae
 bQ
-ae
+cm
 ab
 aa
 aa
@@ -3096,14 +3196,14 @@ ae
 aH
 aM
 aM
-aM
+ca
 ab
+cf
 aM
 aM
-aM
-aN
+ch
 ab
-aM
+cf
 aM
 aM
 bG
@@ -3167,7 +3267,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 at
 ae
 aI
@@ -3186,7 +3286,7 @@ aM
 aI
 ae
 bR
-ae
+cm
 ab
 aa
 aa
@@ -3255,9 +3355,9 @@ ab
 aM
 aM
 aM
-aM
+ca
 ab
-aM
+cf
 aM
 aM
 bG
@@ -3327,9 +3427,9 @@ af
 aH
 aM
 aN
-aM
+ca
 ab
-aM
+cf
 aM
 aM
 aM
@@ -3475,7 +3575,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 au
 ae
 aI
@@ -3494,7 +3594,7 @@ aM
 aI
 ae
 bS
-ae
+cm
 ab
 aa
 aa
@@ -3714,10 +3814,10 @@ aN
 aM
 aM
 ab
+cf
 aM
 aM
-aM
-aM
+ca
 ab
 aM
 aM
@@ -3783,7 +3883,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 av
 ae
 aI
@@ -3802,7 +3902,7 @@ aM
 aI
 ae
 bT
-ae
+cm
 ab
 aa
 aa
@@ -4091,7 +4191,7 @@ aa
 aa
 aa
 ab
-ae
+ah
 aw
 ae
 aI
@@ -4110,7 +4210,7 @@ aM
 aI
 ae
 bU
-ae
+cm
 ab
 aa
 aa
@@ -4253,10 +4353,10 @@ aM
 aM
 aM
 ab
+cf
 aM
 aM
-aM
-aM
+ca
 ab
 aM
 aP
@@ -4399,26 +4499,26 @@ aa
 aa
 aa
 ab
-ah
+aC
 ae
 aE
 aJ
 aN
-aM
-aM
-ab
-aM
-aM
-aM
+bZ
 aM
 ab
 aM
 aM
+aM
+aM
+ab
+aM
+bZ
 aN
 bH
 ae
 bV
-ae
+cm
 ab
 aa
 aa
@@ -4556,7 +4656,7 @@ ab
 ai
 ax
 am
-an
+bb
 am
 am
 aR
@@ -4569,7 +4669,7 @@ ab
 bv
 aM
 aM
-aM
+bM
 aM
 aM
 aM
@@ -4636,12 +4736,12 @@ am
 am
 am
 am
-aS
+cb
 aW
+cf
 aM
 aM
-aM
-aM
+ca
 ab
 bw
 aM
@@ -4790,12 +4890,12 @@ an
 am
 am
 am
-am
+cc
 ab
+cf
 aM
 aM
-aM
-aN
+ch
 ab
 aM
 aM
@@ -5023,18 +5123,18 @@ am
 an
 am
 ab
-bb
+cg
 be
 be
-bq
+ci
 ab
-aM
+cf
 bx
 bC
 bC
 bD
 bX
-aM
+ca
 ab
 aa
 aa
@@ -5175,7 +5275,7 @@ aF
 aK
 am
 am
-am
+cc
 ab
 bd
 bm
@@ -5401,7 +5501,7 @@ aa
 aa
 ab
 ao
-aC
+aS
 aG
 ab
 aO
@@ -5416,7 +5516,7 @@ ab
 aM
 aM
 aM
-bM
+cl
 aM
 aM
 aM

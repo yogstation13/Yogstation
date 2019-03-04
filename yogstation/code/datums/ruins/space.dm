@@ -31,3 +31,9 @@
 	description = "No questions asked. No shoes/foot protection, no service. \
 		No tabs. No violence in the inside areas. That's it. Welcome to the \
 		Rampant Golem and Yellow Hound. Can I take your order?"
+
+/datum/map_template/ruin/space/yogstation/goat_transport
+	id = "goatresearch"
+	suffix = "goatresearch.dmm"
+	name= "Exotic Goat Transport Vessel"
+	description = "A ship transporting goats attacked by goats how ironic..."

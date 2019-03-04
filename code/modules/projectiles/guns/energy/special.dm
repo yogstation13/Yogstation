@@ -58,8 +58,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
-	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
-	selfcharge = 1
+	clumsy_check = 0 //Might as well let clowns use it.
+	/*selfcharge = 1*/ // Not admeme only anymore
 
 /obj/item/gun/energy/meteorgun/pen
 	name = "meteor pen"

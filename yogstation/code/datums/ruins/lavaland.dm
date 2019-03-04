@@ -188,3 +188,11 @@
 	suffix = "lavaland_surface_gas_station.dmm"
 	allow_duplicates = FALSE
 	cost = 10
+
+/datum/map_template/ruin/lavaland/yogstation/king_goat_boss
+	name = "King Goat Boss Ruin"
+	id = "kinggoatboss"
+	description = "Abandon All Hope Ye Who Enter Here."
+	suffix = "kinggoatboss.dmm"
+	always_place = TRUE
+	allow_duplicates = FALSE

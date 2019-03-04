@@ -259,8 +259,9 @@
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(phase3)
-		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and his wool sheds off!</span>")
-		//new /obj/item/towel/fleece(src.loc)
+		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
+		new /obj/structure/ladder/unbreakable/goat(src.loc)
+		new /obj/item/gun/energy/meteorgun(src.loc)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
