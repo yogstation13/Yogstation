@@ -340,7 +340,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/yellow
 	name = "Yellow Goat"
 	desc = "MY EYES THEY BURN."
-	icon = 'yogstation/icons/mob/goats/yellow_goat.dmi'
+	icon = 'yogstation/icons/mob/goats/goat_yellow.dmi'
 	icon_state = "yellowgoat"
 	icon_living = "yellowgoat"
 	icon_dead = "yellowgoat_dead"

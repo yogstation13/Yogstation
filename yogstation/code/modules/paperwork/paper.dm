@@ -18,3 +18,7 @@
 	        Security: Low <br>\
 	        Info: Ocular gland extracted from AO-6 during experiment EX-56b. Highly aggressive. After breach 91-A subject was neutralized with a solution of poisons. Subject is to be injected with the solution every half-hour to keep it in a semi-comatose state. Solution recipe stored at Site 11-X archives. <br> <br>\
 	        <i>The rest of the paper is covered in scribbles of strange symbols, made of dried blood.</i>"
+
+/obj/item/paper/crumpled/bloody/goattransport
+	name = "Bloody Captains Note"
+	info = "<i> The text is written in shaky and rushed handwriting. <i> <br> <br> This is captain John Lamario of the Goat Tech Industries Transport Vessel if you are reading this I am here to let you know that this ship has just been attacked by some weird goats with robes on there backs and they are currently attempting to breakdown my door I dont think anyone else is left... <br> <br> They are almost threw the door I dont know how they got on the ship they just somehow teleported on I bet the Animal Rights Consortium have something to do with this... <br> <br> They are rushing in now it seems I will have to end it here if your reading this tell my wife I lov- <i> The writing cuts off here covered in blood... <i>"
