@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Lings will copy the notes of people they absorb (including PDA codes, antag objectives, and objective conspirators) properly."

@@ -91,39 +91,20 @@
 					if(kw)
 						if(!kw.Parse(src))
 							return
-				if(/token/word)
-					var/token/ntok
-					if(index+1>tokens.len)
-						errors+=new/scriptError/BadToken(curToken)
-						continue
-					ntok=tokens[index+1]
-					if(!istype(ntok, /token/symbol))
-						errors+=new/scriptError/BadToken(ntok)
-						continue
-					if(ntok.value=="(")
-						ParseFunctionStatement()
-					else if(options.assign_operators.Find(ntok.value))
-						ParseAssignment()
-					else
-						errors+=new/scriptError/BadToken(ntok)
-						continue
-					if(!istype(curToken, /token/end))
-						errors+=new/scriptError/ExpectedToken(";", curToken)
 						continue
 				if(/token/symbol)
 					if(curToken.value=="}")
 						if(!EndBlock())
 							errors+=new/scriptError/BadToken(curToken)
 							continue
-					else
-						errors+=new/scriptError/BadToken(curToken)
 						continue
 				if(/token/end)
-					warnings+=new/scriptError/BadToken(curToken)
 					continue
-				else
-					errors+=new/scriptError/BadToken(curToken)
-					return
+			curBlock.statements += ParseExpression()
+			if(!istype(curToken, /token/end))
+				errors+=new/scriptError/ExpectedToken(";", curToken)
+				continue
+
 		return global_block
 
 	proc
@@ -143,48 +124,3 @@
 			if(curBlock==global_block) return 0
 			curBlock=blocks.Pop()
 			return 1
-
-		ParseAssignment()
-			var/name=curToken.value
-			if(!options.IsValidID(name))
-				errors+=new/scriptError/InvalidID(curToken)
-				return
-			NextToken()
-			var/t=options.binary_operators[options.assign_operators[curToken.value]]
-			var/node/statement/VariableAssignment/stmt=new()
-			stmt.var_name=new(name)
-			NextToken()
-			if(t)
-				stmt.value=new t()
-				stmt.value:exp=new/node/expression/value/variable(stmt.var_name)
-				stmt.value:exp2=ParseExpression()
-			else
-				stmt.value=ParseExpression()
-			curBlock.statements+=stmt
-
-		ParseFunctionStatement()
-			if(!istype(curToken, /token/word))
-				errors+=new/scriptError("Bad identifier in function call.")
-				return
-			var/node/statement/FunctionCall/stmt=new
-			stmt.func_name=curToken.value
-			NextToken() //skip function name
-			if(!CheckToken("(", /token/symbol)) //Check for and skip open parenthesis
-				return
-			var/loops = 0
-			for()
-				loops++
-				if(loops>=800)
-					errors +=new/scriptError("Cannot find ending params.")
-					return
-
-				if(!curToken)
-					errors+=new/scriptError/EndOfFile()
-					return
-				if(istype(curToken, /token/symbol) && curToken.value==")")
-					curBlock.statements+=stmt
-					NextToken() //Skip close parenthesis
-					return
-				var/node/expression/P=ParseParamExpression(check_functions = 1)
-				stmt.parameters+=P
-				if(istype(curToken, /token/symbol) && curToken.value==",") NextToken()

@@ -24,15 +24,5 @@
 			if(!isnum(value))
 				value=text2num(value)
 				ASSERT(!isnull(value))
-	accessor
-		var/object
-		var/member
-
-		New(object, member, l=0, c=0)
-			src.object=object
-			src.member=member
-			src.value="[object].[member]" //for debugging only
-			src.line=l
-			src.column=c
 
 	end

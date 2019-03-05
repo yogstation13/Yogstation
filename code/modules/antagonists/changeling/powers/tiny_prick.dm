@@ -122,8 +122,9 @@
 	dna_cost = 1
 
 /obj/item/melee/arm_blade/false
-	desc = "A grotesque mass of flesh that used to be your arm. Although it looks dangerous at first, you can tell it's actually quite dull and useless."
-	force = 5 //Basically as strong as a punch
+	desc = "A grotesque mass of flesh that used to be your arm. On the bright side, at least you can cut wood with this."
+	force = 30 //yogs -- Prevents dual-stinging people with this sting to render them defenseless.
+	//daily reminder that xantam is a closet furry
 	fake = TRUE
 
 /datum/action/changeling/sting/false_armblade/can_sting(mob/user, mob/target)
@@ -197,7 +198,8 @@
 
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "mute sting")
-	target.silent += 30
+	if(target.reagents)
+		target.reagents.add_reagent("mutetoxin", 17)
 	return TRUE
 
 /datum/action/changeling/sting/blind
@@ -228,12 +230,9 @@
 
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "LSD sting")
-	addtimer(CALLBACK(src, .proc/hallucination_time, target), rand(300,600))
+	if(target.reagents)
+		target.reagents.add_reagent("mindbreaker", 30)
 	return TRUE
-
-/datum/action/changeling/sting/LSD/proc/hallucination_time(mob/living/carbon/target)
-	if(target)
-		target.hallucination = max(90, target.hallucination)
 
 /datum/action/changeling/sting/cryo
 	name = "Cryogenic Sting"
