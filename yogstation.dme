@@ -3075,6 +3075,7 @@
 #include "yogstation\code\modules\mob\living\silicon\silicon.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\ai.dm"
 #include "yogstation\code\modules\mob\living\silicon\ai\vox_sounds.dm"
+#include "yogstation\code\modules\mob\living\silicon\ai\freelook\eye.dm"
 #include "yogstation\code\modules\mob\living\silicon\robot\robot.dm"
 #include "yogstation\code\modules\mob\living\silicon\robot\robot_modules.dm"
 #include "yogstation\code\modules\mob\living\simple_animal\friendly\chocobo.dm"
