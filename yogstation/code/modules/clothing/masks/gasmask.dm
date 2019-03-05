@@ -32,8 +32,8 @@
 	else
 		return FALSE
 
-/obj/item/clothing/mask/gas/metro/proc/Breathe(mob/user)
-	filter.time_remaining--
+/obj/item/clothing/mask/gas/metro/proc/Breathe(mob/user, var/filterUsage = 1)
+	filter.time_remaining -= filterUsage
 	if(filter.time_remaining <= 0)
 		EmptyFilter(user)
 
