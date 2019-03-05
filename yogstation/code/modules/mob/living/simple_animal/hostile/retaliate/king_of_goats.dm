@@ -16,7 +16,7 @@
 	speak_emote = list("brays in a booming voice")
 	emote_hear = list("brays in a booming voice")
 	emote_see = list("stamps a mighty foot, shaking the surroundings")
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 12)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 12, /obj/item/clothing/head/yogs/goatpelt/king = 1) //lets ignore that this shouldnt be possible shail we
 	response_help  = "placates"
 	response_harm   = "assaults"
 	attacktext = "brutalized"
@@ -25,6 +25,7 @@
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
 	maxHealth = 500
+	armour_penetration = 35
 	melee_damage_lower = 35
 	melee_damage_upper = 55
 	minbodytemp = 0
@@ -51,9 +52,10 @@
 	desc = "The King of Kings, God amongst men, and your superior in every way."
 	icon_state = "king_goat2"
 	icon_living = "king_goat2"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 36)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 36, /obj/item/clothing/head/yogs/goatpelt/king = 1)
 	health = 750
 	maxHealth = 750
+	armour_penetration = 50
 	melee_damage_lower = 40
 	melee_damage_upper = 60
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
@@ -97,6 +99,7 @@
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
+	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 
@@ -108,6 +111,7 @@
 	icon_dead = "goat_guard_m_dead"
 	health = 200
 	maxHealth = 200
+	armour_penetration = 15
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3

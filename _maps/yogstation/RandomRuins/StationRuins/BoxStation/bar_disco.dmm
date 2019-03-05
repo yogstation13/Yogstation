@@ -155,6 +155,7 @@
 /area/crew_quarters/bar)
 "ax" = (
 /obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/storage/box/goatcubes,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},

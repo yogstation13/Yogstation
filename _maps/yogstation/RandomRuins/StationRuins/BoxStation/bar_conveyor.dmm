@@ -167,6 +167,7 @@
 /area/crew_quarters/bar)
 "az" = (
 /obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/storage/box/goatcubes,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},

@@ -16,7 +16,7 @@
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c100,
 /obj/structure/table,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "ad" = (
 /obj/machinery/door/airlock{
@@ -31,13 +31,13 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "af" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 28
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "ag" = (
 /turf/closed/wall,
@@ -68,7 +68,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -83,7 +83,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ak" = (
 /obj/machinery/door/window/southleft{
@@ -114,7 +114,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "an" = (
 /obj/machinery/door/airlock/maintenance{
@@ -158,7 +158,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aq" = (
 /obj/machinery/computer/slot_machine,
@@ -172,7 +172,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ar" = (
 /obj/effect/landmark/event_spawn,
@@ -196,7 +196,7 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "au" = (
 /turf/open/floor/fakespace,
@@ -222,7 +222,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ax" = (
 /obj/machinery/disposal/bin,
@@ -243,15 +243,15 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ay" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "az" = (
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aA" = (
 /obj/machinery/camera{
@@ -264,7 +264,7 @@
 /obj/machinery/camera{
 	c_tag = "Bar Storage"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aC" = (
 /obj/structure/disposalpipe/segment,
@@ -311,7 +311,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -332,7 +332,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aI" = (
 /turf/open/floor/mineral/titanium/blue,
@@ -362,7 +362,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aL" = (
 /obj/structure/chair/comfy/shuttle{
@@ -378,7 +378,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aM" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -391,7 +391,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aN" = (
 /obj/structure/chair/comfy/shuttle{
@@ -407,7 +407,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aO" = (
 /obj/machinery/computer{
@@ -428,7 +428,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aP" = (
 /obj/machinery/airalarm{
@@ -443,7 +443,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/wardrobe/bar_wardrobe,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aQ" = (
 /obj/machinery/icecream_vat,
@@ -460,7 +460,7 @@
 	icon_state = "pipe11-3";
 	dir = 9
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aS" = (
 /obj/effect/turf_decal/loading_area,
@@ -471,7 +471,7 @@
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aU" = (
 /obj/structure/disposalpipe/segment,
@@ -484,7 +484,7 @@
 /area/crew_quarters/kitchen)
 "aV" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -500,7 +500,7 @@
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "aY" = (
 /obj/machinery/computer{
@@ -517,7 +517,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aZ" = (
 /obj/structure/closet/gmcloset,
@@ -526,7 +526,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "ba" = (
 /obj/machinery/light{
@@ -538,7 +538,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "bc" = (
 /obj/structure/disposalpipe/segment,
@@ -561,7 +561,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "bf" = (
 /obj/machinery/door/airlock{
@@ -578,6 +578,7 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/freezer/meat,
+/obj/item/storage/box/goatcubes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "bh" = (
@@ -616,7 +617,7 @@
 	dir = 1;
 	layer = 2.9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bl" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -627,7 +628,7 @@
 	name = "Bar Storage";
 	req_access_txt = "25"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "bm" = (
 /obj/structure/grille,
@@ -637,7 +638,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bn" = (
 /obj/effect/landmark/blobstart,
@@ -660,7 +661,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bq" = (
 /obj/structure/table/reinforced,
@@ -692,7 +693,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bu" = (
 /obj/structure/table,
@@ -709,7 +710,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bv" = (
 /obj/structure/sign/poster/ripped,
@@ -728,7 +729,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "by" = (
 /obj/effect/landmark/start/bartender,
@@ -745,7 +746,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bz" = (
 /obj/machinery/light{
@@ -761,7 +762,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bA" = (
 /obj/machinery/vending/boozeomat,
@@ -775,7 +776,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bB" = (
 /obj/structure/sink/kitchen{
@@ -803,7 +804,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bF" = (
 /obj/structure/extinguisher_cabinet{
@@ -815,13 +816,13 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bH" = (
 /obj/item/radio/intercom{
@@ -830,7 +831,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bI" = (
 /obj/machinery/airalarm{
@@ -841,7 +842,7 @@
 	c_tag = "Kitchen";
 	dir = 2
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bJ" = (
 /obj/structure/table/reinforced,
@@ -849,7 +850,7 @@
 /area/crew_quarters/bar)
 "bK" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bL" = (
 /obj/machinery/vending/dinnerware,
@@ -881,7 +882,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bO" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -895,7 +896,7 @@
 	dir = 4
 	},
 /mob/living/carbon/monkey/punpun,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bP" = (
 /obj/structure/table/reinforced,
@@ -908,7 +909,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bQ" = (
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bR" = (
 /obj/effect/landmark/start/cook,
@@ -916,7 +917,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bS" = (
 /obj/structure/disposalpipe/segment{
@@ -930,7 +931,7 @@
 	icon_state = "pipe11-3";
 	dir = 9
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bT" = (
 /obj/structure/disposalpipe/segment{
@@ -940,19 +941,19 @@
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "bW" = (
 /obj/effect/landmark/start/assistant,
@@ -966,7 +967,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bX" = (
 /obj/effect/landmark/start/bartender,
@@ -980,7 +981,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bY" = (
 /obj/machinery/door/poddoor/preopen{
@@ -1015,7 +1016,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ca" = (
 /obj/structure/chair/comfy/shuttle{
@@ -1034,7 +1035,7 @@
 "cc" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cd" = (
 /obj/structure/table,
@@ -1044,12 +1045,12 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "ce" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cf" = (
 /obj/structure/table,
@@ -1058,11 +1059,11 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cg" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "ch" = (
 /obj/structure/table/reinforced,
@@ -1087,7 +1088,7 @@
 	layer = 5
 	},
 /obj/item/stack/packageWrap,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "ck" = (
 /obj/structure/table,
@@ -1098,16 +1099,16 @@
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cl" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cm" = (
 /obj/machinery/deepfryer,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cn" = (
 /obj/machinery/firealarm{
@@ -1136,7 +1137,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cp" = (
 /obj/machinery/smartfridge/drinks,
@@ -1150,11 +1151,11 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cq" = (
 /obj/effect/landmark/start/cook,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cr" = (
 /obj/machinery/requests_console{
@@ -1184,7 +1185,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ct" = (
 /obj/effect/landmark/event_spawn,
@@ -1201,7 +1202,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cu" = (
 /obj/machinery/door/firedoor,
@@ -1236,11 +1237,11 @@
 /area/crew_quarters/bar)
 "cx" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cy" = (
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cz" = (
 /obj/structure/disposalpipe/segment{
@@ -1253,7 +1254,7 @@
 	pixel_y = -24;
 	req_access_txt = "28"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cA" = (
 /obj/machinery/disposal/bin,
@@ -1285,7 +1286,7 @@
 	c_tag = "Bar West";
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cC" = (
 /obj/machinery/firealarm{
@@ -1302,7 +1303,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cD" = (
 /obj/machinery/camera{
@@ -1319,7 +1320,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cE" = (
 /obj/structure/noticeboard{
@@ -1337,7 +1338,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cF" = (
 /obj/machinery/airalarm{
@@ -1354,7 +1355,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cG" = (
 /obj/structure/window/reinforced{
@@ -1385,7 +1386,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cJ" = (
 /obj/structure/table/reinforced,
@@ -1433,7 +1434,7 @@
 	},
 /obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cN" = (
 /obj/effect/landmark/event_spawn,
@@ -1446,7 +1447,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
 "cP" = (
 /obj/structure/chair/comfy/shuttle{
