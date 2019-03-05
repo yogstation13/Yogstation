@@ -102,3 +102,152 @@
 		return T.return_air()
 	else
 		return null
+
+/obj/effect/mob_spawn/human/bus/crewmember
+	name = "cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen uniform underneath the ice. The machine is fully operational."
+	mob_name = "a crew member"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	flavour_text = "<span class='big bold'>You are a crew member working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
+	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
+	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
+	Listen to the captain and help your fellow crew members survive. Do not attempt to leave the ship unless instructed to.</b>"
+	outfit = /datum/outfit/crewmember
+	assignedrole = "Exploratory Crew"
+
+/obj/effect/mob_spawn/human/bus/crewmember/Destroy()
+	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
+	return ..()
+	
+/datum/outfit/crewmember
+	name = "Exploratory Crew Member"
+	uniform = /obj/item/clothing/under/rank/scientist
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	suit = /obj/item/clothing/suit/toggle/labcoat/science
+	back = /obj/item/storage/backpack/science
+	r_pocket = /obj/item/tank/internals/emergency_oxygen
+	id = /obj/item/card/id/bus/crewmember
+	
+/obj/effect/mob_spawn/human/bus/crewmember/sec
+	name = "security cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
+	mob_name = "a security officer"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	flavour_text = "<span class='big bold'>You are a security officer working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
+	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
+	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
+	Listen to the captain and prevent the crew from panicking. Do not attempt to leave the ship unless instructed to.</b>"
+	outfit = /datum/outfit/crewmember/sec
+	assignedrole = "Exploratory Crew Security"
+
+/obj/effect/mob_spawn/human/bus/crewmember/sec/Destroy()
+	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
+	return ..()
+	
+/datum/outfit/crewmember/sec
+	name = "Exploratory Security Officer"
+	
+	uniform = /obj/item/clothing/under/syndicate
+	shoes = /obj/item/clothing/shoes/combat
+	suit = /obj/item/clothing/suit/armor/vest
+	gloves = /obj/item/clothing/gloves/combat
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	head = /obj/item/clothing/head/helmet/swat
+	mask = /obj/item/clothing/mask/gas
+	id = /obj/item/card/id/bus/crewmember/sec
+	r_pocket = /obj/item/tank/internals/emergency_oxygen
+	l_pocket = /obj/item/flashlight/seclite
+	back = /obj/item/storage/backpack/security
+	
+	
+/obj/effect/mob_spawn/human/bus/crewmember/captain
+	name = "command cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
+	mob_name = "a security officer"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	flavour_text = "<span class='big bold'>You are a captain controlling a Nanotrasen,</span><b> state of the art research ship. It has been quite a while \
+	since you left port. The clock in the cryopod does not match the planned wakeup date. You should check \
+	the bridge and figure out what is going on. A dark feeling swells in your gut as you climb out of your pod. \
+	Ensure that your crew survives this journey.. Do not attempt to leave the ship unless instructed to.</b>"
+	outfit = /datum/outfit/crewmember/captain
+	assignedrole = "Exploratory Crew Captain"
+
+/obj/effect/mob_spawn/human/bus/crewmember/captain/Destroy()
+	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
+	return ..()
+
+/datum/outfit/crewmember/captain
+	name = "Exploratory Security Captain"
+	
+	id = /obj/item/card/id/bus/crewmember/captain
+	glasses = /obj/item/clothing/glasses/sunglasses
+
+	gloves = /obj/item/clothing/gloves/color/captain
+	uniform =  /obj/item/clothing/under/rank/captain
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/alt
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	head = /obj/item/clothing/head/caphat/parade
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	back = /obj/item/storage/backpack/captain
+	
+/obj/item/card/id/bus/crewmember/captain
+	name = "Captain"
+	desc = "An employee ID used to access areas around the ship."
+	access = list(ACCESS_CAPTAIN, ACCESS_SECURITY, ACCESS_RESEARCH)
+
+/obj/item/card/id/bus/crewmember/captain/New()
+	..()
+	registered_account = new("Captain", FALSE)
+	
+/obj/item/card/id/bus/crewmember/sec
+	name = "Security Officer"
+	desc = "An employee ID used to access areas around the ship."
+	access = list(ACCESS_SECURITY, ACCESS_RESEARCH)
+
+/obj/item/card/id/bus/crewmember/sec/New()
+	..()
+	registered_account = new("Security Officer", FALSE)
+
+/obj/item/card/id/bus/crewmember
+	name = "Crew member"
+	desc = "An employee ID used to access areas around the ship."
+	access = list(ACCESS_RESEARCH)
+
+/obj/item/card/id/bus/crewmember/New()
+	..()
+	registered_account = new("Crew member", FALSE)
+	
+/obj/effect/mob_spawn/human/bus/alien
+	name = "grown alien egg"
+	desc = "A pulsating alien egg. You can barely recognise what looks to be an alien larva inside."
+	mob_name = "an alien larva"
+	icon = 'icons/mob/alien.dmi'
+	icon_state = "egg"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_type = /mob/living/carbon/alien/larva
+	flavour_text = "<span class='big bold'>You are an alien.</span><b> You awoke on this metal bird. You have been in stasis \
+	since you arrived. But you detect heat onboard this vessel and have awoken. Be careful \
+	not to alert the natives of this vessel before you are strong enough. A feeling of fear envelops as you step out of your egg. \
+	Ensure that your hive survives this journey.. Do not attempt to leave this vessel unless instructed to.</b>"
+	assignedrole = "Exploratory Alien"
+
+/obj/effect/mob_spawn/human/bus/alien/Destroy()
+	new/obj/structure/alien/egg/burst(get_turf(src))
+	return ..()

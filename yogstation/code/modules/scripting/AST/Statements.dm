@@ -6,16 +6,9 @@
 	An object representing a single instruction run by an interpreter.
 */
 /node/statement
-/*
-	Class: FunctionCall
-	Represents a call to a function.
-*/
-//
-	FunctionCall
-		var
-			func_name
-			node/identifier/object
-			list/parameters=new
+	New(token)
+		.=..()
+		src.token=token
 
 /*
 	Class: FunctionDefinition

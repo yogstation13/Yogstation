@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- yogs -->
   <title>Create Object</title>
   <style type="text/css">
     body
@@ -20,6 +21,8 @@
     p.lic {
       font-size: 6pt;
     }
+    .option.selected, .option.selected:hover {background-color: #4488ff;} /* yogs*/
+    .option:hover {background-color:} /* yogs*/
   </style>
 </head>
 
@@ -28,7 +31,7 @@
 		<input type="hidden" name="src" value="/* ref src */">
 		/* hreftokenfield */
 
-		Type <input type="text" name="filter" value="" onkeypress="submitFirst(event)" style="width:280px;height:25"> <input type = "button" value = "Search" onclick = "updateSearch()" /><br>
+		Type <input type="text" name="filter" value="" style="width:280px;height:25" oninput="updateSearch()"> <!-- yogs - oninput and remove onkeypress --> <input type = "button" value = "Search" onclick = "updateSearch()" /><br>
 		Offset: <input type="text" name="offset" value="x,y,z" style="width:250px">
 		
 		A <input type="radio" name="offset_type" value="absolute">
@@ -45,33 +48,58 @@
 				<option value='inmarked'>In marked object</option>
 			</select>
 		<br><br>
-		<select name="object_list" id="object_list" size="18" multiple style="width:98%"></select><br>
-		<input type="submit" value="spawn">
+<!--yogs start-->
+		<div id="object_list_container" style="width:98%;height: 300px;overflow:auto"></div>
+		<input type="hidden" name="object_list" value="">
+		<input type="submit" value="spawn" id="spawn_button" disabled>
+<!--yogs end-->
 	</form>
 	
 	<script language="JavaScript">
 		var old_search = "";
 		var object_list = document.spawner.object_list;
+		var object_list_container = document.getElementById("object_list_container"); // yogs
 		var object_paths = null /* object types */;
 		var objects = object_paths == null ? new Array() : object_paths.split(";");
 		
 		document.spawner.filter.focus();
+
+		// yogs start
+		for(var i = 0; i < objects.length; i++)
+		{
+			var option_div = document.createElement("div");
+			option_div.setAttribute("data-typepath", objects[i]);
+			option_div.textContent = objects[i];
+			option_div.className = "option";
+			object_list_container.appendChild(option_div);
+		}
 		
 		function populateList(from_list)
 		{
-			object_list.options.length = 0;
-			
-			//Yogs start -- Faster create_object
-            var str = "";
-            var i;
-            for (i = 0; i < from_list.length; i++)
-            {
-                str += "<option value='" + from_list[i] + "'>" + from_list[i] + "</option>";
-            }
-            object_list.innerHTML = str
-			document.spawner.innerHTML += "";
-			//Yogs end
+			var obj = {};
+			for(var i = 0; i < from_list.length; i++) obj[from_list[i]] = true;
+			for(var i = 0; i < object_list_container.childNodes.length; i++) {
+				var elem = object_list_container.childNodes[i];
+				var typepath = elem.getAttribute("data-typepath");
+				elem.style.display = obj[typepath] ? "block" : "none";
+				if(elem.className == "option selected" && elem.style.display == "none") {
+					elem.className = "option";
+					document.getElementById("spawn_button").disabled = true;
+				}
+			}
 		}
+		
+		document.getElementById("object_list_container").onclick = function onclick(e) {
+			if(e.target.className == "option") {
+				for(var i = 0; i < object_list_container.childNodes.length; i++) {
+					object_list_container.childNodes[i].className = "option";
+				}
+				e.target.className = "option selected";
+				document.getElementById("spawn_button").disabled = false;
+				object_list.value = e.target.getAttribute("data-typepath");
+			}
+		}
+		// yogs end
 		
 		function updateSearch()
 		{
