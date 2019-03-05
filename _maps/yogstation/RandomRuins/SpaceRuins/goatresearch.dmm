@@ -274,8 +274,7 @@
 	dir = 8
 	},
 /obj/machinery/button{
-	id = "goatshutters";
-	step_y = 31
+	id = "goatshutters"
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
