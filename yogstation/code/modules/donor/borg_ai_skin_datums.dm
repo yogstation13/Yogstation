@@ -103,6 +103,12 @@
 	owner = "fluffe9911"
 	module_locked = "Peacekeeper"
 
+/datum/borg_skin/mrsparako
+	name = "Mr. Sparako"
+	icon_state = "mrsparako"
+	owner = "nickvr628"
+
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
