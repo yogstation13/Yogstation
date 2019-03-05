@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed candles not being extinguished by fire extinguishers, water containers, ect."
+  - bugfix: "Fixed candles not stopping processing when put out."
