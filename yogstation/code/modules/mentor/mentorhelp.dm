@@ -3,7 +3,7 @@
 	set name = "Mentorhelp"
 
 	if(is_mentor())
-		to_chat(src, "<notice>Mentors cannot mentorhelp, use msay instead!</notice>")
+		to_chat(src, "<span class='notice'>Mentors cannot mentorhelp, use msay instead!</span>")
 		return
 
 	//clean the input msg

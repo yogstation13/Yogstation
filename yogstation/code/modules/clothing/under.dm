@@ -37,3 +37,11 @@
 	item_state = "soviet_dress_uniform"
 	item_color = "soviet_dress_uniform"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/lederhosen
+	name = "lederhosen"
+	desc = "<i>'Nothing like wearing a lederhosen for another hard day at work on a space station.'</i>"
+	icon_state = "lederhosen"
+	item_state = "lederhosen"
+	item_color = "lederhosen"
+	can_adjust = FALSE

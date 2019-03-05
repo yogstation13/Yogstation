@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "bank_card_talk is now limited to 1 tile in range, to reduce spam."

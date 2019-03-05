@@ -1,0 +1,6 @@
+author: "  Theos"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a bunch of posing emotes"
+  - rscadd: "Adds dabbing :simondab2:"
+  - rscadd: "ports most of super3222's emotes from prebase"
