@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Added a new type of bot: the firebot."
+  - rscadd: "Firebots can be constructed out of extinguisher + borg arm > red fire helmet > prox sensor"

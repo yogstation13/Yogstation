@@ -16,7 +16,7 @@
 /*
 	Macros: Operator Precedence
 	The higher the value, the lower the priority in the precedence.
-	
+
 	OOP_OR				- Logical or
 	OOP_AND				- Logical and
 	OOP_BIT				- Bitwise operations
@@ -28,6 +28,7 @@
 	OOP_UNARY			- Unary Operators
 	OOP_GROUP			- Parentheses
 */
+#define OOP_ASSIGN 0
 #define OOP_OR 1			//||
 #define OOP_AND 2			//&&
 #define OOP_BIT 3			//&, |
@@ -43,6 +44,7 @@
 	Class: node
 */
 /node
+	var/token/token // for line number informatino
 	proc
 		ToString()
 			return "[src.type]"
@@ -53,9 +55,10 @@
 	var
 		id_name
 
-	New(id)
+	New(id, token)
 		.=..()
 		src.id_name=id
+		src.token = token
 
 	ToString()
 		return id_name
@@ -75,22 +78,40 @@
 			name
 			precedence
 
-	New()
+	New(token, exp)
 		.=..()
 		if(!src.name) src.name="[src.type]"
+		src.token = token
+		src.exp = exp
 
 	ToString()
 		return "operator: [name]"
+
+/node/expression/member
+	var/node/expression/object
+	var/tmp/temp_object // so you can pre-eval it, used for function calls and assignments
+	New(token)
+		src.token = token
+		return ..()
+
+/node/expression/member/dot
+	var/node/identifier/id
+
+/node/expression/member/brackets
+	var/node/expression/index
+	var/tmp/temp_index
+
 
 /*
 	Class: FunctionCall
 */
 /node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
-	var
-		func_name
-		node/identifier/object
-		list/parameters=new
+	var/node/expression/function
+	var/list/parameters=list()
+	New(token)
+		.=..()
+		src.token = token
 
 /*
 	Class: literal
@@ -117,13 +138,21 @@
 			id
 
 
-	New(ident)
+	New(ident, token)
 		.=..()
+		src.token = token
 		id=ident
 		if(istext(id))id=new(id)
 
 	ToString()
 		return src.id.ToString()
+
+/node/expression/value/list_init
+	var/list/init_list
+
+	New(token)
+		. = ..()
+		src.token = token
 
 /*
 	Class: reference
@@ -132,8 +161,9 @@
 	var
 		datum/value
 
-	New(value)
+	New(value, token)
 		.=..()
+		src.token = token
 		src.value=value
 
 	ToString()

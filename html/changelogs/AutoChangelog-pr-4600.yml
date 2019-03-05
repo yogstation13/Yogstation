@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Mentors will longer be yelled at for 'insufficient rights' when attempting to mentorfollow."
