@@ -1,0 +1,5 @@
+author: "Altoids1"
+delete-after: true 
+changes: 
+  - bugfix: "fixes some hygiene runtimes"
+  - tweak: "hygiene sprite is a bit more transparent"
