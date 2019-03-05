@@ -21,7 +21,7 @@
 /mob/camera/aiEye/Initialize()
 	. = ..()
 	GLOB.aiEyes += src
-	icon_state = "ai_camera" + (GLOB.aiEYES.len % 3) // Yogs -- multicoloured AI eyes
+	icon_state = "ai_camera" + ((GLOB.aiEYES).len % 3) // Yogs -- multicoloured AI eyes
 	update_ai_detect_hud()
 	setLoc(loc, TRUE)
 
