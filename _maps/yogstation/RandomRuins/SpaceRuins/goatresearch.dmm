@@ -476,7 +476,7 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bO" = (
-/mob/living/simple_animal/hostile/retaliate/goat/spiffles,
+/mob/living/simple_animal/hostile/retaliate/goat/paper,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "bP" = (
@@ -618,7 +618,24 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"zw" = (
+"wj" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/extinguisher,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"EA" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/extinguisher,
+/turf/open/floor/mineral/titanium,
+/area/ruin/powered)
+"OB" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/powered)
 
@@ -1579,14 +1596,14 @@ aa
 aa
 aa
 ab
-zw
+OB
 cd
 ap
 ap
 ap
 ap
 cj
-zw
+OB
 ab
 aa
 aa
@@ -4505,14 +4522,14 @@ aE
 aJ
 aN
 bZ
-aM
+wj
 ab
 aM
 aM
 aM
 aM
 ab
-aM
+EA
 bZ
 aN
 bH

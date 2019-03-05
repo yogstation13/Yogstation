@@ -6,7 +6,7 @@
 	icon_living = "clown_goat"
 	icon_dead = "clown_goat_dead"
 	gold_core_spawnable = NO_SPAWN
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/clothing/mask/gas/clown_hat = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/clothing/mask/gas/clown_hat = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/ras
 	name = "Ralsei Goat"
@@ -17,7 +17,7 @@
 	icon_dead = "rasgoat_dead"
 	attacktext = "''hugs''"
 	gold_core_spawnable = NO_SPAWN
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/toy/plush/goatplushie/angry = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/toy/plush/goatplushie/angry = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/blue
 	name = "Blue Goat"
@@ -180,10 +180,10 @@
 	icon_living = "rainbowgoat"
 	icon_dead = "rainbowgoat_dead"
 	gold_core_spawnable = NO_SPAWN
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/storage/crayons = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/storage/crayons = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/spiffles
-	name = "Spiffles"
+	name = "Cute Goat"
 	desc = "Be careful he is a feisty one!"
 	icon = 'yogstation/icons/mob/goats/Spiffles.dmi'
 	icon_state = "spiffles"
@@ -258,7 +258,7 @@
 	icon_living = "watercolorgoat"
 	icon_dead = "watercolorgoat_dead"
 	gold_core_spawnable = NO_SPAWN
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/paint/anycolor = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/paint/anycolor = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
 /mob/living/simple_animal/hostile/retaliate/goat/brown
 	name = "Chestnut Goat"
@@ -323,9 +323,9 @@
 	name = "Purple Goat"
 	desc = "Why purple?!?"
 	icon = 'yogstation/icons/mob/goats/purple_goat.dmi'
-	icon_state = "purplegoat"
-	icon_living = "purplegoat"
-	icon_dead = "purplegoat_dead"
+	icon_state = "goatpurple"
+	icon_living = "goatpurple"
+	icon_dead = "goatpurple_dead"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/red
