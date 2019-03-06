@@ -108,6 +108,35 @@
 	icon_state = "mrsparako"
 	owner = "nickvr628"
 
+/datum/borg_skin/paladin_engi
+	name = "Paladin (engineering)"
+	icon_state = "paladin_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/abductor_engi
+	name = "Abductor (engineering)"
+	icon_state = "abductor_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/abductor_med
+	name = "Abductor (medical)"
+	icon_state = "abductor_med"
+	owner = null
+	module_locked = "Medical"
+
+/datum/borg_skin/drill
+	name = "Drillbot"
+	icon_state = "drillbot"
+	owner = null
+	module_locked = "Miner"
+
+/datum/borg_skin/snailborg
+	name = "Snailborg"
+	icon_state = "snailborg"
+	owner = null
+	module_locked = "Janitor"
 
 //Begin AI skins://
 /* These follow the same format as borg skins*/
@@ -133,7 +162,7 @@
 	icon_state = "dioAI"
 	owner = "atrealdonaldtrump"
 
-/datum/ai_skin/dio
+/datum/ai_skin/englandismycity
 	name = "Nick Crompton"
 	icon_state = "nickcrompton"
 	owner = "drderp3635"
