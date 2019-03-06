@@ -520,7 +520,7 @@
 				memory = null//Remove any memory they may have had.
 				log_admin("[key_name(usr)] removed [current]'s uplink.")
 			if("crystals")
-				if(check_rights(R_FUN, 0))
+				if(check_rights(R_ADMIN, 0)) //YOGS - changes R_FUN to R_ADMIN
 					var/datum/component/uplink/U = find_syndicate_uplink()
 					if(U)
 						var/crystals = input("Amount of telecrystals for [key]","Syndicate uplink", U.telecrystals) as null | num
@@ -537,7 +537,7 @@
 
 	else if (href_list["obj_announce"])
 		announce_objectives()
-	
+
 	// yogs start - Donor features, quiet round
 	else if (href_list["quiet_override"])
 		quiet_round = FALSE

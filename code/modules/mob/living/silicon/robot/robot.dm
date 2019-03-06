@@ -1002,6 +1002,7 @@
 		resize = 0.5
 		hasExpanded = FALSE
 		update_transform()
+	icon = initial(icon) //Should fix invisi-donorborgs ~ Kmc
 	module.transform_to(/obj/item/robot_module)
 
 	// Remove upgrades.

@@ -264,7 +264,7 @@
 	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
-	var/turf/T = get_turf(src)
+	var/turf/T = get_turf_global(src) // yogs - get_turf_global instead of get_turf
 	if (signal.data["done"] && (T.z in signal.levels))
 		return
 
@@ -303,7 +303,7 @@
 	if (freq == FREQ_CENTCOM)
 		return independent  // hard-ignores the z-level check
 	if (!(0 in level))
-		var/turf/position = get_turf(src)
+		var/turf/position = get_turf_global(src) // yogs - get_turf_global instead of get_turf
 		if(!position || !(position.z in level))
 			return FALSE
 

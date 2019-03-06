@@ -1,0 +1,4 @@
+author: " Skoglol"
+delete-after: true 
+changes: 
+  - bugfix: "Sleepy-pens now cause reactions, just like syringes."

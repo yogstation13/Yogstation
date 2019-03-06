@@ -22,7 +22,11 @@ endmap
 	#voteweight 1.5
 #endmap
 
-map metastation
+#map metastation
+	#minplayers 25
+#endmap
+
+map yogsmeta
 	minplayers 25
 endmap
 

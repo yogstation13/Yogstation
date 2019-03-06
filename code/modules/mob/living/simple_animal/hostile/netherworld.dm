@@ -41,7 +41,7 @@
 	if(stat)
 		return
 	var/chosen_sound = pick(migo_sounds)
-	playsound(src, chosen_sound, 100, TRUE)
+	playsound(src, chosen_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/netherworld/migo/Life()
 	..()
@@ -49,7 +49,7 @@
 		return
 	if(prob(10))
 		var/chosen_sound = pick(migo_sounds)
-		playsound(src, chosen_sound, 100, TRUE)
+		playsound(src, chosen_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/netherworld/blankbody
 	name = "blank body"
@@ -95,7 +95,7 @@
 		if(M)
 			playsound(src, 'sound/magic/demon_consume.ogg', 50, 1)
 			M.adjustBruteLoss(60)
-			new /obj/effect/gibspawner/generic(get_turf(M))
+			new /obj/effect/gibspawner/generic(get_turf(M), M)
 			if(M.stat == DEAD)
 				var/mob/living/simple_animal/hostile/netherworld/blankbody/blank
 				blank = new(loc)

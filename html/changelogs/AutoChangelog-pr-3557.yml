@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Simple mobs will no longer be stuck resting after being killed and then revived"

@@ -1,0 +1,4 @@
+author: " memager/actioninja"
+delete-after: true 
+changes: 
+  - imageadd: "New sprite for the Energy Gun"

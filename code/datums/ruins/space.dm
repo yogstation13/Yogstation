@@ -146,7 +146,7 @@
 
 /datum/map_template/ruin/space/spacehotel
 	id = "spacehotel"
-	suffix = "yogsspacehotel.dmm" //yogs - adds in a spacehotel for yogs
+	suffix = "spacehotel.dmm"
 	name = "The Twin-Nexus Hotel"
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
 
@@ -281,3 +281,9 @@
 	suffix = "cloning_facility.dmm"
 	name = "Ancient Cloning Lab"
 	description = "An experimental cloning lab snapped off from an ancient ship. The cloner model inside lacks many modern functionalities and security measures."
+
+/datum/map_template/ruin/space/hilbertresearchfacility
+	id = "hilbert_facility"
+	suffix = "hilbertshoteltestingsite.dmm"
+	name = "Hilbert Research Facility"
+	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."

@@ -248,7 +248,7 @@
 		/obj/item/pickaxe,
 		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/restraints/handcuffs/cable/zipties,
-		/obj/item/soap/nanotrasen,
+		/obj/item/soap/infinite, //yogs - changed soap type
 		/obj/item/borg/cyborghug)
 	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg)
 	ratvar_modules = list(
@@ -388,7 +388,7 @@
 		/obj/item/screwdriver/cyborg,
 		/obj/item/crowbar/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
-		/obj/item/soap/nanotrasen,
+		/obj/item/soap/infinite, //yogs - changed soap type
 		/obj/item/storage/bag/trash/cyborg,
 		/obj/item/extinguisher/mini,
 		/obj/item/mop/cyborg,
@@ -438,7 +438,7 @@
 		/obj/item/bikehorn,
 		/obj/item/bikehorn/airhorn,
 		/obj/item/paint/anycolor,
-		/obj/item/soap/nanotrasen,
+		/obj/item/soap/infinite, //yogs - changed soap type
 		/obj/item/pneumatic_cannon/pie/selfcharge/cyborg,
 		/obj/item/razor,					//killbait material
 		/obj/item/lipstick/purple,

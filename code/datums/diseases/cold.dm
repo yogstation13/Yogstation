@@ -1,6 +1,7 @@
 /datum/disease/cold
 	name = "The Cold"
 	max_stages = 3
+	spread_text = "On contact" //Yogs
 	cure_text = "Rest & Spaceacillin"
 	cures = list("spaceacillin")
 	agent = "XY-rhinovirus"

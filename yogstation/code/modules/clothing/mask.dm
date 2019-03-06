@@ -100,3 +100,12 @@
 			to_chat(H, "<span class='warning'>The mask suddenly slips off your face and... slides under the floor?</span>")
 			to_chat(H, "<i>...dneirf uoy ot gnoleb ton seod tahT</i>")
 			qdel(src)
+
+/obj/item/clothing/mask/yogs/ronald
+	name = "ronald mask"
+	desc = "A mask worn by the popular children fast food salesman."
+	clothing_flags = MASKINTERNALS
+	icon_state = "ronald"
+	item_state = "ronald"
+	flags_cover = MASKCOVERSEYES
+	resistance_flags = FLAMMABLE

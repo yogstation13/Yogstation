@@ -1,0 +1,4 @@
+author: " Satan"
+delete-after: true 
+changes: 
+  - rscadd: "Donator borgs can no longer go invisible"

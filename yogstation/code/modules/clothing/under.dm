@@ -16,3 +16,12 @@
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
 	return ..()
+
+/obj/item/clothing/under/yogs/ronaldmcdonald
+	name = "ronald mcdonald uniform"
+	desc = "<i>'An old uniform that was used as a mascot in commercial advertising to make children smile while in other places slaughtering children.'</i>"
+	icon_state = "ronald_s"
+	item_state = "clown"
+	item_color = "ronald_s"
+	fitted = FEMALE_UNIFORM_TOP
+	can_adjust = FALSE

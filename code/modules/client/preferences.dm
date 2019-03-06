@@ -638,7 +638,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b><a href='http://www.yogstation.net/index.php?do=donate'>Donate here</b>"
 			dat += "</tr></table>"
 		// yogs end
-		
+
 		// yogs start - Custom keybindings
 		if (4) // Keybindings
 			dat += "<center><a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a>"
@@ -653,7 +653,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY_MOVEMENT("Move West (left)", ACTION_MOVEWEST, WEST)
 				BUTTON_KEY_MOVEMENT("Move South (down)", ACTION_MOVESOUTH, SOUTH)
 				BUTTON_KEY_MOVEMENT("Move East (right)", ACTION_MOVEEAST, EAST)
-				
+
 				BUTTON_KEY("OOC", ACTION_OOC)
 				BUTTON_KEY("LOOC", ACTION_LOOC)
 				BUTTON_KEY("Adminhelp", ACTION_AHELP)
@@ -689,7 +689,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Disarm intent", ACTION_INTENTDISARM)
 				BUTTON_KEY("Grab intent", ACTION_INTENTGRAB)
 				BUTTON_KEY("Harm intent", ACTION_INTENTHARM)
-				
+
 				if(parent)
 					if(parent.mentor_datum)
 						dat += "<h2>Mentor</h2>"
