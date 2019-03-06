@@ -1,5 +1,0 @@
-author: "Ludox235"
-delete-after: true 
-changes: 
-  - tweak: "Made \"last resort\" usable while dead and unconscious"
-  - spellcheck: "Forcing open a airlock with the armblade no longer says \"We start forcing the armblade open.\" and \"We force open the armblade.\" and now says \"We start forcing the airlock open.\" and \"We force open the airlock.\""
