@@ -123,7 +123,7 @@
 /obj/effect/mob_spawn/human/bus/crewmember/Destroy()
 	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
 	return ..()
-	
+
 /datum/outfit/crewmember
 	name = "Exploratory Crew Member"
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -132,7 +132,7 @@
 	back = /obj/item/storage/backpack/science
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 	id = /obj/item/card/id/bus/crewmember
-	
+
 /obj/effect/mob_spawn/human/bus/crewmember/sec
 	name = "security cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
@@ -153,10 +153,10 @@
 /obj/effect/mob_spawn/human/bus/crewmember/sec/Destroy()
 	new/obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
 	return ..()
-	
+
 /datum/outfit/crewmember/sec
 	name = "Exploratory Security Officer"
-	
+
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	suit = /obj/item/clothing/suit/armor/vest
@@ -168,8 +168,8 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen
 	l_pocket = /obj/item/flashlight/seclite
 	back = /obj/item/storage/backpack/security
-	
-	
+
+
 /obj/effect/mob_spawn/human/bus/crewmember/captain
 	name = "command cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a standard issue Nanotrasen security uniform underneath the ice. The machine is fully operational."
@@ -193,7 +193,7 @@
 
 /datum/outfit/crewmember/captain
 	name = "Exploratory Security Captain"
-	
+
 	id = /obj/item/card/id/bus/crewmember/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
 
@@ -204,7 +204,7 @@
 	head = /obj/item/clothing/head/caphat/parade
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
 	back = /obj/item/storage/backpack/captain
-	
+
 /obj/item/card/id/bus/crewmember/captain
 	name = "Captain"
 	desc = "An employee ID used to access areas around the ship."
@@ -213,7 +213,7 @@
 /obj/item/card/id/bus/crewmember/captain/New()
 	..()
 	registered_account = new("Captain", FALSE)
-	
+
 /obj/item/card/id/bus/crewmember/sec
 	name = "Security Officer"
 	desc = "An employee ID used to access areas around the ship."
@@ -231,7 +231,7 @@
 /obj/item/card/id/bus/crewmember/New()
 	..()
 	registered_account = new("Crew member", FALSE)
-	
+
 /obj/effect/mob_spawn/human/bus/alien
 	name = "grown alien egg"
 	desc = "A pulsating alien egg. You can barely recognise what looks to be an alien larva inside."
@@ -251,3 +251,35 @@
 /obj/effect/mob_spawn/human/bus/alien/Destroy()
 	new/obj/structure/alien/egg/burst(get_turf(src))
 	return ..()
+
+/obj/effect/mob_spawn/human/bus/russian
+	name = "cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a soviet uniform underneath the ice. The machine is fully operational."
+	mob_name = "a metro dweller"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	flavour_text = "<span class='big bold'>You live in the Metro. \
+	It is up to you to survive and prosper down here. If you leave this station you will need a gas mask to protect yourself. \
+	The gasmask needs a filter to work, filters run out when used. Flashlights run on batteries, their brightness will diminsh when low on power. \
+	Explore the underground, take control and make life comfortable down here.</b>"
+	outfit = /datum/outfit/metro/regular
+	assignedrole = "Metro Dweller"
+
+/datum/outfit/metro/regular
+	name = "Metro Dweller"
+
+	gloves = /obj/item/clothing/gloves/color/black
+	uniform =  /obj/item/clothing/under/soviet
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	head = /obj/item/clothing/head/ushanka
+	backpack_contents = list(/obj/item/clothing/mask/gas/metro = 1, /obj/item/filter = 2)
+	back = /obj/item/storage/backpack
+
+/obj/effect/mob_spawn/human/bus/russian/special(mob/living/spawner)
+	if(ishuman(spawner))
+		var/mob/living/carbon/human/H = spawner
+		H.grant_language(/datum/language/russian)
