@@ -58,7 +58,12 @@
 #define ANTAG_HUD_CLOCKWORK		22
 #define ANTAG_HUD_BROTHER		23
 #define ANTAG_HUD_HIVE			24
+<<<<<<< HEAD
 #define ANTAG_HUD_CREEP			25
+=======
+#define ANTAG_HUD_OBSESSED	25
+#define ANTAG_HUD_FUGITIVE	26
+>>>>>>> 0a51e7e1b9... [PROBABLY READY? REVIEW WITH SCRUTINY] New event: Fugitives (#42554)
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

@@ -27,10 +27,18 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_SOULLESS = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_CLOCKWORK = new/datum/atom_hud/antag(),
 	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
+<<<<<<< HEAD
 	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // Yogs
 	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_CREEP = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_HIVEAWAKE = new/datum/atom_hud/antag()	))
+=======
+	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_OBSESSED = new/datum/atom_hud/antag/hidden(),
+	ANTAG_HUD_FUGITIVE = new/datum/atom_hud/antag(),
+	ANTAG_HUD_HIVEAWAKE = new/datum/atom_hud/antag()
+	))
+>>>>>>> 0a51e7e1b9... [PROBABLY READY? REVIEW WITH SCRUTINY] New event: Fugitives (#42554)
 
 /datum/atom_hud
 	var/list/atom/hudatoms = list() //list of all atoms which display this hud
