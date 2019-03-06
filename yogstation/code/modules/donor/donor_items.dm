@@ -77,6 +77,7 @@ var/list/donor_pdas = list("Normal", "Transparent", "Pip Boy", "Rainbow")
 var/list/donor_start_tools = list(\
 						/obj/item/storage/backpack/snail/green, \
 						/obj/item/banhammer, \
+						/obj/item/bedsheet/cosmos, \
 						/obj/item/bedsheet/wiz, \
 						/obj/item/bedsheet/nanotrasen, \
 						/obj/item/bedsheet/syndie, \
