@@ -88,6 +88,7 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
+	req_access = list(ACCESS_CHEMISTRY)
 	icon_door = "chemical"
 
 /obj/structure/closet/secure_closet/chemical/PopulateContents()
@@ -101,3 +102,14 @@
 	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
 	new /obj/item/reagent_containers/glass/bottle/mutagen(src)
 	//yogs end
+
+/obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
+	name = "advanced chemical closet"
+
+/obj/structure/closet/secure_closet/chemical/heisenberg/PopulateContents()
+	..()
+	new /obj/item/reagent_containers/dropper(src)
+	new /obj/item/reagent_containers/dropper(src)
+	new /obj/item/storage/box/syringes/variety(src)
+	new /obj/item/storage/box/beakers/variety(src)
+	new /obj/item/clothing/glasses/science(src)

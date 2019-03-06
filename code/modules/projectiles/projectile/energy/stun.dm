@@ -24,6 +24,14 @@
 			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		else if((C.status_flags & CANKNOCKDOWN) && !C.has_trait(TRAIT_STUNIMMUNE))
 			addtimer(CALLBACK(C, /mob/living/carbon.proc/do_jitter_animation, jitter), 5)
+		//yogstation edit begin -------------------------------------------
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			if(isethereal(H))
+				var/datum/species/ethereal/E = H.dna?.species
+				E.adjust_charge(20)
+				to_chat(C,"<span class='notice'>You receive some charge from [src].</span>")
+		//yogstation edit end ---------------------------------------------
 
 /obj/item/projectile/energy/electrode/on_range() //to ensure the bolt sparks when it reaches the end of its range if it didn't hit a target yet
 	do_sparks(1, TRUE, src)

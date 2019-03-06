@@ -9,7 +9,7 @@
 
 /turf/open/floor/mech_bay_recharge_floor/airless
 	icon_state = "recharge_floor_asteroid"
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /obj/machinery/mech_bay_recharge_port
 	name = "mech bay power port"
@@ -103,7 +103,6 @@
 			data["recharge_port"]["mech"] = list("health" = recharge_port.recharging_mech.obj_integrity, "maxhealth" = recharge_port.recharging_mech.max_integrity, "cell" = null)
 			if(recharge_port.recharging_mech.cell && !QDELETED(recharge_port.recharging_mech.cell))
 				data["recharge_port"]["mech"]["cell"] = list(
-				"critfail" = recharge_port.recharging_mech.cell.crit_fail,
 				"charge" = recharge_port.recharging_mech.cell.charge,
 				"maxcharge" = recharge_port.recharging_mech.cell.maxcharge
 				)

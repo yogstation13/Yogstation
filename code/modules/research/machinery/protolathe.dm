@@ -2,7 +2,6 @@
 	name = "protolathe"
 	desc = "Converts raw materials into useful objects."
 	icon_state = "protolathe"
-	container_type = OPENCONTAINER
 	circuit = /obj/item/circuitboard/machine/protolathe
 	categories = list(
 								"Power Designs",
@@ -16,7 +15,8 @@
 								"Weapons",
 								"Ammo",
 								"Firing Pins",
-								"Computer Parts"
+								"Computer Parts",
+								"Spacepod Designs" // yogs
 								)
 	production_animation = "protolathe_n"
 	allowed_buildtypes = PROTOLATHE

@@ -2,7 +2,7 @@
 	name = "pAI"
 	icon = 'icons/mob/pai.dmi'
 	icon_state = "repairbot"
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	mouse_opacity = MOUSE_OPACITY_ICON
 	density = FALSE
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
@@ -53,7 +53,7 @@
 
 	var/obj/item/integrated_signaler/signaler // AI's signaller
 
-	var/obj/item/instrument/recorder/internal_instrument
+	var/obj/item/instrument/piano_synth/internal_instrument
 
 	var/holoform = FALSE
 	var/canholo = TRUE

@@ -118,7 +118,13 @@
 		user.Paralyze(stunforce*3)
 		deductcharge(hitcost)
 		return
-
+	//yogs edit begin ---------------------------------
+	if(status && isethereal(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/species/ethereal/E = H.dna?.species
+		E.adjust_charge(20) //equivalent to hitting a lightbulb 4 times
+		to_chat(M,"<span class='notice'>You receive some charge from [src].</span>")
+	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
 		..()
 		return

@@ -324,6 +324,8 @@
 	dir = 8
 	},
 /obj/item/stock_parts/cell/hyper/empty,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bd" = (
@@ -482,9 +484,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
-"ck" = (
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/abandoned)
 "cl" = (
 /obj/item/storage/bag/plants/portaseeder,
 /obj/structure/table,
@@ -557,8 +556,8 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cz" = (
-/obj/effect/decal/cleanable/egg_smudge,
-/obj/effect/decal/cleanable/flour,
+/obj/effect/decal/cleanable/food/egg_smudge,
+/obj/effect/decal/cleanable/food/flour,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
@@ -1165,11 +1164,11 @@ aa
 aa
 aa
 aa
-ck
+bk
 bk
 ah
 bk
-ck
+bk
 aa
 aa
 aa
@@ -1194,7 +1193,7 @@ cG
 aa
 "}
 (3,1,1) = {"
-ck
+bk
 bk
 aD
 aD
@@ -1208,7 +1207,7 @@ bk
 aD
 aD
 bk
-ck
+bk
 "}
 (4,1,1) = {"
 bk
@@ -1551,7 +1550,7 @@ cT
 bk
 "}
 (24,1,1) = {"
-ck
+bk
 bk
 ae
 bk
@@ -1565,7 +1564,7 @@ bk
 bk
 ae
 bk
-ck
+bk
 "}
 (25,1,1) = {"
 aa
@@ -1606,13 +1605,13 @@ aa
 aa
 aa
 aa
-ck
+bk
 ae
 ae
 ae
 ae
 ae
-ck
+bk
 aa
 aa
 aa

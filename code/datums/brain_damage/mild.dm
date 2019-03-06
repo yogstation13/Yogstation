@@ -64,27 +64,21 @@
 	name = "Speech Impediment"
 	desc = "Patient is unable to form coherent sentences."
 	scan_desc = "communication disorder"
-	gain_text = "" //mutation will handle the text
-	lose_text = ""
+	gain_text = "<span class='danger'>You can't seem to form any coherent thoughts!</span>"
+	lose_text = "<span class='danger'>Your mind feels more clear.</span>"
 
 /datum/brain_trauma/mild/speech_impediment/on_gain()
-	owner.dna.add_mutation(UNINTELLIGIBLE)
-	..()
-
-//no fiddling with genetics to get out of this one
-/datum/brain_trauma/mild/speech_impediment/on_life()
-	if(!(GLOB.mutations_list[UNINTELLIGIBLE] in owner.dna.mutations))
-		on_gain()
+	owner.add_trait(TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/mild/speech_impediment/on_lose()
-	owner.dna.remove_mutation(UNINTELLIGIBLE)
+	owner.remove_trait(TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/mild/concussion
 	name = "Concussion"
 	desc = "Patient's brain is concussed."
-	scan_desc = "a concussion"
+	scan_desc = "concussion"
 	gain_text = "<span class='warning'>Your head hurts!</span>"
 	lose_text = "<span class='notice'>The pressure inside your head starts fading.</span>"
 
@@ -213,4 +207,22 @@
 					to_chat(owner, "<span class='warning'>Your arm spasms!</span>")
 					owner.log_message("threw [I] due to a Muscle Spasm", LOG_ATTACK)
 					owner.throw_item(pick(targets))
+	..()
+
+/datum/brain_trauma/mild/nervous_cough
+	name = "Nervous Cough"
+	desc = "Patient feels a constant need to cough."
+	scan_desc = "nervous cough"
+	gain_text = "<span class='warning'>Your throat itches incessantly...</span>"
+	lose_text = "<span class='notice'>Your throat stops itching.</span>"
+
+/datum/brain_trauma/mild/nervous_cough/on_life()
+	if(prob(12) && !owner.has_trait(TRAIT_SOOTHED_THROAT))
+		if(prob(5))
+			to_chat(owner, "<span notice='warning'>[pick("You have a coughing fit!", "You can't stop coughing!")]</span>")
+			owner.Immobilize(20)
+			owner.emote("cough")
+			addtimer(CALLBACK(owner, /mob/.proc/emote, "cough"), 6)
+			addtimer(CALLBACK(owner, /mob/.proc/emote, "cough"), 12)
+		owner.emote("cough")
 	..()

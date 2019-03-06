@@ -77,11 +77,11 @@
 					/obj/item/tank/internals/air,
 					/obj/item/tank/internals/air,
 					/obj/item/tank/internals/air,
-					/obj/item/clothing/mask/gas,
-					/obj/item/clothing/mask/gas,
-					/obj/item/clothing/mask/gas,
-					/obj/item/clothing/mask/gas,
-					/obj/item/clothing/mask/gas)
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath,
+					/obj/item/clothing/mask/breath)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
 
@@ -1098,7 +1098,8 @@
 					/obj/item/reagent_containers/blood/BMinus,
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
-					/obj/item/reagent_containers/blood/lizard)
+					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
 
@@ -1229,16 +1230,23 @@
 
 /datum/supply_pack/science/robotics
 	name = "Robotics Assembly Crate"
-	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains three proximity sensors, two high-powered cells, six flashes, and an electrical toolbox. Requires Robotics access to open."
-	cost = 1000
+	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains four proximity sensors, two empty first aid kits, two health analyzers, two red hardhats, two mechanical toolboxes, and two cleanbot assemblies! Requires Robotics access to open."
+	cost = 1500
 	access = ACCESS_ROBOTICS
 	contains = list(/obj/item/assembly/prox_sensor,
 					/obj/item/assembly/prox_sensor,
 					/obj/item/assembly/prox_sensor,
-					/obj/item/storage/toolbox/electrical,
-					/obj/item/storage/box/flashes,
-					/obj/item/stock_parts/cell/high,
-					/obj/item/stock_parts/cell/high)
+					/obj/item/assembly/prox_sensor,
+					/obj/item/storage/firstaid,
+					/obj/item/storage/firstaid,
+					/obj/item/healthanalyzer,
+					/obj/item/healthanalyzer,
+					/obj/item/clothing/head/hardhat/red,
+					/obj/item/clothing/head/hardhat/red,
+					/obj/item/storage/toolbox/mechanical,
+					/obj/item/storage/toolbox/mechanical,
+					/obj/item/bot_assembly/cleanbot,
+					/obj/item/bot_assembly/cleanbot)
 	crate_name = "robotics assembly crate"
 	crate_type = /obj/structure/closet/crate/secure/science
 
@@ -1405,12 +1413,11 @@
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/service/vending/bartending
-	name = "Bartending Supply Crate"
-	desc = "Bring on the booze with vending machine refills, as well as a free book containing the well-kept secrets to the bartending trade!"
+	name = "Booze-o-mat and Coffee Supply Crate"
+	desc = "Bring on the booze and coffee vending machine refills."
 	cost = 2000
 	contains = list(/obj/item/vending_refill/boozeomat,
-					/obj/item/vending_refill/coffee,
-					/obj/item/book/granter/action/drink_fling)
+					/obj/item/vending_refill/coffee)
 	crate_name = "bartending supply crate"
 
 /datum/supply_pack/service/vending/cigarette
@@ -1942,7 +1949,7 @@
 					/obj/item/clothing/shoes/sneakers/black,
 					/obj/item/clothing/gloves/color/white,
 					/obj/item/clothing/mask/gas/mime,
-					/obj/item/clothing/head/beret,
+					/obj/item/clothing/head/frenchberet,
 					/obj/item/clothing/suit/suspenders,
 					/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
 					/obj/item/storage/backpack/mime)
@@ -1979,6 +1986,11 @@
 					/obj/item/toy/plush/lizardplushie,
 					/obj/item/toy/plush/snakeplushie,
 					/obj/item/toy/plush/nukeplushie,
+					/obj/item/toy/plush/goatplushie,
+					/obj/item/toy/plush/teddybear,
+					/obj/item/toy/plush/stuffedmonkey,
+					/obj/item/toy/plush/flowerbunch,
+					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/slimeplushie)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden //YOGS end - plushie crate

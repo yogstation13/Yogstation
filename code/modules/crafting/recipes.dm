@@ -33,21 +33,24 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/* - yogs change: removes explosive lance for being stupid
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
 	result = /obj/item/twohanded/spear
 	reqs = list(/obj/item/twohanded/spear = 1,
 				/obj/item/grenade = 1)
-	blacklist = list(/obj/item/twohanded/spear/explosive)
+	blacklist = list(/obj/item/twohanded/spear/explosive,
+					/obj/item/grenade/flashbang) //yogs change - removes flashbangs from explosive lances for being even stupider
 	parts = list(/obj/item/twohanded/spear = 1,
 				/obj/item/grenade = 1)
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+*/
 
 /datum/crafting_recipe/strobeshield
 	name = "Strobe Shield"
-	result = /obj/item/assembly/flash/shield
+	result = /obj/item/shield/riot/flash
 	reqs = list(/obj/item/wallframe/flasher = 1,
 				/obj/item/assembly/flash/handheld = 1,
 				/obj/item/shield/riot = 1)
@@ -173,8 +176,8 @@
 /datum/crafting_recipe/floorbot
 	name = "Floorbot"
 	result = /mob/living/simple_animal/bot/floorbot
-	reqs = list(/obj/item/storage/toolbox/mechanical = 1,
-				/obj/item/stack/tile/plasteel = 1,
+	reqs = list(/obj/item/storage/toolbox = 1,
+				/obj/item/stack/tile/plasteel = 10,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
 	time = 40
@@ -200,6 +203,16 @@
 	time = 40
 	category = CAT_ROBOT
 
+/datum/crafting_recipe/Firebot
+	name = "Firebot"
+	result = /mob/living/simple_animal/bot/firebot
+	reqs = list(/obj/item/extinguisher = 1,
+				/obj/item/bodypart/r_arm/robot = 1,
+				/obj/item/assembly/prox_sensor = 1,
+				/obj/item/clothing/head/hardhat/red = 1)
+	time = 40
+	category = CAT_ROBOT
+
 /datum/crafting_recipe/improvised_pneumatic_cannon //Pretty easy to obtain but
 	name = "Pneumatic Cannon"
 	result = /obj/item/pneumatic_cannon/ghetto
@@ -207,7 +220,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/packageWrap = 8,
 				/obj/item/pipe = 2)
-	time = 300
+	time = 50
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -303,7 +316,7 @@
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
-	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised
+	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
 	reqs = list(/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
@@ -380,6 +393,14 @@
 	time = 65
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
+	category = CAT_MISC
+
+/datum/crafting_recipe/wheelchair
+	name = "Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/rods = 6)
+	time = 100
 	category = CAT_MISC
 
 /datum/crafting_recipe/mousetrap

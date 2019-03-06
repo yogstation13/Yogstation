@@ -6,7 +6,7 @@
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
-	attack_verb = "slice"
+	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	burnmod = 2
@@ -17,6 +17,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -165,9 +166,9 @@
 		H.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)
 		if(prob(10))
 			if(prob(95))
-				H.randmutb()
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.randmutg()
+				H.easy_randmut(POSITIVE)
 
 		H.reagents.remove_reagent(chem.id, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
@@ -248,9 +249,9 @@
 			H.adjustFireLoss(5)
 			H.visible_message("<span class='warning'>[H] writhes in pain as [H.p_their()] vacuoles boil.</span>", "<span class='userdanger'>You writhe in pain as your vacuoles boil!</span>", "<span class='italics'>You hear the crunching of leaves.</span>")
 			if(prob(80))
-				H.randmutb()
+				H.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				H.randmutg()
+				H.easy_randmut(POSITIVE)
 			H.domutcheck()
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)

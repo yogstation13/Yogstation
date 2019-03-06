@@ -292,6 +292,7 @@
 			var/mob/living/carbon/C = owner
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/BP = X
+				BP.max_damage *= 10
 				BP.brute_dam *= 10
 				BP.burn_dam *= 10
 		owner.toxloss *= 10
@@ -377,6 +378,7 @@
 			var/obj/item/bodypart/BP = X
 			BP.brute_dam *= 0.1
 			BP.burn_dam *= 0.1
+			BP.max_damage /= 10
 	owner.toxloss *= 0.1
 	owner.oxyloss *= 0.1
 	owner.cloneloss *= 0.1
@@ -541,3 +543,16 @@
 			else if(isanimal(L))
 				var/mob/living/simple_animal/SM = L
 				SM.adjustHealth(-3.5, forced = TRUE)
+
+/datum/status_effect/good_music
+	id = "Good Music"
+	alert_type = null
+	duration = 6 SECONDS
+	tick_interval = 1 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+
+/datum/status_effect/good_music/tick()
+	owner.dizziness = max(0, owner.dizziness - 2)
+	owner.jitteriness = max(0, owner.jitteriness - 2)
+	owner.confused = max(0, owner.confused - 1)
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic)

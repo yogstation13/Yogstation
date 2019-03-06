@@ -1,0 +1,10 @@
+author: "Firewolf34"
+delete-after: true 
+changes: 
+  - bugfix: "Fire Axe Cabinet cannot be locked/unlocked when already open"
+  - bugfix: "Fire Axe Cabinet use will result in fingerprints"
+  - bugfix: "Fire Axe Cabinet can be alt-clicked to open, similar to how lockers work"
+  - tweak: "Fire Axe Cabinet can be deconstructed with a wrench!"
+  - tweak: "Fire Axe Cabinet made more robust: durability increased, hack time increased"
+  - tweak: "Fire Axe Cabinet can be unlocked/locked with an ID with Atmospherics access"
+  - tweak: "Fire Axe Cabinet can be emagged"

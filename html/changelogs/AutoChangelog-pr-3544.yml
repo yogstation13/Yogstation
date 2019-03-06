@@ -1,4 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - bugfix: "Multitools can now be properly examined again."

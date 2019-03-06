@@ -204,9 +204,9 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	var/static/datum/pipe_info/first_transit
 	var/mode = BUILD_MODE | PAINT_MODE | DESTROY_MODE | WRENCH_MODE
 
-/obj/item/pipe_dispenser/New()
+/obj/item/pipe_dispenser/Initialize()
 	. = ..()
-	spark_system = new /datum/effect_system/spark_spread
+	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	if(!first_atmos)
@@ -335,6 +335,13 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	. = FALSE
 
 	if((mode&DESTROY_MODE) && istype(A, /obj/item/pipe) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/structure/c_transit_tube) || istype(A, /obj/structure/c_transit_tube_pod) || istype(A, /obj/item/pipe_meter))
+	// yogs start - disposable check
+		if(istype(A, /obj/item/pipe))
+			var/obj/item/pipe/P = A
+			if(!P.disposable)
+				to_chat(usr, "<span class='warning'>[src] is too valuable to dispose of!</span>")
+				return
+	// yogs end
 		to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, destroy_speed, target = A))

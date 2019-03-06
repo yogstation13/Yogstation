@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'yogstation/icons/obj/food/containers.dmi'
 	icon_state = "emptycondiment"
-	container_type = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	//Possible_states has the reagent id as key and a list of, in order, the icon_state, the name and the desc as values. Used in the on_reagent_change(changetype) to change names, descs and sprites.
@@ -24,7 +24,8 @@
 	 "blackpepper" = list("peppermillsmall", "pepper mill", "Often used to flavor food or make people sneeze"),
 	 "cornoil" = list("oliveoil", "corn oil bottle", "A delicious oil used in cooking. Made from corn"),
 	 "sugar" = list("emptycondiment", "sugar bottle", "Tasty spacey sugar!"),
-	 "mayonnaise" = list("mayonnaise", "mayonnaise jar", "An oily condiment made from egg yolks."))
+	 "mayonnaise" = list("mayonnaise", "mayonnaise jar", "An oily condiment made from egg yolks."),
+	 "cinnamon" = list("cinnamonshaker", "cinnamon shaker", "A spice obtained from the bark of a cinnamomum tree")) // yogs added cinnamon
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 
 /obj/item/reagent_containers/food/condiment/suicide_act(mob/living/carbon/user)
@@ -156,7 +157,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] shakes some salt onto [target].</span>", "<span class='notice'>You shake some salt onto [target].</span>")
 		reagents.remove_reagent("sodiumchloride", 2)
-		new/obj/effect/decal/cleanable/salt(target)
+		new/obj/effect/decal/cleanable/food/salt(target)
 		return
 
 /obj/item/reagent_containers/food/condiment/peppermill

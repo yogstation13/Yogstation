@@ -35,6 +35,9 @@
 	if(href_list["replymticket"])
 		cmd_mentor_pm(href_list["replymticket"])
 
+	if(href_list["pollidshow"])
+		poll_results(href_list["pollidshow"])
+
 /client/proc/mentor_datum_set(admin)
 	var/found_datum = GLOB.mentor_datums[ckey]
 	if(!found_datum) // admin with no mentor datum?let's fix that

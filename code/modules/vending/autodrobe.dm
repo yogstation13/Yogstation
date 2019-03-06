@@ -33,6 +33,8 @@
 					/obj/item/clothing/head/that = 1,
 					/obj/item/clothing/under/kilt = 1,
 					/obj/item/clothing/head/beret = 1,
+					/obj/item/clothing/under/yogs/lederhosen = 1, //yogs
+					/obj/item/clothing/head/yogs/folkhat = 1, //yogs
 					/obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/glasses/monocle =1,
 					/obj/item/clothing/head/bowler = 1,
@@ -117,10 +119,11 @@
 		              /obj/item/clothing/head/powdered_wig = 1,
 		              /obj/item/gun/magic/wand = 2,
 		              /obj/item/clothing/glasses/sunglasses/garb = 2,
-		              /obj/item/clothing/glasses/sunglasses/blindfold = 1,
+		              /obj/item/clothing/glasses/blindfold = 1,
 		              /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 		           /obj/item/clothing/head/pirate/captain = 2,
+		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
 		           /obj/item/clothing/head/helmet/roman/fake = 1,
 		           /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,

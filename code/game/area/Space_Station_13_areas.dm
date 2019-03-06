@@ -122,6 +122,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Maintenance"
 	icon_state = "medbay_maint"
 
+/area/maintenance/department/medical/central
+	name = "Central Medbay Maintenance"
+	icon_state = "medbay_maint_central"
+
 /area/maintenance/department/medical/morgue
 	name = "Morgue Maintenance"
 	icon_state = "morgue_maint"
@@ -129,6 +133,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/department/science
 	name = "Science Maintenance"
 	icon_state = "maint_sci"
+
+/area/maintenance/department/science/central
+	name = "Central Science Maintenance"
+	icon_state = "maint_sci_central"
 
 /area/maintenance/department/cargo
 	name = "Cargo Maintenance"
@@ -182,9 +190,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Central Starboard Maintenance"
 	icon_state = "smaint"
 
+/area/maintenance/starboard/secondary
+	name = "Secondary Starboard Maintenance"
+	icon_state = "smaint_2"
+
 /area/maintenance/starboard/aft
 	name = "Starboard Quarter Maintenance"
 	icon_state = "asmaint"
+
+/area/maintenance/starboard/aft/secondary
+	name = "Secondary Starboard Quarter Maintenance"
+	icon_state = "asmaint_2"
 
 /area/maintenance/starboard/fore
 	name = "Starboard Bow Maintenance"
@@ -351,6 +367,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Fitness Room"
 	icon_state = "fitness"
 
+/area/crew_quarters/fitness/locker_room
+	name = "Unisex Locker Room"
+	icon_state = "fitness"
+
 /area/crew_quarters/fitness/recreation
 	name = "Recreation Area"
 	icon_state = "fitness"
@@ -362,6 +382,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
+
+/area/crew_quarters/kitchen/coldroom
+	name = "Kitchen Cold Room"
+	icon_state = "kitchen_cold"
 
 /area/crew_quarters/bar
 	name = "Bar"

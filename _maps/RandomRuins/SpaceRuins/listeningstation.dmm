@@ -259,7 +259,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/corner{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/button/door{
 	id = "syndie_listeningpost_external";
@@ -877,14 +877,12 @@
 /obj/machinery/syndicatebomb/self_destruct{
 	anchored = 1
 	},
-/obj/structure/sign/warning/securearea{
-	desc = "A warning sign which reads 'DANGER: SELF DESTRUCT DEVICE'.";
-	name = "DANGER: SELF DESTRUCT DEVICE";
-	pixel_x = 32
-	},
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
 	req_access_txt = "150"
+	},
+/obj/structure/sign/warning/explosives/alt{
+	pixel_x = 32
 	},
 /turf/open/floor/circuit/red,
 /area/ruin/space/has_grav/listeningstation)
@@ -913,7 +911,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "bp" = (
 /obj/effect/turf_decal/stripes/red/corner{
-	dir = 1
+	dir = 8
 	},
 /obj/machinery/door/airlock{
 	name = "Cabin"
@@ -1051,8 +1049,7 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+	icon_state = "0-2"
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/clothing/head/welding,

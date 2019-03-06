@@ -496,6 +496,8 @@
 		force_wielded = 19
 		force_unwielded = 11
 		throwforce = 21
+		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
+		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
 		icon_prefix = "spearplasma"
 	update_icon()
 	qdel(tip)
@@ -509,7 +511,7 @@
 		parts_list -= G
 		qdel(src)
 	..()
-	
+
 
 /obj/item/twohanded/spear/explosive
 	name = "explosive lance"
@@ -538,7 +540,7 @@
 	..()
 	to_chat(user, "<span class='notice'>Alt-click to set your war cry.</span>")
 
-/obj/item/twohanded/spear/explosive/update_icon()	
+/obj/item/twohanded/spear/explosive/update_icon()
 	icon_state = "spearbomb[wielded]"
 
  //THIS MIGHT BE UNBALANCED SO I DUNNO // it totally is.

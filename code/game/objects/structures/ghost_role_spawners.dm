@@ -149,6 +149,9 @@
 		log_admin("[key_name(new_spawn)] possessed a golem shell enslaved to [key_name(owner)].")
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
+		if(has_owner)
+			var/datum/species/golem/G = H.dna.species
+			G.owner = owner
 		H.set_cloned_appearance()
 		if(!name)
 			if(has_owner)
@@ -182,6 +185,7 @@
 /obj/effect/mob_spawn/human/golem/servant
 	has_owner = TRUE
 	name = "inert servant golem shell"
+	mob_name = "a servant golem"
 
 
 /obj/effect/mob_spawn/human/golem/adamantine
