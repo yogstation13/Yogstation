@@ -696,7 +696,7 @@ Proc for attack log creation, because really why not
 
 	var/sobject = ""
 	if(object)
-		sobject = " with [key_name(object)]"
+		sobject = " with [object]"
 	var/saddition = ""
 	if(addition)
 		saddition = " [addition]"

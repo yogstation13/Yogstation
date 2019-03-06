@@ -1,4 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - tweak: "Increased air alarm miasma thresholds to prevent warning spam."
