@@ -53,7 +53,7 @@
 
 /datum/supply_pack/misc/goats
 	name = "Goat Crate"
-	desc = "We have recently bought out a company called Goat Tech Industries that have been experimenting with goat dna, since there are still a ton of goats left and we need to get rid of most of these goats we decided to sell some of them to you guys!"
+	desc = "Contains a bunch of genetically altered goats from Goat Tech Industries try to collect them all!"
 	cost = 1500
 	contains = list(/obj/structure/closet/crate/large/goats)
 	crate_name = "Exotic Goat Crate"

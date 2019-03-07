@@ -1,10 +1,10 @@
 /mob/living/simple_animal/hostile/retaliate/goat/clown
-	name = "Gary the Goat"
-	desc = "Rather kick your butt then tell jokes."
-	icon = 'yogstation/icons/mob/clownpets.dmi'
-	icon_state = "clown_goat"
-	icon_living = "clown_goat"
-	icon_dead = "clown_goat_dead"
+	name = "Clown Goat"
+	desc = "Rather kick your butt than tell jokes."
+	icon = 'yogstation/icons/mob/goats/clown_goat.dmi'
+	icon_state = "clowngoat"
+	icon_living = "clowngoat"
+	icon_dead = "clowngoat_dead"
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/clothing/mask/gas/clown_hat = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
@@ -21,7 +21,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/blue
 	name = "Blue Goat"
-	desc = "Im blue da da di da da bahhhh."
+	desc = "I'm blue da baah dee da baah daa."
 	icon = 'yogstation/icons/mob/goats/blue_goat.dmi'
 	icon_state = "bluegoat"
 	icon_living = "bluegoat"
@@ -30,7 +30,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/chocolate
 	name = "Chocolate Goat"
-	desc = "Actually just a goat with dark brown fur but I can see why you would think its made of chocolate though."
+	desc = "Actually just a goat with dark brown fur but I can see why you would think it's made of chocolate though."
 	icon = 'yogstation/icons/mob/goats/chocolate_goat.dmi'
 	icon_state = "chocolategoat"
 	icon_living = "chocolategoat"
@@ -56,8 +56,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/cottoncandy
-	name = "Cottoncandy Goat"
-	desc = "Unlike the Chocolate Goat this goat is made of real cottoncandy."
+	name = "Cotton Candy Goat"
+	desc = "Unlike the Chocolate Goat this goat is made of real cotton candy."
 	icon = 'yogstation/icons/mob/goats/cottoncandy_goat.dmi'
 	icon_state = "cottoncandygoat"
 	icon_living = "cottoncandygoat"
@@ -211,7 +211,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/huge
 	name = "Huge Goat"
-	desc = "Jesus thats a big goat."
+	desc = "Jesus that's a big goat."
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	gold_core_spawnable = NO_SPAWN
@@ -221,7 +221,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/tiny
 	name = "Tiny Goat"
-	desc = "Awww what a tiny goat."
+	desc = "Awww, what a tiny goat."
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	gold_core_spawnable = NO_SPAWN
@@ -231,7 +231,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/ghost
 	name = "Ghost Goat"
-	desc = "Just cause he is a ghost does not mean he cant still kick butt."
+	desc = "Him being a ghost does not mean he can't still kick butt."
 	gold_core_spawnable = NO_SPAWN
 	color = "#FFFFFF77"
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
@@ -271,7 +271,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/panda
 	name = "Panda Goat"
-	desc = "What happens when you cross panda dna with goat dna atleast 10% the time."
+	desc = "What happens when you cross panda dna with goat dna at least 10% the time."
 	icon = 'yogstation/icons/mob/goats/panda_goat.dmi'
 	icon_state = "pandagoat"
 	icon_living = "pandagoat"
@@ -284,7 +284,7 @@
 	icon = 'yogstation/icons/mob/goats/stack_goat.dmi'
 	icon_state = "goatstack"
 	icon_living = "goatstack"
-	del_on_death = 1
+	del_on_death = TRUE
 	loot = list(/mob/living/simple_animal/hostile/retaliate/goat,/mob/living/simple_animal/hostile/retaliate/goat/panda,/mob/living/simple_animal/hostile/retaliate/goat/brown)
 	health = 100
 	maxHealth = 100
@@ -330,7 +330,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/red
 	name = "Red Goat"
-	desc = "Seems to be slightly more angry then your average goat."
+	desc = "You would think there would be a joke involving red goats here but im getting red with frustration even trying to think of one." // its hecking hard man
 	icon = 'yogstation/icons/mob/goats/red_goat.dmi'
 	icon_state = "redgoat"
 	icon_living = "redgoat"
@@ -339,7 +339,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/yellow
 	name = "Yellow Goat"
-	desc = "MY EYES THEY BURN."
+	desc = "MY EYES, THEY BURN."
 	icon = 'yogstation/icons/mob/goats/goat_yellow.dmi'
 	icon_state = "yellowgoat"
 	icon_living = "yellowgoat"

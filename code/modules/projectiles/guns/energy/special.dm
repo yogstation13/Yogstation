@@ -58,7 +58,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
-	clumsy_check = 0 //Might as well let clowns use it.
+	clumsy_check = 0 // Yogs Might as well let clowns use it.
 	/*selfcharge = 1*/ // Yogs Not admeme only anymore
 
 /obj/item/gun/energy/meteorgun/pen
