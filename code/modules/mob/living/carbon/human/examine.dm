@@ -325,8 +325,8 @@
 						msg += "<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>\n"
 	else if(isobserver(user) && traitstring)
 		msg += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
-	if(!wear_suit && penis_size)
-		msg += "<span class='info'><b>*</b> [t_His] [pick("shlong", "penis", "cock", "dong")] is [penis_size] centimeters.</span><br>"
+	if(!wear_suit && penis_size) // yogs change
+		msg += "<span class='info'><b>*</b> [t_His] [pick("shlong", "penis", "cock", "dong")] is [penis_size] centimeters.</span><br>" //yogs change
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
