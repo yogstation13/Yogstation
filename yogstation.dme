@@ -3113,6 +3113,7 @@
 #include "yogstation\code\modules\projectiles\ammunition\caseless\misc.dm"
 #include "yogstation\code\modules\projectiles\boxes_magazines\internal\misc.dm"
 #include "yogstation\code\modules\projectiles\guns\ballistic\launchers.dm"
+#include "yogstation\code\modules\projectiles\projectile\bullets\special.dm"
 #include "yogstation\code\modules\projectiles\reusable\kineticspear.dm"
 #include "yogstation\code\modules\reagents\chemistry\reagents\food_reagents.dm"
 #include "yogstation\code\modules\reagents\chemistry\reagents\other_reagents.dm"
