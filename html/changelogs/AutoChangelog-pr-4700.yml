@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "powersinks now become dense when anchored, like a machine."
