@@ -151,7 +151,3 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
-
-/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null
