@@ -2,10 +2,21 @@
 	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"
 	cost = 0
 
+/datum/map_template/ruin/lavaland/yogstation/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
+	name = "Mining Base"
+	id = "miningbase"
+	description = "The mining base that Nanotrasen uses for their mining operations."
+	suffix = "miningbase.dmm"
+	cost = 0
+	always_place = TRUE
+	unpickable = TRUE
+
+
+
 /datum/map_template/ruin/lavaland/yogstation/toyshop
 	name = "Toy Shop"
 	id = "toyshop"
-	description = "A shop that has the entire collection of Nanotrasen brand action figures!."
+	description = "A shop that has the entire collection of Nanotrasen brand action figures!"
 	suffix = "lavaland_surface_cursedtoyshop.dmm"
 	cost = 10
 	allow_duplicates = FALSE

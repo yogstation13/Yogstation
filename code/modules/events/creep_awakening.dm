@@ -13,6 +13,8 @@
 			continue
 		if(H.stat == DEAD)
 			continue
+		if(!("Creep" in H.client.prefs.be_special)) // Yogs -- fixes Creep prefs
+			continue // Yogs
 		if(!SSjob.GetJob(H.mind.assigned_role) || H.mind.assigned_role in GLOB.nonhuman_positions) //only station jobs sans nonhuman roles, prevents ashwalkers falling in love with crewmembers they never met
 			continue
 		if(H.mind.has_antag_datum(/datum/antagonist/creep))

@@ -46,6 +46,11 @@
 		new /obj/item/reagent_containers/food/snacks/meat/slab/monkey(src)
 	new /obj/item/storage/box/goatcubes(src) // yogs change added goat cubes to meat freezer
 
+/obj/structure/closet/secure_closet/freezer/meat/open
+	req_access = null
+	locked = FALSE
+
+
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
 	req_access = list(ACCESS_KITCHEN)
@@ -58,6 +63,10 @@
 		new /obj/item/reagent_containers/food/condiment/soymilk(src)
 	for(var/i = 0, i < 2, i++)
 		new /obj/item/storage/fancy/egg_box(src)
+
+/obj/structure/closet/secure_closet/freezer/fridge/open
+	req_access = null
+	locked = FALSE
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
