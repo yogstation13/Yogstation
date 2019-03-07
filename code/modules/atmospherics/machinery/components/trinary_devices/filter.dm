@@ -165,14 +165,9 @@
 				rate = text2num(rate)
 				. = TRUE
 			if(.)
-<<<<<<< HEAD
-				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-=======
 				transfer_rate = CLAMP(rate, 0, MAX_TRANSFER_RATE)
 				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
->>>>>>> 3237b64188... [Ready]Fusion V6: Chaos Hyper-Torus Edition (#42748)
+				investigate_log("was set to [transfer_rate] L/S by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		if("filter")
 			filter_type = null
 			var/filter_name = "nothing"
