@@ -16,7 +16,6 @@
 	speak_emote = list("brays in a booming voice")
 	emote_hear = list("brays in a booming voice")
 	emote_see = list("stamps a mighty foot, shaking the surroundings")
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 12, /obj/item/clothing/head/yogs/goatpelt/king = 1) //lets ignore that this shouldnt be possible shail we
 	response_help  = "placates"
 	response_harm   = "assaults"
 	attacktext = "brutalized"
