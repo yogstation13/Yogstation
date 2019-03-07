@@ -29,7 +29,7 @@
 		)
 
 /datum/holiday/nichday/celebrate()
-	name = "Nichlas Appreciation Day"
+	name = "Nichlas Appreciation Eve"
 	begin_day = 2
 	begin_month = NOVEMBER
 	drone_hat = /obj/item/clothing/head/helmet/space/syndicate
@@ -38,7 +38,7 @@
 		)
 
 /datum/holiday/nichday/greet()
-	return "Have a merry Nichlas Appreciation Day! Be sure to @ Nichlas on the Discord and tell him your good wishes!"
+	return "Have a merry Nichlas Appreciation Day tomorrow! Be sure to @ Nichlas on the Discord and tell him your good wishes!"
 
 /datum/holiday/nichday/getStationPrefix()
 	return pick("Nichlas","Headcoder","Simonset","Dansk")
