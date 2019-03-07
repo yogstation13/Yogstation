@@ -198,7 +198,6 @@
 	icon_state = "tile_corner";
 	dir = 8
 	},
-/obj/item/storage/box/goatcubes,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "az" = (

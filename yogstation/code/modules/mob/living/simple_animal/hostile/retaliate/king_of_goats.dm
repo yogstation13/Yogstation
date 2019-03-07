@@ -5,8 +5,8 @@
 
 //the king and his court
 /mob/living/simple_animal/hostile/retaliate/goat/king
-	name = "king of goats"
-	desc = "The oldest and wisest of goats; king of his race, peerless in dignity and power. His golden fleece radiates nobility."
+	name = "king of the goats"
+	desc = "The oldest and wisest of the goats; king of his race, peerless in dignity and power. His golden fleece radiates nobility."
 	icon = 'yogstation/icons/mob/king_of_goats.dmi'
 	icon_state = "king_goat"
 	icon_living = "king_goat"
@@ -48,7 +48,7 @@
 	var/stun_chance = 5 //chance per attack to Weaken target
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2
-	name = "emperor of goats"
+	name = "emperor of the goats"
 	desc = "The King of Kings, God amongst men, and your superior in every way."
 	icon_state = "king_goat2"
 	icon_living = "king_goat2"
@@ -264,8 +264,8 @@
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
 	if(phase3)
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
-		new /obj/structure/ladder/unbreakable/goat(src.loc)
-		new /obj/item/gun/energy/meteorgun(src.loc)
+		new /obj/structure/ladder/unbreakable/goat(loc)
+		new /obj/item/gun/energy/meteorgun(loc)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
