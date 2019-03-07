@@ -3110,6 +3110,7 @@
 #include "yogstation\code\modules\power\hugbox.dm"
 #include "yogstation\code\modules\power\lighting.dm"
 #include "yogstation\code\modules\power\validhunter.dm"
+#include "yogstation\code\modules\projectiles\projectile.dm"
 #include "yogstation\code\modules\projectiles\ammunition\caseless\misc.dm"
 #include "yogstation\code\modules\projectiles\boxes_magazines\internal\misc.dm"
 #include "yogstation\code\modules\projectiles\guns\ballistic\launchers.dm"
