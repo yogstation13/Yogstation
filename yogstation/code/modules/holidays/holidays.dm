@@ -27,3 +27,18 @@
 		"https://www.youtube.com/watch?v=KUwN_QaZnEE", // Before the long journey
 		"https://www.youtube.com/watch?v=ckNIMPQoBPw" // And on mars there will be apple blossoms
 		)
+
+/datum/holiday/nichday/celebrate()
+	name = "Nichlas Appreciation Day"
+	begin_day = 2
+	begin_month = NOVEMBER
+	drone_hat = /obj/item/clothing/head/helmet/space/syndicate
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=IHgvavOWzD8" // HoI4 theme
+		)
+
+/datum/holiday/nichday/greet()
+	return "Have a merry Nichlas Appreciation Day! Be sure to @ Nichlas on the Discord and tell him your good wishes!"
+
+/datum/holiday/nichday/getStationPrefix()
+	return pick("Nichlas","Headcoder","Simonset","Dansk")
