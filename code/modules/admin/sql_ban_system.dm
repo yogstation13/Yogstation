@@ -378,15 +378,9 @@
 	if(edit_id)
 		edit_ban(edit_id, player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, mirror_edit, old_key, old_ip, old_cid, old_applies, page, admin_key, changes)
 	else
-<<<<<<< HEAD
-		create_ban(player_key, player_ip, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, roles_to_ban) // yogs - removed severity
+		create_ban(player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, roles_to_ban) // yogs - removed severity
 
-/datum/admins/proc/create_ban(player_key, player_ip, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, list/roles_to_ban) // removed severity
-=======
-		create_ban(player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, severity, reason, roles_to_ban)
-
-/datum/admins/proc/create_ban(player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, severity, reason, list/roles_to_ban)
->>>>>>> 6c65780c36... fix some faulty last conn logic (#42984)
+/datum/admins/proc/create_ban(player_key, ip_check, player_ip, cid_check, player_cid, use_last_connection, applies_to_admins, duration, interval, reason, list/roles_to_ban) // removed severity
 	if(!check_rights(R_BAN))
 		return
 	if(!SSdbcore.Connect())
