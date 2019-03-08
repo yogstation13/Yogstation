@@ -353,11 +353,20 @@
 	icon_state = "legitgoat"
 	icon_living = "legitgoat"
 	icon_dead = "legitgoat_dead"
+	can_buckle = 1
+	buckle_lying = 0
+	tame = 1
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize()
 	. = ..()
 	AddComponent(/datum/component/waddling)
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(6, 8, MOB_LAYER), TEXT_SOUTH = list(6, 8, MOB_LAYER), TEXT_EAST = list(4, 8, MOB_LAYER), TEXT_WEST = list( 6, 8, MOB_LAYER)))
+	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
 
 /mob/living/simple_animal/hostile/retaliate/goat/skiddo // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
 	name = "Skiddo"
