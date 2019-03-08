@@ -1,6 +1,6 @@
 /obj/item/projectile/bullet/honker
-	ricochets_max = INFINITY
-	reflect_range_decrease = 5
+	ricochets_max = 5
+	reflect_range_decrease = 20
 	multiple_hit = TRUE
 
 /obj/item/projectile/bullet/honker/check_ricochet(atom/A)
