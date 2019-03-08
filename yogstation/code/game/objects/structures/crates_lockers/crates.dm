@@ -9,7 +9,7 @@
 	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
 
 /obj/structure/closet/crate/large/goats/Initialize()
-	var/loot = rand(1,34) //34 different goats!
+	var/loot = rand(1,37) //37 different goats!
 	switch(loot)
 		if(1)
 			new /mob/living/simple_animal/hostile/retaliate/goat(src)
@@ -79,3 +79,9 @@
 			new /mob/living/simple_animal/hostile/retaliate/goat/red(src)
 		if(34)
 			new /mob/living/simple_animal/hostile/retaliate/goat/yellow(src)
+		if(35)
+			new /mob/living/simple_animal/hostile/retaliate/goat/legitgoat(src)
+		if(36)
+			new /mob/living/simple_animal/hostile/retaliate/goat/skiddo(src)
+		if(37)
+			new /mob/living/simple_animal/hostile/retaliate/goat/gogoat(src)
