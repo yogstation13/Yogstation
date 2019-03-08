@@ -180,5 +180,3 @@
 
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()
 	return
-
->>>>>>> 3237b64188... [Ready]Fusion V6: Chaos Hyper-Torus Edition (#42748)
