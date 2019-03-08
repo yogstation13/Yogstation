@@ -556,3 +556,45 @@
 	owner.jitteriness = max(0, owner.jitteriness - 2)
 	owner.confused = max(0, owner.confused - 1)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "goodmusic", /datum/mood_event/goodmusic)
+<<<<<<< HEAD
+=======
+
+/obj/screen/alert/status_effect/regenerative_core
+	name = "Reinforcing Tendrils"
+	desc = "You can move faster than your broken body could normally handle!"
+	icon_state = "regenerative_core"
+	name = "Regenerative Core Tendrils"
+
+/datum/status_effect/regenerative_core
+	id = "Regenerative Core"
+	duration = 1 MINUTES
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = /obj/screen/alert/status_effect/regenerative_core
+
+/datum/status_effect/regenerative_core/on_apply()
+	owner.add_trait(TRAIT_IGNOREDAMAGESLOWDOWN, "regenerative_core")
+	owner.adjustBruteLoss(-25)
+	owner.adjustFireLoss(-25)
+	owner.remove_CC()
+	owner.bodytemperature = BODYTEMP_NORMAL
+	return TRUE
+
+/datum/status_effect/regenerative_core/on_remove()
+	owner.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, "regenerative_core")
+
+/datum/status_effect/antimagic
+	id = "antimagic"
+	duration = 10 SECONDS
+	examine_text = "<span class='notice'>They seem to be covered in a dull, grey aura.</span>"
+
+/datum/status_effect/antimagic/on_apply()
+	owner.visible_message("<span class='notice'>[owner] is coated with a dull aura!</span>")
+	owner.add_trait(TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	//glowing wings overlay
+	playsound(owner, 'sound/weapons/fwoosh.wav', 75, 0)
+	return ..()
+
+/datum/status_effect/antimagic/on_remove()
+	owner.remove_trait(TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	owner.visible_message("<span class='warning'>[owner]'s dull aura fades away...</span>")
+>>>>>>> 9e4856d55d... [READY] dilutes the staff of chaos pool with some more bolts (#42719)
