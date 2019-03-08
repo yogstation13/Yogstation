@@ -297,7 +297,15 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, "<span class='info'>Species: [S.name][mutant ? "-derived mutant" : ""]</span>")
-	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+
+	//Health analyzers warn you about very cold people, like thralls or victims of shadowlings.
+	if(M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) || M.bodytemperature < (11 + T0C))
+		//Thralls get a fake temperature so they always read as too cold.
+		var/faketemp = (M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) ? M.bodytemperature - rand(25, 26) : M.bodytemperature)
+		to_chat(user, "<span class='danger'>Body temperature: [round(faketemp - T0C,0.1)] &deg;C ([round(faketemp*1.8-459.67,0.1)] &deg;F)</span>")
+		to_chat(user, "<span class='danger'>Internal temperature hazardously low.</span>")
+	else
+		to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((M.has_trait(TRAIT_FAKEDEATH)) && !advanced)))
