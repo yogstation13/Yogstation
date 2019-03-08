@@ -544,7 +544,7 @@
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
-	if(target in passthrough && !multiple_hit) //yogs - multiple hit bullets.
+	if(target in passthrough)
 		return FALSE
 	if(target.density)		//This thing blocks projectiles, hit it regardless of layer/mob stuns/etc.
 		return TRUE
