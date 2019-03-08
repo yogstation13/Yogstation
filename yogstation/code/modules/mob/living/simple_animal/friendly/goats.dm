@@ -345,3 +345,34 @@
 	icon_living = "yellowgoat"
 	icon_dead = "yellowgoat_dead"
 	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat // sprite from https://forums.terraria.org/index.php?threads/derpos-magnificent-sprites.9091
+	name = "Totally Legit Goat"
+	desc = "Yes I am goat would you like to go skateboards?"
+	icon = 'yogstation/icons/mob/goats/legit_goat.dmi'
+	icon_state = "legitgoat"
+	icon_living = "legitgoat"
+	icon_dead = "legitgoat_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize()
+	. = ..()
+	AddComponent(/datum/component/waddling)
+
+/mob/living/simple_animal/hostile/retaliate/goat/skiddo // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
+	name = "Skiddo"
+	desc = "May or may not be a reference to a certain game involving catching virtual creatures, also cute as heck."
+	icon = 'yogstation/icons/mob/goats/Skiddo.dmi'
+	icon_state = "skiddo"
+	icon_living = "skiddo"
+	icon_dead = "skiddo_dead"
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/gogoat // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
+	name = "Gogoat"
+	desc = "May or may not be a reference to a certain game involving catching virtual creatures, also what type of name is Gogoat?!?."
+	icon = 'yogstation/icons/mob/goats/Gogoat.dmi'
+	icon_state = "gogoat"
+	icon_living = "gogoat"
+	icon_dead = "gogoat_dead"
+	gold_core_spawnable = NO_SPAWN
