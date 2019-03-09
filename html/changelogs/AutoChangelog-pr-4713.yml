@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "rcd works when you hit catwalks/lattice"
+  - bugfix: "rcd works when you hit foamed floor"
