@@ -365,6 +365,7 @@
 	var/blind_smoke_acquired = FALSE
 	var/screech_acquired = FALSE
 	var/reviveThrallAcquired = FALSE
+	var/null_charge_acquired = FALSE
 
 /obj/effect/proc_holder/spell/self/collective_mind/cast(mob/living/carbon/human/user)
 	if(!shadowling_check(user))
@@ -390,6 +391,10 @@
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Blinding Smoke</b> ability. It will create a choking cloud that will blind any non-thralls who enter. \
 			</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
+	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !null_charge_acquired)
+		null_charge_acquired = TRUE
+		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
+		or sending power until repaired.</i></span>")
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -412,6 +417,51 @@
 					to_chat(user, "<span class='shadowling'><i>You project this power to the rest of the shadowlings.</i></span>")
 				else
 					to_chat(M, "<span class='shadowling'><b>[user.real_name] has coalesced the strength of the thralls. You can draw upon it at any time to ascend. (Shadowling Evolution Tab)</b></span>") //Tells all the other shadowlings
+
+/obj/effect/proc_holder/spell/self/null_charge
+	name = "Null Charge"
+	desc = "Empties an APC, preventing it from recharging until fixed."
+	panel = "Shadowling Abilities"
+	charge_max = 600
+	human_req = TRUE
+	clothes_req = FALSE
+	//todo: sounds here
+
+/obj/effect/proc_holder/spell/self/null_charge/cast(mob/living/carbon/human/user)
+	if(!shadowling_check(user))
+		revert_cast()
+		return
+
+	var/list/local_objs = view(1, user)
+	var/obj/machinery/power/apc/target_apc
+	for(var/object in local_objs)
+		if(istype(object, /obj/machinery/power/apc))
+			target_apc = object
+			break
+
+	if(!target_apc)
+		to_chat(user, "<span class='warning'>You must stand next to an APC to drain it!</span>")
+		revert_cast()
+		return
+
+	//Free veil since you have to stand next to the thing for a while to depower it.
+	target_apc.set_light(0)
+	target_apc.visible_message("<span class='warning'>The [target_apc] flickers and begins to grow dark.</span>")
+
+	to_chat(user, "<span class='shadowling'>You dim the APC's screen and carefully begin siphoning its power into the void.</span>")
+	if(!do_after(user, 200, target=target_apc))
+		//Whoops!  The APC's light turns back on
+		to_chat(user, "<span class='shadowling'>Your concentration breaks and the APC suddenly repowers!</span>")
+		target_apc.set_light(2)
+		target_apc.visible_message("<span class='warning'>The [target_apc] begins glowing brightly!")
+	else
+		//We did it
+		to_chat(user, "<span class='shadowling'>You return the APC's power to the void, disabling it.</span>")
+		target_apc.cell?.charge = 0	//Sent to the shadow realm
+		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
+		target_apc.charging = 0
+		target_apc.update_icon()
+
 
 /obj/effect/proc_holder/spell/self/blindness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
 	name = "Blindness Smoke"
