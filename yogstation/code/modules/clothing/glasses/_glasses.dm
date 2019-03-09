@@ -11,7 +11,7 @@
 
 /obj/item/clothing/glasses/night/metro
 	name = "old civilian night vision goggles"
-	desc = "Useful in the dark. Has reduced range and less visibility than new ones."
+	desc = "Useful in the dark. Has reduced range and less visibility than military grade goggles."
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 5
@@ -20,7 +20,7 @@
 
 /obj/item/clothing/glasses/night/metro/military
 	name = "old military grade night vision goggles"
-	desc = "Useful in the dark. Has reduced range and less visibility than new ones. Less than civilian grade goggles though."
+	desc = "Useful in the dark. The military variant of the classic civilian goggles. Has improved range and visibility."
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 6

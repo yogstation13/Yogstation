@@ -35,8 +35,6 @@
 	SSweather.run_weather(/datum/weather/passive_rads, 2)
 	..()
 
-
-
 /area/metro/passive_radiation/highrad
 	name = "high rad metro"
 	//with mask
