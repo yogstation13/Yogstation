@@ -385,3 +385,28 @@
 	icon_living = "gogoat"
 	icon_dead = "gogoat_dead"
 	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/sanic
+	name = "Sonic Goat"
+	desc = "Gotta go fast!!!"
+	icon = 'yogstation/icons/mob/goats/sonic_goat.dmi'
+	icon_state = "sonicgoat"
+	icon_living = "sonicgoat"
+	icon_dead = "sonicgoat_dead"
+	move_to_delay = 1
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+	health = 100
+	maxHealth = 100
+	speak = list("YOUR TOO SLOW!","GOTTA GO FAST!","COME ON KEEP IT UP!")
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/hostile/retaliate/goat/plunger
+	name = "Goat with plunger on his head"
+	desc = "Not the smartest goat in the barn."
+	icon = 'yogstation/icons/mob/goats/plunger_goat.dmi'
+	icon_state = "plungergoat"
+	icon_living = "plungergoat"
+	icon_dead = "plungergoat_dead"
+	speak = list("HoW I eAt gRaSS?!?","iS pLaNT gOoD fOr gOaT!?","wHy hOMmOnS sO mEaN!?")
+	gold_core_spawnable = NO_SPAWN
