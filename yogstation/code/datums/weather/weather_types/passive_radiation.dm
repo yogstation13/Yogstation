@@ -6,8 +6,8 @@
 	telegraph_message = ""
 
 	weather_message = ""
-	weather_duration_lower = INFINITY //WHY IS THERE NOT AN INFINITE OPTION
-	weather_duration_upper = INFINITY //WHY IS THERE NOT AN INFINITE OPTION
+	weather_duration_lower = INFINITY
+	weather_duration_upper = INFINITY
 	weather_color = "green"
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
