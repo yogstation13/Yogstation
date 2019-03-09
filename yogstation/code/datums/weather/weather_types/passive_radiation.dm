@@ -39,8 +39,8 @@
 	telegraph_message = ""
 
 	weather_message = ""
-	weather_duration_lower = 900000000 //WHY IS THERE NOT AN INFINITE OPTION
-	weather_duration_upper = 900000000 //WHY IS THERE NOT AN INFINITE OPTION
+	weather_duration_lower = INFINITY //hello nich
+	weather_duration_upper = INFINITY //goodbye nich
 	weather_color = "green"
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
