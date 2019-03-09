@@ -34,7 +34,6 @@
 /datum/weather/passive_rads/extreme
 	name = "powerful passive radiation"
 	desc = "Old radiation, presumably from detonated nuclear weapons."
-
 	area_type = /area/metro/passive_radiation/highrad
 
 /datum/weather/passive_rads/extreme/weather_act(mob/living/L)

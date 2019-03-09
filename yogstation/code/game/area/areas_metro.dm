@@ -1,7 +1,7 @@
 /area/metro
 	name = "base metro"
-	noteleport = TRUE			//Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
-	hidden = TRUE 			//Hides area from player Teleport function.
+	noteleport = TRUE
+	hidden = TRUE
 	safe = TRUE
 	requires_power = FALSE
 	ambientsounds = RUINS
