@@ -6,8 +6,8 @@
 	telegraph_message = ""
 
 	weather_message = ""
-	weather_duration_lower = 900000000 //WHY IS THERE NOT AN INFINITE OPTION
-	weather_duration_upper = 900000000 //WHY IS THERE NOT AN INFINITE OPTION
+	weather_duration_lower = INFINITY //WHY IS THERE NOT AN INFINITE OPTION
+	weather_duration_upper = INFINITY //WHY IS THERE NOT AN INFINITE OPTION
 	weather_color = "green"
 	weather_sound = 'sound/misc/bloblarm.ogg'
 
@@ -34,18 +34,6 @@
 /datum/weather/passive_rads/extreme
 	name = "powerful passive radiation"
 	desc = "Old radiation, presumably from detonated nuclear weapons."
-
-	telegraph_duration = 1
-	telegraph_message = ""
-
-	weather_message = ""
-	weather_duration_lower = INFINITY //hello nich
-	weather_duration_upper = INFINITY //goodbye nich
-	weather_color = "green"
-	weather_sound = 'sound/misc/bloblarm.ogg'
-
-	end_duration = 100
-	end_message = "<span class='notice'>The air seems to be cooling off again.</span>"
 
 	area_type = /area/metro/passive_radiation/highrad
 
