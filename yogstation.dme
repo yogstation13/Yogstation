@@ -108,6 +108,7 @@
 #include "code\__DEFINES\~yogs_defines\access.dm"
 #include "code\__DEFINES\~yogs_defines\admin.dm"
 #include "code\__DEFINES\~yogs_defines\antagonists.dm"
+#include "code\__DEFINES\~yogs_defines\atmospherics.dm"
 #include "code\__DEFINES\~yogs_defines\atom_hud.dm"
 #include "code\__DEFINES\~yogs_defines\components.dm"
 #include "code\__DEFINES\~yogs_defines\DNA.dm"
