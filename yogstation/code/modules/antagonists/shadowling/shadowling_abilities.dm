@@ -425,7 +425,8 @@
 	charge_max = 600
 	human_req = TRUE
 	clothes_req = FALSE
-	//todo: sounds here
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "null_charge"
 
 /obj/effect/proc_holder/spell/self/null_charge/cast(mob/living/carbon/human/user)
 	if(!shadowling_check(user))
@@ -703,9 +704,8 @@
 	range = -1
 	include_user = TRUE
 	overlay = null
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "ninja_cloak"
-	action_background_icon_state = "bg_alien"
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "shadow_walk"
 
 	var/apply_damage = TRUE
 
