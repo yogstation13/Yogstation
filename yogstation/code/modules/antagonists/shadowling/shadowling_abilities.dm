@@ -611,6 +611,11 @@
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not dead.</span>")
 					revert_cast()
 					return
+				if(thrallToRevive.has_trait(TRAIT_BADDNA))
+					to_chat(user, "<span class='warning'>[thrallToRevive] is too far gone.</span>")
+					revert_cast()
+					return
+
 				user.visible_message("<span class='danger'>[user] kneels over [thrallToRevive], placing their hands on \his chest.</span>", \
 									"<span class='shadowling'>You crouch over the body of your thrall and begin gathering energy...</span>")
 				thrallToRevive.notify_ghost_cloning("Your masters are resuscitating you! Re-enter your corpse if you wish to be brought to life.", source = thrallToRevive)
@@ -641,7 +646,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Sacrifice a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = TRUE
@@ -679,12 +684,15 @@
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
 		M.death()
+		M.add_trait(TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
 			var/timer = SSshuttle.emergency.timeLeft()
 			timer += more_minutes
 			priority_announce("Major system failure aboard the emergency shuttle. This will extend its arrival time by approximately 15 minutes...", "System Failure", 'sound/misc/notice1.ogg')
 			SSshuttle.emergency.setTimer(timer)
+			SSshuttle.emergencyNoRecall = TRUE
 		user.mind.spell_list.Remove(src) //Can only be used once!
 		qdel(src)
 
