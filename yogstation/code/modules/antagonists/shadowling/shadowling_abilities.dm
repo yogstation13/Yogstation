@@ -893,13 +893,14 @@
 	switch(eyes.lighting_alpha)
 		if (LIGHTING_PLANE_ALPHA_VISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+			eyes.see_in_dark = 8
 		if (LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 		if (LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 		else
 			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-			eyes.sight_flags &= ~SEE_BLACKNESS
+			eyes.see_in_dark = 2	//default
 	user.update_sight()
 
 /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind //Lets a thrall talk with their allies
