@@ -187,7 +187,12 @@ Chilling extracts:
 
 /obj/item/slimecross/chilling/sepia/do_effect(mob/user)
 	user.visible_message("<span class='warning'>[src] shatters, freezing time itself!</span>")
+<<<<<<< HEAD
 	new /obj/effect/timestop(get_turf(user), 2, 150, allies) //yogs - 300 -> 150
+=======
+	allies -= user //support class
+	new /obj/effect/timestop(get_turf(user), 2, 300, allies)
+>>>>>>> 190199520d... Sepia extract rebalance [TM Cand/Ready] (#42933)
 	..()
 
 /obj/item/slimecross/chilling/cerulean
