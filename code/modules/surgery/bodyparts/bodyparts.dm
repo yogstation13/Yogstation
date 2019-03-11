@@ -148,7 +148,7 @@
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 
-	if(!(required_status == -1) && (required_status && (status != required_status)))
+	if(!(required_status == -1) && (required_status && (status != required_status))) //yogs -- adds in BODYPART_ANY
 		return FALSE
 
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
