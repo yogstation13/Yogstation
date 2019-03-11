@@ -1,7 +1,7 @@
 /obj/item/organ/eyes/preternis
 	name = "preternis eyes"
 	desc = "An experimental upgraded version of eyes that can see in the dark.They are designed to fit preternis"
-	see_in_dark = 8
+	see_in_dark = PRETERNIS_NV_ON
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
