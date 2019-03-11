@@ -224,6 +224,9 @@
 			if(prob(20))
 				emote(pick("giggle","laugh"))
 			if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_HIGH) // Hallucinations
+				if(prob(15))
+					to_chat(src, "<span class='userdanger'>You can't think straight!</span>")
+					confused = min(SA_partialpressure/10, confused + 12)
 				hallucination += 5
 	//yogs end
 	//BZ (Facepunch port of their Agent B)
