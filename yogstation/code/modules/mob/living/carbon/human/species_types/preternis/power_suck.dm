@@ -1,6 +1,6 @@
 /mob/living/carbon/AltClickOn(atom/A)
 	dna?.species.spec_AltClickOn(A,src)
-	return
+	return ..()
 
 /datum/species/preternis/spec_AltClickOn(atom/A,H)
 	return drain_power_from(H, A)
