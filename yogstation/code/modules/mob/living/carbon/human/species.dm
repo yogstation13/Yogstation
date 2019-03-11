@@ -29,4 +29,4 @@
 		BP.yogs_draw_robot_hair = initial(BP.yogs_draw_robot_hair)
 
 /datum/species/proc/spec_AltClickOn(atom/A,mob/living/carbon/human/H)
-	return 0
+	return FALSE
