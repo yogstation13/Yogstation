@@ -10,7 +10,7 @@
 		return FALSE
 
 	if(draining)
-		to_chat(H,"<span class='info'>CONSUME protocols can only be used on one object at any single time.")
+		to_chat(H,"<span class='info'>CONSUME protocols can only be used on one object at any single time.</span>")
 		return FALSE
 	if(!A.can_consume_power_from())
 		return FALSE //if it returns text, we want it to continue so we can get the error message later.
