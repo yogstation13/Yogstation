@@ -27,7 +27,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
-	var/power_drain = 0.7 //probably going to have to tweak this shit
+	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	
