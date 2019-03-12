@@ -42,12 +42,26 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/mre/menu3/PopulateContents()
-	new /obj/item/reagent_containers/food/snacks/pizzaslice/meat(src)
+	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/reagent_containers/food/snacks/breadslice/plain(src)
 	new /obj/item/reagent_containers/food/snacks/cheesewedge(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
-	new /obj/item/reagent_containers/food/drinks/coffee(src)
+	new /obj/item/reagent_containers/food/drinks/coffee/type2(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
+
+/obj/item/reagent_containers/food/drinks/coffee/type2
+	name = "Coffee, instant (type 2)"
+	desc = "Coffee that's been blow dried into a granulated powder. This packet includes self heating water for your nutritional pleasure."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "condi_cornoil"
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni
+	name = "MRE pepperoni pizza slice"
+	desc = "A freeze dried, dehydrated slice of bread with tomato sauce, pepperoni and cheese."
+	icon_state = "meatpizzaslice"
+	filling_color = "#A52A2A"
+	tastes = list("cardboard" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2)
+	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /datum/supply_pack/organic/mre
 	name = "MRE supply kit (emergency rations)"
