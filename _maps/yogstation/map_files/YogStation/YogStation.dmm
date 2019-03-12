@@ -12463,6 +12463,9 @@
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/retaliate/goat/spiffles{
+	name = "Spiffles"
+	},
 /turf/open/floor/plasteel,
 /area/clerk)
 "ayD" = (
