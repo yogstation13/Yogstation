@@ -12,13 +12,13 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1) // yogs change goat pelts baby
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	faction = list("neutral")
+	faction = list("goat") // yogs change replaced neutrial faction with goat faction
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	attack_same = 1
+	/*attack_same = 1*/ // yogs No longer needed since goats got there own faction now
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
 	. = ..()
-	if(.)
+	if(. && sentience_type != SENTIENCE_BOSS) // yogs
 		//chance to go crazy and start wacking stuff
 		if(!enemies.len && prob(1))
 			Retaliate()

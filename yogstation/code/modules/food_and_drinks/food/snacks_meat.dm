@@ -13,3 +13,13 @@
 /obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
+
+/obj/item/reagent_containers/food/snacks/monkeycube/goat
+	name = "goat cube"
+	desc = "A Goat Tech Industries goat cube. Just add water!"
+	icon = 'yogstation/icons/obj/food/food.dmi'
+	icon_state = "goatcube"
+	bitesize = 20
+	list_reagents = list("nutriment" = 15)
+	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat
