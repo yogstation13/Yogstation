@@ -6,6 +6,7 @@
 	requires_power = FALSE
 	ambientsounds = RUINS
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	has_gravity = TRUE
 
 /area/metro/radfree
 	name = "rad free metro"
