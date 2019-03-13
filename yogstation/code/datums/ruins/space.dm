@@ -37,3 +37,10 @@
 	suffix = "goatresearch.dmm"
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats how ironic..."
+
+/datum/map_template/ruin/space/yogstation/ghost_tdm
+	id = "ghosttdm"
+	suffix = "ghost_tdm_metro.dmm"
+	name = "Ghost Role - Small TDM Map"
+	description = "A small TDM map for ghost roles. Admin spawnable only, spawn on CentComm z-level."
+	unpickable = TRUE
