@@ -368,7 +368,7 @@
 	else
 		user.adjustStaminaLoss(25)
 
-/obj/item/twohanded/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/twohanded/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK) //yogs -- mirrored to allow for use of the high ground
 	if(wielded)
 		return ..()
 	return 0
