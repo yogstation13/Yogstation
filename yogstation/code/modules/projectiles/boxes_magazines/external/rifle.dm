@@ -8,3 +8,7 @@
 
 /obj/item/ammo_box/magazine/kalash762/update_icon()
 	..()
+	if(ammo_count() == 0)
+		icon_state = "kalash762-0"
+	else
+		icon_state = "kalash762"
