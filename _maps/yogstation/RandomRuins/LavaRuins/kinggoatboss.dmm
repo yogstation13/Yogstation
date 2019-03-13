@@ -1,0 +1,513 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"b" = (
+/turf/closed/wall/mineral/silver,
+/area/ruin/powered)
+"c" = (
+/turf/closed/wall/mineral/gold,
+/area/ruin/powered)
+"d" = (
+/obj/structure/mineral_door/transparent/diamond{
+	sheetAmount = 1
+	},
+/turf/open/floor/mineral/silver,
+/area/ruin/powered)
+"e" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"f" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"g" = (
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered)
+"h" = (
+/turf/closed/indestructible/riveted/uranium,
+/area/ruin/powered)
+"i" = (
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"j" = (
+/obj/structure/chair/bronze,
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/king,
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"k" = (
+/mob/living/simple_animal/hostile/retaliate/goat/guard/master,
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"l" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"m" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"n" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/diamond{
+	baseturfs = /turf/open/floor/clockwork
+	},
+/area/ruin/powered)
+"o" = (
+/obj/effect/oneway{
+	icon_state = "field_dir";
+	dir = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"p" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"q" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"r" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"s" = (
+/obj/item/paper/crumpled{
+	info = "Lest ye be prepared abandon all hope ye who enter here.";
+	name = "Wise Mans Warning."
+	},
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered)
+"t" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+"y" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
+	height = 1;
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+b
+b
+c
+d
+c
+b
+b
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+b
+q
+f
+q
+f
+q
+b
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+c
+e
+g
+g
+g
+t
+c
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+d
+q
+g
+p
+s
+q
+d
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+c
+e
+g
+g
+g
+t
+c
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+q
+r
+q
+r
+q
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+b
+b
+c
+d
+c
+b
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+
+(1,1,2) = {"
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+"}
+(2,1,2) = {"
+h
+i
+i
+i
+i
+l
+i
+i
+i
+i
+h
+y
+h
+"}
+(3,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(4,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(5,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(6,1,2) = {"
+h
+i
+k
+i
+i
+i
+i
+i
+i
+n
+h
+q
+h
+"}
+(7,1,2) = {"
+h
+j
+i
+i
+i
+i
+i
+i
+i
+i
+o
+q
+h
+"}
+(8,1,2) = {"
+h
+i
+k
+i
+i
+i
+i
+i
+i
+n
+h
+q
+h
+"}
+(9,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(10,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(11,1,2) = {"
+h
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+q
+h
+"}
+(12,1,2) = {"
+h
+i
+i
+i
+i
+m
+i
+i
+i
+i
+h
+q
+h
+"}
+(13,1,2) = {"
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+"}

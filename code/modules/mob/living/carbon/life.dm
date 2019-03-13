@@ -216,6 +216,19 @@
 	else
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "chemical_euphoria")
 
+	//yogs start -- Adds Nitrogen Narcosis https://en.wikipedia.org/wiki/Nitrogen_narcosis
+	//NITROGEN
+	if(breath_gases[/datum/gas/nitrogen])
+		var/SA_partialpressure = (breath_gases[/datum/gas/nitrogen][MOLES]/breath.total_moles())*breath_pressure
+		if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_LOW) // Giggles
+			if(prob(20))
+				emote(pick("giggle","laugh"))
+			if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_HIGH) // Hallucinations
+				if(prob(15))
+					to_chat(src, "<span class='userdanger'>You can't think straight!</span>")
+					confused = min(SA_partialpressure/10, confused + 12)
+				hallucination += 5
+	//yogs end
 	//BZ (Facepunch port of their Agent B)
 	if(breath_gases[/datum/gas/bz])
 		var/bz_partialpressure = (breath_gases[/datum/gas/bz][MOLES]/breath.total_moles())*breath_pressure
