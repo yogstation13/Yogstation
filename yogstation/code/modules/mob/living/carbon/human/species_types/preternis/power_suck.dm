@@ -64,7 +64,7 @@
 			nutritionIncrease = CLAMP(PRETERNIS_LEVEL_FULL - charge, PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL) //if their nutrition goes up from some other source, this could be negative, which would cause bad things to happen.
 			drain = nutritionIncrease/ELECTRICITY_TO_NUTRIMENT_FACTOR
 
-		if (do_after(H,15, target = A))
+		if (do_after(H,5, target = A))
 			var/can_drain = A.can_consume_power_from()
 			if(!can_drain || istext(can_drain))
 				if(istext(can_drain))
