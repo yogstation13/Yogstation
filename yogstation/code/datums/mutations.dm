@@ -11,6 +11,7 @@
 	owner.dna.add_mutation(CLOWNMUT)
 	owner.dna.add_mutation(EPILEPSY)
 	owner.setBrainLoss(200)
+	owner.add_trait(TRAIT_BADDNA)
 
 	var/mob/living/carbon/human/H = owner
 
