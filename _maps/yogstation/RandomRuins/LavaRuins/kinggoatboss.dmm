@@ -4,31 +4,43 @@
 /area/lavaland/surface/outdoors/explored)
 "b" = (
 /turf/closed/wall/mineral/silver,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "c" = (
 /turf/closed/wall/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "d" = (
 /obj/structure/mineral_door/transparent/diamond{
 	sheetAmount = 1
 	},
 /turf/open/floor/mineral/silver,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "e" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "f" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "g" = (
 /turf/open/floor/mineral/diamond,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "h" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered)
@@ -88,8 +100,15 @@
 	id = "goatlayer";
 	name = "Ladder to the King of Goats Lair"
 	},
+/obj/item/gps/internal{
+	desc = "Something about this signal seems a bit more rich then the average signal.";
+	gpstag = "Fancy Signal";
+	name = "kinggoat"
+	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "q" = (
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
@@ -98,19 +117,27 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "s" = (
 /obj/item/paper/crumpled{
 	info = "Lest ye be prepared abandon all hope ye who enter here.";
 	name = "Wise Mans Warning."
 	},
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/diamond,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "t" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
-"y" = (
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"x" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
 	height = 1;
@@ -119,6 +146,11 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
+"Z" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 
 (1,1,1) = {"
 a
@@ -185,11 +217,11 @@ a
 a
 a
 b
-q
+Z
 f
-q
+Z
 f
-q
+Z
 b
 a
 a
@@ -215,11 +247,11 @@ a
 a
 a
 d
-q
+Z
 g
 p
 s
-q
+Z
 d
 a
 a
@@ -245,11 +277,11 @@ a
 a
 a
 b
-q
+Z
 r
-q
+Z
 r
-q
+Z
 b
 a
 a
@@ -343,7 +375,7 @@ i
 i
 i
 h
-y
+x
 h
 "}
 (3,1,2) = {"
