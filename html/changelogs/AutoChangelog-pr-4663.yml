@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "The AFK verb has been re-added! Use it when you want to quickly inform everyone of you being AFK."

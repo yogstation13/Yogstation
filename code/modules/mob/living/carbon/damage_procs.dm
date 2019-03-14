@@ -103,12 +103,12 @@
 		heal_overall_damage(0, 0, abs(amount), null, updating_health)
 	return amount
 
-/mob/living/carbon/setStaminaLoss(amount, updating = TRUE, forced = FALSE)
+/mob/living/carbon/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	var/current = getStaminaLoss()
 	var/diff = amount - current
 	if(!diff)
 		return
-	adjustStaminaLoss(diff, updating, forced)
+	adjustStaminaLoss(diff, updating_health, forced)
 
 ////////////////////////////////////////////
 
@@ -117,7 +117,7 @@
 	var/list/obj/item/bodypart/parts = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		if(status && (BP.status != status))
+		if(!(status == BODYPART_ANY) && (status && (BP.status != status))) //yogs - allows robot limb healing override
 			continue
 		if((brute && BP.brute_dam) || (burn && BP.burn_dam) || (stamina && BP.stamina_dam))
 			parts += BP

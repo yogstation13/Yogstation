@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/dynamic_fhair_suffix = ""
 
 	//for augmented heads
-	if(HD.status == BODYPART_ROBOTIC)
+	if(HD.status == BODYPART_ROBOTIC && !yogs_draw_robot_hair) //yogs - allow for robot head hair
 		return
 
 	//we check if our hat or helmet hides our facial hair.
@@ -1102,12 +1102,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/obj/item/I in H.held_items)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
-		var/health_deficiency = (100 - H.health + H.staminaloss)
-		if(health_deficiency >= 40)
-			if(flight)
-				. += (health_deficiency / 75)
-			else
-				. += (health_deficiency / 25)
+		if(!H.has_trait(TRAIT_IGNOREDAMAGESLOWDOWN))
+			var/health_deficiency = (H.maxHealth - H.health + H.staminaloss)
+			if(health_deficiency >= 40)
+				if(flight)
+					. += (health_deficiency / 75)
+				else
+					. += (health_deficiency / 25)
 		if(CONFIG_GET(flag/disable_human_mood))
 			if(!H.has_trait(TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
@@ -1362,7 +1363,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
 					if(ishuman(user))
-						var/mob/living/carbon/human/dirtyboy
+						var/mob/living/carbon/human/dirtyboy = user
 						dirtyboy.adjust_hygiene(-10)
 
 		switch(hit_area)
@@ -1504,12 +1505,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
 			else //we're sweating, insulation hinders our ability to reduce heat - and it will reduce the amount of cooling you get from the environment
 				H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + max((thermal_protection * (loc_temp - H.bodytemperature) + BODYTEMP_NORMAL - H.bodytemperature) / BODYTEMP_COLD_DIVISOR , BODYTEMP_COOLING_MAX)) //Extra calculation for hardsuits to bleed off heat
-		else //Place is hotter than we are
-			thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
-				H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
-			else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
-				H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+	if (loc_temp > H.bodytemperature) //Place is hotter than we are
+		var/natural = 0
+		if(H.stat != DEAD)
+			natural = H.natural_bodytemperature_stabilization()
+		var/thermal_protection = 1
+		thermal_protection -= H.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+		if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
+			H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
+		else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
+			H.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 
 	// +/- 50 degrees from 310K is the 'safe' zone, where no damage is dealt.
 	if(H.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !H.has_trait(TRAIT_RESISTHEAT))
