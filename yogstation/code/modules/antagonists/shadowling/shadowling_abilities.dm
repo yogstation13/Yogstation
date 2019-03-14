@@ -454,7 +454,7 @@
 		//Whoops!  The APC's light turns back on
 		to_chat(user, "<span class='shadowling'>Your concentration breaks and the APC suddenly repowers!</span>")
 		target_apc.set_light(2)
-		target_apc.visible_message("<span class='warning'>The [target_apc] begins glowing brightly!")
+		target_apc.visible_message("<span class='warning'>The [target_apc] begins glowing brightly!</span>")
 	else
 		//We did it
 		to_chat(user, "<span class='shadowling'>You return the APC's power to the void, disabling it.</span>")
