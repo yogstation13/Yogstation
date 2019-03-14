@@ -64,11 +64,6 @@ Speckles
 Sprinkledinkle
 Tickles
 Toodles Sharperton
-<<<<<<< HEAD
-Touchy
-Wiggles
-Ziggy Yoyo
-=======
 Ziggy Yoyo
 Homey
 Mr Weird
@@ -155,4 +150,3 @@ Shinturner
 Early Worm
 Fretworks
 Grebble
->>>>>>> dec7b2f5a5... Adds a bunch of new clown names to the .txt (#43113)
