@@ -33,8 +33,10 @@
 /turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered)
 "i" = (
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "j" = (
@@ -43,36 +45,46 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/king,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "k" = (
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "l" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "m" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "n" = (
 /obj/machinery/light,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered)
 "o" = (
@@ -80,7 +92,12 @@
 	icon_state = "field_dir";
 	dir = 1
 	},
-/turf/open/floor/mineral/gold,
+/obj/machinery/door/airlock/gold/glass,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
 /area/ruin/powered)
 "p" = (
 /obj/structure/ladder/unbreakable{
@@ -110,14 +127,25 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/gold,
 /area/ruin/powered)
-"y" = (
+"F" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
 	height = 1;
 	id = "goatlayer";
 	name = "Ladder to the King of Goats Lair"
 	},
-/turf/open/floor/mineral/gold,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered)
+"S" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -343,7 +371,7 @@ i
 i
 i
 h
-y
+F
 h
 "}
 (3,1,2) = {"
@@ -358,7 +386,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (4,1,2) = {"
@@ -373,7 +401,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (5,1,2) = {"
@@ -388,7 +416,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (6,1,2) = {"
@@ -403,7 +431,7 @@ i
 i
 n
 h
-q
+S
 h
 "}
 (7,1,2) = {"
@@ -418,7 +446,7 @@ i
 i
 i
 o
-q
+S
 h
 "}
 (8,1,2) = {"
@@ -433,7 +461,7 @@ i
 i
 n
 h
-q
+S
 h
 "}
 (9,1,2) = {"
@@ -448,7 +476,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (10,1,2) = {"
@@ -463,7 +491,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (11,1,2) = {"
@@ -478,7 +506,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (12,1,2) = {"
@@ -493,7 +521,7 @@ i
 i
 i
 h
-q
+S
 h
 "}
 (13,1,2) = {"
