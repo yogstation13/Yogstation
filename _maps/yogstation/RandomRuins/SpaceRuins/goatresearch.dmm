@@ -350,7 +350,7 @@
 /area/ruin/powered)
 "bs" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large/goats,
+/obj/structure/closet/crate/critter/exoticgoats,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
 "bt" = (
