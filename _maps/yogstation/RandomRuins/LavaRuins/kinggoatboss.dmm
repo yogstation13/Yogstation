@@ -43,12 +43,18 @@
 	})
 "h" = (
 /turf/closed/indestructible/riveted/uranium,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "i" = (
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "j" = (
 /obj/structure/chair/bronze,
 /obj/machinery/light{
@@ -58,13 +64,19 @@
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "k" = (
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master,
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "l" = (
 /obj/machinery/light{
 	dir = 8
@@ -72,7 +84,10 @@
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "m" = (
 /obj/machinery/light{
 	dir = 4
@@ -80,20 +95,29 @@
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "n" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/diamond{
 	baseturfs = /turf/open/floor/clockwork
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "o" = (
 /obj/effect/oneway{
 	icon_state = "field_dir";
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "p" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
@@ -111,7 +135,9 @@
 	})
 "q" = (
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "r" = (
 /obj/machinery/light{
 	dir = 4
@@ -137,7 +163,7 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"x" = (
+"A" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
 	height = 1;
@@ -145,11 +171,40 @@
 	name = "Ladder to the King of Goats Lair"
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered)
-"Z" = (
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"G" = (
+/obj/effect/mob_spawn/human/miner/explorer{
+	desc = "Seems this miner tried to escape the arena using bluespace crystals. Did not turn out well";
+	mob_name = "Lyna Lavas";
+	name = "Lyna Lavas"
+	},
+/obj/item/stack/sheet/bluespace_crystal,
+/obj/structure/toilet{
+	dir = 8
+	},
 /turf/open/floor/mineral/gold,
 /area/ruin/powered{
-	name = "King Goat Lair"
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"L" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"V" = (
+/obj/machinery/door/airlock/wood{
+	desc = "A room to think about your life choices and if going in the arena is really a good idea.";
+	name = "Restroom"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
 	})
 
 (1,1,1) = {"
@@ -217,11 +272,11 @@ a
 a
 a
 b
-Z
+q
 f
-Z
+q
 f
-Z
+q
 b
 a
 a
@@ -247,11 +302,11 @@ a
 a
 a
 d
-Z
+q
 g
 p
 s
-Z
+q
 d
 a
 a
@@ -277,11 +332,11 @@ a
 a
 a
 b
-Z
+q
 r
-Z
+q
 r
-Z
+q
 b
 a
 a
@@ -375,7 +430,7 @@ i
 i
 i
 h
-x
+A
 h
 "}
 (3,1,2) = {"
@@ -390,7 +445,7 @@ i
 i
 i
 h
-q
+L
 h
 "}
 (4,1,2) = {"
@@ -405,7 +460,7 @@ i
 i
 i
 h
-q
+L
 h
 "}
 (5,1,2) = {"
@@ -420,7 +475,7 @@ i
 i
 i
 h
-q
+L
 h
 "}
 (6,1,2) = {"
@@ -435,7 +490,7 @@ i
 i
 n
 h
-q
+L
 h
 "}
 (7,1,2) = {"
@@ -450,7 +505,7 @@ i
 i
 i
 o
-q
+L
 h
 "}
 (8,1,2) = {"
@@ -465,7 +520,7 @@ i
 i
 n
 h
-q
+L
 h
 "}
 (9,1,2) = {"
@@ -480,7 +535,7 @@ i
 i
 i
 h
-q
+L
 h
 "}
 (10,1,2) = {"
@@ -495,7 +550,7 @@ i
 i
 i
 h
-q
+L
 h
 "}
 (11,1,2) = {"
@@ -510,7 +565,7 @@ i
 i
 i
 h
-q
+V
 h
 "}
 (12,1,2) = {"
@@ -525,7 +580,7 @@ i
 i
 i
 h
-q
+G
 h
 "}
 (13,1,2) = {"
