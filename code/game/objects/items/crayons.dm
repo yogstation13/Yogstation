@@ -329,8 +329,10 @@
 	else if(drawing in numerals)
 		temp = "number"
 	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
-	if(!gang_check) return
-	else if(gang_check == "gang graffiti") temp = gang_check // yogs end
+	if(!gang_check) 
+		return
+	else if(gang_check == "gang graffiti")
+		temp = gang_check // yogs end
 
 
 	var/graf_rot
@@ -363,7 +365,8 @@
 	var/wait_time = 50
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		wait_time *= 3
-	if(gang) instant = FALSE // yogs -- gang spraying must not be instant, balance reasons
+	if(gang) //yogs
+		instant = FALSE // yogs -- gang spraying must not be instant, balance reasons
 	if(!instant)
 		if(!do_after(user, 50, target = target))
 			return

@@ -355,7 +355,7 @@
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/area/userarea = get_area(user)
 	if(!(userarea.type in gang.territories|gang.new_territories))
-		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
+		to_chat(user,"<span class='warning'>The <b>dominator</b> can only be bought in territory controlled by your gang!</span>")
 		return FALSE
 	for(var/obj/obj in get_turf(user))
 		if(obj.density)
