@@ -175,9 +175,21 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"G" = (
+"L" = (
+/obj/machinery/door/airlock/wood{
+	desc = "A room to think about your life choices and if going in the arena is really a good idea.";
+	name = "Restroom"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"P" = (
 /obj/effect/mob_spawn/human/miner/explorer{
+	assignedrole = "null";
 	desc = "Seems this miner tried to escape the arena using bluespace crystals. Did not turn out well";
+	mob_gender = "female";
 	mob_name = "Lyna Lavas";
 	name = "Lyna Lavas"
 	},
@@ -185,22 +197,16 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"L" = (
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"V" = (
-/obj/machinery/door/airlock/wood{
-	desc = "A room to think about your life choices and if going in the arena is really a good idea.";
-	name = "Restroom"
+/obj/machinery/light/small{
+	icon_state = "bulb";
+	dir = 4
 	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"T" = (
 /turf/open/floor/mineral/gold,
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -445,7 +451,7 @@ i
 i
 i
 h
-L
+T
 h
 "}
 (4,1,2) = {"
@@ -460,7 +466,7 @@ i
 i
 i
 h
-L
+T
 h
 "}
 (5,1,2) = {"
@@ -475,7 +481,7 @@ i
 i
 i
 h
-L
+T
 h
 "}
 (6,1,2) = {"
@@ -490,7 +496,7 @@ i
 i
 n
 h
-L
+T
 h
 "}
 (7,1,2) = {"
@@ -505,7 +511,7 @@ i
 i
 i
 o
-L
+T
 h
 "}
 (8,1,2) = {"
@@ -520,7 +526,7 @@ i
 i
 n
 h
-L
+T
 h
 "}
 (9,1,2) = {"
@@ -535,7 +541,7 @@ i
 i
 i
 h
-L
+T
 h
 "}
 (10,1,2) = {"
@@ -550,7 +556,7 @@ i
 i
 i
 h
-L
+T
 h
 "}
 (11,1,2) = {"
@@ -565,7 +571,7 @@ i
 i
 i
 h
-V
+L
 h
 "}
 (12,1,2) = {"
@@ -580,7 +586,7 @@ i
 i
 i
 h
-G
+P
 h
 "}
 (13,1,2) = {"
