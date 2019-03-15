@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/dynamic_fhair_suffix = ""
 
 	//for augmented heads
-	if(HD.status == BODYPART_ROBOTIC)
+	if(HD.status == BODYPART_ROBOTIC && !yogs_draw_robot_hair) //yogs - allow for robot head hair
 		return
 
 	//we check if our hat or helmet hides our facial hair.
@@ -1102,12 +1102,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/obj/item/I in H.held_items)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
-		var/health_deficiency = (100 - H.health + H.staminaloss)
-		if(health_deficiency >= 40)
-			if(flight)
-				. += (health_deficiency / 75)
-			else
-				. += (health_deficiency / 25)
+		if(!H.has_trait(TRAIT_IGNOREDAMAGESLOWDOWN))
+			var/health_deficiency = (H.maxHealth - H.health + H.staminaloss)
+			if(health_deficiency >= 40)
+				if(flight)
+					. += (health_deficiency / 75)
+				else
+					. += (health_deficiency / 25)
 		if(CONFIG_GET(flag/disable_human_mood))
 			if(!H.has_trait(TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80

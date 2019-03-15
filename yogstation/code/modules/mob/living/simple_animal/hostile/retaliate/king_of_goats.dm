@@ -98,6 +98,9 @@
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15

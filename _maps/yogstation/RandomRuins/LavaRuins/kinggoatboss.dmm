@@ -48,8 +48,10 @@
 	noteleport = 1
 	})
 "i" = (
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -61,8 +63,10 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/retaliate/goat/king,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -70,8 +74,10 @@
 	})
 "k" = (
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -81,8 +87,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -92,8 +100,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -101,8 +111,10 @@
 	})
 "n" = (
 /obj/machinery/light,
-/turf/open/floor/mineral/diamond{
-	baseturfs = /turf/open/floor/clockwork
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -118,6 +130,13 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
+/obj/machinery/door/airlock/gold/glass,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered)
 "p" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
@@ -164,6 +183,8 @@
 	name = "King Goat Lair"
 	})
 "A" = (
+/area/ruin/powered)
+"F" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
 	height = 1;
@@ -212,6 +233,20 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
+=======
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered)
+"S" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -437,6 +472,7 @@ i
 i
 h
 A
+F
 h
 "}
 (3,1,2) = {"
@@ -452,6 +488,7 @@ i
 i
 h
 T
+S
 h
 "}
 (4,1,2) = {"
@@ -467,6 +504,7 @@ i
 i
 h
 T
+S
 h
 "}
 (5,1,2) = {"
@@ -482,6 +520,7 @@ i
 i
 h
 T
+S
 h
 "}
 (6,1,2) = {"
@@ -497,6 +536,7 @@ i
 n
 h
 T
+S
 h
 "}
 (7,1,2) = {"
@@ -512,6 +552,7 @@ i
 i
 o
 T
+S
 h
 "}
 (8,1,2) = {"
@@ -527,6 +568,7 @@ i
 n
 h
 T
+S
 h
 "}
 (9,1,2) = {"
@@ -542,6 +584,7 @@ i
 i
 h
 T
+S
 h
 "}
 (10,1,2) = {"
@@ -557,6 +600,7 @@ i
 i
 h
 T
+S
 h
 "}
 (11,1,2) = {"
@@ -572,6 +616,7 @@ i
 i
 h
 L
+S
 h
 "}
 (12,1,2) = {"
@@ -587,6 +632,7 @@ i
 i
 h
 P
+S
 h
 "}
 (13,1,2) = {"
