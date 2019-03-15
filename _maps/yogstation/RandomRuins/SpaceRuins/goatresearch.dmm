@@ -297,6 +297,8 @@
 /area/ruin/powered)
 "bj" = (
 /obj/effect/mob_spawn/human/commander{
+	assignedrole = "null";
+	mob_gender = "male";
 	mob_name = "John Lamario";
 	name = "John Lamario"
 	},
@@ -620,10 +622,7 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"lM" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ruin/powered)
-"oD" = (
+"hH" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
@@ -631,7 +630,10 @@
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
-"zj" = (
+"Le" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/powered)
+"LJ" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
@@ -1598,14 +1600,14 @@ aa
 aa
 aa
 ab
-lM
+Le
 cd
 ap
 ap
 ap
 ap
 cj
-lM
+Le
 ab
 aa
 aa
@@ -4524,14 +4526,14 @@ aE
 aJ
 aN
 bZ
-zj
+LJ
 ab
 aM
 aM
 aM
 aM
 ab
-oD
+hH
 bZ
 aN
 bH
