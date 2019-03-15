@@ -296,7 +296,10 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
 "bj" = (
-/obj/effect/mob_spawn/human/commander,
+/obj/effect/mob_spawn/human/commander{
+	mob_name = "John Lamario";
+	name = "John Lamario"
+	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/gun/ballistic/automatic/laser,
 /obj/item/paper/crumpled/bloody/goattransport,
@@ -617,16 +620,10 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"wj" = (
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
-/obj/item/reagent_containers/food/snacks/monkeycube/goat,
-/obj/item/reagent_containers/food/snacks/monkeycube/goat,
-/obj/item/extinguisher,
-/turf/open/floor/mineral/titanium,
+"lM" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/powered)
-"EA" = (
+"oD" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
@@ -634,8 +631,14 @@
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
-"OB" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
+"zj" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/extinguisher,
+/turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -1595,14 +1598,14 @@ aa
 aa
 aa
 ab
-OB
+lM
 cd
 ap
 ap
 ap
 ap
 cj
-OB
+lM
 ab
 aa
 aa
@@ -4521,14 +4524,14 @@ aE
 aJ
 aN
 bZ
-wj
+zj
 ab
 aM
 aM
 aM
 aM
 ab
-EA
+oD
 bZ
 aN
 bH
