@@ -21,7 +21,7 @@
 
 /obj/item/paper/crumpled/bloody/goattransport
 	name = "Bloody Captains Note"
-	info = "<i> The text is written in shaky and rushed handwriting. <i> <br> <br> This is captain John Lamario of the Goat Tech Industries Transport Vessel if you are reading this I am here to let you know that this ship has just been attacked by some weird goats with robes on there backs and they are currently attempting to breakdown my door I dont think anyone else is left... <br> <br> They are almost threw the door I dont know how they got on the ship they just somehow teleported on I bet the Animal Rights Consortium have something to do with this... <br> <br> They are rushing in now it seems I will have to end it here if your reading this tell my wife I lov- <i> The writing cuts off here covered in blood... <i>"
+	info = "<i> The text is written in shaky and rushed handwriting. </i> <br> <br> This is Captain John Lamario of the Goat Tech Industries Transport Vessel. If you are reading this, I am here to let you know that this ship has just been attacked by some weird goats with robes on their backs. They are currently attempting to break down my door. I dont think anyone else is left... <br> <br> They are almost through the door. I dont know how they got on the ship! They just somehow teleported on... I bet the Animal Rights Consortium has something to do with this... <br> <br> They are rushing in now. It seems I will have to end it here. If you're reading this, tell my wife I lov- <i> The writing cuts off here covered in blood... </i>"
 
 /obj/item/paper/gasstation_lore
 	name = "EMPLOYEE NOTICE"
