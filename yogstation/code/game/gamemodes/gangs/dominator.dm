@@ -41,7 +41,7 @@
 	return ..()
 
 /obj/machinery/dominator/emp_act(severity)
-	take_damage(100, BURN, "energy", 0)
+	take_damage(30, BURN, "energy", 0)
 	..()
 
 /obj/machinery/dominator/hulk_damage()
