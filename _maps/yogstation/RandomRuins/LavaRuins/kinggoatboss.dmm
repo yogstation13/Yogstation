@@ -233,7 +233,6 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-=======
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
