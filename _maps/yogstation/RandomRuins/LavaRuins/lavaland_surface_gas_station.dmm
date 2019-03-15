@@ -730,57 +730,23 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"dQ" = (
+"gy" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Back Exit Camera";
+	dir = 1;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"mg" = (
 /obj/item/instrument/piano_synth,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"eq" = (
-/obj/machinery/shower{
-	icon_state = "shower";
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"hW" = (
-/obj/machinery/light,
-/obj/machinery/camera{
-	c_tag = "Inside Entrance Camera";
-	dir = 1;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"ox" = (
-/obj/structure/table,
-/obj/machinery/computer/security/telescreen{
-	name = "Gas Station Surveillance";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
-"rg" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/camera{
-	c_tag = "Outside Backroom Camera";
-	dir = 8;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "su" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -791,6 +757,16 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
+"tv" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Side Gas Station Camera";
+	dir = 4;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
 "tZ" = (
 /obj/machinery/camera{
 	c_tag = "Inside Back Exit Camera";
@@ -839,26 +815,6 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Ee" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/camera{
-	c_tag = "Outside Back Exit Camera";
-	dir = 1;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
-"Ft" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/camera{
-	c_tag = "Outside Side Gas Station Camera";
-	dir = 4;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "FJ" = (
 /obj/machinery/light_switch,
 /turf/closed/wall/rust,
@@ -872,10 +828,26 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"Jy" = (
-/obj/effect/turf_decal/sand,
-/obj/item/beacon,
-/turf/open/floor/plasteel,
+"IA" = (
+/obj/structure/table,
+/obj/machinery/computer/security/telescreen{
+	name = "Gas Station Surveillance";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Jr" = (
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
 "Lb" = (
 /obj/machinery/button/door{
@@ -900,6 +872,16 @@
 /obj/structure/sign/poster/contraband/robust_softdrinks,
 /turf/closed/wall/rust,
 /area/ruin/powered)
+"Mr" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
 "NI" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -923,32 +905,24 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"QK" = (
+"UF" = (
+/obj/effect/turf_decal/sand,
 /obj/machinery/camera{
-	c_tag = "Inside Right Side Gas Station Camera";
+	c_tag = "Outside Backroom Camera";
 	dir = 8;
 	name = "security camera";
 	network = list("gasstation")
 	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"UX" = (
+/obj/item/beacon,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"TD" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/teleport/station,
-/turf/open/floor/plasteel,
-/area/ruin/powered)
-"Uy" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/computer/teleporter{
-	icon_state = "computer";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered)
-"VE" = (
+"Ve" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
 	c_tag = "Outside Entrance Camera";
@@ -966,10 +940,13 @@
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"Wg" = (
-/obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 4
+"Xl" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Inside Entrance Camera";
+	dir = 1;
+	name = "security camera";
+	network = list("gasstation")
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
@@ -984,10 +961,17 @@
 /obj/structure/sign/poster/contraband/donut_corp,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"XW" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/teleport/hub,
-/turf/open/floor/plasteel,
+"Ym" = (
+/obj/machinery/camera{
+	c_tag = "Inside Right Side Gas Station Camera";
+	dir = 8;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -1051,7 +1035,7 @@ af
 az
 af
 af
-rg
+UF
 af
 af
 bh
@@ -1099,7 +1083,7 @@ aa
 ab
 af
 aj
-Wg
+Mr
 Hu
 aD
 aj
@@ -1127,7 +1111,7 @@ af
 aj
 an
 ar
-eq
+Jr
 aj
 aO
 aV
@@ -1206,8 +1190,8 @@ aj
 ap
 ar
 aj
-ox
-dQ
+IA
+mg
 ar
 ar
 AD
@@ -1239,7 +1223,7 @@ bd
 AD
 cU
 Mq
-VE
+Ve
 ac
 bB
 ac
@@ -1253,7 +1237,7 @@ aa
 (11,1,1) = {"
 ab
 af
-Ee
+gy
 wF
 wQ
 ar
@@ -1315,7 +1299,7 @@ ar
 ar
 ar
 ar
-hW
+Xl
 Xr
 af
 ac
@@ -1331,7 +1315,7 @@ aa
 (14,1,1) = {"
 ab
 af
-Uy
+af
 aj
 as
 ar
@@ -1356,8 +1340,8 @@ aa
 "}
 (15,1,1) = {"
 ab
-Jy
-TD
+af
+af
 aj
 at
 ar
@@ -1383,14 +1367,14 @@ aa
 (16,1,1) = {"
 ab
 ab
-XW
+af
 aj
 au
 aB
 ar
 ar
 ar
-ar
+UX
 ar
 ar
 bp
@@ -1493,7 +1477,7 @@ ay
 ar
 aF
 ar
-QK
+Ym
 ar
 ar
 Ql
@@ -1545,7 +1529,7 @@ af
 aC
 af
 af
-Ft
+tv
 af
 af
 aC
