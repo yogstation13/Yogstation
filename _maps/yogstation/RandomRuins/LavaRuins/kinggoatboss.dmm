@@ -125,18 +125,19 @@
 	icon_state = "field_dir";
 	dir = 1
 	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-/obj/machinery/door/airlock/gold/glass,
+/obj/machinery/door/airlock/gold/glass{
+	desc = "Once you go past this door there is no going back...";
+	name = "POINT OF NO RETURN"
+	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
 	name = "gold floor"
 	},
-/area/ruin/powered)
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "p" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
@@ -145,7 +146,7 @@
 	},
 /obj/item/gps/internal{
 	desc = "Something about this signal seems a bit more rich then the average signal.";
-	gpstag = "Fancy Signal";
+	gpstag = "Bleating Signal";
 	name = "kinggoat"
 	},
 /turf/open/floor/mineral/gold,
@@ -170,8 +171,6 @@
 	info = "Lest ye be prepared abandon all hope ye who enter here.";
 	name = "Wise Mans Warning."
 	},
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/diamond,
 /area/ruin/powered{
 	name = "King Goat Lair"
@@ -182,70 +181,71 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"A" = (
-/area/ruin/powered)
 "F" = (
+/obj/machinery/door/airlock/wood{
+	desc = "A room to think about your life choices and if fighting that goat is really a good idea.";
+	name = "Restroom"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"L" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
 	height = 1;
 	id = "goatlayer";
 	name = "Ladder to the King of Goats Lair"
 	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"L" = (
-/obj/machinery/door/airlock/wood{
-	desc = "A room to think about your life choices and if going in the arena is really a good idea.";
-	name = "Restroom"
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
 	},
-/turf/open/floor/mineral/gold,
 /area/ruin/powered{
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"P" = (
-/obj/effect/mob_spawn/human/miner/explorer{
+"N" = (
+/obj/effect/mob_spawn/human/miner{
 	assignedrole = "null";
-	desc = "Seems this miner tried to escape the arena using bluespace crystals. Did not turn out well";
+	desc = "Seems this miner tried to cheese the arena using bluespace crystals. Did not turn out well";
 	mob_gender = "female";
 	mob_name = "Lyna Lavas";
 	name = "Lyna Lavas"
 	},
-/obj/item/stack/sheet/bluespace_crystal,
+/obj/item/stack/ore/bluespace_crystal,
 /obj/structure/toilet{
+	icon_state = "toilet00";
 	dir = 8
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb";
 	dir = 4
 	},
-/turf/open/floor/mineral/gold,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
 /area/ruin/powered{
 	name = "King Goat Arena";
 	noteleport = 1
 	})
 "T" = (
-/turf/open/floor/mineral/gold,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
 /area/ruin/powered{
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered)
-"S" = (
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -470,8 +470,7 @@ i
 i
 i
 h
-A
-F
+L
 h
 "}
 (3,1,2) = {"
@@ -487,7 +486,6 @@ i
 i
 h
 T
-S
 h
 "}
 (4,1,2) = {"
@@ -503,7 +501,6 @@ i
 i
 h
 T
-S
 h
 "}
 (5,1,2) = {"
@@ -519,7 +516,6 @@ i
 i
 h
 T
-S
 h
 "}
 (6,1,2) = {"
@@ -535,7 +531,6 @@ i
 n
 h
 T
-S
 h
 "}
 (7,1,2) = {"
@@ -551,7 +546,6 @@ i
 i
 o
 T
-S
 h
 "}
 (8,1,2) = {"
@@ -567,7 +561,6 @@ i
 n
 h
 T
-S
 h
 "}
 (9,1,2) = {"
@@ -583,7 +576,6 @@ i
 i
 h
 T
-S
 h
 "}
 (10,1,2) = {"
@@ -599,7 +591,6 @@ i
 i
 h
 T
-S
 h
 "}
 (11,1,2) = {"
@@ -614,8 +605,7 @@ i
 i
 i
 h
-L
-S
+F
 h
 "}
 (12,1,2) = {"
@@ -630,8 +620,7 @@ i
 i
 i
 h
-P
-S
+N
 h
 "}
 (13,1,2) = {"
