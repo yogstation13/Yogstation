@@ -330,7 +330,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/red
 	name = "Red Goat"
-	desc = "Redder than Ragnar" // just make a nerd culture reference smh
+	desc = "Redder than Ragnar. // just make a nerd culture reference smh
 	icon = 'yogstation/icons/mob/goats/red_goat.dmi'
 	icon_state = "redgoat"
 	icon_living = "redgoat"
