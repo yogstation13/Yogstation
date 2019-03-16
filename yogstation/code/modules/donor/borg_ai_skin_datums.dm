@@ -178,6 +178,11 @@
 	icon_state = "tau_sec"
 	module_locked = "Security"
 
+/datum/borg_skin/meddroid
+	name = "Medical Droid"
+	icon_state = "meddroid"
+	module_locked = "Medical"
+
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
 /datum/borg_skin/hover_sec
