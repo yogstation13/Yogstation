@@ -379,7 +379,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/gogoat // sprite from https://community.playstarbound.com/threads/goat-retextures-gogoat-and-skiddo-pok%C3%A9mon.110152/
 	name = "Gogoat"
-	desc = "May or may not be a reference to a certain game involving catching virtual creatures. Also, what type of name is Gogoat?!?."
+	desc = "May or may not be a reference to a certain game involving catching virtual creatures. Also, what type of name is Gogoat?!?"
 	icon = 'yogstation/icons/mob/goats/Gogoat.dmi'
 	icon_state = "gogoat"
 	icon_living = "gogoat"
