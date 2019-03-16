@@ -178,9 +178,9 @@
 	icon_state = "tau_sec"
 	module_locked = "Security"
 
-/datum/borg_skin/meddroid
-	name = "Medical Droid"
-	icon_state = "meddroid"
+/datum/borg_skin/paramed_droid
+	name = "Paramedic Droid"
+	icon_state = "paramed_droid"
 	module_locked = "Medical"
 
 //Oldyogs stuff, I didn't sprite this ~Kmc//
