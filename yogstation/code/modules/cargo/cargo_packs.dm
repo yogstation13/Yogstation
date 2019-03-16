@@ -70,7 +70,7 @@
 					/obj/item/deodorant)
 	crate_name = "deodorant crate"
 	
-	/datum/supply_pack/costumes_toys/plushes
+/datum/supply_pack/costumes_toys/plushes
 	name = "Plushie Crate"
 	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
 	cost = 2000
