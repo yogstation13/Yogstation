@@ -309,6 +309,7 @@
 //     Player A: 150 / 250 = 0.6 = 60%
 //     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
+	remove_quiet_rounders(candidates)//Yogs -- Fixes Quiet Rounds. (This modifies the list of candidates despite the lack of a return value because DM lists are passed as references)
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
