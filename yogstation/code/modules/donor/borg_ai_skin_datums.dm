@@ -178,6 +178,12 @@
 	icon_state = "tau_sec"
 	module_locked = "Security"
 
+/datum/borg_skin/paramed_droid
+	name = "Paramedic Droid"
+	icon_state = "paramed_droid"
+	module_locked = "Medical"
+	owner = "identification"
+
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
 /datum/borg_skin/hover_sec
@@ -260,3 +266,8 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
+
+/datum/ai_skin/urquan
+	name = "Ur-Quan Kzer-Za Master"
+	icon_state = "urquan_kzer_za"
+	owner = "identification"
