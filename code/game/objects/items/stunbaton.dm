@@ -1,5 +1,5 @@
 /obj/item/melee/baton
-	name = "stunbaton"//Yogs -- Makes Stunbaton one word in the code, to fix #4789
+	name = "stun baton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
 	item_state = "baton"
