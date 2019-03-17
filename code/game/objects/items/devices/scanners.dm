@@ -297,7 +297,15 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, "<span class='info'>Species: [S.name][mutant ? "-derived mutant" : ""]</span>")
-	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+
+	//Health analyzers warn you about very cold people, like thralls or victims of shadowlings. //yogs start
+	if(M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) || M.bodytemperature < (11 + T0C))
+		//Thralls get a fake temperature so they always read as too cold.
+		var/faketemp = (M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) ? M.bodytemperature - rand(25, 26) : M.bodytemperature)
+		to_chat(user, "<span class='danger'>Body temperature: [round(faketemp - T0C,0.1)] &deg;C ([round(faketemp*1.8-459.67,0.1)] &deg;F)</span>")
+		to_chat(user, "<span class='danger'>Internal temperature hazardously low.</span>")
+	else
+		to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>") //yogs end
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((M.has_trait(TRAIT_FAKEDEATH)) && !advanced)))
@@ -350,7 +358,7 @@ GENE SCANNER
 			if(M.reagents.reagent_list.len)
 				to_chat(user, "<span class='notice'>Subject contains the following reagents:</span>")
 				for(var/datum/reagent/R in M.reagents.reagent_list)
-					to_chat(user, "<span class='notice'>[R.volume] units of [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>OVERDOSING</span>" : ".</span>"]")
+					to_chat(user, "<span class='notice'>[round(R.volume, 0.01)] units of [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>OVERDOSING</span>" : ".</span>"]")
 			else
 				to_chat(user, "<span class='notice'>Subject contains no reagents.</span>")
 			if(M.reagents.addiction_list.len)
@@ -567,10 +575,9 @@ GENE SCANNER
 				to_chat(user, "<span class='notice'>[target] is empty!</span>")
 
 		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
-			var/fusion_power = round(cached_scan_results["fusion"], 0.01)
-			var/tier = fusionpower2text(fusion_power)
+			var/instability = round(cached_scan_results["fusion"], 0.01)
 			to_chat(user, "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>")
-			to_chat(user, "<span class='notice'>Power of the last fusion reaction: [fusion_power]\n This power indicates it was a [tier]-tier fusion reaction.</span>")
+			to_chat(user, "<span class='notice'>Instability of the last fusion reaction: [instability].</span>")
 	return
 
 //slime scanner

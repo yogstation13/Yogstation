@@ -103,6 +103,121 @@
 	owner = "fluffe9911"
 	module_locked = "Peacekeeper"
 
+/datum/borg_skin/mrsparako
+	name = "Mr. Sparako"
+	icon_state = "mrsparako"
+	owner = "nickvr628"
+
+/datum/borg_skin/paladin_engi
+	name = "Paladin (engineering)"
+	icon_state = "paladin_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/abductor_engi
+	name = "Abductor (engineering)"
+	icon_state = "abductor_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/abductor_med
+	name = "Abductor (medical)"
+	icon_state = "abductor_med"
+	owner = null
+	module_locked = "Medical"
+
+/datum/borg_skin/drill
+	name = "Drillbot"
+	icon_state = "drillbot"
+	owner = null
+	module_locked = "Miner"
+
+/datum/borg_skin/snailborg
+	name = "Snailborg"
+	icon_state = "snailborg"
+	owner = null
+	module_locked = "Janitor"
+
+/datum/borg_skin/tau_engi
+	name = "Tau (engineering)"
+	icon_state = "tau_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/testdummy_engi
+	name = "Crash test dummy (engineering)"
+	icon_state = "testdummy_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/zamboni_janitor
+	name = "Zamboni (ice sweeper)"
+	icon_state = "zamboni_janitor"
+	owner = null
+	module_locked = "Janitor"
+
+/datum/borg_skin/abductor_peacekeeper
+	name = "Alien E.G.G"
+	icon_state = "abductor_peacekeeper"
+	owner = null
+	module_locked = "Peacekeeper"
+
+/datum/borg_skin/abductor_miner
+	name = "Alien M.I.N.E.R"
+	icon_state = "abductor_miner"
+	owner = null
+	module_locked = "Miner"
+
+/datum/borg_skin/cyberpunk_sec
+	name = "Nt-tech industries secborg (cyberpunk)"
+	icon_state = "cyberpunk_sec"
+	module_locked = "Security"
+
+/datum/borg_skin/tau_sec
+	name = "Tau (security)"
+	icon_state = "tau_sec"
+	module_locked = "Security"
+
+//Oldyogs stuff, I didn't sprite this ~Kmc//
+
+/datum/borg_skin/hover_sec
+	name = "Hoverborg (security)"
+	icon_state = "hover_sec"
+	module_locked = "Security"
+	owner = null
+
+/datum/borg_skin/hover_med
+	name = "Hoverborg (medical)"
+	icon_state = "hover_med"
+	owner = null
+	module_locked = "Medical"
+
+/datum/borg_skin/hover_engi
+	name = "Hoverborg (engineering)"
+	icon_state = "hover_engi"
+	owner = null
+	module_locked = "Engineering"
+
+/datum/borg_skin/gutsy
+	name = "Mr Gutsy (universal)"
+	icon_state = "gutsy_standard"
+	owner = null
+	module_locked = null
+
+/datum/borg_skin/gutsy_med
+	name = "Mr Gutsy (medical)"
+	icon_state = "gutsy_med"
+	owner = null
+	module_locked = "Medical"
+
+/datum/borg_skin/gutsy_sec
+	name = "Mr Gutsy (security)"
+	icon_state = "gutsy_sec"
+	owner = null
+	module_locked = "Security"
+
+
+
 //Begin AI skins://
 /* These follow the same format as borg skins*/
 
@@ -127,7 +242,7 @@
 	icon_state = "dioAI"
 	owner = "atrealdonaldtrump"
 
-/datum/ai_skin/dio
+/datum/ai_skin/englandismycity
 	name = "Nick Crompton"
 	icon_state = "nickcrompton"
 	owner = "drderp3635"
@@ -145,7 +260,3 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
-
-/datum/borg_skin/cancel //Grimy, I know. But until I can think of a better solution, here it is :)
-	name = "Cancel"
-	icon_state = null

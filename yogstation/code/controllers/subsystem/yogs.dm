@@ -23,6 +23,7 @@ SUBSYSTEM_DEF(Yogs)
 		endedshift = TRUE
 	
 	if(world.time - last_rebwoink > REBWOINK_TIME*10)
+		last_rebwoink = world.time
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
