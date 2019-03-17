@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Asbestos
 Baby Cakes
 Bamboozle
@@ -6,14 +7,28 @@ Bim Bam Jazzy
 Bimbo
 Bingo
 Bo Bo Oboe
+=======
+Aluminium Dave
+Baba
+Baby Cakes
+Bananium LXIX
+Bimbim
+Bingo
+Birdman From Birdland
+Bizarre Bottle
+Bizarro
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Bo Bo Sassy
 Bonker
 Bouncy
 Broccoli
 Bubble
 Buster Frown
+Butters The Bean
+Buttery Muffin
 Button
 Candy
+<<<<<<< HEAD
 Charlotte
 Checkers
 Cheeksworth
@@ -25,11 +40,34 @@ Darth Honkula
 Dingus
 Dinky Doodle
 Feather
+=======
+Carphunter
+Checkers
+Chuckles
+Circe The Great
+Congo Bongo
+Cool Cooper
+Crusty
+Deedum Dedah
+Delicious Dan
+Dinkster
+Dinky Doodle
+Doctor Greenthumb
+Doink
+Early Worm
+Eggy
+Emotional Oatmeal
+Fat Fingers
+Fishbreath
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Flop O'Honker
 Freckle
+Fretworks
+Galton
 Giggles
 Gigglesworth
 Goose McSunny
+<<<<<<< HEAD
 Honkey Bonbon
 Honkel the III
 Honker
@@ -39,9 +77,41 @@ Humptyhonk
 Jingle
 Jo Jo Bobo Bo
 Knicknack
+=======
+Grabby
+Grandma
+Grebble
+Greedo Shotfurst
+Happy Slappy
+Harvey Harvey Harvey
+Hedgerow Harry
+Hefty Hempo
+Homey
+Honkel the III
+Honker
+Honkerbelle
+Implausible Fun
+Impro
+Jazzle
+Jim From Accounting
+Jingle
+Jo Jo Bobo Bo
+Johnny Bigshoes
+King of Klowns
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Ladybug Honks
+Laughing Man
+Loopy Lazarus
+Mime
+Misery Marvin
 Miss Stockings
+Mister Ostprussen
+Mister Redherring
+Mister Roboto
+Mister Safety Hazard
+Moinen
 Mr Shoe
+<<<<<<< HEAD
 Mrs Shoe
 Nanners
 Pancake
@@ -49,19 +119,44 @@ Patches
 Pepinpop
 Pocket
 Pumpkinpatch
+=======
+Mr Weird
+Ningelo
+Patches
+Pepinpop
+Pocket
+Pogo
+Polite Pablo
+Post Nose
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Razzle Dazzle
+Red April
+Red Dead Redemption Two
 Redshirt McBeat
+Rinso The Soapy
+Roboflop
 Ronnie Pace
+Rude Robert
+Sandwich Sam
 Scootaloo
-Mime
+Shinturner
+Shithead The Irritator
+Shoe Giving Gerald
 Silly Willy
+<<<<<<< HEAD
 Sketchy
 Skimpy
+=======
+Sir Honks-a-Lot
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Skiddle
+Slippo Supreme
 Slippy Joe
+Slipsy Dipsy
 Sparkle
 Speckles
 Sprinkledinkle
+<<<<<<< HEAD
 Tickles
 Toodles Sharperton
 Ziggy Yoyo
@@ -74,79 +169,23 @@ Bizarre Bottle
 Bizarro
 Bananium LXIX
 The Worst
-The Best
-The Mediocre
-Impro
-Fishbreath
-The Fun Uncle
-The Unfun Uncle
-Ningelo
-Eggy
-Loopy Lazarus
-Valid Vincent
-Emotional Oatmeal
-Delicious Dan
-Moinen
-Jim From Accounting
-Jazzle
-Deedum Dedah
-Congo Bongo
-Slippo Supreme
-Johnny Bigshoes
-Carphunter
-Mister Safety Hazard
-King of Klowns
-Uncool Ulrich
-Cool Cooper
-Butters The Bean
-Grabby
-Shoe Giving Gerald
-Yesterdays Beef
-Aluminium Dave
-Buttery Muffin
-Unimaginable Nut
-Harvey Harvey Harvey
-Mister Ostprussen
-Misery Marvin
-Twisty
-Pogo
-Happy Slappy
-Grandma
-Bingo
-Chuckles
-Doink
-Sir Honks-a-Lot
-Crusty
-Bimbim
-Greedo Shotfurst
-Tree Talker
-Circe The Great
-Mister Redherring
-Polite Pablo
-Rude Robert
-Doctor Greenthumb
-Sandwich Sam
-Red Dead Redemption Two
-Baba
-Mister Roboto
-Galton
-Dinkster
-Shithead The Irritator
-Slipsy Dipsy
-Hefty Hempo
-Laughing Man
-Post Nose
-Fat Fingers
-Rinso The Soapy
-Misery Marvin
-Red April
-Implausible Fun
-Hedgerow Harry
-Yobbo
-Roboflop
+=======
 The Amazing Farto
+>>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
+The Best
+The Fun Uncle
+The Mediocre
+The Unfun Uncle
+The Worst
+Toodles Sharperton
+Tree Talker
+Twisty
+Uncool Ulrich
+Unimaginable Nut
+Valid Vincent
+Weather Report
 Widderwise
-Shinturner
-Early Worm
-Fretworks
-Grebble
+Yanye Kest
+Yesterdays Beef
+Yobbo
+Ziggy Yoyo
