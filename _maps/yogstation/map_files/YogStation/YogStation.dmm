@@ -12463,6 +12463,9 @@
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/retaliate/goat/spiffles{
+	name = "Spiffles"
+	},
 /turf/open/floor/plasteel,
 /area/clerk)
 "ayD" = (
@@ -13038,14 +13041,14 @@
 	},
 /obj/effect/turf_decal/bot_red,
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/advtaser{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/gun/energy/e_gun/advtaser,
-/obj/item/gun/energy/e_gun/advtaser{
+/obj/item/gun/energy/disabler{
 	pixel_x = -3;
 	pixel_y = 3
+	},
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler{
+	pixel_x = 3;
+	pixel_y = -3;
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -22392,10 +22395,6 @@
 	pixel_x = 28;
 	pixel_y = -2;
 	req_access_txt = "19"
-	},
-/obj/machinery/keycard_auth{
-	pixel_x = 29;
-	pixel_y = 8
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
@@ -51353,6 +51352,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/library)
+"dvZ" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
 "dCA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -87762,7 +87770,7 @@ aRl
 aSx
 aTX
 aYg
-aWU
+dvZ
 cva
 adK
 aet
@@ -89304,7 +89312,7 @@ aRr
 aSD
 ceh
 aZj
-aWU
+dvZ
 cva
 adK
 aet
