@@ -108,9 +108,9 @@
 
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
-	if(chan == CHANNEL_LOBBYMUSIC)
+	if(chan == CHANNEL_LOBBYMUSIC) //yogs start
 		if(client && client.chatOutput)
-			client.chatOutput.stopLobbyMusic()
+			client.chatOutput.stopLobbyMusic() //yogs end
 
 /* /client/proc/playtitlemusic(vol = 85)//yogs
 	set waitfor = FALSE
