@@ -92,7 +92,7 @@
 					spam_prevention++
 				else
 					gang.message_gangtools("Warning: There are too many walls around your gang's dominator, its signal is being blocked!")
-					say("Error: Takeover signal is currently blocked! There are too many walls within 3 standard units of this device.")
+					say("Error: Takeover signal is currently blocked! There are too many walls within 2 standard units of this device.")
 					spam_prevention = 0
 				return
 			. = TRUE
@@ -202,7 +202,7 @@
 
 /obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
 	var/open = FALSE
-	for(var/turf/T in view(3, src))
+	for(var/turf/T in view(2, src))
 		if(!isclosedturf(T))
 			open++
 	if(open < DOM_REQUIRED_TURFS)

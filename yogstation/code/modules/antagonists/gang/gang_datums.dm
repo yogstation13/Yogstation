@@ -81,7 +81,7 @@
 
 /datum/team/gang/gib
 	name = "Gib"
-	color = "#000000"
+	color = "#bb0a1e"
 	inner_outfits = list(/obj/item/clothing/under/color/black)
 	outer_outfits = list(/obj/item/clothing/suit/jacket/leather/overcoat)
 
