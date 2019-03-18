@@ -33,19 +33,20 @@ SUBSYSTEM_DEF(Yogs)
 	//FPS MANAGEMENT
 	var/playernum = GLOB.player_list.len
 	var/oldfps = world.fps
+	var/cfgfps = CONFIG_GET(number/fps)
 	switch(playernum)
 		if(1 to 30)
-			world.fps = 22
+			world.fps = cfgfps + 2
 		if(31 to 50)
-			world.fps = 21
+			world.fps = cfgfps + 1
 		if(51 to 70)
-			world.fps = 20
+			world.fps = cfgfps
 		if(71 to 80)
-			world.fps = 19
+			world.fps = cfgfps - 1
 		if(81 to 90)
-			world.fps = 18
+			world.fps = cfgfps - 2
 		if(91 to INFINITY)
-			world.fps = 17
+			world.fps = cfgfps - 3
 	if(oldfps != world.fps)
 		var/msg = "SSYogs has modified world.fps from [oldfps] to [world.fps], since the player count has reached [playernum]."
 		log_admin(msg, 0)
