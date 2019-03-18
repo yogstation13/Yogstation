@@ -18,14 +18,37 @@ SUBSYSTEM_DEF(Yogs)
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
+	//SHIFT ENDER
 	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift)
 		priority_announce("Crew, your shift has come to an end. \n You may call the shuttle whenever you find it appropriate.", "End of shift announcement", 'sound/ai/commandreport.ogg')
 		endedshift = TRUE
 	
+	//UNCLAIMED TICKET BWOINKING
 	if(world.time - last_rebwoink > REBWOINK_TIME*10)
 		last_rebwoink = world.time
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
+	
+	//FPS MANAGEMENT
+	var/playernum = GLOB.player_list.len
+	var/oldfps = world.fps
+	switch(playernum)
+		if(1 to 30)
+			world.fps = 22
+		if(31 to 50)
+			world.fps = 21
+		if(51 to 70)
+			world.fps = 20
+		if(71 to 80)
+			world.fps = 19
+		if(81 to 90)
+			world.fps = 18
+		if(91 to INFINITY)
+			world.fps = 17
+	if(oldfps != world.fps)
+		var/msg = "SSYogs has modified world.fps from [oldfps] to [world.fps], since the player count has reached [playernum]."
+		log_admin(msg, 0)
+		message_admins(msg, 0)
 	return
 
