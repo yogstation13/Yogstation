@@ -28,6 +28,9 @@ GLOBAL_VAR(restart_counter)
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
+#else
+	if (TgsAvailable())
+		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
 	load_yogs_stuff() // yogs - Donators
