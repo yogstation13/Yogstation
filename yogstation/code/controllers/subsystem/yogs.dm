@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(Yogs)
 				GLOB.unclaimed_tickets -= bwoink
 	
 	//AUTOMATIC PANIC BUNKER
-	if(CONFIG_GET(flag/autopanicbunker)
+	if(CONFIG_GET(flag/autopanicbunker))
 		var/playernum = CONFIG_GET(number/autopanic_players)
 		if(GLOB.player_list.len > playernum && !CONFIG_GET(flag/panic_bunker))
 			message_admins("The automatic panic bunker has activated itself, as the server has reached [playernum] players.")
