@@ -43,6 +43,7 @@
 			if(M.job)
 				text += " This is the [M.job] signing off for now."
 				if(M.job in GLOB.command_positions)
+					alert_admins = TRUE
 					channels += ".c"
 		else // This guy is some strange sorta mob
 			alert_admins = (alert("Should admins know about you going AFK?","AFK Verb Notice","Yes","No") == "Yes")
