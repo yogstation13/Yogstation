@@ -140,7 +140,7 @@
 	})
 "p" = (
 /obj/structure/ladder/unbreakable{
-	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
+	desc = "This seems to be the ladder to the King of Goats lair. Looks to be a one way trip...";
 	id = "goatlayer";
 	name = "Ladder to the King of Goats Lair"
 	},
@@ -197,7 +197,7 @@
 	})
 "L" = (
 /obj/structure/ladder/unbreakable{
-	desc = "This seems to be the ladder to the king of goats lair. Looks to be a one way trip...";
+	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
 	height = 1;
 	id = "goatlayer";
 	name = "Ladder to the King of Goats Lair"
