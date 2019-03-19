@@ -30,26 +30,14 @@ SUBSYSTEM_DEF(Yogs)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
 	
-	//FPS MANAGEMENT
-	var/playernum = GLOB.player_list.len
-	var/oldfps = world.fps
-	var/cfgfps = CONFIG_GET(number/fps)
-	switch(playernum)
-		if(1 to 30)
-			world.fps = cfgfps + 2
-		if(31 to 50)
-			world.fps = cfgfps + 1
-		if(51 to 70)
-			world.fps = cfgfps
-		if(71 to 80)
-			world.fps = cfgfps - 1
-		if(81 to 90)
-			world.fps = cfgfps - 2
-		if(91 to INFINITY)
-			world.fps = cfgfps - 3
-	if(oldfps != world.fps)
-		var/msg = "SSYogs has modified world.fps from [oldfps] to [world.fps], since the player count has reached [playernum]."
-		log_admin(msg, 0)
-		message_admins(msg, 0)
+	//AUTOMATIC PANIC BUNKER
+	if(CONFIG_GET(flag/autopanicbunker)
+		var/playernum = CONFIG_GET(number/autopanic_players)
+		if(GLOB.player_list.len > playernum && !CONFIG_GET(flag/panic_bunker))
+			message_admins("The automatic panic bunker has activated itself, as the server has reached [playernum] players.")
+			GLOB.autobunker_enabled = TRUE
+		else if(GLOB.autobunker_enabled)
+			message_admins("The automatic panic bunker has deactivated itself, as the server has reached [playernum] players.")
+			GLOB.autobunker_enabled = FALSE
 	return
 
