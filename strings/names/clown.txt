@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-Asbestos
-Baby Cakes
-Bamboozle
-Bibimbap
-Bim Bam Jazzy
-Bimbo
-Bingo
-Bo Bo Oboe
-=======
 Aluminium Dave
 Baba
 Baby Cakes
@@ -17,30 +7,14 @@ Bingo
 Birdman From Birdland
 Bizarre Bottle
 Bizarro
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Bo Bo Sassy
 Bonker
-Bouncy
-Broccoli
 Bubble
 Buster Frown
 Butters The Bean
 Buttery Muffin
 Button
 Candy
-<<<<<<< HEAD
-Charlotte
-Checkers
-Cheeksworth
-Chubby
-Chungo
-Cupcake
-Daisy Dumbo
-Darth Honkula
-Dingus
-Dinky Doodle
-Feather
-=======
 Carphunter
 Checkers
 Chuckles
@@ -59,7 +33,6 @@ Eggy
 Emotional Oatmeal
 Fat Fingers
 Fishbreath
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Flop O'Honker
 Freckle
 Fretworks
@@ -67,17 +40,6 @@ Galton
 Giggles
 Gigglesworth
 Goose McSunny
-<<<<<<< HEAD
-Honkey Bonbon
-Honkel the III
-Honker
-Honkerbelle
-Humpty Dumpty
-Humptyhonk
-Jingle
-Jo Jo Bobo Bo
-Knicknack
-=======
 Grabby
 Grandma
 Grebble
@@ -98,7 +60,6 @@ Jingle
 Jo Jo Bobo Bo
 Johnny Bigshoes
 King of Klowns
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Ladybug Honks
 Laughing Man
 Loopy Lazarus
@@ -111,15 +72,6 @@ Mister Roboto
 Mister Safety Hazard
 Moinen
 Mr Shoe
-<<<<<<< HEAD
-Mrs Shoe
-Nanners
-Pancake
-Patches
-Pepinpop
-Pocket
-Pumpkinpatch
-=======
 Mr Weird
 Ningelo
 Patches
@@ -128,7 +80,6 @@ Pocket
 Pogo
 Polite Pablo
 Post Nose
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Razzle Dazzle
 Red April
 Red Dead Redemption Two
@@ -143,12 +94,7 @@ Shinturner
 Shithead The Irritator
 Shoe Giving Gerald
 Silly Willy
-<<<<<<< HEAD
-Sketchy
-Skimpy
-=======
 Sir Honks-a-Lot
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 Skiddle
 Slippo Supreme
 Slippy Joe
@@ -156,22 +102,7 @@ Slipsy Dipsy
 Sparkle
 Speckles
 Sprinkledinkle
-<<<<<<< HEAD
-Tickles
-Toodles Sharperton
-Ziggy Yoyo
-Homey
-Mr Weird
-Yanye Kest
-Weather Report
-Birdman From Birdland
-Bizarre Bottle
-Bizarro
-Bananium LXIX
-The Worst
-=======
 The Amazing Farto
->>>>>>> de9e157fd7... Sort clown names file alphabetically (#43131)
 The Best
 The Fun Uncle
 The Mediocre
