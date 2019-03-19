@@ -75,12 +75,6 @@
 	icon_state = "streak1"
 	random_icon_states = list("streak1", "streak2", "streak3", "streak4", "streak5")
 
-<<<<<<< HEAD
-/obj/effect/decal/cleanable/oil/slippery
-
-/obj/effect/decal/cleanable/oil/slippery/Initialize()
-=======
 /obj/effect/decal/cleanable/oil/slippery/ComponentInitialize()
 	. = ..()
->>>>>>> 713a08348a... Motor oil can now catch on fire (#43127)
 	AddComponent(/datum/component/slippery, 80, (NO_SLIP_WHEN_WALKING | SLIDE))
