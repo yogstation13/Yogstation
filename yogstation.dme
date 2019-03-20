@@ -3029,6 +3029,7 @@
 #include "yogstation\code\modules\events\bureaucratic_error.dm"
 #include "yogstation\code\modules\events\dolphin_migration.dm"
 #include "yogstation\code\modules\events\floorcluwne.dm"
+#include "yogstation\code\modules\events\garbage_day.dm"
 #include "yogstation\code\modules\events\immovable_duck.dm"
 #include "yogstation\code\modules\events\ion_storm.dm"
 #include "yogstation\code\modules\events\probabilistic_anomaly.dm"
