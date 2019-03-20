@@ -255,7 +255,7 @@
 	old_owner.add_antag_datum(new_gangster,old_gang)
 	new_gangster.silent = FALSE
 	log_game("[key_name(old_owner)] has been demoted to Gangster in the [gang.name] Gang")
-	to_chat(old_owner, "<span class='userdanger'>The gang has been disappointed of your leader traits! You are a regular gangster now!</span>")
+	to_chat(old_owner, "<span class='userdanger'>The gang has been disappointed by your ability to lead! You are a regular gangster now!</span>")
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
