@@ -85,6 +85,7 @@
 					/obj/item/clothing/head/that = 1,
 		            /obj/item/clothing/head/fedora = 1,
 		            /obj/item/clothing/glasses/sunglasses/cheap = 2, //yogs
+		            /obj/item/clothing/glasses/yogs/threed = 1, //yogs
 		            /obj/item/clothing/glasses/monocle = 1,
 		            /obj/item/clothing/head/sombrero = 1,
 		            /obj/item/clothing/suit/poncho = 1,
