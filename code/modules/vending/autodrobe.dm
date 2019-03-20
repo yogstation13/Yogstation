@@ -21,6 +21,8 @@
 					/obj/item/clothing/head/flatcap = 1,
 					/obj/item/clothing/suit/toggle/labcoat/mad = 1,
 					/obj/item/clothing/shoes/jackboots = 1,
+					/obj/item/clothing/head/yogs/microwave = 1, //yogs
+					/obj/item/clothing/head/yogs/drinking_hat = 1, //yogs
 					/obj/item/clothing/under/schoolgirl = 1,
 					/obj/item/clothing/under/schoolgirl/red = 1,
 					/obj/item/clothing/under/schoolgirl/green = 1,
@@ -61,6 +63,7 @@
 					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/under/soviet = 1,
 					/obj/item/clothing/head/ushanka = 1,
+					/obj/item/clothing/head/yogs/bike = 1, //yogs
 					/obj/item/clothing/suit/imperium_monk = 1,
 					/obj/item/clothing/mask/gas/cyborg = 1,
 					/obj/item/clothing/suit/holidaypriest = 1,
@@ -85,6 +88,12 @@
 					/obj/item/clothing/mask/frog = 1,
 					/obj/item/clothing/mask/rat/tribal = 1,
 					/obj/item/clothing/mask/rat = 1,
+					/obj/item/clothing/mask/yogs/fawkes = 1, //yogs
+					/obj/item/clothing/mask/yogs/thejester = 1, //yogs
+					/obj/item/clothing/mask/yogs/dallas = 1, //yogs
+					/obj/item/clothing/mask/yogs/hoxton = 1, //yogs
+					/obj/item/clothing/mask/yogs/robwolf = 1, //yogs
+					/obj/item/clothing/mask/yogs/chains = 1, //yogs
 					/obj/item/clothing/suit/apron/overalls = 1,
 					/obj/item/clothing/head/rabbitears =1,
 					/obj/item/clothing/head/sombrero = 1,
@@ -92,6 +101,9 @@
 					/obj/item/clothing/suit/poncho = 1,
 					/obj/item/clothing/suit/poncho/green = 1,
 					/obj/item/clothing/suit/poncho/red = 1,
+					/obj/item/clothing/head/yogs/turban = 1, //yogs
+					/obj/item/clothing/head/yogs/cowboy = 1, //yogs
+					/obj/item/clothing/head/yogs/cowboy_sheriff = 1, //yogs
 					/obj/item/clothing/under/maid = 1,
 					/obj/item/clothing/under/janimaid = 1,
 					/obj/item/clothing/glasses/cold=1,
@@ -104,6 +116,9 @@
 					/obj/item/clothing/under/singery = 1,
 					/obj/item/clothing/shoes/singerb = 1,
 					/obj/item/clothing/under/singerb = 1,
+					/obj/item/clothing/head/yogs/sith_hood = 1, //yogs
+					/obj/item/clothing/neck/yogs/sith_cloak = 1, //yogs
+					/obj/item/clothing/suit/yogs/armor/sith_suit = 1, //yogs
 					/obj/item/clothing/suit/hooded/carp_costume = 1,
 					/obj/item/clothing/suit/hooded/ian_costume = 1,
 					/obj/item/clothing/suit/hooded/bee_costume = 1,

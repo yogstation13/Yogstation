@@ -70,6 +70,7 @@
 		            /obj/item/clothing/suit/jacket/puffer = 2,
 		            /obj/item/clothing/suit/jacket/letterman = 2,
 		            /obj/item/clothing/suit/jacket/letterman_red = 2,
+		            /obj/item/clothing/suit/hooded/wintercoat/bluecoat = 2, //yogs
 		            /obj/item/clothing/glasses/regular = 2,
 		            /obj/item/clothing/glasses/regular/jamjar = 1,
 		            /obj/item/clothing/glasses/orange = 1,
@@ -83,6 +84,7 @@
 		            /obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/head/that = 1,
 		            /obj/item/clothing/head/fedora = 1,
+		            /obj/item/clothing/glasses/sunglasses/cheap = 2, //yogs
 		            /obj/item/clothing/glasses/monocle = 1,
 		            /obj/item/clothing/head/sombrero = 1,
 		            /obj/item/clothing/suit/poncho = 1,
@@ -95,6 +97,8 @@
 		            /obj/item/clothing/suit/ianshirt = 1,
 		            /obj/item/clothing/shoes/laceup = 2,
 		            /obj/item/clothing/shoes/sandal = 2,
+		            /obj/item/clothing/shoes/sneakers/black = 3, //yogs
+		            /obj/item/clothing/shoes/yogs/fuzzy_slippers = 3, //yogs
 		            /obj/item/clothing/suit/jacket/miljacket = 1,
 		            /obj/item/clothing/suit/apron/purple_bartender = 2,
 		            /obj/item/clothing/under/rank/bartender/purple = 2)
