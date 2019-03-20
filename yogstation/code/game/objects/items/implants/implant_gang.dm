@@ -1,6 +1,6 @@
 /obj/item/implant/gang
 	name = "gang implant"
-	desc = "Makes you a gangster or such."
+	desc = "Makes you a gangster."
 	activated = FALSE
 	var/datum/team/gang/gang
 
@@ -26,10 +26,10 @@
 
 /obj/item/implant/gang/implant(mob/living/target, mob/user, silent = 0)
 	if(!target || !target.mind || target.stat == DEAD)
-		return 0
+		return FALSE
 	var/datum/antagonist/gang/G = target.mind.has_antag_datum(/datum/antagonist/gang)
 	if(G && G.gang == G)
-		return 0 // it's pointless
+		return FALSE // it's pointless
 	if(..())
 		for(var/obj/item/implant/I in target.implants)
 			if(I != src)

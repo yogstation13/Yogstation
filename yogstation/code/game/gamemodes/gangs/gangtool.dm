@@ -22,6 +22,8 @@
 
 /obj/item/gangtool/Initialize()
 	update_icon()
+	if(buyable_items.len)
+		return ..()
 	for(var/i in subtypesof(/datum/gang_item))
 		var/datum/gang_item/G = i
 		var/id = initial(G.id)
@@ -52,7 +54,7 @@
 			dat += "<a href='?src=[REF(src)];register=1'>Register Device as Spare</a><br>"
 		else if(promotable)
 			var/datum/antagonist/gang/sweet = user.mind.has_antag_datum(/datum/antagonist/gang)
-			if(sweet.gang.leaders.len < sweet.gang.max_leaders)
+			if(sweet && sweet.gang.leaders.len < sweet.gang.max_leaders)
 				dat += "You have been selected for a promotion!<br>"
 				dat += "<a href='?src=[REF(src)];register=1'>Accept Promotion</a><br>"
 			else
@@ -188,7 +190,7 @@
 	if(!recallchecks(user))
 		return
 	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
-	for(var/mob/Player in GLOB.mob_list)
+	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
 			living_crew += Player
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
