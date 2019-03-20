@@ -50,7 +50,6 @@ GLOBAL_LIST_EMPTY(gangs)
 	return TRUE
 
 /datum/game_mode/gang/post_setup()
-	set waitfor = FALSE
 	..()
 	for(var/i in gangboss_candidates)
 		var/datum/mind/M = i
