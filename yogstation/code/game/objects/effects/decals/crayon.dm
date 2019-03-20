@@ -33,6 +33,3 @@
 		gang.lost_territories |= list(territory.type = territory.name)
 		gang = null
 	return ..()
-
-/obj/effect/decal/cleanable/crayon/NeverShouldHaveComeHere(turf/T)
-	return isspaceturf(T) || islava(T) || istype(T, /turf/open/water) || ischasm(T)

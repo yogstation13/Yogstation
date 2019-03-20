@@ -37,11 +37,6 @@
 	if(!gang)
 		create_team()
 	..()
-	var/mob/living/carbon/human/H = owner.current
-	if(istype(H))
-		if(owner.assigned_role == "Clown")
-			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			H.dna.remove_mutation(CLOWNMUT)
 	add_to_gang()
 
 /datum/antagonist/gang/on_removal()
@@ -172,6 +167,11 @@
 	..()
 	if(gang)
 		gang.leaders += owner
+	var/mob/living/carbon/human/H = owner.current
+	if(istype(H))
+		if(owner.assigned_role == "Clown")
+			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+			H.dna.remove_mutation(CLOWNMUT)
 
 /datum/antagonist/gang/boss/on_removal()
 	if(gang)
@@ -194,7 +194,7 @@
 	)
 
 	if(gangtool)
-		var/obj/item/device/gangtool/G = new()
+		var/obj/item/gangtool/G = new()
 		var/where = H.equip_in_one_of_slots(G, slots)
 		if (!where)
 			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a Gangtool.")
@@ -259,7 +259,7 @@
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
-	var/obj/item/device/gangtool/gangtool = locate() in L
+	var/obj/item/gangtool/gangtool = locate() in L
 	if (!gangtool)
 		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
 		return
@@ -449,7 +449,7 @@
 	if(!gangtools.len || !message)
 		return
 	for(var/i in gangtools)
-		var/obj/item/device/gangtool/tool = i
+		var/obj/item/gangtool/tool = i
 		var/mob/living/mob = get(tool.loc, /mob/living)
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)

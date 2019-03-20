@@ -1,5 +1,5 @@
 //gangtool device
-/obj/item/device/gangtool
+/obj/item/gangtool
 	name = "suspicious device"
 	desc = "A strange device of sorts. Hard to really make out what it actually does if you don't know how to operate it."
 	icon = 'yogstation/icons/obj/device.dmi'
@@ -13,14 +13,14 @@
 	throw_range = 7
 	flags_1 = CONDUCT_1
 	var/datum/team/gang/gang //Which gang uses this?
-	var/recalling = 0
+	var/recalling = FALSE
 	var/outfits = 2
-	var/free_pen = 0
+	var/free_pen = FALSE
 	var/promotable = FALSE
 	var/static/list/buyable_items = list()
 	var/list/tags = list()
 
-/obj/item/device/gangtool/Initialize()
+/obj/item/gangtool/Initialize()
 	update_icon()
 	for(var/i in subtypesof(/datum/gang_item))
 		var/datum/gang_item/G = i
@@ -32,12 +32,12 @@
 			buyable_items[cat][id] = new G
 	.=..()
 
-/obj/item/device/gangtool/Destroy()
+/obj/item/gangtool/Destroy()
 	if(gang)
 		gang.gangtools -= src
 	return ..()
 
-/obj/item/device/gangtool/attack_self(mob/user)
+/obj/item/gangtool/attack_self(mob/user)
 	..()
 	if (!can_use(user))
 		return
@@ -96,7 +96,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/item/device/gangtool/Topic(href, href_list)
+/obj/item/gangtool/Topic(href, href_list)
 	if(!can_use(usr))
 		return
 
@@ -121,14 +121,14 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/device/gangtool/update_icon()
+/obj/item/gangtool/update_icon()
 	overlays.Cut()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
 		I.color = gang.color
 	overlays.Add(I)
 
-/obj/item/device/gangtool/proc/ping_gang(mob/user)
+/obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))
 		return
 	var/message = stripped_input(user,"Discreetly send a gang-wide message.","Send Message") as null|text
@@ -150,7 +150,7 @@
 			to_chat(M, "[link] [ping]")
 		user.log_talk(message,LOG_SAY, tag="[gang.name] gangster")
 
-/obj/item/device/gangtool/proc/register_device(mob/user)
+/obj/item/gangtool/proc/register_device(mob/user)
 	if(gang)	//It's already been registered!
 		return
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
@@ -167,7 +167,7 @@
 	else
 		to_chat(user, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
 
-/obj/item/device/gangtool/proc/recall(mob/user)
+/obj/item/gangtool/proc/recall(mob/user)
 	if(!recallchecks(user))
 		return
 	if(recalling)
@@ -178,13 +178,13 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
 	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recall2(mob/user)
+/obj/item/gangtool/proc/recall2(mob/user)
 	if(!recallchecks(user))
 		return
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
 	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recall3(mob/user)
+/obj/item/gangtool/proc/recall3(mob/user)
 	if(!recallchecks(user))
 		return
 	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
@@ -199,7 +199,7 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
 	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recallfinal(mob/user)
+/obj/item/gangtool/proc/recallfinal(mob/user)
 	if(!recallchecks(user))
 		return
 	recalling = FALSE
@@ -212,10 +212,14 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
 	return
 
-/obj/item/device/gangtool/proc/recallchecks(mob/user)
+/obj/item/gangtool/proc/recallchecks(mob/user)
 	if(!can_use(user))
 		return
 	if(SSshuttle.emergencyNoRecall)
+		return
+	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
+		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
+		recalling = FALSE
 		return
 	if(!gang.recalls)
 		to_chat(user, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
@@ -228,13 +232,9 @@
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
 		recalling = FALSE
 		return
-	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
-		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
-		recalling = FALSE
-		return
 	return TRUE
 
-/obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
+/obj/item/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 	if(user.incapacitated())
@@ -253,8 +253,8 @@
 	return TRUE
 
 
-/obj/item/device/gangtool/spare
+/obj/item/gangtool/spare
 	outfits = TRUE
 
-/obj/item/device/gangtool/spare/lt
+/obj/item/gangtool/spare/lt
 	promotable = TRUE
