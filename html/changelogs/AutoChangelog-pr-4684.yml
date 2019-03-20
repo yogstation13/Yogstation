@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - tweak: "Derelict drones can no longer be blown by the RD when they are not on the station."

@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed janitors spawning with partially broken jani-holobarrier projectors."

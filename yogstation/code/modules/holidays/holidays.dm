@@ -19,3 +19,11 @@
 		"https://www.youtube.com/watch?v=lyfhs42mdyA", // Internationale - japanese
 		"https://www.youtube.com/watch?v=5DTbashsKic" // Internationale - english
 		)
+
+/datum/holiday/spess
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=sOM4MpN-ju0", // Glory to those who look forward
+		"https://www.youtube.com/watch?v=ncx4x8rvrQU", // cosmonaut anthem
+		"https://www.youtube.com/watch?v=KUwN_QaZnEE", // Before the long journey
+		"https://www.youtube.com/watch?v=ckNIMPQoBPw" // And on mars there will be apple blossoms
+		)
