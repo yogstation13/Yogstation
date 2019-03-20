@@ -37,7 +37,7 @@
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
-
+	
 	//Yogs start
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
 	var/space_law_notify
@@ -237,4 +237,3 @@
 	if(CONFIG_GET(flag/security_has_maint_access))
 		return list(ACCESS_MAINT_TUNNELS)
 	return list()
-

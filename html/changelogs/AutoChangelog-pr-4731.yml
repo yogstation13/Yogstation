@@ -1,0 +1,4 @@
+author: " Satan"
+delete-after: true 
+changes: 
+  - bugfix: "Snailborg should now work with borg EXPANDER module."
