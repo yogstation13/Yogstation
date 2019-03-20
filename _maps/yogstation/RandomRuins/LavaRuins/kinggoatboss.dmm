@@ -173,7 +173,7 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"v" = (
+"x" = (
 /obj/machinery/door/airlock/gold/glass{
 	desc = "Once you go in the portal past this door there is no going back...";
 	name = "POINT OF NO RETURN"
@@ -187,12 +187,7 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"x" = (
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Lair"
-	})
-"A" = (
+"H" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -209,7 +204,8 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"S" = (
+"I" = (
+/obj/machinery/light,
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
@@ -219,21 +215,7 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"T" = (
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "king goat arena";
-	name = "king goat arena portal"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"W" = (
+"L" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
 	height = 1;
@@ -244,6 +226,35 @@
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
 	name = "gold floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"V" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"W" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"X" = (
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "king goat arena";
+	name = "king goat arena portal"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -317,9 +328,9 @@ a
 b
 q
 f
-x
+V
 f
-x
+V
 b
 a
 a
@@ -345,11 +356,11 @@ a
 a
 a
 d
-x
+V
 g
 p
 s
-x
+V
 d
 a
 a
@@ -375,11 +386,11 @@ a
 a
 a
 b
-x
+V
 r
-x
+V
 r
-x
+V
 b
 a
 a
@@ -473,7 +484,7 @@ i
 i
 i
 h
-W
+L
 h
 "}
 (3,1,2) = {"
@@ -488,7 +499,7 @@ i
 i
 i
 h
-S
+W
 h
 "}
 (4,1,2) = {"
@@ -503,7 +514,7 @@ i
 i
 i
 h
-S
+W
 h
 "}
 (5,1,2) = {"
@@ -518,7 +529,7 @@ i
 i
 i
 h
-S
+W
 h
 "}
 (6,1,2) = {"
@@ -533,7 +544,7 @@ i
 i
 n
 h
-S
+W
 h
 "}
 (7,1,2) = {"
@@ -546,9 +557,9 @@ i
 i
 i
 i
-T
+X
 h
-S
+I
 h
 "}
 (8,1,2) = {"
@@ -563,7 +574,7 @@ i
 i
 n
 h
-S
+W
 h
 "}
 (9,1,2) = {"
@@ -578,7 +589,7 @@ i
 i
 i
 h
-S
+W
 h
 "}
 (10,1,2) = {"
@@ -593,7 +604,7 @@ i
 i
 i
 h
-S
+W
 h
 "}
 (11,1,2) = {"
@@ -608,7 +619,7 @@ i
 i
 i
 h
-v
+x
 h
 "}
 (12,1,2) = {"
@@ -623,7 +634,7 @@ i
 i
 i
 h
-A
+H
 h
 "}
 (13,1,2) = {"
