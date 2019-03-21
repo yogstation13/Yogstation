@@ -4,6 +4,7 @@
 	quality = NEGATIVE
 	locked = TRUE
 	text_gain_indication = "<span class='danger'>You feel like your brain is tearing itself apart.</span>"
+	allow_transfer = TRUE
 
 /datum/mutation/human/cluwne/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -11,7 +12,6 @@
 	owner.dna.add_mutation(CLOWNMUT)
 	owner.dna.add_mutation(EPILEPSY)
 	owner.setBrainLoss(200)
-	owner.add_trait(TRAIT_BADDNA)
 
 	var/mob/living/carbon/human/H = owner
 
