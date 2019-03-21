@@ -219,9 +219,12 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
+<<<<<<< HEAD
 //Color Defines
 #define OOC_COLOR  "#002eb8"
 
+=======
+>>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
 /////////////////////////////////////

@@ -75,7 +75,10 @@ window "mainwindow"
 		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
+<<<<<<< HEAD
 		font-size = 10
+=======
+>>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 		background-color = #d3b5b5
 		is-default = true
 		saved-params = "command"
@@ -324,6 +327,7 @@ window "statwindow"
 		is-default = true
 		saved-params = ""
 
+<<<<<<< HEAD
 window "Telecomms IDE"
 	elem "Telecomms IDE"
 		type = MAIN
@@ -418,3 +422,5 @@ window "Telecomms IDE"
 		command = "cancel"
 		multi-line = true
 		no-command = true
+=======
+>>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)

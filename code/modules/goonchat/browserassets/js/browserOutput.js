@@ -35,6 +35,10 @@ var opts = {
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
+<<<<<<< HEAD
+=======
+	'darkmode':false, //Are we using darkmode? If not WHY ARE YOU LIVING IN 2009???
+>>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
@@ -1012,7 +1016,7 @@ $(function() {
 
 		$.ajax({
 			type: 'GET',
-			url: 'browserOutput.css',
+			url: 'browserOutput_white.css',
 			success: function(styleData) {
 				var blob = new Blob(['<head><title>Chat Log</title><style>', styleData, '</style></head><body>', $messages.html(), '</body>']);
 
