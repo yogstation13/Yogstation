@@ -1,2 +1,2 @@
 /datum/disease/anxiety
-	var/static/butterfly_count = 0 // Counts how many butterflies have been spawned by this disease
+	var/static/list/butterfly_count = list() // Counts how many butterflies have been spawned by this disease
