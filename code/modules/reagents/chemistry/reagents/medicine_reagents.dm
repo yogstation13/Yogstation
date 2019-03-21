@@ -804,7 +804,11 @@
 		M.adjustToxLoss(-0.5*REM, 0)
 		M.adjustBruteLoss(-0.5*REM, 0)
 		M.adjustFireLoss(-0.5*REM, 0)
-		M.adjustOxyLoss(-0.5*REM, 0)
+	//yogs start -- Reverts some of #4740, adds old oxy-capping behavior
+		//M.adjustOxyLoss(-0.5*REM, 0)
+	if(M.oxyloss > 40)
+		M.setOxyLoss(40, 0)
+	//yogs end
 	if(M.losebreath >= 4)
 		M.losebreath -= 2
 	if(M.losebreath < 0)
