@@ -20,6 +20,8 @@ GLOBAL_VAR(restart_counter)
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
+	load_admins()
+
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
 	SSdbcore.CheckSchemaVersion()
@@ -33,9 +35,11 @@ GLOBAL_VAR(restart_counter)
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
+
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
 	load_admins()
+	
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
