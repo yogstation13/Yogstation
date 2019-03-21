@@ -174,15 +174,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list -= src
 	return ..()
 
-/datum/admin_help/proc/check_owner()
-	return
+/datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
 		for(var/client/X in GLOB.admins)
-			if(X.prefs.toggles & SOUND_ADMINHELP)
+			if(check_rights_for(X,R_BAN) && (X.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-
-		addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
+		return FALSE
+	return TRUE
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
@@ -239,7 +238,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
-	addtimer(CALLBACK(src, /datum/admin_help.proc/check_owner), 300)
+	GLOB.unclaimed_tickets += src
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
@@ -388,6 +387,25 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("Marked as an IC issue by [usr.ckey]")
 	Resolve(silent = TRUE)
 
+//Resolve ticket with Mhelp Question message
+/datum/admin_help/proc/MhelpQuestion(key_name = key_name_admin(usr))
+	if(state != AHELP_ACTIVE)
+		return
+
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as Mentorhelp Question! -</b></font><br>"
+	msg += "<font color='red'><b>You are asking a mentorhelp question!</b></font><br>"
+	msg += "<font color='red'>Please use the mentorhelp button to ask questions about game mechanics and other such questions.</font>"
+
+	if(initiator)
+		to_chat(initiator, msg)
+
+	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
+	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"
+	message_admins(msg)
+	log_admin_private(msg)
+	AddInteraction("Marked as an MHelp question by [usr.ckey]")
+	Resolve(silent = TRUE)
+
 //Resolve ticket with wiki message
 /datum/admin_help/proc/WikiIssue(key_name = key_name_admin(usr))
 	if(state != AHELP_ACTIVE)
@@ -437,6 +455,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>MHelp</span></a>
 				</p>"}
 		if(initiator && initiator.mob)
 			if(initiator.mob.mind && initiator.mob.mind.assigned_role)
@@ -520,6 +539,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			usr.client.cmd_ahelp_reply(initiator)
 		if("icissue")
 			ICIssue()
+		if("mhelpquestion")
+			MhelpQuestion()
 		if("close")
 			Close()
 		if("resolve")

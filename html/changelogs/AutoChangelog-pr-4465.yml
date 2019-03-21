@@ -1,5 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "You can now ping people in OOC!"
-  - tweak: "OOC's code has been tweaked to improve performance."
