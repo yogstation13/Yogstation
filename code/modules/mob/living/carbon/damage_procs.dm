@@ -117,7 +117,7 @@
 	var/list/obj/item/bodypart/parts = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		if(status && (BP.status != status))
+		if(!(status == BODYPART_ANY) && (status && (BP.status != status))) //yogs - allows robot limb healing override
 			continue
 		if((brute && BP.brute_dam) || (burn && BP.burn_dam) || (stamina && BP.stamina_dam))
 			parts += BP

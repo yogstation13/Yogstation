@@ -51,11 +51,11 @@
 	crate_name = "Advanced Crate Container"
 	crate_type = /obj/structure/closet/crate/large
 
-/datum/supply_pack/misc/goats
-	name = "Goat Crate"
-	desc = "Contains a bunch of genetically altered goats from Goat Tech Industries try to collect them all!"
-	cost = 1500
-	contains = list(/obj/structure/closet/crate/large/goats)
+/datum/supply_pack/critter/exoticgoat
+	name = "Exotic Goat Crate"
+	desc = "Contains a bunch of genetically altered goats from Goat Tech Industries. Try to collect them all!"
+	cost = 3000
+	contains = list(/obj/structure/closet/crate/critter/exoticgoats)
 	crate_name = "Exotic Goat Crate"
 	crate_type = /obj/structure/closet/crate/large
 
@@ -69,3 +69,23 @@
 					/obj/item/deodorant,
 					/obj/item/deodorant)
 	crate_name = "deodorant crate"
+
+/datum/supply_pack/costumes_toys/plushes
+	name = "Plushie Crate"
+	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
+	cost = 2000
+	contains = list(/obj/item/toy/plush/carpplushie,
+					/obj/item/toy/plush/bubbleplush,
+					/obj/item/toy/plush/plushvar,
+					/obj/item/toy/plush/narplush,
+					/obj/item/toy/plush/lizardplushie,
+					/obj/item/toy/plush/snakeplushie,
+					/obj/item/toy/plush/nukeplushie,
+					/obj/item/toy/plush/goatplushie,
+					/obj/item/toy/plush/teddybear,
+					/obj/item/toy/plush/stuffedmonkey,
+					/obj/item/toy/plush/flowerbunch,
+					/obj/item/toy/plush/inorixplushie,
+					/obj/item/toy/plush/slimeplushie)
+	crate_name = "plush crate"
+	crate_type = /obj/structure/closet/crate/wooden

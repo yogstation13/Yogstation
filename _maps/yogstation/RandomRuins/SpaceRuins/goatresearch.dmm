@@ -296,7 +296,12 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
 "bj" = (
-/obj/effect/mob_spawn/human/commander,
+/obj/effect/mob_spawn/human/commander{
+	assignedrole = "null";
+	mob_gender = "male";
+	mob_name = "John Lamario";
+	name = "John Lamario"
+	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/gun/ballistic/automatic/laser,
 /obj/item/paper/crumpled/bloody/goattransport,
@@ -345,7 +350,7 @@
 /area/ruin/powered)
 "bs" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate/large/goats,
+/obj/structure/closet/crate/critter/exoticgoats,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
 "bt" = (
@@ -617,16 +622,7 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"wj" = (
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
-/obj/item/reagent_containers/food/snacks/monkeycube/goat,
-/obj/item/reagent_containers/food/snacks/monkeycube/goat,
-/obj/item/extinguisher,
-/turf/open/floor/mineral/titanium,
-/area/ruin/powered)
-"EA" = (
+"hH" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
@@ -634,8 +630,17 @@
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
-"OB" = (
+"Le" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/powered)
+"LJ" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/reagent_containers/food/snacks/monkeycube/goat,
+/obj/item/extinguisher,
+/turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 
 (1,1,1) = {"
@@ -1595,14 +1600,14 @@ aa
 aa
 aa
 ab
-OB
+Le
 cd
 ap
 ap
 ap
 ap
 cj
-OB
+Le
 ab
 aa
 aa
@@ -4521,14 +4526,14 @@ aE
 aJ
 aN
 bZ
-wj
+LJ
 ab
 aM
 aM
 aM
 aM
 ab
-EA
+hH
 bZ
 aN
 bH
