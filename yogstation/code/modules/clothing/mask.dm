@@ -112,6 +112,7 @@
 	icon_state = "ronald"
 	item_state = "ronald"
 	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/yogs/fawkes
@@ -166,4 +167,37 @@
 	icon_state = "pdchains"
 	item_state = "pdchains"
 	flags_cover = MASKCOVERSEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/scaryclown
+	name = "scary clown mask"
+	desc = "A clown mask often seen being worn by sewer clowns."
+	clothing_flags = MASKINTERNALS
+	icon_state = "scaryclownmask"
+	item_state = "scaryclownmask"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/gigglesmask
+	name = "giggles mask"
+	desc = "Sometimes there are some things better left off not existing, this is one of them."
+	clothing_flags = MASKINTERNALS
+	icon_state = "gigglesmask"
+	item_state = "gigglesmask"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/bananamask
+	name = "banana mask"
+	desc = "Do you want a banana?"
+	clothing_flags = MASKINTERNALS
+	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
+	icon_state = "bananamask"
+	item_state = "bananamask"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 	resistance_flags = FLAMMABLE

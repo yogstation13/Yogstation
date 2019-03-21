@@ -15,6 +15,13 @@
 					/obj/item/clothing/under/rank/purpleclown = 1,
 					/obj/item/clothing/under/yogs/ronaldmcdonald = 1, // Yogs Change Added Ronald Costume
 					/obj/item/clothing/mask/yogs/ronald = 1, //Yogs Change Added Ronald Costume
+					/obj/item/clothing/mask/yogs/bananamask = 1, //yogs
+					/obj/item/storage/backpack/banana = 1, //yogs
+					/obj/item/clothing/mask/yogs/gigglesmask = 1, //yogs
+					/obj/item/storage/backpack/clownface = 1, //yogs
+					/obj/item/clothing/mask/yogs/scaryclown = 1, //yogs
+					/obj/item/clothing/under/yogs/scaryclown = 1, //yogs
+					/obj/item/clothing/shoes/clown_shoes/scaryclown = 1, //yogs
 					/obj/item/clothing/under/gladiator = 1,
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
@@ -123,6 +130,7 @@
 					/obj/item/clothing/suit/hooded/carp_costume = 1,
 					/obj/item/clothing/suit/hooded/ian_costume = 1,
 					/obj/item/clothing/suit/hooded/bee_costume = 1,
+					/obj/item/clothing/shoes/clown_shoes/beeshoes =1, //yogs
 					/obj/item/clothing/suit/snowman = 1,
 					/obj/item/clothing/head/snowman = 1,
 					/obj/item/clothing/mask/joy = 1,
