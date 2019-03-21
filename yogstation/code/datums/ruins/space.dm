@@ -16,11 +16,11 @@
 	id = "wizard-academy"
 	suffix = "Academy.dmm"
 	name = "Wizard Academy"
-	description = "The Wizard Federation has desginated a hectic but \
+	description = "The Wizard Federation has designated a hectic but \
 		well-isolated space station to house wizards in training. \
 		Given the plethora of valuable, magical equipment hidden within, \
 		it is incredibly well-hidden, to the point where no documentation \
-		of the area exists in any record. After all, it's not like \
+		of the area exists in any records. After all, it's not like \
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
 
@@ -36,7 +36,8 @@
 	id = "goatresearch"
 	suffix = "goatresearch.dmm"
 	name= "Exotic Goat Transport Vessel"
-	description = "A ship transporting goats attacked by goats how ironic..."
+
+	description = "A ship transporting goats attacked by goats. How ironic..."
 
 /datum/map_template/ruin/space/yogstation/ghost_tdm
 	id = "ghosttdm"

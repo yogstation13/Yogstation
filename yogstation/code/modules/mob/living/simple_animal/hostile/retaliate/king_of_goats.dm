@@ -6,7 +6,7 @@
 //the king and his court
 /mob/living/simple_animal/hostile/retaliate/goat/king
 	name = "king of the goats"
-	desc = "The oldest and wisest of the goats; king of his race, peerless in dignity and power. His golden fleece radiates nobility."
+	desc = "The oldest and wisest of the goats. King of his race, peerless in dignity and power. His golden fleece radiates nobility."
 	icon = 'yogstation/icons/mob/king_of_goats.dmi'
 	icon_state = "king_goat"
 	icon_living = "king_goat"
@@ -98,6 +98,9 @@
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
@@ -158,7 +161,7 @@
 		else if(prob(5) && melee_damage_type == BRUTE && !special_attacks) //elemental attacks
 			spellscast++
 			//if(prob(50))
-			visible_message("<span class='cult'>\The [src]' horns flicker with holy white flame!</span>")
+			visible_message("<span class='cult'>\The [src]' horns flicker with holy white flames!</span>")
 			melee_damage_type = BURN
 			//else
 			//	visible_message("<span class='cult'>\The [src]' horns glimmer, electricity arcing between them!</span>")

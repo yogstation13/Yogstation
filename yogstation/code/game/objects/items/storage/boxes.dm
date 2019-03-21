@@ -1,6 +1,6 @@
 /obj/item/storage/box/goatcubes
 	name = "goat cube box"
-	desc = "Goat Tech Industries latest creation to help make experimenting on goats easier, just add water!"
+	desc = "Goat Tech Industries' latest creation to help make experimenting on goats easier. Just add water!"
 	icon_state = "monkeycubebox"
 	illustration = null
 

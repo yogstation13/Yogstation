@@ -182,7 +182,7 @@
 	terminate_effects()
 	. = ..()
 
-/obj/item/organ/eyes/robotic/glow/Remove()
+/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	terminate_effects()
 	. = ..()
 
@@ -248,7 +248,7 @@
 	if (!mobhook)
 		mobhook = M.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_DIR_CHANGE = CALLBACK(src, .proc/update_visuals)))
 
-/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M)
+/obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	QDEL_NULL(mobhook)
 

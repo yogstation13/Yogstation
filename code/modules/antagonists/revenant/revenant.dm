@@ -78,7 +78,7 @@
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
 
-/mob/living/simple_animal/revenant/canUseTopic()
+/mob/living/simple_animal/revenant/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return FALSE
 
 /mob/living/simple_animal/revenant/proc/random_revenant_name()
