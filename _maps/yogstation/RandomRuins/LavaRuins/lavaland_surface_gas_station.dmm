@@ -723,13 +723,6 @@
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"cS" = (
-/obj/item/instrument/piano_synth,
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
 "cU" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel{
@@ -737,17 +730,46 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"hy" = (
-/obj/machinery/shower{
-	icon_state = "shower";
-	dir = 1
+"dc" = (
+/obj/effect/turf_decal/sand,
+/obj/item/beacon,
+/turf/open/floor/plasteel,
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
+"fP" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"mx" = (
+"gF" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Back Exit Camera";
+	dir = 1;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"gV" = (
+/obj/machinery/camera{
+	c_tag = "Inside Right Side Gas Station Camera";
+	dir = 8;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"lg" = (
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Inside Entrance Camera";
@@ -760,8 +782,24 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"nm" = (
-/obj/item/beacon,
+"md" = (
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"pE" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/teleport/hub,
+/turf/open/floor/plasteel,
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
+"rr" = (
 /obj/item/gps/internal{
 	desc = "You can just FEEL the money oozing out of this signal.";
 	gpstag = "Capitalistic Signal";
@@ -782,18 +820,6 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"sw" = (
-/obj/machinery/camera{
-	c_tag = "Inside Right Side Gas Station Camera";
-	dir = 8;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
 "tZ" = (
 /obj/machinery/camera{
 	c_tag = "Inside Back Exit Camera";
@@ -805,20 +831,17 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
+"uH" = (
+/obj/item/instrument/piano_synth,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
 "wF" = (
 /obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"wJ" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/camera{
-	c_tag = "Outside Backroom Camera";
-	dir = 8;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
 "wQ" = (
 /obj/machinery/computer/arcade/orion_trail,
 /obj/machinery/light{
@@ -841,17 +864,17 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"zZ" = (
-/obj/structure/table,
-/obj/machinery/computer/security/telescreen{
-	name = "Gas Station Surveillance";
-	network = list("gasstation")
+"zr" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/computer/teleporter{
+	dir = 1;
+	icon_state = "computer";
+	id = null
 	},
-/turf/open/floor/plasteel{
-	icon_state = "white";
-	temperature = 273.15
-	},
-/area/ruin/powered)
+/turf/open/floor/plasteel,
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "AD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -863,21 +886,11 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"BK" = (
+"DY" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
-	c_tag = "Outside Side Gas Station Camera";
-	dir = 4;
-	name = "security camera";
-	network = list("gasstation")
-	},
-/turf/open/floor/plasteel,
-/area/lavaland/surface)
-"Et" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/camera{
-	c_tag = "Outside Back Exit Camera";
-	dir = 1;
+	c_tag = "Outside Backroom Camera";
+	dir = 8;
 	name = "security camera";
 	network = list("gasstation")
 	},
@@ -932,10 +945,11 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
-"OR" = (
-/obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 4
+"PN" = (
+/obj/structure/table,
+/obj/machinery/computer/security/telescreen{
+	name = "Gas Station Surveillance";
+	network = list("gasstation")
 	},
 /turf/open/floor/plasteel{
 	icon_state = "white";
@@ -952,6 +966,23 @@
 	temperature = 273.15
 	},
 /area/ruin/powered)
+"Qu" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Side Gas Station Camera";
+	dir = 4;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"Tu" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/teleport/station,
+/turf/open/floor/plasteel,
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "Wf" = (
 /obj/machinery/button/door{
 	id = "gasstation";
@@ -960,15 +991,7 @@
 	},
 /turf/closed/wall/rust,
 /area/ruin/powered)
-"Xr" = (
-/obj/structure/sign/poster/official/foam_force_ad,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"Xt" = (
-/obj/structure/sign/poster/contraband/donut_corp,
-/turf/closed/wall/rust,
-/area/ruin/powered)
-"XT" = (
+"WI" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
 	c_tag = "Outside Entrance Camera";
@@ -978,6 +1001,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/lavaland/surface)
+"Xr" = (
+/obj/structure/sign/poster/official/foam_force_ad,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"Xt" = (
+/obj/structure/sign/poster/contraband/donut_corp,
+/turf/closed/wall/rust,
+/area/ruin/powered)
 
 (1,1,1) = {"
 aa
@@ -1040,7 +1071,7 @@ af
 az
 af
 af
-wJ
+DY
 af
 af
 bh
@@ -1088,7 +1119,7 @@ aa
 ab
 af
 aj
-OR
+fP
 Hu
 aD
 aj
@@ -1116,7 +1147,7 @@ af
 aj
 an
 ar
-hy
+md
 aj
 aO
 aV
@@ -1195,8 +1226,8 @@ aj
 ap
 ar
 aj
-zZ
-cS
+PN
+uH
 ar
 ar
 AD
@@ -1228,7 +1259,7 @@ bd
 AD
 cU
 Mq
-XT
+WI
 ac
 bB
 ac
@@ -1242,7 +1273,7 @@ aa
 (11,1,1) = {"
 ab
 af
-Et
+gF
 wF
 wQ
 ar
@@ -1304,7 +1335,7 @@ ar
 ar
 ar
 ar
-mx
+lg
 Xr
 af
 ac
@@ -1320,7 +1351,7 @@ aa
 (14,1,1) = {"
 ab
 af
-af
+zr
 aj
 as
 ar
@@ -1345,8 +1376,8 @@ aa
 "}
 (15,1,1) = {"
 ab
-af
-af
+dc
+Tu
 aj
 at
 ar
@@ -1372,14 +1403,14 @@ aa
 (16,1,1) = {"
 ab
 ab
-af
+pE
 aj
 au
 aB
 ar
 ar
 ar
-nm
+rr
 ar
 ar
 bp
@@ -1482,7 +1513,7 @@ ay
 ar
 aF
 ar
-sw
+gV
 ar
 ar
 Ql
@@ -1534,7 +1565,7 @@ af
 aC
 af
 af
-BK
+Qu
 af
 af
 aC
