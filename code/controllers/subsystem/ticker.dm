@@ -402,6 +402,10 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	var/hpc = CONFIG_GET(number/hard_popcap)
+	//yogs start -- fixes queue when extreme is set but not hard
+	if(!hpc)
+		hpc = CONFIG_GET(number/extreme_popcap)
+	//yogs end
 	if(!queued_players.len || !hpc)
 		return
 
