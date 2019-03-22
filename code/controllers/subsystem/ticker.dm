@@ -401,14 +401,27 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<font color='purple'><b>Tip of the round: </b>[html_encode(m)]</font>")
 
 /datum/controller/subsystem/ticker/proc/check_queue()
+	if(!queued_players.len)
+		return
 	var/hpc = CONFIG_GET(number/hard_popcap)
+<<<<<<< HEAD
 	//yogs start -- fixes queue when extreme is set but not hard
 	if(!hpc)
 		hpc = CONFIG_GET(number/extreme_popcap)
 	//yogs end
 	if(!queued_players.len || !hpc)
+=======
+	if(!hpc)
+		listclearnulls(queued_players)
+		for (var/mob/dead/new_player/NP in queued_players)
+			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a></span>")
+			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
+			NP.LateChoices()
+		queued_players.len = 0
+		queue_delay = 0
+>>>>>>> b4f4653c21... Fix the living players limit queue getting stuck if you disable it (#43220)
 		return
-
+		
 	queue_delay++
 	var/mob/dead/new_player/next_in_line = queued_players[1]
 
