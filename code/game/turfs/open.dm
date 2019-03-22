@@ -216,7 +216,7 @@
 			qdel(O)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube) //Yogs
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -235,16 +235,16 @@
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
-		for(var/obj/item/I in C.held_items)
-			C.accident(I)
+		for(var/obj/item/I in C.held_items) //Yogs
+			C.accident(I) //Yogs
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Paralyze(knockdown_amount)
+			C.Paralyze(knockdown_amount) //Yogs
 			C.stop_pulling()
 		else
-			C.Stun(20)
+			C.Stun(20) //Yogs
 
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
