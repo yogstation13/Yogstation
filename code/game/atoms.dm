@@ -325,7 +325,7 @@
 	if(AM && isturf(AM.loc))
 		step(AM, turn(AM.dir, 180))
 
-/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
+/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube) //Yogs
 	return
 
 //returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
