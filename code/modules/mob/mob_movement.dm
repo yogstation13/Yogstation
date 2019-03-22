@@ -255,7 +255,7 @@
 	return FALSE
 
 
-/mob/proc/slip(s_amount, w_amount, obj/O, lube)
+/mob/proc/slip(s_amount, w_amount, obj/O, lube) //Yogs  you know its bad when its easier to revert it from ages ago than to try to fix it normally
 	return
 
 /mob/proc/update_gravity()
