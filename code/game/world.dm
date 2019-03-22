@@ -253,7 +253,7 @@ GLOBAL_VAR(restart_counter)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 			s += "<b>[server_name]</b> &#8212; "
-		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
+		if(!CONFIG_GET(flag/norespawn)) features += "respawn" //Yogs -- Makes this not display when it's no-respawn (as per usual)
 		/* Yogs start -- removes these old-ass hub tags
 		if(CONFIG_GET(flag/allow_vote_mode))
 			features += "vote"
