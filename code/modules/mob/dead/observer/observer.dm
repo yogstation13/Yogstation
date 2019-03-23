@@ -338,8 +338,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.change_view(CONFIG_GET(string/default_view))
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
+<<<<<<< HEAD
 	mind.current.oobe_client = null //yogs
 	return 1
+=======
+	return TRUE
+>>>>>>> 192a5333c3... Automatic deadminning (#42780)
 
 /mob/dead/observer/verb/stay_dead()
 	set category = "Ghost"
