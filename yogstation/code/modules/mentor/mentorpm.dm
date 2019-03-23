@@ -49,6 +49,8 @@
 		if (!C.is_mentor() && !is_mentor())
 			return
 
+	webhook_send_mhelp("[key_name_mentor(src)]->[key_name_mentor(whom)]", msg)
+
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)
 		return
