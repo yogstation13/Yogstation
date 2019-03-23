@@ -28,3 +28,14 @@
 	alternate_worn_icon = 'yogstation/icons/mob/feet.dmi'
 	icon_state = "bee_shoes"
 	item_state = "bee_shoes"
+
+/obj/item/clothing/shoes/yogs/namboots
+	name = "nam boots"
+	desc = "Come on, you sons of bitches, do you want to live forever?!?!"
+	icon_state = "namboots"
+	item_state = "namboots"
+	strip_delay = 50
+	equip_delay_other = 50
+	resistance_flags = NONE
+	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes

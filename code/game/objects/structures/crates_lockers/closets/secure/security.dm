@@ -6,6 +6,11 @@
 /obj/structure/closet/secure_closet/captains/PopulateContents()
 	..()
 	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
+	new /obj/item/clothing/under/yogs/captainartillery(src) //yogs
+	new /obj/item/clothing/under/yogs/casualcaptain(src) //yogs
+	new /obj/item/clothing/under/yogs/whitecaptainsuit //yogs
+	new /obj/item/clothing/head/yogs/whitecaptaincap //yogs
+	new /obj/item/clothing/under/yogs/victoriouscaptainuniform //yogs
 	new /obj/item/storage/backpack/captain(src)
 	new /obj/item/storage/backpack/satchel/cap(src)
 	new /obj/item/storage/backpack/duffelbag/captain(src)
@@ -43,6 +48,9 @@
 	..()
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
+	new /obj/item/clothing/suit/yogs/rurmcoat(src) //yogs
+	new /obj/item/clothing/suit/yogs/sovietcoat(src) //yogs
+	new /obj/item/clothing/under/yogs/hopcasual(src) //yogs
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/cartridge/hop(src)
 	new /obj/item/radio/headset/heads/hop(src)
@@ -71,6 +79,12 @@
 	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/cartridge/hos(src)
 	new /obj/item/radio/headset/heads/hos(src)
+	new /obj/item/clothing/under/yogs/lieutgeneral(src) //yogs
+	new /obj/item/clothing/under/yogs/dictatorhos(src) //yogs
+	new /obj/item/clothing/suit/yogs/armor/germancoat(src) //yogs
+	new /obj/item/clothing/under/yogs/hoslatenight(src) //yogs
+	new /obj/item/clothing/under/yogs/hoscasual(src) //yogs
+	new /obj/item/clothing/suit/yogs/armor/hosjacket(src) //yogs
 	new /obj/item/clothing/under/hosparadefem(src)
 	new /obj/item/clothing/under/hosparademale(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
@@ -107,6 +121,8 @@
 	new /obj/item/clothing/head/warden/drill(src)
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
+	new /obj/item/clothing/under/yogs/krofficer(src) //yogs
+	new /obj/item/clothing/suit/yogs/armor/wardenjacket(src) //yogs
 	new /obj/item/clothing/under/rank/warden/navyblue(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/holosign_creator/security(src)
@@ -177,12 +193,20 @@
 /obj/structure/closet/secure_closet/detective/PopulateContents()
 	..()
 	new /obj/item/clothing/under/rank/det(src)
+	new /obj/item/clothing/under/yogs/forensictech(src) //yogs
 	new /obj/item/clothing/suit/det_suit(src)
 	new /obj/item/clothing/head/fedora/det_hat(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/under/rank/det/grey(src)
+	new /obj/item/clothing/under/yogs/bluedetective(src) //yogs
+	new /obj/item/clothing/under/yogs/golddetective(src) //yogs
+	new /obj/item/clothing/under/yogs/greydetective(src) //yogs
+	new /obj/item/clothing/under/yogs/blackdetective(src) //yogs
 	new /obj/item/clothing/accessory/waistcoat(src)
 	new /obj/item/clothing/suit/det_suit/grey(src)
+	new /obj/item/clothing/suit/yogs/golddetective(src) //yogs
+	new /obj/item/clothing/suit/yogs/detectivecoat(src) //yogs
+	new /obj/item/clothing/suit/yogs/bluedetective(src) //yogs
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/storage/box/evidence(src)

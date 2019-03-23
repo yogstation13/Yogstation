@@ -10,6 +10,7 @@
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/suit/toggle/labcoat(src)
 	new /obj/item/clothing/under/rank/research_director(src)
+	new /obj/item/clothing/under/yogs/rdema(src) //yogs
 	new /obj/item/clothing/under/rank/research_director/alt(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
