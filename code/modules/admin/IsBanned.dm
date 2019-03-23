@@ -112,7 +112,6 @@ Yogs End*/
 			bannedckey = ban["ckey"]
 
 		var/newmatch = FALSE
-		var/client/C = GLOB.directory[ckey]
 		var/list/cachedban = SSstickyban.cache[bannedckey]
 		//rogue ban in the process of being reverted.
 		if (cachedban && (cachedban["reverting"] || cachedban["timeout"]))
