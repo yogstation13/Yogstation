@@ -391,7 +391,6 @@ SUBSYSTEM_DEF(ticker)
 		m = selected_tip
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
-		randomtips += world.file2list("yogstation/strings/tips.txt")//Yogs -- Yogstips, mostly stuff about Clockcult as of March 2019
 		var/list/memetips = world.file2list("strings/sillytips.txt")
 		if(randomtips.len && prob(95))
 			m = pick(randomtips)
