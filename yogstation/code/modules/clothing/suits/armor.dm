@@ -54,3 +54,15 @@
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
+
+/obj/item/clothing/suit/yogs/armor/sovietcoat
+	name = "soviet coat"
+	desc = "Glory to Arstotzka! Now with padding protection!"
+	icon_state = "soviet_coat"
+	item_state = "soviet_item"
+
+/obj/item/clothing/suit/yogs/armor/rurmcoat
+	name = "russian officer coat"
+	desc = "Papers please. Now with padding protection!"
+	icon_state = "ru_rmcoat"
+	item_state = "ru_rmcoat"

@@ -48,8 +48,8 @@
 	..()
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
-	new /obj/item/clothing/suit/yogs/rurmcoat(src) //yogs
-	new /obj/item/clothing/suit/yogs/sovietcoat(src) //yogs
+	new /obj/item/clothing/suit/yogs/armor/rurmcoat(src) //yogs
+	new /obj/item/clothing/suit/yogs/armor/sovietcoat(src) //yogs
 	new /obj/item/clothing/under/yogs/hopcasual(src) //yogs
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/cartridge/hop(src)

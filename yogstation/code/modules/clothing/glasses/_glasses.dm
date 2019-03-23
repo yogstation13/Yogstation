@@ -23,6 +23,6 @@
 
 /obj/item/clothing/glasses/yogs/eyepatch
 	name = "eye patch"
-	desc = "Arrrggg now you can be a real pirate matey.."
+	desc = "Arrrggg now you too can be a real pirate matey."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"

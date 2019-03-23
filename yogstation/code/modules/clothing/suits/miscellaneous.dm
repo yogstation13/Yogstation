@@ -80,12 +80,6 @@
 	icon_state = "facebook_s"
 	item_state = "facebook"
 
-/obj/item/clothing/suit/yogs/rurmcoat
-	name = "russian officer coat"
-	desc = "Papers please."
-	icon_state = "ru_rmcoat"
-	item_state = "ru_rmcoat"
-
 /obj/item/clothing/suit/yogs/thejestercoat
 	name = "jester coat"
 	desc = "Its a pretty nice coat...OR IS IT!!!."
@@ -241,12 +235,6 @@
 	desc = "So you too can be the one."
 	icon_state = "leather_coat"
 	item_state = "leather_item"
-
-/obj/item/clothing/suit/yogs/sovietcoat
-	name = "soviet coat"
-	desc = "Glory to Arstotzka!"
-	icon_state = "soviet_coat"
-	item_state = "soviet_item"
 
 /obj/item/clothing/suit/yogs/furcoat
 	name = "fur coat"
