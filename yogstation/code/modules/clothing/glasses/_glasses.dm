@@ -20,3 +20,9 @@
 	desc = "A pair of glasses which claim to have the ability to hypnotize people."
 	icon_state = "hypnospecs"
 	item_state = "hypnospecs"
+
+/obj/item/clothing/glasses/yogs/eyepatch
+	name = "eye patch"
+	desc = "Arrrggg now you can be a real pirate matey.."
+	icon_state = "eyepatch"
+	item_state = "eyepatch"

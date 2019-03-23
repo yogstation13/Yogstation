@@ -100,6 +100,7 @@
 					/obj/item/clothing/under/pirate = 1,
 					/obj/item/clothing/suit/pirate = 1,
 					/obj/item/clothing/head/pirate = 1,
+					/obj/item/clothing/glasses/yogs/eyepatch = 2, //yogs
 					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/under/yogs/infmob = 4, //yogs
