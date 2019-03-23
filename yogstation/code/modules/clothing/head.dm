@@ -60,6 +60,12 @@
 	icon_state = "single_fether"
 	item_state = "single_fether"
 
+/obj/item/clothing/head/yogs/formalhat
+	name = "formal hat"
+	desc = "Perfect for operating elevators."
+	icon_state = "formal_hat"
+	item_state = "formal_hat"
+
 /obj/item/clothing/head/yogs/tricornhat
 	name = "tricorn hat"
 	desc = "four score and seven years ago..."
@@ -81,7 +87,7 @@
 /obj/item/clothing/head/yogs/ballhat
 	name = "puff ball hat"
 	desc = "Often seen being worn by weird creatures known as hoovies."
-	icon_state = "ball_item"
+	icon_state = "ball_hat"
 	item_state = "ball_item"
 
 /obj/item/clothing/head/yogs/infhat
@@ -91,7 +97,7 @@
 	item_state = "infhat"
 
 /obj/item/clothing/head/yogs/soldierhelmet
-	name = "soldier_helmet"
+	name = "soldier helmet"
 	desc = "Perfect for a play on a generic war."
 	icon_state = "soldier_helmet"
 	item_state = "soldier_helmet"
@@ -119,41 +125,6 @@
 	desc = "Candy is dandy, but liquor is quicker!"
 	icon_state = "billydonkahat"
 	item_state = "beaver_hat"
-
-/obj/item/clothing/head/yogs/richard
-	name = "rooster mask"
-	desc = "Perfect mask for killing russian mob thugs!"
-	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR
-	icon_state = "richard"
-	item_state = "richard"
-
-/obj/item/clothing/head/yogs/freddy
-	name = "brown bear mask"
-	desc = "A mask representing a old pizza place mascot."
-	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR
-	icon_state = "freddy"
-	item_state = "freddy"
-
-/obj/item/clothing/head/yogs/bonnie
-	name = "purple bunny mask"
-	desc = "A mask representing a old pizza place mascot."
-	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR
-	icon_state = "bonnie"
-	item_state = "bonnie"
-
-/obj/item/clothing/head/yogs/chica
-	name = "yellow chicken mask"
-	desc = "A mask representing a old pizza place mascot."
-	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR
-	icon_state = "chica"
-	item_state = "chica"
-
-/obj/item/clothing/head/yogs/foxy
-	name = "red fox mask"
-	desc = "A mask representing a old pizza place mascot."
-	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR
-	icon_state = "foxy"
-	item_state = "foxy"
 
 /obj/item/clothing/head/yogs/zoothat
 	name = "zoot suit hat"

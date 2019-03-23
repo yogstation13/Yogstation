@@ -39,7 +39,7 @@
 	item_state = "hos_item"
 
 /obj/item/clothing/suit/yogs/armor/wardenjacket
-	name = "warden jacket"
+	name = "warden's black jacket"
 	desc = "all the style of a jacket with all the protection of a armor vest!"
 	icon_state = "warden_jacket"
 	item_state = "warden_item"

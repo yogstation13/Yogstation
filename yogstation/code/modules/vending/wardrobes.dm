@@ -41,9 +41,9 @@
 					/obj/item/clothing/suit/holidaypriest = 1,
 					/obj/item/clothing/suit/yogs/witchhuntblue = 1,
 					/obj/item/clothing/under/yogs/fiendsuit = 1,
-					/obj/item/clothing/suit/yogs/fiendcowl = 1,
+					/obj/item/clothing/suit/hooded/fiendcowl = 1,
 					/obj/item/clothing/under/yogs/caretaker = 1,
-					/obj/item/clothing/suit/yogs/caretakercloak = 1,
+					/obj/item/clothing/suit/hooded/caretakercloak = 1,
 					/obj/item/clothing/suit/yogs/monkrobes = 1,
 					/obj/item/storage/fancy/candle_box = 2)
 
@@ -84,6 +84,7 @@
 					/obj/item/clothing/head/soft/sec = 3,
 					/obj/item/clothing/mask/bandana/red = 3,
 					/obj/item/clothing/suit/yogs/armor/secmiljacket = 3,
+					/obj/item/clothing/shoes/yogs/namboots = 5,
 					/obj/item/clothing/under/yogs/namjumpsuit = 5,
 					/obj/item/clothing/suit/yogs/armor/namflakjacket = 5,
 					/obj/item/clothing/head/helmet/namhelm = 5,
@@ -148,6 +149,7 @@
 					/obj/item/clothing/under/rank/bartender = 2,
 					/obj/item/clothing/under/yogs/billydonka = 2,
 					/obj/item/clothing/head/yogs/billydonkahat = 2,
+					/obj/item/cane = 2,
 					/obj/item/clothing/under/yogs/callumsuit = 2,
 					/obj/item/clothing/under/rank/bartender/purple = 2,
 					/obj/item/clothing/accessory/waistcoat = 2,

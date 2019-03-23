@@ -71,7 +71,7 @@
 					/obj/item/clothing/under/yogs/lederhosen = 1, //yogs
 					/obj/item/clothing/head/yogs/folkhat = 1, //yogs
 					/obj/item/clothing/accessory/waistcoat = 1,
-					/obj/item/clothing/glasses/monocle = 1,
+					/obj/item/clothing/glasses/monocle = 1, //yogs added a single space the horrors!
 					/obj/item/clothing/glasses/yogs/hypno = 1, //yogs
 					/obj/item/clothing/head/bowler = 1,
 					/obj/item/cane = 1,
@@ -124,10 +124,10 @@
 					/obj/item/clothing/under/rank/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,
 					/obj/item/clothing/under/sexymime = 1,
-					/obj/item/clothing/head/yogs/freddy = 1, //yogs
-					/obj/item/clothing/head/yogs/bonnie = 1, //yogs
-					/obj/item/clothing/head/yogs/chica = 1, //yogs
-					/obj/item/clothing/head/yogs/foxy = 1, //yogs
+					/obj/item/clothing/mask/yogs/freddy = 1, //yogs
+					/obj/item/clothing/mask/yogs/bonnie = 1, //yogs
+					/obj/item/clothing/mask/yogs/chica = 1, //yogs
+					/obj/item/clothing/mask/yogs/foxy = 1, //yogs
 					/obj/item/clothing/mask/rat/bat = 1,
 					/obj/item/clothing/mask/rat/bee = 1,
 					/obj/item/clothing/mask/rat/bear = 1,
@@ -197,7 +197,7 @@
 		           /obj/item/clothing/under/yogs/enclaveo = 1, //yogs
 		           /obj/item/clothing/under/yogs/rycliesuni = 1, //yogs
 		           /obj/item/clothing/head/yogs/toad = 1, //yogs
-		           /obj/item/clothing/head/yogs/richard = 1, //yogs
+		           /obj/item/clothing/mask/yogs/richard = 1, //yogs
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
 		           /obj/item/clothing/head/helmet/roman/fake = 1,
 		           /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,

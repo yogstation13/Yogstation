@@ -8,9 +8,9 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
 	new /obj/item/clothing/under/yogs/captainartillery(src) //yogs
 	new /obj/item/clothing/under/yogs/casualcaptain(src) //yogs
-	new /obj/item/clothing/under/yogs/whitecaptainsuit //yogs
-	new /obj/item/clothing/head/yogs/whitecaptaincap //yogs
-	new /obj/item/clothing/under/yogs/victoriouscaptainuniform //yogs
+	new /obj/item/clothing/under/yogs/whitecaptainsuit(src) //yogs
+	new /obj/item/clothing/head/yogs/whitecaptaincap(src) //yogs
+	new /obj/item/clothing/under/yogs/victoriouscaptainuniform(src) //yogs
 	new /obj/item/storage/backpack/captain(src)
 	new /obj/item/storage/backpack/satchel/cap(src)
 	new /obj/item/storage/backpack/duffelbag/captain(src)

@@ -37,7 +37,7 @@
 /obj/item/clothing/suit/yogs/gothic
 	name = "gothic suit"
 	desc = "Its not a phase mom!!!"
-	icon_state = "gothic"
+	icon_state = "gothic_s"
 	item_state = "gothic"
 
 /obj/item/clothing/suit/yogs/witchhuntblue
@@ -51,12 +51,6 @@
 	desc = "Time to be the leader of your own musical!"
 	icon_state = "hamiltoncoat"
 	item_state = "hamiltoncoat"
-
-/obj/item/clothing/suit/yogs/duster
-	name = "duster"
-	desc = "Everyone looks cool in a duster... right?"
-	icon_state = "duster"
-	item_state = "duster"
 
 /obj/item/clothing/suit/hooded/sandsuit
     alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
@@ -72,17 +66,18 @@
     alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "sandsuit"
+    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/beaker
 	name = "beakerman costume"
 	desc = "Time to save the day using science and chemistry!"
-	icon_state = "beaker"
+	icon_state = "beaker_s"
 	item_state = "beaker"
 
 /obj/item/clothing/suit/yogs/facebook
 	name = "facebook costume"
 	desc = "Time to save the day by using facts and invading your privacy!"
-	icon_state = "facebook"
+	icon_state = "facebook_s"
 	item_state = "facebook"
 
 /obj/item/clothing/suit/yogs/rurmcoat
@@ -197,11 +192,21 @@
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
 
-/obj/item/clothing/suit/yogs/fiendcowl
+/obj/item/clothing/suit/hooded/fiendcowl
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "fiend cowl"
 	desc = "Only a really evil person would wear such a fiendish cowl!"
 	icon_state = "fiendcowl"
 	item_state = "fiendcowl"
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+	hoodtype = /obj/item/clothing/head/hooded/fiendhood
+
+/obj/item/clothing/head/hooded/fiendhood
+    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+    icon = 'yogstation/icons/obj/clothing/hats.dmi'
+    icon_state = "fiendhood"
+    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/infsuit
 	name = "russian gangster suit"
@@ -209,11 +214,21 @@
 	icon_state = "infsuit"
 	item_state = "infsuit"
 
-/obj/item/clothing/suit/yogs/caretakercloak
+/obj/item/clothing/suit/hooded/caretakercloak
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "caretaker cloak"
 	desc = "Yeah he will ''take care'' of you alright"
 	icon_state = "caretakercloak"
 	item_state = "caretakercloak"
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
+	hoodtype = /obj/item/clothing/head/hooded/caretakerhood
+
+/obj/item/clothing/head/hooded/caretakerhood
+    alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+    icon = 'yogstation/icons/obj/clothing/hats.dmi'
+    icon_state = "caretakerhood"
+    flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/golddetective
 	name = "gold detective jacket"
@@ -267,14 +282,10 @@
 
 /obj/item/clothing/suit/yogs/soldierwebbing
 	name = "soldier webbing"
-	desc = "For holding all your snacks during a play."
+	desc = "Cant actually hold much with it but still looks cool!"
 	icon_state = "soldier_webbing"
 	item_state = "soldier_webbing"
-
-/obj/item/clothing/suit/yogs/soldierwebbing/ComponentInitialize()
-	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.max_items = 6
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
 
 /obj/item/clothing/suit/yogs/monkrobes
 	name = "monk robes"
@@ -296,12 +307,13 @@
     icon_state = "spesshoodie"
     item_state = "spesshoodie"
     allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/radio)
-    hoodtype = /obj/item/clothing/head/hooded/sandsuit
+    hoodtype = /obj/item/clothing/head/hooded/spesshoodie
 
 /obj/item/clothing/head/hooded/spesshoodie
     alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
-    icon_state = "spesshoodie_open"
+    icon_state = "spesshoodie"
+    flags_inv = HIDEEARS|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/bikerjacket
 	name = "biker jacket"

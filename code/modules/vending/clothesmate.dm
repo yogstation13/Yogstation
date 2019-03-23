@@ -109,7 +109,6 @@
 		            /obj/item/clothing/suit/yogs/varsity = 2, //yogs
 		            /obj/item/clothing/suit/hooded/wintercoat/bluecoat = 2, //yogs
 		            /obj/item/clothing/suit/hooded/spesshoodie = 2, //yogs
-		            /obj/item/clothing/suit/yogs/duster = 2, //yogs
 		            /obj/item/clothing/suit/yogs/tailcoat = 2, //yogs
 		            /obj/item/clothing/suit/yogs/leathercoat = 2, //yogs
 		            /obj/item/clothing/suit/yogs/blacktrenchcoat = 2, //yogs
@@ -161,6 +160,7 @@
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
 		           /obj/item/clothing/under/rank/mailman = 1,
+		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs
 		           /obj/item/clothing/suit/jacket/leather = 1,
 		           /obj/item/clothing/suit/jacket/leather/overcoat = 1,
 		           /obj/item/clothing/under/pants/mustangjeans = 1,

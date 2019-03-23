@@ -432,9 +432,9 @@
 /obj/item/clothing/under/yogs/hoscasual
 	name = "casual head of security uniform"
 	desc = "Even the hos has to take a break from beating the clown sometimes."
-	icon_state = "hos1_suit"
-	item_state = "hos1_suit"
-	item_color = "hos1_suit"
+	icon_state = "hos_suit"
+	item_state = "hos_suit"
+	item_color = "hos_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	strip_delay = 60
 	alt_covers_chest = TRUE
@@ -499,7 +499,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/infmob
-	name = "russian gangster suit"
+	name = "russian gangster uniform"
 	desc = "So you wanna be a classy gangster ay?"
 	icon_state = "inf_mob_s"
 	item_state = "inf_mob"
