@@ -71,12 +71,12 @@
 	var/whom = input["whom"]
 	var/msg = input["msg"]
 	var/from = input["admin"]
-	var/client/C = GLOB.directory[whom]
+	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return
 
 	to_chat(C, "<font color='purple'>Mentor PM from-<b>[from]</b>: [msg]</font>")
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
-		if(!X == C)
+		if(X != C)
 			to_chat(X, "<B><font color='green'>Mentor PM: [from]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
