@@ -1,0 +1,4 @@
+author: "monster860"
+delete-after: true 
+changes: 
+  - bugfix: "You can now redirect to mentorhelp without opening the ticket."
