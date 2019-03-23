@@ -49,10 +49,11 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
+//Yogs start -- Keeps extreme popcap as always being a living-players count.
 	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin)
 		log_access("Failed Login: [key] - Population cap reached")
 		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
-/*Yogs start -- Keeps extreme popcap as always being a living-players count.
+/*Yogs continue
 	if(!real_bans_only && !C && extreme_popcap && !admin)
 		var/hard_popcap = CONFIG_GET(number/hard_popcap)
 
