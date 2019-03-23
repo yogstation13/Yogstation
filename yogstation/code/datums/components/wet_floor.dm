@@ -1,4 +1,4 @@
-/datum/component/wet_floor/proc/update_flags()
+/datum/component/wet_floor/update_flags()
 	var/intensity
 	lube_flags = NONE
 	switch(highest_strength)
