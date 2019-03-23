@@ -76,6 +76,7 @@
 	if(!C)
 		return 0
 
+	SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
 	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>")
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.admins)
