@@ -57,3 +57,5 @@
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
+	
+	var/gender_ambiguous = 0 //if something goes wrong during gender reassignment this generates a line in examine, Yogcode start/end
