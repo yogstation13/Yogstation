@@ -13,7 +13,7 @@
 	if(href_list["mentor_msg"])
 		if(href_list["mentor_discord_id"])
 			cmd_mentor_pm(href_list["mentor_msg"], null, href_list["mentor_discord_id"])
-		if(CONFIG_GET(flag/mentors_mobname_only))
+		else if(CONFIG_GET(flag/mentors_mobname_only))
 			var/mob/M = locate(href_list["mentor_msg"])
 			cmd_mentor_pm(M,null)
 		else
