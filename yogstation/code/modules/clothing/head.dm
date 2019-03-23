@@ -114,9 +114,11 @@
 	icon_state = "trainman"
 	item_state = "trainman"
 
-/obj/item/clothing/head/yogs/warhelmet
+/obj/item/clothing/head/helmet/warhelmet
 	name = "war helmet"
 	desc = "Get ready boys we are going to war!"
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "kr_helm"
 	item_state = "kr_helm"
 

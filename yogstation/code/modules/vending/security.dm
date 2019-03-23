@@ -11,7 +11,7 @@
 		              /obj/item/storage/fancy/donut_box = 2)
 	premium = list(/obj/item/storage/belt/security/webbing = 5,
 					/obj/item/coin/antagtoken = 1,
-					/obj/item/clothing/head/yogs/warhelmet = 5,
+					/obj/item/clothing/head/helmet/warhelmet = 5,
 					/obj/item/clothing/suit/yogs/armor/rycliesarmour = 5,
 					/obj/item/clothing/head/helmet/blueshirt = 5,
 					/obj/item/clothing/suit/armor/vest/blueshirt = 5)
