@@ -19,14 +19,9 @@
 	var/admin = 0
 	var/ckey = ckey(key)
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
-<<<<<<< HEAD
-		admin = 1
-=======
 		admin = TRUE
 	
 	var/client/C = GLOB.directory[ckey]
-
->>>>>>> bf52e95723... If both the extreme and hard caps are active, extreme popcap applies to connected players, not living players. (#43181)
 
 	//Whitelist
 	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
@@ -50,11 +45,10 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-<<<<<<< HEAD
 	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin)
 		log_access("Failed Login: [key] - Population cap reached")
 		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
-=======
+/*Yogs start -- Keeps extreme popcap as always being a living-players count.
 	if(!real_bans_only && !C && extreme_popcap && !admin)
 		var/hard_popcap = CONFIG_GET(number/hard_popcap)
 
@@ -69,7 +63,7 @@
 			log_access("Failed Login: [key] - Population cap reached")
 			return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 
->>>>>>> bf52e95723... If both the extreme and hard caps are active, extreme popcap applies to connected players, not living players. (#43181)
+Yogs End*/
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
 			var/msg = "Ban database connection failure. Key [ckey] not checked"
@@ -105,13 +99,8 @@
 			bannedckey = ban["ckey"]
 
 		var/newmatch = FALSE
-<<<<<<< HEAD
 		var/client/C = GLOB.directory[ckey]
-		var/cachedban = SSstickyban.cache[bannedckey]
-
-=======
 		var/list/cachedban = SSstickyban.cache[bannedckey]
->>>>>>> bf52e95723... If both the extreme and hard caps are active, extreme popcap applies to connected players, not living players. (#43181)
 		//rogue ban in the process of being reverted.
 		if (cachedban && cachedban["reverting"])
 			return null
