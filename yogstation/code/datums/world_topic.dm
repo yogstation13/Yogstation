@@ -71,7 +71,7 @@
 	var/whom = input["whom"]
 	var/msg = input["msg"]
 	var/from = input["admin"]
-	var/from = input["admin_id"]
+	var/from_id = input["admin_id"]
 	var/client/C = GLOB.directory[ckey(whom)]
 	if(!C)
 		return 0
