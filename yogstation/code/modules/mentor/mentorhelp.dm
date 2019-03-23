@@ -112,4 +112,4 @@
 	return .
 
 /proc/discord_mentor_link(var/display_name, var/id)
-	return "<a href='?_src_=mentor;mentor_msg=[display_name];mentor_discord_id=[id];[MentorHrefToken(TRUE)]'>[display_name]</a>"
+	return "<a href='?_src_=mentor;mentor_msg=[list2params(list(display_name))];mentor_discord_id=[id];[MentorHrefToken(TRUE)]'>[display_name]</a>"
