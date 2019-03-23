@@ -65,7 +65,10 @@
 	if(!C || C.is_mentor())
 		if(C)
 			to_chat(C, "<font color='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</font>")
-		to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>")
+		if(discord_id)
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>")
+		else
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>")
 		if(ckey in SSYogs.mentortickets)
 			var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
 			T.log += "<b>[key]:</b> [msg]"
