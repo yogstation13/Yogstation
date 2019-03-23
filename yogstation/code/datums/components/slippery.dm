@@ -1,7 +1,5 @@
 /datum/component/slippery
 	var/intensity
-	var/lube_flags
-	var/datum/callback/callback
 	
 /datum/component/slippery/Initialize(_intensity, _lube_flags = NONE, datum/callback/_callback)
 	intensity = max(_intensity, 0)
