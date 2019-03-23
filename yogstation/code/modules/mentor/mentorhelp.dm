@@ -14,6 +14,8 @@
 	spawn(300)
 		verbs += /client/verb/mentorhelp	// 30 second cool-down for mentorhelp
 
+	webhook_send_mhelp(key_name_mentor(src), msg)
+
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)	return
 	if(!mob)	return						//this doesn't happen
@@ -28,7 +30,6 @@
 		to_chat(X, mentor_msg)
 
 	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
-	webhook_send_mhelp(key_name_mentor(src), msg)
 
 	var/datum/mentorticket/mt
 	if(ckey in SSYogs.mentortickets)
