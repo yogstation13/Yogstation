@@ -61,7 +61,7 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/msay/Run(list/input)
-	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'><span class='prefix'>MENTOR:</span>DISCORD MENTOR:</span> <EM>[input["admin"]]</EM>: <span class='message'>[input["msay"]]</span></span>")
+	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'><span class='prefix'>DISCORD MENTOR:</span></span> <EM>[input["admin"]]</EM>: <span class='message'>[input["msay"]]</span></span>")
 
 /datum/world_topic/mhelp
 	keyword = "mhelp"
