@@ -313,7 +313,7 @@
     alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
     icon = 'yogstation/icons/obj/clothing/hats.dmi'
     icon_state = "spesshoodie"
-    flags_inv = HIDEEARS|HIDEFACIALHAIR|HIDEHAIR
+    flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/suit/yogs/bikerjacket
 	name = "biker jacket"
