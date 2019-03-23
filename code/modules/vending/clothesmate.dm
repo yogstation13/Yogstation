@@ -155,8 +155,8 @@
 		              /obj/item/clothing/suit/jacket/letterman_syndie = 1,
 		              /obj/item/clothing/under/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
-		              /obj/item/clothing/under/geisha = 1
-		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1,) //yogs
+		              /obj/item/clothing/under/geisha = 1, //yogs added a ,
+		              /obj/item/clothing/under/yogs/soviet_dress_uniform = 1) //yogs
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
 		           /obj/item/clothing/under/rank/mailman = 1,
@@ -164,7 +164,7 @@
 		           /obj/item/clothing/suit/jacket/leather/overcoat = 1,
 		           /obj/item/clothing/under/pants/mustangjeans = 1,
 		           /obj/item/clothing/neck/necklace/dope = 3,
-		           /obj/item/clothing/suit/jacket/letterman_nanotrasen = 1
+		           /obj/item/clothing/suit/jacket/letterman_nanotrasen = 1, //yogs added a ,
 		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs start
 		           /obj/item/clothing/suit/yogs/trainman = 1,
 		           /obj/item/clothing/head/yogs/trainman = 1,
