@@ -54,9 +54,6 @@
 		log_played_names(client.ckey,name,real_name)
 		auto_deadmin_on_login()
 
-<<<<<<< HEAD
-	log_message("Client [key_name(src)] has taken ownership of mob [src]", LOG_OWNERSHIP)
-=======
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 
 /mob/proc/auto_deadmin_on_login() //return true if they're not an admin at the end.
@@ -68,4 +65,4 @@
 		return client.holder.auto_deadmin()
 	if(job)
 		return SSjob.handle_auto_deadmin_roles(client, job)
->>>>>>> 192a5333c3... Automatic deadminning (#42780)
+
