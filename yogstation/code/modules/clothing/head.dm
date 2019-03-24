@@ -220,3 +220,53 @@
 	icon_state = "beret_captain"
 	armor = list(melee = 50, bullet = 30, laser = 20, energy = 10, bomb = 15, bio = 10, rad = 10, fire = 10, acid = 60)
 	strip_delay = 90
+
+/obj/item/clothing/head/welding/demon
+	name = "demonic welding helmet"
+	desc = "A painted welding helmet, this one has a demonic face on it."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "demonwelding"
+	item_state = "demonwelding"
+
+/obj/item/clothing/head/welding/knight
+	name = "knightly welding helmet"
+	desc = "A painted welding helmet, this one looks like a knights helmet."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "knightwelding"
+	item_state = "welding"
+
+/obj/item/clothing/head/welding/fancy
+	name = "fancy welding helmet"
+	desc = "A painted welding helmet, the black and gold make this one look very fancy."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "fancywelding"
+	item_state = "fancywelding"
+
+/obj/item/clothing/head/welding/engie
+	name = "engineering welding helmet"
+	desc = "A painted welding helmet, this one has been painted the engineering colours."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "engiewelding"
+	item_state = "engiewelding"
+
+/obj/item/clothing/head/welding/carp
+	name = "carp welding helmet"
+	desc = "A painted welding helmet, this one has a carp face on it."
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon_state = "carpwelding"
+	item_state = "carpwelding"

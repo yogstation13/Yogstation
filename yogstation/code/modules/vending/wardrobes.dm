@@ -49,6 +49,9 @@
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	products = list(/obj/item/clothing/glasses/hud/diagnostic = 2,
+					/obj/item/clothing/head/welding/carp = 1,
+					/obj/item/clothing/head/welding/fancy = 1,
+					/obj/item/clothing/head/welding/demon = 1,
 					/obj/item/clothing/under/rank/roboticist = 2,
 					/obj/item/clothing/suit/toggle/labcoat = 2,
 					/obj/item/clothing/suit/toggle/labcoat/wardtlab = 2,
@@ -199,4 +202,7 @@
 					/obj/item/clothing/shoes/workboots = 3,
 					/obj/item/clothing/head/beret/eng = 3,
 					/obj/item/clothing/head/hardhat = 3,
-					/obj/item/clothing/head/hardhat/weldhat = 3)
+					/obj/item/clothing/head/welding/demon = 1,
+					/obj/item/clothing/head/welding/knight = 1,
+					/obj/item/clothing/head/welding/engie = 1,
+					/obj/item/clothing/head/hardhat/weldhat = 1)
