@@ -1,4 +1,4 @@
-	/obj/item/melee/fryingpan
+/obj/item/melee/fryingpan
 	name = "frying pan"
 	desc = "A cast-iron frying pan designed for cooking food."
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/pan_lefthand.dmi'
@@ -20,13 +20,14 @@
 	name = "bananium frying pan"
 	desc = "A cast-bananium frying pan imbued with an ancient power."
 	color = "#ffd700"
-	force = 35
-	throwforce = 25
+	force = 25
+	throwforce = 15
 	bonkpower = 50
 	pantrify = TRUE
 	block_chance = 25
 	materials = list(MAT_BANANIUM=75)
 	attack_verb = list("BONKED", "panned", "flexes on")
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100) //honkzo bananium frying pan folded over 1000 times, your mime explosives are no match.
 
 /obj/item/melee/fryingpan/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity || !isliving(target) || !iscarbon(user))
