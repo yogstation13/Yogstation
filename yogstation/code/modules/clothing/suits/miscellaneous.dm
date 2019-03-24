@@ -314,3 +314,9 @@
 	desc = "Woo go Space Carps!!!"
 	icon_state = "varsity"
 	item_state = "varsity"
+
+/obj/item/clothing/suit/yogs/jesus
+	name = "Messiah Robes"
+	desc = "They seem very holy."
+	icon_state = "jesus"
+	allowed = list(/obj/item/storage/book/bible)
