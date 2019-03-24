@@ -201,6 +201,7 @@
 		           /obj/item/clothing/under/yogs/enclaveo = 1,
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
 		           /obj/item/clothing/head/yogs/toad = 1,
+		           /obj/item/clothing/head/helmet/justice = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
 
 	refill_canister = /obj/item/vending_refill/autodrobe
