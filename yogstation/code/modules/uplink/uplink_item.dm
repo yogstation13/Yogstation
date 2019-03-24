@@ -42,6 +42,7 @@
 //////////////////////////
 /////////New Items////////
 //////////////////////////
+
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
