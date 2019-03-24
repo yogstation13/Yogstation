@@ -81,6 +81,7 @@
 					/obj/item/clothing/under/yogs/armyuniform = 3,
 					/obj/item/clothing/shoes/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
+					/obj/item/clothing/head/beret/corpsec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
 					/obj/item/clothing/mask/bandana/red = 3,
 					/obj/item/clothing/suit/yogs/armor/secmiljacket = 3,
@@ -102,6 +103,7 @@
 					/obj/item/storage/backpack/duffelbag/med = 4,
 					/obj/item/storage/backpack/medic = 4,
 					/obj/item/storage/backpack/satchel/med = 4,
+					/obj/item/clothing/head/beret/med = 4,
 					/obj/item/clothing/suit/hooded/wintercoat/medical = 4,
 					/obj/item/clothing/under/rank/nursesuit = 4,
 					/obj/item/clothing/head/nursehat = 4,
@@ -162,3 +164,39 @@
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/glasses/sunglasses/reagent = 1,
 					/obj/item/storage/belt/bandolier = 1) // yogs - removed pet collar
+
+/obj/machinery/vending/wardrobe/science_wardrobe
+	products = list(/obj/item/clothing/accessory/pocketprotector = 3,
+					/obj/item/storage/backpack/science = 3,
+					/obj/item/storage/backpack/satchel/tox = 3,
+					/obj/item/clothing/head/beret/sci = 3,
+					/obj/item/clothing/suit/hooded/wintercoat/science = 3,
+					/obj/item/clothing/under/rank/scientist = 3,
+					/obj/item/clothing/suit/toggle/labcoat/science = 3,
+					/obj/item/clothing/shoes/sneakers/white = 3,
+					/obj/item/radio/headset/headset_sci = 3,
+					/obj/item/clothing/mask/gas = 3)
+
+/obj/machinery/vending/wardrobe/atmos_wardrobe"
+	products = list(/obj/item/clothing/accessory/pocketprotector = 2,
+					/obj/item/storage/backpack/duffelbag/engineering = 2,
+					/obj/item/storage/backpack/satchel/eng = 2,
+					/obj/item/storage/backpack/industrial = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 3,
+					/obj/item/clothing/head/beret/atmos = 3,
+					/obj/item/clothing/under/rank/atmospheric_technician = 3,
+					/obj/item/clothing/shoes/sneakers/black = 3)
+
+/obj/machinery/vending/wardrobe/engi_wardrobe
+	products = list(/obj/item/clothing/accessory/pocketprotector = 3,
+					/obj/item/storage/backpack/duffelbag/engineering = 3,
+					/obj/item/storage/backpack/industrial = 3,
+					/obj/item/storage/backpack/satchel/eng = 3,
+					/obj/item/clothing/suit/hooded/wintercoat/engineering = 3,
+					/obj/item/clothing/under/rank/engineer = 3,
+					/obj/item/clothing/under/rank/engineer/hazard = 3,
+					/obj/item/clothing/suit/hazardvest = 3,
+					/obj/item/clothing/shoes/workboots = 3,
+					/obj/item/clothing/head/beret/eng = 3,
+					/obj/item/clothing/head/hardhat = 3,
+					/obj/item/clothing/head/hardhat/weldhat = 3)

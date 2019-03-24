@@ -37,7 +37,8 @@
 	new /obj/item/clothing/under/yogs/casualcaptain(src)
 	new /obj/item/clothing/under/yogs/whitecaptainsuit(src)
 	new /obj/item/clothing/head/yogs/whitecaptaincap(src)
-	new /obj/item/clothing/under/yogs/victoriouscaptainuniform(src) //yogs end
+	new /obj/item/clothing/under/yogs/victoriouscaptainuniform(src)
+	new /obj/item/clothing/head/beret/captain(src) //yogs end
 /obj/structure/closet/secure_closet/hop
 	name = "\proper head of personnel's locker"
 	req_access = list(ACCESS_HOP)
@@ -131,8 +132,9 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
-	new /obj/item/clothing/under/yogs/krofficer(src) //yogs
-	new /obj/item/clothing/suit/yogs/armor/wardenjacket(src) //yogs
+	new /obj/item/clothing/under/yogs/krofficer(src) //yogs start
+	new /obj/item/clothing/head/beret/corpwarden(src)
+	new /obj/item/clothing/suit/yogs/armor/wardenjacket(src) //yogs end
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
