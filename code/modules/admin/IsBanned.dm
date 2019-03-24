@@ -48,17 +48,17 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-<<<<<<< HEAD
+	//Yogs start -- Makes extreme popcap use living_player_count instead of number of clients.
 	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin)
 		log_access("Failed Login: [key] - Population cap reached")
 		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
-=======
+	/*Yogs continue
 	if(!real_bans_only && !C && extreme_popcap && !admin)
 		var/popcap_value = GLOB.clients.len
 		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
 			log_access("Failed Login: [key] - Population cap reached")
 			return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
->>>>>>> ac99808e05... Merge pull request #43287 from tgstation/MrStonedOne-webedit-420
+	Yogs end*/
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
