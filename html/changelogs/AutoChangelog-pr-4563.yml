@@ -1,5 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "The RPG can be loaded properly after firing"
-  - spellcheck: "The RPG has been renamed to the PML-9"

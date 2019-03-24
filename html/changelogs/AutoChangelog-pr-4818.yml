@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Added logging to cloning machinery."

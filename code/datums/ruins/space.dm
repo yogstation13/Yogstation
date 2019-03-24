@@ -194,7 +194,7 @@
 	suffix = "crashedclownship.dmm"
 	name = "Crashed Clown Ship"
 	description = "For centuries the promise of a new clown homeworld has been the siren call for countless clown vessels. \
-	Alas the clown's lust for shinanagans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
+	Alas the clown's lust for shenanagans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
 
 /datum/map_template/ruin/space/crashedship
 	id = "crashedship"
@@ -222,13 +222,13 @@
 	id = "oldteleporter"
 	suffix = "oldteleporter.dmm"
 	name = "Detached Teleporter"
-	description = "The structure of this surprisingly intact teleporter suggests that it was once part of a larger structure, but what remains of said structure, if anything, can only be guessed at."
+	description = "The structure of this surprisingly intact teleporter suggests that it was once part of a larger structure, but what remains of said structure, if anything, can only be guessed."
 
 /datum/map_template/ruin/space/vaporwave
 	id = "vaporwave"
 	suffix = "vaporwave.dmm"
 	name = "Aesthetic Outpost"
-	description = "Pause and remember-- You are unique.You are special. Every mistake, trial, and hardship has helped to sculpt your real beauty. \
+	description = "Pause and remember-- You are unique. You are special. Every mistake, trial, and hardship has helped to sculpt your real beauty. \
 	Stop hating yourself and start appreciating and loving yourself!"
 
 /datum/map_template/ruin/space/bus
@@ -236,7 +236,7 @@
 	suffix = "bus.dmm"
 	name = "Waylaid Buses"
 	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing..? Their shipment sure  seems to be filled with a strange mix. \
-	Anyway, it looks like some people tried to fix it up for a long time but didn't really get anywhere..."
+	Anyway, it looks like some people tried to fix it up for a long time but really didn't get anywhere..."
 
 /datum/map_template/ruin/space/oldstation
 	id = "oldstation"

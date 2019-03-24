@@ -1,0 +1,4 @@
+author: " ShizCalev"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed janitcarts being unable to move through wet floor signs"
