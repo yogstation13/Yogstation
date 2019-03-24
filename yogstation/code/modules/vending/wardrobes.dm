@@ -166,7 +166,7 @@
 					/obj/item/clothing/suit/armor/vest/alt = 1,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/glasses/sunglasses/reagent = 1,
-					/obj/item/storage/belt/bandolier = 1) // yogs - removed pet collar
+					/obj/item/storage/belt/bandolier = 1)
 
 /obj/machinery/vending/wardrobe/science_wardrobe
 	products = list(/obj/item/clothing/accessory/pocketprotector = 3,
