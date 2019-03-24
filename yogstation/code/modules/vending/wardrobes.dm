@@ -177,7 +177,7 @@
 					/obj/item/radio/headset/headset_sci = 3,
 					/obj/item/clothing/mask/gas = 3)
 
-/obj/machinery/vending/wardrobe/atmos_wardrobe"
+/obj/machinery/vending/wardrobe/atmos_wardrobe
 	products = list(/obj/item/clothing/accessory/pocketprotector = 2,
 					/obj/item/storage/backpack/duffelbag/engineering = 2,
 					/obj/item/storage/backpack/satchel/eng = 2,
