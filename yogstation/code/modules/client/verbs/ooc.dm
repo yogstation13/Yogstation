@@ -31,6 +31,7 @@
 
 	//Most of the below is a clone of what's going on in code/controllers/subsystem/ticker.dm around line 400-ish.
 	//Cloned March 2019, your mileage may vary
+	var/m
 	var/list/randomtips = world.file2list("strings/tips.txt")
 	randomtips += world.file2list("yogstation/strings/tips.txt")
 	var/list/memetips = world.file2list("strings/sillytips.txt")
