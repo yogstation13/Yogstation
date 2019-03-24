@@ -16,7 +16,7 @@
 		            /obj/item/kitchen/knife = 2)
 	contraband = list(/obj/item/kitchen/rollingpin = 2,
 		              /obj/item/kitchen/knife/butcher = 2,
-		              /obj/item/melee/fryingpan = 1)
+		              /obj/item/melee/fryingpan = 2)
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 	resistance_flags = FIRE_PROOF
 	default_price = 5
