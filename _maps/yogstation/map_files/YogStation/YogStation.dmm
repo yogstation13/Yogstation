@@ -35147,7 +35147,6 @@
 	req_access_txt = "5"
 	},
 /obj/item/storage/pill_bottle/happiness,
-/obj/item/storage/pill_bottle/floorpill,
 /obj/item/storage/pill_bottle/happy{
 	name = "happy pills bottle"
 	},
@@ -54059,15 +54058,6 @@
 	dir = 4
 	},
 /area/engine/atmos)
-"mxE" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 0
-	},
-/obj/machinery/keycard_auth{
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/bridge)
 "mxJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -54329,6 +54319,15 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"nmI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
 "npb" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
@@ -87787,7 +87786,7 @@ aRl
 aSx
 aTX
 aYg
-mxE
+nmI
 cva
 adK
 aet
@@ -89329,7 +89328,7 @@ aRr
 aSD
 ceh
 aZj
-mxE
+nmI
 cva
 adK
 aet
