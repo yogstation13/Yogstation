@@ -48,9 +48,11 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin)
+	//Yogs start -- keeps extreme popcap using the living player limit
+	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin && !GLOB.joined_player_list.Find(ckey))
 		log_access("Failed Login: [key] - Population cap reached")
 		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+	//yogs end
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
