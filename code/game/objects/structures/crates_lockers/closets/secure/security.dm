@@ -65,8 +65,8 @@
 	new /obj/item/door_remote/civillian(src)
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/HoP(src)
-	new /obj/item/clothing/suit/yogs/armor/rurmcoat(src) //yogs start
-	new /obj/item/clothing/suit/yogs/armor/sovietcoat(src)
+	new /obj/item/clothing/suit/armor/vest/rurmcoat(src) //yogs start
+	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src) //yogs end
 
 /obj/structure/closet/secure_closet/hos
@@ -103,10 +103,10 @@
 	new /obj/item/storage/photo_album/HoS(src)
 	new /obj/item/clothing/under/yogs/lieutgeneral(src) //yogs start
 	new /obj/item/clothing/under/yogs/dictatorhos(src)
-	new /obj/item/clothing/suit/yogs/armor/germancoat(src)
+	new /obj/item/clothing/suit/armor/hos/germancoat(src)
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
-	new /obj/item/clothing/suit/yogs/armor/hosjacket(src) //yogs end
+	new /obj/item/clothing/suit/armor/vest/hosjacket(src) //yogs end
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -134,7 +134,7 @@
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 	new /obj/item/clothing/under/yogs/krofficer(src) //yogs start
 	new /obj/item/clothing/head/beret/corpwarden(src)
-	new /obj/item/clothing/suit/yogs/armor/wardenjacket(src) //yogs end
+	new /obj/item/clothing/suit/armor/vest/wardenjacket(src) //yogs end
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
