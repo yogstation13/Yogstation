@@ -110,3 +110,6 @@
 		. += " (<a href='?_src_=mentor;mentor_follow=[REF(M)];[MentorHrefToken(TRUE)]'>F</a>)"
 
 	return .
+
+/proc/discord_mentor_link(var/display_name, var/id)
+	return "<a href='?_src_=mentor;mentor_msg=[list2params(list(display_name))];mentor_discord_id=[id];[MentorHrefToken(TRUE)]'>[display_name]</a>"

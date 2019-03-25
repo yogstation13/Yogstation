@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "added an ezmk pulse rifle to the seraph mech"
+  - rscdel: "removed the buckshot gun from the seraph mech"
