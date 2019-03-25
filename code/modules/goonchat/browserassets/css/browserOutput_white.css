@@ -1,26 +1,18 @@
 /*****************************************
 *
-* GLOBAL STYLES
+* GLOBAL STYLES for white theme normies
 *
 ******************************************/
 html, body {
 	padding: 0;
 	margin: 0;
 	height: 100%;
-<<<<<<< HEAD
 	color: #000000;
-=======
-	color: #a4bad6;
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 }
 body {
 	background: #fff;
     font-family: Verdana, sans-serif;
     font-size: 9pt;
-<<<<<<< HEAD
-=======
-	font-color: #a4bad6;
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
     line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -102,18 +94,14 @@ a.popt {text-decoration: none;}
     font-variant: small-caps;
     font-size: 1.1em;
     font-weight: bold;
-<<<<<<< HEAD
 	color: #333;
-=======
-	color: #a4bad6;
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 }
 #newMessages:hover {background: #ccc;}
 #newMessages i {vertical-align: middle; padding-left: 3px;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 80px;
+	right: 115px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -136,11 +124,7 @@ a.popt {text-decoration: none;}
     height: 30px;
 	padding: 5px 0;
 	display: block;
-<<<<<<< HEAD
 	color: #333;
-=======
-	color: #a4bad6;
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 	text-decoration: none;
     line-height: 28px;
     border-top: 1px solid #b4b4b4;
@@ -258,15 +242,9 @@ a.popt {text-decoration: none;}
 ******************************************/
 
 /* MOTD */
-<<<<<<< HEAD
 .motd {color: #638500;	font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6 {color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover {color: #638500;}
-=======
-.motd {color: #a4bad6;	font-family: Verdana, sans-serif;}
-.motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6 {color: #a4bad6;	text-decoration: underline;}
-.motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover {color: #a4bad6;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 /* ADD HERE FOR BOLD */
 .bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
@@ -277,29 +255,17 @@ a.popt {text-decoration: none;}
 /* OUTPUT COLORS */
 .highlight {background: yellow;}
 
-<<<<<<< HEAD
 h1, h2, h3, h4, h5, h6	{color: #0000ff;font-family: Georgia, Verdana, sans-serif;}
 h1.alert, h2.alert		{color: #000000;}
-=======
-h1, h2, h3, h4, h5, h6	{color: #a4bad6;font-family: Georgia, Verdana, sans-serif;}
-h1.alert, h2.alert		{color: #a4bad6;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 em						{font-style: normal;	font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #002eb8;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
-.looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
-
-<<<<<<< HEAD
-.adminsay   			{color: #996600;	font-weight: bold;} /*yogs - changes asay colour back*/
-.admin					{color: #386aff;	font-weight: bold;}
-=======
 .adminsay   			{color: #ff0000;}
-.admin					{color: #5975da;	font-weight: bold;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
+.admin					{color: #4473ff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
 
@@ -310,7 +276,7 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
 .radio					{color: #008000;}
 .sciradio				{color: #993399;}
-.comradio				{color: #204090;}  /* yogs */
+.comradio				{color: #948f02;}
 .secradio				{color: #a30000;}
 .medradio				{color: #337296;}
 .engradio				{color: #fb5613;}
@@ -324,12 +290,8 @@ em						{font-style: normal;	font-weight: bold;}
 
 .yell					{					font-weight: bold;}
 
-<<<<<<< HEAD
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
-=======
-.alert					{color: #d82020;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 .emote					{					font-style: italic;}
 .selecteddna			{color: #ffffff; 	background-color: #001B1B}
@@ -346,7 +308,6 @@ h1.alert, h2.alert		{color: #000000;}
 .boldannounce			{color: #ff0000;	font-weight: bold;}
 .greenannounce			{color: #00ff00;	font-weight: bold;}
 .rose					{color: #ff5050;}
-<<<<<<< HEAD
 .info					{color: #0000CC;}
 .notice					{color: #000099;}
 .boldnotice				{color: #000099;	font-weight: bold;}
@@ -358,19 +319,6 @@ h1.alert, h2.alert		{color: #000000;}
 .nicegreen					{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .cult					{color: #960000;}
-=======
-.info					{color: #6685f5;}
-.notice					{color: #6685f5;}
-.boldnotice				{color: #6685f5;	font-weight: bold;}
-.adminnotice			{color: #6685f5;}
-.adminhelp              {color: #ff0000;    font-weight: bold;}
-.unconscious			{color: #a4bad6;	font-weight: bold;}
-.suicide				{color: #ff5050;	font-style: italic;}
-.green					{color: #059223;}
-.nicegreen				{color: #059223;}
-.shadowling				{color: #8e8a99;}
-.cult					{color: #aa1c1c;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}
@@ -380,17 +328,10 @@ h1.alert, h2.alert		{color: #000000;}
 .narsie					{color: #960000; font-weight: bold; font-size: 120px;}
 .narsiesmall			{color: #960000; font-weight: bold; font-size: 48px;}
 .colossus				{color: #7F282A; font-size: 40px;}
-<<<<<<< HEAD
 .hierophant				{color: #660099; font-weight: bold; font-style: italic;}
 .hierophant_warning		{color: #660099; font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
-=======
-.hierophant				{color: #b441ee; font-weight: bold; font-style: italic;}
-.hierophant_warning		{color: #c56bf1; font-style: italic;}
-.purple					{color: #9956d3;}
-.holoparasite			{color: #88809c;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 .revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}
@@ -402,11 +343,7 @@ h1.alert, h2.alert		{color: #000000;}
 .umbra_emphasis			{color: #5000A0;	font-weight: bold;	font-style: italic;}
 .umbra_large			{color: #5000A0; font-size: 24px; font-weight: bold; font-style: italic;}
 
-<<<<<<< HEAD
 .deconversion_message	{color: #5000A0; font-size: 24px; font-style: italic;}
-=======
-.deconversion_message	{color: #a947ff; font-size: 24px; font-style: italic;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 .brass					{color: #BE8700;}
 .heavy_brass			{color: #BE8700; font-weight: bold; font-style: italic;}
