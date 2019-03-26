@@ -12,9 +12,9 @@ The three stages of the king goat:
  Stage 2: This is where things start heating up. At this stage the king goat will become slightly larger and start doing special attacks which range from summoning guards to come to his aid to stomping his hooves on the ground causing the arena to shake and a aoe explosion to appear around him most miners do not make it pass this stage but if you do...
  Stage 3: Oh boy your in for it now at this stage the king goat will completly heal and grow slightly bigger and start glowing it has the exact same attacks as stage 2 but is more aggressive overall if you can defeat him at stage three he will fall over dead on the ground and drop a ladder so you may now leave the arena but dont forget to grab the loot first!
 
-The loot: (Be sure to bring a knife!)
+The loot:
 The meteor gun: This baby is a killing machine although it has three shots before needing to be recharged it can insta crit almost anybody and destroys almost anything you fire it at making it a weapon worthy of someone that can defeat the king.
-The king goat pelt: Once you butcher the king goat you can grab his pelt and wear it on your head as armor, boasting complete bomb immunity and slightly better gun and laser immunity then the drake helm at the cost of slightly reduced melee protection this is THE prize to show who the king of lavaland really is around here! Also makes goats friendly towards you as long as you are wearing it for they will see you as their new king.
+The king goat pelt: Hope you brought a knife cause your gonna need to butcher the king goats corpse to get this prize. Once you butcher the king goat you can grab his pelt and wear it on your head as armor, boasting complete bomb immunity and slightly better gun and laser immunity then the drake helm at the cost of slightly reduced melee protection this is THE prize to show who the king of lavaland really is around here! Also makes goats friendly towards you as long as you are wearing it for they will see you as their new king.
 
 Difficulty: Insanely Hard
 
