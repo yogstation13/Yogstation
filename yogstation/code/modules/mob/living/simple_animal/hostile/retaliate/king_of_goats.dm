@@ -46,6 +46,17 @@
 
 	var/stun_chance = 5 //chance per attack to Weaken target
 
+/mob/living/simple_animal/hostile/retaliate/goat/king/ex_act(severity, target)
+	switch (severity)
+		if (1)
+			adjustBruteLoss(100)
+
+		if (2)
+			adjustBruteLoss(50)
+
+		if(3)
+			adjustBruteLoss(25)
+
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2
 	name = "emperor of the goats"
 	desc = "The King of Kings, God amongst men, and your superior in every way."
