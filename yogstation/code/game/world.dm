@@ -65,7 +65,8 @@ GLOBAL_LIST_EMPTY(donators)
 	s += "\[[popcaptext][queuetext]"
 	
 	//HOST
-	if (!host && CONFIG_GET(string/hostedby))
+	var/hostedby = CONFIG_GET(string/hostedby)
+	if (!host && hostedby)
 		s += " hosted by <b>[hostedby]</b>"
 	
 	//RETURN
