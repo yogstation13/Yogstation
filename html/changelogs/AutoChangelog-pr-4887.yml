@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Our hub status no longer reports that we have the AI job enabled, as that has not been contentious for more than 4 years."
