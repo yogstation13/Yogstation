@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(donators)
 		popcaptext = "~[players] player\s"
 	var/queuetext = ""
 	if(SSticker && SSticker.queued_players.len)
-		queuetext = " ([SSticker.queued_players.len] in queue)"
+		queuetext = ", [SSticker.queued_players.len] in queue"
 	
 	s += "\[[popcaptext][queuetext]"
 	
