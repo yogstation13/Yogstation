@@ -35,42 +35,40 @@ GLOBAL_LIST_EMPTY(donators)
 
 /world/update_status()
 
-	var/list/features = list()
-
-	if(GLOB.master_mode)
-		features += GLOB.master_mode
-
-	if (!GLOB.enter_allowed)
-		features += "closed"
-
+	//BASIC SHIT
 	var/s = ""
-	var/hostedby
-	if(config)
-		var/server_name = CONFIG_GET(string/servername)
-		if (server_name)
-			s += "<b>[server_name]</b> &#8212; "
-		if(!CONFIG_GET(flag/norespawn)) features += "<b>respawn</b>" // Bold it since it will be an amazing(ly questionable) event
-		hostedby = CONFIG_GET(string/hostedby)
-
-	s += "<b>[station_name()]</b>]<br>"; // The station & server name
-	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links
-	s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode
+	var/server_name = CONFIG_GET(string/servername)
+	if (server_name)
+		s += "<b>[server_name]</b> &#8212; "
 	
+	s += "<b>[station_name()]</b>]<br>"; // The station & server name line
+	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links line
+	s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
+	
+	//FEATURES
+	var/list/features = list()
+	if(!CONFIG_GET(flag/norespawn)) 
+		features += "<b>Respawn Enabled</b>" // Bold it since it will be an amazing(ly questionable) event
+	
+	if(features.len)
+		s += "[jointext(features,", ")]<br>" // The features line
+	
+	//PLAYER COUNT
 	var/players = GLOB.clients.len
-	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
 	var/popcaptext = ""
-	if (players > 1)
-		popcaptext = "~[players][popcaptext] players"
-	else if (players)
-		popcaptext = "~[players][popcaptext] player"
+	if(players)
+		popcaptext = "~[players] player\s"
 	var/queuetext = ""
 	if(SSticker && SSticker.queued_players.len)
 		queuetext = " ([SSticker.queued_players.len] in queue)"
-	s += "[popcaptext][queuetext]<br>"
 	
-	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
+	s += "\[[popcaptext][queuetext]"
 	
-	if (!host && hostedby)
-		s += "hosted by <b>[hostedby]</b>"
-
+	//HOST
+	if (!host && CONFIG_GET(string/hostedby))
+		s += " hosted by <b>[hostedby]</b>"
+	
+	//RETURN
 	status = s
+	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
+	return s
