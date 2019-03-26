@@ -73,7 +73,7 @@ Difficulty: Insanely Hard
 	desc = "The King of Kings, God amongst men, and your superior in every way."
 	icon_state = "king_goat2"
 	icon_living = "king_goat2"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 16, /obj/item/clothing/head/yogs/goatpelt/king = 1, /obj/item/gun/energy/meteorgun = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 36, /obj/item/clothing/head/yogs/goatpelt/king = 1)
 	health = 750
 	maxHealth = 750
 	armour_penetration = 50
@@ -281,6 +281,7 @@ Difficulty: Insanely Hard
 	if(phase3)
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
+		new /obj/item/gun/energy/meteorgun(loc)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
