@@ -173,38 +173,7 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"x" = (
-/obj/machinery/door/airlock/gold/glass{
-	desc = "Once you go in the portal past this door there is no going back...";
-	name = "POINT OF NO RETURN"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"H" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/portal/permanent/one_way/keep{
-	id = "king goat arena";
-	name = "king goat arena portal"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"I" = (
+"E" = (
 /obj/machinery/light,
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
@@ -215,7 +184,55 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
+"F" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"J" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/portal/permanent/one_way/keep{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
 "L" = (
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"N" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"X" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
 	height = 1;
@@ -231,30 +248,15 @@
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"V" = (
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Lair"
-	})
-"W" = (
+"Y" = (
+/obj/machinery/door/airlock/gold/glass{
+	desc = "Once you go in the portal past this door there is no going back...";
+	name = "POINT OF NO RETURN"
+	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
 	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"X" = (
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "king goat arena";
-	name = "king goat arena portal"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
 	},
 /area/ruin/powered{
 	name = "King Goat Arena";
@@ -328,9 +330,9 @@ a
 b
 q
 f
-V
+F
 f
-V
+F
 b
 a
 a
@@ -356,11 +358,11 @@ a
 a
 a
 d
-V
+F
 g
 p
 s
-V
+F
 d
 a
 a
@@ -386,11 +388,11 @@ a
 a
 a
 b
-V
+F
 r
-V
+F
 r
-V
+F
 b
 a
 a
@@ -484,7 +486,7 @@ i
 i
 i
 h
-L
+X
 h
 "}
 (3,1,2) = {"
@@ -499,7 +501,7 @@ i
 i
 i
 h
-W
+N
 h
 "}
 (4,1,2) = {"
@@ -514,7 +516,7 @@ i
 i
 i
 h
-W
+N
 h
 "}
 (5,1,2) = {"
@@ -529,7 +531,7 @@ i
 i
 i
 h
-W
+N
 h
 "}
 (6,1,2) = {"
@@ -544,7 +546,7 @@ i
 i
 n
 h
-W
+N
 h
 "}
 (7,1,2) = {"
@@ -557,9 +559,9 @@ i
 i
 i
 i
-X
+L
 h
-I
+E
 h
 "}
 (8,1,2) = {"
@@ -574,7 +576,7 @@ i
 i
 n
 h
-W
+N
 h
 "}
 (9,1,2) = {"
@@ -589,7 +591,7 @@ i
 i
 i
 h
-W
+N
 h
 "}
 (10,1,2) = {"
@@ -604,7 +606,7 @@ i
 i
 i
 h
-W
+N
 h
 "}
 (11,1,2) = {"
@@ -619,7 +621,7 @@ i
 i
 i
 h
-x
+Y
 h
 "}
 (12,1,2) = {"
@@ -634,7 +636,7 @@ i
 i
 i
 h
-H
+J
 h
 "}
 (13,1,2) = {"
