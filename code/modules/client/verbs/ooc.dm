@@ -34,7 +34,7 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	var/regex/ickock = regex("\A\s*((\x23.*)|(\x2c.*)|(\x2e(^\x2e{2}))|(\x3a|\x3b)(^((\x5e)?\x20(\x28|\x29)))|(say\x20\x22))","i")
+	var/regex/ickock = regex("\A\s*((\x23.*)|(\x2c.*)|(\x2e(^\x2e{2}))|(\x3a|\x3b)(^((\x5e)? (\x28|\x29)))|(say \x22))","i")
 	//this nasty regex captures a lot of accidental in character speech in ooc chat, including elipses and :)
 	if(ickock.Find(msg))
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
