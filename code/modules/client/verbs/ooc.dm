@@ -34,7 +34,7 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	var/regex/ickock = regex("^\s*[[#.*]|[,.*]|[\x2e[^\x2e{2}]]|[:|;][^[[\x5e]?\x20[\x28|\x29]]]|[say\x20\x22]]","i")
+	var/regex/ickock = regex("\A\s*((\x23.*)|(\x2c.*)|(\x2e(^\x2e{2}))|(\x3a|\x3b)(^((\x5e)?\x20(\x28|\x29)))|(say\x20\x22))","i")
 	//this nasty regex captures a lot of accidental in character speech in ooc chat, including elipses and :)
 	if(ickock.Find(msg))
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
@@ -82,7 +82,7 @@
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
-		
+
 		if(holder.fakekey) // If they're stealhminning
 			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
@@ -98,7 +98,7 @@
 			oocmsg = "<font color='[GLOB.normal_ooc_colour]'>"
 		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
 		oocmsg_toadmins = oocmsg
-	
+
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
 		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
