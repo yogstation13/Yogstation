@@ -672,7 +672,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(B)
 		QDEL_NULL(B)
 	return ..()
->>>>>>> 85c1485bab... [ready] beepsky smash change (#43228)
 
 /datum/reagent/consumable/ethanol/beepsky_smash/overdose_start(mob/living/carbon/M)
 	if(!M.has_trait(TRAIT_LAW_ENFORCEMENT_METABOLISM))
