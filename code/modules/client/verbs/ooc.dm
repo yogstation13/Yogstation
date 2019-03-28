@@ -34,7 +34,7 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	var/regex/ickock = regex("^\s*(#.*|,.*|(:|;)[\w\s\d]|(say \")|\.\.?(?!\.))","i")
+	var/regex/ickock = regex("^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \")|\.\.?(?!\.))","i")
 	//captures a lot of accidental in character speech in ooc chat
 	if(ickock.Find(msg))
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
