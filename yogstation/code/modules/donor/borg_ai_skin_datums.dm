@@ -182,6 +182,12 @@
 	name = "Paramedic Droid"
 	icon_state = "paramed_droid"
 	module_locked = "Medical"
+	owner = null
+
+/datum/borg_skin/gold_experience
+	name = "Gold Experience"
+	icon_state = "gold_experience"
+	module_locked = "Security"
 	owner = "identification"
 
 //Oldyogs stuff, I didn't sprite this ~Kmc//
