@@ -10,8 +10,9 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	var/stage = EMPTY
-	var/list/beakers = list()
+	var/list/obj/item/reagent_containers/glass/beakers = list()
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
+	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
 	var/affected_area = 3
 	var/obj/item/assembly_holder/nadeassembly = null
 	var/assemblyattacher
@@ -53,7 +54,7 @@
 			..()
 
 /obj/item/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(stage == WIRED)
 			if(beakers.len)
 				stage_change(READY)
@@ -68,7 +69,10 @@
 			to_chat(user, "<span class='warning'>You need to add an activation mechanism!</span>")
 
 	else if(stage == WIRED && is_type_in_list(I, allowed_containers))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
+		if(is_type_in_list(I, banned_containers))
+			to_chat(user, "<span class='warning'>[src] is too small to fit [I]!</span>") // this one hits home huh anon?
+			return
 		if(beakers.len == 2)
 			to_chat(user, "<span class='warning'>[src] can not hold more containers!</span>")
 			return
@@ -108,18 +112,18 @@
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the assembly!</span>")
 			return
 
-	else if(stage == READY && istype(I, /obj/item/wirecutters) && !active)
+	else if(stage == READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
 		stage_change(WIRED)
 		to_chat(user, "<span class='notice'>You unlock the [initial(name)] assembly.</span>")
 
-	else if(stage == WIRED && istype(I, /obj/item/wrench))
+	else if(stage == WIRED && I.tool_behaviour == TOOL_WRENCH)
 		if(beakers.len)
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
 				if(!O.reagents)
 					continue
 				var/reagent_list = pretty_string_from_reagent_list(O.reagents)
-				user.log_message("removed [O] ([reagent_list]) from [src]")
+				user.log_message("removed [O] ([reagent_list]) from [src]", LOG_GAME)
 			beakers = list()
 			to_chat(user, "<span class='notice'>You open the [initial(name)] assembly and remove the payload.</span>")
 			return // First use of the wrench remove beakers, then use the wrench to remove the activation mechanism.
@@ -165,17 +169,13 @@
 		nadeassembly.on_found(finder)
 
 /obj/item/grenade/chem_grenade/log_grenade(mob/user, turf/T)
-	..()
 	var/reagent_string = ""
 	var/beaker_number = 1
 	for(var/obj/exploded_beaker in beakers)
 		if(!exploded_beaker.reagents)
 			continue
-		reagent_string += "[exploded_beaker] [beaker_number++] : " + pretty_string_from_reagent_list(exploded_beaker.reagents.reagent_list) + ";"
-	var/message = "[src] primed by [user] at [ADMIN_VERBOSEJMP(T)] contained [reagent_string]."
-	GLOB.bombers += message
-	message_admins(message)
-	user.log_message("primed [src] ([reagent_string])",LOG_GAME)
+		reagent_string += " ([exploded_beaker.name] [beaker_number++] : " + pretty_string_from_reagent_list(exploded_beaker.reagents.reagent_list) + ");"
+	log_bomber(user, "primed a", src, "containing:[reagent_string]")
 
 /obj/item/grenade/chem_grenade/prime()
 	if(stage != READY)
@@ -211,10 +211,11 @@
 //Large chem grenades accept slime cores and use the appropriately.
 /obj/item/grenade/chem_grenade/large
 	name = "large grenade"
-	desc = "A custom made large grenade. Larger splash range and increased ignition temperature compared to basic grenades. Fits exotic containers."
-	casedesc = "This casing affects a larger area than the basic model and can fit exotic containers, including slime cores. Heats contents by 25°K upon ignition."
+	desc = "A custom made large grenade. Larger splash range and increased ignition temperature compared to basic grenades. Fits exotic and bluespace based containers."
+	casedesc = "This casing affects a larger area than the basic model and can fit exotic containers, including slime cores and bluespace beakers. Heats contents by 25°K upon ignition."
 	icon_state = "large_grenade"
 	allowed_containers = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/condiment, /obj/item/reagent_containers/food/drinks)
+	banned_containers = list()
 	affected_area = 5
 	ignition_temp = 25 // Large grenades are slightly more effective at setting off heat-sensitive mixtures than smaller grenades.
 	threatscale = 1.1	// 10% more effective.
@@ -276,7 +277,7 @@
 	var/unit_spread = 10 // Amount of units per repeat. Can be altered with a multitool.
 
 /obj/item/grenade/chem_grenade/adv_release/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/multitool))
+	if(I.tool_behaviour == TOOL_MULTITOOL)
 		switch(unit_spread)
 			if(0 to 24)
 				unit_spread += 5

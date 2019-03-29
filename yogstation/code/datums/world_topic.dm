@@ -55,3 +55,31 @@
 
 /datum/world_topic/reboot/Run(list/input)
 	SSticker.Reboot("Initiated from discord")
+
+/datum/world_topic/msay
+	keyword = "msay"
+	require_comms_key = TRUE
+
+/datum/world_topic/msay/Run(list/input)
+	to_chat(GLOB.admins | GLOB.mentors, "<b><font color ='#8A2BE2'><span class='prefix'>DISCORD MENTOR:</span></span> <EM>[input["admin"]]</EM>: <span class='message'>[input["msay"]]</span></span>")
+
+/datum/world_topic/mhelp
+	keyword = "mhelp"
+	require_comms_key = TRUE
+
+/datum/world_topic/mhelp/Run(list/input)
+	var/whom = input["whom"]
+	var/msg = input["msg"]
+	var/from = input["admin"]
+	var/from_id = input["admin_id"]
+	var/client/C = GLOB.directory[ckey(whom)]
+	if(!C)
+		return 0
+
+	SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>")
+	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
+	for(var/client/X in GLOB.mentors | GLOB.admins)
+		if(X != C)
+			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
+	return 1

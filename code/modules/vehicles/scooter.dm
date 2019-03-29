@@ -2,6 +2,7 @@
 	name = "scooter"
 	desc = "A fun way to get around."
 	icon_state = "scooter"
+	are_legs_exposed = TRUE
 
 /obj/vehicle/ridden/scooter/Initialize()
 	. = ..()
@@ -71,7 +72,7 @@
 		var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 		unbuckle_mob(H)
 		H.throw_at(throw_target, 4, 3)
-		H.Knockdown(100)
+		H.Paralyze(100)
 		H.adjustStaminaLoss(40)
 		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
@@ -197,7 +198,7 @@
 		var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 		unbuckle_mob(H)
 		H.throw_at(throw_target, 4, 3)
-		H.Knockdown(30)
+		H.Paralyze(30)
 		H.adjustStaminaLoss(10)
 		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))

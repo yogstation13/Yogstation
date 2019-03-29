@@ -1,7 +1,7 @@
 /datum/antagonist/traitor/internal_affairs/iaa_process()
 	if(owner && owner.current && !iscyborg(owner.current) && owner.current.stat!=DEAD)
 		var/new_objective = TRUE
-		for(var/objective_ in owner.objectives)
+		for(var/objective_ in objectives)
 			if(istype(objective_, /datum/objective/hijack) || istype(objective_, /datum/objective/martyr) || istype(objective_, /datum/objective/block))
 				new_objective = FALSE
 				break
@@ -14,7 +14,7 @@
 
 		if(new_objective)
 			var/list/other_traitors = SSticker.mode.traitors - owner
-			for(var/objective_ in owner.objectives)
+			for(var/objective_ in objectives)
 				if(!is_internal_objective(objective_))
 					continue
 				var/datum/objective/assassinate/internal/objective = objective_
@@ -40,7 +40,7 @@
 					kill_objective.update_explanation_text()
 					add_objective(kill_objective)
 			else
-				for(var/objective_ in owner.objectives)
+				for(var/objective_ in objectives)
 					remove_objective(objective_)
 
 				if(issilicon(owner))

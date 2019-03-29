@@ -6,6 +6,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
+	var/cooldown = 10
+	var/next_announce = 0
 	var/integrated = FALSE
 	var/max_dist = 150
 	verb_say = "states coldly"
@@ -29,7 +31,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	return PROCESS_KILL
 
 /obj/machinery/doppler_array/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/wrench))
+	if(I.tool_behaviour == TOOL_WRENCH)
 		if(!anchored && !isinspace())
 			anchored = TRUE
 			power_change()
@@ -51,9 +53,12 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(stat & NOPOWER)
 		return FALSE
 	var/turf/zone = get_turf(src)
-
 	if(zone.z != epicenter.z)
 		return FALSE
+
+	if(next_announce > world.time)
+		return
+	next_announce = world.time + cooldown
 
 	var/distance = get_dist(epicenter, zone)
 	var/direct = get_dir(zone, epicenter)

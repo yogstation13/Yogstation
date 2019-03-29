@@ -51,7 +51,7 @@
 
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
-	req_access = null
+	req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- changed to allow for use of req_one_access
 	max_integrity = 200
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
@@ -109,6 +109,9 @@
 /obj/machinery/power/apc/syndicate //general syndicate access
 	req_access = list(ACCESS_SYNDICATE)
 
+/obj/machinery/power/apc/away //general away mission access
+	req_access = list(ACCESS_AWAY_GENERAL)
+
 /obj/machinery/power/apc/highcap/five_k
 	cell_type = /obj/item/stock_parts/cell/upgraded/plus
 
@@ -147,8 +150,8 @@
 		terminal.connect_to_network()
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	if (!req_access)
-		req_access = list(ACCESS_ENGINE_EQUIP)
+	//if (!req_access)
+		//req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- Commented out to allow for use of req_one_access. Also this is just generally bad and the guy who wrote this doesn't get OOP
 	if (!armor)
 		armor = list("melee" = 20, "bullet" = 20, "laser" = 10, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	..()
@@ -565,7 +568,7 @@
 	else if (istype(W, /obj/item/stack/cable_coil) && opened)
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
-			throw EXCEPTION("attackby on APC when it's not on a turf")
+			CRASH("attackby on APC when it's not on a turf")
 			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
@@ -922,7 +925,7 @@
 			coverlocked = !coverlocked
 			. = TRUE
 		if("breaker")
-			toggle_breaker()
+			toggle_breaker(usr)
 			. = TRUE
 		if("toggle_nightshift")
 			toggle_nightshift_lights()
@@ -973,10 +976,12 @@
 				CHECK_TICK
 	return 1
 
-/obj/machinery/power/apc/proc/toggle_breaker()
+/obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational() || failure_timer)
 		return
 	operating = !operating
+	add_hiddenprint(user)
+	log_combat(user, src, "turned [operating ? "on" : "off"]")
 	update()
 	update_icon()
 
@@ -1427,4 +1432,5 @@
 /obj/item/electronics/apc
 	name = "power control module"
 	icon_state = "power_mod"
+	custom_price = 5
 	desc = "Heavy-duty switching circuits for power control."

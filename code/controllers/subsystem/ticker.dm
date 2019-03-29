@@ -16,21 +16,12 @@ SUBSYSTEM_DEF(ticker)
 
 	var/hide_mode = 0
 	var/datum/game_mode/mode = null
-	var/event_time = null
-	var/event = 0
 
 	var/login_music							//music played in pregame lobby
 	var/round_end_sound						//music/jingle played when the world reboots
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
-
-	var/list/syndicate_coalition = list()	//list of traitor-compatible factions
-	var/list/factions = list()				//list of all factions
-	var/list/availablefactions = list()		//list of factions with openings
-	var/list/scripture_states = list(SCRIPTURE_DRIVER = TRUE, \
-	SCRIPTURE_SCRIPT = FALSE, \
-	SCRIPTURE_APPLICATION = FALSE) //list of clockcult scripture states for announcements
 
 	var/delay_end = 0						//if set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//a message to display to anyone who tries to restart the world after a delay
@@ -69,7 +60,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
-	var/list/byond_sound_formats = list(
+	/*var/list/byond_sound_formats = list( //yogs start - goonchat lobby music
 		"mid"  = TRUE,
 		"midi" = TRUE,
 		"mod"  = TRUE,
@@ -120,8 +111,10 @@ SUBSYSTEM_DEF(ticker)
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
 		login_music = pick(music)
 	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
-
+		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"*/
+	login_music = choose_lobby_music()
+	if(!login_music)
+		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase()
@@ -143,8 +136,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			if(CONFIG_GET(flag/irc_announce_new_game))
-				world.TgsTargetedChatBroadcast("New round starting on [SSmapping.config.map_name]!", FALSE)
+			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
@@ -190,12 +182,12 @@ SUBSYSTEM_DEF(ticker)
 			mode.process(wait * 0.1)
 			check_queue()
 			check_maprotate()
-			scripture_states = scripture_unlock_alert(scripture_states)
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
+				toggle_looc(TRUE) // yogs - turn LOOC on at roundend
 				declare_completion(force_ending)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
@@ -239,7 +231,7 @@ SUBSYSTEM_DEF(ticker)
 	var/can_continue = 0
 	can_continue = src.mode.pre_setup()		//Choose antagonists
 	CHECK_TICK
-	SSjob.DivideOccupations() 				//Distribute jobs
+	can_continue = can_continue && SSjob.DivideOccupations() 				//Distribute jobs
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
@@ -260,6 +252,9 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!CONFIG_GET(flag/ooc_during_round))
 		toggle_ooc(FALSE) // Turn it off
+
+	if(!CONFIG_GET(flag/looc_during_round))
+		toggle_looc(FALSE) // yogs - Turn it off
 
 	CHECK_TICK
 	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
@@ -396,6 +391,7 @@ SUBSYSTEM_DEF(ticker)
 		m = selected_tip
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
+		randomtips += world.file2list("yogstation/strings/tips.txt")//Yogs -- Yogstips, mostly stuff about Clockcult as of March 2019
 		var/list/memetips = world.file2list("strings/sillytips.txt")
 		if(randomtips.len && prob(95))
 			m = pick(randomtips)
@@ -407,6 +403,10 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	var/hpc = CONFIG_GET(number/hard_popcap)
+	//yogs start -- fixes queue when extreme is set but not hard
+	if(!hpc)
+		hpc = CONFIG_GET(number/extreme_popcap)
+	//yogs end
 	if(!queued_players.len || !hpc)
 		return
 
@@ -415,6 +415,7 @@ SUBSYSTEM_DEF(ticker)
 
 	switch(queue_delay)
 		if(5) //every 5 ticks check if there is a slot available
+			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line && next_in_line.client)
 					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a></span>")
@@ -454,17 +455,11 @@ SUBSYSTEM_DEF(ticker)
 	force_ending = SSticker.force_ending
 	hide_mode = SSticker.hide_mode
 	mode = SSticker.mode
-	event_time = SSticker.event_time
-	event = SSticker.event
 
 	login_music = SSticker.login_music
 	round_end_sound = SSticker.round_end_sound
 
 	minds = SSticker.minds
-
-	syndicate_coalition = SSticker.syndicate_coalition
-	factions = SSticker.factions
-	availablefactions = SSticker.availablefactions
 
 	delay_end = SSticker.delay_end
 
@@ -585,7 +580,7 @@ SUBSYSTEM_DEF(ticker)
 	round_end_sound_sent = TRUE
 
 // yogs start - Mods can reboot when last ticket is closed
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE) 
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay, force = FALSE)
 	set waitfor = FALSE
 	if(usr && !force)
 		if(!check_rights(R_SERVER, TRUE))
@@ -601,7 +596,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 	//yogs start - yogs tickets
 	if(GLOB.ahelp_tickets && GLOB.ahelp_tickets.ticketAmount)
-		var/list/adm = get_admin_counts(R_ADMIN)
+		var/list/adm = get_admin_counts(R_BAN)
 		var/list/activemins = adm["present"]
 		if(activemins.len > 0)
 			to_chat(world, "<span class='boldannounce'>Not all tickets have been resolved. Server restart delayed.</span>")
@@ -647,7 +642,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
 		'sound/roundend/disappointed.ogg',
-		'sound/roundend/gondolabridge.ogg'\
+		'sound/roundend/scrunglartiy.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))

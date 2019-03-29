@@ -65,6 +65,8 @@ var opts = {
 	'volumeUpdateDelay': 5000, //Time from when the volume updates to data being sent to the server
 	'volumeUpdating': false, //True if volume update function set to fire
 	'updatedVolume': 0, //The volume level that is sent to the server
+	'musicStartAt': 0, //The position the music starts playing
+	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
 	
 	'defaultMusicVolume': 25,
 
@@ -158,7 +160,16 @@ function byondDecode(message) {
 	// The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
 	// Marvelous.
 	message = message.replace(/\+/g, "%20");
-	message = decoder(message);
+	try { 
+		// This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
+		if (decodeURIComponent) {
+			message = decodeURIComponent(message);
+		} else {
+			throw new Error("Easiest way to trigger the fallback")
+		}
+	} catch (err) {
+		message = unescape(message);
+	}
 	return message;
 }
 
@@ -421,7 +432,7 @@ function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = 'expires='+d.toUTCString();
-	document.cookie = cname + '=' + cvalue + '; ' + expires;
+	document.cookie = cname + '=' + cvalue + '; ' + expires + "; path=/";
 }
 
 function getCookie(cname) {
@@ -498,6 +509,8 @@ function ehjaxCallback(data) {
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
+	} else if (data == 'stopLobbyMusic') { //yogs start - lobby music
+		$('#lobbyMusic').prop('src', ''); //yogs end
 	} else {
 		//Oh we're actually being sent data instead of an instruction
 		var dataJ;
@@ -522,18 +535,10 @@ function ehjaxCallback(data) {
 				handleClientData(data.clientData.ckey, data.clientData.ip, data.clientData.compid);
 			}
 			sendVolumeUpdate();
-		} else if (data.firebug) {
-			if (data.trigger) {
-				internalOutput('<span class="internal boldnshit">Loading firebug console, triggered by '+data.trigger+'...</span>', 'internal');
-			} else {
-				internalOutput('<span class="internal boldnshit">Loading firebug console...</span>', 'internal');
-			}
-			var firebugEl = document.createElement('script');
-			firebugEl.src = 'https://getfirebug.com/firebug-lite-debug.js';
-			document.body.appendChild(firebugEl);
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);
+				var bindLoadedData = false;
 				adminMusic = adminMusic.match(/https?:\/\/\S+/) || '';
 				if (data.musicRate) {
 					var newRate = Number(data.musicRate);
@@ -543,10 +548,31 @@ function ehjaxCallback(data) {
 				} else {
 					$('#adminMusic').prop('defaultPlaybackRate', 1.0);
 				}
+				if (data.musicSeek) {
+					opts.musicStartAt = Number(data.musicSeek) || 0;
+					bindLoadedData = true;
+				} else {
+					opts.musicStartAt = 0;
+				}
+				if (data.musicHalt) {
+					opts.musicEndAt = Number(data.musicHalt) || null;
+					bindLoadedData = true;
+				}
+				if (bindLoadedData) {
+					$('#adminMusic').one('loadeddata', adminMusicLoadedData);
+				}
 				$('#adminMusic').prop('src', adminMusic);
 				$('#adminMusic').trigger("play");
 			}
-		}
+		} else if (data.lobbyMusic) { //yogs start - lobby music
+			if (typeof data.lobbyMusic === 'string') {
+				var lobbyMusic = byondDecode(data.lobbyMusic);
+				lobbyMusic = lobbyMusic.match(/https?:\/\/\S+/) || '';
+				$('#lobbyMusic').prop('defaultPlaybackRate', 1.0);
+				$('#lobbyMusic').prop('src', lobbyMusic);
+				$('#lobbyMusic').trigger("play");
+			}
+		} //yogs end
 	}
 }
 
@@ -573,6 +599,27 @@ function sendVolumeUpdate() {
 	opts.volumeUpdating = false;
 	if(opts.updatedVolume) {
 		runByond('?_src_=chat&proc=setMusicVolume&param[volume]='+opts.updatedVolume);
+	}
+}
+
+function adminMusicEndCheck(event) {
+	if (opts.musicEndAt) {
+		if ($('#adminMusic').prop('currentTime') >= opts.musicEndAt) {
+			$('#adminMusic').off(event);
+			$('#adminMusic').trigger('pause');
+			$('#adminMusic').prop('src', '');
+		}
+	} else {
+		$('#adminMusic').off(event);
+	}
+}
+
+function adminMusicLoadedData(event) {
+	if (opts.musicStartAt && ($('#adminMusic').prop('duration') === Infinity || (opts.musicStartAt <= $('#adminMusic').prop('duration'))) ) {
+		$('#adminMusic').prop('currentTime', opts.musicStartAt);
+	}
+	if (opts.musicEndAt) {
+		$('#adminMusic').on('timeupdate', adminMusicEndCheck);
 	}
 }
 
@@ -707,6 +754,7 @@ $(function() {
 	if (savedConfig.smusicVolume) {
 		var newVolume = clamp(savedConfig.smusicVolume, 0, 100);
 		$('#adminMusic').prop('volume', newVolume / 100);
+		$('#lobbyMusic').prop('volume', newVolume / 100); //yogs
 		$('#musicVolume').val(newVolume);
 		opts.updatedVolume = newVolume;
 		sendVolumeUpdate();
@@ -714,6 +762,7 @@ $(function() {
 	}
 	else{
 		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
+		$('#lobbyMusic').prop('volume', opts.defaultMusicVolume / 100); //yogs
 	}
 	
 	if (savedConfig.smessagecombining) {
@@ -1054,6 +1103,7 @@ $(function() {
 		var newVolume = $('#musicVolume').val();
 		newVolume = clamp(newVolume, 0, 100);
 		$('#adminMusic').prop('volume', newVolume / 100);
+		$('#lobbyMusic').prop('volume', newVolume / 100); //yogs
 		setCookie('musicVolume', newVolume, 365);
 		opts.updatedVolume = newVolume;
 		if(!opts.volumeUpdating) {

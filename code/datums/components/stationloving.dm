@@ -8,6 +8,7 @@
 	if(!ismovableatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/check_deletion)
 	RegisterSignal(parent, list(COMSIG_ITEM_IMBUE_SOUL), .proc/check_soul_imbue)
 	src.inform_admins = inform_admins
@@ -32,6 +33,7 @@
 
 	var/atom/movable/AM = parent
 	AM.forceMove(targetturf)
+	to_chat(get(parent, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
 	// move the disc, so ghosts remain orbiting it even if it's "destroyed"
 	return targetturf
 
@@ -40,7 +42,6 @@
 		return
 	else
 		var/turf/currentturf = get_turf(src)
-		to_chat(get(parent, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
 		var/turf/targetturf = relocate()
 		log_game("[parent] has been moved out of bounds in [loc_name(currentturf)]. Moving it to [loc_name(targetturf)].")
 		if(inform_admins)
@@ -51,7 +52,7 @@
 
 /datum/component/stationloving/proc/in_bounds()
 	var/static/list/allowed_shuttles = typecacheof(list(/area/shuttle/syndicate, /area/shuttle/escape, /area/shuttle/pod_1, /area/shuttle/pod_2, /area/shuttle/pod_3, /area/shuttle/pod_4))
-	var/turf/T = get_turf(parent)
+	var/turf/T = get_turf_global(parent) // yogs - replace get_turf with get_turf_global
 	if (!T)
 		return FALSE
 	var/area/A = T.loc

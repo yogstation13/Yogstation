@@ -22,19 +22,19 @@
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
-		/datum/vampire_passive/vision = 175,
-		/obj/effect/proc_holder/spell/self/shapeshift = 175,
-		/obj/effect/proc_holder/spell/self/cloak = 225,
-		/obj/effect/proc_holder/spell/targeted/disease = 275,
-		/obj/effect/proc_holder/spell/bats = 350,
-		/obj/effect/proc_holder/spell/self/batform = 350,
-		/obj/effect/proc_holder/spell/self/screech = 315,
-		/datum/vampire_passive/regen = 425,
-		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 500,
-		/datum/vampire_passive/full = 666,
-		/obj/effect/proc_holder/spell/self/summon_coat = 666,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 700,
-		/obj/effect/proc_holder/spell/self/revive = 800)
+		/datum/vampire_passive/vision = 75,
+		/obj/effect/proc_holder/spell/self/shapeshift = 75,
+		/obj/effect/proc_holder/spell/self/cloak = 100,
+		/obj/effect/proc_holder/spell/targeted/disease = 175,
+		/obj/effect/proc_holder/spell/bats = 250,
+		/obj/effect/proc_holder/spell/self/batform = 200,
+		/obj/effect/proc_holder/spell/self/screech = 215,
+		/datum/vampire_passive/regen = 255,
+		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
+		/datum/vampire_passive/full = 420,
+		/obj/effect/proc_holder/spell/self/summon_coat = 420,
+		/obj/effect/proc_holder/spell/targeted/vampirize = 450,
+		/obj/effect/proc_holder/spell/self/revive = 350)
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
@@ -81,7 +81,7 @@
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	SSticker.mode.update_vampire_icons_removed(owner)
 	for(var/O in objectives_given)
-		owner.objectives -= O
+		objectives -= O
 	LAZYCLEARLIST(objectives_given)
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
@@ -112,14 +112,14 @@
 	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		forge_single_objective()
 
-	if(!(locate(/datum/objective/escape) in owner.objectives))
+	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
 		escape_objective.owner = owner
 		add_objective(escape_objective)
 		return
 
 /datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
-	owner.objectives += O
+	objectives += O
 	objectives_given += O
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added

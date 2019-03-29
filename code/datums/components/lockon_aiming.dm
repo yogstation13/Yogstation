@@ -4,7 +4,7 @@
 
 /datum/component/lockon_aiming
 	dupe_mode = COMPONENT_DUPE_ALLOWED
-	var/lock_icon = 'icons/mob/blob.dmi'
+	var/lock_icon = 'icons/mob/cameramob.dmi'
 	var/lock_icon_state = "marker"
 	var/mutable_appearance/lock_appearance
 	var/list/image/lock_images
@@ -237,6 +237,3 @@
 		LOCKON_RANGING_BREAK_CHECK
 		cd++
 		CHECK_TICK
-
-/datum/component/lockon_aiming/PostTransfer(datum/new_parent)
-	return COMPONENT_INCOMPATIBLE
