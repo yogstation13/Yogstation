@@ -102,6 +102,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/flashfreeze(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/collective_mind(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_regenarmor(null))
@@ -171,6 +172,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/hypnosis(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm(null))
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt/ascendant(null))
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind_ascendant(null))
 			H.mind.transfer_to(A)
 			A.name = H.real_name

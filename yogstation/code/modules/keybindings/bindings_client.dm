@@ -31,6 +31,9 @@
 		if(ACTION_OOC)
 			get_ooc()
 			return
+		if(ACTION_LOOC)
+			get_looc()
+			return
 			
 	var/datum/keyinfo/I = bind.to_keyinfo(_key, A)
 

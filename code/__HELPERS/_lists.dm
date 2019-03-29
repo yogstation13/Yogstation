@@ -231,7 +231,7 @@
 			L[item] = 1
 		total += L[item]
 
-	total = rand(1, total)
+	total *= rand() // Yogs -- Allows for noninteger weights
 	for (item in L)
 		total -=L [item]
 		if (total <= 0)
@@ -565,3 +565,22 @@
 			L1[key] += other_value
 		else
 			L1[key] = other_value
+
+/proc/assoc_list_strip_value(list/input)
+	var/list/ret = list()
+	for(var/key in input)
+		ret += key
+	return ret
+
+/proc/compare_list(list/l,list/d)
+	if(!islist(l) || !islist(d))
+		return FALSE
+
+	if(l.len != d.len)
+		return FALSE
+
+	for(var/i in 1 to l.len)
+		if(l[i] != d[i])
+			return FALSE
+
+	return TRUE

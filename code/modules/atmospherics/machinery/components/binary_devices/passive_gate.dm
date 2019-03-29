@@ -7,12 +7,13 @@ Passive gate is similar to the regular pump except:
 */
 
 /obj/machinery/atmospherics/components/binary/passive_gate
-	icon_state = "passgate_map"
+	icon_state = "passgate_map-2"
 
 	name = "passive gate"
 	desc = "A one-way air valve that does not require power."
 
 	can_unwrench = TRUE
+	shift_underlay_only = FALSE
 
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE
 
@@ -25,27 +26,15 @@ Passive gate is similar to the regular pump except:
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
 
-/obj/machinery/atmospherics/components/binary/passive_gate/layer1
-	piping_layer = PIPING_LAYER_MIN
-	pixel_x = -PIPING_LAYER_P_X
-	pixel_y = -PIPING_LAYER_P_Y
-
-/obj/machinery/atmospherics/components/binary/passive_gate/layer3
-	piping_layer = PIPING_LAYER_MAX
-	pixel_x = PIPING_LAYER_P_X
-	pixel_y = PIPING_LAYER_P_Y
-
 /obj/machinery/atmospherics/components/binary/passive_gate/Destroy()
 	SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/update_icon_nopipes()
-	if(!on)
-		icon_state = "passgate_off"
-		cut_overlays()
-		return
-
-	add_overlay(getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', "passgate_on"))
+	cut_overlays()
+	icon_state = "passgate_off"
+	if(on)
+		add_overlay(getpipeimage(icon, "passgate_on"))
 
 /obj/machinery/atmospherics/components/binary/passive_gate/process_atmos()
 	..()
@@ -119,6 +108,7 @@ Passive gate is similar to the regular pump except:
 		if("power")
 			on = !on
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
@@ -135,6 +125,7 @@ Passive gate is similar to the regular pump except:
 			if(.)
 				target_pressure = CLAMP(pressure, 0, MAX_OUTPUT_PRESSURE)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/passive_gate/atmosinit()
@@ -159,6 +150,7 @@ Passive gate is similar to the regular pump except:
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)
+		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 
 	if("status" in signal.data)
 		broadcast_status()
@@ -176,3 +168,12 @@ Passive gate is similar to the regular pump except:
 	if(. && on)
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
 		return FALSE
+
+
+/obj/machinery/atmospherics/components/binary/passive_gate/layer1
+	piping_layer = 1
+	icon_state = "passgate_map-1"
+
+/obj/machinery/atmospherics/components/binary/passive_gate/layer3
+	piping_layer = 3
+	icon_state = "passgate_map-3"

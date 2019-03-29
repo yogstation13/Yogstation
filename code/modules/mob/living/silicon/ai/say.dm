@@ -5,7 +5,7 @@
 	..(message)
 
 /mob/living/silicon/ai/compose_track_href(atom/movable/speaker, namepart)
-	var/mob/M = speaker.GetSource()
+	var/M = speaker.GetJob()
 	if(M)
 		return "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
 	return ""

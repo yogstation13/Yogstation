@@ -121,11 +121,11 @@ SUBSYSTEM_DEF(dbcore)
 	if(!Connect())
 		return
 	var/datum/DBQuery/query_round_initialize = SSdbcore.NewQuery("INSERT INTO [format_table_name("round")] (initialize_datetime, server_ip, server_port) VALUES (Now(), INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]')")
-	query_round_initialize.Execute()
+	query_round_initialize.Execute(async = FALSE)
 	qdel(query_round_initialize)
 	var/datum/DBQuery/query_round_last_id = SSdbcore.NewQuery("SELECT LAST_INSERT_ID()")
-	query_round_last_id.Execute()
-	if(query_round_last_id.NextRow())
+	query_round_last_id.Execute(async = FALSE)
+	if(query_round_last_id.NextRow(async = FALSE))
 		GLOB.round_id = query_round_last_id.item[1]
 	qdel(query_round_last_id)
 
@@ -176,6 +176,27 @@ SUBSYSTEM_DEF(dbcore)
 		message_admins("ERROR: Advanced admin proc call led to sql query. Query has been blocked")
 		return FALSE
 	return new /datum/DBQuery(sql_query, connection)
+
+/datum/controller/subsystem/dbcore/proc/QuerySelect(list/querys, warn = FALSE, qdel = FALSE)
+	if (!islist(querys))
+		if (!istype(querys, /datum/DBQuery))
+			CRASH("Invalid query passed to QuerySelect: [querys]")
+		querys = list(querys)
+
+	for (var/thing in querys)
+		var/datum/DBQuery/query = thing
+		if (warn)
+			INVOKE_ASYNC(query, /datum/DBQuery.proc/warn_execute)
+		else
+			INVOKE_ASYNC(query, /datum/DBQuery.proc/Execute)
+
+	for (var/thing in querys)
+		var/datum/DBQuery/query = thing
+		UNTIL(!query.in_progress)
+		if (qdel)
+			qdel(query)
+
+
 
 /*
 Takes a list of rows (each row being an associated list of column => value) and inserts them via a single mass query.
@@ -283,12 +304,12 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	last_activity = activity
 	last_activity_time = world.time
 
-/datum/DBQuery/proc/warn_execute(async = FALSE)
+/datum/DBQuery/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
 		to_chat(usr, "<span class='danger'>A SQL error occurred during this operation, check the server logs.</span>")
 
-/datum/DBQuery/proc/Execute(async = FALSE, log_error = TRUE)
+/datum/DBQuery/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")
 	if(in_progress)
 		CRASH("Attempted to start a new query while waiting on the old one")
@@ -325,7 +346,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 /datum/DBQuery/proc/slow_query_check()
 	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
 
-/datum/DBQuery/proc/NextRow(async)
+/datum/DBQuery/proc/NextRow(async = TRUE)
 	Activity("NextRow")
 	UNTIL(!in_progress)
 	if(!skip_next_is_complete)
@@ -359,7 +380,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 		return
 
 	//strip sensitive stuff
-	if(findtext(message, ": CreateConnection("))
-		message = "CreateConnection CENSORED"
-	
+	if(findtext(message, ": OpenConnection("))
+		message = "OpenConnection CENSORED"
+
 	log_sql("BSQL_DEBUG: [message]")

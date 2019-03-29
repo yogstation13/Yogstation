@@ -7,7 +7,7 @@
 	anchored = FALSE
 	use_power = NO_POWER_USE
 
-	var/power_per_hug = 100000
+	var/power_per_hug = 1000000
 	var/crunching = FALSE
 
 /obj/machinery/power/hugbox_engine/emag_act(mob/user)

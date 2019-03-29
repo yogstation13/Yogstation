@@ -1,5 +1,6 @@
 macro "default"
 
+
 menu "menu"
 	elem 
 		name = "&File"
@@ -277,6 +278,34 @@ window "outputwindow"
 		is-default = true
 		saved-params = ""
 
+window "preferences_window"
+	elem "preferences_window"
+		type = MAIN
+		pos = 372,0
+		size = 1120x1000
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+	elem "preferences_browser"
+		type = BROWSER
+		pos = -8,-8
+		size = 896x1008
+		anchor1 = 0,0
+		anchor2 = 90,100
+		background-color = none
+		saved-params = ""
+	elem "character_preview_map"
+		type = MAP
+		pos = 887,0
+		size = 313x1000
+		anchor1 = 90,0
+		anchor2 = 100,100
+		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"
+
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
@@ -295,3 +324,97 @@ window "statwindow"
 		is-default = true
 		saved-params = ""
 
+window "Telecomms IDE"
+	elem "Telecomms IDE"
+		type = MAIN
+		pos = 281,0
+		size = 569x582
+		anchor1 = none
+		anchor2 = none
+		background-color = #222222
+		text-color = #eeeeee
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "TCS IDE"
+		statusbar = false
+		on-close = "exittcs"
+	elem "button5"
+		type = BUTTON
+		pos = 209,464
+		size = 70x20
+		anchor1 = 37,80
+		anchor2 = 49,83
+		background-color = #555555
+		text-color = #eeeeee
+		saved-params = "is-checked"
+		text = "Clear Memory"
+		command = "tcsclearmem"
+	elem "button4"
+		type = BUTTON
+		pos = 157,464
+		size = 52x20
+		anchor1 = 28,80
+		anchor2 = 37,83
+		background-color = #555555
+		text-color = #eeeeee
+		saved-params = "is-checked"
+		text = "Revert"
+		command = "tcsrevert"
+	elem "button3"
+		type = BUTTON
+		pos = 105,464
+		size = 52x20
+		anchor1 = 18,80
+		anchor2 = 28,83
+		background-color = #555555
+		text-color = #eeeeee
+		saved-params = "is-checked"
+		text = "Execute"
+		command = "tcsrun"
+	elem "tcserror"
+		type = OUTPUT
+		pos = 0,488
+		size = 566x94
+		anchor1 = 0,84
+		anchor2 = 99,100
+		background-color = #333334
+		text-color = #eeeeee
+		font-family = "sans-serif"
+		font-size = 9
+		saved-params = "max-lines"
+	elem "button2"
+		type = BUTTON
+		pos = 53,464
+		size = 52x20
+		anchor1 = 9,80
+		anchor2 = 18,83
+		background-color = #555555
+		text-color = #eeeeee
+		saved-params = "is-checked"
+		text = "Compile"
+		command = "tcscompile"
+	elem "button1"
+		type = BUTTON
+		pos = 0,464
+		size = 53x20
+		anchor1 = 0,80
+		anchor2 = 9,83
+		background-color = #555555
+		text-color = #eeeeee
+		saved-params = "is-checked"
+		text = "Save"
+		command = "tcssave"
+	elem "tcscode"
+		type = INPUT
+		pos = 0,0
+		size = 569x464
+		anchor1 = 0,0
+		anchor2 = 100,80
+		background-color = #333334
+		text-color = #eeeeee
+		font-family = "Courier"
+		font-size = 10
+		saved-params = ""
+		command = "cancel"
+		multi-line = true
+		no-command = true

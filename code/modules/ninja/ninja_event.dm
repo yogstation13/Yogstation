@@ -68,8 +68,12 @@ Contents:
 	ninjadatum.helping_station = pick(TRUE,FALSE)
 	Mind.add_antag_datum(ninjadatum)
 
+	var/datum/language_holder/H = Ninja.get_language_holder() //yogs start
+	H.remove_language(/datum/language/common)
+	H.grant_language(/datum/language/japanese) //yogs end
+
 	if(Ninja.mind != Mind)			//something has gone wrong!
-		throw EXCEPTION("Ninja created with incorrect mind")
+		CRASH("Ninja created with incorrect mind")
 
 	spawned_mobs += Ninja
 	message_admins("[ADMIN_LOOKUPFLW(Ninja)] has been made into a ninja by an event.")

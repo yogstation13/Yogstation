@@ -17,13 +17,19 @@
 
 	if(ismob(user))
 		var/mob/temp = user
-		if(temp && temp.client && temp.client.prefs)
-			return (temp.client.prefs.unlock_content & 2)
+		if(temp && temp.client)
+			if(temp.client.is_mentor())
+				return TRUE
+			if(temp.client.prefs)
+				return (temp.client.prefs.unlock_content & 2)
 
 	else if(istype(user, /client))
 		var/client/temp = user
-		if(temp && temp.prefs)
-			return (temp.prefs.unlock_content & 2)
+		if(temp)
+			if(temp.is_mentor())
+				return TRUE
+			if(temp.prefs)
+				return (temp.prefs.unlock_content & 2)
 
 	return FALSE
 

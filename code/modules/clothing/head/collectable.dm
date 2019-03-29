@@ -25,7 +25,7 @@
 	name = "collectable chef's hat"
 	desc = "A rare chef's hat meant for hat collectors!"
 	icon_state = "chef"
-	item_state = "chef"
+	item_state = "chefhat" //yogs - changed from "chef" to "chefhat"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/chef

@@ -28,7 +28,7 @@
 	if(!message)
 		return
 	user.whisper("O bidai nabora se[pick("'","`")]sma!", language = /datum/language/common)
-	user.whisper(html_decode(message))
+	user.whisper(html_decode(message), language = /datum/language/narsie) // yogs
 	var/title = "Acolyte"
 	var/span = "cult italic"
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/cult/master))
@@ -342,10 +342,7 @@
 	if(cooldown>world.time)
 		to_chat(owner, "<span class='cultbold'>You aren't ready to place another blood mark yet!</span>")
 		return
-	if(owner.orbiting && owner.orbiting.orbiting)
-		target = owner.orbiting.orbiting
-	else
-		target = get_turf(owner)
+	target = owner.orbiting?.parent || get_turf(owner)
 	if(!target)
 		return
 	C.cult_team.blood_target = target

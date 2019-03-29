@@ -1,0 +1,376 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/space,
+/area/space)
+"b" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered)
+"c" = (
+/obj/structure/window/shuttle,
+/turf/open/space,
+/area/ruin/powered)
+"e" = (
+/obj/machinery/door/airlock/shuttle,
+/turf/open/space,
+/area/ruin/powered)
+"f" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	icon_state = "comfychair";
+	tag = ""
+	},
+/obj/effect/decal/remains/human,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"g" = (
+/obj/machinery/computer/shuttle,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/powered)
+"h" = (
+/obj/structure/table,
+/obj/item/key,
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/powered)
+"i" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	icon_state = "comfychair";
+	tag = ""
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"k" = (
+/obj/structure/light_construct{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"l" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"m" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"n" = (
+/obj/structure/light_construct{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/ruin/powered)
+"q" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/powered)
+"r" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/powered)
+"t" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "HippieVan"
+	},
+/turf/open/space,
+/area/ruin/powered)
+"u" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/button/door{
+	id = "HippieVan";
+	name = "External Shutters";
+	pixel_y = 25
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"v" = (
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"w" = (
+/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
+/obj/item/lighter,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"x" = (
+/obj/item/reagent_containers/glass/bottle/drugs,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"y" = (
+/obj/item/clothing/mask/cigarette/rollie/trippy,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"z" = (
+/obj/item/reagent_containers/syringe,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"A" = (
+/obj/item/paper/crumpled/bloody/hippie,
+/obj/item/cigbutt/roach,
+/obj/structure/light_construct{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"B" = (
+/obj/item/reagent_containers/glass/bottle,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"C" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"D" = (
+/obj/structure/bed,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"E" = (
+/obj/structure/closet/wardrobe/mixed,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"F" = (
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"G" = (
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
+"I" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l"
+	},
+/turf/open/space,
+/area/ruin/powered)
+"J" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r"
+	},
+/turf/open/space,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+b
+e
+b
+b
+t
+t
+t
+c
+b
+I
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+c
+f
+k
+b
+u
+y
+v
+D
+b
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+c
+g
+l
+q
+v
+v
+z
+E
+c
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+c
+h
+m
+r
+w
+z
+B
+F
+c
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+c
+i
+n
+b
+x
+A
+C
+G
+b
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+b
+e
+b
+b
+b
+b
+b
+c
+b
+J
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -37,6 +37,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(!on)
 		return
+		
+	if(filter && !ispath(filter)) // Yogs -- for debugging telecomms later when I soop up NTSL some more
+		CRASH("relay_information() was given a path filter that wasn't actually a path!")
 	var/send_count = 0
 
 	// Apply some lag based on traffic rates
@@ -45,8 +48,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		signal.data["slow"] = netlag
 
 	// Loop through all linked machines and send the signal or copy.
-	for(var/obj/machinery/telecomms/machine in links)
-		if(filter && !istype( machine, filter ))
+	for(var/m_typeless in links) // Yogs -- God bless typeless for-loops
+		var/obj/machinery/telecomms/machine = m_typeless
+		if(filter && !istype(machine, filter) )
 			continue
 		if(!machine.on)
 			continue

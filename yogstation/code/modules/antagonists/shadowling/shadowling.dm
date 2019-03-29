@@ -21,13 +21,13 @@
 		S.dna.remove_mutation(CLOWNMUT)
 	var/datum/objective/ascend/O = new
 	O.update_explanation_text()
-	owner.objectives += O
+	objectives += O
 	objectives_given += O
 	owner.announce_objectives()
 
 /datum/antagonist/shadowling/on_removal()
 	for(var/O in objectives_given)
-		owner.objectives -= O
+		objectives -= O
 	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.shadows -= owner
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")

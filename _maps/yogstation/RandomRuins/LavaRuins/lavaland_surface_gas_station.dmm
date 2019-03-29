@@ -1,0 +1,1593 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ac" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"ad" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	icon_state = "connector_map-2";
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"ae" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"af" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"ag" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"ai" = (
+/obj/machinery/atmospherics/components/binary/valve,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"aj" = (
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"ak" = (
+/obj/machinery/atmospherics/pipe/simple,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"al" = (
+/obj/machinery/door/airlock,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "gasstation"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"am" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"an" = (
+/obj/item/trash/syndi_cakes,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"ao" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"ap" = (
+/obj/structure/mopbucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aq" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered)
+"ar" = (
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"as" = (
+/obj/structure/sink,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"at" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"au" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"av" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aw" = (
+/obj/machinery/vending/cigarette{
+	products = list(/obj/item/storage/fancy/cigarettes = 3, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/fancy/rollingpapers = 3)
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"ax" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"ay" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"az" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"aA" = (
+/obj/machinery/door/airlock/hatch,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aB" = (
+/obj/item/trash/candy,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aC" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"aD" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aF" = (
+/obj/item/trash/raisins,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aG" = (
+/obj/machinery/vending/boozeomat{
+	products = list(/obj/item/reagent_containers/food/drinks/bottle/gin = 2, /obj/item/reagent_containers/food/drinks/bottle/whiskey = 2, /obj/item/reagent_containers/food/drinks/bottle/tequila = 3, /obj/item/reagent_containers/food/drinks/bottle/vodka = 1, /obj/item/reagent_containers/food/drinks/bottle/vermouth = 3, /obj/item/reagent_containers/food/drinks/bottle/rum = 5, /obj/item/reagent_containers/food/drinks/bottle/wine = 2, /obj/item/reagent_containers/food/drinks/bottle/cognac = 3, /obj/item/reagent_containers/food/drinks/bottle/kahlua = 1, /obj/item/reagent_containers/food/drinks/bottle/absinthe = 2, /obj/item/reagent_containers/food/drinks/ale = 3, /obj/item/reagent_containers/food/drinks/flask = 1)
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aH" = (
+/obj/structure/table,
+/obj/machinery/computer/security/telescreen{
+	name = "Gas Station Surveillance";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aI" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/raisins,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aJ" = (
+/obj/structure/table,
+/obj/structure/window,
+/obj/item/reagent_containers/food/snacks/burrito,
+/obj/item/reagent_containers/food/snacks/carneburrito,
+/obj/item/reagent_containers/food/snacks/poppypretzel,
+/obj/item/reagent_containers/food/snacks/poppypretzel,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aK" = (
+/obj/structure/table,
+/obj/structure/window,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/reagent_containers/food/snacks/nachos,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aL" = (
+/obj/structure/table,
+/obj/structure/window,
+/obj/item/toy/cards/deck/cas,
+/obj/item/toy/cards/deck/cas/black,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aM" = (
+/obj/structure/table,
+/obj/structure/window,
+/obj/item/toy/plush/teddybear,
+/obj/item/toy/plush/goatplushie,
+/obj/item/toy/plush/flowerbunch,
+/obj/item/toy/plush/stuffedmonkey,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aN" = (
+/obj/structure/closet,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/obj/item/storage/box/beanbag,
+/obj/item/storage/box/beanbag,
+/obj/item/storage/box/zipties,
+/obj/machinery/camera{
+	c_tag = "Backroom Camera";
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plating,
+/area/ruin/powered)
+"aO" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure{
+	name = "Emergency Supplies Crate";
+	req_access_txt = "36"
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil/random,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"aP" = (
+/obj/structure/table/reinforced,
+/obj/item/newspaper,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aQ" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/snacks/syndicake,
+/obj/structure/rack,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aR" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/dolphincereal,
+/obj/item/reagent_containers/food/snacks/dolphincereal,
+/obj/item/reagent_containers/food/snacks/dolphincereal,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aS" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/toy/foamblade,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aT" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/toy/toyballoon,
+/obj/item/toy/heartballoon,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aU" = (
+/obj/machinery/door/airlock/centcom{
+	req_access_txt = "36"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"aV" = (
+/turf/open/floor/plating,
+/area/ruin/powered)
+"aW" = (
+/obj/structure/table/reinforced,
+/obj/machinery/paystand/register{
+	icon_state = "register";
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "cashiershutters";
+	name = "Cash Register Blast Door"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aX" = (
+/obj/machinery/icecream_vat,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aY" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/displaycase/labcage{
+	desc = "For displaying of more valuable items you have acquired.";
+	name = "Shop Display Case";
+	req_access = null;
+	req_access_txt = "36";
+	start_showpiece_type = null
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"aZ" = (
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/displaycase/labcage{
+	desc = "For displaying of more valuable items you have acquired.";
+	name = "Shop Display Case";
+	req_access = null;
+	req_access_txt = "36";
+	start_showpiece_type = null
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bb" = (
+/obj/structure/table,
+/obj/item/storage/box/pillbottles,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/pickaxe/drill/diamonddrill,
+/obj/item/clothing/glasses/meson,
+/obj/item/key{
+	name = "ATV Key"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered)
+"bc" = (
+/obj/structure/table,
+/obj/item/clothing/mask/gas,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/megaphone,
+/obj/item/radio,
+/obj/item/storage/belt,
+/obj/item/storage/toolbox/mechanical/insulateds,
+/obj/item/hand_labeler,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"bd" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"be" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/snacks/honeybun,
+/obj/item/reagent_containers/food/snacks/honeybun,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bf" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/item/reagent_containers/food/snacks/sosjerky,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bg" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/toy/sword,
+/obj/item/toy/sword,
+/obj/structure/rack,
+/obj/item/toy/katana,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bh" = (
+/obj/item/trash/chips,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bi" = (
+/obj/machinery/door/window{
+	req_access = null;
+	req_access_txt = "36"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bj" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy_corn,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bk" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bl" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/toy/gun,
+/obj/item/toy/gun/toyglock,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bm" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/toy/ammo/gun,
+/obj/item/toy/ammo/gun,
+/obj/structure/rack,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bn" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"bo" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/vehicle/ridden/scooter,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"bp" = (
+/obj/item/trash/chips,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bq" = (
+/obj/item/trash/popcorn,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"br" = (
+/obj/machinery/door/airlock/glass_large{
+	doorOpen = 'sound/machines/defib_success.ogg'
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "gasstation"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bs" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "gasstation"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"bt" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bu" = (
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"bv" = (
+/obj/item/trash/chips,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"bw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bx" = (
+/obj/item/melee/skateboard{
+	dir = 4
+	},
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"by" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"bz" = (
+/obj/structure/sign/warning/nosmoking,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"bA" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bB" = (
+/obj/structure/sign/warning/fire,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"bC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"bD" = (
+/obj/structure/tank_dispenser/plasma,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bE" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"bF" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"eq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "cashiershutters";
+	name = "Cashier Shutters"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"ew" = (
+/obj/machinery/computer/arcade/orion_trail,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"eL" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Backroom Camera";
+	dir = 8;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"eU" = (
+/obj/structure/sign/poster/contraband/smoke,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"jA" = (
+/obj/item/instrument/piano_synth,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"lW" = (
+/obj/machinery/light_switch,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"nv" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"oQ" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Inside Entrance Camera";
+	dir = 1;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"qL" = (
+/obj/machinery/button/door{
+	id = "cashiershutters";
+	name = "Cashier Lockdown";
+	req_access_txt = "36"
+	},
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"rF" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Back Exit Camera";
+	dir = 1;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"rX" = (
+/obj/machinery/button/door{
+	id = "gasstation";
+	name = "Gas Station Lockdown";
+	req_access_txt = "36"
+	},
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"so" = (
+/obj/machinery/camera{
+	c_tag = "Inside Back Exit Camera";
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"xz" = (
+/obj/machinery/door/airlock/hatch{
+	req_access = null;
+	req_access_txt = "36"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"yx" = (
+/obj/structure/sign/poster/official/foam_force_ad,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"AL" = (
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 1
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"DY" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Eg" = (
+/obj/structure/table,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/item/storage/box/snappops,
+/obj/structure/rack,
+/obj/item/toy/figure/clown,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Jg" = (
+/obj/structure/sign/poster/contraband/donut_corp,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"JV" = (
+/obj/machinery/camera{
+	c_tag = "Inside Right Side Gas Station Camera";
+	dir = 8;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"KV" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"Pd" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+"SW" = (
+/obj/structure/sign/poster/contraband/robust_softdrinks,
+/turf/closed/wall/rust,
+/area/ruin/powered)
+"UP" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Side Gas Station Camera";
+	dir = 4;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"WF" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/camera{
+	c_tag = "Outside Entrance Camera";
+	dir = 2;
+	name = "security camera";
+	network = list("gasstation")
+	},
+/turf/open/floor/plasteel,
+/area/lavaland/surface)
+"YF" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/gasstation_clerk,
+/turf/open/floor/plasteel{
+	icon_state = "white";
+	temperature = 273.15
+	},
+/area/ruin/powered)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+af
+af
+af
+az
+af
+af
+eL
+af
+af
+bh
+af
+af
+af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+ab
+af
+aj
+aj
+aj
+aj
+aj
+aj
+aU
+aj
+aj
+bn
+af
+af
+ac
+by
+ac
+ac
+by
+ac
+ac
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+ab
+af
+aj
+am
+Pd
+aD
+aj
+aN
+aV
+bb
+aj
+bo
+af
+af
+ac
+bz
+ac
+ac
+bF
+ac
+ac
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+ab
+af
+aj
+an
+ar
+AL
+aj
+aO
+aV
+bc
+aj
+bo
+af
+af
+ac
+bA
+ac
+ac
+bA
+ac
+ac
+aa
+aa
+"}
+(7,1,1) = {"
+ab
+ab
+ag
+aj
+aj
+aA
+aj
+aj
+rX
+xz
+qL
+aj
+aj
+aj
+bt
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(8,1,1) = {"
+ab
+ab
+af
+aj
+ao
+ar
+lW
+aG
+YF
+ar
+KV
+bi
+ar
+aj
+af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(9,1,1) = {"
+ab
+ad
+af
+aj
+ap
+ar
+aj
+aH
+jA
+ar
+ar
+eq
+ar
+aj
+bu
+ac
+bA
+ac
+ac
+bA
+ac
+ac
+ac
+aa
+"}
+(10,1,1) = {"
+ab
+ae
+ai
+ak
+aq
+ar
+aj
+aI
+aP
+aW
+bd
+eq
+DY
+SW
+WF
+ac
+bB
+ac
+ac
+bF
+ac
+ac
+ac
+aa
+"}
+(11,1,1) = {"
+ab
+af
+rF
+eU
+ew
+ar
+KV
+ar
+ar
+ar
+ar
+ar
+ar
+br
+af
+ac
+bC
+ac
+ac
+bC
+ac
+ac
+ac
+aa
+"}
+(12,1,1) = {"
+ac
+af
+af
+al
+ar
+ar
+ar
+ar
+ar
+aX
+ar
+ar
+ar
+bs
+af
+ac
+by
+ac
+ac
+by
+ac
+ac
+ac
+aa
+"}
+(13,1,1) = {"
+ac
+af
+af
+Jg
+so
+ar
+ar
+ar
+ar
+ar
+ar
+ar
+oQ
+yx
+af
+ac
+bz
+ac
+ac
+bF
+ac
+ac
+ac
+aa
+"}
+(14,1,1) = {"
+ab
+af
+af
+aj
+as
+ar
+ar
+aJ
+aQ
+aY
+be
+bj
+ar
+aj
+af
+ac
+bD
+ac
+ac
+bD
+ac
+ac
+ac
+aa
+"}
+(15,1,1) = {"
+ab
+af
+af
+aj
+at
+ar
+ar
+aK
+aR
+aZ
+bf
+bk
+ar
+aj
+af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(16,1,1) = {"
+ab
+ab
+af
+aj
+au
+aB
+ar
+ar
+ar
+ar
+ar
+ar
+bp
+aj
+af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(17,1,1) = {"
+ab
+ab
+af
+aj
+av
+ar
+ar
+ar
+ar
+ar
+ar
+ar
+DY
+aj
+bv
+ac
+bE
+ac
+ac
+bE
+ac
+ac
+ac
+aa
+"}
+(18,1,1) = {"
+ab
+ab
+ag
+aj
+aw
+ar
+ar
+aL
+aS
+aY
+bg
+bl
+ar
+aj
+bw
+ac
+bB
+ac
+ac
+bF
+ac
+ac
+ac
+aa
+"}
+(19,1,1) = {"
+aa
+ab
+af
+aj
+ax
+ar
+ar
+aM
+aT
+aZ
+Eg
+bm
+ar
+aj
+af
+ac
+bC
+ac
+ac
+bC
+ac
+ac
+ac
+aa
+"}
+(20,1,1) = {"
+aa
+ab
+af
+aj
+ay
+ar
+aF
+ar
+JV
+ar
+ar
+nv
+bq
+aj
+af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+ab
+af
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+bx
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+ab
+af
+af
+af
+aC
+af
+af
+UP
+af
+af
+aC
+af
+af
+af
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ac
+ac
+ac
+aa
+ac
+ac
+ac
+ac
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+aa
+aa
+"}

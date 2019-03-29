@@ -283,12 +283,24 @@ def save_tgm(dmm, output):
 
     # thanks to YotaXP for finding out about this one
     max_x, max_y, max_z = dmm.size
+# yogs start - multi-column mode
+    columns_to_write = 1
+    total_tiles = max_x * max_y * max_z
+    while total_tiles > 65536:
+        columns_to_write += 1
+        total_tiles -= 65536
+# yogs end
     for z in range(1, max_z + 1):
         output.write("\n")
-        for x in range(1, max_x + 1):
+        for x in range(1, max_x + 1, columns_to_write): # yogs - make the step be columns_to_write
             output.write(f"({x},{1},{z}) = {{\"\n")
             for y in range(1, max_y + 1):
-                output.write(f"{num_to_key(dmm.grid[x, y, z], dmm.key_length)}\n")
+# yogs start - multi-column mode
+                for xo in range(0, columns_to_write):
+                    if (xo + x) <= max_x:
+                        output.write(f"{num_to_key(dmm.grid[x+xo, y, z], dmm.key_length)}")
+                output.write("\n")
+# yogs end
             output.write("\"}\n")
 
 # ----------
@@ -370,7 +382,7 @@ def _parse(map_raw_text):
             continue
         elif in_comment_line:
             continue
-        elif char == "\t":
+        elif char in "\r\t":
             continue
 
         if char == "/" and not in_quote_block:
@@ -478,6 +490,9 @@ def _parse(map_raw_text):
 
     # grid block
     for char in it:
+        if char == "\r":
+            continue
+
         if in_coord_block:
             if char == ",":
                 if reading_coord == "x":

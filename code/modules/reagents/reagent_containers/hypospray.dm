@@ -10,7 +10,7 @@
 	volume = 30
 	possible_transfer_amounts = list()
 	resistance_flags = ACID_PROOF
-	container_type = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	slot_flags = ITEM_SLOT_BELT
 	var/ignore_flags = 0
 	var/infinite = FALSE
@@ -39,17 +39,35 @@
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 		reagents.reaction(M, INJECT, fraction)
 		if(M.reagents)
+// yogs start -Adds viruslist stuff
+			var/viruslist = ""
+			for(var/datum/reagent/R in reagents.reagent_list)
+				injected += R.name
+				if(istype(R, /datum/reagent/blood))
+					var/datum/reagent/blood/RR = R
+					for(var/datum/disease/D in RR.data["viruses"])
+						viruslist += " [D.name]"
+						if(istype(D, /datum/disease/advance))
+							var/datum/disease/advance/DD = D
+							viruslist += " \[ symptoms: "
+							for(var/datum/symptom/S in DD.symptoms)
+								viruslist += "[S.name] "
+							viruslist += "\]"
+// yogs end
 			var/trans = 0
 			if(!infinite)
-				trans = reagents.trans_to(M, amount_per_transfer_from_this)
+				trans = reagents.trans_to(M, amount_per_transfer_from_this, transfered_by = user)
 			else
 				trans = reagents.copy_to(M, amount_per_transfer_from_this)
 
 			to_chat(user, "<span class='notice'>[trans] unit\s injected.  [reagents.total_volume] unit\s remaining in [src].</span>")
 
-
 			log_combat(user, M, "injected", src, "([contained])")
-
+// yogs start - makes logs if viruslist
+			if(viruslist)
+				investigate_log("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
+				log_game("[user.real_name] ([user.ckey]) injected [M.real_name] ([M.ckey]) with [viruslist]")
+// yogs end
 /obj/item/reagent_containers/hypospray/CMO
 	list_reagents = list("omnizine" = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -73,7 +91,7 @@
 	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum."
 	icon_state = "combat_hypo"
 	volume = 5
-	container_type = NONE
+	reagent_flags = NONE
 	list_reagents = list("magillitis" = 5)
 
 //MediPens
@@ -88,9 +106,10 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 	ignore_flags = 1 //so you can medipen through hardsuits
-	container_type = DRAWABLE
+	reagent_flags = DRAWABLE
 	flags_1 = null
 	list_reagents = list("epinephrine" = 10)
+	custom_price = 40
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to choke on \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -103,7 +122,7 @@
 	..()
 	if(!iscyborg(user))
 		reagents.maximum_volume = 0 //Makes them useless afterwards
-		container_type = NONE
+		reagents.flags = NONE
 	update_icon()
 	addtimer(CALLBACK(src, .proc/cyborg_recharge, user), 80)
 
@@ -174,3 +193,14 @@
 	volume = 250
 	list_reagents = list("holywater" = 150, "tiresolution" = 50, "dizzysolution" = 50)
 	amount_per_transfer_from_this = 50
+
+/obj/item/reagent_containers/hypospray/medipen/atropine
+	name = "atropine autoinjector"
+	desc = "A rapid way to save a person from a critical injury state!"
+	list_reagents = list("atropine" = 10)
+
+/obj/item/reagent_containers/hypospray/medipen/snail
+	name = "snail shot"
+	desc = "All-purpose snail medicine! Do not use on non-snails!"
+	list_reagents = list("snailserum" = 10)
+	icon_state = "snail"

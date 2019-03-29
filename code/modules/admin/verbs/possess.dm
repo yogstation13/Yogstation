@@ -25,10 +25,16 @@
 	usr.control_object = O
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Possess Object") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/release()
+/proc/release(obj/O in world) //yogs - fixed release object
 	set name = "Release Obj"
 	set category = "Object"
 	//usr.loc = get_turf(usr)
+
+//Yogs start - fixed release object
+	if(!usr.control_object)
+		to_chat(usr, "You need to possess an object first!")
+		return
+//Yogs end
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
 		usr.real_name = usr.name_archive
@@ -37,7 +43,6 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			H.name = H.get_visible_name()
-
 
 	usr.loc = get_turf(usr.control_object)
 	usr.reset_perspective()
