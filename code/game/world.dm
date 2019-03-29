@@ -39,11 +39,11 @@ GLOBAL_VAR(restart_counter)
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
 	load_admins()
-	
+
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
-		
+
 	setup_pretty_filter() //yogs
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
@@ -277,26 +277,28 @@ GLOBAL_VAR(restart_counter)
 	s += "Forums"
 	s += "</a>" //yog end
 	s += ")"
-	
+
 	var/players = GLOB.clients.len
-	
+
 	var/popcaptext = ""
 	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
 	if (popcap)
 		popcaptext = "/[popcap]"
-	
+
 	if (players > 1)
 		features += "[players][popcaptext] players"
 	else if (players > 0)
 		features += "[players][popcaptext] player"
-	
+
 	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
-	
+
 	if (!host && hostedby)
 		features += "hosted by <b>[hostedby]</b>"
 
 	if (features)
 		s += ": [jointext(features, ", ")]"
+
+	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>" //yogs - server tagline, ported from citadel
 
 	status = s
 
