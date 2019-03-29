@@ -190,6 +190,12 @@
 	module_locked = "Security"
 	owner = "identification"
 
+/datum/borg_skin/qualified_doctor
+	name = "Qualified Doctor"
+	icon_state = "qualified_doctor"
+	module_locked = "Medical"
+	owner = null
+
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
 /datum/borg_skin/hover_sec
