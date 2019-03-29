@@ -13048,7 +13048,7 @@
 /obj/item/gun/energy/disabler,
 /obj/item/gun/energy/disabler{
 	pixel_x = 3;
-	pixel_y = -3;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -20951,6 +20951,9 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/item/clipboard,
 /turf/open/floor/carpet,
 /area/medical/medbay/central)
 "aPs" = (
@@ -35139,6 +35142,19 @@
 	icon_state = "pipe11-1";
 	dir = 6
 	},
+/obj/structure/closet/secure_closet{
+	name = "psychiatrist locker";
+	req_access_txt = "5"
+	},
+/obj/item/storage/pill_bottle/happiness,
+/obj/item/storage/pill_bottle/happy{
+	name = "happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/lsd{
+	name = "very happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/psicodine,
+/obj/item/storage/pill_bottle/dice,
 /turf/open/floor/wood,
 /area/medical/medbay/central)
 "brZ" = (
@@ -51352,15 +51368,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet,
 /area/library)
-"dvZ" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 0
-	},
-/obj/machinery/keycard_auth{
-	pixel_y = -25
-	},
-/turf/open/floor/plasteel,
-/area/bridge)
 "dCA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -54312,6 +54319,15 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"nmI" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
 "npb" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
@@ -54633,7 +54649,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "okW" = (
-/obj/structure/bookcase/random/nonfiction,
+/obj/machinery/bookbinder,
 /turf/open/floor/wood,
 /area/medical/medbay/central)
 "omY" = (
@@ -87770,7 +87786,7 @@ aRl
 aSx
 aTX
 aYg
-dvZ
+nmI
 cva
 adK
 aet
@@ -89312,7 +89328,7 @@ aRr
 aSD
 ceh
 aZj
-dvZ
+nmI
 cva
 adK
 aet
