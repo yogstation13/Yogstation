@@ -246,7 +246,7 @@ GLOBAL_VAR(restart_counter)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status()
+/world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid
 
 	var/list/features = list()
 
@@ -262,20 +262,18 @@ GLOBAL_VAR(restart_counter)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 			s += "<b>[server_name]</b> &#8212; "
-		if(!CONFIG_GET(flag/norespawn)) features += "respawn" //Yogs -- Makes this not display when it's no-respawn (as per usual)
-		/* Yogs start -- removes these old-ass hub tags
+		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
 		if(CONFIG_GET(flag/allow_vote_mode))
 			features += "vote"
 		if(CONFIG_GET(flag/allow_ai))
 			features += "AI allowed"
-		Yogs end */
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
-	s += " (" //yog start hub message
-	s += "<a href=\"https://forums.yogstation.net/index.php\">" //Change this to wherever you want the hub to link to.
-	s += "Forums"
-	s += "</a>" //yog end
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
 	s += ")"
 
 	var/players = GLOB.clients.len
