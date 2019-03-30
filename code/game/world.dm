@@ -296,8 +296,6 @@ GLOBAL_VAR(restart_counter)
 	if (features)
 		s += ": [jointext(features, ", ")]"
 
-	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>" //yogs - server tagline, ported from citadel
-
 	status = s
 
 /world/proc/update_hub_visibility(new_visibility)
