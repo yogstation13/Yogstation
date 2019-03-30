@@ -43,6 +43,12 @@ GLOBAL_LIST_EMPTY(donators)
 	
 	s += "<b>[station_name()]</b>]<br>"; // The station & server name line
 	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links line
+	
+	//TAGLINE
+	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>"
+	
+	if(GLOB.master_mode != "secret")
+		s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
 	s += "Map: <b>[SSmapping.config?.map_name || "Loading..."]</b><br>" // The map line
 	
 	//FEATURES
@@ -53,8 +59,7 @@ GLOBAL_LIST_EMPTY(donators)
 	if(features.len)
 		s += "[jointext(features,", ")]<br>" // The features line
 	
-	//TAGLINE
-	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>"
+	
 	
 	//PLAYER COUNT
 	var/players = GLOB.clients.len
