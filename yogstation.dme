@@ -2928,6 +2928,7 @@
 #include "yogstation\code\game\objects\items\implants\implant_gang.dm"
 #include "yogstation\code\game\objects\items\implants\implant_mindshield.dm"
 #include "yogstation\code\game\objects\items\implants\implant_mindslave.dm"
+#include "yogstation\code\game\objects\items\implants\implant_teleporter.dm"
 #include "yogstation\code\game\objects\items\melee\energy.dm"
 #include "yogstation\code\game\objects\items\robot\robot_items.dm"
 #include "yogstation\code\game\objects\items\robot\robot_parts.dm"
