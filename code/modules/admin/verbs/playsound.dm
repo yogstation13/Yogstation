@@ -141,8 +141,8 @@
 		return
 
 	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
-	var/static/lastadmin = FALSE
-	var/static/lastsound = FALSE
+	var/static/lastadmin
+	var/static/lastsound
 	
 	if(lastadmin)
 		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?","Yes","Cancel") != "Yes")
