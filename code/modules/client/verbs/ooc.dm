@@ -34,7 +34,11 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+	//yogs start -- smarter ick ock detection
+	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
+	//captures a lot of accidental in character speech in ooc chat
+	if(length(msg) > 4 && ickock.Find(msg))
+	//yogs end
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
 			return
 
