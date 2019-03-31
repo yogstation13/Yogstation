@@ -321,7 +321,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/radio/off
 	back = /obj/item/storage/backpack
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/teleporter/ghost_role) //yogs change added teleporter implant to stop teleport memes
 
 /obj/effect/mob_spawn/human/hotel_staff/security
 	name = "hotel security sleeper"
