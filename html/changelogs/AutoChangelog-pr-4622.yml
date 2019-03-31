@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Central Command staff, as well as simple_mobs, can use vending machines again!"
