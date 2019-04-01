@@ -19,7 +19,7 @@ n_scriptOptions
 	An implementation of <n_scriptOptions> for the n_Script language.
 */
 	nS_Options
-		var/list/symbols = list("(", ")", "\[", "]", ";", ",", "{", "}")  //scanner - Characters that can be in symbols
+		var/list/symbols = list("(", ")", "\[", "]", ";", ",", "{", "}", ".")  //scanner - Characters that can be in symbols
 /*
 	Var: keywords
 	An associative list used by the parser to parse keywords. Indices are strings which will trigger the keyword when parsed and the
@@ -27,16 +27,8 @@ n_scriptOptions
 */
 		var/list/keywords	= list(	"if" = /n_Keyword/nS_Keyword/kwIf,  "else"  = /n_Keyword/nS_Keyword/kwElse, "elseif" = /n_Keyword/nS_Keyword/kwElseIf, \
 											"while"	  = /n_Keyword/nS_Keyword/kwWhile,		"break"	= /n_Keyword/nS_Keyword/kwBreak, \
-											"continue" = /n_Keyword/nS_Keyword/kwContinue, \
+											"continue" = /n_Keyword/nS_Keyword/kwContinue, "for"	  = /n_Keyword/nS_Keyword/kwFor,\
 											"return" = /n_Keyword/nS_Keyword/kwReturn, 		"def"   = /n_Keyword/nS_Keyword/kwDef)
-
-		var/list/assign_operators = list(	"="  = null, 					 "&=" = "&",
-												 		"|=" = "|",					 	 "`=" = "`",
-														"+=" = "+",						 "-=" = "-",
-														"*=" = "*",						 "/=" = "/",
-														"^=" = "^",
-														"%=" = "%")
-
 		var/list/unary_operators = list(	"!"  = /node/expression/operator/unary/LogicalNot,	 "~"  = /node/expression/operator/unary/BitwiseNot,
 													"-"  = /node/expression/operator/unary/Minus)
 
@@ -48,12 +40,18 @@ n_scriptOptions
 													"`"  = /node/expression/operator/binary/BitwiseXor,  		"+" 	= /node/expression/operator/binary/Add,
 													"-"  = /node/expression/operator/binary/Subtract, 			"*" 	= /node/expression/operator/binary/Multiply,
 													"/"  = /node/expression/operator/binary/Divide, 			"^" 	= /node/expression/operator/binary/Power,
-													"%"  = /node/expression/operator/binary/Modulo)
+													"%"  = /node/expression/operator/binary/Modulo,
+													"="  = /node/expression/operator/binary/Assign, 					 "&=" = /node/expression/operator/binary/Assign/BitwiseAnd,
+													"|=" = /node/expression/operator/binary/Assign/BitwiseOr,					 	 "`=" = /node/expression/operator/binary/Assign/BitwiseXor,
+													"+=" = /node/expression/operator/binary/Assign/Add,						 "-=" = /node/expression/operator/binary/Assign/Subtract,
+													"*=" = /node/expression/operator/binary/Assign/Multiply,						 "/=" = /node/expression/operator/binary/Assign/Divide,
+													"^=" = /node/expression/operator/binary/Assign/Power,
+													"%=" = /node/expression/operator/binary/Assign/Modulo)
 		New()
 			.=..()
-			for(var/O in assign_operators+binary_operators+unary_operators)
+			for(var/O in binary_operators+unary_operators)
 				if(!symbols.Find(O)) symbols+=O
-				
+
 n_scriptOptions/proc/CanStartID(char) //returns true if the character can start a variable, function, or keyword name (by default letters or an underscore)
 	if(!isnum(char))
 		char=text2ascii(char)
@@ -72,7 +70,7 @@ n_scriptOptions/proc/IsDigit(char)
 n_scriptOptions/proc/IsValidID(id)    //returns true if all the characters in the string are okay to be in an identifier name
 	if(!CanStartID(id)) //don't need to grab first char in id, since text2ascii does it automatically
 		return 0
-	if(lentext(id)==1) 
+	if(lentext(id)==1)
 		return 1
 	for(var/i=2 to lentext(id))
 		if(!IsValidIDChar(copytext(id, i, i+1)))

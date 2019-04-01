@@ -8,6 +8,18 @@
 	if(!ismob(usr))
 		return
 
+	if(check_rights(R_ADMIN, FALSE)) // If they're an admin, then just do an aghost (the FALSE marks that it shouldn't yell about not being admin)
+		//Basically a copy of Yogstation-TG\code\modules\admin\topic.dm, line 960, from 24 Feb 2019
+		if(!isobserver(usr))
+			admin_ghost()
+		var/mob/dead/observer/A = mob
+		var/mob/living/silicon/ai/I = M
+		if(istype(I) && I.eyeobj)
+			A.ManualFollow(I.eyeobj)
+		else
+			A.ManualFollow(M)
+		return
+		
 	usr.reset_perspective(M)
 	verbs += /client/proc/mentor_unfollow
 	if(mentor_datum)

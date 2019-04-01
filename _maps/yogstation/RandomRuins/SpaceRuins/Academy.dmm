@@ -594,7 +594,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/item/dice/d20,
+/obj/item/dice/d6,
 /turf/open/floor/carpet,
 /area/awaymission/academy/headmaster)
 "ch" = (
@@ -1400,7 +1400,7 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/wizard{
-	name = "Lion The Narcissistic"
+	name = "Larry The Master of Satchels"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
@@ -2075,6 +2075,7 @@
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/item/dice/d20/fate,
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/classrooms)
 "gp" = (
@@ -2867,7 +2868,8 @@
 /area/awaymission/academy/academyaft)
 "ij" = (
 /obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/hostile/wizard{
+/mob/living/simple_animal/hostile/wizard/cloaked{
+	desc = "EI NATH?";
 	name = "Cali The Stubborn"
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -4751,7 +4753,7 @@
 /area/space)
 "ZO" = (
 /obj/structure/table/wood,
-/obj/item/dice/d20/fate,
+/obj/item/dice/d20,
 /turf/open/floor/wood,
 /area/awaymission/academy/classrooms)
 

@@ -135,8 +135,8 @@
 					return
 				if(7)
 					new /obj/item/gun/ballistic/rocketlauncher/unrestricted(src)
-					new /obj/item/ammo_box/magazine/rocket(src)
-					new /obj/item/ammo_box/magazine/rocket(src)
+					new /obj/item/ammo_casing/caseless/rocket(src)
+					new /obj/item/ammo_casing/caseless/rocket(src)
 					return
 				if(8)
 					new /obj/item/gun/ballistic/automatic/sniper_rifle(src)

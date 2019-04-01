@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		for (var/child in entries)
 			winset(src, "[child]", "[entries[child]]")
 			if (!ispath(child, /datum/verbs/menu))
-				var/atom/verb/verbpath = child
+				var/procpath/verbpath = child
 				if (copytext(verbpath.name,1,2) != "@")
 					new child(src)
 
@@ -472,7 +472,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		return
 	var/sql_ckey = sanitizeSQL(src.ckey)
 	var/datum/DBQuery/query_get_related_ip = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON('[address]') AND ckey != '[sql_ckey]'")
-	query_get_related_ip.Execute()
+	if(!query_get_related_ip.Execute())
+		qdel(query_get_related_ip)
+		return
 	related_accounts_ip = ""
 	while(query_get_related_ip.NextRow())
 		related_accounts_ip += "[query_get_related_ip.item[1]], "
@@ -503,7 +505,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
 			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
+			to_chat(src, CONFIG_GET(string/panic_bunker_message))
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])

@@ -247,7 +247,7 @@
 
 //Non-human spawners
 
-/obj/effect/mob_spawn/AICorpse/create() //Creates a corrupted AI
+/obj/effect/mob_spawn/AICorpse/create(ckey) //Creates a corrupted AI
 	var/A = locate(/mob/living/silicon/ai) in loc
 	if(A)
 		return
@@ -267,7 +267,7 @@
 /obj/effect/mob_spawn/slime/equip(mob/living/simple_animal/slime/S)
 	S.colour = mobcolour
 
-/obj/effect/mob_spawn/human/facehugger/create() //Creates a squashed facehugger
+/obj/effect/mob_spawn/facehugger/create(ckey) //Creates a squashed facehugger
 	var/obj/item/clothing/mask/facehugger/O = new(src.loc) //variable O is a new facehugger at the location of the landmark
 	O.name = src.name
 	O.Die() //call the facehugger's death proc
@@ -394,6 +394,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/armor/vest
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	implants = list(/obj/item/implant/teleporter/ghost_role) //yogs change no leaving for the bartender of space
 	id = /obj/item/card/id
 
 /obj/effect/mob_spawn/human/beach

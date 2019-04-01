@@ -69,6 +69,12 @@
 				line = t.line
 			message = "[line]: [message]"
 
+	InvalidAssignment
+		message="Left side of assignment cannot be assigned to."
+
+	OutdatedScript
+		message = "Your script looks like it was for an older version of NTSL! Your script may not work as intended. See documentation for new syntax and API."
+
 /*
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.
@@ -81,7 +87,8 @@
 	A basic description as to what went wrong.
 */
 		message
-		stack/stack
+		scope/scope
+		token/token
 
 	proc
 /*
@@ -90,11 +97,27 @@
 */
 		ToString()
 			. = "[name]: [message]"
-			if(!stack.Top()) return
-			.+="\nStack:"
-			while(stack.Top())
-				var/node/statement/FunctionCall/stmt=stack.Pop()
-				. += "\n\t [stmt.func_name]()"
+			if(!scope) return
+			var/last_line
+			var/last_col
+			if(token)
+				last_line = token.line
+				last_col = token.column
+			var/scope/cur_scope = scope
+			while(cur_scope)
+				if(cur_scope.function)
+					. += "\n\tat [cur_scope.function.func_name]([last_line]:[last_col])"
+					if(cur_scope.call_node && cur_scope.call_node.token)
+						last_line = cur_scope.call_node.token.line
+						last_col = cur_scope.call_node.token.column
+					else
+						last_line = null
+						last_col = null
+				cur_scope = cur_scope.parent
+			if(last_line)
+				. += "\n\tat \[global]([last_line]:[last_col])"
+			else
+				. += "\n\tat \[internal]"
 
 	TypeMismatch
 		name="TypeMismatchError"
@@ -111,12 +134,18 @@
 
 	UnknownInstruction
 		name="UnknownInstructionError"
-		message="Unknown instruction type. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
+		New(node/op)
+			message="Unknown instruction type '[op.type]'. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
 	UndefinedVariable
 		name="UndefinedVariableError"
 		New(variable)
 			message="Variable '[variable]' has not been declared."
+
+	IndexOutOfRange
+		name="IndexOutOfRangeError"
+		New(obj, idx)
+			message="Index [obj]\[[idx]] is out of range."
 
 	UndefinedFunction
 		name="UndefinedFunctionError"
@@ -140,7 +169,15 @@
 		name="DivideByZeroError"
 		message="Division by zero (or a NULL value) attempted."
 
+	InvalidAssignment
+		message="Left side of assignment cannot be assigned to."
+
 	MaxCPU
 		name="MaxComputationalUse"
 		New(maxcycles)
 			message="Maximum amount of computational cycles reached (>= [maxcycles])."
+
+	Internal
+		name="InternalError"
+		New(exception/E)
+			message = E.name

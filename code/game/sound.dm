@@ -1,6 +1,6 @@
 /proc/playsound(atom/source, input, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
 	if(isarea(source))
-		throw EXCEPTION("playsound(): source is an area")
+		CRASH("playsound(): source is an area")
 		return
 
 	var/turf/turf_source = get_turf(source)
@@ -27,7 +27,7 @@
 			sound_or_datum(M, turf_source, input, vol, vary, frequency, falloff, channel, pressure_affected)
 
 /proc/sound_or_datum(mob/receiver, turf/turf_source, input, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
-	if(istype(input,/datum))
+	if(istype(input, /datum/outputs))
 		var/datum/outputs/O = input
 		O.send_info(receiver, turf_source, vol, vary, frequency, falloff, channel, pressure_affected)
 	else
@@ -108,6 +108,9 @@
 
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
+	if(chan == CHANNEL_LOBBYMUSIC) //yogs start
+		if(client && client.chatOutput)
+			client.chatOutput.stopLobbyMusic() //yogs end
 
 /* /client/proc/playtitlemusic(vol = 85)//yogs
 	set waitfor = FALSE
@@ -172,4 +175,6 @@
 				soundin = pick('sound/voice/beepsky/god.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/secureday.ogg', 'sound/voice/beepsky/radio.ogg', 'sound/voice/beepsky/insult.ogg', 'sound/voice/beepsky/creep.ogg')
 			if("honkbot_e")
 				soundin = pick('sound/items/bikehorn.ogg', 'sound/items/AirHorn2.ogg', 'sound/misc/sadtrombone.ogg', 'sound/items/AirHorn.ogg', 'sound/effects/reee.ogg',  'sound/items/WEEOO1.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/creep.ogg','sound/magic/Fireball.ogg' ,'sound/effects/pray.ogg', 'sound/voice/hiss1.ogg','sound/machines/buzz-sigh.ogg', 'sound/machines/ping.ogg', 'sound/weapons/flashbang.ogg', 'sound/weapons/bladeslice.ogg')
+			if("goose")
+				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
 	return soundin
