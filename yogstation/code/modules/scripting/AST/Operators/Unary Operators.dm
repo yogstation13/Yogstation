@@ -45,7 +45,3 @@
 //
 	group
 		precedence=OOP_GROUP
-
-	New(node/expression/exp)
-		src.exp=exp
-		return ..()

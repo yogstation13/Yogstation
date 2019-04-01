@@ -3,7 +3,7 @@
 	set name = "Mentorhelp"
 
 	if(is_mentor())
-		to_chat(src, "<notice>Mentors cannot mentorhelp, use msay instead!</notice>")
+		to_chat(src, "<span class='notice'>Mentors cannot mentorhelp, use msay instead!</span>")
 		return
 
 	//clean the input msg
@@ -13,6 +13,8 @@
 	verbs -= /client/verb/mentorhelp
 	spawn(300)
 		verbs += /client/verb/mentorhelp	// 30 second cool-down for mentorhelp
+
+	webhook_send_mhelp(key_name_mentor(src), msg)
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)	return
@@ -28,7 +30,6 @@
 		to_chat(X, mentor_msg)
 
 	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
-	webhook_send_mhelp(key_name_mentor(src), msg)
 
 	var/datum/mentorticket/mt
 	if(ckey in SSYogs.mentortickets)
@@ -109,3 +110,6 @@
 		. += " (<a href='?_src_=mentor;mentor_follow=[REF(M)];[MentorHrefToken(TRUE)]'>F</a>)"
 
 	return .
+
+/proc/discord_mentor_link(var/display_name, var/id)
+	return "<a href='?_src_=mentor;mentor_msg=[list2params(list(display_name))];mentor_discord_id=[id];[MentorHrefToken(TRUE)]'>[display_name]</a>"

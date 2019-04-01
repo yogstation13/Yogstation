@@ -51,7 +51,7 @@
 
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
-	req_access = null
+	req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- changed to allow for use of req_one_access
 	max_integrity = 200
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
@@ -150,8 +150,8 @@
 		terminal.connect_to_network()
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	if (!req_access)
-		req_access = list(ACCESS_ENGINE_EQUIP)
+	//if (!req_access)
+		//req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- Commented out to allow for use of req_one_access. Also this is just generally bad and the guy who wrote this doesn't get OOP
 	if (!armor)
 		armor = list("melee" = 20, "bullet" = 20, "laser" = 10, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
 	..()
@@ -170,12 +170,20 @@
 
 	switch(tdir)
 		if(NORTH)
+			if((pixel_y != initial(pixel_y)) && (pixel_y != 23))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be 23.)")
 			pixel_y = 23
 		if(SOUTH)
+			if((pixel_y != initial(pixel_y)) && (pixel_y != -23))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_y value ([pixel_y] - should be -23.)")
 			pixel_y = -23
 		if(EAST)
+			if((pixel_y != initial(pixel_x)) && (pixel_x != 24))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be 24.)")
 			pixel_x = 24
 		if(WEST)
+			if((pixel_y != initial(pixel_x)) && (pixel_x != -25))
+				log_mapping("APC: ([src]) at [AREACOORD(src)] with dir ([tdir] | [uppertext(dir2text(tdir))]) has pixel_x value ([pixel_x] - should be -25.)")
 			pixel_x = -25
 	if (building)
 		area = get_area(src)
@@ -568,7 +576,7 @@
 	else if (istype(W, /obj/item/stack/cable_coil) && opened)
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
-			throw EXCEPTION("attackby on APC when it's not on a turf")
+			CRASH("attackby on APC when it's not on a turf")
 			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")

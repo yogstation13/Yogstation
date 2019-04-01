@@ -36,7 +36,7 @@
 			if(istype(top))
 				top=top.precedence
 			if(istype(input))
-				input=input:precedence
+				input=input.precedence
 			if(top>=input)
 				return REDUCE
 			return SHIFT
@@ -51,30 +51,10 @@
 				return T
 			switch(T.type)
 				if(/token/word)
-					return new/node/expression/value/variable(T.value)
-				if(/token/accessor)
-					var
-						token/accessor/A=T
-						node/expression/value/variable/E//=new(A.member)
-						stack/S=new()
-					while(istype(A.object, /token/accessor))
-						S.Push(A)
-						A=A.object
-					ASSERT(istext(A.object))
-
-					while(A)
-						var/node/expression/value/variable/V=new()
-						V.id=new(A.member)
-						if(E)
-							V.object=E
-						else
-							V.object=new/node/identifier(A.object)
-						E=V
-						A=S.Pop()
-					return E
+					return new/node/expression/value/variable(T.value, T)
 
 				if(/token/number, /token/string)
-					return new/node/expression/value/literal(T.value)
+					return new/node/expression/value/literal(T.value, T)
 
 /*
 	Proc: GetOperator
@@ -92,12 +72,15 @@
 	- <GetUnaryOperator()>
 */
 		GetOperator(O, type=/node/expression/operator, L[])
+			var/token/T
 			if(istype(O, type)) return O		//O is already the desired type
-			if(istype(O, /token)) O=O:value //sets O to text
+			if(istype(O, /token))
+				T = O
+				O=O:value //sets O to text
 			if(istext(O))										//sets O to path
 				if(L.Find(O)) O=L[O]
 				else return null
-			if(ispath(O))O=new O						//catches path from last check
+			if(ispath(O))O=new O(T)						//catches path from last check
 			else return null								//Unknown type
 			return O
 
@@ -130,7 +113,7 @@
 	Takes the operator on top of the opr stack and assigns its operand(s). Then this proc pushes the value of that operation to the top
 	of the val stack.
 */
-		Reduce(stack/opr, stack/val)
+		Reduce(stack/opr, stack/val, check_assignments = 1)
 			var/node/expression/operator/O=opr.Pop()
 			if(!O) return
 			if(!istype(O))
@@ -143,6 +126,8 @@
 				B.exp2=val.Pop()
 				B.exp =val.Pop()
 				val.Push(B)
+				if(check_assignments && istype(B, /node/expression/operator/binary/Assign) && !istype(B.exp, /node/expression/value/variable) && !istype(B.exp, /node/expression/member))
+					errors += new/scriptError/InvalidAssignment()
 			else
 				O.exp=val.Pop()
 				val.Push(O)
@@ -180,7 +165,7 @@
 	- <ParseParenExpression()>
 	- <ParseParamExpression()>
 */
-		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"), check_functions = 0)
+		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"), check_functions = 0, check_assignments = 1)
 			var/stack
 				opr=new
 				val=new
@@ -207,12 +192,31 @@
 					ntok=tokens[index+1]
 
 				if(istype(curToken, /token/symbol) && curToken.value=="(")			//Parse parentheses expression
-					if(expecting!=VALUE)
-						errors+=new/scriptError/ExpectedToken("operator", curToken)
+					if(expecting == VALUE)
+						val.Push(ParseParenExpression())
+					else
+						val.Push(ParseFunctionExpression(val.Pop())) // you can call *anything*! You can even call "2()". It'll runtime though so just don't please.
+						expecting = OPERATOR
+				else if(istype(curToken, /token/symbol) && curToken.value == "." && ntok && istype(ntok, /token/word))
+					if(expecting == VALUE)
+						errors+=new/scriptError/ExpectedToken("expression", curToken)
 						NextToken()
 						continue
-					val.Push(ParseParenExpression())
-
+					var/node/expression/member/dot/E = new(curToken)
+					E.object = val.Pop()
+					NextToken()
+					E.id = new(curToken.value, curToken)
+					val.Push(E)
+				else if(istype(curToken, /token/symbol) && curToken.value == "\[")
+					if(expecting == VALUE)
+						errors+=new/scriptError/ExpectedToken("expression", curToken)
+						NextToken()
+						continue
+					var/node/expression/member/brackets/B = new(curToken)
+					B.object = val.Pop()
+					NextToken()
+					B.index = ParseExpression(list("]"))
+					val.Push(B)
 				else if(istype(curToken, /token/symbol))												//Operator found.
 					var/node/expression/operator/curOperator											//Figure out whether it is unary or binary and get a new instance.
 					if(src.expecting==OPERATOR)
@@ -229,28 +233,12 @@
 							continue
 
 					if(opr.Top() && Precedence(opr.Top(), curOperator)==REDUCE)		//Check order of operations and reduce if necessary
-						Reduce(opr, val)
+						Reduce(opr, val, check_assignments)
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-
-				else if(ntok && ntok.value=="(" && istype(ntok, /token/symbol)\
-											&& istype(curToken, /token/word))								//Parse function call
-
-					if(!check_functions)
-
-						var/token/preToken=curToken
-						var/old_expect=src.expecting
-						var/fex=ParseFunctionExpression()
-						if(old_expect!=VALUE)
-							errors+=new/scriptError/ExpectedToken("operator", preToken)
-							NextToken()
-							continue
-						val.Push(fex)
-					else
-						errors+=new/scriptError/ParameterFunction(curToken)
-						break
-
+				else if(istype(curToken, /token/word) && curToken.value == "list" && ntok && ntok.value == "(" && expecting == VALUE)
+					val.Push(ParseListExpression())
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
 					kw=new kw(inline=1)
@@ -274,7 +262,7 @@
 
 				NextToken()
 
-			while(opr.Top()) Reduce(opr, val) 																//Reduce the value stack completely
+			while(opr.Top()) Reduce(opr, val, check_assignments) 																//Reduce the value stack completely
 			.=val.Pop()                       																//Return what should be the last value on the stack
 			if(val.Top())                     																//
 				var/node/N=val.Pop()
@@ -288,10 +276,9 @@
 	See Also:
 	- <ParseExpression()>
 */
-		ParseFunctionExpression()
-			var/node/expression/FunctionCall/exp=new
-			exp.func_name=curToken.value
-			NextToken() //skip function name
+		ParseFunctionExpression(func_exp)
+			var/node/expression/FunctionCall/exp=new(curToken)
+			exp.function = func_exp
 			NextToken() //skip open parenthesis, already found
 			var/loops = 0
 
@@ -312,6 +299,33 @@
 					errors+=new/scriptError/ExpectedToken(")")
 					return exp
 
+		ParseListExpression()
+			var/node/expression/value/list_init/exp = new(curToken)
+			exp.init_list = list()
+			NextToken() // skip the "list" word
+			NextToken() // skip the open parenthesis
+			var/loops = 0
+			for()
+				loops++
+				if(loops >= 800)
+					errors += new /scriptError("Too many nested expressions.")
+					break
+
+				if(istype(curToken, /token/symbol) && curToken.value == ")")
+					return exp
+				var/node/expression/E = ParseParamExpression(check_assignments = FALSE)
+				if(E.type == /node/expression/operator/binary/Assign)
+					var/node/expression/operator/binary/Assign/A = E
+					exp.init_list[A.exp] = A.exp2
+				else
+					exp.init_list += E
+				if(errors.len)
+					return exp
+				if(curToken.value==","&&istype(curToken, /token/symbol))NextToken()	//skip comma
+				if(istype(curToken, /token/end))																		//Prevents infinite loop...
+					errors+=new/scriptError/ExpectedToken(")")
+					return exp
+
 /*
 	Proc: ParseParenExpression
 	Parses an expression that ends with a close parenthesis. This is used for parsing expressions inside of parentheses.
@@ -320,9 +334,10 @@
 	- <ParseExpression()>
 */
 		ParseParenExpression()
+			var/group_token = curToken
 			if(!CheckToken("(", /token/symbol))
 				return
-			return new/node/expression/operator/unary/group(ParseExpression(list(")")))
+			return new/node/expression/operator/unary/group(group_token, ParseExpression(list(")")))
 
 /*
 	Proc: ParseParamExpression
@@ -331,6 +346,7 @@
 	See Also:
 	- <ParseExpression()>
 */
-		ParseParamExpression(check_functions = 0)
+		ParseParamExpression(check_functions = 0, check_assignments = 1)
 			var/cf = check_functions
-			return ParseExpression(list(",", ")"), check_functions = cf)
+			var/ca = check_assignments
+			return ParseExpression(list(",", ")"), check_functions = cf, check_assignments = ca)

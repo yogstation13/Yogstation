@@ -11,3 +11,19 @@
 		"https://www.youtube.com/watch?v=maYCStVzjDs",  // Sacred War
 		"https://www.youtube.com/watch?v=LYo9mIo54Vs" // Red Alert 3 theme
 		)
+
+/datum/holiday/labor
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=UXKr4HSPHT8", // Internationale - german
+		"https://www.youtube.com/watch?v=t8EMx7Y16Vo", // Internationale - russian
+		"https://www.youtube.com/watch?v=lyfhs42mdyA", // Internationale - japanese
+		"https://www.youtube.com/watch?v=5DTbashsKic" // Internationale - english
+		)
+
+/datum/holiday/spess
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=sOM4MpN-ju0", // Glory to those who look forward
+		"https://www.youtube.com/watch?v=ncx4x8rvrQU", // cosmonaut anthem
+		"https://www.youtube.com/watch?v=KUwN_QaZnEE", // Before the long journey
+		"https://www.youtube.com/watch?v=ckNIMPQoBPw" // And on mars there will be apple blossoms
+		)

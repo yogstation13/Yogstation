@@ -82,4 +82,4 @@
 
 /obj/item/card/id/gasclerk/New()
 	..()
-	registered_account = new("Clerk", "clerk")
+	registered_account = new("Clerk", FALSE)
