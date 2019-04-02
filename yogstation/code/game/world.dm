@@ -47,6 +47,7 @@ GLOBAL_LIST_EMPTY(donators)
 	//TAGLINE
 	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>"
 	
+	//MAP AND GAMEMODE
 	if(GLOB.master_mode != "secret")
 		s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
 	s += "Map: <b>[SSmapping.config?.map_name || "Loading..."]</b><br>" // The map line
