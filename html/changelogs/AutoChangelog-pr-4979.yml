@@ -1,4 +1,0 @@
-author: "wilfredrickson"
-delete-after: true 
-changes: 
-  - bugfix: "The OOC Ick-ock detector should be a bit smarter, and should stop asking you if you meant to say \":)\" in IC."
