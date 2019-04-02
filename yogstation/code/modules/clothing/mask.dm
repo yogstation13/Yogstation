@@ -112,4 +112,142 @@
 	icon_state = "ronald"
 	item_state = "ronald"
 	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/fawkes
+	name = "fawkes mask"
+	desc = "A mask often worn by that hacker known as 4chan."
+	clothing_flags = MASKINTERNALS
+	icon_state = "fawkes"
+	item_state = "fawkes"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/thejester
+	name = "jester mask"
+	desc = "A mask often seen being worn by criminals during bank robberies."
+	clothing_flags = MASKINTERNALS
+	icon_state = "the_jester"
+	item_state = "the_jester"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/dallas
+	name = "dallas mask"
+	desc = "A mask often seen being worn by criminals during bank robberies."
+	clothing_flags = MASKINTERNALS
+	icon_state = "pddallas"
+	item_state = "pddallas"
+	flags_cover = MASKCOVERSEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/hoxton
+	name = "hoxton mask"
+	desc = "A mask often seen being worn by criminals during bank robberies."
+	clothing_flags = MASKINTERNALS
+	icon_state = "pdhoxton"
+	item_state = "pdhoxton"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/robwolf
+	name = "wolf mask"
+	desc = "A mask often seen being worn by criminals during bank robberies."
+	clothing_flags = MASKINTERNALS
+	icon_state = "pdwolf"
+	item_state = "pdwolf"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/chains
+	name = "chains mask"
+	desc = "A mask often seen being worn by criminals during bank robberies."
+	clothing_flags = MASKINTERNALS
+	icon_state = "pdchains"
+	item_state = "pdchains"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEYES
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/scaryclown
+	name = "scary clown mask"
+	desc = "A clown mask often seen being worn by sewer clowns."
+	clothing_flags = MASKINTERNALS
+	icon_state = "scaryclownmask"
+	item_state = "scaryclownmask"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/gigglesmask
+	name = "giggles mask"
+	desc = "Sometimes there are some things better left off not existing, this is one of them."
+	clothing_flags = MASKINTERNALS
+	icon_state = "gigglesmask"
+	item_state = "gigglesmask"
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/bananamask
+	name = "banana mask"
+	desc = "Do you want a banana?"
+	clothing_flags = MASKINTERNALS
+	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/masks.dmi'
+	icon_state = "bananamask"
+	item_state = "bananamask"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	flags_cover = MASKCOVERSEYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/richard
+	name = "rooster mask"
+	desc = "Perfect mask for killing russian mob thugs!"
+	clothing_flags = MASKINTERNALS
+	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "richard"
+	item_state = "richard"
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/freddy
+	name = "brown bear mask"
+	desc = "A mask representing a old pizza place mascot."
+	clothing_flags = MASKINTERNALS
+	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "freddy"
+	item_state = "freddy"
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/bonnie
+	name = "purple bunny mask"
+	desc = "A mask representing a old pizza place mascot."
+	clothing_flags = MASKINTERNALS
+	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "bonnie"
+	item_state = "bonnie"
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/chica
+	name = "yellow chicken mask"
+	desc = "A mask representing a old pizza place mascot."
+	clothing_flags = MASKINTERNALS
+	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "chica"
+	item_state = "chica"
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/mask/yogs/foxy
+	name = "red fox mask"
+	desc = "A mask representing a old pizza place mascot."
+	clothing_flags = MASKINTERNALS
+	flags_inv = HIDEEARS|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	icon_state = "foxy"
+	item_state = "foxy"
 	resistance_flags = FLAMMABLE

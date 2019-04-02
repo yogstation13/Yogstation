@@ -15,9 +15,6 @@
 /obj/item/melee/baton/loaded{
 	pixel_x = 2
 	},
-/obj/item/melee/baton/loaded{
-	pixel_x = -2
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "ae" = (
@@ -553,7 +550,7 @@
 /area/ruin/unpowered)
 "bN" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/asteroid/goliath,
+/mob/living/simple_animal/hostile/abomination/super,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "bO" = (
@@ -655,7 +652,7 @@
 	dir = 4;
 	icon_state = "direction_med";
 	pixel_x = -32;
-	pixel_y = -24;
+	pixel_y = -24
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered)
@@ -2986,7 +2983,7 @@ aa
 ab
 ab
 dy
-ac
+ag
 ah
 an
 an
@@ -3048,9 +3045,9 @@ as
 as
 as
 aD
-aI
+aD
 aM
-aI
+aD
 aD
 aD
 dy
