@@ -106,6 +106,12 @@
 		if(100 to 200)
 			msg += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>\n"
 
+	if(gender_ambiguous) //someone fucked up a gender reassignment surgery Yogstart
+		if (gender == MALE)
+			msg += "[t_He] has a strange feminine quality to [t_him].\n"
+		else
+			msg += "[t_He] has a strange masculine quality to [t_him].\n" //Yogsend
+			
 	var/appears_dead = 0
 	if(stat == DEAD || (has_trait(TRAIT_FAKEDEATH)))
 		appears_dead = 1
