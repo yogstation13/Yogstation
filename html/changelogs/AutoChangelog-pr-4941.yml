@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Added a new holodeck program: Photobooth"
+  - rscadd: "Comes with three cameras and black and white floors, a dresser and a mirror."
