@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Makes the .45 magazine actually update per round rather than just showing full or empty."
