@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Makeshift mechas should now properly log themselves, instead of dumping their logs in LOG_GAME with every other fucking miscellaneous thing."
