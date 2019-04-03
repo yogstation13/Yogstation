@@ -404,13 +404,10 @@ SUBSYSTEM_DEF(ticker)
 	if(!queued_players.len)
 		return
 	var/hpc = CONFIG_GET(number/hard_popcap)
-<<<<<<< HEAD
 	//yogs start -- fixes queue when extreme is set but not hard
 	if(!hpc)
 		hpc = CONFIG_GET(number/extreme_popcap)
 	//yogs end
-	if(!queued_players.len || !hpc)
-=======
 	if(!hpc)
 		listclearnulls(queued_players)
 		for (var/mob/dead/new_player/NP in queued_players)
@@ -419,7 +416,6 @@ SUBSYSTEM_DEF(ticker)
 			NP.LateChoices()
 		queued_players.len = 0
 		queue_delay = 0
->>>>>>> b4f4653c21... Fix the living players limit queue getting stuck if you disable it (#43220)
 		return
 		
 	queue_delay++
