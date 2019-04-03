@@ -418,12 +418,8 @@
 		if("mode")
 			mode = text2num(params["mode"])
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_ATMOS)
-<<<<<<< HEAD
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
-			apply_mode()
-=======
 			apply_mode(usr)
->>>>>>> 01ee32329f... [s] Fixes vents not logging the signal sender (#43272)
 			. = TRUE
 		if("alarm")
 			var/area/A = get_area(src)
