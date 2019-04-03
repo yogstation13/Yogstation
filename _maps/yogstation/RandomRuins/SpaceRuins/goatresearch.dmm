@@ -67,7 +67,7 @@
 /turf/open/floor/grass,
 /area/ruin/powered)
 "ar" = (
-/mob/living/simple_animal/hostile/retaliate/goat/blue,
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
 /turf/open/floor/grass,
 /area/ruin/powered)
 "as" = (
@@ -238,9 +238,9 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/powered)
 "aZ" = (
-/obj/item/gun/energy/e_gun,
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/gun/ballistic/rifle/boltaction,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "ba" = (
@@ -266,16 +266,6 @@
 /area/ruin/powered)
 "be" = (
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/mineral/titanium/yellow,
-/area/ruin/powered)
-"bf" = (
-/obj/effect/turf_decal/loading_area{
-	icon_state = "loadingarea";
-	dir = 8
-	},
-/obj/machinery/button{
-	id = "goatshutters"
-	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
 "bg" = (
@@ -384,16 +374,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
-"bz" = (
-/obj/structure/shuttle/engine/huge{
-	icon_state = "huge_engine";
-	dir = 4
-	},
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/turf/open/space/basic,
-/area/space)
 "bA" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/mineral/titanium,
@@ -622,7 +602,10 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/ruin/powered)
-"hH" = (
+"sr" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/powered)
+"xo" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
@@ -630,10 +613,13 @@
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
-"Le" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
+"US" = (
+/obj/machinery/button{
+	id = "goatshutters"
+	},
+/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
-"LJ" = (
+"ZW" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
@@ -1600,14 +1586,14 @@ aa
 aa
 aa
 ab
-Le
+sr
 cd
 ap
 ap
 ap
 ap
 cj
-Le
+sr
 ab
 aa
 aa
@@ -4526,14 +4512,14 @@ aE
 aJ
 aN
 bZ
-LJ
+ZW
 ab
 aM
 aM
 aM
 aM
 ab
-hH
+xo
 bZ
 aN
 bH
@@ -5528,8 +5514,8 @@ ab
 aO
 aO
 aO
-ab
-bf
+US
+bo
 bo
 bo
 bo
@@ -5605,12 +5591,12 @@ ab
 ab
 ab
 ab
-ab
+sr
 bg
 bp
 bp
 bg
-ab
+sr
 ab
 ab
 ab
@@ -5689,7 +5675,7 @@ aa
 aa
 bu
 bu
-bz
+aD
 aa
 aa
 aa

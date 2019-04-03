@@ -89,18 +89,3 @@
 					/obj/item/toy/plush/slimeplushie)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
-
-/datum/supply_pack/costumes_toys/rubberpigeon
-	name = "Rubber Pigeon Crate"
-	desc = "Contains eight rubber pigeons that are perfect for pranking and or annoying your fellow coworkers!"
-	cost = 420
-	contains = list(/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon,
-					/obj/item/bikehorn/rubber_pigeon)
-	crate_name = "Rubber Pigeon Crate"
-	crate_type = /obj/structure/closet/crate/wooden
