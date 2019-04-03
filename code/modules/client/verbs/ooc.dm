@@ -80,7 +80,7 @@
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
 			return
 		last_ping_time = world.time
-	
+
 	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.

@@ -51,6 +51,7 @@ Difficulty: Insanely Hard
 	melee_damage_upper = 55
 	minbodytemp = 0
 	maxbodytemp = INFINITY
+	obj_damage = 400
 	vision_range = 5
 	aggro_vision_range = 18
 	move_force = MOVE_FORCE_OVERPOWERING
