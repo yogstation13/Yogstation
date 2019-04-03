@@ -67,15 +67,21 @@
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	//YOG START - Yog OOC
-	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
-	if(ping.Find(msg))
+	
+	//PINGS
+	var/regex/ping = regex(@"@(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	var/list/pinged = list()
+	while(ping.Find(msg)) // One of the few times that a do-while makes more sense than an while.
+		for(var/x in ping.group)
+			pinged |= ckey(x)
+	pinged &= GLOB.clients
+	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
 			return
 		last_ping_time = world.time
-	var/list/pinged = ping.group
-	for(var/x in pinged)
-		pinged[x] = ckey(pinged[x])
+	
+	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
@@ -101,6 +107,7 @@
 		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
 		oocmsg_toadmins = oocmsg
 	
+	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
 		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
