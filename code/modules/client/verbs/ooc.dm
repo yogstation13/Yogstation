@@ -69,12 +69,13 @@
 	//YOG START - Yog OOC
 	
 	//PINGS
-	var/regex/ping = regex(@"@(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
 	var/list/pinged = list()
-	while(ping.Find(msg)) // One of the few times that a do-while makes more sense than an while.
+	while(ping.Find(msg))
 		for(var/x in ping.group)
 			pinged |= ckey(x)
-	pinged &= GLOB.clients
+	pinged &= GLOB.clients // If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
 	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
