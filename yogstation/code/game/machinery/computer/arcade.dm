@@ -24,6 +24,35 @@
 	var/rows = 1
 	var/columns = 1
 	var/table[31][51]	//Make the board boys, 30x50 board
+	var/squareflag
+	var/squaremine
+	var/squarehidden
+	var/squareempty
+	var/squareminehit
+	var/square1
+	var/square2
+	var/square3
+	var/square4
+	var/square5
+	var/square6
+	var/square7
+	var/square8
+
+/obj/machinery/computer/arcade/minesweeper/Initialize()
+	squareflag = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
+	squaremine = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_mine")]"
+	squarehidden = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_hidden")]"
+	squareempty = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_empty")]"
+	squareminehit = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_minehit")]"
+	square1 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_1")]"
+	square2 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_2")]"
+	square3 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_3")]"
+	square4 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_4")]"
+	square5 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_5")]"
+	square6 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_6")]"
+	square7 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_7")]"
+	square8 = "[icon2html('yogstation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_8")]"
+	..()
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
 	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
@@ -41,7 +70,6 @@
 			user << browse(static_web+web_difficulty_menu,"window=minesweeper,size=400x500")
 	else
 		playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
-		generate_icons()
 		user << browse(saved_web,"window=minesweeper,size=400x500")
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
@@ -197,39 +225,39 @@
 				switch(table[y1][x1])
 					if(-10 to -1)
 						if(game_status != MINESWEEPER_GAME_PLAYING)
-							web += "<td><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+							web += "<td>[squareflag]</td>"
 						else
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img style='border:0' [squareflag]</a></td>"
 					if(0)
 						if(game_status != MINESWEEPER_GAME_PLAYING)
-							web += "<td><img src='minesweeper_mine.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+							web += "<td>[squaremine]</td>"
 						else
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img style='border:0' [squarehidden]</a></td>"	//Make unique hrefs for every square
 					if(1 to 9)
 						if(game_status != MINESWEEPER_GAME_PLAYING)
-							web += "<td><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+							web += "<td>[squarehidden]</td>"
 						else
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img style='border:0' [squarehidden]</a></td>"	//Make unique hrefs for every square
 					if(10)
-						web += "<td><img src='minesweeper_minehit.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[squareminehit]</td>"
 					if(11)
-						web += "<td><img src='minesweeper_empty.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[squareempty]</td>"
 					if(12)
-						web += "<td><img src='minesweeper_1.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square1]</td>"
 					if(13)
-						web += "<td><img src='minesweeper_2.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square2]</td>"
 					if(14)
-						web += "<td><img src='minesweeper_3.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square3]</td>"
 					if(15)
-						web += "<td><img src='minesweeper_4.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square4]</td>"
 					if(16)
-						web += "<td><img src='minesweeper_5.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square5]</td>"
 					if(17)
-						web += "<td><img src='minesweeper_6.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square6]</td>"
 					if(18)
-						web += "<td><img src='minesweeper_7.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square7]</td>"
 					if(19)
-						web += "<td><img src='minesweeper_8.dmi' style='border:0;display:block;'></td>"
+						web += "<td>[square8]</td>"
 			web += "</tr>"
 		web += "</table>"
 		web += "</tbody>"
@@ -281,7 +309,6 @@
 
 	web += "</div>"
 	saved_web = web
-	generate_icons()
 	user << browse(web,"window=minesweeper,size=400x500")
 	return
 
@@ -364,22 +391,6 @@
 				if(table[y3][x3] > 0 && table[y3][x3] < 10)
 					table[y3][x3] += 10
 					work_squares(y3, x3)	//Refresh so we check everything we might be missing
-
-/obj/machinery/computer/arcade/minesweeper/proc/generate_icons()
-	var/mob/user = usr
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_flag.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_mine.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_hidden.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_minehit.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_empty.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_1.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_2.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_3.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_4.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_5.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_6.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_7.dmi')
-	user << browse_rsc('yogstation/icons/arcade/minesweeper_8.dmi')
 
 /obj/machinery/computer/arcade/minesweeper/proc/explode_EVERYTHING()
 	var/mob/living/user = usr
