@@ -742,9 +742,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(view == CONFIG_GET(string/default_view))
 		//yogs start -- Adds customization and warnings
-		var/defview = CONFIG_GET(string/default_view)
-		var/newview = input("Select view range:", "FUCK YE", defview) in list(defview,10,12,14,32,64,128,"Custom...")
-		if(newview == "Custom")
+		var/newview = input("Select view range:", "FUCK YE", 7) in list(7,10,12,14,32,64,128,"Custom...")
+		if(newview == "Custom...")
 			newview = input("Enter custom view range:","FUCK YEEEEE") as num
 			if(!newview)
 				return
