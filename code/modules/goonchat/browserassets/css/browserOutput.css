@@ -267,15 +267,10 @@ em						{font-style: normal;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #3d5bc3;	font-weight: bold;}
 
-<<<<<<< HEAD
 .looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
 
 .adminsay   			{color: #996600;	font-weight: bold;} /*yogs - changes asay colour back*/
-.admin					{color: #386aff;	font-weight: bold;}
-=======
-.adminsay   			{color: #3d5bc3;	font-weight: bold;}
 .admin					{color: #3d5bc3;	font-weight: bold;}
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
 
 .name					{					font-weight: bold;}
 
@@ -284,15 +279,9 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
-<<<<<<< HEAD
-.radio					{color: #008000;}
-.sciradio				{color: #993399;}
-.comradio				{color: #204090;}  /* yogs */
-=======
 .radio					{color: #059223;}
 .sciradio				{color: #7c00e6;}
-.comradio				{color: #3d5bc3;}
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
+.comradio				{color: #204090;}  /* yogs */
 .secradio				{color: #a30000;}
 .medradio				{color: #397ea5;}
 .engradio				{color: #c75f35;}
@@ -406,8 +395,8 @@ h1.alert, h2.alert		{color: #99aab5;}
 .big					{font-size: 24px;}
 .reallybig				{font-size: 32px;}
 .extremelybig			{font-size: 40px;}
-.greentext				{color: #059223;	font-size: 24px;}
-.redtext				{color: #c51e1e;	font-size: 24px;}
+.greentext				{color: #00FF00;	font-size: 24px;} /* yogs -- pure Greentext, as it should be */
+.redtext				{color: #FF0000;	font-size: 24px;} /* yogs -- pure Redtext, as it should be */
 .clown					{color: #FF69Bf;	font-size: 24px; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif; font-style: italic;}
 .hypnophrase			{color: #2c2f33;	font-weight: bold; animation: hypnocolor 1500ms infinite;}
