@@ -75,7 +75,7 @@
 		last_ping_time = world.time
 	var/list/pinged = ping.group
 	for(var/x in pinged)
-		x = ckey(x)
+		pinged[x] = ckey(pinged[x])
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
