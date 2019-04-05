@@ -150,13 +150,8 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-<<<<<<< HEAD
 		to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, keywordparsedmsg) // yogs - Yog Tickets
-=======
-		to_chat(src, "<span_class='notice'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></span>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<span_class='danger'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</span>")
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
@@ -166,32 +161,23 @@
 				to_chat(src, "<span_class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
 
 				//omg this is dumb, just fill in both their tickets
-<<<<<<< HEAD
-				admin_ticket_log(src, msg, FALSE) // yogs - Yog Tickets
+				// yogs start - Yog Tickets
+				admin_ticket_log(src, msg, FALSE) 
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src)
-=======
-				var/interaction_message = "<font color='purple'>PM from-<b>[key_name(src, recipient, 1)]</b> to-<b>[key_name(recipient, src, 1)]</b>: [keywordparsedmsg]</span>"
-				admin_ticket_log(src, interaction_message)
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
+				// yogs end - Yog Tickets
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 
 			else		//recipient is an admin but sender is not
-<<<<<<< HEAD
+				//YOGS START -- Yogs Tickets
 				if(!current_ticket)
-					to_chat(src, "<font color='blue'>Ticket closed, please make a new one before trying to contact admins!</span>") // yogs - Yog Tickets
+					to_chat(src, "<span class='notice'>Ticket closed, please make a new one before trying to contact admins!</span>")
 					return
-				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
-				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>") // yogs - Yog Tickets
-				to_chat(src, "<font color='blue'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
-=======
-				var/replymsg = "<span_class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>"
-				admin_ticket_log(src, replymsg)
-				to_chat(recipient, replymsg)
-				to_chat(src, "<span_class='notice'>PM to-<b>Admins</b>: <span class='linkify'>[msg]</span></span>")
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
-
+				admin_ticket_log(src, keywordparsedmsg, FALSE)
+				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>")
+				//YOGS END
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -208,11 +194,7 @@
 				to_chat(recipient, "<span_class='danger'><i>Click on the administrator's name to reply.</i></span>")
 				to_chat(src, "<span_class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>")
 
-<<<<<<< HEAD
 				admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
-=======
-				admin_ticket_log(recipient, "<span_class='notice'>PM From [key_name_admin(src)]: [keywordparsedmsg]</span>")
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
 
 				//always play non-admin recipients the adminhelp sound
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -330,11 +312,7 @@
 	to_chat(C, "<span_class='danger'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>")
 	to_chat(C, "<span_class='danger'><i>Click on the administrator's name to reply.</i></span>")
 
-<<<<<<< HEAD
 	admin_ticket_log(C, msg) // yogs - Yog Tickets
-=======
-	admin_ticket_log(C, "<span_class='notice'>PM From [irc_tagged]: [msg]</span>")
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound
