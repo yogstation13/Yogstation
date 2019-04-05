@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		L.damage += d
 
 /mob/living/carbon/proc/liver_failure()
-	reagents.metabolize(src, can_overdose=FALSE, liverless = !has_trait(TRAIT_STABLEHEART)) // make it so reagents process normally if you have corazone
+	reagents.metabolize(src, can_overdose=has_trait(TRAIT_STABLEHEART), liverless = !has_trait(TRAIT_STABLEHEART)) // make it so reagents process normally if you have corazone
 	if(has_trait(TRAIT_STABLEHEART))
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
