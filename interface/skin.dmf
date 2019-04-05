@@ -76,10 +76,6 @@ window "mainwindow"
 		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
-<<<<<<< HEAD
-=======
-		background-color = #272727
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
 		font-size = 10
 		background-color = #d3b5b5
 		is-default = true
@@ -363,8 +359,10 @@ window "statwindow"
 		background-color = #2c2f33
 		is-default = true
 		saved-params = ""
-<<<<<<< HEAD
-
+		tab-text-color = #99aab5
+		tab-background-color = #272727
+		prefix-color = #ebebeb
+		suffix-color = #ebebeb
 window "Telecomms IDE"
 	elem "Telecomms IDE"
 		type = MAIN
@@ -459,9 +457,3 @@ window "Telecomms IDE"
 		command = "cancel"
 		multi-line = true
 		no-command = true
-=======
-		tab-text-color = #99aab5
-		tab-background-color = #272727
-		prefix-color = #ebebeb
-		suffix-color = #ebebeb
->>>>>>> 6b6537cccd... Adds toggleable darkmode to the game! (#43072)
