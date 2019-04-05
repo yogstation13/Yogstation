@@ -196,21 +196,13 @@
 			return
 
 		if(A.hasPower())
-<<<<<<< HEAD
 			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing the airlock open.</span>", //yogs modified description
-=======
-			user.visible_message("<span class='warning'>[user] jams [src] into the airlock and starts prying it open!</span>", "<span class='warning'>We start forcing the [A] open.</span>", \
->>>>>>> bab739ca81... Fix armblades sometimes having trouble prying open doors (#43481)
 			"<span class='italics'>You hear a metal screeching sound.</span>")
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 			if(!do_after(user, 100, target = A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
-<<<<<<< HEAD
 		user.visible_message("<span class='warning'>[user] forces the airlock to open with [user.p_their()] [src]!</span>", "<span class='warning'>We force the airlock to open.</span>", //yogs modified description
-=======
-		user.visible_message("<span class='warning'>[user] forces the airlock to open with [user.p_their()] [src]!</span>", "<span class='warning'>We force the [A] to open.</span>", \
->>>>>>> bab739ca81... Fix armblades sometimes having trouble prying open doors (#43481)
 		"<span class='italics'>You hear a metal screeching sound.</span>")
 		A.open(2)
 
