@@ -748,7 +748,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(!newview)
 				return
 		if(newview > 64)
-			if(!alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?","Yes","No") != "Yes")
+			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
 		change_view(newview)
 		//yogs end
