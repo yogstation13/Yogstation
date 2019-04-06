@@ -54,7 +54,7 @@ Represents a special statement in the code triggered by a keyword.
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock)) // Exit out of the program by setting the tokens list size to the same as index.
 					parser.tokens.len = parser.index
 					return
-				var/node/statement/ReturnStatement/stmt=new
+				var/node/statement/ReturnStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'return' token
 				stmt.value=parser.ParseExpression()
 				parser.curBlock.statements+=stmt
@@ -62,7 +62,7 @@ Represents a special statement in the code triggered by a keyword.
 		kwIf
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/IfStatement/stmt=new
+				var/node/statement/IfStatement/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'if' token
 				stmt.cond=parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -85,7 +85,7 @@ Represents a special statement in the code triggered by a keyword.
 					parser.errors += new/scriptError/ExpectedToken("if statement", parser.curToken)
 					return KW_FAIL
 
-				var/node/statement/IfStatement/ElseIf/stmt = new
+				var/node/statement/IfStatement/ElseIf/stmt = new(parser.curToken)
 				parser.NextToken()  //skip 'if' token
 				stmt.cond = parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -116,7 +116,7 @@ Represents a special statement in the code triggered by a keyword.
 		kwWhile
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/WhileLoop/stmt=new
+				var/node/statement/WhileLoop/stmt=new(parser.curToken)
 				parser.NextToken()  //skip 'while' token
 				stmt.cond=parser.ParseParenExpression()
 				if(!parser.CheckToken(")", /token/symbol))
@@ -127,13 +127,35 @@ Represents a special statement in the code triggered by a keyword.
 				stmt.block=new
 				parser.AddBlock(stmt.block)
 
+		kwFor
+			Parse(n_Parser/nS_Parser/parser)
+				.=KW_PASS
+				var/node/statement/ForLoop/stmt = new(parser.curToken)
+				parser.NextToken()
+				if(!parser.CheckToken("(", /token/symbol))
+					return KW_FAIL
+				stmt.init = parser.ParseExpression()
+				if(!parser.CheckToken(";", /token/end))
+					return KW_FAIL
+				stmt.test = parser.ParseExpression()
+				if(!parser.CheckToken(";", /token/end))
+					return KW_FAIL
+				stmt.increment = parser.ParseExpression(list(")"))
+				if(!parser.CheckToken(")", /token/symbol))
+					return KW_FAIL
+				if(!parser.CheckToken("{", /token/symbol, skip=0))
+					return KW_ERR
+				parser.curBlock.statements += stmt
+				stmt.block = new
+				parser.AddBlock(stmt.block)
+
 		kwBreak
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
-				var/node/statement/BreakStatement/stmt=new
+				var/node/statement/BreakStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
 				parser.curBlock.statements+=stmt
 
@@ -143,14 +165,14 @@ Represents a special statement in the code triggered by a keyword.
 				if(istype(parser.curBlock, /node/BlockDefinition/GlobalBlock))
 					parser.errors+=new/scriptError/BadToken(parser.curToken)
 					. = KW_WARN
-				var/node/statement/ContinueStatement/stmt=new
+				var/node/statement/ContinueStatement/stmt=new(parser.curToken)
 				parser.NextToken()   //skip 'break' token
 				parser.curBlock.statements+=stmt
 
 		kwDef
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/FunctionDefinition/def=new
+				var/node/statement/FunctionDefinition/def=new(parser.curToken)
 				parser.NextToken() //skip 'def' token
 				if(!parser.options.IsValidID(parser.curToken.value))
 					parser.errors+=new/scriptError/InvalidID(parser.curToken)
@@ -183,7 +205,7 @@ Represents a special statement in the code triggered by a keyword.
 					parser.curBlock.statements+=def
 				else if(parser.curToken.value=="{" && istype(parser.curToken, /token/symbol))
 					def.block = new
-					parser.curBlock.statements+=def
+					parser.curBlock.statements.Insert(1, def) // insert into the beginning so that all functions are defined first
 					parser.curBlock.functions[def.func_name]=def
 					parser.AddBlock(def.block)
 				else

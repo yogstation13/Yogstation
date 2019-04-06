@@ -51,6 +51,7 @@
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 					twin_storage.max_combined_w_class = 35
+					twin_storage.max_items = 21
 					twin.cut = FALSE
 					twin.appears_split = TRUE
 					twin.name = "split [initial(twin.name)]"
@@ -90,6 +91,7 @@
 			m_storage.allow_big_nesting = TRUE
 			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 			m_storage.max_combined_w_class = 35
+			m_storage.max_items = 21
 			for(var/datum/component/storage/slave in new_slaves)
 				slave.change_master(m_storage)
 			for(var/obj/item/I in src)
@@ -192,4 +194,20 @@
 	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
 	item_state = "snail_green"
 	icon_state = "snail_green"
+
+/obj/item/storage/backpack/banana
+	name = "banana backpack"
+	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon_state = "bananabackpack"
+	item_state = "bananabackpack"
+
+/obj/item/storage/backpack/clownface
+	name = "clown face backpack"
+	desc = "Sometimes there are some things better left off not existing, this is one of them."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon_state = "clownfacebackpack"
+	item_state = "clownfacebackpack"
 

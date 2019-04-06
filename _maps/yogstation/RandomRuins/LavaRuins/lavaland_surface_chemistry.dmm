@@ -10,11 +10,11 @@
 /area/space)
 "d" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "e" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/mineral/plastitanium/red,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "f" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l";
@@ -25,26 +25,26 @@
 	dir = 4
 	},
 /turf/closed/wall/mineral/plastitanium,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "g" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "h" = (
 /turf/open/floor/mineral/plastitanium/red,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "i" = (
 /obj/machinery/computer/shuttle,
 /turf/open/floor/mineral/plastitanium/red,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "j" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "k" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -57,7 +57,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "l" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
@@ -70,7 +70,7 @@
 	},
 /obj/item/extinguisher,
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "m" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -95,7 +95,7 @@
 /obj/item/reagent_containers/glass/bottle/plasma,
 /obj/item/reagent_containers/glass/bottle/plasma,
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "p" = (
 /obj/effect/turf_decal/tile/blue{
 	icon_state = "tile_corner";
@@ -106,7 +106,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "q" = (
 /obj/structure/fans,
 /obj/effect/turf_decal/tile/blue{
@@ -114,7 +114,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "r" = (
 /obj/item/clothing/under/pirate,
 /obj/effect/decal/cleanable/blood,
@@ -139,11 +139,12 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "v" = (
 /obj/machinery/door/airlock/hatch,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "w" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
@@ -162,10 +163,10 @@
 	name = "Plasma Synthetizing Recipe"
 	},
 /turf/closed/wall/r_wall,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "A" = (
 /turf/closed/wall/r_wall,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "B" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
@@ -180,7 +181,7 @@
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "C" = (
 /obj/effect/turf_decal/tile/blue{
 	icon_state = "tile_corner";
@@ -192,7 +193,7 @@
 	},
 /mob/living/simple_animal/hostile/pirate,
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "D" = (
 /obj/effect/decal/cleanable/chem_pile,
 /obj/effect/turf_decal/tile/blue{
@@ -204,7 +205,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "E" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/tile/blue{
@@ -216,7 +217,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "F" = (
 /obj/effect/turf_decal/tile/blue{
 	icon_state = "tile_corner";
@@ -228,7 +229,7 @@
 	},
 /mob/living/simple_animal/hostile/pirate/ranged,
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "G" = (
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/silver,
@@ -241,7 +242,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "H" = (
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/turf_decal/tile/blue{
@@ -253,7 +254,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "I" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/tile/blue{
@@ -265,7 +266,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "J" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
@@ -277,7 +278,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "K" = (
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/plasma,
@@ -297,7 +298,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "L" = (
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/diamond,
@@ -310,7 +311,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "M" = (
 /obj/structure/table,
 /obj/item/stack/sheet/mineral/gold{
@@ -326,7 +327,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "N" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -336,7 +337,7 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "O" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil/yellow,
@@ -349,14 +350,14 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "P" = (
 /obj/machinery/chem_master,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "Q" = (
 /obj/machinery/chem_dispenser,
 /obj/structure/cable/yellow{
@@ -366,7 +367,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "R" = (
 /obj/machinery/chem_heater,
 /obj/structure/cable/yellow{
@@ -376,14 +377,14 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "S" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "T" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -392,14 +393,17 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
 "W" = (
 /obj/machinery/power/port_gen/pacman{
 	sheets = 100
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered)
+"Z" = (
+/turf/open/floor/plating,
+/area/ruin/powered)
 
 (1,1,1) = {"
 a
@@ -608,7 +612,7 @@ b
 r
 s
 v
-x
+Z
 v
 p
 D

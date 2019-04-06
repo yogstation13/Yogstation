@@ -148,7 +148,7 @@
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 
-	if(required_status && (status != required_status))
+	if(!(required_status == -1) && (required_status && (status != required_status))) //yogs -- adds in BODYPART_ANY
 		return FALSE
 
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
@@ -173,9 +173,8 @@
 	var/total_damage = brute + burn
 
 	if(total_damage > can_inflict)
-		var/excess = total_damage - can_inflict
-		brute = round(brute * (excess / total_damage),DAMAGE_PRECISION)
-		burn = round(burn * (excess / total_damage),DAMAGE_PRECISION)
+		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
+		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
 
 	brute_dam += brute
 	burn_dam += burn
@@ -197,8 +196,8 @@
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
 /obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
-
-	if(required_status && (status != required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.
+	// yogs -- line below updated to allow for robotic body part healing override
+	if(!(required_status == BODYPART_ANY) && (required_status && (status != required_status)) ) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
 
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)

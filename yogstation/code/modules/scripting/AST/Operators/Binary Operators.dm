@@ -172,3 +172,15 @@
 //
 	Modulo
 		precedence=OOP_MULTIPLY
+
+	Assign
+		precedence=OOP_ASSIGN
+		BitwiseAnd
+		BitwiseOr
+		BitwiseXor
+		Add
+		Subtract
+		Multiply
+		Divide
+		Power
+		Modulo

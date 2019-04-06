@@ -231,7 +231,7 @@
 			L[item] = 1
 		total += L[item]
 
-	total = rand(1, total)
+	total *= rand() // Yogs -- Allows for noninteger weights
 	for (item in L)
 		total -=L [item]
 		if (total <= 0)

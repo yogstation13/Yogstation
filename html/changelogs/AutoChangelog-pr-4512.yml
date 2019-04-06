@@ -1,4 +1,0 @@
-author: " ShizCalev"
-delete-after: true 
-changes: 
-  - bugfix: "Corrected a rogue linebreak in atmos canister warning/logging messages."
