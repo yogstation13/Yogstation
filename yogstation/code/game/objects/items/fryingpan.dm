@@ -15,6 +15,9 @@
 	materials = list(MAT_METAL=75)
 	attack_verb = list("BONKED", "panned")
 	hitsound = 'yogstation/sound/weapons/pan.ogg'
+	
+/obj/item/melee/fryingpan/proc/get_clamped_volume()
+	return 100 // BONK!
 
 /obj/item/melee/fryingpan/bananium
 	name = "bananium frying pan"
