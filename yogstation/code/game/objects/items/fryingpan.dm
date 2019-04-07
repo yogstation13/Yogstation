@@ -37,5 +37,12 @@
 		M.adjustEarDamage(bonkpower)
 	if(pantrify == TRUE && M.stat == DEAD)
 		playsound(M, 'sound/effects/supermatter.ogg', 100)
-		M.petrify(600, TRUE)
+		var/S = M.petrify(600, TRUE)
+		if(S)
+			var/obj/structure/statue/petrified/statue = S
+			statue.name = "bananium plated [statue.name]"
+			statue.desc = "An incredibly lifelike bananium carving."
+			statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
+			statue.max_integrity = 9999
+			statue.obj_integrity = 9999
 	return ..()

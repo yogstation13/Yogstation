@@ -15,7 +15,8 @@
 					/obj/item/kitchen/rollingpin = 2,
 					/obj/item/kitchen/knife = 2)
 	contraband = list(/obj/item/kitchen/rollingpin = 2,
-					  /obj/item/kitchen/knife/butcher = 2)
+					  /obj/item/kitchen/knife/butcher = 2, // Yogs -- Pan
+					  /obj/item/melee/fryingpan = 2) // Yogs -- Pan
 	refill_canister = /obj/item/vending_refill/dinnerware
 	default_price = 5
 	extra_price = 50
