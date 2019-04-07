@@ -51,6 +51,8 @@
 
 	if(discord_id)
 		webhook_send_mhelp("[key_name_mentor(src)]-><@[discord_id]>", msg)
+	else
+		webhook_send_mhelp("[key_name_mentor(src)]->[key_name_mentor(C)]", msg)
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)

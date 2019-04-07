@@ -44,6 +44,7 @@
 "h" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
@@ -54,14 +55,12 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
 "j" = (
 /obj/structure/chair/bronze,
-/obj/machinery/light{
-	dir = 1
-	},
 /mob/living/simple_animal/hostile/retaliate/goat/king,
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
@@ -69,6 +68,7 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
@@ -80,43 +80,7 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"l" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"m" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"n" = (
-/obj/machinery/light,
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
@@ -173,7 +137,12 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"x" = (
+"H" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"I" = (
 /obj/machinery/door/airlock/gold/glass{
 	desc = "Once you go in the portal past this door there is no going back...";
 	name = "POINT OF NO RETURN"
@@ -184,38 +153,11 @@
 	name = "gold floor"
 	},
 /area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"H" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/portal/permanent/one_way/keep{
-	id = "king goat arena";
-	name = "king goat arena portal"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"I" = (
-/obj/machinery/light,
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"L" = (
+"K" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
 	height = 1;
@@ -228,28 +170,15 @@
 	name = "gold floor"
 	},
 /area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
-"V" = (
-/turf/open/floor/mineral/gold,
-/area/ruin/powered{
-	name = "King Goat Lair"
-	})
-"W" = (
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"X" = (
+"L" = (
 /obj/effect/portal/permanent/one_way/destroy{
 	id = "king goat arena";
-	name = "king goat arena portal"
+	name = "king goat arena portal";
+	teleport_channel = "free"
 	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
@@ -257,6 +186,34 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"Q" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "King Goat Arena";
+	noteleport = 1
+	})
+"W" = (
+/obj/effect/portal/permanent/one_way/keep{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered{
+	dynamic_lighting = 0;
 	name = "King Goat Arena";
 	noteleport = 1
 	})
@@ -328,9 +285,9 @@ a
 b
 q
 f
-V
+H
 f
-V
+H
 b
 a
 a
@@ -356,11 +313,11 @@ a
 a
 a
 d
-V
+H
 g
 p
 s
-V
+H
 d
 a
 a
@@ -386,11 +343,11 @@ a
 a
 a
 b
-V
+H
 r
-V
+H
 r
-V
+H
 b
 a
 a
@@ -478,13 +435,13 @@ i
 i
 i
 i
-l
+i
 i
 i
 i
 i
 h
-L
+K
 h
 "}
 (3,1,2) = {"
@@ -499,7 +456,7 @@ i
 i
 i
 h
-W
+Q
 h
 "}
 (4,1,2) = {"
@@ -514,7 +471,7 @@ i
 i
 i
 h
-W
+Q
 h
 "}
 (5,1,2) = {"
@@ -529,7 +486,7 @@ i
 i
 i
 h
-W
+Q
 h
 "}
 (6,1,2) = {"
@@ -542,9 +499,9 @@ i
 i
 i
 i
-n
+i
 h
-W
+Q
 h
 "}
 (7,1,2) = {"
@@ -557,9 +514,9 @@ i
 i
 i
 i
-X
+L
 h
-I
+Q
 h
 "}
 (8,1,2) = {"
@@ -572,9 +529,9 @@ i
 i
 i
 i
-n
+i
 h
-W
+Q
 h
 "}
 (9,1,2) = {"
@@ -589,7 +546,7 @@ i
 i
 i
 h
-W
+Q
 h
 "}
 (10,1,2) = {"
@@ -604,7 +561,7 @@ i
 i
 i
 h
-W
+Q
 h
 "}
 (11,1,2) = {"
@@ -619,7 +576,7 @@ i
 i
 i
 h
-x
+I
 h
 "}
 (12,1,2) = {"
@@ -628,13 +585,13 @@ i
 i
 i
 i
-m
+i
 i
 i
 i
 i
 h
-H
+W
 h
 "}
 (13,1,2) = {"
