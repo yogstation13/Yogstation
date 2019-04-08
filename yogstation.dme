@@ -2908,6 +2908,7 @@
 #include "yogstation\code\game\objects\items\crayons.dm"
 #include "yogstation\code\game\objects\items\deodorant.dm"
 #include "yogstation\code\game\objects\items\extinguisher.dm"
+#include "yogstation\code\game\objects\items\fryingpan.dm"
 #include "yogstation\code\game\objects\items\plushes.dm"
 #include "yogstation\code\game\objects\items\premadepapers.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
