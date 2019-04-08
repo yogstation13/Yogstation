@@ -33,3 +33,9 @@
 		var/obj/item/flashlight/F = I
 		F.on = TRUE
 		F.update_brightness()
+<<<<<<< HEAD
+=======
+
+/obj/item/vending_refill/security
+	icon_state = "refill_sec"
+>>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
