@@ -1,4 +1,0 @@
-author: "Nickvr628"
-delete-after: true 
-changes: 
-  - rscadd: "There are now two authenticators on the bridge so two Heads (or a crafty single head) can activate red alert from the same location."
