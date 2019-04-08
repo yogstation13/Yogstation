@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Goonchat properly loads the white theme by default."
+  - bugfix: "The input bar no longer has weirdness with color when swapping themes."
