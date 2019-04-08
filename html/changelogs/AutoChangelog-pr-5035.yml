@@ -1,0 +1,5 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Dude, you have NO IDEA how fuzzily-snuzzily the OOC pinging regex is now. It's so good."
+  - bugfix: "You should no longer be stopped from using OOC after putting @ next to some of your words."
