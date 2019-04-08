@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Unlocking the captain role now uses the department based job unlock system, to unlock captain, you must acquire the required play time (default 3 hours) as head of staff, rather than as any crew member."

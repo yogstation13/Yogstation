@@ -298,7 +298,7 @@
 		if(candidates.len)
 			ckey = input("Pick the player you want to respawn as a xeno.", "Suitable Candidates") as null|anything in candidates
 		else
-			to_chat(usr, "<font color='red'>Error: create_xeno(): no suitable candidates.</font>")
+			to_chat(usr, "<span class='danger'>Error: create_xeno(): no suitable candidates.</span>")
 	if(!istext(ckey))
 		return 0
 
@@ -741,7 +741,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "switches between 1x and custom views"
 
 	if(view == CONFIG_GET(string/default_view))
-		change_view(input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
+		//yogs start -- Adds customization and warnings
+		var/newview = input("Select view range:", "FUCK YE", 7) in list(7,10,12,14,32,64,128,"Custom...")
+		if(newview == "Custom...")
+			newview = input("Enter custom view range:","FUCK YEEEEE") as num
+			if(!newview)
+				return
+		if(newview > 64)
+			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
+				return
+		change_view(newview)
+		//yogs end
 	else
 		change_view(CONFIG_GET(string/default_view))
 
