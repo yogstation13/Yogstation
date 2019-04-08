@@ -118,6 +118,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
@@ -246,7 +247,7 @@ GLOBAL_VAR(restart_counter)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status()
+/world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid
 
 	var/list/features = list()
 
@@ -270,21 +271,25 @@ GLOBAL_VAR(restart_counter)
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
-	s += " (" //yog start hub message
-	s += "<a href=\"https://forums.yogstation.net/index.php\">" //Change this to wherever you want the hub to link to.
-	s += "Forums"
-	s += "</a>" //yog end
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
 	s += ")"
 
-	var/n = 0
-	for (var/mob/M in GLOB.player_list)
-		if (M.client)
-			n++
+	var/players = GLOB.clients.len
 
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
+	var/popcaptext = ""
+	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
+	if (popcap)
+		popcaptext = "/[popcap]"
+
+	if (players > 1)
+		features += "[players][popcaptext] players"
+	else if (players > 0)
+		features += "[players][popcaptext] player"
+
+	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
 
 	if (!host && hostedby)
 		features += "hosted by <b>[hostedby]</b>"

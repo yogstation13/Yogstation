@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 <<<<<<< HEAD
 //Color Defines
-#define OOC_COLOR  "#002eb8"
+#define OOC_COLOR  "#386aff"
 
 =======
 >>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)

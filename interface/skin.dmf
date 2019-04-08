@@ -1,6 +1,5 @@
 macro "default"
 
-
 menu "menu"
 	elem 
 		name = "&File"
@@ -75,10 +74,6 @@ window "mainwindow"
 		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
-<<<<<<< HEAD
-		font-size = 10
-=======
->>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 		background-color = #d3b5b5
 		is-default = true
 		saved-params = "command"
@@ -176,6 +171,8 @@ window "infowindow"
 		size = 80x20
 		anchor1 = 3,0
 		anchor2 = 19,0
+		text-color = #99aab5
+		background-color = #494949
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
@@ -185,6 +182,8 @@ window "infowindow"
 		size = 80x20
 		anchor1 = 19,0
 		anchor2 = 34,0
+		text-color = #99aab5
+		background-color = #494949
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -259,6 +258,7 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = #ffffff
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "browseroutput"
@@ -267,7 +267,6 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #ffffff
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
@@ -308,7 +307,7 @@ window "preferences_window"
 		anchor2 = 100,100
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
-
+		
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
@@ -327,7 +326,6 @@ window "statwindow"
 		is-default = true
 		saved-params = ""
 
-<<<<<<< HEAD
 window "Telecomms IDE"
 	elem "Telecomms IDE"
 		type = MAIN
@@ -422,5 +420,3 @@ window "Telecomms IDE"
 		command = "cancel"
 		multi-line = true
 		no-command = true
-=======
->>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)

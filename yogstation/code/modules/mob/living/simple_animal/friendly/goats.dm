@@ -170,7 +170,7 @@
 	light_color = LIGHT_COLOR_GREEN
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	radiation_pulse(src, 200) // It gets stronker as time passes
+	radiation_pulse(src, 600) // It gets stronker as time passes
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"

@@ -6,7 +6,7 @@
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
 	mutant_heart = /obj/item/organ/heart/vampire
@@ -58,9 +58,9 @@
 		C.adjust_fire_stacks(6)
 		C.IgniteMob()
 
-/datum/species/vampire/check_weakness(obj/item/weapon, mob/living/attacker)
+/datum/species/vampire/check_species_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/nullrod/whip))
-		return 1 //Vampire killer.
+		return 1 //Whips deal 2x damage to vampires. Vampire killer.
 	return 0
 
 /obj/item/organ/tongue/vampire
