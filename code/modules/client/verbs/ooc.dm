@@ -71,18 +71,25 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	//YOG START - Yog OOC
-	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
-	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
-	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
-	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
-	if(ping.Find(msg))
+	
+	//PINGS
+	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
+	var/list/pinged = list()
+	while(ping.Find(msg))
+		for(var/x in ping.group)
+			pinged |= ckey(x)
+	pinged &= GLOB.clients // If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
 			return
 		last_ping_time = world.time
-	var/list/pinged = ping.group
-	for(var/x in pinged)
-		pinged[x] = ckey(pinged[x])
+	
+	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
+	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
+	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
+	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
@@ -109,6 +116,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
 	
+	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
 		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
