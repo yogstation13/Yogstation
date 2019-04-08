@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(donators)
 	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links line
 	
 	//TAGLINE
-	s += "<br>[pick(world.file2list("yogstation/strings/taglines.txt"))]<br>"
+	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
 	
 	//MAP AND GAMEMODE
 	if(GLOB.master_mode != "secret")
