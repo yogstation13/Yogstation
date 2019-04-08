@@ -1,5 +1,6 @@
 GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
@@ -69,8 +70,10 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
-<<<<<<< HEAD
 	//YOG START - Yog OOC
+	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
+	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
+	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
 	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
 	if(ping.Find(msg))
 		if((world.time - last_ping_time) < 30)
@@ -92,17 +95,18 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		if(holder.fakekey) // If they're stealhminning
 			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg = "<span class='ooc'><font color='[bussedcolor]'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 			// ^ Message sent to normal people
 		else
 			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
 			oocmsg_toadmins = oocmsg
 	else
+		oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
 		if(is_mentor()) // If the speaker is a mentor
-			oocmsg = "<font color='[GLOB.mentor_ooc_colour]'>"
+			oocmsg += "<font color='[GLOB.mentor_ooc_colour]'>"
 		else
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'>"
-		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg += "<font color='[bussedcolor]'>"
+		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
 	
 	for(var/c in GLOB.clients)
@@ -121,28 +125,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
 			to_chat(C,sentmsg)
 	//YOGS END
-=======
-	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(holder)
-				if(!holder.fakekey || C.holder)
-					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-					else
-						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
-				else
-					if(GLOB.OOC_COLOR)
-						to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-					else
-						to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
 
-			else if(!(key in C.prefs.ignoring))
-				if(GLOB.OOC_COLOR)
-					to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-				else
-					to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
-
->>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
 		if(toggle != GLOB.ooc_allowed)
@@ -162,12 +145,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-<<<<<<< HEAD
-GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
-GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
-
-=======
->>>>>>> 930e9dc501... [READY] Darkmode fixes (#43252)
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
