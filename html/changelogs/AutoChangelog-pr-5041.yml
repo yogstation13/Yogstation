@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "Nonstandard radio frequencies now have their own colour!"

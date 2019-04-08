@@ -195,3 +195,19 @@
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
+/obj/item/storage/backpack/banana
+	name = "banana backpack"
+	desc = "Is it a backpack made of bananas or a backpack with a banana texture? The world may never know."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon_state = "bananabackpack"
+	item_state = "bananabackpack"
+
+/obj/item/storage/backpack/clownface
+	name = "clown face backpack"
+	desc = "Sometimes there are some things better left off not existing, this is one of them."
+	icon = 'yogstation/icons/obj/storage.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
+	icon_state = "clownfacebackpack"
+	item_state = "clownfacebackpack"
+
