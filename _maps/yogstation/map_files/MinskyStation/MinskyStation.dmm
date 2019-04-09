@@ -67,7 +67,6 @@
 	})
 "aaj" = (
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/smes/engineering,
@@ -94,14 +93,10 @@
 	})
 "aam" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
 /obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8";
 	pixel_y = 0
 	},
@@ -167,8 +162,7 @@
 	})
 "aas" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/engineering,
 /obj/effect/turf_decal/bot,
@@ -228,12 +222,10 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	icon_state = "0-2"
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	icon_state = "0-4"
 	},
 /obj/machinery/door/firedoor/heavy{
 	layer = 2.7;
@@ -246,11 +238,9 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/door/firedoor/heavy{
@@ -264,11 +254,9 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	icon_state = "0-2"
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/door/firedoor/heavy{
@@ -286,8 +274,7 @@
 /area/engine/engineering)
 "aaF" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	pixel_y = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/chair/stool,
@@ -418,8 +405,7 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -640,15 +626,13 @@
 /area/tcommsat/computer)
 "abq" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	pixel_y = 0
+	icon_state = "4-8"
 	},
 /turf/closed/wall/r_wall,
 /area/tcommsat/entrance)
 "abr" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	pixel_y = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 8;
@@ -822,8 +806,7 @@
 	pixel_y = 3
 	},
 /obj/structure/cable{
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -875,7 +858,6 @@
 "abS" = (
 /obj/structure/table,
 /obj/machinery/computer/libraryconsole/bookmanagement{
-	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -974,8 +956,7 @@
 	dir = 10
 	},
 /obj/structure/cable{
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
@@ -989,8 +970,7 @@
 	dir = 8
 	},
 /obj/structure/cable{
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -1037,8 +1017,7 @@
 /area/security/prison)
 "acn" = (
 /obj/structure/cable{
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/closed/wall,
 /area/security/prison)
@@ -1066,8 +1045,7 @@
 /area/tcommsat/server)
 "acs" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	pixel_y = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
