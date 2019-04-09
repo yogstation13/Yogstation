@@ -638,6 +638,7 @@
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
+		var/anticpr = min(C.getOxyLoss(), 10) // yogs - for incompatible lungs
 
 		if(C.health > C.crit_threshold)
 			return
@@ -648,7 +649,10 @@
 		log_combat(src, C, "CPRed")
 		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
 		if(they_breathe && they_ashlung && !we_ashlung)
-			var/anticpr = min(C.getOxyLoss(), 10)
+			C.adjustOxyLoss(anticpr)
+			C.updatehealth()
+			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+		else if(they_breathe && they_lung && we_ashlung)
 			C.adjustOxyLoss(anticpr)
 			C.updatehealth()
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
