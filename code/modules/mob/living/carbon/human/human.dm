@@ -636,6 +636,8 @@
 
 		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
+		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
+		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
 
 		if(C.health > C.crit_threshold)
 			return
@@ -644,8 +646,14 @@
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
-
-		if(they_breathe && they_lung)
+		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
+		if(they_breathe && they_ashlung && !we_ashlung)
+			var/anticpr = min(C.getOxyLoss(), 10)
+			C.adjustOxyLoss(anticpr)
+			C.updatehealth()
+			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+		//yogs end
+		else if(they_breathe && they_lung)
 			var/suff = min(C.getOxyLoss(), 7)
 			C.adjustOxyLoss(-suff)
 			C.updatehealth()
