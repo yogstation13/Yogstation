@@ -27350,15 +27350,13 @@
 	dir = 8;
 	icon_state = "direction_sec";
 	pixel_x = 0;
-	pixel_y = 8;
-	tag = "icon-direction_sec (EAST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/medical{
 	dir = 8;
 	icon_state = "direction_med";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_med (WEST)"
+	pixel_y = -8
 	},
 /obj/structure/sign/directions/engineering{
 	desc = "A direction sign, pointing out which way the bridge is.";
@@ -27376,15 +27374,13 @@
 	dir = 4;
 	icon_state = "direction_sci";
 	pixel_x = 0;
-	pixel_y = 0;
-	tag = "icon-direction_sci (EAST)"
+	pixel_y = 0
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
 	icon_state = "direction_evac";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_evac (EAST)"
+	pixel_y = -8
 	},
 /obj/structure/sign/directions/engineering{
 	desc = "A direction sign, pointing out which way the engineering department is.";
@@ -35138,8 +35134,7 @@
 	dir = 4;
 	icon_state = "direction_sec";
 	pixel_x = 0;
-	pixel_y = 0;
-	tag = "icon-direction_sec (NORTH)"
+	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -35373,7 +35368,6 @@
 	},
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -38517,8 +38511,7 @@
 	dir = 8;
 	icon_state = "direction_med";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_med (WEST)"
+	pixel_y = -8
 	},
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
@@ -45713,8 +45706,7 @@
 	dir = 8;
 	icon_state = "direction_sec";
 	pixel_x = 0;
-	pixel_y = 8;
-	tag = "icon-direction_sec (EAST)"
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/hallway/primary/central)
@@ -48817,8 +48809,7 @@
 	dir = 8;
 	icon_state = "direction_med";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_med (WEST)"
+	pixel_y = -8
 	},
 /obj/structure/sign/directions/security{
 	desc = "A direction sign, pointing out which way the security department is.";
@@ -52556,8 +52547,7 @@
 	dir = 4;
 	icon_state = "direction_sci";
 	pixel_x = 0;
-	pixel_y = 0;
-	tag = "icon-direction_sci (EAST)"
+	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -54251,7 +54241,6 @@
 /area/space)
 "bYz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -61512,7 +61501,6 @@
 /area/space)
 "clw" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -61550,7 +61538,6 @@
 /area/space)
 "clA" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -69001,8 +68988,7 @@
 "cAn" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHWEST)"
+	icon_state = "intact"
 	},
 /turf/closed/wall/r_wall,
 /area/storage/tcom)
@@ -69015,7 +69001,6 @@
 /area/storage/tcom)
 "cAp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -69223,7 +69208,6 @@
 	})
 "cAN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -69410,7 +69394,6 @@
 /area/medical/virology)
 "cBi" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -71699,8 +71682,7 @@
 "cFx" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHWEST)"
+	icon_state = "intact"
 	},
 /obj/structure/cable{
 	icon_state = "1-2";
@@ -71718,7 +71700,6 @@
 /area/storage/tcom)
 "cFy" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (SOUTHWEST)";
 	icon_state = "intact";
 	dir = 10
 	},
@@ -76296,7 +76277,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -87054,8 +87034,7 @@
 	dir = 8;
 	icon_state = "direction_sec";
 	pixel_x = 0;
-	pixel_y = 8;
-	tag = "icon-direction_sec (EAST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
 	desc = "A direction sign, pointing out which way the medical department is.";
@@ -87071,8 +87050,7 @@
 	dir = 4;
 	icon_state = "direction_evac";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_evac (EAST)"
+	pixel_y = -8
 	},
 /obj/structure/sign/directions/engineering{
 	desc = "A direction sign, pointing out which way the engineering department is.";
@@ -90012,15 +89990,13 @@
 	dir = 8;
 	icon_state = "direction_med";
 	pixel_x = 0;
-	pixel_y = -8;
-	tag = "icon-direction_med (WEST)"
+	pixel_y = -8
 	},
 /obj/structure/sign/directions/security{
 	dir = 8;
 	icon_state = "direction_sec";
 	pixel_x = 0;
-	pixel_y = 8;
-	tag = "icon-direction_sec (EAST)"
+	pixel_y = 8
 	},
 /obj/structure/sign/directions/engineering{
 	desc = "A direction sign, pointing out which way the bridge is.";
