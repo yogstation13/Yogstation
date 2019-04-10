@@ -6,12 +6,10 @@
 	exclaim_verb = "screeches"
 	key = "g"
 	flags = TONGUELESS_SPEECH
-	space_chance = 40
+	space_chance = 99
 	syllables = list(
-		"ooh", "gru", "agh", "ah-ah-ah", "ah", "how", "ho", "eh", "he", "uz", "zs", "sz",
-		"ha", "ah", "he", "eh", "hi", "ih", "ho", "oh", "hu", "uh", "hs", "sh",
-		"sa", "as", "se", "es", "si", "is", "so", "os", "su", "us", "ss", "ss",
-		"a",  "a",  "e",  "e",  "i",  "i",  "o",  "o",  "u",  "u",  "s",  "s"
+		"ooh-ooh-ooh-ooh", "ooh-ooh-ooh", "ooh-ooh", "ooh",
+	    "ah-ah-ah-ah", "ah-ah-ah", "ah-ah", "ah"
 	)
 	icon_state = "gorilla"
 	default_priority = 90
