@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - tweak: "Admins are now warned if they try to set the roundendsound when it's already been set by another admin."
