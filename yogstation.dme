@@ -2893,6 +2893,7 @@
 #include "yogstation\code\game\mecha\mecha_wreckage.dm"
 #include "yogstation\code\game\mecha\makeshift\lockermech.dm"
 #include "yogstation\code\game\mecha\makeshift\makeshift_tools.dm"
+#include "yogstation\code\game\objects\effects\contraband.dm"
 #include "yogstation\code\game\objects\effects\countdown.dm"
 #include "yogstation\code\game\objects\effects\landmarks.dm"
 #include "yogstation\code\game\objects\effects\portals.dm"
