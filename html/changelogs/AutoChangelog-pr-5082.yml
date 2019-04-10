@@ -1,4 +1,0 @@
-author: " Kierany9"
-delete-after: true 
-changes: 
-  - bugfix: "Chaos Induction no longer uses up its charge if you don't input an objective"

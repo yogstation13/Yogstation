@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Disassembling a chem dispenser for the first time will no longer always yield a fully-charged cell."
