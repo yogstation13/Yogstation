@@ -20,6 +20,7 @@
 
 /datum/species/gorilla/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/gorillian)
+	H.grant_language(/datum/language/monkey) // Gorillas speak monkey
 
 /datum/species/gorilla/random_name(gender,unique,lastname)
 	if(unique)
