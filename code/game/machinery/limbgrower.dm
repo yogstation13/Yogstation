@@ -26,6 +26,7 @@
 	var/list/categories = list(
 							"human",
 							"lizard",
+							"gorilla",
 							"fly",
 							"moth",
 							"plasmaman",

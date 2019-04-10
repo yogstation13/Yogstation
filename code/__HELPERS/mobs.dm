@@ -102,6 +102,13 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_gorilla_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(gorilla_name(gender))
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(lizard_name(gender))
@@ -379,7 +386,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/list/spawned_mobs = new(amount)
 
 	for(var/j in 1 to amount)
-		var/atom/movable/X 
+		var/atom/movable/X
 
 		if (istype(spawn_type, /list))
 			var/mob_type = pick(spawn_type)

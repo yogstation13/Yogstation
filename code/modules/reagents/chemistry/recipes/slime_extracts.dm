@@ -70,6 +70,14 @@
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
+/datum/chemical_reaction/slime/slimegorilla
+	name = "Gorilla Mutation Toxin"
+	id = "gorillamuttoxin"
+	results = list("gorillamutationtoxin" = 1)
+	required_reagents = list("milk" = 1)
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
 //Metal
 /datum/chemical_reaction/slime/slimemetal
 	name = "Slime Metal"
@@ -571,7 +579,7 @@
 			var/mob/lastheld = get_mob_by_key(holder.my_atom.fingerprintslast)
 			if(lastheld && !lastheld.equip_to_slot_if_possible(extract, SLOT_HANDS, disable_warning = TRUE))
 				extract.forceMove(get_turf(lastheld))
-			
+
 	..()
 
 /datum/chemical_reaction/slime/slimecamera

@@ -70,6 +70,9 @@
 /obj/item/reagent_containers/blood/lizard
 	blood_type = "L"
 
+/obj/item/reagent_containers/blood/gorilla
+	blood_type = "G"
+
 /obj/item/reagent_containers/blood/ethereal
 	blood_type = "LE"
 	unique_blood = "liquidelectricity"
