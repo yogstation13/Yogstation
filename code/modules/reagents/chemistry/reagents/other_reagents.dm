@@ -1026,6 +1026,7 @@
 			var/mob/living/carbon/C = M
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
+				H.adjust_hygiene((30 * reac_volume) / (3 + reac_volume))
 				if(H.lip_style)
 					H.lip_style = null
 					H.update_body()
@@ -1067,8 +1068,8 @@
 /datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	..()
 	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.adjustBruteLoss(1)
-		M.adjustFireLoss(1)
+		M.adjustBruteLoss(1.5)
+		M.adjustFireLoss(1.5)
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"

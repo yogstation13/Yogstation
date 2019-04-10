@@ -86,3 +86,9 @@
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
 	surplus = 20
+
+/datum/uplink_item/badass/frying_pan
+	name = "Bananium Plated Frying Pan"
+	desc = "A frying pan imbued with ancient powers."
+	item = /obj/item/melee/fryingpan/bananium
+	cost = 40
