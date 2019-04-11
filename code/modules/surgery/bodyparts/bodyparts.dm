@@ -399,7 +399,7 @@
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		else
-			limb.icon = 'yogstation/icons/mob/human_parts.dmi'
+			limb.icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yogs icon instead of tg, gorilla people
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else

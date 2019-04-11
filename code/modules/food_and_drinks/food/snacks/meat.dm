@@ -86,7 +86,7 @@
 	filling_color = "#6B8E23"
 	tastes = list("meat" = 4, "scales" = 1)
 	foodtype = MEAT | RAW
-// yogs start
+// yogs start -- gorilla people
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/gorilla
 	icon_state = "gorillameat"
 	desc = "Damn dirty steak."

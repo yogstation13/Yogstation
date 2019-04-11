@@ -138,9 +138,8 @@
 	if(selected_category=="human" || selected_category=="lizard") //Species with greyscale parts should be included here
 		limb.icon = 'icons/mob/human_parts_greyscale.dmi'
 		limb.should_draw_greyscale = TRUE
-	else // yogs start
-		limb.icon = 'yogstation/icons/mob/human_parts.dmi'
-		// yogs end
+	else
+		limb.icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
 	// Set this limb up using the specias name and body zone
 	limb.icon_state = "[selected_category]_[limb.body_zone]"
 	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
