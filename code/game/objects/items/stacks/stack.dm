@@ -9,7 +9,7 @@
  * Stacks
  */
 /obj/item/stack
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
 	gender = PLURAL
 	var/list/datum/stack_recipe/recipes
 	var/singular_name

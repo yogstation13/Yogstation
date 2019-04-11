@@ -48,6 +48,4 @@
 	build_type = LIMBGROWER
 	reagents_list = list("synthflesh" = 75)
 	build_path = /obj/item/melee/synthetic_arm_blade
-	// yogs start
 	category = list("other","emagged")
-	// yogs end
