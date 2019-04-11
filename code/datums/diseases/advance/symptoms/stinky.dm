@@ -4,7 +4,7 @@ Stinky
 	Very Noticable.
 	Increases resistance.
 	Increases stage speed.
-	Very transmissible.
+	Very transmittible.
 	High Level.
 Bonus
 	Forces a spread type of AIRBORNE (Might need to change airborne due to covering of mouth)
@@ -15,7 +15,7 @@ Bonus
 /datum/symptom/stinky
 	name = "Stinky Syndicate Virus"
 	desc = "The highly resistant virus causes rapid secretion of body odors that spreads to nearby hosts."
-	stealth = 0
+	stealth = 2
 	resistance = 10
 	stage_speed = 4
 	transmittable = 4
@@ -40,9 +40,7 @@ Bonus
 	var/mob/living/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2, 3)
-			if(!suppress_warning)
-				 M.emote("sniff") 
-		else
-			M.emote("sneeze")
-			if(M.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
+			
+			.set_hygiene(HYGIENE_LEVEL_DIRTY)
+			
 				A.spread(4 + power)
