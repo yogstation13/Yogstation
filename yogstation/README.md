@@ -1,6 +1,6 @@
 ###### Special thanks to [HippieStation](https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md) for the help.
 
-# Why do we use it?
+# Why do we use this /yogstation/ folder?
 
 The way Github works, is that changes to the codebase are marked by the addition, deletion, or editing of particular lines in the code files, or whatever. "This PR adds these lines, edits this line, and removes some of these lines," that sort of deal.
 
