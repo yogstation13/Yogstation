@@ -3,8 +3,8 @@
 	name = "limb"
 	desc = "Why is it detached..."
 	force = 3
-	throwforce = 3
-	icon = 'icons/mob/human_parts.dmi'
+	throwforce = 3 // yogs start
+	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs end
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
@@ -399,7 +399,7 @@
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
 		else
-			limb.icon = 'icons/mob/human_parts.dmi'
+			limb.icon = 'yogstation/icons/mob/human_parts.dmi'
 			if(should_draw_gender)
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else

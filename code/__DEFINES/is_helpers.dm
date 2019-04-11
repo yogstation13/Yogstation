@@ -58,7 +58,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isabductor(A) (is_species(A, /datum/species/abductor))
 #define isgolem(A) (is_species(A, /datum/species/golem))
 #define islizard(A) (is_species(A, /datum/species/lizard))
-#define isgorilla(A) (is_species(A, /datum/species/gorilla))
 #define isplasmaman(A) (is_species(A, /datum/species/plasmaman))
 #define ispodperson(A) (is_species(A, /datum/species/pod))
 #define isflyperson(A) (is_species(A, /datum/species/fly))
@@ -167,7 +166,7 @@ GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 GLOBAL_LIST_INIT(barefootmob, typecacheof(list(
 	/mob/living/carbon/monkey,
 	/mob/living/simple_animal/pet/penguin,
-	/mob/living/simple_animal/hostile/gorilla,
+	/mob/living/simple_animal/hostile/,
 	/mob/living/simple_animal/hostile/jungle/mook
 	)))
 

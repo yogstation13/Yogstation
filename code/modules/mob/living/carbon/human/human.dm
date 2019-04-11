@@ -1019,10 +1019,10 @@
 
 /mob/living/carbon/human/species/lizard
 	race = /datum/species/lizard
-
+// yogs start
 /mob/living/carbon/human/species/gorilla
 	race = /datum/species/gorilla
-
+// yogs end
 /mob/living/carbon/human/species/ethereal
 	race = /datum/species/ethereal
 

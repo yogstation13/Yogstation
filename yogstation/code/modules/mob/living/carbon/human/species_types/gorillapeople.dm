@@ -3,7 +3,7 @@
 	name = "Gorillapeople"
 	id = "gorilla"
 	say_mod = "grunts"
-	default_color = "00FF00"
+	default_color = "FFFFDD"
 	species_traits = list(EYECOLOR,LIPS)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	coldmod =0.69
@@ -16,10 +16,9 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/gorilla
 	exotic_bloodtype = "G"
 	liked_food = GROSS | MEAT
-	deathsound = 'sound/voice/gorilla/deathsound.ogg'
+	deathsound = 'yogstation/sound/voice/gorilla/deathsound.ogg'
 
 /datum/species/gorilla/after_equip_job(datum/job/J, mob/living/carbon/human/H)
-	H.grant_language(/datum/language/gorillian)
 	H.grant_language(/datum/language/monkey)
 
 /datum/species/gorilla/random_name(gender,unique,lastname)

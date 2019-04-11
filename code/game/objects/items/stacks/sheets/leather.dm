@@ -86,14 +86,14 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	singular_name = "lizard skin piece"
 	icon_state = "sheet-lizard"
 	item_state = "sheet-lizard"
-
+// yogs start
 /obj/item/stack/sheet/animalhide/gorilla
 	name = "gorilla skin"
 	desc = "This would make a nice rug."
 	singular_name = "gorilla skin piece"
 	icon_state = "sheet-gorilla"
 	item_state = "sheet-gorilla"
-
+// yogs end
 /obj/item/stack/sheet/animalhide/xeno
 	name = "alien hide"
 	desc = "The skin of a terrible creature."

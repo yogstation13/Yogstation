@@ -484,7 +484,7 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/lizard
 	mutationtext = "<span class='danger'>The pain subsides. You feel... scaly.</span>"
-
+// yogs start
 /datum/reagent/mutationtoxin/gorilla
 	name = "Gorilla Mutation Toxin"
 	id = "gorillamutationtoxin"
@@ -492,7 +492,7 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/gorilla
 	mutationtext = "<span class='danger'>The pain subsides. You feel... damn dirty.</span>"
-
+// yogs end
 /datum/reagent/mutationtoxin/fly
 	name = "Fly Mutation Toxin"
 	id = "flymutationtoxin"
