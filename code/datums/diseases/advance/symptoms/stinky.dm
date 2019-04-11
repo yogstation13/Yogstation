@@ -7,13 +7,13 @@ Stinky
 	Very transmittible.
 	High Level.
 Bonus
-	Forces a spread type of AIRBORNE (Might need to change airborne due to covering of mouth)
+	Forces a spread type of AIRBORNE
 	with extra range!
 //////////////////////////////////////
 */
 
 /datum/symptom/stinky
-	name = "Stinky Syndicate Virus"
+	name = "Stinky Syndicate"
 	desc = "The highly resistant virus causes rapid secretion of body odors that spreads to nearby hosts."
 	stealth = 2
 	resistance = 10
@@ -34,13 +34,18 @@ Bonus
 // Need to edit the shit below this and have it affect your hygiene.
 
 
+/datum/symptom/stinky/Start(datum/disease/advance/A)
+if(!..())
+return
+if(A.properties["transmittable"] >= 9) //longer spread range
+power = 2
+
 /datum/symptom/stinky/Activate(datum/disease/advance/A)
-	if(!..())
-		return
-	var/mob/living/M = A.affected_mob
-	switch(A.stage)
-		if(1, 2, 3)
-			
-			.set_hygiene(HYGIENE_LEVEL_DIRTY)
-			
-				A.spread(4 + power)
+if(!..())
+return
+var/mob/living/carbon/M = A.affected_mob
+switch(A.stage)
+if(1, 2, 3)
+
+M.set_hygiene(HYGIENE_LEVEL_DIRTY)
+A.spread(4 + power)
