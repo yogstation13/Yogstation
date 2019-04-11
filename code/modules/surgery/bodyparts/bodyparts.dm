@@ -3,8 +3,8 @@
 	name = "limb"
 	desc = "Why is it detached..."
 	force = 3
-	throwforce = 3 // yogs start
-	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs end
+	throwforce = 3
+	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null

@@ -209,8 +209,8 @@
 		//Some species are not scannable, like abductors (too unknown), androids (too artificial) or skeletons (too magic)
 		if("set_target_species")
 			var/new_species = input("Set target species","Scan Mode") as null|anything in list("Human",
-																								"Lizardperson", //yogs start
-																								"Gorillaperson", //yogs end
+																								"Lizardperson",
+																								"Gorillaperson", // yogs -- gorilla people
 																								"Flyperson",
 																								"Plasmaman",
 																								"Mothmen",
@@ -223,7 +223,7 @@
 					if("Human")
 						detect_species = /datum/species/human
 					if("Lizardperson")
-						detect_species = /datum/species/lizard // yogs start
+						detect_species = /datum/species/lizard // yogs start -- gorilla people
 					if("Gorillaperson")
 						detect_species = /datum/species/gorilla // yogs end
 					if("Flyperson")

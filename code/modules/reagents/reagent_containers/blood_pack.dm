@@ -69,7 +69,7 @@
 
 /obj/item/reagent_containers/blood/lizard
 	blood_type = "L"
-// yogs start
+// yogs start -- gorilla people
 /obj/item/reagent_containers/blood/gorilla
 	blood_type = "G"
 // yogs end

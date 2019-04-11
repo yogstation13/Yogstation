@@ -25,8 +25,8 @@
 	var/screen = 1
 	var/list/categories = list(
 							"human",
-							"lizard", //yogs start - gorilla limbs
-							"gorilla", // yogs end
+							"lizard",
+							"gorilla", // yogs -- gorilla people
 							"fly",
 							"moth",
 							"plasmaman",
