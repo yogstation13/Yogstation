@@ -1,0 +1,4 @@
+author: " Putnam"
+delete-after: true 
+changes: 
+  - bugfix: "Makes dead preternis and ethereals no longer lose charge."
