@@ -223,9 +223,11 @@
 					if("Human")
 						detect_species = /datum/species/human
 					if("Lizardperson")
-						detect_species = /datum/species/lizard // yogs start -- gorilla people
+						detect_species = /datum/species/lizard
+					// yogs start -- gorilla people
 					if("Gorillaperson")
-						detect_species = /datum/species/gorilla // yogs end
+						detect_species = /datum/species/gorilla
+					// yogs end
 					if("Flyperson")
 						detect_species = /datum/species/fly
 					if("Plasmaman")
