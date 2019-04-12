@@ -20,7 +20,7 @@ Bonus
 	name = "Hyphema"
 	desc = "The virus causes inflammation of the retina, leading to eye damage and eventually blindness."
 	stealth = -1
-	resistance = -9
+	resistance = -4
 	stage_speed = -4
 	transmittable = -3
 	level = 5
@@ -37,8 +37,10 @@ Bonus
 		return
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
-	if(A.properties["resistance"] >= 12) //goodbye eyes
-		remove_eyes = TRUE
+//yogs start - Makes eyeball popping not possible without admin intervention.
+//	if(A.properties["resistance"] >= 12) //goodbye eyes
+//		remove_eyes = TRUE
+//yogs end
 
 /datum/symptom/visionloss/Activate(datum/disease/advance/A)
 	if(!..())
