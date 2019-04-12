@@ -1,5 +1,5 @@
 /obj/effect/portal/permanent/teleport(atom/movable/M, force = FALSE) // Made perma portals always teleport even in noteleport areas since they are mapmaker only
-	if(!force && (!istype(M) || iseffect(M) || (ismecha(M) && !mech_sized) || (!isobj(M) && !ismob(M)))) //Things that shouldn't teleport.
+	if(!force && (!istype(M) || iseffect(M) || (ismecha(M) && !mech_sized) || (isobj(M) && !ismob(M)))) //Things that shouldn't teleport.
 		return
 	var/turf/real_target = get_link_target_turf()
 	if(!istype(real_target))

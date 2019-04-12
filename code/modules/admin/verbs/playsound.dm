@@ -140,7 +140,17 @@
 	if(!check_rights(R_SOUNDS))
 		return
 
+	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
+	var/static/lastadmin
+	var/static/lastsound
+	
+	if(lastadmin)
+		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?","Yes","Cancel") != "Yes")
+			return
 	SSticker.SetRoundEndSound(S)
+	lastadmin = src.ckey
+	lastsound = "[S]"
+	//Yogs end
 
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")
