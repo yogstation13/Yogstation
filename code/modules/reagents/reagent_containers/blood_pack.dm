@@ -69,10 +69,7 @@
 
 /obj/item/reagent_containers/blood/lizard
 	blood_type = "L"
-// yogs start -- gorilla people
-/obj/item/reagent_containers/blood/gorilla
-	blood_type = "G"
-// yogs end
+
 /obj/item/reagent_containers/blood/ethereal
 	blood_type = "LE"
 	unique_blood = "liquidelectricity"
