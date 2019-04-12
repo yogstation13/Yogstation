@@ -35,7 +35,8 @@ Bonus
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	switch(A.stage)
-		if(iscarbon(M)(1, 2, 3))
-			M.handle_hygiene(HYGIENE_LEVEL_DIRTY)
-			A.spread(4 + power)
+	if(iscarbon(M))
+		switch(A.stage)
+			if(1, 2, 3)
+				M.handle_hygiene(HYGIENE_LEVEL_DIRTY)
+				A.spread(4 + power)
