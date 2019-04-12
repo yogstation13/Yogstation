@@ -1,3 +1,10 @@
+/proc/random_unique_gorilla_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(gorilla_name(gender))
+
+		if(!findname(.))
+			break
+
 /proc/is_admin(var/user)
 	if(ismob(user))
 		var/mob/temp = user
