@@ -5,7 +5,6 @@ Stinky Syndicate
 	Increases resistance.
 	Increases stage speed.
 	Very transmittible.
-	High Level.
 Bonus
 	Forces a spread type of AIRBORNE
 	with extra range!
@@ -14,7 +13,7 @@ Bonus
 
 /datum/symptom/stinky
 	name = "Stinky Syndicate"
-	desc = "A highly resistant virus that causes rapid secretion of body odors that spread to nearby hosts."
+	desc = "A highly resistant virus causing rapid secretion of body odors that easily spread to nearby humans."
 	stealth = 2
 	resistance = 10
 	stage_speed = 4
@@ -31,12 +30,13 @@ Bonus
 		return
 	if(A.properties["transmittable"] >= 9) //longer spread range
 		power = 2
-
+		
 /datum/symptom/stinky/Activate(datum/disease/advance/A)
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	switch(A.stage)
-		if(1, 2, 3)
-			M.set_hygiene(HYGIENE_LEVEL_DIRTY)
-			A.spread(4 + power)
+	if(iscarbon(M))
+		switch(A.stage)
+			if(1, 2, 3)
+				M.handle_hygiene(HYGIENE_LEVEL_DIRTY)
+				A.spread(4 + power)
