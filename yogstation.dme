@@ -3010,6 +3010,7 @@
 #include "yogstation\code\modules\atmospherics\machinery\pipes\bluespace.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "yogstation\code\modules\cargo\cargo_packs.dm"
+#include "yogstation\code\modules\cargo\exports\sheets.dm"
 #include "yogstation\code\modules\cargo\exports\weapons.dm"
 #include "yogstation\code\modules\client\client_defines.dm"
 #include "yogstation\code\modules\client\client_procs.dm"
