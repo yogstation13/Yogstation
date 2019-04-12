@@ -38,5 +38,5 @@ Bonus
 	if(iscarbon(M))
 		switch(A.stage)
 			if(1, 2, 3)
-				M.handle_hygiene(HYGIENE_LEVEL_DIRTY)
+				M.set_hygiene(HYGIENE_LEVEL_DIRTY)
 				A.spread(4 + power)
