@@ -30,8 +30,6 @@
 				return TRUE
 			if(temp.prefs)
 				return (temp.prefs.unlock_content & 2)
-			if(temp.ckey in get_donators())
-				return TRUE
 
 	return FALSE
 
