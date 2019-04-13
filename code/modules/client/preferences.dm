@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(unlock_content)
 				max_save_slots = 8
 			// yogs start - Donor features
-			else if(C in get_donators()) // Not using is_donator(C) here, because that requires this guy's prefs to be fully loaded in, and the game to be fully loaded, which both aren't usually the case in this proc.
+			else if(is_donator(C))
 				max_save_slots = DONOR_CHARACTER_SLOTS
 			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
