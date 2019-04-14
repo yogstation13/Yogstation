@@ -50,14 +50,13 @@
 	set desc = "Allows you to send a mass SM to every member of a particular faction or antagonist type."
 	set category = "Special Verbs"
 	
-	var/list/possible_factions = list() //This list includes both factions in the "mob.factions" sense
+	var/list/choices = list() //This list includes both factions in the "mob.factions" sense
 	// and also factions as in, types of /datum/antagonist/
-	var/list/choices = list()
 	
 	//First, lets generate a list of possible factions for this admin to choose from
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.factions)
-			for(var/i in player.factions)
+		if(player.faction)
+			for(var/i in player.faction)
 				choices |= i
 		var/list/antagstuffs = player.mind.antag_datums
 		if(antagstuffs && antagstuffs.len)
@@ -70,19 +69,19 @@
 	if(!msg)
 		return
 	var/text // The real HTML-and-text we will send to the SM'd.
-	if(chosen = "Clock Cultist")
+	if(chosen == "Clock Cultist")
 		text = "<span class='large_brass'>You hear a booming voice in your head... </span><span class='heavy_brass'>[msg]</span>"
-	else if(chosen = "Cultist")
+	else if(chosen == "Cultist")
 		text = "<span class='cultlarge'>You hear a booming voice in your head... </span><span class='cult'>[msg]</span>"
-	else if(chosen = "swarmer")
+	else if(chosen == "swarmer")
 		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
 	else
 		text = "<i>You hear a booming voice in your head... <b>[msg]</i></b>"
 	
 	for(var/mob/living/player in GLOB.player_list)
 		var/done = FALSE
-		if(player.factions)
-			for(var/i in player.factions)
+		if(player.faction)
+			for(var/i in player.faction)
 				if(i == chosen)
 					to_chat(player,text)
 					done = TRUE
