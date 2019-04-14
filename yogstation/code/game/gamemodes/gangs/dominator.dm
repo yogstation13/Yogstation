@@ -1,5 +1,5 @@
 #define DOM_BLOCKED_SPAM_CAP 6
-#define DOM_REQUIRED_TURFS 25
+#define DOM_REQUIRED_TURFS 23
 #define DOM_HULK_HITS_REQUIRED 10
 
 /obj/machinery/dominator
