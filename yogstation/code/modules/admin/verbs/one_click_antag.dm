@@ -44,3 +44,54 @@
 		add_vampire(H)
 		return TRUE
 	return FALSE
+
+/client/proc/subtlemessage_faction() // Thanks GenericDM very cool
+	set name = "SM to Faction"
+	set desc = "Allows you to send a mass SM to every member of a particular faction or antagonist type."
+	set category = "Special Verbs"
+	
+	var/list/possible_factions = list() //This list includes both factions in the "mob.factions" sense
+	// and also factions as in, types of /datum/antagonist/
+	var/list/choices = list()
+	
+	//First, lets generate a list of possible factions for this admin to choose from
+	for(var/mob/living/player in GLOB.player_list)
+		if(player.factions)
+			for(var/i in player.factions)
+				choices |= i
+		var/list/antagstuffs = player.mind.antag_datums
+		if(antagstuffs && antagstuffs.len)
+			for(var/antagdatum in antagstuffs)
+				choices |= "[antagdatum]"
+	var/chosen = input("Select faction or antag type you would like to contact:","SM to Faction") in choices
+	if(!chosen)
+		return
+	var/msg = input("Message:", text("Subtle PM to [chosen]")) as text|null
+	if(!msg)
+		return
+	var/text // The real HTML-and-text we will send to the SM'd.
+	if(chosen = "Clock Cultist")
+		text = "<span class='large_brass'>You hear a booming voice in your head... </span><span class='heavy_brass'>[msg]</span>"
+	else if(chosen = "Cultist")
+		text = "<span class='cultlarge'>You hear a booming voice in your head... </span><span class='cult'>[msg]</span>"
+	else if(chosen = "swarmer")
+		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
+	else
+		text = "<i>You hear a booming voice in your head... <b>[msg]</i></b>"
+	
+	for(var/mob/living/player in GLOB.player_list)
+		var/done = FALSE
+		if(player.factions)
+			for(var/i in player.factions)
+				if(i == chosen)
+					to_chat(player,text)
+					done = TRUE
+					break
+		if(done)
+			continue
+		var/list/antagstuffs = player.mind.antag_datums
+		if(antagstuffs && antagstuffs.len)
+			for(var/antagdatum in antagstuffs)
+				if("[antagdatum]" == chosen)
+					to_chat(player,text)
+					break
