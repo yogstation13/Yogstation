@@ -45,6 +45,7 @@ Difficulty: Insanely Hard
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	maxHealth = 500
 	armour_penetration = 35
 	melee_damage_lower = 35
@@ -129,6 +130,7 @@ Difficulty: Insanely Hard
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
