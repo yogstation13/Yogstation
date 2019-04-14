@@ -6,7 +6,7 @@
 	cure_text = "Rezadone or death."
 	agent = "Severe Genetic Damage"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = @"If left untreated the subject will [REDACTED]!"
+	desc = "If left untreated the subject will 'REDACTED'!" // yogsfixed this description cause it was causing issues
 	severity = "Dangerous!"
 	cures = list("rezadone")
 	disease_flags = CAN_CARRY|CAN_RESIST
