@@ -40,6 +40,32 @@
 
 	return FALSE
 
+/proc/get_donators()
+	if(GLOB.donators.len)
+		return GLOB.donators
+	
+	//Else if GLOB.donators has not been loaded yet, then load it in!
+	if(!SSdbcore.IsConnected())
+		message_admins("Failed to connect to database in get_donators().")
+		log_sql("Failed to connect to database in get_donators().")
+		return
+
+	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donors")] WHERE (expiration_time > Now()) AND (revoked IS NULL)")
+	if(!query.Execute())
+		message_admins("Error loading donators from database.")
+		log_sql("Error loading donators from database.")
+		qdel(query)
+		return
+
+	var/key
+	while(query.NextRow())
+		key = query.item[1]
+		if(key)
+			GLOB.donators |= ckey(key)
+
+	qdel(query)
+	return GLOB.donators
+
 /proc/compare_ckey(var/user, var/target)
 	if(!user || !target)
 		return FALSE
