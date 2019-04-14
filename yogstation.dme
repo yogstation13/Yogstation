@@ -2854,6 +2854,7 @@
 #include "yogstation\code\game\world.dm"
 #include "yogstation\code\game\area\areas.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"
+#include "yogstation\code\game\gamemodes\game_mode.dm"
 #include "yogstation\code\game\gamemodes\objective.dm"
 #include "yogstation\code\game\gamemodes\objective_items.dm"
 #include "yogstation\code\game\gamemodes\battle_royale\battleroyale.dm"
