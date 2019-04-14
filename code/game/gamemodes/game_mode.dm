@@ -309,7 +309,7 @@
 //     Player A: 150 / 250 = 0.6 = 60%
 //     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
-	remove_quiet_rounders(candidates)//Yogs -- Fixes Quiet Rounds. (This modifies the list of candidates despite the lack of a return value because DM lists are passed as references)
+
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
 		return pick(candidates)
 
@@ -352,7 +352,7 @@
 	WARNING("Something has gone terribly wrong. /datum/game_mode/proc/antag_pick failed to select a candidate. Falling back to pick()")
 	return pick(candidates)
 
-/datum/game_mode/proc/get_players_for_role(role)
+/datum/game_mode/proc/get_players_for_role(role) //YOGS -- MIRRORED IN THE YOGSTATION FOLDER! DO NOT EAT, SWALLOW, OR SUBMURGE IN ACID
 	var/list/players = list()
 	var/list/candidates = list()
 	var/list/drafted = list()
@@ -362,10 +362,6 @@
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			players += player
-			// yogs start - Donor features, quiet round
-			if(player.client.prefs.toggles & QUIET_ROUND)
-				player.mind.quiet_round = TRUE
-			//yogs end
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
@@ -390,11 +386,6 @@
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
 					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
 						drafted += player.mind
-						// yogs start - Donor features, quiet round
-						if(player.mind.quiet_round)
-							to_chat(player, "<span class='userdanger'>There aren't enough antag volunteers, so your quiet round setting will not be considered!</span>")
-							player.mind.quiet_round = FALSE
-						//yogs end
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
