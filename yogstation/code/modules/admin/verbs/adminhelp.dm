@@ -532,7 +532,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //Admin activates the pop-ups
 /datum/admin_help/proc/PopUps(key_name = key_name_admin(usr))
 	popups_enabled = !popups_enabled
-	msg = "Ticket [TicketHref("#[id]")] has had pop-ups [popups_enabled ? "de" : ""]activated by [key_name]"
+	var/msg = "Ticket [TicketHref("#[id]")] has had pop-ups [popups_enabled ? "de" : ""]activated by [key_name]"
 	message_admins(msg)
 	log_admin_private(msg)
 
