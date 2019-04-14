@@ -346,6 +346,10 @@
 
 //			WARNING("AR_DEBUG: Player [mind.key] won spending [spend] tickets from starting value [SSpersistence.antag_rep[p_ckey]]")
 
+			//yogs start -- quiet mode
+			if(mind.quiet_round)
+				to_chat(mind.current,"<span class='userdanger'>There aren't enough antag volunteers, so your quiet round setting will not be considered!</span>")
+			//yogs end
 			return mind
 
 	WARNING("Something has gone terribly wrong. /datum/game_mode/proc/antag_pick failed to select a candidate. Falling back to pick()")
