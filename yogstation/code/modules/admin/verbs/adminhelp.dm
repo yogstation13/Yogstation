@@ -121,6 +121,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/initiator_ckey
 	var/initiator_key_name
 	var/heard_by_no_admins = FALSE
+	var/popups_enabled = FALSE // if TRUE, gives a pop-up to the nonadmin to respond to the ticket, whenever the admin speaks.
 
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
@@ -457,6 +458,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
 					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>MHelp</span></a>
+					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=popup' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[popups_enabled ? "De" : ""]Activate Popups</span></a>
 				</p>"}
 		if(initiator && initiator.mob)
 			if(initiator.mob.mind && initiator.mob.mind.assigned_role)
@@ -527,6 +529,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 
+//Admin activates the pop-ups
+/datum/admin_help/proc/PopUps(key_name = key_name_admin(usr))
+	popups_enabled = !popups_enabled
+	msg = "Ticket [TicketHref("#[id]")] has had pop-ups [popups_enabled ? "de" : ""]activated by [key_name]"
+	message_admins(msg)
+	log_admin_private(msg)
 
 //Forwarded action from admin/Topic
 /datum/admin_help/proc/Action(action)
@@ -552,7 +560,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			Administer()
 		if("wiki")
 			WikiIssue()
-
+		if("popup")
+			PopUps()
 
 //
 // CLIENT PROCS
