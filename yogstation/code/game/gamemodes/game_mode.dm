@@ -1,4 +1,3 @@
-
 /datum/game_mode/get_players_for_role(role)
 	var/list/players = list() // All players who are ready and able
 	var/list/candidates = list() // All players who could POSSIBLY be an antag (acting as a fallback if filtered_candidates isn't enough)
@@ -15,10 +14,10 @@
 	for(var/mob/dead/new_player/player in players)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
-				candidates += player.mind				// 
+				candidates += player.mind
 	if(restricted_jobs)
 		for(var/datum/mind/player in candidates)
-			for(var/job in restricted_jobs)					// Remove people who want to be antagonist but have a job already that precludes it
+			for(var/job in restricted_jobs)	// Remove people who want to be antagonist but have a job already that precludes it
 				if(player.assigned_role == job)
 					candidates -= player
 	
@@ -39,5 +38,3 @@
 		drafted.len = diff
 	
 	return shuffle(filtered_candidates + drafted)
-	
-	
