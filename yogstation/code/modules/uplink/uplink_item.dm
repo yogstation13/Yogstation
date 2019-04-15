@@ -92,3 +92,5 @@
 	desc = "A frying pan imbued with ancient powers."
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
+	cant_discount = TRUE
+	
