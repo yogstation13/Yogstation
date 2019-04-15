@@ -178,12 +178,32 @@
 		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
 			_key = text2num(_key)
 			if(client.keys_held["Ctrl"]) //do we assign a new hotkey?
-				cam_hotkeys[_key] = eyeobj.loc
-				to_chat(src, "Location saved to Camera Group [_key].")
+				var/turf/eyeturf = get_turf(eyeobj)
+				for(var/mob/living/dude in eyeturf.contents)
+					var/answer = alert("Would you like to set your camera group to follow dude.name, or to this location?",,dude.name,"Location")
+					if(!answer) //they didnt bother answering us
+						return
+					if(answer == "location")
+						cam_hotkeys[_key] = eyeobj.loc
+						to_chat(src, "Location saved to Camera Group [_key].")
+						return
+					else //The dude
+						cam_hotkeys[_key] = dude
+						to_chat(src, "Mob saved to camera group [_key].")
+						return
+				//apparently there were no relevant mobs on the turf, so they must have wanted to save the location
+				cam_hotkey[_key] = eyeobj.loc
+				to_chat(src, "Mob saved to Camera Group [_key].")
 				return
 			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
+				var/location
 				cam_prev = eyeobj.loc
-				eyeobj.setLoc(cam_hotkeys[_key])
+				if(isliving(cam_hotkeys{_key}) //if it's a dude, and not just a location
+					ai_actual_track(pick(target))
+					return // The track proc (hopefully) will handle all the eyeobj-grabbing
+				else
+					location = cam_hotkeys[key]
+				eyeobj.setLoc(location)
 				return
 	return ..()
 
