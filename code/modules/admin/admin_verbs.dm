@@ -81,7 +81,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
 	/client/proc/show_mentors, // yogs - mentors
-	/client/proc/reset_all_tcs // yogs - NTSL, resets all NTSL scripts in world
+	/client/proc/reset_all_tcs, // yogs - NTSL, resets all NTSL scripts in world
+	/client/proc/nerf_or_nothing // yogs -- Groudon's meme nerf verb
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)

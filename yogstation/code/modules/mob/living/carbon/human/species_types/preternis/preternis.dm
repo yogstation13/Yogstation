@@ -144,6 +144,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
+	if(H.stat == DEAD)
+		return
 	handle_charge(H)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)

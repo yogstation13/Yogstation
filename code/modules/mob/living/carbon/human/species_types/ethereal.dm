@@ -88,6 +88,8 @@
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
+	if(H.stat == DEAD)
+		return
 	handle_charge(H)
 
 /datum/species/ethereal/spec_fully_heal(mob/living/carbon/human/H)
