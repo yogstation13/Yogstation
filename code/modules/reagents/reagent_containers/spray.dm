@@ -45,25 +45,25 @@
 		to_chat(user, "<span class='warning'>Not enough left!</span>")
 		return
 
-	spray(A)
+	spray(A, user)
 
 	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	user.newtonian_move(get_dir(A, user))
+
 	var/turf/T = get_turf(src)
-	if(reagents.has_reagent("sacid"))
-		message_admins("[ADMIN_LOOKUPFLW(user)] fired sulphuric acid from \a [src] at [ADMIN_VERBOSEJMP(T)].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src] at [AREACOORD(T)].")
-	if(reagents.has_reagent("facid"))
-		message_admins("[ADMIN_LOOKUPFLW(user)] fired Fluacid from \a [src] at [ADMIN_VERBOSEJMP(T)].")
-		log_game("[key_name(user)] fired Fluacid from \a [src] at [AREACOORD(T)].")
-	if(reagents.has_reagent("lube"))
-		message_admins("[ADMIN_LOOKUPFLW(user)] fired Space lube from \a [src] at [ADMIN_VERBOSEJMP(T)].")
-		log_game("[key_name(user)] fired Space lube from \a [src] at [AREACOORD(T)].")
+	var/contained = reagents.log_list()
+
+	log_combat(user, T, "sprayed", src, addition="which had [contained]")
+	log_game("[key_name(user)] fired [contained] from \a [src] at [AREACOORD(T)].") //copypasta falling out of my pockets
 	return
 
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1) // yogs - makes log activate if a living mob is sprayed
+=======
+/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/user)
+>>>>>>> a4906f2382... [s] adds actual logging to spray bottles (#43627)
 	var/range = max(min(current_range, get_dist(src, A)), 1)
 	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
@@ -97,9 +97,9 @@
 // yogs end
 	D.color = mix_color_from_reagents(D.reagents.reagent_list)
 	var/wait_step = max(round(2+3/range), 2)
-	do_spray(A, wait_step, D, range, puff_reagent_left)
+	do_spray(A, wait_step, D, range, puff_reagent_left, user)
 
-/obj/item/reagent_containers/spray/proc/do_spray(atom/A, wait_step, obj/effect/decal/chempuff/D, range, puff_reagent_left)
+/obj/item/reagent_containers/spray/proc/do_spray(atom/A, wait_step, obj/effect/decal/chempuff/D, range, puff_reagent_left, mob/user)
 	set waitfor = FALSE
 	var/range_left = range
 	for(var/i=0, i<range, i++)
@@ -119,6 +119,8 @@
 					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
 						D.reagents.reaction(M, VAPOR)
 						puff_reagent_left -= 1
+						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
+						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
 				else if(!range_left)
 					D.reagents.reaction(T, VAPOR)
 			else
@@ -316,7 +318,7 @@
 		return
 	. = ..()
 
-/obj/item/reagent_containers/spray/chemsprayer/spray(atom/A)
+/obj/item/reagent_containers/spray/chemsprayer/spray(atom/A, mob/user)
 	var/direction = get_dir(src, A)
 	var/turf/T = get_turf(A)
 	var/turf/T1 = get_step(T,turn(direction, 90))
@@ -326,7 +328,7 @@
 	for(var/i=1, i<=3, i++) // intialize sprays
 		if(reagents.total_volume < 1)
 			return
-		..(the_targets[i])
+		..(the_targets[i], user)
 
 /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	list_reagents = list("sodium_thiopental" = 100, "coniine" = 100, "venom" = 100, "condensedcapsaicin" = 100, "initropidril" = 100, "polonium" = 100)
