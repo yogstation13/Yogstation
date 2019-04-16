@@ -50,9 +50,11 @@
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
 //Yogs start -- Keeps extreme popcap as always being a living-players count.
-	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin && !GLOB.joined_player_list.Find(ckey) && !(is_donator(C) || (C.ckey in get_donators())))
-		log_access("Failed Login: [key] - Population cap reached")
-		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+	if(!real_bans_only && extreme_popcap) // if we ought to use the extreme popcap 
+		if(living_player_count() >= extreme_popcap) // if the extreme popcap has been reached
+			if(!admin && !GLOB.joined_player_list.Find(ckey) && !(is_donator(C) || (C.ckey in get_donators()))) // if they are not exempt
+				log_access("Failed Login: [key] - Population cap reached")
+				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 /*Yogs continue
 	if(!real_bans_only && !C && extreme_popcap && !admin)
 		var/hard_popcap = CONFIG_GET(number/hard_popcap)
