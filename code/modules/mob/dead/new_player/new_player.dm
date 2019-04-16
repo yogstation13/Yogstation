@@ -121,6 +121,12 @@
 			return
 
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
+			//yogs start -- donors bypassing the queue
+			if(ckey(key) in get_donators())
+				to_chat(usr, "<span class='notice'>Because you are a donator, you have bypassed the queue! Thank you for donating!</span>")
+				LateChoices()
+				return
+			//yogs end
 			to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
 
 			var/queue_position = SSticker.queued_players.Find(usr)
