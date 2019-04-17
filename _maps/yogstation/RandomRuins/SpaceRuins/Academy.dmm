@@ -375,7 +375,6 @@
 /area/awaymission/academy/academyengine)
 "bs" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/dice/d20/fate,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bt" = (
@@ -595,7 +594,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/item/dice/d20,
+/obj/item/dice/d6,
 /turf/open/floor/carpet,
 /area/awaymission/academy/headmaster)
 "ch" = (
@@ -1401,7 +1400,7 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/wizard{
-	name = "Lion The Narcissistic"
+	name = "Larry The Master of Satchels"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
@@ -2076,6 +2075,7 @@
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/item/dice/d20/fate,
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/classrooms)
 "gp" = (
@@ -2570,7 +2570,7 @@
 	pixel_y = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -2725,7 +2725,7 @@
 "hR" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2868,7 +2868,8 @@
 /area/awaymission/academy/academyaft)
 "ij" = (
 /obj/effect/turf_decal/tile/red,
-/mob/living/simple_animal/hostile/wizard{
+/mob/living/simple_animal/hostile/wizard/cloaked{
+	desc = "EI NATH?";
 	name = "Cali The Stubborn"
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -2897,7 +2898,7 @@
 "io" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/cable,
 /obj/structure/window/reinforced/fulltile,
@@ -3034,7 +3035,7 @@
 /obj/structure/grille,
 /obj/structure/cable,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -3956,7 +3957,7 @@
 "kQ" = (
 /obj/structure/grille,
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
@@ -4746,6 +4747,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"WF" = (
+/mob/living/simple_animal/hostile/carp/ranged,
+/turf/open/space,
+/area/space)
+"ZO" = (
+/obj/structure/table/wood,
+/obj/item/dice/d20,
+/turf/open/floor/wood,
+/area/awaymission/academy/classrooms)
 
 (1,1,1) = {"
 aa
@@ -9179,7 +9189,7 @@ hm
 gc
 eL
 hP
-eO
+ZO
 fc
 hP
 eO
@@ -14749,7 +14759,7 @@ ac
 aa
 aa
 aa
-aj
+aa
 aa
 "}
 (88,1,1) = {"
@@ -16007,7 +16017,7 @@ ac
 ac
 ac
 ac
-aa
+WF
 aa
 aa
 aa

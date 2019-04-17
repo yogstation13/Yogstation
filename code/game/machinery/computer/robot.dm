@@ -84,6 +84,8 @@
 	for(var/mob/living/simple_animal/drone/D in GLOB.drones_list)
 		if(D.hacked)
 			continue
+		if(istype(D,/mob/living/simple_animal/drone/derelict) && D.loc.z != src.loc.z) // Yogs -- Exempts derelict drones from being detonated while not on the same Z-level as the RD
+			continue // Yogs
 		if(drones)
 			dat += "<br><br>"
 		else

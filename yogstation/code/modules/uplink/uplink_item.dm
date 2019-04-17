@@ -20,6 +20,7 @@
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	category = "Conspicuous Weapons"
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
@@ -83,5 +84,13 @@
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
-	cost = 12
+	cost = 7
 	surplus = 20
+
+/datum/uplink_item/badass/frying_pan
+	name = "Bananium Plated Frying Pan"
+	desc = "A frying pan imbued with ancient powers."
+	item = /obj/item/melee/fryingpan/bananium
+	cost = 40
+	cant_discount = TRUE
+	

@@ -125,7 +125,7 @@
 /obj/item/grenade/chem_grenade/glitter/blue,
 /obj/item/grenade/chem_grenade/glitter/pink,
 /obj/item/grenade/chem_grenade/glitter/white,
-/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/bar)
 "at" = (

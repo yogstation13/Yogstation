@@ -13,6 +13,7 @@
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(DYNCOLORS, NOSTOMACH, AGENDER, NO_UNDERWEAR)
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
@@ -25,7 +26,7 @@
 	var/b1
 	var/static/r2 = 237
 	var/static/g2 = 164
-	var/static/b2 = 149	
+	var/static/b2 = 149
 	//this is shit but how do i fix it? no clue.
 
 
@@ -87,6 +88,8 @@
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
+	if(H.stat == DEAD)
+		return
 	handle_charge(H)
 
 /datum/species/ethereal/spec_fully_heal(mob/living/carbon/human/H)
@@ -126,7 +129,8 @@
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 3)
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 2)
-			apply_damage(0.5, BRUTE, null, null, H)
+			if(H.health > 10.5)
+				apply_damage(0.65, TOX, null, null, H)
 			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 1)

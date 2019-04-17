@@ -102,7 +102,8 @@
 	atom/movable/virtualspeaker/speaker,  // representation of the method's speaker
 	datum/language/language,  // the langauge of the message
 	message,  // the text content of the message
-	spans  // the list of spans applied to the message
+	spans,  // the list of spans applied to the message
+	lvls = null //Yogs -- For NTSL. It's the list of Z-levels that should hear this message.
 )
 	src.source = source
 	src.frequency = frequency
@@ -117,8 +118,13 @@
 		"language" = lang_instance.name,
 		"spans" = spans
 	)
-	var/turf/T = get_turf_global(source) // yogs - get_turf_global instead of get_turf
-	levels = list(T.z)
+	//Yogs start
+	if(lvls)
+		levels = lvls
+	else
+	//Yogs end, technically, I guess
+		var/turf/T = get_turf_global(source) // yogs - get_turf_global instead of get_turf
+		levels = list(T.z)
 
 /datum/signal/subspace/vocal/copy()
 	var/datum/signal/subspace/vocal/copy = new(source, frequency, virt, language)

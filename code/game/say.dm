@@ -15,7 +15,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_SYNDICATE]" = "syndradio",
 	"[FREQ_CENTCOM]" = "centcomradio",
 	"[FREQ_CTF_RED]" = "redteamradio",
-	"[FREQ_CTF_BLUE]" = "blueteamradio"
+	//yogs start -- alternative radio freqs being a different color
+	"[FREQ_CTF_BLUE]" = "blueteamradio",
+	"[FREQ_COMMON]" = "commonradio"
+	//yogs end
 	))
 
 /atom/movable/proc/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
@@ -53,12 +56,13 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Radio freq/name display
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq)]\] " : ""
 	//Speaker name
+	var/realnamepart = "[speaker.GetVoice(TRUE)][speaker.get_alt_name()]" // Yogs -- for NTSL and AI tracking
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	if(face_name && ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		namepart = "[H.get_face_name()]" //So "fake" speaking like in hallucinations does not give the speaker away if disguised
 	//End name span.
-	var/endspanpart = "</span>"
+	var/endspanpart = "</span></a>"// Yogs
 
 	//Message
 	var/messagepart = " <span class='message'>[lang_treat(speaker, message_language, raw_message, spans, message_mode)]</span></span>"
@@ -68,7 +72,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(istype(D) && D.display_icon(src))
 		languageicon = "[D.get_icon()] "
 
-	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
+	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, realnamepart)][namepart][compose_job(speaker, message_language, raw_message, radio_freq)][endspanpart][messagepart]"
+	// ^ The realnamepart thing up there is Yogs
 
 /atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	return ""
@@ -165,6 +170,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 //VIRTUALSPEAKERS
 /atom/movable/virtualspeaker
 	var/job
+	var/realvoice // Yogs -- new UUID, basically, I guess
 	var/atom/movable/source
 	var/obj/item/radio/radio
 
@@ -175,6 +181,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	source = M
 	if (istype(M))
 		name = M.GetVoice()
+		realvoice = M.GetVoice() // Yogs -- new UUID, basically, I guess
 		verb_say = M.verb_say
 		verb_ask = M.verb_ask
 		verb_exclaim = M.verb_exclaim
@@ -206,8 +213,21 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/GetJob()
 	return job
 
+// Yogs start -- Returns the TRUE voice if bool is true
+/atom/movable/virtualspeaker/GetVoice(bool) 
+	if(bool && realvoice)
+		return realvoice
+	else
+		return "[src]"
+
+/* 
+// Commented out because this was causing NTSL to not properly be capable of editing verb_say & al.
+// However, I don't exactly know why it was even in here in the first place, so,
+// if there's some weird bugs involving virtualspeaker, check here first.
 /atom/movable/virtualspeaker/GetSource()
 	return source
+*/
+// Yogs end
 
 /atom/movable/virtualspeaker/GetRadio()
 	return radio

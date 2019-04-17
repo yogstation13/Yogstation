@@ -58,7 +58,8 @@
 					/obj/item/cartridge/lawyer = 2,
 					/obj/item/cartridge/curator = 2,
 					/obj/item/cartridge/roboticist = 2,
-					/obj/item/cartridge/quartermaster = 2)
+					/obj/item/cartridge/quartermaster = 2,
+					/obj/item/deodorant = 3)
 	contraband = list(/obj/item/clothing/under/rank/psyche = 1,
 					  /obj/item/instrument/violin/golden = 1,
 					  /obj/item/clothing/gloves/color/fyellow = 1,

@@ -1,0 +1,249 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"b" = (
+/turf/closed/wall/mineral/abductor,
+/area/ruin/powered)
+"c" = (
+/obj/machinery/computer/camera_advanced/abductor{
+	desc = "Used to fly the abductor emergency pods. It is too complex for you to use anything it seems";
+	name = "Abductor Pod Control Console"
+	},
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"d" = (
+/obj/machinery/light/floor,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"e" = (
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"f" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/abductor,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"g" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"h" = (
+/obj/machinery/door/airlock/abductor,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"i" = (
+/obj/structure/closet/abductor{
+	name = "Armor Code: Primitive"
+	},
+/obj/item/clothing/gloves/plate/blue{
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0);
+	desc = "A pair of heavily modified traditional gauntlets";
+	name = "Cosmic Gauntlets"
+	},
+/obj/item/clothing/shoes/plate/blue{
+	name = "Cosmic Boots"
+	},
+/obj/item/clothing/head/helmet/knight/blue{
+	desc = "A heavily modified traditional helmet";
+	name = "Cosmic Helmet"
+	},
+/obj/item/clothing/suit/armor/riot/knight/blue{
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 50, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0);
+	desc = "A modified suit of traditional plate armor, you can see some circuitry shoved into the joints";
+	name = "Cosmic Armor"
+	},
+/obj/item/clothing/under/roman{
+	name = "Undergarments"
+	},
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"j" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/glasses/meson/night,
+/obj/item/pickaxe/drill,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"k" = (
+/obj/structure/closet/abductor{
+	name = "Weapon Code: Primitive"
+	},
+/obj/item/shield/riot/roman{
+	desc = "Bears an inscription on the inside: <i>\"Ashwalker venio domus\"</i>.";
+	name = "Cosmic Ashwalker Shield"
+	},
+/obj/item/rune_scimmy,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"l" = (
+/obj/structure/bed/abductor,
+/obj/effect/mob_spawn/human/ash_walker/cosmic,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"m" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"n" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+"o" = (
+/obj/structure/closet/abductor{
+	name = "Surgery Code: Primitive"
+	},
+/obj/item/scalpel/alien,
+/obj/item/retractor/alien,
+/obj/item/surgicaldrill/alien,
+/obj/item/circular_saw/alien,
+/obj/item/hemostat/alien,
+/obj/item/cautery/alien,
+/obj/item/surgical_drapes,
+/obj/item/organ/tongue/alien,
+/turf/open/floor/plating/abductor,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+h
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+d
+e
+e
+e
+e
+e
+d
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+e
+g
+g
+g
+g
+g
+e
+b
+a
+"}
+(5,1,1) = {"
+b
+b
+e
+g
+i
+d
+m
+g
+e
+b
+a
+"}
+(6,1,1) = {"
+b
+c
+f
+g
+j
+l
+n
+g
+o
+b
+a
+"}
+(7,1,1) = {"
+b
+b
+e
+g
+k
+d
+e
+g
+e
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+e
+g
+g
+h
+g
+g
+e
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+d
+e
+e
+e
+e
+e
+d
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+h
+b
+b
+b
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

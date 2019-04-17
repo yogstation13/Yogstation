@@ -357,7 +357,7 @@
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Chemist", "Geneticist", "Virologist",
 				// yogs start - Yog jobs
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer",
-				"Signal Tech", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender")
+				"Signal Technician", "Mining Medic", "Paramedic", "Psychiatrist", "Clerk", "Tourist", "Space Bartender")
 				// yogs end
 
 /proc/get_all_job_icons() //For all existing HUD icons

@@ -49,6 +49,7 @@
 	id = "ash-walker"
 	description = "A race of unbreathing lizards live here, that run faster than a human can, worship a broken dead city, and are capable of reproducing by something involving tentacles? \
 	Probably best to stay clear."
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"//yogs - use Yogs custom ash walker nest instead of upstream
 	suffix = "lavaland_surface_ash_walker1.dmm"
 	cost = 20
 	allow_duplicates = FALSE
@@ -57,6 +58,7 @@
 	name = "Syndicate Lava Base"
 	id = "lava-base"
 	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"//yogs - use Yogs custom syndicate lava base instead of upstream
 	suffix = "lavaland_surface_syndicate_base1.dmm"
 	cost = 20
 	allow_duplicates = FALSE
