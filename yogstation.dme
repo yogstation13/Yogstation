@@ -3233,6 +3233,7 @@
 #include "yogstation\code\modules\surgery\gender_reassignment.dm"
 #include "yogstation\code\modules\surgery\healing_surgeries.dm"
 #include "yogstation\code\modules\surgery\tools.dm"
+#include "yogstation\code\modules\surgery\organs\lungs.dm"
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"
 #include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\vending\gift.dm"
