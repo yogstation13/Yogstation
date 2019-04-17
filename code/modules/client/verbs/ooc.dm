@@ -79,7 +79,10 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	while(ping.Find(msg))
 		for(var/x in ping.group)
 			pinged |= ckey(x)
-	pinged &= GLOB.clients // If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+	var/list/clientkeys = list()
+	for(var/x in GLOB.clients)// If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+		clientkeys += x.ckey
+	pinged &= clientkeys 
 	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
