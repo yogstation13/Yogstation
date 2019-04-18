@@ -90,7 +90,7 @@
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
-/datum/supply_pack/misc/prisonclothes
+/datum/supply_pack/security/prisonclothes
 	name = "Prison Jumpsuit Crate"
 	desc = "A crate containing a five cheap looking orange jumpsuits."
 	cost = 500
