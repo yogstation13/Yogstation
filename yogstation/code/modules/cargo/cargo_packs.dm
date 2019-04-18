@@ -95,8 +95,8 @@
 	desc = "A crate containing a five cheap looking orange jumpsuits."
 	cost = 500
 	contains = list(/obj/item/clothing/under/rank/prisoner,
-					/obj/item/clothing/under/rank/prisoner
-					/obj/item/clothing/under/rank/prisoner
-					/obj/item/clothing/under/rank/prisoner
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner)
 	crate_name = "prison crate"
