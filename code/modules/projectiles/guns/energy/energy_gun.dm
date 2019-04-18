@@ -47,7 +47,7 @@
 /obj/item/gun/energy/e_gun/mini/practice_phaser
 	name = "practice phaser"
 	desc = "A modified version of the basic phaser gun, this one fires less concentrated energy bolts designed for target practice."
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/practice, /obj/item/ammo_casing/energy/laser/practice)
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/practice, /obj/item/ammo_casing/energy/laser/practice) // yogs -- practice phaser fires practice disabler beams
 	icon_state = "decloner"
 
 /obj/item/gun/energy/e_gun/hos
