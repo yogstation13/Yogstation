@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Pinging in OOC is now fixed! Again!"
-  - bugfix: "OOC should now be properly coloured in lightmode."
