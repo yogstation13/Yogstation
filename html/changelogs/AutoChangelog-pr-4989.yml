@@ -1,0 +1,4 @@
+author: "  Theos& Super3222"
+delete-after: true 
+changes: 
+  - rscadd: "Resonator fields will now replicate onto adjacent ores of the same kind if they detonate naturally"
