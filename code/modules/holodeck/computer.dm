@@ -274,6 +274,8 @@
 		if((ismob(O) || ismob(O.loc)) && prob(50))
 			addtimer(CALLBACK(src, .proc/derez, O, silent), 50) // may last a disturbingly long time
 			return
+	for(var/I in O.contents)
+		derez(I, !force)
 
 	spawned -= O
 	if(!O)
