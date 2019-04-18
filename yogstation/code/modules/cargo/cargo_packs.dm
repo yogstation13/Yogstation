@@ -98,5 +98,10 @@
 					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
 					/obj/item/clothing/under/rank/prisoner,
-					/obj/item/clothing/under/rank/prisoner)
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange)
 	crate_name = "prison crate"
