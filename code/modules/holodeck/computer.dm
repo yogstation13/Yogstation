@@ -276,7 +276,7 @@
 			return
 	// yogs start -- explicit derez of contents, fixes bug where matches don't derez in matchbox
 	for(var/I in O.contents)
-		derez(I, !force)
+		derez(I, silent, forced)
 	// yogs end
 
 	spawned -= O
