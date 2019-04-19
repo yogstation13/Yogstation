@@ -83,7 +83,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/show_mentors, // yogs - mentors
 	/client/proc/reset_all_tcs, // yogs - NTSL, resets all NTSL scripts in world
 	/client/proc/subtlemessage_faction, // yogs -- SM to entire factions/antag types
-	/client/proc/nerf_or_nothing // yogs -- Groudon's meme nerf verb
+	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
+	/client/proc/delay_shuttle // yogs -- Allows admins to delay the shuttle from launching
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
