@@ -44,7 +44,7 @@
 			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] already helpless, no?\"</span>")
 			return TRUE
 		//yogs start -- shackling people with just one arm is right-out
-		else if(L.get_num_arms(FALSE) >= 2 || L.get_arm_ignore())
+		else if(L.get_num_arms(FALSE) < 2 && !L.get_arm_ignore())
 			to_chat(ranged_ability_user, "<span class='neovgre'>\"[L.p_theyre(TRUE)] lacking in arms necessary for shackling.\"</span>")
 			return TRUE
 		//yogs end
