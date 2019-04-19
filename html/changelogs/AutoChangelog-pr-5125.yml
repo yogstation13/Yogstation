@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "Queues are now capped, and can only be as big as the difference between the Hard and Extreme popcaps (80 and 82 people, respectively)"
