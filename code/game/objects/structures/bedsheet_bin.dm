@@ -42,14 +42,16 @@ LINEN BINS
 
 /obj/item/bedsheet/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
-		// yogs start -- disable infinite holocloth
-		if(!(I.flags_1 & HOLOGRAM_1))
-			var/obj/item/stack/sheet/cloth/C = new (get_turf(src), 3)
-			transfer_fingerprints_to(C)
-			C.add_fingerprint(user)
-		// yogs end
-		qdel(src)
+		// yogs start - disable infinite holocloth
 		to_chat(user, "<span class='notice'>You tear [src] up.</span>")
+		if(flags_1 & HOLOGRAM_1)
+			qdel(src)
+			return
+		var/obj/item/stack/sheet/cloth/C = new (get_turf(src), 3)
+		transfer_fingerprints_to(C)
+		C.add_fingerprint(user)
+		qdel(src)
+		// yogs end
 	else
 		return ..()
 
