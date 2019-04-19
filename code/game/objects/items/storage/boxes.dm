@@ -613,7 +613,8 @@
 	STR.can_hold = typecacheof(list(/obj/item/match))
 
 /obj/item/storage/box/matches/PopulateContents()
-	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
+	for(var/i in 1 to 10)
+		new /obj/item/match(src)
 
 /obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/match))
