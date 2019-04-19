@@ -274,10 +274,6 @@
 		if((ismob(O) || ismob(O.loc)) && prob(50))
 			addtimer(CALLBACK(src, .proc/derez, O, silent), 50) // may last a disturbingly long time
 			return
-	// yogs start -- explicit derez of contents, fixes bug where matches don't derez in matchbox
-	//for(var/I in O.contents)
-	//	derez(I, TRUE, forced)
-	// yogs end
 
 	spawned -= O
 	if(!O)
