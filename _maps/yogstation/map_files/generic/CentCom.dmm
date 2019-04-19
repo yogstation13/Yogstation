@@ -1028,6 +1028,7 @@
 /obj/structure/window{
 	dir = 1
 	},
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1040,6 +1041,7 @@
 /obj/structure/window{
 	dir = 1
 	},
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1096,6 +1098,7 @@
 "cZ" = (
 /obj/structure/bed,
 /obj/machinery/iv_drip,
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1106,6 +1109,7 @@
 	},
 /obj/structure/bed,
 /obj/machinery/iv_drip,
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
