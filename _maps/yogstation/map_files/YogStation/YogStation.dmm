@@ -1331,6 +1331,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"acK" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "acL" = (
 /obj/machinery/door/airlock{
 	name = "Gift Shop";
@@ -84353,7 +84358,7 @@ aVz
 aVz
 aXi
 aat
-aat
+acK
 aat
 aat
 aET
