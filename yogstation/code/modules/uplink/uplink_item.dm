@@ -53,6 +53,7 @@
 	surplus = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
+
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
