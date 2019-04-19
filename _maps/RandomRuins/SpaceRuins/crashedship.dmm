@@ -2402,6 +2402,10 @@
 "hE" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/awaymission/BMPship/Fore)
+"uj" = (
+/obj/item/clothing/suit/space/hardsuit/ert/jani,
+/turf/open/floor/plating,
+/area/awaymission/BMPship/Aft)
 "vh" = (
 /turf/template_noop,
 /area/space/nearstation)
@@ -4789,7 +4793,7 @@ cw
 dW
 er
 eE
-al
+uj
 al
 fo
 fD

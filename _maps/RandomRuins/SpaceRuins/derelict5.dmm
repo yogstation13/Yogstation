@@ -72,6 +72,10 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
+"N" = (
+/obj/effect/spawner/lootdrop/armory_contraband/metastation,
+/turf/open/floor/plating,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -724,11 +728,11 @@ b
 b
 b
 e
-g
+N
 g
 k
 n
-i
+N
 e
 g
 g
@@ -771,7 +775,7 @@ f
 e
 e
 p
-l
+N
 e
 b
 b
@@ -804,7 +808,7 @@ a
 b
 b
 d
-g
+N
 g
 l
 h

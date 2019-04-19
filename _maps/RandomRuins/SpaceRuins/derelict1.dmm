@@ -79,6 +79,16 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
+"F" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/sloth,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
+"N" = (
+/obj/structure/alien/weeds,
+/obj/item/toy/syndicateballoon,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -681,7 +691,7 @@ f
 f
 f
 f
-f
+N
 f
 f
 f
@@ -712,7 +722,7 @@ c
 f
 c
 f
-f
+F
 f
 c
 f
