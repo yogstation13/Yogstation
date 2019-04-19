@@ -144,8 +144,8 @@
 	var/static/lastadmin
 	var/static/lastsound
 	
-	if(lastadmin)
-		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?","Yes","Cancel") != "Yes")
+	if(lastadmin && src.ckey != lastadmin)
+		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?",,"Yes","Cancel") != "Yes")
 			return
 	SSticker.SetRoundEndSound(S)
 	lastadmin = src.ckey
