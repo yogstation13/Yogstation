@@ -739,7 +739,7 @@
 /area/awaymission/academy/academyengine)
 "cG" = (
 /mob/living/simple_animal/slaughter{
-	desc = "A radioactive being made of condensed fusion material"
+	desc = "A radioactive being made of condensed fusion material";
 	name = "Radioactive Prat Demon"
 	},
 /turf/open/floor/plating,
