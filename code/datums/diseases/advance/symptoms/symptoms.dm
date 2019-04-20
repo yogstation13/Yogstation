@@ -1,4 +1,5 @@
 // Symptoms are the effects that engineered advanced diseases do.
+
 /datum/symptom
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
 	var/name = ""
