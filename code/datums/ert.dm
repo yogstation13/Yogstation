@@ -63,11 +63,11 @@
 	mission = "Clean up EVERYTHING."
 	polldesc = "a Nanotrasen Janitorial Response Team"
 	
-/datum/ert/crusader
+/datum/ert/crusader //yogs start
 	roles = list(/datum/antagonist/ert/crusader)
 	leader_role = /datum/outfit/ert/crusader
 	teamsize = 5
 	opendoors = FALSE
 	rename_team = "crusaders"
 	mission = "Deus Vult."
-	polldesc = "A holy crusade"
+	polldesc = "A holy crusade" //yogs end
