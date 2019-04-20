@@ -181,7 +181,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			B.name = name
 			B.icon_state = icon_state
 			B.item_state = item_state
-	
 	if(istype(A, /obj/item/twohanded/required/cult_bastard) && !iscultist(user))
 		var/obj/item/twohanded/required/cult_bastard/sword = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [sword].</span>")
@@ -199,8 +198,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			new /obj/item/nullrod/claymore(get_turf(sword))
 			user.visible_message("<span class='notice'>[user] has purified the [sword]!</span>")
 			qdel(sword)
-	
-	if(istype(A, /obj/item/melee/cultblade) && !iscultist(user)) //yogs start
+	//yogs start -- More Cult conversions!//
+	else if(istype(A, /obj/item/melee/cultblade) && !iscultist(user)) 
 		var/obj/item/melee/cultblade/sword = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [sword].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -210,7 +209,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			user.visible_message("<span class='notice'>[user] has purified the [sword]!</span>")
 			qdel(sword)
 	
-	if(istype(A, /obj/item/clothing/suit/space/hardsuit/cult) && !iscultist(user))
+	else if(istype(A, /obj/item/clothing/suit/space/hardsuit/cult) && !iscultist(user))
 		var/obj/item/clothing/suit/space/hardsuit/cult/hardsuit = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [hardsuit].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -220,7 +219,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			user.visible_message("<span class='notice'>[user] has purified the [hardsuit]!</span>")
 			qdel(hardsuit)
 			
-	if(istype(A, /obj/item/clothing/suit/cultrobes/alt) && !iscultist(user))
+	else if(istype(A, /obj/item/clothing/suit/cultrobes/alt) && !iscultist(user))
 		var/obj/item/clothing/suit/cultrobes/alt/hardsuit = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [hardsuit].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -230,7 +229,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			user.visible_message("<span class='notice'>[user] has purified the [hardsuit]!</span>")
 			qdel(hardsuit)
 			
-	if(istype(A, /obj/item/clothing/head/culthood/alt) && !iscultist(user))
+	else if(istype(A, /obj/item/clothing/head/culthood/alt) && !iscultist(user))
 		var/obj/item/clothing/head/culthood/alt/hardsuit = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [hardsuit].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -240,7 +239,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			user.visible_message("<span class='notice'>[user] has purified the [hardsuit]!</span>")
 			qdel(hardsuit)
 			
-	if(istype(A, /obj/item/melee/cultblade/dagger) && !iscultist(user))
+	else if(istype(A, /obj/item/melee/cultblade/dagger) && !iscultist(user))
 		var/obj/item/melee/cultblade/dagger/hardsuit = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [hardsuit].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -250,7 +249,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			user.visible_message("<span class='notice'>[user] has purified the [hardsuit]!</span>")
 			qdel(hardsuit)
 			
-	if(istype(A, /obj/item/clothing/suit/hooded/cultrobes/cult_shield) && !iscultist(user))
+	else if(istype(A, /obj/item/clothing/suit/hooded/cultrobes/cult_shield) && !iscultist(user))
 		var/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hardsuit = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [hardsuit].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
@@ -259,8 +258,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			new /obj/item/nullrod/staff/blue(get_turf(hardsuit))
 			new /obj/item/clothing/suit/armor/riot/chaplain(get_turf(hardsuit))
 			user.visible_message("<span class='notice'>[user] has purified the [hardsuit]!</span>")
-			qdel(hardsuit) //yogs end
-	
+			qdel(hardsuit)
+	//yogs end -- More Cult conversions!
 	else if(istype(A, /obj/item/soulstone) && !iscultist(user))
 		var/obj/item/soulstone/SS = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [SS].</span>")
