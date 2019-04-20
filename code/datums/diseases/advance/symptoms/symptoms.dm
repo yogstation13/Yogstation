@@ -1,5 +1,16 @@
 // Symptoms are the effects that engineered advanced diseases do.
 
+proc/getshiton()
+	var/list/S = SSdisease.list_symptoms
+	var/datum/symptom/l
+	var/blob = ""
+	for(var/d in S)
+		l = new d
+		var/text = "\[\"[l.name]\", [l.stealth], [l.resistance], [l.stage_speed], [l.transmittable], [l.level]\],"
+		blob += text
+	priority_announce(blob)
+
+
 /datum/symptom
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
 	var/name = ""

@@ -204,6 +204,11 @@
 		else
 			visibility_flags &= ~HIDDEN_SCANNER
 
+		if(properties["stealth"] >= 4)
+			visibility_flags |= HIDDEN_PANDEMIC
+		else
+			visibility_flags &= ~HIDDEN_PANDEMIC
+
 		SetSpread(CLAMP(2 ** (properties["transmittable"] - symptoms.len), DISEASE_SPREAD_BLOOD, DISEASE_SPREAD_AIRBORNE))
 
 		permeability_mod = max(CEILING(0.4 * properties["transmittable"], 1), 1)
