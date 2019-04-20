@@ -15,13 +15,13 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/t45b
 	name = "Salvaged T-45b helmet"
-	desc = "It's a pre-War power armor helmet, recovered and maintained by NCR engineers."
+	desc = "It's some barely-functional power armor helmet from a by-gone age."
 	icon_state = "t45bhelmet"
 	item_state = "t45bhelmet"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 25) 
 /obj/item/clothing/suit/space/hardsuit/powerarmor/t45b
 	name = "Salvaged T-45b power armor"
-	desc = "It's a set of T-45b power armor recovered by the NCR during the NCR-Brotherhood War."
+	desc = "It's some barely-functional power armor, probably hundreds of years old."
 	icon_state = "t45bpowerarmor"
 	item_state = "t45bpowerarmor"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
@@ -29,13 +29,13 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/advanced
 	name = "Advanced power helmet"
-	desc = "It's an advanced power armor Mk I helmet, typically used by the Enclave. It looks somewhat threatening."
+	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
 	icon_state = "advhelmet1"
 	item_state = "advhelmet1"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
 /obj/item/clothing/suit/space/hardsuit/powerarmor/advanced
 	name = "Advanced power armor"
-	desc = "An advanced suit of armor typically used by the Enclave.<br>It is composed of lightweight metal alloys, reinforced with ceramic castings at key stress points.<br>Additionally, like the T-51b power armor, it includes a recycling system that can convert human waste into drinkable water, and an air conditioning system for it's user's comfort."
+	desc = "An advanced suit of power armor. It looks pretty impressive and threatening."
 	icon_state = "advpowerarmor1"
 	item_state = "advpowerarmor1"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
