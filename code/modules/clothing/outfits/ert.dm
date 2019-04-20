@@ -303,4 +303,17 @@
 		/obj/item/melee/baton/loaded=1,\
 		/obj/item/clothing/mask/gas/sechailer=1,\
 		/obj/item/grenade/clusterbuster/cleaner=3)
-
+		
+		
+/datum/outfit/ert/crusader //yogs start
+	name = "Crusader"
+	id = /obj/item/card/id/ert
+	head = /obj/item/clothing/head/helmet/chaplain
+	suit = /obj/item/clothing/suit/armor/riot/chaplain
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
+	back = /obj/item/storage/backpack/ert
+	belt = /obj/item/claymore
+	l_pocket = /obj/item/nullrod
+	l_hand = /obj/item/shield/riot/buckler
+	backpack_contents = list(/obj/item/storage/book/bible,\
+		/obj/item/reagent_containers/food/drinks/bottle/holywater)//yogs end

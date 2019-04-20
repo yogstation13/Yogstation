@@ -108,6 +108,10 @@
 	outfit = /datum/outfit/death_commando
 	role = "Officer"
 
+/datum/antagonist/ert/crusader //yogs start
+	role = "Chaplain"
+	outfit = /datum/outfit/ert/crusader //yogs end
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
