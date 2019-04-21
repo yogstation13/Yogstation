@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Admins should now be able to change the roundend sound, even after it's been set to a custom value."
