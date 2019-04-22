@@ -32,6 +32,14 @@
 /area/ruin/powered/seedvault
 	icon_state = "dk_yellow"
 
+/area/ruin/powered/gasstation
+	name = "Lavaland Gas Station"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/spacebar
+	name = "Space Bar"
+	icon_state = "dk_yellow"
+
 /area/ruin/unpowered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"
