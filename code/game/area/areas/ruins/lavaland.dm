@@ -38,6 +38,7 @@
 
 /area/ruin/powered/spacebar
 	name = "Space Bar"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	icon_state = "dk_yellow"
 
 /area/ruin/unpowered/syndicate_lava_base
