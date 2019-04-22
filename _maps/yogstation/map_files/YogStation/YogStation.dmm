@@ -511,6 +511,9 @@
 	layer = 2.9
 	},
 /obj/structure/transit_tube/curved/flipped,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
 "abe" = (
@@ -527,6 +530,9 @@
 /obj/structure/transit_tube/station{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
 "abg" = (
@@ -542,6 +548,9 @@
 /obj/structure/window/reinforced,
 /obj/structure/transit_tube/curved{
 	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
