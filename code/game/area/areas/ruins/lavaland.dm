@@ -37,6 +37,12 @@
 	icon_state = "dk_yellow"
 	ambientsounds = HIGHSEC
 
+/area/ruin/powered/kinggoat_arena //yogs start
+	name = "King Goat Arena"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	noteleport = TRUE
+	icon_state = "dk_yellow" //yogs end
+
 /area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
 
