@@ -25,7 +25,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 

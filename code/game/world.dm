@@ -39,11 +39,11 @@ GLOBAL_VAR(restart_counter)
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
 	load_admins()
-	
+
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
-		
+
 	setup_pretty_filter() //yogs
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
