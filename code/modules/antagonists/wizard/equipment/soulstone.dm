@@ -279,7 +279,6 @@
 		return FALSE
 	if(contents.len) //If they used the soulstone on someone else in the meantime
 		return FALSE
-	T.ghostize() // yogs - if they disconnected, they ghost now.
 	T.ckey = chosen_ghost.ckey
 	for(var/obj/item/W in T)
 		T.dropItemToGround(W)
