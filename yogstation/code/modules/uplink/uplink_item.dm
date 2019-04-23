@@ -39,6 +39,9 @@
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
 
+/datum/uplink_item/stealthy_tools/mulligan
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
