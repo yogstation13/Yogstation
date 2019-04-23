@@ -384,6 +384,7 @@
 /datum/chemical_reaction/slime/slimespeed/on_reaction(datum/reagents/holder)
 	if(rand(1))
 		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+		return
 	if(rand(50))
 		new /mob/living/simple_animal/pet/gondola/gondolapod(get_turf(holder.my_atom))
 	else
