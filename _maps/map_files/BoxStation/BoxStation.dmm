@@ -56570,6 +56570,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mFY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "mJd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -77156,7 +77161,7 @@ ayy
 ayy
 aAO
 aBN
-aDe
+mFY
 aDe
 aFT
 aDe
