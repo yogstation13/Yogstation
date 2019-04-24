@@ -49,4 +49,3 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/mime/speak(null))
 		H.mind.miming = 1
 
-
