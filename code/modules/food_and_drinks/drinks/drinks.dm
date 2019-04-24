@@ -243,15 +243,9 @@
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "cup ramen"
-<<<<<<< HEAD
-	desc = "Just add 10ml of water, self heats! A taste that reminds you of your school years."
-	icon_state = "ramen"
-	list_reagents = list("dry_ramen" = 30)
-=======
 	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
 	icon_state = "ramen"
 	list_reagents = list("dry_ramen" = 15, "sodiumchloride" = 3)
->>>>>>> 6dd9c26ad7... Add salt to ramen noodles (#43586)
 	foodtype = GRAIN
 	isGlass = FALSE
 
