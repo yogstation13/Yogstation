@@ -498,7 +498,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Change your view range."
 
 	//yogs start -- Divert this verb to the admin variant if this guy has it
-	if(hascall(usr.client,"toggle_view_range"))
+	if(check_rights(R_ADMIN,FALSE) && hascall(usr.client,"toggle_view_range"))
 		call(usr.client,"toggle_view_range")()
 		return
 	//yogs end
