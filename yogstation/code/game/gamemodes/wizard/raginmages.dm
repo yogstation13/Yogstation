@@ -20,13 +20,13 @@
 	var/playercount = 0
 	if(!max_mages && !bullshit_mode)
 		for(var/mob/living/player in GLOB.mob_list)
-			if(player.client && player.stat != 2)
+			if(player.client && player.stat != DEAD)
 				playercount += 1
-			max_mages = round(playercount / 8)
-			if(max_mages > 20)
-				max_mages = 20
-			if(max_mages < 1)
-				max_mages = 1
+		max_mages = round(playercount / 8)
+		if(max_mages > 20)
+			max_mages = 20
+		if(max_mages < 1)
+			max_mages = 1
 	if(bullshit_mode)
 		max_mages = INFINITY
 
@@ -47,21 +47,14 @@
 		wizards_alive++
 	if(!time_checked)
 		time_checked = world.time
-	if(bullshit_mode)
-		if(world.time > time_checked + time_check)
-			max_mages = INFINITY
-			time_checked = world.time
-			make_more_mages()
-			return ..()
-	if (wizards_alive)
+	
+	if (wizards_alive || bullshit_mode)
 		if(world.time > time_checked + time_check && (mages_made < max_mages))
 			time_checked = world.time
 			make_more_mages()
-
 	else
 		if(mages_made >= max_mages)
-			finished = 1
-			return ..()
+			finished = TRUE // A flag inherited by /game_mode/wizard that marks that wizards have lost
 		else
 			make_more_mages()
 	return ..()
@@ -107,7 +100,8 @@
 		else
 			shuffle_inplace(candidates)
 			for(var/mob/i in candidates)
-				if(!i || !i.client) continue //Dont bother removing them from the list since we only grab one wizard
+				if(!i || !i.client) 
+					continue //Dont bother removing them from the list since we only grab one wizard
 
 				theghost = i
 				break
