@@ -139,7 +139,7 @@
 /area/ruin/unpowered)
 "aD" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/gloves/space_ninja,
+/obj/item/clothing/gloves/combat,
 /turf/open/floor/pod,
 /area/ruin/unpowered)
 "aE" = (
@@ -173,6 +173,18 @@
 /turf/open/floor/pod,
 /area/ruin/unpowered)
 "aJ" = (
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_animal/hostile/viscerator,
 /mob/living/simple_animal/hostile/viscerator,
 /mob/living/simple_animal/hostile/viscerator,
 /mob/living/simple_animal/hostile/viscerator,
