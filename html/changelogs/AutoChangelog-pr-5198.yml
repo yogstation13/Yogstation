@@ -1,4 +1,0 @@
-author: " JoeyJo0"
-delete-after: true 
-changes: 
-  - bugfix: "Slot machines can't give out 0 balance chips anymore"
