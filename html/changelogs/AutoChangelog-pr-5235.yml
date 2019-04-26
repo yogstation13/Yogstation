@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "The radio configuration menu for masters of pAI will now toggle properly."

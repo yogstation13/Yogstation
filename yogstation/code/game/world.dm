@@ -46,11 +46,10 @@ GLOBAL_LIST_EMPTY(donators)
 	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links line
 	
 	//TAGLINE
-	s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
+	//s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
 	
 	//MAP AND GAMEMODE
-	if(GLOB.master_mode != "secret")
-		s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
+	s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
 	s += "Map: <b>[SSmapping.config?.map_name || "Loading..."]</b><br>" // The map line
 	
 	//FEATURES
