@@ -58715,6 +58715,17 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
+<<<<<<< HEAD
+=======
+"pIh" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1;
+	frequency = 1441;
+	id = "inc_in"
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/disposal/incinerator)
+>>>>>>> aaa1a72771... Dab on dvars (#43707)
 "pKd" = (
 /obj/effect/spawner/lootdrop/maintenance/two,
 /obj/structure/closet/crate,
