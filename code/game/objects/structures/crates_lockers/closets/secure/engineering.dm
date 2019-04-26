@@ -33,7 +33,8 @@
 	new /obj/item/storage/photo_album/CE(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src) //yogs start
 	new /obj/item/clothing/under/yogs/cecasual(src)
-	new /obj/item/clothing/head/beret/ce(src)  //yogs end
+	new /obj/item/clothing/head/beret/ce(src)
+	new /obj/item/poster/firstsingularity(src)  //yogs end
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"

@@ -298,7 +298,7 @@
 		if(candidates.len)
 			ckey = input("Pick the player you want to respawn as a xeno.", "Suitable Candidates") as null|anything in candidates
 		else
-			to_chat(usr, "<font color='red'>Error: create_xeno(): no suitable candidates.</font>")
+			to_chat(usr, "<span class='danger'>Error: create_xeno(): no suitable candidates.</span>")
 	if(!istext(ckey))
 		return 0
 
@@ -741,7 +741,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "switches between 1x and custom views"
 
 	if(view == CONFIG_GET(string/default_view))
-		change_view(input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
+		//yogs start -- Adds customization and warnings
+		var/newview = input("Select view range:", "FUCK YE", 7) in list(7,10,12,14,32,64,128,"Custom...")
+		if(newview == "Custom...")
+			newview = input("Enter custom view range:","FUCK YEEEEE") as num
+			if(!newview)
+				return
+		if(newview > 64)
+			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
+				return
+		change_view(newview)
+		//yogs end
 	else
 		change_view(CONFIG_GET(string/default_view))
 
@@ -1103,11 +1113,10 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!weather_type)
 		return
 
-	var/z_level = input("Z-Level to target? Leave blank to target current Z-Level.", "Z-Level")  as num|null
+	var/turf/T = get_turf(mob)
+	var/z_level = input("Z-Level to target?", "Z-Level", T?.z) as num|null
 	if(!isnum(z_level))
-		if(!src.mob)
-			return
-		z_level = src.mob.z
+		return
 
 	SSweather.run_weather(weather_type, z_level)
 
@@ -1243,7 +1252,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggled Hub Visibility", "[GLOB.hub_visibility ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/smite(mob/living/carbon/human/target as mob)
+/client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
 	set category = "Fun"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
@@ -1261,7 +1270,9 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 			var/turf/T = get_step(get_step(target, NORTH), NORTH)
 			T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 			target.adjustFireLoss(75)
-			target.electrocution_animation(40)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				H.electrocution_animation(40)
 			to_chat(target, "<span class='userdanger'>The gods have punished you for your sins!</span>")
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
 			target.adjustBrainLoss(199, 199)

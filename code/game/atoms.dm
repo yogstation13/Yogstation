@@ -42,7 +42,7 @@
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
+		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -418,6 +418,11 @@
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
 	GET_COMPONENT(STR, /datum/component/storage)
+	//yogs start -- stops things from dumping into themselves
+	if(STR == src_object)
+		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
+		return
+	//yogs end
 	while (do_after(user, 10, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
