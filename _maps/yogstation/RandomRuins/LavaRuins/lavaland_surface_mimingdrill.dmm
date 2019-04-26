@@ -21,6 +21,7 @@
 /obj/item/toy/crayon/spraycan/mimecan,
 /obj/item/toy/figure/mime,
 /obj/item/storage/backpack/mime,
+/obj/item/storage/box/syndie_kit/mimery,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "f" = (

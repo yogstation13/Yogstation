@@ -199,7 +199,7 @@
 		if (org.bandaged)
 			dat += "<tr><td><i>[org.name]</i> wrapped with:</td><td><a href='byond://?src=\ref[src];unwrap=\ref[org.bandaged]'>[org.bandaged]</a></td></tr>"
 	// yogs end
-		
+
 	if(handcuffed)
 		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Remove</A></td></tr>"
 	if(legcuffed)
@@ -636,6 +636,9 @@
 
 		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
+		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
+		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
+		var/anticpr = min(C.getOxyLoss(), 10) // yogs - for incompatible lungs
 
 		if(C.health > C.crit_threshold)
 			return
@@ -644,8 +647,17 @@
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
-
-		if(they_breathe && they_lung)
+		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
+		if(they_breathe && they_ashlung && !we_ashlung)
+			C.adjustOxyLoss(anticpr)
+			C.updatehealth()
+			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+		else if(they_breathe && they_lung && we_ashlung)
+			C.adjustOxyLoss(anticpr)
+			C.updatehealth()
+			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
+		//yogs end
+		else if(they_breathe && they_lung)
 			var/suff = min(C.getOxyLoss(), 7)
 			C.adjustOxyLoss(-suff)
 			C.updatehealth()
@@ -827,6 +839,7 @@
 	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
 	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
+	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
 	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // yogs -- make cluwne
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)

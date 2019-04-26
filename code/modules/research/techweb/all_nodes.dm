@@ -102,8 +102,8 @@
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
-	design_ids = list("surgery_brainwashing","surgery_zombie")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	design_ids = list("surgery_zombie") //yogs
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000) //yogs
 	export_price = 5000
 
 /////////////////////////data theory tech/////////////////////////
@@ -379,7 +379,7 @@
 	display_name = "Arcade Games"
 	description = "For the slackers on the station."
 	prereq_ids = list("comptech")
-	design_ids = list("arcade_battle", "arcade_orion", "slotmachine")
+	design_ids = list("arcade_battle", "arcade_orion", "slotmachine", "minesweeper") //yogs added minesweeper to the arcade tech node
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -562,7 +562,7 @@
 /datum/techweb_node/weaponry
 	id = "weaponry"
 	display_name = "Weapon Development Technology"
-	description = "Our researchers have found new to weaponize just about everything now."
+	description = "Our researchers have found new ways to weaponize just about everything now."
 	prereq_ids = list("engineering")
 	design_ids = list("pin_testing", "tele_shield")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
