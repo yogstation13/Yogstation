@@ -48,7 +48,7 @@
 
 		sleep(40)
 		
-//yogs start
+//yogs start - removes speed buff when not active
 	while(!active)
 		user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)
 		break
