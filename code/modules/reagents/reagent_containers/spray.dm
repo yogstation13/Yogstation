@@ -59,11 +59,7 @@
 	return
 
 
-<<<<<<< HEAD
 /obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1) // yogs - makes log activate if a living mob is sprayed
-=======
-/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/user)
->>>>>>> a4906f2382... [s] adds actual logging to spray bottles (#43627)
 	var/range = max(min(current_range, get_dist(src, A)), 1)
 	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
