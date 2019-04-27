@@ -931,7 +931,7 @@
 		if(istype(hitby, /obj/item/projectile))
 			var/obj/item/projectile/P = hitby
 			if(P.damage_type == BRUTE || P.damage_type == BURN)
-				if(P.damage >= 15) //yogs halfed damage needed so that not only a shotgun can destroy it
+				if(P.damage >= 20) //yogs halfed damage needed so that not only a shotgun can destroy it
 					var/turf/T = get_turf(owner)
 					T.visible_message("<span class='warning'>The sheer force from [P] shatters the mirror shield!</span>")
 					new /obj/effect/temp_visual/cult/sparks(T)
