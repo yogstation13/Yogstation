@@ -48,6 +48,10 @@
 
 		sleep(40)
 
+	while(!active)
+		user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)
+		break
+
 	while(!active && stacks) //Damage stacks decrease fairly rapidly while not in sanic mode
 		stacks--
 		sleep(20)
