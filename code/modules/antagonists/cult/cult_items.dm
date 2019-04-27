@@ -38,7 +38,7 @@
 	flags_1 = CONDUCT_1
 	sharpness = IS_SHARP
 	w_class = WEIGHT_CLASS_BULKY
-	force = 30
+	force = 20 //yogs 30 to 20
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
@@ -89,7 +89,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	block_chance = 50
 	throwforce = 20
-	force = 35
+	force = 25 //yogs 35 to 25
 	armour_penetration = 45
 	throw_speed = 1
 	throw_range = 3
@@ -436,7 +436,7 @@
 	flags_inv = HIDEJUMPSUIT
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list("melee" = -45, "bullet" = -45, "laser" = -45,"energy" = -45, "bomb" = -45, "bio" = -45, "rad" = -45, "fire" = 0, "acid" = 0)
+	armor = list("melee" = -85, "bullet" = -85, "laser" = -85,"energy" = -85, "bomb" = -85, "bio" = -85, "rad" = -85, "fire" = 0, "acid" = 0) //yogs 2x the damage taken
 	slowdown = -0.6
 	hoodtype = /obj/item/clothing/head/hooded/berserkerhood
 
@@ -446,7 +446,7 @@
 	icon_state = "culthood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
-	armor = list("melee" = -50, "bullet" = -50, "laser" = -50, "energy" = -50, "bomb" = -50, "bio" = -50, "rad" = -50, "fire" = 0, "acid" = 0)
+	armor = list("melee" = -100, "bullet" = -100, "laser" = -100, "energy" = -100, "bomb" = -100, "bio" = -100, "rad" = -100, "fire" = 0, "acid" = 0) //yogs 2x the damage taken
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
@@ -660,7 +660,7 @@
 	slot_flags = 0
 	force = 17
 	force_wielded = 24
-	throwforce = 40
+	throwforce = 30 //yogs reduced from 40 cause wew
 	throw_speed = 2
 	armour_penetration = 30
 	block_chance = 30
@@ -931,7 +931,7 @@
 		if(istype(hitby, /obj/item/projectile))
 			var/obj/item/projectile/P = hitby
 			if(P.damage_type == BRUTE || P.damage_type == BURN)
-				if(P.damage >= 30)
+				if(P.damage >= 15) //yogs halfed damage needed so that not only a shotgun can destroy it
 					var/turf/T = get_turf(owner)
 					T.visible_message("<span class='warning'>The sheer force from [P] shatters the mirror shield!</span>")
 					new /obj/effect/temp_visual/cult/sparks(T)
