@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/gigadrill
 	name = "Giga Drill"
-	desc = "This looks like any normal drill,except not,it is a giga drill!"
+	desc = "This looks like any normal drill,except not,it is a giga drill.Drag and drop an ore box on it to load the box on and drag and drop to a adjacant turf to unlload the box."
 	icon = 'yogstation/icons/obj/xenoarch/artifacts.dmi'
 	icon_state = "gigadrill"
 	key_type = null //maybe add a key in the future
