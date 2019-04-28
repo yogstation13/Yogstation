@@ -89,7 +89,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	block_chance = 50
 	throwforce = 20
-	force = 25 //yogs 35 to 25
+	force = 35
 	armour_penetration = 45
 	throw_speed = 1
 	throw_range = 3
