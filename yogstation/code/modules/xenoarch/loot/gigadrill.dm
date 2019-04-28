@@ -104,7 +104,7 @@
 		if(get_dir(src,M)&src.dir)
 			M.gets_drilled()
 
-	if(OB)
+	if(!QDELETED(OB))
 		for(var/obj/item/stack/ore/ore in range(1, src))
 			if(ore.Adjacent(src))
 				ore.forceMove(OB)
