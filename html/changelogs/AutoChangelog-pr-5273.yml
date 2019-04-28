@@ -1,0 +1,4 @@
+author: " subject217"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed the gulag teleporter not actually being anchored."

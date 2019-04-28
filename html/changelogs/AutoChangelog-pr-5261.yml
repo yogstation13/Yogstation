@@ -1,0 +1,4 @@
+author: " actioninja"
+delete-after: true 
+changes: 
+  - bugfix: " Darkmode pref saves correctly instead of loading the opposite of your last used theme"
