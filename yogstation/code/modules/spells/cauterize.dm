@@ -6,7 +6,7 @@
 	charge_max = 800
 	cooldown_min = 600 //50 deciseconds reduction per level
 	range = -1
-	var/cauterize_duration = 30 //in seconds
+	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
 	invocation = "P A!"
 	invocation_type = "shout"
@@ -18,7 +18,7 @@
 
 /obj/effect/proc_holder/spell/targeted/cauterize/proc/do_cauterize(mob/living/target)
 	var/total_dam = target.getBruteLoss() + target.getFireLoss()
-	var/real_duration = cauterize_duration+(spell_level*5) //50 at highest
+	var/real_duration = cauterize_duration+(spell_level*10) //60 at highest, equal to cooldown
 	target.adjustBruteLoss(-500)
 	target.adjustFireLoss(-500)
 	var/damage_per_tick=total_dam/real_duration
