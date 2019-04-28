@@ -330,9 +330,7 @@
 	noteleport = 1
 	})
 "aS" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/bearsteak,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/wood,
@@ -349,9 +347,7 @@
 	noteleport = 1
 	})
 "aU" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/meat/steak/bear,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/wood,
@@ -413,9 +409,7 @@
 	noteleport = 1
 	})
 "ba" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/burger/bearger,
 /turf/open/floor/wood,
 /area/ruin/unpowered{
@@ -491,9 +485,7 @@
 	noteleport = 1
 	})
 "bi" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/meat/steak/bear,
 /obj/item/lighter,
 /turf/open/floor/wood,
@@ -543,9 +535,7 @@
 	noteleport = 1
 	})
 "bo" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/bearsteak,
 /turf/open/floor/wood,
 /area/ruin/unpowered{
@@ -643,9 +633,7 @@
 	noteleport = 1
 	})
 "bw" = (
-/obj/structure/table/wood{
-	step_x = 0
-	},
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/meat/steak/bear,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
 	pixel_x = -9;
@@ -1100,48 +1088,30 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"eC" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"hZ" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"iG" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"nX" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"vA" = (
-/obj/item/cigbutt/cigarbutt,
-/turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"If" = (
+"sE" = (
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"ND" = (
+"tt" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Ao" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Be" = (
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -1152,7 +1122,14 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"Sf" = (
+"BL" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"MO" = (
 /obj/effect/mine/gas/plasma,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/pod,
@@ -1160,11 +1137,22 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"To" = (
-/obj/effect/mob_spawn/human/corpse/russian/ranged,
-/obj/item/reagent_containers/food/snacks/burger/bearger,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood,
+"Nv" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Pf" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Yn" = (
+/turf/open/lava/smooth/lava_land_surface,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -1410,7 +1398,7 @@ ab
 ac
 ac
 ac
-eC
+Yn
 ab
 ab
 ab
@@ -1717,7 +1705,7 @@ ad
 ad
 ad
 ad
-hZ
+tt
 ai
 cf
 bZ
@@ -1739,7 +1727,7 @@ ad
 ad
 co
 aH
-iG
+Nv
 ad
 ad
 av
@@ -1749,7 +1737,7 @@ ai
 ai
 ad
 bs
-hZ
+tt
 ad
 cu
 aR
@@ -1773,7 +1761,7 @@ ag
 ag
 ag
 ag
-ND
+Be
 ag
 bh
 aG
@@ -1783,7 +1771,7 @@ aQ
 ad
 ai
 cq
-Sf
+MO
 cs
 ah
 bW
@@ -1792,8 +1780,8 @@ aT
 aT
 cq
 ai
-If
-hZ
+sE
+tt
 bZ
 aa
 aa
@@ -1822,14 +1810,14 @@ ai
 aQ
 ai
 aK
-vA
-hZ
+Pf
+tt
 aK
 ai
 bY
 aK
 cc
-nX
+BL
 cg
 bZ
 aa
@@ -1853,7 +1841,7 @@ ap
 aE
 aE
 cq
-hZ
+tt
 cr
 aQ
 cq
@@ -1866,7 +1854,7 @@ aT
 aT
 cq
 ai
-hZ
+tt
 ai
 bZ
 aa
@@ -1892,7 +1880,7 @@ bw
 ad
 ai
 bb
-hZ
+tt
 ai
 ai
 ad
@@ -1966,7 +1954,7 @@ ag
 ad
 aM
 cj
-To
+Ao
 cl
 bT
 ad
