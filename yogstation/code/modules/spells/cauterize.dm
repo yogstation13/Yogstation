@@ -3,8 +3,8 @@
 	desc = "Replace all brute/burn damage with burn damage, taken over time. Higher levels increases time taken to return back to original damage level."
 	clothes_req = TRUE
 	human_req = FALSE
-	charge_max = 1000
-	cooldown_min = 600 //100 deciseconds reduction per level
+	charge_max = 800
+	cooldown_min = 600 //50 deciseconds reduction per level
 	range = -1
 	var/cauterize_duration = 30 //in seconds
 	include_user = TRUE
@@ -29,3 +29,4 @@
 /datum/spellbook_entry/cauterize
 	name = "Cauterize"
 	spell_type = /obj/effect/proc_holder/spell/targeted/cauterize
+	category = "Defensive"
