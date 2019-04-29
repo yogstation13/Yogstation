@@ -1,3 +1,11 @@
+/datum/reagent/mutationtoxin/gorilla
+	name = "Gorilla Mutation Toxin"
+	id = "gorillamutationtoxin"
+	description = "A gorilla-ing toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/gorilla
+	mutationtext = "<span class='danger'>The pain subsides. You feel... damn dirty.</span>"
+
 /datum/reagent/cluwnification
 	name = "Cluwne Tears"
 	id = "cluwnification"

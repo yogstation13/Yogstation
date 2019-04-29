@@ -51,6 +51,14 @@
 /obj/item/mining_voucher,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered)
+"n" = (
+/mob/living/simple_animal/hostile/cat_butcherer,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"o" = (
+/obj/item/clothing/suit/space/freedom,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -251,8 +259,8 @@ f
 f
 g
 h
-h
-h
+n
+o
 f
 f
 f

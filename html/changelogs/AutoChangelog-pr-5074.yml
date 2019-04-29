@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - rscadd: "The server will now detect out of memory related lockups and restart the server automatically."
