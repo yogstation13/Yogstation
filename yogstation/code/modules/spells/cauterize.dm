@@ -8,9 +8,10 @@
 	range = -1
 	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
-	invocation = "P A!"
+	invocation = "HEA OW!" //someone come up with a good invocation i beg you
 	invocation_type = "shout"
-	action_icon_state = "immrod" //fix
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "cauterize"
 
 /obj/effect/proc_holder/spell/targeted/cauterize/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
