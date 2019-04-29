@@ -8,7 +8,7 @@
 	range = -1
 	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
-	invocation = "HEA OW!" //someone come up with a good invocation i beg you
+	invocation = "HEA'OW!" //someone come up with a good invocation i beg you
 	invocation_type = "shout"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "cauterize"
@@ -24,9 +24,7 @@
 	target.adjustFireLoss(-500)
 	var/damage_per_tick=total_dam/real_duration
 	if(total_dam>=100)
-	{
 		to_chat(target, "<span class='warning'>You really feel like you should heal your burns!</span>")
-	}
 	for(var/i in 1 to real_duration)
 		sleep(10)
 		target.adjustFireLoss(damage_per_tick)
