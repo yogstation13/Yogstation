@@ -650,6 +650,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/leavingtg.ogg',
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
+		'yogstation/sound/roundend/aww_shit.ogg', // yogs -- adds "Aww shit, here we go again"
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg'\
 		)

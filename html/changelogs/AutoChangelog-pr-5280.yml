@@ -1,0 +1,4 @@
+author: " AnturK"
+delete-after: true 
+changes: 
+  - bugfix: "Certain transforming weapons should now not have their throwspeed change weirdly."

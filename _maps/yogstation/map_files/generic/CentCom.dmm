@@ -1025,10 +1025,10 @@
 /area/holodeck/rec_center/pet_lounge)
 "cO" = (
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/structure/window{
 	dir = 1
 	},
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1038,10 +1038,10 @@
 	dir = 8
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/structure/window{
 	dir = 1
 	},
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1097,8 +1097,8 @@
 /area/holodeck/rec_center/beach)
 "cZ" = (
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/machinery/iv_drip,
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1108,8 +1108,8 @@
 	dir = 8
 	},
 /obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/machinery/iv_drip,
+/obj/item/bedsheet/medical,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},

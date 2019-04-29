@@ -89,3 +89,30 @@
 					/obj/item/toy/plush/slimeplushie)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/security/prisonclothes
+	name = "Prison Jumpsuit Crate"
+	desc = "A crate containing a five cheap looking orange jumpsuits."
+	cost = 500
+	contains = list(/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/under/rank/prisoner,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange,
+					/obj/item/clothing/shoes/sneakers/orange)
+	crate_name = "prison crate"
+
+/datum/supply_pack/misc/skub
+	name = "Skub Crate"
+	desc = "Contains skub, you skub."
+	cost = 1000
+	contains = list(/obj/item/skub,
+					/obj/item/skub,
+					/obj/item/skub,
+					/obj/item/skub,
+					/obj/item/skub)
+	crate_name = "skub crate"

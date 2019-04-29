@@ -336,7 +336,9 @@
 	var/teleporting = FALSE
 
 /obj/item/warp_cube/attack_self(mob/user)
-	if(!linked)
+	var/turf/current_location = get_turf(user)//yogs added a current location check that was totally ripped from the hand tele code honk
+	var/area/current_area = current_location.loc //yogs more location check stuff
+	if(!linked || current_area.noteleport) //yogs added noteleport
 		to_chat(user, "[src] fizzles uselessly.")
 		return
 	if(teleporting)

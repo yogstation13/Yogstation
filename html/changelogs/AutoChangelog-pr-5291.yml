@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes changeling's Strained Muscles not removing speed buff after turning off"
