@@ -16,3 +16,7 @@
 
 /code/__DEFINES/MC.dm @AsV9
 /code/controllers/master.dm @AsV9
+
+#Altoids
+
+/yogstation/code/modules/scripting/ @Altoids1
