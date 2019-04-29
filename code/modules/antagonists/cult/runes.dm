@@ -143,7 +143,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		else if(istype(M, /obj/item/toy/plush/narplush))
 			var/obj/item/toy/plush/narplush/P = M
 			P.visible_message("<span class='cult italic'>[P] squeaks loudly!</span>")
-	do_invoke_glow()
+	if(!src.density) //yogs: barrier runes play cooldown animation properly
+		do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
 	set waitfor = FALSE
@@ -230,7 +231,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 5)
 	Cult_team.check_size() // Triggers the eye glow or aura effects if the cult has grown large enough relative to the crew
 	rune_in_use = FALSE
-	
+
 /obj/effect/rune/convert/proc/do_convert(mob/living/convertee, list/invokers)
 	if(invokers.len < 2)
 		for(var/M in invokers)
@@ -242,14 +243,14 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, "<span class='warning'>Something is shielding [convertee]'s mind!</span>")
 		log_game("Offer rune failed - convertee had anti-magic")
 		return 0
-	var/brutedamage = convertee.getBruteLoss()
+	/*var/brutedamage = convertee.getBruteLoss() //yogs start: fuck heal-on-convert
 	var/burndamage = convertee.getFireLoss()
-	/*if(brutedamage || burndamage) //yogs: fuck heal-on-convert
+	if(brutedamage || burndamage)
 		convertee.adjustBruteLoss(-(brutedamage * 0.75))
-		convertee.adjustFireLoss(-(burndamage * 0.75))
+		convertee.adjustFireLoss(-(burndamage * 0.75))*/
 	convertee.visible_message("<span class='warning'>[convertee] writhes in pain \
-	[brutedamage || burndamage ? "even as [convertee.p_their()] wounds heal and close" : "as the markings below [convertee.p_them()] glow a bloody red"]!</span>", \*/
- 	"<span class='cultlarge'><i>AAAAAAAAAAAAAA-</i></span>")
+	as the markings below [convertee.p_them()] glow a bloody red!</span>", \
+ 	"<span class='cultlarge'><i>AAAAAAAAAAAAAA-</i></span>") //yogs end
 	SSticker.mode.add_cultist(convertee.mind, 1)
 	new /obj/item/melee/cultblade/dagger(get_turf(src))
 	convertee.mind.special_role = ROLE_CULTIST
@@ -605,7 +606,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			M.visible_message("<span class='warning'>[M] twitches.</span>")
 
 //Rite of the Corporeal Shield: When invoked, becomes solid and cannot be passed. Invoke again to undo.
-/obj/effect/rune/wall
+/obj/effect/rune/wall //yogs start: the entire rune's code makes me want to die
 	cultist_name = "Barrier"
 	cultist_desc = "when invoked, makes a temporary invisible wall to block passage. Can be invoked again to reverse this."
 	invocation = "Khari'd! Eske'te tannin!"
@@ -615,10 +616,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/timedevent/density_timer
 	var/recharging = FALSE
 
-/obj/effect/rune/wall/Initialize(mapload, set_keyword)
-	. = ..()
-	GLOB.wall_runes += src
-
 /obj/effect/rune/wall/examine(mob/user)
 	..()
 	if(density && iscultist(user))
@@ -626,14 +623,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 		if(TMR)
 			to_chat(user, "<span class='cultitalic'>The air above this rune has hardened into a barrier that will last [DisplayTimeText(TMR.timeToRun - world.time)].</span>")
 
-/obj/effect/rune/wall/Destroy()
-	GLOB.wall_runes -= src
-	return ..()
-
 /obj/effect/rune/wall/BlockSuperconductivity()
 	return density
 
-/obj/effect/rune/wall/invoke(var/list/invokers) //yogs start: the entire rune's code makes me want to die
+/obj/effect/rune/wall/invoke(var/list/invokers)
 	if(recharging)
 		return
 	var/mob/living/user = invokers[1]
@@ -643,22 +636,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 	else
 		lose_density()	//yogs: why the fuck didn't they do this before I want to die
 	var/carbon_user = iscarbon(user)
-	user.visible_message("<span class='warning'>[user] [carbon_user ? "places [user.p_their()] hands on":"stares intently at"] [src], and [!density ? "the air above it begins to shimmer" : "the shimmer above it fades"].</span>", \
-						 "<span class='cult italic'>You channel [carbon_user ? "your life ":""]energy into [src], [!density ? "temporarily preventing" : "allowing"] passage above it.</span>")
+	user.visible_message("<span class='warning'>[user] [carbon_user ? "places [user.p_their()] hands on":"stares intently at"] [src], and [density ? "the air above it begins to shimmer" : "the shimmer above it fades"].</span>", \
+						 "<span class='cult italic'>You channel [carbon_user ? "your life ":""]energy into [src], [density ? "temporarily preventing" : "allowing"] passage above it.</span>")
 	if(carbon_user)
 		var/mob/living/carbon/C = user
 		C.apply_damage(2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 
 /obj/effect/rune/wall/proc/spread_density()
-	for(var/R in GLOB.wall_runes)
-		var/obj/effect/rune/wall/W = R
-		if(
-		if(W.z == z && get_dist(src, W) <= 2 && !W.density && !W.recharging)
+	for(var/obj/effect/rune/wall/W in range(2, src)) //yogs: removed the GLOBAL VARIABLE to find ALL BARRIER RUNES used here
+		if(!W.density && !W.recharging)
 			W.density = TRUE
 			W.update_state()
-			if(W != src) //yogs: this prevents spread_density() from being called twice per rune
-				W.spread_density()
-			density_timer = addtimer(CALLBACK(src, .proc/lose_density), 300, TIMER_STOPPABLE) //yogs: fuck barrier runes
+			W.spread_density()
 
 /obj/effect/rune/wall/proc/lose_density()
 	if(density)
@@ -678,6 +667,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	deltimer(density_timer)
 	air_update_turf(1)
 	if(density)
+		density_timer = addtimer(CALLBACK(src, .proc/lose_density), 300, TIMER_STOPPABLE) //yogs: fuck barrier runes
 		var/mutable_appearance/shimmer = mutable_appearance('icons/effects/effects.dmi', "barriershimmer", ABOVE_MOB_LAYER)
 		shimmer.appearance_flags |= RESET_COLOR
 		shimmer.alpha = 200 //yogs end: last change in the fuck barrier runes series
