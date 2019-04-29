@@ -316,11 +316,11 @@
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."
 	cost = 2000
 	contains = list(/obj/item/detective_scanner,
-	                /obj/item/storage/box/evidence,
-	                /obj/item/camera,
-	                /obj/item/taperecorder,
-	                /obj/item/toy/crayon/white,
-	                /obj/item/clothing/head/fedora/det_hat)
+					/obj/item/storage/box/evidence,
+					/obj/item/camera,
+					/obj/item/taperecorder,
+					/obj/item/toy/crayon/white,
+					/obj/item/clothing/head/fedora/det_hat)
 	crate_name = "forensics crate"
 
 /datum/supply_pack/security/helmets
@@ -493,23 +493,6 @@
 	contains = list(/obj/item/storage/box/exileimp)
 	crate_name = "exile implant crate"
 
-<<<<<<< HEAD
-/datum/supply_pack/security/armory/mindshield
-	name = "Mindshield Implants Crate"
-	desc = "Prevent against radical thoughts with three Mindshield implants. Requires Armory access to open."
-	cost = 4000
-	contains = list(/obj/item/storage/lockbox/loyalty)
-	crate_name = "mindshield implant crate"
-
-/datum/supply_pack/security/armory/trackingimp
-	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants. Requires Armory access to open."
-	cost = 2000
-	contains = list(/obj/item/storage/box/trackimp)
-	crate_name = "tracking implant crate"
-
-=======
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 /datum/supply_pack/security/armory/fire
 	name = "Incendiary Weapons Crate"
 	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, and a flamethrower. Requires Armory access to open."
@@ -611,16 +594,6 @@
 					/obj/item/clothing/gloves/combat)
 	crate_name = "swat crate"
 
-<<<<<<< HEAD
-
-/datum/supply_pack/security/armory/wt550
-	name = "WT-550 Auto Rifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
-	cost = 3500
-	contains = list(/obj/item/gun/ballistic/automatic/wt550,
-					/obj/item/gun/ballistic/automatic/wt550)
-	crate_name = "auto rifle crate"
-=======
 /datum/supply_pack/security/armory/trackingimp
 	name = "Tracking Implants Crate"
 	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo. Requires Armory access to open."
@@ -630,7 +603,6 @@
 					/obj/item/ammo_box/c38/trac,
 					/obj/item/ammo_box/c38/trac)
 	crate_name = "tracking implant crate"
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "WT-550 Auto Rifle Ammo Crate"
@@ -642,8 +614,6 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 	crate_name = "auto rifle ammo crate"
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/security/armory/wt550
 	name = "WT-550 Auto Rifle Crate"
 	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
@@ -651,7 +621,6 @@
 	contains = list(/obj/item/gun/ballistic/automatic/wt550,
 					/obj/item/gun/ballistic/automatic/wt550)
 	crate_name = "auto rifle crate"
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -1167,6 +1136,7 @@
 					/obj/item/reagent_containers/blood/OPlus,
 					/obj/item/reagent_containers/blood/OMinus,
 					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/gorilla, // yogs -- gorilla people
 					/obj/item/reagent_containers/blood/ethereal)
 	crate_name = "blood freezer"
 	crate_type = /obj/structure/closet/crate/freezer
@@ -1307,8 +1277,6 @@
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/medical/vending
 	name = "Medical Vending Crate"
 	desc = "Contains one NanoMed Plus refill and one wall-mounted NanoMed refill."
@@ -1317,7 +1285,6 @@
 					/obj/item/vending_refill/wallmed)
 	crate_name = "medical vending crate"
 
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Science /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -1329,7 +1296,7 @@
 /datum/supply_pack/science/robotics/mecha_odysseus
 	name = "Circuit Crate (Odysseus)"
 	desc = "Ever wanted to build your own giant medical robot? Well, now you can! Contains the Odysseus main control board and Odysseus peripherals board. Requires Robotics access to open."
-	cost = 2500
+	cost = 1500
 	access = ACCESS_ROBOTICS
 	contains = list(/obj/item/circuitboard/mecha/odysseus/peripherals,
 					/obj/item/circuitboard/mecha/odysseus/main)
@@ -1339,7 +1306,7 @@
 /datum/supply_pack/science/robotics/mecha_ripley
 	name = "Circuit Crate (Ripley APLU)"
 	desc = "Rip apart rocks and xenomorphs alike with the Ripley APLU. Contains the Main Ripley control board, as well as the Ripley Peripherals board. Requires Robotics access to open."
-	cost = 3000
+	cost = 1200
 	access = ACCESS_ROBOTICS
 	contains = list(/obj/item/book/manual/ripley_build_and_repair,
 					/obj/item/circuitboard/mecha/ripley/main,
@@ -1411,7 +1378,7 @@
 /datum/supply_pack/science/tablets
 	name = "Tablet Crate"
 	desc = "What's a computer? Contains five cargo tablets."
-	cost = 5000
+	cost = 1500
 	contains = list(/obj/item/modular_computer/tablet/preset/cargo,
 					/obj/item/modular_computer/tablet/preset/cargo,
 					/obj/item/modular_computer/tablet/preset/cargo,
@@ -1655,8 +1622,6 @@
 	crate_name = "beekeeping starter crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
 	desc = "The best cuts in the whole galaxy."
@@ -1699,7 +1664,6 @@
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 /datum/supply_pack/organic/food
 	name = "Food Crate"
 	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
@@ -1719,8 +1683,6 @@
 					/obj/item/reagent_containers/food/snacks/grown/banana)
 	crate_name = "food crate"
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/organic/randomized/chef/fruits
 	name = "Fruit Crate"
 	desc = "Rich of vitamins, may contain oranges."
@@ -1733,7 +1695,6 @@
 					/obj/item/reagent_containers/food/snacks/grown/citrus/lemon)
 	crate_name = "food crate"
 
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 /datum/supply_pack/organic/cream_piee
 	name = "High-yield Clown-grade Cream Pie Crate"
 	desc = "Designed by Aussec's Advanced Warfare Research Division, these high-yield, Clown-grade cream pies are powered by a synergy of performance and efficiency. Guaranteed to provide maximum results."
@@ -1756,7 +1717,8 @@
 					/obj/item/cultivator,
 					/obj/item/plant_analyzer,
 					/obj/item/clothing/gloves/botanic_leather,
-					/obj/item/clothing/suit/apron)
+					/obj/item/clothing/suit/apron,
+					/obj/item/storage/box/disks_plantgene)
 	crate_name = "hydroponics crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -1899,7 +1861,7 @@
 	cost = 5000 //Cats are worth as much as corgis.
 	contains = list(/mob/living/simple_animal/pet/cat,
 					/obj/item/clothing/neck/petcollar,
-                    /obj/item/toy/cattoy)
+					/obj/item/toy/cattoy)
 	crate_name = "cat crate"
 
 /datum/supply_pack/critter/cat/generate()
@@ -1916,22 +1878,6 @@
 	contains = list( /mob/living/simple_animal/chick)
 	crate_name = "chicken crate"
 
-<<<<<<< HEAD
-/datum/supply_pack/critter/crab
-	name = "Crab Rocket"
-	desc = "CRAAAAAAB ROCKET. CRAB ROCKET. CRAB ROCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROCKET. CRAFT. ROCKET. BUY. CRAFT ROCKET. CRAB ROOOCKET. CRAB ROOOOCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROOOOOOOOOOOOOOOOOOOOOOCK EEEEEEEEEEEEEEEEEEEEEEEEE EEEETTTTTTTTTTTTAAAAAAAAA AAAHHHHHHHHHHHHH. CRAB ROCKET. CRAAAB ROCKEEEEEEEEEGGGGHHHHTT CRAB CRAB CRAABROCKET CRAB ROCKEEEET."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
-	cost = 5000
-	contains = list(/mob/living/simple_animal/crab)
-	crate_name = "look sir free crabs"
-	DropPodOnly = TRUE
-
-/datum/supply_pack/critter/crab/generate()
-	. = ..()
-	for(var/i in 1 to 49)
-		new /mob/living/simple_animal/crab(.)
-
-=======
->>>>>>> ba1f6a77cf... cargo  crate fix (#43493)
 /datum/supply_pack/critter/corgi
 	name = "Corgi Crate"
 	desc = "Considered the optimal dog breed by thousands of research scientists, this Corgi is but one dog from the millions of Ian's noble bloodline. Comes with a cute collar!"
@@ -2427,8 +2373,7 @@
 	cost = 600
 	contains = list(/obj/item/clothing/under/burial,
 					/obj/item/reagent_containers/food/snacks/grown/harebell,
-					/obj/item/reagent_containers/food/snacks/grown/poppy/geranium
-					)
+					/obj/item/reagent_containers/food/snacks/grown/poppy/geranium)
 	crate_name = "coffin"
 	crate_type = /obj/structure/closet/crate/coffin
 
@@ -2441,8 +2386,7 @@
 					/obj/item/storage/book/bible/booze,
 					/obj/item/storage/book/bible/booze,
 					/obj/item/clothing/suit/hooded/chaplain_hoodie,
-					/obj/item/clothing/suit/hooded/chaplain_hoodie
-					)
+					/obj/item/clothing/suit/hooded/chaplain_hoodie)
 	crate_name = "religious supplies crate"
 
 /datum/supply_pack/misc/toner
