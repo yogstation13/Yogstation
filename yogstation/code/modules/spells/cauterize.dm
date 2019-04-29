@@ -19,7 +19,7 @@
 
 /obj/effect/proc_holder/spell/targeted/cauterize/proc/do_cauterize(mob/living/target)
 	var/total_dam = target.getBruteLoss() + target.getFireLoss()
-	var/real_duration = cauterize_duration+(spell_level*10) //60 at highest, equal to cooldown
+	var/real_duration = cauterize_duration+((spell_level-1)*10) //60 at highest, same as cooldown
 	target.adjustBruteLoss(-500)
 	target.adjustFireLoss(-500)
 	var/damage_per_tick=total_dam/real_duration
