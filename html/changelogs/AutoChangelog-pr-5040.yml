@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Admins should no longer have two basically-equivalent versions of the same verb when observing, with one of them being objectively worse."
