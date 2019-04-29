@@ -8,7 +8,7 @@
 	range = -1
 	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
-	invocation = "HEA'OW!" //someone come up with a good invocation i beg you
+	invocation = "AMOS INO!"
 	invocation_type = "shout"
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "cauterize"
