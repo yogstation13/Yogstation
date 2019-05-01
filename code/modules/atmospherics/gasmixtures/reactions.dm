@@ -106,8 +106,8 @@
 		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
-		burned_fuel = cached_gases[/datum/gas/tritium][MOLES]*TRITIUM_BURN_TRIT_FACTOR
 		cached_gases[/datum/gas/tritium][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]/TRITIUM_BURN_TRIT_FACTOR
+		burned_fuel = cached_gases[/datum/gas/tritium][MOLES] // Yogs -- Conservation of Mass fix
 		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]
 
 	if(burned_fuel)
@@ -116,7 +116,7 @@
 			radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 		ASSERT_GAS(/datum/gas/water_vapor, air) //oxygen+more-or-less hydrogen=H2O
-		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel/TRITIUM_BURN_OXY_FACTOR
+		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel // Yogs -- Conservation of Mass
 
 		cached_results["fire"] += burned_fuel
 
