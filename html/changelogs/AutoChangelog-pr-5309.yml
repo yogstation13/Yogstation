@@ -1,0 +1,5 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "gang dominators now require the nuclear authentication disk, so only 1 gang can dominate at a time, and security can have a more pro-active role in the conflict."
+  - rscadd: "gangs can now buy a pinpointer for 3 influence, since they kinda need to find the nuke disk."
