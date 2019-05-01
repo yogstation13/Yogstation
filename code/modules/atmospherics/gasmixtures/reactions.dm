@@ -105,6 +105,7 @@
 	var/initial_trit = cached_gases[/datum/gas/tritium][MOLES]// Yogs
 	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
 		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
+		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
 		burned_fuel = cached_gases[/datum/gas/tritium][MOLES] // Yogs -- Conservation of Mass fix
