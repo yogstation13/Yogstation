@@ -108,7 +108,7 @@
 		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
-		burned_fuel = cached_gases[/datum/gas/tritium][MOLES] // Yogs -- Conservation of Mass fix
+		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
 		cached_gases[/datum/gas/tritium][MOLES] *= (1 - 1/TRITIUM_BURN_TRIT_FACTOR) // Yogs -- Maybe a tiny performance boost? I'unno
 		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]
 
