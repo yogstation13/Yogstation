@@ -106,8 +106,8 @@
 		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
-		cached_gases[/datum/gas/tritium][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]/TRITIUM_BURN_TRIT_FACTOR
 		burned_fuel = cached_gases[/datum/gas/tritium][MOLES] // Yogs -- Conservation of Mass fix
+		cached_gases[/datum/gas/tritium][MOLES] *= (1 - 1/TRITIUM_BURN_TRIT_FACTOR) // Yogs -- Maybe a tiny performance boost? I'unno
 		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]
 
 	if(burned_fuel)
