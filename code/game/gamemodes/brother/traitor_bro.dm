@@ -70,3 +70,19 @@
 	var/datum/atom_hud/antag/brotherhud = GLOB.huds[ANTAG_HUD_BROTHER]
 	brotherhud.leave_hud(brother_mind.current)
 	set_antag_hud(brother_mind.current, null)
+
+/datum/game_mode/proc/equip_brother(mob/living/M) //Yogs start gives the brothers a bundle
+	if(!M || !ishuman(M))
+		return FALSE
+	var/mob/living/carbon/human/L = M
+	var/obj/item/storage/box/syndicate/bundle_B/S = new
+	var/list/slots = list("In your backpack" = SLOT_IN_BACKPACK)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/slot = H.equip_in_one_of_slots(S, slots)
+		if(slot == "In your backpack")
+			slot = "In your [H.back.name]"
+	if(S)
+		to_chat(L, "<span class='bold'>There is a syndicate bundle in your backpack! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
+		return TRUE
+	return FALSE //Yogs end gives the brothers a bundle
