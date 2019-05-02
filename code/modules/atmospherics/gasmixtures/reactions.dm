@@ -448,7 +448,7 @@
 	var/list/cached_gases = air.gases
 	// As the name says it, it needs to be dry
 	if(/datum/gas/water_vapor in cached_gases)
-		if(cached_gases[/datum/gas/water_vapor]/air.total_moles() > 0.1)
+		if(cached_gases[/datum/gas/water_vapor][MOLES]/air.total_moles() > 0.1) // Yogs --Fixes runtime in Sterilization
 			return
 
 	//Replace miasma with oxygen
