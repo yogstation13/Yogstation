@@ -79,7 +79,6 @@
 	var/list/slots = list("In your backpack" = SLOT_IN_BACKPACK)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/slot = H.equip_in_one_of_slots(S, slots)
 	if(S)
 		to_chat(L, "<span class='bold'>There is a syndicate bundle in your backpack! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
 		return TRUE
