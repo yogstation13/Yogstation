@@ -79,7 +79,10 @@
 	var/list/slots = list("In your backpack" = SLOT_IN_BACKPACK)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
+		var/slot = H.equip_in_one_of_slots(S, slots)
+		if(slot == "In your backpack")
+			slot = "In your [H.back.name]"
 	if(S)
-		to_chat(L, "<span class='bold'>There is a syndicate bundle in your backpack! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
+		to_chat(L, "<span class='bold'>There is a syndicate bundle in your [H.back.name]! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
 		return TRUE
 	return FALSE //Yogs end gives the brothers a bundle
