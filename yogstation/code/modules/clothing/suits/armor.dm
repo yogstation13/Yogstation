@@ -84,3 +84,13 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "ru_rmcoat"
 	item_state = "ru_rmcoat"
+
+
+/obj/item/clothing/suit/armor/vest/vcommandoarmor
+	name = "void commando armor"
+	desc = "Good for protecting your chest during war."
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "ntcommandosuit"
+	item_state = "commando"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS

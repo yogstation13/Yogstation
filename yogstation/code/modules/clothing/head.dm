@@ -270,3 +270,16 @@
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "carpwelding"
 	item_state = "carpwelding"
+
+/obj/item/clothing/head/yogs/vcommandohelm
+	name = "void commando helmet"
+	desc = ""
+	icon_state = "ntcommandohelm"
+	item_state = "ntcommandohelm"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+
+	/obj/item/clothing/head/yogs/vcommandohelm/equipped(mob/living/carbon/human/user, slot)
+		..()
+		if(slot == SLOT_HEAD)
+			to_chat(user, "<span class='warning'>You wear the commando helmet and feel the strength of your elite predecessors flow through you, for the honor of our brothers!</span>")

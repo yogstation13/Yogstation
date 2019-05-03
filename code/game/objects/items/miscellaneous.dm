@@ -106,6 +106,15 @@
 	new /obj/item/toy/crayon/spraycan(src)
 	new /obj/item/clothing/shoes/sandal(src)
 
+/obj/item/storage/box/hero/commando //yogs
+	name = "Void Commando - 2400's."
+
+/obj/item/storage/box/hero/commando/PopulateContents()
+	new /obj/item/clothing/under/yogs/bodyglove(src)
+	new /obj/item/clothing/suit/armor/vest/vcommandoarmor(src)
+	new /obj/item/clothing/head/yogs/vcommandohelm(src)
+	new /obj/item/clothing/gloves/color/black(src)
+
 /obj/item/choice_beacon/augments
 	name = "augment beacon"
 	desc = "Summons augmentations. Can be used 3 times!"

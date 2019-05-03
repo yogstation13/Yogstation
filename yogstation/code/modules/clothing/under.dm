@@ -45,3 +45,12 @@
 	item_state = "lederhosen"
 	item_color = "lederhosen"
 	can_adjust = FALSE
+
+/obj/item/clothing/under/yogs/bodyglove
+	name = "commando body glove"
+	desc = ""
+	icon_state = "bodyglove"
+	item_state = "bodyglove"
+	item_color = "bodyglove"
+	can_adjust = FALSE
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
