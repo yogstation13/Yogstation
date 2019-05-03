@@ -282,4 +282,4 @@
 	/obj/item/clothing/head/yogs/vcommandohelm/equipped(mob/living/carbon/human/user, slot)
 		..()
 		if(slot == SLOT_HEAD)
-			to_chat(user, "<span class='warning'>You wear the commando helmet and feel the strength of your elite predecessors flow through you, for the honor of our brothers!</span>")
+			to_chat(user, "<span class='notice'>You wear the commando helmet and feel the strength of your elite predecessors flow through you, for the honor of our brothers!</span>")
