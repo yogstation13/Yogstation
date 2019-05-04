@@ -129,7 +129,7 @@
 	range = 10
 	include_user = FALSE
 
-obj/item/infinity_gem/space_gem
+/obj/item/infinity_gem/space_gem
 	name = "Space Gem"
 	desc = "A gem that allows the holder to be anywhere at any time."
 	var/gauntlet_flag = SPACE_GEM
@@ -137,16 +137,13 @@ obj/item/infinity_gem/space_gem
 	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/teleport_other
 	var/obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem/mass_blink
 
-obj/item/infinity_gem/space_gem/Initialize()
+/obj/item/infinity_gem/space_gem/Initialize()
 	. = ..()
 	teleport_self = new obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
 	teleport_other = new obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
 	mass_blink = new obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem/mass_blink
 	
-obj/item/infinity_gem/space_gem/equipped(mob/user,slot)
-
-
-obj/item/infinity_gem/space_gem/gem_add(mob/user)
+/obj/item/infinity_gem/space_gem/gem_add(mob/user)
 	. = ..()
 	if(user.mind)
 		user.mind.AddSpell(teleport_self)
@@ -157,7 +154,7 @@ obj/item/infinity_gem/space_gem/gem_add(mob/user)
 		user.AddSpell(teleport_other)
 		user.AddSpell(mass_blink)
 
-obj/item/infinity_gem/space_gem/gem_remove(mob/user)
+/obj/item/infinity_gem/space_gem/gem_remove(mob/user)
 	if(user.mind)
 		user.mind.RemoveSpell(teleport_self)
 		user.mind.RemoveSpell(teleport_other)
