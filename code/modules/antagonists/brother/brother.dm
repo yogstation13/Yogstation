@@ -1,4 +1,3 @@
-#define INITIAL_CRYSTALS 5
 /datum/antagonist/brother
 	name = "Brother"
 	antagpanel_category = "Brother"
