@@ -1,4 +1,0 @@
-author: " WJohnston"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes movement hunger cost happening only while floating. This has now been reversed, grounded movement is what actually makes you hungrier rather than while floating."
