@@ -54,3 +54,19 @@
 /mob/living/silicon/robot/examine(mob/user)
 	. = ..()
 	to_chat(user, "It seems to have the <b>[module.name] module</b> loaded.")
+
+/mob/living/silicon/robot/verb/self_self_destruct()
+	set category = "Robot Commands"
+	set name = "Self Destruct"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	
+	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
+		return
+	
+	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
+	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")
+	if(R.connected_ai)
+		to_chat(R.connected_ai, "<br><br><span class='alert'>ALERT - Cyborg detonation detected: [R.name]</span><br>")
+	self_destruct()
