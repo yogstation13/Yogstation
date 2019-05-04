@@ -170,6 +170,9 @@
 					pID = 10
 			card.setEmotion(pID)
 
+		if("news")
+			newscaster.ui_interact(src)
+
 		if("signaller")
 
 			if(href_list["send"])
@@ -292,6 +295,7 @@
 	dat += "<A href='byond://?src=[REF(src)];software=directives'>Directives</A><br>"
 	dat += "<A href='byond://?src=[REF(src)];software=radio;sub=0'>Radio Configuration</A><br>"
 	dat += "<A href='byond://?src=[REF(src)];software=image'>Screen Display</A><br>"
+	dat += "<A href='byond://?src=[REF(src)];software=news'>Newscaster</A><br>"
 	//dat += "Text Messaging <br>"
 	dat += "<br>"
 
@@ -651,7 +655,7 @@
 /mob/living/silicon/pai/proc/softwareLoudness()
 	if(!internal_instrument)
 		internal_instrument = new(src)
-	var/dat = "<h3>Sound Synthetizer</h3>"
-	dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=1'>Open Synthetizer Interface</a><br>"
+	var/dat = "<h3>Sound Synthesizer</h3>"
+	dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=1'>Open Synthesizer Interface</a><br>"
 	dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=2'>Choose Instrument Type</a>"
 	return dat
