@@ -102,12 +102,14 @@
 	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
-	if(cached_gases[/datum/gas/oxygen][MOLES] < cached_gases[/datum/gas/tritium][MOLES] || MINIMUM_TRIT_OXYBURN_ENERGY > air.thermal_energy())
+	var/initial_trit = cached_gases[/datum/gas/tritium][MOLES]// Yogs
+	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
 		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
+		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
-		burned_fuel = cached_gases[/datum/gas/tritium][MOLES]*TRITIUM_BURN_TRIT_FACTOR
-		cached_gases[/datum/gas/tritium][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]/TRITIUM_BURN_TRIT_FACTOR
+		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
+		cached_gases[/datum/gas/tritium][MOLES] *= (1 - 1/TRITIUM_BURN_TRIT_FACTOR) // Yogs -- Maybe a tiny performance boost? I'unno
 		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]
 
 	if(burned_fuel)
@@ -116,7 +118,7 @@
 			radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 		ASSERT_GAS(/datum/gas/water_vapor, air) //oxygen+more-or-less hydrogen=H2O
-		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel/TRITIUM_BURN_OXY_FACTOR
+		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel // Yogs -- Conservation of Mass
 
 		cached_results["fire"] += burned_fuel
 
@@ -448,7 +450,7 @@
 	var/list/cached_gases = air.gases
 	// As the name says it, it needs to be dry
 	if(/datum/gas/water_vapor in cached_gases)
-		if(cached_gases[/datum/gas/water_vapor]/air.total_moles() > 0.1)
+		if(cached_gases[/datum/gas/water_vapor][MOLES]/air.total_moles() > 0.1) // Yogs --Fixes runtime in Sterilization
 			return
 
 	//Replace miasma with oxygen
