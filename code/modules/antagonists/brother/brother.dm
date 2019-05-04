@@ -15,10 +15,6 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	team = new_team
 
-/datum/antagonist/overthrow/get_admin_commands()
-	. = ..()
-	.["Give lesser implant"] = CALLBACK(src,.proc/equip_initial_overthrow_agent)
-
 /datum/antagonist/brother/get_team()
 	return team
 
