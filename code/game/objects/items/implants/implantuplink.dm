@@ -22,9 +22,9 @@
 /obj/item/implant/uplink/precharged
 	starting_tc = 10
 
-/obj/item/implanter/uplink/brothers
+/obj/item/implanter/uplink/brothers // yogs start - adds 5TC uplink implanter
     name = "implanter (lesser uplink)"
     imp_type = /obj/item/implant/uplink/brothers
 
 /obj/item/implant/uplink/brothers
-    starting_tc = 5
+    starting_tc = 5 // yogs end
