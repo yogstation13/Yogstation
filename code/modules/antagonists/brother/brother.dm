@@ -37,21 +37,21 @@
 	to_chat(owner.current, "<B>Your designated meeting area:</B> [team.meeting_area]")
 	antag_memory += "<b>Meeting Area</b>: [team.meeting_area]<br>"
 
-/datum/antagonist/brother/proc/equip_initial_overthrow_agent()
+/datum/antagonist/brother/proc/equip_initial_overthrow_agent() // yogs start - roundstart spawns blood brother with 5tc uplink implanter
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
-	var/mob/living/carbon/human/H = owner.current
-	var/list/slots = list (
+	var/mob/living/carbon/human/H = owner.current // gets player
+	var/list/slots = list ( // list of possibile places to put item
 		"backpack" = SLOT_IN_BACKPACK,
 		"left pocket" = SLOT_L_STORE,
 		"right pocket" = SLOT_R_STORE
 	)
-	var/obj/item/implanter/uplink/brothers/I = new(H)
+	var/obj/item/implanter/uplink/brothers/I = new(H) // 5tc uplink implanter
 	var/where = H.equip_in_one_of_slots(I, slots)
 	if (!where)
-		to_chat(H, "The Syndicate were unfortunately unable to get you the uplink implanter.")
+		to_chat(H, "The Syndicate were unfortunately unable to get you the uplink implanter.") // if no open space is found
 	else
-		to_chat(H, "Use the implanter in your [where] to use the uplink.")
+		to_chat(H, "Use the implanter in your [where] to use the uplink.") // yogs end
 
 /datum/antagonist/brother/greet()
 	var/brother_text = ""
