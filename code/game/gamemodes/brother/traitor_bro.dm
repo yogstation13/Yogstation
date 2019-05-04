@@ -56,6 +56,7 @@
 			M.add_antag_datum(/datum/antagonist/brother, team)
 		team.update_name()
 	brother_teams += pre_brother_teams
+	equip_brother
 	return ..()
 
 /datum/game_mode/traitor/bros/generate_report()
