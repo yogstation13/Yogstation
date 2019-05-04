@@ -65,10 +65,17 @@
 	P.name = "shipping manifest - #[id] ([pack.name])"
 	P.info += "<h2>[command_name()] Shipping Manifest</h2>"
 	P.info += "<hr/>"
+<<<<<<< HEAD
 	if(paying_account)
 		P.info += "Direct purchase from [paying_account.account_holder]<br/>"
 		P.name += " - Purchased by [paying_account.account_holder]"
 	P.info += "Order #[id]<br/>"
+=======
+	if(owner && !(owner == "Cargo"))
+		P.info += "Direct purchase from [owner]<br/>"
+		P.name += " - Purchased by [owner]"
+	P.info += "Order[packname?"":"s"]: [id]<br/>"
+>>>>>>> f922f2a5a8... Unbroke manifests (#43795)
 	P.info += "Destination: [station_name]<br/>"
 	P.info += "Item: [pack.name]<br/>"
 	P.info += "Contents: <br/>"
@@ -91,8 +98,18 @@
 	return P
 
 /datum/supply_order/proc/generate(atom/A)
+	var/account_holder
+	if(paying_account)
+		account_holder = paying_account.account_holder
+	else
+		account_holder = "Cargo"
 	var/obj/structure/closet/crate/C = pack.generate(A, paying_account)
+<<<<<<< HEAD
 	var/obj/item/paper/fluff/jobs/cargo/manifest/M = generateManifest(C)
+=======
+	generateManifest(C, account_holder, pack)
+	return C
+>>>>>>> f922f2a5a8... Unbroke manifests (#43795)
 
 	if(M.errors & MANIFEST_ERROR_ITEM)
 		if(istype(C, /obj/structure/closet/crate/secure) || istype(C, /obj/structure/closet/crate/large))
