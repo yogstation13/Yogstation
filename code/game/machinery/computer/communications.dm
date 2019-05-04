@@ -580,8 +580,8 @@
 
 	popup.set_content(dat)
 	popup.open()
-	popup.set_content(dat)
-	popup.open()
+	//popup.set_content(dat) //Yogs comment-out, was causing weird issues for AIs.
+	//popup.open()
 
 /obj/machinery/computer/communications/proc/get_javascript_header(form_id)
 	var/dat = {"<script type="text/javascript">
