@@ -1,3 +1,4 @@
+#define INITIAL_CRYSTALS 5
 /datum/antagonist/brother
 	name = "Brother"
 	antagpanel_category = "Brother"
@@ -13,6 +14,10 @@
 	if(!istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
 	team = new_team
+
+/datum/antagonist/overthrow/get_admin_commands()
+	. = ..()
+	.["Give lesser implant"] = CALLBACK(src,.proc/equip_initial_overthrow_agent)
 
 /datum/antagonist/brother/get_team()
 	return team
@@ -36,6 +41,22 @@
 		return
 	to_chat(owner.current, "<B>Your designated meeting area:</B> [team.meeting_area]")
 	antag_memory += "<b>Meeting Area</b>: [team.meeting_area]<br>"
+
+/datum/antagonist/brother/proc/equip_initial_overthrow_agent()
+	if(!owner || !owner.current || !ishuman(owner.current))
+		return
+	var/mob/living/carbon/human/H = owner.current
+	var/list/slots = list (
+		"backpack" = SLOT_IN_BACKPACK,
+		"left pocket" = SLOT_L_STORE,
+		"right pocket" = SLOT_R_STORE
+	)
+	var/obj/item/implanter/uplink/brothers/I = new(H)
+	var/where = H.equip_in_one_of_slots(I, slots)
+	if (!where)
+		to_chat(H, "The Syndicate were unfortunately unable to get you the uplink implanter.")
+	else
+		to_chat(H, "Use the implanter in your [where] to use the uplink.")
 
 /datum/antagonist/brother/greet()
 	var/brother_text = ""
