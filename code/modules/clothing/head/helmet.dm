@@ -290,8 +290,6 @@
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50)
 	strip_delay = 60
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/head/helmet/rus_helmet
 	name = "russian helmet"
 	desc = "It can hold a bottle of vodka."
@@ -310,7 +308,6 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 0)
 
->>>>>>> 49c42c63d0... Nerfs surplus russian gear. (#43688)
 //LightToggle
 
 /obj/item/clothing/head/helmet/update_icon()
