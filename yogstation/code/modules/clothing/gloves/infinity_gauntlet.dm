@@ -37,9 +37,9 @@
 	max_items = 6
 
 /datum/component/storage/concrete/infinity_gauntlet/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/living/user)
-	var/obj/item/storage/infinity_gauntlet/gauntlet = real_location()
-	gauntlet.update_gems(user)
 	. = ..()
+	var/obj/item/storage/infinity_gauntlet/gauntlet = real_location()
+	gauntlet.add_gems_to_owner(user)
 
 //don't need to do remove_from_storage because storage already calls dropped in there
 
@@ -49,12 +49,12 @@
 	message = "snaps their finger."
 	emote_type = EMOTE_AUDIBLE
 
-/obj/effect/proc_holder/spell/snap
+/obj/effect/proc_holder/spell/self/snap
 	name = "Snap"
 	desc = "Reality can be anything you want."
 	clothes_req = FALSE
 
-/obj/effect/proc_holder/spell/snap/perform(list/targets, recharge = TRUE, mob/user = usr)
+/obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = TRUE, mob/user = usr)
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
 	shuffled_living.len = shuffled_living.len/2
 	shuffled_living-=user
@@ -68,15 +68,18 @@
 	desc = "A gauntlet which can hold the infinity gems."
 	siemens_coefficient = 0
 	strip_delay = 100
-	equip_delay_self = 20
 	permeability_coefficient = 0
 	body_parts_covered = HAND_LEFT
 	slot_flags = ITEM_SLOT_GLOVES
+	alternate_worn_icon = 'yogstation/icons/mob/hands.dmi'
+	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
+	icon_state = "infinity_gauntlet"
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
-	var/obj/effect/proc_holder/spell/snap/snap_spell
+	var/obj/effect/proc_holder/spell/self/snap/snap_spell
 
 /obj/item/storage/infinity_gauntlet/Initialize()
-	snap_spell = new /obj/effect/proc_holder/spell/snap
+	. = ..()
+	snap_spell = new /obj/effect/proc_holder/spell/self/snap
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
 	. = ..()
@@ -88,13 +91,13 @@
 
 /obj/item/storage/infinity_gauntlet/update_icon() //copy/pasted from belts mostly
 	cut_overlays()
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I //can't hold anything else, so this is fine
+	for(var/obj/item/infinity_gem/gem in contents)
 		var/mutable_appearance/M = gem.get_gauntlet_overlay()
 		add_overlay(M)
 	..()
 
 /obj/item/storage/infinity_gauntlet/equipped(mob/user,slot)
+	. = ..()
 	if(slot == SLOT_GLOVES)
 		add_gems_to_owner(user)
 	else
@@ -105,32 +108,33 @@
 	remove_gems_from_owner(user)
 
 /obj/item/storage/infinity_gauntlet/proc/remove_gems_from_owner(mob/user)
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
-		gem.remove_gem(user)
+	for(var/obj/item/infinity_gem/gem in contents)
+		gem.gem_remove(user)
 	update_gem_flags(user)
 
 /obj/item/storage/infinity_gauntlet/proc/add_gems_to_owner(mob/user)
 	if(!sanity_check(user))
 		return
 	update_gem_flags(user)
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
-		gem.add_gem(user)
+	for(var/obj/item/infinity_gem/gem in contents)
+		gem.gem_add(user)
 
 /obj/item/storage/infinity_gauntlet/proc/update_gem_flags(mob/user)
 	var/gems_found = NO_GEMS
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
+	for(var/obj/item/infinity_gem/gem in contents)
 		gems_found |= gem.gem_flag
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
+	for(var/obj/item/infinity_gem/gem in contents)
 		gem.other_gems = gems_found
 	if(gems_found == ALL_GEMS)
 		if(user.mind)
 			user.mind.AddSpell(snap_spell)
 		else
 			user.AddSpell(snap_spell)
+	else
+		if(user.mind)
+			user.mind.RemoveSpell(snap_spell)
+		else
+			user.RemoveSpell(snap_spell)
 
 /obj/item/storage/infinity_gauntlet/proc/sanity_check(mob/user)
 	if(ishuman(user))
@@ -138,20 +142,6 @@
 		if(H.gloves==src)
 			return TRUE
 	return FALSE
-
-/obj/item/storage/infinity_gauntlet/proc/update_gems(mob/user)
-	if(!sanity_check(user))
-		return
-	var/gems_found = NO_GEMS
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
-		gems_found |= gem.gem_flag
-	for(var/I in contents)
-		var/obj/item/infinity_gem/gem = I
-		gem.other_gems = gems_found
-		gem.remove_gem(user)
-		gem.add_gem(user)
-
 
 
 /* ************************
@@ -163,6 +153,9 @@
 	desc = "You shouldn't see this!"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	w_class=WEIGHT_CLASS_TINY
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "soulstone"
+	item_state = "electronic"
 	var/turf/lastlocation //if the wizard can't track 'em, it's too hard!
 	var/gem_flag = NO_GEMS
 	var/other_gems
@@ -186,11 +179,11 @@
 		user.add_trait(T,INFINITY_GEM)
 	if(user.mind)
 		for(var/S in spells)
-			var/obj/effect/proc_holder/spell/spell = S
+			var/obj/effect/proc_holder/spell/spell = new S(null)
 			user.mind.AddSpell(spell)
 	else
 		for(var/S in spells)
-			var/obj/effect/proc_holder/spell/spell = S
+			var/obj/effect/proc_holder/spell/spell = new S(null)
 			user.AddSpell(spell)
 			
 
@@ -210,12 +203,6 @@
 /obj/item/infinity_gem/dropped(mob/user)
 	. = ..()
 	gem_remove(user)
-
-/obj/item/infinity_gem/proc/add_gem(mob/user)
-	return //nothing here, defined in each gem
-
-/obj/item/infinity_gem/proc/remove_gem(mob/user)
-	return
 
 /obj/item/infinity_gem/proc/other_gem_actions(mob/user)
 	return
@@ -248,6 +235,12 @@
 	range = 10
 	include_user = FALSE
 
+/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/empowered
+	charge_max = 100
+
+/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/empowered
+	charge_max = 100
+
 /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
 	name = "Space Gem: Chaos"
 	desc = "Teleport everyone nearby, including yourself, to a nearby random location."
@@ -262,35 +255,24 @@
 	name = "Space Gem"
 	desc = "A gem that allows the holder to be anywhere."
 	gem_flag = SPACE_GEM
-	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/teleport_self
-	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/teleport_other
-	var/obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem/mass_blink
-
-/obj/item/infinity_gem/space_gem/Initialize()
-	. = ..()
-	teleport_self = new /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
-	teleport_other = new /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
-	mass_blink = new /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
-	spells=list(teleport_self,teleport_other)
+	spells = list(
+		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
+		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
+	)
 
 /obj/item/infinity_gem/space_gem/other_gem_actions(mob/user)
-	if(other_gems & POWER_GEM)
-		spells += mass_blink
-	else
-		spells -= mass_blink
 	if(other_gems & TIME_GEM)
-		teleport_self.charge_max = 100
-		teleport_other.charge_max = 100
+		spells = list(
+			/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/empowered,
+			/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/empowered
+		)
 	else
-		teleport_self.charge_max = 200
-		teleport_other.charge_max = 200
-
-/obj/item/infinity_gem/space_gem/remove_gem(mob/user)
-	. = ..()
-	if(user.mind)
-		user.mind.RemoveSpell(mass_blink)
-	else
-		user.mind.RemoveSpell(mass_blink)
+		spells = list(
+			/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
+			/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
+		)
+	if(other_gems & POWER_GEM)
+		spells += /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
 
 /* ************************
 	TIME GEM
@@ -319,51 +301,65 @@
 		else if(target.stat != DEAD)
 			to_chat(target, "<span class='notice'>You feel great!</span>")
 
+/obj/effect/proc_holder/spell/targeted/time_reverse/empowered
+	charge_max = 300
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem
+	invocation_type = "none" //hey why does this use strings instead of defines or an enum or something
+	clothes_req = FALSE
+	charge_max = 100
+
 /obj/item/infinity_gem/time_gem
 	name = "Time Gem"
 	desc = "A gem that allows the holder to be anytime."
 	gem_flag = TIME_GEM
-	var/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/stop
-	var/obj/effect/proc_holder/spell/targeted/time_reverse/reverse_time
-
-/obj/item/infinity_gem/time_gem/Initialize()
-	. = ..()
-	var/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/stop = new
-	stop.invocation_type="none" //hey why does this use strings instead of defines or an enum or something
-	stop.clothes_req = FALSE
-	stop.charge_max = 100
-	var/obj/effect/proc_holder/spell/targeted/time_reverse/reverse_time = new
-	spells=list(stop,reverse_time)
+	spells = list(
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
+		/obj/effect/proc_holder/spell/targeted/time_reverse
+	)
 
 /obj/item/infinity_gem/time_gem/other_gem_actions(mob/user)
 	if(other_gems & POWER_GEM)
-		reverse_time.charge_max=300 //yeah i actually think this is good enough
+		spells = list(
+			/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
+			/obj/effect/proc_holder/spell/targeted/time_reverse/empowered
+		)
 	else
-		reverse_time.charge_max=1200
+		spells = list(
+			/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
+			/obj/effect/proc_holder/spell/targeted/time_reverse
+		)
 
 /* ************************
 	MIND GEM
    ************************/ 
 
+
+/obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem
+	unconscious_amount_victim = 200
+	unconscious_amount_caster = 200
+
+/obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem_empowered
+	unconscious_amount_victim = 0
+	unconscious_amount_caster = 200
+
+/obj/effect/proc_holder/spell/targeted/telepathy/mind_gem_empowered
+	range = 100
+	selection_type = "range"
+
+/obj/effect/proc_holder/spell/targeted/mindread/mind_gem_empowered
+	range = 100
+	selection_type = "range"
+
 /obj/item/infinity_gem/mind_gem
 	name = "Mind Gem"
 	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
 	gem_flag = MIND_GEM
-	var/obj/effect/proc_holder/spell/targeted/mind_transfer/mindswap
-	var/obj/effect/proc_holder/spell/targeted/telepathy/telepathy
-	var/obj/effect/proc_holder/spell/targeted/mindread/mindread
+	spells = list(
+		/obj/effect/proc_holder/spell/targeted/telepathy,
+		/obj/effect/proc_holder/spell/targeted/mindread
+	)
 	traits = list(TRAIT_THERMAL_VISION)
-
-/obj/item/infinity_gem/mind_gem/Initialize()
-	. = ..()
-	telepathy = new /obj/effect/proc_holder/spell/targeted/telepathy
-	telepathy.range=7
-	mindread = new /obj/effect/proc_holder/spell/targeted/mindread
-	mindread.range=7
-	spells=list(telepathy,mindread)
-	mindswap = new /obj/effect/proc_holder/spell/targeted/mind_transfer
-	mindswap.unconscious_amount_victim = 200
-	mindswap.unconscious_amount_caster = 200
 
 /obj/item/infinity_gem/mind_gem/gem_add(mob/user)
 	. = ..()
@@ -371,26 +367,26 @@
 
 /obj/item/infinity_gem/mind_gem/gem_remove(mob/user)
 	. = ..()
-	if(user.mind)
-		user.mind.RemoveSpell(mindswap)
-	else
-		user.RemoveSpell(mindswap)
 	user.update_sight()
 
 /obj/item/infinity_gem/mind_gem/other_gem_actions(mob/user)
 	. = ..()
 	if(other_gems & POWER_GEM)
-		telepathy.range=100
-		mindread.range=100
-		telepathy.selection_type = "range"
-		mindread.selection_type = "range"
+		spells=list(
+			/obj/effect/proc_holder/spell/targeted/telepathy/mind_gem_empowered,
+			/obj/effect/proc_holder/spell/targeted/mindread/mind_gem_empowered
+		)
+	else
+		spells = list(
+			/obj/effect/proc_holder/spell/targeted/telepathy,
+			/obj/effect/proc_holder/spell/targeted/mindread
+		)
 	if(other_gems & SOUL_GEM)
 		if(other_gems & TIME_GEM)
-			mindswap.unconscious_amount_victim=0
-			mindswap.unconscious_amount_caster=200
-		spells += mindswap
-	else
-		spells -= mindswap
+			spells += /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem_empowered
+		else
+			spells += /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem
+
 /* ************************
 	SOUL GEM
    ************************/ 
@@ -421,18 +417,16 @@
 	desc = "A gem that gives power over souls."
 	gem_flag = SOUL_GEM
 	traits = list(TRAIT_SIXTHSENSE)
-	var/obj/effect/proc_holder/spell/targeted/conjure_item/soulstone/soulstone_spell
-
-/obj/item/infinity_gem/soul_gem/Initialize()
-	var/obj/effect/proc_holder/spell/targeted/ghostify/ghost = new
-	spells = list(ghost)
-	soulstone_spell = new /obj/effect/proc_holder/spell/targeted/conjure_item/soulstone
+	spells = list(/obj/effect/proc_holder/spell/targeted/ghostify)
 
 /obj/item/infinity_gem/soul_gem/other_gem_actions(mob/user)
 	if(other_gems & REALITY_GEM)
-		spells += soulstone_spell
+		spells = list(
+			/obj/effect/proc_holder/spell/targeted/ghostify,
+			/obj/effect/proc_holder/spell/targeted/conjure_item/soulstone
+		)
 	else
-		spells -= soulstone_spell
+		spells = list(/obj/effect/proc_holder/spell/targeted/ghostify)
 
 
 /* ************************
@@ -443,20 +437,29 @@
 	name = "Power Gem"
 	desc = "A gem granting dominion over power itself."
 	gem_flag = POWER_GEM
-	var/obj/effect/proc_holder/spell/aoe_turf/repulse/gem_repulse
 
-/obj/item/infinity_gem/power_gem/Initialize()
-	gem_repulse = new /obj/effect/proc_holder/spell/aoe_turf/repulse
-	gem_repulse.anti_magic_check = FALSE
-	gem_repulse.clothes_req = FALSE
-	spells = list(gem_repulse)
+/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem
+	anti_magic_check = FALSE
+	clothes_req = FALSE
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered
+	range = 8
+	maxthrow = 8
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/reality_empowered
+	repulse_force = MOVE_FORCE_OVERPOWERING
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered/reality_empowered //lol
+	repulse_force = MOVE_FORCE_OVERPOWERING
 
 /obj/item/infinity_gem/power_gem/other_gem_actions(mob/user)
 	if(other_gems & SPACE_GEM)
-		gem_repulse.range=8
-		gem_repulse.maxthrow=8
-	if(other_gems & REALITY_GEM)
-		gem_repulse.repulse_force = MOVE_FORCE_OVERPOWERING
+		if(other_gems & REALITY_GEM)
+			spells = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered/reality_empowered)
+		else
+			spells = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered)
+	else if(other_gems & REALITY_GEM)
+		spells = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/reality_empowered)
 
 /* ************************
 	REALITY GEM
@@ -484,7 +487,7 @@
 		traits |= TRAIT_NOCRITDAMAGE
 		to_chat(user, "<span class='notice'>You keep yourself anchored.</span>")
 	if(other_gems & MIND_GEM)
-		/var/obj/effect/proc_holder/spell/voice_of_god/voice_spell
+		/var/obj/effect/proc_holder/spell/voice_of_god/voice_spell = new
 		to_chat(user, "<span class='notice'>Your voice feels like it could move mountains.</span>")
 		if(other_gems & POWER_GEM)
 			voice_spell.power_mod=2
@@ -492,3 +495,4 @@
 		if(other_gems & TIME_GEM)
 			voice_spell.cooldown_mod=0.5
 			to_chat(user, "<span class='notice'>And not too rarely, either.</span>")
+		spells += voice_spell
