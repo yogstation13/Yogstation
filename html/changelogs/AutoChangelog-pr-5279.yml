@@ -1,4 +1,0 @@
-author: " tralezab"
-delete-after: true 
-changes: 
-  - bugfix: "100% embed daggers should now actually embed into things."
