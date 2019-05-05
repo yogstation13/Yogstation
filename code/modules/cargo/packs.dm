@@ -267,6 +267,33 @@
 	crate_name = "weed control crate"
 	crate_type = /obj/structure/closet/crate/secure/hydroponics
 
+/datum/supply_pack/emergency/bio
+	name = "Biological Emergency Crate"
+	desc = "This crate holds 2 full bio suits which will protect you from viruses."
+	cost = 2000
+	contains = list(/obj/item/clothing/head/bio_hood,
+					/obj/item/clothing/head/bio_hood,
+					/obj/item/clothing/suit/bio_suit,
+					/obj/item/clothing/suit/bio_suit,
+					/obj/item/storage/bag/bio,
+					/obj/item/reagent_containers/syringe/antiviral,
+					/obj/item/reagent_containers/syringe/antiviral,
+					/obj/item/clothing/gloves/color/latex/nitrile,
+					/obj/item/clothing/gloves/color/latex/nitrile)
+	crate_name = "bio suit crate"
+
+/datum/supply_pack/emergency/bomb
+	name = "Explosive Emergency Crate"
+	desc = "Science gone bonkers? Beeping behind the airlock? Buy now and be the hero the station des... I mean needs! (time not included)"
+	cost = 1500
+	contains = list(/obj/item/clothing/head/bomb_hood,
+					/obj/item/clothing/suit/bomb_suit,
+					/obj/item/clothing/mask/gas,
+					/obj/item/screwdriver,
+					/obj/item/wirecutters,
+					/obj/item/multitool)
+	crate_name = "bomb suit crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Security ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -421,6 +448,30 @@
 					/obj/item/storage/box/wall_flash,
 					/obj/item/storage/box/wall_flash)
 	crate_name = "wall-mounted flash crate"
+
+/datum/supply_pack/security/ammo
+	name = "Ammo Crate"
+	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo and special .38 speedloarders. Requires Security access to open."
+	cost = 2500
+	contains = list(/obj/item/ammo_box/magazine/wt550m9,
+					/obj/item/ammo_box/magazine/wt550m9,
+					/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/lethalshot,
+					/obj/item/storage/box/rubbershot,
+					/obj/item/storage/box/rubbershot,
+					/obj/item/storage/box/rubbershot,
+					/obj/item/ammo_box/c38/trac,
+					/obj/item/ammo_box/c38/hotshot,
+					/obj/item/ammo_box/c38/iceblox)
+	crate_name = "ammo crate"
+
+/datum/supply_pack/security/vending/security
+	name = "SecTech Supply Crate"
+	desc = "Officer Paul bought all the donuts? Then refill the security vendor with ths crate."
+	cost = 1500
+	contains = list(/obj/machinery/vending/security)
+	crate_name = "SecTech supply crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Armory //////////////////////////////////////////
@@ -1293,6 +1344,13 @@
 	group = "Science"
 	crate_type = /obj/structure/closet/crate/science
 
+/datum/supply_pack/science/rped
+	name = "RPED crate"
+	desc = "Need to rebuild the ORM but science got annihialted after a bomb test? Buy this for the most advanced parts NT can give you."
+	cost = 1500
+	contains = list(/obj/item/storage/part_replacer/cargo)
+	crate_name = "\improper RPED crate"
+
 /datum/supply_pack/science/robotics/mecha_odysseus
 	name = "Circuit Crate (Odysseus)"
 	desc = "Ever wanted to build your own giant medical robot? Well, now you can! Contains the Odysseus main control board and Odysseus peripherals board. Requires Robotics access to open."
@@ -1693,6 +1751,20 @@
 					/obj/item/reagent_containers/food/snacks/grown/apple,
 					/obj/item/reagent_containers/food/snacks/grown/berries,
 					/obj/item/reagent_containers/food/snacks/grown/citrus/lemon)
+	crate_name = "food crate"
+
+/datum/supply_pack/organic/randomized/chef/vegetables
+	name = "Vegetables Crate"
+	desc = "Grown in vats."
+	cost = 1300
+	contains = list(/obj/item/reagent_containers/food/snacks/grown/chili,
+					/obj/item/reagent_containers/food/snacks/grown/corn,
+					/obj/item/reagent_containers/food/snacks/grown/tomato,
+					/obj/item/reagent_containers/food/snacks/grown/potato,
+					/obj/item/reagent_containers/food/snacks/grown/carrot,
+					/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
+					/obj/item/reagent_containers/food/snacks/grown/onion,
+					/obj/item/reagent_containers/food/snacks/grown/pumpkin)
 	crate_name = "food crate"
 
 /datum/supply_pack/organic/cream_piee
