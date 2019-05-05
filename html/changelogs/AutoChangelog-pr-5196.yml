@@ -1,4 +1,0 @@
-author: " ShizCalev"
-delete-after: true 
-changes: 
-  - bugfix: "Spamming purchases at a vending machine now won't spam chat as well."
