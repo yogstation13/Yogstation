@@ -188,10 +188,12 @@
 	if(user.mind)
 		for(var/S in spells)
 			var/obj/effect/proc_holder/spell/spell = new S(null)
+			spell.charge_counter = 0
 			user.mind.AddSpell(spell)
 	else
 		for(var/S in spells)
 			var/obj/effect/proc_holder/spell/spell = new S(null)
+			spell.charge_counter = 0
 			user.AddSpell(spell)
 			
 
