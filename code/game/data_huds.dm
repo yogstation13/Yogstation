@@ -195,8 +195,18 @@
 		holder.icon_state = "huddead"
 	else
 		switch(virus_threat)
-			if(DISEASE_SEVERITY_BIOHAZARD, DISEASE_SEVERITY_DANGEROUS, DISEASE_SEVERITY_HARMFUL, DISEASE_SEVERITY_MEDIUM, DISEASE_SEVERITY_MINOR, DISEASE_SEVERITY_NONTHREAT)
-				holder.icon_state = "hudill"
+			if(DISEASE_SEVERITY_BIOHAZARD)
+				holder.icon_state = "hudill5"
+			if(DISEASE_SEVERITY_DANGEROUS)
+				holder.icon_state = "hudill4"
+			if(DISEASE_SEVERITY_HARMFUL)
+				holder.icon_state = "hudill3"
+			if(DISEASE_SEVERITY_MEDIUM)
+				holder.icon_state = "hudill2"
+			if(DISEASE_SEVERITY_MINOR)
+				holder.icon_state = "hudill1"
+			if(DISEASE_SEVERITY_NONTHREAT)
+				holder.icon_state = "hudill0"
 			if(DISEASE_SEVERITY_POSITIVE)
 				holder.icon_state = "hudbuff"
 			if(null)
