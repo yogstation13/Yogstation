@@ -235,6 +235,7 @@
 	charge_max = 200
 	sound1 = 'sound/magic/teleport_diss.ogg'
 	sound2 = 'sound/magic/teleport_app.ogg'
+	clothes_req = FALSE
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
 	name = "Space Gem Teleport (self)"
@@ -252,6 +253,7 @@
 	desc = "Teleport everyone nearby, including yourself, to a nearby random location."
 	range = 5
 	include_user = TRUE
+	clothes_req = FALSE
 	charge_max = 20
 	random_target = 1
 	max_targets = 0
@@ -309,7 +311,7 @@
 			var/mob/living/carbon/C = target
 			C.regenerate_limbs()
 			C.regenerate_organs()
-			//was gonna have it deage the user, but realized that that would nerf people whose characters are younger,
+			//was gonna have it de-age the user, but realized that that would nerf people whose characters are younger,
 			//which would be very, very dumb since all that's pure fluff. so instead it's just healing
 		if(target.revive(full_heal = 1))
 			target.grab_ghost(force = TRUE) // even suicides
@@ -386,16 +388,9 @@
 		if(other_gems & TIME_GEM)
 			mindswap.unconscious_amount_victim=0
 			mindswap.unconscious_amount_caster=200
-		if(user.mind)
-			user.mind.AddSpell(mindswap)
-		else
-			user.AddSpell(mindswap)
+		spells += mindswap
 	else
-		if(user.mind)
-			user.mind.RemoveSpell(mindswap)
-		else
-			user.RemoveSpell(mindswap)
-
+		spells -= mindswap
 /* ************************
 	SOUL GEM
    ************************/ 
@@ -405,6 +400,7 @@
 	desc = "Turns you into a ghost. Spooky!"
 	range = -1
 	include_user = TRUE
+	clothes_req = FALSE
 	charge_max=10
 
 /obj/effect/proc_holder/spell/target/ghostify/cast(list/targets,mob/user = usr)
@@ -418,6 +414,7 @@
 	item_type = /obj/item/soulstone
 	charge_max = 1200
 	delete_old = FALSE
+	clothes_req = FALSE
 
 /obj/item/infinity_gem/soul_gem
 	name = "Soul Gem"
