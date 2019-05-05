@@ -76,7 +76,7 @@
 	var/obj/effect/proc_holder/spell/snap/snap_spell
 
 /obj/item/storage/infinity_gauntlet/Initialize()
-	snap_spell = new /obj/effect/proc_holder/spell/snap/snap_spell
+	snap_spell = new /obj/effect/proc_holder/spell/snap
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
 	. = ..()
@@ -260,12 +260,14 @@
 	name = "Space Gem"
 	desc = "A gem that allows the holder to be anywhere."
 	gem_flag = SPACE_GEM
+	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/teleport_self
+	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/teleport_other
 	var/obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem/mass_blink
 
 /obj/item/infinity_gem/space_gem/Initialize()
 	. = ..()
-	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/teleport_self = new
-	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/teleport_other = new
+	teleport_self = new /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
+	teleport_other = new /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
 	mass_blink = new /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
 	spells=list(teleport_self,teleport_other)
 
@@ -346,16 +348,18 @@
 	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
 	gem_flag = MIND_GEM
 	var/obj/effect/proc_holder/spell/targeted/mind_transfer/mindswap
+	var/obj/effect/proc_holder/spell/targeted/telepathy/telepathy
+	var/obj/effect/proc_holder/spell/targeted/mindread/mindread
 	traits = list(TRAIT_THERMAL_VISION)
 
 /obj/item/infinity_gem/mind_gem/Initialize()
 	. = ..()
-	var/obj/effect/proc_holder/spell/targeted/telepathy/telepathy = new
+	telepathy = new /obj/effect/proc_holder/spell/targeted/telepathy
 	telepathy.range=7
-	var/obj/effect/proc_holder/spell/targeted/mindread/mindread = new
+	mindread = new /obj/effect/proc_holder/spell/targeted/mindread
 	mindread.range=7
 	spells=list(telepathy,mindread)
-	mindswap = obj/effect/proc_holder/spell/targeted/mind_transfer/
+	mindswap = new /obj/effect/proc_holder/spell/targeted/mind_transfer
 	mindswap.unconscious_amount_victim = 200
 	mindswap.unconscious_amount_caster = 200
 
@@ -445,7 +449,7 @@
 	var/obj/effect/proc_holder/spell/aoe_turf/repulse/gem_repulse
 
 /obj/item/infinity_gem/power_gem/Initialize()
-	gem_repulse = new /obj/effect/proc_holder/spell/aoe_turf/repulse/gem_repulse
+	gem_repulse = new /obj/effect/proc_holder/spell/aoe_turf/repulse
 	gem_repulse.anti_magic_check = FALSE
 	gem_repulse.clothes_req = FALSE
 	spells = list(gem_repulse)
@@ -469,25 +473,25 @@
 
 /obj/item/infinity_gem/reality_gem/other_gem_actions(mob/user)
 	traits=list(TRAIT_NOSLIPALL)
-	to_chat(target, "<span class='notice'>You feel sure on your feet.</span>")
+	to_chat(user, "<span class='notice'>You feel sure on your feet.</span>")
 	if(other_gems & POWER_GEM)
 		traits |= TRAIT_NOSOFTCRIT
-		to_chat(target, "<span class='notice'>You feel nearly unstoppable.</span>")
+		to_chat(user, "<span class='notice'>You feel nearly unstoppable.</span>")
 		if(other_gems & SOUL_GEM)
 			traits |= TRAIT_NODEATH
-			to_chat(target, "<span class='notice'>Actually, you feel completely unstoppable!</span>")
+			to_chat(user, "<span class='notice'>Actually, you feel completely unstoppable!</span>")
 	if(other_gems & SPACE_GEM)
 		traits |= TRAIT_NODISMEMBER
-		to_chat(target, "<span class='notice'>You feel sturdy.</span>")
+		to_chat(user, "<span class='notice'>You feel sturdy.</span>")
 	if(other_gems & TIME_GEM)
 		traits |= TRAIT_NOCRITDAMAGE
-		to_chat(target, "<span class='notice'>You keep yourself anchored.</span>")
+		to_chat(user, "<span class='notice'>You keep yourself anchored.</span>")
 	if(other_gems & MIND_GEM)
 		/var/obj/effect/proc_holder/spell/voice_of_god/voice_spell
-		to_chat(target, "<span class='notice'>Your voice feels like it could move mountains.</span>")
+		to_chat(user, "<span class='notice'>Your voice feels like it could move mountains.</span>")
 		if(other_gems & POWER_GEM)
 			voice_spell.power_mod=2
-			to_chat(target, "<span class='notice'>Planets, even.</span>")
+			to_chat(user, "<span class='notice'>Planets, even.</span>")
 		if(other_gems & TIME_GEM)
 			voice_spell.cooldown_mod=0.5
-			to_chat(target, "<span class='notice'>And not too rarely, either.</span>")
+			to_chat(user, "<span class='notice'>And not too rarely, either.</span>")
