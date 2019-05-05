@@ -449,23 +449,6 @@
 					/obj/item/storage/box/wall_flash)
 	crate_name = "wall-mounted flash crate"
 
-/datum/supply_pack/security/ammo
-	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo and special .38 speedloarders. Requires Security access to open."
-	cost = 2500
-	contains = list(/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/storage/box/lethalshot,
-					/obj/item/storage/box/lethalshot,
-					/obj/item/storage/box/lethalshot,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox)
-	crate_name = "ammo crate"
-
 /datum/supply_pack/security/vending/security
 	name = "SecTech Supply Crate"
 	desc = "Officer Paul bought all the donuts? Then refill the security vendor with ths crate."
