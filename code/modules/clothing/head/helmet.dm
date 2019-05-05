@@ -303,6 +303,7 @@
 	desc = "100% bear."
 	icon_state = "rus_ushanka"
 	item_state = "rus_ushanka"
+	clothing_flags = THICKMATERIAL
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
