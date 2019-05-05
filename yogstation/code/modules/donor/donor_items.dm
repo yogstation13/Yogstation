@@ -72,7 +72,6 @@ var/list/donor_start_tools = list(\
 						/obj/item/bedsheet/centcom, \
 						/obj/item/bedsheet/syndie, \
 						/obj/item/bikehorn/airhorn, \
-						/obj/item/bikehorn/rubber_pigeon, \
 						/obj/item/camera, \
 						/obj/item/cane, \
 						/obj/item/clothing/shoes/sneakers/rainbow, \
