@@ -89,6 +89,14 @@
 		))
 	STR.can_hold = can_hold
 
+/obj/item/storage/infinity_gauntlet/full/PopulateContents()
+	new /obj/item/infinity_gem/power_gem(src)
+	new /obj/item/infinity_gem/time_gem(src)
+	new /obj/item/infinity_gem/space_gem(src)
+	new /obj/item/infinity_gem/reality_gem(src)
+	new /obj/item/infinity_gem/mind_gem(src)
+	new /obj/item/infinity_gem/soul_gem(src)
+
 /obj/item/storage/infinity_gauntlet/update_icon() //copy/pasted from belts mostly
 	cut_overlays()
 	for(var/obj/item/infinity_gem/gem in contents)
