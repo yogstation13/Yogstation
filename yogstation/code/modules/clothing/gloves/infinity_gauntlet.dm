@@ -35,9 +35,6 @@
 /datum/component/storage/concrete/infinity_gauntlet //TODO: probably put into another file
 	rustle_sound = FALSE
 	max_items = 6
-	can_hold = typecacheof(list(
-		obj/item/infinity_gem
-	))
 
 /datum/component/storage/concrete/infinity_gauntlet/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/living/user)
 	var/obj/item/storage/infinity_gauntlet/gauntlet = real_location()
@@ -46,7 +43,7 @@
 
 //don't need to do remove_from_storage because storage already calls dropped in there
 
-/datum/emote/living/sneeze
+/datum/emote/living/snap
 	key = "snap"
 	key_third_person = "snaps"
 	message = "snaps their finger."
@@ -61,6 +58,7 @@
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
 	shuffled_living.len = shuffled_living.len/2
 	shuffled_living-=user
+	user.emote("snap")
 	for(var/mob/living/M in shuffled_living)
 		M.visible_message("<span class='userdanger'>You don't feel so good...</span>")
 		M.dust()
@@ -77,13 +75,20 @@
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
 	var/obj/effect/proc_holder/spell/snap/snap_spell
 
+/obj/item/storage/infinity_gauntlet/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	var/static/list/can_hold = typecacheof(list(
+		/obj/item/infinity_gem
+		))
+	STR.can_hold = can_hold
+
 /obj/item/storage/infinity_gauntlet/update_icon() //copy/pasted from belts mostly
 	cut_overlays()
-	if(content_overlays)
-		for(var/I in contents)
-			var/obj/item/infinity_gem/gem = I //can't hold anything else, so this is fine
-			var/mutable_appearance/M = gem.get_gauntlet_overlay()
-			add_overlay(M)
+	for(var/I in contents)
+		var/obj/item/infinity_gem/gem = I //can't hold anything else, so this is fine
+		var/mutable_appearance/M = gem.get_gauntlet_overlay()
+		add_overlay(M)
 	..()
 
 /obj/item/storage/infinity_gauntlet/equipped(mob/user,slot)
@@ -100,17 +105,17 @@
 	for(var/I in contents)
 		var/obj/item/infinity_gem/gem = I
 		gem.remove_gem(user)
-	update_gem_flags()
+	update_gem_flags(user)
 
 /obj/item/storage/infinity_gauntlet/proc/add_gems_to_owner(mob/user)
 	if(!sanity_check(user))
 		return
-	update_gem_flags()
+	update_gem_flags(user)
 	for(var/I in contents)
 		var/obj/item/infinity_gem/gem = I
 		gem.add_gem(user)
 
-/obj/item/storage/infinity_gauntlet/proc/update_gem_flags()
+/obj/item/storage/infinity_gauntlet/proc/update_gem_flags(mob/user)
 	var/gems_found = NO_GEMS
 	for(var/I in contents)
 		var/obj/item/infinity_gem/gem = I
@@ -118,9 +123,11 @@
 	for(var/I in contents)
 		var/obj/item/infinity_gem/gem = I
 		gem.other_gems = gems_found
-	if(gems_found) == ALL_GEMS
-		
-
+	if(gems_found == ALL_GEMS)
+		if(user.mind)
+			user.mind.AddSpell(snap_spell)
+		else
+			user.AddSpell(snap_spell)
 
 /obj/item/storage/infinity_gauntlet/proc/sanity_check(mob/user)
 	if(ishuman(user))
@@ -142,6 +149,8 @@
 		gem.remove_gem(user)
 		gem.add_gem(user)
 
+
+
 /* ************************
 	BASE GEM CLASS
    ************************/ 
@@ -155,6 +164,9 @@
 	var/other_gems
 	var/spells
 	var/traits
+
+/obj/item/infinity_gem/proc/get_gauntlet_overlay()
+	return
 
 /obj/item/infinity_gem/equipped(mob/user,slot)
 	. = ..()
@@ -206,7 +218,7 @@
 
 /obj/item/infinity_gem/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/stationloving, true) //obviously could make admins not informed but i don't see the point
+	AddComponent(/datum/component/stationloving, TRUE) //obviously could make admins not informed but i don't see the point
 
 
 /* ************************
@@ -250,7 +262,7 @@
 	. = ..()
 	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self/teleport_self = new
 	var/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other/teleport_other = new
-	mass_blink = new obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem/mass_blink
+	mass_blink = new /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
 	spells=list(teleport_self,teleport_other)
 
 /obj/item/infinity_gem/space_gem/other_gem_actions(mob/user)
@@ -289,9 +301,9 @@
 	include_user = TRUE
 	charge_max=1200
 
-/obj/effect/proc_holder/spell/target/time_reverse/cast()
+/obj/effect/proc_holder/spell/target/time_reverse/cast(list/targets,mob/user = usr)
 	. = ..()
-	if(isliving(target))
+	for(var/mob/living/target in targets)
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			C.regenerate_limbs()
@@ -354,9 +366,9 @@
 /obj/item/infinity_gem/mind_gem/gem_remove(mob/user)
 	. = ..()
 	if(user.mind)
-		user.mind.RemoveSpell(mindread)
+		user.mind.RemoveSpell(mindswap)
 	else
-		user.RemoveSpell(mindread)
+		user.RemoveSpell(mindswap)
 	user.update_sight()
 
 /obj/item/infinity_gem/mind_gem/other_gem_actions(mob/user)
@@ -371,14 +383,14 @@
 			mindswap.unconscious_amount_victim=0
 			mindswap.unconscious_amount_caster=200
 		if(user.mind)
-			user.mind.AddSpell(mindread)
+			user.mind.AddSpell(mindswap)
 		else
-			user.AddSpell(mindread)
+			user.AddSpell(mindswap)
 	else
 		if(user.mind)
-			user.mind.RemoveSpell(mindread)
+			user.mind.RemoveSpell(mindswap)
 		else
-			user.RemoveSpell(mindread)
+			user.RemoveSpell(mindswap)
 
 /* ************************
 	SOUL GEM
@@ -391,7 +403,7 @@
 	include_user = TRUE
 	charge_max=10
 
-/obj/effect/proc_holder/spell/target/ghostify/cast()
+/obj/effect/proc_holder/spell/target/ghostify/cast(list/targets,mob/user = usr)
 	. = ..()
 	visible_message("<span class='danger'>[user] stares into the soul gem, their eyes glazing over.</span>")
 	user.ghostize(1)
