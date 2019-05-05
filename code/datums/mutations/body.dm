@@ -258,8 +258,6 @@
 		return
 	owner.physiology.burn_mod *= 2
 
-<<<<<<< HEAD
-=======
 /datum/mutation/human/badblink
 	name = "Spatial Instability"
 	desc = "The victim of the mutation has a very weak link to spatial reality, and may be displaced. Often causes extreme nausea."
@@ -329,7 +327,3 @@
 	owner.resize = 0.8
 	owner.update_transform()
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
->>>>>>> 35738909fc... Fixes some inconsistencies in genetics (#43583)
-
-
-
