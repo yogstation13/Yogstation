@@ -2886,6 +2886,7 @@
 #include "yogstation\code\game\machinery\suit_storage_unit.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
 #include "yogstation\code\game\machinery\computer\atmos_sim.dm"
+#include "yogstation\code\game\machinery\computer\communications.dm"
 #include "yogstation\code\game\machinery\computer\crew.dm"
 #include "yogstation\code\game\machinery\computer\medical.dm"
 #include "yogstation\code\game\machinery\computer\Operating.dm"

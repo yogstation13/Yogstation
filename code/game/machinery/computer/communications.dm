@@ -379,7 +379,9 @@
 		if("ai-status")
 			aistate = STATE_STATUSDISPLAY
 		if("ai-announce")
+			is_announcing = TRUE
 			make_announcement(usr, 1)
+			is_announcing = FALSE
 		if("ai-securitylevel")
 			tmp_alertlevel = text2num( href_list["newalertlevel"] )
 			if(!tmp_alertlevel)
@@ -417,7 +419,7 @@
 			deadchat_broadcast("<span class='deadsay bold'>[usr.real_name] disabled emergency maintenance access.</span>", usr)
 			aistate = STATE_DEFAULT
 
-	updateUsrDialog()
+	if(!is_announcing) updateUsrDialog() // Yogs -- fixes AI flickery weirdness
 
 /obj/machinery/computer/communications/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/card/id))
