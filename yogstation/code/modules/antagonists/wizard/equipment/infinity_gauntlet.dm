@@ -7,6 +7,8 @@
    ************************/ 
 #define INFINITY_GEM "infinity_gem"
 
+#define isinfinitygauntlet(A) (istype(A,/obj/item/storage/infinity_gauntlet))
+
 #define isspacegem(A)         (istype(A,/obj/item/infinity_gem/space_gem))
 
 #define istimegem(A)          (istype(A,/obj/item/infinity_gem/time_gem))
@@ -36,6 +38,7 @@
 	name = "Snap"
 	desc = "Reality can be anything you want."
 	clothes_req = FALSE
+	charge_max = 1000000 //removes itself after
 	//BEFORE MERGE: give graphics
 
 /obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = FALSE, mob/user = usr)
@@ -45,10 +48,21 @@
 	user.emote("snap")
 	for(var/mob/living/M in shuffled_living)
 		INVOKE_ASYNC(src, .proc/do_snap, M)
+	if(user.mind)
+		user.mind.RemoveSpell(src)
+	else
+		user.RemoveSpell(src)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(isinfinitygauntlet(H.gloves))
+			var/item/storage/infinity_gauntlet/gauntlet = H.gloves
+			gauntlet.already_snapped = TRUE
 
 /obj/effect/proc_holder/spell/self/snap/proc/do_snap(mob/living/target)
 	to_chat(target,"<span class='userdanger'>You don't feel so good...</span>")
-	sleep(rand(10,100))
+	sleep(rand(0,50))
+	target.visible_message("[target.name] begins to turn to dust!")
+	sleep(rand(10,50))
 	target.dust()
 
 /obj/item/storage/infinity_gauntlet
@@ -63,6 +77,7 @@
 	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
 	icon_state = "infinity_gauntlet"
 	var/transfer_prints = FALSE
+	var/already_snapped = FALSE
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
@@ -133,7 +148,7 @@
 		user.mind.RemoveSpell(snap_spell)
 	else
 		user.RemoveSpell(snap_spell)
-	if(gems_found == ALL_GEMS && sanity_check(user))
+	if(gems_found == ALL_GEMS && sanity_check(user) && !already_snapped)
 		if(user.mind)
 			user.mind.AddSpell(snap_spell)
 		else
@@ -236,7 +251,6 @@
 	sound1 = 'sound/magic/teleport_diss.ogg'
 	sound2 = 'sound/magic/teleport_app.ogg'
 	clothes_req = FALSE
-	//BEFORE MERGE: give graphics
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
 	name = "Space Gem Teleport (self)"
@@ -259,12 +273,13 @@
 	name = "Space Gem: Chaos"
 	desc = "Teleport everyone nearby, including yourself, to a nearby random location."
 	range = 5
+	selection_type = "range"
 	include_user = TRUE
 	clothes_req = FALSE
 	charge_max = 20
-	random_target = 1
+	random_target = TRUE
+	action_icon_state = "blink"
 	max_targets = 0
-	//BEFORE MERGE: give graphics
 
 /obj/item/infinity_gem/space_gem
 	name = "Space Gem"
@@ -299,7 +314,8 @@
 	desc = "Stores your position and health at the current time, which you can then revert to at will."
 	charge_max=1200
 	clothes_req = FALSE
-	//BEFORE MERGE: give graphics
+	action_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	action_icon_state = "time_reverse"
 	var/time_stored = FALSE
 	var/health_at_store
 	var/turf/position_at_store
@@ -426,7 +442,8 @@
 	name = "Ghostize"
 	desc = "Turns you into a ghost. Spooky!"
 	clothes_req = FALSE
-	//BEFORE MERGE: give graphics (it's just gonna be a ghost)
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "ghost"
 	charge_max=10
 
 /obj/effect/proc_holder/spell/self/ghostify/cast(list/targets,mob/user = usr)
@@ -437,9 +454,10 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/soulstone
 	name = "Create Soulstone"
 	desc = "Forges a soulstone using the soul gem."
-	item_type = /obj/item/soulstone
+	item_type = /obj/item/soulstone/anybody
 	charge_max = 1200
-	//BEFORE MERGE: give graphics (probably just a soulstone)
+	icon_state = "soulstone"
+	icon = 'icons/obj/wizard.dmi'
 	delete_old = FALSE
 	clothes_req = FALSE
 
