@@ -63,7 +63,7 @@
 		INVOKE_ASYNC(src, .proc/do_snap, M)
 
 /obj/effect/proc_holder/spell/self/snap/proc/do_snap(mob/living/target)
-	target.to_chat("<span class='userdanger'>You don't feel so good...</span>")
+	to_chat(target,"<span class='userdanger'>You don't feel so good...</span>")
 	sleep(rand(10,100))
 	target.dust()
 
@@ -79,11 +79,6 @@
 	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
 	icon_state = "infinity_gauntlet"
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
-	var/obj/effect/proc_holder/spell/self/snap/snap_spell
-
-/obj/item/storage/infinity_gauntlet/Initialize()
-	. = ..()
-	snap_spell = new /obj/effect/proc_holder/spell/self/snap
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
 	. = ..()
@@ -137,6 +132,7 @@
 		gems_found |= gem.gem_flag
 	for(var/obj/item/infinity_gem/gem in contents)
 		gem.other_gems = gems_found
+	var/obj/effect/proc_holder/spell/self/snap/snap_spell = new
 	if(gems_found == ALL_GEMS)
 		if(user.mind)
 			user.mind.AddSpell(snap_spell)
@@ -303,22 +299,25 @@
 
 /obj/effect/proc_holder/spell/self/time_reverse/cast(list/targets,mob/user)
 	. = ..()
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
 	if(!time_stored)
-		position_at_store=get_turf(user)
-		health_at_store = user.health
+		position_at_store=get_turf(living_user)
+		health_at_store = living_user.health
 		time_stored = TRUE
 		charge_counter = 1200
 		desc = "Goes back to the stored time; will knock you unconscious for a time!"
 	else
-		do_teleport(user,position_at_store,forceMove = TRUE, channel = TELEPORT_CHANNEL_FREE)
-		var/health_right_now = user.health
-		user.fully_heal(full_heal = TRUE)
-		user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/10))
-		var/time_stored = FALSE
+		do_teleport(living_user,position_at_store,forceMove = TRUE, channel = TELEPORT_CHANNEL_FREE)
+		var/health_right_now = living_user.health
+		living_user.fully_heal(full_heal = TRUE)
+		living_user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/10))
+		time_stored = FALSE
 		desc = "Stores your position and health at the current time, which you can revert to at-will."
 
 
-/obj/effect/proc_holder/spell/targeted/time_reverse/empowered
+/obj/effect/proc_holder/spell/self/time_reverse/empowered
 	charge_max = 300
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem
@@ -332,19 +331,19 @@
 	gem_flag = TIME_GEM
 	spells = list(
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
-		/obj/effect/proc_holder/spell/targeted/time_reverse
+		/obj/effect/proc_holder/spell/self/time_reverse
 	)
 
 /obj/item/infinity_gem/time_gem/other_gem_actions(mob/user)
 	if(other_gems & POWER_GEM)
 		spells = list(
 			/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
-			/obj/effect/proc_holder/spell/targeted/time_reverse/empowered
+			/obj/effect/proc_holder/spell/self/time_reverse/empowered
 		)
 	else
 		spells = list(
 			/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
-			/obj/effect/proc_holder/spell/targeted/time_reverse
+			/obj/effect/proc_holder/spell/self/time_reverse
 		)
 
 /* ************************
@@ -432,16 +431,16 @@
 	desc = "A gem that gives power over souls."
 	gem_flag = SOUL_GEM
 	traits = list(TRAIT_SIXTHSENSE)
-	spells = list(/obj/effect/proc_holder/spell/targeted/ghostify)
+	spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
 /obj/item/infinity_gem/soul_gem/other_gem_actions(mob/user)
 	if(other_gems & REALITY_GEM)
 		spells = list(
-			/obj/effect/proc_holder/spell/targeted/ghostify,
+			/obj/effect/proc_holder/spell/self/ghostify,
 			/obj/effect/proc_holder/spell/targeted/conjure_item/soulstone
 		)
 	else
-		spells = list(/obj/effect/proc_holder/spell/targeted/ghostify)
+		spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
 
 /* ************************
