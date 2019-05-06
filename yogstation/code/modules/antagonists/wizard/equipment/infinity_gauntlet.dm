@@ -61,6 +61,7 @@
 	alternate_worn_icon = 'yogstation/icons/mob/hands.dmi'
 	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
 	icon_state = "infinity_gauntlet"
+	var/transfer_prints = FALSE
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
@@ -85,6 +86,17 @@
 		var/mutable_appearance/M = gem.get_gauntlet_overlay()
 		add_overlay(M)
 	..()
+
+/obj/item/storage/infinity_gauntlet/proc/clean_blood(datum/source, strength)
+	if(strength < CLEAN_STRENGTH_BLOOD)
+		return
+	transfer_blood = 0
+
+/obj/item/storage/infinity_gauntlet/proc/update_clothes_damaged_state(damaging = TRUE)
+	..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_gloves()
 
 /obj/item/storage/infinity_gauntlet/equipped(mob/user,slot)
 	. = ..()
