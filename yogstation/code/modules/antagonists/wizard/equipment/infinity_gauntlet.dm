@@ -143,9 +143,8 @@
 	desc = "You shouldn't see this!"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	w_class=WEIGHT_CLASS_TINY
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "soulstone"
-	item_state = "electronic"
+	icon = 'yogstation/icons/obj/wizard.dmi'
+	icon_state = "infinity_gem"
 	var/turf/lastlocation //if the wizard can't track 'em, it's too hard!
 	var/gem_flag = NO_GEMS
 	var/other_gems
@@ -256,6 +255,7 @@
 	name = "Space Gem"
 	desc = "A gem that allows the holder to be anywhere."
 	gem_flag = SPACE_GEM
+	color = "#009bff"
 	spells = list(
 		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
 		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
@@ -320,6 +320,7 @@
 	name = "Time Gem"
 	desc = "A gem that allows the holder to be anytime."
 	gem_flag = TIME_GEM
+	color = "#26ff9b"
 	spells = list(
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
 		/obj/effect/proc_holder/spell/self/time_reverse
@@ -362,6 +363,7 @@
 	name = "Mind Gem"
 	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
 	gem_flag = MIND_GEM
+	color = "#ffcc4f"
 	spells = list(
 		/obj/effect/proc_holder/spell/targeted/telepathy,
 		/obj/effect/proc_holder/spell/targeted/mindread
@@ -427,6 +429,7 @@
 	name = "Soul Gem"
 	desc = "A gem that gives power over souls."
 	gem_flag = SOUL_GEM
+	color = "#ff7732"
 	traits = list(TRAIT_SIXTHSENSE)
 	spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
@@ -448,6 +451,7 @@
 	name = "Power Gem"
 	desc = "A gem granting dominion over power itself."
 	gem_flag = POWER_GEM
+	color = "#c673c5"
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem
 	anti_magic_check = FALSE
@@ -480,6 +484,7 @@
 	name = "Reality Gem"
 	desc = "A gem granting dominion over reality."
 	gem_flag = REALITY_GEM
+	color = "#ff1b3f"
 	traits = list(TRAIT_NOSLIPALL)
 
 /obj/item/infinity_gem/reality_gem/other_gem_actions(mob/user)
