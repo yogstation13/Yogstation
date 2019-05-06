@@ -510,3 +510,26 @@
 			voice_spell.cooldown_mod=0.5
 			to_chat(user, "<span class='notice'>And not too rarely, either.</span>")
 		spells += voice_spell
+
+#undef INFINITY_GEM //maybe don't do this? hmm
+
+#undef isspacegem(A)
+
+#undef istimegem(A)
+
+#undef ismindgem(A)
+
+#undef issoulgem(A)
+
+#undef ispowergem(A)
+
+#undef isrealitygem(A)
+
+#undef NO_GEMS
+#undef SPACE_GEM
+#undef TIME_GEM
+#undef MIND_GEM
+#undef SOUL_GEM
+#undef POWER_GEM
+#undef REALITY_GEM
+#undef ALL_GEMS
