@@ -71,3 +71,9 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustBrainLoss(5)
+
+/datum/emote/living/snap
+	key = "snap"
+	key_third_person = "snaps"
+	message = "snaps their finger."
+	emote_type = EMOTE_AUDIBLE

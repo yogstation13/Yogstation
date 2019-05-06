@@ -31,14 +31,6 @@
 /* ************************
 	GAUNTLET
    ************************/ 
-   
-//don't need to do remove_from_storage because storage already calls dropped in there
-
-/datum/emote/living/snap
-	key = "snap"
-	key_third_person = "snaps"
-	message = "snaps their finger."
-	emote_type = EMOTE_AUDIBLE
 
 /obj/effect/proc_holder/spell/self/snap
 	name = "Snap"
