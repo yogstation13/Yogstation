@@ -69,7 +69,7 @@
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
 	else if(islizard(H)) //yogs start: adds lizard screams
-   		return 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs end
+		return 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs end
 
 
 /datum/emote/living/carbon/human/pale
