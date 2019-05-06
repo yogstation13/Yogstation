@@ -54,14 +54,18 @@
 	desc = "Reality can be anything you want."
 	clothes_req = FALSE
 
-/obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = TRUE, mob/user = usr)
+/obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = FALSE, mob/user = usr)
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
 	shuffled_living.len = shuffled_living.len/2
 	shuffled_living-=user
 	user.emote("snap")
 	for(var/mob/living/M in shuffled_living)
-		M.visible_message("<span class='userdanger'>You don't feel so good...</span>")
-		M.dust()
+		INVOKE_ASYNC(src, .proc/do_snap, M)
+
+/obj/effect/proc_holder/spell/self/snap/proc/do_snap(mob/living/target)
+	target.to_chat("<span class='userdanger'>You don't feel so good...</span>")
+	sleep(rand(10,100))
+	target.dust()
 
 /obj/item/storage/infinity_gauntlet
 	name = "Infinity Gauntlet"
@@ -288,28 +292,31 @@
 	TIME GEM
    ************************/ 
 
-/obj/effect/proc_holder/spell/targeted/time_reverse
+/obj/effect/proc_holder/spell/self/time_reverse
 	name = "Reverse Time"
-	desc = "Brings you back to a time when you were healthy."
-	range = -1
-	include_user = TRUE
+	desc = "Stores your position and health at the current time, which you can revert to at-will."
 	charge_max=1200
 	clothes_req = FALSE
+	var/time_stored = FALSE
+	var/health_at_store
+	var/turf/position_at_store
 
-/obj/effect/proc_holder/spell/target/time_reverse/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/self/time_reverse/cast(list/targets,mob/user)
 	. = ..()
-	for(var/mob/living/target in targets)
-		if(iscarbon(target))
-			var/mob/living/carbon/C = target
-			C.regenerate_limbs()
-			C.regenerate_organs()
-			//was gonna have it de-age the user, but realized that that would nerf people whose characters are younger,
-			//which would be very, very dumb since all that's pure fluff. so instead it's just healing
-		if(target.revive(full_heal = 1))
-			target.grab_ghost(force = TRUE) // even suicides
-			to_chat(target, "<span class='notice'>You rise with a start, you're alive!!!</span>")
-		else if(target.stat != DEAD)
-			to_chat(target, "<span class='notice'>You feel great!</span>")
+	if(!time_stored)
+		position_at_store=get_turf(user)
+		health_at_store = user.health
+		time_stored = TRUE
+		charge_counter = 1200
+		desc = "Goes back to the stored time; will knock you unconscious for a time!"
+	else
+		do_teleport(user,position_at_store,forceMove = TRUE, channel = TELEPORT_CHANNEL_FREE)
+		var/health_right_now = user.health
+		user.fully_heal(full_heal = TRUE)
+		user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/10))
+		var/time_stored = FALSE
+		desc = "Stores your position and health at the current time, which you can revert to at-will."
+
 
 /obj/effect/proc_holder/spell/targeted/time_reverse/empowered
 	charge_max = 300
@@ -401,15 +408,13 @@
 	SOUL GEM
    ************************/ 
 
-/obj/effect/proc_holder/spell/targeted/ghostify
+/obj/effect/proc_holder/spell/self/ghostify
 	name = "Ghostize"
 	desc = "Turns you into a ghost. Spooky!"
-	range = -1
-	include_user = TRUE
 	clothes_req = FALSE
 	charge_max=10
 
-/obj/effect/proc_holder/spell/target/ghostify/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/self/ghostify/cast(list/targets,mob/user = usr)
 	. = ..()
 	visible_message("<span class='danger'>[user] stares into the soul gem, their eyes glazing over.</span>")
 	user.ghostize(1)
