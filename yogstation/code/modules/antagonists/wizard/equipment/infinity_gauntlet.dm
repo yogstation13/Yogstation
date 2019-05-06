@@ -116,16 +116,15 @@
 	for(var/obj/item/infinity_gem/gem in contents)
 		gem.other_gems = gems_found
 	var/obj/effect/proc_holder/spell/self/snap/snap_spell = new
-	if(gems_found == ALL_GEMS)
+	if(user.mind)
+		user.mind.RemoveSpell(snap_spell)
+	else
+		user.RemoveSpell(snap_spell)
+	if(gems_found == ALL_GEMS && sanity_check(user))
 		if(user.mind)
 			user.mind.AddSpell(snap_spell)
 		else
 			user.AddSpell(snap_spell)
-	else
-		if(user.mind)
-			user.mind.RemoveSpell(snap_spell)
-		else
-			user.RemoveSpell(snap_spell)
 
 /obj/item/storage/infinity_gauntlet/proc/sanity_check(mob/user)
 	if(ishuman(user))
@@ -282,7 +281,7 @@
 
 /obj/effect/proc_holder/spell/self/time_reverse
 	name = "Reverse Time"
-	desc = "Stores your position and health at the current time, which you can revert to at-will."
+	desc = "Stores your position and health at the current time, which you can then revert to at will."
 	charge_max=1200
 	clothes_req = FALSE
 	var/time_stored = FALSE
@@ -299,14 +298,14 @@
 		health_at_store = living_user.health
 		time_stored = TRUE
 		charge_counter = 1200
-		desc = "Goes back to the stored time; will knock you unconscious for a time!"
+		to_chat(user,"<span class='notice'>You save the current moment...</span>")
 	else
 		do_teleport(living_user,position_at_store,forceMove = TRUE, channel = TELEPORT_CHANNEL_FREE)
+		to_chat(user,"<span class='danger'>You return to your saved moment! The shock knocks you unconscious!</span>")
 		var/health_right_now = living_user.health
-		living_user.fully_heal(full_heal = TRUE)
-		living_user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/10))
+		living_user.fully_heal()
+		living_user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/5))
 		time_stored = FALSE
-		desc = "Stores your position and health at the current time, which you can revert to at-will."
 
 
 /obj/effect/proc_holder/spell/self/time_reverse/empowered
@@ -389,9 +388,9 @@
 			/obj/effect/proc_holder/spell/targeted/telepathy,
 			/obj/effect/proc_holder/spell/targeted/mindread
 		)
-	if(other_gems & SPACE_GEM)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(other_gems & SPACE_GEM)
 			H.dna.add_mutation(TK)
 		else
 			H.dna.remove_mutation(TK)
@@ -511,17 +510,17 @@
 
 #undef INFINITY_GEM //maybe don't do this? hmm
 
-#undef isspacegem(A)
+#undef isspacegem
 
-#undef istimegem(A)
+#undef istimegem
 
-#undef ismindgem(A)
+#undef ismindgem
 
-#undef issoulgem(A)
+#undef issoulgem
 
-#undef ispowergem(A)
+#undef ispowergem
 
-#undef isrealitygem(A)
+#undef isrealitygem
 
 #undef NO_GEMS
 #undef SPACE_GEM
