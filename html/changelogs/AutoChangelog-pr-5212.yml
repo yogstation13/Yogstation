@@ -1,0 +1,6 @@
+author: " Time-Green"
+delete-after: true 
+changes: 
+  - tweak: "Chromosomes interact with more mutations"
+  - tweak: "The DNA console printing speed is now affected by better parts"
+  - bugfix: "Monkeys no longer runtime with transformations"
