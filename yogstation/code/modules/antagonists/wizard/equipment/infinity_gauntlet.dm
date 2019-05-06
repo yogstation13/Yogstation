@@ -36,6 +36,7 @@
 	name = "Snap"
 	desc = "Reality can be anything you want."
 	clothes_req = FALSE
+	//BEFORE MERGE: give graphics
 
 /obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = FALSE, mob/user = usr)
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
@@ -235,6 +236,7 @@
 	sound1 = 'sound/magic/teleport_diss.ogg'
 	sound2 = 'sound/magic/teleport_app.ogg'
 	clothes_req = FALSE
+	//BEFORE MERGE: give graphics
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self
 	name = "Space Gem Teleport (self)"
@@ -262,6 +264,7 @@
 	charge_max = 20
 	random_target = 1
 	max_targets = 0
+	//BEFORE MERGE: give graphics
 
 /obj/item/infinity_gem/space_gem
 	name = "Space Gem"
@@ -296,6 +299,7 @@
 	desc = "Stores your position and health at the current time, which you can then revert to at will."
 	charge_max=1200
 	clothes_req = FALSE
+	//BEFORE MERGE: give graphics
 	var/time_stored = FALSE
 	var/health_at_store
 	var/turf/position_at_store
@@ -422,6 +426,7 @@
 	name = "Ghostize"
 	desc = "Turns you into a ghost. Spooky!"
 	clothes_req = FALSE
+	//BEFORE MERGE: give graphics (it's just gonna be a ghost)
 	charge_max=10
 
 /obj/effect/proc_holder/spell/self/ghostify/cast(list/targets,mob/user = usr)
@@ -434,6 +439,7 @@
 	desc = "Forges a soulstone using the soul gem."
 	item_type = /obj/item/soulstone
 	charge_max = 1200
+	//BEFORE MERGE: give graphics (probably just a soulstone)
 	delete_old = FALSE
 	clothes_req = FALSE
 
@@ -468,6 +474,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem
 	anti_magic_check = FALSE
 	clothes_req = FALSE
+	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered
 	range = 8
