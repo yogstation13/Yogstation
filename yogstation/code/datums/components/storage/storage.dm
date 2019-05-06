@@ -115,3 +115,12 @@
 	if((real_location.contents.len / max_items > 0.95 || sum_w_class / max_combined_w_class > 0.95) && !rand(0,124))
 		var/obj/item/storage/bag/trash/devito = parent
 		devito.snap(M)
+
+/datum/component/storage/concrete/infinity_gauntlet
+	rustle_sound = FALSE
+	max_items = 6
+
+/datum/component/storage/concrete/infinity_gauntlet/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/living/user)
+	. = ..()
+	var/obj/item/storage/infinity_gauntlet/gauntlet = real_location()
+	gauntlet.add_gems_to_owner(user)
