@@ -39,8 +39,8 @@
 
 /obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = FALSE, mob/user = usr)
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
-	shuffled_living.len = shuffled_living.len/2
 	shuffled_living-=user
+	shuffled_living.len = shuffled_living.len/2
 	user.emote("snap")
 	for(var/mob/living/M in shuffled_living)
 		INVOKE_ASYNC(src, .proc/do_snap, M)
@@ -163,7 +163,15 @@
 	else
 		gem_remove(user)
 
+/obj/item/infinity_gem/proc/update_gems_in_hands(mob/user)
+	var/gems_found = NO_GEMS
+	for(var/obj/item/infinity_gem/gem in user.held_items)
+		gems_found |= gem.gem_flag
+	for(var/obj/item/infinity_gem/gem in user.held_items)
+		gem.other_gems = gems_found
+
 /obj/item/infinity_gem/proc/gem_add(mob/user)
+	update_gems_in_hands(user)
 	gem_remove(user)
 	other_gem_actions(user)
 	for(var/T in traits)
@@ -191,6 +199,7 @@
 		for(var/S in spells)
 			var/obj/effect/proc_holder/spell/spell = S
 			user.RemoveSpell(spell)
+	update_gems_in_hands(user)
 
 
 /obj/item/infinity_gem/dropped(mob/user)
@@ -380,6 +389,12 @@
 			/obj/effect/proc_holder/spell/targeted/telepathy,
 			/obj/effect/proc_holder/spell/targeted/mindread
 		)
+	if(other_gems & SPACE_GEM)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.dna.add_mutation(TK)
+		else
+			H.dna.remove_mutation(TK)
 	if(other_gems & SOUL_GEM)
 		if(other_gems & TIME_GEM)
 			spells += /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem_empowered
