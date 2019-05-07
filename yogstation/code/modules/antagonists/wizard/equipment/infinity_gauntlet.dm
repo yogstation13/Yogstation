@@ -81,6 +81,10 @@
 	sleep(rand(10,50))
 	target.dust()
 
+/obj/item/storage/infinity_gauntlet/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
@@ -329,7 +333,7 @@
 	desc = "Stores your position and health at the current time, which you can then revert to at will."
 	charge_max=1200
 	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "time_reverse"
 	var/time_stored = FALSE
 	var/health_at_store
