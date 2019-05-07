@@ -74,7 +74,7 @@
 	body_parts_covered = HAND_LEFT
 	slot_flags = ITEM_SLOT_GLOVES
 	alternate_worn_icon = 'yogstation/icons/mob/hands.dmi'
-	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
+	icon = 'yogstation/icons/obj/wizard.dmi'
 	icon_state = "infinity_gauntlet"
 	var/transfer_prints = FALSE
 	var/already_snapped = FALSE
@@ -173,6 +173,7 @@
 	w_class=WEIGHT_CLASS_TINY
 	icon = 'yogstation/icons/obj/wizard.dmi'
 	icon_state = "infinity_gem"
+	var/gauntlet_gem = "error"
 	var/turf/lastlocation //if the wizard can't track 'em, it's too hard!
 	var/gem_flag = NO_GEMS
 	var/other_gems
@@ -180,7 +181,7 @@
 	var/traits
 
 /obj/item/infinity_gem/proc/get_gauntlet_overlay()
-	return
+	return mutable_appearance('yogstation/icons/obj/wizard.dmi', gauntlet_gem)
 
 /obj/item/infinity_gem/equipped(mob/user,slot)
 	. = ..()
@@ -286,6 +287,7 @@
 	desc = "A gem that allows the holder to be anywhere."
 	gem_flag = SPACE_GEM
 	color = "#009bff"
+	gauntlet_gem = "space"
 	spells = list(
 		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
 		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
@@ -353,6 +355,7 @@
 	desc = "A gem that allows the holder to be anytime."
 	gem_flag = TIME_GEM
 	color = "#26ff9b"
+	gauntlet_gem = "time"
 	spells = list(
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
 		/obj/effect/proc_holder/spell/self/time_reverse
@@ -396,6 +399,7 @@
 	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
 	gem_flag = MIND_GEM
 	color = "#ffcc4f"
+	gauntlet_gem = "mind"
 	spells = list(
 		/obj/effect/proc_holder/spell/targeted/telepathy,
 		/obj/effect/proc_holder/spell/targeted/mindread
@@ -466,6 +470,7 @@
 	desc = "A gem that gives power over souls."
 	gem_flag = SOUL_GEM
 	color = "#ff7732"
+	gauntlet_gem = "soul"
 	traits = list(TRAIT_SIXTHSENSE)
 	spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
@@ -487,6 +492,7 @@
 	name = "Power Gem"
 	desc = "A gem granting dominion over power itself."
 	gem_flag = POWER_GEM
+	gauntlet_gem = "power"
 	color = "#c673c5"
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem
@@ -521,6 +527,7 @@
 	name = "Reality Gem"
 	desc = "A gem granting dominion over reality."
 	gem_flag = REALITY_GEM
+	gauntlet_gem = "reality"
 	color = "#ff1b3f"
 	traits = list(TRAIT_NOSLIPALL)
 
