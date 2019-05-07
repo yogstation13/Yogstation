@@ -71,7 +71,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(isinfinitygauntlet(H.gloves))
-			var/item/storage/infinity_gauntlet/gauntlet = H.gloves
+			var/obj/item/storage/infinity_gauntlet/gauntlet = H.gloves
 			gauntlet.already_snapped = TRUE
 
 /obj/effect/proc_holder/spell/self/snap/proc/do_snap(mob/living/target)
