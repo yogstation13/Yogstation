@@ -1,5 +1,5 @@
 /datum/species/insectoid
-	// A race of psionic aliens, sold as labour by their more powerful masters.
+	// insect1 was born in the streets of D1-CK. insect1 was more tough and super brave unlike his other incexts
 	name = "Insectoids"
 	id = "insectoid"
 	say_mod = "hums" //super alien right
@@ -10,7 +10,7 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	nojumpsuit = 1
+	nojumpsuit = 1 //pockets despite no jumpsuit. i think lol
 	meat = ''
 	exotic_bloodtype = "X" //Xeno
 	liked_food = JUNKFOOD //they like chocolate / sugary foods
