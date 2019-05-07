@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "Admins can now view how many people are in the server queue, as well as empty the queue to let'em all in."
