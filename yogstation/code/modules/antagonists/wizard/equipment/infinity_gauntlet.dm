@@ -34,6 +34,22 @@
 	GAUNTLET
    ************************/ 
 
+/obj/item/storage/infinity_gauntlet
+	name = "Infinity Gauntlet"
+	desc = "A gauntlet which can hold the infinity gems."
+	siemens_coefficient = 0
+	strip_delay = 100
+	permeability_coefficient = 0
+	body_parts_covered = HAND_LEFT
+	slot_flags = ITEM_SLOT_GLOVES
+	alternate_worn_icon = 'yogstation/icons/mob/hands.dmi'
+	icon = 'yogstation/icons/obj/wizard.dmi'
+	icon_state = "infinity_gauntlet"
+	var/transfer_blood = 0
+	var/transfer_prints = FALSE
+	var/already_snapped = FALSE
+	component_type = /datum/component/storage/concrete/infinity_gauntlet
+
 /obj/effect/proc_holder/spell/self/snap
 	name = "Snap"
 	desc = "Reality can be anything you want."
@@ -64,21 +80,6 @@
 	target.visible_message("[target.name] begins to turn to dust!")
 	sleep(rand(10,50))
 	target.dust()
-
-/obj/item/storage/infinity_gauntlet
-	name = "Infinity Gauntlet"
-	desc = "A gauntlet which can hold the infinity gems."
-	siemens_coefficient = 0
-	strip_delay = 100
-	permeability_coefficient = 0
-	body_parts_covered = HAND_LEFT
-	slot_flags = ITEM_SLOT_GLOVES
-	alternate_worn_icon = 'yogstation/icons/mob/hands.dmi'
-	icon = 'yogstation/icons/obj/wizard.dmi'
-	icon_state = "infinity_gauntlet"
-	var/transfer_prints = FALSE
-	var/already_snapped = FALSE
-	component_type = /datum/component/storage/concrete/infinity_gauntlet
 
 /obj/item/storage/infinity_gauntlet/ComponentInitialize()
 	. = ..()
