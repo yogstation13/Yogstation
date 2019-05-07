@@ -55,7 +55,8 @@
 	desc = "Reality can be anything you want."
 	clothes_req = FALSE
 	charge_max = 1000000 //removes itself after
-	//BEFORE MERGE: give graphics
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "infinity_snap"
 
 /obj/effect/proc_holder/spell/self/snap/perform(list/targets, recharge = FALSE, mob/user = usr)
 	var/list/shuffled_living = shuffle(GLOB.alive_mob_list)
@@ -264,6 +265,7 @@
 /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem
 	name = "Space Gem Teleport"
 	desc = "Use the gem to teleport you to an area of your selection."
+	action_icon
 	charge_max = 200
 	sound1 = 'sound/magic/teleport_diss.ogg'
 	sound2 = 'sound/magic/teleport_app.ogg'
@@ -287,16 +289,14 @@
 	charge_max = 100
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
-	name = "Space Gem: Chaos"
-	desc = "Teleport everyone nearby, including yourself, to a nearby random location."
-	range = 5
+	name = "Space Gem Blink"
+	desc = "Teleport to a nearby random location."
+	range = -1
 	selection_type = "range"
 	include_user = TRUE
 	clothes_req = FALSE
-	charge_max = 20
-	random_target = TRUE
+	charge_max = 10
 	action_icon_state = "blink"
-	max_targets = 0
 
 /obj/item/infinity_gem/space_gem/other_gem_actions(mob/user)
 	if(other_gems & TIME_GEM)
@@ -396,10 +396,12 @@
 	traits = list(TRAIT_THERMAL_VISION)
 
 /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem
+	invocation_type = "none"
 	unconscious_amount_victim = 200
 	unconscious_amount_caster = 200
 
 /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem_empowered
+	invocation_type = "none"
 	unconscious_amount_victim = 0
 	unconscious_amount_caster = 200
 
@@ -460,8 +462,8 @@
 	name = "Ghostize"
 	desc = "Turns you into a ghost. Spooky!"
 	clothes_req = FALSE
-	icon = 'icons/mob/mob.dmi'
-	icon_state = "ghost"
+	action_icon = 'icons/mob/mob.dmi'
+	action_icon_state = "ghost"
 	charge_max=10
 
 /obj/effect/proc_holder/spell/self/ghostify/cast(list/targets,mob/user = usr)
@@ -474,8 +476,8 @@
 	desc = "Forges a soulstone using the soul gem."
 	item_type = /obj/item/soulstone/anybody
 	charge_max = 1200
-	icon_state = "soulstone"
-	icon = 'icons/obj/wizard.dmi'
+	action_icon = 'icons/obj/wizard.dmi'
+	action_icon_state = "soulstone"
 	delete_old = FALSE
 	clothes_req = FALSE
 
