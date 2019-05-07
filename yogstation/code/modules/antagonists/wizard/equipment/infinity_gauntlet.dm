@@ -542,11 +542,11 @@
 	traits=list(TRAIT_NOSLIPALL)
 	to_chat(user, "<span class='notice'>You feel sure on your feet.</span>")
 	if(other_gems & POWER_GEM)
-		traits |= TRAIT_NOSOFTCRIT
+		traits |= TRAIT_NOHARDCRIT
 		to_chat(user, "<span class='notice'>You feel nearly unstoppable.</span>")
-		if(other_gems & SOUL_GEM)
-			traits |= TRAIT_NODEATH
-			to_chat(user, "<span class='notice'>Actually, you feel completely unstoppable!</span>")
+	if(other_gems & SOUL_GEM)
+		traits |= TRAIT_NODEATH
+		to_chat(user, "<span class='notice'>You know that you can never die!</span>")
 	if(other_gems & SPACE_GEM)
 		traits |= TRAIT_NODISMEMBER
 		to_chat(user, "<span class='notice'>You feel sturdy.</span>")
@@ -554,15 +554,17 @@
 		traits |= TRAIT_NOCRITDAMAGE
 		to_chat(user, "<span class='notice'>You keep yourself anchored.</span>")
 	if(other_gems & MIND_GEM)
-		/var/obj/effect/proc_holder/spell/voice_of_god/voice_spell = new
-		to_chat(user, "<span class='notice'>Your voice feels like it could move mountains.</span>")
-		if(other_gems & POWER_GEM)
-			voice_spell.power_mod=2
-			to_chat(user, "<span class='notice'>Planets, even.</span>")
-		if(other_gems & TIME_GEM)
-			voice_spell.cooldown_mod=0.5
-			to_chat(user, "<span class='notice'>And not too rarely, either.</span>")
-		spells += voice_spell
+		traits |= TRAIT_XRAY_VISION
+		to_chat(user, "<span class='notice'>You can see everything, forever!</span>")
+		user.update_sight()
+
+/obj/item/infinity_gem/reality_gem/gem_add(mob/user)
+	. = ..()
+	user.update_sight()
+
+/obj/item/infinity_gem/reality_gem/gem_remove(mob/user)
+	. = ..()
+	user.update_sight()
 
 #undef INFINITY_GEM //maybe don't do this? hmm
 
