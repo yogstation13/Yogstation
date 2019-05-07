@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Photo bags should now actually be able to store photos."

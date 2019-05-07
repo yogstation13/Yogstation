@@ -1,5 +1,0 @@
-author: "Putnam3145"
-delete-after: true 
-changes: 
-  - rscadd: "new spell: cauterize. Heals all brute/burn damage, then adds it back entirely as burn damage over the next 20-60 seconds, depending on spell level."
-  - rscadd: "new spell: slip. Makes the floor in an area around the caster slippery, as if lubed, for 30 seconds. First level has cooldown equal duration!"
