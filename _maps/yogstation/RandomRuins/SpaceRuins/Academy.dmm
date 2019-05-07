@@ -278,9 +278,6 @@
 /area/awaymission/academy/headmaster)
 "ba" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror/magic/lesser{
-	pixel_y = 32
-	},
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bb" = (
@@ -4719,6 +4716,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"yq" = (
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/wood,
+/area/awaymission/academy/academycellar)
+"Bq" = (
+/obj/structure/table,
+/obj/item/clothing/neck/stethoscope,
+/turf/open/floor/plasteel,
+/area/awaymission/academy/headmaster)
 "Hy" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -4732,6 +4738,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"OI" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/wood,
+/area/awaymission/academy/academycellar)
 "QZ" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -4748,6 +4758,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
+"Ry" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/wood,
+/area/awaymission/academy/academycellar)
+"SP" = (
+/obj/structure/mirror/magic,
+/turf/closed/wall,
+/area/awaymission/academy/headmaster)
 "WF" = (
 /mob/living/simple_animal/hostile/carp/ranged,
 /turf/open/space,
@@ -10089,7 +10107,7 @@ dn
 dE
 cO
 dW
-ei
+Bq
 cO
 db
 dn
@@ -10182,7 +10200,7 @@ bB
 av
 ax
 ax
-aQ
+SP
 ba
 bh
 bs
@@ -14865,7 +14883,7 @@ mu
 lQ
 mL
 lP
-mS
+yq
 mS
 mS
 mS
@@ -14980,7 +14998,7 @@ lY
 lQ
 mK
 lP
-mS
+Ry
 mS
 mS
 nb
@@ -15095,7 +15113,7 @@ lQ
 lQ
 mK
 lP
-mS
+OI
 mS
 mZ
 nc
