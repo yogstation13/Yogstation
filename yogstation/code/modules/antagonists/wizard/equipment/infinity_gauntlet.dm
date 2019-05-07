@@ -245,6 +245,17 @@
 	SPACE GEM
    ************************/ 
 
+/obj/item/infinity_gem/space_gem
+	name = "Space Gem"
+	desc = "A gem that allows the holder to be anywhere."
+	gem_flag = SPACE_GEM
+	color = "#009bff"
+	gauntlet_gem = "space"
+	spells = list(
+		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
+		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
+	)
+
 /obj/effect/proc_holder/spell/targeted/area_teleport/space_gem
 	name = "Space Gem Teleport"
 	desc = "Use the gem to teleport you to an area of your selection."
@@ -282,17 +293,6 @@
 	action_icon_state = "blink"
 	max_targets = 0
 
-/obj/item/infinity_gem/space_gem
-	name = "Space Gem"
-	desc = "A gem that allows the holder to be anywhere."
-	gem_flag = SPACE_GEM
-	color = "#009bff"
-	gauntlet_gem = "space"
-	spells = list(
-		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/self,
-		/obj/effect/proc_holder/spell/targeted/area_teleport/space_gem/other
-	)
-
 /obj/item/infinity_gem/space_gem/other_gem_actions(mob/user)
 	if(other_gems & TIME_GEM)
 		spells = list(
@@ -310,6 +310,18 @@
 /* ************************
 	TIME GEM
    ************************/ 
+
+/obj/item/infinity_gem/time_gem
+	name = "Time Gem"
+	desc = "A gem that allows the holder to be anytime."
+	gem_flag = TIME_GEM
+	color = "#26ff9b"
+	gauntlet_gem = "time"
+	spells = list(
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
+		/obj/effect/proc_holder/spell/self/time_reverse
+	)
+
 
 /obj/effect/proc_holder/spell/self/time_reverse
 	name = "Reverse Time"
@@ -350,17 +362,6 @@
 	clothes_req = FALSE
 	charge_max = 100
 
-/obj/item/infinity_gem/time_gem
-	name = "Time Gem"
-	desc = "A gem that allows the holder to be anytime."
-	gem_flag = TIME_GEM
-	color = "#26ff9b"
-	gauntlet_gem = "time"
-	spells = list(
-		/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
-		/obj/effect/proc_holder/spell/self/time_reverse
-	)
-
 /obj/item/infinity_gem/time_gem/other_gem_actions(mob/user)
 	if(other_gems & POWER_GEM)
 		spells = list(
@@ -377,6 +378,17 @@
 	MIND GEM
    ************************/ 
 
+/obj/item/infinity_gem/mind_gem
+	name = "Mind Gem"
+	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
+	gem_flag = MIND_GEM
+	color = "#ffcc4f"
+	gauntlet_gem = "mind"
+	spells = list(
+		/obj/effect/proc_holder/spell/targeted/telepathy,
+		/obj/effect/proc_holder/spell/targeted/mindread
+	)
+	traits = list(TRAIT_THERMAL_VISION)
 
 /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem
 	unconscious_amount_victim = 200
@@ -393,18 +405,6 @@
 /obj/effect/proc_holder/spell/targeted/mindread/mind_gem_empowered
 	range = 100
 	selection_type = "range"
-
-/obj/item/infinity_gem/mind_gem
-	name = "Mind Gem"
-	desc = "A gem that gives the power to access the thoughts and dreams of other beings."
-	gem_flag = MIND_GEM
-	color = "#ffcc4f"
-	gauntlet_gem = "mind"
-	spells = list(
-		/obj/effect/proc_holder/spell/targeted/telepathy,
-		/obj/effect/proc_holder/spell/targeted/mindread
-	)
-	traits = list(TRAIT_THERMAL_VISION)
 
 /obj/item/infinity_gem/mind_gem/gem_add(mob/user)
 	. = ..()
@@ -442,6 +442,15 @@
 	SOUL GEM
    ************************/ 
 
+/obj/item/infinity_gem/soul_gem
+	name = "Soul Gem"
+	desc = "A gem that gives power over souls."
+	gem_flag = SOUL_GEM
+	color = "#ff7732"
+	gauntlet_gem = "soul"
+	traits = list(TRAIT_SIXTHSENSE)
+	spells = list(/obj/effect/proc_holder/spell/self/ghostify)
+
 /obj/effect/proc_holder/spell/self/ghostify
 	name = "Ghostize"
 	desc = "Turns you into a ghost. Spooky!"
@@ -464,15 +473,6 @@
 	icon = 'icons/obj/wizard.dmi'
 	delete_old = FALSE
 	clothes_req = FALSE
-
-/obj/item/infinity_gem/soul_gem
-	name = "Soul Gem"
-	desc = "A gem that gives power over souls."
-	gem_flag = SOUL_GEM
-	color = "#ff7732"
-	gauntlet_gem = "soul"
-	traits = list(TRAIT_SIXTHSENSE)
-	spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
 /obj/item/infinity_gem/soul_gem/other_gem_actions(mob/user)
 	if(other_gems & REALITY_GEM)
