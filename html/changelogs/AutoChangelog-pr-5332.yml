@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "There are new donor items!"
+  - tweak: "All non-hats from the donor hat section have been moved to items."
