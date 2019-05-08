@@ -18,7 +18,7 @@
 	var/aurora_progress = 0 //this cycles from 1 to 8, slowly changing colors from gentle green to gentle blue
 
 /datum/round_event/aurora_caelus/announce()
-	priority_announce("A harmless cloud of ions is approaching your station, the lights generated from this cloud can be viewed from your nearest window to space. ",
+	priority_announce("A harmless cloud of ions is approaching your station, the lights generated from this cloud can be viewed from your nearest window to space. ", //yogs - cut that shit in half
 	sound = 'sound/misc/notice2.ogg',
 	sender_override = "Nanotrasen Meteorology Division")
 	for(var/V in GLOB.player_list)
