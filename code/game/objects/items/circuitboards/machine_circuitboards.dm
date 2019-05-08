@@ -264,7 +264,6 @@
 			for(var/path in vending_names_paths)
 				display_vending_names_paths[vending_names_paths[path]] = path
 		var/choice =  input(user,"Choose a new brand","Select an Item") as null|anything in display_vending_names_paths
-		to_chat(user, "<span class='notice'>You set the board to \"[display_vending_names_paths[choice]]\".</span>")
 		set_type(display_vending_names_paths[choice])
 	else
 		return ..()
@@ -996,3 +995,9 @@
 	name = "Pay Stand (Machine Board)"
 	build_path = /obj/machinery/paystand
 	req_components = list()
+
+/obj/item/circuitboard/machine/fat_sucker
+	name = "Lipid Extractor (Machine Board)"
+	build_path = /obj/machinery/fat_sucker
+	req_components = list(/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/kitchen/fork = 1)
