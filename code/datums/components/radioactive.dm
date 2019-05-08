@@ -57,7 +57,7 @@
 	else
 		strength = max(strength, arguments[1])
 
-/datum/component/radioactive/proc/rad_examine(datum/source, mob/user, atom/thing)
+/datum/component/radioactive/proc/rad_examine(datum/source, mob/user, atom/thing) //Yogs -- Mirrored!!
 	var/atom/master = parent
 	var/list/out = list()
 	if(get_dist(master, user) <= 1)
