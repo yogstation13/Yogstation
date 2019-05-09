@@ -2884,6 +2884,7 @@
 #include "yogstation\code\game\gamemodes\vampire\vampire_powers.dm"
 #include "yogstation\code\game\gamemodes\wizard\raginmages.dm"
 #include "yogstation\code\game\gamemodes\wizard\wizard.dm"
+#include "yogstation\code\game\golf\golf.dm"
 #include "yogstation\code\game\machinery\machinery.dm"
 #include "yogstation\code\game\machinery\suit_storage_unit.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"

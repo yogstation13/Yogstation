@@ -838,6 +838,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "janitor"
 	flags_1 = NONE
 
+/area/janitor/a //yogs start added two new areas
+	name = "Custodial Closet A"
+	icon_state = "janitor"
+	flags_1 = NONE
+
+/area/janitor/b
+	name = "Custodial Closet B"
+	icon_state = "janitor"
+	flags_1 = NONE //yogs end added two new areas
+
 /area/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
