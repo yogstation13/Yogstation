@@ -365,6 +365,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["moth_wings"] 	= sanitize_inlist(features["moth_wings"], GLOB.moth_wings_list, "Plain")
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
+<<<<<<< HEAD
 	job_civilian_high = sanitize_integer(job_civilian_high, 0, 65535, initial(job_civilian_high))
 	job_civilian_med = sanitize_integer(job_civilian_med, 0, 65535, initial(job_civilian_med))
 	job_civilian_low = sanitize_integer(job_civilian_low, 0, 65535, initial(job_civilian_low))
@@ -374,6 +375,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	job_engsec_high = sanitize_integer(job_engsec_high, 0, 65535, initial(job_engsec_high))
 	job_engsec_med = sanitize_integer(job_engsec_med, 0, 65535, initial(job_engsec_med))
 	job_engsec_low = sanitize_integer(job_engsec_low, 0, 65535, initial(job_engsec_low))
+=======
+	//Validate job prefs
+	for(var/j in job_preferences)
+		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
+			job_preferences -= j
+>>>>>>> 893c2a1176... Merge pull request #43903 from AnturK/fixesjobprefs
 
 	all_quirks = SANITIZE_LIST(all_quirks)
 	positive_quirks = SANITIZE_LIST(positive_quirks)
