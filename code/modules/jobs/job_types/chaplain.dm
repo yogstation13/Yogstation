@@ -126,6 +126,10 @@
 			B.name = "4th wall break"
 		if("alletoidian")
 			B.name = "station repair drone user manual"
+		if("nugget")
+			B.name = "A tenders tale"
+		if("egotism")
+			B.name = "Marjes guide to robustness"
 		else
 			B.name = "The Holy Book of [new_religion]"
 
