@@ -479,6 +479,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "atmos"
 	flags_1 = NONE
 
+/area/engine/atmos_distro //yogstation specific
+	name = "Atmospherics Distribution"
+	icon_state = "atmos"
+	flags_1 = NONE
+
 /area/engine/atmospherics_engine
 	name = "Atmospherics Engine"
 	icon_state = "atmos_engine"
