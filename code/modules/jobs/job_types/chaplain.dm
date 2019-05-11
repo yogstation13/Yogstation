@@ -98,7 +98,7 @@
 			B.name = pick("Toolbox Manifesto","iGlove Assistants")
 		if("weeaboo","kawaii")
 			B.name = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
-		if("cult of the geometer")
+		if("cult of the geometer")  //yogs start
 			B.name = "Blood of the Geometer"
 		if("plasmanimus")
 			B.name = pick("Radioactive Bible", "Fusion Bible", "Atmosian Bible")
@@ -129,7 +129,7 @@
 		if("nugget")
 			B.name = "A tenders tale"
 		if("egotism")
-			B.name = "Marjes guide to robustness"
+			B.name = "Marjes guide to robustness" //yogs end
 		else
 			B.name = "The Holy Book of [new_religion]"
 
