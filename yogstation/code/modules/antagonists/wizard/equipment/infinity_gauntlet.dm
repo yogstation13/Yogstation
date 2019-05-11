@@ -180,11 +180,18 @@
 	icon = 'yogstation/icons/obj/wizard.dmi'
 	icon_state = "infinity_gem"
 	var/gauntlet_gem = "error"
-	var/turf/lastlocation //if the wizard can't track 'em, it's too hard!
 	var/gem_flag = NO_GEMS
 	var/other_gems
 	var/spells
 	var/traits
+
+/obj/item/infinity_gem/Initialize()
+	. = ..()
+	GLOB.poi_list |= src
+
+/obj/item/his_grace/Destroy()
+	. = ..()
+	GLOB.poi_list -= src
 
 /obj/item/infinity_gem/proc/get_gauntlet_overlay()
 	return mutable_appearance('yogstation/icons/obj/wizard.dmi', gauntlet_gem)
