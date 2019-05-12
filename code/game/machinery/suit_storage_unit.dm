@@ -67,7 +67,7 @@
 	mask_type = /obj/item/clothing/mask/gas/explorer
 
 /obj/machinery/suit_storage_unit/mining/eva
-	suit_type = /obj/item/clothing/suit/space/hardsuit/mining
+	suit_type = /obj/item/clothing/suit/space/hardsuit/mining/freeminer //yogs - freeminer hardsuit, storage unit used outside of station and lavaland
 	mask_type = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/cmo
