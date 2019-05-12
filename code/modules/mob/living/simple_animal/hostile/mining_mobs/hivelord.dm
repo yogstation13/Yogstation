@@ -349,7 +349,7 @@
 			mask = /obj/item/clothing/mask/breath
 		if("Operative")
 			id_job = "Operative"
-			outfit = /datum/outfit/syndicatecommandocorpse
+			outfit = /datum/outfit/syndicateminercorpse //yogs - no more 8 TC hardsuit for killing a lavaland mob
 		if("Shadow")
 			mob_species = /datum/species/shadow
 			r_pocket = /obj/item/reagent_containers/pill/shadowtoxin
