@@ -2995,6 +2995,7 @@
 #include "yogstation\code\modules\antagonists\changeling\powers\spiders.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\tiny_prick.dm"
 #include "yogstation\code\modules\antagonists\changeling\powers\transform.dm"
+#include "yogstation\code\modules\antagonists\cult\cult_items.dm"
 #include "yogstation\code\modules\antagonists\gang\gang.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_datums.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_hud.dm"
