@@ -138,7 +138,7 @@
 	desc = "a vendor sold by nanotrasen to profit off small mining contractors."
 	prize_list = list(
 		new /datum/data/mining_equipment("Kinetic Accelerator", 		/obj/item/gun/energy/kinetic_accelerator,						750),
-		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,					2000),
+		new /datum/data/mining_equipment("Syndicate Mining Hardsuit",	/obj/item/clothing/suit/space/hardsuit/mining/freeminer,		2000),
 		new /datum/data/mining_equipment("Mecha Plasma Generator",		/obj/item/mecha_parts/mecha_equipment/generator,				1500),
 		new /datum/data/mining_equipment("Diamond Mecha Drill",			/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,		2000),
 		new /datum/data/mining_equipment("Mecha Plasma Cutter",			/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma,		3000),

@@ -42,7 +42,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor/advanced
 
 obj/item/clothing/head/helmet/space/hardsuit/mining/freeminer
-	name = "free miner hardsuit helmet"
+	name = "syndicate mining hardsuit helmet"
 	desc = "A modified version of the Gorlex Maruader's advanced hardsuit. This one has had its dual-mode functionality removed in place for extra shielding against fauna, and its blood-red design stripped to avoid Nanotrasen targeting systems."
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
@@ -50,7 +50,7 @@ obj/item/clothing/head/helmet/space/hardsuit/mining/freeminer
 	item_state = "freeminer"
 	item_color = "freeminer"
 /obj/item/clothing/suit/space/hardsuit/mining/freeminer
-	name = "free miner hardsuit"
+	name = "syndicate mining hardsuit"
 	desc = "A modified version of the Gorlex Maruader's advanced hardsuit. This one has had its dual-mode functionality removed in place for extra shielding against fauna, and its blood-red design stripped to avoid Nanotrasen targeting systems."
 	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
