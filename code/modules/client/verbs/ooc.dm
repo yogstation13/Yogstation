@@ -84,7 +84,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		var/client/Y = x //God bless typeless for-loops
 		clientkeys += Y.ckey
 		if(Y.holder && Y.holder.fakekey)
-			clientkeys += fakekey
+			clientkeys += Y.holder.fakekey
 	pinged &= clientkeys 
 	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
