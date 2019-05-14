@@ -48,7 +48,7 @@
 			minion_mind.add_antag_datum(thanos_minion_datum_type)
 	return ..()
 
-/datum/game_mode/nuclear/check_win()
+/datum/game_mode/thanos/check_win()
 	if (snapped)
 		return TRUE
 	return ..()
