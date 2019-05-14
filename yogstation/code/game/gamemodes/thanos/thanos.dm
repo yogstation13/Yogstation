@@ -22,8 +22,7 @@
 	var/datum/team/thanos/thanos_team
 
 	var/thanos_antag_datum_type = /datum/antagonist/thanos
-	var/ebony_maw_antag_datum_type = /datum/antagonist/thanos_minion/ebony
-	var/thanos_minion_datum_type = /datum/antagonist/thanos_minion
+	var/thanos_minion_datum_type = /datum/antagonist/thanos/minion
 
 
 /datum/game_mode/thanos/pre_setup()
@@ -42,13 +41,14 @@
 	var/datum/mind/thanos_mind = pre_thanos[1]
 	var/datum/antagonist/thanos/T = thanos_mind.add_antag_datum(thanos_antag_datum_type)
 	thanos_team = T.thanos_team
-	//assign ebony maw
 	if(pre_thanos.len>1)
-		var/datum/mind/ebony_mind = pre_thanos[2]
-		var/datum/antagonist/thanos_minion/ebony/E = ebony_mind.add_antag_datum(ebony_maw_antag_datum_type)
-		if(pre_thanos.len>2)
-		//Assign the remaining operatives
-			for(var/i = 3 to pre_thanos.len)
-				var/datum/mind/nuke_mind = pre_thanos[i]
-				nuke_mind.add_antag_datum(operative_antag_datum_type)
+		//Assign the minions
+		for(var/i = 2 to pre_thanos.len)
+			var/datum/mind/minion_mind = pre_thanos[i]
+			minion_mind.add_antag_datum(thanos_minion_datum_type)
+	return ..()
+
+/datum/game_mode/nuclear/check_win()
+	if (snapped)
+		return TRUE
 	return ..()

@@ -142,6 +142,8 @@
 	update_gem_flags(user)
 	for(var/obj/item/infinity_gem/gem in contents)
 		gem.gem_add(user)
+		GET_COMPONENT_FROM(gem_stationlove,/datum/component/stationloving,gem)
+		gem_stationlove.RemoveComponent()
 
 /obj/item/storage/infinity_gauntlet/proc/update_gem_flags(mob/user)
 	var/gems_found = NO_GEMS
@@ -189,7 +191,7 @@
 	. = ..()
 	GLOB.poi_list |= src
 
-/obj/item/his_grace/Destroy()
+/obj/item/infinity_gem/Destroy()
 	. = ..()
 	GLOB.poi_list -= src
 

@@ -5,9 +5,11 @@
 	name = "Balance Seeker"
 	roundend_category = "balance seeker" //just in case
 	antagpanel_category = "Wizard"
-	job_rank = ROLE_WIZARD
+	job_rank = ROLE_THANOS
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_HIJACKER
+	var/datum/outfit/antag_outfit = /datum/outfit/thanos //the actual only differences are name and outfit, a minion can carry on the work
+	var/datum/team/thanos/thanos_team
 
 /datum/antagonist/thanos/on_gain()
 	if(!owner)
@@ -17,7 +19,7 @@
 		return
 	H.delete_equipment()
 	H.set_species(/datum/species/human)
-	H.equipOutfit(/datum/outfit/thanos)
+	H.equipOutfit(antag_outfit)
 	. = ..()
 
 /datum/antagonist/thanos/greet()
@@ -100,3 +102,7 @@
 		return
 	scan_for_target()
 	point_to_target()
+
+/datum/antagonist/thanos/minion
+	name = "Minion"
+	antag_outfit = /datum/outfit/thanos_minion
