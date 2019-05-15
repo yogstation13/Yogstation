@@ -479,6 +479,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "atmos"
 	flags_1 = NONE
 
+/area/engine/atmos_distro //yogstation specific
+	name = "Atmospherics Distribution"
+	icon_state = "atmos"
+	flags_1 = NONE
+
 /area/engine/atmospherics_engine
 	name = "Atmospherics Engine"
 	icon_state = "atmos_engine"
@@ -837,6 +842,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Custodial Closet"
 	icon_state = "janitor"
 	flags_1 = NONE
+
+/area/janitor/a //yogs start added two new areas
+	name = "Custodial Closet A"
+	icon_state = "janitor"
+	flags_1 = NONE
+
+/area/janitor/b
+	name = "Custodial Closet B"
+	icon_state = "janitor"
+	flags_1 = NONE //yogs end added two new areas
 
 /area/hydroponics
 	name = "Hydroponics"

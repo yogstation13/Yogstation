@@ -98,6 +98,38 @@
 			B.name = pick("Toolbox Manifesto","iGlove Assistants")
 		if("weeaboo","kawaii")
 			B.name = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
+		if("cult of the geometer")  //yogs start
+			B.name = "Blood of the Geometer"
+		if("plasmanimus")
+			B.name = pick("Radioactive Bible", "Fusion Bible", "Atmosian Bible")
+		if("beetism")
+			B.name = "The Holy Book of Darth Beet"
+		if("space christianity")
+			B.name = "Space Jesus"
+		if("space magicks")
+			B.name = "Enchanted Bible"
+		if("gondola")
+			B.name = "The Gondola Manifesto"
+		if("the bone lord")
+			B.name = "The Bone Lord"
+		if("church of aesthetic")
+			B.name = "420Verses"
+		if("the cult of lord singuloth")
+			B.name = "The Word of Lord Singuloth"
+		if("prethoryn scourge clan")
+			B.name = "The Coming Storm"
+		if("cult of the shroud")
+			B.name = "End of the Cycle"
+		if("fellowship of thanos")
+			B.name = "Antmans Diary"
+		if("metaism")
+			B.name = "4th wall break"
+		if("alletoidian")
+			B.name = "station repair drone user manual"
+		if("nugget")
+			B.name = "A tenders tale"
+		if("egotism")
+			B.name = "Marjes guide to robustness" //yogs end
 		else
 			B.name = "The Holy Book of [new_religion]"
 

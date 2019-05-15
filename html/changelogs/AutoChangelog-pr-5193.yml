@@ -1,0 +1,5 @@
+author: "1fbff5f83b23d39d38b1dfcb4cac8d9b"
+delete-after: true 
+changes: 
+  - soundadd: "Downmixed every sound to mono. This shouldn't have resulted in any changes in audio, byond downmixes anyways."
+  - soundadd: "Recut some sounds. Sounds shouldn't have large silent/noise gaps at the start anymore"
