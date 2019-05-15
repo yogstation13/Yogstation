@@ -26,7 +26,7 @@
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
-			SEND_SOUND(X, sound('sound/items/bikehorn.ogg'))
+			send_mentor_sound(X)
 		to_chat(X, mentor_msg)
 
 	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
