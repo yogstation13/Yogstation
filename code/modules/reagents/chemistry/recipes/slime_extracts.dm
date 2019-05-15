@@ -382,10 +382,10 @@
 	required_other = TRUE
 // yogs start
 /datum/chemical_reaction/slime/slimespeed/on_reaction(datum/reagents/holder)
-	if(rand(1))
+	if(prob(1))
 		explosion(get_turf(holder.my_atom), 1 ,3, 6)
 		return
-	if(rand(50))
+	if(prob(50))
 		new /mob/living/simple_animal/pet/gondola/gondolapod(get_turf(holder.my_atom))
 	else
 		new /obj/item/slimepotion/speed(get_turf(holder.my_atom))
