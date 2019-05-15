@@ -1169,9 +1169,9 @@
 		if(!check_rights(R_ADMIN|R_FUN))
 			return
 
-		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in GLOB.mob_list
+		var/mob/living/H = locate(href_list["adminsmite"]) in GLOB.mob_list // Yogs -- mob/living instead of mob/living/carbon/human
 		if(!H || !istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living") // Yogs -- mob/living instead of mob/living/carbon/human
 			return
 
 		usr.client.smite(H)
