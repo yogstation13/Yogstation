@@ -9449,6 +9449,10 @@
 /obj/structure/chair/wood/wings,
 /turf/open/floor/carpet,
 /area/wizard_station)
+"uG" = (
+/obj/machinery/portable_atmospherics/canister/fusion_test_2,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "uJ" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
@@ -18985,6 +18989,10 @@
 	opacity = 0
 	},
 /area/bluespace_locker)
+"XW" = (
+/obj/machinery/portable_atmospherics/canister/fusion_test,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "XX" = (
 /obj/mecha/combat/gygax,
 /turf/open/floor/circuit,
@@ -70857,7 +70865,7 @@ MO
 rc
 MO
 iu
-MO
+XW
 MO
 OH
 MO
@@ -71371,7 +71379,7 @@ MO
 MO
 MO
 iu
-MO
+uG
 MO
 XX
 MO
