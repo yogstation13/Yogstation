@@ -37,7 +37,7 @@
 /obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
 	if(istype(user))
 		if(!user.get_num_arms() && canmove)
-			to_chat(H, "<span class='warning'>You can't move the wheels without arms!</span>")
+			to_chat(user, "<span class='warning'>You can't move the wheels without arms!</span>")
 			canmove = FALSE
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 20)
 			return FALSE
