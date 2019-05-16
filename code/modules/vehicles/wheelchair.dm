@@ -35,6 +35,13 @@
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
+	//yogs start -- Fixes cyborgs operating wheelchairs like what the fuck
+	if(iscyborg(user))
+		to_chat(user, "<span class='warning'>You can't move the wheels without arms!</span>")
+		canmove = FALSE
+		addtimer(VARSET_CALLBACK(src, canmove , TRUE), 20)
+		return FALSE
+	//yogs end
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		if(!H.get_num_arms() && canmove)
