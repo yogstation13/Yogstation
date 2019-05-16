@@ -1,0 +1,5 @@
+author: " pireamaineach"
+delete-after: true 
+changes: 
+  - rscdel: "Axes some hairstyles that didn't make the final cut but never got fully removed, removes an unused sprite."
+  - bugfix: "Fixed the cornrows because they were bRoek"
