@@ -8,6 +8,9 @@
 /mob/living/simple_animal/drone/cogscarab
 	pacifism = FALSE
 
+/mob/living/simple_animal/drone/polymorphed
+	pacifism = FALSE
+
 /mob/living/simple_animal/drone/Initialize()
 	.=..()
 	if(pacifism)
