@@ -232,8 +232,10 @@
 			return
 	// yogs end
 
+	if (SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return
+
 	// Past this is the point of no return
-	SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc)
 	var/atom/oldloc = loc
 	var/area/oldarea = get_area(oldloc)
 	var/area/newarea = get_area(newloc)
