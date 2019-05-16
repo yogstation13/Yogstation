@@ -2248,6 +2248,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fR" = (
+/obj/structure/table/reinforced,
+/obj/item/desynchronizer,
+/obj/item/uplink/debug,
+/obj/item/uplink/debug,
+/obj/item/uplink/debug,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -2936,11 +2944,10 @@
 /turf/open/floor/circuit/green/anim,
 /area/ctf)
 "hH" = (
-/obj/structure/table/reinforced,
-/obj/item/spellbook,
-/obj/item/spellbook,
-/obj/item/hand_tele,
-/turf/open/floor/circuit/red,
+/obj/mecha/combat/honker/dark/loaded{
+	operation_req_access = newlist()
+	},
+/turf/open/floor/circuit,
 /area/centcom/control)
 "hI" = (
 /obj/effect/turf_decal/stripes/line{
@@ -3715,6 +3722,35 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/centcom/control)
+"jA" = (
+/obj/structure/table/reinforced,
+/obj/item/ammo_box/magazine/sniper_rounds/soporific,
+/obj/item/ammo_box/magazine/sniper_rounds/penetrator,
+/obj/item/ammo_box/magazine/smgm9mm/ap,
+/obj/item/ammo_box/magazine/smgm9mm/fire,
+/obj/item/ammo_box/magazine/m12g/bioterror,
+/obj/item/ammo_box/magazine/m12g/dragon,
+/obj/item/ammo_box/magazine/m12g/meteor,
+/obj/item/ammo_box/magazine/m12g/slug,
+/obj/item/ammo_box/magazine/m12g/stun,
+/obj/item/ammo_box/magazine/m10mm/fire,
+/obj/item/ammo_box/magazine/m10mm/hp,
+/obj/item/ammo_box/magazine/m10mm/ap,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
+"jB" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/ballistic/automatic/tommygun,
+/obj/item/gun/ballistic/automatic/wt550,
+/obj/item/gun/ballistic/automatic/c20r{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/ballistic/automatic/ar,
+/turf/open/floor/circuit/green,
 /area/centcom/control)
 "jC" = (
 /obj/docking_port/stationary{
@@ -4807,6 +4843,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"lS" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/ionrifle/carbine{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/tesla_revolver{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/energy/xray{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/energy/mindflayer,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
 "lT" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -5318,8 +5369,16 @@
 /area/centcom/control)
 "mU" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/santa,
-/turf/open/floor/circuit/red,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/gun/energy/e_gun/nuclear{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/energy/e_gun/stun,
+/obj/item/gun/energy/e_gun/hos,
+/obj/item/gun/ballistic/automatic/laser,
+/turf/open/floor/circuit/green,
 /area/centcom/control)
 "mV" = (
 /obj/machinery/vending/cola,
@@ -6828,6 +6887,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"px" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ballistic/shotgun/bulldog{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/ballistic/rocketlauncher/unrestricted,
+/obj/item/gun/ballistic/revolver/golden,
+/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
 "py" = (
 /obj/machinery/smartfridge,
 /turf/closed/indestructible{
@@ -6836,8 +6905,33 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pz" = (
+/obj/structure/table/reinforced,
+/obj/item/greentext,
+/obj/item/gun/energy/decloner{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/circuit/green,
+/area/centcom/control)
 "pA" = (
 /turf/open/floor/light/colour_cycle,
+/area/centcom/control)
+"pB" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/laser/instakill/red{
+	pin = /obj/item/firing_pin/clown
+	},
+/obj/item/gun/energy/chrono_gun,
+/obj/item/chrono_eraser,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
+"pC" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/kinetic_accelerator/crossbow/halloween,
+/obj/item/gun/energy/kinetic_accelerator/crossbow/large{
+	pin = /obj/item/firing_pin
+	},
+/turf/open/floor/circuit/green,
 /area/centcom/control)
 "pD" = (
 /obj/structure/table/reinforced,
@@ -7015,6 +7109,21 @@
 /obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"pT" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/lasercannon{
+	pin = /obj/item/firing_pin
+	},
+/obj/item/gun/energy/pulse/destroyer,
+/obj/item/gun/energy/meteorgun,
+/turf/open/floor/circuit/green,
+/area/centcom/control)
+"pU" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/holding,
+/obj/item/clothing/suit/space/santa,
+/turf/open/floor/circuit/red,
+/area/centcom/control)
 "pV" = (
 /obj/machinery/light{
 	dir = 4
@@ -7134,6 +7243,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"qh" = (
+/obj/item/wirecutters/abductor,
+/obj/item/weldingtool/abductor,
+/obj/item/wrench/abductor,
+/obj/item/screwdriver/abductor,
+/obj/item/multitool/abductor,
+/obj/item/gun/energy/alien{
+	pin = /obj/item/firing_pin
+	},
+/obj/structure/table/abductor,
+/turf/open/floor/circuit/red,
+/area/centcom/control)
 "qi" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/briefcase{
@@ -7368,9 +7489,52 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/evac)
+"qB" = (
+/obj/structure/table/reinforced,
+/obj/item/wisp_lantern,
+/obj/item/voodoo,
+/obj/item/immortality_talisman,
+/obj/item/dragons_blood,
+/obj/item/guardiancreator/choose,
+/obj/item/antag_spawner/slaughter_demon,
+/obj/item/antag_spawner/slaughter_demon/laughter,
+/obj/item/necromantic_stone/unlimited,
+/obj/item/reagent_containers/glass/bottle/potion/flight,
+/turf/open/floor/circuit/red,
+/area/centcom/control)
+"qC" = (
+/obj/structure/table/reinforced,
+/obj/item/twohanded/pitchfork/demonic/ascended,
+/obj/item/staff/storm,
+/obj/item/rod_of_asclepius,
+/obj/item/nullrod,
+/obj/item/lava_staff,
+/turf/open/floor/circuit/red,
+/area/centcom/control)
+"qD" = (
+/obj/mecha/combat/honker{
+	operation_req_access = newlist()
+	},
+/turf/open/floor/circuit,
+/area/centcom/control)
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
+"qF" = (
+/obj/structure/table/reinforced,
+/obj/item/spellbook,
+/obj/item/spellbook,
+/obj/item/spellbook,
+/obj/item/spellbook,
+/obj/item/spellbook,
+/turf/open/floor/circuit/red,
+/area/centcom/control)
+"qG" = (
+/obj/mecha/combat/marauder/mauler/loaded{
+	operation_req_access = newlist()
+	},
+/turf/open/floor/circuit,
+/area/centcom/control)
 "qH" = (
 /obj/structure/urinal{
 	pixel_y = 28
@@ -7493,10 +7657,22 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/centcom/evac)
+"qW" = (
+/obj/mecha/combat/marauder/seraph{
+	operation_req_access = newlist()
+	},
+/turf/open/floor/circuit,
+/area/centcom/control)
 "qX" = (
 /obj/structure/fluff/arc,
 /turf/open/floor/grass,
 /area/centcom/evac)
+"qY" = (
+/obj/mecha/combat/reticence/loaded{
+	operation_req_access = newlist()
+	},
+/turf/open/floor/circuit,
+/area/centcom/control)
 "qZ" = (
 /turf/open/floor/engine/cult,
 /area/wizard_station)
@@ -7504,14 +7680,6 @@
 /obj/machinery/computer/shuttle,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"rb" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/shotgun/bulldog,
-/obj/item/gun/ballistic/rocketlauncher/unrestricted,
-/obj/item/gun/ballistic/revolver/golden,
-/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "rc" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/magic/wand/death,
@@ -13980,13 +14148,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"Fd" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/lasercannon,
-/obj/item/gun/energy/pulse/destroyer,
-/obj/item/gun/energy/meteorgun,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "Fe" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/sashimi,
@@ -15793,12 +15954,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-"IO" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/halloween,
-/obj/item/gun/energy/kinetic_accelerator/crossbow/large,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "IP" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/green,
@@ -17511,15 +17666,6 @@
 "NO" = (
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
-"NR" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate,
-/obj/item/gun/ballistic/automatic/tommygun,
-/obj/item/gun/ballistic/automatic/wt550,
-/obj/item/gun/ballistic/automatic/c20r,
-/obj/item/gun/ballistic/automatic/ar,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "NT" = (
 /obj/structure/window/paperframe{
 	CanAtmosPass = 0
@@ -17607,10 +17753,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
-"OF" = (
-/obj/mecha/combat/reticence/loaded,
-/turf/open/floor/circuit,
-/area/centcom/control)
 "OG" = (
 /obj/structure/dresser,
 /obj/machinery/light{
@@ -17627,18 +17769,6 @@
 /obj/item/tome,
 /obj/item/storage/book/bible/syndicate,
 /obj/item/codespeak_manual/unlimited,
-/turf/open/floor/circuit/red,
-/area/centcom/control)
-"ON" = (
-/obj/structure/table/reinforced,
-/obj/item/wisp_lantern,
-/obj/item/voodoo,
-/obj/item/immortality_talisman,
-/obj/item/dragons_blood,
-/obj/item/guardiancreator/choose,
-/obj/item/antag_spawner/slaughter_demon,
-/obj/item/antag_spawner/slaughter_demon/laughter,
-/obj/item/necromantic_stone/unlimited,
 /turf/open/floor/circuit/red,
 /area/centcom/control)
 "OP" = (
@@ -17895,16 +18025,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Qw" = (
-/obj/item/wirecutters/abductor,
-/obj/item/weldingtool/abductor,
-/obj/item/wrench/abductor,
-/obj/item/screwdriver/abductor,
-/obj/item/multitool/abductor,
-/obj/item/gun/energy/alien,
-/obj/structure/table/abductor,
-/turf/open/floor/circuit/red,
-/area/centcom/control)
 "QA" = (
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
@@ -17933,11 +18053,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"QK" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/laserproof,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "QL" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -18016,10 +18131,6 @@
 /obj/structure/mineral_door/paperframe,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Rg" = (
-/obj/mecha/combat/honker,
-/turf/open/floor/circuit,
-/area/centcom/control)
 "Rh" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -18129,12 +18240,6 @@
 /obj/item/choice_beacon/holy,
 /turf/open/floor/circuit/green,
 /area/centcom/control)
-"RX" = (
-/obj/structure/table/reinforced,
-/obj/item/greentext,
-/obj/item/gun/energy/decloner,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "RY" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/centcom{
@@ -18154,10 +18259,6 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"Sm" = (
-/obj/mecha/combat/marauder/seraph,
-/turf/open/floor/circuit,
-/area/centcom/control)
 "Sq" = (
 /obj/structure/table/reinforced,
 /obj/item/book/granter/martial/cqc,
@@ -18165,10 +18266,6 @@
 /obj/item/book/granter/martial/plasma_fist,
 /obj/item/station_charter/admin,
 /turf/open/floor/circuit/red,
-/area/centcom/control)
-"Ss" = (
-/obj/mecha/combat/marauder/mauler/loaded,
-/turf/open/floor/circuit,
 /area/centcom/control)
 "Su" = (
 /turf/open/floor/plasteel,
@@ -18311,16 +18408,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"Tl" = (
-/obj/structure/table/reinforced,
-/obj/item/twohanded/pitchfork/demonic/ascended,
-/obj/item/staff/storm,
-/obj/item/scrying,
-/obj/item/rod_of_asclepius,
-/obj/item/nullrod,
-/obj/item/lava_staff,
-/turf/open/floor/circuit/red,
-/area/centcom/control)
 "Tn" = (
 /obj/structure/table/wood/fancy,
 /obj/item/candle/infinite{
@@ -18634,11 +18721,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"VE" = (
-/obj/structure/table/reinforced,
-/obj/item/desynchronizer,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "VF" = (
 /obj/structure/rack,
 /obj/item/nullrod/scythe/vibro{
@@ -18911,14 +18993,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yb" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/laser,
-/obj/item/gun/energy/laser/instakill/red,
-/obj/item/gun/energy/chrono_gun,
-/obj/item/chrono_eraser,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "Yd" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien6";
@@ -19064,10 +19138,6 @@
 /obj/item/dice/d20/fate,
 /turf/open/floor/circuit/red,
 /area/centcom/control)
-"YT" = (
-/obj/mecha/combat/honker/dark/loaded,
-/turf/open/floor/circuit,
-/area/centcom/control)
 "YV" = (
 /obj/machinery/light{
 	dir = 8
@@ -19119,17 +19189,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/firingrange)
-"Zj" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/gun/energy/e_gun/nuclear,
-/obj/item/gun/energy/e_gun/stun,
-/obj/item/gun/energy/e_gun/hos,
-/obj/item/gun/ballistic/automatic/laser,
-/turf/open/floor/circuit/green,
-/area/centcom/control)
 "Zl" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -19168,15 +19227,6 @@
 "Zz" = (
 /obj/machinery/power/supermatter_crystal/shard,
 /turf/open/floor/light/colour_cycle,
-/area/centcom/control)
-"ZE" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/ionrifle/carbine,
-/obj/item/gun/energy/ionrifle,
-/obj/item/gun/energy/tesla_revolver,
-/obj/item/gun/energy/xray,
-/obj/item/gun/energy/mindflayer,
-/turf/open/floor/circuit/green,
 /area/centcom/control)
 "ZJ" = (
 /obj/machinery/door/airlock/centcom{
@@ -66952,7 +67002,7 @@ iH
 iq
 iA
 il
-mU
+pU
 HL
 MO
 MO
@@ -67468,7 +67518,7 @@ Mn
 io
 sc
 MO
-Tl
+qC
 MO
 tY
 MO
@@ -67980,13 +68030,13 @@ MO
 Qq
 MO
 iu
-Qw
+qh
 MO
 Ra
 MO
 Sq
 MO
-hH
+qF
 io
 qz
 qy
@@ -68489,12 +68539,12 @@ iC
 iC
 lQ
 io
-VE
+fR
 MO
 Cn
 MO
 io
-ON
+qB
 JK
 MO
 MO
@@ -68746,7 +68796,7 @@ kl
 kl
 kk
 io
-QK
+jA
 MO
 MO
 oU
@@ -70288,7 +70338,7 @@ mY
 km
 pv
 in
-NR
+jB
 MO
 MO
 oU
@@ -70545,9 +70595,9 @@ mY
 km
 ps
 io
-ZE
+lS
 MO
-IO
+pC
 MO
 io
 FY
@@ -70809,11 +70859,11 @@ MO
 iu
 MO
 MO
-MO
 OH
+MO
 Zy
 MO
-Ss
+qG
 iu
 qA
 qy
@@ -71059,18 +71109,18 @@ mY
 km
 ka
 io
-Zj
+mU
 MO
 Oh
 MO
 iu
 NV
 MO
-MO
 VJ
-YT
 MO
-Sm
+hH
+MO
+qW
 io
 qz
 qy
@@ -71316,18 +71366,18 @@ kl
 kl
 pw
 io
-rb
+px
 MO
 MO
 MO
 iu
 MO
 MO
-MO
 XX
-Rg
 MO
-OF
+qD
+MO
+qY
 io
 qz
 qy
@@ -71573,15 +71623,15 @@ oz
 oR
 ke
 io
-RX
-Yb
+pz
+pB
 CS
-Fd
+pT
 io
 Hj
 VB
-MO
 Rb
+MO
 ZO
 VB
 XG
