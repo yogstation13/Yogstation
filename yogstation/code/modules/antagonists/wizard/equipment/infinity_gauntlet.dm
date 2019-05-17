@@ -395,6 +395,7 @@
 
 /obj/effect/proc_holder/spell/self/time_reverse/empowered
 	charge_max = 300
+	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem
 	invocation_type = "none" //hey why does this use strings instead of defines or an enum or something
