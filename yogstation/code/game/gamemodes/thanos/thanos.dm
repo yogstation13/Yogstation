@@ -42,6 +42,11 @@
 			pre_thanos += new_thanos
 			new_thanos.assigned_role = ROLE_THANOS
 			new_thanos.special_role = ROLE_THANOS
+		if(GLOB.wizardstart.len == 0)
+			setup_error = "No wizard starting location found"
+			return FALSE
+		for(var/datum/mind/thanos_mind in pre_thanos)
+			thanos_mind.current.forceMove(pick(GLOB.wizardstart))
 		return TRUE
 
 /datum/game_mode/thanos/post_setup()
@@ -75,14 +80,16 @@
 	gloves = /obj/item/storage/infinity_gauntlet/space_only
 	shoes = /obj/item/clothing/shoes/plate //i can't into sprites so sorry i'm just grabbing things from other places
 	back = /obj/item/storage/backpack
+	r_pocket = /obj/item/teleportation_scroll
 
 /datum/outfit/thanos_minion
 	name = "Gauntlet-child"
-
+	r_hand = /obj/item/twohanded/spear
 	uniform = /obj/item/clothing/under/color/black
 	suit = /obj/item/clothing/suit/armor/plate/crusader
 	shoes = /obj/item/clothing/shoes/plate
 	back = /obj/item/storage/backpack
+	r_pocket = /obj/item/teleportation_scroll
 
 /proc/spawn_infinity_gems(gem_flags = ALL_GEMS)
 	var/list/gems = list()
