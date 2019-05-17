@@ -48,6 +48,7 @@
 	var/transfer_blood = 0
 	var/transfer_prints = FALSE
 	var/already_snapped = FALSE
+	var/gems_found = NO_GEMS
 	component_type = /datum/component/storage/concrete/infinity_gauntlet
 
 /obj/effect/proc_holder/spell/self/snap
@@ -150,7 +151,7 @@
 			gem_stationlove.RemoveComponent()
 
 /obj/item/storage/infinity_gauntlet/proc/update_gem_flags(mob/user)
-	var/gems_found = NO_GEMS
+	gems_found = NO_GEMS
 	for(var/obj/item/infinity_gem/gem in contents)
 		gems_found |= gem.gem_flag
 	for(var/obj/item/infinity_gem/gem in contents)
@@ -339,6 +340,7 @@
 /obj/item/infinity_gem/space_gem/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] holds up the [src] and presses it up against [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		head.dismember(BRUTE)
 	return BRUTELOSS
@@ -414,7 +416,8 @@
 /obj/item/infinity_gem/time_gem/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] trying to reverse evolution!</span>")
 	if(iscarbon(user))
-		user.monkeyize()
+		var/mob/living/carbon/C = user
+		C.monkeyize()
 	return TOXLOSS
 
 /* ************************
