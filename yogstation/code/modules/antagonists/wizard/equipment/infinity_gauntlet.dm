@@ -78,7 +78,7 @@
 /obj/effect/proc_holder/spell/self/snap/proc/do_snap(mob/living/target)
 	to_chat(target,"<span class='userdanger'>You don't feel so good...</span>")
 	sleep(rand(0,50))
-	target.visible_message("[target.name] begins to turn to dust!")
+	target.visible_message("[target.name] begins turning to dust!")
 	sleep(rand(10,50))
 	target.dust()
 
@@ -101,6 +101,9 @@
 	new /obj/item/infinity_gem/reality_gem(src)
 	new /obj/item/infinity_gem/mind_gem(src)
 	new /obj/item/infinity_gem/soul_gem(src)
+
+/obj/item/storage/infinity_gauntlet/space_only/PopulateContents()
+	new /obj/item/infinity_gem/space_gem(src)
 
 /obj/item/storage/infinity_gauntlet/update_icon() //copy/pasted from belts mostly
 	cut_overlays()
@@ -143,7 +146,8 @@
 	for(var/obj/item/infinity_gem/gem in contents)
 		gem.gem_add(user)
 		GET_COMPONENT_FROM(gem_stationlove,/datum/component/stationloving,gem)
-		gem_stationlove.RemoveComponent()
+		if(istype(gem_stationlove))
+			gem_stationlove.RemoveComponent()
 
 /obj/item/storage/infinity_gauntlet/proc/update_gem_flags(mob/user)
 	var/gems_found = NO_GEMS
@@ -169,6 +173,14 @@
 			return TRUE
 	return FALSE
 
+/obj/item/storage/infinity_gauntlet/suicide_act(mob/living/user)
+	if(gems_found == ALL_GEMS)
+		user.visible_message("<span class='suicide'>[user] is getting ready to snap, but pointing the finger at [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.dust()
+		return MANUAL_SUICIDE
+	else
+		var/obj/item/infinity_gem/gem = pick(contents) //can't contain anything else anyway.
+		return gem.suicide_act(user)
 
 /* ************************
 	BASE GEM CLASS
@@ -243,6 +255,9 @@
 			user.RemoveSpell(spell)
 	update_gems_in_hands(user)
 
+/obj/item/infinity_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src], then gets confused upon realizing [user.p_they()] suddenly forgot what its power is! The coder didn't properly implement a suicide message for this one!</span>")
+	return SHAME
 
 /obj/item/infinity_gem/dropped(mob/user)
 	. = ..()
@@ -321,6 +336,14 @@
 	if(other_gems & POWER_GEM)
 		spells += /obj/effect/proc_holder/spell/targeted/turf_teleport/space_gem
 
+/obj/item/infinity_gem/space_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src] and presses it up against [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	if(ishuman(user))
+		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		head.dismember(BRUTE)
+	return BRUTELOSS
+
+
 /* ************************
 	TIME GEM
    ************************/ 
@@ -361,10 +384,10 @@
 		to_chat(user,"<span class='notice'>You save the current moment...</span>")
 	else
 		do_teleport(living_user,position_at_store,forceMove = TRUE, channel = TELEPORT_CHANNEL_FREE)
-		to_chat(user,"<span class='danger'>You return to your saved moment! The shock knocks you unconscious!</span>")
+		to_chat(user,"<span class='danger'>You return to your saved moment! The shock exhausts you!</span>")
 		var/health_right_now = living_user.health
 		living_user.fully_heal()
-		living_user.Unconscious(max(0,((100-health_right_now)+(100-health_at_store))/5))
+		living_user.adjustStaminaLoss(max(0,((100-health_right_now)+(100-health_at_store))))
 		time_stored = FALSE
 
 
@@ -374,7 +397,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem
 	invocation_type = "none" //hey why does this use strings instead of defines or an enum or something
 	clothes_req = FALSE
-	charge_max = 100
+	charge_max = 120
 
 /obj/item/infinity_gem/time_gem/other_gem_actions(mob/user)
 	if(other_gems & POWER_GEM)
@@ -387,6 +410,12 @@
 			/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/time_gem,
 			/obj/effect/proc_holder/spell/self/time_reverse
 		)
+
+/obj/item/infinity_gem/time_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] trying to reverse evolution!</span>")
+	if(iscarbon(user))
+		user.monkeyize()
+	return TOXLOSS
 
 /* ************************
 	MIND GEM
@@ -454,6 +483,10 @@
 		else
 			spells += /obj/effect/proc_holder/spell/targeted/mind_transfer/mind_gem
 
+/obj/item/infinity_gem/time_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] opening their mind to everyone! It looks like too much to bear!</span>")
+	return OXYLOSS
+
 /* ************************
 	SOUL GEM
    ************************/ 
@@ -499,6 +532,9 @@
 	else
 		spells = list(/obj/effect/proc_holder/spell/self/ghostify)
 
+/obj/item/infinity_gem/soul_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] blitzing their chakras and opening their third eye! They're becoming a spirit!</span>")
+	return OXYLOSS
 
 /* ************************
 	POWER GEM
@@ -534,6 +570,12 @@
 			spells = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/space_empowered)
 	else if(other_gems & REALITY_GEM)
 		spells = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/power_gem/reality_empowered)
+
+/obj/item/infinity_gem/power_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] filling [user.p_them()]self with more power than [user.p_their()] body can handle!</span>")
+	user.gib()
+	return MANUAL_SUICIDE
+
 
 /* ************************
 	REALITY GEM
@@ -574,6 +616,10 @@
 /obj/item/infinity_gem/reality_gem/gem_remove(mob/user)
 	. = ..()
 	user.update_sight()
+
+/obj/item/infinity_gem/reality_gem/suicide_act(mob/living/user)
+	user.visible_message("<span class='suicide'>[user] holds up the [src]! It looks like [user.p_theyre()] trying to unalive!</span>")
+	return OXYLOSS
 
 #undef INFINITY_GEM //maybe don't do this? hmm
 
