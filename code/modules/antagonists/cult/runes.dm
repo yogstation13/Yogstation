@@ -243,9 +243,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, "<span class='warning'>Something is shielding [convertee]'s mind!</span>")
 		log_game("Offer rune failed - convertee had anti-magic")
 		return 0
-	var/brutedamage = convertee.getBruteLoss() //yogs start: fuck heal-on-convert
+	var/brutedamage = convertee.getBruteLoss()
 	var/burndamage = convertee.getFireLoss()
-	if(brutedamage || burndamage)
+	if(brutedamage || burndamage) //yogs start: fuck heal-on-convert
 		convertee.adjustBruteLoss(-(brutedamage * 0.40))
 		convertee.adjustFireLoss(-(burndamage * 0.40))
 	convertee.visible_message("<span class='warning'>[convertee] writhes in pain \
