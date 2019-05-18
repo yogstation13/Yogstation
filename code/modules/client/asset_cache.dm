@@ -663,6 +663,43 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		Insert(initial(D.id), I)
 	return ..()
 
+<<<<<<< HEAD
+=======
+/datum/asset/spritesheet/vending
+	name = "vending"
+
+/datum/asset/spritesheet/vending/register()
+	for (var/k in GLOB.vending_products)
+		var/atom/item = k
+
+
+		var/icon_file
+		var/icon_state
+		var/icon/I
+
+
+		if (!ispath(item, /atom))
+			continue
+
+		icon_file = initial(item.icon)
+		icon_state = initial(item.icon_state)
+
+		if(icon_state in icon_states(icon_file))
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(initial(c), ICON_MULTIPLY)
+		else
+			item = new item()
+			I = icon(item.icon, item.icon_state, SOUTH)
+			qdel(item)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		Insert(imgid, I)
+	return ..()
+
+>>>>>>> 653e7531d3... Fixes colored items like scarves and beanies being shown as white in vending machines (#44007)
 /datum/asset/simple/genetics
 	assets = list(
 		"dna_discovered.png"	= 'html/dna_discovered.png',
