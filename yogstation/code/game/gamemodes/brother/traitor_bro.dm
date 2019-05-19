@@ -7,6 +7,6 @@
 	if(L.equip_in_one_of_slots(S, slots) == "in the dark depths of hell")
 		slots[1] = "in your [L.back.name]" // This accesses & edits the "dark depths" meme above.
 	if(S)
-		to_chat(L, "<span class='bold'>There is a syndicate bundle [slots[1]]! It'll help you get a slight leg up on your objectives but dont expect it to make things too easy!.</span>")
+		to_chat(L, "<span class='notice'>There is a syndicate bundle [slots[1]]! It'll help you get a slight leg-up on your objectives, but do not expect it to make things too easy!</span>")
 		return TRUE
 	return FALSE
