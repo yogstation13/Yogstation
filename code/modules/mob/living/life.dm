@@ -52,11 +52,15 @@
 		//Random events (vomiting etc)
 		handle_random_events()
 
+<<<<<<< HEAD
 	//Handle temperature/pressure differences between body and environment
 	if(environment)
 		handle_environment(environment)
 
 	handle_fire()
+=======
+		handle_gravity()
+>>>>>>> b6c41e3b32... Merge pull request #43991 from vuonojenmustaturska/vorecode
 
 	//stuff in the stomach
 	handle_stomach()
@@ -114,9 +118,6 @@
 		return TRUE
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(700, 50, 1)
-
-/mob/living/proc/handle_stomach()
-	return
 
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
