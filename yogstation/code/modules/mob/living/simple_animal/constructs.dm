@@ -4,5 +4,4 @@
 	if(stat != DEAD && !is_servant_of_ratvar(src))
 		to_chat(src, "<span class='userdanger'>A blinding light boils you alive! <i>Run!</i></span>")
 		adjustBurnLoss(35)
-		IgniteMob()
 		return FALSE
