@@ -15,8 +15,12 @@
 					/obj/item/kitchen/rollingpin = 2,
 					/obj/item/kitchen/knife = 2)
 	contraband = list(/obj/item/kitchen/rollingpin = 2,
+<<<<<<< HEAD
 					  /obj/item/kitchen/knife/butcher = 2, // Yogs -- Pan
 					  /obj/item/melee/fryingpan = 2) // Yogs -- Pan
+=======
+					  /obj/item/kitchen/knife/butcher = 2)
+>>>>>>> fde4c92638... fixes vending machines not having refill parts (#43314)
 	refill_canister = /obj/item/vending_refill/dinnerware
 	default_price = 5
 	extra_price = 50
