@@ -143,7 +143,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		else if(istype(M, /obj/item/toy/plush/narplush))
 			var/obj/item/toy/plush/narplush/P = M
 			P.visible_message("<span class='cult italic'>[P] squeaks loudly!</span>")
-	do_invoke_glow()
+	if(!src.density) //yogs: barrier runes play cooldown animation properly
+		do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
 	set waitfor = FALSE
