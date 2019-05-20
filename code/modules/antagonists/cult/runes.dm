@@ -678,15 +678,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 		cut_overlays()
 		add_atom_colour(RUNE_COLOR_MEDIUMRED, FIXED_COLOUR_PRIORITY)
 
-/obj/effect/rune/wall/BlockSuperconductivity()
-	return density
-
-/obj/effect/rune/wall/invoke(var/list/invokers)
-	if(recharging)
-		return
-	var/mob/living/user = invokers[1]
-	..()
-
 //Rite of Joined Souls: Summons a single cultist.
 /obj/effect/rune/summon
 	cultist_name = "Summon Cultist"
