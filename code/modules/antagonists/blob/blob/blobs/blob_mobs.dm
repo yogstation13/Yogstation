@@ -269,9 +269,13 @@
 /mob/living/simple_animal/hostile/blob/blobbernaut/AttackingTarget()
 	. = ..()
 	if(. && isliving(target) && overmind)
+<<<<<<< HEAD:code/modules/antagonists/blob/blob/blobs/blob_mobs.dm
 		var/mob/living/L = target
 		var/mob_protection = L.get_permeability_protection()
 		overmind.blob_reagent_datum.reaction_mob(L, VAPOR, 20, 0, mob_protection, overmind)//this will do between 10 and 20 damage(reduced by mob protection), depending on chemical, plus 4 from base brute damage.
+=======
+		overmind.blobstrain.blobbernaut_attack(target, src)
+>>>>>>> fcaf3a62e6... New advances in trash-disposaling efficiency: a janitorial blob strain (#43958):code/modules/antagonists/blob/blob_mobs.dm
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/update_icons()
 	..()

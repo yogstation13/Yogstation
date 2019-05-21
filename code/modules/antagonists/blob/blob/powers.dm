@@ -266,9 +266,13 @@
 				continue
 			if(L.stat != DEAD)
 				attacksuccess = TRUE
+<<<<<<< HEAD:code/modules/antagonists/blob/blob/powers.dm
 			var/mob_protection = L.get_permeability_protection()
 			blob_reagent_datum.reaction_mob(L, VAPOR, 25, 1, mob_protection, src)
 			blob_reagent_datum.send_message(L)
+=======
+			blobstrain.attack_living(L, possibleblobs)
+>>>>>>> fcaf3a62e6... New advances in trash-disposaling efficiency: a janitorial blob strain (#43958):code/modules/antagonists/blob/powers.dm
 		var/obj/structure/blob/B = locate() in T
 		if(B)
 			if(attacksuccess) //if we successfully attacked a turf with a blob on it, only give an attack refund
