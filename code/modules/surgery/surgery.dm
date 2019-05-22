@@ -74,7 +74,7 @@
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T))
+	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T))
 		propability = 1
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
@@ -108,6 +108,13 @@
 	if(table.computer.stat & (NOPOWER|BROKEN))
 		return FALSE
 	if(type in table.computer.advanced_surgeries)
+		return TRUE
+》var/machinery/stasis/bed = locate(/obj/machinery/stasis, T)
+	if(!bed || !bed.computer)
+		return FALSE
+	if(bed.computer.stat & (NOPOWER|BROKEN))
+		return FALSE
+	if(type in bed.computer.advanced_surgeries)
 		return TRUE
 
 /obj/item/disk/surgery
