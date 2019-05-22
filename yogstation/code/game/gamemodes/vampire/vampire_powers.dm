@@ -77,7 +77,7 @@
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
-	desc= "Flush your system with spare blood to remove any incapacitating effects."
+	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	action_icon_state = "rejuv"
 	charge_max = 200
 	stat_allowed = 1
@@ -93,13 +93,7 @@
 	if(!V) //sanity check
 		return
 	for(var/i = 1 to 5)
-		U.adjustStaminaLoss(-100)
-		U.SetStun(0)
-		U.SetKnockdown(0)
-		U.SetParalyzed(0)
-		U.SetImmobilized(0)
-		U.set_resting(FALSE)
-		U.update_mobility()
+		U.adjustStaminaLoss(-50)
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)

@@ -54,7 +54,7 @@
 					add_objective(martyr_objective)
 				else
 					var/datum/objective/hijack/hijack_objective = new
-					hijack_objective.owner = owner.
+					hijack_objective.owner = owner
 					add_objective(hijack_objective)
 
 			if(uplink_holder && owner.current && ishuman(owner.current))
@@ -104,7 +104,7 @@
 			add_objective(martyr_objective)
 		else
 			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner.
+			hijack_objective.owner = owner
 			add_objective(hijack_objective)
 
 	owner.announce_objectives()

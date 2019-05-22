@@ -9,7 +9,7 @@
  * Stacks
  */
 /obj/item/stack
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
 	gender = PLURAL
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
@@ -371,7 +371,7 @@
 			return
 		else
 			change_stack(user, stackmaterial)
-			to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
+			to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack.</span>")
 
 /obj/item/stack/proc/change_stack(mob/user, amount)
 	if(!use(amount, TRUE, FALSE))
