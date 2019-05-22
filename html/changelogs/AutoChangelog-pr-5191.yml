@@ -1,0 +1,4 @@
+author: "1fbff5f83b23d39d38b1dfcb4cac8d9b"
+delete-after: true 
+changes: 
+  - bugfix: "Stuff in the Character Setup screen is no longer way too close to the edge of the window."

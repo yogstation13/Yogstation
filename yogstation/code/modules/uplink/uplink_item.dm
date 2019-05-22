@@ -39,6 +39,9 @@
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
 
+/datum/uplink_item/stealthy_tools/mulligan
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
@@ -57,9 +60,14 @@
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
-	item = /obj/item/flashlight //doesn't actually spawn a flashlight, but it needs an object to show up in the menu :^)
+	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/device_tools/arm/nuke
+	cost = 15
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len
@@ -92,3 +100,4 @@
 	desc = "A frying pan imbued with ancient powers."
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
+	cant_discount = TRUE

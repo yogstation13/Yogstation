@@ -234,6 +234,12 @@
 	var/obj/item/O = new item_path(user.loc, gang)
 	user.put_in_hands(O)
 
+/datum/gang_item/equipment/pinpointer
+	name = "Pinpointer"
+	id = "pinpointer"
+	cost = 2
+	item_path = /obj/item/pinpointer/nuke
+
 /datum/gang_item/equipment/sharpener
 	name = "Sharpener"
 	id = "whetstone"
