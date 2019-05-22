@@ -44,11 +44,11 @@
 			handle_hygiene()
 
 		dna.species.spec_life(src) // for mutantraces
-		
-	//yogs start - bandage memes》
-	if(stat != DEAD)》
-		handle_bandaged_limbs()》
-	//yogs end》
+
+		//yogs start - bandage memes
+		if(stat != DEAD)
+			handle_bandaged_limbs()
+		//yogs end
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()

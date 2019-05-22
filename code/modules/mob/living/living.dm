@@ -380,7 +380,7 @@
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab) || (!ignore_stasis && IsInStasis()))
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -535,7 +535,7 @@
 	SetUnconscious(0, FALSE)
 	if(should_update_mobility)
 		update_mobility()
-	
+
 //proc used to completely heal a mob.
 /mob/living/proc/fully_heal(admin_revive = 0)
 	restore_blood()
@@ -1089,7 +1089,7 @@
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
 	var/in_stasis = IsInStasis()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && (has_arms || ignore_legs || has_legs)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1112,12 +1112,12 @@
 	else
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
-	
+
 	if(should_be_lying || restrained || incapacitated())
 		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
-		
+
 
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms

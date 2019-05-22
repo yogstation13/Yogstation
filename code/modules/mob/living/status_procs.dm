@@ -375,10 +375,10 @@
 		return TRUE
 /////////////////////////////////// STASIS ///////////////////////////////////
 
- /mob/living/proc/IsInStasis()
+/mob/living/proc/IsInStasis()
 	. = has_status_effect(STATUS_EFFECT_STASIS)
 
- /mob/living/proc/SetStasis(apply, updating = TRUE)
+/mob/living/proc/SetStasis(apply, updating = TRUE)
 	. = apply ? apply_status_effect(STATUS_EFFECT_STASIS, null, updating) : remove_status_effect(STATUS_EFFECT_STASIS)
 
 /////////////////////////////////// DISABILITIES ////////////////////////////////////
