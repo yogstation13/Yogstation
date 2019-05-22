@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "New colours of striped scarves are available in the clothesmate."
+  - tweak: "stripedscarf subtype replaces striped[colour]scarf defines"

@@ -62,7 +62,7 @@
 
 	msg = emoji_parse(msg)
 	if(C)
-		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+		send_mentor_sound(C)
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(!C || C.is_mentor())
 		if(C)
