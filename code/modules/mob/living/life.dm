@@ -35,9 +35,17 @@
 		return
 	var/datum/gas_mixture/environment = loc.return_air()
 
+<<<<<<< HEAD
 	if(stat != DEAD)
 		//Mutations and radiation
 		handle_mutations_and_radiation()
+=======
+	if(!IS_IN_STASIS(src))
+
+		if(stat != DEAD)
+			//Mutations and radiation
+			handle_mutations_and_radiation()
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 
 	if(stat != DEAD)
 		//Breathing, if applicable

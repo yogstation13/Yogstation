@@ -379,8 +379,13 @@
 			to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
 		death()
 
+<<<<<<< HEAD
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
 	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)))
+=======
+/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -1088,7 +1093,11 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
+<<<<<<< HEAD
 	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
+=======
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else

@@ -9,7 +9,11 @@
 	if (notransform)
 		return
 
+<<<<<<< HEAD
 	if(..())
+=======
+	if(..() && !IS_IN_STASIS(src))
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 
 		if(!client)
 			if(stat == CONSCIOUS)

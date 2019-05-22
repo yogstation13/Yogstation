@@ -8,8 +8,12 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
+<<<<<<< HEAD
 	if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 		handle_organs()
+=======
+	if(!IS_IN_STASIS(src))
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 
 	. = ..()
 

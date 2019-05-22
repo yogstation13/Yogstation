@@ -4,7 +4,11 @@
 	set invisibility = 0
 	if (notransform)
 		return
+<<<<<<< HEAD
 	if(..()) //not dead
+=======
+	if(..() && !IS_IN_STASIS(src)) //not dead and not in stasis
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 		// GROW!
 		if(amount_grown < max_grown)
 			amount_grown++
