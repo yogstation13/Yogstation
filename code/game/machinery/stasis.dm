@@ -17,6 +17,16 @@
 	var/stasis_can_toggle = 0
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
+	var/mob/living/carbon/human/patient = null
+	var/obj/machinery/computer/operating/computer = null
+
+/obj/machinery/stasis/Initialize()
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
+		if(computer)
+			computer.bed = src
+			break
 
  /obj/machinery/stasis/examine(mob/user)
 	..()
@@ -111,6 +121,16 @@
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
 	update_icon()
+	check_patient()
+
+/obj/machinery/stasis/proc/check_patient()
+	var/mob/living/carbon/human/M = occupant
+	if(M)
+		patient = M
+		return TRUE
+	else
+		patient = null
+		return FALSE
 
  /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
