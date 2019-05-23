@@ -58,9 +58,6 @@
 
 	handle_fire()
 
-	//stuff in the stomach
-	handle_stomach()
-
 	handle_gravity()
 
 	if(machine)
