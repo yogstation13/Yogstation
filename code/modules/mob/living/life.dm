@@ -52,15 +52,11 @@
 		//Random events (vomiting etc)
 		handle_random_events()
 
-<<<<<<< HEAD
 	//Handle temperature/pressure differences between body and environment
 	if(environment)
 		handle_environment(environment)
 
 	handle_fire()
-=======
-		handle_gravity()
->>>>>>> b6c41e3b32... Merge pull request #43991 from vuonojenmustaturska/vorecode
 
 	//stuff in the stomach
 	handle_stomach()
