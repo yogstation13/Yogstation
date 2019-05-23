@@ -78,6 +78,10 @@
 
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
+							//yogs start -- Yogs Vorecode
+							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)	
+								C.stomach_contents -= item_to_retrieve
+							//Yogs end
 							for(var/X in C.bodyparts)
 								var/obj/item/bodypart/part = X
 								if(item_to_retrieve in part.embedded_objects)
