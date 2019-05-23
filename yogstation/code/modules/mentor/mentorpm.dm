@@ -66,7 +66,7 @@
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(!C || C.is_mentor())
 		if(C)
-			to_chat(C, "<font color='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</font>")
+			to_chat(C, "<span class='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</span>")
 		if(discord_id)
 			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>")
 		else
@@ -78,7 +78,7 @@
 	else
 		if(is_mentor())	//sender is an mentor but recipient is not.
 			if(C)
-				to_chat(C, "<font color='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</font>")
+				to_chat(C, "<span class='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>")
 			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>")
 			if(C.ckey in SSYogs.mentortickets)
 				var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]
