@@ -62,7 +62,6 @@
 		//stuff in the stomach
 		handle_stomach()
 	//Yogs end
-
 		handle_gravity()
 
 		if(stat != DEAD)
