@@ -58,8 +58,10 @@
 		if(environment)
 			handle_environment(environment)
 
+	//yogs start -- Yogs Vorecode
 		//stuff in the stomach
-		//handle_stomach() //reminder to put this back once the vore pr goes through
+		handle_stomach()
+	//Yogs end
 
 		handle_gravity()
 
