@@ -12,6 +12,7 @@
 	. =  ..()
 
 	QDEL_LIST(internal_organs)
+	QDEL_LIST(stomach_contents)//Yogs -- Yogs vorecode
 	QDEL_LIST(bodyparts)
 	QDEL_LIST(implants)
 	remove_from_all_data_huds()

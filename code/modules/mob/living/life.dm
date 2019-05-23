@@ -58,6 +58,10 @@
 
 	handle_fire()
 
+//yogs start -- Yogs Vorecode
+	//stuff in the stomach
+	handle_stomach()
+//Yogs end
 	handle_gravity()
 
 	if(machine)
