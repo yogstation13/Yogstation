@@ -7680,6 +7680,14 @@
 /obj/machinery/computer/shuttle,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"rb" = (
+/obj/structure/sign/directions/engineering{
+	desc = "A sign that shows there are doors here. There are doors everywhere!";
+	icon_state = "doors";
+	name = "WARNING: BLAST DOORS"
+	},
+/turf/closed/indestructible/riveted,
+/area/centcom/evac)
 "rc" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/magic/wand/death,
@@ -8218,7 +8226,23 @@
 /area/centcom/evac)
 "rT" = (
 /obj/effect/turf_decal/tile/neutral,
+/obj/structure/sign/directions/engineering{
+	desc = "A sign that shows there are doors here. There are doors everywhere!";
+	icon_state = "doors";
+	name = "WARNING: BLAST DOORS"
+	},
 /turf/closed/indestructible/riveted,
+/area/centcom/evac)
+"rU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/card/id/centcom,
+/obj/item/card/id/centcom,
+/obj/item/card/id/centcom,
+/obj/item/card/id/centcom,
+/turf/open/floor/plasteel,
 /area/centcom/evac)
 "rW" = (
 /obj/machinery/light{
@@ -8693,16 +8717,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/centcom/evac)
-"sS" = (
-/obj/structure/table,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/item/card/id/centcom,
-/obj/item/card/id/centcom,
-/obj/item/card/id/centcom,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "sT" = (
@@ -68819,7 +68833,7 @@ io
 io
 qx
 qV
-qx
+rb
 sR
 tT
 uB
@@ -69847,7 +69861,7 @@ io
 iu
 qV
 qV
-qx
+rb
 sO
 tT
 uB
@@ -70361,7 +70375,7 @@ io
 io
 qx
 qV
-qx
+rb
 sR
 tT
 uB
@@ -70876,7 +70890,7 @@ iu
 qA
 qy
 qV
-sS
+rU
 tT
 uB
 uB
