@@ -24,8 +24,7 @@
 					update_damage_overlays()
 				visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", "<span class='userdanger'>[user] attacks your stomach wall with the [I.name]!</span>")
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
-				var/gib_chance = getBruteLoss() - 50
- 				if(prob(gib_chance))
+				if(prob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
 						A.forceMove(drop_location())
 						stomach_contents.Remove(A)
