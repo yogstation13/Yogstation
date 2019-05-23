@@ -93,6 +93,12 @@
 
 /mob/living/carbon/alien/humanoid/alien_evolve(mob/living/carbon/alien/humanoid/new_xeno)
 	drop_all_held_items()
+	//yogs start -- Yogs Vorecode
+	for(var/atom/movable/A in stomach_contents)
+		stomach_contents.Remove(A)
+		new_xeno.stomach_contents.Add(A)
+		A.forceMove(new_xeno)
+	//yogs end
 	..()
 
 //For alien evolution/promotion/queen finder procs. Checks for an active alien of that type
