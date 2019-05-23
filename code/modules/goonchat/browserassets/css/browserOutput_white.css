@@ -264,15 +264,10 @@ em						{font-style: normal;	font-weight: bold;}
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
-<<<<<<< HEAD
 .looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
 
 .adminsay   			{color: #996600;	font-weight: bold;} /*yogs - changes asay colour back*/
-.admin					{color: #386aff;	font-weight: bold;}
-=======
-.adminsay   			{color: #ff0000;}
 .admin					{color: #4473ff;	font-weight: bold;}
->>>>>>> ceca1e605e... [READY] Yet more darkmode tweaks and fixes (#43306)
 
 .name					{					font-weight: bold;}
 
