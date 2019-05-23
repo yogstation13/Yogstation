@@ -59,7 +59,7 @@
 			handle_environment(environment)
 
 		//stuff in the stomach
-		handle_stomach()
+		//handle_stomach() //reminder to put this back once the vore pr goes through
 
 		handle_gravity()
 
