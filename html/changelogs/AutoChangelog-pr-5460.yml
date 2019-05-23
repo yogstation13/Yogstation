@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "Adds magboots to the engineering suit storage units"
