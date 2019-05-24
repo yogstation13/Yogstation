@@ -499,7 +499,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	if(has_trait(TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
 
-<<<<<<< HEAD
 /mob/has_trait(trait, list/sources, check_mind=TRUE)
 	. = ..(trait, sources)
 	if(.)
@@ -507,7 +506,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 	if(check_mind && istype(mind))
 		return mind.has_trait(trait, sources)
-=======
+
 // Used to make sure that a player has a valid job preference setup, used to knock players out of eligibility for anything if their prefs don't make sense.
 // A "valid job preference setup" in this situation means at least having one job set to low, or not having "return to lobby" enabled
 // Prevents "antag rolling" by setting antag prefs on, all jobs to never, and "return to lobby if preferences not availible"
@@ -529,4 +528,3 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
->>>>>>> 8958287246... [s] Prevents a certain kind of antag-rolling abuse. (#44056)
