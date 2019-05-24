@@ -212,11 +212,8 @@
 	value = -1
 	gain_text = "<span class='danger'>You seem to make a big deal out of everything.</span>"
 	lose_text = "<span class='notice'>You don't seem to make a big deal out of everything anymore.</span>"
-<<<<<<< HEAD
 	mood_quirk = TRUE //yogs
-=======
 	medical_record_text = "Patient demonstrates a high level of emotional volatility."
->>>>>>> 7c9576c6e2... Puts medical record quirks in Medical Record "Important Notes", gives each quirk a medical record, cleans up subjects into patients. (#44009)
 
 /datum/quirk/hypersensitive/add()
 	GET_COMPONENT_FROM(mood, /datum/component/mood, quirk_holder)
