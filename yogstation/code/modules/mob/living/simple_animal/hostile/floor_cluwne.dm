@@ -81,7 +81,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	do_jitter_animation(1000)
 	pixel_y = 8
 
-	if(is_type_in_typecache(get_area(src.loc), invalid_area_typecache) || !is_station_level(z))
+	if(is_type_in_typecache(get_area(loc) , invalid_area_typecache) || !is_station_level(z))
 		var/area = pick(GLOB.teleportlocs)
 		var/area/tp = GLOB.teleportlocs[area]
 		forceMove(pick(get_area_turfs(tp.type)))
