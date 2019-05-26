@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(Yogs)
 	mentortickets = list()
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2
+	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry/realgoat] = 2
 	GLOB.arcade_prize_pool[/obj/item/stack/tile/ballpit] = 2
 	return ..()
 
@@ -21,7 +22,7 @@ SUBSYSTEM_DEF(Yogs)
 	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift)
 		priority_announce("Crew, your shift has come to an end. \n You may call the shuttle whenever you find it appropriate.", "End of shift announcement", 'sound/ai/commandreport.ogg')
 		endedshift = TRUE
-	
+
 	if(world.time - last_rebwoink > REBWOINK_TIME*10)
 		last_rebwoink = world.time
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
