@@ -15083,7 +15083,7 @@
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Service Hallway Maintenance Hatch";
-	req_one_access_txt = "12;25;28;46"
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line{
@@ -15092,8 +15092,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "azA" = (
@@ -27236,7 +27236,8 @@
 "aSv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
-	name = "Service Hall"
+	name = "Service Hall";
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -27247,8 +27248,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "aSw" = (
@@ -32963,6 +32964,25 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
+"baV" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/public/glass{
+	name = "Service Foyer";
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/service)
 "baW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -42910,23 +42930,25 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bpA" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "Service Foyer"
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/cable/white,
+/obj/machinery/camera{
+	c_tag = "Armory - Interior";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "Armoury APC";
+	areastring = "/area/ai_monitored/security/armory";
+	pixel_y = -26
+	},
 /turf/open/floor/plasteel,
-/area/hallway/secondary/service)
+/area/ai_monitored/security/armory)
 "bpB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -69335,23 +69357,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
-"cbK" = (
-/obj/structure/cable/white,
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "Armoury APC";
-	areastring = "/area/ai_monitored/security/armory";
-	pixel_y = -26
-	},
-/obj/machinery/camera{
-	c_tag = "Armory - Interior";
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/security/armory)
 "cbL" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
@@ -160955,7 +160960,7 @@ aSv
 aWd
 bgO
 bnt
-bpA
+baV
 bqz
 bfL
 cJC
@@ -180509,7 +180514,7 @@ bRv
 bRv
 bXQ
 bZX
-cbK
+bpA
 bLs
 cfq
 chf
