@@ -2252,12 +2252,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/window/reinforced,
-/obj/effect/portal/permanent/one_way/keep{
-	desc = "A portal to a land of absolute chaos and unknowns!";
-	id = "testchamber";
-	name = "Test Chamber Portal";
-	teleport_channel = "testchamber"
-	},
 /turf/open/floor/grass,
 /area/centcom/evac)
 "fS" = (
@@ -8854,8 +8848,16 @@
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "tb" = (
-/obj/effect/turf_decal/tile/neutral{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/effect/portal/permanent/one_way/multi/entry{
+	alpha = 55;
+	color = "7D7D7D";
+	desc = "for when the clock hits one thirty and keeps ticking...";
+	id = "testchamber";
+	name = "Test Chamber Portal";
+	teleport_channel = "bluespace"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -8864,12 +8866,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "testchamber";
-	teleport_channel = "testchamber"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/turf/open/floor/plasteel/recharge_floor,
-/area/centcom/testchamber)
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/evac)
 "tc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13334,11 +13335,28 @@
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "Ba" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
+/obj/effect/portal/permanent/one_way/multi/entry{
+	alpha = 55;
+	color = "7D7D7D";
+	desc = "for when the clock hits one thirty and keeps ticking...";
+	id = "testchamber";
+	name = "Test Chamber Portal";
+	teleport_channel = "bluespace"
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/evac)
 "Bb" = (
 /obj/effect/turf_decal/stripes/line,
@@ -19421,8 +19439,8 @@
 /area/tdome/arena)
 "Mj" = (
 /obj/machinery/door/poddoor{
-	id = "mixvent";
-	name = "Mixer Room Vent"
+	id = "testvent";
+	name = "Testing Chamber Vent"
 	},
 /turf/open/floor/engine/vacuum,
 /area/centcom/testchamber)
@@ -19479,7 +19497,13 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/light,
+/obj/effect/portal/permanent/one_way/multi/exit{
+	alpha = 0;
+	desc = "You can't seem to go through this portal...";
+	id = "testchamber";
+	name = "Exit Portal";
+	teleport_channel = "bluespace"
+	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Mq" = (
@@ -19777,7 +19801,7 @@
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
-/turf/closed/wall/r_wall,
+/turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "MZ" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
@@ -19986,6 +20010,52 @@
 /obj/structure/sign/warning/xeno_mining,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
+"Nr" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/portal/permanent/one_way/multi/exit{
+	alpha = 0;
+	desc = "You can't seem to go through this portal...";
+	id = "testchamber";
+	name = "Exit Portal";
+	teleport_channel = "bluespace"
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"Ns" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/portal/permanent/one_way/multi/exit{
+	alpha = 0;
+	desc = "You can't seem to go through this portal...";
+	id = "testchamber";
+	name = "Exit Portal";
+	teleport_channel = "bluespace"
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "Nt" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20064,18 +20134,6 @@
 /area/centcom/testchamber)
 "NB" = (
 /obj/machinery/meter,
-/obj/machinery/button/door{
-	id = "mixvent";
-	name = "Mixing Room Vent Control";
-	pixel_x = -25;
-	pixel_y = 5;
-	req_access_txt = "7"
-	},
-/obj/machinery/button/ignition{
-	id = "mixingsparker";
-	pixel_x = -25;
-	pixel_y = -5
-	},
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
@@ -20160,24 +20218,20 @@
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
 "NK" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/obj/machinery/button/door{
+	id = "testvent";
+	name = "Testing Chamber Vent Control";
+	pixel_x = -25;
+	pixel_y = 5;
+	req_access_txt = "7"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/button/ignition{
+	id = "mixingsparker";
+	pixel_x = -25;
+	pixel_y = -5
 	},
 /obj/structure/table/reinforced,
-/obj/item/grenade/syndieminibomb,
-/obj/item/grenade/syndieminibomb{
-	pixel_x = 4
-	},
-/obj/item/grenade/syndieminibomb{
-	pixel_x = 8
-	},
+/obj/item/orion_ship,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "NL" = (
@@ -20321,6 +20375,49 @@
 /obj/structure/sign/warning/xeno_mining,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
+"NY" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/light,
+/obj/effect/portal/permanent/one_way/multi/exit{
+	alpha = 0;
+	desc = "You can't seem to go through this portal...";
+	id = "testchamber";
+	name = "Exit Portal";
+	teleport_channel = "bluespace"
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"NZ" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/portal/permanent/one_way/multi/entry{
+	alpha = 55;
+	color = "7D7D7D";
+	desc = "for when the clock hits one thirty and keeps ticking...";
+	id = "testchamber";
+	name = "Test Chamber Portal";
+	teleport_channel = "bluespace"
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/evac)
 "Oa" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20334,6 +20431,37 @@
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"Ob" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "testing chamber";
+	teleport_channel = "testing"
+	},
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"Oc" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/bluespace,
+/area/centcom/testchamber)
+"Od" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "Oe" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -20350,7 +20478,7 @@
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"Og" = (
+"Of" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -20363,7 +20491,25 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/syndicatebomb/badmin/clown,
+/obj/machinery/airalarm/mixingchamber{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
+/area/centcom/testchamber)
+"Og" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/stimulum,
+/turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "Oh" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -20410,21 +20556,6 @@
 "Ol" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/riveted,
-/area/centcom/testchamber)
-"Om" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/item/orion_ship,
-/turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "On" = (
 /obj/structure/table/reinforced,
@@ -20564,22 +20695,6 @@
 "Oy" = (
 /obj/machinery/portable_atmospherics/canister/bz,
 /turf/open/floor/bluespace,
-/area/centcom/testchamber)
-"Oz" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/stimulum,
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/machinery/portable_atmospherics/canister/stimulum,
-/turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "OA" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -58936,7 +59051,7 @@ hH
 MP
 MP
 NA
-NA
+Oc
 Ok
 Oy
 Oy
@@ -59193,9 +59308,9 @@ hH
 MQ
 Nt
 ND
-NH
+Od
 ND
-Oz
+Og
 Pb
 hH
 aa
@@ -60736,7 +60851,7 @@ Mq
 BW
 NK
 ta
-Om
+Oa
 OF
 Pf
 sd
@@ -61249,7 +61364,7 @@ Mr
 MX
 yO
 NM
-Og
+Of
 ta
 OI
 Pi
@@ -64069,16 +64184,16 @@ yh
 td
 BU
 td
-ta
+Mp
 In
-yh
+Nr
 ta
-ta
+Mp
 td
 NV
 td
 Ov
-ta
+Mp
 ta
 PG
 hH
@@ -64320,7 +64435,7 @@ Iv
 Iv
 hH
 sZ
-ta
+Mp
 td
 td
 td
@@ -64337,7 +64452,7 @@ td
 td
 td
 td
-ta
+Mp
 PT
 hH
 aa
@@ -65109,7 +65224,7 @@ yN
 yN
 Ni
 td
-ta
+Mp
 Qf
 aa
 aa
@@ -65861,9 +65976,9 @@ KD
 IR
 Iv
 pT
-tb
+Mp
 td
-wq
+Ob
 yP
 Aa
 BW
@@ -65880,7 +65995,7 @@ jA
 yO
 Pq
 td
-Mp
+NY
 hH
 aa
 aa
@@ -66651,7 +66766,7 @@ yN
 yN
 Ni
 td
-ta
+Mp
 Qf
 aa
 aa
@@ -67404,7 +67519,7 @@ Iv
 Iv
 hH
 sZ
-ta
+Mp
 td
 td
 td
@@ -67667,16 +67782,16 @@ yR
 td
 Cj
 td
+Mp
 ta
-ta
-yR
+Ns
 In
-ta
+Mp
 td
 NW
 td
 Ox
-ta
+Mp
 ta
 PH
 hH
@@ -70952,13 +71067,13 @@ qx
 sN
 tS
 uA
-uA
+Ba
 vV
 wK
 xs
 wK
 vV
-uA
+Ba
 uA
 tS
 AV
@@ -72748,7 +72863,7 @@ io
 qC
 qX
 fR
-sO
+tb
 tT
 uB
 vh
@@ -72760,7 +72875,7 @@ yB
 vh
 uB
 At
-Ba
+NZ
 BO
 Cg
 Cc
