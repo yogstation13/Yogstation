@@ -27,9 +27,25 @@
 	action_icon_state = "magicm"
 	sound = 'sound/magic/magic_missile.ogg'
 
+<<<<<<< HEAD
 /obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile
 	amt_knockdown = 60
 	sound = 'sound/magic/mm_hit.ogg'
+=======
+/obj/item/projectile/magic/spell/magic_missile
+	name = "a magic missile"
+	icon_state = "magicm"
+	range = 20
+	speed = 5
+	trigger_range = 0
+	linger = TRUE
+	paralyze = 60
+	hitsound = 'sound/magic/mm_hit.ogg'
+
+	trail = TRUE
+	trail_lifespan = 5
+	trail_icon_state = "magicmd"
+>>>>>>> 0b2a97aa72... Fixes magic missile (#44147)
 
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
 	name = "Mutate"
