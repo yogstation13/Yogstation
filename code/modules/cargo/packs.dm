@@ -486,12 +486,12 @@
 	contains = list(/obj/item/storage/box/chemimp)
 	crate_name = "chemical implant crate"
 
-/datum/supply_pack/security/armory/exileimp
+/*/datum/supply_pack/security/armory/exileimp //yogs:we don't even have a gateway, revert this if we ever actually use it
 	name = "Exile Implants Crate"
 	desc = "Contains five Exile implants. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/storage/box/exileimp)
-	crate_name = "exile implant crate"
+	crate_name = "exile implant crate"*/
 
 /datum/supply_pack/security/armory/mindshield
 	name = "Mindshield Implants Crate"

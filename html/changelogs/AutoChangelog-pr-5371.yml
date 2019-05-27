@@ -1,0 +1,5 @@
+author: "Lynameep"
+delete-after: true 
+changes: 
+  - experiment: "Atmospherics Distribution is now its own separate /area/."
+  - bugfix: "Fixed Yogbox's atmospherics being powered by two APCs at the same time."
