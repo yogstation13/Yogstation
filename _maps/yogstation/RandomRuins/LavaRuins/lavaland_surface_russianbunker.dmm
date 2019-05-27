@@ -6,8 +6,13 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "ac" = (
-/turf/closed/mineral/volcanic,
-/area/lavaland/surface/outdoors)
+/obj/structure/grille/indestructable,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
 "ad" = (
 /turf/closed/wall/r_wall,
 /area/ruin/unpowered{
@@ -15,10 +20,15 @@
 	noteleport = 1
 	})
 "ae" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/wood,
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/turf/closed/wall/r_wall,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -37,11 +47,22 @@
 	noteleport = 1
 	})
 "ah" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/mob/living/simple_animal/hostile/bear/russian{
+	alpha = 100;
+	armour_penetration = 40;
+	desc = "What kind of vodka did they give this bear...?!";
+	health = 300;
+	maxbodytemp = 1.5e+006;
+	maxHealth = 300;
+	melee_damage_lower = 35;
+	melee_damage_upper = 55;
+	name = "Hell Bear";
+	obj_damage = 150;
+	resize = 1.5
 	},
-/mob/living/simple_animal/hostile/russian/ranged/trooper,
-/turf/open/floor/pod,
+/turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -95,7 +116,18 @@
 	noteleport = 1
 	})
 "ao" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	hackProof = 1;
+	heat_proof = 1;
+	locked = 1;
+	max_integrity = 500;
+	name = "Reinforced Airlock";
+	normal_integrity = 500;
+	req_access = "151";
+	welded = 0
+	},
 /turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
@@ -109,32 +141,71 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"ar" = (
-/obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
-	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"at" = (
+"aq" = (
 /obj/structure/table/wood/poker,
 /obj/item/coin/adamantine,
 /obj/item/coin/diamond,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/item/toy/cards/cardhand,
 /turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"au" = (
-/obj/machinery/door/airlock/hatch,
+"ar" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"as" = (
+/obj/structure/chair/stool/bar,
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"at" = (
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	hackProof = 0;
+	heat_proof = 1;
+	locked = 1;
+	max_integrity = 1000;
+	name = "Reinforced Airlock";
+	normal_integrity = 1000;
+	req_access = "151";
+	welded = 1
+	},
 /turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"au" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -192,10 +263,19 @@
 	noteleport = 1
 	})
 "aB" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/wood,
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	hackProof = 1;
+	heat_proof = 1;
+	locked = 1;
+	max_integrity = 500;
+	name = "Reinforced Airlock";
+	normal_integrity = 500;
+	req_access = "151";
+	welded = 0
+	},
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -208,9 +288,11 @@
 	noteleport = 1
 	})
 "aD" = (
-/obj/structure/chair/stool/bar,
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/cable,
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -223,10 +305,21 @@
 	noteleport = 1
 	})
 "aF" = (
-/obj/machinery/door/airlock/hatch{
-	locked = 1
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
 	},
-/turf/open/floor/wood,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -239,10 +332,11 @@
 	noteleport = 1
 	})
 "aH" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/space/basic,
+/obj/structure/table/reinforced,
+/obj/item/clothing/neck/stripedbluescarf,
+/obj/item/clothing/head/wizard/marisa/fake,
+/obj/item/energy_katana,
+/turf/open/floor/circuit/off,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -262,10 +356,12 @@
 	noteleport = 1
 	})
 "aK" = (
-/obj/machinery/door/airlock/hatch{
-	locked = 1
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/cable,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
 	},
-/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -318,13 +414,11 @@
 	noteleport = 1
 	})
 "aR" = (
-/obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
-	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
-	},
-/turf/open/floor/circuit/off,
+/obj/item/ammo_casing/a357,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/cable,
+/turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -356,8 +450,12 @@
 	noteleport = 1
 	})
 "aV" = (
-/obj/structure/grille/indestructable,
-/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	name = "Reinforced Airlock";
+	welded = 1
+	},
 /turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
@@ -400,10 +498,11 @@
 	noteleport = 1
 	})
 "aZ" = (
-/obj/machinery/door/airlock/hatch{
-	welded = 1
-	},
-/turf/open/floor/pod,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/cable,
+/turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -432,16 +531,8 @@
 	noteleport = 1
 	})
 "bd" = (
-/obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
-	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/circuit/off,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -494,8 +585,15 @@
 	noteleport = 1
 	})
 "bj" = (
-/mob/living/simple_animal/hostile/russian/ranged/trooper,
-/turf/open/floor/wood,
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/turf/open/floor/circuit/off,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -595,10 +693,9 @@
 	noteleport = 1
 	})
 "br" = (
-/obj/machinery/keycard_auth{
-	pixel_y = -7
-	},
-/turf/closed/wall/r_wall,
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -645,30 +742,33 @@
 	noteleport = 1
 	})
 "bx" = (
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/wood,
+/obj/structure/sign/poster/contraband/communist_state,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "by" = (
-/mob/living/simple_animal/hostile/bear,
-/turf/open/floor/grass/snow/safe,
+/obj/structure/grille/indestructable,
+/obj/structure/window/reinforced/fulltile,
+/turf/closed/wall/r_wall,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "bz" = (
-/obj/structure/table,
-/obj/item/lighter,
-/turf/open/floor/wood,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "bA" = (
-/turf/closed/wall/r_wall,
-/area/lavaland/surface/outdoors)
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
 "bB" = (
 /obj/item/ammo_casing/a357,
 /mob/living/simple_animal/hostile/viscerator{
@@ -710,10 +810,10 @@
 	noteleport = 1
 	})
 "bF" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/neck/stripedbluescarf,
-/obj/item/clothing/head/wizard/marisa/fake,
-/turf/open/floor/circuit/off,
+/obj/item/reagent_containers/food/snacks/meat/slab/bear,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -728,36 +828,55 @@
 	noteleport = 1
 	})
 "bH" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/mob/living/simple_animal/hostile/bear/snow,
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"bI" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"bJ" = (
-/obj/item/ammo_casing/a357,
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
+/obj/structure/table,
+/obj/item/kitchen/knife/butcher,
+/obj/item/kitchen/knife/combat/survival,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/wood,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"bK" = (
+"bI" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/bear,
 /turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bJ" = (
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	hackProof = 1;
+	heat_proof = 1;
+	locked = 1;
+	max_integrity = 500;
+	name = "Reinforced Airlock";
+	normal_integrity = 500;
+	req_access = "151";
+	welded = 0
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bK" = (
+/obj/machinery/door/airlock/hatch{
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100);
+	desc = "It looks almost unbreakable!";
+	hackProof = 1;
+	heat_proof = 1;
+	locked = 1;
+	max_integrity = 500;
+	name = "Reinforced Airlock";
+	normal_integrity = 500;
+	req_access = "151";
+	welded = 1
+	},
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -770,19 +889,27 @@
 	noteleport = 1
 	})
 "bM" = (
-/obj/structure/table,
-/obj/item/kitchen/knife/butcher,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/crowbar/power,
+/turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "bN" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light{
-	dir = 8
+/mob/living/simple_animal/hostile/bear/russian{
+	alpha = 100;
+	armour_penetration = 40;
+	damage_coeff = list("brute" = 1, "fire" = 0, "tox" = 1, "clone" = 1, "stamina" = 0, "oxy" = 1);
+	desc = "What kind of vodka did they give this bear...?!";
+	health = 300;
+	maxbodytemp = 1.5e+006;
+	maxHealth = 300;
+	melee_damage_lower = 35;
+	melee_damage_upper = 55;
+	name = "Hell Bear";
+	obj_damage = 150;
+	resize = 1.5
 	},
 /turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
@@ -815,19 +942,33 @@
 	noteleport = 1
 	})
 "bP" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/bear/russian{
+	alpha = 100;
+	armour_penetration = 40;
+	damage_coeff = list("brute" = 1, "fire" = 0, "tox" = 1, "clone" = 1, "stamina" = 0, "oxy" = 1);
+	desc = "What kind of vodka did they give this bear...?!";
+	health = 300;
+	maxbodytemp = 1.5e+006;
+	maxHealth = 300;
+	melee_damage_lower = 35;
+	melee_damage_upper = 55;
+	name = "Hell Bear";
+	obj_damage = 150;
+	resize = 1.5
+	},
+/turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "bQ" = (
-/obj/machinery/door/airlock/hatch{
-	welded = 1
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = -9;
+	pixel_y = -4
 	},
-/turf/open/floor/holofloor/wood,
+/turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -841,8 +982,8 @@
 	noteleport = 1
 	})
 "bS" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/grass/snow/safe,
+/obj/structure/sign/poster/contraband/eat,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -864,9 +1005,10 @@
 	noteleport = 1
 	})
 "bV" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/mob/living/simple_animal/hostile/russian/ranged/trooper,
-/turf/open/floor/pod,
+/obj/machinery/keycard_auth{
+	pixel_y = -7
+	},
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -884,8 +1026,23 @@
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "bY" = (
-/obj/effect/mine/stun,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	desc = "I hope you brought enough vodka for everyone...";
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
+	},
 /turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
@@ -899,8 +1056,20 @@
 	noteleport = 1
 	})
 "ca" = (
-/obj/machinery/light{
-	dir = 1
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	desc = "I hope you brought enough vodka for everyone...";
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
 	},
 /turf/open/floor/pod,
 /area/ruin/unpowered{
@@ -908,9 +1077,9 @@
 	noteleport = 1
 	})
 "cb" = (
-/obj/item/weldingtool/experimental,
-/mob/living/simple_animal/hostile/bear,
-/turf/open/floor/grass/snow/safe,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/mine/gas/plasma,
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -932,26 +1101,44 @@
 	noteleport = 1
 	})
 "ce" = (
-/obj/item/cigbutt/cigarbutt,
 /obj/machinery/light{
-	dir = 1
+	dir = 8
 	},
-/turf/open/floor/pod,
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/turf/open/floor/circuit/off,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "cf" = (
-/obj/effect/decal/cleanable/blood/drip,
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/cable,
 /turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "cg" = (
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/pod,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/turf/open/floor/circuit/off,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -986,10 +1173,8 @@
 	noteleport = 1
 	})
 "ck" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/crowbar/power,
-/mob/living/simple_animal/hostile/bear/snow,
-/turf/open/floor/grass/snow/safe,
+/obj/structure/sign/poster/contraband/d_day_promo,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -1028,7 +1213,8 @@
 "co" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
-/turf/open/space/basic,
+/obj/structure/cable,
+/turf/open/floor/circuit/off,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -1057,33 +1243,90 @@
 	noteleport = 1
 	})
 "cs" = (
-/obj/structure/sign/poster/contraband/eat,
-/turf/closed/wall/r_wall,
+/obj/effect/mine/gas/plasma,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "ct" = (
-/obj/structure/sign/poster/contraband/d_day_promo,
 /turf/closed/wall/r_wall,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
+/area/lavaland/surface/outdoors)
 "cu" = (
-/obj/machinery/light{
-	dir = 8
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	desc = "I hope you brought enough vodka for everyone...";
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
 	},
-/turf/open/floor/circuit/off,
+/turf/open/floor/pod,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
 "cv" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
 	},
-/turf/open/floor/circuit/off,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/east,
+/turf/closed/indestructible/opshuttle,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cw" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/russian/ranged/trooper{
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0);
+	desc = "I hope you brought enough vodka for everyone...";
+	loot = list(/obj/effect/mob_spawn/human/corpse/russian/ranged/trooper,/obj/item/gun/ballistic/shotgun/toy);
+	maxbodytemp = 3050;
+	maxHealth = 250;
+	melee_damage_lower = 25;
+	melee_damage_upper = 35;
+	melee_queue_distance = 1;
+	minimum_distance = 1;
+	name = "Russian Elite";
+	ranged_cooldown_time = 20;
+	retreat_distance = 2
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cx" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 95, "bullet" = 80, "laser" = 80, "energy" = 70, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	max_integrity = 230;
+	name = "Russian Defense Turret MK-X";
+	shot_delay = 10
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/west,
+/turf/closed/indestructible/opshuttle,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -1122,24 +1365,10 @@
 	name = "\improper Russian Bunker";
 	noteleport = 1
 	})
-"BL" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
 "MO" = (
 /obj/effect/mine/gas/plasma,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/pod,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
-"Nv" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/closed/wall/r_wall,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -1169,11 +1398,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 aa
@@ -1204,15 +1433,15 @@ aa
 aa
 ab
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 aa
@@ -1242,17 +1471,17 @@ aa
 ab
 ab
 ab
-aa
-aa
-aa
 ab
 ab
 ab
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 ab
 ab
@@ -1276,7 +1505,6 @@ aa
 aa
 aa
 aa
-aa
 ab
 ab
 ab
@@ -1289,8 +1517,9 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
+ab
 ab
 aa
 aa
@@ -1312,15 +1541,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
 ab
 ab
 ab
 ab
 ab
-ac
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -1348,29 +1577,29 @@ aa
 aa
 aa
 aa
-aa
-ab
-aa
 ab
 ab
 ab
 ab
-ac
-ab
-ab
-ab
-ac
-ab
-ac
 ab
 ab
 ab
 ab
-aa
-aa
 ab
 ab
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 aa
@@ -1383,22 +1612,6 @@ aa
 (7,1,1) = {"
 aa
 aa
-aa
-aa
-aa
-ab
-ab
-ab
-ab
-ac
-ac
-ac
-ab
-ab
-ac
-ac
-ac
-Yn
 ab
 ab
 ab
@@ -1408,7 +1621,23 @@ ab
 ab
 ab
 ab
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 ab
@@ -1420,7 +1649,7 @@ aa
 (8,1,1) = {"
 aa
 ab
-aa
+ab
 ab
 ab
 ab
@@ -1434,20 +1663,20 @@ ad
 ad
 ad
 ad
-ac
-ac
-ab
-ab
-ac
-ab
-ab
-ac
+by
 ab
 ab
 ab
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 ab
 aa
@@ -1455,23 +1684,25 @@ aa
 aa
 "}
 (9,1,1) = {"
-aa
 ab
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+ab
+ab
+ab
 ad
 aI
 aI
-aI
+au
 aI
 aI
 ad
-ac
+ae
+by
+ab
 ab
 ab
 ab
@@ -1485,22 +1716,20 @@ ab
 ab
 ab
 aa
-ab
 aa
 aa
 aa
-ab
 "}
 (10,1,1) = {"
-aa
-aa
 ab
 ab
 ab
 ab
 ab
-ac
-ac
+ab
+ab
+ab
+Yn
 ad
 aI
 aJ
@@ -1508,49 +1737,50 @@ bO
 bg
 aI
 ad
-bA
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ab
 ab
 ab
 ab
 ab
 ab
 bX
-ab
-ab
-aa
-ab
-ab
-ab
-bX
 aa
 aa
 aa
-ab
-ab
+aa
+aa
 "}
 (11,1,1) = {"
-aa
-ab
 ab
 ab
 ab
 ab
 ac
-ac
-ac
+ad
+ad
+ad
+ad
 ad
 aI
 aN
 bq
-bF
+aH
+aI
+aI
+aI
+aI
+aI
+aI
+aI
 aI
 ad
-ad
-aV
-ad
-aV
-ad
-ar
 ab
 ab
 ab
@@ -1562,117 +1792,116 @@ aa
 aa
 aa
 aa
-ab
 aa
 "}
 (12,1,1) = {"
-aa
 ab
 ab
 ab
-ar
-ad
-ad
-ad
-ad
-ad
+ac
+ae
+aI
+aI
+aI
+aI
+aI
 aI
 cn
-aK
+at
 aI
 aI
-ad
-cb
+aI
+bz
 bD
-bN
-ck
-bK
+bI
+bM
+bP
+aI
 ad
-ab
-ab
+ac
 ab
 ab
 bX
-aa
+ab
+ab
 ab
 aa
 aa
 aa
-ab
 aa
-ab
+aa
 "}
 (13,1,1) = {"
 ab
 ab
 ab
-ac
 ad
-ae
+aI
+ah
 an
 aw
-aB
-ad
+ar
+aI
 aX
 al
 bB
-bI
-aR
-ad
+aK
+bj
+aI
 bv
-by
-by
+bA
+bA
 bE
 bL
+aI
 ad
-ad
+ae
+ac
 ab
 ab
 ab
-ab
-ab
+ai
+aQ
+ai
+ai
+ai
 aa
-ab
-aa
-aa
-aa
-bX
 aa
 "}
 (14,1,1) = {"
 ab
 ab
-ac
-ac
+ab
 ad
+aI
 af
 ag
 al
 ag
-aF
+ao
 aO
 bm
 bf
-bJ
+aR
 cp
-ad
+aI
 cd
-bE
-bH
-by
-bS
+bF
+bD
+bN
+bQ
+aI
 ad
 ad
 ad
 ad
 ad
-ad
+ct
 ad
 bZ
 bZ
-bZ
-bZ
-aa
+cv
+ai
 aa
 aa
 "}
@@ -1680,9 +1909,9 @@ aa
 ab
 ab
 ab
-ab
 ad
-ae
+aI
+ah
 ag
 ax
 aC
@@ -1690,72 +1919,72 @@ bt
 be
 aY
 bC
-bP
-aR
-ad
-aT
-aT
 aZ
+bj
+aI
 aT
 aT
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-tt
+aB
+aT
+aT
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+cu
 ai
-cf
+tt
 bZ
-aa
+aQ
 aa
 aa
 "}
 (16,1,1) = {"
-aa
 ab
 ab
 ab
 ad
-ad
+aI
+aI
 ao
-ad
-ad
-ad
-ad
-co
-aH
-Nv
-ad
-ad
+aI
+aI
+aI
+aI
+cf
+aD
+bd
+aI
+aI
 av
-aQ
 ai
 ai
 ai
-ad
+ai
+aI
 bs
 tt
-ad
-cu
-aR
-ad
-ca
+aI
+ce
+co
+aI
+ai
 cc
 ai
 bZ
+ai
 aa
-ab
 aa
 "}
 (17,1,1) = {"
-aa
 ab
-ac
+ab
 ab
 ad
+aI
 ag
 ag
 ag
@@ -1766,33 +1995,33 @@ ag
 bh
 aG
 bh
-cq
+bx
 aQ
 ad
 ai
 cq
 MO
-cs
-ah
+bS
+bY
 bW
-ad
-aT
-aT
-cq
+aI
+cf
+cf
+bx
 ai
 sE
 tt
 bZ
-aa
+ai
 aa
 aa
 "}
 (18,1,1) = {"
-aa
 ab
-ac
+ab
 ab
 ad
+aI
 aj
 ap
 al
@@ -1803,70 +2032,70 @@ ag
 al
 ag
 ag
-au
+aV
 ai
 ai
 ai
-aQ
 ai
-aK
+ai
+bK
 Pf
-tt
-aK
+cb
+aB
 ai
-bY
-aK
+cs
+aB
 cc
-BL
-cg
-bZ
+cw
+ai
+ad
+ai
 aa
 aa
-ab
 "}
 (19,1,1) = {"
 ab
 ab
-ac
-ac
+ab
 ad
+aI
 ag
-at
+aq
 az
-aD
+aE
 al
-ap
+as
 aE
-ap
+as
 aE
-aE
-cq
+as
+bx
 tt
 cr
 aQ
 cq
 ai
-br
 bV
+ca
 bn
-ad
-aT
-aT
-cq
+aI
+cf
+cf
+bx
 ai
 tt
 ai
 bZ
+ai
 aa
-ab
 aa
 "}
 (20,1,1) = {"
 ab
 ab
 ab
-ab
 ad
+aI
 ak
 ay
 aP
@@ -1877,33 +2106,33 @@ ba
 bi
 bo
 bw
-ad
+aI
 ai
 bb
 tt
 ai
 ai
-ad
+aI
 bu
 bu
-ad
-cv
-aR
-ad
-ce
+aI
+cg
+co
+aI
+Pf
 ai
 cc
 bZ
+ai
 aa
-ab
 aa
 "}
 (21,1,1) = {"
 ab
 ab
 ab
-ab
 ad
+aI
 ag
 az
 aW
@@ -1911,36 +2140,36 @@ ag
 ag
 aU
 ag
-bj
 ag
-bx
-ad
-ad
-ad
-bQ
-ad
-ad
-ad
-ad
-ad
-ad
-ct
-ad
-ad
-cc
-cf
+ag
+ag
+aI
+aI
+aI
+bJ
+aI
+aI
+aI
+aI
+aI
+aI
+ck
+aI
+aI
+ca
+tt
 ch
 bZ
+aQ
 aa
-ab
 aa
 "}
 (22,1,1) = {"
 ab
 ab
 ab
-ab
 ad
+aI
 al
 ag
 ap
@@ -1948,15 +2177,16 @@ ag
 aL
 ag
 ag
-al
+aF
 ag
 ag
-ad
+aI
 aM
 cj
 Ao
 cl
 bT
+aI
 ad
 ad
 ad
@@ -1966,9 +2196,8 @@ ad
 ad
 bZ
 bZ
-bZ
-bZ
-bX
+cx
+ai
 aa
 aa
 "}
@@ -1976,8 +2205,8 @@ aa
 aa
 ab
 ab
-ab
 ad
+aI
 am
 aM
 aA
@@ -1987,50 +2216,51 @@ bk
 bc
 bl
 bp
-bz
-ad
+br
+aI
 ci
 aY
 bC
 al
 bU
+aI
 ad
-bA
+ae
+ac
 ab
 ab
 ab
-ab
-ab
-aa
-aa
-aa
-aa
-aa
+ai
+aQ
+ai
+ai
+ai
 aa
 aa
 "}
 (24,1,1) = {"
-aa
 ab
 ab
 ab
-ar
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+ac
+ae
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
 bG
-bM
-bd
+bH
+cg
 bR
 cm
+aI
 ad
 ac
 ab
@@ -2038,142 +2268,126 @@ ab
 ab
 ab
 ab
-ab
 bX
-aa
-aa
-aa
-aa
 ab
+aa
+aa
+aa
+aa
 "}
 (25,1,1) = {"
-aa
-ab
-ab
-ab
-ab
-ab
-ac
-ab
 ab
 ab
 ab
 ab
 ac
-ac
-ac
 ad
 ad
 ad
 ad
 ad
 ad
-ar
+ad
+ad
+ad
+ad
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+ad
 ab
-ac
 ab
 bX
 ab
 ab
 ab
 ab
-ab
 aa
-ab
-ab
+aa
+aa
+aa
 aa
 "}
 (26,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+Yn
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ac
-ab
-ab
-ab
-ac
-ac
-ac
-ac
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ab
-ab
 aa
-ab
-ab
-ab
-aa
-ab
-ab
 aa
 aa
 "}
 (27,1,1) = {"
 aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 aa
 aa
-aa
-aa
-aa
-ab
-ac
-ac
-ac
-ac
-ab
-ab
-ac
-ac
-ac
-ab
-ab
-ac
-ac
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
-ab
-ab
-ab
-ab
 aa
 aa
 aa
 "}
 (28,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-ab
-ac
-ac
-ab
-ab
-ab
-ab
-ab
-ac
-ac
 ab
 ab
 ab
@@ -2182,7 +2396,22 @@ ab
 ab
 ab
 ab
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -2196,10 +2425,6 @@ aa
 "}
 (29,1,1) = {"
 aa
-aa
-aa
-aa
-aa
 ab
 ab
 ab
@@ -2207,7 +2432,6 @@ ab
 ab
 ab
 ab
-aa
 ab
 ab
 ab
@@ -2215,18 +2439,23 @@ ab
 ab
 ab
 ab
-aa
 ab
 ab
 ab
 ab
 ab
 ab
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 bX
-ab
+aa
 aa
 aa
 aa
@@ -2234,27 +2463,27 @@ aa
 (30,1,1) = {"
 aa
 aa
-aa
-aa
 ab
 ab
 ab
 ab
 ab
-aa
-ab
-ab
-ab
-ab
-ac
 ab
 ab
 ab
 ab
 ab
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -2271,28 +2500,28 @@ aa
 (31,1,1) = {"
 aa
 aa
-aa
-aa
-ab
-ab
-aa
-aa
-ab
-ab
-ab
-aa
 ab
 ab
 ab
 ab
-aa
 ab
 ab
 ab
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 aa
@@ -2309,27 +2538,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ab
-aa
-ab
-ab
 ab
 ab
 aa
 aa
 ab
 ab
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
