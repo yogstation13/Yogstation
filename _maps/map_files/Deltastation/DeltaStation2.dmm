@@ -64656,8 +64656,13 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "cex" = (
+<<<<<<< HEAD
 /obj/machinery/telecomms/message_server,
 /obj/structure/cable/white{
+=======
+/obj/machinery/telecomms/message_server/preset,
+/obj/structure/cable/yellow{
+>>>>>>> bab214e892... PDA Message Server can be constructed (#43961)
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/general/hidden{
