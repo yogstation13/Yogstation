@@ -5,6 +5,10 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = NO_FREEBIES
+	input_display_header = "Returned Clothing"
+
+/obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"
@@ -311,7 +315,16 @@
 					/obj/item/clothing/suit/holidaypriest = 1,
 					/obj/item/storage/fancy/candle_box = 2)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
+<<<<<<< HEAD
 					/obj/item/toy/plush/narplush = 1)
+=======
+					/obj/item/toy/plush/narplush = 1,
+					/obj/item/clothing/head/medievaljewhat = 3,
+					/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
+					/obj/item/clothing/head/clownmitre = 1)
+	premium = list(/obj/item/clothing/suit/chaplainsuit/bishoprobe = 1,
+					/obj/item/clothing/head/bishopmitre = 1)
+>>>>>>> c55dbf97f4... Vending Machine Input Framework & Clothing Vendor Inputs (#43964)
 	refill_canister = /obj/item/vending_refill/wardrobe/chap_wardrobe
 	payment_department = ACCOUNT_CIV
 /obj/item/vending_refill/wardrobe/chap_wardrobe
