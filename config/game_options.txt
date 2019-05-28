@@ -576,3 +576,6 @@ MONKEYCAP 64
 
 ## Enable the capitalist agenda on your server.
 ECONOMY
+
+## Allows players to see their own notes.
+SEE_OWN_NOTES

@@ -42,3 +42,18 @@
 
 	if(m)
 		to_chat(src, "<font color='purple'><b>Tip: </b>[html_encode(m)]</font>")
+
+/client/proc/self_notes()
+	set name = "View Admin Remarks"
+	set category = "OOC"
+	set desc = "View the notes that admins have written about you"
+	
+	if(check_rights(R_ADMIN,0))// If they're an admin, just give them the actual admin version of this verb.
+		browse_messages(target_ckey = usr.ckey, agegate = FALSE)
+		return
+
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, "<span class='warning'>Sorry, that function is not enabled on this server!</span>")
+		return
+
+	
