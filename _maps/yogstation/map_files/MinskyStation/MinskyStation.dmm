@@ -56372,6 +56372,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -57282,6 +57285,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -58715,6 +58721,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white/side{
 	dir = 6
 	},
