@@ -56045,6 +56045,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"pEy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "pGe" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -58157,6 +58163,12 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/clerk)
+"xVE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "xWi" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -72770,7 +72782,7 @@ aaa
 qdN
 qdN
 qdN
-aaa
+qdN
 aaa
 aaa
 aaa
@@ -73027,8 +73039,8 @@ beO
 beO
 beO
 qdN
-qdN
-aaa
+xVE
+xVE
 aaa
 aaa
 aaa
@@ -73284,8 +73296,8 @@ bhr
 blS
 bnv
 aaa
-qdN
-qdN
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73541,8 +73553,8 @@ beO
 bja
 bja
 aaa
-aaa
-aAe
+pEy
+pEy
 qdN
 aaa
 aaa
