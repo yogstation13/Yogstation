@@ -15276,6 +15276,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "aGJ" = (
@@ -53573,6 +53576,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "cbT" = (
