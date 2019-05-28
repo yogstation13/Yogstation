@@ -29526,6 +29526,9 @@
 "bgz" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bgA" = (
@@ -81794,7 +81797,7 @@ baS
 uvN
 gjl
 gjl
-aZE
+bgv
 bju
 biv
 bjk
@@ -82051,7 +82054,7 @@ cCn
 aYh
 aZK
 eYN
-aZE
+bgv
 bgz
 biT
 bjl
