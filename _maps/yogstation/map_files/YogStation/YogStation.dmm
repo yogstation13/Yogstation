@@ -46539,7 +46539,7 @@
 /area/medical/virology)
 "bOn" = (
 /obj/machinery/camera{
-	c_tag = "Virology Airlock Backup";
+	c_tag = "Virology Monkey Pen";
 	dir = 2;
 	network = list("ss13","medbay")
 	},
