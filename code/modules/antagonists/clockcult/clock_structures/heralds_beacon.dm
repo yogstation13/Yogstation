@@ -41,7 +41,7 @@
 		for(var/mob/M in GLOB.player_list)
 			if(isobserver(M) || is_servant_of_ratvar(M))
 				M.playsound_local(M, 'sound/magic/blind.ogg', 50, FALSE)
-		available = FALSE
+		available = FALSE//test to retry travis
 		icon_state = "interdiction_lens_unwrenched"
 		STOP_PROCESSING(SSprocessing, src)
 
