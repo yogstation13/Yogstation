@@ -37,7 +37,7 @@
 		if(servants)
 			votes_needed = round(servants * 0.66)
 	time_remaining--
-	if(!time_remaining)
+	if((SSticker.round_start_time + time_remaining) > world.time)
 		hierophant_message("<span class='bold sevtug_small'>[src] has lost its power, and can no longer be activated.</span>")
 		for(var/mob/M in GLOB.player_list)
 			if(isobserver(M) || is_servant_of_ratvar(M))
