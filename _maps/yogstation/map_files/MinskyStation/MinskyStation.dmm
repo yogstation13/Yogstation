@@ -42550,9 +42550,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel/white/side,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bHP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -49020,9 +49018,7 @@
 /area/medical/genetics/cloning)
 "bTY" = (
 /turf/closed/wall,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bTZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -50959,9 +50955,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bXo" = (
 /obj/structure/cable{
 	icon_state = "1-2";
@@ -50989,18 +50983,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bXr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bXs" = (
 /obj/structure/chair/office/light,
 /obj/effect/turf_decal/tile/blue{
@@ -51021,9 +51011,7 @@
 	safe = 0
 	},
 /turf/open/floor/plating,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bXu" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/chef_recipes,
@@ -51883,9 +51871,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bYY" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1;
@@ -51902,18 +51888,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bZa" = (
 /obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bZb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -51935,9 +51917,7 @@
 	req_access_txt = "67"
 	},
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "bZd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -52668,9 +52648,7 @@
 /area/medical/psych)
 "cay" = (
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "caz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -54837,17 +54815,13 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "ceo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
 /turf/closed/wall,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cep" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Maintenance Access";
@@ -55568,9 +55542,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 9
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cfR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -55621,9 +55593,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cfX" = (
 /obj/structure/cable{
 	icon_state = "2-4";
@@ -55651,9 +55621,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/maintenance/starboard/aft)
 "cga" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -55706,9 +55674,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cgg" = (
 /obj/structure/table/reinforced,
 /obj/item/wallframe/camera,
@@ -55832,9 +55798,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 5
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cgn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/disposalpipe/junction{
@@ -56393,9 +56357,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "chj" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8;
@@ -59094,9 +59056,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cmk" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -61402,9 +61362,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cqQ" = (
 /obj/effect/mob_spawn/human/skeleton,
 /obj/item/hemostat,
@@ -61666,9 +61624,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white/side,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "crs" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -61810,9 +61766,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white/side,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "crF" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -62091,9 +62045,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 6
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "csh" = (
 /obj/machinery/computer/rdconsole/core,
 /obj/effect/turf_decal/bot_white,
@@ -64562,9 +64514,7 @@
 	},
 /obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cxi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -65632,9 +65582,7 @@
 	},
 /obj/effect/landmark/start/yogs/paramedic,
 /turf/open/floor/plasteel/white,
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "czI" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -76757,9 +76705,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cWt" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics{
@@ -76860,9 +76806,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cWG" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/brown{
@@ -76955,9 +76899,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "cWQ" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -78638,9 +78580,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/storage/emergency{
-	name = "Paramedic Staging Area"
-	})
+/area/medical/paramedic)
 "daf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
