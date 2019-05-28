@@ -51541,6 +51541,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/tcommsat/entrance)
+"cuO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "cva" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
@@ -53187,6 +53193,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/medical/virology)
+"dTf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "dWy" = (
 /obj/structure/spacepoddoor,
 /turf/open/floor/engine,
@@ -56045,12 +56057,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
-"pEy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/space)
 "pGe" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -58163,12 +58169,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/clerk)
-"xVE" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/space)
 "xWi" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -73039,8 +73039,8 @@ beO
 beO
 beO
 qdN
-xVE
-xVE
+dTf
+dTf
 aaa
 aaa
 aaa
@@ -73553,8 +73553,8 @@ beO
 bja
 bja
 aaa
-pEy
-pEy
+cuO
+cuO
 qdN
 aaa
 aaa
