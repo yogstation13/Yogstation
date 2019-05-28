@@ -51618,6 +51618,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/tcommsat/entrance)
+"cuO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "cva" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
@@ -53259,6 +53265,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/medical/virology)
+"dTf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "dWy" = (
 /obj/structure/spacepoddoor,
 /turf/open/floor/engine,
@@ -72793,7 +72805,7 @@ aaa
 qdN
 qdN
 qdN
-aaa
+qdN
 aaa
 aaa
 aaa
@@ -73050,8 +73062,8 @@ beO
 beO
 beO
 qdN
-qdN
-aaa
+dTf
+dTf
 aaa
 aaa
 aaa
@@ -73307,8 +73319,8 @@ bhr
 blS
 bnv
 aaa
-qdN
-qdN
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73564,8 +73576,8 @@ beO
 bja
 bja
 aaa
-aaa
-aAe
+cuO
+cuO
 qdN
 aaa
 aaa
