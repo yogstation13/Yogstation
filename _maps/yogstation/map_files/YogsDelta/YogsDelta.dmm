@@ -60527,9 +60527,6 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bOO" = (
-/obj/machinery/computer/telecomms/monitor{
-	dir = 8
-	},
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
@@ -60542,6 +60539,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/computer/telecomms/traffic{
+	dir = 8;
+	network = "tcommsat"
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
