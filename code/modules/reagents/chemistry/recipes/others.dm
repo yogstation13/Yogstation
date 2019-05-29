@@ -601,3 +601,9 @@
 	id = "pax"
 	results = list("pax" = 3)
 	required_reagents  = list("mindbreaker" = 1, "synaptizine" = 1, "water" = 1)
+	
+	/datum/chemical_reaction/godblood
+	name = "Godblood"
+	id = "godblood"
+	results = list("godblood" = 2)
+	required_reagents = list("earthsblood" = 1, "omnizine" = 1)
