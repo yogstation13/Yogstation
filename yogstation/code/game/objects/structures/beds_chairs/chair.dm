@@ -18,3 +18,6 @@
 	hitsound = 'sound/items/bikehorn.ogg'
 	origin_type = /obj/structure/chair/bananium
 	materials = null
+
+/obj/structure/chair/comfy/purple
+	color = rgb(186,85,211)
