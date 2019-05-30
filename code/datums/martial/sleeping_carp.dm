@@ -11,29 +11,30 @@
 	no_guns = TRUE
 	allow_temp_override = FALSE
 	help_verb = /mob/living/carbon/human/proc/sleeping_carp_help
+	var/old_grab_state = null
 
 /datum/martial_art/the_sleeping_carp/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak,WRIST_WRENCH_COMBO))
 		streak = ""
 		wristWrench(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,BACK_KICK_COMBO))
 		streak = ""
 		backKick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,STOMACH_KNEE_COMBO))
 		streak = ""
 		kneeStomach(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,HEAD_KICK_COMBO))
 		streak = ""
 		headKick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,ELBOW_DROP_COMBO))
 		streak = ""
 		elbowDrop(A,D)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/wristWrench(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D.stat && !D.IsStun() && !D.IsParalyzed())
@@ -45,6 +46,7 @@
 		D.dropItemToGround(D.get_active_held_item())
 		D.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		D.Stun(60)
+<<<<<<< HEAD
 		return 1
 	log_combat(A, D, "wrist wrenched (Sleeping Carp)")
 	return basic_hit(A,D)
@@ -59,6 +61,27 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
 	log_combat(A, D, "back-kicked (Sleeping Carp)")
+=======
+		return TRUE
+	
+	return basic_hit(A,D)
+
+/datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!D.stat && !D.IsParalyzed())
+		if(A.dir == D.dir)
+			log_combat(A, D, "back-kicked (Sleeping Carp)")
+			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+			D.visible_message("<span class='warning'>[A] kicks [D] in the back!</span>", \
+								"<span class='userdanger'>[A] kicks you in the back, making you stumble and fall!</span>")
+			step_to(D,get_step(D,D.dir),1)
+			D.Paralyze(80)
+			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
+			return TRUE
+		else
+			log_combat(A, D, "missed a back-kick (Sleeping Carp) on")
+			D.visible_message("<span class='warning'>[A] tries to kick [D] in the back, but misses!</span>", \
+								"<span class='userdanger'>[A] tries to kick you in the back, but misses!</span>")
+>>>>>>> f8423cf0a7... CQC and Sleeping carp fix (#44084)
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/kneeStomach(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -70,8 +93,12 @@
 		D.losebreath += 3
 		D.Stun(40)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
+<<<<<<< HEAD
 		return 1
 	log_combat(A, D, "stomach kneed (Sleeping Carp)")
+=======
+		return TRUE
+>>>>>>> f8423cf0a7... CQC and Sleeping carp fix (#44084)
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/headKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -83,8 +110,12 @@
 		D.drop_all_held_items()
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
+<<<<<<< HEAD
 		return 1
 	log_combat(A, D, "head kicked (Sleeping Carp)")
+=======
+		return TRUE
+>>>>>>> f8423cf0a7... CQC and Sleeping carp fix (#44084)
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -96,6 +127,7 @@
 			D.death() //FINISH HIM!
 		D.apply_damage(50, A.dna.species.attack_type, BODY_ZONE_CHEST)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
+<<<<<<< HEAD
 		return 1
 	log_combat(A, D, "elbow dropped (Sleeping Carp)")
 	return basic_hit(A,D)
@@ -120,11 +152,32 @@
 				log_combat(A, D, "grabbed", addition="passively")
 				A.grab_state = GRAB_PASSIVE
 	return 1
+=======
+		return TRUE
+	return basic_hit(A,D)
+
+/datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(A.a_intent == INTENT_GRAB && A!=D) // A!=D prevents grabbing yourself
+		add_to_streak("G",D)
+		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
+			return TRUE
+		old_grab_state = A.grab_state 
+		D.grabbedby(A, 1)
+		if(old_grab_state == GRAB_PASSIVE)
+			D.drop_all_held_items()
+			A.grab_state = GRAB_AGGRESSIVE //Instant agressive grab if on grab intent
+			log_combat(A, D, "grabbed", addition="aggressively")
+			D.visible_message("<span class='warning'>[A] violently grabs [D]!</span>", \
+								"<span class='userdanger'>[A] violently grabs you!</span>")
+		return TRUE
+	else
+		return FALSE
+>>>>>>> f8423cf0a7... CQC and Sleeping carp fix (#44084)
 
 /datum/martial_art/the_sleeping_carp/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("punches", "kicks", "chops", "hits", "slams")
 	D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
@@ -135,13 +188,13 @@
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
 		D.Paralyze(80)
 	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
-	return 1
+	return TRUE
 
 
 /datum/martial_art/the_sleeping_carp/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	return ..()
 
 /mob/living/carbon/human/proc/sleeping_carp_help()
@@ -230,4 +283,4 @@
 /obj/item/twohanded/bostaff/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(wielded)
 		return ..()
-	return 0
+	return FALSE
