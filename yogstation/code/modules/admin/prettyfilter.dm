@@ -105,6 +105,7 @@ GLOBAL_VAR(lwordregex)
 			return TRUE
 		to_chat(usr,"<span class='notice'>You expend an L-Word Pass!</span>")
 		playsound(usr.loc, "sparks", 50, 1)
+		message_admins("key_name[user] just used an L-Word Pass to say: [text]")
 		qdel(pick(passes))
 		return FALSE
 	
