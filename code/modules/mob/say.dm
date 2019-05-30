@@ -3,14 +3,11 @@
 	set name = "Say"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	if(isnotpretty(message))//yogs start - pretty filter
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
 		return
-	if(isliving(src))
-		message = minor_filter(message) //yogs end - pretty filter
+	message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
@@ -23,9 +20,7 @@
 	set name = "Whisper"
 	set category = "IC"
 
-	var/oldmsg = message //yogs start - pretty filter
-	message = pretty_filter(message)
-	if(oldmsg != message)
+	if(isnotpretty(message))//yogs start - pretty filter
 		to_chat(usr, "<span class='notice'>You fumble over your words. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
 		message_admins("[key_name(usr)] just tripped a pretty filter: '[oldmsg]'.")
 		return
