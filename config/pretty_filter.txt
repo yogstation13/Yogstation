@@ -1,0 +1,25 @@
+# This file contains filters required for replacements in supported speech systems.
+# Each line contains one pattern and one replacement. The patterns used are regular
+# expression patterns. 
+#
+# Examples:
+# 
+# fuck=duck
+# 	This would replace all instances of "fuck" with duck. So "fucking" would become "ducking".
+#
+# fu+ck=duck
+#	This would do the same as above, except it would accept one or more "u". So "fuuuuuck" would become "duck".
+#
+# Activate the ([\S]+?)=use $1
+#	This would match a group, and use it in a pattern. So "Activate the probulator" would become "use probulator".
+# 
+# \b[f]+[u]+\b=fun you
+#	This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
+# Note that you do NOT have to escape these regexes as if they were BYOND strings. They'll be treated properly.
+
+
+#prettyfiltertest=SUCCESS
+
+One day while Andy was masturbating=BAN ME ADMINS!
+
+
