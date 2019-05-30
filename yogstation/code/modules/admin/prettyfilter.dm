@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(pretty_filter_items)
 GLOBAL_LIST_EMPTY(minor_filter_items)
-GLOBAL_VAR_INIT(lwordregex)
+GLOBAL_VAR(lwordregex)
 
 // Append pretty filter items from file to a list
 /proc/setup_pretty_filter(path = "config/pretty_filter.txt")
@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(lwordregex)
 	if(minor)
 		GLOB.minor_filter_items.Add(line)
 	else if(replacement == "lizard")
-		GLOB.lword_regex = pattern
+		GLOB.lwordregex = pattern
 	else
 		GLOB.pretty_filter_items.Add(line)
 	return TRUE
@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(lwordregex)
 		if(!passes.len)
 			return TRUE
 		to_chat(usr,"<span class='notice'>You expend an L-Word Pass!</span>")
-		playsound(src.loc, "sparks", 50, 1)
+		playsound(usr.loc, "sparks", 50, 1)
 		qdel(pick(passes))
 		return FALSE
 	
