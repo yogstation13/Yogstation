@@ -622,6 +622,56 @@
 		var/item = pick(contains)
 		new item(C)
 
+<<<<<<< HEAD
+=======
+/datum/supply_pack/security/armory/swat
+	name = "SWAT Crate"
+	desc = "Contains two fullbody sets of tough, fireproof, pressurized suits designed in a joint effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
+	cost = 6000
+	contains = list(/obj/item/clothing/head/helmet/swat/nanotrasen,
+					/obj/item/clothing/head/helmet/swat/nanotrasen,
+					/obj/item/clothing/suit/space/swat,
+					/obj/item/clothing/suit/space/swat,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/clothing/mask/gas/sechailer/swat,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/storage/belt/military/assault,
+					/obj/item/clothing/gloves/combat,
+					/obj/item/clothing/gloves/combat)
+	crate_name = "swat crate"
+
+/datum/supply_pack/security/armory/wt550_single
+	name = "WT-550 Auto Rifle Single-Pack"
+	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	cost = 2000
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
+	small_item = TRUE
+
+/datum/supply_pack/security/armory/wt550
+	name = "WT-550 Auto Rifle Crate"
+	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	cost = 3500
+	contains = list(/obj/item/gun/ballistic/automatic/wt550,
+					/obj/item/gun/ballistic/automatic/wt550)
+	crate_name = "auto rifle crate"
+
+/datum/supply_pack/security/armory/wt550ammo
+	name = "WT-550 Auto Rifle Ammo Crate"
+	desc = "Contains four 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	cost = 3000
+	contains = list(/obj/item/ammo_box/magazine/wt550m9,
+					/obj/item/ammo_box/magazine/wt550m9,
+					/obj/item/ammo_box/magazine/wt550m9,
+					/obj/item/ammo_box/magazine/wt550m9)
+
+/datum/supply_pack/security/armory/wt550ammo_single
+	name = "WT-550 Auto Rifle Ammo Single-Pack"
+	desc = "Contains a 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
+	contains = list(/obj/item/ammo_box/magazine/wt550m9)
+	small_item = TRUE
+
+>>>>>>> 987f997783... cargo crates fixes n tweaks (#44000)
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -638,11 +688,41 @@
 					/obj/machinery/shieldgen)
 	crate_name = "anti-breach shield projector crate"
 
+<<<<<<< HEAD
+=======
+/datum/supply_pack/engineering/ripley
+	name = "APLU MK-I Crate"
+	desc = "A do-it-yourself kit for building an ALPU MK-I \"Ripley\", designed for lifting and carrying heavy equipment, and other station tasks. Batteries not included."
+	cost = 2000
+	contains = list(/obj/item/mecha_parts/chassis/ripley,
+					/obj/item/mecha_parts/part/ripley_torso,
+					/obj/item/mecha_parts/part/ripley_right_arm,
+					/obj/item/mecha_parts/part/ripley_left_arm,
+					/obj/item/mecha_parts/part/ripley_right_leg,
+					/obj/item/mecha_parts/part/ripley_left_leg,
+					/obj/item/stock_parts/capacitor,
+					/obj/item/stock_parts/scanning_module,
+					/obj/item/circuitboard/mecha/ripley/main,
+					/obj/item/circuitboard/mecha/ripley/peripherals,
+					/obj/item/mecha_parts/mecha_equipment/drill,
+					/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp)
+	crate_name= "APLU MK-I kit"
+
+>>>>>>> 987f997783... cargo crates fixes n tweaks (#44000)
 /datum/supply_pack/engineering/conveyor
 	name = "Conveyor Assembly Crate"
-	desc = "Keep production moving along with six conveyor belts. Conveyor switch included. If you have any questions, check out the enclosed instruction book."
+	desc = "Keep production moving along with fifteen conveyor belts. Conveyor switch included. If you have any questions, check out the enclosed instruction book."
 	cost = 1500
 	contains = list(/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
+					/obj/item/conveyor_construct,
 					/obj/item/conveyor_construct,
 					/obj/item/conveyor_construct,
 					/obj/item/conveyor_construct,
@@ -1204,33 +1284,32 @@
 
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"
-	desc = "Contains seven beakers, syringes, and bodybags. Six morphine bottles, four insulin pills. Two charcoal bottles, epinephrine bottles, antitoxin bottles, and large beakers. Finally, a single roll of medical gauze. German doctor not included."
+	desc = "Contains several medical supplies. German doctor not included."
 	cost = 2000
 	contains = list(/obj/item/reagent_containers/glass/bottle/charcoal,
-					/obj/item/reagent_containers/glass/bottle/charcoal,
-					/obj/item/reagent_containers/glass/bottle/epinephrine,
 					/obj/item/reagent_containers/glass/bottle/epinephrine,
 					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/morphine,
-					/obj/item/reagent_containers/glass/bottle/toxin,
 					/obj/item/reagent_containers/glass/bottle/toxin,
 					/obj/item/reagent_containers/glass/beaker/large,
-					/obj/item/reagent_containers/glass/beaker/large,
-					/obj/item/reagent_containers/pill/insulin,
-					/obj/item/reagent_containers/pill/insulin,
-					/obj/item/reagent_containers/pill/insulin,
 					/obj/item/reagent_containers/pill/insulin,
 					/obj/item/stack/medical/gauze,
 					/obj/item/storage/box/beakers,
 					/obj/item/storage/box/medsprays,
 					/obj/item/storage/box/syringes,
-					/obj/item/storage/box/bodybags)
+					/obj/item/storage/box/bodybags,
+					/obj/item/storage/firstaid/regular,
+					/obj/item/storage/firstaid/o2,
+					/obj/item/storage/firstaid/toxin,
+					/obj/item/storage/firstaid/brute,
+					/obj/item/storage/firstaid/fire,
+					/obj/item/defibrillator/loaded,
+					/obj/item/reagent_containers/blood/OMinus,
+					/obj/item/storage/pill_bottle/mining,
+					/obj/item/reagent_containers/pill/neurine,
+					/obj/item/vending_refill/medical)
 	crate_name = "medical supplies crate"
 
+<<<<<<< HEAD
 /datum/supply_pack/medical/vending
 	name = "Medical Vending Crate"
 	desc = "Contains one NanoMed Plus refill and one wall-mounted NanoMed refill."
@@ -1238,6 +1317,42 @@
 	contains = list(/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/wallmed)
 	crate_name = "medical vending crate"
+=======
+/datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 10)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/firstaidoxygen_single
+	name = "Oxygen Deprivation Kit Single-Pack"
+	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/o2)
+
+/datum/supply_pack/medical/surgery
+	name = "Surgical Supplies Crate"
+	desc = "Do you want to perform surgery, but don't have one of those fancy shmancy degrees? Just get started with this crate containing a medical duffelbag, Sterilizine spray and collapsible roller bed."
+	cost = 3000
+	contains = list(/obj/item/storage/backpack/duffelbag/med/surgery,
+					/obj/item/reagent_containers/medspray/sterilizine,
+					/obj/item/roller)
+	crate_name = "surgical supplies crate"
+
+/datum/supply_pack/medical/firstaidtoxins_single
+	name = "Toxin Treatment Kit Single-Pack"
+	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/toxin)
+
+/datum/supply_pack/medical/salglucanister
+	name = "Heavy-Duty Saline Canister"
+	desc = "Contains a bulk supply of saline-glucose condensed into a single canister that should last several days, with a large pump to fill containers with. Direct injection of saline should be left to medical professionals as the pump is capable of overdosing patients. Requires medbay access to open."
+	cost = 3000
+	access = ACCESS_MEDICAL
+	contains = list(/obj/machinery/iv_drip/saline)
+>>>>>>> 987f997783... cargo crates fixes n tweaks (#44000)
 
 /datum/supply_pack/medical/virus
 	name = "Virus Crate"
@@ -1815,6 +1930,7 @@
 	name = "Hydroponics Vending Machines Refills"
 	desc = "When the clown takes all the banana seeds. Contains a NutriMax refill and an MegaSeed Servitor refill."
 	cost = 2000
+	crate_type = /obj/structure/closet/crate
 	contains = list(/obj/item/vending_refill/hydroseeds,
 					/obj/item/vending_refill/hydronutrients)
 	crate_name = "hydroponics supply crate"
@@ -1940,6 +2056,7 @@
 	desc = "Stop monkeying around! Contains seven monkey cubes. Just add water!"
 	cost = 2000
 	contains = list (/obj/item/storage/box/monkeycubes)
+	crate_type = /obj/structure/closet/crate
 	crate_name = "monkey cube crate"
 
 /datum/supply_pack/critter/pug
@@ -2325,7 +2442,7 @@
 
 /datum/supply_pack/misc/paper
 	name = "Bureaucracy Crate"
-	desc = "High stacks of papers on your desk Are a big problem - make it Pea-sized with these bureaucratic supplies! Contains six pens, some camera film, hand labeler supplies, a paper bin, three folders, two clipboards and two stamps."//that was too forced
+	desc = "High stacks of papers on your desk Are a big problem - make it Pea-sized with these bureaucratic supplies! Contains six pens, some camera film, hand labeler supplies, a paper bin, three folders, a laser pointer, two clipboards and two stamps."//that was too forced
 	cost = 1500
 	contains = list(/obj/structure/filingcabinet/chestdrawer/wheeled,
 					/obj/item/camera_film,
@@ -2345,7 +2462,8 @@
 					/obj/item/clipboard,
 					/obj/item/clipboard,
 					/obj/item/stamp,
-					/obj/item/stamp/denied)
+					/obj/item/stamp/denied,
+					/obj/item/laser_pointer/purple)
 	crate_name = "bureaucracy crate"
 
 /datum/supply_pack/misc/fountainpens
