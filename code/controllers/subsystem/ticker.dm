@@ -117,9 +117,24 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<span class='boldwarning'>Could not load lobby music.</span>") //yogs end
 
 	if(!GLOB.syndicate_code_phrase)
+<<<<<<< HEAD
 		GLOB.syndicate_code_phrase	= generate_code_phrase()
+=======
+		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
+
+		var/codewords = jointext(GLOB.syndicate_code_phrase, "|")
+		var/regex/codeword_match = new("([codewords])", "ig")
+
+		GLOB.syndicate_code_phrase_regex = codeword_match
+
+>>>>>>> f66769a113... Show codewords on round end screen (#44168)
 	if(!GLOB.syndicate_code_response)
 		GLOB.syndicate_code_response = generate_code_phrase()
+
+		var/codewords = jointext(GLOB.syndicate_code_response, "|")
+		var/regex/codeword_match = new("([codewords])", "ig")
+
+		GLOB.syndicate_code_response_regex = codeword_match
 
 	start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 	if(CONFIG_GET(flag/randomize_shift_time))
