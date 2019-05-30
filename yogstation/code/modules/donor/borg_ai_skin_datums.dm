@@ -234,7 +234,11 @@
 	owner = null
 	module_locked = "Security"
 
-
+/datum/borg_skin/police
+	name = "Officer borgsky"
+	icon_state = "policeborg"
+	owner = null
+	module_locked = "Security"
 
 //Begin AI skins://
 /* These follow the same format as borg skins*/
