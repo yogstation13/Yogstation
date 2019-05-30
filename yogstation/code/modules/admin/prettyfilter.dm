@@ -1,5 +1,6 @@
 GLOBAL_LIST_EMPTY(pretty_filter_items)
 GLOBAL_LIST_EMPTY(minor_filter_items)
+GLOBAL_VAR_INIT(lwordregex)
 
 // Append pretty filter items from file to a list
 /proc/setup_pretty_filter(path = "config/pretty_filter.txt")
@@ -40,6 +41,8 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 		return FALSE
 	if(minor)
 		GLOB.minor_filter_items.Add(line)
+	else if(replacement == "lizard")
+		GLOB.lword_regex = pattern
 	else
 		GLOB.pretty_filter_items.Add(line)
 	return TRUE
@@ -84,12 +87,26 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 
 /proc/isnotpretty(var/text) // A simpler version of pretty_filter(), where all it returns is whether it had to replace something or not.
 	//Useful for the "You fumble your words..." business.
+	
 	for(var/line in GLOB.pretty_filter_items)
 		var/list/parts = splittext(line, "=")
 		var/pattern = parts[1]
 		var/regex/R = new(pattern, "ig")
 		if(R.Find(text)) //If found
 			return TRUE // Yes, it isn't pretty.
+	//Now, for the L-word
+	var/regex/R = new(GLOB.lwordregex,"ig")
+	if(R.Find(text))
+		if(!usr || !isliving(usr))
+			return TRUE
+		var/list/passes = usr.GetAllContents(/obj/item/card/lword_pass)
+		if(!passes.len)
+			return TRUE
+		to_chat(usr,"<span class='notice'>You expend an L-Word Pass!</span>")
+		playsound(src.loc, "sparks", 50, 1)
+		qdel(pick(passes))
+		return FALSE
+	
 	return FALSE // No, it is pretty.
 
 //Filter out and replace unwanted but not important words, like WTF or LOL

@@ -66,15 +66,6 @@
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
 
-/obj/item/card/emag/emag_act(mob/user)
-	var/otherEmag = user.get_active_held_item()
-	if(!otherEmag)
-		return
-	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
-	playsound(src.loc, "sparks", 50, 1)
-	qdel(otherEmag)
-	qdel(src)
-
 /obj/item/card/id/gasclerk
 	name = "Clerk"
 	desc = "A employee ID used to access areas around the gastation."
@@ -83,3 +74,25 @@
 /obj/item/card/id/gasclerk/New()
 	..()
 	registered_account = new("Clerk", FALSE)
+
+/obj/item/card/emag/emag_act(mob/user) // Allows emags to emag emags. RIP Morrow
+	var/otherEmag = user.get_active_held_item()
+	if(!otherEmag)
+		return
+	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
+	playsound(src.loc, "sparks", 50, 1)
+	qdel(otherEmag)
+	qdel(src)
+
+/obj/item/card/lword_pass
+	name = "\improper L-word pass"
+	desc = "A card that allows its user to say the L-word. The small print notifies you that it is single-use."
+	icon_state = "id"
+	item_state = "card-id"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/card/lword_pass/attack_self(mob/user)
+	if(Adjacent(user))
+		user.visible_message("<span class='notice'>[user] shows you [user.p_their()] [src.name].</span>", "<span class='notice'>You show \the [src.name].</span>")
+	add_fingerprint(user)
