@@ -82,7 +82,8 @@ GLOBAL_VAR(lwordregex)
 
 		var/regex/R = new(pattern, "ig")
 		text = R.Replace(text, replacement)
-
+	var/regex/R = new(GLOB.lwordregex,"ig")
+	text = R.Replace(text,"BAN ME ADMINS!")
 	return text
 
 /proc/isnotpretty(var/text) // A simpler version of pretty_filter(), where all it returns is whether it had to replace something or not.
