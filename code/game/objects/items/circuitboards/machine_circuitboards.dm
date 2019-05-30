@@ -254,7 +254,13 @@
 		/obj/machinery/vending/cart = "PTech",
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
+<<<<<<< HEAD
 		/obj/machinery/vending/sovietsoda = "BODA")
+=======
+		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections")
+>>>>>>> 398270bca2... Merge pull request #44177 from Tlaltecuhtli/patch-32
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
