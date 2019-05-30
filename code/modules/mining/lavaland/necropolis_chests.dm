@@ -457,7 +457,7 @@
 
 /obj/item/immortality_talisman/Initialize()
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE)
+	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
 
 /datum/action/item_action/immortality
 	name = "Immortality"
