@@ -16,45 +16,11 @@
 "ae" = (
 /turf/closed/wall,
 /area/ruin/powered/spacebar)
-/area/ruin/unpowered)
-"af" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"ag" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dispensable_reagents = list("beer","kahlua","whiskey","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","absinthe","hcider","creme_de_menthe","creme_de_cacao","triple_sec","sake","ethanol","iron","minttoxin","atomicbomb","fernet");
-	emagged_reagents = null;
-	name = "Exotic booze dispenser"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered{
-	dynamic_lighting = 0;
-	name = "Space Bar"
-	})
 "ah" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/spacebar)
-/area/ruin/powered{
-	dynamic_lighting = 0;
-	name = "Space Bar"
-	})
-"ai" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","pwr_game","shamblers","sugar","orangejuice","grenadine","limejuice","tomatojuice","lemonjuice","menthol","thirteenloko","whiskeycola","mindbreaker","tirizene");
-	emagged_reagents = null;
-	name = "Exotic soda dispenser"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered{
-	dynamic_lighting = 0;
-	name = "Space Bar"
-	})
 "aj" = (
 /turf/closed/wall/mineral/titanium,
 /area/ruin/powered/spacebar)
@@ -83,7 +49,7 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dispensable_reagents = list("beer","kahlua","whiskey","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","absinthe","hcider","creme_de_menthe","creme_de_cacao","triple_sec","sake","ethanol","iron","minttoxin","atomicbomb","fernet");
 	emagged_reagents = null;
-	name = "\"exotic\"booze dispenser"
+	name = "Exotic booze dispenser"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
@@ -92,14 +58,10 @@
 /obj/machinery/chem_dispenser/drinks{
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","pwr_game","shamblers","sugar","orangejuice","grenadine","limejuice","tomatojuice","lemonjuice","menthol","thirteenloko","whiskeycola","mindbreaker","tirizene");
 	emagged_reagents = null;
-	name = "\"exotic\" soda dispenser"
+	name = "Exotic soda dispenser"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
-/area/ruin/powered{
-	dynamic_lighting = 0;
-	name = "Space Bar"
-	})
 "ar" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -1448,8 +1410,6 @@ ac
 ab
 ae
 ap
-am
-ag
 aw
 aE
 aL
@@ -1492,8 +1452,6 @@ ac
 ac
 ae
 aq
-am
-ai
 aw
 aw
 aM
