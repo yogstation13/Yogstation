@@ -35,6 +35,8 @@
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_verygood)
 				if (DRINK_FANTASTIC)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_fantastic)
+				if (FOOD_AMAZING)
+					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_food", /datum/mood_event/amazingtaste)
 	return ..()
 
 /datum/reagent/consumable/nutriment
@@ -709,3 +711,33 @@
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
+<<<<<<< HEAD
+=======
+
+/datum/reagent/consumable/astrotame
+	name = "Astrotame"
+	description = "A space age artifical sweetener."
+	nutriment_factor = 0
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+	reagent_state = SOLID
+	color = "#FFFFFF" // rgb: 255, 255, 255
+	taste_mult = 8
+	taste_description = "sweetness"
+	overdose_threshold = 17
+
+/datum/reagent/consumable/astrotame/overdose_process(mob/living/carbon/M)
+	if(M.disgust < 80)
+		M.adjust_disgust(10)
+	..()
+	. = 1
+
+/datum/reagent/consumable/secretsauce
+	name = "secret sauce"
+	description = "What could it be."
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	color = "#792300"
+	taste_description = "indescribable"
+	quality = FOOD_AMAZING
+	taste_mult = 100
+	can_synth = FALSE
+>>>>>>> d8078e1452... Adds system for randomized semi-persistent chem reactions. (#44094)
