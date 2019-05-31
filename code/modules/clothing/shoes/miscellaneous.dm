@@ -182,7 +182,7 @@
 
 /obj/item/clothing/shoes/cult/alt/ghost/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
+	add_trait(TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/shoes/cyborg
 	name = "cyborg boots"
