@@ -47,6 +47,12 @@
 			to_chat(user, "<span class='warning'>Our legs are really starting to hurt...</span>")
 
 		sleep(40)
+		
+//yogs start - removes speed buff when not active
+	while(!active)
+		user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)
+		break
+//yogs end
 
 	while(!active && stacks) //Damage stacks decrease fairly rapidly while not in sanic mode
 		stacks--

@@ -110,8 +110,11 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
 		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
-			if(!((possible_target.current.client.prefs.toggles & QUIET_ROUND) && !possible_target.antag_datums.len))//Yogs -- Fixes Quiet Rounds (the second bit allows quiet rounders chosen to be antags, to be targetted)
+			//yogs start -- Quiet Rounds
+			var/mob/living/carbon/human/guy = possible_target.current
+			if( possible_target.antag_datums || !(guy.client && (guy.client.prefs.toggles & QUIET_ROUND)))
 				possible_targets += possible_target//yogs indent
+			//yogs end
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
 		for(var/I in all_possible_targets)

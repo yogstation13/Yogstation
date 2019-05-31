@@ -105,3 +105,13 @@
 		qdel(A)
 		return
 	. = ..()
+
+/datum/component/storage/concrete/trashbag/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
+	..() // Actually sets the default return value
+	var/atom/real_location = real_location()
+	var/sum_w_class = I.w_class
+	for(var/obj/item/_I in real_location)
+		sum_w_class += _I.w_class //Adds up the combined w_classes
+	if((real_location.contents.len / max_items > 0.95 || sum_w_class / max_combined_w_class > 0.95) && !rand(0,124))
+		var/obj/item/storage/bag/trash/devito = parent
+		devito.snap(M)
