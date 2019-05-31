@@ -59,6 +59,7 @@
 			var/viruslist = "" // yogs - adds viruslist variable
 			if(reagents)
 				for(var/datum/reagent/A in src.reagents.reagent_list)
+<<<<<<< HEAD
 					R += A.id + " ("
 					R += num2text(A.volume) + "),"
 // yogs start - checks blood for disease
@@ -73,6 +74,10 @@
 									viruslist += "[S.name] "
 								viruslist += "\]"
 // yogs end
+=======
+					R += "[A] ([num2text(A.volume)]),"
+
+>>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 			log_combat(user, M, "squirted", R)
 
 // yogs start - Adds logs if it is viruslist

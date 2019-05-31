@@ -46,7 +46,11 @@
 		return
 
 	// No decay if formaldehyde in corpse or when the corpse is charred
+<<<<<<< HEAD
 	if(C.reagents.has_reagent("formaldehyde", 15) || C.has_trait(TRAIT_HUSK))
+=======
+	if(C.reagents.has_reagent(/datum/reagent/toxin/formaldehyde, 15) || HAS_TRAIT(C, TRAIT_HUSK))
+>>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 		return
 
 	// Also no decay if corpse chilled or not organic/undead

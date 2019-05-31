@@ -56,7 +56,11 @@ SUBSYSTEM_DEF(economy)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
+<<<<<<< HEAD
 	boring_eng_payout()  // Payout based on integrity.
+=======
+	boring_eng_payout()  // Payout based on nothing. What will replace it? Surplus power, powered APC's, air alarms? Who knows.
+>>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	boring_sci_payout() // Payout based on slimes.
 	boring_secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	boring_civ_payout() // Payout based on ??? Profit
