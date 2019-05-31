@@ -267,7 +267,7 @@ em						{font-style: normal;	font-weight: bold;}
 .looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
 
 .adminsay   			{color: #996600;	font-weight: bold;} /*yogs - changes asay colour back*/
-.admin					{color: #386aff;	font-weight: bold;}
+.admin					{color: #4473ff;	font-weight: bold;}
 
 .name					{					font-weight: bold;}
 
@@ -436,3 +436,32 @@ h1.alert, h2.alert		{color: #000000;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
+
+/* yogs start -- tickets */
+.ticket-status {
+	color: #000099;
+	font-weight: bold;
+}
+.ticket-text-sent {
+	color: #47beff;
+	font-weight: bold;
+}
+.ticket-text-received {
+	color: #ff0000;
+	font-weight: bold;
+}
+.ticket-text-monitored {
+	color: #ff00ff;
+	font-weight: bold;
+}
+.ticket-header-recieved {
+	color: #ff0000;
+	font-weight: bold;
+	font-size: 15px;
+}
+.ticket-admin-reply {
+	color: #ff0000;
+	font-weight: bold;
+	font-style: italic;
+}
+/* yogs end */

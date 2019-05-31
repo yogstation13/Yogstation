@@ -28,29 +28,30 @@
 	if (QDELETED(src))
 		return 0
 
-	if(.) //not dead
-		handle_active_genes()
+	if(!IsInStasis())
+		if(.) //not dead
+			handle_active_genes()
 
-	if(stat != DEAD)
-		//heart attack stuff
-		handle_heart()
+		if(stat != DEAD)
+			//heart attack stuff
+			handle_heart()
 
-	if(stat != DEAD)
-		//Stuff jammed in your limbs hurts
-		handle_embedded_objects()
-		
-	//yogs start - bandage memes
-	if(stat != DEAD)
-		handle_bandaged_limbs()
-	//yogs end
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
 
-	if(stat != DEAD)
-		handle_hygiene()
+		if(stat != DEAD)
+			handle_hygiene()
+
+		dna.species.spec_life(src) // for mutantraces
+
+		//yogs start - bandage memes
+		if(stat != DEAD)
+			handle_bandaged_limbs()
+		//yogs end
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
-
-	dna.species.spec_life(src) // for mutantraces
 
 	if(stat != DEAD)
 		return 1

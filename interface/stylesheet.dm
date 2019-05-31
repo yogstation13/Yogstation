@@ -195,7 +195,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 }
 .ticket-text-sent {
-	color: #000099;
+	color: #47beff;
 	font-weight: bold;
 }
 .ticket-text-received {
