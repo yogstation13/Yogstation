@@ -23,7 +23,7 @@
 	canSmoothWith = list(/turf/open/floor/carpet/green)
 
 /turf/open/floor/plasteel/stairs/goon/stairs
-	icon = 'yogstation/goon/icons/turfs/floors.dmi
+	icon = 'yogstation/goon/icons/turfs/floors.dmi'
 	icon_state = 'stairs_alone'
 
 /turf/open/floor/plasteel/stairs/goon/stairs/wide
