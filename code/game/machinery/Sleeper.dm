@@ -160,7 +160,11 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
+<<<<<<< HEAD
 		data["chems"] += list(list("name" = R.name, "id" = R.id, "allowed" = chem_allowed(chem)))
+=======
+		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem)))
+>>>>>>> a21e686123... Fixes datum icecreams, improves admin reagent interface (#44242)
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -207,8 +211,8 @@
 				open_machine()
 			. = TRUE
 		if("inject")
-			var/chem = params["chem"]
-			if(!is_operational() || !mob_occupant)
+			var/chem = text2path(params["chem"])
+			if(!is_operational() || !mob_occupant || isnull(chem))
 				return
 			if(mob_occupant.health < min_health && chem != "epinephrine")
 				return
