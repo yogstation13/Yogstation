@@ -40,6 +40,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/max_count = 0 //The biggest it got before death
 	var/blobwincount = 400
 	var/victory_in_progress = FALSE
+	var/rerolling = FALSE
 
 /mob/camera/blob/Initialize(mapload, starting_points = 60)
 	validate_location()
@@ -51,9 +52,15 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = new_name
 	real_name = new_name
 	last_attack = world.time
+<<<<<<< HEAD:code/modules/antagonists/blob/blob/overmind.dm
 	var/datum/reagent/blob/BC = pick((subtypesof(/datum/reagent/blob)))
 	blob_reagent_datum = new BC
 	color = blob_reagent_datum.complementary_color
+=======
+	var/datum/blobstrain/BS = pick(GLOB.valid_blobstrains)
+	set_strain(BS)
+	color = blobstrain.complementary_color
+>>>>>>> 806e7ff66c... Merge pull request #44209 from vuonojenmustaturska/blobrerolls:code/modules/antagonists/blob/overmind.dm
 	if(blob_core)
 		blob_core.update_icon()
 	SSshuttle.registerHostileEnvironment(src)
@@ -70,6 +77,22 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	if(!T)
 		CRASH("No blobspawnpoints and blob spawned in nullspace.")
 	forceMove(T)
+
+/mob/camera/blob/proc/set_strain(datum/blobstrain/new_strain)
+	if (ispath(new_strain))
+		var/hadstrain = FALSE
+		if (istype(blobstrain))
+			blobstrain.on_lose()
+			qdel(blobstrain)
+			hadstrain = TRUE
+		blobstrain = new new_strain(src)
+		blobstrain.on_gain()
+		if (hadstrain)
+			to_chat(src, "Your strain is now: <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font>!")
+			to_chat(src, "The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.description]")
+			if(blobstrain.effectdesc)
+				to_chat(src, "The <b><font color=\"[blobstrain.color]\">[blobstrain.name]</b></font> strain [blobstrain.effectdesc]")
+
 
 /mob/camera/blob/proc/is_valid_turf(turf/T)
 	var/area/A = get_area(T)

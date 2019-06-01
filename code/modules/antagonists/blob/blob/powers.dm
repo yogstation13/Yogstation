@@ -337,6 +337,7 @@
 
 /mob/camera/blob/verb/chemical_reroll()
 	set category = "Blob"
+<<<<<<< HEAD:code/modules/antagonists/blob/blob/powers.dm
 	set name = "Reactive Chemical Adaptation (40)"
 	set desc = "Replaces your chemical with a random, different one."
 	if(free_chem_rerolls || can_buy(40))
@@ -361,6 +362,29 @@
 	to_chat(src, "The <b><font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</b></font> reagent [blob_reagent_datum.description]")
 	if(blob_reagent_datum.effectdesc)
 		to_chat(src, "The <b><font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</b></font> reagent [blob_reagent_datum.effectdesc]")
+=======
+	set name = "Reactive Strain Adaptation (40)"
+	set desc = "Replaces your strain with a random, different one."
+	if(!rerolling && (free_strain_rerolls || can_buy(40)))
+		rerolling = TRUE
+		reroll_strain()
+		rerolling = FALSE
+		if(free_strain_rerolls)
+			free_strain_rerolls--
+		last_reroll_time = world.time
+
+/mob/camera/blob/proc/reroll_strain()
+	var/list/choices = list()
+	while (length(choices) < 4)
+		var/datum/blobstrain/bs = pick((GLOB.valid_blobstrains))
+		choices[initial(bs.name)] = bs
+
+	var/choice = input(usr, "Please choose a new strain","Strain") as anything in choices
+	if (choice && choices[choice] && !QDELETED(src))
+		var/datum/blobstrain/bs = choices[choice]
+		set_strain(bs)
+
+>>>>>>> 806e7ff66c... Merge pull request #44209 from vuonojenmustaturska/blobrerolls:code/modules/antagonists/blob/powers.dm
 
 /mob/camera/blob/verb/blob_help()
 	set category = "Blob"
