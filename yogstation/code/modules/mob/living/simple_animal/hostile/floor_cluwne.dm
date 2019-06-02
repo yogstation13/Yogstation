@@ -80,7 +80,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/Life()
 	do_jitter_animation(1000)
 	pixel_y = 8
-	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a macro
+	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a funky macro
 	if(is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(z))
 		var/area = pick(GLOB.teleportlocs)
 		var/area/tp = GLOB.teleportlocs[area]
@@ -100,7 +100,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 	var/turf/T = get_turf(current_victim)
 	if(prob(5))//checks roughly every 20 ticks
-		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(get_area(T), invalid_area_typecache) || !is_station_level(current_victim.z))
+		var/area/A = get_area(T) // Has to be separated from the below since is_type_in_typecache is also a funky macro
+		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(current_victim.z))
 			if(!Found_You())
 				Acquire_Victim()
 
