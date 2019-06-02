@@ -124,13 +124,9 @@ if failed_cache_read and os.path.isfile(args.targetFile):
                     newdat = {changeT['class'][0] + '': val + ''}
                     if newdat not in changes:
                         changes += [newdat]
-<<<<<<< HEAD
-                
-                if changes:
-=======
 
                 if len(changes) > 0:
->>>>>>> 5c6e7a5845... PR to make travis use xenial and to make it work (#44079)
+
                     entry[author] = changes
             if date in all_changelog_entries:
                 all_changelog_entries[date].update(entry)
