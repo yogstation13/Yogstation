@@ -261,8 +261,13 @@
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 		else //Smart spread
 			sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
+<<<<<<< HEAD
 
 		if(!chambered.fire_casing(target, user, params, ,suppressed, zone_override, sprd))
+=======
+		before_firing(target,user)
+		if(!chambered.fire_casing(target, user, params, ,suppressed, zone_override, sprd, src))
+>>>>>>> 03f7432511... New RPGLoot Affixes + Component Additions (#44188)
 			shoot_with_empty_chamber(user)
 			firing_burst = FALSE
 			return FALSE
@@ -307,7 +312,12 @@
 					to_chat(user, "<span class='notice'> [src] is lethally chambered! You don't want to risk harming anyone...</span>")
 					return
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
+<<<<<<< HEAD
 			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd))
+=======
+			before_firing(target,user)
+			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, src))
+>>>>>>> 03f7432511... New RPGLoot Affixes + Component Additions (#44188)
 				shoot_with_empty_chamber(user)
 				return
 			else
