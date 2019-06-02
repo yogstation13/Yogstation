@@ -57,7 +57,7 @@ Bonus
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(3)
-			M.remove_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+			REMOVE_TRAIT(M, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(4)
 			ADD_TRAIT(M, TRAIT_NOBREATH, DISEASE_TRAIT)
 	return TRUE
@@ -66,4 +66,4 @@ Bonus
 	if(!..())
 		return
 	if(A.stage >= 4)
-		A.affected_mob.remove_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+		REMOVE_TRAIT(A.affected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)

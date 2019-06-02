@@ -37,5 +37,5 @@
 
 /datum/bioware/hooked_ligaments/on_lose()
 	..()
-	owner.remove_trait(TRAIT_LIMBATTACHMENT, "ligament_hook")
-	owner.remove_trait(TRAIT_EASYDISMEMBER, "ligament_hook")
+	REMOVE_TRAIT(owner, TRAIT_LIMBATTACHMENT, "ligament_hook")
+	REMOVE_TRAIT(owner, TRAIT_EASYDISMEMBER, "ligament_hook")

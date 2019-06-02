@@ -186,7 +186,7 @@
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, id)
 
 /datum/reagent/toxin/ghoulpowder/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_FAKEDEATH, id)
+	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, id)
 	..()
 
 /datum/reagent/toxin/ghoulpowder/on_mob_life(mob/living/carbon/M)
@@ -903,7 +903,7 @@
 	ADD_TRAIT(L, TRAIT_EMOTEMUTE, id)
 
 /datum/reagent/toxin/mimesbane/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_EMOTEMUTE, id)
+	REMOVE_TRAIT(L, TRAIT_EMOTEMUTE, id)
 
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
 	name = "Bone Hurting Juice"

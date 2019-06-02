@@ -27,7 +27,7 @@
 	..()
 
 /datum/brain_trauma/special/godwoken/on_lose()
-	owner.remove_trait(TRAIT_HOLY, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_HOLY, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/godwoken/proc/speak(type, include_owner = FALSE)
@@ -156,8 +156,8 @@
 	..()
 
 /datum/brain_trauma/special/tenacity/on_lose()
-	owner.remove_trait(TRAIT_NOSOFTCRIT, TRAUMA_TRAIT)
-	owner.remove_trait(TRAIT_NOHARDCRIT, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOSOFTCRIT, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOHARDCRIT, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/special/death_whispers
@@ -184,7 +184,7 @@
 	addtimer(CALLBACK(src, .proc/cease_whispering), rand(50, 300))
 
 /datum/brain_trauma/special/death_whispers/proc/cease_whispering()
-	owner.remove_trait(TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
 	active = FALSE
 
 /datum/brain_trauma/special/beepsky

@@ -206,7 +206,7 @@
 
 /obj/item/clothing/glasses/sunglasses/reagent/dropped(mob/user)
 	. = ..()
-	user.remove_trait(TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
 
 /obj/item/clothing/glasses/sunglasses/garb
 	name = "black gar glasses"

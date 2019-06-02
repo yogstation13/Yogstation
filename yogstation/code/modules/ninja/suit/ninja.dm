@@ -77,7 +77,7 @@
 /obj/item/clothing/suit/space/space_ninja/unlock_suit()
 	.=..()
 	if(n_mask)
-		n_mask.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		REMOVE_TRAIT(n_mask, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_mask.lights_on = FALSE
 
 	if(n_shoes)

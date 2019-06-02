@@ -143,7 +143,7 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
@@ -159,7 +159,7 @@
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
 	if(M.bodytemperature < T0C)
 		M.adjustCloneLoss(0.00006 * (M.bodytemperature ** 2) - 6, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
 	..()
@@ -189,7 +189,7 @@
 		M.adjustFireLoss(-1.5 * power, 0)
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	..()
 
@@ -205,7 +205,7 @@
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
 	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
-	M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 	. = 1
 
@@ -799,7 +799,7 @@
 	ADD_TRAIT(M, TRAIT_NOCRITDAMAGE, id)
 
 /datum/reagent/medicine/epinephrine/on_mob_delete(mob/living/carbon/M)
-	M.remove_trait(TRAIT_NOCRITDAMAGE, id)
+	REMOVE_TRAIT(M, TRAIT_NOCRITDAMAGE, id)
 	..()
 
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/carbon/M)
@@ -1247,7 +1247,7 @@
 	ADD_TRAIT(M, TRAIT_STABLEHEART, id)
 
 /datum/reagent/medicine/corazone/on_mob_delete(mob/living/M)
-	M.remove_trait(TRAIT_STABLEHEART, id)
+	REMOVE_TRAIT(M, TRAIT_STABLEHEART, id)
 	..()
 
 /datum/reagent/medicine/muscle_stimulant
@@ -1279,7 +1279,7 @@
 	..()
 
 /datum/reagent/medicine/modafinil/on_mob_delete(mob/living/M)
-	M.remove_trait(TRAIT_SLEEPIMMUNE, id)
+	REMOVE_TRAIT(M, TRAIT_SLEEPIMMUNE, id)
 	..()
 
 /datum/reagent/medicine/modafinil/on_mob_life(mob/living/carbon/M)
@@ -1342,7 +1342,7 @@
 	ADD_TRAIT(L, TRAIT_FEARLESS, id)
 
 /datum/reagent/medicine/psicodine/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_FEARLESS, id)
+	REMOVE_TRAIT(L, TRAIT_FEARLESS, id)
 	..()
 
 /datum/reagent/medicine/psicodine/on_mob_life(mob/living/carbon/M)

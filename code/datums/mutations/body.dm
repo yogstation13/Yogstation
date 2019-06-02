@@ -120,7 +120,7 @@
 /datum/mutation/human/clumsy/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
+	REMOVE_TRAIT(owner, TRAIT_CLUMSY, GENETIC_MUTATION)
 
 
 //Tourettes causes you to randomly stand in place and shout.
@@ -162,7 +162,7 @@
 /datum/mutation/human/deaf/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_DEAF, GENETIC_MUTATION)
+	REMOVE_TRAIT(owner, TRAIT_DEAF, GENETIC_MUTATION)
 
 
 //Monified turns you into a monkey.
@@ -231,7 +231,7 @@
 /datum/mutation/human/insulated/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_SHOCKIMMUNE, "genetics")
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "genetics")
 
 /datum/mutation/human/fire
 	name = "Fiery Sweat"

@@ -55,7 +55,7 @@
 	..()
 
 /datum/brain_trauma/mild/dumbness/on_lose()
-	owner.remove_trait(TRAIT_DUMB, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_DUMB, TRAUMA_TRAIT)
 	owner.derpspeech = 0
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "dumb")
 	..()
@@ -72,7 +72,7 @@
 	..()
 
 /datum/brain_trauma/mild/speech_impediment/on_lose()
-	owner.remove_trait(TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/mild/concussion

@@ -76,7 +76,7 @@
 	ADD_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
 
 /datum/species/golem/adamantine/on_species_loss(mob/living/carbon/C)
-	C.remove_trait(TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
 	..()
 
 //The suicide bombers of golemkind
@@ -177,7 +177,7 @@
 	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 
 /datum/species/golem/silver/on_species_loss(mob/living/carbon/C)
-	C.remove_trait(TRAIT_HOLY, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 	..()
 
 //Harder to stun, deals more damage, massively slowpokes, but gravproof and obstructive. Basically, The Wall.
@@ -205,7 +205,7 @@
 	ADD_TRAIT(C, TRAIT_NOMOBSWAP, SPECIES_TRAIT) //THE WALL THE WALL THE WALL
 
 /datum/species/golem/plasteel/on_species_loss(mob/living/carbon/C)
-	C.remove_trait(TRAIT_NOMOBSWAP, SPECIES_TRAIT) //NOTHING ON ERF CAN MAKE IT FALL
+	REMOVE_TRAIT(C, TRAIT_NOMOBSWAP, SPECIES_TRAIT) //NOTHING ON ERF CAN MAKE IT FALL
 	..()
 
 //Immune to ash storms
@@ -710,7 +710,7 @@
 	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 
 /datum/species/golem/cloth/on_species_loss(mob/living/carbon/C)
-	C.remove_trait(TRAIT_HOLY, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 	..()
 
 /datum/species/golem/cloth/check_roundstart_eligible()

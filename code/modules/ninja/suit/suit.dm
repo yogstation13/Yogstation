@@ -136,14 +136,14 @@ Contents:
 	slowdown = 1
 	icon_state = "s-ninja"
 	if(n_hood)//Should be attached, might not be attached.
-		n_hood.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		REMOVE_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	if(n_shoes)
-		n_shoes.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		REMOVE_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_shoes.slowdown++
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninja"
 		n_gloves.item_state = "s-ninja"
-		n_gloves.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		REMOVE_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_gloves.candrain = FALSE
 		n_gloves.draining = FALSE
 

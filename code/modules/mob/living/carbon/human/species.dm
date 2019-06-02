@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(TRUE)
 	for(var/X in inherent_traits)
-		C.remove_trait(X, SPECIES_TRAIT)
+		REMOVE_TRAIT(C, X, SPECIES_TRAIT)
 
 	//If their inert mutation is not the same, swap it out
 	if((inert_mutation != new_species.inert_mutation) && LAZYLEN(C.dna.mutation_index) && (inert_mutation in C.dna.mutation_index))
@@ -978,7 +978,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(H.has_trait(TRAIT_FAT))//I share your pain, past coder.
 		if(H.overeatduration < 100)
 			to_chat(H, "<span class='notice'>You feel fit again!</span>")
-			H.remove_trait(TRAIT_FAT, OBESITY)
+			REMOVE_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.update_inv_w_uniform()
 			H.update_inv_wear_suit()
 	else

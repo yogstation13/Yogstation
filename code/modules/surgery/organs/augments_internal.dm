@@ -84,7 +84,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_drop/proc/release_items()
 	for(var/obj/item/I in stored_items)
-		I.remove_trait(TRAIT_NODROP, ANTI_DROP_IMPLANT_TRAIT)
+		REMOVE_TRAIT(I, TRAIT_NODROP, ANTI_DROP_IMPLANT_TRAIT)
 	stored_items = list()
 
 

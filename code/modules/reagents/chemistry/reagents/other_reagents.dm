@@ -195,7 +195,7 @@
 	ADD_TRAIT(L, TRAIT_HOLY, id)
 
 /datum/reagent/water/holywater/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_HOLY, id)
+	REMOVE_TRAIT(L, TRAIT_HOLY, id)
 	..()
 
 /datum/reagent/water/holywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
@@ -1258,8 +1258,8 @@
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, id)
 
 /datum/reagent/stimulum/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_STUNIMMUNE, id)
-	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
+	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, id)
+	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, id)
 	..()
 
 /datum/reagent/stimulum/on_mob_life(mob/living/carbon/M)
@@ -1788,7 +1788,7 @@
 	ADD_TRAIT(L, TRAIT_PACIFISM, id)
 
 /datum/reagent/pax/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_PACIFISM, id)
+	REMOVE_TRAIT(L, TRAIT_PACIFISM, id)
 	..()
 
 /datum/reagent/bz_metabolites
@@ -1807,7 +1807,7 @@
 
 /datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
 	..()
-	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, id)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
 		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
 

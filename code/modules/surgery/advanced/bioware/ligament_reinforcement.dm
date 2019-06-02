@@ -37,5 +37,5 @@
 
 /datum/bioware/reinforced_ligaments/on_lose()
 	..()
-	owner.remove_trait(TRAIT_NODISMEMBER, "reinforced_ligaments")
-	owner.remove_trait(TRAIT_EASYLIMBDISABLE, "reinforced_ligaments")
+	REMOVE_TRAIT(owner, TRAIT_NODISMEMBER, "reinforced_ligaments")
+	REMOVE_TRAIT(owner, TRAIT_EASYLIMBDISABLE, "reinforced_ligaments")
