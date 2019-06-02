@@ -300,6 +300,8 @@
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
+	if(M.buckled)
+		return //don't make them change direction or offset them if they're buckled into something.
 	var/offset = 0
 	switch(grab_state)
 		if(GRAB_PASSIVE)
@@ -317,11 +319,21 @@
 		if(SOUTH)
 			animate(M, pixel_x = 0, pixel_y = -offset, 3)
 		if(EAST)
+			if(M.lying == 270) //update the dragged dude's direction if we've turned
+				M.lying = 90
+				M.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
+				M.lying_prev = M.lying
 			animate(M, pixel_x = offset, pixel_y = 0, 3)
 		if(WEST)
+			if(M.lying == 90)
+				M.lying = 270
+				M.update_transform()
+				M.lying_prev = M.lying
 			animate(M, pixel_x = -offset, pixel_y = 0, 3)
 
-/mob/living/proc/reset_pull_offsets(mob/living/M)
+/mob/living/proc/reset_pull_offsets(mob/living/M, override)
+	if(!override && M.buckled)
+		return
 	animate(M, pixel_x = 0, pixel_y = 0, 1)
 
 //mob verbs are a lot faster than object verbs
@@ -367,8 +379,8 @@
 			to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
 		death()
 
-/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)))
+/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -523,7 +535,7 @@
 	SetUnconscious(0, FALSE)
 	if(should_update_mobility)
 		update_mobility()
-	
+
 //proc used to completely heal a mob.
 /mob/living/proc/fully_heal(admin_revive = 0)
 	restore_blood()
@@ -664,7 +676,7 @@
 		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
-	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE))
+	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
 	set name = "Resist"
@@ -1076,7 +1088,8 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
+	var/in_stasis = IsInStasis()
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && (has_arms || ignore_legs || has_legs)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1090,19 +1103,21 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
-		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL | MOBILITY_STAND)
+		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)
 				lying = buckled.buckle_lying
 		if(!lying) //force them on the ground
 			lying = pick(90, 270)
 	else
-		if(!restrained)
-			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
-		else
-			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
+
+	if(should_be_lying || restrained || incapacitated())
+		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
+	else
+		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
+
 
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms

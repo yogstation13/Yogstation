@@ -63,6 +63,11 @@
 	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/device_tools/arm/nuke
+	cost = 15
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len

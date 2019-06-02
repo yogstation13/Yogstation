@@ -83,6 +83,44 @@
 	icon_state = "asleep"
 
 
+//STASIS
+/datum/status_effect/incapacitating/stasis
+	id = "stasis"
+	duration = -1
+	tick_interval = 10
+	alert_type = /obj/screen/alert/status_effect/stasis
+	var/last_dead_time
+
+/datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
+	if(last_dead_time)
+		var/delta = world.time - last_dead_time
+		var/new_timeofdeath = owner.timeofdeath + delta
+		owner.timeofdeath = new_timeofdeath
+		owner.tod = station_time_timestamp(wtime=new_timeofdeath)
+		last_dead_time = null
+	if(owner.stat == DEAD)
+		last_dead_time = world.time
+
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+	. = ..()
+	update_time_of_death()
+
+/datum/status_effect/incapacitating/stasis/tick()
+	update_time_of_death()
+
+/datum/status_effect/incapacitating/stasis/on_remove()
+	update_time_of_death()
+	return ..()
+
+/datum/status_effect/incapacitating/stasis/be_replaced()
+	update_time_of_death()
+	return ..()
+
+/obj/screen/alert/status_effect/stasis
+	name = "Stasis"
+	desc = "Your biological functions have halted. You could live forever this way, but it's pretty boring."
+	icon_state = "stasis"
+
 //GOLEM GANG
 
 //OTHER DEBUFFS
@@ -118,7 +156,7 @@
 /datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()	
+	. = ..()
 
 /datum/status_effect/pacify/on_apply()
 	owner.add_trait(TRAIT_PACIFISM, "status_effect")
@@ -126,7 +164,7 @@
 
 /datum/status_effect/pacify/on_remove()
 	owner.remove_trait(TRAIT_PACIFISM, "status_effect")
-	
+
 //OTHER DEBUFFS
 /datum/status_effect/pacify
 	id = "pacify"
@@ -134,11 +172,11 @@
 	tick_interval = 1
 	duration = 100
 	alert_type = null
-	
+
 /datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()	
+	. = ..()
 
 /datum/status_effect/pacify/on_apply()
 	owner.add_trait(TRAIT_PACIFISM, "status_effect")
@@ -600,7 +638,7 @@
 	examine_text = "<span class='warning'>SUBJECTPRONOUN seems slow and unfocused.</span>"
 	var/stun = TRUE
 	alert_type = /obj/screen/alert/status_effect/trance
-	
+
 /obj/screen/alert/status_effect/trance
 	name = "Trance"
 	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."

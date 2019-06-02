@@ -83,7 +83,9 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/show_mentors, // yogs - mentors
 	/client/proc/reset_all_tcs, // yogs - NTSL, resets all NTSL scripts in world
 	/client/proc/subtlemessage_faction, // yogs -- SM to entire factions/antag types
-	/client/proc/nerf_or_nothing // yogs -- Groudon's meme nerf verb
+	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
+	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
+	/client/proc/queue_check // Yogs -- Some queue manipulation/debuggin kinda verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -137,7 +139,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/mentor_memo, /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/release_queue // Yogs -- Adds some queue-manipulation verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
