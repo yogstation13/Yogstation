@@ -80,8 +80,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/Life()
 	do_jitter_animation(1000)
 	pixel_y = 8
-
-	if(is_type_in_typecache(get_area(loc) , invalid_area_typecache) || !is_station_level(z))
+	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a macro
+	if(is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(z))
 		var/area = pick(GLOB.teleportlocs)
 		var/area/tp = GLOB.teleportlocs[area]
 		forceMove(pick(get_area_turfs(tp.type)))
