@@ -68,7 +68,7 @@
 
 /mob/living/carbon/human/handle_traits()
 	if(eye_blind)			//blindness, heals slowly over time
-		if(HAS_TRAIT(src, TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
+		if(HAS_TRAIT_FROM(src, TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
 			adjust_blindness(-3)
 		else
 			adjust_blindness(-1)
@@ -320,7 +320,7 @@
 		HM.on_life()
 
 /mob/living/carbon/human/proc/handle_heart()
-	var/we_breath = !HAS_TRAIT(src, TRAIT_NOBREATH, SPECIES_TRAIT)
+	var/we_breath = !HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT)
 
 	if(!undergoing_cardiac_arrest())
 		return
