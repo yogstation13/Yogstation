@@ -1,4 +1,4 @@
-#define EXCLUSIVE_MODE 1 //yogs: probably unneccissary; moves exclusive to the top
+#define EXCLUSIVE_MODE 1 //yogs:moves exclusive to the top
 #define INCLUSIVE_MODE 2 //yogs end
 #define RECOGNIZER_MODE 3
 #define VOICE_SENSOR_MODE 4
