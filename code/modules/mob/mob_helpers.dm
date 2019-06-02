@@ -496,5 +496,5 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/common_trait_examine()
 	. = ""
 
-	if(has_trait(TRAIT_DISSECTED))
+	if(HAS_TRAIT(src, TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
