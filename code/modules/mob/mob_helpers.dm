@@ -498,11 +498,3 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 	if(has_trait(TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
-
-/mob/has_trait(trait, list/sources, check_mind=TRUE)
-	. = ..(trait, sources)
-	if(.)
-		return
-
-	if(check_mind && istype(mind))
-		return HAS_TRAIT(mind, trait, sources)
