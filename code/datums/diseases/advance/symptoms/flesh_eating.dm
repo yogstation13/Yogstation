@@ -57,7 +57,7 @@ Bonus
 	var/get_damage = rand(15,25) * power
 	M.take_overall_damage(brute = get_damage, required_status = BODYPART_ORGANIC)
 	if(pain)
-		M.adjustStaminaLoss(get_damage)
+		M.adjustStaminaLoss(get_damage * 2)
 	if(bleed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -126,5 +126,10 @@ Bonus
 	if(chems)
 		M.reagents.add_reagent_list(list("heparin" = 2, "lipolicide" = 2))
 	if(zombie)
+<<<<<<< HEAD
 		M.reagents.add_reagent("romerol", 1)
 	return 1
+=======
+		M.reagents.add_reagent(/datum/reagent/romerol, 1)
+	return 1
+>>>>>>> 15825997b8... Stamina changes [TMC] (#43966)
