@@ -60,13 +60,17 @@
 
 	log_mentor("Mentor PM: [key_name(src)]->[discord_id ? discord_id : key_name(C)]: [msg]")
 
+	if(mentor_datum && isnotpretty(msg)) // If this is, specifically, a mentor, and not an admin nor a normal player
+		to_chat(src,"<span class='danger'>You cannot send bigoted language as a mentor.</span>")
+		message_admins("[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]")
+		return
 	msg = emoji_parse(msg)
 	if(C)
 		send_mentor_sound(C)
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(!C || C.is_mentor())
 		if(C)
-			to_chat(C, "<font color='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</font>")
+			to_chat(C, "<span class='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</span>")
 		if(discord_id)
 			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>")
 		else
@@ -78,7 +82,7 @@
 	else
 		if(is_mentor())	//sender is an mentor but recipient is not.
 			if(C)
-				to_chat(C, "<font color='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</font>")
+				to_chat(C, "<span class='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>")
 			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>")
 			if(C.ckey in SSYogs.mentortickets)
 				var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]

@@ -216,7 +216,7 @@
 	glass_desc = "White and nutritious goodness!"
 
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
-	if(M.has_trait(TRAIT_CALCIUM_HEALER))
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.heal_bodypart_damage(1.5,0, 0)
 		. = 1
 	else
@@ -307,6 +307,17 @@
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 	..()
 	. = 1
+
+/datum/reagent/consumable/lemonade
+	name = "Lemonade"
+	id = "lemonade"
+	description = "Sweet, tangy lemonade. Good for the soul."
+	quality = DRINK_NICE
+	taste_description = "sunshine and summertime"
+	glass_icon_state = "lemonpitcher"
+	glass_name = "pitcher of lemonade"
+	glass_desc = "This drink leaves you feeling nostalgic for some reason."
+
 
 /datum/reagent/consumable/tea/arnold_palmer
 	name = "Arnold Palmer"
@@ -424,10 +435,10 @@
 
 /datum/reagent/consumable/grey_bull/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_SHOCKIMMUNE, id)
+	ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, id)
 
 /datum/reagent/consumable/grey_bull/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_SHOCKIMMUNE, id)
+	REMOVE_TRAIT(L, TRAIT_SHOCKIMMUNE, id)
 	..()
 
 /datum/reagent/consumable/grey_bull/on_mob_life(mob/living/carbon/M)
