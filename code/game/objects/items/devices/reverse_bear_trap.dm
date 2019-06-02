@@ -74,7 +74,7 @@
 				else
 					user.visible_message("<span class='warning'>The lock on [user]'s [name] pops open!</span>", \
 					"<span class='userdanger'>You force open the padlock!</span>", "<i>You hear a single, pronounced click!</i>")
-					remove_trait(TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
+					REMOVE_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
 				struggling = FALSE
 			else
 				..()
@@ -116,7 +116,7 @@
 
 /obj/item/reverse_bear_trap/proc/reset()
 	ticking = FALSE
-	remove_trait(TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
 	soundloop.stop()
 	soundloop2.stop()
 	STOP_PROCESSING(SSprocessing, src)

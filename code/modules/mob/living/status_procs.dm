@@ -408,7 +408,7 @@
 /////////////////////////////////// TRAIT PROCS ////////////////////////////////////
 
 /mob/living/proc/cure_blind(list/sources)
-	remove_trait(TRAIT_BLIND, sources)
+	REMOVE_TRAIT(src, TRAIT_BLIND, sources)
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		adjust_blindness(-1)
 
@@ -418,7 +418,7 @@
 	add_trait(TRAIT_BLIND, source)
 
 /mob/living/proc/cure_nearsighted(list/sources)
-	remove_trait(TRAIT_NEARSIGHT, sources)
+	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
 	if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))
 		clear_fullscreen("nearsighted")
 
@@ -428,9 +428,9 @@
 	add_trait(TRAIT_NEARSIGHT, source)
 
 /mob/living/proc/cure_husk(list/sources)
-	remove_trait(TRAIT_HUSK, sources)
+	REMOVE_TRAIT(src, TRAIT_HUSK, sources)
 	if(!HAS_TRAIT(src, TRAIT_HUSK))
-		remove_trait(TRAIT_DISFIGURED, "husk")
+		REMOVE_TRAIT(src, TRAIT_DISFIGURED, "husk")
 		update_body()
 		return TRUE
 
@@ -442,8 +442,8 @@
 	add_trait(TRAIT_HUSK, source)
 
 /mob/living/proc/cure_fakedeath(list/sources)
-	remove_trait(TRAIT_FAKEDEATH, sources)
-	remove_trait(TRAIT_DEATHCOMA, sources)
+	REMOVE_TRAIT(src, TRAIT_FAKEDEATH, sources)
+	REMOVE_TRAIT(src, TRAIT_DEATHCOMA, sources)
 	if(stat != DEAD)
 		tod = null
 	update_stat()
@@ -459,7 +459,7 @@
 	update_stat()
 
 /mob/living/proc/unignore_slowdown(list/sources)
-	remove_trait(TRAIT_IGNORESLOWDOWN, sources)
+	REMOVE_TRAIT(src, TRAIT_IGNORESLOWDOWN, sources)
 	update_movespeed(FALSE)
 
 /mob/living/proc/ignore_slowdown(source)

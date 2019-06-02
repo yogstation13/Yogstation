@@ -70,7 +70,7 @@
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize()
 	.=..()
-	remove_trait(TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything
 		is_cursed = TRUE
 		is_very_cursed = FALSE
