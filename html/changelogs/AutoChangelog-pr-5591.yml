@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "The genetic sequencer has been reworked. Use it in-hand to view the sequence"

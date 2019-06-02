@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Hangar Bay Shutters need only general CentCom access to open now"
