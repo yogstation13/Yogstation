@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
-	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION)
+	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, null)
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
