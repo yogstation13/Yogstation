@@ -25601,7 +25601,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/window/southleft{
 	name = "Virology";
-	req_access_txt = "39"
+	req_access_txt = "39;24"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
