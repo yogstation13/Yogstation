@@ -150,7 +150,7 @@
 	else if(I)
 		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
 			if(can_embed(I))
-				if(prob(I.embedding.embed_chance) && !has_trait(TRAIT_PIERCEIMMUNE))
+				if(prob(I.embedding.embed_chance) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 					throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 					var/obj/item/bodypart/L = pick(bodyparts)
 					L.embedded_objects |= I
@@ -717,7 +717,7 @@
 			if(prob(30))
 				burndamage += rand(30,40)
 
-		if(has_trait(TRAIT_SELF_AWARE))
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 			status = "[brutedamage] brute damage and [burndamage] burn damage"
 			if(!brutedamage && !burndamage)
 				status = "no damage"
@@ -744,7 +744,7 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [has_trait(TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
+		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
 
 		for(var/obj/item/I in LB.embedded_objects)
 			to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
@@ -759,7 +759,7 @@
 			to_chat(src, "<span class='info'>You're completely exhausted.</span>")
 		else
 			to_chat(src, "<span class='info'>You feel fatigued.</span>")
-	if(has_trait(TRAIT_SELF_AWARE))
+	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 		if(toxloss)
 			if(toxloss > 10)
 				to_chat(src, "<span class='danger'>You feel sick.</span>")
@@ -775,7 +775,7 @@
 			else if(oxyloss > 30)
 				to_chat(src, "<span class='danger'>You're choking!</span>")
 
-	if(!has_trait(TRAIT_NOHUNGER))
+	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
 		switch(nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
 				to_chat(src, "<span class='info'>You're completely stuffed!</span>")

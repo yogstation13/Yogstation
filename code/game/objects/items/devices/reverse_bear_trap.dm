@@ -49,7 +49,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.get_item_by_slot(SLOT_HEAD) == src)
-			if(has_trait(TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT) && !struggling)
+			if(HAS_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT) && !struggling)
 				struggling = TRUE
 				var/fear_string
 				switch(time_left)

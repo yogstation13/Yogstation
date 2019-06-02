@@ -503,7 +503,7 @@
 	. = 1 // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
-	if(has_trait(TRAIT_PIERCEIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
 	// If targeting anything else, see if the wear suit is thin enough.
@@ -584,7 +584,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -894,12 +894,12 @@
 	dna?.species.spec_updatehealth(src)
 
 /mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 
 /mob/living/carbon/human/set_nutrition(var/change) //Seriously fuck you oldcoders.
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 

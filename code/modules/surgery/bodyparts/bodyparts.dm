@@ -221,7 +221,7 @@
 	set_disabled(is_disabled())
 
 /obj/item/bodypart/proc/is_disabled()
-	if(has_trait(TRAIT_PARALYSIS))
+	if(HAS_TRAIT(src, TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
 	if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE))
 		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled

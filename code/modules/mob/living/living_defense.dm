@@ -133,7 +133,7 @@
 		user.start_pulling(src, supress_message = supress_message)
 		return
 
-	if(!(status_flags & CANPUSH) || has_trait(TRAIT_PUSHIMMUNE))
+	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
 		to_chat(user, "<span class='warning'>[src] can't be grabbed more aggressively!</span>")
 		return FALSE
 
@@ -206,7 +206,7 @@
 			M.Feedstop()
 		return // can't attack while eating!
 
-	if(has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(src, TRAIT_PACIFISM))
 		to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 		return FALSE
 
@@ -317,7 +317,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
-	if(has_trait(TRAIT_SHOCKIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
@@ -387,7 +387,7 @@
 
 //called when the mob receives a bright flash
 /mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
-	if(get_eye_protection() < intensity && (override_blindness_check || !(has_trait(TRAIT_BLIND))))
+	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)
 		return TRUE
