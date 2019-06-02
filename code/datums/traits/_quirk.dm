@@ -111,7 +111,7 @@ Use this as a guideline
 
 	mob_trait = TRAIT_NEARSIGHT
 	///This define is in __DEFINES/traits.dm and is the actual "trait" that the game tracks
-	///You'll need to use "HAS_TRAIT(src, X, sources)" checks around the code to check this; for instance, the Ageusia trait is checked in taste code
+	///You'll need to use "HAS_TRAIT_FROM(src, X, sources)" checks around the code to check this; for instance, the Ageusia trait is checked in taste code
 	///If you need help finding where to put it, the declaration finder on GitHub is the best way to locate it
 
 	gain_text = "<span class='danger'>Things far away from you start looking blurry.</span>"
