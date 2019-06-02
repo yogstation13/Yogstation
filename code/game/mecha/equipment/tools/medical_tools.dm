@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Sleeper, Medical Beam, and Syringe gun
 
 /obj/item/mecha_parts/mecha_equipment/medical
@@ -552,7 +551,7 @@
 	STOP_PROCESSING(SSobj, src)
 	medigun.LoseTarget()
 	return ..()
-=======
+
 // Sleeper, Medical Beam, and Syringe gun
 
 /obj/item/mecha_parts/mecha_equipment/medical
@@ -1107,4 +1106,3 @@
 	STOP_PROCESSING(SSobj, src)
 	medigun.LoseTarget()
 	return ..()
->>>>>>> b2c848bac8... Removes /datum/topic_input, a helper datum for assoc lists (#43970)
