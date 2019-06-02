@@ -40,7 +40,7 @@
 	. = ..()
 	var/datum/component/CP = C.GetComponent(/datum/component/snailcrawl)
 	CP.RemoveComponent()
-	C.remove_trait(TRAIT_NOSLIPALL, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_NOSLIPALL, SPECIES_TRAIT)
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(SLOT_BACK)
 	if(istype(bag, /obj/item/storage/backpack/snail))
 		bag.emptyStorage()

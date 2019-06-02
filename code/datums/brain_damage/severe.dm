@@ -17,7 +17,7 @@
 	..()
 
 /datum/brain_trauma/severe/mute/on_lose()
-	owner.remove_trait(TRAIT_MUTE, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_MUTE, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/aphasia
@@ -115,7 +115,7 @@
 /datum/brain_trauma/severe/paralysis/on_lose()
 	..()
 	for(var/X in paralysis_traits)
-		owner.remove_trait(X, "trauma_paralysis")
+		REMOVE_TRAIT(owner, X, "trauma_paralysis")
 	owner.update_disabled_bodyparts()
 
 /datum/brain_trauma/severe/paralysis/paraplegic
@@ -237,7 +237,7 @@
 	..()
 
 /datum/brain_trauma/severe/discoordination/on_lose()
-	owner.remove_trait(TRAIT_MONKEYLIKE, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/pacifism
@@ -252,7 +252,7 @@
 	..()
 
 /datum/brain_trauma/severe/pacifism/on_lose()
-	owner.remove_trait(TRAIT_PACIFISM, TRAUMA_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/hypnotic_stupor

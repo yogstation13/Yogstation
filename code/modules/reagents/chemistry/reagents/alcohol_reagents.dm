@@ -1390,10 +1390,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/neurotoxin/on_mob_delete(mob/living/carbon/M)
-	M.remove_trait(TRAIT_PARALYSIS_L_ARM, "neurotoxin")
-	M.remove_trait(TRAIT_PARALYSIS_R_ARM, "neurotoxin")
-	M.remove_trait(TRAIT_PARALYSIS_R_LEG, "neurotoxin")
-	M.remove_trait(TRAIT_PARALYSIS_L_LEG, "neurotoxin")
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_ARM, "neurotoxin")
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_ARM, "neurotoxin")
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_LEG, "neurotoxin")
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_LEG, "neurotoxin")
 	M.adjustStaminaLoss(10)
 	..()
 

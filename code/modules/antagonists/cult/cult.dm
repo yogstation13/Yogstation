@@ -131,7 +131,7 @@
 		var/mob/living/carbon/human/H = current
 		H.eye_color = initial(H.eye_color)
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-		H.remove_trait(CULT_EYES)
+		REMOVE_TRAIT(H, CULT_EYES)
 		H.remove_overlay(HALO_LAYER)
 		H.update_body()
 
@@ -231,7 +231,7 @@
 		var/mob/living/carbon/human/H = current
 		H.eye_color = initial(H.eye_color)
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-		H.remove_trait(CULT_EYES)
+		REMOVE_TRAIT(H, CULT_EYES)
 		H.remove_overlay(HALO_LAYER)
 		H.update_body()
 

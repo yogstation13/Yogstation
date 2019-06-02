@@ -474,7 +474,7 @@
 	return ..()
 
 /datum/status_effect/hippocraticOath/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "hippocraticOath")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	H.remove_hud_from(owner)
 
@@ -578,7 +578,7 @@
 	return TRUE
 
 /datum/status_effect/regenerative_core/on_remove()
-	owner.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, "regenerative_core")
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, "regenerative_core")
 
 /datum/status_effect/antimagic
 	id = "antimagic"
@@ -593,5 +593,5 @@
 	return ..()
 
 /datum/status_effect/antimagic/on_remove()
-	owner.remove_trait(TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
 	owner.visible_message("<span class='warning'>[owner]'s dull aura fades away...</span>")

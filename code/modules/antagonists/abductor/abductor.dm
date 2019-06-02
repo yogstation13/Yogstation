@@ -51,7 +51,7 @@
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [owner.special_role]!</span>")
 	owner.special_role = null
-	owner.remove_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/greet()
@@ -84,8 +84,8 @@
 	. = ..()
 
 /datum/antagonist/abductor/scientist/on_removal()
-	owner.remove_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.remove_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)

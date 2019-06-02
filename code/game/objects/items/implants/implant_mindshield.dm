@@ -77,7 +77,7 @@
 	if(..())
 		if(isliving(target))
 			var/mob/living/L = target
-			L.remove_trait(TRAIT_MINDSHIELD, "implant")
+			REMOVE_TRAIT(L, TRAIT_MINDSHIELD, "implant")
 			L.sec_hud_set_implants()
 		if(target.stat != DEAD && !silent)
 			to_chat(target, "<span class='boldnotice'>Your mind suddenly feels terribly vulnerable. You are no longer safe from brainwashing.</span>")

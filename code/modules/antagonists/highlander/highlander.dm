@@ -11,7 +11,7 @@
 
 /datum/antagonist/highlander/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/L = owner.current || mob_override
-	L.remove_trait(TRAIT_NOGUNS, "highlander")
+	REMOVE_TRAIT(L, TRAIT_NOGUNS, "highlander")
 
 /datum/antagonist/highlander/proc/forge_objectives()
 	var/datum/objective/steal/steal_objective = new

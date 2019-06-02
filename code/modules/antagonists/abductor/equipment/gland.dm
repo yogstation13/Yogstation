@@ -295,7 +295,7 @@
 	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, ORGAN_TRAIT)
 
 /obj/item/organ/heart/gland/electric/Remove(mob/living/carbon/M, special = 0)
-	owner.remove_trait(TRAIT_SHOCKIMMUNE, ORGAN_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, ORGAN_TRAIT)
 	..()
 
 /obj/item/organ/heart/gland/electric/activate()

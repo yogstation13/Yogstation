@@ -134,7 +134,7 @@
 	return ..()
 
 /datum/status_effect/strandling/on_remove()
-	owner.remove_trait(TRAIT_MAGIC_CHOKE, "dumbmoron")
+	REMOVE_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
 	return ..()
 
 /obj/screen/alert/status_effect/strandling
@@ -163,7 +163,7 @@
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "status_effect")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
 //OTHER DEBUFFS
 /datum/status_effect/pacify
@@ -183,7 +183,7 @@
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "status_effect")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
 /datum/status_effect/his_wrath //does minor damage over time unless holding His Grace
 	id = "his_wrath"
@@ -626,9 +626,9 @@
 	return ..()
 
 /datum/status_effect/gonbolaPacify/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "gonbolaPacify")
-	owner.remove_trait(TRAIT_MUTE, "gonbolaMute")
-	owner.remove_trait(TRAIT_JOLLY, "gonbolaJolly")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "gonbolaPacify")
+	REMOVE_TRAIT(owner, TRAIT_MUTE, "gonbolaMute")
+	REMOVE_TRAIT(owner, TRAIT_JOLLY, "gonbolaJolly")
 
 /datum/status_effect/trance
 	id = "trance"
@@ -667,7 +667,7 @@
 
 /datum/status_effect/trance/on_remove()
 	UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
-	owner.remove_trait(TRAIT_MUTE, "trance")
+	REMOVE_TRAIT(owner, TRAIT_MUTE, "trance")
 	owner.dizziness = 0
 	if(!owner.has_quirk(/datum/quirk/monochromatic))
 		owner.remove_client_colour(/datum/client_colour/monochrome)

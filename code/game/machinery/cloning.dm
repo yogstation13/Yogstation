@@ -400,11 +400,11 @@
 	if(!mob_occupant)
 		return
 	current_insurance = null
-	mob_occupant.remove_trait(TRAIT_STABLEHEART, CLONING_POD_TRAIT)
-	mob_occupant.remove_trait(TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
-	mob_occupant.remove_trait(TRAIT_MUTE, CLONING_POD_TRAIT)
-	mob_occupant.remove_trait(TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
-	mob_occupant.remove_trait(TRAIT_NOBREATH, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_EMOTEMUTE, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_MUTE, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
+	REMOVE_TRAIT(mob_occupant, TRAIT_NOBREATH, CLONING_POD_TRAIT)
 
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()

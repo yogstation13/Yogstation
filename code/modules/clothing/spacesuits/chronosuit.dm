@@ -98,7 +98,7 @@
 		user.anchored = FALSE
 		teleporting = 0
 		for(var/obj/item/I in user.held_items)
-			I.remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+			REMOVE_TRAIT(I, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 		if(camera)
 			camera.remove_target_ui()
 			camera.forceMove(user)
@@ -234,7 +234,7 @@
 						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Unmounting /dev/helmet")
 					to_chat(user, "logout")
 		if(helmet)
-			helmet.remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+			REMOVE_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 			helmet.suit = null
 			helmet = null
 		if(camera)
