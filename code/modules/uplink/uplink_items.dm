@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/guardian
 	cost = 18
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	//exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs: removes restrictions on liabilit- I mean punchghosts
 	player_minimum = 25
 	restricted = TRUE
 

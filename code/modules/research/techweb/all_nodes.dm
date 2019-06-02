@@ -48,7 +48,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "surgical_drapes", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet") // yogs - added surgical_drapes
+	design_ids = list("screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "surgical_drapes", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "hemostat", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet", "mop") // yogs - added surgical_drapes
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -867,7 +867,7 @@
 	display_name = "Basic Nanite Programming"
 	description = "The basics of nanite construction and programming."
 	prereq_ids = list("datatheory","robotics")
-	design_ids = list("nanite_disk","nanite_remote","nanite_scanner",\
+	design_ids = list("nanite_disk","nanite_remote","nanite_comm_remote","nanite_scanner",\
 						"nanite_chamber","public_nanite_chamber","nanite_chamber_control","nanite_programmer","nanite_program_hub","nanite_cloud_control",\
 						"relay_nanites", "monitoring_nanites", "access_nanites", "repairing_nanites","sensor_nanite_volume", "repeater_nanites", "relay_repeater_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
