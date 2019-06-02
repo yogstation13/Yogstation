@@ -1,0 +1,4 @@
+author: " bgobandit"
+delete-after: true 
+changes: 
+  - experiment: "The Traitor Panel now shows the names of blood brothers' brothers."

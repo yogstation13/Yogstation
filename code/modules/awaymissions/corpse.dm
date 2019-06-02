@@ -373,7 +373,7 @@
 /obj/effect/mob_spawn/human/bartender
 	name = "Space Bartender"
 	id_job = "Bartender"
-	id_access_list = list(ACCESS_BAR)
+	id_access_list = list(ACCESS_BAR, ACCESS_KITCHEN)
 	outfit = /datum/outfit/spacebartender
 
 /obj/effect/mob_spawn/human/bartender/alive

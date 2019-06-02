@@ -77,7 +77,7 @@
 
 /obj/effect/proc_holder/spell/self/rejuvenate
 	name = "Rejuvenate"
-	desc= "Flush your system with spare blood to repair minor damage to your body."
+	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	action_icon_state = "rejuv"
 	charge_max = 200
 	stat_allowed = 1

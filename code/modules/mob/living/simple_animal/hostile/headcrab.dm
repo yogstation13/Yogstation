@@ -66,7 +66,7 @@
 
 /obj/item/organ/body_egg/changeling_egg/proc/Pop()
 	var/mob/living/carbon/monkey/M = new(owner)
-	owner.stomach_contents += M
+	owner.stomach_contents += M // Yogs -- Yogs vorecode
 
 	for(var/obj/item/organ/I in src)
 		I.Insert(M, 1)

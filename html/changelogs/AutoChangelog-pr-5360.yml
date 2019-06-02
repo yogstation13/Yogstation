@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "Admins can now smite any mob capable of life."
