@@ -12,16 +12,36 @@ SUBSYSTEM_DEF(Yogs)
 
 /datum/controller/subsystem/Yogs/Initialize()
 	mentortickets = list()
+	
+	//PRIZEPOOL MODIFIER THING
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2
 	GLOB.arcade_prize_pool[/obj/item/stack/tile/ballpit] = 2
+	
+	//MULTI-PORTAL HANDLER
+	var/list/enters = list()
+	var/list/exits_by_id = list()
+	for(var/obj/effect/portal/permanent/one_way/multi/portal in GLOB.portals)
+		if(portal.is_entry) // If an entry portal
+			enters += portal
+		else
+			if(!exits_by_id[portal.id])
+				exits_by_id[portal.id] = list()
+			exits_by_id[portal.id] += get_turf(portal)
+			qdel(portal)
+	for(var/obj/effect/portal/permanent/one_way/multi/portal in enters)
+		if(exits_by_id[portal.id])
+			portal.linked_targets = exits_by_id[portal.id]
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
+	//END OF SHIFT ANNOUNCER
 	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift)
 		priority_announce("Crew, your shift has come to an end. \n You may call the shuttle whenever you find it appropriate.", "End of shift announcement", 'sound/ai/commandreport.ogg')
 		endedshift = TRUE
 	
+	//UNCLAIMED TICKET BWOINKER
 	if(world.time - last_rebwoink > REBWOINK_TIME*10)
 		last_rebwoink = world.time
 		for(var/datum/admin_help/bwoink in GLOB.unclaimed_tickets)
