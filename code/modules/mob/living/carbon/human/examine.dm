@@ -10,7 +10,7 @@
 
 	if(isliving(user))
 		var/mob/living/L = user
-		if(L.has_trait(TRAIT_PROSOPAGNOSIA))
+		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
 	var/msg = "<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!\n"
@@ -258,7 +258,7 @@
 			if(91.01 to INFINITY)
 				msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
 
-	if(user.has_trait(TRAIT_EMPATH) && !appears_dead && (src != user))
+	if(HAS_TRAIT(user, TRAIT_EMPATH) && !appears_dead && (src != user))
 		if (a_intent != INTENT_HELP)
 			msg += "[t_He] seem[p_s()] to be on guard.\n"
 		if (getOxyLoss() >= 10)

@@ -273,7 +273,7 @@
 		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
-		if(M.has_trait(TRAIT_FRIENDLY))
+		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
 			GET_COMPONENT_FROM(mood, /datum/component/mood, M)
 			if (mood.sanity >= SANITY_GREAT)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
