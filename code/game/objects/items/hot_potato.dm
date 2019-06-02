@@ -136,7 +136,7 @@
 		return
 	update_icon()
 	if(sticky)
-		add_trait(TRAIT_NODROP, HOT_POTATO_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
 	name = "primed [name]"
 	activation_time = timer + world.time
 	detonation_timerid = addtimer(CALLBACK(src, .proc/detonate), delay, TIMER_STOPPABLE)

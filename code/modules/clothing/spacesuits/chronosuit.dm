@@ -194,7 +194,7 @@
 				helmet = user.head
 				ADD_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 				helmet.suit = src
-				add_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+				ADD_TRAIT(src, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting brainwave scanner")
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting ui display driver")
 				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Initializing chronowalk4-view")

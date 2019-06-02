@@ -644,7 +644,7 @@
 				facial_hair_style = "Shaved"
 				hair_style = "Bald"
 				update_hair()
-				add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+				ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
 
 		update_damage_overlays()
 

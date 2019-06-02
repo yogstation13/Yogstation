@@ -33,7 +33,7 @@
 	if(HAS_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT))
 		REMOVE_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	else
-		add_trait(TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	if(ismob(loc))
 		to_chat(loc, "<span class='notice'>Your vest is now [HAS_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT) ? "locked" : "unlocked"].</span>")
 

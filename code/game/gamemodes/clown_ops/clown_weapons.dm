@@ -220,7 +220,7 @@
 
 /obj/item/clothing/mask/fakemoustache/sticky/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 	addtimer(CALLBACK(src, .proc/unstick), unstick_time)
 
 /obj/item/clothing/mask/fakemoustache/sticky/proc/unstick()

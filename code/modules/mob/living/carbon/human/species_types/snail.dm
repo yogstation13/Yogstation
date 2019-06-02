@@ -60,4 +60,4 @@
 
 /obj/item/storage/backpack/snail/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP)
+	ADD_TRAIT(src, TRAIT_NODROP)

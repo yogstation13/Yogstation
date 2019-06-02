@@ -125,7 +125,7 @@
 	ticking = TRUE
 	escape_chance = initial(escape_chance) //we keep these vars until re-arm, for tracking purposes
 	time_left = initial(time_left)
-	add_trait(TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, REVERSE_BEAR_TRAP_TRAIT)
 	soundloop.start()
 	soundloop2.mid_length = initial(soundloop2.mid_length)
 	soundloop2.start()

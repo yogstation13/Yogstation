@@ -415,7 +415,7 @@
 /mob/living/proc/become_blind(source)
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		blind_eyes(1)
-	add_trait(TRAIT_BLIND, source)
+	ADD_TRAIT(src, TRAIT_BLIND, source)
 
 /mob/living/proc/cure_nearsighted(list/sources)
 	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
@@ -425,7 +425,7 @@
 /mob/living/proc/become_nearsighted(source)
 	if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))
 		overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
-	add_trait(TRAIT_NEARSIGHT, source)
+	ADD_TRAIT(src, TRAIT_NEARSIGHT, source)
 
 /mob/living/proc/cure_husk(list/sources)
 	REMOVE_TRAIT(src, TRAIT_HUSK, sources)
@@ -436,10 +436,10 @@
 
 /mob/living/proc/become_husk(source)
 	if(!HAS_TRAIT(src, TRAIT_HUSK))
-		add_trait(TRAIT_DISFIGURED, "husk")
+		ADD_TRAIT(src, TRAIT_DISFIGURED, "husk")
 		update_body()
 		. = TRUE
-	add_trait(TRAIT_HUSK, source)
+	ADD_TRAIT(src, TRAIT_HUSK, source)
 
 /mob/living/proc/cure_fakedeath(list/sources)
 	REMOVE_TRAIT(src, TRAIT_FAKEDEATH, sources)
@@ -453,8 +453,8 @@
 		return
 	if(!silent)
 		emote("deathgasp")
-	add_trait(TRAIT_FAKEDEATH, source)
-	add_trait(TRAIT_DEATHCOMA, source)
+	ADD_TRAIT(src, TRAIT_FAKEDEATH, source)
+	ADD_TRAIT(src, TRAIT_DEATHCOMA, source)
 	tod = station_time_timestamp()
 	update_stat()
 
@@ -463,5 +463,5 @@
 	update_movespeed(FALSE)
 
 /mob/living/proc/ignore_slowdown(source)
-	add_trait(TRAIT_IGNORESLOWDOWN, source)
+	ADD_TRAIT(src, TRAIT_IGNORESLOWDOWN, source)
 	update_movespeed(FALSE)

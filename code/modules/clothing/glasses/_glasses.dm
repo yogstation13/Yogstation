@@ -421,7 +421,7 @@
 
 /obj/item/clothing/glasses/godeye/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, EYE_OF_GOD_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, src) && W != src && W.loc == user)
