@@ -1377,7 +1377,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		to_chat(M, "<span class='notice'>You cant feel your hands!</span>")
 	if(current_cycle > 5)
 		if(prob(20))
-			M.add_trait(pickt(), "neurotoxin")
+			ADD_TRAIT(M, pickt(), "neurotoxin")
 			M.adjustStaminaLoss(10)
 		if(current_cycle > 30)
 			M.adjustBrainLoss(2*REM)

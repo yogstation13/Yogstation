@@ -34,7 +34,7 @@
 		if(C.dropItemToGround(bag)) //returns TRUE even if its null
 			C.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(C), SLOT_BACK)
 	C.AddComponent(/datum/component/snailcrawl)
-	C.add_trait(TRAIT_NOSLIPALL, SPECIES_TRAIT)
+	ADD_TRAIT(C, TRAIT_NOSLIPALL, SPECIES_TRAIT)
 
 /datum/species/snail/on_species_loss(mob/living/carbon/C)
 	. = ..()

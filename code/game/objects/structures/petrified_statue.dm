@@ -22,7 +22,7 @@
 			L.visible_message("<span class='warning'>[L]'s skin rapidly turns to marble!</span>", "<span class='userdanger'>Your body freezes up! Can't... move... can't...  think...</span>")
 		//yogs end -- pan
 		L.forceMove(src)
-		L.add_trait(TRAIT_MUTE, STATUE_MUTE)
+		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
 		L.faction += "mimic" //Stops mimics from instaqdeling people in statues
 		L.status_flags |= GODMODE
 		obj_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues

@@ -48,7 +48,7 @@
 	if(..())
 		return
 
-	owner.add_trait(visionflag, GENETIC_MUTATION)
+	ADD_TRAIT(owner, visionflag, GENETIC_MUTATION)
 	owner.update_sight()
 
 /datum/mutation/human/thermal/on_losing(mob/living/carbon/human/owner)

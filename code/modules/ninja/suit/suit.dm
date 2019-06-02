@@ -115,12 +115,12 @@ Contents:
 	add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 0
 	n_hood = H.head
-	n_hood.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	ADD_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes = H.shoes
-	n_shoes.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	ADD_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes.slowdown--
 	n_gloves = H.gloves
-	n_gloves.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	ADD_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	return TRUE
 
 /obj/item/clothing/suit/space/space_ninja/proc/lockIcons(mob/living/carbon/human/H)

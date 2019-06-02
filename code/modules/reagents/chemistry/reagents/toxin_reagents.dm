@@ -183,7 +183,7 @@
 
 /datum/reagent/toxin/ghoulpowder/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_FAKEDEATH, id)
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, id)
 
 /datum/reagent/toxin/ghoulpowder/on_mob_delete(mob/living/L)
 	L.remove_trait(TRAIT_FAKEDEATH, id)
@@ -900,7 +900,7 @@
 	taste_description = "stillness"
 
 /datum/reagent/toxin/mimesbane/on_mob_add(mob/living/L)
-	L.add_trait(TRAIT_EMOTEMUTE, id)
+	ADD_TRAIT(L, TRAIT_EMOTEMUTE, id)
 
 /datum/reagent/toxin/mimesbane/on_mob_delete(mob/living/L)
 	L.remove_trait(TRAIT_EMOTEMUTE, id)

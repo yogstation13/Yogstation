@@ -283,7 +283,7 @@
 		var/mob/living/carbon/human/H = cultist
 		H.eye_color = "f00"
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-		H.add_trait(CULT_EYES)
+		ADD_TRAIT(H, CULT_EYES)
 		H.update_body()
 
 /datum/team/cult/proc/ascend(cultist)

@@ -115,7 +115,7 @@
 /datum/mutation/human/clumsy/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
+	ADD_TRAIT(owner, TRAIT_CLUMSY, GENETIC_MUTATION)
 
 /datum/mutation/human/clumsy/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -157,7 +157,7 @@
 /datum/mutation/human/deaf/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_DEAF, GENETIC_MUTATION)
+	ADD_TRAIT(owner, TRAIT_DEAF, GENETIC_MUTATION)
 
 /datum/mutation/human/deaf/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -226,7 +226,7 @@
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_SHOCKIMMUNE, "genetics")
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, "genetics")
 
 /datum/mutation/human/insulated/on_losing(mob/living/carbon/human/owner)
 	if(..())

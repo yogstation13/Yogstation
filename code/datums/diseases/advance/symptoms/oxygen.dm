@@ -59,7 +59,7 @@ Bonus
 		if(3)
 			M.remove_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(4)
-			M.add_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+			ADD_TRAIT(M, TRAIT_NOBREATH, DISEASE_TRAIT)
 	return TRUE
 
 /datum/symptom/oxygen/End(datum/disease/advance/A)

@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				C.put_in_hands(new mutanthands())
 
 	for(var/X in inherent_traits)
-		C.add_trait(X, SPECIES_TRAIT)
+		ADD_TRAIT(C, X, SPECIES_TRAIT)
 
 	if(TRAIT_VIRUSIMMUNE in inherent_traits)
 		for(var/datum/disease/A in C.diseases)
@@ -984,7 +984,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	else
 		if(H.overeatduration >= 100)
 			to_chat(H, "<span class='danger'>You suddenly feel blubbery!</span>")
-			H.add_trait(TRAIT_FAT, OBESITY)
+			ADD_TRAIT(H, TRAIT_FAT, OBESITY)
 			H.update_inv_w_uniform()
 			H.update_inv_wear_suit()
 

@@ -11,7 +11,7 @@
 
 /datum/status_effect/rainbow_protection/on_apply()
 	owner.status_flags |= GODMODE
-	owner.add_trait(TRAIT_PACIFISM, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "slimestatus")
 	owner.visible_message("<span class='warning'>[owner] shines with a brilliant rainbow light.</span>",
 		"<span class='notice'>You feel protected by an unknown force!</span>")
 	originalcolor = owner.color
@@ -246,7 +246,7 @@ datum/status_effect/rebreathing/tick()
 	duration = 100
 
 /datum/status_effect/firecookie/on_apply()
-	owner.add_trait(TRAIT_RESISTCOLD,"firecookie")
+	ADD_TRAIT(owner, TRAIT_RESISTCOLD,"firecookie")
 	owner.adjust_bodytemperature(110)
 	return ..()
 
@@ -260,7 +260,7 @@ datum/status_effect/rebreathing/tick()
 	duration = 100
 
 /datum/status_effect/watercookie/on_apply()
-	owner.add_trait(TRAIT_NOSLIPWATER,"watercookie")
+	ADD_TRAIT(owner, TRAIT_NOSLIPWATER,"watercookie")
 	return ..()
 
 /datum/status_effect/watercookie/tick()
@@ -313,7 +313,7 @@ datum/status_effect/rebreathing/tick()
 	duration = 600
 
 /datum/status_effect/toxincookie/on_apply()
-	owner.add_trait(TRAIT_TOXINLOVER,"toxincookie")
+	ADD_TRAIT(owner, TRAIT_TOXINLOVER,"toxincookie")
 	return ..()
 
 /datum/status_effect/toxincookie/on_remove()
@@ -413,7 +413,7 @@ datum/status_effect/rebreathing/tick()
 	duration = 30
 
 /datum/status_effect/plur/on_apply()
-	owner.add_trait(TRAIT_PACIFISM, "peacecookie")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "peacecookie")
 	return ..()
 
 /datum/status_effect/plur/on_remove()
@@ -511,7 +511,7 @@ datum/status_effect/rebreathing/tick()
 	colour = "blue"
 
 /datum/status_effect/stabilized/blue/on_apply()
-	owner.add_trait(TRAIT_NOSLIPWATER, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "slimestatus")
 	return ..()
 
 datum/status_effect/stabilized/blue/on_remove()
@@ -576,7 +576,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	examine_text = "<span class='notice'>Their fingertips burn brightly!</span>"
 
 /datum/status_effect/stabilized/darkpurple/on_apply()
-	owner.add_trait(TRAIT_RESISTHEATHANDS, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_RESISTHEATHANDS, "slimestatus")
 	fire = new(owner)
 	return ..()
 

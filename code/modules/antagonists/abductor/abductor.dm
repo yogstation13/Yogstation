@@ -44,7 +44,7 @@
 	owner.assigned_role = "[name] [sub_role]"
 	objectives += team.objectives
 	finalize_abductor()
-	owner.add_trait(TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
@@ -79,8 +79,8 @@
 	update_abductor_icons_added(owner,"abductor")
 
 /datum/antagonist/abductor/scientist/on_gain()
-	owner.add_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
-	owner.add_trait(TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner, TRAIT_ABDUCTOR_SCIENTIST_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
 /datum/antagonist/abductor/scientist/on_removal()

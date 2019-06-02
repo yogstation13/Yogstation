@@ -51,7 +51,7 @@
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = check_value(target)))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
-	target.add_trait(TRAIT_DISSECTED)
+	ADD_TRAIT(target, TRAIT_DISSECTED)
 	return TRUE
 	
 /datum/surgery_step/dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -59,5 +59,5 @@
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = (check_value(target) * 0.2)))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
-	target.add_trait(TRAIT_DISSECTED)
+	ADD_TRAIT(target, TRAIT_DISSECTED)
 	return TRUE
