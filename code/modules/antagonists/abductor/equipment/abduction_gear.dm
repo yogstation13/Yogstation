@@ -138,14 +138,14 @@
 	righthand_file = 'icons/mob/inhands/antag/abductor_righthand.dmi'
 
 /obj/item/abductor/proc/AbductorCheck(mob/user)
-	if(user.has_trait(TRAIT_ABDUCTOR_TRAINING))
+	if(HAS_TRAIT(user, TRAIT_ABDUCTOR_TRAINING))
 		return TRUE
 	to_chat(user, "<span class='warning'>You can't figure how this works!</span>")
 	return FALSE
 
 /obj/item/abductor/proc/ScientistCheck(mob/user)
-	var/training = user.has_trait(TRAIT_ABDUCTOR_TRAINING)
-	var/sci_training = user.has_trait(TRAIT_ABDUCTOR_SCIENTIST_TRAINING)
+	var/training = HAS_TRAIT(user, TRAIT_ABDUCTOR_TRAINING)
+	var/sci_training = HAS_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING)
 
 	if(training && !sci_training)
 		to_chat(user, "<span class='warning'>You're not trained to use this!</span>")

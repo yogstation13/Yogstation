@@ -137,7 +137,7 @@
 		to_chat(user, "<span class='warning'>[src] can't be grabbed more aggressively!</span>")
 		return FALSE
 
-	if(user.has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='notice'>You don't want to risk hurting [src]!</span>")
 		return FALSE
 	grippedby(user)
@@ -223,7 +223,7 @@
 		M.visible_message("<span class='notice'>\The [M] [M.friendly] [src]!</span>")
 		return FALSE
 	else
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
@@ -242,7 +242,7 @@
 		return FALSE
 
 	if (M.a_intent == INTENT_HARM)
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
@@ -268,7 +268,7 @@
 			return FALSE
 
 		else
-			if(L.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(L, TRAIT_PACIFISM))
 				to_chat(L, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return
 
@@ -293,7 +293,7 @@
 			grabbedby(M)
 			return FALSE
 		if("harm")
-			if(M.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return FALSE
 			M.do_attack_animation(src)

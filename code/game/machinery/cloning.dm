@@ -173,7 +173,7 @@
 
 	H.hardset_dna(ui, mutation_index, H.real_name, null, mrace, features)
 
-	if(!H.has_trait(TRAIT_RADIMMUNE))//dont apply mutations if the species is Mutation proof.
+	if(!HAS_TRAIT(H, TRAIT_RADIMMUNE))//dont apply mutations if the species is Mutation proof.
 		if(efficiency > 2)
 			var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations)
 			H.dna.remove_mutation_group(unclean_mutations)
@@ -494,7 +494,7 @@
 	// Applying brainloss is done when the clone leaves the pod, so application of traumas can happen
 	// based on the level of damage sustained.
 
-	if(!H.has_trait(TRAIT_NODISMEMBER))
+	if(!HAS_TRAIT(H, TRAIT_NODISMEMBER))
 		var/static/list/zones = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 		for(var/zone in zones)
 			var/obj/item/bodypart/BP = H.get_bodypart(zone)

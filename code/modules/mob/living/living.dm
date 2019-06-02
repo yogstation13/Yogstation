@@ -126,7 +126,7 @@
 			if(M.pulledby == src && a_intent == INTENT_GRAB && !too_strong)
 				mob_swap = TRUE
 			else if(
-				!(M.has_trait(TRAIT_NOMOBSWAP) || has_trait(TRAIT_NOMOBSWAP))&&\
+				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || has_trait(TRAIT_NOMOBSWAP))&&\
 				((M.restrained() && !too_strong) || M.a_intent == INTENT_HELP) &&\
 				(restrained() || a_intent == INTENT_HELP)
 			)
@@ -166,7 +166,7 @@
 		return 1
 	if(isliving(M))
 		var/mob/living/L = M
-		if(L.has_trait(TRAIT_PUSHIMMUNE))
+		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return 1
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
@@ -264,7 +264,7 @@
 			var/mob/living/carbon/human/H = src
 			if(H.dna.species.grab_sound)
 				sound_to_play = H.dna.species.grab_sound
-			if(H.has_trait(TRAIT_STRONG_GRABBER))
+			if(HAS_TRAIT(H, TRAIT_STRONG_GRABBER))
 				sound_to_play = null
 		playsound(src.loc, sound_to_play, 50, 1, -1)
 	update_pull_hud_icon()
@@ -294,7 +294,7 @@
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
-				if(src.has_trait(TRAIT_STRONG_GRABBER))
+				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
 
 		set_pull_offsets(M, state)
@@ -799,7 +799,7 @@
 // Override if a certain mob should be behave differently when placing items (can't, for example)
 /mob/living/stripPanelEquip(obj/item/what, mob/who, where)
 	what = src.get_active_held_item()
-	if(what && (what.has_trait(TRAIT_NODROP)))
+	if(what && (HAS_TRAIT(what, TRAIT_NODROP)))
 		to_chat(src, "<span class='warning'>You can't put \the [what.name] on [who], it's stuck to your hand!</span>")
 		return
 	if(what)

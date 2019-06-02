@@ -12,7 +12,7 @@
 
 /datum/surgery/advanced/experimental_dissection/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
-	if(target.has_trait(TRAIT_DISSECTED))
+	if(HAS_TRAIT(target, TRAIT_DISSECTED))
 		return FALSE
 	if(iscyborg(user))
 		return FALSE //robots cannot be creative

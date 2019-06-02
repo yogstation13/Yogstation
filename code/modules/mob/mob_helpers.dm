@@ -505,4 +505,4 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return
 
 	if(check_mind && istype(mind))
-		return mind.has_trait(trait, sources)
+		return HAS_TRAIT(mind, trait, sources)

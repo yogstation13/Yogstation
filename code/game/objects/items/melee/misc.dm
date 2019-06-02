@@ -150,7 +150,7 @@
 		return ..()
 
 	add_fingerprint(user)
-	if((user.has_trait(TRAIT_CLUMSY)) && prob(50))
+	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You club yourself over the head.</span>")
 		user.Paralyze(60 * force)
 		if(ishuman(user))

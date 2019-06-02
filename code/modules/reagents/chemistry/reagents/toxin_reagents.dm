@@ -98,7 +98,7 @@
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	. = TRUE
 
-	if(C.has_trait(TRAIT_NOBREATH))
+	if(HAS_TRAIT(C, TRAIT_NOBREATH))
 		. = FALSE
 
 	if(.)
@@ -136,7 +136,7 @@
 	taste_description = "mint"
 
 /datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
-	if(M.has_trait(TRAIT_FAT))
+	if(HAS_TRAIT(M, TRAIT_FAT))
 		M.gib()
 	return ..()
 
@@ -920,7 +920,7 @@
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(15, 0)
-	if(M.has_trait(TRAIT_CALCIUM_HEALER))
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.adjustBruteLoss(0.5, 0)
 	if(prob(20))
 		switch(rand(1, 3))

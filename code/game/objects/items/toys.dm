@@ -267,7 +267,7 @@
 // Copied from /obj/item/melee/transforming/energy/sword/attackby
 /obj/item/toy/sword/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/toy/sword))
-		if(W.has_trait(TRAIT_NODROP) || has_trait(TRAIT_NODROP))
+		if(HAS_TRAIT(W, TRAIT_NODROP) || has_trait(TRAIT_NODROP))
 			to_chat(user, "<span class='warning'>\the [has_trait(TRAIT_NODROP) ? src : W] is stuck to your hand, you can't attach it to \the [has_trait(TRAIT_NODROP) ? W : src]!</span>")
 			return
 		else
