@@ -1,13 +1,8 @@
 #define CHARS_PER_LINE 5
 #define FONT_SIZE "5pt"
 #define FONT_COLOR "#09f"
-<<<<<<< HEAD
-#define FONT_STYLE "Arial Black"
-#define MAX_TIMER 12000 //yogs - changed 9000 to 12000
-=======
 #define FONT_STYLE "Small Fonts"
-#define MAX_TIMER 9000
->>>>>>> a966cff2f9... Crispy Status Displays (#44232)
+#define MAX_TIMER 12000 //yogs - changed 9000 to 12000
 
 #define PRESET_SHORT 1800 //yogs - changed 1200 to 1800
 #define PRESET_MEDIUM 3000 //yogs - changed 1800 to 3000
