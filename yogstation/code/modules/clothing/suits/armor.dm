@@ -84,3 +84,20 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "ru_rmcoat"
 	item_state = "ru_rmcoat"
+
+/obj/item/clothing/suit/armor/heavy/juggernaut
+	name = "Juggernaut Suit"
+	desc = "I...am...the...JUGGERNAUT!!!"
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "juggernaut"
+	item_state = "juggernaut"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	cold_protection = CHEST|GROIN|LEGS|ARMS|FEET
+	heat_protection = CHEST|GROIN|LEGS|ARMS|FEET
+	strip_delay = 120
+	slowdown = 1
+	obj_flags = IMMUTABLE_SLOW
+	flags_inv = HIDESHOES|HIDEJUMPSUIT

@@ -89,6 +89,7 @@
 					/obj/item/clothing/mask/bandana/red = 3,
 					/obj/item/clothing/suit/armor/vest/secmiljacket = 3,
 					/obj/item/clothing/shoes/yogs/namboots = 5,
+					/obj/item/clothing/gloves/yogs/army = 5,
 					/obj/item/clothing/under/yogs/namjumpsuit = 5,
 					/obj/item/clothing/suit/armor/vest/namflakjacket = 5,
 					/obj/item/clothing/head/helmet/namhelm = 5,
