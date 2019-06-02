@@ -112,7 +112,7 @@ Contents:
 		to_chat(H, "<span class='userdanger'>ERROR</span>: 110223 UNABLE TO LOCATE HAND GEAR\nABORTING...")
 		return FALSE
 	affecting = H
-	add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 0
 	n_hood = H.head
 	ADD_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)

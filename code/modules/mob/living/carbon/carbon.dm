@@ -748,7 +748,7 @@
 			stat = UNCONSCIOUS
 			blind_eyes(1)
 			if(CONFIG_GET(flag/near_death_experience) && health <= HEALTH_THRESHOLD_NEARDEATH && !HAS_TRAIT(src, TRAIT_NODEATH))
-				add_trait(TRAIT_SIXTHSENSE, "near-death")
+				ADD_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
 			else
 				REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
 		else

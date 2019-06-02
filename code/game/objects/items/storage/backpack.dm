@@ -299,7 +299,7 @@
 
 /obj/item/storage/backpack/satchel/flat/Initialize()
 	. = ..()
-	add_trait(TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_T_RAY_VISIBLE, TRAIT_GENERIC)
 
 /obj/item/storage/backpack/satchel/flat/ComponentInitialize()
 	. = ..()

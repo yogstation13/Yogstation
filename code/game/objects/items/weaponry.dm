@@ -91,7 +91,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/claymore/highlander/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HIGHLANDER)
+	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/claymore/highlander/Destroy()
@@ -440,7 +440,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/mounted_chainsaw/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/mounted_chainsaw/Destroy()
 	var/obj/item/bodypart/part

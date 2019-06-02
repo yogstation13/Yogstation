@@ -209,13 +209,13 @@
 			if(HIS_GRACE_CONSUME_OWNER > prev_bloodthirst)
 				master.visible_message("<span class='userdanger'>[src] enters a frenzy!</span>")
 		if(HIS_GRACE_STARVING to HIS_GRACE_CONSUME_OWNER)
-			add_trait(TRAIT_NODROP, HIS_GRACE_TRAIT)
+			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_STARVING > prev_bloodthirst)
 				master.visible_message("<span class='boldwarning'>[src] is starving!</span>", "<span class='his_grace big'>[src]'s bloodlust overcomes you. [src] must be fed, or you will become His meal.\
 				[force_bonus < 15 ? " And still, His power grows.":""]</span>")
 				force_bonus = max(force_bonus, 15)
 		if(HIS_GRACE_FAMISHED to HIS_GRACE_STARVING)
-			add_trait(TRAIT_NODROP, HIS_GRACE_TRAIT)
+			ADD_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 			if(HIS_GRACE_FAMISHED > prev_bloodthirst)
 				master.visible_message("<span class='warning'>[src] is very hungry!</span>", "<span class='his_grace big'>Spines sink into your hand. [src] must feed immediately.\
 				[force_bonus < 10 ? " His power grows.":""]</span>")
