@@ -96,6 +96,6 @@
 	for(var/client/X in GLOB.mentors | (GLOB.admins - GLOB.deadmins))
 		if(X.key != key && (!C || X.key != C.key))	//check client/X is an Mentor and isn't the sender or recipient
 			if(discord_id)
-				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <font color ='blue'> [msg]</font>") //inform X
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <span class='blueteamradio'> [msg]</span>") //inform X
 			else
-				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>") //inform X
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <span class='blueteamradio'> [msg]</span>") //inform X
