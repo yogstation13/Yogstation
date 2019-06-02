@@ -19709,7 +19709,9 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/colossus,
+/mob/living/simple_animal/hostile/megafauna/colossus{
+	true_spawn = 0
+	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "MM" = (
@@ -19731,7 +19733,9 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/bubblegum,
+/mob/living/simple_animal/hostile/megafauna/bubblegum{
+	true_spawn = 0
+	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "MO" = (
@@ -19749,7 +19753,9 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/dragon,
+/mob/living/simple_animal/hostile/megafauna/dragon{
+	true_spawn = 0
+	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "MP" = (
@@ -20430,19 +20436,6 @@
 	dir = 8
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"Ob" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "testing chamber";
-	teleport_channel = "testing"
-	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Oc" = (
@@ -65978,7 +65971,7 @@ Iv
 pT
 Mp
 td
-Ob
+wq
 yP
 Aa
 BW
