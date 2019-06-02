@@ -1103,7 +1103,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
-			var/health_deficiency = (H.maxHealth - H.health + H.staminaloss)
+			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
 			if(health_deficiency >= 40)
 				if(flight)
 					. += (health_deficiency / 75)
@@ -1225,8 +1225,20 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
+<<<<<<< HEAD
 		target.apply_damage(damage, attack_type, affecting, armor_block)
 		log_combat(user, target, "punched")
+=======
+
+		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
+			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
+			log_combat(user, target, "kicked")
+		else//other attacks deal full raw damage + 1.5x in stamina damage
+			target.apply_damage(damage, attack_type, affecting, armor_block)
+			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
+			log_combat(user, target, "punched")
+
+>>>>>>> 15825997b8... Stamina changes [TMC] (#43966)
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message("<span class='danger'>[user] has knocked  [target] down!</span>", \
 							"<span class='userdanger'>[user] has knocked [target] down!</span>", null, COMBAT_MESSAGE_RANGE)
