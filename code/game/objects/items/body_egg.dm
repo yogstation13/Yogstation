@@ -16,7 +16,7 @@
 
 /obj/item/organ/body_egg/Insert(var/mob/living/carbon/M, special = 0)
 	..()
-	owner.add_trait(TRAIT_XENO_HOST, TRAIT_GENERIC)
+	ADD_TRAIT(owner, TRAIT_XENO_HOST, TRAIT_GENERIC)
 	START_PROCESSING(SSobj, src)
 	owner.med_hud_set_status()
 	INVOKE_ASYNC(src, .proc/AddInfectionImages, owner)

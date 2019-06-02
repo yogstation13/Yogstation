@@ -796,7 +796,7 @@
 
 /datum/reagent/medicine/epinephrine/on_mob_add(mob/living/carbon/M)
 	..()
-	M.add_trait(TRAIT_NOCRITDAMAGE, id)
+	ADD_TRAIT(M, TRAIT_NOCRITDAMAGE, id)
 
 /datum/reagent/medicine/epinephrine/on_mob_delete(mob/living/carbon/M)
 	M.remove_trait(TRAIT_NOCRITDAMAGE, id)
@@ -1244,7 +1244,7 @@
 
 /datum/reagent/medicine/corazone/on_mob_add(mob/living/M)
 	..()
-	M.add_trait(TRAIT_STABLEHEART, id)
+	ADD_TRAIT(M, TRAIT_STABLEHEART, id)
 
 /datum/reagent/medicine/corazone/on_mob_delete(mob/living/M)
 	M.remove_trait(TRAIT_STABLEHEART, id)
@@ -1275,7 +1275,7 @@
 	var/overdose_progress = 0 // to track overdose progress
 
 /datum/reagent/medicine/modafinil/on_mob_add(mob/living/M)
-	M.add_trait(TRAIT_SLEEPIMMUNE, id)
+	ADD_TRAIT(M, TRAIT_SLEEPIMMUNE, id)
 	..()
 
 /datum/reagent/medicine/modafinil/on_mob_delete(mob/living/M)
@@ -1339,7 +1339,7 @@
 
 /datum/reagent/medicine/psicodine/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_FEARLESS, id)
+	ADD_TRAIT(L, TRAIT_FEARLESS, id)
 
 /datum/reagent/medicine/psicodine/on_mob_delete(mob/living/L)
 	L.remove_trait(TRAIT_FEARLESS, id)

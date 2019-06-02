@@ -19,8 +19,8 @@
 /datum/mutation/human/space_adaptation/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_RESISTCOLD, "space_adaptation")
-	owner.add_trait(TRAIT_RESISTLOWPRESSURE, "space_adaptation")
+	ADD_TRAIT(owner, TRAIT_RESISTCOLD, "space_adaptation")
+	ADD_TRAIT(owner, TRAIT_RESISTLOWPRESSURE, "space_adaptation")
 
 /datum/mutation/human/space_adaptation/on_losing(mob/living/carbon/human/owner)
 	if(..())

@@ -23,7 +23,7 @@
 	if(ishuman(H) && !fly)
 		fly = new
 		fly.Grant(H)
-	H.add_trait(TRAIT_HOLY, SPECIES_TRAIT)
+	ADD_TRAIT(H, TRAIT_HOLY, SPECIES_TRAIT)
 
 /datum/species/angel/on_species_loss(mob/living/carbon/human/H)
 	if(fly)

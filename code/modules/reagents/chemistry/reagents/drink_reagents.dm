@@ -435,7 +435,7 @@
 
 /datum/reagent/consumable/grey_bull/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_SHOCKIMMUNE, id)
+	ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, id)
 
 /datum/reagent/consumable/grey_bull/on_mob_delete(mob/living/L)
 	L.remove_trait(TRAIT_SHOCKIMMUNE, id)

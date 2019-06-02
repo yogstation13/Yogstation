@@ -53,7 +53,7 @@
 	lose_text = "<span class='notice'>You realize that magic might be real.</span>"
 
 /datum/brain_trauma/magic/antimagic/on_gain()
-	owner.add_trait(TRAIT_ANTIMAGIC, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/magic/antimagic/on_lose()

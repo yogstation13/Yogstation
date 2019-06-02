@@ -42,7 +42,7 @@
 	lose_text = "<span class='notice'>You feel smart again.</span>"
 
 /datum/brain_trauma/mild/dumbness/on_gain()
-	owner.add_trait(TRAIT_DUMB, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_DUMB, TRAUMA_TRAIT)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "dumb", /datum/mood_event/oblivious)
 	..()
 
@@ -68,7 +68,7 @@
 	lose_text = "<span class='danger'>Your mind feels more clear.</span>"
 
 /datum/brain_trauma/mild/speech_impediment/on_gain()
-	owner.add_trait(TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/mild/speech_impediment/on_lose()

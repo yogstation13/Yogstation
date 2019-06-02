@@ -13,7 +13,7 @@
 	lose_text = "<span class='notice'>You suddenly remember how to speak.</span>"
 
 /datum/brain_trauma/severe/mute/on_gain()
-	owner.add_trait(TRAIT_MUTE, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_MUTE, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/mute/on_lose()
@@ -109,7 +109,7 @@
 /datum/brain_trauma/severe/paralysis/on_gain()
 	..()
 	for(var/X in paralysis_traits)
-		owner.add_trait(X, "trauma_paralysis")
+		ADD_TRAIT(owner, X, "trauma_paralysis")
 	owner.update_disabled_bodyparts()
 
 /datum/brain_trauma/severe/paralysis/on_lose()
@@ -233,7 +233,7 @@
 	lose_text = "<span class='notice'>You feel in control of your hands again.</span>"
 
 /datum/brain_trauma/severe/discoordination/on_gain()
-	owner.add_trait(TRAIT_MONKEYLIKE, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_MONKEYLIKE, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/discoordination/on_lose()
@@ -248,7 +248,7 @@
 	lose_text = "<span class='notice'>You no longer feel compelled to not harm.</span>"
 
 /datum/brain_trauma/severe/pacifism/on_gain()
-	owner.add_trait(TRAIT_PACIFISM, TRAUMA_TRAIT)
+	ADD_TRAIT(owner, TRAIT_PACIFISM, TRAUMA_TRAIT)
 	..()
 
 /datum/brain_trauma/severe/pacifism/on_lose()

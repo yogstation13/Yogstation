@@ -202,7 +202,7 @@
 /obj/item/clothing/glasses/sunglasses/reagent/equipped(mob/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == SLOT_GLASSES)
-		user.add_trait(TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
+		ADD_TRAIT(user, TRAIT_BOOZE_SLIDER, CLOTHING_TRAIT)
 
 /obj/item/clothing/glasses/sunglasses/reagent/dropped(mob/user)
 	. = ..()

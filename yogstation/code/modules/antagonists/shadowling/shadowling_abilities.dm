@@ -684,7 +684,7 @@
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
 		M.death()
-		M.add_trait(TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		ADD_TRAIT(M, TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000

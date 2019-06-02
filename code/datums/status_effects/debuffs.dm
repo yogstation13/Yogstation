@@ -130,7 +130,7 @@
 	alert_type = /obj/screen/alert/status_effect/strandling
 
 /datum/status_effect/strandling/on_apply()
-	owner.add_trait(TRAIT_MAGIC_CHOKE, "dumbmoron")
+	ADD_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
 	return ..()
 
 /datum/status_effect/strandling/on_remove()
@@ -159,7 +159,7 @@
 	. = ..()
 
 /datum/status_effect/pacify/on_apply()
-	owner.add_trait(TRAIT_PACIFISM, "status_effect")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
@@ -179,7 +179,7 @@
 	. = ..()
 
 /datum/status_effect/pacify/on_apply()
-	owner.add_trait(TRAIT_PACIFISM, "status_effect")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
@@ -619,9 +619,9 @@
 	alert_type = null
 
 /datum/status_effect/gonbolaPacify/on_apply()
-	owner.add_trait(TRAIT_PACIFISM, "gonbolaPacify")
-	owner.add_trait(TRAIT_MUTE, "gonbolaMute")
-	owner.add_trait(TRAIT_JOLLY, "gonbolaJolly")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "gonbolaPacify")
+	ADD_TRAIT(owner, TRAIT_MUTE, "gonbolaMute")
+	ADD_TRAIT(owner, TRAIT_JOLLY, "gonbolaJolly")
 	to_chat(owner, "<span class='notice'>You suddenly feel at peace and feel no need to make any sudden or rash actions...</span>")
 	return ..()
 
@@ -653,7 +653,7 @@
 	if(!iscarbon(owner))
 		return FALSE
 	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/hypnotize)
-	owner.add_trait(TRAIT_MUTE, "trance")
+	ADD_TRAIT(owner, TRAIT_MUTE, "trance")
 	if(!owner.has_quirk(/datum/quirk/monochromatic))
 		owner.add_client_colour(/datum/client_colour/monochrome)
 	owner.visible_message("[stun ? "<span class='warning'>[owner] stands still as [owner.p_their()] eyes seem to focus on a distant point.</span>" : ""]", \

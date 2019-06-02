@@ -19,7 +19,7 @@
 /obj/item/implant/mindshield/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	if(..())
 		if(!target.mind)
-			target.add_trait(TRAIT_MINDSHIELD, "implant")
+			ADD_TRAIT(target, TRAIT_MINDSHIELD, "implant")
 			target.sec_hud_set_implants()
 			return TRUE
 
@@ -68,7 +68,7 @@
 				to_chat(target, "<span class='warning'>You feel something interfering with your mental conditioning, but you resist it!</span>")
 			else
 				to_chat(target, "<span class='notice'>You feel a sense of peace and security. You are now protected from brainwashing.</span>")
-		target.add_trait(TRAIT_MINDSHIELD, "implant")
+		ADD_TRAIT(target, TRAIT_MINDSHIELD, "implant")
 		target.sec_hud_set_implants()
 		return TRUE
 	return FALSE
