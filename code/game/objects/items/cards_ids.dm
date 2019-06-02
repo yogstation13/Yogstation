@@ -175,7 +175,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	
+
 	return TRUE
 
 /obj/item/card/id/AltClick(mob/living/user)
@@ -197,17 +197,13 @@
 				return
 		to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
 		return
-<<<<<<< HEAD
-	var/amount_to_remove = input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num
-=======
 
 	if (world.time < registered_account.withdrawDelay)
-		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE) 
+		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
 		return
 
 	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
 
->>>>>>> fc2966ff01... [READY] Execute Protocol Crab-17: Phase 3 - The one where Floyd actually finishes the PR (#43338)
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, "<span class='warning'>You're pretty sure that's not how money works.</span>")
 		return
@@ -220,7 +216,7 @@
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE) 
+		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
 	..()
@@ -249,7 +245,6 @@
 Usage:
 update_label()
 	Sets the id name to whatever registered_name and assignment is
-
 update_label("John Doe", "Clowny")
 	Properly formats the name and occupation and sets the id name to the arguments
 */
