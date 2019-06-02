@@ -99,7 +99,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		return
 
 	var/turf/T = get_turf(current_victim)
-	var/area/A = get_area(T) // Has to be separated from the below since is_type_in_typecache is also a funky macro
+	A = get_area(T) // Has to be separated from the below since is_type_in_typecache is also a funky macro
 	if(prob(5))//checks roughly every 20 ticks
 		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(A, invalid_area_typecache) || !is_station_level(current_victim.z))
 			if(!Found_You())
@@ -162,13 +162,14 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
 		var/mob/living/carbon/human/H = pick(GLOB.player_list)//so the check is fair
-
+		var/area/A
 		if(specific)
 			H = specific
-			var/area/A = get_area(H.loc)
+			A = get_area(H.loc)
 			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 				return target = current_victim
-
+		
+		A = get_area(H.loc)
 		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 			current_victim = H
 			interest = 0
