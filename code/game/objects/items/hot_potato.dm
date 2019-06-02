@@ -150,7 +150,7 @@
 /obj/item/hot_potato/proc/deactivate()
 	update_icon()
 	name = initial(name)
-	remove_trait(TRAIT_NODROP, HOT_POTATO_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
 	deltimer(detonation_timerid)
 	STOP_PROCESSING(SSfastprocess, src)
 	detonation_timerid = null

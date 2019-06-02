@@ -90,7 +90,7 @@
 				do_attack_animation(master, null, src)
 				master.emote("scream")
 				master.remove_status_effect(STATUS_EFFECT_HISGRACE)
-				remove_trait(TRAIT_NODROP, HIS_GRACE_TRAIT)
+				REMOVE_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 				master.Paralyze(60)
 				master.adjustBruteLoss(master.maxHealth)
 				playsound(master, 'sound/effects/splat.ogg', 100, 0)
@@ -202,7 +202,7 @@
 	update_stats()
 
 /obj/item/his_grace/proc/update_stats()
-	remove_trait(TRAIT_NODROP, HIS_GRACE_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HIS_GRACE_TRAIT)
 	var/mob/living/master = get_atom_on_turf(src, /mob/living)
 	switch(bloodthirst)
 		if(HIS_GRACE_CONSUME_OWNER to HIS_GRACE_FALL_ASLEEP)

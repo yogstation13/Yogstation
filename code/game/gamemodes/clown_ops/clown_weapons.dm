@@ -224,7 +224,7 @@
 	addtimer(CALLBACK(src, .proc/unstick), unstick_time)
 
 /obj/item/clothing/mask/fakemoustache/sticky/proc/unstick()
-	remove_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 
 //DARK H.O.N.K. AND CLOWN MECH WEAPONS
 

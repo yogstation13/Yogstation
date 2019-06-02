@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/toggle_nodrop()
 	if(HAS_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT))
-		remove_trait(TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	else
 		add_trait(TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	if(ismob(loc))

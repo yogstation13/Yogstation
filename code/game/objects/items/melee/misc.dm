@@ -129,7 +129,7 @@
 	if(!QDELETED(user))
 		user.adjustBruteLoss(200)
 		user.death(FALSE)
-	remove_trait(TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
 /obj/item/melee/classic_baton
 	name = "police baton"

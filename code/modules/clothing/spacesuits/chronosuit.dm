@@ -213,7 +213,7 @@
 		activating = 1
 		var/mob/living/carbon/human/user = src.loc
 		var/hard_landing = teleporting && force
-		remove_trait(TRAIT_NODROP, CHRONOSUIT_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 		cooldown = world.time + cooldowntime * 1.5
 		activated = 0
 		activating = 0
