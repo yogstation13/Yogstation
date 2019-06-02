@@ -35,7 +35,7 @@
 		to_chat(quirk_holder, lose_text)
 		quirk_holder.roundstart_quirks -= src
 		if(mob_trait)
-			REMOVE_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT, TRUE)
+			REMOVE_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)
 	SSquirks.quirk_objects -= src
 	return ..()
 
