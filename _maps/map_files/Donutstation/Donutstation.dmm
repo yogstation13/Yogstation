@@ -52575,8 +52575,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
-<<<<<<< HEAD
-=======
 "clO" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -52593,7 +52591,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
->>>>>>> 06ea919dab... Fix Donutstation telecomms server air alarm (#44257)
 "csH" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 4
