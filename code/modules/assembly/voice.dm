@@ -16,8 +16,8 @@
 	var/listening = FALSE
 	var/recorded = "" //the activation message
 	var/mode = 2 //yogs: starts on exclusive
-	var/static/list/modes = list("inclusive", //yogs: moves exclusive to the top
-								 "exclusive", //yogs end
+	var/static/list/modes = list("inclusive",
+								 "exclusive",
 								 "recognizer",
 								 "voice sensor")
 
