@@ -1,8 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - rscadd: "Adds yogjob hud icons."
-  - bugfix: "The disease hud is now fixed, displaying the severity of diseases. Ranging from a straight green face that shows someone has the sniffles while a sad black one shows the person will die in 5 seconds!"
-  - bugfix: "yogjob huds will now show on sechuds."
-  - bugfix: "probably more bugs relating to huds, ie nanites, antaghuds."
-  - tweak: "Incarcerated hud is now a more distinct colour and has been changed to an I."

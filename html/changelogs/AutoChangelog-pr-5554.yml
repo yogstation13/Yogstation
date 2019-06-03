@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Med Record, Sec Record, and Detective Scanner printed papers use paper_words icon state"

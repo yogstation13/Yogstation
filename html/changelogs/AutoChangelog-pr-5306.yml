@@ -1,7 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Tritium fires no longer violate the conservation of mass."
-  - bugfix: "Small tritium fires no longer cause negative amounts of Tritium."
-  - tweak: "Tritium fires now produce 100x more water vapor."
-  - tweak: "Tritium fires may be somewhat more radioactive in some circumstances."
