@@ -146,7 +146,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 
-<<<<<<< HEAD
 	// yogs start - Donor features
 	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
@@ -156,10 +155,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	load_keybindings(S) // yogs - Custom keybindings
 
-	return 1
-=======
 	return TRUE
->>>>>>> 0d86efdb52... Widescreen toggle support (doesn't actually enable it) (#43754)
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
@@ -205,7 +201,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 
-<<<<<<< HEAD
 	// yogs start - Donor features
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
@@ -215,10 +210,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	save_keybindings(S) // yogs - Custom keybindings
 
-	return 1
-=======
 	return TRUE
->>>>>>> 0d86efdb52... Widescreen toggle support (doesn't actually enable it) (#43754)
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
