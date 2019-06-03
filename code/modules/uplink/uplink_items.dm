@@ -1447,6 +1447,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	The crew can move their funds to a new banking site though, unless they HODL, in which case they deserve it."
 	item = /obj/item/suspiciousphone
 	cost = 7
+	limited_stock = 1
 
 // Implants
 /datum/uplink_item/implants
