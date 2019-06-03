@@ -622,8 +622,6 @@
 		var/item = pick(contains)
 		new item(C)
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/security/armory/swat
 	name = "SWAT Crate"
 	desc = "Contains two fullbody sets of tough, fireproof, pressurized suits designed in a joint effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, and combat gloves. Requires Armory access to open."
@@ -671,7 +669,6 @@
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
 
->>>>>>> 987f997783... cargo crates fixes n tweaks (#44000)
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
