@@ -479,7 +479,11 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
 DEFAULT_VIEW 15x15
 
-<<<<<<< HEAD
+##Default view size, in tiles. Should *always* be square.
+## The alternative square viewport size if you're using a widescreen view size
+## You probably shouldn't ever be changing this, but it's here if you want to.
+DEFAULT_VIEW_SQUARE 15x15
+
 ##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
 #WEBHOOK_ADRESS http://example.com
 #WEBHOOK_KEY webkey
@@ -491,9 +495,3 @@ DEFAULT_VIEW 15x15
 
 #Mentors only see ckeys by default. Uncomment to have them only see mob name
 #MENTORS_MOBNAME_ONLY
-=======
-##Default view size, in tiles. Should *always* be square.
-## The alternative square viewport size if you're using a widescreen view size
-## You probably shouldn't ever be changing this, but it's here if you want to.
-DEFAULT_VIEW_SQUARE 15x15
->>>>>>> 0d86efdb52... Widescreen toggle support (doesn't actually enable it) (#43754)
