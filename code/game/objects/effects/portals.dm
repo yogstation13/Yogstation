@@ -200,41 +200,37 @@
 /obj/effect/portal/permanent/proc/get_linked()
 	if(!id)
 		return
-	var/list/possible = list()
 	for(var/obj/effect/portal/permanent/P in GLOB.portals - src)
 		if(P.id && P.id == id) // gets portals with the same id, there should only be two permanent portals with the same id
-			possible += P
-	return possible
+			return P
 
 /obj/effect/portal/permanent/proc/set_linked()
-	var/list/possible = get_linked()
-	if(!possible || !possible.len)
+	var/obj/effect/portal/permanent/other = get_linked()
+	if(!other)
 		return
-	for(var/obj/effect/portal/permanent/other in possible)
-		other.linked = src
-	linked = pick(possible)
+	other.linked = src
+	linked = other
 
 /obj/effect/portal/permanent/teleport(atom/movable/M, force = FALSE)
-	// try to search for a new one if something was var edited etc
-	set_linked()
+	if(!linked) // try to search for a new one if something was var edited etc
+		set_linked()
 	. = ..()
 
 /obj/effect/portal/permanent/one_way // doesn't have a return portal
 	name = "one-way portal"
 	desc = "You get the feeling that this might not be the safest thing you've ever done."
-	var/list/possible_exits = list()
 	var/keep // if this is a portal that should be kept
 
 /obj/effect/portal/permanent/one_way/set_linked()
-	if(!keep) // wait for a keep portal to set
+	var/obj/effect/portal/permanent/one_way/other = get_linked()
+	if(!other)
 		return
-	var/list/possible_temp = get_linked()
-	if(possible_temp && possible_temp.len)
-		for(var/obj/effect/portal/permanent/other in possible_temp)
-			possible_exits += get_turf(other)
-			qdel(other)
-	if(possible_exits && possible_exits.len)
-		hard_target = pick(possible_exits)
+	hard_target = get_turf(other)
+	other.hard_target = get_turf(src)
+	if(!other.keep)
+		qdel(other)
+	if(!keep)
+		qdel(src)
 
 /obj/effect/portal/permanent/one_way/keep // because its nice to be able to tell which is which on the map
 	keep = TRUE

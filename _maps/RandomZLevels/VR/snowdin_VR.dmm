@@ -200,6 +200,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/item/bedsheet/purple,
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
@@ -236,6 +237,16 @@
 	pixel_y = 5
 	},
 /obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/awaymission/snowdin/post/dorm)
+"aX" = (
+/obj/structure/bed,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
 "aY" = (
@@ -278,6 +289,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/item/paper/crumpled/ruins/snowdin/dontdeadopeninside,
 /obj/item/bedsheet/green,
 /turf/open/floor/wood,
@@ -317,7 +329,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -352,7 +363,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/wood,
 /area/awaymission/snowdin/post/dorm)
 "bm" = (
@@ -608,6 +618,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/snowdin/post/kitchen)
 "bM" = (
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/snowdin/post/kitchen)
@@ -1560,7 +1571,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/dorm)
 "dE" = (
@@ -1803,6 +1813,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/item/bedsheet/red,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -2515,9 +2526,15 @@
 /area/awaymission/snowdin/post/gateway)
 "fH" = (
 /obj/structure/bed,
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/item/bedsheet/nanotrasen,
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
+"fI" = (
+/obj/effect/landmark/vr_spawn/snowdin,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/awaymission/snowdin/post/gateway)
 "fJ" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/bar,
@@ -2878,6 +2895,7 @@
 /area/awaymission/snowdin/post/gateway)
 "gw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
@@ -2887,6 +2905,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
@@ -3240,7 +3259,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
+/obj/effect/landmark/vr_spawn/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "hm" = (
@@ -3253,9 +3272,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/machinery/holopad,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "hn" = (
@@ -3265,7 +3284,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
+/obj/effect/landmark/vr_spawn/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "ho" = (
@@ -3512,8 +3531,8 @@
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "hR" = (
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/turf_decal/stripes/line,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "hS" = (
@@ -3523,15 +3542,16 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "hT" = (
 /obj/structure/chair{
 	dir = 4
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	piping_layer = 3;
@@ -3876,7 +3896,6 @@
 	id = "snowdin_gate"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "iB" = (
@@ -4316,6 +4335,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/garage)
@@ -4537,10 +4557,10 @@
 	id = "snowdin_gate"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/gateway)
 "jZ" = (
+/obj/effect/landmark/vr_spawn/snowdin,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -4634,7 +4654,6 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/garage)
 "kk" = (
@@ -14235,7 +14254,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
 /turf/open/floor/plasteel/grimy,
 /area/awaymission/snowdin/post/mining_main)
 "HV" = (
@@ -15579,10 +15597,6 @@
 "ND" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/awaymission/snowdin/post/mining_dock)
-"Om" = (
-/obj/effect/portal/permanent/one_way/destroy/snowdin,
-/turf/open/floor/plating,
-/area/awaymission/snowdin/post/garage)
 "OF" = (
 /obj/machinery/door/airlock/external{
 	name = "Ready Room";
@@ -23154,7 +23168,7 @@ af
 af
 ag
 aK
-aU
+aX
 bm
 bB
 aS
@@ -26764,7 +26778,7 @@ fh
 fF
 fG
 fG
-fG
+fI
 hm
 hS
 iA
@@ -35764,7 +35778,7 @@ iW
 iW
 iW
 iW
-Om
+iW
 hE
 hE
 nB
