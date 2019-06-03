@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The AI Core and SM Chamber are now absolutely protected against Grid Checks."

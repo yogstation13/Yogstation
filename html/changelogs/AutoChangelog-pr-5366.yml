@@ -1,0 +1,4 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - bugfix: "Red slime potions have been fixed!"
