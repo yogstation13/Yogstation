@@ -367,8 +367,6 @@
 		if(prob(3))
 			M += pick(" Honh honh honh!"," Honh!"," Zut Alors!")
 	return trim(M)
-<<<<<<< HEAD
-=======
 
 /obj/item/clothing/head/clownmitre
 	name = "Hat of the Honkmother"
@@ -396,4 +394,3 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
->>>>>>> 55ed0ebf35... Fedoras hold small and gimmick items (#44139)
