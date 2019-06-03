@@ -160,7 +160,7 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.type, "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = R.id, "allowed" = chem_allowed(chem)))
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -207,8 +207,8 @@
 				open_machine()
 			. = TRUE
 		if("inject")
-			var/chem = text2path(params["chem"])
-			if(!is_operational() || !mob_occupant || isnull(chem))
+			var/chem = params["chem"]
+			if(!is_operational() || !mob_occupant)
 				return
 			if(mob_occupant.health < min_health && chem != "epinephrine")
 				return
