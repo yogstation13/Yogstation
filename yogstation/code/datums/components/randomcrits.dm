@@ -18,7 +18,7 @@
 	if(prob(crit_rate))	
 		target.apply_damage(crit_damage, BRUTE, user.zone_selected, 0)	
 		user.visible_message("<span class='danger'>[user]'s [parent] scores a random crit!!</span>")
-		playsound(src, 'sound/effects/bang.ogg', 100, 0)
+		playsound(target, 'sound/effects/bang.ogg', 100, 0)
 	if(!target.stat && target.ckey)	
 		crit_rate += crit_rate_increase	
 		if(crit_rate > crit_rate_max)	
