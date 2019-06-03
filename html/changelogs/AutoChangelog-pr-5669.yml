@@ -1,0 +1,4 @@
+author: " MMMiracles"
+delete-after: true 
+changes: 
+  - bugfix: "Air alarm for Donut's telecomms server is the proper type"
