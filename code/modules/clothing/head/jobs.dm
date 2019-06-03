@@ -54,14 +54,11 @@
 	icon_state = "nun_hood"
 	flags_inv = HIDEHAIR
 	flags_cover = HEADCOVERSEYES
-<<<<<<< HEAD
-=======
 
 /obj/item/clothing/head/bishopmitre
 	name = "bishop mitre"
 	desc = "An opulent hat that functions as a radio to God. Or as a lightning rod, depending on who you ask."
 	icon_state = "bishopmitre"
->>>>>>> 55ed0ebf35... Fedoras hold small and gimmick items (#44139)
 
 //Detective
 /obj/item/clothing/head/fedora/det_hat
