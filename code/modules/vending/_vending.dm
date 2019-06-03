@@ -314,7 +314,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return ..()
 
 /obj/machinery/vending/ui_interact(mob/user)
-	var/dat =
 	var/list/dat = list()
 	var/datum/bank_account/account
 	var/mob/living/carbon/human/H
