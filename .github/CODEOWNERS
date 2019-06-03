@@ -14,9 +14,59 @@
 
 #AsV9
 
+<<<<<<< HEAD
 /code/__DEFINES/MC.dm @AsV9
 /code/controllers/master.dm @AsV9
+=======
+# Cobby
+/code/modules/reagents/ @ExcessiveUseOfCobblestone
+/code/modules/research/designs/medical_designs.dm @ExcessiveUseOfCobblestone
+/code/modules/surgery/ @ExcessiveUseOfCobblestone
+
+# Cyberboss
+>>>>>>> 6eab835c65... Cobby Now Bleeds Bicard (AKA Auto-notified When You Touch Medical) (#44300)
 
 #Altoids
 
+<<<<<<< HEAD
 /yogstation/code/modules/scripting/ @Altoids1
+=======
+# duncathan
+
+/code/__DEFINES/atmospherics.dm @duncathan
+/code/modules/atmospherics/ @duncathan
+
+# Jordie0608
+
+/SQL/ @Jordie0608
+/code/controllers/subsystem/dbcore.dm @Jordie0608
+/tools/SQLAlertEmail/ @Jordie0608
+
+# MrStonedOne
+
+/SQL/database_changelog.txt @MrStonedOne
+/code/__DEFINES/MC.dm @MrStonedOne
+/code/__DEFINES/tick.dm @MrStonedOne
+/code/controllers/admin.dm @MrStonedOne
+/code/controllers/master.dm @MrStonedOne
+/code/controllers/failsafe.dm @MrStonedOne
+/code/controllers/subsystem.dm @MrStonedOne
+/code/controllers/subsystem/timer.dm @MrStonedOne
+
+# ninjanomnom
+
+/code/controllers/subsystem/shuttle.dm @ninjanomnom
+/code/modules/shuttle/ @ninjanomnom
+
+# ShizCalev
+
+/_maps/ @ShizCalev
+/icons/ @ShizCalev
+/sound/ @ShizCalev
+
+# Multiple Owners
+
+/code/__DEFINES/components.dm @Cyberboss @ninjanomnom
+/code/controllers/subsystem/air.dm @duncathan @MrStonedOne
+/code/datums/components/ @Cyberboss @ninjanomnom
+>>>>>>> 6eab835c65... Cobby Now Bleeds Bicard (AKA Auto-notified When You Touch Medical) (#44300)
