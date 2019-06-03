@@ -1,5 +1,5 @@
-#define EXCLUSIVE_MODE 1 //yogs:moves exclusive to the top
-#define INCLUSIVE_MODE 2 //yogs end
+#define INCLUSIVE_MODE 1
+#define EXCLUSIVE_MODE 2
 #define RECOGNIZER_MODE 3
 #define VOICE_SENSOR_MODE 4
 
@@ -15,15 +15,15 @@
 	verb_exclaim = "beeps"
 	var/listening = FALSE
 	var/recorded = "" //the activation message
-	var/mode = 1
-	var/static/list/modes = list("exclusive", //yogs: moves exclusive to the top
-								 "inclusive", //yogs end
+	var/mode = 2 //yogs: starts on exclusive
+	var/static/list/modes = list("inclusive", //yogs: moves exclusive to the top
+								 "exclusive", //yogs end
 								 "recognizer",
 								 "voice sensor")
 
 /obj/item/assembly/voice/examine(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>Use a multitool to swap between \"exclusive\", \"inclusive\", \"recognizer\", and \"voice sensor\" mode.</span>") //yogs: no detonating yourself for not setting a phrase
+	to_chat(user, "<span class='notice'>Use a multitool to swap between \"inclusive\", \"exclusive\", \"recognizer\", and \"voice sensor\" mode.</span>")
 
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
