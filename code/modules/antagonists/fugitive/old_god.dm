@@ -10,8 +10,14 @@
 	var/lastWarning = 0
 
 /mob/camera/yalp_elor/Initialize()
+<<<<<<< HEAD
 	..()
 	var/datum/action/innate/yalp_transmit/transmit = new
+=======
+	. = ..()
+	transmit = new
+	transport = new
+>>>>>>> 9b15fe90aa... Fix bad indent (#44285)
 	transmit.Grant(src)
 	var/datum/action/innate/yalp_transport/transport = new
 	transport.Grant(src)
