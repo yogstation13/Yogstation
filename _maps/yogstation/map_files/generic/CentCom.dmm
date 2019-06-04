@@ -12501,7 +12501,7 @@
 	},
 /obj/item/melee/transforming/energy/blade,
 /obj/item/melee/transforming/energy/blade/hardlight,
-/obj/item/melee/transforming/energy/sword/bananium/centcom,
+/obj/item/melee/transforming/energy/sword/bananium,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "zw" = (
@@ -20512,7 +20512,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/pointybush,
 /obj/item/reagent_containers/pill/adminordrazine,
-/obj/machinery/nuclearbomb/syndicate/bananium,
+/obj/machinery/nuclearbomb/syndicate/bananium/centcom,
 /turf/open/floor/grass,
 /area/centcom/testchamber)
 "Oi" = (
