@@ -52,5 +52,12 @@
 			var/datum/callback/CB = foo
 			CB.Invoke()
 		log_played_names(client.ckey,name,real_name)
+<<<<<<< HEAD
+=======
+		auto_deadmin_on_login()
+
+	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
+	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+>>>>>>> c55145299a... Componentizes menucrafting (#44221)
 
 	log_message("Client [key_name(src)] has taken ownership of mob [src]", LOG_OWNERSHIP)
