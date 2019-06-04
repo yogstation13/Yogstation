@@ -12501,7 +12501,7 @@
 	},
 /obj/item/melee/transforming/energy/blade,
 /obj/item/melee/transforming/energy/blade/hardlight,
-/obj/item/melee/transforming/energy/sword/bananium,
+/obj/item/melee/transforming/energy/sword/bananium/centcom,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "zw" = (
