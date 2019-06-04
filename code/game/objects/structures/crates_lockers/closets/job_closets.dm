@@ -59,8 +59,13 @@
 	new /obj/item/paint/paint_remover(src)
 	new /obj/item/melee/flyswatter(src)
 	new /obj/item/flashlight(src)
+<<<<<<< HEAD
 	for(var/i in 1 to 4) // yogs - Makes there be 4 caution signs instead of 3
 		new /obj/item/caution(src)
+=======
+	for(var/i in 1 to 3)
+		new /obj/item/clothing/suit/caution(src)
+>>>>>>> 47700b8679... Allows you to wear the caution sign + new sprite for the caution sign (#44289)
 	new /obj/item/holosign_creator/janibarrier(src)
 	new /obj/item/lightreplacer(src)
 	new /obj/item/soap(src)
