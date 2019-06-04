@@ -3212,6 +3212,7 @@
 #include "yogstation\code\modules\research\designs\comp_board_designs.dm"
 #include "yogstation\code\modules\research\designs\spacepod_designs.dm"
 #include "yogstation\code\modules\research\designs\stock_parts_designs.dm"
+#include "yogstation\code\modules\research\designs\telecomms_designs.dm"
 #include "yogstation\code\modules\research\designs\tool_designs.dm"
 #include "yogstation\code\modules\research\techweb\_techweb_node.dm"
 #include "yogstation\code\modules\research\techweb\all_nodes.dm"
