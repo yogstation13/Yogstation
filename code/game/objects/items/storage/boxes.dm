@@ -401,8 +401,13 @@
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/donkpocket))
+=======
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
@@ -417,7 +422,7 @@
 
 /obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
@@ -437,7 +442,7 @@
 
 /obj/item/storage/box/gorillacubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
@@ -590,8 +595,13 @@
 
 /obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.can_hold = typecacheof(list(/obj/item/toy/snappop))
+=======
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/toy/snappop))
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 	STR.max_items = 8
 
 /obj/item/storage/box/snappops/PopulateContents()
@@ -608,7 +618,7 @@
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
 	STR.can_hold = typecacheof(list(/obj/item/match))
 // yogs start -- make matches play nice with holodeck
@@ -632,7 +642,7 @@
 
 /obj/item/storage/box/lights/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
 	STR.can_hold = typecacheof(list(/obj/item/light/tube, /obj/item/light/bulb))
 	STR.max_combined_w_class = 21

@@ -68,8 +68,13 @@
 
 /obj/item/storage/bag/easterbasket/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/egg, /obj/item/reagent_containers/food/snacks/chocolateegg, /obj/item/reagent_containers/food/snacks/boiledegg))
+=======
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/egg, /obj/item/reagent_containers/food/snacks/chocolateegg, /obj/item/reagent_containers/food/snacks/boiledegg))
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 
 /obj/item/storage/bag/easterbasket/proc/countEggs()
 	cut_overlays()

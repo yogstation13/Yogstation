@@ -13,8 +13,13 @@
 
 /obj/item/storage/photo_album/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.can_hold = typecacheof(list(/obj/item/photo))
+=======
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/photo))
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 	STR.max_combined_w_class = 42
 	STR.max_items = 21
 	LAZYADD(SSpersistence.photo_albums, src)
