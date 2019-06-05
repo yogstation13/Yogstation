@@ -143,7 +143,7 @@
 	create_reagents(10)
 
 	if(overmind && overmind.blob_reagent_datum)
-		reagents.add_reagent(overmind.blob_reagent_datum.id, 10)
+		reagents.add_reagent(overmind.blob_reagent_datum.type, 10)
 	else
 		reagents.add_reagent(/datum/reagent/toxin/spore, 10)
 
