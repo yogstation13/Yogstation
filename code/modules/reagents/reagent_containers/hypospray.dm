@@ -199,8 +199,8 @@
 	desc = "A rapid way to save a person from a critical injury state!"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
-/obj/item/reagent_containers/hypospray/medipen/snail
+/*/obj/item/reagent_containers/hypospray/medipen/snail
 	name = "snail shot"
 	desc = "All-purpose snail medicine! Do not use on non-snails!"
 	list_reagents = list(/datum/reagent/snail = 10)
-	icon_state = "snail"
+	icon_state = "snail" */ //yogs we removed snail people cause we are bad people who hate fun

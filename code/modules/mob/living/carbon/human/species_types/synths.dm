@@ -14,7 +14,7 @@
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | SLIME_EXTRACT//Yogs -- Slime_extract
-	
+
 /datum/species/synth/New()
 	initial_species_traits = species_traits.Copy()
 	initial_inherent_traits = inherent_traits.Copy()
@@ -34,7 +34,7 @@
 	assume_disguise(old_species, H)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	H.reagents.remove_reagent(chem.id, chem.volume) //yogs start - synths don't process chems
+	H.reagents.remove_reagent(chem.type, chem.volume) //yogs start - synths don't process chems
 	return TRUE
 	/*
 	if(chem.type == /datum/reagent/medicine/synthflesh)
