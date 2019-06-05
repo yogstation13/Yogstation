@@ -1,4 +1,3 @@
-
 /mob/camera/yalp_elor
 	name = "Yalp Elor"
 	real_name = "Yalp Elor"
@@ -6,22 +5,21 @@
 	icon = 'icons/mob/cameramob.dmi'
 	icon_state = "yalp_elor"
 	invisibility = INVISIBILITY_OBSERVER
-	call_life = TRUE
 	var/lastWarning = 0
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 
 /mob/camera/yalp_elor/Initialize()
-<<<<<<< HEAD
-	..()
-	var/datum/action/innate/yalp_transmit/transmit = new
-=======
 	. = ..()
 	transmit = new
- 	transport = new
->>>>>>> 920b0e7d44... Merge pull request #43941 from tralezab/feels-like-i-didn't-even-try
+	transport = new
 	transmit.Grant(src)
 	transport.Grant(src)
+	START_PROCESSING(SSobj, src)
+
+/mob/camera/yalp_elor/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /mob/camera/yalp_elor/Destroy()
 	QDEL_NULL(transmit)
@@ -76,8 +74,7 @@
 		else if(isobserver(V))
 			to_chat(V, "[FOLLOW_LINK(V, src)] [message]")
 
-/mob/camera/yalp_elor/Life()
-	..()
+/mob/camera/yalp_elor/process()
 	var/safe = FALSE
 	for(var/mob/V in GLOB.player_list)
 		if(!V.mind)
