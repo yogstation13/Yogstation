@@ -997,7 +997,7 @@
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		return
 	if(is_shadow_or_thrall(target))
-		to_chat(user, "<span class='warning'>You cannot enthrall an ally.<span>")
+		to_chat(user, "<span class='warning'>You cannot enthrall an ally.</span>")
 		revert_cast()
 		return
 	if(!target.ckey || !target.mind)
