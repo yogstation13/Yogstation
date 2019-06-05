@@ -271,13 +271,8 @@
 
 /datum/disease/transformation/morph
 	name = "Gluttony's Blessing"
-<<<<<<< HEAD
-	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
-	cures = list("adminordrazine")
-=======
 	cure_text = /datum/reagent/consumable/nothing
 	cures = list(/datum/reagent/medicine/adminordrazine)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	agent = "Gluttony's Blessing"
 	desc = "A 'gift' from somewhere terrible."
 	stage_prob = 20
