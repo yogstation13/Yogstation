@@ -627,6 +627,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(W.use_tool(src, user, 60, volume=100))
 			if (scalpel.usesLeft)
 				to_chat(user, "<span class='danger'>You extract a sliver from \the [src]. \The [src] begins to react violently!</span>")
+				investigate_log("ley_name[user] extracts a sliver of \the [src].", INVESTIGATE_SUPERMATTER)//Yogs -- SM sliver logs
+				message_admins("key_name[user] extracted a sliver of \the [src].")//Yogs -- SM sliver logs
 				new /obj/item/nuke_core/supermatter_sliver(drop_location())
 				matter_power += 800
 				scalpel.usesLeft--
