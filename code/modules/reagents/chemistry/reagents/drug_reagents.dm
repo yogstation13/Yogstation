@@ -256,26 +256,16 @@
 
 /datum/reagent/drug/bath_salts/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_STUNIMMUNE, id)
-	L.add_trait(TRAIT_SLEEPIMMUNE, id)
-=======
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		rage = new()
 		C.gain_trauma(rage, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/reagent/drug/bath_salts/on_mob_delete(mob/living/L)
-<<<<<<< HEAD
-	L.remove_trait(TRAIT_STUNIMMUNE, id)
-	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
-=======
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	if(rage)
 		QDEL_NULL(rage)
 	..()
@@ -381,19 +371,11 @@
 
 /datum/reagent/drug/happiness/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_FEARLESS, id)
-	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "happiness_drug", /datum/mood_event/happiness_drug)
-
-/datum/reagent/drug/happiness/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_FEARLESS, id)
-=======
 	ADD_TRAIT(L, TRAIT_FEARLESS, type)
 	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "happiness_drug", /datum/mood_event/happiness_drug)
 
 /datum/reagent/drug/happiness/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_FEARLESS, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "happiness_drug")
 	..()
 

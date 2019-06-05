@@ -41,7 +41,7 @@
 	M.adjustToxLoss(-5, 0, TRUE)
 	M.hallucination = 0
 	M.setBrainLoss(0)
-	M.remove_all_traits()
+	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT))
 	M.set_blurriness(0)
 	M.set_blindness(0)
 	M.SetKnockdown(0, FALSE)
@@ -135,7 +135,7 @@
 		M.adjustFireLoss(-power, 0)
 		M.adjustToxLoss(-power, 0, TRUE) //heals TOXINLOVERs
 		M.adjustCloneLoss(-power, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC) //fixes common causes for disfiguration
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
@@ -150,7 +150,7 @@
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
 	if(M.bodytemperature < T0C)
 		M.adjustCloneLoss(0.00006 * (M.bodytemperature ** 2) - 6, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
 	..()
@@ -179,7 +179,7 @@
 		M.adjustFireLoss(-1.5 * power, 0)
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
-		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	..()
 
@@ -194,7 +194,7 @@
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
 	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
 	M.heal_bodypart_damage(1,1)
-	M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+	REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	..()
 	. = 1
 
@@ -708,14 +708,14 @@
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return
-	if(M.has_trait(TRAIT_BLIND, EYE_DAMAGE))
+	if(HAS_TRAIT_FROM(M, TRAIT_BLIND, EYE_DAMAGE))
 		if(prob(20))
 			to_chat(M, "<span class='warning'>Your vision slowly returns...</span>")
 			M.cure_blind(EYE_DAMAGE)
 			M.cure_nearsighted(EYE_DAMAGE)
 			M.blur_eyes(35)
 
-	else if(M.has_trait(TRAIT_NEARSIGHT, EYE_DAMAGE))
+	else if(HAS_TRAIT_FROM(M, TRAIT_NEARSIGHT, EYE_DAMAGE))
 		to_chat(M, "<span class='warning'>The blackness in your peripheral vision fades.</span>")
 		M.cure_nearsighted(EYE_DAMAGE)
 		M.blur_eyes(10)
@@ -764,17 +764,10 @@
 
 /datum/reagent/medicine/epinephrine/on_mob_add(mob/living/carbon/M)
 	..()
-<<<<<<< HEAD
-	M.add_trait(TRAIT_NOCRITDAMAGE, id)
-
-/datum/reagent/medicine/epinephrine/on_mob_delete(mob/living/carbon/M)
-	M.remove_trait(TRAIT_NOCRITDAMAGE, id)
-=======
 	ADD_TRAIT(M, TRAIT_NOCRITDAMAGE, type)
 
 /datum/reagent/medicine/epinephrine/on_mob_delete(mob/living/carbon/M)
 	REMOVE_TRAIT(M, TRAIT_NOCRITDAMAGE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/carbon/M)
@@ -814,7 +807,7 @@
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
 			return
-		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100 || M.has_trait(TRAIT_HUSK)) //body is too damaged to be revived
+		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100 || HAS_TRAIT(M, TRAIT_HUSK)) //body is too damaged to be revived
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			M.do_jitter_animation(10)
 			return
@@ -1198,17 +1191,10 @@
 
 /datum/reagent/medicine/corazone/on_mob_add(mob/living/M)
 	..()
-<<<<<<< HEAD
-	M.add_trait(TRAIT_STABLEHEART, id)
-
-/datum/reagent/medicine/corazone/on_mob_delete(mob/living/M)
-	M.remove_trait(TRAIT_STABLEHEART, id)
-=======
 	ADD_TRAIT(M, TRAIT_STABLEHEART, type)
 
 /datum/reagent/medicine/corazone/on_mob_delete(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_STABLEHEART, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/medicine/muscle_stimulant
@@ -1234,19 +1220,11 @@
 	var/overdose_progress = 0 // to track overdose progress
 
 /datum/reagent/medicine/modafinil/on_mob_add(mob/living/M)
-<<<<<<< HEAD
-	M.add_trait(TRAIT_SLEEPIMMUNE, id)
-	..()
-
-/datum/reagent/medicine/modafinil/on_mob_delete(mob/living/M)
-	M.remove_trait(TRAIT_SLEEPIMMUNE, id)
-=======
 	ADD_TRAIT(M, TRAIT_SLEEPIMMUNE, type)
 	..()
 
 /datum/reagent/medicine/modafinil/on_mob_delete(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_SLEEPIMMUNE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/medicine/modafinil/on_mob_life(mob/living/carbon/M)
@@ -1305,17 +1283,10 @@
 
 /datum/reagent/medicine/psicodine/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_FEARLESS, id)
-
-/datum/reagent/medicine/psicodine/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_FEARLESS, id)
-=======
 	ADD_TRAIT(L, TRAIT_FEARLESS, type)
 
 /datum/reagent/medicine/psicodine/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_FEARLESS, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/medicine/psicodine/on_mob_life(mob/living/carbon/M)

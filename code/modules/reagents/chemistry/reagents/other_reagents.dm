@@ -187,17 +187,10 @@
 
 /datum/reagent/water/holywater/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_HOLY, id)
-
-/datum/reagent/water/holywater/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_HOLY, id)
-=======
 	ADD_TRAIT(L, TRAIT_HOLY, type)
 
 /datum/reagent/water/holywater/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/water/holywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
@@ -246,7 +239,6 @@
 			M.stuttering = 0
 			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-<<<<<<< HEAD
 	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 		if(!V.get_ability(/datum/vampire_passive/full))
@@ -262,10 +254,7 @@
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
-	holder.remove_reagent(id, 0.4)	//fixed consumption to prevent balancing going out of whack
-=======
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
 	..()
@@ -1194,21 +1183,12 @@
 
 /datum/reagent/stimulum/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_STUNIMMUNE, id)
-	L.add_trait(TRAIT_SLEEPIMMUNE, id)
-
-/datum/reagent/stimulum/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_STUNIMMUNE, id)
-	L.remove_trait(TRAIT_SLEEPIMMUNE, id)
-=======
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
 /datum/reagent/stimulum/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/stimulum/on_mob_life(mob/living/carbon/M)
@@ -1686,17 +1666,10 @@
 
 /datum/reagent/pax/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_PACIFISM, id)
-
-/datum/reagent/pax/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_PACIFISM, id)
-=======
 	ADD_TRAIT(L, TRAIT_PACIFISM, type)
 
 /datum/reagent/pax/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_PACIFISM, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/bz_metabolites
@@ -1708,23 +1681,15 @@
 
 /datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(CHANGELING_HIVEMIND_MUTE, id)
+	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
 		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
 
 /datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
 	..()
-	L.remove_trait(CHANGELING_HIVEMIND_MUTE, id)
+	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
 		to_chat(L, "<span class='boldnotice'>Our blood is pure, we can regenerate chemicals again.</span>") //yogs
-=======
-	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
-
-/datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
-	..()
-	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 
 /datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
 	if(L.mind)

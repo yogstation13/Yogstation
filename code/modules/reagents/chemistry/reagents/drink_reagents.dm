@@ -200,7 +200,7 @@
 	glass_desc = "White and nutritious goodness!"
 
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
-	if(M.has_trait(TRAIT_CALCIUM_HEALER))
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.heal_bodypart_damage(1.5,0, 0)
 		. = 1
 	else
@@ -408,17 +408,10 @@
 
 /datum/reagent/consumable/grey_bull/on_mob_add(mob/living/L)
 	..()
-<<<<<<< HEAD
-	L.add_trait(TRAIT_SHOCKIMMUNE, id)
-
-/datum/reagent/consumable/grey_bull/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_SHOCKIMMUNE, id)
-=======
 	ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, type)
 
 /datum/reagent/consumable/grey_bull/on_mob_delete(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_SHOCKIMMUNE, type)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	..()
 
 /datum/reagent/consumable/grey_bull/on_mob_life(mob/living/carbon/M)
@@ -745,8 +738,6 @@
 	taste_description = "sweet pomegranates"
 	glass_name = "glass of grenadine"
 	glass_desc = "Delicious flavored syrup."
-<<<<<<< HEAD
-=======
 
 /datum/reagent/consumable/parsnipjuice
 	name = "Parsnip Juice"
@@ -801,5 +792,4 @@
 /datum/reagent/consumable/red_queen/on_mob_delete(mob/living/M)
 	M.resize = 1/current_size
 	M.update_transform()
-	..()
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
+  ..()
