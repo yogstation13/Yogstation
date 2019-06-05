@@ -164,14 +164,14 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(repairing && obj_integrity >= max_integrity)
 				to_chat(user, "<span class='warning'>[src] is fully repaired!</span>")
 				return TRUE
-			to_chat(user, "<span class='notice'>You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]")
+			to_chat(user, "<span class='notice'>You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]</span>")
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
 					obj_integrity = min(max_integrity, obj_integrity + 10)
 					update_icon()
 					to_chat(user, "<span class='notice'>You mend some [pick("dents","bumps","damage")] with [W]</span>")
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
-					user.visible_message("[user] slices off [src]'s armor.", "You slice off [src]'s armor.")
+					user.visible_message("[user] slices off [src]'s armor.", "<span class='notice'>You slice off [src]'s armor.</span>")
 					construction_state = SPACEPOD_ARMOR_SECURED
 					update_icon()
 				return TRUE
