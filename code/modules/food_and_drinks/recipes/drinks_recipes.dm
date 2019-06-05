@@ -781,4 +781,3 @@
 	id = /datum/reagent/consumable/red_queen
 	results = list(/datum/reagent/consumable/red_queen = 10)
 	required_reagents = list(/datum/reagent/consumable/tea = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)

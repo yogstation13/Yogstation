@@ -792,4 +792,4 @@
 /datum/reagent/consumable/red_queen/on_mob_delete(mob/living/M)
 	M.resize = 1/current_size
 	M.update_transform()
-  ..()
+	..()
