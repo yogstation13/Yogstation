@@ -2,7 +2,7 @@
 	name = "cinnamon shaker"
 	desc = "A spice obtained from the bark of a cinnamomum tree"
 	icon_state = "cinnamonshaker"
-	list_reagents = list("cinnamon" = 50)
+	list_reagents = list(/datum/reagent/consumable/cinnamon = 50)
 	possible_states = list()
 
 /obj/item/reagent_containers/food/condiment/cinnamon/suicide_act(mob/user)
