@@ -509,25 +509,6 @@
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	dispensable_reagents = list(
-<<<<<<< HEAD
-		"beer",
-		"kahlua",
-		"whiskey",
-		"wine",
-		"vodka",
-		"gin",
-		"rum",
-		"tequila",
-		"vermouth",
-		"cognac",
-		"ale",
-		"absinthe",
-		"hcider",
-		"creme_de_menthe",
-		"creme_de_cacao",
-		"triple_sec",
-		"sake"
-=======
 		/datum/reagent/consumable/ethanol/beer,
 		/datum/reagent/consumable/ethanol/kahlua,
 		/datum/reagent/consumable/ethanol/whiskey,
@@ -546,7 +527,6 @@
 		/datum/reagent/consumable/ethanol/triple_sec,
 		/datum/reagent/consumable/ethanol/sake,
 		/datum/reagent/consumable/ethanol/applejack
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(

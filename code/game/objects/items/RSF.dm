@@ -173,11 +173,7 @@ RSF
 	to_chat(user, "Fabricating Cookie..")
 	var/obj/item/reagent_containers/food/snacks/cookie/S = new /obj/item/reagent_containers/food/snacks/cookie(T)
 	if(toxin)
-<<<<<<< HEAD
-		S.reagents.add_reagent("chloralhydratedelayed", 10)
-=======
 		S.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 10)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	if (iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		R.cell.charge -= 100

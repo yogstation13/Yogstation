@@ -883,13 +883,8 @@
 
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
-<<<<<<< HEAD
-	cure_text = "Unknown" //Yogs - changed "nothing" to "unknown"
-	cures = list("adminordrazine")
-=======
 	cure_text = "nothing"
 	cures = list(/datum/reagent/medicine/adminordrazine)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	agent = "dragon's blood"
 	desc = "What do dragons have to do with Space Station 13?"
 	stage_prob = 20

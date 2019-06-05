@@ -202,14 +202,9 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/warm
 	name = "warm Donk-pocket"
 	desc = "The heated food of choice for the seasoned traitor."
-<<<<<<< HEAD
-	bonus_reagents = list("omnizine" = 3)
-	list_reagents = list("nutriment" = 4, "omnizine" = 3)
-=======
 	bonus_reagents = list(/datum/reagent/medicine/omnizine = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 3)
 	cooked_type = null
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtype = GRAIN
 

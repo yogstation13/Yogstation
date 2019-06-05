@@ -54,10 +54,7 @@
 	icon_state = "parsnip"
 	bitesize_mod = 2
 	foodtype = VEGETABLES
-<<<<<<< HEAD
-=======
 	juice_results = list(/datum/reagent/consumable/parsnipjuice = 0)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	wine_power = 35
 
 

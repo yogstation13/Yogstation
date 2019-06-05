@@ -698,11 +698,6 @@
 
 /datum/chemical_reaction/blank_paper
 	name = "Blank Paper"
-<<<<<<< HEAD
-	id = "blank_paper"
-	results = list("blank_paper" = 3)
-	required_reagents = list("silencer" = 1, "nothing" = 1, "nuka_cola" = 1)
-=======
 	id = /datum/reagent/consumable/ethanol/blank_paper
 	results = list(/datum/reagent/consumable/ethanol/blank_paper = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/silencer = 1, /datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/nuka_cola = 1)

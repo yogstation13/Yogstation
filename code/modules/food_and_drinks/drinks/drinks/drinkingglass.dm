@@ -91,13 +91,8 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola
 	name = "Nuka Cola"
-<<<<<<< HEAD
-	list_reagents = list("nuka_cola" = 50)
-	
-=======
 	list_reagents = list(/datum/reagent/consumable/nuka_cola = 50)
 
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 /obj/item/reagent_containers/food/drinks/drinkingglass/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/egg)) //breaking eggs
 		var/obj/item/reagent_containers/food/snacks/egg/E = I

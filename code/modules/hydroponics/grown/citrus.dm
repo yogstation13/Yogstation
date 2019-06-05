@@ -49,13 +49,8 @@
 	icon_grow = "lime-grow"
 	icon_dead = "lime-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-<<<<<<< HEAD
-	mutatelist = list(/obj/item/seeds/lime)
-	reagents_add = list("vitamin" = 0.04, "nutriment" = 0.05)
-=======
 	mutatelist = list(/obj/item/seeds/lime, /obj/item/seeds/orange_3d)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.05)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/food/snacks/grown/citrus/orange
 	seed = /obj/item/seeds/orange
@@ -162,8 +157,6 @@
 			update_mob()
 			explosion(src.loc,-1,-1,2, flame_range = 5)
 			qdel(src)
-<<<<<<< HEAD
-=======
 
 //3D Orange
 /obj/item/seeds/orange_3d
@@ -200,4 +193,3 @@
 /obj/item/reagent_containers/food/snacks/grown/citrus/orange_3d/dropped(mob/user)
 	. = ..()
 	icon_state = "orang"
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)

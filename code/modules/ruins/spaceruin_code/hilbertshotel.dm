@@ -312,8 +312,6 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     var/datum/turf_reservation/reservation
     var/turf/storageTurf
 
-<<<<<<< HEAD
-=======
 /area/hilbertshotel/Entered(atom/movable/AM)
     . = ..()
     if(istype(AM, /obj/item/hilbertshotel))
@@ -341,7 +339,6 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         to_chat(M, "<span class='danger'>[H] almost implodes in upon itself, but quickly rebounds, shooting off into a random point in space!</span>")
     H.forceMove(targetturf)
 
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 /area/hilbertshotel/Exited(atom/movable/AM)
     . = ..()
     if(ismob(AM))

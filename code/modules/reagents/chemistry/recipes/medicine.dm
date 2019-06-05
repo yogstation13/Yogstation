@@ -8,15 +8,9 @@
 
 /datum/chemical_reaction/rezadone
 	name = "Rezadone"
-<<<<<<< HEAD
-	id = "rezadone"
-	results = list("rezadone" = 3)
-	required_reagents = list("capsaicin" = 1, "cryptobiolin" = 1, "copper" = 1) // yogs - Makes recipe capsaicin
-=======
 	id = /datum/reagent/medicine/rezadone
 	results = list(/datum/reagent/medicine/rezadone = 3)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 
 /datum/chemical_reaction/spaceacillin
 	name = "Spaceacillin"

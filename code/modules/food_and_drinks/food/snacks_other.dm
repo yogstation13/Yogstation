@@ -577,8 +577,6 @@
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
 	foodtype = JUNKFOOD | SUGAR
-<<<<<<< HEAD
-=======
 
 /obj/item/reagent_containers/food/snacks/cannedpeaches
 	name = "Canned Peaches"
@@ -595,4 +593,3 @@
 	desc = "I have a mouth and I must eat."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)

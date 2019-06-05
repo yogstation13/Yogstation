@@ -235,11 +235,7 @@
 /obj/item/reagent_containers/food/drinks/mug/coco
 	name = "Dutch hot coco"
 	desc = "Made in Space South America."
-<<<<<<< HEAD
-	list_reagents = list("hot_coco" = 30, "sugar" = 5)
-=======
 	list_reagents = list(/datum/reagent/consumable/hot_coco = 15, /datum/reagent/consumable/sugar = 5)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	foodtype = SUGAR
 
 	resistance_flags = FREEZE_PROOF

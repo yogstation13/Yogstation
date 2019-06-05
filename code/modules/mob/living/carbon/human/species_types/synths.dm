@@ -13,13 +13,8 @@
 	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
 	var/list/initial_inherent_traits
-<<<<<<< HEAD
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | SLIME_EXTRACT//Yogs -- Slime_extract
 	
-=======
-	changesource_flags = MIRROR_BADMIN | WABBAJACK
-
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 /datum/species/synth/New()
 	initial_species_traits = species_traits.Copy()
 	initial_inherent_traits = inherent_traits.Copy()
@@ -39,19 +34,16 @@
 	assume_disguise(old_species, H)
 
 /datum/species/synth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-<<<<<<< HEAD
 	H.reagents.remove_reagent(chem.id, chem.volume) //yogs start - synths don't process chems
 	return TRUE
-	/*if(chem.id == "synthflesh")
-=======
+	/*
 	if(chem.type == /datum/reagent/medicine/synthflesh)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 		chem.reaction_mob(H, TOUCH, 2 ,0) //heal a little
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return 1
 	else
-		return ..()*/ //yogs end
-
+		return ..()
+	*/ //yogs end
 
 /datum/species/synth/proc/assume_disguise(datum/species/S, mob/living/carbon/human/H)
 	if(S && !istype(S, type))

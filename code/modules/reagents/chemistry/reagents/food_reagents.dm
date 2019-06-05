@@ -386,8 +386,6 @@
 				M.emote(pick("twitch","giggle"))
 	..()
 
-<<<<<<< HEAD
-=======
 /datum/reagent/consumable/garlic //NOTE: having garlic in your blood stops vampires from biting you.
 	name = "Garlic Juice"
 	description = "Crushed garlic. Chefs love it, but it can make you smell bad."
@@ -411,7 +409,6 @@
 			H.adjust_hygiene(-0.15 * volume)
 	..()
 
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
@@ -545,12 +542,7 @@
 	..()
 
 /datum/reagent/consumable/honey
-<<<<<<< HEAD
-	name = "honey"
-	id = "honey"
-=======
 	name = "Honey"
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	description = "Sweet sweet honey that decays into sugar. Has antibacterial and natural healing properties."
 	color = "#d3a308"
 	nutriment_factor = 15 * REAGENTS_METABOLISM
@@ -701,8 +693,6 @@
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
-<<<<<<< HEAD
-=======
 
 /datum/reagent/consumable/astrotame
 	name = "Astrotame"
@@ -720,4 +710,3 @@
 		M.adjust_disgust(10)
 	..()
 	. = 1
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)

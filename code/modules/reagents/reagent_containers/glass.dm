@@ -330,8 +330,6 @@
 
 /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty
 	list_reagents = list()
-<<<<<<< HEAD
-=======
 
 /obj/item/pestle
 	name = "pestle"
@@ -395,4 +393,3 @@
 	name = "saline canister"
 	volume = 5000
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)

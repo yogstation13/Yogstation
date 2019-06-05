@@ -165,11 +165,7 @@
 	name = "raw khinkali"
 	desc = "One hundred khinkalis? Do I look like a pig?"
 	icon_state = "khinkali"
-<<<<<<< HEAD
-	list_reagents = list("nutriment" = 1, "vitamin" = 1)
-=======
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/garlic = 1)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	cooked_type = /obj/item/reagent_containers/food/snacks/khinkali
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
@@ -178,11 +174,7 @@
 	name = "khinkali"
 	desc = "One hundred khinkalis? Do I look like a pig?"
 	icon_state = "khinkali"
-<<<<<<< HEAD
-	list_reagents = list("nutriment" = 4, "vitamin" = 2)
-=======
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/garlic = 1)
->>>>>>> 6a106bc877... Remove reagent ids and use typepaths where applicable (#44166)
 	bitesize = 3
 	filling_color = "#F0F0F0"
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
