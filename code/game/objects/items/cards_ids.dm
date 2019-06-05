@@ -125,6 +125,13 @@
 	if(mapload && access_txt)
 		access = text2access(access_txt)
 
+/obj/item/card/id/Destroy()
+	if (registered_account)
+		registered_account.bank_cards -= src
+	if (my_store && my_store.my_card == src)
+		my_store.my_card = null
+	return ..()
+
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
 		user.visible_message("<span class='notice'>[user] shows you: [icon2html(src, viewers(user))] [src.name].</span>", "<span class='notice'>You show \the [src.name].</span>")
