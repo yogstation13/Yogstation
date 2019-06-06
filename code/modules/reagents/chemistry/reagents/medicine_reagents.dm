@@ -413,7 +413,11 @@
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
+<<<<<<< HEAD
 			M.reagents.remove_reagent(R.id,1)
+=======
+			M.reagents.remove_reagent(R.type,1)
+>>>>>>> 4978a608f3... Merge pull request #44339 from nemvar/charcoal
 	..()
 
 /datum/reagent/medicine/omnizine
