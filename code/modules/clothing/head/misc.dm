@@ -1,5 +1,3 @@
-
-
 /obj/item/clothing/head/centhat
 	name = "\improper CentCom hat"
 	icon_state = "centcom"
@@ -204,7 +202,7 @@
 	icon_state = "fedora"
 	item_state = "fedora"
 	desc = "A really cool hat if you're a mobster. A really lame hat if you're not."
-	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora
 
 /obj/item/clothing/head/fedora/suicide_act(mob/user)
 	if(user.gender == FEMALE)
