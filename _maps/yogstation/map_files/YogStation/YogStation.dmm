@@ -25601,7 +25601,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/window/southleft{
 	name = "Virology";
-	req_access_txt = "39"
+	req_access_txt = "39;24"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -29526,6 +29526,9 @@
 "bgz" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bgA" = (
@@ -46616,7 +46619,7 @@
 /area/medical/virology)
 "bOn" = (
 /obj/machinery/camera{
-	c_tag = "Virology Module";
+	c_tag = "Virology Monkey Pen";
 	dir = 2;
 	network = list("ss13","medbay")
 	},
@@ -51618,6 +51621,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/tcommsat/entrance)
+"cuO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "cva" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
@@ -53259,6 +53268,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/medical/virology)
+"dTf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space)
 "dWy" = (
 /obj/structure/spacepoddoor,
 /turf/open/floor/engine,
@@ -72793,7 +72808,7 @@ aaa
 qdN
 qdN
 qdN
-aaa
+qdN
 aaa
 aaa
 aaa
@@ -73050,8 +73065,8 @@ beO
 beO
 beO
 qdN
-qdN
-aaa
+dTf
+dTf
 aaa
 aaa
 aaa
@@ -73307,8 +73322,8 @@ bhr
 blS
 bnv
 aaa
-qdN
-qdN
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73564,8 +73579,8 @@ beO
 bja
 bja
 aaa
-aaa
-aAe
+cuO
+cuO
 qdN
 aaa
 aaa
@@ -81782,7 +81797,7 @@ baS
 uvN
 gjl
 gjl
-aZE
+bgv
 bju
 biv
 bjk
@@ -82039,7 +82054,7 @@ cCn
 aYh
 aZK
 eYN
-aZE
+bgv
 bgz
 biT
 bjl

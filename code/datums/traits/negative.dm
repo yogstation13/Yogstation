@@ -103,7 +103,7 @@
 			if("Mime")
 				heirloom_type = /obj/item/reagent_containers/food/snacks/baguette
 			if("Janitor")
-				heirloom_type = pick(/obj/item/mop, /obj/item/caution, /obj/item/reagent_containers/glass/bucket)
+				heirloom_type = pick(/obj/item/mop, /obj/item/clothing/suit/caution, /obj/item/reagent_containers/glass/bucket)
 			if("Cook")
 				heirloom_type = pick(/obj/item/reagent_containers/food/condiment/saltshaker, /obj/item/kitchen/rollingpin, /obj/item/clothing/head/chefhat)
 			if("Botanist")
@@ -389,14 +389,6 @@
 		return
 	to_chat(quirk_holder, "<span class='big bold info'>Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
 	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers.</span>")
-
-/datum/quirk/obstructive
-	name = "Physically Obstructive"
-	desc = "You somehow manage to always be in the way. You can't swap places with other people."
-	value = -1
-	mob_trait = TRAIT_NOMOBSWAP
-	gain_text = "<span class='danger'>You feel like you're in the way.</span>"
-	lose_text = "<span class='notice'>You feel less like you're in the way.</span>"
 
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
