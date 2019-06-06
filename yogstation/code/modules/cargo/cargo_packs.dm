@@ -82,6 +82,7 @@
 					/obj/item/toy/plush/snakeplushie,
 					/obj/item/toy/plush/nukeplushie,
 					/obj/item/toy/plush/goatplushie,
+					/obj/item/toy/plush/realgoat,
 					/obj/item/toy/plush/teddybear,
 					/obj/item/toy/plush/stuffedmonkey,
 					/obj/item/toy/plush/flowerbunch,
