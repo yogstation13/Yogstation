@@ -323,7 +323,7 @@ GLOBAL_LIST_EMPTY(allConsoles)
 					emergency = "Medical"
 			if(radio_freq)
 				Radio.set_frequency(radio_freq)
-				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq,get_spans(),get_default_language())
+				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq)
 				update_icon()
 				addtimer(CALLBACK(src, .proc/clear_emergency), 3000)
 
@@ -480,10 +480,23 @@ GLOBAL_LIST_EMPTY(allConsoles)
 			if(newmessagepriority < NORMAL_MESSAGE_PRIORITY)
 				newmessagepriority = NORMAL_MESSAGE_PRIORITY
 				update_icon()
+<<<<<<< HEAD
 			if(!src.silent)
 				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 				say(title)
 			messages += "<b>From:</b> [linkedsender]<BR>[message]"
+=======
+
+	messages += "[header][sending]"
+
+	if(!silenced)
+		playsound(src, 'sound/machines/twobeep_high.ogg', 50, 1)
+		say(alert)
+
+	if(radio_freq)
+		Radio.set_frequency(radio_freq)
+		Radio.talk_into(src, "[alert]: <i>[message]</i>", radio_freq)
+>>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
 
 /obj/machinery/requests_console/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_CROWBAR)

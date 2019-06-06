@@ -64,8 +64,9 @@
 	..()
 	owner.mind.remove_antag_datum(/datum/antagonist/obsessed)
 
-/datum/brain_trauma/special/obsessed/on_say(message)
+/datum/brain_trauma/special/obsessed/handle_speech(datum/source, list/speech_args)
 	if(!viewing)
+<<<<<<< HEAD
 		return message
 	var/choked_up
 	GET_COMPONENT_FROM(mood, /datum/component/mood, owner)
@@ -75,6 +76,12 @@
 	if(choked_up)
 		return ""
 	return message
+=======
+		return
+	var/datum/component/mood/mood = owner.GetComponent(/datum/component/mood)
+	if(mood && mood.sanity >= SANITY_GREAT && social_interaction())
+		speech_args[SPEECH_MESSAGE] = ""
+>>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
 
 /datum/brain_trauma/special/obsessed/on_hug(mob/living/hugger, mob/living/hugged)
 	if(hugged == obsession)
