@@ -88,6 +88,7 @@
 		if(name != real_name)
 			alt_name = " (died as [real_name])"
 
+<<<<<<< HEAD
 	var/K
 
 	if(key)
@@ -95,8 +96,12 @@
 
 	var/spanned = src.say_quote(message, get_spans())
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[(src.client.prefs.chat_toggles & GHOST_CKEY) ? "" : "([K]) "][name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>" //yogs
+=======
+	var/spanned = say_quote(message)
+	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[emoji_parse(spanned)]</span></span>"
+>>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
 	log_talk(message, LOG_SAY, tag="DEAD")
-	deadchat_broadcast(rendered, follow_target = src, speaker_key = K)
+	deadchat_broadcast(rendered, follow_target = src, speaker_key = key)
 
 /mob/proc/check_emote(message)
 	if(copytext(message, 1, 2) == "*")

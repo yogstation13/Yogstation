@@ -156,6 +156,7 @@
 	icon_state = "wardendrill"
 	item_state = "wardendrill"
 	dog_fashion = null
+<<<<<<< HEAD
 
 /obj/item/clothing/head/warden/drill/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -164,6 +165,68 @@
 
 /obj/item/clothing/head/warden/drill/dropped(mob/living/carbon/human/user)
 		user.dna.remove_mutation(YELLING)
+=======
+	var/mode = DRILL_DEFAULT
+
+/obj/item/clothing/head/warden/drill/screwdriver_act(mob/living/carbon/human/user, obj/item/I)
+	if(..())
+		return TRUE
+	switch(mode)
+		if(DRILL_DEFAULT)
+			to_chat(user, "<span class='notice'>You set the voice circuit to the middle position.</span>")
+			mode = DRILL_SHOUTING
+		if(DRILL_SHOUTING)
+			to_chat(user, "<span class='notice'>You set the voice circuit to the last position.</span>")
+			mode = DRILL_YELLING
+		if(DRILL_YELLING)
+			to_chat(user, "<span class='notice'>You set the voice circuit to the first position.</span>")
+			mode = DRILL_DEFAULT
+		if(DRILL_CANADIAN)
+			to_chat(user, "<span class='danger'>You adjust voice circuit but nothing happens, probably because it's broken.</span>")
+	return TRUE
+
+/obj/item/clothing/head/warden/drill/wirecutter_act(mob/living/user, obj/item/I)
+	if(mode != DRILL_CANADIAN)
+		to_chat(user, "<span class='danger'>You broke the voice circuit!</span>")
+		mode = DRILL_CANADIAN
+	return TRUE
+
+/obj/item/clothing/head/warden/drill/equipped(mob/M, slot)
+	. = ..()
+	if (slot == SLOT_HEAD)
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/head/warden/drill/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/head/warden/drill/proc/handle_speech(datum/source, mob/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		switch (mode)
+			if(DRILL_SHOUTING)
+				message += "!"
+			if(DRILL_YELLING)
+				message += "!!"
+			if(DRILL_CANADIAN)
+				message = " [message]"
+				var/list/canadian_words = strings("canadian_replacement.json", "canadian")
+
+				for(var/key in canadian_words)
+					var/value = canadian_words[key]
+					if(islist(value))
+						value = pick(value)
+
+					message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
+					message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
+					message = replacetextEx(message, " [key]", " [value]")
+
+				if(prob(30))
+					message += pick(", eh?", ", EH?")
+		speech_args[SPEECH_MESSAGE] = message
+>>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
 
 /obj/item/clothing/head/beret/sec
 	name = "security beret"

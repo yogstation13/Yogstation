@@ -214,8 +214,13 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	src.log_talk(message, LOG_SAY)
 
+<<<<<<< HEAD:code/modules/antagonists/blob/blob/overmind.dm
 	var/message_a = say_quote(message, get_spans())
 	var/rendered = "<span class='big'><font color=\"#EE4000\"><b>\[Blob Telepathy\] [name](<font color=\"[blob_reagent_datum.color]\">[blob_reagent_datum.name]</font>)</b> [message_a]</font></span>"
+=======
+	var/message_a = say_quote(message)
+	var/rendered = "<span class='big'><font color=\"#EE4000\"><b>\[Blob Telepathy\] [name](<font color=\"[blobstrain.color]\">[blobstrain.name]</font>)</b> [message_a]</font></span>"
+>>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320):code/modules/antagonists/blob/overmind.dm
 
 	for(var/mob/M in GLOB.mob_list)
 		if(isovermind(M) || istype(M, /mob/living/simple_animal/hostile/blob))
