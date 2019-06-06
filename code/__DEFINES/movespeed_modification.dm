@@ -62,8 +62,3 @@
 
 #define MOVESPEED_ID_SLAUGHTER                          "SLAUGHTER"
 #define MOVESPEED_ID_DIE_OF_FATE                        "DIE_OF_FATE"
-<<<<<<< HEAD
-=======
-
-#define MOVESPEED_ID_SHOVE 								"SHOVE"
->>>>>>> 8d5493f401... Merge pull request #44096 from ninjanomnom/tarantula-movedelay
