@@ -1,0 +1,4 @@
+author: " Garen"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer do custom emotes with fists of the north star."

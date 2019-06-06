@@ -117,3 +117,6 @@
 
 /datum/component/squeak/airhorn
 	datum_outputs = list(/datum/outputs/airhorn)
+
+/datum/component/squeak/goat
+	datum_outputs = list(/datum/outputs/goat) //yogs added goat squeak
