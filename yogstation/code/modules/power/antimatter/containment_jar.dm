@@ -1,7 +1,7 @@
 /obj/item/am_containment
 	name = "antimatter containment jar"
 	desc = "Holds antimatter."
-	icon = 'icons/obj/machines/antimatter.dmi'
+	icon = 'yogstation/icons/obj/machines/antimatter.dmi'
 	icon_state = "jar"
 	density = FALSE
 	anchored = FALSE
