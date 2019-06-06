@@ -1,0 +1,4 @@
+author: " actioninja, Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Lot of small darkmode fixes"
