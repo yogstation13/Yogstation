@@ -1,6 +1,12 @@
 /datum/uplink_item
 	var/list/include_objectives = list() //objectives to allow the buyer to buy this item
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
+	var/surplus_nullcrates
+
+datum/uplink_item/New()	
+	. = ..()
+	if(isnull(surplus_nullcrates))
+		surplus_nullcrates = surplus
 
 /////////////////////////////////
 ////////Item re-balancing////////
@@ -41,6 +47,9 @@
 
 /datum/uplink_item/stealthy_tools/mulligan
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+
+/datum/uplink_item/device_tools/fakenucleardisk
+	surplus_nullcrates = 0
 
 //////////////////////////
 /////////New Items////////
