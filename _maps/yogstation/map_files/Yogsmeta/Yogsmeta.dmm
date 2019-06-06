@@ -42417,7 +42417,7 @@
 	network = list("tcomms");
 	pixel_x = 26
 	},
-/obj/machinery/computer/telecomms/monitor{
+/obj/machinery/computer/telecomms/traffic{
 	dir = 8;
 	network = "tcommsat"
 	},
