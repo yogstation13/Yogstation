@@ -485,7 +485,11 @@
 		else
 			owner.visible_message("[owner]'s soul is absorbed into the rod, relieving the previous snake of its duty.")
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
+<<<<<<< HEAD
 			var/list/chems = list("bicaridine", "salbutamol", "kelotane", "antitoxin")
+=======
+			var/list/chems = list(/datum/reagent/medicine/bicaridine, /datum/reagent/medicine/perfluorodecalin, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/antitoxin)
+>>>>>>> 405205843f... Merge pull request #44279 from ExcessiveUseOfCobblestone/breathe-into-me
 			healSnake.poison_type = pick(chems)
 			healSnake.name = "Asclepius's Snake"
 			healSnake.real_name = "Asclepius's Snake"
