@@ -711,8 +711,6 @@
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
 		playsound(M, "sparks", 50, 1)
 	return ..()
-<<<<<<< HEAD
-=======
 
 /datum/reagent/consumable/astrotame
 	name = "Astrotame"
@@ -740,4 +738,3 @@
 	quality = FOOD_AMAZING
 	taste_mult = 100
 	can_synth = FALSE
->>>>>>> d8078e1452... Adds system for randomized semi-persistent chem reactions. (#44094)
