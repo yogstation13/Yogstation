@@ -51,7 +51,7 @@
 	var/mob/living/carbon/C = caller
 	if(!C.hand_bodyparts[C.active_hand_index]) //all these checks are here, because we dont want to adjust the spell icon thing in your screen and break it. wich it otherwise does in can_cast
 		return
-	if(caller.has_trait(TRAIT_NODISMEMBER))
+	if(HAS_TRAIT(caller, TRAIT_NODISMEMBER))
 		return
 	if(!caller.canUnEquip(caller.get_active_held_item()))
 		return
