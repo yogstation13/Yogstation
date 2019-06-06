@@ -306,7 +306,11 @@
 /obj/item/reagent_containers/glass/bottle/tuberculosiscure
 	name = "BVAK bottle"
 	desc = "A small bottle containing Bio Virus Antidote Kit."
+<<<<<<< HEAD
 	list_reagents = list("atropine" = 5, "epinephrine" = 5, "salbutamol" = 10, "spaceacillin" = 10)
+=======
+	list_reagents = list(/datum/reagent/medicine/atropine = 5, /datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/perfluorodecalin = 10, /datum/reagent/medicine/spaceacillin = 10)
+>>>>>>> 405205843f... Merge pull request #44279 from ExcessiveUseOfCobblestone/breathe-into-me
 
 //Oldstation.dmm chemical storage bottles
 

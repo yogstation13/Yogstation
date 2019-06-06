@@ -3,8 +3,13 @@
 	name = "Fungal tuberculosis"
 	max_stages = 5
 	spread_text = "Airborne"
+<<<<<<< HEAD
 	cure_text = "Spaceacillin & salbutamol"
 	cures = list("spaceacillin", "salbutamol")
+=======
+	cure_text = "Spaceacillin & Perfluorodecalin"
+	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/medicine/perfluorodecalin)
+>>>>>>> 405205843f... Merge pull request #44279 from ExcessiveUseOfCobblestone/breathe-into-me
 	agent = "Fungal Tubercle bacillus Cosmosis"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cure_chance = 5//like hell are you getting out of hell
