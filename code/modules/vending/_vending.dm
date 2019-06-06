@@ -272,6 +272,32 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					to_chat(user, "<span class='notice'>There's nothing to restock!</span>")
 			return
+<<<<<<< HEAD
+=======
+	if(compartmentLoadAccessCheck(user))
+		if(canLoadItem(I))
+			loadingAttempt(I,user)
+			updateUsrDialog() //can't put this on the proc above because we spam it below
+
+		if(istype(I, /obj/item/storage/bag)) //trays USUALLY
+			var/obj/item/storage/T = I
+			var/loaded = 0
+			var/denied_items = 0
+			for(var/obj/item/the_item in T.contents)
+				if(contents.len >= MAX_VENDING_INPUT_AMOUNT) // no more than 30 item can fit inside, legacy from snack vending although not sure why it exists
+					to_chat(user, "<span class='warning'>[src]'s chef compartment is full.</span>")
+					break
+				if(canLoadItem(the_item) && loadingAttempt(the_item,user))
+					SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, the_item, src, TRUE)
+					loaded++
+				else
+					denied_items++
+			if(denied_items)
+				to_chat(user, "<span class='notice'>[src] refuses some items.</span>")
+			if(loaded)
+				to_chat(user, "<span class='notice'>You insert [loaded] dishes into [src]'s chef compartment.</span>")
+				updateUsrDialog()
+>>>>>>> 24790954cc... Fix bags allowing invalid insertion of items into vendors (#44301)
 	else
 		return ..()
 
@@ -416,7 +442,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		dish_quants[N] = max(dish_quants[N] - 1, 0)
 		for(var/obj/O in contents)
 			if(O.name == N)
-				say("Thank you for supporting your local kitchen and purchasing [O]!")
+				say("Thank you for buying local and purchasing [O]!")
 				O.forceMove(drop_location())
 				break
 		vend_ready = 1
