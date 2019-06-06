@@ -70,14 +70,9 @@
 	endurance = 50
 	maturation = 3
 	yield = 4
-<<<<<<< HEAD
-	growthstages = 3
-	reagents_add = list("sugar" = 0.25)
-=======
 	growthstages = 2
 	reagents_add = list(/datum/reagent/consumable/sugar = 0.25)
 	mutatelist = list(/obj/item/seeds/bamboo)
->>>>>>> dab6944369... adds bamboo and  fixes sugarcane (#44192)
 
 /obj/item/reagent_containers/food/snacks/grown/sugarcane
 	seed = /obj/item/seeds/sugarcane
