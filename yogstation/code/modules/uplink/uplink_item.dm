@@ -3,7 +3,7 @@
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 	var/surplus_nullcrates
 
-datum/uplink_item/New()	
+/datum/uplink_item/New()	
 	. = ..()
 	if(isnull(surplus_nullcrates))
 		surplus_nullcrates = surplus
