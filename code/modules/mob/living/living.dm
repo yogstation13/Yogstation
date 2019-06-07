@@ -170,8 +170,8 @@
 			return TRUE
 	/*//If they're a human, and they're not in help intent, block pushing //yogs start: disarmn't rework
 	if(ishuman(M) && (M.a_intent != INTENT_HELP))
-		return TRUE*/
-	//anti-riot equipment is also anti-push //yogs end
+		return TRUE*/ //yogs end
+	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
 			if(prob(I.block_chance*2))
