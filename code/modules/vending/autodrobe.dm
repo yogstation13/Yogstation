@@ -59,7 +59,8 @@
 					/obj/item/clothing/head/ushanka = 1,
 					/obj/item/clothing/suit/imperium_monk = 1,
 					/obj/item/clothing/mask/gas/cyborg = 1,
-					/obj/item/clothing/suit/holidaypriest = 1,
+					/obj/item/clothing/suit/chaplainsuit/holidaypriest = 1,
+					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/wizard/marisa/fake = 1,
 					/obj/item/clothing/suit/wizrobe/marisa/fake = 1,
 					/obj/item/clothing/under/sundress = 1,
@@ -196,6 +197,8 @@
 		           /obj/item/clothing/under/roman = 1,
 		           /obj/item/clothing/shoes/roman = 1,
 		           /obj/item/shield/riot/roman/fake = 1,
+				   /obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
+				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
 		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs start
 		           /obj/item/clothing/under/yogs/enclaveo = 1,
