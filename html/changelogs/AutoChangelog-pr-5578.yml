@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - tweak: "Fixed pipe connecting atmos and SM on Delta"
