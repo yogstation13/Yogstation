@@ -147,10 +147,10 @@ Class Procs:
 	else
 		STOP_PROCESSING(SSfastprocess, src)
 	dropContents()
-	if(length(component_parts))
+	/*if(length(component_parts)) //yogs start: this breaks machines and makes them not drop stuff when deconstructed
 		for(var/atom/A in component_parts)
 			qdel(A)
-		component_parts.Cut()
+		component_parts.Cut()*/ //yogs end
 	return ..()
 
 /obj/machinery/proc/locate_machinery()
