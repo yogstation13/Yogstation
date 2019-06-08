@@ -55,38 +55,7 @@
 	var/mob/living/carbon/target = targets[1]
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 
-<<<<<<< HEAD
-	if(target.mind && target.client && target.stat != DEAD)
-		if(!target.has_trait(TRAIT_MINDSHIELD) || ignore_mindshield)
-			if(target.has_trait(TRAIT_MINDSHIELD) && ignore_mindshield)
-				to_chat(user, "<span class='notice'>We bruteforce our way past the mental barriers of [target.name] and begin linking our minds!</span>")
-			else
-				to_chat(user, "<span class='notice'>We begin linking our mind with [target.name]!</span>")
-			if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && target in view(range))
-				if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && target in view(range))
-					if((!target.has_trait(TRAIT_MINDSHIELD) || ignore_mindshield) && target in view(range))
-						to_chat(user, "<span class='notice'>[target.name] was added to the Hive!</span>")
-						success = TRUE
-						hive.add_to_hive(target)
-						hive.threat_level = max(0, hive.threat_level-0.1)
-						if(ignore_mindshield)
-							to_chat(user, "<span class='warning'>We are briefly exhausted by the effort required by our enhanced assimilation abilities.</span>")
-							user.Immobilize(50)
-							SEND_SIGNAL(target, COMSIG_NANITE_SET_VOLUME, 0)
-							for(var/obj/item/implant/mindshield/M in target.implants)
-								qdel(M)
-					else
-						to_chat(user, "<span class='notice'>We fail to connect to [target.name].</span>")
-				else
-					to_chat(user, "<span class='notice'>We fail to connect to [target.name].</span>")
-			else
-				to_chat(user, "<span class='notice'>We fail to connect to [target.name].</span>")
-		else
-			to_chat(user, "<span class='warning'>Powerful technology protects [target.name]'s mind.</span>")
-	else
-=======
 	if(!target.mind || !target.client || target.stat == DEAD)
->>>>>>> 17b3091867... Merges tinfoil (hat) protection into the anti_magic component. Implements it on Hivemind gamemode and telepathy. (#43978)
 		to_chat(user, "<span class='notice'>We detect no neural activity in this body.</span>")
 	var/shielded = HAS_TRAIT(target, TRAIT_MINDSHIELD)
 	var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE, 0)
@@ -141,7 +110,7 @@
 	if(!M)
 		revert_cast()
 		return
-	hive.remove_from_hive(M)
+	hive.remove_from_hive(target)
 	hive.calc_size()
 	hive.threat_level += 0.1
 	to_chat(user, "<span class='notice'>We remove [target.name] from the hive</span>")
@@ -375,7 +344,10 @@
 	name = "mind control victim"
 	real_name = "unknown conscience"
 
-/mob/living/passenger/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/passenger/UnarmedAttack(atom/A)
+	return
+
+/mob/living/passenger/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	to_chat(src, "<span class='warning'>You find yourself unable to speak, you aren't in control of your body!</span>")
 	return FALSE
 
@@ -652,12 +624,20 @@
 /obj/effect/proc_holder/spell/target_hive/hive_attack
 	name = "Medullary Failure"
 	desc = "We overload the target's medulla, inducing an immediate heart attack."
-
+	range = 7
 	charge_max = 3000
 	action_icon_state = "attack"
 
 /obj/effect/proc_holder/spell/target_hive/hive_attack/cast(list/targets, mob/living/user = usr)
 	var/mob/living/carbon/target = targets[1]
+	if(!do_after(usr,30,0,usr))
+		to_chat(user, "<span class='notice'>Our concentration has been broken!</span>")
+		revert_cast()
+		return
+	if(!user.is_real_hivehost())
+		to_chat(user, "<span class='notice'>Our vessel is too weak to handle this power, we must cease our mind control beforehand.</span>")
+		revert_cast()
+		return
 	if(!target.undergoing_cardiac_arrest() && target.can_heartattack())
 		to_chat(target, "<span class='userdanger'>You start feeling a sharp pain, and foreign presence in your mind!!</span>")
 		var/success = TRUE
