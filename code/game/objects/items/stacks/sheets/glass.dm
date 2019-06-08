@@ -67,6 +67,17 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 		else
 			to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass!</span>")
 			return
+	else if(istype(W, /obj/item/lightreplacer/cyborg)) //yogs start janiborgs can refill lightreplacers with glass now
+		var/obj/item/lightreplacer/cyborg/G = W
+		if(G.uses >= G.max_uses)
+			to_chat(user, "<span class='warning'>[W.name] is full.</span>")
+			return
+		else if(src.use(1))
+			G.AddUses(G.increment)
+			to_chat(user, "<span class='notice'>You insert a piece of glass into \the [G.name]. You have [G.uses] light\s remaining.</span>")
+			return
+		else
+			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights!</span>") //yogs end
 	else
 		return ..()
 
@@ -281,12 +292,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	var/hit_hand = ((user.active_hand_index % 2 == 0) ? "r_" : "l_") + "arm"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(!H.gloves && !H.has_trait(TRAIT_PIERCEIMMUNE)) // golems, etc
+		if(!H.gloves && !HAS_TRAIT(H, TRAIT_PIERCEIMMUNE)) // golems, etc
 			to_chat(H, "<span class='warning'>[src] cuts into your hand!</span>")
 			H.apply_damage(force*0.5, BRUTE, hit_hand)
 	else if(ismonkey(user))
 		var/mob/living/carbon/monkey/M = user
-		if(!M.has_trait(TRAIT_PIERCEIMMUNE))
+		if(!HAS_TRAIT(M, TRAIT_PIERCEIMMUNE))
 			to_chat(M, "<span class='warning'>[src] cuts into your hand!</span>")
 			M.apply_damage(force*0.5, BRUTE, hit_hand)
 
@@ -312,7 +323,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 
 /obj/item/shard/Crossed(mob/living/L)
 	if(istype(L) && has_gravity(loc))
-		if(L.has_trait(TRAIT_LIGHT_STEP))
+		if(HAS_TRAIT(L, TRAIT_LIGHT_STEP))
 			playsound(loc, 'sound/effects/glass_step.ogg', 30, 1)
 		else
 			playsound(loc, 'sound/effects/glass_step.ogg', 50, 1)
