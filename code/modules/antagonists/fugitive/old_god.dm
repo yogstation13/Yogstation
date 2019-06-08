@@ -1,3 +1,4 @@
+
 /mob/camera/yalp_elor
 	name = "Yalp Elor"
 	real_name = "Yalp Elor"

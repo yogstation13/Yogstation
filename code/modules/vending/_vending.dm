@@ -14,6 +14,8 @@
 IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY CANISTER CHARGES in vending_items.dm
 */
 
+#define MAX_VENDING_INPUT_AMOUNT 30
+
 /datum/data/vending_product
 	name = "generic"
 	var/product_path = null
@@ -72,8 +74,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/default_price = 25
 	var/extra_price = 50
 	var/onstation = TRUE //if it doesn't originate from off-station during mapload, everything is free
+	var/list/canload_access_list
 
-	var/dish_quants = list()  //used by the snack machine's custom compartment to count dishes.
+	var/list/vending_machine_input = list()
+	var/input_display_header = "Custom Compartment"
 
 	var/obj/item/vending_refill/refill_canister = null		//The type of refill canisters used by this machine.
 
@@ -272,8 +276,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 				else
 					to_chat(user, "<span class='notice'>There's nothing to restock!</span>")
 			return
-<<<<<<< HEAD
-=======
 	if(compartmentLoadAccessCheck(user))
 		if(canLoadItem(I))
 			loadingAttempt(I,user)
@@ -297,9 +299,19 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(loaded)
 				to_chat(user, "<span class='notice'>You insert [loaded] dishes into [src]'s chef compartment.</span>")
 				updateUsrDialog()
->>>>>>> 24790954cc... Fix bags allowing invalid insertion of items into vendors (#44301)
 	else
-		return ..()
+		..()
+
+/obj/machinery/vending/proc/loadingAttempt(obj/item/I,mob/user)
+  . = TRUE
+  if(!user.transferItemToLoc(I, src))
+    return FALSE
+  if(vending_machine_input[I.name])
+    vending_machine_input[I.name]++
+  else
+    vending_machine_input[I.name] = 1
+  to_chat(user, "<span class='notice'>You insert [I] into [src]'s input compartment.</span>")
+
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
 	if(!istype(W))
@@ -390,12 +402,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
-	if(istype(src, /obj/machinery/vending/snack))
-		dat += "<h3>Chef's Food Selection</h3>"
+	if(vending_machine_input.len)
+		dat += "<h3>[input_display_header]</h3>"
 		dat += "<div class='statusDisplay'>"
-		for (var/O in dish_quants)
-			if(dish_quants[O] > 0)
-				var/N = dish_quants[O]
+		for (var/O in vending_machine_input)
+			if(vending_machine_input[O] > 0)
+				var/N = vending_machine_input[O]
 				dat += "<a href='byond://?src=[REF(src)];dispense=[sanitize(O)]'>Dispense</A> "
 				dat += "<B>[capitalize(O)] ($[default_price]): [N]</B><br>"
 		dat += "</div>"
@@ -414,7 +426,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	if((href_list["dispense"]) && (vend_ready))
 		var/N = href_list["dispense"]
-		if(dish_quants[N] <= 0) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
+		if(vending_machine_input[N] <= 0) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
 			return
 		vend_ready = 0
 		if(ishuman(usr) && onstation)
@@ -439,7 +451,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			D.adjust_money(chef_price)
 		use_power(5)
 
-		dish_quants[N] = max(dish_quants[N] - 1, 0)
+		vending_machine_input[N] = max(vending_machine_input[N] - 1, 0)
 		for(var/obj/O in contents)
 			if(O.name == N)
 				say("Thank you for buying local and purchasing [O]!")
@@ -606,6 +618,29 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return TRUE
 	else
 		return FALSE
+
+/obj/machinery/vending/proc/canLoadItem(obj/item/I,mob/user)
+	return FALSE
+
+/obj/machinery/vending/proc/compartmentLoadAccessCheck(mob/user)
+	if(!canload_access_list)
+		return TRUE
+	else
+		var/do_you_have_access = FALSE
+		var/req_access_txt_holder = req_access_txt
+		for(var/i in canload_access_list)
+			req_access_txt = i
+			if(!allowed(user) && !(obj_flags & EMAGGED) && scan_id)
+				continue
+			else
+				do_you_have_access = TRUE
+				break //you passed don't bother looping anymore
+		req_access_txt = req_access_txt_holder // revert to normal (before the proc ran)
+		if(do_you_have_access)
+			return TRUE
+		else
+			to_chat(user, "<span class='warning'>[src]'s input compartment blinks red: Access denied.</span>")
+			return FALSE
 
 /obj/machinery/vending/onTransitZ()
 	return
