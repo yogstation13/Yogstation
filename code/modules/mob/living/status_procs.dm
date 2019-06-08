@@ -373,6 +373,7 @@
 				to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
 		priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
+<<<<<<< HEAD
 /////////////////////////////////// STASIS ///////////////////////////////////
 
 /mob/living/proc/IsInStasis()
@@ -380,6 +381,8 @@
 
 /mob/living/proc/SetStasis(apply, updating = TRUE)
 	. = apply ? apply_status_effect(STATUS_EFFECT_STASIS, null, updating) : remove_status_effect(STATUS_EFFECT_STASIS)
+=======
+>>>>>>> cdad5e93a0... Removes some unnecessary wrapper procs (#44061)
 
 /////////////////////////////////// DISABILITIES ////////////////////////////////////
 /mob/living/proc/add_quirk(quirktype, spawn_effects) //separate proc due to the way these ones are handled
