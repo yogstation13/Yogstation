@@ -373,7 +373,6 @@
 				to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
 		priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
 /////////////////////////////////// STASIS ///////////////////////////////////
 
 /mob/living/proc/IsInStasis()
