@@ -1350,8 +1350,13 @@
 	M.dizziness = max(0, M.dizziness-6)
 	M.confused = max(0, M.confused-6)
 	M.disgust = max(0, M.disgust-6)
+<<<<<<< HEAD
 	GET_COMPONENT_FROM(mood, /datum/component/mood, M)
 	if(mood && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then... // yogs - fix lack of mood causing runtime
+=======
+	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
+	if(mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
 	..()
 	. = 1
