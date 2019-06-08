@@ -401,7 +401,7 @@
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
 
 /obj/item/storage/box/donkpockets/PopulateContents()
@@ -417,7 +417,7 @@
 
 /obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
@@ -437,7 +437,7 @@
 
 /obj/item/storage/box/gorillacubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
@@ -590,7 +590,7 @@
 
 /obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/toy/snappop))
 	STR.max_items = 8
 
@@ -608,19 +608,13 @@
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
-<<<<<<< HEAD
-	STR.can_hold = typecacheof(list(/obj/item/match))
-// yogs start -- make matches play nice with holodeck
-=======
 	STR.set_holdable(list(/obj/item/match))
 
->>>>>>> 2d32be1904... Small storage refactor and examine change (#44109)
 /obj/item/storage/box/matches/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/match(src)
-// yogs end
+	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
+
 /obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/match))
 		W.matchignite()
@@ -637,7 +631,7 @@
 
 /obj/item/storage/box/lights/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
 	STR.set_holdable(list(/obj/item/light/tube, /obj/item/light/bulb))
 	STR.max_combined_w_class = 21
@@ -900,7 +894,7 @@
 /obj/item/storage/box/ingredients/italian/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
-		new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+		new /obj/item/reagent_containers/food/snacks/faggot(src)
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
 
 /obj/item/storage/box/ingredients/vegetarian
@@ -923,7 +917,7 @@
 		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
 		new /obj/item/reagent_containers/food/snacks/grown/corn(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/faggot(src)
 
 /obj/item/storage/box/ingredients/fruity
 	theme_name = "fruity"
@@ -979,7 +973,7 @@
 	new /obj/item/reagent_containers/food/snacks/carpmeat(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/xeno(src)
 	new /obj/item/reagent_containers/food/snacks/meat/slab/corgi(src)
-	new /obj/item/reagent_containers/food/snacks/meatball(src) //YOGS - bigotry rule
+	new /obj/item/reagent_containers/food/snacks/faggot(src)
 
 /obj/item/storage/box/ingredients/exotic
 	theme_name = "exotic"
