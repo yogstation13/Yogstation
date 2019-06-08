@@ -420,12 +420,16 @@
 /atom/proc/component_storage_contents_dump_act(datum/component/storage/src_object, mob/user)
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
+<<<<<<< HEAD
 	GET_COMPONENT(STR, /datum/component/storage)
 	//yogs start -- stops things from dumping into themselves
 	if(STR == src_object)
 		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
 		return
 	//yogs end
+=======
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+>>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
 	while (do_after(user, 10, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
