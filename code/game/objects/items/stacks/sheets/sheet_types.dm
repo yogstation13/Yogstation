@@ -235,6 +235,33 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	amount = 50
 
 /*
+ * Bamboo
+ */
+
+GLOBAL_LIST_INIT(bamboo_recipes, list ( \
+	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
+	))
+
+/obj/item/stack/sheet/mineral/bamboo
+	name = "bamboo cuttings"
+	desc = "Finely cut bamboo sticks."
+	singular_name = "cut bamboo"
+	icon_state = "sheet-bamboo"
+	item_state = "sheet-bamboo"
+	icon = 'icons/obj/stack_objects.dmi'
+	sheettype = "bamboo"
+	throwforce = 15
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/sheet/mineral/bamboo
+	grind_results = list("carbon" = 5)
+
+/obj/item/stack/sheet/mineral/bamboo/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.bamboo_recipes
+	return ..()
+
+/*
  * Cloth
  */
 GLOBAL_LIST_INIT(cloth_recipes, list ( \
@@ -569,7 +596,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
 	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
 	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
-	new /datum/stack_recipe("wet floor sign", /obj/item/caution, 2)))
+	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2)))
 
 /obj/item/stack/sheet/plastic
 	name = "plastic"
