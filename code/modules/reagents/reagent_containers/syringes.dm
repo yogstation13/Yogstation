@@ -201,7 +201,16 @@
 /obj/item/reagent_containers/syringe/charcoal
 	name = "syringe (charcoal)"
 	desc = "Contains charcoal."
+<<<<<<< HEAD
 	list_reagents = list("charcoal" = 15)
+=======
+	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
+
+/obj/item/reagent_containers/syringe/perfluorodecalin
+	name = "syringe (perfluorodecalin)"
+	desc = "Contains perfluorodecalin."
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+>>>>>>> 284f6efda5... fixes cobby mistakes (#44356)
 
 /obj/item/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
