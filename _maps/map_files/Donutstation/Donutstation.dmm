@@ -1640,12 +1640,6 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
-"aei" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "aej" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
@@ -4936,14 +4930,14 @@
 /obj/machinery/computer/cargo,
 /obj/machinery/button/door{
 	dir = 2;
-	id = "cargoload";
+	id = "cargounload";
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = 8;
 	pixel_y = 24
 	},
 /obj/machinery/button/door{
-	id = "cargounload";
+	id = "cargoload";
 	layer = 4;
 	name = "Loading Doors";
 	pixel_x = -8;
@@ -10475,10 +10469,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ayu" = (
+/obj/machinery/pipedispenser,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ayv" = (
@@ -10503,10 +10497,10 @@
 /obj/item/radio/intercom{
 	pixel_y = 28
 	},
+/obj/machinery/pipedispenser/disposal/transit_tube,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ayy" = (
@@ -33029,12 +33023,12 @@
 	pixel_y = 28
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/rnd/production/protolathe/department/engineering,
 /obj/machinery/camera{
 	c_tag = "Atmospherics - Main 3";
 	dir = 2;
 	network = list("ss13","Atmospherics")
 	},
-/obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "brV" = (
@@ -52581,6 +52575,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+"clO" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"csr" = (
+/obj/machinery/airalarm/server{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "csH" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 4
@@ -52824,17 +52834,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "dUt" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dZa" = (
@@ -52853,14 +52853,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
-"elZ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "emg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -53057,12 +53049,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
@@ -53655,45 +53641,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
-<<<<<<< HEAD
-=======
-"iHp" = (
-/obj/structure/grille/broken,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"iHE" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/radio/intercom{
-	pixel_y = 29
-	},
-/turf/open/floor/plasteel,
-/area/medical/cryo)
-"iIq" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
->>>>>>> 3e43837aff... Minor Donutstation tweaks (#43609)
 "iJC" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -53958,20 +53905,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
 "kAG" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "kAU" = (
@@ -54089,6 +54023,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/engine/engine_room/external)
+"lDQ" = (
+/obj/machinery/rnd/production/techfab/department/engineering,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "lEt" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -54781,41 +54719,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-<<<<<<< HEAD
-=======
-"pmp" = (
-/obj/machinery/computer/security{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_x = -30
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
-"pmD" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
->>>>>>> 3e43837aff... Minor Donutstation tweaks (#43609)
 "poI" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -55534,41 +55437,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-<<<<<<< HEAD
-=======
-"tcB" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/crew_quarters/heads/chief)
-"tdw" = (
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/cmo";
-	dir = 8;
-	name = "CMO's Office APC";
-	pixel_x = -25
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"tfI" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
->>>>>>> 3e43837aff... Minor Donutstation tweaks (#43609)
 "tlY" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -56178,55 +56046,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-<<<<<<< HEAD
-=======
-"wpG" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/chief)
-"wrV" = (
-/obj/structure/kitchenspike,
-/obj/item/radio/intercom{
-	dir = 2;
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/crew_quarters/kitchen/coldroom)
-"wtu" = (
-/obj/structure/bed,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/light_switch{
-	pixel_x = -24
-	},
-/obj/item/bedsheet/dorms,
-/obj/machinery/airalarm{
-	pixel_y = 25
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/dorms)
->>>>>>> 3e43837aff... Minor Donutstation tweaks (#43609)
 "wvW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -81767,13 +81586,13 @@ bkQ
 avi
 adO
 ako
-aei
-aei
-aei
-aei
-aei
-aei
-aei
+adP
+adP
+adP
+adP
+adP
+adP
+adP
 bkX
 cIZ
 gst
@@ -82280,7 +82099,7 @@ avi
 avi
 avi
 adP
-aei
+adP
 aej
 auk
 auy
@@ -92372,7 +92191,7 @@ bps
 aYB
 brG
 acj
-asr
+lDQ
 axP
 bnB
 bpq
@@ -94664,7 +94483,7 @@ mXO
 iUZ
 aaa
 aaa
-iIq
+dUt
 dUa
 aor
 vzQ
@@ -94921,7 +94740,7 @@ aal
 aaa
 aaa
 aaa
-elZ
+dUt
 mUn
 aor
 aor
@@ -95178,7 +94997,7 @@ aal
 aal
 aal
 aal
-pmD
+dUt
 hAI
 vRP
 vRP
@@ -95698,8 +95517,8 @@ apO
 apO
 kAG
 feg
-wpG
-tcB
+kAG
+kAG
 apO
 apO
 aze

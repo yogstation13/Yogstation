@@ -147,6 +147,10 @@ Class Procs:
 	else
 		STOP_PROCESSING(SSfastprocess, src)
 	dropContents()
+	/*if(length(component_parts)) //yogs start: this breaks machines and makes them not drop stuff when deconstructed
+		for(var/atom/A in component_parts)
+			qdel(A)
+		component_parts.Cut()*/ //yogs end
 	return ..()
 
 /obj/machinery/proc/locate_machinery()
@@ -182,7 +186,7 @@ Class Procs:
 			var/mob/living/L = A
 			L.update_mobility()
 	occupant = null
-	
+
 /obj/machinery/proc/can_be_occupant(atom/movable/am)
 	return occupant_typecache ? is_type_in_typecache(am, occupant_typecache) : isliving(am)
 
