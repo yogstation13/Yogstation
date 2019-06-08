@@ -286,8 +286,6 @@
 	to_chat(user, "<span class='warning'>As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. </span>")
 
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/head/foilhat/MouseDrop(atom/over_object)
 	//God Im sorry
 	if(!warped && iscarbon(usr))
@@ -297,7 +295,6 @@
 			return
 	return ..()
 
->>>>>>> 17b3091867... Merges tinfoil (hat) protection into the anti_magic component. Implements it on Hivemind gamemode and telepathy. (#43978)
 /obj/item/clothing/head/foilhat/dropped(mob/user)
 	. = ..()
 	if(paranoia)
