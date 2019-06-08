@@ -318,9 +318,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			visible_message("<span class='warning'>[src] melts through [T]!</span>")
 		return
 
-	if(power)
-		soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max
-
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/env = T.return_air()
 
