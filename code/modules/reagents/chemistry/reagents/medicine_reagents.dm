@@ -413,7 +413,7 @@
 	. = 1
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.id,1)
+			M.reagents.remove_reagent(R.type,1)
 	..()
 
 /datum/reagent/medicine/omnizine
