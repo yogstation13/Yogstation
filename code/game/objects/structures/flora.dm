@@ -62,7 +62,7 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift //yogs - christmas presents shouldn't be pulse rifles.
+	var/gift_type = /obj/item/a_gift/anything
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
 
@@ -303,7 +303,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
+	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -313,24 +313,9 @@
 	throw_speed = 2
 	throw_range = 4
 
-<<<<<<< HEAD
-
-/obj/item/twohanded/required/kirbyplants/equipped(mob/living/user)
-	var/image/I = image(icon = 'yogstation/icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user) //yogs changed icon path
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
-	..()
-
-/obj/item/twohanded/required/kirbyplants/dropped(mob/living/user)
-	..()
-	user.remove_alt_appearance("sneaking_mission")
-=======
 /obj/item/twohanded/required/kirbyplants/Initialize()
 	. = ..()
 	AddComponent(/datum/component/tactical)
->>>>>>> 66cab55f28... Replaces the rpg loot datum with a component and makes some suffixes have real effects (#44044)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -339,14 +324,14 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
+	icon = 'icons/obj/flora/plants.dmi'
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
 
 /obj/item/twohanded/required/kirbyplants/random/proc/generate_states()
 	states = list()
-	for(var/i in 1 to 34) //yogs changed 25 plants to 34
+	for(var/i in 1 to 25)
 		var/number
 		if(i < 10)
 			number = "0[i]"
