@@ -254,9 +254,13 @@
 		/obj/machinery/vending/cart = "PTech",
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
+<<<<<<< HEAD
 		/obj/machinery/vending/sovietsoda = "BODA",
 		/obj/machinery/vending/security = "SecTech")//Yogs
 		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
+=======
+		/obj/machinery/vending/sovietsoda = "BODA")
+>>>>>>> fde4c92638... fixes vending machines not having refill parts (#43314)
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -266,6 +270,10 @@
 			for(var/path in vending_names_paths)
 				display_vending_names_paths[vending_names_paths[path]] = path
 		var/choice =  input(user,"Choose a new brand","Select an Item") as null|anything in display_vending_names_paths
+<<<<<<< HEAD
+=======
+		to_chat(user, "<span class='notice'>You set the board to \"[display_vending_names_paths[choice]]\".</span>")
+>>>>>>> fde4c92638... fixes vending machines not having refill parts (#43314)
 		set_type(display_vending_names_paths[choice])
 	else
 		return ..()

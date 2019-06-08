@@ -186,9 +186,12 @@
 	extra_price = 75
 	payment_department = NO_FREEBIES
 
+<<<<<<< HEAD
 /obj/machinery/vending/clothing/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)
 
+=======
+>>>>>>> fde4c92638... fixes vending machines not having refill parts (#43314)
 /obj/item/vending_refill/clothing
 	machine_name = "ClothesMate"
 	icon_state = "refill_clothes"
