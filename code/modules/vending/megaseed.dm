@@ -57,8 +57,4 @@
 
 /obj/item/vending_refill/hydroseeds
 	machine_name = "MegaSeed Servitor"
-<<<<<<< HEAD
 	icon_state = "refill_plant"
-=======
-	icon_state = "refill_plant"
->>>>>>> fde4c92638... fixes vending machines not having refill parts (#43314)
