@@ -16,7 +16,7 @@
 	AddComponent(component_type)
 
 /obj/item/storage/AllowDrop()
-	return TRUE
+	return FALSE
 
 /obj/item/storage/contents_explosion(severity, target)
 	for(var/atom/A in contents)
@@ -41,10 +41,5 @@
 /obj/item/storage/proc/PopulateContents()
 
 /obj/item/storage/proc/emptyStorage()
-<<<<<<< HEAD
-	GET_COMPONENT(ST, /datum/component/storage)
-	ST.do_quick_empty()
-=======
 	var/datum/component/storage/ST = GetComponent(/datum/component/storage)
 	ST.do_quick_empty()
->>>>>>> c3f95024b2... Gets rid of the GetComponent macros (#44220)
