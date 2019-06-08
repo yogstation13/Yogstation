@@ -59,12 +59,11 @@
 	if(target)
 		if(!(target in validtargets))
 			lose_target()
-<<<<<<< HEAD
 		else //yogs start: slows warden attack speed so it doesn't stop people from moving
 			if(last_process + time_between_shots < world.time)
 				if(isliving(target))
 					var/mob/living/L = target
-					if(!L.anti_magic_check(major = FALSE))
+					if(!L.anti_magic_check(chargecost = 0))
 						if(isrevenant(L))
 							var/mob/living/simple_animal/revenant/R = L
 							if(R.revealed)
@@ -73,16 +72,6 @@
 								R.reveal(10)
 						if(prob(50))
 							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
-=======
-		else
-			if(isliving(target))
-				var/mob/living/L = target
-				if(!L.anti_magic_check(chargecost = 0))
-					if(isrevenant(L))
-						var/mob/living/simple_animal/revenant/R = L
-						if(R.revealed)
-							R.unreveal_time += 2
->>>>>>> 17b3091867... Merges tinfoil (hat) protection into the anti_magic component. Implements it on Hivemind gamemode and telepathy. (#43978)
 						else
 							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
 						L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
@@ -126,7 +115,7 @@
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
 			continue
-		if(is_servant_of_ratvar(L) || (L.has_trait(TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
+		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
 		if(L.stat || (L.IsStun())) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
 			continue
