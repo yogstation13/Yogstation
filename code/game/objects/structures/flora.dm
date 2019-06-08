@@ -313,6 +313,7 @@
 	throw_speed = 2
 	throw_range = 4
 
+<<<<<<< HEAD
 
 /obj/item/twohanded/required/kirbyplants/equipped(mob/living/user)
 	var/image/I = image(icon = 'yogstation/icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user) //yogs changed icon path
@@ -325,6 +326,11 @@
 /obj/item/twohanded/required/kirbyplants/dropped(mob/living/user)
 	..()
 	user.remove_alt_appearance("sneaking_mission")
+=======
+/obj/item/twohanded/required/kirbyplants/Initialize()
+	. = ..()
+	AddComponent(/datum/component/tactical)
+>>>>>>> 66cab55f28... Replaces the rpg loot datum with a component and makes some suffixes have real effects (#44044)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
