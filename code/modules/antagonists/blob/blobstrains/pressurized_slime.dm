@@ -34,6 +34,7 @@
 
 /datum/reagent/blob/pressurized_slime
 	name = "Pressurized Slime"
+	id = "pressurized_slime"
 	taste_description = "a sponge"
 	color = "#AAAABB"
 

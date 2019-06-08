@@ -28,6 +28,7 @@
 
 /datum/reagent/blob/blazing_oil
 	name = "Blazing Oil"
+	id = "blazing_oil"
 	taste_description = "burning oil"
 	color = "#B68D00"
 
