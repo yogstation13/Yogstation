@@ -168,9 +168,9 @@
 		var/mob/living/L = M
 		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
 			return TRUE
-	//If they're a human, and they're not in help intent, block pushing
+	/*//If they're a human, and they're not in help intent, block pushing //yogs start: disarmn't rework
 	if(ishuman(M) && (M.a_intent != INTENT_HELP))
-		return TRUE
+		return TRUE*/ //yogs end
 	//anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
