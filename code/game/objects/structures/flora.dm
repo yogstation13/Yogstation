@@ -62,7 +62,7 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/anything
+	var/gift_type = /obj/item/a_gift //yogs - christmas presents shouldn't be pulse rifles.
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
 
@@ -303,7 +303,7 @@
 
 /obj/item/twohanded/required/kirbyplants
 	name = "potted plant"
-	icon = 'icons/obj/flora/plants.dmi'
+	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed path
 	icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
@@ -324,14 +324,14 @@
 
 /obj/item/twohanded/required/kirbyplants/random/Initialize()
 	. = ..()
-	icon = 'icons/obj/flora/plants.dmi'
+	icon = 'yogstation/icons/obj/flora/plants.dmi' //yogs changed icon path
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
 
 /obj/item/twohanded/required/kirbyplants/random/proc/generate_states()
 	states = list()
-	for(var/i in 1 to 25)
+	for(var/i in 1 to 34) //yogs changed 25 plants to 34
 		var/number
 		if(i < 10)
 			number = "0[i]"
