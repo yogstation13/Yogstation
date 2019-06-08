@@ -84,6 +84,9 @@
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
+	if(datum_outputs)
+		for(var/i in 1 to length(datum_outputs))
+			datum_outputs[i] = SSoutputs.outputs[datum_outputs[i]]
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL

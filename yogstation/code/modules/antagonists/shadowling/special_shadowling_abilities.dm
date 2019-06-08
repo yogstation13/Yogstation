@@ -21,7 +21,7 @@
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against hatching for now.")
+			to_chat(H, "<span class='warning'>You decide against hatching for now.</span>")
 			charge_counter = charge_max
 			return
 		if("Yes")
@@ -124,7 +124,7 @@
 	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
 	switch(hatch_or_no)
 		if("No")
-			to_chat(H, "<span class='warning'>You decide against ascending for now.")
+			to_chat(H, "<span class='warning'>You decide against ascending for now.</span>")
 			charge_counter = charge_max
 			return
 		if("Yes")
