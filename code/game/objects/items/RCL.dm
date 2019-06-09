@@ -20,7 +20,12 @@
 	var/ghetto = FALSE
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+<<<<<<< HEAD
 	var/datum/component/mobhook
+=======
+	var/datum/radial_menu/persistent/wiring_gui_menu
+	var/mob/listeningTo
+>>>>>>> 45ec62931d... Finally removes the signal redirect component (#44251)
 
 /obj/item/twohanded/rcl/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -85,7 +90,12 @@
 /obj/item/twohanded/rcl/Destroy()
 	QDEL_NULL(loaded)
 	last = null
+<<<<<<< HEAD
 	setActive(FALSE, null) // setactive(FALSE) removes mobhook
+=======
+	listeningTo = null
+	QDEL_NULL(wiring_gui_menu)
+>>>>>>> 45ec62931d... Finally removes the signal redirect component (#44251)
 	return ..()
 
 /obj/item/twohanded/rcl/update_icon()
@@ -122,8 +132,13 @@
 
 /obj/item/twohanded/rcl/dropped(mob/wearer)
 	..()
+<<<<<<< HEAD
 	if(mobhook)
 		setActive(FALSE, mobhook.parent)
+=======
+	UnregisterSignal(wearer, COMSIG_MOVABLE_MOVED)
+	listeningTo = null
+>>>>>>> 45ec62931d... Finally removes the signal redirect component (#44251)
 	last = null
 
 /obj/item/twohanded/rcl/attack_self(mob/user)
@@ -137,6 +152,7 @@
 				last = C
 				break
 
+<<<<<<< HEAD
 /obj/item/twohanded/rcl/proc/setActive(toggle, mob/user)
 	active = toggle
 	if (active && user)
@@ -146,6 +162,15 @@
 			mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/trigger)))
 	else
 		QDEL_NULL(mobhook)
+=======
+/obj/item/twohanded/rcl/proc/getMobhook(mob/to_hook)
+	if(listeningTo == to_hook)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(listeningTo, COMSIG_MOVABLE_MOVED, .proc/trigger)
+	listeningTo = to_hook
+>>>>>>> 45ec62931d... Finally removes the signal redirect component (#44251)
 
 /obj/item/twohanded/rcl/proc/trigger(mob/user)
 	if(!isturf(user.loc))
