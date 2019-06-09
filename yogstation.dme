@@ -3003,6 +3003,7 @@
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\command.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\security.dm"
+#include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\service.dm"
 #include "yogstation\code\game\turfs\simulated\ballpit.dm"
 #include "yogstation\code\game\turfs\simulated\floor\fancy_floor.dm"
 #include "yogstation\code\modules\admin\admin.dm"
