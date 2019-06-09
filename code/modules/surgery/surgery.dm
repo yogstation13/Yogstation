@@ -137,7 +137,16 @@
 
 /obj/item/disk/surgery/debug/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	surgeries = subtypesof(/datum/surgery/advanced)
+=======
+	surgeries = list()
+	var/list/req_tech_surgeries = subtypesof(/datum/surgery)
+	for(var/i in req_tech_surgeries)
+		var/datum/surgery/beep = i
+		if(beep.requires_tech)
+			surgeries += beep
+>>>>>>> 7dbc392b34... Merge pull request #44399 from tgstation/debugindentfix
 
 //INFO
 //Check /mob/living/carbon/attackby for how surgery progresses, and also /mob/living/carbon/attack_hand.
