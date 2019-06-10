@@ -10,7 +10,6 @@
 
 /datum/reagent/blob/regenerative_materia
 	name = "Regenerative Materia"
-	id = "regenerative_materia"
 	taste_description = "heaven"
 	color = "#C8A5DC"
 
