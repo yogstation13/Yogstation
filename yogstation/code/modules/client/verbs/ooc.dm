@@ -42,3 +42,14 @@
 
 	if(m)
 		to_chat(src, "<font color='purple'><b>Tip: </b>[html_encode(m)]</font>")
+
+/client/verb/emoji_list()
+	set name = "emoji-help"
+	set category = "OOC"
+	set desc = "Lists all the emojis available for use!"
+	if(!CONFIG_GET(flag/emojis))
+		to_chat(src,"<span class='warning'>This server has emojis disabled!</span>")
+		return
+	var/static/list/emojis = (icon_states(icon('icons/emoji.dmi')) + icon_states(icon('yogstation/icons/emoji.dmi')))
+	for(var/emoji in emojis)
+		to_chat(src,"<span class='notice'>" + icon2html('yogstation/icons/emoji.dmi', world, emoji) + " = :" + emoji + ":</span>")
