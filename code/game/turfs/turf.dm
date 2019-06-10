@@ -175,8 +175,6 @@
 				LC.handlecable(C, user)
 				return
 		C.loaded.place_turf(src, user)
-		if(C.wiring_gui_menu)
-			C.wiringGuiUpdate(user)
 		C.is_empty(user)
 
 /turf/attackby(obj/item/C, mob/user, params)
