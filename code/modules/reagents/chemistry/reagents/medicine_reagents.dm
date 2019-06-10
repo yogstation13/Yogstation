@@ -1,3 +1,4 @@
+#define PERF_BASE_DAMAGE		0.5
 
 //////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -60,7 +61,7 @@
 	M.jitteriness = 0
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
 		M.blood_volume = BLOOD_VOLUME_NORMAL
-		
+
 	M.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	for(var/thing in M.diseases)
 		var/datum/disease/D = thing
@@ -505,21 +506,26 @@
 
 /datum/reagent/medicine/perfluorodecalin
 	name = "Perfluorodecalin"
-	description = "Extremely rapidly restores oxygen deprivation, but inhibits speech. May also heal small amounts of bruising and burns."
+	description = "Restores oxygen deprivation while producing a lesser amount of toxic byproducts. Both scale with exposure to the drug and current amount of oxygen deprivation. Overdose causes toxic byproducts regardless of oxygen deprivation."
 	reagent_state = LIQUID
 	color = "#FF6464"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 35 // at least 2 full syringes +some, this stuff is nasty if left in for long
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
-	M.adjustOxyLoss(-12*REM, 0)
-	// yogs start
-	M.silent = max(M.silent, 5)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM, 0)
-		M.adjustFireLoss(-0.5*REM, 0)
-	// yogs end
+	var/oxycalc = 2.5*REM*current_cycle
+	if(!overdosed)
+		oxycalc = min(oxycalc,M.getOxyLoss()+PERF_BASE_DAMAGE) //if NOT overdosing, we lower our toxdamage to only the damage we actually healed with a minimum of 0.5. IE if we only heal 10 oxygen damage but we COULD have healed 20, we will only take toxdamage for the 10. We would take the toxdamage for the extra 10 if we were overdosing.
+	M.adjustOxyLoss(-oxycalc, 0)
+	M.adjustToxLoss(oxycalc/2.5, 0)
+	if(prob(current_cycle) && M.losebreath)
+		M.losebreath--
 	..()
 	return TRUE
+
+/datum/reagent/medicine/perfluorodecalin/overdose_process(mob/living/M)
+    metabolization_rate += 1
+    return ..()
 
 /datum/reagent/medicine/ephedrine
 	name = "Ephedrine"
@@ -1294,8 +1300,8 @@
 	M.dizziness = max(0, M.dizziness-6)
 	M.confused = max(0, M.confused-6)
 	M.disgust = max(0, M.disgust-6)
-	GET_COMPONENT_FROM(mood, /datum/component/mood, M)
-	if(mood && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then... // yogs - fix lack of mood causing runtime
+	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
+	if(mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
 		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
 	..()
 	. = 1
@@ -1305,3 +1311,6 @@
 	M.adjustToxLoss(1, 0)
 	..()
 	. = 1
+
+
+#undef PERF_BASE_DAMAGE

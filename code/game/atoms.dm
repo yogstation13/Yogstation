@@ -420,7 +420,7 @@
 /atom/proc/component_storage_contents_dump_act(datum/component/storage/src_object, mob/user)
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	//yogs start -- stops things from dumping into themselves
 	if(STR == src_object)
 		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
