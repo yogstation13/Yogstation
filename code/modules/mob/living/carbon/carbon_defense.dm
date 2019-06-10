@@ -226,14 +226,14 @@
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
-	if(has_trait(TRAIT_SHOCKIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
 	shock_damage *= siemens_coeff
 	if(dna && dna.species)
 		shock_damage *= dna.species.siemens_coeff
 	if(shock_damage<1 && !override)
 		return 0
-	if(reagents.has_reagent("teslium"))
+	if(reagents.has_reagent(/datum/reagent/teslium))
 		shock_damage *= 1.5 //If the mob has teslium in their body, shocks are 50% more damaging!
 	if(illusion)
 		adjustStaminaLoss(shock_damage)
@@ -265,7 +265,7 @@
 
 	if(!(mobility_flags & MOBILITY_STAND))
 		if(buckled)
-			to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!")
+			to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!</span>")
 			return
 		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
 						"<span class='notice'>You shake [src] trying to get [p_them()] up!</span>")
@@ -273,8 +273,8 @@
 		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
-		if(M.has_trait(TRAIT_FRIENDLY))
-			GET_COMPONENT_FROM(mood, /datum/component/mood, M)
+		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
+			var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 			if (mood.sanity >= SANITY_GREAT)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
 			else if (mood.sanity >= SANITY_DISTURBED)
@@ -325,12 +325,12 @@
 
 			if(eyes.eye_damage > 20)
 				if(prob(eyes.eye_damage - 20))
-					if(!has_trait(TRAIT_NEARSIGHT))
+					if(!HAS_TRAIT(src, TRAIT_NEARSIGHT))
 						to_chat(src, "<span class='warning'>Your eyes start to burn badly!</span>")
 					become_nearsighted(EYE_DAMAGE)
 
 				else if(prob(eyes.eye_damage - 25))
-					if(!has_trait(TRAIT_BLIND))
+					if(!HAS_TRAIT(src, TRAIT_BLIND))
 						to_chat(src, "<span class='warning'>You can't see anything!</span>")
 					become_blind(EYE_DAMAGE)
 

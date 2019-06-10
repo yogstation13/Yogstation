@@ -296,6 +296,7 @@ Difficulty: Insanely Hard
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/gun/energy/meteorgun(loc)
+		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
