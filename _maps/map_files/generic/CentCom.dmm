@@ -8321,7 +8321,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "si" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
@@ -8832,7 +8831,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "tg" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -9527,7 +9525,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "uM" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -10502,9 +10499,6 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "wV" = (
-/obj/machinery/computer/telecrystals/boss{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
