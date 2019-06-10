@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "machines will now drop stuff again when deconstructed"
+  - bugfix: "explosions will no longer be delayed by thanks TG"
