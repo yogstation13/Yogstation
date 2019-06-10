@@ -180,7 +180,6 @@
 		message = stutter(message)
 	return message
 
-
 /proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
@@ -496,13 +495,5 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/common_trait_examine()
 	. = ""
 
-	if(has_trait(TRAIT_DISSECTED))
+	if(HAS_TRAIT(src, TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
-
-/mob/has_trait(trait, list/sources, check_mind=TRUE)
-	. = ..(trait, sources)
-	if(.)
-		return
-
-	if(check_mind && istype(mind))
-		return mind.has_trait(trait, sources)
