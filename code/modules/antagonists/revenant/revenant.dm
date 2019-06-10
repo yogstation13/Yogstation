@@ -115,7 +115,7 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
-		GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+		var/datum/component/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 		if(incorp)
 			incorp.signal_enabled = TRUE //yogs end
 		invisibility = INVISIBILITY_REVENANT
@@ -250,7 +250,7 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
 		incorp.signal_enabled = FALSE //yogs end
 	if(!unreveal_time)
@@ -339,7 +339,7 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
 		incorp.signal_enabled = TRUE //yogs end
 	invisibility = INVISIBILITY_REVENANT

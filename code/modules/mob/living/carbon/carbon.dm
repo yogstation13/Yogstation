@@ -11,7 +11,6 @@
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
 	. =  ..()
 
-	QDEL_LIST(hand_bodyparts)
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(stomach_contents)//Yogs -- Yogs vorecode
 	QDEL_LIST(bodyparts)
@@ -82,14 +81,14 @@
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
 			Paralyze(20)
-			take_bodypart_damage(10,check_armor = TRUE)
+			take_bodypart_damage(10)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
 		if(hurt)
-			victim.take_bodypart_damage(10,check_armor = TRUE)
-			take_bodypart_damage(10,check_armor = TRUE)
+			victim.take_bodypart_damage(10)
+			take_bodypart_damage(10)
 			victim.Paralyze(20)
 			Paralyze(20)
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
@@ -531,12 +530,11 @@
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
 	if(stam > DAMAGE_PRECISION)
-		var/total_health = (maxHealth - stam)
+		var/total_health = (health - stam)
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
 			Paralyze(100)
-			stam_paralysed = TRUE
 			update_health_hud()
 
 /mob/living/carbon/update_sight()
@@ -617,17 +615,6 @@
 
 	else
 		. += INFINITY
-
-/mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS = 0, CHEST = 0, GROIN = 0, LEGS = 0, FEET = 0, ARMS = 0, HEAD = 0))
-	for(var/obj/item/I in get_equipped_items())
-		for(var/zone in target_zones)
-			if(I.body_parts_covered & zone)
-				target_zones[zone] = max(1 - I.permeability_coefficient, target_zones[zone])
-	var/protection = 0
-	for(var/zone in target_zones)
-		protection += target_zones[zone]
-	protection *= INVERSE(target_zones.len)
-	return protection
 
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
@@ -730,7 +717,7 @@
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
-			if(shown_health_amount == null)
+			if(!shown_health_amount)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
 				hud_used.healths.icon_state = "health0"
