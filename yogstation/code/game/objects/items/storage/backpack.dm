@@ -78,7 +78,7 @@
 
 /obj/item/storage/backpack/holding/proc/disable_bag(dump = FALSE)
 	// find a new master but only if this bag is a master
-	var/datum/component/storage/concrete/STR = GetComponent/datum/component/storage/concrete
+	var/datum/component/storage/concrete/STR = GetComponent(/datum/component/storage/concrete)
 	if(istype(STR))
 		var/list/new_slaves = STR.slaves.Copy()
 		var/datum/component/storage/new_master = pick_n_take(new_slaves)
