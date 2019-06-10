@@ -29,6 +29,7 @@
 					/obj/item/toy/plush/nukeplushie = 2,
 					/obj/item/toy/plush/slimeplushie = 2,
 					/obj/item/toy/plush/inorixplushie = 2,
+					/obj/item/toy/plush/beeplushie = 2,
 					/obj/item/instrument/accordion = 1,
 					/obj/item/instrument/eguitar = 1,
 					/obj/item/instrument/glockenspiel = 1,
