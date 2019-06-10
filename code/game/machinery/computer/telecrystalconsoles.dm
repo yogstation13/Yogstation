@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 	if(uplinkholder)
 		to_chat(user, "<span class='notice'>[src] already has an uplink in it.</span>")
 		return
-	GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, I)
+	var/datum/component/uplink/hidden_uplink = I.GetComponent(/datum/component/uplink)
 	if(hidden_uplink)
 		if(!user.transferItemToLoc(I, src))
 			return
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 
 /obj/machinery/computer/telecrystals/uplinker/proc/donateTC(amt, addLog = 1)
 	if(uplinkholder && linkedboss)
-		GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, uplinkholder)
+		var/datum/component/uplink/hidden_uplink = uplinkholder.GetComponent(/datum/component/uplink)
 		if(amt < 0)
 			linkedboss.storedcrystals += hidden_uplink.telecrystals
 			if(addLog)
@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 
 /obj/machinery/computer/telecrystals/uplinker/proc/giveTC(amt, addLog = 1)
 	if(uplinkholder && linkedboss)
-		GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, uplinkholder)
+		var/datum/component/uplink/hidden_uplink = uplinkholder.GetComponent(/datum/component/uplink)
 		if(amt < 0)
 			hidden_uplink.telecrystals += linkedboss.storedcrystals
 			if(addLog)
@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 		dat += "No linked management consoles detected. Scan for uplink stations using the management console.<BR><BR>"
 
 	if(uplinkholder)
-		GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, uplinkholder)
+		var/datum/component/uplink/hidden_uplink = uplinkholder.GetComponent(/datum/component/uplink)
 		dat += "[hidden_uplink.telecrystals] telecrystals remain in this uplink.<BR>"
 		if(linkedboss)
 			dat += "Donate TC: <a href='byond://?src=[REF(src)];donate=1'>1</a> | <a href='byond://?src=[REF(src)];donate=5'>5</a> | <a href='byond://?src=[REF(src)];donate=-1'>All</a>"
@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(possible_uplinker_IDs, list("Alfa","Bravo","Charlie","Delta","E
 	for(var/obj/machinery/computer/telecrystals/uplinker/A in TCstations)
 		dat += "[A.name] | "
 		if(A.uplinkholder)
-			GET_COMPONENT_FROM(hidden_uplink, /datum/component/uplink, A.uplinkholder)
+			var/datum/component/uplink/hidden_uplink = A.uplinkholder.GetComponent(/datum/component/uplink)
 			dat += "[hidden_uplink.telecrystals] telecrystals."
 		if(storedcrystals)
 			dat+= "<BR>Add TC: <a href ='?src=[REF(src)];target=[REF(A)];give=1'>1</a> | <a href ='?src=[REF(src)];target=[REF(A)];give=5'>5</a> | <a href ='?src=[REF(src)];target=[REF(A)];give=10'>10</a> | <a href ='?src=[REF(src)];target=[REF(A)];give=-1'>All</a>"
