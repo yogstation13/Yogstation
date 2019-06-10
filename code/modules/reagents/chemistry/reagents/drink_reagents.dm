@@ -711,6 +711,10 @@
 	glass_name = "glass of grape juice"
 	glass_desc = "It's grape (soda)!"
 
+/datum/reagent/consumable/grape_soda/on_mob_life(mob/living/carbon/M)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
 /datum/reagent/consumable/milk/chocolate_milk
 	name = "Chocolate Milk"
 	description = "Milk for cool kids."
