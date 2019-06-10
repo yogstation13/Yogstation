@@ -5,7 +5,6 @@
 	boozepwr = 50
 	quality = DRINK_NICE
 	taste_description = "degeneracy"
-	icon = 'yogstation/icons/obj/drinks.dmi'
 	glass_icon_state = "catsip"
 	glass_name = "Catsip"
 	glass_desc = "Unfortunately has a tendency to induce the peculiar vocal tics of a wapanese mutant in the imbiber."
