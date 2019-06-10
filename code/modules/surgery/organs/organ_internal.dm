@@ -75,7 +75,7 @@
 	name = "appendix"
 	icon_state = "appendix"
 	icon = 'icons/obj/surgery.dmi'
-	list_reagents = list("nutriment" = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtype = RAW | MEAT | GROSS
 
 
@@ -90,7 +90,7 @@
 	if(M == user && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(status == ORGAN_ORGANIC)
-			var/obj/item/reagent_containers/food/snacks/S = prepare_eat()
+			var/obj/item/reagent_containers/food/snacks/S = prepare_eat(H)
 			if(S)
 				qdel(src)
 				if(H.put_in_active_hand(S))

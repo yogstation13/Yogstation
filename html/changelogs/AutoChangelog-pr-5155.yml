@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The admin responses as seen from the ticket viewer should now be more legible."

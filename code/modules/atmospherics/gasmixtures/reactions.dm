@@ -36,7 +36,6 @@
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
 	var/list/min_requirements
-	var/list/max_requirements
 	var/exclude = FALSE //do it this way to allow for addition/removal of reactions midmatch in the future
 	var/priority = 100 //lower numbers are checked/react later than higher numbers. if two reactions have the same priority they may happen in either order
 	var/name = "reaction"
@@ -102,13 +101,16 @@
 	cached_results["fire"] = 0
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/burned_fuel = 0
-	if(cached_gases[/datum/gas/oxygen][MOLES] < cached_gases[/datum/gas/tritium][MOLES] || MINIMUM_TRIT_OXYBURN_ENERGY > air.thermal_energy())
+	var/initial_trit = cached_gases[/datum/gas/tritium][MOLES]// Yogs
+	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_trit || MINIMUM_TRIT_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
 		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
+		if(burned_fuel > initial_trit) burned_fuel = initial_trit //Yogs -- prevents negative moles of Tritium
 		cached_gases[/datum/gas/tritium][MOLES] -= burned_fuel
 	else
-		burned_fuel = cached_gases[/datum/gas/tritium][MOLES]*TRITIUM_BURN_TRIT_FACTOR
-		cached_gases[/datum/gas/tritium][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]/TRITIUM_BURN_TRIT_FACTOR
+		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
+		cached_gases[/datum/gas/tritium][MOLES] *= (1 - 1/TRITIUM_BURN_TRIT_FACTOR) // Yogs -- Maybe a tiny performance boost? I'unno
 		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/tritium][MOLES]
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel * (TRITIUM_BURN_TRIT_FACTOR - 1)) // Yogs -- Fixes low-energy tritium fires
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
@@ -116,7 +118,7 @@
 			radiation_pulse(location, energy_released/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
 
 		ASSERT_GAS(/datum/gas/water_vapor, air) //oxygen+more-or-less hydrogen=H2O
-		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel/TRITIUM_BURN_OXY_FACTOR
+		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel // Yogs -- Conservation of Mass
 
 		cached_results["fire"] += burned_fuel
 
@@ -308,7 +310,7 @@
 		/datum/gas/oxygen = 20,
 		/datum/gas/nitrogen = 20,
 		/datum/gas/nitrous_oxide = 5,
-		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*400
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST*60
 	)
 
 /datum/gas_reaction/nitrylformation/react(datum/gas_mixture/air)
@@ -448,7 +450,7 @@
 	var/list/cached_gases = air.gases
 	// As the name says it, it needs to be dry
 	if(/datum/gas/water_vapor in cached_gases)
-		if(cached_gases[/datum/gas/water_vapor]/air.total_moles() > 0.1)
+		if(cached_gases[/datum/gas/water_vapor][MOLES]/air.total_moles() > 0.1) // Yogs --Fixes runtime in Sterilization
 			return
 
 	//Replace miasma with oxygen
@@ -460,3 +462,42 @@
 	//Possibly burning a bit of organic matter through maillard reaction, so a *tiny* bit more heat would be understandable
 	air.temperature += cleaned_air * 0.002
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, cleaned_air*MIASMA_RESEARCH_AMOUNT)//Turns out the burning of miasma is kinda interesting to scientists
+
+/datum/gas_reaction/stim_ball
+	priority = 7
+	name ="Stimulum Energy Ball"
+	id = "stimball"
+
+/datum/gas_reaction/stim_ball/init_reqs()
+	min_requirements = list(
+		/datum/gas/pluoxium = STIM_BALL_GAS_AMOUNT,
+		/datum/gas/stimulum = STIM_BALL_GAS_AMOUNT,
+		/datum/gas/nitryl = MINIMUM_MOLE_COUNT,
+		/datum/gas/plasma = MINIMUM_MOLE_COUNT,
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	)
+/datum/gas_reaction/stim_ball/react(datum/gas_mixture/air, datum/holder)
+	var/list/cached_gases = air.gases
+	var/turf/open/location
+	var/old_heat_capacity = air.heat_capacity()
+	if(istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
+		var/datum/pipeline/pipenet = holder
+		location = get_turf(pick(pipenet.members))
+	else
+		location = get_turf(holder)
+	air.assert_gases(/datum/gas/water_vapor,/datum/gas/nitryl,/datum/gas/carbon_dioxide,/datum/gas/nitrogen)
+	var/ball_shot_angle = 180*cos(cached_gases[/datum/gas/water_vapor][MOLES]/cached_gases[/datum/gas/nitryl][MOLES])+180
+	var/stim_used = min(STIM_BALL_GAS_AMOUNT/cached_gases[/datum/gas/plasma][MOLES],cached_gases[/datum/gas/stimulum][MOLES])
+	var/pluox_used = min(STIM_BALL_GAS_AMOUNT/cached_gases[/datum/gas/plasma][MOLES],cached_gases[/datum/gas/pluoxium][MOLES])
+	var/energy_released = stim_used*STIMULUM_HEAT_SCALE//Stimulum has a lot of stored energy, and breaking it up releases some of it
+	location.fire_nuclear_particle(ball_shot_angle)
+	cached_gases[/datum/gas/carbon_dioxide][MOLES] += 4*pluox_used
+	cached_gases[/datum/gas/nitrogen][MOLES] += 8*stim_used
+	cached_gases[/datum/gas/pluoxium][MOLES] -= pluox_used
+	cached_gases[/datum/gas/stimulum][MOLES] -= stim_used
+	cached_gases[/datum/gas/plasma][MOLES] *= 0.5 //Consumes half the plasma each time.
+	if(energy_released)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = CLAMP((air.temperature*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY)
+		return REACTING
