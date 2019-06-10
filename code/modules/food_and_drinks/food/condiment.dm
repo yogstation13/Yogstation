@@ -8,7 +8,7 @@
 /obj/item/reagent_containers/food/condiment
 	name = "condiment container"
 	desc = "Just your average condiment container."
-	icon = 'yogstation/icons/obj/food/containers.dmi'
+	icon = 'yogstation/icons/obj/food/containers.dmi' //yogs changed icon path
 	icon_state = "emptycondiment"
 	reagent_flags = OPENCONTAINER
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)

@@ -20,7 +20,6 @@ Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
 In addition, severe effects won't always trigger unless the drink is poisonously strong
 All effects don't start immediately, but rather get worse over time; the rate is affected by the imbiber's alcohol tolerance
-
 0: Non-alcoholic
 1-10: Barely classifiable as alcohol - occassional slurring
 11-20: Slight alcohol content - slurring
@@ -1712,7 +1711,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/fernet_cola
 	name = "Fernet Cola"
 	description = "A very popular and bittersweet digestif, ideal after a heavy meal. Best served on a sawed-off cola bottle as per tradition."
-	color = "#390600" // rgb: 57, 6, 0
+	color = "#390600" // rgb: 57, 6,
 	boozepwr = 25
 	quality = DRINK_NICE
 	taste_description = "sweet relief"
