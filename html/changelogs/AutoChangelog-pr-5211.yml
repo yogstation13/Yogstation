@@ -1,4 +1,0 @@
-author: " AnturK"
-delete-after: true 
-changes: 
-  - bugfix: "Things with the beetlejuice component can now be case-insensitive."

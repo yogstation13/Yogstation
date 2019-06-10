@@ -80,7 +80,7 @@
 	return amount
 
 /mob/living/carbon/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(!forced && has_trait(TRAIT_TOXINLOVER)) //damage becomes healing and healing becomes damage
+	if(!forced && HAS_TRAIT(src, TRAIT_TOXINLOVER)) //damage becomes healing and healing becomes damage
 		amount = -amount
 		if(amount > 0)
 			blood_volume -= 5*amount
@@ -240,12 +240,13 @@
 			else
 				gain_trauma_type(BRAIN_TRAUMA_SEVERE)
 
-	if(prev_brainloss < BRAIN_DAMAGE_MILD && brainloss >= BRAIN_DAMAGE_MILD)
-		to_chat(src, "<span class='warning'>You feel lightheaded.</span>")
-	else if(prev_brainloss < BRAIN_DAMAGE_SEVERE && brainloss >= BRAIN_DAMAGE_SEVERE)
-		to_chat(src, "<span class='warning'>You feel less in control of your thoughts.</span>")
-	else if(prev_brainloss < (BRAIN_DAMAGE_DEATH - 20) && brainloss >= (BRAIN_DAMAGE_DEATH - 20))
-		to_chat(src, "<span class='warning'>You can feel your mind flickering on and off...</span>")
+	if (stat < UNCONSCIOUS) // conscious or soft-crit
+		if(prev_brainloss < BRAIN_DAMAGE_MILD && brainloss >= BRAIN_DAMAGE_MILD)
+			to_chat(src, "<span class='warning'>You feel lightheaded.</span>")
+		else if(prev_brainloss < BRAIN_DAMAGE_SEVERE && brainloss >= BRAIN_DAMAGE_SEVERE)
+			to_chat(src, "<span class='warning'>You feel less in control of your thoughts.</span>")
+		else if(prev_brainloss < (BRAIN_DAMAGE_DEATH - 20) && brainloss >= (BRAIN_DAMAGE_DEATH - 20))
+			to_chat(src, "<span class='warning'>You can feel your mind flickering on and off...</span>")
 
 /mob/living/carbon/setBrainLoss(amount)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)

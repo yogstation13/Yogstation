@@ -1,4 +1,0 @@
-author: " Kierany9"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the escape with X vessels objective failing when it shouldn't."

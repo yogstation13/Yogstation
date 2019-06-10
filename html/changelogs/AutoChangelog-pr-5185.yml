@@ -1,4 +1,0 @@
-author: " Denton"
-delete-after: true 
-changes: 
-  - rscadd: "Added a friendly version of the Life reaction to chemistry. It has a similar recipe as the original reaction, just replace blood with sugar."

@@ -1,4 +1,0 @@
-author: " AnturK"
-delete-after: true 
-changes: 
-  - bugfix: "Monkeys now shouldn't be able to pick up stuff while incapacitated."
