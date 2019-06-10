@@ -535,7 +535,7 @@
 	set waitfor = FALSE
 	. = COMPONENT_NO_MOUSEDROP
 	var/atom/A = parent
-	if(ismob(M)) //all the check for item manipulation are in other places, you can safely open any storages as anything and its not buggy, i checked
+	if(isliving(M)) //all the check for item manipulation are in other places, you can safely open any storages as anything and its not buggy, i checked //yogs -- Makes ghosts not be able to interact with storage shit
 		A.add_fingerprint(M)
 		if(!over_object)
 			return FALSE
