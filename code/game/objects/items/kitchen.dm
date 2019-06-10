@@ -41,14 +41,14 @@
 	if(forkload)
 		if(M == user)
 			M.visible_message("<span class='notice'>[user] eats a delicious forkful of omelette!</span>")
-			M.reagents.add_reagent(forkload.id, 1)
+			M.reagents.add_reagent(forkload.type, 1)
 		else
 			M.visible_message("<span class='notice'>[user] is trying to feed [M] a delicious forkful of omelette!</span>") //yogs start
 			if(!do_mob(user, M))
 				return
-			log_combat(user, M, "fed omelette", forkload.id) //yogs end
+			log_combat(user, M, "fed omelette", forkload.type) //yogs end
 			M.visible_message("<span class='notice'>[user] feeds [M] a delicious forkful of omelette!</span>")
-			M.reagents.add_reagent(forkload.id, 1)
+			M.reagents.add_reagent(forkload.type, 1)
 		icon_state = "fork"
 		forkload = null
 
