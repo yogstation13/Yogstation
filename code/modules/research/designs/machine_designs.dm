@@ -130,13 +130,13 @@
 	category = list("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/sleeper
+/datum/design/board/sleeper //yogs start: no deletion :)
 	name = "Machine Design (Sleeper Board)"
 	desc = "The circuit board for a sleeper."
 	id = "sleeper"
 	build_path = /obj/item/circuitboard/machine/sleeper
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
-	category = list ("Medical Machinery")
+	category = list ("Medical Machinery") //yogs end
 
 /datum/design/board/vr_sleeper
 	name = "Machine Design (VR Sleeper Board)"
@@ -416,8 +416,8 @@
 	id = "scanner_gate"
 	build_path = /obj/item/circuitboard/machine/scanner_gate
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL	
-	
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
+
 /datum/design/board/holopad
 	name = "Machine Design (AI Holopad Board)"
 	desc = "The circuit board for a holopad."
@@ -586,3 +586,19 @@
 	build_path = /obj/item/circuitboard/machine/paystand
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
+
+/datum/design/board/fat_sucker
+	name = "Machine Design (Lipid Extractor)"
+	desc = "The circuit board for a lipid extractor."
+	id = "fat_sucker"
+	build_path = /obj/item/circuitboard/machine/fat_sucker
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/board/stasis
+	name = "Machine Design (Lifeform Stasis Unit)"
+	desc = "The circuit board for a stasis unit."
+	id = "stasis"
+	build_path = /obj/item/circuitboard/machine/stasis
+	category = list("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
