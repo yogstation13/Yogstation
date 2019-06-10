@@ -41,12 +41,18 @@
 
 		stacks++
 
-		user.staminaloss += stacks * 1.3 //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
+		user.adjustStaminaLoss(stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
 
 		if(stacks == 11) //Warning message that the stacks are getting too high
 			to_chat(user, "<span class='warning'>Our legs are really starting to hurt...</span>")
 
 		sleep(40)
+		
+//yogs start - removes speed buff when not active
+	while(!active)
+		user.remove_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES)
+		break
+//yogs end
 
 	while(!active && stacks) //Damage stacks decrease fairly rapidly while not in sanic mode
 		stacks--

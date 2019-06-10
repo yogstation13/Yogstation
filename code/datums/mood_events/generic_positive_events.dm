@@ -3,6 +3,22 @@
 	mood_change = 1
 	timeout = 1200
 
+/datum/mood_event/betterhug
+	description = "<span class='nicegreen'>Someone was very nice to me.</span>\n"
+	mood_change = 3
+	timeout = 3000
+
+/datum/mood_event/betterhug/add_effects(mob/friend)
+	description = "<span class='nicegreen'>[friend.name] was very nice to me.</span>\n"
+
+/datum/mood_event/besthug
+	description = "<span class='nicegreen'>Someone is great to be around, they make me feel so happy!</span>\n"
+	mood_change = 5
+	timeout = 3000
+
+/datum/mood_event/besthug/add_effects(mob/friend)
+	description = "<span class='nicegreen'>[friend.name] is great to be around, [friend.p_they()] makes me feel so happy!</span>\n"
+
 /datum/mood_event/arcade
 	description = "<span class='nicegreen'>I beat the arcade game!</span>\n"
 	mood_change = 3
@@ -108,3 +124,18 @@
 /datum/mood_event/clownshoes
 	description = "<span class='nicegreen'>The shoes are a clown's legacy, I never want to take them off!</span>\n"
 	mood_change = 5
+
+/datum/mood_event/artok
+	description = "<span class='nicegreen'>It's nice to see people are making art around here.</span>\n"
+	mood_change = 2
+	timeout = 2 MINUTES
+
+/datum/mood_event/artgood
+	description = "<span class='nicegreen'>What a thought-provoking piece of art. I'll remember that for a while.</span>\n"
+	mood_change = 3
+	timeout = 3 MINUTES
+
+/datum/mood_event/artgreat
+	description = "<span class='nicegreen'>That work of art was so great it made me believe in the goodness of humanity. Says a lot in a place like this.</span>\n"
+	mood_change = 4
+	timeout = 4 MINUTES
