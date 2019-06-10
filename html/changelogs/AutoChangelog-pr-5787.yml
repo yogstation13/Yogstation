@@ -1,0 +1,4 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Vanilla icecream should now have a sensible name and a working sprite."
