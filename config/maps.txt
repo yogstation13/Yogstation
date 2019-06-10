@@ -15,16 +15,12 @@ endmap
 
 map yogstation
 	default
-<<<<<<< HEAD
 	voteweight 1.5
+	votable
 endmap
 
 map minskystation
-	voteweight 1.5
-=======
-	#voteweight 1.5
-	votable
->>>>>>> a66126d7e3... Add map voting (#44244)
+	voteweight 0.5
 endmap
 
 #map boxstation
@@ -38,21 +34,13 @@ endmap
 
 map yogsmeta
 	minplayers 25
-<<<<<<< HEAD
+	votable
 endmap
 
 #map pubbystation
 #endmap
 
 map yogspubby
-=======
-	#voteweight 0.5
-	votable
-endmap
-
-map pubbystation
-	votable
->>>>>>> a66126d7e3... Add map voting (#44244)
 endmap
 
 #map deltastation
@@ -70,7 +58,6 @@ endmap
 
 map yogsdonut
 	minplayers 50
-	votable
 endmap
 
 map runtimestation
