@@ -57,7 +57,7 @@
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	reagents.add_reagent("liquidgibs", 5)
+	reagents.add_reagent(/datum/reagent/liquidgibs, 5)
 	if(already_rotting)
 		start_rotting(rename=FALSE)
 	else
@@ -74,7 +74,7 @@
 
 /obj/effect/decal/cleanable/blood/gibs/Crossed(mob/living/L)
 	if(istype(L) && has_gravity(loc))
-		playsound(loc, 'sound/effects/gib_step.ogg', L.has_trait(TRAIT_LIGHT_STEP) ? 20 : 50, 1)
+		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
 	. = ..()
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
@@ -84,7 +84,7 @@
 		sleep(2)
 		if(i > 0)
 			var/list/datum/disease/diseases
-			GET_COMPONENT(infective, /datum/component/infective)
+			var/datum/component/infective/infective = GetComponent(/datum/component/infective)
 			if(infective)
 				diseases = infective.diseases
 			new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)

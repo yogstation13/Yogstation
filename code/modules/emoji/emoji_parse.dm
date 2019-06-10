@@ -18,12 +18,12 @@
 				emoji = lowertext(copytext(text, pos+1, search))
 				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
 				var/tag = sheet.icon_tag("emoji-[emoji]")
-				if(tag)
+				if(emoji in yogmojis) //yogs start -yogmoji
+					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
+					pos = search + 1 
+				else if(tag)//yogs end - yogmoji
 					parsed += tag
 					pos = search + 1
-				else if(emoji in yogmojis) //yogs start -yogmoji
-					parsed += icon2html('yogstation/icons/emoji.dmi', world, emoji)
-					pos = search + 1 //yogs end - yogmoji
 				else
 					parsed += copytext(text, pos, search)
 					pos = search
