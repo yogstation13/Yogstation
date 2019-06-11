@@ -73,7 +73,7 @@
 		alignment |= AFFIX_GOOD
 	if(quality <= 0)
 		alignment |= AFFIX_EVIL
-	
+
 	var/usedSlots = NONE
 	for(var/i in 1 to max(1, abs(quality))) // We want at least 1 affix applied
 		var/datum/fantasy_affix/affix = pickweight(affixListing)
@@ -88,7 +88,7 @@
 
 /datum/component/fantasy/proc/modify()
 	var/obj/item/master = parent
-	
+
 	master.force = max(0, master.force + quality)
 	master.throwforce = max(0, master.throwforce + quality)
 	master.armor = master.armor.modifyAllRatings(quality)

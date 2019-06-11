@@ -16,7 +16,7 @@
 /datum/chemical_reaction/slime/slimespawn
 	name = "Slime Spawn"
 	id = "m_spawn"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/grey
 	required_other = TRUE
 
@@ -28,15 +28,15 @@
 /datum/chemical_reaction/slime/slimeinaprov
 	name = "Slime epinephrine"
 	id = "m_inaprov"
-	results = list("epinephrine" = 3)
-	required_reagents = list("water" = 5)
+	results = list(/datum/reagent/medicine/epinephrine = 3)
+	required_reagents = list(/datum/reagent/water = 5)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/grey
 
 /datum/chemical_reaction/slime/slimemonkey
 	name = "Slime Monkey"
 	id = "m_monkey"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/grey
 	required_other = TRUE
 
@@ -49,24 +49,24 @@
 /datum/chemical_reaction/slime/slimemutate
 	name = "Mutation Toxin"
 	id = "slimetoxin"
-	results = list("slime_toxin" = 1)
-	required_reagents = list("plasma" = 1)
+	results = list(/datum/reagent/slime_toxin = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
 /datum/chemical_reaction/slime/slimehuman
 	name = "Human Mutation Toxin"
 	id = "humanmuttoxin"
-	results = list("stablemutationtoxin" = 1)
-	required_reagents = list("blood" = 1)
+	results = list(/datum/reagent/mutationtoxin = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
 /datum/chemical_reaction/slime/slimelizard
 	name = "Lizard Mutation Toxin"
 	id = "lizardmuttoxin"
-	results = list("lizardmutationtoxin" = 1)
-	required_reagents = list("radium" = 1)
+	results = list(/datum/reagent/mutationtoxin/lizard = 1)
+	required_reagents = list(/datum/reagent/uranium/radium = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
@@ -74,7 +74,7 @@
 /datum/chemical_reaction/slime/slimemetal
 	name = "Slime Metal"
 	id = "m_metal"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/metal
 	required_other = TRUE
 
@@ -87,7 +87,7 @@
 /datum/chemical_reaction/slime/slimeglass
 	name = "Slime Glass"
 	id = "m_glass"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/metal
 	required_other = TRUE
 
@@ -101,7 +101,7 @@
 /datum/chemical_reaction/slime/slimemobspawn
 	name = "Slime Crit"
 	id = "m_tele"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/gold
 	required_other = TRUE
 	deletes_extract = FALSE //we do delete, but we don't do so instantly
@@ -121,7 +121,7 @@
 /datum/chemical_reaction/slime/slimemobspawn/lesser
 	name = "Slime Crit Lesser"
 	id = "m_tele3"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 
 /datum/chemical_reaction/slime/slimemobspawn/lesser/summon_mobs(datum/reagents/holder, turf/T)
 	T.visible_message("<span class='danger'>The slime extract begins to vibrate violently!</span>")
@@ -130,7 +130,7 @@
 /datum/chemical_reaction/slime/slimemobspawn/friendly
 	name = "Slime Crit Friendly"
 	id = "m_tele5"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 
 /datum/chemical_reaction/slime/slimemobspawn/friendly/summon_mobs(datum/reagents/holder, turf/T)
 	T.visible_message("<span class='danger'>The slime extract begins to vibrate adorably!</span>")
@@ -140,7 +140,7 @@
 /datum/chemical_reaction/slime/slimebork
 	name = "Slime Bork"
 	id = "m_tele2"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/silver
 	required_other = TRUE
 
@@ -172,7 +172,7 @@
 /datum/chemical_reaction/slime/slimebork/drinks
 	name = "Slime Bork 2"
 	id = "m_tele4"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 
 /datum/chemical_reaction/slime/slimebork/drinks/getbork()
 	return get_random_drink()
@@ -181,15 +181,15 @@
 /datum/chemical_reaction/slime/slimefrost
 	name = "Slime Frost Oil"
 	id = "m_frostoil"
-	results = list("frostoil" = 10)
-	required_reagents = list("plasma" = 1)
+	results = list(/datum/reagent/consumable/frostoil = 10)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/blue
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimestabilizer
 	name = "Slime Stabilizer"
 	id = "m_slimestabilizer"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/blue
 	required_other = TRUE
 
@@ -200,8 +200,8 @@
 /datum/chemical_reaction/slime/slimefoam
 	name = "Slime Foam"
 	id = "m_foam"
-	results = list("fluorosurfactant" = 20, "water" = 20)
-	required_reagents = list("water" = 5)
+	results = list(/datum/reagent/fluorosurfactant = 20, /datum/reagent/water = 20)
+	required_reagents = list(/datum/reagent/water = 5)
 	required_container = /obj/item/slime_extract/blue
 	required_other = TRUE
 
@@ -209,7 +209,7 @@
 /datum/chemical_reaction/slime/slimefreeze
 	name = "Slime Freeze"
 	id = "m_freeze"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/darkblue
 	required_other = TRUE
 	deletes_extract = FALSE
@@ -232,7 +232,7 @@
 /datum/chemical_reaction/slime/slimefireproof
 	name = "Slime Fireproof"
 	id = "m_fireproof"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/darkblue
 	required_other = TRUE
 
@@ -244,15 +244,15 @@
 /datum/chemical_reaction/slime/slimecasp
 	name = "Slime Capsaicin Oil"
 	id = "m_capsaicinoil"
-	results = list("capsaicin" = 10)
-	required_reagents = list("blood" = 1)
+	results = list(/datum/reagent/consumable/capsaicin = 10)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/orange
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimefire
 	name = "Slime fire"
 	id = "m_fire"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/orange
 	required_other = TRUE
 	deletes_extract = FALSE
@@ -276,8 +276,8 @@
 /datum/chemical_reaction/slime/slimesmoke
 	name = "Slime Smoke"
 	id = "m_smoke"
-	results = list("phosphorus" = 10, "potassium" = 10, "sugar" = 10)
-	required_reagents = list("water" = 5)
+	results = list(/datum/reagent/phosphorus = 10, /datum/reagent/potassium = 10, /datum/reagent/consumable/sugar = 10)
+	required_reagents = list(/datum/reagent/water = 5)
 	required_container = /obj/item/slime_extract/orange
 	required_other = TRUE
 
@@ -285,7 +285,7 @@
 /datum/chemical_reaction/slime/slimeoverload
 	name = "Slime EMP"
 	id = "m_emp"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/yellow
 	required_other = TRUE
 
@@ -296,7 +296,7 @@
 /datum/chemical_reaction/slime/slimecell
 	name = "Slime Powercell"
 	id = "m_cell"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/yellow
 	required_other = TRUE
 
@@ -307,7 +307,7 @@
 /datum/chemical_reaction/slime/slimeglow
 	name = "Slime Glow"
 	id = "m_glow"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/yellow
 	required_other = TRUE
 
@@ -321,7 +321,7 @@
 /datum/chemical_reaction/slime/slimepsteroid
 	name = "Slime Steroid"
 	id = "m_steroid"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/purple
 	required_other = TRUE
 
@@ -332,8 +332,8 @@
 /datum/chemical_reaction/slime/slimeregen
 	name = "Slime Regen"
 	id = "m_regen"
-	results = list("regen_jelly" = 5)
-	required_reagents = list("blood" = 1)
+	results = list(/datum/reagent/medicine/regen_jelly = 5)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/purple
 	required_other = TRUE
 
@@ -341,7 +341,7 @@
 /datum/chemical_reaction/slime/slimeplasma
 	name = "Slime Plasma"
 	id = "m_plasma"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/darkpurple
 	required_other = TRUE
 
@@ -353,7 +353,7 @@
 /datum/chemical_reaction/slime/slimemutator
 	name = "Slime Mutator"
 	id = "m_slimemutator"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/red
 	required_other = TRUE
 
@@ -364,7 +364,7 @@
 /datum/chemical_reaction/slime/slimebloodlust
 	name = "Bloodlust"
 	id = "m_bloodlust"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/red
 	required_other = TRUE
 
@@ -377,7 +377,7 @@
 /datum/chemical_reaction/slime/slimespeed
 	name = "Slime Speed"
 	id = "m_speed"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/red
 	required_other = TRUE
 // yogs start
@@ -396,7 +396,7 @@
 /datum/chemical_reaction/slime/docility
 	name = "Docility Potion"
 	id = "m_potion"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/pink
 	required_other = TRUE
 
@@ -407,7 +407,7 @@
 /datum/chemical_reaction/slime/gender
 	name = "Gender Potion"
 	id = "m_gender"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/pink
 	required_other = TRUE
 
@@ -419,8 +419,8 @@
 /datum/chemical_reaction/slime/slimemutate2
 	name = "Advanced Mutation Toxin"
 	id = "mutationtoxin2"
-	results = list("amutationtoxin" = 1)
-	required_reagents = list("plasma" = 1)
+	results = list(/datum/reagent/aslimetoxin = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/black
 
@@ -428,7 +428,7 @@
 /datum/chemical_reaction/slime/slimeexplosion
 	name = "Slime Explosion"
 	id = "m_explosion"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/oil
 	required_other = TRUE
 	deletes_extract = FALSE
@@ -457,8 +457,8 @@
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"
 	id = "m_cornoil"
-	results = list("cornoil" = 10)
-	required_reagents = list("blood" = 1)
+	results = list(/datum/reagent/consumable/cornoil = 10)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/oil
 	required_other = TRUE
 
@@ -467,7 +467,7 @@
 	name = "Slime Potion 2"
 	id = "m_potion2"
 	required_container = /obj/item/slime_extract/lightpink
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimepotion2/on_reaction(datum/reagents/holder)
@@ -478,7 +478,7 @@
 	name = "Renaming Potion"
 	id = "m_renaming_potion"
 	required_container = /obj/item/slime_extract/lightpink
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/renaming/on_reaction(datum/reagents/holder)
@@ -490,7 +490,7 @@
 /datum/chemical_reaction/slime/adamantine
 	name = "Adamantine"
 	id = "adamantine"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/adamantine
 	required_other = TRUE
 
@@ -502,7 +502,7 @@
 /datum/chemical_reaction/slime/slimefloor2
 	name = "Bluespace Floor"
 	id = "m_floor2"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/bluespace
 	required_other = TRUE
 
@@ -514,7 +514,7 @@
 /datum/chemical_reaction/slime/slimecrystal
 	name = "Slime Crystal"
 	id = "m_crystal"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/bluespace
 	required_other = TRUE
 
@@ -526,7 +526,7 @@
 /datum/chemical_reaction/slime/slimeradio
 	name = "Slime Radio"
 	id = "m_radio"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/bluespace
 	required_other = TRUE
 
@@ -538,7 +538,7 @@
 /datum/chemical_reaction/slime/slimepsteroid2
 	name = "Slime Steroid 2"
 	id = "m_steroid2"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/cerulean
 	required_other = TRUE
 
@@ -549,7 +549,7 @@
 /datum/chemical_reaction/slime/slime_territory
 	name = "Slime Territory"
 	id = "s_territory"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/cerulean
 	required_other = TRUE
 
@@ -561,7 +561,7 @@
 /datum/chemical_reaction/slime/slimestop
 	name = "Slime Stop"
 	id = "m_stop"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/sepia
 	required_other = TRUE
 
@@ -581,7 +581,7 @@
 /datum/chemical_reaction/slime/slimecamera
 	name = "Slime Camera"
 	id = "m_camera"
-	required_reagents = list("water" = 1)
+	required_reagents = list(/datum/reagent/water = 1)
 	required_container = /obj/item/slime_extract/sepia
 	required_other = TRUE
 
@@ -593,7 +593,7 @@
 /datum/chemical_reaction/slime/slimefloor
 	name = "Sepia Floor"
 	id = "m_floor"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/sepia
 	required_other = TRUE
 
@@ -605,7 +605,7 @@
 /datum/chemical_reaction/slime/slimepaint
 	name = "Slime Paint"
 	id = "s_paint"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_container = /obj/item/slime_extract/pyrite
 	required_other = TRUE
 
@@ -617,7 +617,7 @@
 /datum/chemical_reaction/slime/slimecrayon
 	name = "Slime Crayon"
 	id = "s_crayon"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_container = /obj/item/slime_extract/pyrite
 	required_other = TRUE
 
@@ -630,7 +630,7 @@
 /datum/chemical_reaction/slime/slimeRNG
 	name = "Random Core"
 	id = "slimerng"
-	required_reagents = list("plasma" = 1)
+	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/rainbow
 
@@ -650,7 +650,7 @@
 /datum/chemical_reaction/slime/slimebomb
 	name = "Clusterblorble"
 	id = "slimebomb"
-	required_reagents = list("slimejelly" = 1)
+	required_reagents = list(/datum/reagent/toxin/slimejelly = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/rainbow
 
@@ -666,7 +666,7 @@
 /datum/chemical_reaction/slime/slime_transfer
 	name = "Transfer Potion"
 	id = "slimetransfer"
-	required_reagents = list("blood" = 1)
+	required_reagents = list(/datum/reagent/blood = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/rainbow
 
@@ -676,8 +676,8 @@
 
 /datum/chemical_reaction/slime/flight_potion
 	name = "Flight Potion"
-	id = "flightpotion"
-	required_reagents = list("holywater" = 5, "uranium" = 5)
+	id = /datum/reagent/flightpotion
+	required_reagents = list(/datum/reagent/water/holywater = 5, /datum/reagent/uranium = 5)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/rainbow
 
