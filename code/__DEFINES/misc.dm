@@ -449,4 +449,13 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define DICE_TOTALLY_RIGGED 3
 
 #define VOMIT_TOXIC 1
+<<<<<<< HEAD
 #define VOMIT_PURPLE 2
+=======
+#define VOMIT_PURPLE 2
+
+//chem grenades defines
+#define EMPTY 1
+#define WIRED 2
+#define READY 3
+>>>>>>> 4a247210fd... changes how grenades with custom primer are made (#44258)
