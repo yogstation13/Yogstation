@@ -31,7 +31,6 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/max_damage = 0
-	var/stam_heal_tick = 3		//per Life().
 
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
@@ -136,10 +135,10 @@
 	needs_processing = .
 
 //Return TRUE to get whatever mob this is in to update health.
-/obj/item/bodypart/proc/on_life()
-	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
-		if(heal_damage(0, 0, stam_heal_tick, null, FALSE))
-			. |= BODYPART_LIFE_UPDATE_HEALTH
+/obj/item/bodypart/proc/on_life(stam_regen)
+	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
+		heal_damage(0, 0, INFINITY, null, FALSE)
+		. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -184,10 +183,12 @@
 	var/available_damage = max_damage - current_damage
 	stamina_dam += round(CLAMP(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
 
+
 	if(owner && updating_health)
 		owner.updatehealth()
 		if(stamina > DAMAGE_PRECISION)
 			owner.update_stamina()
+			owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 	consider_processing()
 	update_disabled()
 	return update_bodypart_damage_state()
@@ -213,7 +214,7 @@
 /obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
 	var/total = brute_dam + burn_dam
 	if(include_stamina)
-		total += stamina_dam
+		total = max(total, stamina_dam)
 	return total
 
 //Checks disabled status thresholds
@@ -507,7 +508,6 @@
 	held_index = 1
 	px_x = -6
 	px_y = 0
-	stam_heal_tick = 2
 
 /obj/item/bodypart/l_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -571,7 +571,6 @@
 	held_index = 2
 	px_x = 6
 	px_y = 0
-	stam_heal_tick = 2
 	max_stamina_damage = 50
 
 /obj/item/bodypart/r_arm/is_disabled()
@@ -633,7 +632,6 @@
 	body_damage_coeff = 0.75
 	px_x = -2
 	px_y = 12
-	stam_heal_tick = 2
 	max_stamina_damage = 50
 
 /obj/item/bodypart/l_leg/is_disabled()
@@ -693,7 +691,6 @@
 	px_x = 2
 	px_y = 12
 	max_stamina_damage = 50
-	stam_heal_tick = 2
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
