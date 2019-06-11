@@ -1,0 +1,5 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - bugfix: "The Gas Station Clerk Actually gets teleported back now!"
+  - bugfix: "The Gas Station and Space Bar teles now actually appear on the teleporter menu"
