@@ -81,13 +81,11 @@
 					.select2-search { color: #40628a; background-color: #272727; }
 					.select2-results { color: #40628a; background-color: #272727; }
 					.select2-selection { border-radius: 0px !important; }
-
 					ul {
 					  list-style-type: none; /* Remove bullets */
 					  padding: 0; /* Remove padding */
 					  margin: 0; /* Remove margins */
 					}
-
 					ul li {
 					  margin-top: -1px; /* Prevent double borders */
 					  padding: 12px; /* Add some padding */
@@ -98,11 +96,9 @@
 						margin: 0 2px 0 0;
 						cursor:default;
 					}
-
 					.remove-reagent {
 					 background-color: #d03000;
 					}
-
 					.container-control {
 					  width: 48%;
 					  float: left;
@@ -121,11 +117,8 @@
 				</style>
 				<script>
 				window.onload=function(){
-
 					var reagents = [reagentsforbeakers()];
-
 					var containers = [beakersforbeakers()];
-
 					$('select\[name="containertype"\]').select2({
 						data: containers,
 						escapeMarkup: noEscape,
@@ -139,9 +132,7 @@
 					templateResult: formatReagent,
 					templateSelection: textSelection
 					});
-
 					$('.remove-reagent').click(function() { $(this).parents('li').remove(); });
-
 					$('#spawn-grenade').click(function() {
 						var containers = $('div.container-control').map(function() {
 					  	  var type = $(this).children('select\[name=containertype\]').select2("data")\[0\].id;
@@ -168,7 +159,6 @@
 								}
 					    });
 					});
-
 					$('.spawn-container').click(function() {
 						var container = $(this).parents('div.container-control')\[0\];
 					  var type = $(container).children('select\[name=containertype\]').select2("data")\[0\].id;
@@ -182,17 +172,14 @@
 								"admin_token": "[RawHrefToken()]",
 								"beakerpanel": "spawncontainer",
 								"container": JSON.stringify({"container": type, "reagents": reagents }),
-
 							}
 						});
 					});
-
 					$('.add-reagent').click(function() {
 						var select = $(this).parents('li').children('select').select2("data")\[0\];
 					  var amount = $(this).parent().children('input').val();
 					  addReagent($(this).parents('ul'), select.id, select.text, amount)
 					})
-
 					$('.export-reagents').click(function() {
 						var container = $(this).parents('div.container-control')\[0\];
 					  var ret = \[\];
@@ -201,55 +188,43 @@
 					    ret.push(reagentname+"="+$(this).find('input').val());
 					    });
 					  prompt("Copy this value", ret.join(';'));
-
 					});
-
 					$('.import-reagents').click(function() {
 						var macro = prompt("Enter a chemistry macro", "");
 					  var parts = macro.split(';');
 					  var container = $(this).parents('div.container-control')\[0\];
 					  var ul = $(container).find("ul");
-
 					  $(parts).each(function() {
 					  	var reagentArr = this.split('=');
 					    var thisReagent = $(reagents).filter(function() { return this.text.toLowerCase().replace(/\\W/g, '') == reagentArr\[0\] })\[0\];
 					    addReagent(ul, thisReagent.id, thisReagent.text, reagentArr\[1\]);
 					  });
-
 					});
-
 					$('#grenade-type').change(function() {
 						$('.grenade-data').hide();
 					  $('.grenade-data.'+$(this).val()).show();
 					})
-
 					function addReagent(ul, reagentType, reagentName, amount)
 					{
 						$('<li class="reagent" data-type="'+reagentType+'">'+reagentName+'<div><input class="reagent" value="'+amount+'" />&nbsp;&nbsp;<button class="remove-reagent"><i class="far fa-trash-alt"></i>&nbsp;Remove</button></div></li>').insertBefore($(ul).children('li').last());
 					  $(ul).children('li').last().prev().find('button').click(function() { $(this).parents('li').remove(); });
 					}
-
 					function textSelection(selection)
 					{
 					return selection.text;
 					}
-
 					function noEscape(markup)
 					{
 					return markup;
 					}
-
 					function formatReagent(result)
 					{
 					return '<span>'+result.text+'</span><br/><span><small>'+result.id+'</small></span>';
 					}
-
 					function formatContainer(result)
 					{
 					return '<span>'+result.text+" ("+result.volume+'u)</span><br/><span><small>'+result.id+'</small></span>';
 					}
-
-
 			}
 			</script>
 			</head>
@@ -257,7 +232,6 @@
 				<div class='uiWrapper'>
 					<div class='uiTitleWrapper'><div class='uiTitle'><tt>Beaker panel</tt></div></div>
 					<div class='uiContent'>
-
 		<div class="width: 100%">
 		  <button id="spawn-grenade">
 		<i class="fas fa-bomb"></i>&nbsp;Spawn grenade
@@ -271,7 +245,6 @@
 			<br />
 <small>note: beakers recommended, other containers may have issues</small>
 		</div>
-
 	"}
 	for (var/i in 1 to 2 )
 		dat += {"
@@ -296,15 +269,12 @@
 			  <button class="export-reagents">
 			<i class="fas fa-file-export"></i>&nbsp;Export
 			  </button>
-
 			</div>
 				 <ul>
 			  <li>
-
 			    <select class="select-new-reagent"></select><div class="reagent-div"><input style="width: 50%" type="text" name="newreagent" value="40" />&nbsp;&nbsp;<button class="add-reagent">
 			  <i class="fas fa-plus"></i>&nbsp;Add
 			  </button>
-
 			  </div>
 			</li>
 			</ul>
