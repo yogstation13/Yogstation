@@ -194,11 +194,7 @@
 	suffix = "crashedclownship.dmm"
 	name = "Crashed Clown Ship"
 	description = "For centuries the promise of a new clown homeworld has been the siren call for countless clown vessels. \
-<<<<<<< HEAD
-	Alas the clown's lust for shenanagans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
-=======
 	Alas, the clown's lust for shenanigans means that successful voyages are almost unheard of, with most vessels falling to hilarious consequences almost immediately."
->>>>>>> 893b020228... Some spelling and text changes. (#44426)
 
 /datum/map_template/ruin/space/crashedship
 	id = "crashedship"
@@ -239,13 +235,8 @@
 	id = "bus"
 	suffix = "bus.dmm"
 	name = "Waylaid Buses"
-<<<<<<< HEAD
-	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing..? Their shipment sure  seems to be filled with a strange mix. \
-	Anyway, it looks like some people tried to fix it up for a long time but really didn't get anywhere..."
-=======
 	description = "There seems to be a pair of buses that pulled over for repairs. What were they doing...? Their shipment sure  seems to be filled with a strange mix. \
 	Anyway, it looks like some people tried to fix it up for a long time but didn't really get anywhere..."
->>>>>>> 893b020228... Some spelling and text changes. (#44426)
 
 /datum/map_template/ruin/space/oldstation
 	id = "oldstation"
