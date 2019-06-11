@@ -133,8 +133,4 @@ SUBSYSTEM_DEF(economy)
 	var/civ_cash = (rand(1,5) * 500)
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_CIV)
 	if(D)
-<<<<<<< HEAD
-		D.adjust_money((rand(1,5) * 500))
-=======
 		D.adjust_money(min(civ_cash, MAX_GRANT_CIV))
->>>>>>> 1ab6b264d8... I need my payday, too (#44353)
