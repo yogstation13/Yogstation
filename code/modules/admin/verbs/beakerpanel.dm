@@ -34,25 +34,6 @@
 					var/det_time = text2num(grenadedata["grenade-timer"])
 					if (det_time)
 						grenade.det_time = det_time
-				if ("voice")
-					var/voice_mode = text2num(grenadedata["grenade-voice-mode"])
-					var/recording = grenadedata["grenade-voice-recording"]
-					if (voice_mode && recording)
-						var/obj/item/assembly/voice/voice_analyzer = new
-						voice_analyzer.mode = voice_mode
-						voice_analyzer.recorded = recording
-						voice_analyzer.secured = FALSE // needs to be unsecured  because assembly holder assembly toggles it
-						grenade.nadeassembly = beaker_panel_prep_assembly(voice_analyzer, grenade)
-				if ("signaler")
-					var/frq = format_frequency(grenadedata["grenade-signaler-frq"])
-					var/code = text2num(grenadedata["grenade-signaler-code"])
-					if (frq && code)
-						var/obj/item/assembly/signaler/signaler = new
-						signaler.code = code
-						signaler.frequency = frq
-						signaler.secured = FALSE
-						grenade.nadeassembly = beaker_panel_prep_assembly(signaler, grenade)
-
 			log_game("[key_name(usr)] spawned a [grenade] containing: [reagent_string]")
 
 /datum/admins/proc/beaker_panel_prep_assembly(obj/item/assembly/towrap, grenade)
@@ -100,13 +81,11 @@
 					.select2-search { color: #40628a; background-color: #272727; }
 					.select2-results { color: #40628a; background-color: #272727; }
 					.select2-selection { border-radius: 0px !important; }
-
 					ul {
 					  list-style-type: none; /* Remove bullets */
 					  padding: 0; /* Remove padding */
 					  margin: 0; /* Remove margins */
 					}
-
 					ul li {
 					  margin-top: -1px; /* Prevent double borders */
 					  padding: 12px; /* Add some padding */
@@ -117,11 +96,9 @@
 						margin: 0 2px 0 0;
 						cursor:default;
 					}
-
 					.remove-reagent {
 					 background-color: #d03000;
 					}
-
 					.container-control {
 					  width: 48%;
 					  float: left;
@@ -140,11 +117,8 @@
 				</style>
 				<script>
 				window.onload=function(){
-
 					var reagents = [reagentsforbeakers()];
-
 					var containers = [beakersforbeakers()];
-
 					$('select\[name="containertype"\]').select2({
 						data: containers,
 						escapeMarkup: noEscape,
@@ -158,9 +132,7 @@
 					templateResult: formatReagent,
 					templateSelection: textSelection
 					});
-
 					$('.remove-reagent').click(function() { $(this).parents('li').remove(); });
-
 					$('#spawn-grenade').click(function() {
 						var containers = $('div.container-control').map(function() {
 					  	  var type = $(this).children('select\[name=containertype\]').select2("data")\[0\].id;
@@ -187,7 +159,6 @@
 								}
 					    });
 					});
-
 					$('.spawn-container').click(function() {
 						var container = $(this).parents('div.container-control')\[0\];
 					  var type = $(container).children('select\[name=containertype\]').select2("data")\[0\].id;
@@ -201,17 +172,14 @@
 								"admin_token": "[RawHrefToken()]",
 								"beakerpanel": "spawncontainer",
 								"container": JSON.stringify({"container": type, "reagents": reagents }),
-
 							}
 						});
 					});
-
 					$('.add-reagent').click(function() {
 						var select = $(this).parents('li').children('select').select2("data")\[0\];
 					  var amount = $(this).parent().children('input').val();
 					  addReagent($(this).parents('ul'), select.id, select.text, amount)
 					})
-
 					$('.export-reagents').click(function() {
 						var container = $(this).parents('div.container-control')\[0\];
 					  var ret = \[\];
@@ -220,55 +188,43 @@
 					    ret.push(reagentname+"="+$(this).find('input').val());
 					    });
 					  prompt("Copy this value", ret.join(';'));
-
 					});
-
 					$('.import-reagents').click(function() {
 						var macro = prompt("Enter a chemistry macro", "");
 					  var parts = macro.split(';');
 					  var container = $(this).parents('div.container-control')\[0\];
 					  var ul = $(container).find("ul");
-
 					  $(parts).each(function() {
 					  	var reagentArr = this.split('=');
 					    var thisReagent = $(reagents).filter(function() { return this.text.toLowerCase().replace(/\\W/g, '') == reagentArr\[0\] })\[0\];
 					    addReagent(ul, thisReagent.id, thisReagent.text, reagentArr\[1\]);
 					  });
-
 					});
-
 					$('#grenade-type').change(function() {
 						$('.grenade-data').hide();
 					  $('.grenade-data.'+$(this).val()).show();
 					})
-
 					function addReagent(ul, reagentType, reagentName, amount)
 					{
 						$('<li class="reagent" data-type="'+reagentType+'">'+reagentName+'<div><input class="reagent" value="'+amount+'" />&nbsp;&nbsp;<button class="remove-reagent"><i class="far fa-trash-alt"></i>&nbsp;Remove</button></div></li>').insertBefore($(ul).children('li').last());
 					  $(ul).children('li').last().prev().find('button').click(function() { $(this).parents('li').remove(); });
 					}
-
 					function textSelection(selection)
 					{
 					return selection.text;
 					}
-
 					function noEscape(markup)
 					{
 					return markup;
 					}
-
 					function formatReagent(result)
 					{
 					return '<span>'+result.text+'</span><br/><span><small>'+result.id+'</small></span>';
 					}
-
 					function formatContainer(result)
 					{
 					return '<span>'+result.text+" ("+result.volume+'u)</span><br/><span><small>'+result.id+'</small></span>';
 					}
-
-
 			}
 			</script>
 			</head>
@@ -276,7 +232,6 @@
 				<div class='uiWrapper'>
 					<div class='uiTitleWrapper'><div class='uiTitle'><tt>Beaker panel</tt></div></div>
 					<div class='uiContent'>
-
 		<div class="width: 100%">
 		  <button id="spawn-grenade">
 		<i class="fas fa-bomb"></i>&nbsp;Spawn grenade
@@ -284,34 +239,12 @@
 			<label for="grenade-type">Grenade type: </label>
 		 <select id="grenade-type">
 			 <option value="normal">Normal</option>
-			 <option value="voice">Voice analyzer</option>
-			 <option value="signaler">Signaler</option>
 		 </select>
 		 <div class="grenade-data normal">
-			 <label for="grenade-timer">Timer: </label>
-			 <input id="grenade-timer" name="grenade-timer" value="30" />
-		 </div>
-		 <div class="grenade-data voice" style="display: none;">
-			 <label for="grenade-voice-mode">Mode</label>
-			 <select id="grenade-voice-mode" name="grenade-voice-mode">
-				 <option value="1">Inclusive</option>
-				 <option value="2">Exclusive</option>
-				 <option value="3">Recognizer</option>
-				 <option value="4">Voice sensor</option>
-			 </select>
-			 <label for="grenade-voice-recording">Name or phrase: </label>
-			 <input id="grenade-voice-recording" name="grenade-voice-recording" />
-		 </div>
-		 <div class="grenade-data signaler" style="display: none;">
-			 <label for="grenade-signaler-frq">Frequency: </label>
-			 <input id="grenade-signaler-frq" name="grenade-signaler-frq" />
-			 <label for="grenade-signaler-code">Code: </label>
-			 <input id="grenade-signaler-code" name="grenade-signaler-code" />
 		 </div>
 			<br />
 <small>note: beakers recommended, other containers may have issues</small>
 		</div>
-
 	"}
 	for (var/i in 1 to 2 )
 		dat += {"
@@ -336,15 +269,12 @@
 			  <button class="export-reagents">
 			<i class="fas fa-file-export"></i>&nbsp;Export
 			  </button>
-
 			</div>
 				 <ul>
 			  <li>
-
 			    <select class="select-new-reagent"></select><div class="reagent-div"><input style="width: 50%" type="text" name="newreagent" value="40" />&nbsp;&nbsp;<button class="add-reagent">
 			  <i class="fas fa-plus"></i>&nbsp;Add
 			  </button>
-
 			  </div>
 			</li>
 			</ul>
