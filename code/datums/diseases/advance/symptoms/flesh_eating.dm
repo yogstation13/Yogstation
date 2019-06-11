@@ -1,17 +1,13 @@
 /*
 //////////////////////////////////////
-
 Necrotizing Fasciitis (AKA Flesh-Eating Disease)
-
 	Very very noticable.
 	Lowers resistance tremendously.
 	No changes to stage speed.
 	Decreases transmittablity temrendously.
 	Fatal Level.
-
 Bonus
 	Deals brute damage over time.
-
 //////////////////////////////////////
 */
 
@@ -57,7 +53,7 @@ Bonus
 	var/get_damage = rand(15,25) * power
 	M.take_overall_damage(brute = get_damage, required_status = BODYPART_ORGANIC)
 	if(pain)
-		M.adjustStaminaLoss(get_damage)
+		M.adjustStaminaLoss(get_damage * 2)
 	if(bleed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -66,18 +62,14 @@ Bonus
 
 /*
 //////////////////////////////////////
-
 Autophagocytosis (AKA Programmed mass cell death)
-
 	Very noticable.
 	Lowers resistance.
 	Fast stage speed.
 	Decreases transmittablity.
 	Fatal Level.
-
 Bonus
 	Deals brute damage over time.
-
 //////////////////////////////////////
 */
 
