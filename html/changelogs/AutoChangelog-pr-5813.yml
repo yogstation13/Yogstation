@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "Most of cyborg can't be installed twice now."
