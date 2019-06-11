@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a bartender's secure closet to all iterations of the bar on yogbox."
+  - tweak: "The bartender's double barrel shotgun is now in their new secure closet."
