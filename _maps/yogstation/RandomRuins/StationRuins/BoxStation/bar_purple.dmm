@@ -42,7 +42,6 @@
 	amount = 50
 	},
 /obj/item/stack/cable_coil,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "ah" = (
@@ -1064,7 +1063,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "cg" = (
-/obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
@@ -1078,6 +1076,7 @@
 	icon_state = "tile_corner";
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "ch" = (
