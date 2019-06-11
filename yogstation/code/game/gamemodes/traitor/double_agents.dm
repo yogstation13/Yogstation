@@ -54,11 +54,11 @@
 					add_objective(martyr_objective)
 				else
 					var/datum/objective/hijack/hijack_objective = new
-					hijack_objective.owner = owner.
+					hijack_objective.owner = owner
 					add_objective(hijack_objective)
 
 			if(uplink_holder && owner.current && ishuman(owner.current))
-				GET_COMPONENT_FROM(uplink, /datum/component/uplink, uplink_holder)
+				var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
 				uplink.telecrystals += 5
 				to_chat(owner, "<span class='notice'>You have been given 5 TC as a reward for completing your objective!</span>")
 
@@ -104,7 +104,7 @@
 			add_objective(martyr_objective)
 		else
 			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner.
+			hijack_objective.owner = owner
 			add_objective(hijack_objective)
 
 	owner.announce_objectives()
