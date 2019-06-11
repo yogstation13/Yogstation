@@ -18,14 +18,10 @@
 
 	speed /= segments
 
-<<<<<<< HEAD
-	animate(src, transform = matrices[1], time = speed, loops)
-=======
 	if(parallel)
 		animate(src, transform = matrices[1], time = speed, loops , flags = ANIMATION_PARALLEL)
 	else
 		animate(src, transform = matrices[1], time = speed, loops)
->>>>>>> f62a577ebb... Merge pull request #44438 from AnturK/ghosttwitch
 	for(var/i in 2 to segments) //2 because 1 is covered above
 		animate(transform = matrices[i], time = speed)
 		//doesn't have an object argument because this is "Stacking" with the animate call above
