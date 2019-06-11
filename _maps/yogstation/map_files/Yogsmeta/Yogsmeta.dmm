@@ -27591,7 +27591,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -31508,7 +31508,7 @@
 /area/storage/tools)
 "bdW" = (
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -39548,16 +39548,14 @@
 /turf/closed/wall,
 /area/hallway/secondary/service)
 "brW" = (
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
+/obj/machinery/computer/card{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "brX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -41794,14 +41792,16 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "bwn" = (
-/obj/machinery/computer/card{
-	dir = 1
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "null";
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "bwo" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/start/head_of_personnel,
@@ -42417,7 +42417,7 @@
 	network = list("tcomms");
 	pixel_x = 26
 	},
-/obj/machinery/computer/telecomms/monitor{
+/obj/machinery/computer/telecomms/traffic{
 	dir = 8;
 	network = "tcommsat"
 	},
@@ -53211,17 +53211,15 @@
 /turf/closed/wall/r_wall,
 /area/science/server)
 "bRL" = (
-/obj/structure/mineral_door/wood{
-	name = "The Gobbetting Barmaid"
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "null";
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/port/aft)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "bRM" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -53938,6 +53936,14 @@
 /obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
+"bTc" = (
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "The Gobetting Barmaid"
+	},
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
 "bTd" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
@@ -57592,6 +57598,20 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/atmos)
+"bZN" = (
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "The Gobetting Barmaid"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/port/aft)
 "bZO" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/blue,
@@ -64020,16 +64040,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"ckf" = (
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
 "ckg" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Incinerator Access";
@@ -65817,12 +65827,6 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
-/area/maintenance/port/aft)
-"cnl" = (
-/obj/structure/mineral_door/wood{
-	name = "The Gobbetting Barmaid"
-	},
-/turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cnm" = (
 /obj/structure/table,
@@ -82915,7 +82919,9 @@
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
 "xdW" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe,
+/obj/machinery/vending/wardrobe/jani_wardrobe{
+	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
+	},
 /turf/open/floor/plasteel,
 /area/janitor)
 "xse" = (
@@ -100398,8 +100404,8 @@ dux
 cjv
 diG
 dux
-cnl
-bRL
+bTc
+bZN
 dux
 diI
 bFq
@@ -107564,7 +107570,7 @@ bkz
 btC
 bsQ
 bdz
-bwn
+brW
 bxZ
 bzL
 bBB
@@ -120430,10 +120436,10 @@ dir
 byN
 bqz
 brC
-brW
+bwn
 cjB
 cjR
-ckf
+bRL
 clh
 bcd
 bcd
