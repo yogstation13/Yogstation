@@ -15,6 +15,7 @@
 	var/special_enabled = FALSE
 	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
+	var/small_item = FALSE //Small items can be grouped into a single crate.
 
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account)
 	var/obj/structure/closet/crate/C
@@ -416,6 +417,23 @@
 					/obj/item/clothing/suit/armor/bulletproof)
 	crate_name = "bulletproof armor crate"
 
+<<<<<<< HEAD
+=======
+/datum/supply_pack/security/armory/chemimp
+	name = "Chemical Implants Crate"
+	desc = "Contains five Remote Chemical implants. Requires Armory access to open."
+	cost = 2000
+	contains = list(/obj/item/storage/box/chemimp)
+	crate_name = "chemical implant crate"
+
+/datum/supply_pack/security/armory/combatknives_single
+	name = "Combat Knife Single-Pack"
+	desc = "Contains one sharpened combat knive. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
+	cost = 1200
+	small_item = TRUE
+	contains = list(/obj/item/kitchen/knife/combat)
+
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 /datum/supply_pack/security/armory/combatknives
 	name = "Combat Knives Crate"
 	desc = "Contains three sharpened combat knives. Each knife guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
@@ -425,6 +443,7 @@
 					/obj/item/kitchen/knife/combat)
 	crate_name = "combat knife crate"
 
+<<<<<<< HEAD
 /datum/supply_pack/security/armory/dragnet
 	name = "DRAGnet Crate"
 	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, a recent breakthrough in law enforcement prisoner management technology. Requires armory access to open."
@@ -433,6 +452,15 @@
 					/obj/item/gun/energy/e_gun/dragnet,
 					/obj/item/gun/energy/e_gun/dragnet)
 	crate_name = "\improper DRAGnet crate"
+=======
+/datum/supply_pack/security/armory/ballistic_single
+	name = "Combat Shotgun Single-Pack"
+	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
+	cost = 3200
+	small_item = TRUE
+	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
+					/obj/item/storage/belt/bandolier)
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
@@ -446,6 +474,25 @@
 					/obj/item/storage/belt/bandolier)
 	crate_name = "combat shotguns crate"
 
+<<<<<<< HEAD
+=======
+/datum/supply_pack/security/armory/dragnet
+	name = "DRAGnet Crate"
+	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, a recent breakthrough in law enforcement prisoner management technology. Requires armory access to open."
+	cost = 1500
+	contains = list(/obj/item/gun/energy/e_gun/dragnet,
+					/obj/item/gun/energy/e_gun/dragnet,
+					/obj/item/gun/energy/e_gun/dragnet)
+	crate_name = "\improper DRAGnet crate"
+
+/datum/supply_pack/security/armory/energy_single
+	name = "Energy Guns Single-Pack"
+	desc = "Contains one Energy Gun, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
+	cost = 1500
+	small_item = TRUE
+	contains = list(/obj/item/gun/energy/e_gun)
+
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 /datum/supply_pack/security/armory/energy
 	name = "Energy Guns Crate"
 	desc = "Contains two Energy Guns, capable of firing both nonlethal and lethal blasts of light. Requires Armory access to open."
@@ -502,6 +549,26 @@
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
 
+<<<<<<< HEAD
+=======
+/datum/supply_pack/security/armory/mindshield
+	name = "Mindshield Implants Crate"
+	desc = "Prevent against radical thoughts with three Mindshield implants. Requires Armory access to open."
+	cost = 4000
+	contains = list(/obj/item/storage/lockbox/loyalty)
+	crate_name = "mindshield implant crate"
+
+/datum/supply_pack/security/armory/trackingimp
+	name = "Tracking Implants Crate"
+	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo. Requires Armory access to open."
+	cost = 2000
+	contains = list(/obj/item/storage/box/trackimp,
+					/obj/item/ammo_box/c38/trac,
+					/obj/item/ammo_box/c38/trac,
+					/obj/item/ammo_box/c38/trac)
+	crate_name = "tracking implant crate"
+
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 /datum/supply_pack/security/armory/laserarmor
 	name = "Reflector Vest Crate"
 	desc = "Contains two vests of highly reflective material. Each armor piece diffuses a laser's energy by over half, as well as offering a good chance to reflect the laser entirely. Requires Armory access to open."
@@ -554,6 +621,7 @@
 					/obj/item/clothing/gloves/combat)
 	crate_name = "swat crate"
 
+<<<<<<< HEAD
 /datum/supply_pack/security/armory/wt550
 	name = "WT-550 Auto Rifle Crate"
 	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
@@ -571,6 +639,14 @@
 					/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9)
 	crate_name = "auto rifle ammo crate"
+=======
+/datum/supply_pack/security/armory/wt550_single
+	name = "WT-550 Auto Rifle Single-Pack"
+	desc = "Contains one high-powered, semiautomatic rifles chambered in 4.6x30mm. Requires Armory access to open."
+	cost = 2000
+	contains = list(/obj/item/gun/ballistic/automatic/wt550)
+	small_item = TRUE
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 
 /datum/supply_pack/security/armory/russian
 	name = "Russian Surplus Crate"
@@ -598,6 +674,13 @@
 		var/item = pick(contains)
 		new item(C)
 
+/datum/supply_pack/security/armory/wt550ammo_single
+	name = "WT-550 Auto Rifle Ammo Single-Pack"
+	desc = "Contains a 20-round magazine for the WT-550 Auto Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
+	contains = list(/obj/item/ammo_box/magazine/wt550m9)
+	small_item = TRUE
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -613,6 +696,20 @@
 	contains = list(/obj/machinery/shieldgen,
 					/obj/machinery/shieldgen)
 	crate_name = "anti-breach shield projector crate"
+
+/datum/supply_pack/engineering/ripley
+	name = "APLU MK-I Crate"
+	desc = "A do-it-yourself kit for building an ALPU MK-I \"Ripley\", designed for lifting and carrying heavy equipment, and other station tasks. Batteries not included."
+	cost = 2000
+	contains = list(/obj/item/mecha_parts/chassis/ripley,
+					/obj/item/mecha_parts/part/ripley_torso,
+					/obj/item/mecha_parts/part/ripley_right_arm,
+					/obj/item/mecha_parts/part/ripley_left_arm,
+					/obj/item/mecha_parts/part/ripley_right_leg,
+					/obj/item/mecha_parts/part/ripley_left_leg,
+					/obj/item/stock_parts/capacitor,
+					/obj/item/stock_parts/scanning_module)
+	crate_name= "APLU MK-I kit"
 
 /datum/supply_pack/engineering/conveyor
 	name = "Conveyor Assembly Crate"
@@ -647,6 +744,13 @@
 					/obj/item/clothing/glasses/meson/engine,
 					/obj/item/clothing/glasses/meson/engine)
 	crate_name = "engineering gear crate"
+
+/datum/supply_pack/engineering/sologamermitts
+	name = "Insulated Gloves Single-Pack"
+	desc = "The backbone of modern society. Barely ever ordered for actual engineering. Single Order."
+	cost = 800
+	small_item = TRUE
+	contains = list(/obj/item/clothing/gloves/color/yellow)
 
 /datum/supply_pack/engineering/powergamermitts
 	name = "Insulated Gloves Crate"
@@ -1059,6 +1163,7 @@
 	group = "Medical"
 	crate_type = /obj/structure/closet/crate/medical
 
+<<<<<<< HEAD
 /datum/supply_pack/medical/firstaidbruises
 	name = "Bruise Treatment Kit Crate"
 	desc = "Contains three first aid kits focused on healing bruises and broken bones."
@@ -1095,6 +1200,76 @@
 					/obj/item/storage/firstaid/o2,
 					/obj/item/storage/firstaid/o2)
 	crate_name = "oxygen deprivation kit crate"
+=======
+/datum/supply_pack/medical/bloodpacks
+	name = "Blood Pack Variety Crate"
+	desc = "Contains eight different blood packs for reintroducing blood to patients."
+	cost = 3500
+	contains = list(/obj/item/reagent_containers/blood,
+					/obj/item/reagent_containers/blood,
+					/obj/item/reagent_containers/blood/APlus,
+					/obj/item/reagent_containers/blood/AMinus,
+					/obj/item/reagent_containers/blood/BPlus,
+					/obj/item/reagent_containers/blood/BMinus,
+					/obj/item/reagent_containers/blood/OPlus,
+					/obj/item/reagent_containers/blood/OMinus,
+					/obj/item/reagent_containers/blood/lizard,
+					/obj/item/reagent_containers/blood/ethereal)
+	crate_name = "blood freezer"
+	crate_type = /obj/structure/closet/crate/freezer
+
+/datum/supply_pack/medical/firstaidbruises_single
+	name = "Bruise Treatment Kit Single-Pack"
+	desc = "Contains one first aid kit focused on healing bruises and broken bones."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/brute)
+
+/datum/supply_pack/medical/firstaidburns_single
+	name = "Burn Treatment Kit Single-Pack"
+	desc = "Contains one first aid kit focused on healing severe burns."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/fire)
+
+/datum/supply_pack/medical/chemical
+	name = "Chemical Starter Kit Crate"
+	desc = "Contains thirteen different chemicals, for all the fun experiments you can make."
+	cost = 1700
+	contains = list(/obj/item/reagent_containers/glass/bottle/hydrogen,
+					/obj/item/reagent_containers/glass/bottle/carbon,
+					/obj/item/reagent_containers/glass/bottle/nitrogen,
+					/obj/item/reagent_containers/glass/bottle/oxygen,
+					/obj/item/reagent_containers/glass/bottle/fluorine,
+					/obj/item/reagent_containers/glass/bottle/phosphorus,
+					/obj/item/reagent_containers/glass/bottle/silicon,
+					/obj/item/reagent_containers/glass/bottle/chlorine,
+					/obj/item/reagent_containers/glass/bottle/radium,
+					/obj/item/reagent_containers/glass/bottle/sacid,
+					/obj/item/reagent_containers/glass/bottle/ethanol,
+					/obj/item/reagent_containers/glass/bottle/potassium,
+					/obj/item/reagent_containers/glass/bottle/sugar,
+					/obj/item/clothing/glasses/science,
+					/obj/item/reagent_containers/dropper,
+					/obj/item/storage/box/beakers)
+	crate_name = "chemical crate"
+
+/datum/supply_pack/medical/defibs
+	name = "Defibrillator Crate"
+	desc = "Contains two defibrillators for bringing the recently deceased back to life."
+	cost = 2500
+	contains = list(/obj/item/defibrillator/loaded,
+					/obj/item/defibrillator/loaded)
+	crate_name = "defibrillator crate"
+
+
+/datum/supply_pack/medical/firstaid_single
+	name = "First Aid Kit Single-Pack"
+	desc = "Contains one first aid kit for healing most types of wounds."
+	cost = 250
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/regular)
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 
 /datum/supply_pack/medical/surgery
 	name = "Surgical Supplies Crate"
@@ -1176,6 +1351,7 @@
 					/obj/item/storage/box/bodybags)
 	crate_name = "medical supplies crate"
 
+<<<<<<< HEAD
 /datum/supply_pack/medical/vending
 	name = "Medical Vending Crate"
 	desc = "Contains one NanoMed Plus refill and one wall-mounted NanoMed refill."
@@ -1183,6 +1359,30 @@
 	contains = list(/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/wallmed)
 	crate_name = "medical vending crate"
+=======
+/datum/supply_pack/medical/firstaidoxygen_single
+	name = "Oxygen Deprivation Kit Single-Pack"
+	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/o2)
+
+/datum/supply_pack/medical/surgery
+	name = "Surgical Supplies Crate"
+	desc = "Do you want to perform surgery, but don't have one of those fancy shmancy degrees? Just get started with this crate containing a medical duffelbag, Sterilizine spray and collapsible roller bed."
+	cost = 3000
+	contains = list(/obj/item/storage/backpack/duffelbag/med/surgery,
+					/obj/item/reagent_containers/medspray/sterilizine,
+					/obj/item/roller)
+	crate_name = "surgical supplies crate"
+
+/datum/supply_pack/medical/firstaidtoxins_single
+	name = "Toxin Treatment Kit Single-Pack"
+	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
+	cost = 330
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/toxin)
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 
 /datum/supply_pack/medical/virus
 	name = "Virus Crate"
@@ -1237,6 +1437,7 @@
 	group = "Science"
 	crate_type = /obj/structure/closet/crate/science
 
+<<<<<<< HEAD
 /datum/supply_pack/science/rped
 	name = "RPED crate"
 	desc = "Need to rebuild the ORM but science got annihialted after a bomb test? Buy this for the most advanced parts NT can give you."
@@ -1265,6 +1466,8 @@
 	crate_name = "\improper APLU Ripley circuit crate"
 	crate_type = /obj/structure/closet/crate/secure/science
 
+=======
+>>>>>>> 264a1ae108... [Ready] Cargo Catalog small-order support, new single-pack orders, addition of Ripley (#43402)
 /datum/supply_pack/science/plasma
 	name = "Plasma Assembly Crate"
 	desc = "Everything you need to burn something to the ground, this contains three plasma assembly sets. Each set contains a plasma tank, igniter, proximity sensor, and timer! Warranty void if exposed to high temperatures. Requires Toxins access to open."
