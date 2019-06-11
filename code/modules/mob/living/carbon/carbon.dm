@@ -81,14 +81,14 @@
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
 			Paralyze(20)
-			take_bodypart_damage(10)
+			take_bodypart_damage(10,check_armor = TRUE)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
 		if(hurt)
-			victim.take_bodypart_damage(10)
-			take_bodypart_damage(10)
+			victim.take_bodypart_damage(10,check_armor = TRUE)
+			take_bodypart_damage(10,check_armor = TRUE)
 			victim.Paralyze(20)
 			Paralyze(20)
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
@@ -718,7 +718,7 @@
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
-			if(!shown_health_amount)
+			if(shown_health_amount == null)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
 				hud_used.healths.icon_state = "health0"
