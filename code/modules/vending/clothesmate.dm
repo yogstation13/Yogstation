@@ -20,6 +20,9 @@
 		            /obj/item/clothing/head/beanie/stripedred = 3,
 		            /obj/item/clothing/head/beanie/stripedblue = 3,
 		            /obj/item/clothing/head/beanie/stripedgreen = 3,
+					/obj/item/clothing/head/beanie/rasta = 3,
+					/obj/item/clothing/head/kippah = 3,
+					/obj/item/clothing/head/taqiyahred = 3,
 		            /obj/item/clothing/gloves/fingerless = 2,
 		            /obj/item/clothing/neck/scarf/pink = 3,
 		            /obj/item/clothing/neck/scarf/red = 3,
@@ -33,9 +36,9 @@
 		            /obj/item/clothing/neck/scarf/black = 3,
 		            /obj/item/clothing/neck/scarf/zebra = 3,
 		            /obj/item/clothing/neck/scarf/christmas = 3,
-		            /obj/item/clothing/neck/stripedredscarf = 3,
-		            /obj/item/clothing/neck/stripedbluescarf = 3,
-		            /obj/item/clothing/neck/stripedgreenscarf = 3,
+		            //obj/item/clothing/neck/stripedredscarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
+		            //obj/item/clothing/neck/stripedbluescarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
+		            //obj/item/clothing/neck/stripedgreenscarf = 3, //yogs -- commented out to be replaced by yog-brand scarves
 		            /obj/item/clothing/neck/tie/blue = 3,
 		            /obj/item/clothing/neck/tie/red = 3,
 		            /obj/item/clothing/neck/tie/black = 3,
@@ -98,7 +101,16 @@
 		            /obj/item/clothing/suit/jacket/miljacket = 1,
 		            /obj/item/clothing/suit/apron/purple_bartender = 2,
 		            /obj/item/clothing/under/rank/bartender/purple = 2, //yogs added a ,
-		            /obj/item/clothing/head/yogs/fez = 3, //yogs clothes for clothesmate start here
+		            /obj/item/clothing/neck/yogs/stripedscarf/black = 3, //yogs clothes for clothesmate start here
+		            /obj/item/clothing/neck/yogs/stripedscarf/pink = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/red = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/green = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/darkblue = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/purple = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/yellow = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/orange = 3,
+		            /obj/item/clothing/neck/yogs/stripedscarf/cyan = 3,
+		            /obj/item/clothing/head/yogs/fez = 3,
 		            /obj/item/clothing/head/yogs/ballhat = 3,
 		            /obj/item/clothing/suit/yogs/pinksweater = 2,
 		            /obj/item/clothing/suit/yogs/bluesweater = 2,
@@ -173,6 +185,9 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = NO_FREEBIES
+
+/obj/machinery/vending/clothing/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
 
 /obj/item/vending_refill/clothing
 	machine_name = "ClothesMate"
