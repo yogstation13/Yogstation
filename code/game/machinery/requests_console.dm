@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 					emergency = "Medical"
 			if(radio_freq)
 				Radio.set_frequency(radio_freq)
-				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq,get_spans(),get_default_language())
+				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq)
 				update_icon()
 				addtimer(CALLBACK(src, .proc/clear_emergency), 5 MINUTES)
 
@@ -379,30 +379,6 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			if(newmessagepriority < REQ_NORMAL_MESSAGE_PRIORITY)
 				newmessagepriority = REQ_NORMAL_MESSAGE_PRIORITY
 				update_icon()
-<<<<<<< HEAD
-			if(!silent)
-				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-				say(title)
-				messages += "<span class='bad'>High Priority</span><BR><b>From:</b> [linkedsender]<BR>[message]"
-
-		if(3)		// Extreme Priority
-			if(newmessagepriority < EXTREME_MESSAGE_PRIORITY)
-				newmessagepriority = EXTREME_MESSAGE_PRIORITY
-				update_icon()
-			if(1)
-				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-				say(title)
-			messages += "<span class='bad'>!!!Extreme Priority!!!</span><BR><b>From:</b> [linkedsender]<BR>[message]"
-
-		else		// Normal priority
-			if(newmessagepriority < NORMAL_MESSAGE_PRIORITY)
-				newmessagepriority = NORMAL_MESSAGE_PRIORITY
-				update_icon()
-			if(!src.silent)
-				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-				say(title)
-			messages += "<b>From:</b> [linkedsender]<BR>[message]"
-=======
 
 		if(REQ_HIGH_MESSAGE_PRIORITY)
 			header = "<span class='bad'>High Priority</span><BR>[header]"
@@ -427,8 +403,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 	if(radio_freq)
 		Radio.set_frequency(radio_freq)
-		Radio.talk_into(src, "[alert]: <i>[message]</i>", radio_freq, get_spans(), get_default_language())
->>>>>>> bab214e892... PDA Message Server can be constructed (#43961)
+		Radio.talk_into(src, "[alert]: <i>[message]</i>", radio_freq)
 
 /obj/machinery/requests_console/attackby(obj/item/O, mob/user, params)
 	if(O.tool_behaviour == TOOL_CROWBAR)
