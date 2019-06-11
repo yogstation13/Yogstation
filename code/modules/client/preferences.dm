@@ -540,6 +540,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/allow_map_voting))
 					dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
+			//yogs start -- Mood preference toggling
+			if(CONFIG_GET(flag/disable_human_mood)
+				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[mood ? "Enabled" : "Disabled"]</a><br>"
+			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
 
@@ -1021,7 +1025,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
-			if(initial(T.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
+			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(toggle & PREF_MOOD))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
 				quirk_conflict = TRUE
 			if(has_quirk)
@@ -1665,6 +1669,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// yogs start - Custom keybindings
 				if("reset_bindings")
 					reset_keybindings()
+
+				if("mood")
+					toggles ^= PREF_MOOD
 				// yogs end
 
 	ShowChoices(user)
