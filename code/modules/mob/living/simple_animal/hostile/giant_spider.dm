@@ -139,6 +139,7 @@
 	maxHealth = 40
 	health = 40
 	var/datum/action/innate/spider/comm/letmetalkpls
+	gold_core_spawnable = HOSTILE_SPAWN //yogs xenobio spiders best spiders
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize()
 	. = ..()
