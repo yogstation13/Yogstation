@@ -104,8 +104,10 @@
 		function updateSearch()
 		{
 			old_search = document.spawner.filter.value.toLowerCase();
-			
-			
+			/* -- Yogs comment-out, not necessary since we've fixed Create Object being client-crashingly bad.
+			if (!old_search)
+				return;
+			*/
 			var filtered = new Array();
 			var i;
 			for (i in objects)

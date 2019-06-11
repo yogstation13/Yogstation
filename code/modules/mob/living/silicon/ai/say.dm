@@ -140,7 +140,7 @@
 		play_vox_word(word, src.z, null, voxType) //yogs - male vox
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "female")
+/proc/play_vox_word(word, z_level, mob/only_listener, voxType = "female", pitch = 0) // Yogs -- Pitch variation
 
 	word = lowertext(word)
 
@@ -155,6 +155,7 @@
 
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM
+		voice.frequency = pitch //Yogs -- Pitch variation
 
  		// If there is no single listener, broadcast to everyone in the same z level
 		if(!only_listener)

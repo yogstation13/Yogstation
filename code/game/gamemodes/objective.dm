@@ -112,7 +112,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
-			if(possible_target.antag_datums.len || !(guy.client && (guy.client.prefs.toggles & QUIET_ROUND)))
+			if( possible_target.antag_datums || !(guy.client && (guy.client.prefs.toggles & QUIET_ROUND)))
 				possible_targets += possible_target//yogs indent
 			//yogs end
 	if(try_target_late_joiners)
