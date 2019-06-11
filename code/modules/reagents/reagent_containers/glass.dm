@@ -392,8 +392,4 @@
 /obj/item/reagent_containers/glass/saline
 	name = "saline canister"
 	volume = 5000
-<<<<<<< HEAD
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
-=======
-	list_reagents = list("salglu_solution" = 5000)
->>>>>>> bd37a5d9c9... [Ready I guess] adds saline drip (#43773)
