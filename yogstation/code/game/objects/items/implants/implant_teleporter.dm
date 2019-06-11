@@ -99,3 +99,8 @@
 	name = "employee retrieval implant"
 	usewhitelist = TRUE
 	retrievalmessage = "Employee retrieval complete."
+
+/obj/item/implant/teleporter/gasclerk
+	pointofreturn = /area/ruin/powered/gasstation //for some reason it does not teleport them back to lavaland so I did this to fix it lets just say the gas station clerks implant is a older module
+	usewhitelist = TRUE
+	retrievalmessage = "Employee retrieval complete."
