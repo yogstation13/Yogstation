@@ -233,7 +233,7 @@
 		shock_damage *= dna.species.siemens_coeff
 	if(shock_damage<1 && !override)
 		return 0
-	if(reagents.has_reagent("teslium"))
+	if(reagents.has_reagent(/datum/reagent/teslium))
 		shock_damage *= 1.5 //If the mob has teslium in their body, shocks are 50% more damaging!
 	if(illusion)
 		adjustStaminaLoss(shock_damage)
@@ -274,7 +274,7 @@
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
 		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
-			GET_COMPONENT_FROM(mood, /datum/component/mood, M)
+			var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
 			if (mood.sanity >= SANITY_GREAT)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
 			else if (mood.sanity >= SANITY_DISTURBED)

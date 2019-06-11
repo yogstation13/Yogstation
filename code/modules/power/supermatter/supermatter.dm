@@ -312,6 +312,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//if(power) //yog removal start
 		//soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max //yog removal end
+	if(isclosedturf(T))
+		var/turf/did_it_melt = T.Melt()
+		if(!isclosedturf(did_it_melt)) //In case some joker finds way to place these on indestructible walls
+			visible_message("<span class='warning'>[src] melts through [T]!</span>")
+		return
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/env = T.return_air()
@@ -697,6 +702,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				"<span class='danger'>The unearthly ringing subsides and you notice you have new radiation burns.</span>", 2)
 		else
 			L.show_message("<span class='italics'>You hear an unearthly ringing and notice your skin is covered in fresh radiation burns.</span>", 2)
+
+//Do not blow up our internal radio
+/obj/machinery/power/supermatter_crystal/contents_explosion(severity, target)
+	return
+
+/obj/machinery/power/supermatter_crystal/prevent_content_explosion()
+	return TRUE
 
 /obj/machinery/power/supermatter_crystal/engine
 	is_main_engine = TRUE
