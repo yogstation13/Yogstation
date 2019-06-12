@@ -4,20 +4,20 @@
 	opacity = 1
 	anchored = TRUE
 
-/obj/effect/particle_effect/expl_particles/Initialize()
+/obj/effect/particle_effect/expl_particles/Initialize() //yogs start: reverts harddel stuff so it doesn't break horribly
 	. = ..()
-	QDEL_IN(src, 15)
+	QDEL_IN(src, 15) //end of part 1
 
 /datum/effect_system/expl_particles
 	number = 10
 
-/datum/effect_system/expl_particles/start()
+/datum/effect_system/expl_particles/start() //start of part 2
 	for(var/i in 1 to number)
 		var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(location)
 		var/direct = pick(GLOB.alldirs)
 		var/steps_amt = pick(1;25,2;50,3,4;200)
 		for(var/j in 1 to steps_amt)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j) //yogs end
 
 /obj/effect/explosion
 	name = "fire"
