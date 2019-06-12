@@ -36439,6 +36439,9 @@
 /area/maintenance/aft)
 "btk" = (
 /obj/structure/closet/wardrobe/white,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "btl" = (
