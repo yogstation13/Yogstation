@@ -20,7 +20,6 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
-
 	var/list/dispensable_reagents = list(	
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
