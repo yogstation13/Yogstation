@@ -364,11 +364,7 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-<<<<<<< HEAD
-		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-=======
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
->>>>>>> 2e5a3c2226... Merge pull request #44319 from actioninja/gaybabyjail
 			players += player
 
 	// Shuffling, the players list is now ping-independent!!!
