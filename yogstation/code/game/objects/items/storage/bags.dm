@@ -5,7 +5,7 @@
 	to_chat(user,"<span class='danger'>The [src] rips! Oh no!</span>")
 	emptyStorage()
 	icon_state = "[initial(icon_state)]_broken"
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 0
 
 /obj/item/storage/bag/trash/bluespace/snap(mob/user)
