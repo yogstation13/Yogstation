@@ -222,6 +222,7 @@
 	owner.grant_language(/datum/language/common)
 	owner.remove_language(/datum/language/beachbum)
 
+<<<<<<< HEAD
 /datum/mutation/human/yelling
 	name = "Yelling"
 	desc = "A mutation that forces the host to constantly yell their sentences out."
@@ -234,3 +235,5 @@
 	if(message)
 		message = "[uppertext(replacetext(message, ".", "!"))]!"
 	return (message)
+=======
+>>>>>>> 9529063aa3... New brain trauma: expressive aphasia (#43608)
