@@ -1,5 +1,5 @@
 //Chaplain Suit Subtypes
-//If any new staple chaplain items get added, put them in these lists 
+//If any new staple chaplain items get added, put them in these lists
 /obj/item/clothing/suit/chaplainsuit
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
@@ -30,7 +30,7 @@
 	item_state = "bishoprobe"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
-	
+
 /obj/item/clothing/suit/chaplainsuit/studentuni
 	name = "student robe"
 	desc = "The uniform of a bygone institute of learning."
@@ -52,7 +52,7 @@
 	item_state = "monkfrock"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/monkfrock
-	
+
 /obj/item/clothing/head/hooded/monkfrock
 	name = "monk's hood"
 	desc = "For when a man wants to cover up his tonsure."
@@ -76,7 +76,7 @@
 	item_state = "whiterobe"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
-  
+
 /obj/item/clothing/suit/chaplainsuit/clownpriest
 	name = "Robes of the Honkmother"
 	desc = "Meant for a clown of the cloth."
