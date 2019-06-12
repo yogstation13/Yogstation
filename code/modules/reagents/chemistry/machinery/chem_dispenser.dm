@@ -20,51 +20,7 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
-<<<<<<< HEAD
-	var/list/dispensable_reagents = list(
-		"hydrogen",
-		"lithium",
-		"carbon",
-		"nitrogen",
-		"oxygen",
-		"fluorine",
-		"sodium",
-		"aluminium",
-		"silicon",
-		"phosphorus",
-		"sulfur",
-		"chlorine",
-		"potassium",
-		"iron",
-		"copper",
-		"mercury",
-		"radium",
-		"water",
-		"ethanol",
-		"sugar",
-		"sacid",
-		"welding_fuel",
-		"silver",
-		"iodine",
-		"bromine",
-		"stable_plasma"
-	)
-	//these become available once the manipulator has been upgraded to tier 4 (femto)
-	var/list/upgrade_reagents = list(
-		"oil",
-		"ash",
-		"acetone",
-		"saltpetre",
-		"ammonia",
-		"diethylamine"
-	)
-	var/list/emagged_reagents = list(
-		"space_drugs",
-		"morphine",
-		"carpotoxin",
-		"mine_salve",
-		"toxin"
-=======
+
 	var/list/dispensable_reagents = list(	
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
@@ -108,7 +64,6 @@
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin
->>>>>>> 713ec805f4... Fixes chem dispenser button order (#44386)
 	)
 
 	var/list/saved_recipes = list()
