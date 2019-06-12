@@ -59,7 +59,10 @@
 #define ANTAG_HUD_BROTHER		23
 #define ANTAG_HUD_HIVE			24
 #define ANTAG_HUD_OBSESSED	25
+<<<<<<< HEAD
 #define ANTAG_HUD_FUGITIVE	26
+=======
+>>>>>>> 46e3894bb2... Creep fluff completely rewritten (#42675)
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

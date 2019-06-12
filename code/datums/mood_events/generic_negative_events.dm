@@ -149,6 +149,10 @@
 	timeout = 30
 	hidden = TRUE
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 46e3894bb2... Creep fluff completely rewritten (#42675)
 /datum/mood_event/notcreepingsevere//not hidden since it's so severe
 	description = "<span class='boldwarning'>THEY NEEEEEEED OBSESSIONNNN!!</span>\n"
 	mood_change = -30
