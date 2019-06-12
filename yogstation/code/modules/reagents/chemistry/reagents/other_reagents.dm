@@ -1,6 +1,5 @@
 /datum/reagent/mutationtoxin/gorilla
 	name = "Gorilla Mutation Toxin"
-	id = "gorillamutationtoxin"
 	description = "A gorilla-ing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/gorilla
@@ -8,7 +7,6 @@
 
 /datum/reagent/cluwnification
 	name = "Cluwne Tears"
-	id = "cluwnification"
 	description = "Tears from thousands of cluwnes compressed into a dangerous cluwnification virus."
 	color = "#535E66" // rgb: 62, 224, 33
 	can_synth = FALSE
