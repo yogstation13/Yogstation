@@ -20248,9 +20248,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/goat/spiffles{
-	name = "Spiffles"
-	},
+/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/gateway{
 	name = "Ira Petrov's Interstellar Provisions"

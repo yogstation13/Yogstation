@@ -12502,7 +12502,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -14688,7 +14688,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -15036,9 +15036,7 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/colossus{
-	true_spawn = 0
-	},
+/mob/living/simple_animal/pet/eggdog,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "FZ" = (
@@ -18093,7 +18091,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -18490,7 +18488,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19429,9 +19427,7 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/dragon{
-	true_spawn = 0
-	},
+/mob/living/simple_animal/pet/gondola,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Qj" = (
@@ -19900,7 +19896,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19985,8 +19981,8 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/hostile/megafauna/bubblegum{
-	true_spawn = 0
+/mob/living/simple_animal/hostile/zombie{
+	infection_chance = 100
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -20115,7 +20111,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -20639,7 +20635,7 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
 "TY" = (
-/obj/machinery/power/supermatter_crystal,
+/obj/effect/immovablerod/duck,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "Ub" = (
@@ -21255,7 +21251,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
