@@ -37,11 +37,8 @@
 #define STATUS_EFFECT_GOOD_MUSIC /datum/status_effect/good_music
 
 #define STATUS_EFFECT_REGENERATIVE_CORE /datum/status_effect/regenerative_core
-<<<<<<< HEAD
 
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
-=======
->>>>>>> 46e3894bb2... Creep fluff completely rewritten (#42675)
 
 /////////////
 // DEBUFFS //
