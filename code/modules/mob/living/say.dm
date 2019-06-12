@@ -327,12 +327,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return null
 
 /mob/living/proc/treat_message(message)
-<<<<<<< HEAD
 	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
-=======
-
-	if(has_trait(TRAIT_UNINTELLIGIBLE_SPEECH))
->>>>>>> 9529063aa3... New brain trauma: expressive aphasia (#43608)
 		message = unintelligize(message)
 
 	if(derpspeech)
