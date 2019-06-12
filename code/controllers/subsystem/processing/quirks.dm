@@ -31,12 +31,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
 	for(var/V in cli.prefs.all_quirks)
-<<<<<<< HEAD
 		var/datum/quirk/Q = quirks[V]
 		if(Q)
 			user.add_quirk(Q, spawn_effects)
 		else
 			stack_trace("Invalid quirk \"[V]\" in client [cli.ckey] preferences")
-=======
-		user.add_quirk(V, spawn_effects)
->>>>>>> 687f3c97c3... Fix being sent back to lobby not allowing changing quirks (#43319)
