@@ -84,6 +84,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/reset_all_tcs, // yogs - NTSL, resets all NTSL scripts in world
 	/client/proc/subtlemessage_faction, // yogs -- SM to entire factions/antag types
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
+	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
 	/client/proc/queue_check // Yogs -- Some queue manipulation/debuggin kinda verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
@@ -118,7 +119,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/admin_away
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character))
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 GLOBAL_PROTECT(admin_verbs_server)
