@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/hunter{
 	dir = 8;
@@ -20,7 +20,7 @@
 	dir = 4;
 	dwidth = 3;
 	height = 12;
-	id = "huntership_home";
+	id = "pirateship_home";
 	name = "Deep Space";
 	width = 7
 	},
