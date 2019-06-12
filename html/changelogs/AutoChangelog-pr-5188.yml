@@ -1,0 +1,4 @@
+author: "1fbff5f83b23d39d38b1dfcb4cac8d9b"
+delete-after: true 
+changes: 
+  - tweak: "TGUI buttons do not fully grey out while the UI is still updating"
