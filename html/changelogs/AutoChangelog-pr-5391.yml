@@ -1,0 +1,4 @@
+author: " Naksu"
+delete-after: true 
+changes: 
+  - bugfix: "mindshield nanites no longer give mindshields to revheads and one mind awoken hiveminds."

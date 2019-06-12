@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "exile implants are no longer orderable from cargo since they do an astounding amount of nothing"
