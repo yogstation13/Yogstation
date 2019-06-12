@@ -12502,7 +12502,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -14688,7 +14688,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -18091,7 +18091,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -18488,7 +18488,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -19896,7 +19896,7 @@
 	desc = "You can't seem to go through this portal...";
 	id = "testchamber";
 	name = "Exit Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
@@ -20111,7 +20111,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -21251,7 +21251,7 @@
 	desc = "for when the clock hits one thirty and keeps ticking...";
 	id = "testchamber";
 	name = "Test Chamber Portal";
-	teleport_channel = "bluespace"
+	teleport_channel = "quantum"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
