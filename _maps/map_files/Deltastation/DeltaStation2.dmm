@@ -299,7 +299,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/dead_body_placer,
 /turf/open/floor/plasteel,
 /area/medical/morgue)
 "aaO" = (
@@ -75099,12 +75098,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness/recreation)
-"cwi" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -184062,7 +184055,7 @@ ajr
 aad
 cuM
 twt
-cwi
+twt
 czm
 cAF
 cCq
