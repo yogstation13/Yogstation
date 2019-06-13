@@ -47,11 +47,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(C.current_ticket)
 		C.current_ticket.initiator = C
 		C.current_ticket.AddInteraction("Client reconnected.")
+		webhook_send("ticket", list("ticketid" = id, "message" = "Client reconnected", "roundid" = GLOB.round_id, "user" = usr))
+		
 
 //Dissasociate ticket
 /datum/admin_help_tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		C.current_ticket.AddInteraction("Client disconnected.")
+		webhook_send("ticket", list("ticketid" = id, "message" = "Client disconnected", "roundid" = GLOB.round_id, "user" = C))
 		C.current_ticket.initiator = null
 		C.current_ticket = null
 
@@ -156,6 +159,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(is_bwoink)
 		AddInteraction("[key_name_admin(usr)] PM'd [LinkedReplyName()]")
+		webhook_send("ticket", list("ticketid" = id, "message" = "[usr] PM'd [initiator]", "roundid" = GLOB.round_id, "user" = usr))
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -186,7 +190,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
-	webhook_send("ticket", list("ticketid" = id, "message" = msg, "roundid" = GLOB.round_id, "user" = usr))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -231,6 +234,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/admin_msg = "<span class='adminnotice'><span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> [keywords_lookup(msg)]</span>"
 
 	AddInteraction(msg)
+	webhook_send("ticket", list("ticketid" = id, "message" = msg, "roundid" = GLOB.round_id, "user" = usr))
+	
 
 	//send this msg to all admins
 	for(var/client/X in GLOB.admins)
@@ -263,6 +268,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	state = AHELP_ACTIVE
 
 	AddInteraction("Reopened by [usr.ckey]")
+	webhook_send("ticket", list("ticketid" = id, "message" = "Reopened", "roundid" = GLOB.round_id, "user" = usr))
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
 	message_admins(msg)
 	log_admin_private(msg)
@@ -294,6 +300,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	RemoveActive()
 	state = AHELP_CLOSED
 	AddInteraction("Closed by [usr.ckey].")
+	webhook_send("ticket", list("ticketid" = id, "message" = "Closed", "roundid" = GLOB.round_id, "user" = usr))
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "closed")
 		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
@@ -388,6 +395,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Marked as an IC issue by [usr.ckey]")
+	webhook_send("ticket", list("ticketid" = id, "message" = "Marked as an IC issue", "roundid" = GLOB.round_id, "user" = usr))
 	Resolve(silent = TRUE)
 
 //Resolve ticket with Mhelp Question message
@@ -407,6 +415,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Marked as an MHelp question by [usr.ckey]")
+	webhook_send("ticket", list("ticketid" = id, "message" = "Marked as mhelp", "roundid" = GLOB.round_id, "user" = usr))
 	Resolve(silent = TRUE)
 
 //Resolve ticket with wiki message
@@ -425,6 +434,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Marked as WIKI issue by [usr.ckey]")
+	webhook_send("ticket", list("ticketid" = id, "message" = "Markd as wiki", "roundid" = GLOB.round_id, "user" = usr))
 	Resolve(silent = TRUE)
 
 //Show the ticket panel
@@ -527,6 +537,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	handling_admin = usr.client
 
 	var/msg = "[usr.ckey]/([usr]) has been assigned to [TicketHref("ticket #[id]")] as primary admin."
+	webhook_send("ticket", list("ticketid" = id, "message" = Claimed ticket, "roundid" = GLOB.round_id, "user" = usr))
 	message_admins(msg)
 	log_admin_private(msg)
 
@@ -534,6 +545,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/PopUps(key_name = key_name_admin(usr))
 	popups_enabled = !popups_enabled
 	var/msg = "Ticket [TicketHref("#[id]")] has had pop-ups [popups_enabled ? "" : "de"]activated by [key_name]"
+	webhook_send("ticket", list("ticketid" = id, "message" = "[popups_enabled ? "" : "de"]activated popups", "roundid" = GLOB.round_id, "user" = usr))
 	message_admins(msg)
 	log_admin_private(msg)
 
