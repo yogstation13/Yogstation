@@ -7,7 +7,7 @@
 //Chef
 /obj/item/clothing/head/chefhat
 	name = "chef's hat"
-	item_state = "chef"
+	item_state = "chefhat" //yogs - changed from "chef" to "chefhat"
 	icon_state = "chef"
 	desc = "The commander in chef's head wear."
 	strip_delay = 10
