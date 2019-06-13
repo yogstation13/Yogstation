@@ -392,9 +392,3 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
-	
-/obj/item/clothing/head/whitecap
-	name = "white cap"
-	desc = "A white cap. For some reason it smells like metal."
-	icon_state = "chernobyl"
-	item_state = "chernobyl"
