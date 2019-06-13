@@ -302,6 +302,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	pressureSetting = 2 //yogs: makes spears embed without messing with the speargun
 	gasPerThrow = 0
 	checktank = FALSE
 	range_multiplier = 3
@@ -322,11 +323,11 @@
 
 /obj/item/storage/backpack/magspear_quiver/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20
 	STR.max_combined_w_class = 40
 	STR.display_numerical_stacking = TRUE
-	STR.can_hold = typecacheof(list(
+	STR.set_holdable(list(
 		/obj/item/throwing_star/magspear
 		))
 

@@ -48,7 +48,7 @@
 		if(18)
 			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(19)
-			new /mob/living/simple_animal/hostile/retaliate/goat/spiffles(loc)
+			new /mob/living/simple_animal/hostile/retaliate/goat/cute(loc)
 		if(20)
 			new /mob/living/simple_animal/hostile/retaliate/goat/star(loc)
 		if(21)

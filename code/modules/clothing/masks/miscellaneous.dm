@@ -44,19 +44,12 @@
 	name = "italian moustache"
 	desc = "Made from authentic Italian moustache hairs. Gives the wearer an irresistable urge to gesticulate wildly."
 	clothing_flags = SHOWEROKAY
-<<<<<<< HEAD
-	
-/obj/item/clothing/mask/fakemoustache/italian/speechModification(M)
-	if(copytext(M, 1, 2) != "*")
-		M = " [M]"
-=======
 	modifies_speech = TRUE
 
 /obj/item/clothing/mask/fakemoustache/italian/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = " [message]"
->>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
 		var/list/italian_words = strings("italian_replacement.json", "italian")
 
 		for(var/key in italian_words)
@@ -269,7 +262,7 @@
 			user.visible_message("<span class='notice'>You tie [src] up like a neckerchief.</span>", "<span class='notice'>[user] ties [src] up like a neckerchief.</span>")
 			qdel(src)
 		else
-			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!")
+			to_chat(user, "<span class='warning'>You must be holding [src] in order to tie it!</span>")
 
 /obj/item/clothing/mask/bandana/red
 	name = "red bandana"
