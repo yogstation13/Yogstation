@@ -481,7 +481,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				log_game("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.", INVESTIGATE_SUPERMATTER) // yogs end
 				if(powerloss_inhibitor < 0.5)
-					radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel, get_spans(), get_default_language())
+					radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel)
 					log_game("The supermatter crystal: DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.") // yogs start - Logs SM chatter
 					investigate_log("The supermatter crystal: DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", INVESTIGATE_SUPERMATTER) // yogs end
 
