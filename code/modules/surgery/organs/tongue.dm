@@ -237,8 +237,4 @@
 			new_message += message[i] + message[i] + message[i] //aaalllsssooo ooopppeeennn tttooo sssuuuggggggeeessstttiiiooonsss
 		else
 			new_message += message[i]
-<<<<<<< HEAD
-	return new_message
-=======
 	speech_args[SPEECH_MESSAGE] = new_message
->>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
