@@ -281,8 +281,3 @@
 	locked = TRUE
 	text_gain_indication = "<span class='danger'>You feel really angry.</span>"
 	text_lose_indication = "<span class='notice'>You feel calmer.</span>"
-
-/datum/mutation/human/yelling/say_mod(message)
-	if(message)
-		message = "[uppertext(replacetext(message, ".", "!"))]!"
-	return (message)
