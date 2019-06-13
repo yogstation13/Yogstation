@@ -73,6 +73,7 @@
 		D.apply_damage(10, A.dna.species.attack_type)
 		log_combat(A, D, "kicked (CQC)")
 	if(D.IsParalyzed() && !D.stat)
+		log_combat(A, D, "knocked out (Head kick)(CQC)")
 		D.visible_message("<span class='warning'>[A] kicks [D]'s head, knocking [D.p_them()] out!</span>", \
 					  		"<span class='userdanger'>[A] kicks your head, knocking you out!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
@@ -83,7 +84,8 @@
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
-	D.visible_message("<span class='warning'>[A] forces their arm on [D]'s neck!</span>")
+	log_combat(A, D, "pressured (CQC)")
+	D.visible_message("<span class='warning'>[A] punches [D]'s neck!</span>")
 	D.adjustStaminaLoss(60)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
@@ -94,6 +96,7 @@
 	if(!can_use(A))
 		return FALSE
 	if(!D.stat)
+		log_combat(A, D, "restrained (CQC)")
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
 		D.adjustStaminaLoss(20)
@@ -106,6 +109,7 @@
 	if(!can_use(A))
 		return FALSE
 	if(!D.stat)
+		log_combat(A, D, "consecutive CQC'd (CQC)")
 		D.visible_message("<span class='warning'>[A] strikes [D]'s abdomen, neck and back consecutively</span>", \
 							"<span class='userdanger'>[A] strikes your abdomen, neck and back consecutively!</span>")
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
@@ -117,23 +121,6 @@
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-<<<<<<< HEAD
-	if(!can_use(A))
-		return FALSE
-	add_to_streak("G",D)
-	if(check_streak(A,D))
-		return TRUE
-	if(A.grab_state >= GRAB_AGGRESSIVE)
-		D.grabbedby(A, 1)
-	else
-		A.start_pulling(D, supress_message = TRUE)
-		if(A.pulling)
-			D.stop_pulling()
-			log_combat(A, D, "grabbed", addition="aggressively")
-			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
-
-	return TRUE
-=======
 	if(A.a_intent == INTENT_GRAB && A!=D && can_use(A)) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
@@ -149,7 +136,6 @@
 		return TRUE
 	else
 		return FALSE
->>>>>>> f8423cf0a7... CQC and Sleeping carp fix (#44084)
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -204,6 +190,7 @@
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed (CQC)", "[I ? " grabbing \the [I]" : ""]")
 	if(restraining && A.pulling == D)
+		log_combat(A, D, "knocked out (Chokehold)(CQC)")
 		D.visible_message("<span class='danger'>[A] puts [D] into a chokehold!</span>", \
 							"<span class='userdanger'>[A] puts you into a chokehold!</span>")
 		D.SetSleeping(400)
