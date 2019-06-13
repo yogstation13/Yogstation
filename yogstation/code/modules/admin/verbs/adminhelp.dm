@@ -823,6 +823,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		C = what
 	if(istype(C) && C.current_ticket)
 		C.current_ticket.AddInteraction(message, for_admins)
+		webhook_send("ticket", list("ticketid" = C.current_ticket.id, "message" = message, "roundid" = GLOB.round_id, "user" = usr))
 		return C.current_ticket
 	if(istext(what))	//ckey
 		var/datum/admin_help/AH = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
