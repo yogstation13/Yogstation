@@ -3060,6 +3060,7 @@
 #include "yogstation\code\modules\atmospherics\airalarm.dm"
 #include "yogstation\code\modules\atmospherics\gasmixtures\gas_types.dm"
 #include "yogstation\code\modules\atmospherics\machinery\pipes\bluespace.dm"
+#include "yogstation\code\modules\atmospherics\machinery\portable\canister.dm"
 #include "yogstation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "yogstation\code\modules\cargo\cargo_packs.dm"
 #include "yogstation\code\modules\cargo\exports\large_objects.dm"
