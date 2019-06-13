@@ -18,13 +18,13 @@
 	medical_record_text = "Patient was administered the Apathy Evaluation Scale but did not bother to complete it."
 
 /datum/quirk/apathetic/add()
-	GET_COMPONENT_FROM(mood, /datum/component/mood, quirk_holder)
+	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
 	if(mood)
 		mood.mood_modifier -= 0.2
 
 /datum/quirk/apathetic/remove()
 	if(quirk_holder)
-		GET_COMPONENT_FROM(mood, /datum/component/mood, quirk_holder)
+		var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
 		if(mood)
 			mood.mood_modifier += 0.2
 
@@ -157,17 +157,6 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), SLOT_IN_BACKPACK)
-
-/datum/quirk/spiritual/on_process()
-	var/comforted = FALSE
-	for(var/mob/living/L in oview(5, quirk_holder))
-		if(L.mind && L.mind.isholy && L.stat == CONSCIOUS)
-			comforted = TRUE
-			break
-	if(comforted)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "religious_comfort", /datum/mood_event/religiously_comforted)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "religious_comfort")
 
 /datum/quirk/tagger
 	name = "Tagger"

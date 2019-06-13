@@ -67,7 +67,7 @@
 	armor = list("melee" = 25, "bullet" = 5, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 50)
 	icon_state = "detective"
 	var/candy_cooldown = 0
-	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/detective
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora/detective
 	dog_fashion = /datum/dog_fashion/head/detective
 
 /obj/item/clothing/head/fedora/det_hat/Initialize()
@@ -98,6 +98,18 @@
 	icon_state = "beret"
 	dog_fashion = /datum/dog_fashion/head/beret
 	dynamic_hair_suffix = ""
+
+/obj/item/clothing/head/beret/vintage
+	name = "vintage beret"
+	desc = "A well-worn beret."
+	icon_state = "vintageberet"
+	dog_fashion = null
+
+/obj/item/clothing/head/beret/archaic
+	name = "archaic beret"
+	desc = "An absolutely ancient beret, allegedly worn by the first mime to ever step foot on a NanoTrasen station."
+	icon_state = "archaicberet"
+	dog_fashion = null
 
 /obj/item/clothing/head/beret/black
 	name = "black beret"
