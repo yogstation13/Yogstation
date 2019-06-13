@@ -273,7 +273,6 @@
 	..()
 	owner.grant_language(/datum/language/common)
 	owner.remove_language(/datum/language/beachbum)
-<<<<<<< HEAD
 
 /datum/mutation/human/yelling
 	name = "Yelling"
@@ -287,5 +286,3 @@
 	if(message)
 		message = "[uppertext(replacetext(message, ".", "!"))]!"
 	return (message)
-=======
->>>>>>> 2d74a86353... [READY] Cleans up saycode by removing random hook stubs and using a signal where relevant (#44320)
