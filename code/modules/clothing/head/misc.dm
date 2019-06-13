@@ -1,4 +1,6 @@
-/obj/item/clothing/head/centhat
+
+
+/obj/item/clothing/head/centhat
 	name = "\improper CentCom hat"
 	icon_state = "centcom"
 	desc = "It's good to be emperor."
@@ -245,7 +247,7 @@
 /obj/item/clothing/head/cone
 	desc = "This cone is trying to warn you of something!"
 	name = "warning cone"
-	icon = 'yogstation/icons/obj/janitor.dmi'
+	icon = 'yogstation/icons/obj/janitor.dmi' //yogs changed icon path
 	icon_state = "cone"
 	item_state = "cone"
 	force = 1
@@ -348,9 +350,21 @@
 	icon_state = "beret"
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/frenchberet/speechModification(M)
-	if(copytext(M, 1, 2) != "*")
-		M = " [M]"
+/obj/item/clothing/head/frenchberet/equipped(mob/M, slot)
+	. = ..()
+	if (slot == SLOT_HEAD)
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/head/frenchberet/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/clothing/head/frenchberet/proc/handle_speech(datum/source, mob/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = " [message]"
 		var/list/french_words = strings("french_replacement.json", "french")
 
 		for(var/key in french_words)
@@ -358,13 +372,13 @@
 			if(islist(value))
 				value = pick(value)
 
-			M = replacetextEx(M, " [uppertext(key)]", " [uppertext(value)]")
-			M = replacetextEx(M, " [capitalize(key)]", " [capitalize(value)]")
-			M = replacetextEx(M, " [key]", " [value]")
+			message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
+			message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
+			message = replacetextEx(message, " [key]", " [value]")
 
 		if(prob(3))
-			M += pick(" Honh honh honh!"," Honh!"," Zut Alors!")
-	return trim(M)
+			message += pick(" Honh honh honh!"," Honh!"," Zut Alors!")
+	speech_args[SPEECH_MESSAGE] = trim(message)
 
 /obj/item/clothing/head/clownmitre
 	name = "Hat of the Honkmother"
