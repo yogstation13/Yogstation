@@ -324,6 +324,5 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
 	if(isliving(target))
-		var/mob/living/L = target
 		if(melee_damage_type != BRUTE)
 			special_attacks++
