@@ -195,7 +195,7 @@
 				to_chat(recipient, "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>")
 				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>")
 
-				admin_ticket_log(recipient, "<span class='notice'>PM From [key_name_admin(src)]: [keywordparsedmsg]</span>")// yogs - Yog Tickets
+				admin_ticket_log(recipient, "PM From [src]: [msg]")// yogs - Yog Tickets
 
 				//always play non-admin recipients the adminhelp sound
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
