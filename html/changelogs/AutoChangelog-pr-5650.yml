@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "Voice analyzer no longer starts on inclusive so it won't detonate on hearing anything automatically"
