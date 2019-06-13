@@ -42,7 +42,14 @@
 #define INSULATED	/datum/mutation/human/insulated
 #define SHOCKTOUCH	/datum/mutation/human/shock
 #define OLFACTION	/datum/mutation/human/olfaction
+<<<<<<< HEAD
 #define YELLING		/datum/mutation/human/yelling
+=======
+#define ACIDFLESH	/datum/mutation/human/acidflesh
+#define BADBLINK	/datum/mutation/human/badblink
+#define SPASTIC		/datum/mutation/human/spastic
+#define EXTRASTUN	/datum/mutation/human/extrastun
+>>>>>>> 313db3ad8b... Tweaks the drill hat to be a bit less annoying (#42655)
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 
