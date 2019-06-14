@@ -151,6 +151,7 @@
 /obj/machinery/stasis/survival_pod/update_icon()
 	return
 
+<<<<<<< HEAD
  //NanoMed
 /obj/machinery/vending/wallmed/survival_pod
 	name = "survival pod medical supply"
@@ -158,6 +159,8 @@
 	refill_canister = null
 	onstation = FALSE
 
+=======
+>>>>>>> 0a7c5758e7... Merge pull request #44491 from vuonojenmustaturska/removies
 //Computer
 /obj/item/gps/computer
 	name = "pod computer"
