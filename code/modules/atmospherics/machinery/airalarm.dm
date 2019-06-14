@@ -528,7 +528,8 @@
 						/datum/gas/tritium,
 						/datum/gas/bz,
 						/datum/gas/stimulum,
-						/datum/gas/pluoxium
+						/datum/gas/pluoxium,//yogs comma
+						/datum/gas/dilithium//Yogs -- Adds Dilithium
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
