@@ -57,8 +57,8 @@
 
 /datum/uplink_item/dangerous/katana
 	name = "Katana"
-	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden."
-	item = /obj/item/katana
+	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden. At a glance, it looks like a fake katana; you can tell from the pixels."
+	item = /obj/item/katana/faketoy
 	cost = 10
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
