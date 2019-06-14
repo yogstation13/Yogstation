@@ -151,17 +151,13 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
-	var/component = /datum/component/squeak/bikehorn
 
 /obj/item/bikehorn/Initialize()
 	. = ..()
-	AddComponent(component, 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(user != M && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if (HAS_TRAIT(H, TRAIT_CLUMSY)) //only clowns can unlock its true powers
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
 	return ..()
 
 /obj/item/bikehorn/suicide_act(mob/user)
@@ -174,7 +170,10 @@
 	name = "air horn"
 	desc = "Damn son, where'd you find this?"
 	icon_state = "air_horn"
-	component = /datum/component/squeak/airhorn
+
+/obj/item/bikehorn/airhorn/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/items/airhorn2.ogg'=1), 50)
 
 //golden bikehorn
 /obj/item/bikehorn/golden
