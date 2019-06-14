@@ -33,7 +33,7 @@ Difficulty: Insanely Hard
 	icon_state = "king_goat"
 	icon_living = "king_goat"
 	icon_dead = "king_goat_dead"
-	faction = list("goat_king","neutral")
+	faction = list("goat_king")
 	attack_same = FALSE
 	speak_emote = list("brays in a booming voice")
 	emote_hear = list("brays in a booming voice")
@@ -126,7 +126,7 @@ Difficulty: Insanely Hard
 	icon_state = "goat_guard"
 	icon_living = "goat_guard"
 	icon_dead = "goat_guard_dead"
-	faction = list("goat_king","neutral")
+	faction = list("goat_king")
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
