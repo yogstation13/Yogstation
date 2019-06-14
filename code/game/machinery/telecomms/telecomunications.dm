@@ -143,8 +143,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(traffic > 0)
 		traffic -= netspeed
-		if (traffic < 0)
-			traffic = 0
+		if (traffic < 0)  //yogs start
+			traffic = 0   //yogs end
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
