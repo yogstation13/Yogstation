@@ -193,7 +193,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
-	c_tag = "Prison Common Room";
+	c_tag = "Prison Common Room North";
 	network = list("ss13","prison")
 	},
 /turf/open/floor/plasteel,
@@ -15158,7 +15158,7 @@
 /obj/machinery/camera{
 	c_tag = "Permabrig Holodeck";
 	dir = 8;
-	network = list("ss13","rd")
+	network = list("ss13","prison")
 	},
 /turf/open/floor/engine{
 	name = "Holodeck Projector Floor"
@@ -26216,8 +26216,9 @@
 /area/security/prison)
 "bab" = (
 /obj/machinery/camera{
-	c_tag = "EVA South";
-	dir = 1
+	c_tag = "Prison Common Room South";
+	dir = 1;
+	network = list("ss13","prison")
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
