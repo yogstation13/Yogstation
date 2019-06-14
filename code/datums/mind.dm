@@ -87,11 +87,8 @@
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
-		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
-		SStgui.on_transfer(current, new_character)
 		// Yogs start -- Mood preferences
-		if(current?.client.prefs.toggles & PREF_MOOD)
+		if(current.client && current.client.prefs.toggles & PREF_MOOD)
 			mood_was_enabled = TRUE
 		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood)) 
 			var/mob/living/carbon/human/H = current
@@ -100,7 +97,9 @@
 				var/datum/component/mood/c = H.GetComponent(/datum/component/mood)
 				c.RemoveComponent()
 		// Yogs End
-
+		current.mind = null
+		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		SStgui.on_transfer(current, new_character)
 	if(!language_holder)
 		var/datum/language_holder/mob_holder = new_character.get_language_holder(shadow = FALSE)
 		language_holder = mob_holder.copy(src)
@@ -127,7 +126,7 @@
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
 		// Yogs start -- Mood preferences
-		if(ishuman(new_character) && mood_was_enabled)
+		if(ishuman(new_character) && mood_was_enabled && !new_character.GetComponent(/datum/component/mood))
 			var/mob/living/carbon/human/H = C
 			H.AddComponent(/datum/component/mood)
 		// Yogs End
