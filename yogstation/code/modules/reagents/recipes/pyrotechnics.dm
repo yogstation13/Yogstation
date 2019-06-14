@@ -1,6 +1,6 @@
 /datum/chemical_reaction/dilithium
-	name = /datum/reagent/dilithium
-	id = /datum/reagent/dilithium
+	name = "Dilithium Gas Creation"
+	id = "dilithiumgascreation"
 	required_reagents = list(/datum/reagent/dilithium = 1, /datum/reagent/water = 1) // Just add water!
 
 /datum/chemical_reaction/dilithium/on_reaction(datum/reagents/holder, created_volume)//Based on the on_reaction proc for phlogiston

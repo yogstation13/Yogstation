@@ -3246,6 +3246,7 @@
 #include "yogstation\code\modules\reagents\reagent_containers\bottle.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
 #include "yogstation\code\modules\reagents\reagents\other_reagents.dm"
+#include "yogstation\code\modules\reagents\recipes\pyrotechnics.dm"
 #include "yogstation\code\modules\recycling\disposal\pipe_sorting.dm"
 #include "yogstation\code\modules\research\experimentor.dm"
 #include "yogstation\code\modules\research\rdconsole.dm"
