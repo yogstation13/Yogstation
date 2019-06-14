@@ -55,6 +55,13 @@
 /////////New Items////////
 //////////////////////////
 
+/datum/uplink_item/dangerous/katana
+	name = "Katana"
+	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden."
+	item = /obj/item/katana
+	cost = 10
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
