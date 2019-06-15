@@ -138,7 +138,7 @@
 	else //yogs start   aplly backup UI
 		var/dat
 		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
-		dat += "<br><H2>Ocupant: "
+		dat += "<H2>Ocupant: "
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
 			dat += "[mob_occupant.name]"
@@ -152,7 +152,7 @@
 				if(DEAD)
 					dat += "  <font color = #C13131>Dead</font>"
 			dat += "</H2>"
-			dat += "<br><H3>Status</H3>"
+			dat += "<H3>Status</H3>"
 			dat += "<br>	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
 			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
 			dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
@@ -170,15 +170,15 @@
 			else
 				dat += "normal"
 
-			dat += "<br><H3>Reagents</H3>"
+			dat += "<H3>Reagents</H3>"
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
 					dat += "<br>	[R.name]	[R.volume] units"
 		else
 			dat += "No Occupant</H2><br>"
-		dat += "<br><H2>Controls</H2>"
+		dat += "<H2>Controls</H2>"
 		dat += "<br>Door: <a href='?src=[REF(src)];input=toggle'>[state_open ? "Open" : "Closed"]</a>"
-		dat += "<br><H3>inject</H3>"
+		dat += "<H3>inject</H3>"
 		if(mob_occupant)
 			for(var/CH in available_chems)
 				var/datum/reagent/chem = CH
