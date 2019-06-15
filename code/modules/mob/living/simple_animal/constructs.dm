@@ -137,7 +137,7 @@
 	mob_size = MOB_SIZE_LARGE
 	force_threshold = 10
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/forcewall/cult,
-							/obj/effect/proc_holder/spell/dumbfire/juggernaut)
+							/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut)
 	runetype = /datum/action/innate/cult/create_rune/wall
 	playstyle_string = "<b>You are a Juggernaut. Though slow, your shell can withstand heavy punishment, \
 						create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.</b>"
@@ -174,7 +174,7 @@
 			return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
 	return ..()
-	
+
 //////////////////////////Angelic-Juggernaut////////////////////////////
 /mob/living/simple_animal/hostile/construct/armored/angelic
 	icon_state = "behemoth_angelic"
@@ -182,7 +182,7 @@
 	loot = list(/obj/item/ectoplasm/angelic)
 
 /mob/living/simple_animal/hostile/construct/armored/noncult
-	
+
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/hostile/construct/wraith
 	name = "Wraith"
@@ -233,7 +233,7 @@
 	icon_state = "floating_angelic"
 	icon_living = "floating_angelic"
 	loot = list(/obj/item/ectoplasm/angelic)
-	
+
 /mob/living/simple_animal/hostile/construct/wraith/noncult
 
 /////////////////////////////Artificer/////////////////////////

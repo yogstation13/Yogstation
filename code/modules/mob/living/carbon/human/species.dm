@@ -38,9 +38,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/acidmod = 1     // multiplier for acid damage // yogs - Old Plant People
 	var/stunmod = 1		// multiplier for stun duration
 	var/attack_type = BRUTE //Type of damage attack does
-	var/punchdamagelow = 0       //lowest possible punch damage
-	var/punchdamagehigh = 9      //highest possible punch damage
-	var/punchstunthreshold = 9//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
+	var/punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
+	var/punchdamagehigh = 10      //highest possible punch damage
+	var/punchstunthreshold = 10//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
 	var/siemens_coeff = 1 //base electrocution coefficient
 	var/damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
 	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
@@ -950,18 +950,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.update_mutant_bodyparts()
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == exotic_blood)
+	if(chem.type == exotic_blood)
 		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-		H.reagents.del_reagent(chem.id)
+		H.reagents.del_reagent(chem.type)
 		return 1
 	return FALSE
-
-/datum/species/proc/handle_speech(message, mob/living/carbon/human/H)
-	return message
-
-//return a list of spans or an empty list
-/datum/species/proc/get_spans()
-	return list()
 
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
 	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
@@ -992,7 +985,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER))
 		// THEY HUNGER
 		var/hunger_rate = HUNGER_FACTOR
-		GET_COMPONENT_FROM(mood, /datum/component/mood, H)
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
 
@@ -1103,13 +1096,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
 		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
-			var/health_deficiency = (H.maxHealth - H.health + H.staminaloss)
+			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
 			if(health_deficiency >= 40)
 				if(flight)
 					. += (health_deficiency / 75)
 				else
 					. += (health_deficiency / 25)
-		if(CONFIG_GET(flag/disable_human_mood))
+		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
@@ -1189,14 +1182,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		var/atk_verb = user.dna.species.attack_verb
 		if(!(target.mobility_flags & MOBILITY_STAND))
-			atk_verb = "kick"
+			atk_verb = ATTACK_EFFECT_KICK
 
-		switch(atk_verb)
-			if("kick")
+		switch(atk_verb)//this code is really stupid but some genius apparently made "claw" and "slash" two attack types but also the same one so it's needed i guess
+			if(ATTACK_EFFECT_KICK)
 				user.do_attack_animation(target, ATTACK_EFFECT_KICK)
-			if("slash")
+			if(ATTACK_EFFECT_SLASH || ATTACK_EFFECT_CLAW)//smh
 				user.do_attack_animation(target, ATTACK_EFFECT_CLAW)
-			if("smash")
+			if(ATTACK_EFFECT_SMASH)
 				user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 			else
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
@@ -1205,12 +1198,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
-		if(!damage || !affecting)
+		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
+		if(user.dna.species.punchdamagelow)
+			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided your species deals more than 0 damage)
+				miss_chance = 0
+			else
+				miss_chance = min((user.dna.species.punchdamagehigh/user.dna.species.punchdamagelow) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
+
+		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, 1, -1)
 			target.visible_message("<span class='danger'>[user] has attempted to [atk_verb] [target]!</span>",\
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+			log_combat(user, target, "attempted to punch")
 			return FALSE
-
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
@@ -1225,13 +1225,22 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
-		target.apply_damage(damage, attack_type, affecting, armor_block)
-		log_combat(user, target, "punched")
+
+		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
+			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
+			log_combat(user, target, "kicked")
+		else//other attacks deal full raw damage + 1.5x in stamina damage
+			target.apply_damage(damage, attack_type, affecting, armor_block)
+			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
+			log_combat(user, target, "punched")
+
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message("<span class='danger'>[user] has knocked  [target] down!</span>", \
 							"<span class='userdanger'>[user] has knocked [target] down!</span>", null, COMBAT_MESSAGE_RANGE)
-			target.apply_effect(80, EFFECT_KNOCKDOWN, armor_block)
+			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration
+			target.apply_effect(knockdown_duration, EFFECT_KNOCKDOWN, armor_block)
 			target.forcesay(GLOB.hit_appends)
+			log_combat(user, target, "got a stun punch with their previous punch")
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
 
