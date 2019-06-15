@@ -153,7 +153,7 @@
 					dat += "  <font color = #C13131>Dead</font>"
 			dat += "</H2>"
 			dat += "<H3>Status</H3>"
-			dat += "<br>	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
+			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
 			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
 			dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
 			dat += "<br>	Toxin:			[mob_occupant.getToxLoss()]"
@@ -175,17 +175,14 @@
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
 					dat += "<br>	[R.name]	[R.volume] units"
 		else
-			dat += "No Occupant</H2><br>"
+			dat += "No Occupant</H2>"
 		dat += "<H2>Controls</H2>"
 		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
-		dat += "<H3>inject</H3>"
+		dat += "<H3>Inject</H3>"
 		if(mob_occupant)
 			for(var/CH in available_chems)
-				var/datum/reagent/chem = CH
-				if(chem && chem_allowed(chem))
-					dat += "<font color = #666633><br>	[chem]</font>"
-				else
-					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[chem]</a>"
+				var/datum/reagent/chem = GLOB.chemical_reagents_list[CH]
+				dat += "<br>	<a href='?src=[REF(src)];inject=[CH]'>[chem.name]</a>"
 		else
 			dat += "<br> No patient to inject"
 
@@ -207,7 +204,11 @@
 		if(href_list["inject"])
 			for(var/CH in available_chems)
 				var/datum/reagent/chem = CH
-				if("[chem]")
+				if(!is_operational() || !mob_occupant)
+					return
+				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
+					return
+				else
 					if(src.inject_chem(chem, mob_occupant))
 						. = TRUE
 			if(.)
