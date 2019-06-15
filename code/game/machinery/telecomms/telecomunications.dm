@@ -48,7 +48,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		signal.data["slow"] = netlag
 
 	// Loop through all linked machines and send the signal or copy.
-	for(var/obj/machinery/telecomms/machine in links) // Yogs -- God bless typeless for-loops -- why do you need to use those here
+	for(var/m_typeless in links) // Yogs -- God bless typeless for-loops
+		var/obj/machinery/telecomms/machine = m_typeless
 		if(filter && !istype(machine, filter) )
 			continue
 		if(!machine.on)
