@@ -152,7 +152,7 @@
 				if(DEAD)
 					dat += "  <font color = #C13131>Dead</font>"
 			dat += "</H2>"
-			dat += "<H3>Status</H3>  <a href='?src=[REF(src)];refresh=1'>(refrech)</a>"
+			dat += "<H3>Status  <a href='?src=[REF(src)];refresh=1'>(refresh)</a></H3>"
 			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
 			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
 			dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
@@ -183,7 +183,7 @@
 			for(var/chem in available_chems)
 				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
 				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-					dat += "<font color = #666633><br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a></font>"
+					dat += "<br>	<a color = #666633 href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
 				else
 					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
 		else
