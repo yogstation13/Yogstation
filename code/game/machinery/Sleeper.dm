@@ -194,26 +194,27 @@
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
 		return
-	var/mob/living/mob_occupant = occupant
-	if(href_list["input"])
-		if(state_open)
-			close_machine()
+	if(canAccess(usr))
+		var/mob/living/mob_occupant = occupant
+		if(href_list["input"])
+			if(state_open)
+				close_machine()
+			else
+				open_machine()
 		else
-			open_machine()
-	else
-		if(href_list["inject"])
-			for(var/CH in available_chems)
-				var/datum/reagent/chem = CH
-				if(!is_operational() || !mob_occupant)
-					return
-				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-					return
-				else
-					if(src.inject_chem(chem, mob_occupant))
-						. = TRUE
-			if(.)
-				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if(href_list["inject"])
+				for(var/CH in available_chems)
+					var/datum/reagent/chem = CH
+					if(!is_operational() || !mob_occupant)
+						return
+					if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
+						return
+					else
+						if(src.inject_chem(chem, mob_occupant))
+							. = TRUE
+				if(.)
+					if(scrambled_chems && prob(5))
+						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
 	usr.set_machine(src)
 
