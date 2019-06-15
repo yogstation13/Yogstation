@@ -37,5 +37,5 @@
 		if(!ismob(master.loc))
 			return
 		user = master.loc
-	
+
 	user.remove_alt_appearance("sneaking_mission")

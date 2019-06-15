@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
-	if(check_emote(original_message) || !can_speak_basic(original_message, ignore_spam))
+	if(check_emote(original_message, forced) || !can_speak_basic(original_message, ignore_spam))
 		return
 
 	if(in_critical)
@@ -176,11 +176,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
-	message = treat_message(message)
+	message = treat_message(message) // unfortunately we still need this
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+	if (sigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
 	if(!message)
 		return
 
-	spans |= get_spans()
+	spans |= speech_span
 
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]

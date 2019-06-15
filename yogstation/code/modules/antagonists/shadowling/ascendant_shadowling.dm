@@ -26,6 +26,7 @@
 	maxbodytemp = INFINITY
 	environment_smash = 3
 	faction = list("faithless")
+	speech_span = SPAN_REALLYBIG //screw it someone else can figure out how to put both SPAN_YELL and SPAN_REALLYBIG on a speech_span later
 
 /mob/living/simple_animal/ascendant_shadowling/Initialize()
 	. = ..()
@@ -33,9 +34,6 @@
 
 /mob/living/simple_animal/ascendant_shadowling/Process_Spacemove(movement_dir = 0)
 	return TRUE //copypasta from carp code
-
-/mob/living/simple_animal/ascendant_shadowling/get_spans()
-	return ..() | list(SPAN_REALLYBIG, SPAN_YELL) //MAKES THEM SHOUT WHEN THEY TALK
 
 /mob/living/simple_animal/ascendant_shadowling/ex_act(severity)
 	return FALSE //You think an ascendant can be hurt by bombs? HA
