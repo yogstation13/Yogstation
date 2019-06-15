@@ -180,9 +180,9 @@
 		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
 		dat += "<H3>Inject</H3>"
 		if(mob_occupant)
-			for(var/CH in available_chems)
-				var/datum/reagent/chem = GLOB.chemical_reagents_list[CH]
-				dat += "<br>	<a href='?src=[REF(src)];inject=[CH]'>[chem.name]</a>"
+			for(var/chem in available_chems)
+				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
+				dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
 		else
 			dat += "<br> No patient to inject"
 
@@ -203,15 +203,15 @@
 				open_machine()
 		else
 			if(href_list["inject"])
-				for(var/CH in available_chems)
-					var/datum/reagent/chem = CH
+				for(var/chem in available_chems)
 					if(!is_operational() || !mob_occupant)
 						return
 					if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 						return
 					else
-						if(src.inject_chem(chem, mob_occupant))
-							. = TRUE
+						if(href_list["inject"] == chem)
+							if(src.inject_chem(chem, mob_occupant))
+								. = TRUE
 				if(.)
 					if(scrambled_chems && prob(5))
 						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
