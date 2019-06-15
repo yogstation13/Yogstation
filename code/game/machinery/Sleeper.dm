@@ -182,7 +182,10 @@
 		if(mob_occupant)
 			for(var/CH in available_chems)
 				var/datum/reagent/chem = CH
-				dat += "<br>	<a href='?src=[REF(src)];input=[chem]'>[chem]</a>"
+				if(chem_allowed(chem))
+					dat += "<font color = #666633><br>	[chem]</font>"
+				else
+					dat += "<br>	<a href='?src=[REF(src)];input=[chem]'>[chem]</a>"
 		else
 			dat += "<br> No patient to inject"
 
