@@ -177,7 +177,7 @@
 		else
 			dat += "No Occupant</H2><br>"
 		dat += "<H2>Controls</H2>"
-		dat += "<br>Door: <a href='?src=[REF(src)];input=toggle'>[state_open ? "Open" : "Closed"]</a>"
+		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
 		dat += "<H3>inject</H3>"
 		if(mob_occupant)
 			for(var/CH in available_chems)
@@ -185,7 +185,7 @@
 				if(chem_allowed(chem))
 					dat += "<font color = #666633><br>	[chem]</font>"
 				else
-					dat += "<br>	<a href='?src=[REF(src)];input=[chem]'>[chem]</a>"
+					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[chem]</a>"
 		else
 			dat += "<br> No patient to inject"
 
@@ -199,74 +199,52 @@
 		return
 	var/mob/living/mob_occupant = occupant
 	if(href_list["input"])
-		switch(href_list["input"])
-
-			if("toggle")
-				if(state_open)
-					close_machine()
-				else
-					open_machine()
-
-			if("/datum/reagent/medicine/epinephrine")
-				if(src.inject_chem(/datum/reagent/medicine/epinephrine, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/morphine")
-				if(src.inject_chem(/datum/reagent/medicine/morphine, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/salbutamol")
-				if(src.inject_chem(/datum/reagent/medicine/salbutamol, mob_occupant))
-					. = TRUE
-					if(src.scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/bicaridine")
-				if(src.inject_chem(/datum/reagent/medicine/bicaridine, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/kelotane")
-				if(src.inject_chem(/datum/reagent/medicine/kelotane, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/oculine")
-				if(src.inject_chem(/datum/reagent/medicine/oculine, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/inacusiate")
-				if(src.inject_chem(/datum/reagent/medicine/inacusiate, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/antitoxin")
-				if(src.inject_chem(/datum/reagent/medicine/antitoxin, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/mutadone")
-				if(src.inject_chem(/datum/reagent/medicine/mutadone, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/mannitol")
-				if(src.inject_chem(/datum/reagent/medicine/mannitol, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/pen_acid")
-				if(src.inject_chem(/datum/reagent/medicine/pen_acid, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-			if("/datum/reagent/medicine/omnizine")
-				if(src.inject_chem(/datum/reagent/medicine/omnizine, mob_occupant))
-					. = TRUE
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+		if(state_open)
+			close_machine()
+		else
+			open_machine()
+	else
+		if(href_list["inject"])
+			switch(href_list["input"])
+				if("/datum/reagent/medicine/epinephrine")
+					if(src.inject_chem(/datum/reagent/medicine/epinephrine, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/morphine")
+					if(src.inject_chem(/datum/reagent/medicine/morphine, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/salbutamol")
+					if(src.inject_chem(/datum/reagent/medicine/salbutamol, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/bicaridine")
+					if(src.inject_chem(/datum/reagent/medicine/bicaridine, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/kelotane")
+					if(src.inject_chem(/datum/reagent/medicine/kelotane, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/oculine")
+					if(src.inject_chem(/datum/reagent/medicine/oculine, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/inacusiate")
+					if(src.inject_chem(/datum/reagent/medicine/inacusiate, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/antitoxin")
+					if(src.inject_chem(/datum/reagent/medicine/antitoxin, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/mutadone")
+					if(src.inject_chem(/datum/reagent/medicine/mutadone, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/mannitol")
+					if(src.inject_chem(/datum/reagent/medicine/mannitol, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/pen_acid")
+					if(src.inject_chem(/datum/reagent/medicine/pen_acid, mob_occupant))
+						. = TRUE
+				if("/datum/reagent/medicine/omnizine")
+					if(src.inject_chem(/datum/reagent/medicine/omnizine, mob_occupant))
+						. = TRUE
+			if(.)
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
 	usr.set_machine(src)
 
