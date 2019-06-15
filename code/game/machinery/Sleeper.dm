@@ -27,7 +27,7 @@
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
-	var/static/UIbackup = FALSE  // yogs dont use tgui use when tgui breaks
+	var/static/UIbackup = FALSE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks
 /obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -182,7 +182,7 @@
 		if(mob_occupant)
 			for(var/CH in available_chems)
 				var/datum/reagent/chem = CH
-				dat += "<br>	<a href='?src=[REF(src)];input=[chem]'>[chem.name]</a>"
+				dat += "<br>	<a href='?src=[REF(src)];input=[chem]'>[chem]</a>"
 		else
 			dat += "<br> No patient to inject"
 
