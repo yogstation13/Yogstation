@@ -57524,6 +57524,16 @@
 /area/engine/atmos)
 "vlj" = (
 /obj/machinery/telecomms/message_server/preset,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "vmX" = (
