@@ -27,6 +27,7 @@
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
+	var/static/UIbackup = FALSE  // yogs dont use tgui use when tgui breaks
 /obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -126,14 +127,150 @@
 
 /obj/machinery/sleeper/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
+	if(!UIbackup) //yogs
+		if(controls_inside && state == GLOB.notcontained_state)
+			state = GLOB.default_state // If it has a set of controls on the inside, make it actually controllable by the mob in it.
 
-	if(controls_inside && state == GLOB.notcontained_state)
-		state = GLOB.default_state // If it has a set of controls on the inside, make it actually controllable by the mob in it.
+		ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+		if(!ui)
+			ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
+			ui.open()
+	else //yogs start   aplly backup UI
+		ui_interact_backup(user)
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
-		ui.open()
+/obj/machinery/sleeper/ui_interact_backup(mob/user)
+
+	var/dat
+	var/mob/living/mob_occupant = occupant
+	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name]</H3></center>"
+	dat += "<br>"
+	dat += "<br><H2>Ocupant: "
+	var/mob/living/mob_occupant = occupant
+	if(mob_occupant)
+		dat += "[mob_occupant.name]"
+		switch(mob_occupant.stat)
+			if(CONSCIOUS)
+				dat += "  Conscious"
+			if(SOFT_CRIT)
+				dat += "  Conscious"
+			if(UNCONSCIOUS)
+				dat += "  Unconscious"
+			if(DEAD)
+				dat += "  Dead"
+		dat += "</H2>"
+		dat += "<br><H1>Status</H1>"
+		dat += "<br>	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
+		dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
+		dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
+		dat += "<br>	Toxin:			[mob_occupant.getToxLoss()]"
+		dat += "<br>	Burn:			[mob_occupant.getFireLoss()]"
+		dat += "<br>	Brain:			"
+		if(mob_occupant.getBrainLoss())
+			dat += "abnormal"
+		else
+			dat += "normal"
+
+		dat += "<br>	Cells:			"
+		if(mob_occupant.getCloneLoss())
+			dat += "abnormal"
+		else
+			dat += "normal"
+
+		dat += "<br><H1>Reagents</H1>"
+		if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
+			for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
+				dat += "<br>	[R.name]	[R.volume]"
+	else
+		dat += "No Occupant</H2><br>"
+	dat += "<br><H2>Controls</H2>"
+	dat += "<br>Door: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
+	dat += "<br><H1>inject</H1>"
+	if(mob_occupant)
+		for(var/chem in available_chems)
+			dat += "<br>	<a href='?src=[REF(src)];input=[chem_buttons[chem]]'>[chem]</a>"
+	else
+		dat += "<br> No patient to inject"
+
+	dat += "</font>"
+	temp = ""
+	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
+	onclose(user, "tcommachine")
+	return TRUE
+
+/obj/machinery/telecomms/Topic(href, href_list)
+	if(..())
+		return
+	var/mob/living/mob_occupant = occupant
+	if(href_list["input"])
+		switch(href_list["input"])
+
+			if("toggle")
+				state_open = !state_open
+
+			if("epinephrine")
+				if(inject_chem(epinephrine, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("morphine")
+				if(inject_chem(morphine, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("salbutamol")
+				if(inject_chem(salbutamol, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("bicaridine")
+				if(inject_chem(bicaridine, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("kelotane")
+				if(inject_chem(kelotane, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("oculine")
+				if(inject_chem(oculine, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("inacusiate")
+				if(inject_chem(inacusiate, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("antitoxin")
+				if(inject_chem(antitoxin, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("mutadone")
+				if(inject_chem(mutadone, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("mannitol")
+				if(inject_chem(mannitol, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("pen_acid")
+				if(inject_chem(pen_acid, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			if("omnizine")
+				if(inject_chem(omnizine, mob_occupant))
+				. = TRUE
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+
+	usr.set_machine(src)
+
+	updateUsrDialog() // yogs end
 
 /obj/machinery/sleeper/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
