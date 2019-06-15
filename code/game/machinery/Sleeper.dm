@@ -182,7 +182,7 @@
 		if(mob_occupant)
 			for(var/chem in available_chems)
 				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-				if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
+				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 					dat += "<font color = #666633><br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a></font>"
 				else
 					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
