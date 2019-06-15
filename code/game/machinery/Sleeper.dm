@@ -203,16 +203,14 @@
 				open_machine()
 		else
 			if(href_list["inject"])
-				for(var/chem in available_chems)
-					if(!is_operational() || !mob_occupant)
+				if(!is_operational() || !mob_occupant)
+					return
+				else
+					if(mob_occupant.health < min_health && href_list["inject"] != /datum/reagent/medicine/epinephrine)
 						return
-
 					else
-						if(href_list["inject"] == chem)
-							if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-								return
-									if(src.inject_chem(chem, mob_occupant))
-										. = TRUE
+						if(src.inject_chem(href_list["inject"], mob_occupant))
+							. = TRUE
 				if(.)
 					if(scrambled_chems && prob(5))
 						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
