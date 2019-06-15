@@ -182,7 +182,7 @@
 		if(mob_occupant)
 			for(var/CH in available_chems)
 				var/datum/reagent/chem = CH
-				if(chem_allowed(chem))
+				if(chem && chem_allowed(chem))
 					dat += "<font color = #666633><br>	[chem]</font>"
 				else
 					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[chem]</a>"
@@ -205,42 +205,10 @@
 			open_machine()
 	else
 		if(href_list["inject"])
-			switch(href_list["input"])
-				if("/datum/reagent/medicine/epinephrine")
-					if(src.inject_chem(/datum/reagent/medicine/epinephrine, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/morphine")
-					if(src.inject_chem(/datum/reagent/medicine/morphine, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/salbutamol")
-					if(src.inject_chem(/datum/reagent/medicine/salbutamol, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/bicaridine")
-					if(src.inject_chem(/datum/reagent/medicine/bicaridine, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/kelotane")
-					if(src.inject_chem(/datum/reagent/medicine/kelotane, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/oculine")
-					if(src.inject_chem(/datum/reagent/medicine/oculine, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/inacusiate")
-					if(src.inject_chem(/datum/reagent/medicine/inacusiate, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/antitoxin")
-					if(src.inject_chem(/datum/reagent/medicine/antitoxin, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/mutadone")
-					if(src.inject_chem(/datum/reagent/medicine/mutadone, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/mannitol")
-					if(src.inject_chem(/datum/reagent/medicine/mannitol, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/pen_acid")
-					if(src.inject_chem(/datum/reagent/medicine/pen_acid, mob_occupant))
-						. = TRUE
-				if("/datum/reagent/medicine/omnizine")
-					if(src.inject_chem(/datum/reagent/medicine/omnizine, mob_occupant))
+			for(var/CH in available_chems)
+				var/datum/reagent/chem = CH
+				if("[chem]")
+					if(src.inject_chem(chem, mob_occupant))
 						. = TRUE
 			if(.)
 				if(scrambled_chems && prob(5))
@@ -248,7 +216,12 @@
 
 	usr.set_machine(src)
 
-	updateUsrDialog() // yogs end
+	updateUsrDialog()
+
+/obj/machinery/sleeper/proc/canAccess(mob/user)
+	if(issilicon(user) || in_range(user, src))
+		return TRUE
+	return FALSE // yogs end
 
 /obj/machinery/sleeper/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
