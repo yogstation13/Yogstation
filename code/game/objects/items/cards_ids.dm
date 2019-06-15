@@ -88,6 +88,7 @@
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return
+	log_combat(user, A, "attempted to emag")
 	A.emag_act(user)
 
 /obj/item/card/emagfake
@@ -124,6 +125,13 @@
 	. = ..()
 	if(mapload && access_txt)
 		access = text2access(access_txt)
+
+/obj/item/card/id/Destroy()
+	if (registered_account)
+		registered_account.bank_cards -= src
+	if (my_store && my_store.my_card == src)
+		my_store.my_card = null
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
@@ -186,7 +194,7 @@
 		if(!alt_click_can_use_id(user))
 			return
 		if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
-			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span")
+			to_chat(user, "<span class='warning'>The account ID number needs to be between 111111 and 999999.</span>")
 			return
 		for(var/A in SSeconomy.bank_accounts)
 			var/datum/bank_account/B = A

@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "Perma cameras on Yogstation are on the right network and properly named."
