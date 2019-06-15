@@ -106,6 +106,9 @@
 /datum/component/squeak/slimeplushie
 	datum_outputs = list(/datum/outputs/squelch)
 
+/datum/component/squeak/beeplushie
+	datum_outputs = list(/datum/outputs/bee)
+
 /datum/component/squeak/mouse
 	datum_outputs = list(/datum/outputs/squeak)
 
@@ -117,3 +120,6 @@
 
 /datum/component/squeak/airhorn
 	datum_outputs = list(/datum/outputs/airhorn)
+
+/datum/component/squeak/goat
+	datum_outputs = list(/datum/outputs/goat) //yogs added goat squeak

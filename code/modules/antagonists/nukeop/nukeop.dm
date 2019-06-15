@@ -53,6 +53,13 @@
 	memorize_code()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()
+		// grant extra TC for the people who start in the nukie base ie. not the lone op
+		var/extra_tc = CEILING(GLOB.joined_player_list.len/5, 5)
+		var/datum/component/uplink/U = owner.find_syndicate_uplink()
+		if (U)
+			U.telecrystals += extra_tc
+
+
 
 /datum/antagonist/nukeop/get_team()
 	return nuke_team
@@ -60,7 +67,7 @@
 /datum/antagonist/nukeop/proc/assign_nuke()
 	if(nuke_team && !nuke_team.tracked_nuke)
 		nuke_team.memorized_code = random_nukecode()
-		var/obj/machinery/nuclearbomb/syndicate/nuke = locate() in GLOB.nuke_list
+		var/obj/machinery/nuclearbomb/syndicate/nuke = find_nuke() //Yogs -- Puts find_nuke() here to fix bananium nukes fucking up normal nuke ops
 		if(nuke)
 			nuke_team.tracked_nuke = nuke
 			if(nuke.r_code == "ADMIN")

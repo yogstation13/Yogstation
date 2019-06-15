@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "fixes message spam from riding a vehicle without enough legs/arms"
