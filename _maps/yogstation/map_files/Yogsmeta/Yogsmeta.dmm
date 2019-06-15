@@ -48727,7 +48727,7 @@
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
 "bJg" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "bJh" = (
