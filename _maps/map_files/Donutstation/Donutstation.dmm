@@ -67,6 +67,10 @@
 	dir = 8
 	},
 /area/hallway/secondary/exit/departure_lounge)
+"aaj" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "aak" = (
 /turf/closed/wall,
 /area/medical/morgue)
@@ -18882,7 +18886,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -20760,7 +20764,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_y = -32
 	},
@@ -20892,7 +20896,6 @@
 /area/construction/mining/aux_base)
 "aVl" = (
 /obj/docking_port/stationary{
-	area_type = /area/construction/mining/aux_base;
 	dheight = 4;
 	dir = 8;
 	dwidth = 4;
@@ -31569,7 +31572,7 @@
 /obj/item/multitool,
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -35749,7 +35752,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -99838,7 +99841,7 @@ aar
 cba
 aar
 aYm
-aar
+aaj
 aov
 aTi
 byM

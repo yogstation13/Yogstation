@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - rscadd: " adds backup UI mode for sleepers activateable by admins"
