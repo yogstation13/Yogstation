@@ -1,0 +1,4 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer spawn neutral mobs and not have the king goat fight back"

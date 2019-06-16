@@ -37,7 +37,7 @@
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
+	if(!(CONFIG_GET(flag/disable_human_mood)))
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
@@ -750,7 +750,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health - getStaminaLoss()
+			var/health_amount = min(health, maxHealth - getStaminaLoss())
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)

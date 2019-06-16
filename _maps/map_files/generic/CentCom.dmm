@@ -4108,7 +4108,6 @@
 /area/centcom/control)
 "ki" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dir = 1;
 	dwidth = 25;
 	height = 50;
@@ -10792,7 +10791,6 @@
 /area/syndicate_mothership/control)
 "xN" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership/control;
 	dir = 1;
 	dwidth = 3;
 	height = 7;
@@ -17220,7 +17218,6 @@
 /area/centcom/holding)
 "My" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dheight = 1;
 	dir = 8;
 	dwidth = 12;

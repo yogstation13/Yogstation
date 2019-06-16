@@ -18,6 +18,7 @@
 					/obj/item/camera_film = 30,
 					/obj/item/storage/photo_album = 5,
 					/obj/item/storage/photobook = 5,
+					/obj/item/hourglass = 2,
 					/obj/item/toy/frisbee = 2,
 					/obj/item/toy/boomerang = 2,
 					/obj/item/storage/bag/photo = 5,
