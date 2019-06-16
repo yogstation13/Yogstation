@@ -33,7 +33,7 @@
 	density = TRUE
 	pixel_z = -8
 	layer = LARGE_MOB_LAYER
-	max_integrity = 900
+	max_integrity = 1800
 	var/list/accounts_to_rob
 	var/mob/living/carbon/human/bogdanoff
 	var/canwalk = FALSE
