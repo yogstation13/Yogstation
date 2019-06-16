@@ -8,7 +8,7 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(!IsInStasis())
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()
@@ -65,7 +65,7 @@
 
 //Second link in a breath chain, calls check_breath()
 /mob/living/carbon/proc/breathe()
-	if(reagents.has_reagent("lexorin"))
+	if(reagents.has_reagent(/datum/reagent/toxin/lexorin))
 		return
 	if(istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		return
@@ -137,7 +137,7 @@
 
 	//CRIT
 	if(!breath || (breath.total_moles() == 0) || !lungs)
-		if(reagents.has_reagent("epinephrine") && lungs)
+		if(reagents.has_reagent(/datum/reagent/medicine/epinephrine) && lungs)
 			return
 		adjustOxyLoss(1)
 
@@ -325,10 +325,17 @@
 	return
 
 /mob/living/carbon/proc/handle_bodyparts()
+	var/stam_regen = FALSE
+	if(stam_regen_start_time <= world.time)
+		stam_regen = TRUE
+		if(stam_paralysed)
+			stam_paralysed = FALSE
+			SetParalyzed(0) //Really we should have sources for status effects
+			update_health_hud()
 	for(var/I in bodyparts)
 		var/obj/item/bodypart/BP = I
 		if(BP.needs_processing)
-			. |= BP.on_life()
+			. |= BP.on_life(stam_regen)
 
 /mob/living/carbon/proc/handle_organs()
 	for(var/V in internal_organs)
