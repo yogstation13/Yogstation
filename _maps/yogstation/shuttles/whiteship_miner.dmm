@@ -69,8 +69,8 @@
 /area/shuttle/abandoned)
 "ak" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l";
-	dir = 4
+	icon_state = "burst_s";
+	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
@@ -212,13 +212,6 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"aC" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
 "aD" = (
 /obj/structure/shuttle/engine/heater{
 	icon_state = "heater";
@@ -316,9 +309,6 @@
 	alternate_worn_layer = null;
 	amount = 5
 	},
-/obj/item/stack/sheet/plasteel{
-	amount = 5
-	},
 /obj/item/stack/cable_coil,
 /obj/machinery/light{
 	dir = 8
@@ -326,6 +316,10 @@
 /obj/item/stock_parts/cell/hyper/empty,
 /obj/item/stock_parts/capacitor/adv,
 /obj/item/stock_parts/scanning_module/adv,
+/obj/item/stack/rods{
+	amount = 10
+	},
+/obj/item/mecha_parts/mecha_equipment/ripleyupgrade,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "bd" = (
@@ -560,13 +554,6 @@
 /obj/effect/decal/cleanable/food/flour,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"cG" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r";
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "cH" = (
 /obj/machinery/hydroponics/constructable,
@@ -959,6 +946,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table,
+/obj/machinery/cell_charger,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "DY" = (
@@ -1178,18 +1166,18 @@ aa
 (2,1,1) = {"
 aa
 ak
-aC
-aC
-aC
+ak
+ak
+ak
 ae
 bv
 ax
 aB
 ae
-aC
-aC
-aC
-cG
+ak
+ak
+ak
+ak
 aa
 "}
 (3,1,1) = {"
