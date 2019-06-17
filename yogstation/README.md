@@ -32,6 +32,36 @@ bunch of shitcode here
 
 Once you mirror a file, please follow the above for marking your changes, this way we know what needs to be updated when a file has been mirrored.
 
+## Can you give a simple example?
+
+Lets say for example that you have wish to increase the amount of playtime required before a player can play a Security role, as is the case in [This PR](https://github.com/yogstation13/Yogstation-TG/pull/5914). If you're a foolish moron, you might read the above and decide that modifying "code/modules/jobs/job_types/detective.dm" like this would be modular enough:
+```dm
+/datum/job/detective
+	title = "Detective"
+	flag = DETECTIVE
+	department_head = list("Head of Security")
+	department_flag = ENGSEC
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the head of security"
+	selection_color = "#ffeeee"
+	minimal_player_age = 7
+	exp_requirements = 180	//Yogs
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_SECURITY	//Yogs
+```
+However, the best practice would be to make a new file in the yogstation folder, at "yogstation/code/modules/jobs/job_types/detective.dm", and add these following lines, instead:
+```dm
+/datum/job/detective
+	exp_requirements = 180	//Man I love reducing the amount of people who play sec even further & draconiously
+	exp_type_department = EXP_TYPE_SECURITY
+```
+Adding these values *overrides* the values that may be present in the TG version of this file, which means that TG can edit them all they want without it having any effect on Yogs, and without requiring any merge conflict resolution by the already-quite-busy maintainers and headcoders.
+
+This is an important pattern which you should maintain when attempting to write modularly; overwrite exactly what you need to, via files in the /yogstation/ folder, and leave very little ``//yogs`` in the /code/ folder.
+
+## Important Rules
 
 ### tgstation.dme versus yogstation.dme
 
@@ -46,8 +76,6 @@ Icons are notorious for conflicts. Because of this, **ALL NEW ICONS** must go in
 Defines only work if they come before the code in which they are used. Because of this, please put all defines in the ``code/__DEFINES/~yogs_defines`` path. Use an existing file, or create a new one if necessary.
 
 If a small addition needs to be made outside of the "yogstation" folder, then it should be done by adding a proc. This proc will be defined inside of the "yogstation" folder. By doing this, a large number of things can be done by adding just one line of code outside of the folder! If a file must be changed a lot, re-create it with the changes inside of the "yogstation/code" folder. **Make sure to follow the file's path correctly** (i.e. "code/modules/clothing/clothing.dm"). Then, remove the original file from the yogstation.dme and add the new one.
-
-## Can you give some examples?
 
 ### Clothing
 
