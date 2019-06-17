@@ -1,8 +1,5 @@
 /mob/living/silicon/robot/attackby(obj/item/I, mob/living/user)
-	if(hat_offset != INFINITY && user.a_intent == INTENT_HELP && is_type_in_typecache(I, equippable_hats))
-		if(!(I.slot_flags & ITEM_SLOT_HEAD))
-			to_chat(user, "<span class='warning'>You can't quite fit [I] onto [src]'s head.</span>")
-			return
+	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, "<span class='notice'>You begin to place [I] on [src]'s head...</span>")
 		to_chat(src, "<span class='notice'>[user] is placing [I] on your head...</span>")
 		if(do_after(user, 30, target = src))
@@ -15,7 +12,7 @@
 
 /mob/living/silicon/robot/attack_alien(mob/living/carbon/alien/humanoid/M)
 	if (M.a_intent == INTENT_DISARM)
-		if(!(lying))
+		if(mobility_flags & MOBILITY_STAND)
 			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 			var/obj/item/I = get_active_held_item()
 			if(I)
@@ -177,9 +174,8 @@
 			if (stat != DEAD)
 				adjustBruteLoss(30)
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
-	..(Proj)
+/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj, def_zone)
+	. = ..()
 	updatehealth()
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
-	return 2

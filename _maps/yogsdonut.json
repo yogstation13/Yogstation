@@ -1,0 +1,11 @@
+{
+    "map_name": "Yogsdonut",
+    "map_path": "yogstation/map_files/YogsDonut",
+    "map_file": "YogsDonut.dmm",
+    "shuttles": {
+	    "emergency": "emergency_donut",
+	    "ferry": "ferry_fancy",
+	    "cargo": "cargo_box",
+	    "whiteship": "whiteship_box"
+    }
+}

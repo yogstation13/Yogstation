@@ -2,7 +2,7 @@
 	The server logs all traffic and signal data. Once it records the signal, it sends
 	it to the subspace broadcaster.
 
-	Store a maximum of 100 logs and then deletes them.
+	Store a maximum of some hundreds of logs and then deletes them.
 */
 
 /obj/machinery/telecomms/server
@@ -31,11 +31,14 @@
 	if (log_entries.len >= 400)
 		log_entries.Cut(1, 2)
 
+	signal.data["server"] = src; //Yogs
+	
 	var/datum/comm_log_entry/log = new
 	log.parameters["mobtype"] = signal.virt.source.type
 	log.parameters["name"] = signal.data["name"]
 	log.parameters["job"] = signal.data["job"]
 	log.parameters["message"] = signal.data["message"]
+	log.parameters["language"] = signal.language
 
 	// If the signal is still compressed, make the log entry gibberish
 	var/compression = signal.data["compression"]
@@ -50,13 +53,15 @@
 	log.name = "data packet ([md5(identifier)])"
 	log_entries.Add(log)
 
+	if(Compiler && autoruncode)//Yogs -- NTSL
+		Compiler.Run(signal)// Yogs -- ditto
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
 
 // Simple log entry datum
-/datum/comm_log_entry
+/datum/comm_log_entry // Simple log entry datum
 	var/input_type = "Speech File"
 	var/name = "data packet (#)"
 	var/parameters = list()  // copied from signal.data above

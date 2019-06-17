@@ -2,6 +2,7 @@
 	form = "Condition"
 	name = "Appendicitis"
 	max_stages = 3
+	spread_text = "Non-Contagious" //Yogs
 	cure_text = "Surgery"
 	agent = "Shitty Appendix"
 	viable_mobtypes = list(/mob/living/carbon/human)

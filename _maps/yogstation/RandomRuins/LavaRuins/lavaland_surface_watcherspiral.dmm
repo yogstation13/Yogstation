@@ -1,0 +1,293 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
+"a" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"b" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"c" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+"d" = (
+/turf/closed/wall/mineral/sandstone,
+/area/ruin/unpowered)
+"e" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"f" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher{
+	environment_smash = 0;
+	wander = 0
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"g" = (
+/obj/structure/closet/crate/necropolis/tendril{
+	anchored = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"h" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered)
+"i" = (
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+a
+a
+a
+a
+b
+a
+b
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+a
+c
+b
+a
+b
+a
+c
+a
+b
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+a
+a
+b
+b
+b
+a
+b
+a
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+d
+d
+d
+e
+e
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+b
+c
+a
+b
+a
+e
+e
+f
+e
+d
+b
+b
+b
+a
+a
+"}
+(8,1,1) = {"
+a
+b
+a
+b
+b
+d
+e
+g
+e
+d
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+e
+e
+f
+e
+e
+a
+b
+a
+c
+b
+"}
+(10,1,1) = {"
+a
+b
+a
+b
+a
+d
+d
+e
+h
+d
+a
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+b
+a
+b
+a
+b
+b
+a
+a
+a
+a
+b
+a
+b
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+i
+b
+a
+b
+a
+"}
+(13,1,1) = {"
+a
+a
+c
+a
+b
+a
+a
+b
+a
+b
+a
+a
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+b
+b
+b
+a
+a
+b
+a
+a
+a
+a
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

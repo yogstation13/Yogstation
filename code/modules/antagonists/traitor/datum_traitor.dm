@@ -18,7 +18,7 @@
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && isAI(owner.current))
 		traitor_kind = TRAITOR_AI
-	
+
 	SSticker.mode.traitors += owner
 	owner.special_role = special_role
 	if(give_objectives)
@@ -48,19 +48,17 @@
 		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
 		A.malf_picker.remove_malf_verbs(A)
 		qdel(A.malf_picker)
-	
+
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")
 	owner.special_role = null
 	..()
 
-/datum/antagonist/traitor/proc/add_objective(var/datum/objective/O)
-	owner.objectives += O
+/datum/antagonist/traitor/proc/add_objective(datum/objective/O)
 	objectives += O
 
-/datum/antagonist/traitor/proc/remove_objective(var/datum/objective/O)
-	owner.objectives -= O
+/datum/antagonist/traitor/proc/remove_objective(datum/objective/O)
 	objectives -= O
 
 /datum/antagonist/traitor/proc/forge_traitor_objectives()
@@ -89,7 +87,7 @@
 		forge_single_objective()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
-		if (!(locate(/datum/objective/hijack) in owner.objectives))
+		if (!(locate(/datum/objective/hijack) in objectives))
 			var/datum/objective/hijack/hijack_objective = new
 			hijack_objective.owner = owner
 			add_objective(hijack_objective)
@@ -97,7 +95,7 @@
 
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
-	for(var/datum/objective/O in owner.objectives)
+	for(var/datum/objective/O in objectives)
 		if(!O.martyr_compatible)
 			martyr_compatibility = 0
 			break
@@ -109,7 +107,7 @@
 		return
 
 	else
-		if(!(locate(/datum/objective/escape) in owner.objectives))
+		if(!(locate(/datum/objective/escape) in objectives))
 			var/datum/objective/escape/escape_objective = new
 			escape_objective.owner = owner
 			add_objective(escape_objective)
@@ -159,7 +157,7 @@
 			kill_objective.find_target()
 			add_objective(kill_objective)
 	else
-		if(prob(15) && !(locate(/datum/objective/download) in owner.objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
+		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
 			var/datum/objective/download/download_objective = new
 			download_objective.owner = owner
 			download_objective.gen_amount_goal()
@@ -199,7 +197,7 @@
 			.=2
 
 /datum/antagonist/traitor/greet()
-	to_chat(owner.current, "<B><font size=3 color=red>You are the [owner.special_role].</font></B>")
+	to_chat(owner.current, "<span class='alertsyndie'>You are the [owner.special_role].</span>")
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
@@ -244,14 +242,18 @@
 		return
 	var/mob/traitor_mob=owner.current
 
-	to_chat(traitor_mob, "<U><B>The Syndicate provided you with the following information on how to identify their agents:</B></U>")
-	to_chat(traitor_mob, "<B>Code Phrase</B>: <span class='danger'>[GLOB.syndicate_code_phrase]</span>")
-	to_chat(traitor_mob, "<B>Code Response</B>: <span class='danger'>[GLOB.syndicate_code_response]</span>")
+	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
+	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	antag_memory += "<b>Code Phrase</b>: [GLOB.syndicate_code_phrase]<br>"
-	antag_memory += "<b>Code Response</b>: [GLOB.syndicate_code_response]<br>"
+	to_chat(traitor_mob, "<U><B>The Syndicate have provided you with the following codewords to identify fellow agents:</B></U>")
+	to_chat(traitor_mob, "<B>Code Phrase</B>: <span class='blue'>[phrases]</span>")
+	to_chat(traitor_mob, "<B>Code Response</B>: <span class='red'>[responses]</span>")
 
-	to_chat(traitor_mob, "Use the code words in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
+	antag_memory += "<b>Code Phrase</b>: <span class='blue'>[phrases]</span><br>"
+	antag_memory += "<b>Code Response</b>: <span class='red'>[responses]</span><br>"
+
+	to_chat(traitor_mob, "Use the codewords during regular conversation to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
+	to_chat(traitor_mob, "<span class='alertwarning'>You memorize the codewords, allowing you to recognise them when heard.</span>")
 
 /datum/antagonist/traitor/proc/add_law_zero()
 	var/mob/living/silicon/ai/killer = owner.current
@@ -266,7 +268,7 @@
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
-		owner.equip_traitor(employer, silent, src)
+		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
 
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction
@@ -356,8 +358,14 @@
 	return result.Join("<br>")
 
 /datum/antagonist/traitor/roundend_report_footer()
-	return "<br><b>The code phrases were:</b> <span class='codephrase'>[GLOB.syndicate_code_phrase]</span><br>\
-		<b>The code responses were:</b> <span class='codephrase'>[GLOB.syndicate_code_response]</span><br>"
+	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
+	var/responses = jointext(GLOB.syndicate_code_response, ", ")
+
+	var message = "<br><b>The code phrases were:</b> <span class='bluetext'>[phrases]</span><br>\
+								<b>The code responses were:</b> <span class='redtext'>[responses]</span><br>"
+
+	return message
+
 
 /datum/antagonist/traitor/is_gamemode_hero()
 	return SSticker.mode.name == "traitor"

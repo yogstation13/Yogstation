@@ -27,6 +27,7 @@
 
 /obj/effect/landmark/stationroom
 	var/list/template_names = list()
+	layer = BULLET_HOLE_LAYER
 
 /obj/effect/landmark/stationroom/New()
 	..()
@@ -61,8 +62,14 @@
 	qdel(src)
 	return TRUE
 
-/obj/effect/landmark/stationroom/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Default")
+/obj/effect/landmark/stationroom/box/bar
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple")
+	icon = 'yogstation/icons/rooms/box/bar.dmi'
+	icon_state = "bar_box"
 
-/obj/effect/landmark/stationroom/foreportmaint1
+/obj/effect/landmark/stationroom/box/engine
+	template_names = list("Engine SM", "Engine Singulo")
+	icon = 'yogstation/icons/rooms/box/engine.dmi'
+
+/obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")

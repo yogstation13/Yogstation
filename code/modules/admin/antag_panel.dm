@@ -80,7 +80,7 @@ GLOBAL_VAR(antag_prototypes)
 	var/list/result = list()
 	if(!current)
 		result += "<span class='bad'>No body!</span>"
-	if(current && current.has_trait(TRAIT_MINDSHIELD))
+	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
 		result += "<span class='good'>Mindshielded</span>"
 	//Move these to mob
 	if(iscyborg(current))
@@ -198,7 +198,7 @@ GLOBAL_VAR(antag_prototypes)
 		var/datum/component/uplink/U = find_syndicate_uplink()
 		if(U)
 			uplink_info += "<a href='?src=[REF(src)];common=takeuplink'>take</a>"
-			if (check_rights(R_FUN, 0))
+			if (check_rights(R_ADMIN, 0)) //YOGS - changes R_FUN to R_ADMIN
 				uplink_info += ", <a href='?src=[REF(src)];common=crystals'>[U.telecrystals]</a> TC"
 			else
 				uplink_info += ", [U.telecrystals] TC"

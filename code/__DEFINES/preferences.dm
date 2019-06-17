@@ -16,6 +16,7 @@
 #define DISABLE_ARRIVALRATTLE	(1<<13)
 #define COMBOHUD_LIGHTING		(1<<14)
 #define QUIET_ROUND				(1<<15) // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
+#define PREF_MOOD				(1<<16) // Yogs -- Ditto on the above, increment this and QUIET_ROUND in the event of conflict
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS)
 
@@ -30,8 +31,9 @@
 #define CHAT_GHOSTWHISPER	(1<<7)
 #define CHAT_GHOSTPDA		(1<<8)
 #define CHAT_GHOSTRADIO 	(1<<9)
+#define CHAT_BANKCARD  (1<<10)
 
-#define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO)
+#define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD)
 
 #define PARALLAX_INSANE -1 //for show offs
 #define PARALLAX_HIGH    0 //default.

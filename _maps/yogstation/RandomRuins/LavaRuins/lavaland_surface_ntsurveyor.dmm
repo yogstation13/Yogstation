@@ -1,0 +1,323 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered)
+"c" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"d" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium,
+/area/ruin/powered)
+"e" = (
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium/interior,
+/area/ruin/powered)
+"f" = (
+/obj/machinery/suit_storage_unit/standard_unit{
+	helmet_type = null;
+	suit_type = /obj/item/clothing/suit/space/hardsuit/ert/sec
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/powered)
+"g" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/molten_object,
+/obj/item/restraints/handcuffs,
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/powered)
+"h" = (
+/obj/item/paper/crumpled{
+	name = "Crumpled Note"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/powered)
+"i" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/computer,
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/powered)
+"j" = (
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"k" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	dir = 8
+	},
+/area/ruin/powered)
+"l" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/circuitboard/computer/crew,
+/obj/item/trash/chips,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"m" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"n" = (
+/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/wallframe/apc,
+/obj/item/electronics/apc,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"o" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"p" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/computer,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 8
+	},
+/turf/open/floor/plasteel{
+	dir = 8
+	},
+/area/ruin/powered)
+"r" = (
+/obj/item/trash/raisins,
+/obj/item/trash/candy,
+/obj/item/trash/chips,
+/obj/item/trash/chips,
+/obj/item/trash/chips,
+/obj/item/trash/chips,
+/obj/item/trash/sosjerky,
+/obj/item/trash/raisins,
+/obj/item/trash/raisins,
+/obj/item/trash/cheesie,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"s" = (
+/obj/item/trash/candy,
+/obj/item/trash/chips,
+/obj/item/trash/sosjerky,
+/obj/item/trash/sosjerky,
+/obj/item/trash/raisins,
+/obj/item/trash/cheesie,
+/obj/item/trash/cheesie,
+/obj/item/trash/cheesie,
+/obj/item/trash/cheesie,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"t" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"u" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"v" = (
+/obj/machinery/computer,
+/turf/open/floor/plasteel,
+/area/ruin/powered)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/snack{
+	product_slogans = "Use Getmore Chocolate to avoid starving to death on a crashed ship in the middle of a volcanic wasteland!";
+	products = list(/obj/item/reagent_containers/food/snacks/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/energybar = 0);
+	slogan_delay = 1000
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/powered)
+"x" = (
+/obj/item/trash/candy,
+/obj/item/trash/candy,
+/obj/item/trash/candy,
+/obj/item/trash/candy,
+/obj/item/trash/sosjerky,
+/obj/item/trash/sosjerky,
+/obj/item/trash/sosjerky,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/powered)
+"y" = (
+/obj/item/storage/box/hug/medical,
+/obj/item/storage/box/hug/medical,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/powered)
+"z" = (
+/obj/machinery/computer,
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/powered)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+d
+j
+j
+d
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+e
+k
+q
+e
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+b
+f
+l
+r
+w
+b
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+c
+g
+m
+s
+x
+c
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+c
+h
+n
+t
+y
+c
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+b
+i
+o
+u
+z
+b
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+b
+b
+p
+v
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -122,8 +122,8 @@
 	desc = "A massive, armored construct built to spearhead attacks and soak up enemy fire."
 	icon_state = "behemoth"
 	icon_living = "behemoth"
-	maxHealth = 200
-	health = 200
+	maxHealth = 150
+	health = 150
 	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	obj_damage = 90
@@ -137,7 +137,7 @@
 	mob_size = MOB_SIZE_LARGE
 	force_threshold = 10
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/forcewall/cult,
-							/obj/effect/proc_holder/spell/dumbfire/juggernaut)
+							/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut)
 	runetype = /datum/action/innate/cult/create_rune/wall
 	playstyle_string = "<b>You are a Juggernaut. Though slow, your shell can withstand heavy punishment, \
 						create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.</b>"
@@ -148,7 +148,7 @@
 
 /mob/living/simple_animal/hostile/construct/armored/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
-		var/reflectchance = 60 - round(P.damage/3)
+		var/reflectchance = 40 - round(P.damage/3)
 		if(prob(reflectchance))
 			apply_damage(P.damage * 0.5, P.damage_type)
 			visible_message("<span class='danger'>The [P.name] is reflected by [src]'s armored shell!</span>", \
@@ -171,11 +171,17 @@
 					new_angle_s -= 360
 				P.setAngle(new_angle_s)
 
-			return -1 // complete projectile permutation
+			return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
-	return (..(P))
+	return ..()
 
+//////////////////////////Angelic-Juggernaut////////////////////////////
+/mob/living/simple_animal/hostile/construct/armored/angelic
+	icon_state = "behemoth_angelic"
+	icon_living = "behemoth_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
 
+/mob/living/simple_animal/hostile/construct/armored/noncult
 
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/hostile/construct/wraith
@@ -222,7 +228,13 @@
 /mob/living/simple_animal/hostile/construct/wraith/hostile //actually hostile, will move around, hit things
 	AIStatus = AI_ON
 
+//////////////////////////Angelic-Wraith////////////////////////////
+/mob/living/simple_animal/hostile/construct/wraith/angelic
+	icon_state = "floating_angelic"
+	icon_living = "floating_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
 
+/mob/living/simple_animal/hostile/construct/wraith/noncult
 
 /////////////////////////////Artificer/////////////////////////
 /mob/living/simple_animal/hostile/construct/builder
@@ -299,14 +311,21 @@
 	AIStatus = AI_ON
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES //only token destruction, don't smash the cult wall NO STOP
 
-/////////////////////////////Non-cult Artificer/////////////////////////
+/////////////////////////////Angelic Artificer/////////////////////////
+/mob/living/simple_animal/hostile/construct/builder/angelic
+	icon_state = "artificer_angelic"
+	icon_living = "artificer_angelic"
+	loot = list(/obj/item/ectoplasm/angelic)
+	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult/purified,
+							/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
+							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser)
+
 /mob/living/simple_animal/hostile/construct/builder/noncult
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone/noncult,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
 							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser)
-
 
 /////////////////////////////Harvester/////////////////////////
 /mob/living/simple_animal/hostile/construct/harvester
@@ -323,7 +342,8 @@
 	attacktext = "butchers"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/area_conversion,
-							/obj/effect/proc_holder/spell/targeted/forcewall/cult)
+							/obj/effect/proc_holder/spell/targeted/forcewall/cult,
+							/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 	playstyle_string = "<B>You are a Harvester. You are incapable of directly killing humans, but your attacks will remove their limbs: \
 						Bring those who still cling to this world of illusion back to the Geometer so they may know Truth. Your form and any you are pulling can pass through runed walls effortlessly.</B>"
 	can_repair_constructs = TRUE
@@ -338,12 +358,12 @@
 			stored_pulling.forceMove(loc)
 		forceMove(AM)
 		if(stored_pulling)
-			start_pulling(stored_pulling, TRUE) //drag anything we're pulling through the wall with us by magic
+			start_pulling(stored_pulling, supress_message = TRUE) //drag anything we're pulling through the wall with us by magic
 
 /mob/living/simple_animal/hostile/construct/harvester/AttackingTarget()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(C.has_trait(TRAIT_NODISMEMBER))
+		if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 			return ..()		//ATTACK!
 		var/list/parts = list()
 		var/undismembermerable_limbs = 0
@@ -357,7 +377,7 @@
 		if(!LAZYLEN(parts))
 			if(undismembermerable_limbs) //they have limbs we can't remove, and no parts we can, attack!
 				return ..()
-			C.Knockdown(60)
+			C.Paralyze(60)
 			visible_message("<span class='danger'>[src] knocks [C] down!</span>")
 			to_chat(src, "<span class='cultlarge'>\"Bring [C.p_them()] to me.\"</span>")
 			return FALSE

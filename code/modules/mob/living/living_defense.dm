@@ -40,7 +40,7 @@
 	return FALSE
 
 /mob/living/proc/on_hit(obj/item/projectile/P)
-	return
+	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
@@ -48,7 +48,7 @@
 		apply_damage(P.damage, P.damage_type, def_zone, armor)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	return P.on_hit(src, armor)
+	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
 	return 0
@@ -61,7 +61,7 @@
 		else
 				return 0
 
-/mob/living/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE)
+/mob/living/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(istype(AM, /obj/item))
 		var/obj/item/I = AM
 		var/zone = ran_zone(BODY_ZONE_CHEST, 65)//Hits a random part of the body, geared towards the chest
@@ -126,32 +126,36 @@
 	adjust_fire_stacks(3)
 	IgniteMob()
 
-/mob/living/proc/grabbedby(mob/living/carbon/user, supress_message = 0)
+/mob/living/proc/grabbedby(mob/living/carbon/user, supress_message = FALSE)
 	if(user == src || anchored || !isturf(user.loc))
 		return FALSE
 	if(!user.pulling || user.pulling != src)
-		user.start_pulling(src, supress_message)
+		user.start_pulling(src, supress_message = supress_message)
 		return
 
-	if(!(status_flags & CANPUSH) || has_trait(TRAIT_PUSHIMMUNE))
+	if(!(status_flags & CANPUSH) || HAS_TRAIT(src, TRAIT_PUSHIMMUNE))
 		to_chat(user, "<span class='warning'>[src] can't be grabbed more aggressively!</span>")
 		return FALSE
 
-	if(user.has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='notice'>You don't want to risk hurting [src]!</span>")
 		return FALSE
-
 	grippedby(user)
 
 //proc to upgrade a simple pull into a more aggressive grab.
-/mob/living/proc/grippedby(mob/living/carbon/user)
+/mob/living/proc/grippedby(mob/living/carbon/user, instant = FALSE)
 	if(user.grab_state < GRAB_KILL)
 		user.changeNext_move(CLICK_CD_GRABBING)
-		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.dna.species.grab_sound)
+				sound_to_play = H.dna.species.grab_sound 	
+		playsound(src.loc, sound_to_play, 50, 1, -1)
 
 		if(user.grab_state) //only the first upgrade is instantaneous
 			var/old_grab_state = user.grab_state
-			var/grab_upgrade_time = 30
+			var/grab_upgrade_time = instant ? 0 : 30
 			visible_message("<span class='danger'>[user] starts to tighten [user.p_their()] grip on [src]!</span>", \
 				"<span class='userdanger'>[user] starts to tighten [user.p_their()] grip on you!</span>")
 			switch(user.grab_state)
@@ -161,7 +165,10 @@
 					log_combat(user, src, "attempted to strangle", addition="kill grab")
 			if(!do_mob(user, src, grab_upgrade_time))
 				return 0
-			if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state || user.a_intent != INTENT_GRAB)
+			if(!user.pulling || user.pulling != src || user.grab_state != old_grab_state)
+				return 0
+			if(user.a_intent != INTENT_GRAB)
+				to_chat(user, "<span class='notice'>You must be on grab intent to upgrade your grab further!<span>")
 				return 0
 		user.grab_state++
 		switch(user.grab_state)
@@ -175,16 +182,17 @@
 				log_combat(user, src, "grabbed", addition="neck grab")
 				visible_message("<span class='danger'>[user] has grabbed [src] by the neck!</span>",\
 								"<span class='userdanger'>[user] has grabbed you by the neck!</span>")
-				update_canmove() //we fall down
+				update_mobility() //we fall down
 				if(!buckled && !density)
 					Move(user.loc)
 			if(GRAB_KILL)
 				log_combat(user, src, "strangled", addition="kill grab")
 				visible_message("<span class='danger'>[user] is strangling [src]!</span>", \
 								"<span class='userdanger'>[user] is strangling you!</span>")
-				update_canmove() //we fall down
+				update_mobility() //we fall down
 				if(!buckled && !density)
 					Move(user.loc)
+		user.set_pull_offsets(src, grab_state)
 		return 1
 
 
@@ -198,7 +206,7 @@
 			M.Feedstop()
 		return // can't attack while eating!
 
-	if(has_trait(TRAIT_PACIFISM))
+	if(HAS_TRAIT(src, TRAIT_PACIFISM))
 		to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 		return FALSE
 
@@ -215,7 +223,7 @@
 		M.visible_message("<span class='notice'>\The [M] [M.friendly] [src]!</span>")
 		return FALSE
 	else
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
@@ -234,11 +242,11 @@
 		return FALSE
 
 	if (M.a_intent == INTENT_HARM)
-		if(M.has_trait(TRAIT_PACIFISM))
+		if(HAS_TRAIT(M, TRAIT_PACIFISM))
 			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 			return FALSE
 
-		if(M.is_muzzled() || (M.wear_mask && M.wear_mask.flags_cover & MASKCOVERSMOUTH))
+		if(M.is_muzzled() || M.is_mouth_covered(FALSE, TRUE))
 			to_chat(M, "<span class='warning'>You can't bite with your mouth covered!</span>")
 			return FALSE
 		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
@@ -260,7 +268,7 @@
 			return FALSE
 
 		else
-			if(L.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(L, TRAIT_PACIFISM))
 				to_chat(L, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return
 
@@ -285,7 +293,7 @@
 			grabbedby(M)
 			return FALSE
 		if("harm")
-			if(M.has_trait(TRAIT_PACIFISM))
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 				return FALSE
 			M.do_attack_animation(src)
@@ -309,7 +317,7 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_ELECTROCUTE_ACT, shock_damage)
 	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
 		return FALSE
-	if(has_trait(TRAIT_SHOCKIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
@@ -342,7 +350,7 @@
 		to_chat(src, "<span class='userdanger'>You resist Nar-Sie's influence... but not all of it. <i>Run!</i></span>")
 		adjustBruteLoss(35)
 		if(src && reagents)
-			reagents.add_reagent("heparin", 5)
+			reagents.add_reagent(/datum/reagent/toxin/heparin, 5)
 		return FALSE
 	if(GLOB.cult_narsie && GLOB.cult_narsie.souls_needed[src])
 		GLOB.cult_narsie.souls_needed -= src
@@ -379,7 +387,7 @@
 
 //called when the mob receives a bright flash
 /mob/living/proc/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
-	if(get_eye_protection() < intensity && (override_blindness_check || !(has_trait(TRAIT_BLIND))))
+	if(get_eye_protection() < intensity && (override_blindness_check || !(HAS_TRAIT(src, TRAIT_BLIND))))
 		overlay_fullscreen("flash", type)
 		addtimer(CALLBACK(src, .proc/clear_fullscreen, "flash", 25), 25)
 		return TRUE
@@ -398,4 +406,4 @@
 	if(!used_item)
 		used_item = get_active_held_item()
 	..()
-	floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.

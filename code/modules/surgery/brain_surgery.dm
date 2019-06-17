@@ -1,5 +1,5 @@
 /datum/surgery/brain_surgery
-	name = "brain surgery"
+	name = "Brain surgery"
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,
@@ -8,7 +8,7 @@
 	/datum/surgery_step/fix_brain,
 	/datum/surgery_step/close)
 
-	species = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
 

@@ -10,9 +10,7 @@
 
 	density = FALSE
 	stat = DEAD
-	canmove = FALSE
 
-	anchored = TRUE	//  don't get pushed around
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 /mob/dead/new_player/Initialize()
@@ -74,7 +72,7 @@
 	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
-	popup.open(0)
+	popup.open(FALSE)
 
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
@@ -123,6 +121,12 @@
 			return
 
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
+			//yogs start -- donors bypassing the queue
+			if(ckey(key) in get_donators())
+				to_chat(usr, "<span class='notice'>Because you are a donator, you have bypassed the queue! Thank you for donating!</span>")
+				LateChoices()
+				return
+			//yogs end
 			to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
 
 			var/queue_position = SSticker.queued_players.Find(usr)
@@ -310,7 +314,7 @@
 					return JOB_UNAVAILABLE_SLOTFULL
 		else
 			return JOB_UNAVAILABLE_SLOTFULL
-	if(jobban_isbanned(src,rank))
+	if(is_banned_from(ckey, rank))
 		return JOB_UNAVAILABLE_BANNED
 	if(QDELETED(src))
 		return JOB_UNAVAILABLE_GENERIC
@@ -387,6 +391,8 @@
 			give_guns(humanc)
 		if(GLOB.summon_magic_triggered)
 			give_magic(humanc)
+		if(GLOB.curse_of_madness_triggered)
+			give_madness(humanc, GLOB.curse_of_madness_triggered)
 
 	GLOB.joined_player_list += character.ckey
 
@@ -470,7 +476,7 @@
 	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 440, 500)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(dat)
-	popup.open(0) // 0 is passed to open so that it doesn't use the onclose() proc
+	popup.open(FALSE) // FALSE is passed to open so that it doesn't use the onclose() proc
 
 
 /mob/dead/new_player/proc/create_character(transfer_after)
@@ -481,7 +487,7 @@
 
 	var/frn = CONFIG_GET(flag/force_random_names)
 	if(!frn)
-		frn = jobban_isbanned(src, "appearance")
+		frn = is_banned_from(ckey, "Appearance")
 		if(QDELETED(src))
 			return
 	if(frn)

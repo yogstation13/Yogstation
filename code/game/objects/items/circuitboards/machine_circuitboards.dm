@@ -57,7 +57,7 @@
 	build_path = /obj/machinery/dna_scannernew
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 1,
-		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stack/cable_coil = 2)
@@ -194,6 +194,14 @@
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/stock_parts/subspace/filter = 1)
 
+/obj/item/circuitboard/machine/telecomms/message_server
+	name = "Messaging Server (Machine Board)"
+	build_path = /obj/machinery/telecomms/message_server
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stack/cable_coil = 1,
+		/obj/item/stock_parts/subspace/filter = 3)
+
 /obj/item/circuitboard/machine/teleporter_hub
 	name = "Teleporter Hub (Machine Board)"
 	build_path = /obj/machinery/teleport/hub
@@ -244,16 +252,29 @@
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
-		/obj/machinery/vending/wallmed = "NanoMed")
+		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/assist  = "Vendomat",
+		/obj/machinery/vending/engivend = "Engi-Vend",
+		/obj/machinery/vending/hydronutrients = "NutriMax",
+		/obj/machinery/vending/hydroseeds = "MegaSeed Servitor",
+		/obj/machinery/vending/sustenance = "Sustenance Vendor",
+		/obj/machinery/vending/dinnerware = "Plasteel Chef's Dinnerware Vendor",
+		/obj/machinery/vending/cart = "PTech",
+		/obj/machinery/vending/robotics = "Robotech Deluxe",
+		/obj/machinery/vending/engineering = "Robco Tool Maker",
+		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/security = "SecTech")//Yogs
+		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
-		var/position = vending_names_paths.Find(build_path)
-		position = (position == vending_names_paths.len) ? 1 : (position + 1)
-		var/typepath = vending_names_paths[position]
-
-		to_chat(user, "<span class='notice'>You set the board to \"[vending_names_paths[typepath]]\".</span>")
-		set_type(typepath)
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+		var/static/list/display_vending_names_paths
+		if(!display_vending_names_paths)
+			display_vending_names_paths = list()
+			for(var/path in vending_names_paths)
+				display_vending_names_paths[vending_names_paths[path]] = path
+		var/choice =  input(user,"Choose a new brand","Select an Item") as null|anything in display_vending_names_paths
+		set_type(display_vending_names_paths[choice])
 	else
 		return ..()
 
@@ -316,7 +337,7 @@
 			build_path = PATH_HEATER
 
 /obj/item/circuitboard/machine/thermomachine/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		var/obj/item/circuitboard/new_type
 		var/new_setting
 		switch(build_path)
@@ -375,7 +396,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/processor/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(build_path == /obj/machinery/processor)
 			name = "Slime Processor (Machine Board)"
 			build_path = /obj/machinery/processor/slime
@@ -410,7 +431,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/smartfridge/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		var/position = fridges_name_paths.Find(build_path, fridges_name_paths)
 		position = (position == fridges_name_paths.len) ? 1 : (position + 1)
 		build_path = fridges_name_paths[position]
@@ -495,6 +516,12 @@
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/subspace/filter = 1)
+
+/obj/item/circuitboard/machine/scanner_gate
+	name = "Scanner Gate (Machine Board)"
+	build_path = /obj/machinery/scanner_gate
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 3)
 
 /obj/item/circuitboard/machine/pacman
 	name = "PACMAN-type Generator (Machine Board)"
@@ -587,7 +614,7 @@
 		build_path = PATH_POWERCOIL
 
 /obj/item/circuitboard/machine/tesla_coil/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		var/obj/item/circuitboard/new_type
 		var/new_setting
 		switch(build_path)
@@ -684,7 +711,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/chem_master/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		var/new_name = "ChemMaster"
 		var/new_path = /obj/machinery/chem_master
 
@@ -973,3 +1000,22 @@
 	name = "Ore Silo (Machine Board)"
 	build_path = /obj/machinery/ore_silo
 	req_components = list()
+
+/obj/item/circuitboard/machine/paystand
+	name = "Pay Stand (Machine Board)"
+	build_path = /obj/machinery/paystand
+	req_components = list()
+
+/obj/item/circuitboard/machine/fat_sucker
+	name = "Lipid Extractor (Machine Board)"
+	build_path = /obj/machinery/fat_sucker
+	req_components = list(/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/kitchen/fork = 1)
+
+/obj/item/circuitboard/machine/stasis
+	name = "Lifeform Stasis Unit (Machine Board)"
+	build_path = /obj/machinery/stasis
+	req_components = list(
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)

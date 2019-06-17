@@ -31,6 +31,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/suit/toggle/labcoat/pmedic_jacket(src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
 

@@ -8,16 +8,21 @@
 	var/timer = 240 //eventually the person will be freed
 	var/mob/living/petrified_mob
 
-/obj/structure/statue/petrified/New(loc, mob/living/L, statue_timer)
+/obj/structure/statue/petrified/New(loc, mob/living/L, statue_timer, pan) // Yogs -- pan
 	if(statue_timer)
 		timer = statue_timer
 	if(L)
 		petrified_mob = L
 		if(L.buckled)
 			L.buckled.unbuckle_mob(L,force=1)
-		L.visible_message("<span class='warning'>[L]'s skin rapidly turns to marble!</span>", "<span class='userdanger'>Your body freezes up! Can't... move... can't...  think...</span>")
+		//yogs start -- pan
+		if(pan == TRUE)
+			L.visible_message("<span class='warning'>[L]'s skin rapidly turns to bananium!</span>", "<span_class='ratvar'>BONK!</span>")
+		else
+			L.visible_message("<span class='warning'>[L]'s skin rapidly turns to marble!</span>", "<span class='userdanger'>Your body freezes up! Can't... move... can't...  think...</span>")
+		//yogs end -- pan
 		L.forceMove(src)
-		L.add_trait(TRAIT_MUTE, STATUE_MUTE)
+		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
 		L.faction += "mimic" //Stops mimics from instaqdeling people in statues
 		L.status_flags |= GODMODE
 		obj_integrity = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
@@ -49,7 +54,7 @@
 		if(S.mind)
 			if(petrified_mob)
 				S.mind.transfer_to(petrified_mob)
-				petrified_mob.Knockdown(100)
+				petrified_mob.Paralyze(100)
 				to_chat(petrified_mob, "<span class='notice'>You slowly come back to your senses. You are in control of yourself again!</span>")
 		qdel(S)
 
@@ -59,7 +64,7 @@
 	if(petrified_mob)
 		petrified_mob.status_flags &= ~GODMODE
 		petrified_mob.forceMove(loc)
-		petrified_mob.remove_trait(TRAIT_MUTE, STATUE_MUTE)
+		REMOVE_TRAIT(petrified_mob, TRAIT_MUTE, STATUE_MUTE)
 		petrified_mob.take_overall_damage((petrified_mob.health - obj_integrity + 100)) //any new damage the statue incurred is transfered to the mob
 		petrified_mob.faction -= "mimic"
 		petrified_mob = null
@@ -84,7 +89,7 @@
 	S.copy_overlays(src)
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-	return 1
+	return S // yogs
 
 /mob/living/carbon/monkey/petrify(statue_timer)
 	if(!isturf(loc))
@@ -92,7 +97,7 @@
 	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
 	S.name = "statue of a monkey"
 	S.icon_state = "monkey"
-	return 1
+	return S // yogs
 
 /mob/living/simple_animal/pet/dog/corgi/petrify(statue_timer)
 	if(!isturf(loc))
@@ -101,4 +106,4 @@
 	S.name = "statue of a corgi"
 	S.icon_state = "corgi"
 	S.desc = "If it takes forever, I will wait for you..."
-	return 1
+	return S // yogs

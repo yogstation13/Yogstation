@@ -32,12 +32,17 @@
 	mat_mod *= 50000
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		amt_made = 12.5 * M.rating //% of materials salvaged
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.max_amount = mat_mod
 	amount_produced = min(50, amt_made) + 50
-	GET_COMPONENT(butchering, /datum/component/butchering)
+	var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 	butchering.effectiveness = amount_produced
 	butchering.bonus_modifier = amount_produced/5
+
+/obj/machinery/recycler/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>Reclaiming <b>[amount_produced]%</b> of materials salvaged.<span>")
 
 /obj/machinery/recycler/examine(mob/user)
 	..()
@@ -137,7 +142,7 @@
 		qdel(L)
 		return
 	else
-		GET_COMPONENT(materials, /datum/component/material_container)
+		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 		var/material_amount = materials.get_item_material_amount(I)
 		if(!material_amount)
 			qdel(I)
@@ -171,7 +176,7 @@
 	// By default, the emagged recycler will gib all non-carbons. (human simple animal mobs don't count)
 	if(iscarbon(L))
 		if(L.stat == CONSCIOUS)
-			L.say("ARRRRRRRRRRRGH!!!")
+			L.say("ARRRRRRRRRRRGH!!!", forced="recycler grinding")
 		add_mob_blood(L)
 
 	if(!blood && !issilicon(L))
@@ -188,7 +193,7 @@
 	L.Unconscious(100)
 	L.adjustBruteLoss(crush_damage)
 	if(L.stat == DEAD && (L.butcher_results || L.guaranteed_butcher_results))
-		GET_COMPONENT(butchering, /datum/component/butchering)
+		var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 		butchering.Butcher(src,L)
 
 /obj/machinery/recycler/deathtrap

@@ -8,6 +8,8 @@
 	var/climbable = FALSE
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
+	layer = BELOW_OBJ_LAYER
+
 
 /obj/structure/Initialize()
 	if (!armor)
@@ -32,7 +34,7 @@
 	if(structureclimber && structureclimber != user)
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src)
-		structureclimber.Knockdown(40)
+		structureclimber.Paralyze(40)
 		structureclimber.visible_message("<span class='warning'>[structureclimber] has been knocked off [src].", "You're knocked off [src]!", "You see [structureclimber] get knocked off [src].</span>")
 
 /obj/structure/ui_act(action, params)
@@ -44,7 +46,8 @@
 	if(!climbable)
 		return
 	if(user == O && iscarbon(O))
-		if(user.canmove)
+		var/mob/living/carbon/C = O
+		if(C.mobility_flags & MOBILITY_MOVE)
 			climb_structure(user)
 			return
 	if(!istype(O, /obj/item) || user.get_active_held_item() != O)
@@ -71,7 +74,7 @@
 		adjusted_climb_time *= 2
 	if(isalien(user))
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast
-	if(user.has_trait(TRAIT_FREERUNNING)) //do you have any idea how fast I am???
+	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
 		adjusted_climb_time *= 0.8
 	structureclimber = user
 	if(do_mob(user, user, adjusted_climb_time))

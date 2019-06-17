@@ -17,18 +17,20 @@
 	var/list/available_chems
 	var/controls_inside = FALSE
 	var/list/possible_chems = list(
-		list("epinephrine", "morphine", "salbutamol", "bicaridine", "kelotane"),
-		list("oculine","inacusiate"),
-		list("antitoxin", "mutadone", "mannitol", "pen_acid"),
-		list("omnizine")
+		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane),
+		list(/datum/reagent/medicine/oculine,/datum/reagent/medicine/inacusiate),
+		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/mutadone, /datum/reagent/medicine/mannitol, /datum/reagent/medicine/pen_acid),
+		list(/datum/reagent/medicine/omnizine)
 	)
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: antitoxin -> morphine
 	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
-	occupant_typecache = list(/mob/living)
-
-/obj/machinery/sleeper/Initialize()
+	payment_department = ACCOUNT_MED
+	fair_market_price = 5
+	var/static/UIbackup = TRUE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
+/obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
 	. = ..()
+	occupant_typecache = GLOB.typecache_living
 	update_icon()
 	reset_chem_buttons()
 
@@ -84,32 +86,168 @@
 		open_machine()
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
-	if(user.stat || user.lying || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
+	if(user.stat || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
 		return
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			return
 	close_machine(target)
 
-/obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
-	if(!state_open && !occupant)
-		if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
-			return
+/obj/machinery/sleeper/screwdriver_act(mob/living/user, obj/item/I)
+	. = TRUE
+	if(..())
+		return
+	if(occupant)
+		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		return
+	if(state_open)
+		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		return
+	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
+		return
+	return FALSE
+
+/obj/machinery/sleeper/wrench_act(mob/living/user, obj/item/I)
 	if(default_change_direction_wrench(user, I))
-		return
+		return TRUE
+
+/obj/machinery/sleeper/crowbar_act(mob/living/user, obj/item/I)
 	if(default_pry_open(I))
-		return
+		return TRUE
 	if(default_deconstruction_crowbar(I))
-		return
-	return ..()
+		return TRUE
+
+/obj/machinery/sleeper/default_pry_open(obj/item/I) //wew
+	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
+	if(.)
+		I.play_tool_sound(src, 50)
+		visible_message("<span class='notice'>[usr] pries open [src].</span>", "<span class='notice'>You pry open [src].</span>")
+		open_machine()
 
 /obj/machinery/sleeper/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
+	if(!UIbackup) //yogs
+		if(controls_inside && state == GLOB.notcontained_state)
+			state = GLOB.default_state // If it has a set of controls on the inside, make it actually controllable by the mob in it.
 
-	if(controls_inside && state == GLOB.notcontained_state)
-		state = GLOB.default_state // If it has a set of controls on the inside, make it actually controllable by the mob in it.
+		ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+		if(!ui)
+			ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
+			ui.open()
+	else //yogs start   aplly backup UI
+		var/dat
+		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
+		dat += "<H2>Ocupant: "
+		var/mob/living/mob_occupant = occupant
+		if(mob_occupant)
+			dat += "[mob_occupant.name]"
+			switch(mob_occupant.stat)
+				if(CONSCIOUS)
+					dat += "  <font color = #32E632>Conscious</font>"
+				if(SOFT_CRIT)
+					dat += "  <font color = #DAE632>Conscious</font>"
+				if(UNCONSCIOUS)
+					dat += "  <font color = #DAE632>Unconscious</font>"
+				if(DEAD)
+					dat += "  <font color = #C13131>Dead</font>"
+			dat += "</H2>"
+			dat += "<H3>Status  <a href='?src=[REF(src)];refresh=1'>(refresh)</a></H3>"
+			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
+			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
+			dat += "<br>	Sufocation:		[mob_occupant.getOxyLoss()]"
+			dat += "<br>	Toxin:			[mob_occupant.getToxLoss()]"
+			dat += "<br>	Burn:			[mob_occupant.getFireLoss()]"
+			dat += "<br>	Brain:			"
+			if(mob_occupant.getBrainLoss())
+				dat += "abnormal"
+			else
+				dat += "normal"
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
-		ui.open()
+			dat += "<br>	Cells:			"
+			if(mob_occupant.getCloneLoss())
+				dat += "abnormal"
+			else
+				dat += "normal"
+
+			dat += "<H3>Reagents</H3>"
+			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
+				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
+					dat += "<br>	[R.name]	[R.volume] units"
+		else
+			dat += "No Occupant</H2>"
+		dat += "<H2>Controls</H2>"
+		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
+		dat += "<H3>Inject</H3>"
+		if(mob_occupant)
+			for(var/chem in available_chems)
+				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
+				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
+					dat += "<br>	<a color = #666633 href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
+				else
+					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
+		else
+			dat += "<br> No patient to inject"
+
+		dat += "</font>"
+		user << browse(dat, "window=sleeper;size=520x500;can_resize=0")
+		onclose(user, "sleeper")
+		return TRUE
+
+/obj/machinery/sleeper/Topic(href, href_list)
+	if(..())
+		return
+	if(canAccess(usr))
+		var/mob/living/mob_occupant = occupant
+		if(href_list["input"])
+			if(state_open)
+				close_machine()
+			else
+				open_machine()
+		else
+			if(href_list["inject"])
+				if(!is_operational() || !mob_occupant)
+					return
+				else
+					if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
+						return
+					else
+						for(var/chem in available_chems)
+							if("[chem]" == href_list["inject"])
+								if(src.inject_chem(chem, mob_occupant))
+									. = TRUE
+								break
+				if(.)
+					if(scrambled_chems && prob(5))
+						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+
+	usr.set_machine(src)
+
+	updateUsrDialog()
+
+/obj/machinery/sleeper/proc/canAccess(mob/user)
+	if(issilicon(user) || in_range(user, src))
+		return TRUE
+	return FALSE // yogs end
+
+/obj/machinery/sleeper/AltClick(mob/user)
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(state_open)
+		close_machine()
+	else
+		open_machine()
+
+/obj/machinery/sleeper/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>")
+
+/obj/machinery/sleeper/process()
+	..()
+	check_nap_violations()
+
+/obj/machinery/sleeper/nap_violation(mob/violator)
+	open_machine()
 
 /obj/machinery/sleeper/ui_data()
 	var/list/data = list()
@@ -119,7 +257,7 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = R.id, "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = ckey(R.name), "allowed" = chem_allowed(chem)))
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -157,7 +295,7 @@
 	if(..())
 		return
 	var/mob/living/mob_occupant = occupant
-
+	check_nap_violations()
 	switch(action)
 		if("door")
 			if(state_open)
@@ -169,12 +307,12 @@
 			var/chem = params["chem"]
 			if(!is_operational() || !mob_occupant)
 				return
-			if(mob_occupant.health < min_health && chem != "epinephrine")
+			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chem System Re-route detected, results may not be as expected!</span>")
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
@@ -192,7 +330,7 @@
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
 	var/amount = mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency
-	var/occ_health = mob_occupant.health > min_health || chem == "epinephrine"
+	var/occ_health = mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine
 	return amount && occ_health
 
 /obj/machinery/sleeper/proc/reset_chem_buttons()
@@ -215,7 +353,7 @@
 /obj/machinery/sleeper/syndie/fullupgrade/Initialize()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/sleeper(null)
+	component_parts += new /obj/item/circuitboard/machine/sleeper(null) //yogs: no deletion :>)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
 	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
@@ -228,7 +366,7 @@
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
-	possible_chems = list(list("epinephrine", "salbutamol", "bicaridine", "kelotane", "oculine", "inacusiate", "mannitol"))
+	possible_chems = list(list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate, /datum/reagent/medicine/mannitol))
 
 /obj/machinery/sleeper/clockwork/process()
 	if(occupant && isliving(occupant))

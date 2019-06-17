@@ -9,8 +9,8 @@
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen_gen.dmi'
-	layer = ABOVE_HUD_LAYER
-	plane = ABOVE_HUD_PLANE
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	appearance_flags = APPEARANCE_UI
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
@@ -157,7 +157,7 @@
 		var/image/item_overlay = image(holding)
 		item_overlay.alpha = 92
 
-		if(!user.can_equip(holding, slot_id, disable_warning = TRUE))
+		if(!user.can_equip(holding, slot_id, TRUE))
 			item_overlay.color = "#FF0000"
 		else
 			item_overlay.color = "#00ff00"
@@ -428,7 +428,7 @@
 	if(master)
 		var/obj/item/I = usr.get_active_held_item()
 		if(I)
-			master.attackby(I, usr, params)
+			master.attackby(null, I, usr, params)
 	return TRUE
 
 /obj/screen/throw_catch
@@ -645,9 +645,19 @@
 	name = "health doll"
 	screen_loc = ui_healthdoll
 
+/obj/screen/healthdoll/Click()
+	if (ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		H.check_self_for_injuries()
+
 /obj/screen/mood
 	name = "mood"
 	icon_state = "mood5"
+	screen_loc = ui_mood
+
+/obj/screen/sanity
+	name = "sanity"
+	icon_state = "sanity3"
 	screen_loc = ui_mood
 
 /obj/screen/splash

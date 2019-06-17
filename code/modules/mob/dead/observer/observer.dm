@@ -11,13 +11,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
-	canmove = 0
-	anchored = TRUE	//  don't get pushed around
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
+	movement_type = GROUND | FLYING
 	var/can_reenter_corpse
+	var/do_not_resuscitate //determines whether we can switch can_reenter_corpse back off
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -61,7 +62,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	verbs += list(
 		/mob/dead/observer/proc/dead_tele,
 		/mob/dead/observer/proc/open_spawners_menu,
-		/mob/dead/observer/proc/view_gas)
+		/mob/dead/observer/proc/view_gas,
+		/mob/dead/observer/proc/tray_view)
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)
 		ghostimage_default = image(src.icon,src,src.icon_state + "_nodir")
@@ -92,7 +94,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-		suiciding = body.suiciding // Transfer whether they committed suicide.
+		set_suicide(body.suiciding) // Transfer whether they committed suicide.
 
 		if(ishuman(body))
 			var/mob/living/carbon/human/body_human = body
@@ -135,6 +137,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 
 	grant_all_languages()
+	show_data_huds()
+	data_huds_on = 1
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -340,6 +344,26 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	mind.current.oobe_client = null //yogs
 	return 1
 
+/mob/dead/observer/verb/stay_dead()
+	set category = "Ghost"
+	set name = "Do Not Resuscitate"
+	if(!client)
+		return
+	if(!can_reenter_corpse)
+		if(do_not_resuscitate)
+			to_chat(src, "You can now re-enter your corpse, and can be cloned.")
+			can_reenter_corpse = TRUE
+			do_not_resuscitate = FALSE
+			return TRUE
+		else
+			to_chat(usr, "<span class='warning'>You're already stuck out of your body!</span>")
+			return FALSE
+
+	can_reenter_corpse = FALSE
+	do_not_resuscitate = TRUE
+	to_chat(src, "You can now no longer be brought back into your body. You can undo this at any time by using the Do Not Resuscitate verb again.")
+	return TRUE
+
 /mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
 	if(flashwindow)
 		window_flash(client)
@@ -418,9 +442,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/orbitsize = (I.Width()+I.Height())*0.5
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
 
-	if(orbiting && orbiting.orbiting != target)
-		to_chat(src, "<span class='notice'>Now orbiting [target].</span>")
-
 	var/rot_seg
 
 	switch(ghost_orbit)
@@ -439,10 +460,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/orbit()
 	setDir(2)//reset dir so the right directional sprites show up
-	..()
+	return ..()
 
-/mob/dead/observer/stop_orbit()
-	..()
+/mob/dead/observer/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 10, loop = -1)
@@ -479,6 +500,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "View Range"
 	set desc = "Change your view range."
 
+	//yogs start -- Divert this verb to the admin variant if this guy has it
+	if(check_rights(R_ADMIN,FALSE) && hascall(usr.client,"toggle_view_range"))
+		call(usr.client,"toggle_view_range")()
+		return
+	//yogs end
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
 	if(client.view == CONFIG_GET(string/default_view))
 		var/list/views = list()
@@ -603,10 +629,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(ismegafauna(target))
 		to_chat(src, "<span class='warning'>This creature is too powerful for you to possess!</span>")
-		return 0
-
-	if(istype (target, /mob/living/simple_animal/hostile/spawner))
-		to_chat(src, "<span class='warning'>This isn't really a creature, now is it!</span>")
 		return 0
 
 	if(can_reenter_corpse && mind && mind.current)
@@ -738,11 +760,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	update_icon()
 
-/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)
 
 /mob/dead/observer/is_literate()
-	return 1
+	return TRUE
 
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -853,3 +875,31 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		spawners_menu = new(src)
 
 	spawners_menu.ui_interact(src)
+
+/mob/dead/observer/proc/tray_view()
+	set category = "Ghost"
+	set name = "T-ray view"
+	set desc = "Toggles a view of sub-floor objects"
+
+	var/static/t_ray_view = FALSE
+	t_ray_view = !t_ray_view
+
+	var/list/t_ray_images = list()
+	var/static/list/stored_t_ray_images = list()
+	for(var/obj/O in orange(client.view, src) )
+		if(O.level != 1)
+			continue
+
+		if(O.invisibility == INVISIBILITY_MAXIMUM)
+			var/image/I = new(loc = get_turf(O))
+			var/mutable_appearance/MA = new(O)
+			MA.alpha = 128
+			MA.dir = O.dir
+			I.appearance = MA
+			t_ray_images += I
+	stored_t_ray_images += t_ray_images
+	if(t_ray_images.len)
+		if(t_ray_view)
+			client.images += t_ray_images
+		else
+			client.images -= stored_t_ray_images

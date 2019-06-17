@@ -25,6 +25,7 @@
 	healable = FALSE
 	spacewalk = TRUE
 	sight = SEE_SELF
+	throwforce = 0
 
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -42,7 +43,7 @@
 	wander = FALSE
 	density = FALSE
 	movement_type = FLYING
-	anchored = TRUE
+	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_TINY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	speed = 1
@@ -55,6 +56,7 @@
 	var/essence_regenerating = TRUE //If the revenant regenerates essence or not
 	var/essence_regen_amount = 5 //How much essence regenerates
 	var/essence_accumulated = 0 //How much essence the revenant has stolen
+	var/essence_excess = 0 //How much stolen essence avilable for unlocks
 	var/revealed = FALSE //If the revenant can take damage from normal sources.
 	var/unreveal_time = 0 //How long the revenant is revealed for, is about 2 seconds times this var.
 	var/unstun_time = 0 //How long the revenant is stunned for, is about 2 seconds times this var.
@@ -68,13 +70,16 @@
 /mob/living/simple_animal/revenant/Initialize(mapload)
 	. = ..()
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/revenant_transmit(null))
+	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/defile(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/overload(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/blight(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/malfunction(null))
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
+
+/mob/living/simple_animal/revenant/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+	return FALSE
 
 /mob/living/simple_animal/revenant/proc/random_revenant_name()
 	var/built_name = ""
@@ -110,9 +115,9 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
-		GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+		var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 		if(incorp)
-			incorp.enabled = TRUE //yogs end
+			incorp.signal_enabled = TRUE //yogs end
 		invisibility = INVISIBILITY_REVENANT
 		to_chat(src, "<span class='revenboldnotice'>You are once more concealed.</span>")
 	if(unstun_time && world.time >= unstun_time)
@@ -131,6 +136,7 @@
 	if(statpanel("Status"))
 		stat(null, "Current essence: [essence]/[essence_regen_cap]E")
 		stat(null, "Stolen essence: [essence_accumulated]E")
+		stat(null, "Unused stolen essence: [essence_excess]E")
 		stat(null, "Stolen perfect souls: [perfectsouls]")
 
 /mob/living/simple_animal/revenant/update_health_hud()
@@ -148,7 +154,7 @@
 /mob/living/simple_animal/revenant/med_hud_set_status()
 	return //we use no hud
 
-/mob/living/simple_animal/revenant/say(message)
+/mob/living/simple_animal/revenant/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!message)
 		return
 	src.log_talk(message, LOG_SAY)
@@ -244,9 +250,9 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
-		incorp.enabled = FALSE //yogs end
+		incorp.signal_enabled = FALSE //yogs end
 	if(!unreveal_time)
 		to_chat(src, "<span class='revendanger'>You have been revealed!</span>")
 		unreveal_time = world.time + time
@@ -300,16 +306,24 @@
 		return FALSE
 	return TRUE
 
+/mob/living/simple_animal/revenant/proc/unlock(essence_cost)
+	if(essence_excess < essence_cost)
+		return FALSE
+	essence_excess -= essence_cost
+	update_action_buttons_icon()
+	return TRUE
+
 /mob/living/simple_animal/revenant/proc/change_essence_amount(essence_amt, silent = FALSE, source = null)
 	if(!src)
 		return
-	if(essence + essence_amt <= 0)
+	if(essence + essence_amt < 0)
 		return
 	essence = max(0, essence+essence_amt)
-	update_action_buttons_icon()
 	update_health_hud()
 	if(essence_amt > 0)
 		essence_accumulated = max(0, essence_accumulated+essence_amt)
+		essence_excess = max(0, essence_excess+essence_amt)
+	update_action_buttons_icon()
 	if(!silent)
 		if(essence_amt > 0)
 			to_chat(src, "<span class='revennotice'>Gained [essence_amt]E[source ? " from [source]":""].</span>")
@@ -325,9 +339,9 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
-	GET_COMPONENT(incorp, /datum/component/walk/jaunt) //yogs start
+	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
 	if(incorp)
-		incorp.enabled = TRUE //yogs end
+		incorp.signal_enabled = TRUE //yogs end
 	invisibility = INVISIBILITY_REVENANT
 	alpha=255
 	stasis = FALSE
@@ -346,8 +360,8 @@
 	var/old_key //key of the previous revenant, will have first pick on reform.
 	var/mob/living/simple_animal/revenant/revenant
 
-/obj/item/ectoplasm/revenant/New()
-	..()
+/obj/item/ectoplasm/revenant/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/try_reform), 600)
 
 /obj/item/ectoplasm/revenant/proc/scatter()
@@ -369,7 +383,7 @@
 	user.dropItemToGround(src)
 	scatter()
 
-/obj/item/ectoplasm/revenant/throw_impact(atom/hit_atom)
+/obj/item/ectoplasm/revenant/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	if(inert)
 		return

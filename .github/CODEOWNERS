@@ -9,21 +9,14 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Partheo
-#/yogstation/icons/ @Partheo
+#Ktlwjec
+/_maps/map_files/ @Ktlwjec
 
-#ThatLing
+#AsV9
 
-/code/__DEFINES/tick.dm @ThatLing
-/code/controllers/admin.dm @ThatLing
-/code/controllers/failsafe.dm @ThatLing
-/code/controllers/subsystem.dm @ThatLing
-/code/controllers/subsystem/ @ThatLing
-/code/modules/keybindings/ @ThatLing
-/yogstation/code/controllers/ @ThatLing
-/yogstation/code/modules/keybindings/ @ThatLing
+/code/__DEFINES/MC.dm @AsV9
+/code/controllers/master.dm @AsV9
 
-#Multiple Owners
+#Altoids
 
-/code/__DEFINES/MC.dm @AsV9 @ThatLing
-/code/controllers/master.dm @AsV9 @ThatLing
+/yogstation/code/modules/scripting/ @Altoids1

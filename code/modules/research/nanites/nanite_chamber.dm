@@ -4,12 +4,12 @@
 	circuit = /obj/item/circuitboard/machine/nanite_chamber
 	icon = 'icons/obj/machines/nanite_chamber.dmi'
 	icon_state = "nanite_chamber"
+	layer = ABOVE_WINDOW_LAYER
 	use_power = IDLE_POWER_USE
 	anchored = TRUE
 	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 300
-	occupant_typecache = list(/mob/living)
 
 	var/obj/machinery/computer/nanite_chamber_control/console
 	var/locked = FALSE
@@ -20,10 +20,19 @@
 	var/busy_message
 	var/message_cooldown = 0
 
+/obj/machinery/nanite_chamber/Initialize()
+	. = ..()
+	occupant_typecache = GLOB.typecache_living
+
 /obj/machinery/nanite_chamber/RefreshParts()
 	scan_level = 0
 	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
 		scan_level += P.rating
+
+/obj/machinery/nanite_chamber/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.<span>")
 
 /obj/machinery/nanite_chamber/proc/set_busy(status, message, working_icon)
 	busy = status
@@ -222,6 +231,8 @@
 	toggle_open(user)
 
 /obj/machinery/nanite_chamber/MouseDrop_T(mob/target, mob/user)
-	if(user.stat || user.lying || !Adjacent(user) || !user.Adjacent(target) || !iscarbon(target) || !user.IsAdvancedToolUser())
+	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
 		return
-	close_machine(target)
+	if(close_machine(target))
+		log_combat(user, target, "inserted", null, "into [src].")
+	add_fingerprint(user)

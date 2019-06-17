@@ -173,13 +173,18 @@
 	require_module = 1
 	module_type = /obj/item/robot_module/miner
 
-/obj/item/borg/upgrade/soh/action(mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/soh/action(mob/living/silicon/robot/R , user = usr) //yogs single line
 	. = ..()
 	if(.)
 		for(var/obj/item/storage/bag/ore/cyborg/S in R.module)
 			R.module.remove_module(S, TRUE)
 
-		var/obj/item/storage/bag/ore/holding/H = new /obj/item/storage/bag/ore/holding(R.module)
+		var/obj/item/storage/bag/ore/holding/H = locate() in R  //yogs start
+		if(H)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a satchel of holding.</span>")
+			return FALSE
+
+		H = new /obj/item/storage/bag/ore/holding(R.module)  //yogs end
 		R.module.basic_modules += H
 		R.module.add_module(H, FALSE, TRUE)
 
@@ -200,13 +205,18 @@
 	require_module = 1
 	module_type = /obj/item/robot_module/janitor
 
-/obj/item/borg/upgrade/tboh/action(mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/tboh/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
 	if(.)
 		for(var/obj/item/storage/bag/trash/cyborg/TB in R.module.modules)
 			R.module.remove_module(TB, TRUE)
 
-		var/obj/item/storage/bag/trash/bluespace/cyborg/B = new /obj/item/storage/bag/trash/bluespace/cyborg(R.module)
+		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R //yogs start
+		if(B)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a trash bag of holding.</span>")
+			return FALSE
+
+		B = new /obj/item/storage/bag/trash/bluespace/cyborg(R.module) //yogs end
 		R.module.basic_modules += B
 		R.module.add_module(B, FALSE, TRUE)
 
@@ -227,15 +237,20 @@
 	require_module = 1
 	module_type = /obj/item/robot_module/janitor
 
-/obj/item/borg/upgrade/amop/action(mob/living/silicon/robot/R)
+/obj/item/borg/upgrade/amop/action(mob/living/silicon/robot/R, user = usr)//yogs single line
 	. = ..()
 	if(.)
 		for(var/obj/item/mop/cyborg/M in R.module.modules)
 			R.module.remove_module(M, TRUE)
 
-	var/obj/item/mop/advanced/cyborg/A = new /obj/item/mop/advanced/cyborg(R.module)
-	R.module.basic_modules += A
-	R.module.add_module(A, FALSE, TRUE)
+		var/obj/item/mop/advanced/cyborg/A = locate() in R  //yogs start
+		if(A)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a advanced mop module.</span>")
+			return FALSE
+
+		A = new /obj/item/mop/advanced/cyborg(R.module)  //yogs end
+		R.module.basic_modules += A
+		R.module.add_module(A, FALSE, TRUE)
 
 /obj/item/borg/upgrade/amop/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -279,6 +294,7 @@
 /obj/item/borg/upgrade/lavaproof/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
+
 		R.weather_immunities += "lava"
 
 /obj/item/borg/upgrade/lavaproof/deactivate(mob/living/silicon/robot/R, user = usr)
@@ -321,6 +337,7 @@
 		deactivate_sr()
 
 /obj/item/borg/upgrade/selfrepair/dropped()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/check_dropped), 1)
 
 /obj/item/borg/upgrade/selfrepair/proc/check_dropped()
@@ -425,15 +442,9 @@
 	name = "medical cyborg expanded hypospray"
 	desc = "An upgrade to the Medical module's hypospray, allowing it \
 		to treat a wider range of conditions and problems."
-	additional_reagents = list("mannitol", "oculine", "inacusiate",
-		"mutadone", "haloperidol")
-
-/obj/item/borg/upgrade/hypospray/high_strength
-	name = "medical cyborg high-strength hypospray"
-	desc = "An upgrade to the Medical module's hypospray, containing \
-		stronger versions of existing chemicals."
-	additional_reagents = list("oxandrolone", "sal_acid", "rezadone",
-		"pen_acid")
+	additional_reagents = list(/datum/reagent/medicine/mannitol, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate,
+		/datum/reagent/medicine/mutadone, /datum/reagent/medicine/haloperidol, /datum/reagent/medicine/oxandrolone, /datum/reagent/medicine/sal_acid, /datum/reagent/medicine/rezadone,
+		/datum/reagent/medicine/pen_acid)
 
 /obj/item/borg/upgrade/piercing_hypospray
 	name = "cyborg piercing hypospray"
@@ -446,6 +457,10 @@
 	if(.)
 		var/found_hypo = FALSE
 		for(var/obj/item/reagent_containers/borghypo/H in R.module.modules)
+			if(H.bypass_protection == TRUE) //yogs start
+				to_chat(user, "<span class='warning'>This unit is already equipped with a piercing hypospray module.</span>")
+				return FALSE  //yogs end
+
 			H.bypass_protection = TRUE
 			found_hypo = TRUE
 
@@ -469,7 +484,12 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = new(R.module)
+		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R //yogs start
+		if(S)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a defibrillator module.</span>")
+			return FALSE
+
+		S = new(R.module) //yogs end
 		R.module.basic_modules += S
 		R.module.add_module(S, FALSE, TRUE)
 
@@ -491,7 +511,12 @@
 /obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = new(R.module)
+		var/obj/item/surgical_processor/SP = locate() in R  //yogs start
+		if(SP)
+			to_chat(user, "<span class='warning'>This unit is already equipped with a surgical processor module.</span>")
+			return FALSE
+
+		SP = new(R.module) //yogs end
 		R.module.basic_modules += SP
 		R.module.add_module(SP, FALSE, TRUE)
 
@@ -500,7 +525,7 @@
 	if (.)
 		var/obj/item/surgical_processor/SP = locate() in R.module
 		R.module.remove_module(SP, TRUE)
-		
+
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
 	desc = "Bluespace Optimized Remote Intelligence Synchronization. An uplink device which takes the place of an MMI in cyborg endoskeletons, creating a robotic shell controlled by an AI."
@@ -560,9 +585,10 @@
 /obj/item/borg/upgrade/expand/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.resize = 0.5
-		R.hasExpanded = FALSE
-		R.update_transform()
+		if (R.hasExpanded)
+			R.hasExpanded = FALSE
+			R.resize = 0.5
+			R.update_transform()
 
 /obj/item/borg/upgrade/rped
 	name = "engineering cyborg RPED"

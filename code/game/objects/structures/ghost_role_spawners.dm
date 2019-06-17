@@ -19,7 +19,7 @@
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
 	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
 	"Venus", "Sprout","Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper")
-	new_spawn.real_name = plant_name
+	new_spawn.fully_replace_character_name(null,plant_name)
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
 		H.underwear = "Nude" //You're a plant, partner
@@ -42,27 +42,32 @@
 	roundstart = FALSE
 	death = FALSE
 	anchored = FALSE
+	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
 	flavour_text = "<span class='big bold'>You are an ash walker.</span><b> Your tribe worships <span class='danger'>the Necropolis</span>. The wastes are sacred ground, its monsters a blessed bounty. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest.</b>"
 	assignedrole = "Ash Walker"
+	var/datum/team/ashwalkers/team
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
-	new_spawn.real_name = random_unique_lizard_name(gender)
-	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>")
+	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
+	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>") //yogs - removed a sentence
 
 	new_spawn.grant_language(/datum/language/draconic)
 	var/datum/language_holder/holder = new_spawn.get_language_holder()
 	holder.selected_default_language = /datum/language/draconic
+
+	new_spawn.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
 		H.underwear = "Nude"
 		H.update_body()
 
-/obj/effect/mob_spawn/human/ash_walker/Initialize(mapload)
+/obj/effect/mob_spawn/human/ash_walker/Initialize(mapload, datum/team/ashwalkers/ashteam)
 	. = ..()
 	var/area/A = get_area(src)
+	team = ashteam
 	if(A)
 		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
@@ -91,7 +96,7 @@
 	return ..()
 
 /obj/effect/mob_spawn/human/exile/special(mob/living/new_spawn)
-	new_spawn.real_name = "Wish Granter's Victim ([rand(1,999)])"
+	new_spawn.fully_replace_character_name(null,"Wish Granter's Victim ([rand(1,999)])")
 	var/wish = rand(1,4)
 	switch(wish)
 		if(1)
@@ -114,6 +119,7 @@
 	roundstart = FALSE
 	death = FALSE
 	anchored = FALSE
+	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
 	var/has_owner = FALSE
 	var/can_transfer = TRUE //if golems can switch bodies to this new shell
@@ -147,14 +153,17 @@
 		log_admin("[key_name(new_spawn)] possessed a golem shell enslaved to [key_name(owner)].")
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn
+		if(has_owner)
+			var/datum/species/golem/G = H.dna.species
+			G.owner = owner
 		H.set_cloned_appearance()
 		if(!name)
 			if(has_owner)
-				H.real_name = "[initial(X.prefix)] Golem ([rand(1,999)])"
+				H.fully_replace_character_name(null, "[initial(X.prefix)] Golem ([rand(1,999)])")
 			else
-				H.real_name = H.dna.species.random_name()
+				H.fully_replace_character_name(null, H.dna.species.random_name())
 		else
-			H.real_name = name
+			H.fully_replace_character_name(null, name)
 	if(has_owner)
 		new_spawn.mind.assigned_role = "Servant Golem"
 	else
@@ -180,6 +189,7 @@
 /obj/effect/mob_spawn/human/golem/servant
 	has_owner = TRUE
 	name = "inert servant golem shell"
+	mob_name = "a servant golem"
 
 
 /obj/effect/mob_spawn/human/golem/adamantine
@@ -272,8 +282,7 @@
 	assignedrole = "Escaped Prisoner"
 
 /obj/effect/mob_spawn/human/prisoner_transport/special(mob/living/L)
-	L.real_name = "NTP #LL-0[rand(111,999)]" //Nanotrasen Prisoner #Lavaland-(numbers)
-	L.name = L.real_name
+	L.fully_replace_character_name(null,"NTP #LL-0[rand(111,999)]") //Nanotrasen Prisoner #Lavaland-(numbers)
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()
@@ -301,7 +310,7 @@
 	mob_name = "hotel staff member"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	objectives = "Cater to visiting guests with your fellow staff. Do not leave your assigned hotel and always remember: The customer is always right!"
+	//objectives = "Cater to visiting guests with your fellow staff. Do not leave your assigned hotel and always remember: The customer is always right!" //yogs - removed hotel staff objectives
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
@@ -316,7 +325,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/radio/off
 	back = /obj/item/storage/backpack
-	implants = list(/obj/item/implant/mindshield)
+	implants = list(/obj/item/implant/mindshield, /obj/item/implant/teleporter/ghost_role) //yogs change added teleporter implant to stop teleport memes
 
 /obj/effect/mob_spawn/human/hotel_staff/security
 	name = "hotel security sleeper"
@@ -324,10 +333,10 @@
 	outfit = /datum/outfit/hotelstaff/security
 	flavour_text = "<span class='big bold'>You are a peacekeeper</span><b> assigned to this hotel to protect the interests of the company while keeping the peace between \
 		guests and the staff. Do <font size=6>NOT</font> leave the hotel, as that is grounds for contract termination.</b>"
-	objectives = "Do not leave your assigned hotel. Try and keep the peace between staff and guests, non-lethal force heavily advised if possible."
+	//objectives = "Do not leave your assigned hotel. Try and keep the peace between staff and guests, non-lethal force heavily advised if possible." //yogs - removed hotel staff objectives
 
 /datum/outfit/hotelstaff/security
-	name = "Hotel Secuirty"
+	name = "Hotel Security"
 	uniform = /obj/item/clothing/under/rank/security/blueshirt
 	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/armor/vest/blueshirt
@@ -368,8 +377,7 @@
 
 /obj/effect/mob_spawn/human/demonic_friend/special(mob/living/L)
 	if(!QDELETED(owner.current) && owner.current.stat != DEAD)
-		L.real_name = "[owner.name]'s best friend"
-		L.name = L.real_name
+		L.fully_replace_character_name(null,"[owner.name]'s best friend")
 		soullink(/datum/soullink/oneway, owner.current, L)
 		spell.friend = L
 		spell.charge_counter = spell.charge_max

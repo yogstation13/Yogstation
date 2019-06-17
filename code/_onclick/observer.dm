@@ -1,6 +1,6 @@
-/mob/dead/observer/DblClickOn(var/atom/A, var/params)
-	if(check_click_intercept(params,A))
-		return
+/mob/dead/observer/DblClickOn(atom/A, params)
+	if(check_click_intercept(params, A))
+		return	
 
 	if(can_reenter_corpse && mind && mind.current)
 		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
@@ -34,7 +34,7 @@
 		ShiftClickOn(A)
 		return
 	if(modifiers["alt"])
-		AltClickOn(A)
+		AltClickNoInteract(src, A)
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)

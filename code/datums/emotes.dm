@@ -16,16 +16,25 @@
 	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
 	var/restraint_check = FALSE //Checks if the mob is restrained before performing the emote
 	var/muzzle_ignore = FALSE //Will only work if the emote is EMOTE_AUDIBLE
-	var/list/mob_type_allowed_typecache = list(/mob) //Types that are allowed to use that emote
+	var/list/mob_type_allowed_typecache = /mob //Types that are allowed to use that emote
 	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
 	var/list/mob_type_ignore_stat_typecache
 	var/stat_allowed = CONSCIOUS
-	var/static/list/emote_list = list()
+	var/sound //Sound to play when emote is called
+	var/vary = FALSE	//used for the honk borg emote
+	var/only_forced_audio = FALSE //can only code call this event instead of the player.
 
 /datum/emote/New()
-	if(key_third_person)
-		emote_list[key_third_person] = src
-	mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
+	if (ispath(mob_type_allowed_typecache))
+		switch (mob_type_allowed_typecache)
+			if (/mob)
+				mob_type_allowed_typecache = GLOB.typecache_mob
+			if (/mob/living)
+				mob_type_allowed_typecache = GLOB.typecache_living
+			else
+				mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
+	else
+		mob_type_allowed_typecache = typecacheof(mob_type_allowed_typecache)
 	mob_type_blacklist_typecache = typecacheof(mob_type_blacklist_typecache)
 	mob_type_ignore_stat_typecache = typecacheof(mob_type_ignore_stat_typecache)
 
@@ -33,7 +42,7 @@
 	. = TRUE
 	if(!can_run_emote(user, TRUE, intentional))
 		return FALSE
-	var/msg = select_message_type(user)
+	var/msg = select_message_type(user, intentional)
 	if(params && message_param)
 		msg = select_param(user, params)
 
@@ -50,6 +59,10 @@
 	user.log_message(msg, LOG_EMOTE)
 	msg = "<b>[user]</b> " + msg
 
+	var/tmp_sound = get_sound(user)
+	if(tmp_sound && (!only_forced_audio || !intentional))
+		playsound(user, tmp_sound, 50, vary)
+
 	for(var/mob/M in GLOB.dead_mob_list)
 		if(!M.client || isnewplayer(M))
 			continue
@@ -62,6 +75,9 @@
 	else
 		user.visible_message(msg)
 
+/datum/emote/proc/get_sound(mob/living/user)
+	return sound //by default just return this var.
+
 /datum/emote/proc/replace_pronoun(mob/user, message)
 	if(findtext(message, "their"))
 		message = replacetext(message, "their", user.p_their())
@@ -71,7 +87,7 @@
 		message = replacetext(message, "%s", user.p_s())
 	return message
 
-/datum/emote/proc/select_message_type(mob/user)
+/datum/emote/proc/select_message_type(mob/user, intentional)
 	. = message
 	if(!muzzle_ignore && user.is_muzzled() && emote_type == EMOTE_AUDIBLE)
 		return "makes a [pick("strong ", "weak ", "")]noise."
@@ -111,11 +127,14 @@
 				if(DEAD)
 					to_chat(user, "<span class='notice'>You cannot [key] while dead.</span>")
 			return FALSE
-		if(restraint_check && (user.IsStun() || user.IsKnockdown()))
-			if(!intentional)
-				return FALSE
-			to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
-			return FALSE
+		if(restraint_check)
+			if(isliving(user))
+				var/mob/living/L = user
+				if(L.IsParalyzed() || L.IsStun())
+					if(!intentional)
+						return FALSE
+					to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
+					return FALSE
 		if(restraint_check && user.restrained())
 			if(!intentional)
 				return FALSE
@@ -124,15 +143,5 @@
 
 	if(isliving(user))
 		var/mob/living/L = user
-		if(L.has_trait(TRAIT_EMOTEMUTE))
+		if(HAS_TRAIT(L, TRAIT_EMOTEMUTE))
 			return FALSE
-
-/datum/emote/sound
-	var/sound //Sound to play when emote is called
-	var/vary = FALSE	//used for the honk borg emote
-	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon)
-
-/datum/emote/sound/run_emote(mob/user, params)
-	. = ..()
-	if(.)
-		playsound(user.loc, sound, 50, vary)

@@ -13,7 +13,7 @@
 	light_color = LIGHT_COLOR_RED
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
-	is_reflectable = TRUE
+	reflectable = REFLECT_NORMAL
 
 /obj/item/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
@@ -43,7 +43,7 @@
 /obj/item/projectile/beam/practice
 	name = "practice laser"
 	damage = 0
-	nodamage = 1
+	nodamage = TRUE
 
 /obj/item/projectile/beam/scatter
 	name = "laser pellet"
@@ -67,7 +67,7 @@
 /obj/item/projectile/beam/disabler
 	name = "disabler beam"
 	icon_state = "omnilaser"
-	damage = 36
+	damage = 30
 	damage_type = STAMINA
 	flag = "energy"
 	hitsound = 'sound/weapons/tap.ogg'
@@ -104,7 +104,7 @@
 /obj/item/projectile/beam/pulse/heavy/on_hit(atom/target, blocked = FALSE)
 	life -= 10
 	if(life > 0)
-		. = -1
+		. = BULLET_ACT_FORCE_PIERCE
 	..()
 
 /obj/item/projectile/beam/emitter

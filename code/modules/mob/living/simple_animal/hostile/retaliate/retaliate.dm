@@ -12,6 +12,12 @@
 		var/obj/mecha/M = A
 		if(M.occupant)
 			return A
+	// yogs start
+	else if(istype(A, /obj/spacepod))
+		var/obj/spacepod/M = A
+		if(M.pilot || M.passengers.len)
+			return A
+	// yogs end
 
 /mob/living/simple_animal/hostile/retaliate/ListTargets()
 	if(!enemies.len)

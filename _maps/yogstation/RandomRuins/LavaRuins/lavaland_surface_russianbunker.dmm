@@ -1,0 +1,2455 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
+"ab" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"ac" = (
+/turf/closed/mineral/volcanic,
+/area/lavaland/surface/outdoors)
+"ad" = (
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ae" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"af" = (
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ag" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ah" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/russian/ranged/trooper,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ai" = (
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ak" = (
+/obj/structure/chair/comfy,
+/mob/living/simple_animal/hostile/russian/ranged/officer,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"al" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"am" = (
+/obj/machinery/jukebox,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"an" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ao" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ap" = (
+/obj/structure/chair/stool/bar,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ar" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	name = "Russian Defense Turret MK-II"
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"at" = (
+/obj/structure/table/wood/poker,
+/obj/item/coin/adamantine,
+/obj/item/coin/diamond,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"au" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"av" = (
+/obj/item/restraints/handcuffs,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aw" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ax" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ay" = (
+/obj/structure/table/wood/poker,
+/obj/item/coin/antagtoken,
+/obj/item/toy/cards/deck/syndicate,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"az" = (
+/obj/structure/table/wood/poker,
+/obj/item/coin/mythril,
+/obj/item/coin/diamond,
+/obj/item/dice/d6,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aB" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aC" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aD" = (
+/obj/structure/chair/stool/bar,
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aE" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aF" = (
+/obj/machinery/door/airlock/hatch{
+	locked = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aG" = (
+/obj/structure/statue/sandstone/assistant,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aH" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/space/basic,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aI" = (
+/turf/closed/indestructible/opshuttle,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aJ" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/space_ninja,
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aK" = (
+/obj/machinery/door/airlock/hatch{
+	locked = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aL" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aM" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aN" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/shoes/space_ninja,
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aO" = (
+/obj/effect/mine/gas/plasma,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aP" = (
+/obj/structure/table/wood/poker,
+/obj/item/coin/adamantine,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aQ" = (
+/obj/effect/mine/gas/plasma,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aR" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	name = "Russian Defense Turret MK-II"
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aS" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/bearsteak,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aT" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/meat/steak/bear,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aV" = (
+/obj/structure/grille/indestructable,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aW" = (
+/obj/structure/table/wood/poker,
+/obj/item/coin/diamond,
+/obj/item/lighter,
+/obj/item/toy/cards/cardhand,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aX" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aY" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"aZ" = (
+/obj/machinery/door/airlock/hatch{
+	welded = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ba" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bb" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bc" = (
+/obj/machinery/chem_master/condimaster,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bd" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	name = "Russian Defense Turret MK-II"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"be" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/bearsteak,
+/obj/item/reagent_containers/food/snacks/bearsteak,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bf" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bg" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/space/space_ninja/lavaland,
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bh" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bi" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/meat/steak/bear,
+/obj/item/lighter,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bj" = (
+/mob/living/simple_animal/hostile/russian/ranged/trooper,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bk" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bl" = (
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/structure/table,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bm" = (
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bn" = (
+/obj/machinery/light,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bo" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/bearsteak,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bp" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/structure/table,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bq" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"br" = (
+/obj/machinery/keycard_auth{
+	pixel_y = -7
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bs" = (
+/obj/machinery/space_heater,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bt" = (
+/obj/structure/sign/poster/contraband/power,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bu" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bv" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bw" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/meat/steak/bear,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bx" = (
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"by" = (
+/mob/living/simple_animal/hostile/bear,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bz" = (
+/obj/structure/table,
+/obj/item/lighter,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bA" = (
+/turf/closed/wall/r_wall,
+/area/lavaland/surface/outdoors)
+"bB" = (
+/obj/item/ammo_casing/a357,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bC" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bD" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bE" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/bear,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bF" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/neck/stripedbluescarf,
+/obj/item/clothing/head/wizard/marisa/fake,
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bG" = (
+/obj/item/book/manual/wiki/barman_recipes,
+/obj/structure/table,
+/obj/item/vending_refill/wardrobe/bar_wardrobe,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bH" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/bear/snow,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bI" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bJ" = (
+/obj/item/ammo_casing/a357,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bK" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/bear,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bL" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bM" = (
+/obj/structure/table,
+/obj/item/kitchen/knife/butcher,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bN" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bO" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/helmet/space/space_ninja,
+/obj/item/clothing/mask/gas/space_ninja,
+/obj/machinery/turretid{
+	ailock = 1;
+	control_area = null;
+	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
+	icon_state = "control_kill";
+	lethal = 1;
+	name = "Shuttle turret control";
+	pixel_x = 32;
+	pixel_y = -28;
+	req_access = null;
+	req_access_txt = "150"
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bP" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bQ" = (
+/obj/machinery/door/airlock/hatch{
+	welded = 1
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bR" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bS" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bT" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bU" = (
+/obj/structure/table,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bV" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/russian/ranged/trooper,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bW" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bX" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"bY" = (
+/obj/effect/mine/stun,
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"bZ" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ca" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cb" = (
+/obj/item/weldingtool/experimental,
+/mob/living/simple_animal/hostile/bear,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cc" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cd" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/item/wrench/power,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ce" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cf" = (
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cg" = (
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ch" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ci" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cj" = (
+/obj/item/restraints/handcuffs,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ck" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/crowbar/power,
+/mob/living/simple_animal/hostile/bear/snow,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cl" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cm" = (
+/obj/structure/table,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cn" = (
+/obj/structure/sign/poster/contraband/kss13,
+/turf/closed/indestructible/opshuttle,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"co" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/space/basic,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cp" = (
+/obj/machinery/light,
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cq" = (
+/obj/structure/sign/poster/contraband/communist_state,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cr" = (
+/obj/structure/sign/poster/contraband/syndicate_recruitment,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cs" = (
+/obj/structure/sign/poster/contraband/eat,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"ct" = (
+/obj/structure/sign/poster/contraband/d_day_promo,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"cv" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"sE" = (
+/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"tt" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Ao" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Be" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/statue/sandstone/assistant,
+/turf/open/floor/wood,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"BL" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"MO" = (
+/obj/effect/mine/gas/plasma,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Nv" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/closed/wall/r_wall,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Pf" = (
+/obj/item/cigbutt/cigarbutt,
+/turf/open/floor/pod,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+"Yn" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/ruin/unpowered{
+	name = "\improper Russian Bunker";
+	noteleport = 1
+	})
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+ab
+ac
+ab
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+ac
+ac
+ac
+Yn
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+ab
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ac
+ac
+ab
+ab
+ac
+ab
+ab
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ad
+aI
+aI
+aI
+aI
+aI
+ad
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+aa
+aa
+aa
+ab
+"}
+(10,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ad
+aI
+aJ
+bO
+bg
+aI
+ad
+bA
+ab
+ab
+ab
+ab
+ab
+bX
+ab
+ab
+aa
+ab
+ab
+ab
+bX
+aa
+aa
+aa
+ab
+ab
+"}
+(11,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ad
+aI
+aN
+bq
+bF
+aI
+ad
+ad
+aV
+ad
+aV
+ad
+ar
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+"}
+(12,1,1) = {"
+aa
+ab
+ab
+ab
+ar
+ad
+ad
+ad
+ad
+ad
+aI
+cn
+aK
+aI
+aI
+ad
+cb
+bD
+bN
+ck
+bK
+ad
+ab
+ab
+ab
+ab
+bX
+aa
+ab
+aa
+aa
+aa
+ab
+aa
+ab
+"}
+(13,1,1) = {"
+ab
+ab
+ab
+ac
+ad
+ae
+an
+aw
+aB
+ad
+aX
+al
+bB
+bI
+aR
+ad
+bv
+by
+by
+bE
+bL
+ad
+ad
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+aa
+aa
+aa
+bX
+aa
+"}
+(14,1,1) = {"
+ab
+ab
+ac
+ac
+ad
+af
+ag
+al
+ag
+aF
+aO
+bm
+bf
+bJ
+cp
+ad
+cd
+bE
+bH
+by
+bS
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+bZ
+bZ
+bZ
+bZ
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+ab
+ab
+ab
+ab
+ad
+ae
+ag
+ax
+aC
+bt
+be
+aY
+bC
+bP
+aR
+ad
+aT
+aT
+aZ
+aT
+aT
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+tt
+ai
+cf
+bZ
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+ab
+ab
+ab
+ad
+ad
+ao
+ad
+ad
+ad
+ad
+co
+aH
+Nv
+ad
+ad
+av
+aQ
+ai
+ai
+ai
+ad
+bs
+tt
+ad
+cu
+aR
+ad
+ca
+cc
+ai
+bZ
+aa
+ab
+aa
+"}
+(17,1,1) = {"
+aa
+ab
+ac
+ab
+ad
+ag
+ag
+ag
+ag
+ag
+Be
+ag
+bh
+aG
+bh
+cq
+aQ
+ad
+ai
+cq
+MO
+cs
+ah
+bW
+ad
+aT
+aT
+cq
+ai
+sE
+tt
+bZ
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+ab
+ac
+ab
+ad
+aj
+ap
+al
+ag
+ag
+ag
+ag
+al
+ag
+ag
+au
+ai
+ai
+ai
+aQ
+ai
+aK
+Pf
+tt
+aK
+ai
+bY
+aK
+cc
+BL
+cg
+bZ
+aa
+aa
+ab
+"}
+(19,1,1) = {"
+ab
+ab
+ac
+ac
+ad
+ag
+at
+az
+aD
+al
+ap
+aE
+ap
+aE
+aE
+cq
+tt
+cr
+aQ
+cq
+ai
+br
+bV
+bn
+ad
+aT
+aT
+cq
+ai
+tt
+ai
+bZ
+aa
+ab
+aa
+"}
+(20,1,1) = {"
+ab
+ab
+ab
+ab
+ad
+ak
+ay
+aP
+aE
+ag
+aS
+ba
+bi
+bo
+bw
+ad
+ai
+bb
+tt
+ai
+ai
+ad
+bu
+bu
+ad
+cv
+aR
+ad
+ce
+ai
+cc
+bZ
+aa
+ab
+aa
+"}
+(21,1,1) = {"
+ab
+ab
+ab
+ab
+ad
+ag
+az
+aW
+ag
+ag
+aU
+ag
+bj
+ag
+bx
+ad
+ad
+ad
+bQ
+ad
+ad
+ad
+ad
+ad
+ad
+ct
+ad
+ad
+cc
+cf
+ch
+bZ
+aa
+ab
+aa
+"}
+(22,1,1) = {"
+ab
+ab
+ab
+ab
+ad
+al
+ag
+ap
+ag
+aL
+ag
+ag
+al
+ag
+ag
+ad
+aM
+cj
+Ao
+cl
+bT
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+bZ
+bZ
+bZ
+bZ
+bX
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+ab
+ab
+ab
+ad
+am
+aM
+aA
+ag
+ag
+bk
+bc
+bl
+bp
+bz
+ad
+ci
+aY
+bC
+al
+bU
+ad
+bA
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+ab
+ab
+ab
+ar
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+bG
+bM
+bd
+bR
+cm
+ad
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+bX
+aa
+aa
+aa
+aa
+ab
+"}
+(25,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ad
+ad
+ad
+ad
+ad
+ad
+ar
+ab
+ac
+ab
+bX
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+aa
+ab
+ab
+ab
+aa
+ab
+ab
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ac
+ac
+ac
+ac
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+bX
+ab
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+ac
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+aa
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+ab
+ab
+ab
+ab
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+ab
+ab
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

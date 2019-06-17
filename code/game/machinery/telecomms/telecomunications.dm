@@ -37,6 +37,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(!on)
 		return
+		
+	if(filter && !ispath(filter)) // Yogs -- for debugging telecomms later when I soop up NTSL some more
+		CRASH("relay_information() was given a path filter that wasn't actually a path!")
 	var/send_count = 0
 
 	// Apply some lag based on traffic rates
@@ -45,8 +48,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		signal.data["slow"] = netlag
 
 	// Loop through all linked machines and send the signal or copy.
-	for(var/obj/machinery/telecomms/machine in links)
-		if(filter && !istype( machine, filter ))
+	for(var/m_typeless in links) // Yogs -- God bless typeless for-loops
+		var/obj/machinery/telecomms/machine = m_typeless
+		if(filter && !istype(machine, filter) )
 			continue
 		if(!machine.on)
 			continue
@@ -107,6 +111,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			for(var/x in autolinkers)
 				if(x in T.autolinkers)
 					links |= T
+					T.links |= src
+
 
 /obj/machinery/telecomms/update_icon()
 	if(on)
@@ -143,9 +149,10 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(100/severity))
-		if(!(stat & EMPED))
-			stat |= EMPED
-			var/duration = (300 * 10)/severity
-			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
-				stat &= ~EMPED
+	if(prob(100/severity) && !(stat & EMPED))
+		stat |= EMPED
+		var/duration = (300 * 10)/severity
+		addtimer(CALLBACK(src, .proc/de_emp), rand(duration - 20, duration + 20))
+
+/obj/machinery/telecomms/proc/de_emp()
+	stat &= ~EMPED

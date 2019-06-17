@@ -20,8 +20,6 @@
 	var/active_sound = null
 	var/toggle_cooldown = null
 	var/cooldown = 0
-	var/obj/item/flashlight/F = null
-	var/can_flashlight = 0
 	var/scan_reagents = 0 //Can the wearer see reagents while it's equipped?
 
 	var/clothing_flags = NONE
@@ -38,11 +36,13 @@
 	// THESE OVERRIDE THE HIDEHAIR FLAGS
 	var/dynamic_hair_suffix = ""//head > mask for head hair
 	var/dynamic_fhair_suffix = ""//mask > head for facial hair
-	
+
 	var/tearable //can this particular item be torn down to be used for cloth? | yogs
 	var/tearhealth = 100 //health regarding tearing clothes to get torn cloth | yogs
 
 /obj/item/clothing/Initialize()
+	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
+		actions_types += /datum/action/item_action/toggle_voice_box
 	. = ..()
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
@@ -60,10 +60,11 @@
 			add_fingerprint(usr)
 
 /obj/item/reagent_containers/food/snacks/clothing
-	name = "oops"
+	name = "temporary moth clothing snack item"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object."
-	list_reagents = list("nutriment" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("dust" = 1, "lint" = 1)
+	foodtype = CLOTH
 
 /obj/item/clothing/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent != INTENT_HARM && ismoth(M))
@@ -113,17 +114,20 @@
 
 /obj/item/clothing/examine(mob/user)
 	..()
+	clothing_resistance_flag_examine_message(user)
 	if(damaged_clothes)
 		to_chat(user,  "<span class='warning'>It looks damaged!</span>")
-	GET_COMPONENT(pockets, /datum/component/storage)
+	var/datum/component/storage/pockets = GetComponent(/datum/component/storage)
 	if(pockets)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(pockets.attack_hand_interact)
 			how_cool_are_your_threads += "[src]'s storage opens when clicked.\n"
 		else
 			how_cool_are_your_threads += "[src]'s storage opens when dragged to yourself.\n"
-		how_cool_are_your_threads += "[src] can store [pockets.max_items] item\s.\n"
-		how_cool_are_your_threads += "[src] can store items that are [weightclass2text(pockets.max_w_class)] or smaller.\n"
+		if (pockets.can_hold?.len) // If pocket type can hold anything, vs only specific items
+			how_cool_are_your_threads += "[src] can store [pockets.max_items] <a href='?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
+		else
+			how_cool_are_your_threads += "[src] can store [pockets.max_items] item\s that are [weightclass2text(pockets.max_w_class)] or smaller.\n"
 		if(pockets.quickdraw)
 			how_cool_are_your_threads += "You can quickly remove an item from [src] using Alt-Click.\n"
 		if(pockets.silent)
@@ -136,7 +140,7 @@
 		update_clothes_damaged_state(TRUE)
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
 		var/mob/M = loc
-		M.visible_message("<span class='warning'>[M]'s [name] starts to fall apart!", "<span class='warning'>Your [name] starts to fall apart!</span>")
+		to_chat(M, "<span class='warning'>Your [name] starts to fall apart!</span>")
 
 /obj/item/clothing/proc/update_clothes_damaged_state(damaging = TRUE)
 	var/index = "[REF(initial(icon))]-[initial(icon_state)]"
@@ -214,8 +218,6 @@ BLIND     // can't see anything
 		var/mob/living/carbon/human/H = loc
 		if(H.w_uniform == src)
 			H.update_suit_sensors()
-
-	..()
 
 /obj/item/clothing/under/AltClick(mob/user)
 	if(..())

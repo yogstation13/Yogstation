@@ -23,6 +23,7 @@
 	if(A)
 		notify_ghosts("A drone shell has been created in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DRONE)
 	GLOB.poi_list |= src
+	LAZYADD(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
 	if(isnull(possible_seasonal_hats))
 		build_seasonal_hats()
 
@@ -37,11 +38,12 @@
 
 /obj/item/drone_shell/Destroy()
 	GLOB.poi_list -= src
+	LAZYREMOVE(GLOB.mob_spawners[initial(name)], src)//Yogs -- Adds drone shells to Spawner Menu
 	. = ..()
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/drone_shell/attack_ghost(mob/user)
-	if(jobban_isbanned(user,"drone") || QDELETED(src) || QDELETED(user))
+	if(is_banned_from(user.ckey, ROLE_DRONE) || QDELETED(src) || QDELETED(user))
 		return
 	if(CONFIG_GET(flag/use_age_restriction_for_jobs))
 		if(!isnum(user.client.player_age)) //apparently what happens when there's no DB connected. just don't let anybody be a drone without admin intervention

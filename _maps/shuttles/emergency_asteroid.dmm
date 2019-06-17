@@ -206,7 +206,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aX" = (
-/obj/machinery/ai_status_display,
+/obj/machinery/status_display/ai,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "aY" = (
@@ -264,7 +264,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "bi" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bj" = (
@@ -402,6 +402,7 @@
 /obj/item/retractor,
 /obj/item/hemostat,
 /obj/item/scalpel,
+/obj/item/surgicaldrill,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bG" = (

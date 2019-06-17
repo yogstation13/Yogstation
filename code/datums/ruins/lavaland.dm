@@ -49,6 +49,7 @@
 	id = "ash-walker"
 	description = "A race of unbreathing lizards live here, that run faster than a human can, worship a broken dead city, and are capable of reproducing by something involving tentacles? \
 	Probably best to stay clear."
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"//yogs - use Yogs custom ash walker nest instead of upstream
 	suffix = "lavaland_surface_ash_walker1.dmm"
 	cost = 20
 	allow_duplicates = FALSE
@@ -57,6 +58,7 @@
 	name = "Syndicate Lava Base"
 	id = "lava-base"
 	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
+	prefix = "_maps/yogstation/RandomRuins/LavaRuins/"//yogs - use Yogs custom syndicate lava base instead of upstream
 	suffix = "lavaland_surface_syndicate_base1.dmm"
 	cost = 20
 	allow_duplicates = FALSE
@@ -104,7 +106,7 @@
 /datum/map_template/ruin/lavaland/sin/pride
 	name = "Ruin of Pride"
 	id = "pride"
-	description = "Wormhole lifebelts are for LOSERS, who you are better than."
+	description = "Wormhole lifebelts are for LOSERS, whom you are better than."
 	suffix = "lavaland_surface_pride.dmm"
 
 /datum/map_template/ruin/lavaland/sin/sloth
@@ -118,7 +120,7 @@
 /datum/map_template/ruin/lavaland/ratvar
 	name = "Dead God"
 	id = "ratvar"
-	description = "Ratvars final resting place."
+	description = "Ratvar's final resting place."
 	suffix = "lavaland_surface_dead_ratvar.dmm"
 	cost = 0
 	allow_duplicates = FALSE
@@ -179,7 +181,7 @@
 /datum/map_template/ruin/lavaland/pizza
 	name = "Ruined Pizza Party"
 	id = "pizza"
-	description = "Little Timmy's birthday pizza-bash took a turn for the worse when a bluespace anomaly passed by."
+	description = "Little Timmy's birthday pizza bash took a turn for the worse when a bluespace anomaly passed by."
 	suffix = "lavaland_surface_pizzaparty.dmm"
 	allow_duplicates = FALSE
 	cost = 5
@@ -187,7 +189,7 @@
 /datum/map_template/ruin/lavaland/cultaltar
 	name = "Summoning Ritual"
 	id = "cultaltar"
-	description = "A place of vile worship, the scrawling of blood in the middle glowing eerily. A demonic laugh echoes throughout the caverns"
+	description = "A place of vile worship, the scrawling of blood in the middle glowing eerily. A demonic laugh echoes throughout the caverns."
 	suffix = "lavaland_surface_cultaltar.dmm"
 	allow_duplicates = FALSE
 	cost = 10

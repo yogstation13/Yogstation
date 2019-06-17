@@ -27,8 +27,9 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]")
+	//log_admin("[key_name(src)] played sound [S]") // Yogs comment-out
+	//message_admins("[key_name_admin(src)] played sound [S]") // Yogs comment-out
+	var/count = 0 //yogs
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
@@ -37,6 +38,12 @@
 				admin_sound.volume = vol * (user_vol / 100)
 			SEND_SOUND(M, admin_sound)
 			admin_sound.volume = vol
+			count++ //Yogs
+	//yogs start -- informs admins of how much of the server actually heard their sound
+	count = round(count / GLOB.player_list.len * 100,0.5)
+	log_admin("[key_name(src)] played sound [S] to [count]% of the server.")
+	message_admins("[key_name_admin(src)] played sound [S] to [count]% of the server.")
+	//yogs end
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Global Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -67,7 +74,7 @@
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
 		var/stop_web_sounds = FALSE
-		var/pitch
+		var/list/music_extra_data = list()
 		if(length(web_sound_input))
 
 			web_sound_input = trim(web_sound_input)
@@ -95,6 +102,8 @@
 					var/webpage_url = title
 					if (data["webpage_url"])
 						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
+					music_extra_data["start"] = data["start_time"]
+					music_extra_data["end"] = data["end_time"]
 
 					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "No", "Yes", "Cancel")
 					switch(res)
@@ -126,7 +135,7 @@
 				var/client/C = M.client
 				if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 					if(!stop_web_sounds)
-						C.chatOutput.sendMusic(web_sound_url, pitch)
+						C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 					else
 						C.chatOutput.stopMusic()
 
@@ -138,7 +147,17 @@
 	if(!check_rights(R_SOUNDS))
 		return
 
+	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
+	var/static/lastadmin
+	var/static/lastsound
+	
+	if(lastadmin && src.ckey != lastadmin)
+		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?",,"Yes","Cancel") != "Yes")
+			return
 	SSticker.SetRoundEndSound(S)
+	lastadmin = src.ckey
+	lastsound = "[S]"
+	//Yogs end
 
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")

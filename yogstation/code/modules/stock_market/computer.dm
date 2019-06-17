@@ -16,9 +16,10 @@
 	logged_in = "SS13 Cargo Department"
 
 /obj/machinery/computer/stockexchange/proc/balance()
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if (!logged_in)
 		return 0
-	return SSshuttle.points
+	return D.account_balance
 
 /obj/machinery/computer/stockexchange/attack_ai(mob/user)
 	return attack_hand(user)
@@ -178,7 +179,8 @@ a.updated {
 	if (!li)
 		to_chat(user, "<span class='danger'>No active account on the console!</span>")
 		return
-	var/b = SSshuttle.points
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	var/b = D.account_balance
 	var/avail = S.shareholders[logged_in]
 	if (!avail)
 		to_chat(user, "<span class='danger'>This account does not own any shares of [S.name]!</span>")
@@ -193,7 +195,7 @@ a.updated {
 		return
 	if (li != logged_in)
 		return
-	b = SSshuttle.points
+	b = D.account_balance
 	if (!isnum(b))
 		to_chat(user, "<span class='danger'>No active account on the console!</span>")
 		return

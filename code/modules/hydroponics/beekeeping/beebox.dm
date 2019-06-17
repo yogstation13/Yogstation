@@ -65,7 +65,7 @@
 	var/datum/reagent/R = null
 	if(random_reagent)
 		R = pick(subtypesof(/datum/reagent))
-		R = GLOB.chemical_reagents_list[initial(R.id)]
+		R = GLOB.chemical_reagents_list[R]
 
 	queen_bee = new(src)
 	queen_bee.beehome = src
@@ -95,7 +95,7 @@
 				bee_resources = max(bee_resources-BEE_RESOURCE_HONEYCOMB_COST, 0)
 				var/obj/item/reagent_containers/honeycomb/HC = new(src)
 				if(queen_bee.beegent)
-					HC.set_reagent(queen_bee.beegent.id)
+					HC.set_reagent(queen_bee.beegent.type)
 				honeycombs += HC
 
 		if(bees.len < get_max_bees())
@@ -156,7 +156,7 @@
 			to_chat(user, "<span class='warning'>There's no room for any more frames in the apiary!</span>")
 		return
 
-	if(istype(I, /obj/item/wrench))
+	if(I.tool_behaviour == TOOL_WRENCH)
 		if(default_unfasten_wrench(user, I, time = 20))
 			return
 

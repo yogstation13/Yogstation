@@ -13,3 +13,4 @@
 /obj/structure/closet/secure_closet/security/PopulateContents()
 	..()
 	new /obj/item/radio/security(src)
+	new /obj/item/clipboard/yog/paperwork/security(src)

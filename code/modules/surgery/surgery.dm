@@ -5,8 +5,8 @@
 	var/list/steps = list()									//Steps in a surgery
 	var/step_in_progress = 0								//Actively performing a Surgery
 	var/can_cancel = 1										//Can cancel this surgery after step 1 with cautery
-	var/list/species = list(/mob/living/carbon/human)		//Acceptable Species
-	var/location = BODY_ZONE_CHEST									//Surgery location
+	var/list/target_mobtypes = list(/mob/living/carbon/human)		//Acceptable Species
+	var/location = BODY_ZONE_CHEST							//Surgery location
 	var/requires_bodypart_type = BODYPART_ORGANIC			//Prevents you from performing an operation on incorrect limbs. 0 for any limb type
 	var/list/possible_locs = list() 						//Multiple locations
 	var/ignore_clothes = 0									//This surgery ignores clothes
@@ -15,6 +15,8 @@
 	var/requires_bodypart = TRUE							//Surgery available only when a bodypart is present, or only when it is missing.
 	var/success_multiplier = 0								//Step success propability multiplier
 	var/requires_real_bodypart = 0							//Some surgeries don't work on limbs that don't really exist
+	var/lying_required = TRUE								//Does the vicitm needs to be lying down.
+	var/self_operable = FALSE								//Can the surgery be performed on yourself.
 
 /datum/surgery/New(surgery_target, surgery_location, surgery_bodypart)
 	..()
@@ -72,7 +74,7 @@
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T))
+	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
 		propability = 1
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
@@ -87,13 +89,10 @@
 /datum/surgery/advanced/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
 		return FALSE
-	//Abductor scientists need no instructions
-	if(isabductor(user))
-		var/mob/living/carbon/human/H = user
-		var/datum/species/abductor/S = H.dna.species
-		if(S.scientist)
-			return TRUE
-	
+	// True surgeons (like abductor scientists) need no instructions
+	if(HAS_TRAIT(user, TRAIT_SURGEON))
+		return TRUE
+
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		var/obj/item/surgical_processor/SP = locate() in R.module.modules
@@ -101,15 +100,27 @@
 			return FALSE
 		if(type in SP.advanced_surgeries)
 			return TRUE
-	
+
 	var/turf/T = get_turf(target)
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(!table || !table.computer)
-		return FALSE
-	if(table.computer.stat & (NOPOWER|BROKEN))
-		return FALSE
-	if(type in table.computer.advanced_surgeries)
-		return TRUE
+	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
+	if(table)
+		if(!table.computer)
+			return FALSE
+		if(table.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in table.computer.advanced_surgeries)
+			return TRUE
+	if(bed)
+		if(!bed.computer)
+			return FALSE
+		if(bed.occupant != target)
+			return FALSE
+		if(bed.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in bed.computer.advanced_surgeries)
+			return TRUE //yogs end
+
 
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"

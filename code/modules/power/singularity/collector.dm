@@ -17,6 +17,7 @@
 	max_integrity = 350
 	integrity_failure = 80
 	circuit = /obj/item/circuitboard/machine/rad_collector
+	rad_insulation = RAD_EXTREME_INSULATION
 	var/obj/item/tank/internals/plasma/loaded_tank = null
 	var/stored_power = 0
 	var/active = 0
@@ -27,12 +28,9 @@
 	var/bitcoinproduction_drain = 0.15
 	var/bitcoinmining = FALSE
 
+
 /obj/machinery/power/rad_collector/anchored
 	anchored = TRUE
-
-/obj/machinery/power/rad_collector/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_EXTREME_INSULATION, FALSE, FALSE)
 
 /obj/machinery/power/rad_collector/Destroy()
 	return ..()
@@ -43,6 +41,7 @@
 	if(!bitcoinmining)
 		if(!loaded_tank.air_contents.gases[/datum/gas/plasma])
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
+			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			eject()
 		else
@@ -67,6 +66,9 @@
 			loaded_tank.air_contents.gases[/datum/gas/carbon_dioxide][MOLES] += gasdrained*2
 			loaded_tank.air_contents.garbage_collect()
 			var/bitcoins_mined = RAD_COLLECTOR_OUTPUT
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
+			if(D)
+				D.adjust_money(bitcoins_mined*RAD_COLLECTOR_MINING_CONVERSION_RATE)
 			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, bitcoins_mined*RAD_COLLECTOR_MINING_CONVERSION_RATE)
 			stored_power-=bitcoins_mined
 
@@ -81,6 +83,7 @@
 				fuel = loaded_tank.air_contents.gases[/datum/gas/plasma]
 			fuel = fuel ? fuel[MOLES] : 0
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SINGULO)
+			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			return
 		else
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")
@@ -115,7 +118,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		loaded_tank = W
-		update_icons()
+		update_icon()
 	else if(W.GetID())
 		if(allowed(user))
 			if(active)
@@ -134,6 +137,8 @@
 	return TRUE
 
 /obj/machinery/power/rad_collector/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
 	if(loaded_tank)
 		to_chat(user, "<span class='warning'>Remove the plasma tank first!</span>")
 	else
@@ -200,14 +205,14 @@
 	if(active)
 		toggle_power()
 	else
-		update_icons()
+		update_icon()
 
 /obj/machinery/power/rad_collector/rad_act(pulse_strength)
 	. = ..()
 	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT
 
-/obj/machinery/power/rad_collector/proc/update_icons()
+/obj/machinery/power/rad_collector/update_icon()
 	cut_overlays()
 	if(loaded_tank)
 		add_overlay("ptank")
@@ -225,7 +230,7 @@
 	else
 		icon_state = "ca"
 		flick("ca_deactive", src)
-	update_icons()
+	update_icon()
 	return
 
 #undef RAD_COLLECTOR_EFFICIENCY

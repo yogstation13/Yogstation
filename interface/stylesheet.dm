@@ -25,9 +25,11 @@ em						{font-style: normal;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
+
+.looc					{color: #63b2f2;	font-weight: bold;} /* yogs - LOOC */
 
 .adminsay				{color:	#996600;	font-weight: bold;} /* yogs - changed colour to poop */
 .admin					{color: #386aff;	font-weight: bold;}
@@ -39,9 +41,10 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
-.radio					{color: #008000;}
+.radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
+.commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}
-.comradio				{color: #948f02;}
+.comradio				{color: #204090;} /* yogs */
 .secradio				{color: #a30000;}
 .medradio				{color: #337296;}
 .engradio				{color: #fb5613;}
@@ -135,6 +138,8 @@ h1.alert, h2.alert		{color: #000000;}
 .noticealien			{color: #00c000;}
 .alertalien				{color: #00c000;	font-weight: bold;}
 .changeling				{color: #800080;	font-style: italic;}
+.assimilator			{color: #800080;	font-size: 2 ; font-weight: bold;}
+.bigassimilator			{color: #800080;	font-size: 4 ; font-weight: bold;}
 
 .spider					{color: #4d004d;}
 
@@ -153,6 +158,21 @@ h1.alert, h2.alert		{color: #000000;}
 .redtext				{color: #FF0000;	font-size: 3;}
 .clown					{color: #FF69Bf;	font-size: 3; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif; font-style: italic;}
+.hypnophrase			{color: #3bb5d3;	font-weight: bold; animation: hypnocolor 1500ms infinite;}
+@keyframes hypnocolor {
+    0% { color: #0d0d0d; }
+    25% { color: #410194; }
+    50% { color: #7f17d8; }
+	75% { color: #410194; }
+	100% { color: #3bb5d3; }
+}
+
+.phobia			{color: #dd0000;	font-weight: bold; animation: phobia 750ms infinite;}
+	@keyframes phobia {
+		0% { color: #0d0d0d; }
+		50% { color: #dd0000; }
+		100% { color: #0d0d0d; }
+}
 
 .icon 					{height: 1em;	width: auto;}
 
@@ -175,7 +195,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 }
 .ticket-text-sent {
-	color: #000099;
+	color: #47beff;
 	font-weight: bold;
 }
 .ticket-text-received {

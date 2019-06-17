@@ -1,17 +1,13 @@
 /*
 //////////////////////////////////////
-
 Necrotizing Fasciitis (AKA Flesh-Eating Disease)
-
 	Very very noticable.
 	Lowers resistance tremendously.
 	No changes to stage speed.
 	Decreases transmittablity temrendously.
 	Fatal Level.
-
 Bonus
 	Deals brute damage over time.
-
 //////////////////////////////////////
 */
 
@@ -55,9 +51,9 @@ Bonus
 
 /datum/symptom/flesh_eating/proc/Flesheat(mob/living/M, datum/disease/advance/A)
 	var/get_damage = rand(15,25) * power
-	M.adjustBruteLoss(get_damage)
+	M.take_overall_damage(brute = get_damage, required_status = BODYPART_ORGANIC)
 	if(pain)
-		M.adjustStaminaLoss(get_damage)
+		M.adjustStaminaLoss(get_damage * 2)
 	if(bleed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -66,18 +62,14 @@ Bonus
 
 /*
 //////////////////////////////////////
-
 Autophagocytosis (AKA Programmed mass cell death)
-
 	Very noticable.
 	Lowers resistance.
 	Fast stage speed.
 	Decreases transmittablity.
 	Fatal Level.
-
 Bonus
 	Deals brute damage over time.
-
 //////////////////////////////////////
 */
 
@@ -122,9 +114,9 @@ Bonus
 
 /datum/symptom/flesh_death/proc/Flesh_death(mob/living/M, datum/disease/advance/A)
 	var/get_damage = rand(6,10)
-	M.adjustBruteLoss(get_damage)
+	M.take_overall_damage(brute = get_damage, required_status = BODYPART_ORGANIC)
 	if(chems)
-		M.reagents.add_reagent_list(list("heparin" = 2, "lipolicide" = 2))
+		M.reagents.add_reagent_list(list(/datum/reagent/toxin/heparin = 2, /datum/reagent/toxin/lipolicide = 2))
 	if(zombie)
-		M.reagents.add_reagent("romerol", 1)
+		M.reagents.add_reagent(/datum/reagent/romerol, 1)
 	return 1

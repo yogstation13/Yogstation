@@ -6,7 +6,7 @@
 	set category = null
 	set name = "Admin PM Mob"
 	if(!holder)
-		to_chat(src, "<font color='red'>Error: Admin-PM-Context: Only administrators may use this command.</font>")
+		to_chat(src, "<span class='danger'>Error: Admin-PM-Context: Only administrators may use this command.</span>")
 		return
 	if(!ismob(M)) //yogs start
 		return
@@ -23,7 +23,7 @@
 	set category = "Admin"
 	set name = "Admin PM"
 	if(!holder)
-		to_chat(src, "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>")
+		to_chat(src, "<span class='danger'>Error: Admin-PM-Panel: Only administrators may use this command.</span>")
 		return
 	var/list/client/targets[0]
 	for(var/client/T)
@@ -42,7 +42,7 @@
 
 /client/proc/cmd_ahelp_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Admin-PM: You are unable to use admin PM-s (muted).</font>")
+		to_chat(src, "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>")
 		return
 	var/client/C
 	if(istext(whom))
@@ -53,16 +53,16 @@
 		C = whom
 	if(!C)
 		if(holder)
-			to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
+			to_chat(src, "<span class='danger'>Error: Admin-PM: Client not found.</span>")
 		return
 
 	var/datum/admin_help/AH = C.current_ticket
 
 	if(AH)
-		message_admins("[key_name_admin(src)] has started replying to [key_name(C, 0, 0)]'s admin help.")
-	var/msg = input(src,"Message:", "Private message to [key_name(C, 0, 0)]") as text|null
+		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
+	var/msg = input(src,"Message:", "Private message to [C.holder?.fakekey ? "an Administrator" : key_name(C, 0, 0)].") as message|null
 	if (!msg)
-		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name(C, 0, 0)]'s admin help.")
+		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
 		return
 	cmd_admin_pm(whom, msg)
 
@@ -70,12 +70,12 @@
 //Fetching a message if needed. src is the sender and C is the target client
 /client/proc/cmd_admin_pm(whom, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Admin-PM: You are unable to use admin PM-s (muted).</font>")
+		to_chat(src, "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>")
 		return
 
 	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
-		to_chat(src, "<font color='red'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</font>")
-		to_chat(src, "<font color='blue'>Message: [msg]</font>")
+		to_chat(src, "<span class='danger'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
+		to_chat(src, "<span class='notice'>Message: [msg]</span>")
 		return
 
 	var/client/recipient
@@ -95,19 +95,19 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = input(src,"Message:", "Private message to Administrator") as text|null
+			msg = input(src,"Message:", "Private message to Administrator") as message|null
 
 		if(!msg)
 			return
 		if(holder)
-			to_chat(src, "<font color='red'>Error: Use the admin IRC channel, nerd.</font>")
+			to_chat(src, "<span class='danger'>Error: Use the admin IRC channel, nerd.</span>")
 			return
 
 
 	else
 		if(!recipient)
 			if(holder)
-				to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
+				to_chat(src, "<span class='danger'>Error: Admin-PM: Client not found.</span>")
 				if(msg)
 					to_chat(src, msg)
 				return
@@ -117,18 +117,18 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = input(src,"Message:", "Private message to [key_name(recipient, 0, 0)]") as text|null
+			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
-				to_chat(src, "<font color='red'>Error: Admin-PM: You are unable to use admin PM-s (muted).</font>")
+				to_chat(src, "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>")
 				return
 
 			if(!recipient)
 				if(holder)
-					to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
+					to_chat(src, "<span class='danger'>Error: Admin-PM: Client not found.</span>")
 				else
 					current_ticket.MessageNoRecipient(msg)
 				return
@@ -150,31 +150,35 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></font>")
+		to_chat(src, "<span class='notice'>PM to-<b>Admins</b>: <span class='linkify'>[rawmsg]</span></span>")
 		var/datum/admin_help/AH = admin_ticket_log(src, keywordparsedmsg) // yogs - Yog Tickets
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
 		if(recipient.holder)
-			if(holder)	//both are admins
-				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+			if(holder)
+				to_chat(recipient, "<span class='danger'>Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
 
 				//omg this is dumb, just fill in both their tickets
-				admin_ticket_log(src, msg, FALSE) // yogs - Yog Tickets
+				// yogs start - Yog Tickets
+				admin_ticket_log(src, msg, FALSE) 
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src)
+				// yogs end - Yog Tickets
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
 
 			else		//recipient is an admin but sender is not
+				//YOGS START -- Yogs Tickets
 				if(!current_ticket)
-					to_chat(src, "<font color='blue'>Ticket closed, please make a new one before trying to contact admins!</span>") // yogs - Yog Tickets
+					to_chat(src, "<span class='notice'>Ticket closed, please make a new one before trying to contact admins!</span>")
 					return
-				admin_ticket_log(src, keywordparsedmsg, FALSE) // yogs - Yog Tickets
-				to_chat(recipient, "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>") // yogs - Yog Tickets
-				to_chat(src, "<font color='blue'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></font>") // yogs - Yog Tickets
-
+				admin_ticket_log(src, msg, FALSE)
+				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>")
+				//YOGS END
+			
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -187,21 +191,21 @@
 					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
-				to_chat(recipient, "<font color='red'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></font>")
-				to_chat(recipient, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></font>")
+				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>")
+				to_chat(recipient, "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>")
+				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>")
 
-				admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
+				admin_ticket_log(recipient, "PM From [src]: [msg]")// yogs - Yog Tickets
 
 				//always play non-admin recipients the adminhelp sound
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 
 				//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
-				if(CONFIG_GET(flag/popup_admin_pm))
+				if(CONFIG_GET(flag/popup_admin_pm) || recipient.current_ticket.popups_enabled) //Yogs (or apparently Apoc I guess) -- ticket popups.
 					spawn()	//so we don't hold the caller proc up
 						var/sender = src
 						var/sendername = key
-						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as text|null		//show message and await a reply
+						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null		//show message and await a reply
 						if(recipient && reply)
 							if(sender)
 								recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
@@ -210,20 +214,20 @@
 						return
 
 			else		//neither are admins
-				to_chat(src, "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>")
+				to_chat(src, "<span class='danger'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</span>")
 				return
 
 	if(irc)
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
 		for(var/client/X in GLOB.admins)
-			to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, 0)]-&gt;IRC:</B> [keywordparsedmsg]</font>")
+			to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;IRC:</B> [keywordparsedmsg]</span>")
 	else
 		window_flash(recipient, ignorepref = TRUE)
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//we don't use message_admins here because the sender/receiver might get it too
 		for(var/client/X in GLOB.admins)
 			if(X.key!=key && X.key!=recipient.key)	//check client/X is an admin and isn't the sender or recipient
-				to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</font>" )
+				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</span>" )
 
 
 
@@ -306,10 +310,10 @@
 	msg = emoji_parse(msg)
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
-	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
-	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
+	to_chat(C, "<span class='danger'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>") // yogs - Yog Tickets
+	to_chat(C, "<span class='danger'><i>Click on the administrator's name to reply.</i></span>") // yogs - Yog Tickets
 
-	admin_ticket_log(C, msg) // yogs - Yog Tickets
+	admin_ticket_log(C, "<span class='notice'>PM From [irc_tagged]: [msg]</span>") // yogs - Yog Tickets
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound
