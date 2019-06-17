@@ -551,7 +551,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
-				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[toggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -576,7 +576,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(days_remaining)
 						dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
 					// yogs start - Donor features
-					else if(src.toggles & QUIET_ROUND)
+					else if(src.yogtoggles & QUIET_ROUND)
 						dat += "<b>Be [capitalize(i)]:</b> <font color=blue><b>\[QUIET ROUND\]</b></font><br>"
 					// yogs end
 					else
@@ -586,7 +586,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			// yogs start - Donor features
 			if(is_donator(user.client))
-				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 			// yogs end
 			dat += "</td></tr></table>"
 		if(2) //OOC Preferences
@@ -662,7 +662,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
-				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				var/typehat = donor_hat ? donor_start_items[donor_hat] : null
 				var/temp_hat = donor_hat ? (new typehat()) : "None selected"
@@ -832,7 +832,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
 			// yogs start - Donor features, quiet round
-			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.toggles & QUIET_ROUND))
+			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.yogtoggles & QUIET_ROUND))
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
@@ -1063,7 +1063,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
-			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(toggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
+			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
 				quirk_conflict = TRUE
 			if(has_quirk)
@@ -1126,7 +1126,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						donor_item = 0
 				if("quiet_round")
-					toggles ^= QUIET_ROUND
+					yogtoggles ^= QUIET_ROUND
 				if("pda")
 					donor_pda = donor_pda % donor_pdas.len + 1
 				if("purrbation")
@@ -1723,7 +1723,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					reset_keybindings()
 
 				if("mood")
-					toggles ^= PREF_MOOD
+					yogtoggles ^= PREF_MOOD
 				// yogs end
 
 	ShowChoices(user)

@@ -111,9 +111,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// yogs start - Donor features
 	S["donor_pda"]			>> donor_pda
-	S["donor_hat"]          >> donor_hat
-	S["donor_item"]          >> donor_item
+	S["donor_hat"]			>> donor_hat
+	S["donor_item"]			>> donor_item
 	S["purrbation"]			>> purrbation
+	S["yogtoggles"]			>> yogtoggles
 	// yogs end
 
 	//try to fix any outdated data if necessary
@@ -131,7 +132,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
 	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
+	toggles			= sanitize_integer(toggles, 0, (1 << 23), initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, 0, 1, initial(ambientocclusion))
@@ -146,7 +147,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 
-	// yogs start - Donor features
+	// yogs start - Donor features & yogtoggles
+	yogtoggles		= sanitize_integer(yogtoggles, 0, (1 << 23), initial(yogtoggles))
 	donor_pda		= sanitize_integer(donor_pda, 1, donor_pdas.len, 1)
 	donor_hat       = sanitize_integer(donor_hat, 0, donor_start_items.len, 0)
 	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
@@ -201,7 +203,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
 
-	// yogs start - Donor features
+	// yogs start - Donor features & Yogstoggle
+	WRITE_FILE(S["yogtoggles", yogtoggles)
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
