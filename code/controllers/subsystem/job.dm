@@ -14,6 +14,8 @@ SUBSYSTEM_DEF(job)
 
 	var/overflow_role = "Assistant"
 
+	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
+
 /datum/controller/subsystem/job/Initialize(timeofday)
 	SSmapping.HACK_LoadMapConfig()
 	if(!occupations.len)
@@ -179,7 +181,7 @@ SUBSYSTEM_DEF(job)
 //it locates a head or runs out of levels to check
 //This is basically to ensure that there's atleast a few heads in the round
 /datum/controller/subsystem/job/proc/FillHeadPosition()
-	for(var/level = 1 to 3)
+	for(var/level in level_order)
 		for(var/command_position in GLOB.command_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)
@@ -302,7 +304,11 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
+<<<<<<< HEAD
 	for(var/level = 1 to 3)
+=======
+	for(var/level in level_order)
+>>>>>>> 4bc7b04386... Fixes head job assignment order (#44587)
 		//Check the head jobs first each level
 		CheckHeadPositions(level)
 
