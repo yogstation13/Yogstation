@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Added wooden farming implements to the ashwalker base."
+  - rscadd: "Makes rakes and wooden buckets craftable."
