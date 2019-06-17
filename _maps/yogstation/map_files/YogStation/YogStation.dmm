@@ -39078,6 +39078,7 @@
 	dir = 8
 	},
 /mob/living/simple_animal/crab/kreb{
+	desc = "Here to lay down the hard claws of the law!";
 	health = 50;
 	name = "Officer Kreb";
 	real_name = "Officer Kreb"
