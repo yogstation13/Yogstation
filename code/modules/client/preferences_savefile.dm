@@ -204,7 +204,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pda_color"], pda_color)
 
 	// yogs start - Donor features & Yogstoggle
-	WRITE_FILE(S["yogtoggles", yogtoggles)
+	WRITE_FILE(S["yogtoggles"], yogtoggles)
 	WRITE_FILE(S["donor_pda"], donor_pda)
 	WRITE_FILE(S["donor_hat"], donor_hat)
 	WRITE_FILE(S["donor_item"], donor_item)
