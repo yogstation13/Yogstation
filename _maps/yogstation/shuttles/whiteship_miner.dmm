@@ -7,6 +7,7 @@
 	name = "cargo bay";
 	req_access_txt = "71"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ad" = (
@@ -43,6 +44,7 @@
 	name = "recovery shuttle external airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ai" = (
