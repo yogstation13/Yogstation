@@ -78,7 +78,6 @@
 /area/lavaland/surface/outdoors)
 "ao" = (
 /obj/machinery/computer/shuttle/labor/one_way{
-	icon_state = "computer";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -285,7 +284,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/mech_bay_power_console{
-	icon_state = "computer";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -366,7 +364,6 @@
 /area/mine/eva)
 "bh" = (
 /obj/machinery/computer/secure_data{
-	icon_state = "computer";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -494,7 +491,6 @@
 /area/mine/eva)
 "bw" = (
 /obj/machinery/computer/security/labor{
-	icon_state = "computer";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -534,7 +530,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Labor Camp APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -832,7 +828,6 @@
 /area/mine/laborcamp)
 "ci" = (
 /obj/machinery/computer/prisoner{
-	icon_state = "computer";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -1082,7 +1077,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Mining Station Starboard Wing APC";
-	pixel_x = -27;
+	pixel_x = -25;
 	pixel_y = 2
 	},
 /obj/structure/cable{
@@ -1172,7 +1167,7 @@
 	dir = 1;
 	name = "Mining Communications APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/dark,
@@ -1621,7 +1616,7 @@
 	dir = 1;
 	name = "Mining Station Port Wing APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2693,7 +2688,6 @@
 /area/lavaland/surface/outdoors)
 "gY" = (
 /obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
 	dir = 8;
 	dwidth = 2;
 	height = 5;
@@ -4056,7 +4050,6 @@
 /area/mine/production)
 "Uq" = (
 /obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
 	dir = 2;
 	dwidth = 11;
 	height = 22;
@@ -4101,10 +4094,9 @@
 /area/mine/living_quarters)
 "Wp" = (
 /obj/docking_port/stationary{
-	area_type = /area/lavaland/surface/outdoors;
 	dir = 8;
 	dwidth = 3;
-	height = 5;
+	height = 10;
 	id = "mining_away";
 	name = "lavaland mine";
 	width = 7

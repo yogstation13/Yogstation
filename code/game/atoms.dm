@@ -42,7 +42,7 @@
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
+		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -84,6 +84,9 @@
 	if (canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
+	if(datum_outputs)
+		for(var/i in 1 to length(datum_outputs))
+			datum_outputs[i] = SSoutputs.outputs[datum_outputs[i]]
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
@@ -265,7 +268,7 @@
 	. = "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 /atom/proc/examine(mob/user)
-	to_chat(user, get_examine_string(user, TRUE))
+	to_chat(user, "[get_examine_string(user, TRUE)].")
 
 	if(desc)
 		to_chat(user, desc)
@@ -330,12 +333,12 @@
 
 //returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
 /mob/living/proc/get_blood_dna_list()
-	if(get_blood_id() != "blood")
+	if(get_blood_id() != /datum/reagent/blood)
 		return
 	return list("ANIMAL DNA" = "Y-")
 
 /mob/living/carbon/get_blood_dna_list()
-	if(get_blood_id() != "blood")
+	if(get_blood_id() != /datum/reagent/blood)
 		return
 	var/list/blood_dna = list()
 	if(dna)
@@ -417,7 +420,12 @@
 /atom/proc/component_storage_contents_dump_act(datum/component/storage/src_object, mob/user)
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	//yogs start -- stops things from dumping into themselves
+	if(STR == src_object)
+		to_chat(user,"<span class='warning'>You can't dump the contents of [src_object.parent] into itself!</span>")
+		return
+	//yogs end
 	while (do_after(user, 10, TRUE, src, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)

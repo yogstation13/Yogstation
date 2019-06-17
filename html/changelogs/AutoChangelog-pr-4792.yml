@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The AFK verb should now work regardless of whether or not you have a job."

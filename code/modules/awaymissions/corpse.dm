@@ -373,7 +373,7 @@
 /obj/effect/mob_spawn/human/bartender
 	name = "Space Bartender"
 	id_job = "Bartender"
-	id_access_list = list(ACCESS_BAR)
+	id_access_list = list(ACCESS_BAR, ACCESS_KITCHEN)
 	outfit = /datum/outfit/spacebartender
 
 /obj/effect/mob_spawn/human/bartender/alive
@@ -394,6 +394,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/armor/vest
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
+	implants = list(/obj/item/implant/teleporter/ghost_role) //yogs change no leaving for the bartender of space
 	id = /obj/item/card/id
 
 /obj/effect/mob_spawn/human/beach

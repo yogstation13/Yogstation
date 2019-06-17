@@ -1,3 +1,25 @@
+/*
+
+KING OF GOATS
+
+The king of goat is inside a 9x9 arena protected by two guards while during stage one it is generally a cake walk the later stages however can prove extremely challenging and downright impossible for less skilled miners..
+The king goat is as indicated by his name the king of all goats and as such if you attempt to fight him you will learn why he is the king in the first place...
+
+It has no ranged attacks what so ever but makes up for it by being confined in a small space and having the ability to summon guards, charge at his enemy and do a aoe explosion attack which can prove devistating for most miners.
+
+The three stages of the king goat:
+ Stage 1: The king goat is pretty much just a slightly more robust regular goat, the king will proceed to charge at you full force in the hopes of taking you out easily but can be easily defeated by even a unexperienced miner.
+ Stage 2: This is where things start heating up. At this stage the king goat will become slightly larger and start doing special attacks which range from summoning guards to come to his aid to stomping his hooves on the ground causing the arena to shake and a aoe explosion to appear around him most miners do not make it pass this stage but if you do...
+ Stage 3: Oh boy your in for it now at this stage the king goat will completly heal and grow slightly bigger and start glowing it has the exact same attacks as stage 2 but is more aggressive overall if you can defeat him at stage three he will fall over dead on the ground and drop a ladder so you may now leave the arena but dont forget to grab the loot first!
+
+The loot:
+The meteor gun: This baby is a killing machine although it has three shots before needing to be recharged it can insta crit almost anybody and destroys almost anything you fire it at making it a weapon worthy of someone that can defeat the king.
+The king goat pelt: Hope you brought a knife cause your gonna need to butcher the king goats corpse to get this prize. Once you butcher the king goat you can grab his pelt and wear it on your head as armor, boasting complete bomb immunity and slightly better gun and laser immunity then the drake helm at the cost of slightly reduced melee protection this is THE prize to show who the king of lavaland really is around here! Also makes goats friendly towards you as long as you are wearing it for they will see you as their new king.
+
+Difficulty: Insanely Hard
+
+*/
+
 //Visager's tracks 'Battle!' and 'Miniboss Fight' from the album 'Songs from an Unmade World 2' are available here
 //http://freemusicarchive.org/music/Visager/Songs_From_An_Unmade_World_2/ and are made available under the CC BY 4.0 Attribution license,
 //which is available for viewing here: https://creativecommons.org/licenses/by/4.0/legalcode
@@ -23,12 +45,14 @@
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	maxHealth = 500
 	armour_penetration = 35
 	melee_damage_lower = 35
 	melee_damage_upper = 55
 	minbodytemp = 0
 	maxbodytemp = INFINITY
+	obj_damage = 400
 	vision_range = 5
 	aggro_vision_range = 18
 	move_force = MOVE_FORCE_OVERPOWERING
@@ -45,6 +69,17 @@
 
 
 	var/stun_chance = 5 //chance per attack to Weaken target
+
+/mob/living/simple_animal/hostile/retaliate/goat/king/ex_act(severity, target)
+	switch (severity)
+		if (1)
+			adjustBruteLoss(100)
+
+		if (2)
+			adjustBruteLoss(50)
+
+		if(3)
+			adjustBruteLoss(25)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2
 	name = "emperor of the goats"
@@ -95,6 +130,7 @@
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
@@ -137,12 +173,6 @@
 			visible_message("<span class='cult'>\The [src]' horns grow larger and more menacing!</span>")
 			melee_damage_lower = 50
 
-		else if(prob(5)) //stun move
-			spellscast++
-			visible_message("<span class='cult'>\The [src]' fleece flashes with blinding light!</span>")
-			var/obj/item/grenade/flashbang/F = new(src.loc)
-			F.prime()
-
 		else if(prob(5)) //spawn adds
 			spellscast++
 			visible_message("<span class='cult'>\The [src] summons the imperial guard to his aid, and they appear in a flash!</span>")
@@ -168,11 +198,11 @@
 			//	melee_damage_type = BURN // meh too lazy
 
 		else if(prob(5)) //earthquake spell
-			visible_message("<span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze.</span>")
+			visible_message("<B><span class='danger'>\The [src]' eyes begin to glow ominously as dust and debris in the area is kicked up in a light breeze!!</span></B>")
 			stop_automated_movement = TRUE
 			if(do_after(src, 6 SECONDS, src))
 				var/health_holder = getBruteLoss()
-				visible_message("<span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!</span>")
+				visible_message("<B><span class='cult'>\The [src] raises its fore-hooves and stomps them into the ground with incredible force!!</span></B>")
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 2, 2, 3, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 1, 4, 4, 6)
 				explosion(get_step(src,pick(GLOB.cardinals)), -1, 3, 4, 3, 6)
@@ -203,8 +233,6 @@
 	stun_chance = 10
 	update_icon()
 	visible_message("<span class='cult'>\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!</span>")
-	var/obj/item/grenade/flashbang/F = new(src.loc)
-	F.prime()
 
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/update_icon()
@@ -268,6 +296,7 @@
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/gun/energy/meteorgun(loc)
+		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
@@ -285,6 +314,8 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
+		if(L.stat == DEAD)
+			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
@@ -293,8 +324,5 @@
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
 	if(isliving(target))
-		var/mob/living/L = target
-		if(L.stat == DEAD)
-			L.gib()
 		if(melee_damage_type != BRUTE)
 			special_attacks++

@@ -17,6 +17,7 @@
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
+	var/speech_span
 	var/inertia_dir = 0
 	var/atom/inertia_last_loc
 	var/inertia_moving = 0
@@ -176,6 +177,14 @@
 	if(!Process_Spacemove(get_dir(pulling.loc, A)))
 		return
 	step(pulling, get_dir(pulling.loc, A))
+	return TRUE
+
+/mob/living/Move_Pulled(atom/A)
+	. = ..()
+	if(!. || !isliving(A))
+		return
+	var/mob/living/L = A
+	set_pull_offsets(L, grab_state)
 
 /atom/movable/proc/check_pulling()
 	if(pulling)
@@ -232,8 +241,10 @@
 			return
 	// yogs end
 
+	if (SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return
+
 	// Past this is the point of no return
-	SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc)
 	var/atom/oldloc = loc
 	var/area/oldarea = get_area(oldloc)
 	var/area/newarea = get_area(newloc)

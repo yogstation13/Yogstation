@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "The queue for playing the game should work now."

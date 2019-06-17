@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	density = FALSE
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	invisibility = INVISIBILITY_OBSERVER
 	hud_type = /datum/hud/ghost
 	movement_type = GROUND | FLYING
@@ -136,6 +137,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 
 	grant_all_languages()
+	show_data_huds()
+	data_huds_on = 1
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -497,6 +500,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "View Range"
 	set desc = "Change your view range."
 
+	//yogs start -- Divert this verb to the admin variant if this guy has it
+	if(check_rights(R_ADMIN,FALSE) && hascall(usr.client,"toggle_view_range"))
+		call(usr.client,"toggle_view_range")()
+		return
+	//yogs end
 	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
 	if(client.view == CONFIG_GET(string/default_view))
 		var/list/views = list()

@@ -29,6 +29,7 @@
 	sec_hud = DATA_HUD_SECURITY_BASIC
 	d_hud = DATA_HUD_DIAGNOSTIC_ADVANCED
 	mob_size = MOB_SIZE_LARGE
+	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
 	var/obj/machinery/camera/current
 	var/list/connected_robots = list()
@@ -41,7 +42,6 @@
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/radio_enabled = TRUE //Determins if a carded AI can speak with its built in radio or not.
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
-	var/obj/item/pda/ai/aiPDA
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
@@ -93,6 +93,9 @@
 	var/list/all_eyes = list()
 	var/max_multicams = 6
 	var/display_icon_override
+
+	var/list/cam_hotkeys = new/list(9)
+	var/cam_prev
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
@@ -147,7 +150,7 @@
 	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
 
 	aiMulti = new(src)
-	radio = new /obj/item/radio/headset/ai(src)
+	radio = new /obj/item/radio/headset/silicon/ai(src)
 	aicamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	deploy_action.Grant(src)
@@ -164,6 +167,25 @@
 	builtInCamera = new (src)
 	builtInCamera.network = list("ss13")
 
+/mob/living/silicon/ai/key_down(_key, client/user)
+	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
+		_key = _key[7] //strings, lists, same thing really
+	switch(_key)
+		if("`", "0")
+			if(cam_prev)
+				eyeobj.setLoc(cam_prev)
+			return
+		if("1", "2", "3", "4", "5", "6", "7", "8", "9")
+			_key = text2num(_key)
+			if(client.keys_held["Ctrl"]) //do we assign a new hotkey?
+				cam_hotkeys[_key] = eyeobj.loc
+				to_chat(src, "Location saved to Camera Group [_key].")
+				return
+			if(cam_hotkeys[_key]) //if this is false, no hotkey for this slot exists.
+				cam_prev = eyeobj.loc
+				eyeobj.setLoc(cam_hotkeys[_key])
+				return
+	return ..()
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -223,6 +245,8 @@
 	if(statpanel("Status"))
 		if(!stat)
 			stat(null, text("System integrity: [(health+100)/2]%"))
+			if(isturf(loc)) //only show if we're "in" a core
+				stat(null, text("Backup Power: [battery/2]%"))
 			stat(null, text("Connected cyborgs: [connected_robots.len]"))
 			for(var/mob/living/silicon/robot/R in connected_robots)
 				var/robot_status = "Nominal"
@@ -272,15 +296,6 @@
 	viewalerts = 1
 	src << browse(dat, "window=aialerts&can_close=0")
 
-/mob/living/silicon/ai/proc/ai_roster()
-	var/dat = "<html><head><title>Crew Roster</title></head><body><b>Crew Roster:</b><br><br>"
-
-	dat += GLOB.data_core.get_manifest()
-	dat += "</body></html>"
-
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
-
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	if(control_disabled)
 		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
@@ -324,8 +339,14 @@
 	set name = "Toggle Floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
-	if(incapacitated())
+	if(stat == DEAD)
 		return
+	if(incapacitated())
+		if(battery < 50)
+			to_chat(src, "<span class='warning'>Insufficient backup power!</span>")
+			return
+		battery = battery - 50
+		to_chat(src, "<span class='notice'>You route power from your backup battery to move the bolts.</span>")
 	var/is_anchored = FALSE
 	if(move_resist == MOVE_FORCE_VERY_STRONG)
 		move_resist = MOVE_FORCE_NORMAL
@@ -799,7 +820,8 @@
 			to_chat(user, "<span class='warning'>No intelligence patterns detected.</span>"    )
 			return
 		ShutOffDoomsdayDevice()
-		new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
+		var/obj/structure/AIcore/new_core = new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
+		new_core.circuit.battery = battery
 		ai_restore_power()//So the AI initially has power.
 		control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 		radio_enabled = FALSE 	//No talking on the built-in radio for you either!

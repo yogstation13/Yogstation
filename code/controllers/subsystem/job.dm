@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(job)
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)
 				continue
-			var/mob/dead/new_player/candidate = pick(candidates)
+			var/mob/dead/new_player/candidate = PickCommander(candidates) // Yogs -- makes command jobs weighted towards players of greater experience
 			if(AssignRole(candidate, command_position))
 				return 1
 	return 0
@@ -233,7 +233,7 @@ SUBSYSTEM_DEF(job)
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/subsystem/job/proc/DivideOccupations()
+/datum/controller/subsystem/job/proc/DivideOccupations(list/required_jobs)
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")
 
@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(job)
 
 	JobDebug("DO, Len: [unassigned.len]")
 	if(unassigned.len == 0)
-		return TRUE
+		return validate_required_jobs(required_jobs)
 
 	//Scale number of open security officer slots to population
 	setup_officer_positions()
@@ -358,7 +358,26 @@ SUBSYSTEM_DEF(job)
 		if(!GiveRandomJob(player))
 			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
 				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
-	return TRUE
+	
+	return validate_required_jobs(required_jobs)
+
+/datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
+	if(!required_jobs.len)
+		return TRUE
+	for(var/required_group in required_jobs)
+		var/group_ok = TRUE
+		for(var/rank in required_group)
+			var/datum/job/J = GetJob(rank)
+			if(!J)
+				SSticker.mode.setup_error = "Invalid job [rank] in gamemode required jobs."
+				return FALSE
+			if(J.current_positions < required_group[rank])
+				group_ok = FALSE
+				break
+		if(group_ok)
+			return TRUE
+	SSticker.mode.setup_error = "Required jobs not present."
+	return FALSE
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/dead/new_player/player)
@@ -411,7 +430,7 @@ SUBSYSTEM_DEF(job)
 		if(length(GLOB.jobspawn_overrides[rank]))
 			S = pick(GLOB.jobspawn_overrides[rank])
 		if(S)
-			SendToAtom(H, S, buckle = FALSE)
+			S.JoinPlayerHere(H, FALSE)
 		if(!S) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
 			log_world("Couldn't find a round start spawn point for [rank]")
 			SendToLateJoin(H)
@@ -448,7 +467,7 @@ SUBSYSTEM_DEF(job)
 			to_chat(M, "<FONT color='red'><b>Space Law has been updated! </font><a href='https://wiki.yogstation.net/wiki/Space_Law'>Click here to view the updates.</a></b>")
 		//YOGS end
 		if(CONFIG_GET(number/minimal_access_threshold))
-			to_chat(M, "<FONT color='blue'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></font>")
+			to_chat(M, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
 	if(ishuman(H))
 		var/mob/living/carbon/human/wageslave = H
 		to_chat(M, "<b>Your account ID is [wageslave.account_id].</b>")
@@ -477,7 +496,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/setup_officer_positions()
 	var/datum/job/J = SSjob.GetJob("Security Officer")
 	if(!J)
-		throw EXCEPTION("setup_officer_positions(): Security officer job is missing")
+		CRASH("setup_officer_positions(): Security officer job is missing")
 
 	var/ssc = CONFIG_GET(number/security_scaling_coeff)
 	if(ssc > 0)
@@ -577,51 +596,61 @@ SUBSYSTEM_DEF(job)
 	newjob.spawn_positions = J.spawn_positions
 	newjob.current_positions = J.current_positions
 
-/datum/controller/subsystem/job/proc/SendToAtom(mob/M, atom/A, buckle)
-	if(buckle && isliving(M) && istype(A, /obj/structure/chair))
-		var/obj/structure/chair/C = A
-		if(C.buckle_mob(M, FALSE, FALSE))
-			return
-	M.forceMove(get_turf(A))
+/atom/proc/JoinPlayerHere(mob/M, buckle)
+	// By default, just place the mob on the same turf as the marker or whatever.
+	M.forceMove(get_turf(src))
+
+/obj/structure/chair/JoinPlayerHere(mob/M, buckle)
+	// Placing a mob in a chair will attempt to buckle it, or else fall back to default.
+	if (buckle && isliving(M) && buckle_mob(M, FALSE, FALSE))
+		return
+	..()
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, buckle = TRUE)
+	var/atom/destination
 	if(M.mind && M.mind.assigned_role && length(GLOB.jobspawn_overrides[M.mind.assigned_role])) //We're doing something special today.
-		SendToAtom(M,pick(GLOB.jobspawn_overrides[M.mind.assigned_role]),FALSE)
+		destination = pick(GLOB.jobspawn_overrides[M.mind.assigned_role])
+		destination.JoinPlayerHere(M, FALSE)
 		return
 
 	if(latejoin_trackers.len)
-		SendToAtom(M, pick(latejoin_trackers), buckle)
-	else
-		//bad mojo
-		var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/shuttle/arrival]
-		if(A)
-			//first check if we can find a chair
-			var/obj/structure/chair/C = locate() in A
-			if(C)
-				SendToAtom(M, C, buckle)
-				return
-			else	//last hurrah
-				var/list/avail = list()
-				for(var/turf/T in A)
-					if(!is_blocked_turf(T, TRUE))
-						avail += T
-				if(avail.len)
-					SendToAtom(M, pick(avail), FALSE)
-					return
+		destination = pick(latejoin_trackers)
+		destination.JoinPlayerHere(M, buckle)
+		return
 
-		//pick an open spot on arrivals and dump em
-		var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
-		if(arrivals_turfs.len)
-			for(var/turf/T in arrivals_turfs)
-				if(!is_blocked_turf(T, TRUE))
-					SendToAtom(M, T, FALSE)
-					return
-			//last chance, pick ANY spot on arrivals and dump em
-			SendToAtom(M, arrivals_turfs[1], FALSE)
-		else
-			var/msg = "Unable to send mob [M] to late join!"
-			message_admins(msg)
-			CRASH(msg)
+	//bad mojo
+	var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/shuttle/arrival]
+	if(A)
+		//first check if we can find a chair
+		var/obj/structure/chair/C = locate() in A
+		if(C)
+			C.JoinPlayerHere(M, buckle)
+			return
+
+		//last hurrah
+		var/list/avail = list()
+		for(var/turf/T in A)
+			if(!is_blocked_turf(T, TRUE))
+				avail += T
+		if(avail.len)
+			destination = pick(avail)
+			destination.JoinPlayerHere(M, FALSE)
+			return
+
+	//pick an open spot on arrivals and dump em
+	var/list/arrivals_turfs = shuffle(get_area_turfs(/area/shuttle/arrival))
+	if(arrivals_turfs.len)
+		for(var/turf/T in arrivals_turfs)
+			if(!is_blocked_turf(T, TRUE))
+				T.JoinPlayerHere(M, FALSE)
+				return
+		//last chance, pick ANY spot on arrivals and dump em
+		destination = arrivals_turfs[1]
+		destination.JoinPlayerHere(M, FALSE)
+	else
+		var/msg = "Unable to send mob [M] to late join!"
+		message_admins(msg)
+		CRASH(msg)
 
 
 ///////////////////////////////////

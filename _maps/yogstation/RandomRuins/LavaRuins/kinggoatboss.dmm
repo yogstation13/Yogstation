@@ -43,35 +43,23 @@
 	})
 "h" = (
 /turf/closed/indestructible/riveted/uranium,
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
 "i" = (
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
 	icon_state = "diamond";
 	name = "diamond floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
 "j" = (
 /obj/structure/chair/bronze,
-/obj/machinery/light{
-	dir = 1
-	},
 /mob/living/simple_animal/hostile/retaliate/goat/king,
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
 	icon_state = "diamond";
 	name = "diamond floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
 "k" = (
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master,
 /turf/open/indestructible/hotelwood{
@@ -79,47 +67,46 @@
 	icon_state = "diamond";
 	name = "diamond floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
 "l" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/turf/template_noop,
+/area/template_noop)
 "m" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
 	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
 	icon_state = "diamond";
 	name = "diamond floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
 "n" = (
-/obj/machinery/light,
+/mob/living/simple_animal/hostile/retaliate/goose{
+	desc = "If you are alive and reading this you should not be in this room and should prob tell a admin how you got here.";
+	name = "The Paradox Goose"
+	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
 	icon_state = "diamond";
 	name = "diamond floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
+/area/ruin/powered/kinggoat_arena)
+"o" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
+	height = 1;
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered/kinggoat_arena)
 "p" = (
 /obj/structure/ladder/unbreakable{
 	desc = "This seems to be the ladder to the King of Goats lair. Looks to be a one way trip...";
@@ -173,7 +160,14 @@
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"x" = (
+"u" = (
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
+	icon_state = "gold";
+	name = "gold floor"
+	},
+/area/ruin/powered/kinggoat_arena)
+"v" = (
 /obj/machinery/door/airlock/gold/glass{
 	desc = "Once you go in the portal past this door there is no going back...";
 	name = "POINT OF NO RETURN"
@@ -183,85 +177,43 @@
 	icon_state = "gold";
 	name = "gold floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"H" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+/area/ruin/powered/kinggoat_arena)
+"w" = (
 /obj/effect/portal/permanent/one_way/keep{
 	id = "king goat arena";
-	name = "king goat arena portal"
+	name = "king goat arena portal";
+	teleport_channel = "free"
 	},
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
 	name = "gold floor"
 	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"I" = (
-/obj/machinery/light,
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"L" = (
-/obj/structure/ladder/unbreakable{
-	desc = "This seems to be the ladder to the King of Goats' lair. Looks to be a one way trip...";
-	height = 1;
-	id = "goatlayer";
-	name = "Ladder to the King of Goats Lair"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"V" = (
+/area/ruin/powered/kinggoat_arena)
+"H" = (
 /turf/open/floor/mineral/gold,
 /area/ruin/powered{
 	name = "King Goat Lair"
 	})
-"W" = (
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
-	icon_state = "gold";
-	name = "gold floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
-"X" = (
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "king goat arena";
-	name = "king goat arena portal"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered{
-	name = "King Goat Arena";
-	noteleport = 1
-	})
 
 (1,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -277,6 +229,23 @@ a
 a
 "}
 (2,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -292,6 +261,23 @@ a
 a
 "}
 (3,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -307,6 +293,23 @@ a
 a
 "}
 (4,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -322,21 +325,55 @@ a
 a
 "}
 (5,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 b
 q
 f
-V
+H
 f
-V
+H
 b
 a
 a
 a
 "}
 (6,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -352,21 +389,55 @@ a
 a
 "}
 (7,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 d
-V
+H
 g
 p
 s
-V
+H
 d
 a
 a
 a
 "}
 (8,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -382,21 +453,55 @@ a
 a
 "}
 (9,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 b
-V
+H
 r
-V
+H
 r
-V
+H
 b
 a
 a
 a
 "}
 (10,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -412,6 +517,23 @@ a
 a
 "}
 (11,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -427,6 +549,23 @@ a
 a
 "}
 (12,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -442,6 +581,23 @@ a
 a
 "}
 (13,1,1) = {"
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -471,6 +627,23 @@ h
 h
 h
 h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
 "}
 (2,1,2) = {"
 h
@@ -478,13 +651,30 @@ i
 i
 i
 i
-l
+i
 i
 i
 i
 i
 h
-L
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+o
 h
 "}
 (3,1,2) = {"
@@ -499,7 +689,24 @@ i
 i
 i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (4,1,2) = {"
@@ -514,7 +721,24 @@ i
 i
 i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (5,1,2) = {"
@@ -529,7 +753,24 @@ i
 i
 i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (6,1,2) = {"
@@ -542,9 +783,26 @@ i
 i
 i
 i
-n
+i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (7,1,2) = {"
@@ -557,9 +815,26 @@ i
 i
 i
 i
-X
+m
 h
-I
+i
+i
+i
+i
+i
+i
+i
+i
+n
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (8,1,2) = {"
@@ -572,9 +847,26 @@ i
 i
 i
 i
-n
+i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (9,1,2) = {"
@@ -589,7 +881,24 @@ i
 i
 i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (10,1,2) = {"
@@ -604,7 +913,24 @@ i
 i
 i
 h
-W
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+u
 h
 "}
 (11,1,2) = {"
@@ -619,7 +945,24 @@ i
 i
 i
 h
-x
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+v
 h
 "}
 (12,1,2) = {"
@@ -628,16 +971,50 @@ i
 i
 i
 i
-m
+i
 i
 i
 i
 i
 h
-H
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+h
+w
 h
 "}
 (13,1,2) = {"
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
 h
 h
 h

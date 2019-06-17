@@ -1,22 +1,21 @@
 macro "default"
 
-
 menu "menu"
-	elem 
+	elem
 		name = "&File"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = ""
 		command = ""
 		category = "&File"
@@ -26,21 +25,21 @@ menu "menu"
 		command = ".reconnect"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Quit\tAlt-F4"
 		command = ".quit"
 		category = "&File"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Help"
 		command = ""
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Admin Help\tF1"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
+	elem
 		name = "&Hotkeys"
 		command = "hotkeys-help"
 		category = "&Help"
@@ -75,7 +74,6 @@ window "mainwindow"
 		size = 595x20
 		anchor1 = 0,100
 		anchor2 = 100,100
-		font-size = 10
 		background-color = #d3b5b5
 		is-default = true
 		saved-params = "command"
@@ -173,6 +171,8 @@ window "infowindow"
 		size = 80x20
 		anchor1 = 3,0
 		anchor2 = 19,0
+		text-color = #99aab5
+		background-color = #494949
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
@@ -182,6 +182,8 @@ window "infowindow"
 		size = 80x20
 		anchor1 = 19,0
 		anchor2 = 34,0
+		text-color = #99aab5
+		background-color = #494949
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -256,6 +258,7 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = #ffffff
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "browseroutput"
@@ -264,7 +267,6 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = #ffffff
 		is-visible = false
 		is-disabled = true
 		saved-params = ""
@@ -282,7 +284,7 @@ window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
 		pos = 372,0
-		size = 1120x1000
+		size = 1280x1000
 		anchor1 = none
 		anchor2 = none
 		background-color = none
@@ -291,21 +293,21 @@ window "preferences_window"
 		statusbar = false
 	elem "preferences_browser"
 		type = BROWSER
-		pos = -8,-8
-		size = 896x1008
+		pos = 0,0
+		size = 960x1008
 		anchor1 = 0,0
-		anchor2 = 90,100
+		anchor2 = 75,100
 		background-color = none
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
-		pos = 887,0
-		size = 313x1000
+		pos = 960,0
+		size = 320x1000
 		anchor1 = 90,0
-		anchor2 = 100,100
+		anchor2 = 75,100
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
-
+		
 window "statwindow"
 	elem "statwindow"
 		type = MAIN

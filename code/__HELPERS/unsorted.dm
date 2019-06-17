@@ -203,7 +203,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/loop = 1
 	var/safety = 0
 
-	var/banned = is_banned_from(C.ckey, "Appearance")
+	var/banned = C ? is_banned_from(C.ckey, "Appearance") : null
 
 	while(loop && safety < 5)
 		if(C && C.prefs.custom_names[role] && !safety && !banned)
@@ -998,25 +998,24 @@ B --><-- A
 
 //similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
 /proc/spiral_range(dist=0, center=usr, orange=0)
-	if(!dist)
-		if(!orange)
-			return list(center)
-		else
-			return list()
-
+	var/list/L = list()
 	var/turf/t_center = get_turf(center)
 	if(!t_center)
 		return list()
 
-	var/list/L = list()
+	if(!orange)
+		L += t_center
+		L += t_center.contents
+
+	if(!dist)
+		return L
+
+
 	var/turf/T
 	var/y
 	var/x
 	var/c_dist = 1
 
-	if(!orange)
-		L += t_center
-		L += t_center.contents
 
 	while( c_dist <= dist )
 		y = t_center.y + c_dist
@@ -1467,9 +1466,11 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/soup,
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/reagent_containers/food/snacks/grown/mushroom,
-		/obj/item/reagent_containers/food/snacks/grown/nettle, // base type
 		/obj/item/reagent_containers/food/snacks/deepfryholder,
-		/obj/item/reagent_containers/food/snacks/clothing
+		/obj/item/reagent_containers/food/snacks/clothing,
+		/obj/item/reagent_containers/food/snacks/grown/shell, //base types
+		/obj/item/reagent_containers/food/snacks/store/bread,
+		/obj/item/reagent_containers/food/snacks/grown/nettle
 		)
 	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable)
 

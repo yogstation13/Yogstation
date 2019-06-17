@@ -27,8 +27,9 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(src)] played sound [S]")
-	message_admins("[key_name_admin(src)] played sound [S]")
+	//log_admin("[key_name(src)] played sound [S]") // Yogs comment-out
+	//message_admins("[key_name_admin(src)] played sound [S]") // Yogs comment-out
+	var/count = 0 //yogs
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
@@ -37,6 +38,12 @@
 				admin_sound.volume = vol * (user_vol / 100)
 			SEND_SOUND(M, admin_sound)
 			admin_sound.volume = vol
+			count++ //Yogs
+	//yogs start -- informs admins of how much of the server actually heard their sound
+	count = round(count / GLOB.player_list.len * 100,0.5)
+	log_admin("[key_name(src)] played sound [S] to [count]% of the server.")
+	message_admins("[key_name_admin(src)] played sound [S] to [count]% of the server.")
+	//yogs end
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Global Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -140,7 +147,17 @@
 	if(!check_rights(R_SOUNDS))
 		return
 
+	//Yogs start -- Adds confirm for whenever an admin has already set the roundend sound.
+	var/static/lastadmin
+	var/static/lastsound
+	
+	if(lastadmin && src.ckey != lastadmin)
+		if(alert("Warning: Another Admin, [lastadmin], already set the roundendsound to [lastsound]. Overwrite?",,"Yes","Cancel") != "Yes")
+			return
 	SSticker.SetRoundEndSound(S)
+	lastadmin = src.ckey
+	lastsound = "[S]"
+	//Yogs end
 
 	log_admin("[key_name(src)] set the round end sound to [S]")
 	message_admins("[key_name_admin(src)] set the round end sound to [S]")

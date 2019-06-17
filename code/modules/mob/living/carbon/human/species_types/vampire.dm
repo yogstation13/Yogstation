@@ -6,7 +6,7 @@
 	inherent_traits = list(TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
 	exotic_bloodtype = "U"
 	use_skintones = TRUE
 	mutant_heart = /obj/item/organ/heart/vampire
@@ -95,9 +95,13 @@
 				to_chat(H, "<span class='notice'>[victim] doesn't have blood!</span>")
 				return
 			V.drain_cooldown = world.time + 30
-			if(victim.anti_magic_check(FALSE, TRUE, FALSE))
+			if(victim.anti_magic_check(FALSE, TRUE, FALSE, 0))
 				to_chat(victim, "<span class='warning'>[H] tries to bite you, but stops before touching you!</span>")
 				to_chat(H, "<span class='warning'>[victim] is blessed! You stop just in time to avoid catching fire.</span>")
+				return
+			if(victim?.reagents?.has_reagent(/datum/reagent/consumable/garlic))
+				to_chat(victim, "<span class='warning'>[H] tries to bite you, but recoils in disgust!</span>")
+				to_chat(H, "<span class='warning'>[victim] reeks of garlic! you can't bring yourself to drain such tainted blood.</span>")
 				return
 			if(!do_after(H, 30, target = victim))
 				return

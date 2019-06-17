@@ -152,6 +152,10 @@
 	port_id = "pirate"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/hunter
+	port_id = "hunter"
+	can_be_bought = FALSE
+
 /datum/map_template/shuttle/ruin //For random shuttles in ruins
 	port_id = "ruin"
 	can_be_bought = FALSE
@@ -198,6 +202,13 @@
 	admin_notes = "Bardrone and Barmaid are GODMODE, will be automatically sentienced by the fun balloon at 60 seconds before arrival. \
 	Has medical facilities."
 	credit_cost = 5000
+
+/datum/map_template/shuttle/emergency/pod
+	suffix = "pod"
+	name = "Emergency Pods"
+	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
+	admin_notes = "For player punishment."
+	can_be_bought = FALSE
 
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
@@ -341,7 +352,7 @@
 	description = "How was space work today? Oh, pretty good. We got a new space station and the company will make a lot of money. What space station? I cannot tell you; it's space confidential. \
 	Aw, come space on. Why not? No, I can't. Anyway, how is your space roleplay life?"
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
-	credit_cost = -5000
+	can_be_bought = FALSE
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/goon
@@ -515,6 +526,14 @@
 /datum/map_template/shuttle/pirate/default
 	suffix = "default"
 	name = "pirate ship (Default)"
+
+/datum/map_template/shuttle/hunter/space_cop
+	suffix = "space_cop"
+	name = "Police Spacevan"
+
+/datum/map_template/shuttle/hunter/russian
+	suffix = "russian"
+	name = "Russian Cargo Ship"
 
 /datum/map_template/shuttle/ruin/caravan_victim
 	suffix = "caravan_victim"

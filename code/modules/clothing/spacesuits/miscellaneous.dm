@@ -171,7 +171,7 @@ Contains:
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
 /obj/item/clothing/suit/space/hardsuit/ert
 	name = "emergency response team commander hardsuit"
@@ -268,7 +268,7 @@ Contains:
 	desc = "An advanced, space-proof helmet. It appears to be modeled after an old-world eagle."
 	icon_state = "griffinhat"
 	item_state = "griffinhat"
-	armor = list("melee" = 20, "bullet" = 40, "laser" = 30, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 20, "bullet" = 40, "laser" = 30, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80) //yogs reason below
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -279,7 +279,7 @@ Contains:
 	icon_state = "freedom"
 	item_state = "freedom"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
-	armor = list("melee" = 20, "bullet" = 40, "laser" = 30,"energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80)
+	armor = list("melee" = 20, "bullet" = 40, "laser" = 30,"energy" = 25, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80) //yogs nerfed bomb resistance as its now obtainable
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -297,7 +297,7 @@ Contains:
 
 /obj/item/clothing/head/helmet/space/hardsuit/carp/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
 /obj/item/clothing/suit/space/hardsuit/carp
 	name = "carp space suit"
@@ -328,6 +328,10 @@ Contains:
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
 	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE)
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal
 	name = "paranormal response team hardsuit"

@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed cursed hearts maintaining red filter even when removed"

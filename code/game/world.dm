@@ -39,11 +39,11 @@ GLOBAL_VAR(restart_counter)
 	load_yogs_stuff() // yogs - Donators
 	refresh_admin_files() //yogs - DB support
 	load_admins()
-	
+
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
-		
+
 	setup_pretty_filter() //yogs
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
@@ -118,9 +118,11 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
+	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
 #ifdef UNIT_TESTS
 	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
@@ -246,7 +248,7 @@ GLOBAL_VAR(restart_counter)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status()
+/world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid
 
 	var/list/features = list()
 
@@ -262,36 +264,34 @@ GLOBAL_VAR(restart_counter)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 			s += "<b>[server_name]</b> &#8212; "
-		if(!CONFIG_GET(flag/norespawn)) features += "respawn" //Yogs -- Makes this not display when it's no-respawn (as per usual)
-		/* Yogs start -- removes these old-ass hub tags
+		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
 		if(CONFIG_GET(flag/allow_vote_mode))
 			features += "vote"
 		if(CONFIG_GET(flag/allow_ai))
 			features += "AI allowed"
-		Yogs end */
 		hostedby = CONFIG_GET(string/hostedby)
 
 	s += "<b>[station_name()]</b>";
-	s += " (" //yog start hub message
-	s += "<a href=\"https://forums.yogstation.net/index.php\">" //Change this to wherever you want the hub to link to.
-	s += "Forums"
-	s += "</a>" //yog end
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
 	s += ")"
-	
+
 	var/players = GLOB.clients.len
-	
+
 	var/popcaptext = ""
 	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
 	if (popcap)
 		popcaptext = "/[popcap]"
-	
+
 	if (players > 1)
 		features += "[players][popcaptext] players"
 	else if (players > 0)
 		features += "[players][popcaptext] player"
-	
+
 	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
-	
+
 	if (!host && hostedby)
 		features += "hosted by <b>[hostedby]</b>"
 

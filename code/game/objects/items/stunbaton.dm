@@ -30,7 +30,7 @@
 	. = ..()
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
+			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
 	update_icon()
@@ -112,7 +112,7 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(status && user.has_trait(TRAIT_CLUMSY) && prob(50))
+	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 		user.Paralyze(stunforce*3)

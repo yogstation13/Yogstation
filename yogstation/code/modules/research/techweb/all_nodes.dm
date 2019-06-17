@@ -111,3 +111,12 @@
 	export_price = 2750
 	prereq_ids = list("spacepod_storage", "high_efficiency")
 	design_ids = list("podarmor_industiral", "podarmor_sec", "podarmor_gold")
+	
+/datum/techweb_node/syndicate_surgery
+	id = "syndicate_surgery"
+	display_name = "Syndicate Surgery"
+	description = "The Syndicate did nothing wrong."
+	prereq_ids = list("exp_surgery", "syndicate_basic")
+	design_ids = list("surgery_brainwashing")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
+	export_price = 7000

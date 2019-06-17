@@ -7,7 +7,7 @@
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ethereal
-	exotic_blood = "liquidelectricity" //Liquid Electricity. fuck you think of something better gamer
+	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
 	brutemod = 1.25 //They're weak to punches
 	attack_type = BURN //burn bish
@@ -26,7 +26,7 @@
 	var/b1
 	var/static/r2 = 237
 	var/static/g2 = 164
-	var/static/b2 = 149	
+	var/static/b2 = 149
 	//this is shit but how do i fix it? no clue.
 
 
@@ -88,6 +88,8 @@
 
 /datum/species/ethereal/spec_life(mob/living/carbon/human/H)
 	.=..()
+	if(H.stat == DEAD)
+		return
 	handle_charge(H)
 
 /datum/species/ethereal/spec_fully_heal(mob/living/carbon/human/H)
@@ -128,7 +130,7 @@
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 2)
 			if(H.health > 10.5)
-				apply_damage(0.5, BRUTE, null, null, H)
+				apply_damage(0.65, TOX, null, null, H)
 			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 1)

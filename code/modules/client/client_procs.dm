@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/job = text2num(href_list["asset_cache_confirm_arrival"])
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//	into letting append to a list without limit.
-		if (job && job <= last_asset_job && !(job in completed_asset_jobs))
+		if (job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
 			completed_asset_jobs += job
 			return
 		else if (job in completed_asset_jobs) //byond bug ID:2256651
@@ -233,10 +233,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 					alert_mob_dupe_login = TRUE
 				if(matches)
 					if(C)
-						message_admins("<font color='red'><B>Notice: </B><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)].</font>")
+						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)].</span>")
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)].")
 					else
-						message_admins("<font color='red'><B>Notice: </B><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </font>")
+						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </span>")
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
 
 	if(GLOB.player_details[ckey])
@@ -867,6 +867,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
 		CRASH("change_view called without argument.")
+
+	if(prefs && !prefs.widescreenpref && new_size == CONFIG_GET(string/default_view))
+		new_size = CONFIG_GET(string/default_view_square)
 
 	view = new_size
 	apply_clickcatcher()

@@ -21,7 +21,7 @@
 			occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(loc)
 			cargo -= O
-			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]")
+			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]", LOG_MECHA)
 	return
 
 /obj/mecha/makeshift/go_out()

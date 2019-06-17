@@ -1264,9 +1264,9 @@
 /area/holodeck/rec_center/chapelcourt)
 "dw" = (
 /obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/nun,
+/obj/item/clothing/suit/chaplainsuit/nun,
 /obj/item/clothing/head/nun_hood,
-/obj/item/clothing/suit/holidaypriest,
+/obj/item/clothing/suit/chaplainsuit/holidaypriest,
 /turf/open/floor/holofloor{
 	dir = 8;
 	icon_state = "dark"
@@ -1403,7 +1403,6 @@
 /obj/structure/window/reinforced,
 /obj/machinery/mass_driver{
 	dir = 1;
-	icon_state = "mass_driver";
 	id = "trektorpedo1";
 	name = "photon torpedo tube"
 	},
@@ -1451,7 +1450,6 @@
 /obj/structure/window/reinforced,
 /obj/machinery/mass_driver{
 	dir = 1;
-	icon_state = "mass_driver";
 	id = "trektorpedo2";
 	name = "photon torpedo tube"
 	},
@@ -4110,7 +4108,6 @@
 /area/centcom/control)
 "ki" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dir = 1;
 	dwidth = 25;
 	height = 50;
@@ -7954,7 +7951,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Commander's Office APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/fifty,
@@ -8323,7 +8320,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "si" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
@@ -8796,6 +8792,9 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/centcom/ferry)
+"tb" = (
+/turf/open/floor/white,
+/area/holodeck/rec_center/photobooth)
 "tc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/light/floor,
@@ -8831,7 +8830,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "tg" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -8848,6 +8846,25 @@
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
+"tj" = (
+/obj/structure/falsewall/wood,
+/obj/structure/mirror,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
+"tk" = (
+/obj/structure/table/wood,
+/obj/item/paint/anycolor{
+	pixel_x = 7
+	},
+/obj/item/paint/anycolor{
+	pixel_x = -5
+	},
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
+"tl" = (
+/obj/structure/dresser,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "tn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -9507,7 +9524,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "uM" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -9936,7 +9952,7 @@
 	name = "Hanger Bay Shutters";
 	pixel_x = -8;
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
@@ -10298,7 +10314,7 @@
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -10482,9 +10498,6 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "wV" = (
-/obj/machinery/computer/telecrystals/boss{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -10778,7 +10791,6 @@
 /area/syndicate_mothership/control)
 "xN" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership/control;
 	dir = 1;
 	dwidth = 3;
 	height = 7;
@@ -11974,7 +11986,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Briefing Area APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12673,7 +12685,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Briefing Room APC";
-	pixel_y = -26
+	pixel_y = -23
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17206,7 +17218,6 @@
 /area/centcom/holding)
 "My" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dheight = 1;
 	dir = 8;
 	dwidth = 12;
@@ -17826,6 +17837,12 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sq" = (
+/obj/structure/table/wood,
+/obj/item/camera,
+/obj/item/camera,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "Su" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
@@ -18564,6 +18581,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"ZN" = (
+/obj/structure/table/wood,
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -23469,21 +23498,21 @@ aa
 aa
 aa
 aa
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
 aa
 "}
 (20,1,1) = {"
@@ -23726,6 +23755,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -23739,8 +23769,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (21,1,1) = {"
@@ -23983,6 +24012,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -23996,8 +24026,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (22,1,1) = {"
@@ -24240,6 +24269,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24253,8 +24283,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (23,1,1) = {"
@@ -24497,6 +24526,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24510,8 +24540,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (24,1,1) = {"
@@ -24754,6 +24783,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24767,8 +24797,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (25,1,1) = {"
@@ -25011,7 +25040,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25025,7 +25054,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (26,1,1) = {"
@@ -25268,7 +25297,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25282,7 +25311,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (27,1,1) = {"
@@ -25525,7 +25554,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25539,7 +25568,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (28,1,1) = {"
@@ -25782,7 +25811,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25796,7 +25825,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (29,1,1) = {"
@@ -26039,7 +26068,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -26053,7 +26082,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (30,1,1) = {"
@@ -26296,6 +26325,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -26309,8 +26339,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (31,1,1) = {"
@@ -26553,6 +26582,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -26566,8 +26596,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (32,1,1) = {"
@@ -26810,6 +26839,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -26823,8 +26853,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (33,1,1) = {"
@@ -27067,6 +27096,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -27080,8 +27110,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (34,1,1) = {"
@@ -27324,6 +27353,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -27337,8 +27367,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (35,1,1) = {"
@@ -27581,21 +27610,21 @@ lI
 lI
 lI
 aa
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
 aa
 "}
 (36,1,1) = {"
@@ -71546,18 +71575,18 @@ aa
 aa
 "}
 (207,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ab
 aa
 aa
 aa
@@ -71803,18 +71832,18 @@ aa
 aa
 "}
 (208,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tj
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72060,18 +72089,18 @@ aa
 aa
 "}
 (209,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tk
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72317,18 +72346,18 @@ aa
 aa
 "}
 (210,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Sq
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72574,18 +72603,18 @@ aa
 aa
 "}
 (211,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ZN
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72831,18 +72860,18 @@ aa
 aa
 "}
 (212,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tl
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -73089,16 +73118,16 @@ aa
 "}
 (213,1,1) = {"
 ab
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ae
 ae

@@ -53,7 +53,7 @@
 		return
 
 	var/obj/item/reagent_containers/glass/bucket/bucket = H.get_item_for_held_index(1)
-	bucket.reagents.add_reagent("water",70)
+	bucket.reagents.add_reagent(/datum/reagent/water,70)
 
 /datum/outfit/laser_tag
 	name = "Laser Tag Red"
@@ -227,6 +227,8 @@
 	W.assignment = "CentCom Commander"
 	W.registered_name = H.real_name
 	W.update_label()
+	
+	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/spec_ops
 	name = "Special Ops Officer"

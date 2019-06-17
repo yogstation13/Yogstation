@@ -25,3 +25,9 @@
 	..()
 	if (user.head == src)
 		user.faction -= "goat"
+
+/obj/item/clothing/head/yogs/whitecap
+	name = "white cap"
+	desc = "A white cap. For some reason it smells like metal."
+	icon_state = "chernobyl"
+	item_state = "chernobyl"

@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
-	if(check_emote(original_message) || !can_speak_basic(original_message, ignore_spam))
+	if(check_emote(original_message, forced) || !can_speak_basic(original_message, ignore_spam))
 		return
 
 	if(in_critical)
@@ -176,11 +176,14 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	else
 		src.log_talk(message, LOG_SAY, forced_by=forced)
 
-	message = treat_message(message)
+	message = treat_message(message) // unfortunately we still need this
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+	if (sigreturn & COMPONENT_UPPERCASE_SPEECH)
+		message = uppertext(message)
 	if(!message)
 		return
 
-	spans |= get_spans()
+	spans |= speech_span
 
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
@@ -229,6 +232,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	message = hear_intercept(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
+
 	show_message(message, 2, deaf_message, deaf_type)
 	return message
 
@@ -271,6 +275,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mode)
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mode)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
@@ -299,7 +304,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return 1
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno and ling channels
-	if(has_trait(TRAIT_MUTE))
+	if(HAS_TRAIT(src, TRAIT_MUTE))
 		return 0
 
 	if(is_muzzled())
@@ -325,7 +330,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return null
 
 /mob/living/proc/treat_message(message)
-	if(has_trait(TRAIT_UNINTELLIGIBLE_SPEECH))
+	if(HAS_TRAIT(src, TRAIT_UNINTELLIGIBLE_SPEECH))
 		message = unintelligize(message)
 
 	if(derpspeech)

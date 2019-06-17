@@ -81,7 +81,11 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/admin_pick_random_player, //yogs
 	/client/proc/get_law_history, //yogs - silicon law history
 	/client/proc/show_mentors, // yogs - mentors
-	/client/proc/reset_all_tcs // yogs - NTSL, resets all NTSL scripts in world
+	/client/proc/reset_all_tcs, // yogs - NTSL, resets all NTSL scripts in world
+	/client/proc/subtlemessage_faction, // yogs -- SM to entire factions/antag types
+	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
+	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
+	/client/proc/queue_check // Yogs -- Some queue manipulation/debuggin kinda verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -115,7 +119,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/admin_away
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character))
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 GLOBAL_PROTECT(admin_verbs_server)
@@ -135,7 +139,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/mentor_memo, /* YOGS - something stupid about "Mentor memos" */
+	/client/proc/release_queue // Yogs -- Adds some queue-manipulation verbs
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -163,7 +168,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/get_dynex_range,		//*debug verbs for dynex explosions.
 	/client/proc/set_dynex_scale,
 	/client/proc/cmd_display_del_log,
-	/client/proc/create_outfits,
+	/client/proc/outfit_manager,
 	/client/proc/modify_goals,
 	/client/proc/debug_huds,
 	/client/proc/map_template_load,
@@ -177,6 +182,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
 	/datum/admins/proc/create_or_modify_area,
+	/client/proc/debug_typeof // Yogs -- Adds a debug verb for getting the subtypes of something
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -347,11 +353,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Aghost"
 	if(!holder)
 		return
+	. = TRUE
 	if(isobserver(mob))
 		//re-enter
 		var/mob/dead/observer/ghost = mob
 		if(!ghost.mind || !ghost.mind.current) //won't do anything if there is no body
-			return
+			return FALSE
 		if(!ghost.can_reenter_corpse)
 			log_admin("[key_name(usr)] re-entered corpse")
 			message_admins("[key_name_admin(usr)] re-entered corpse")
@@ -360,6 +367,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Admin Reenter") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
 		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>")
+		return FALSE
 	else
 		//ghostize
 		log_admin("[key_name(usr)] admin ghosted.")

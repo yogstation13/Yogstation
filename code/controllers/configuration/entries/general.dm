@@ -460,6 +460,9 @@
 /datum/config_entry/string/default_view
 	config_entry_value = "15x15"
 
+/datum/config_entry/string/default_view_square
+	config_entry_value = "15x15"
+
 /datum/config_entry/flag/log_pictures
 
 /datum/config_entry/flag/picture_logging_camera
@@ -473,4 +476,3 @@
 	min_val = 30
 
 /datum/config_entry/flag/reopen_roundstart_suicide_roles_command_report
-

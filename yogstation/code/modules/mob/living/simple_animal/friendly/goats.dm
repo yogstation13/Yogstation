@@ -170,7 +170,7 @@
 	light_color = LIGHT_COLOR_GREEN
 
 /mob/living/simple_animal/hostile/retaliate/goat/radioactive/Life()
-	radiation_pulse(src, 200) // It gets stronker as time passes
+	radiation_pulse(src, 600) // It gets stronker as time passes
 
 /mob/living/simple_animal/hostile/retaliate/goat/rainbow
 	name = "Rainbow Goat"
@@ -182,7 +182,7 @@
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/storage/crayons = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
 
-/mob/living/simple_animal/hostile/retaliate/goat/spiffles
+/mob/living/simple_animal/hostile/retaliate/goat/cute
 	name = "Cute Goat"
 	desc = "Be careful, he is a feisty one!"
 	icon = 'yogstation/icons/mob/goats/Spiffles.dmi'
@@ -409,4 +409,25 @@
 	icon_living = "plungergoat"
 	icon_dead = "plungergoat_dead"
 	speak = list("HoW I eAt gRaSS?!?","iS pLaNT gOoD fOr gOaT!?","wHy hOMmOnS sO mEaN!?")
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/spiffles
+	name = "Spiffles"
+	desc = "Unlike most goats this one has been raised to be docile as possible making it the perfect pet!"
+	speak = list("EHEHEHEHEH","eh?")
+	speak_emote = list("brays")
+	emote_hear = list("brays.")
+	emote_see = list("shakes its head.", "stamps a foot.", "looks around.")
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4, /obj/item/clothing/head/yogs/goatpelt = 1)
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "kicks"
+	icon = 'yogstation/icons/mob/goats/Spiffles.dmi'
+	icon_state = "spiffles"
+	icon_living = "spiffles"
+	icon_dead = "spiffles_dead"
+	faction = list("goat")
 	gold_core_spawnable = NO_SPAWN

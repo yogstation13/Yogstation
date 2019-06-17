@@ -211,6 +211,7 @@
 	if(prob(35))
 		sparks.start()
 	P.firer = user ? user : src
+	P.fired_from = src
 	if(last_projectile_params)
 		P.p_x = last_projectile_params[2]
 		P.p_y = last_projectile_params[3]
@@ -266,7 +267,7 @@
 			user.visible_message("[user.name] starts to weld the [name] to the floor.", \
 				"<span class='notice'>You start to weld \the [src] to the floor...</span>", \
 				"<span class='italics'>You hear welding.</span>")
-			if(I.use_tool(src, user, 20, volume=50))
+			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WRENCHED)
 				state = EMITTER_WELDED
 				to_chat(user, "<span class='notice'>You weld \the [src] to the floor.</span>")
 				connect_to_network()
@@ -276,7 +277,7 @@
 			user.visible_message("[user.name] starts to cut the [name] free from the floor.", \
 				"<span class='notice'>You start to cut \the [src] free from the floor...</span>", \
 				"<span class='italics'>You hear welding.</span>")
-			if(I.use_tool(src, user, 20, volume=50))
+			if(I.use_tool(src, user, 20, volume=50) && state == EMITTER_WELDED)
 				state = EMITTER_WRENCHED
 				to_chat(user, "<span class='notice'>You cut \the [src] free from the floor.</span>")
 				disconnect_from_network()
@@ -459,7 +460,7 @@
 
 /obj/item/turret_control/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/turret_control/afterattack(atom/targeted_atom, mob/user, proxflag, clickparams)
 	. = ..()

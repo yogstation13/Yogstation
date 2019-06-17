@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed a bug that caused limbs to take incorrect damage amounts when damage exceeded the limb's damage cap"

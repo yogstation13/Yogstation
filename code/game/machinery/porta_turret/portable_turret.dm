@@ -506,7 +506,7 @@
 			threatcount += 4
 
 	if(shoot_unloyal)
-		if (!perp.has_trait(TRAIT_MINDSHIELD))
+		if (!HAS_TRAIT(perp, TRAIT_MINDSHIELD))
 			threatcount += 4
 
 	return threatcount
@@ -570,6 +570,7 @@
 	//Shooting Code:
 	A.preparePixelProjectile(target, T)
 	A.firer = src
+	A.fired_from = src
 	A.fire()
 	return A
 

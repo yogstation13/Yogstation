@@ -10,6 +10,7 @@
 	var/chem_catalysts[] = list() //like tools but for reagents
 	var/category = CAT_NONE //where it shows up in the crafting UI
 	var/subcategory = CAT_NONE
+	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
@@ -550,6 +551,13 @@
 				/obj/item/stack/sheet/animalhide/ashdrake = 5)
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/firebrand
+	name = "Firebrand"
+	result = /obj/item/match/firebrand
+	time = 100 //Long construction time. Making fire is hard work.
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/gold_horn
 	name = "Golden Bike Horn"
 	result = /obj/item/bikehorn/golden
@@ -586,6 +594,20 @@
 	time = 60
 	reqs = list(/obj/item/grown/log = 5)
 	result = /obj/structure/bonfire
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/rake //Category resorting incoming
+	name = "Rake"
+	time = 30
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
+	result = /obj/item/cultivator/rake
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/woodbucket
+	name = "Wooden Bucket"
+	time = 30
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
+	result = /obj/item/reagent_containers/glass/bucket/wooden
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpike

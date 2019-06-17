@@ -110,7 +110,11 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
 		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
-			possible_targets += possible_target
+			//yogs start -- Quiet Rounds
+			var/mob/living/carbon/human/guy = possible_target.current
+			if( possible_target.antag_datums || !(guy.client && (guy.client.prefs.toggles & QUIET_ROUND)))
+				possible_targets += possible_target//yogs indent
+			//yogs end
 	if(try_target_late_joiners)
 		var/list/all_possible_targets = possible_targets.Copy()
 		for(var/I in all_possible_targets)
@@ -679,6 +683,24 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	if(count)
 		target_amount = count
 	update_explanation_text()
+
+/datum/objective/protect_object
+	name = "protect object"
+	var/obj/protect_target
+
+/datum/objective/protect_object/proc/set_target(obj/O)
+	protect_target = O
+	update_explanation_text()
+
+/datum/objective/protect_object/update_explanation_text()
+	. = ..()
+	if(protect_target)
+		explanation_text = "Protect \the [protect_target] at all costs."
+	else
+		explanation_text = "Free objective."
+
+/datum/objective/protect_object/check_completion()
+	return !QDELETED(protect_target)
 
 //Changeling Objectives
 

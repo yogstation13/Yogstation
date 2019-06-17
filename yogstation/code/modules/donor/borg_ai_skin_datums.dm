@@ -182,7 +182,19 @@
 	name = "Paramedic Droid"
 	icon_state = "paramed_droid"
 	module_locked = "Medical"
+	owner = null
+
+/datum/borg_skin/gold_experience
+	name = "Gold Experience"
+	icon_state = "gold_experience"
+	module_locked = "Security"
 	owner = "identification"
+
+/datum/borg_skin/qualified_doctor
+	name = "Qualified Doctor"
+	icon_state = "qualified_doctor"
+	module_locked = "Medical"
+	owner = null
 
 //Oldyogs stuff, I didn't sprite this ~Kmc//
 
@@ -220,6 +232,12 @@
 	name = "Mr Gutsy (security)"
 	icon_state = "gutsy_sec"
 	owner = null
+	module_locked = "Security"
+
+/datum/borg_skin/cola
+	name = "Sec Cola"
+	icon_state = "colaborg"
+	owner = "boodaliboo"
 	module_locked = "Security"
 
 
@@ -271,3 +289,20 @@
 	name = "Ur-Quan Kzer-Za Master"
 	icon_state = "urquan_kzer_za"
 	owner = "identification"
+
+/datum/ai_skin/realisticface
+	name = "Hyper Realistic Face"
+	icon_state = "realisticface"
+
+/datum/ai_skin/spacewhale
+	name = "Space Whale"
+	icon_state = "spacewhale"
+
+/datum/ai_skin/extranet
+	name = "Extranet"
+	icon_state = "extranet"
+
+/datum/ai_skin/wardoge
+	name = "War Doge"
+	icon_state = "wardoge"
+	owner = "fluffe9911"

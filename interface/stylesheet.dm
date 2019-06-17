@@ -25,7 +25,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
@@ -41,7 +41,8 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
-.radio					{color: #008000;}
+.radio					{color: #839e85;} /* yogs -- general radio usage, noncommon*/
+.commonradio			{color: #008000;} /* yogs -- Standard green radio chatter, for common only*/
 .sciradio				{color: #993399;}
 .comradio				{color: #204090;} /* yogs */
 .secradio				{color: #a30000;}
@@ -194,7 +195,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 }
 .ticket-text-sent {
-	color: #000099;
+	color: #47beff;
 	font-weight: bold;
 }
 .ticket-text-received {

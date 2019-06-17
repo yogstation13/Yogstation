@@ -175,6 +175,9 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 //Gets the turf this atom inhabits
 #define get_turf(A) (get_step(A, 0))
 
+//Same as above except gets the area instead
+#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
+
 //Ghost orbit types:
 #define GHOST_ORBIT_CIRCLE		"circle"
 #define GHOST_ORBIT_TRIANGLE	"triangle"
@@ -218,9 +221,6 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 #define SHARE		"Share Tech Mono"
 
 GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
-
-//Color Defines
-#define OOC_COLOR  "#002eb8"
 
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
@@ -447,3 +447,11 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define DICE_NOT_RIGGED 1
 #define DICE_BASICALLY_RIGGED 2
 #define DICE_TOTALLY_RIGGED 3
+
+#define VOMIT_TOXIC 1
+#define VOMIT_PURPLE 2
+
+//chem grenades defines
+#define EMPTY 1
+#define WIRED 2
+#define READY 3

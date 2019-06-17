@@ -39,7 +39,6 @@
 /area/crew_quarters/bar)
 "ah" = (
 /obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
 /obj/structure/table/wood,
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c100,
@@ -452,12 +451,12 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bf" = (
-/obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
+/obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bg" = (
@@ -1244,6 +1243,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "cX" = (
@@ -1371,6 +1371,14 @@
 	icon_state = "pipe11-3";
 	dir = 10
 	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"Lv" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 
@@ -1504,7 +1512,7 @@ dg
 "}
 (9,1,1) = {"
 ag
-bx
+Lv
 bx
 bZ
 bx

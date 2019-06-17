@@ -27,7 +27,7 @@
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[rank_name]([admin_name])</span> says, <span class='message'>\"[emoji_parse(msg)]\"</span></span>"
 
 	for (var/mob/M in GLOB.player_list)
-		if(isnewplayer(M))
+		if(isnewplayer(M) && !(M.client && M.client.holder)) // Yogs -- Allows admins to hear admin deadsay while in the lobby
 			continue
 		if (M.stat == DEAD || (M.client && M.client.holder && (M.client.prefs.chat_toggles & CHAT_DEAD))) //admins can toggle deadchat on and off. This is a proc in admin.dm and is only give to Administrators and above
 			to_chat(M, rendered)

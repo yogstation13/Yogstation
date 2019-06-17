@@ -10,6 +10,7 @@
 	var/icon_living = ""
 	var/icon_dead = "" //icon when the animal is dead. Don't use animated icons for this.
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
+	var/flip_on_death = FALSE //Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 
 	var/list/speak = list()
 	var/list/speak_emote = list()//	Emotes while speaking IE: Ian [emote], [text] -- Ian barks, "WOOF!". Spoken text is generated from the speak variable.
@@ -280,10 +281,7 @@
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
 	if(stat)
 		return
-	if(act == "scream")
-		message = "makes a loud and pained whimper." //ugly hack to stop animals screaming when crushed :P
-		act = "me"
-	..(act, m_type, message)
+	. = ..()
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value
@@ -325,6 +323,8 @@
 	else
 		health = 0
 		icon_state = icon_dead
+		if(flip_on_death)
+			transform = transform.Turn(180)
 		density = FALSE
 		..()
 
@@ -440,10 +440,10 @@
 
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
-	var/changed = 0
+	var/changed = FALSE
 
 	if(resize != RESIZE_DEFAULT_SIZE)
-		changed++
+		changed = TRUE
 		ntransform.Scale(resize)
 		resize = RESIZE_DEFAULT_SIZE
 
@@ -512,7 +512,7 @@
 		if(istype(held_item, /obj/item/twohanded))
 			var/obj/item/twohanded/T = held_item
 			if(T.wielded == 1)
-				to_chat(usr, "<span class='warning'>Your other hand is too busy holding the [T.name].</span>")
+				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [T].</span>")
 				return
 	var/oindex = active_hand_index
 	active_hand_index = hand_index
@@ -547,7 +547,7 @@
 //ANIMAL RIDING
 
 /mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(riding_datum)
 		if(user.incapacitated())
 			return
@@ -558,7 +558,7 @@
 		return ..()
 
 /mob/living/simple_animal/relaymove(mob/user, direction)
-	GET_COMPONENT(riding_datum, /datum/component/riding)
+	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(tame && riding_datum)
 		riding_datum.handle_ride(user, direction)
 

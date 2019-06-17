@@ -1760,8 +1760,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
-/obj/structure/closet/secure_closet{
-	icon_state = "freezer";
+/obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "meat fridge";
 	req_access_txt = "201"
@@ -1784,8 +1783,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/storage/fancy/egg_box,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet{
-	icon_state = "freezer";
+/obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "refrigerator";
 	req_access_txt = "201"
@@ -2551,7 +2549,7 @@
 	dir = 2;
 	locked = 0;
 	name = "Hydroponics APC";
-	pixel_y = -25;
+	pixel_y = -23;
 	req_access = null;
 	start_charge = 100
 	},
@@ -5015,7 +5013,7 @@
 	dir = 1;
 	locked = 0;
 	name = "UO45 Bar APC";
-	pixel_y = 25;
+	pixel_y = 23;
 	req_access = null;
 	start_charge = 100
 	},
@@ -6163,7 +6161,7 @@
 	dir = 2;
 	locked = 0;
 	name = "UO45 Research Division APC";
-	pixel_y = -25;
+	pixel_y = -23;
 	req_access = null;
 	start_charge = 100
 	},
@@ -6721,7 +6719,7 @@
 	dir = 2;
 	locked = 0;
 	name = "UO45 Gateway APC";
-	pixel_y = -25;
+	pixel_y = -23;
 	req_access = null;
 	start_charge = 100
 	},
@@ -10229,7 +10227,7 @@
 	dir = 2;
 	locked = 0;
 	name = "UO45 Mining APC";
-	pixel_y = -25;
+	pixel_y = -23;
 	req_access = null;
 	start_charge = 100
 	},

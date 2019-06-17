@@ -24,9 +24,10 @@
 
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
-
+	
+	var/client/C = GLOB.directory[ckey]
 	//Whitelist
-	if(CONFIG_GET(flag/usewhitelist))
+	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
 		if(!check_whitelist(ckey))
 			if (admin)
 				log_admin("The admin [key] has been allowed to bypass the whitelist")
@@ -38,7 +39,7 @@
 				return list("reason"="whitelist", "desc" = "\nReason: You are not on the white list for this server")
 
 	//Guest Checking
-	if(!real_bans_only && IsGuestKey(key))
+	if(!real_bans_only && !C && IsGuestKey(key))
 		if (CONFIG_GET(flag/guest_ban))
 			log_access("Failed Login: [key] - Guests not allowed")
 			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
@@ -48,10 +49,28 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-	if(!real_bans_only && extreme_popcap && living_player_count() >= extreme_popcap && !admin)
-		log_access("Failed Login: [key] - Population cap reached")
-		return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+//Yogs start -- Keeps extreme popcap as always being a living-players count.
+	if(!real_bans_only && extreme_popcap) // if we ought to use the extreme popcap 
+		if(living_player_count() + (SSticker && SSticker.queued_players.len) >= extreme_popcap) // if the extreme popcap has been reached
+			if(!admin && !GLOB.joined_player_list.Find(ckey) && !(is_donator(C) || (C.ckey in get_donators()))) // if they are not exempt
+				log_access("Failed Login: [key] - Population cap reached")
+				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+/*Yogs continue
+	if(!real_bans_only && !C && extreme_popcap && !admin)
+		var/hard_popcap = CONFIG_GET(number/hard_popcap)
 
+		var/popcap_value = living_player_count()
+		if (hard_popcap)
+			popcap_value = GLOB.clients.len
+		if (!GLOB.enter_allowed || length(SSticker.queued_players) || !SSticker.HasRoundStarted())
+			hard_popcap = 0
+			popcap_value = GLOB.clients.len
+
+		if(popcap_value >= extreme_popcap && (!hard_popcap || living_player_count() >= hard_popcap))
+			log_access("Failed Login: [key] - Population cap reached")
+			return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+
+Yogs End*/
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
 			var/msg = "Ban database connection failure. Key [ckey] not checked"
@@ -96,7 +115,6 @@
 			bannedckey = ban["ckey"]
 
 		var/newmatch = FALSE
-		var/client/C = GLOB.directory[ckey]
 		var/list/cachedban = SSstickyban.cache[bannedckey]
 		//rogue ban in the process of being reverted.
 		if (cachedban && (cachedban["reverting"] || cachedban["timeout"]))

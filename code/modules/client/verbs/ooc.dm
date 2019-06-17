@@ -1,3 +1,7 @@
+GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
+GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
+GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -34,7 +38,11 @@
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+	//yogs start -- smarter ick ock detection
+	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
+	//captures a lot of accidental in character speech in ooc chat
+	if(length(msg) > 4 && ickock.Find(msg))
+	//yogs end
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
 			return
 
@@ -63,15 +71,31 @@
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	//YOG START - Yog OOC
-	var/regex/ping = regex("@(\\w+)","g")//Now lets check if they pinged anyone
-	if(ping.Find(msg))
+	
+	//PINGS
+	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
+	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
+	var/list/pinged = list()
+	while(ping.Find(msg))
+		for(var/x in ping.group)
+			pinged |= ckey(x)
+	var/list/clientkeys = list()
+	for(var/x in GLOB.clients)// If the "SENDING MESSAGES OUT" for-loop starts iterating over something else, make this GLOB *that* something else.
+		var/client/Y = x //God bless typeless for-loops
+		clientkeys += Y.ckey
+		if(Y.holder && Y.holder.fakekey)
+			clientkeys += Y.holder.fakekey
+	pinged &= clientkeys 
+	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
 			return
 		last_ping_time = world.time
-	var/list/pinged = ping.group
-	for(var/x in pinged)
-		x = ckey(x)
+	
+	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
+	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
+	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
+	// Completely rewrote this OOC-handling code and /TG/ still manages to make it bad. Hate tg.
 	var/oocmsg = ""; // The message sent to normal people
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
@@ -84,19 +108,21 @@
 		if(holder.fakekey) // If they're stealhminning
 			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg = "<span class='ooc'><font color='[bussedcolor]'><span class='prefix'>OOC:</span> <EM>[holder.fakekey]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 			// ^ Message sent to normal people
 		else
 			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
 			oocmsg_toadmins = oocmsg
 	else
+		oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
 		if(is_mentor()) // If the speaker is a mentor
-			oocmsg = "<font color='[GLOB.mentor_ooc_colour]'>"
+			oocmsg += "<font color='[GLOB.mentor_ooc_colour]'>"
 		else
-			oocmsg = "<font color='[GLOB.normal_ooc_colour]'>"
-		oocmsg += "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>"
+			oocmsg += "<font color='[bussedcolor]'>"
+		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
 	
+	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
 		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
@@ -105,7 +131,7 @@
 				sentmsg = oocmsg_toadmins // Get the admin one
 			else
 				sentmsg = oocmsg
-			if(ckey(C.key) in pinged)
+			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
 				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
 				pingsound.volume = 50
 				pingsound.pan = 80
@@ -113,6 +139,7 @@
 				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
 			to_chat(C,sentmsg)
 	//YOGS END
+
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
 		if(toggle != GLOB.ooc_allowed)
@@ -132,20 +159,17 @@
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
-GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
-
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
 	set category = "Fun"
-	GLOB.normal_ooc_colour = sanitize_ooccolor(newColor)
+	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
 	set category = "Fun"
-	GLOB.normal_ooc_colour = OOC_COLOR
+	GLOB.OOC_COLOR = null
 
 /client/verb/colorooc()
 	set name = "Set Your OOC Color"

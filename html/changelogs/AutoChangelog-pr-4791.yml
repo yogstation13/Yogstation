@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - tweak: "The ghost Object of Interest dialogue now properly informs you of whether the thing is a place, person, mob, whatever."
