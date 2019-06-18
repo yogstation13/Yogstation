@@ -139,7 +139,9 @@
 		var/mob/living/mob_occupant = occupant
 		if(!controls_inside)
 			if(mob_occupant == user)
-				return
+				if(user.no_tk && !user.dna.check_mutation(TK))
+					to_chat(user, "<span class='warning'>You cant reach the controls from inside!</span>")
+					return
 
 		var/dat
 		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
@@ -203,6 +205,13 @@
 		return
 	if(canAccess(usr))
 		var/mob/living/mob_occupant = occupant
+		if(!controls_inside)
+			if(mob_occupant == usr)
+				closeUsrDialog()
+				if(user.no_tk && !user.dna.check_mutation(TK))
+					to_chat(user, "<span class='warning'>You cant reach the controls from inside!</span>")
+					return
+
 		if(href_list["input"])
 			if(state_open)
 				close_machine()
