@@ -40,3 +40,9 @@
 	obj_flags = IMMUTABLE_SLOW
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	slowdown = 1
+
+/obj/item/clothing/head/yogs/whitecap
+	name = "white cap"
+	desc = "A white cap. For some reason it smells like metal."
+	icon_state = "chernobyl"
+	item_state = "chernobyl"

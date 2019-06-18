@@ -1,0 +1,4 @@
+author: " Garen"
+delete-after: true 
+changes: 
+  - bugfix: "You can only make one construct when using twisted construction on a borg."
