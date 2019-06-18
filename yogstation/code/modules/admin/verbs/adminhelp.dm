@@ -155,7 +155,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[key_name_admin(usr)] PM'd [LinkedReplyName()]")
+		AddInteraction("[usr.client.ckey] PM'd [initiator_key_name]")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
