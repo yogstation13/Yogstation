@@ -136,10 +136,14 @@
 			ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
 			ui.open()
 	else //yogs start   aplly backup UI
+		var/mob/living/mob_occupant = occupant
+		if(!controls_inside)
+			if(mob_occupant == user)
+				return
+
 		var/dat
 		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
 		dat += "<H2>Ocupant: "
-		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
 			dat += "[mob_occupant.name]"
 			switch(mob_occupant.stat)
