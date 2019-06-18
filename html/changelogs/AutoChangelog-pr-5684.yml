@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "Syndicate speargun will start able to embed instead of needing to be adjusted to do so"

@@ -1,4 +1,5 @@
-/mob/living/Life(seconds, times_fired)
+/mob/living/proc/Life(seconds, times_fired)
+	set waitfor = FALSE
 	set invisibility = 0
 
 	if(digitalinvis)
@@ -34,7 +35,7 @@
 	if(!loc)
 		return
 
-	if(!IsInStasis())
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD)
 			//Mutations and radiation
@@ -125,7 +126,7 @@
 /mob/living/proc/handle_traits()
 	//Eyes
 	if(eye_blind)			//blindness, heals slowly over time
-		if(!stat && !(has_trait(TRAIT_BLIND)))
+		if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
 			eye_blind = max(eye_blind-1,0)
 			if(client && !eye_blind)
 				clear_alert("blind")
