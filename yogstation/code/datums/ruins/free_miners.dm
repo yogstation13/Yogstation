@@ -160,7 +160,6 @@
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,										1500),
 		new /datum/data/mining_equipment("Super Resonator",     		/obj/item/resonator/upgraded,									2000),
 		new /datum/data/mining_equipment("Plasma Cutter" ,				/obj/item/gun/energy/plasmacutter,								2500),
-		new /datum/data/mining_equipment("Point Transfer Card", 		/obj/item/card/mining_point_card,								500),
 		new /datum/data/mining_equipment("Minebot",						/mob/living/simple_animal/hostile/mining_drone,					800),
 		new /datum/data/mining_equipment("Minebot Melee Upgrade",		/obj/item/mine_bot_upgrade,										400),
 		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,								400),
