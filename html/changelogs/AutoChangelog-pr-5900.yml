@@ -1,0 +1,4 @@
+author: " JJRcop"
+delete-after: true 
+changes: 
+  - tweak: "Airlocks open when items hit them"
