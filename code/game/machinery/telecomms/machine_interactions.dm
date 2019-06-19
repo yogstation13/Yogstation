@@ -39,6 +39,7 @@
 	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
 	dat += "<br>[temp]<br>"
 	dat += "<br>Power Status: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
+	dat += "<br>System efectivity: [net_efective]%	<a href='?src=[REF(src)];refresh=1'>refresh</a>"
 	if(on && toggled)
 		if(id != "" && id)
 			dat += "<br>Identification String: <a href='?src=[REF(src)];input=id'>[id]</a>"

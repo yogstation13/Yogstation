@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
+	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
 	var/id = "NULL" // identification string
 	var/network = "NULL" // the network of the machinery
@@ -142,8 +143,27 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	// Update the icon
 	update_icon()
 
+	var/turf/T = get_turf(src) //yogs
+	var/speedloss = 0
+	if(istype(T,/turf/open))
+		var/turf/open/Tile = T
+		var/temperature = Tile.GetTemperature()
+		if(temperature <= 150)				// 150K optimal operating parameters
+			net_efective = 100
+		else
+			if(temperature <= 10150)		// at 10000K above 150K the efectivity becomes 0
+				net_efective = 0
+				speedloss = netspeed
+			else
+				var/temp = netspeed * 0.0001	// temp per one unit of speedloss
+				speedloss = (temperature - 150)/temp		// exact % of speedloss (not used)
+				net_efective = speedloss/netspeed
+	else
+		net_efective = 100 // yogs end
+
+
 	if(traffic > 0)
-		traffic -= netspeed
+		traffic -= netspeed - speedloss
 		if (traffic < 0)  //yogs start
 			traffic = 0   //yogs end
 
