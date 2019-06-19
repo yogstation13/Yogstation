@@ -231,7 +231,7 @@
 	updateUsrDialog()
 
 /obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside, con_in)// returns false if it is
-	if(is_operational())
+	if(!is_operational())
 		return TRUE
 	if(issilicon(user))
 		return FALSE
