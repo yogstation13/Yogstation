@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Ghosts are no longer able to operate storage items, in any way."

@@ -17,14 +17,13 @@
 	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
 	IC = CH.cavity_item
 	if(tool)
-		if(istype(tool, /obj/item/surgical_drapes) || istype(tool, /obj/item/bedsheet))
-			var/obj/item/inactive = user.get_inactive_held_item()
-			if(istype(inactive, /obj/item/cautery) || inactive.tool_behaviour == TOOL_SCREWDRIVER || iscyborg(user))
-				attempt_cancel_surgery(surgery, tool, target, user)
-				return -1
-		user.visible_message("[user] begins to insert [tool] into [target]'s [target_zone].", "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>")
+		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>",
+			"[user] begins to insert [tool] into [target]'s [target_zone].",
+			"[user] begins to insert [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone].")
 	else
-		user.visible_message("[user] checks for items in [target]'s [target_zone].", "<span class='notice'>You check for items in [target]'s [target_zone]...</span>")
+		display_results(user, target, "<span class='notice'>You check for items in [target]'s [target_zone]...</span>",
+			"[user] checks for items in [target]'s [target_zone].",
+			"[user] looks for something in [target]'s [target_zone].")
 
 /datum/surgery_step/handle_cavity/success(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
@@ -33,13 +32,17 @@
 			to_chat(user, "<span class='warning'>You can't seem to fit [tool] in [target]'s [target_zone]!</span>")
 			return 0
 		else
-			user.visible_message("[user] stuffs [tool] into [target]'s [target_zone]!", "<span class='notice'>You stuff [tool] into [target]'s [target_zone].</span>")
+			display_results(user, target, "<span class='notice'>You stuff [tool] into [target]'s [target_zone].</span>",
+				"[user] stuffs [tool] into [target]'s [target_zone]!",
+				"[user] stuffs [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone].")
 			user.transferItemToLoc(tool, target, TRUE)
 			CH.cavity_item = tool
 			return 1
 	else
 		if(IC)
-			user.visible_message("[user] pulls [IC] out of [target]'s [target_zone]!", "<span class='notice'>You pull [IC] out of [target]'s [target_zone].</span>")
+			display_results(user, target, "<span class='notice'>You pull [IC] out of [target]'s [target_zone].</span>",
+				"[user] pulls [IC] out of [target]'s [target_zone]!",
+				"[user] pulls [IC.w_class > WEIGHT_CLASS_SMALL ? IC : "something"] out of [target]'s [target_zone].")
 			user.put_in_hands(IC)
 			CH.cavity_item = null
 			return 1

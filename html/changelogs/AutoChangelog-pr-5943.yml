@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed obsessed random event ignoring preferences"

@@ -37,6 +37,7 @@
 	gender = NEUTER
 	mob_biotypes = list(MOB_ROBOTIC)
 	speak_emote = list("chirps")
+	speech_span = SPAN_ROBOT
 	bubble_icon = "machine"
 	initial_language_holder = /datum/language_holder/drone
 	mob_size = MOB_SIZE_SMALL
@@ -132,6 +133,12 @@
 	if(!picked)
 		pickVisualAppearence()
 
+/mob/living/simple_animal/drone/auto_deadmin_on_login()
+	if(!client?.holder)
+		return TRUE
+	if(CONFIG_GET(flag/auto_deadmin_silicons) || (client.prefs?.toggles & DEADMIN_POSITION_SILICON))
+		return client.holder.auto_deadmin()
+	return ..()
 
 /mob/living/simple_animal/drone/death(gibbed)
 	..(gibbed)

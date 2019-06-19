@@ -15,7 +15,7 @@
 	verb_exclaim = "beeps"
 	var/listening = FALSE
 	var/recorded = "" //the activation message
-	var/mode = 1
+	var/mode = 2 //yogs: starts on exclusive
 	var/static/list/modes = list("inclusive",
 								 "exclusive",
 								 "recognizer",
