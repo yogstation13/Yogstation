@@ -1044,7 +1044,6 @@
 		var/datum/techweb_node/TN = i
 		TW.add_point_list(TN.research_costs)
 	return TW.printout_points()
-=======
 
 //Current rate: 135000 research points in 90 minutes
 
