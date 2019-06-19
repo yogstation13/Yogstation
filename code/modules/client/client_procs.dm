@@ -253,8 +253,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		//add_donor_verbs()
 	else
 		prefs.unlock_content &= ~2
-		if(prefs.toggles & QUIET_ROUND)
-			prefs.toggles &= ~QUIET_ROUND
+		if(prefs.yogtoggles & QUIET_ROUND)
+			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
 	// yogs start - mentor stuff

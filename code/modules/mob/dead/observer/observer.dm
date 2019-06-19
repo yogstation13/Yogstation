@@ -342,7 +342,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
 	mind.current.oobe_client = null //yogs
-	return 1
+	return TRUE
 
 /mob/dead/observer/verb/stay_dead()
 	set category = "Ghost"
