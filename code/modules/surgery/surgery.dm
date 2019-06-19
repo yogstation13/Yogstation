@@ -127,7 +127,7 @@
 
 /datum/surgery/advanced
 	name = "advanced surgery"
-<<<<<<< HEAD
+	requires_tech = TRUE
 
 /datum/surgery/advanced/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
@@ -163,10 +163,6 @@
 			return FALSE
 		if(type in bed.computer.advanced_surgeries)
 			return TRUE //yogs end
-
-=======
-	requires_tech = TRUE
->>>>>>> 97feccb06d... Reconstruction of Reconstruction Surgery (#44088)
 
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"
