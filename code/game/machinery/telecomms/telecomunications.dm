@@ -155,9 +155,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 				net_efective = 0
 				speedloss = netspeed
 			else
-				var/temp = netspeed * 0.0001	// temp per one unit of speedloss
-				speedloss = (temperature - 150)/temp		// exact % of speedloss (not used)
-				net_efective = speedloss/netspeed
+				var/temp = netspeed * 0.0001			// temp per one unit of speedloss
+				speedloss = (temperature - 150)/temp	// exact speedloss
+				net_efective = speedloss/netspeed		// percantage speedloss ui use only
 	else
 		net_efective = 100 // yogs end
 
