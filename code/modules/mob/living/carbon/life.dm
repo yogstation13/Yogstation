@@ -619,14 +619,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		L.damage += d
 
 /mob/living/carbon/proc/liver_failure()
-<<<<<<< HEAD
-	reagents.metabolize(src, can_overdose=HAS_TRAIT(src, TRAIT_STABLEHEART), liverless = !HAS_TRAIT(src, TRAIT_STABLEHEART)) // yogs make it so reagents process normally if you have corazone
-	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
-=======
 	reagents.end_metabolization(src, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 	reagents.metabolize(src, can_overdose=FALSE, liverless = TRUE)
 	if(HAS_TRAIT(src, TRAIT_STABLELIVER))
->>>>>>> 5c41cc6f52... Muscled Veins experimental surgery (#44481)
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
 	if(prob(30))
