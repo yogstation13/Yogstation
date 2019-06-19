@@ -136,10 +136,14 @@
 			ui = new(user, src, ui_key, "sleeper", name, 375, 550, master_ui, state)
 			ui.open()
 	else //yogs start   aplly backup UI
+		var/mob/living/mob_occupant = occupant
+		if(checkinside(user, mob_occupant, controls_inside))
+			to_chat(user, "<span class='warning'>You cant reach the controls from inside!</span>")
+			return
+
 		var/dat
 		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
 		dat += "<H2>Ocupant: "
-		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
 			dat += "[mob_occupant.name]"
 			switch(mob_occupant.stat)
@@ -199,6 +203,9 @@
 		return
 	if(canAccess(usr))
 		var/mob/living/mob_occupant = occupant
+		if(checkinside(usr, mob_occupant, controls_inside))
+			to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
+			return
 		if(href_list["input"])
 			if(state_open)
 				close_machine()
@@ -228,7 +235,21 @@
 /obj/machinery/sleeper/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
 		return TRUE
-	return FALSE // yogs end
+	return FALSE
+
+/obj/machinery/sleeper/proc/checkinside(mob/user, mob/living/mob_inside, con_in)
+	if(mob_inside != usr)
+		return FALSE
+	if(issilicon(usr))
+		return FALSE
+	if(!controls_inside)
+		return TRUE
+	if(!istype(mob_inside,/mob/living/carbon/human))
+		return TRUE
+	var/mob/living/carbon/human/HU = mob_inside
+	if(!HU.dna.check_mutation(TK))
+		return TRUE
+	 // yogs end
 
 /obj/machinery/sleeper/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
