@@ -51,9 +51,21 @@
 
 	var/datum/surgery_step/S = get_surgery_step()
 	if(S)
+<<<<<<< HEAD
 		if(S.try_op(user, target, user.zone_selected, user.get_active_held_item(), src, try_to_fail))
 			return 1
 	return 0
+=======
+		var/obj/item/tool = user.get_active_held_item()
+		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
+			return TRUE
+		if(iscyborg(user) && user.a_intent != INTENT_HARM) //to save asimov borgs a LOT of heartache
+			return TRUE
+		if(tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
+			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
+			return TRUE
+	return FALSE
+>>>>>>> 6ea00689b0... Using the wrong tool during surgery won't hit the patient with it (#44482)
 
 /datum/surgery/proc/get_surgery_step()
 	var/step_type = steps[status]
