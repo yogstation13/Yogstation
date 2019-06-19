@@ -47,11 +47,9 @@
 			to_chat(user, "<span class='notice'>The guillotine is already fully repaired!</span>")
 
 /obj/structure/guillotine/examine(mob/user)
-	..()
+	. = ..()
 
-	var/msg = ""
-
-	msg += "It is [anchored ? "wrenched to the floor." : "unsecured. A wrench should fix that."]<br/>"
+	var/msg = "It is [anchored ? "wrenched to the floor." : "unsecured. A wrench should fix that."]<br/>"
 
 	if (blade_status == GUILLOTINE_BLADE_RAISED)
 		msg += "The blade is raised, ready to fall, and"
@@ -63,13 +61,10 @@
 	else
 		msg += "The blade is hidden inside the stocks."
 
+	. += msg
+
 	if (LAZYLEN(buckled_mobs))
-		msg += "<br/>"
-		msg += "Someone appears to be strapped in. You can help them out, or you can harm them by activating the guillotine."
-
-	to_chat(user, msg)
-
-	return msg
+		. += "Someone appears to be strapped in. You can help them out, or you can harm them by activating the guillotine."
 
 /obj/structure/guillotine/attack_hand(mob/user)
 	add_fingerprint(user)
