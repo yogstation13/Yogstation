@@ -47,12 +47,12 @@
 
 
 /obj/item/grenade/examine(mob/user)
-	..()
+	. = ..()
 	if(display_timer)
 		if(det_time > 0)
-			to_chat(user, "The timer is set to [DisplayTimeText(det_time)].")
+			. += "The timer is set to [DisplayTimeText(det_time)]."
 		else
-			to_chat(user, "\The [src] is set for instant detonation.")
+			. += "\The [src] is set for instant detonation."
 
 
 /obj/item/grenade/attack_self(mob/user)
@@ -100,7 +100,7 @@
 			to_chat(user, "<span class='notice'>You modify the time delay. It's set for [DisplayTimeText(det_time)].</span>")
 	else
 		return ..()
-		
+
 /obj/item/grenade/proc/change_det_time(time) //Time uses real time.
 	if(time != null)
 		if(time < 3)
@@ -127,3 +127,11 @@
 		owner.visible_message("<span class='danger'>[attack_text] hits [owner]'s [src], setting it off! What a shot!</span>")
 		prime()
 		return TRUE //It hit the grenade, not them
+<<<<<<< HEAD
+=======
+
+/obj/item/grenade/afterattack(atom/target, mob/user)
+	. = ..()
+	if(active)
+		user.throw_item(target)
+>>>>>>> 8ddc9677c7... examine-code refactor (#44636)

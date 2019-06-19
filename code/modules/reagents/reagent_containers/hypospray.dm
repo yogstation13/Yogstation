@@ -140,11 +140,11 @@
 		icon_state = "[initial(icon_state)]0"
 
 /obj/item/reagent_containers/hypospray/medipen/examine()
-	..()
+	. = ..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(usr, "<span class='notice'>It is currently loaded.</span>")
+		. += "<span class='notice'>It is currently loaded.</span>"
 	else
-		to_chat(usr, "<span class='notice'>It is spent.</span>")
+		. += "<span class='notice'>It is spent.</span>"
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack //goliath kiting
 	name = "stimpack medipen"
@@ -203,4 +203,8 @@
 	name = "snail shot"
 	desc = "All-purpose snail medicine! Do not use on non-snails!"
 	list_reagents = list(/datum/reagent/snail = 10)
+<<<<<<< HEAD
 	icon_state = "snail" */ //yogs we removed snail people cause we are bad people who hate fun
+=======
+	icon_state = "snail"
+>>>>>>> 8ddc9677c7... examine-code refactor (#44636)

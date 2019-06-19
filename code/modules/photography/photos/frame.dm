@@ -40,8 +40,9 @@
 /obj/item/wallframe/picture/examine(mob/user)
 	if(user.is_holding(src) && displayed)
 		displayed.show(user)
+		return list()
 	else
-		..()
+		return ..()
 
 /obj/item/wallframe/picture/update_icon()
 	cut_overlays()
@@ -109,9 +110,13 @@
 /obj/structure/sign/picture_frame/examine(mob/user)
 	if(in_range(src, user) && framed)
 		framed.show(user)
+<<<<<<< HEAD
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artok", /datum/mood_event/artok)
+=======
+		return list()
+>>>>>>> 8ddc9677c7... examine-code refactor (#44636)
 	else
-		..()
+		return ..()
 
 /obj/structure/sign/picture_frame/attackby(obj/item/I, mob/user, params)
 	if(can_decon && (I.tool_behaviour == TOOL_SCREWDRIVER || I.tool_behaviour == TOOL_WRENCH))
