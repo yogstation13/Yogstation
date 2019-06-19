@@ -1,6 +1,12 @@
 /datum/uplink_item
 	var/list/include_objectives = list() //objectives to allow the buyer to buy this item
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
+	var/surplus_nullcrates
+
+/datum/uplink_item/New()	
+	. = ..()
+	if(isnull(surplus_nullcrates))
+		surplus_nullcrates = surplus
 
 /////////////////////////////////
 ////////Item re-balancing////////
@@ -42,9 +48,19 @@
 /datum/uplink_item/stealthy_tools/mulligan
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
 
+/datum/uplink_item/device_tools/fakenucleardisk
+	surplus_nullcrates = 0
+
 //////////////////////////
 /////////New Items////////
 //////////////////////////
+
+/datum/uplink_item/dangerous/katana
+	name = "Katana"
+	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden. At a glance, it looks like a fake katana; you can tell from the pixels."
+	item = /obj/item/katana/faketoy
+	cost = 10
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
@@ -63,6 +79,11 @@
 	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/device_tools/arm/nuke
+	cost = 15
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
 	var/limbs = user.held_items.len

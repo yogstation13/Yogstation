@@ -388,6 +388,19 @@ AUTOADMIN_RANK Game Master
 ## Uncomment to automatically give that admin rank to all players
 #AUTOADMIN
 
+
+## Uncomment to automatically deadmin players when the game starts.
+#AUTO_DEADMIN_PLAYERS
+
+## Uncomment to automatically deadmin antagonists when they gain the role.
+#AUTO_DEADMIN_ANTAGONISTS
+
+## Uncomment to automatically deadmin specific role sets when a player joins the game.
+#AUTO_DEADMIN_HEADS
+#AUTO_DEADMIN_SECURITY
+#AUTO_DEADMIN_SILICONS
+
+
 ## CLIENT VERSION CONTROL
 ## This allows you to configure the minimum required client version, as well as a warning version, and message for both.
 ## These trigger for any version below (non-inclusive) the given version, so 510 triggers on 509 or lower.
@@ -472,11 +485,17 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 #ROUNDS_UNTIL_HARD_RESTART 10
 
 
-##Default screen resolution, in tiles.
-##	By default, this is 15x15, which gets simplified to 7 by BYOND, as it is a 1:1 screen ratio.
-##	For reference, Goonstation uses a resolution of 21x15 for it's widescreen mode.
+##Default view size, in tiles.
+##	By default, this is 15x15, which gets simplified to 7 by byond
+##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
+##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
 DEFAULT_VIEW 15x15
+
+##Default view size, in tiles. Should *always* be square.
+## The alternative square viewport size if you're using a widescreen view size
+## You probably shouldn't ever be changing this, but it's here if you want to.
+DEFAULT_VIEW_SQUARE 15x15
 
 ##Used to send round data to a webhook. Address must use HTTP without SSL because byond is horrible.
 #WEBHOOK_ADRESS http://example.com

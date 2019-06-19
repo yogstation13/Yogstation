@@ -1129,7 +1129,9 @@
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "ct" = (
-/obj/machinery/power/supermatter_crystal/engine,
+/obj/machinery/power/supermatter_crystal/engine{
+	gender = "female"
+	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "cu" = (

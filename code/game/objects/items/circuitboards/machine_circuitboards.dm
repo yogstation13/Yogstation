@@ -194,6 +194,14 @@
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/stock_parts/subspace/filter = 1)
 
+/obj/item/circuitboard/machine/telecomms/message_server
+	name = "Messaging Server (Machine Board)"
+	build_path = /obj/machinery/telecomms/message_server
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stack/cable_coil = 1,
+		/obj/item/stock_parts/subspace/filter = 3)
+
 /obj/item/circuitboard/machine/teleporter_hub
 	name = "Teleporter Hub (Machine Board)"
 	build_path = /obj/machinery/teleport/hub
@@ -254,7 +262,9 @@
 		/obj/machinery/vending/cart = "PTech",
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
-		/obj/machinery/vending/sovietsoda = "BODA")
+		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/security = "SecTech")//Yogs
+		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -264,7 +274,6 @@
 			for(var/path in vending_names_paths)
 				display_vending_names_paths[vending_names_paths[path]] = path
 		var/choice =  input(user,"Choose a new brand","Select an Item") as null|anything in display_vending_names_paths
-		to_chat(user, "<span class='notice'>You set the board to \"[display_vending_names_paths[choice]]\".</span>")
 		set_type(display_vending_names_paths[choice])
 	else
 		return ..()
@@ -996,3 +1005,17 @@
 	name = "Pay Stand (Machine Board)"
 	build_path = /obj/machinery/paystand
 	req_components = list()
+
+/obj/item/circuitboard/machine/fat_sucker
+	name = "Lipid Extractor (Machine Board)"
+	build_path = /obj/machinery/fat_sucker
+	req_components = list(/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/kitchen/fork = 1)
+
+/obj/item/circuitboard/machine/stasis
+	name = "Lifeform Stasis Unit (Machine Board)"
+	build_path = /obj/machinery/stasis
+	req_components = list(
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)

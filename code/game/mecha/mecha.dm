@@ -432,6 +432,7 @@
 	diag_hud_set_mechtracking()
 
 /obj/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
+	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
 			occupant.fire_stacks += 1
@@ -489,13 +490,13 @@
 	var/mob/living/L = user
 	if(!Adjacent(target))
 		if(selected && selected.is_ranged())
-			if(L.has_trait(TRAIT_PACIFISM) && selected.harmful)
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 				return
 			if(selected.action(target,params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
-		if(isliving(target) && selected.harmful && L.has_trait(TRAIT_PACIFISM))
+		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 			return
 		if(selected.action(target,params))
@@ -847,10 +848,6 @@
 	if(t_air)
 		. = t_air.return_temperature()
 	return
-
-/obj/mecha/portableConnectorReturnAir()
-	return internal_tank.return_air()
-
 
 /obj/mecha/MouseDrop_T(mob/M, mob/user)
 	if (!user.canUseTopic(src) || (user != M))

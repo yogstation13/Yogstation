@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = null
+	var/ooccolor = "#c43b23"
 	var/asaycolor = null
 	var/enable_tips = TRUE
 	var/tip_delay = 500 //tip delay in milliseconds
@@ -65,6 +65,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain")
+	var/list/genders = list(MALE, FEMALE, PLURAL)
+	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -105,6 +107,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/ambientocclusion = TRUE
 	var/auto_fit_viewport = FALSE
+	var/widescreenpref = TRUE
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
@@ -202,7 +205,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			if(!(AGENDER in pref_species.species_traits))
-				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : "Female"]</a><BR>"
+				var/dispGender
+				if(gender == MALE)
+					dispGender = "Male"
+				else if(gender == FEMALE)
+					dispGender = "Female"
+				else
+					dispGender = "Other"
+				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
@@ -500,7 +510,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
 			dat += "<br>"
-			
+
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
 
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
@@ -519,6 +529,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
+			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
+				dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -537,6 +549,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						p_map += " (No longer exists)"
 				if(CONFIG_GET(flag/allow_map_voting))
 					dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
+			//yogs start -- Mood preference toggling
+			if(CONFIG_GET(flag/disable_human_mood))
+				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
 
@@ -560,7 +576,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(days_remaining)
 						dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
 					// yogs start - Donor features
-					else if(src.toggles & QUIET_ROUND)
+					else if(src.yogtoggles & QUIET_ROUND)
 						dat += "<b>Be [capitalize(i)]:</b> <font color=blue><b>\[QUIET ROUND\]</b></font><br>"
 					// yogs end
 					else
@@ -570,7 +586,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			// yogs start - Donor features
 			if(is_donator(user.client))
-				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 			// yogs end
 			dat += "</td></tr></table>"
 		if(2) //OOC Preferences
@@ -610,6 +626,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += "<br>"
 					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
+
+				//deadmin
+				dat += "<h2>Deadmin While Playing</h2>"
+				if(CONFIG_GET(flag/auto_deadmin_players))
+					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
+				else
+					dat += "<b>Always Deadmin:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Enabled":"Disabled"]</a><br>"
+					if(!(toggles & DEADMIN_ALWAYS))
+						dat += "<br>"
+						if(!CONFIG_GET(flag/auto_deadmin_antagonists))
+							dat += "<b>As Antag:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_antag'>[(toggles & DEADMIN_ANTAGONIST)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Antag:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_heads))
+							dat += "<b>As Command:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_head'>[(toggles & DEADMIN_POSITION_HEAD)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Command:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_security))
+							dat += "<b>As Security:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_security'>[(toggles & DEADMIN_POSITION_SECURITY)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Security:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_silicons))
+							dat += "<b>As Silicon:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_silicon'>[(toggles & DEADMIN_POSITION_SILICON)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Silicon:</b> FORCED<br>"
+
 				dat += "</td>"
 			dat += "</tr></table>"
 		// yogs start - Donor features
@@ -617,7 +662,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<table><tr><td width='500px' height='300px' valign='top'>"
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
-				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.toggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				var/typehat = donor_hat ? donor_start_items[donor_hat] : null
 				var/temp_hat = donor_hat ? (new typehat()) : "None selected"
@@ -787,7 +832,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
 			// yogs start - Donor features, quiet round
-			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.toggles & QUIET_ROUND))
+			if(((rank in GLOB.command_positions) || (rank in GLOB.nonhuman_positions)) && (src.yogtoggles & QUIET_ROUND))
 				HTML += "<font color=blue>[rank]</font></td><td><font color=blue><b> \[QUIET\]</b></font></td></tr>"
 				continue
 			// yogs end
@@ -1018,7 +1063,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
-			if(initial(T.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
+			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
 				quirk_conflict = TRUE
 			if(has_quirk)
@@ -1081,7 +1126,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						donor_item = 0
 				if("quiet_round")
-					toggles ^= QUIET_ROUND
+					yogtoggles ^= QUIET_ROUND
 				if("pda")
 					donor_pda = donor_pda % donor_pdas.len + 1
 				if("purrbation")
@@ -1303,7 +1348,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("facial_hair_style")
 					var/new_facial_hair_style
-					if(gender == MALE)
+					if(gender != FEMALE)
 						new_facial_hair_style = input(user, "Choose your character's facial-hair style:", "Character Preference")  as null|anything in GLOB.facial_hair_styles_male_list
 					else
 						new_facial_hair_style = input(user, "Choose your character's facial-hair style:", "Character Preference")  as null|anything in GLOB.facial_hair_styles_female_list
@@ -1326,8 +1371,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_underwear
 					if(gender == MALE)
 						new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_m
-					else
+					else if(gender == FEMALE)
 						new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_f
+					else
+						new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_m + GLOB.underwear_f
 					if(new_underwear)
 						underwear = new_underwear
 
@@ -1335,8 +1382,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_undershirt
 					if(gender == MALE)
 						new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in GLOB.undershirt_m
-					else
+					else if(gender == FEMALE)
 						new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in GLOB.undershirt_f
+					else
+						new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in GLOB.undershirt_m + GLOB.undershirt_f
 					if(new_undershirt)
 						undershirt = new_undershirt
 
@@ -1526,15 +1575,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(unlock_content)
 						toggles ^= MEMBER_PUBLIC
 				if("gender")
-					if(gender == MALE)
-						gender = FEMALE
-					else
-						gender = MALE
-					underwear = random_underwear(gender)
-					undershirt = random_undershirt(gender)
-					socks = random_socks()
-					facial_hair_style = random_facial_hair_style(gender)
-					hair_style = random_hair_style(gender)
+					var/pickedGender = input(user, "Choose your gender.", "Character Preference", gender) as null|anything in friendlyGenders
+					if(pickedGender && friendlyGenders[pickedGender] != gender)
+						gender = friendlyGenders[pickedGender]
+						underwear = random_underwear(gender)
+						undershirt = random_undershirt(gender)
+						socks = random_socks()
+						facial_hair_style = random_facial_hair_style(gender)
+						hair_style = random_hair_style(gender)
 
 				if("hotkeys")
 					hotkeys = !hotkeys
@@ -1568,6 +1616,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					user.client.toggle_hear_radio()
 				if("toggle_prayers")
 					user.client.toggleprayers()
+				if("toggle_deadmin_always")
+					toggles ^= DEADMIN_ALWAYS
+				if("toggle_deadmin_antag")
+					toggles ^= DEADMIN_ANTAGONIST
+				if("toggle_deadmin_head")
+					toggles ^= DEADMIN_POSITION_HEAD
+				if("toggle_deadmin_security")
+					toggles ^= DEADMIN_POSITION_SECURITY
+				if("toggle_deadmin_silicon")
+					toggles ^= DEADMIN_POSITION_SILICON
+
 
 				if("be_special")
 					var/be_special_type = href_list["be_special_type"]
@@ -1636,6 +1695,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					auto_fit_viewport = !auto_fit_viewport
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
+				
+				if("widescreenpref")
+					widescreenpref = !widescreenpref
+					user.client.change_view(CONFIG_GET(string/default_view))
 
 				if("save")
 					save_preferences()
@@ -1658,6 +1721,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// yogs start - Custom keybindings
 				if("reset_bindings")
 					reset_keybindings()
+
+				if("mood")
+					yogtoggles ^= PREF_MOOD
 				// yogs end
 
 	ShowChoices(user)

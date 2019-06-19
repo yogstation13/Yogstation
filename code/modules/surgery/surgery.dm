@@ -51,9 +51,15 @@
 
 	var/datum/surgery_step/S = get_surgery_step()
 	if(S)
-		if(S.try_op(user, target, user.zone_selected, user.get_active_held_item(), src, try_to_fail))
-			return 1
-	return 0
+		var/obj/item/tool = user.get_active_held_item()
+		if(S.try_op(user, target, user.zone_selected, tool, src, try_to_fail))
+			return TRUE
+		if(iscyborg(user) && user.a_intent != INTENT_HARM) //to save asimov borgs a LOT of heartache
+			return TRUE
+		if(tool.item_flags & SURGICAL_TOOL) //Just because you used the wrong tool it doesn't mean you meant to whack the patient with it
+			to_chat(user, "<span class='warning'>This step requires a different tool!</span>")
+			return TRUE
+	return FALSE
 
 /datum/surgery/proc/get_surgery_step()
 	var/step_type = steps[status]
@@ -74,7 +80,7 @@
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T))
+	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
 		propability = 1
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
@@ -90,7 +96,7 @@
 	if(!..())
 		return FALSE
 	// True surgeons (like abductor scientists) need no instructions
-	if(user.has_trait(TRAIT_SURGEON))
+	if(HAS_TRAIT(user, TRAIT_SURGEON))
 		return TRUE
 
 	if(iscyborg(user))
@@ -103,12 +109,24 @@
 
 	var/turf/T = get_turf(target)
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(!table || !table.computer)
-		return FALSE
-	if(table.computer.stat & (NOPOWER|BROKEN))
-		return FALSE
-	if(type in table.computer.advanced_surgeries)
-		return TRUE
+	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
+	if(table)
+		if(!table.computer)
+			return FALSE
+		if(table.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in table.computer.advanced_surgeries)
+			return TRUE
+	if(bed)
+		if(!bed.computer)
+			return FALSE
+		if(bed.occupant != target)
+			return FALSE
+		if(bed.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in bed.computer.advanced_surgeries)
+			return TRUE //yogs end
+
 
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"
