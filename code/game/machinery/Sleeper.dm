@@ -190,9 +190,10 @@
 			dat += "<br> No patient to inject"
 
 		dat += "</font>"
-		user << browse(dat, "window=sleeper;size=520x500;can_resize=0")
-		onclose(user, "sleeper")
-		return TRUE
+		var/datum/browser/popup = new(user, "Sleeper", "Sleeper Control", 900, 500)
+		popup.set_content(dat)
+		popup.open()
+		onclose(user, "Sleeper")
 
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
