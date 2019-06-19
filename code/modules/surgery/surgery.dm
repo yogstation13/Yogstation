@@ -38,12 +38,6 @@
 	return ..()
 
 
-<<<<<<< HEAD
-/datum/surgery/proc/can_start(mob/user, mob/living/carbon/target)
-	// if 0 surgery wont show up in list
-	// put special restrictions here
-	return 1
-=======
 /datum/surgery/proc/can_start(mob/user, mob/living/carbon/target) //FALSE to not show in list
 	. = TRUE
 	if(replaced_by == /datum/surgery)
@@ -73,15 +67,23 @@
 
 	var/turf/T = get_turf(target)
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
+	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
 	if(table)
 		if(!table.computer)
 			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN) || (replaced_by in table.computer.advanced_surgeries))
+		if(table.computer.stat & (NOPOWER|BROKEN))
 			return FALSE
 		if(type in table.computer.advanced_surgeries)
 			return TRUE
-
->>>>>>> 97feccb06d... Reconstruction of Reconstruction Surgery (#44088)
+	if(bed)
+		if(!bed.computer)
+			return FALSE
+		if(bed.occupant != target)
+			return FALSE
+		if(bed.computer.stat & (NOPOWER|BROKEN))
+			return FALSE
+		if(type in bed.computer.advanced_surgeries)
+			return TRUE //yogs end
 
 /datum/surgery/proc/next_step(mob/user, intent)
 	if(step_in_progress)
