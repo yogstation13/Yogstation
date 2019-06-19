@@ -10,7 +10,7 @@
 	name = "Rezadone"
 	id = /datum/reagent/medicine/rezadone
 	results = list(/datum/reagent/medicine/rezadone = 3)
-	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
+	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/spaceacillin
 	name = "Spaceacillin"
