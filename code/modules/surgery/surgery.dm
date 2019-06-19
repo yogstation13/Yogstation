@@ -131,41 +131,6 @@
 	name = "advanced surgery"
 	requires_tech = TRUE
 
-/datum/surgery/advanced/can_start(mob/user, mob/living/carbon/target)
-	if(!..())
-		return FALSE
-	// True surgeons (like abductor scientists) need no instructions
-	if(HAS_TRAIT(user, TRAIT_SURGEON))
-		return TRUE
-
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		var/obj/item/surgical_processor/SP = locate() in R.module.modules
-		if(!SP)
-			return FALSE
-		if(type in SP.advanced_surgeries)
-			return TRUE
-
-	var/turf/T = get_turf(target)
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
-	if(table)
-		if(!table.computer)
-			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in table.computer.advanced_surgeries)
-			return TRUE
-	if(bed)
-		if(!bed.computer)
-			return FALSE
-		if(bed.occupant != target)
-			return FALSE
-		if(bed.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in bed.computer.advanced_surgeries)
-			return TRUE //yogs end
-
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"
 	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
