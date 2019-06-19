@@ -112,13 +112,8 @@
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
-<<<<<<< HEAD
-	design_ids = list("surgery_zombie") //yogs
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000) //yogs
-=======
-	design_ids = list("surgery_brainwashing","surgery_zombie","surgery_heal_combo_upgrade_femto")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
->>>>>>> 97feccb06d... Reconstruction of Reconstruction Surgery (#44088)
+	design_ids = list("surgery_zombie","surgery_heal_combo_upgrade_femto")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
 	export_price = 5000
 
 /////////////////////////data theory tech/////////////////////////
