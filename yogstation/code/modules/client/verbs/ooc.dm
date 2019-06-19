@@ -76,7 +76,7 @@
 		var/timestamp = notes_query.item[2]
 		var/note = "<p><b>[timestamp]</b></p><br>[notetext]<br>[rulersmall]<br>"
 		output += note
-
+	qdel(notes_query)
 	var/datum/browser/browser = new(usr, "Note panel", "Manage player notes", 1000, 500)
 	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	notes_assets.send(usr.client)
