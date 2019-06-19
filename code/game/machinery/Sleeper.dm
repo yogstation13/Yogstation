@@ -137,8 +137,7 @@
 			ui.open()
 	else //yogs start   aplly backup UI
 		var/mob/living/mob_occupant = occupant
-		if(checkinside(user, mob_occupant, controls_inside))
-			to_chat(user, "<span class='warning'>You cant reach the controls from inside!</span>")
+		if(isOperable(user, mob_occupant, controls_inside))
 			return
 
 		var/dat
@@ -201,53 +200,53 @@
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
 		return
-	if(canAccess(usr))
-		var/mob/living/mob_occupant = occupant
-		if(checkinside(usr, mob_occupant, controls_inside))
-			to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
-			return
-		if(href_list["input"])
-			if(state_open)
-				close_machine()
-			else
-				open_machine()
+	var/mob/living/mob_occupant = occupant
+	if(isOperable(usr, mob_occupant, controls_inside))
+		return
+	if(href_list["input"])
+		if(state_open)
+			close_machine()
 		else
-			if(href_list["inject"])
-				if(!is_operational() || !mob_occupant)
+			open_machine()
+	else
+		if(href_list["inject"])
+			if(!is_operational() || !mob_occupant)
+				return
+			else
+				if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
 					return
 				else
-					if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
-						return
-					else
-						for(var/chem in available_chems)
-							if("[chem]" == href_list["inject"])
-								if(src.inject_chem(chem, mob_occupant))
-									. = TRUE
-								break
-				if(.)
-					if(scrambled_chems && prob(5))
-						to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					for(var/chem in available_chems)
+						if("[chem]" == href_list["inject"])
+							if(src.inject_chem(chem, mob_occupant))
+								. = TRUE
+							break
+			if(.)
+				if(scrambled_chems && prob(5))
+					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
 	usr.set_machine(src)
 
 	updateUsrDialog()
 
-/obj/machinery/sleeper/proc/canAccess(mob/user)
-	if(issilicon(user) || in_range(user, src))
+/obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside, con_in)// returns false if it is
+	if(!is_operational())
 		return TRUE
-	return FALSE
-
-/obj/machinery/sleeper/proc/checkinside(mob/user, mob/living/mob_inside, con_in)
+	if(issilicon(user))
+		return FALSE
+	if(!in_range(user, src))
+		return TRUE
 	if(mob_inside != usr)
 		return FALSE
-	if(issilicon(usr))
-		return FALSE
 	if(!controls_inside)
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
 		return TRUE
 	if(!istype(mob_inside,/mob/living/carbon/human))
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
 		return TRUE
 	var/mob/living/carbon/human/HU = mob_inside
 	if(!HU.dna.check_mutation(TK))
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
 		return TRUE
 	 // yogs end
 
