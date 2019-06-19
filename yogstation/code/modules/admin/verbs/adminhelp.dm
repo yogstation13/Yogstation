@@ -155,7 +155,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	_interactions = list()
 
 	if(is_bwoink)
-		AddInteraction("[key_name_admin(usr)] PM'd [LinkedReplyName()]")
+		AddInteraction("[usr.client.ckey] PM'd [initiator_key_name]")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(msg)
@@ -186,6 +186,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
+	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = usr.client.ckey))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -397,9 +398,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as Mentorhelp Question! -</b></font><br>"
 	msg += "<font color='red'><b>You are asking a mentorhelp question!</b></font><br>"
 	msg += "<font color='red'>Please use the mentorhelp button to ask questions about game mechanics and other such questions.</font>"
+	msg += "<font color='red'>Your call will now be redirected to the mentors as a mentorhelp.</font>"
 
 	if(initiator)
 		to_chat(initiator, msg)
+		initiator.mentorhelp(name)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
 	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"

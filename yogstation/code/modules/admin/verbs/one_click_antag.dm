@@ -76,7 +76,7 @@
 	else if(chosen == "swarmer")
 		text = "<i>You are receiving a message from the masters... <b>[msg]</i></b>"
 	else
-		text = "<i>You hear a booming voice in your head... <b>[msg]</i></b>"
+		text = "<i>You hear a booming voice in your head... <b>[msg]</b></i>"
 	
 	for(var/mob/living/player in GLOB.player_list)
 		var/done = FALSE

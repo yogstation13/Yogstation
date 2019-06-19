@@ -296,6 +296,7 @@ Difficulty: Insanely Hard
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/gun/energy/meteorgun(loc)
+		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
@@ -313,6 +314,8 @@ Difficulty: Insanely Hard
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
+		if(L.stat == DEAD)
+			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
@@ -321,8 +324,5 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
 	if(isliving(target))
-		var/mob/living/L = target
-		if(L.stat == DEAD)
-			L.gib()
 		if(melee_damage_type != BRUTE)
 			special_attacks++

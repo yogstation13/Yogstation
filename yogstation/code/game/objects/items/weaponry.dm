@@ -9,7 +9,7 @@
 	item_flags = DROPDEL | ABSTRACT
 	attack_verb = list("is left hanging by")
 
-obj/item/highfive/attack(mob/target, mob/user)
+/obj/item/highfive/attack(mob/target, mob/user)
 	if(target == user)
 		to_chat(user, "<span class='notice'>You can't high-five yourself! Go get a friend!</span>")
 	else if(ishuman(target) && (target.stat == CONSCIOUS) && (istype(target.get_active_held_item(), /obj/item/highfive)) )
@@ -23,3 +23,6 @@ obj/item/highfive/attack(mob/target, mob/user)
 	else
 		user.visible_message("[user] is left hanging by [target].", "<span class='notice'>[target] leaves you hanging.</span>")
 		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 0)
+
+/obj/item/katana/faketoy
+	name = "replica katana"

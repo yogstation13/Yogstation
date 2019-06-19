@@ -42,10 +42,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// asset_cache
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = text2num(href_list["asset_cache_confirm_arrival"])
+		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//	into letting append to a list without limit.
-		if (job && job <= last_asset_job && !(job in completed_asset_jobs))
+		if (job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
 			completed_asset_jobs += job
 			return
 		else if (job in completed_asset_jobs) //byond bug ID:2256651
@@ -253,8 +253,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		//add_donor_verbs()
 	else
 		prefs.unlock_content &= ~2
-		if(prefs.toggles & QUIET_ROUND)
-			prefs.toggles &= ~QUIET_ROUND
+		if(prefs.yogtoggles & QUIET_ROUND)
+			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
 	// yogs start - mentor stuff
