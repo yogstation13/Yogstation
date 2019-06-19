@@ -94,7 +94,7 @@
 	description = "When simple medicine doesn't cut it."
 	prereq_ids = list("imp_wt_surgery")
 	design_ids = list("surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto","surgery_heal_combo","surgery_exp_dissection")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 4000
 
 /datum/techweb_node/exp_surgery
@@ -112,7 +112,7 @@
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
 	design_ids = list("surgery_zombie","surgery_heal_combo_upgrade_femto")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000) //yogs: lower cost since brainwashing isn't in it
 	export_price = 5000
 
 /////////////////////////data theory tech/////////////////////////
