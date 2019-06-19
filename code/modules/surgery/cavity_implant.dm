@@ -17,18 +17,9 @@
 	var/obj/item/bodypart/chest/CH = target.get_bodypart(BODY_ZONE_CHEST)
 	IC = CH.cavity_item
 	if(tool)
-<<<<<<< HEAD
-		if(istype(tool, /obj/item/surgical_drapes) || istype(tool, /obj/item/bedsheet))
-			var/obj/item/inactive = user.get_inactive_held_item()
-			if(istype(inactive, /obj/item/cautery) || inactive.tool_behaviour == TOOL_SCREWDRIVER || iscyborg(user))
-				attempt_cancel_surgery(surgery, tool, target, user)
-				return -1
-		user.visible_message("[user] begins to insert [tool] into [target]'s [target_zone].", "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>")
-=======
 		display_results(user, target, "<span class='notice'>You begin to insert [tool] into [target]'s [target_zone]...</span>",
 			"[user] begins to insert [tool] into [target]'s [target_zone].",
 			"[user] begins to insert [tool.w_class > WEIGHT_CLASS_SMALL ? tool : "something"] into [target]'s [target_zone].")
->>>>>>> 3f28227f6c... Makes surgery more stealthy (#44483)
 	else
 		display_results(user, target, "<span class='notice'>You check for items in [target]'s [target_zone]...</span>",
 			"[user] checks for items in [target]'s [target_zone].",
