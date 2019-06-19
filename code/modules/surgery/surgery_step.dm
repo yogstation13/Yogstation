@@ -109,14 +109,6 @@
 		"[user] begins to perform surgery on [target].")
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-<<<<<<< HEAD
-	user.visible_message("[user] succeeds!", "<span class='notice'>You succeed.</span>")
-	return 1
-
-/datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("<span class='warning'>[user] screws up!</span>", "<span class='warning'>You screw up!</span>")
-	return 0
-=======
 	display_results(user, target, "<span class='notice'>You succeed.</span>",
 		"[user] succeeds!",
 		"[user] finishes.")
@@ -127,7 +119,6 @@
 		"<span class='warning'>[user] screws up!</span>",
 		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
->>>>>>> 3f28227f6c... Makes surgery more stealthy (#44483)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return 1
