@@ -43,7 +43,7 @@
 	if(m)
 		to_chat(src, "<font color='purple'><b>Tip: </b>[html_encode(m)]</font>")
 
-/client/proc/self_notes()
+/client/self_notes()
 	set name = "View Admin Remarks"
 	set category = "OOC"
 	set desc = "View the notes that admins have written about you."
@@ -67,7 +67,7 @@
 	
 	var/const/ruler = "<hr style='background:#000000; border:0; height:3px'>"
 	var/const/rulersmall = "<hr style='background:#000000; border:0; height:1px'>"
-	var/list/output = list("<h2><center>[target_key]</center></h2>[ruler]<h2>Notes</h2>[ruler]")
+	var/list/output = list("<h2><center>[ckey]</center></h2>[ruler]<h2>Notes</h2>[ruler]")
 	var/datum/DBQuery/notes_query = SSdbcore.NewQuery("SELECT targetckey,text,timestamp FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[ckey]' AND deleted = 0 AND secret <> 1 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) AND timestamp < (NOW() - INTERVAL 1 week) ORDER BY timestamp DESC") // NOTE: This only shows the player notes that are more than a *WEEK* old.
 	//item 1: Text
 	//item 2: Timestamp
