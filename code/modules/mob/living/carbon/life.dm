@@ -619,12 +619,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		L.damage += d
 
 /mob/living/carbon/proc/liver_failure()
-<<<<<<< HEAD
-	reagents.metabolize(src, can_overdose=HAS_TRAIT(src, TRAIT_STABLEHEART), liverless = !HAS_TRAIT(src, TRAIT_STABLEHEART)) // yogs make it so reagents process normally if you have corazone
-=======
 	reagents.end_metabolization(src, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 	reagents.metabolize(src, can_overdose=FALSE, liverless = TRUE)
->>>>>>> 71aa703f5a... Merge pull request #44500 from XDTM/TrueMetabolization
 	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
