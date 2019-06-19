@@ -56,7 +56,7 @@
 	display_name = "Biological Technology"
 	description = "What makes us tick."	//the MC, silly!
 	prereq_ids = list("base")
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "vr_sleeper", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner") //yogs kept vr sleeper
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -79,21 +79,31 @@
 	export_price = 5000
 
 /////////////////////////Advanced Surgery/////////////////////////
+/datum/techweb_node/imp_wt_surgery
+	id = "imp_wt_surgery"
+	display_name = "Improved Wound-Tending Surgery"
+	description = "Who would have known being more gentle with a hemostat decreases patient pain?"
+	prereq_ids = list("adv_biotech")
+	design_ids = list("surgery_heal_brute_upgrade","surgery_heal_burn_upgrade")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 1000
+
+
 /datum/techweb_node/adv_surgery
 	id = "adv_surgery"
 	display_name = "Advanced Surgery"
 	description = "When simple medicine doesn't cut it."
-	prereq_ids = list("adv_biotech")
-	design_ids = list("surgery_lobotomy", "surgery_reconstruction", "surgery_exp_dissection")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	export_price = 5000
+	prereq_ids = list("imp_wt_surgery")
+	design_ids = list("surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto","surgery_heal_combo","surgery_exp_dissection")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
+	export_price = 4000
 
 /datum/techweb_node/exp_surgery
 	id = "exp_surgery"
 	display_name = "Experimental Surgery"
 	description = "When evolution isn't fast enough."
 	prereq_ids = list("adv_surgery")
-	design_ids = list("surgery_revival","surgery_pacify","surgery_vein_thread","surgery_nerve_splice","surgery_nerve_ground","surgery_ligament_hook","surgery_ligament_reinforcement","surgery_viral_bond")
+	design_ids = list("surgery_revival","surgery_pacify","surgery_vein_thread","surgery_muscled_veins","surgery_nerve_splice","surgery_nerve_ground","surgery_ligament_hook","surgery_ligament_reinforcement","surgery_viral_bond", "surgery_heal_combo_upgrade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -102,8 +112,8 @@
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
-	design_ids = list("surgery_zombie") //yogs
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000) //yogs
+	design_ids = list("surgery_brainwashing","surgery_zombie","surgery_heal_combo_upgrade_femto")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 
 /////////////////////////data theory tech/////////////////////////
@@ -180,7 +190,7 @@
 	display_name = "Bluespace Travel"
 	description = "Application of Bluespace for static teleportation technology."
 	prereq_ids = list("practical_bluespace")
-	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod", "bluespace_pipe") // yogs - adds bluespace pipe
+	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -359,7 +369,7 @@
 	display_name = "Computer Consoles"
 	description = "Computers and how they work."
 	prereq_ids = list("datatheory")
-	design_ids = list("cargo", "cargorequest", "libraryconsole", "mining", "crewconsole", "rdcamera", "comconsole", "idcardconsole", "seccamera", "stockexchange") //yogs - added stocks
+	design_ids = list("cargo", "cargorequest", "libraryconsole", "mining", "crewconsole", "rdcamera", "comconsole", "idcardconsole", "seccamera")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
@@ -379,7 +389,7 @@
 	display_name = "Arcade Games"
 	description = "For the slackers on the station."
 	prereq_ids = list("comptech")
-	design_ids = list("arcade_battle", "arcade_orion", "slotmachine", "minesweeper") //yogs added minesweeper to the arcade tech node
+	design_ids = list("arcade_battle", "arcade_orion", "slotmachine")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -400,7 +410,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 	design_ids = list("s-receiver", "s-bus", "s-broadcaster", "s-processor", "s-hub", "s-server", "s-relay", "comm_monitor", "comm_server",
-	"s-ansible", "s-filter", "s-amplifier", "ntnet_relay", "s-treatment", "s-analyzer", "s-crystal", "s-transmitter", "s-messaging","s-traffic") //Yogs -- Adds traffic console, for NTSL
+	"s-ansible", "s-filter", "s-amplifier", "ntnet_relay", "s-treatment", "s-analyzer", "s-crystal", "s-transmitter", "s-messaging")
 
 /datum/techweb_node/integrated_HUDs
 	id = "integrated_HUDs"
@@ -535,7 +545,7 @@
 	id = "exp_tools"
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
-	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "tool_switcher") // yogs - tool switcher
+	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool")
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000

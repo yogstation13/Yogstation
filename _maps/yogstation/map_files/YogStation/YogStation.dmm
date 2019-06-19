@@ -1482,7 +1482,6 @@
 /turf/open/space,
 /area/solar/port/fore)
 "acX" = (
-/obj/structure/table,
 /obj/item/assembly/igniter{
 	pixel_x = -5;
 	pixel_y = 3
@@ -1515,6 +1514,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "acY" = (
@@ -12103,10 +12103,27 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
 "axK" = (
-/mob/living/simple_animal/crab/kreb{
-	desc = "Here to lay down the hard claws of the law!";
-	name = "Officer Kreb";
-	real_name = "Officer Kreb"
+/mob/living/simple_animal/hostile/retaliate/bat{
+	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
+	emote_hear = list("chitters");
+	faction = list("spiders");
+	harm_intent_damage = 3;
+	health = 200;
+	icon_dead = "guard_dead";
+	icon_gib = "guard_dead";
+	icon_living = "guard";
+	icon_state = "guard";
+	max_co2 = 5;
+	max_tox = 2;
+	maxHealth = 250;
+	melee_damage_lower = 15;
+	melee_damage_upper = 20;
+	min_oxy = 5;
+	name = "Sergeant Araneus";
+	real_name = "Sergeant Araneus";
+	movement_type = 1;
+	response_help = "pets";
+	turns_per_move = 10
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
@@ -39059,6 +39076,12 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/mob/living/simple_animal/crab/kreb{
+	desc = "Here to lay down the hard claws of the law!";
+	health = 50;
+	name = "Officer Kreb";
+	real_name = "Officer Kreb"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)

@@ -200,7 +200,6 @@
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
 		return
-
 	var/mob/living/mob_occupant = occupant
 	if(isOperable(usr, mob_occupant, controls_inside))
 		return
