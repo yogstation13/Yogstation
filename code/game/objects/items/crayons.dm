@@ -310,16 +310,11 @@
 		temp = "drawing"
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
-<<<<<<< HEAD
-	else if(drawing in numerals)
-		temp = "number"
 	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
 	if(!gang_check) 
 		return
 	else if(gang_check == "gang graffiti")
 		temp = gang_check // yogs end
-=======
->>>>>>> 58935e41c9... Fixes and speedups to spraycans/crayons (#44561)
 
 
 	var/graf_rot
