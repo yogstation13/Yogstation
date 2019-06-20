@@ -140,6 +140,8 @@
 
 		dat += "<H2>Ocupant: "
 		var/mob/living/mob_occupant = occupant
+		if(!isOperable(usr, mob_occupant))
+			return
 		if(mob_occupant)
 			switch(mob_occupant.stat)
 				if(CONSCIOUS)
@@ -220,8 +222,8 @@
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
 		return
-	if(canAccess(usr))
-		var/mob/living/mob_occupant = occupant
+	var/mob/living/mob_occupant = occupant
+	if(isOperable(usr, mob_occupant))
 		if(href_list["input"])
 			if(state_open)
 				close_machine()
@@ -248,10 +250,24 @@
 
 	updateUsrDialog()
 
-/obj/machinery/sleeper/proc/canAccess(mob/user)
-	if(issilicon(user) || in_range(user, src))
+/obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside)// returns false if it is
+	if(!is_operational())
 		return TRUE
-	return FALSE // yogs end
+	if(issilicon(user))
+		return FALSE
+	if(!in_range(user, src))
+		return TRUE
+	if(mob_inside != usr)
+		return FALSE
+	if(!controls_inside)
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
+		return TRUE
+	if(!istype(mob_inside,/mob/living/carbon/human))
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
+		return TRUE
+	var/mob/living/carbon/human/HU = mob_inside
+	if(!HU.dna.check_mutation(TK))
+		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>") // yogs end
 
 /obj/machinery/sleeper/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
