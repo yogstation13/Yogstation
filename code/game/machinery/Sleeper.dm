@@ -176,31 +176,26 @@
 			table += "<td style='width:50%'><b>Reagents</b></td>"
 			table += "<td style='width:50%'><b>Inject</b></td>"
 			table += "</tr>"
-			for(var/i = 1; i <= min(available_chems.lenght, Rcount); i++)
+			for(var/chem in available_chems)
 				table += "<tr><td style='width:50%' valign='top'>"
-				table += "[mob_occupant.reagents.reagent_list(i).name]	[mob_occupant.reagents.reagent_list(i).volume] units"
+				if(mob_occupant.reagents.has_reagent(chem))
+					var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
+					table += "[R.name]	[R.volume] units"
 				table += "</td>"
 
 				table += "<td style='width:50%' valign='top'>"
-				table += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>"
-				if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
+				table += "<a href='?src=[REF(src)];inject=[chem]'>"
+				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 					table += "<font color=\"red\">"
-				table += "[GLOB.chemical_reagents_list[available_chems(i)].name]</a>"
+				table += "[GLOB.chemical_reagents_list[chem].name]</a>"
 				table += "</td></tr>"
 
-			if(CHcount > Rcount)
-				for(var/i = Rcount; i <= available_chems.lenght; i++)
-					table += "<tr><td style='width:50%' valign='top' align='left'>"
-					table += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>"
-					if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
-						table += "<font color=\"red\">"
-					table += "[GLOB.chemical_reagents_list[available_chems(i)].name]</a>"
-					table += "</td></tr>"
-			else
-				for(var/i = available_chems.lenght; i <= Rcount; i++)
-					table += "<tr><td style='width:50%' valign='top'>"
-					table += "[mob_occupant.reagents.reagent_list(i).name]	[mob_occupant.reagents.reagent_list(i).volume] units"
-					table += "</td></tr>"
+			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
+				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
+					if(!R in available_chems)
+						table += "<tr><td style='width:50%' valign='top'>"
+						table += "[R.name]	[R.volume] units"
+						table += "</td></tr>"
 
 			table += "</table>"
 			dat += "<tt>[table]</tt>"
