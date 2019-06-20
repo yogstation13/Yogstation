@@ -15,8 +15,12 @@
 #define DISABLE_DEATHRATTLE		(1<<12)
 #define DISABLE_ARRIVALRATTLE	(1<<13)
 #define COMBOHUD_LIGHTING		(1<<14)
-#define QUIET_ROUND				(1<<15) // yogs - Donor features, quiet round; "why isn't this in ~yogs_defines?" - This has to be a unique power of 2, if /tg/ adds another flag it will have merge conflicts and will be obvious this has to be updated. If I put this in a different file it wouldn't be obvious and silently break stuff.
-#define PREF_MOOD				(1<<16) // Yogs -- Ditto on the above, increment this and QUIET_ROUND in the event of conflict
+
+#define DEADMIN_ALWAYS			(1<<15)
+#define DEADMIN_ANTAGONIST		(1<<16)
+#define DEADMIN_POSITION_HEAD	(1<<17)
+#define DEADMIN_POSITION_SECURITY	(1<<18)
+#define DEADMIN_POSITION_SILICON	(1<<19)
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS)
 

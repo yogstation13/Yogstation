@@ -88,7 +88,7 @@
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
-		if(current.client && current.client.prefs.toggles & PREF_MOOD)
+		if(current.client && current.client.prefs.yogtoggles & PREF_MOOD)
 			mood_was_enabled = TRUE
 		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood)) 
 			var/mob/living/carbon/human/H = current
