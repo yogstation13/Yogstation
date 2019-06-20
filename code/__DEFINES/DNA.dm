@@ -146,10 +146,7 @@
 #define CHROMOSOME_NEVER 0
 #define CHROMOSOME_NONE 1
 #define CHROMOSOME_USED 2
-<<<<<<< HEAD
-=======
 
 #define G_MALE 1
 #define G_FEMALE 2
 #define G_PLURAL 3
->>>>>>> 8954265573... Agender fixes (#44597)
