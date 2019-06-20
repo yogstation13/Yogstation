@@ -176,43 +176,32 @@
 			table += "<td style='width:50%'><b>Reagents</b></td>"
 			table += "<td style='width:50%'><b>Inject</b></td>"
 			table += "</tr>"
-
-			var/Rlist = list()
-			var/Rcount = 0
-			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
-				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
-					Rcount++
-					Rlist(Rcount) += "[R.name]	[R.volume] units"
-
-			var/CHlist = list()
-			var/CHcount = 0
-			for(var/chem in available_chems)
-				CHcount++
-
-
 			for(var/i = 1; i <= min(available_chems.lenght, Rcount); i++)
 				table += "<tr><td style='width:50%' valign='top'>"
-				table += "[Rlist(i)]"
+				table += "[mob_occupant.reagents.reagent_list(i).name]	[mob_occupant.reagents.reagent_list(i).volume] units"
 				table += "</td>"
+
 				table += "<td style='width:50%' valign='top'>"
+				table += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>"
 				if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
-					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[cavailable_chems(i)hem]'><font color=\"red\">[available_chems(i).name]</font></a>"
-				else
-					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[chavailable_chems(i)em]'>[available_chems(i).name]</a>"
+					table += "<font color=\"red\">"
+				table += "[GLOB.chemical_reagents_list[available_chems(i)].name]</a>"
 				table += "</td></tr>"
+
 			if(CHcount > Rcount)
 				for(var/i = Rcount; i <= available_chems.lenght; i++)
-				table += "<tr><td style='width:50%' valign='top' align='left'>"
-				if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
-					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[available_chems(i)]'><font color=\"red\">[R.name]</font></a>"
-				else
-					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>[R.name]</a>"
-				table += "</td></tr>"
+					table += "<tr><td style='width:50%' valign='top' align='left'>"
+					table += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>"
+					if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
+						table += "<font color=\"red\">"
+					table += "[GLOB.chemical_reagents_list[available_chems(i)].name]</a>"
+					table += "</td></tr>"
 			else
 				for(var/i = available_chems.lenght; i <= Rcount; i++)
-				table += "<tr><td style='width:50%' valign='top'>"
-				table += "[Rlist(i)]"
-				table += "</td></tr>"
+					table += "<tr><td style='width:50%' valign='top'>"
+					table += "[mob_occupant.reagents.reagent_list(i).name]	[mob_occupant.reagents.reagent_list(i).volume] units"
+					table += "</td></tr>"
+
 			table += "</table>"
 			dat += "<tt>[table]</tt>"
 
