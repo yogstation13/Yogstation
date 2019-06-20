@@ -200,7 +200,7 @@
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
 					var/found = FALSE
 					for(var/chem in available_chems)
-						if(R == GLOB.chemical_reagents_list[chem])  // Shit code, i know that please make it better if know how
+						if(R.name == GLOB.chemical_reagents_list[chem].name)  // Shit code, i know that please make it better if know how
 							found = TRUE
 					if(!found)
 						table += "<tr><td style='width:50%' valign='top'>"
