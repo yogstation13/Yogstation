@@ -184,8 +184,8 @@
 			table += "</tr>"
 			for(var/chem in available_chems)
 				table += "<tr><td style='width:50%' valign='top'>"
-				if(mob_occupant.reagents.has_reagent(chem))
-					var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
+				var/datum/reagent/R = mob_occupant.reagents.has_reagent(chem)
+				if(R)
 					table += "[R.name]	[R.volume] units"
 				table += "</td>"
 
@@ -198,7 +198,11 @@
 
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
-					if(!R in available_chems)
+					var/found = FALSE
+					for(var/chem in available_chems)
+						if(R == GLOB.chemical_reagents_list[chem])
+							found = TRUE
+					if(!found)
 						table += "<tr><td style='width:50%' valign='top'>"
 						table += "[R.name]	[R.volume] units"
 						table += "</td></tr>"
