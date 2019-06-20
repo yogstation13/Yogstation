@@ -226,13 +226,21 @@
 
 /datum/gas_reaction/fusion/init_reqs()
 	min_requirements = list(
-		"TEMP" = FUSION_TEMPERATURE_THRESHOLD,
+		"TEMP" = FUSION_TEMPERATURE_THRESHOLD_MINIMUM, // Yogs -- Cold Fusion
 		/datum/gas/tritium = FUSION_TRITIUM_MOLES_USED,
 		/datum/gas/plasma = FUSION_MOLE_THRESHOLD,
 		/datum/gas/carbon_dioxide = FUSION_MOLE_THRESHOLD)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
 	var/list/cached_gases = air.gases
+	//Yogs start -- Cold Fusion
+	if(air.temperature < FUSION_TEMPERATURE_THRESHOLD)
+		if(!air.gases[/datum/gas/dilithium] || QUANTIZE(air.gases[/datum/gas/dilithium][MOLES]) <= 0)
+			return
+		if(air.temperature < (FUSION_TEMPERATURE_THRESHOLD - FUSION_TEMPERATURE_THRESHOLD_MINIMUM) * NUM_E**( - air.gases[/datum/gas/dilithium][MOLES] * DILITHIUM_LAMBDA) + FUSION_TEMPERATURE_THRESHOLD_MINIMUM)
+			// This is an exponential decay equation, actually. Horizontal Asymptote is FUSION_TEMPERATURE_THRESHOLD_MINIMUM.
+			return
+	//Yogs End
 	var/turf/open/location
 	if (istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
 		var/datum/pipeline/fusion_pipenet = holder
