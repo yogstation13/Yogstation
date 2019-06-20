@@ -794,6 +794,7 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 	message = "[prefix][jointext(rearranged," ")]"
 	. = message
 
+
 /proc/readable_corrupted_text(text)
 	var/list/corruption_options = list("..", "£%", "~~\"", "!!", "*", "^", "$!", "-", "}", "?")
 	var/corrupted_text = ""
