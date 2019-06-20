@@ -13,8 +13,8 @@
 	var/list/head_announce = null
 
 	//Bitflags for the job
-	var/flag = 0
-	var/department_flag = 0
+	var/department_flag = NONE //Deprecated
+	var/flag = NONE //Deprecated
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
