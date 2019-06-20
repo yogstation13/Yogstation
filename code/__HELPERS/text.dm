@@ -793,9 +793,6 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 			rearranged += cword
 	message = "[prefix][jointext(rearranged," ")]"
 	. = message
-<<<<<<< HEAD
-=======
-
 
 /proc/readable_corrupted_text(text)
 	var/list/corruption_options = list("..", "£%", "~~\"", "!!", "*", "^", "$!", "-", "}", "?")
