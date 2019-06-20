@@ -170,22 +170,59 @@
 			else
 				dat += "normal"
 
-			dat += "<H3>Reagents</H3>"
+			var/table = ""
+			table += "<table style='width:100%'>"
+			table += "<tr>"
+			table += "<td style='width:50%'><b>Reagents</b></td>"
+			table += "<td style='width:50%'><b>Inject</b></td>"
+			table += "</tr>"
+
+			var/Rlist = list()
+			var/Rcount = 0
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
-					dat += "<br>	[R.name]	[R.volume] units"
+					Rcount++
+					Rlist(Rcount) += "[R.name]	[R.volume] units"
+
+			var/CHlist = list()
+			var/CHcount = 0
+			for(var/chem in available_chems)
+				CHcount++
+
+
+			for(var/i = 1; i <= min(available_chems.lenght, Rcount); i++)
+				table += "<tr><td style='width:50%' valign='top'>"
+				table += "[Rlist(i)]"
+				table += "</td>"
+				table += "<td style='width:50%' valign='top'>"
+				if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
+					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[cavailable_chems(i)hem]'><font color=\"red\">[available_chems(i).name]</font></a>"
+				else
+					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[chavailable_chems(i)em]'>[available_chems(i).name]</a>"
+				table += "</td></tr>"
+			if(CHcount > Rcount)
+				for(var/i = Rcount; i <= available_chems.lenght; i++)
+				table += "<tr><td style='width:50%' valign='top' align='left'>"
+				if(mob_occupant.health < min_health && available_chems(i) != /datum/reagent/medicine/epinephrine)
+					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[available_chems(i)]'><font color=\"red\">[R.name]</font></a>"
+				else
+					CHlist(CHcount) += "<a href='?src=[REF(src)];inject=[available_chems(i)]'>[R.name]</a>"
+				table += "</td></tr>"
+			else
+				for(var/i = available_chems.lenght; i <= Rcount; i++)
+				table += "<tr><td style='width:50%' valign='top'>"
+				table += "[Rlist(i)]"
+				table += "</td></tr>"
+			table += "</table>"
+			dat += "<tt>[table]</tt>"
+
 		else
 			dat += "No Occupant</H2>"
 		dat += "<H2>Controls</H2>"
 		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
 		dat += "<H3>Inject</H3>"
 		if(mob_occupant)
-			for(var/chem in available_chems)
-				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-					dat += "<br>	<a color = #666633 href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
-				else
-					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
+
 		else
 			dat += "<br> No patient to inject"
 
