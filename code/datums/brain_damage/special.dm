@@ -193,11 +193,7 @@
 	scan_desc = "criminal mind"
 	gain_text = "<span class='warning'>Justice is coming for you.</span>"
 	lose_text = "<span class='notice'>You were absolved for your crimes.</span>"
-<<<<<<< HEAD
-=======
-	clonable = FALSE
 	random_gain = FALSE
->>>>>>> 020f51dc08... Makes beepsky smash less real (#44591)
 	var/obj/effect/hallucination/simple/securitron/beepsky
 
 /datum/brain_trauma/special/beepsky/on_gain()
