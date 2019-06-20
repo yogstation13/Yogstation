@@ -141,13 +141,6 @@
 		dat += "<H2>Ocupant: "
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
-			dat += "[mob_occupant.name]</H2>"
-		else
-			dat += "No Occupant</H2>"
-
-		dat += "Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
-
-		if(mob_occupant)
 			switch(mob_occupant.stat)
 				if(CONSCIOUS)
 					dat += "  <font color = #32E632>Conscious</font>"
@@ -157,7 +150,15 @@
 					dat += "  <font color = #DAE632>Unconscious</font>"
 				if(DEAD)
 					dat += "  <font color = #C13131>Dead</font>"
-			dat += "</H2>"
+			dat += "[mob_occupant.name]"
+		else
+			dat += "No Occupant"
+
+		dat += "</H2>"
+
+		dat += "Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
+
+		if(mob_occupant)
 			dat += "<H3>Status  <a href='?src=[REF(src)];refresh=1'>(refresh)</a></H3>"
 			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
 			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
