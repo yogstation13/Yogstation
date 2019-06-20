@@ -15,6 +15,7 @@
 	//Bitflags for the job
 	var/department_flag = NONE //Deprecated
 	var/flag = NONE //Deprecated
+	var/auto_deadmin_role_flags = NONE
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
