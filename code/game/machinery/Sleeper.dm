@@ -137,11 +137,17 @@
 			ui.open()
 	else //yogs start   aplly backup UI
 		var/dat
-		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
+
 		dat += "<H2>Ocupant: "
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant)
-			dat += "[mob_occupant.name]"
+			dat += "[mob_occupant.name]</H2>"
+		else
+			dat += "No Occupant</H2>"
+
+		dat += "Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
+
+		if(mob_occupant)
 			switch(mob_occupant.stat)
 				if(CONSCIOUS)
 					dat += "  <font color = #32E632>Conscious</font>"
@@ -173,8 +179,8 @@
 			var/table = ""
 			table += "<table style='width:100%'>"
 			table += "<tr>"
-			table += "<td style='width:50%'><b>Reagents</b></td>"
-			table += "<td style='width:50%'><b>Inject</b></td>"
+			table += "<td style='width:50%'><H2>Reagents</H2></td>"
+			table += "<td style='width:50%'><H2>Inject</H2></td>"
 			table += "</tr>"
 			for(var/chem in available_chems)
 				table += "<tr><td style='width:50%' valign='top'>"
@@ -200,18 +206,8 @@
 			table += "</table>"
 			dat += "<tt>[table]</tt>"
 
-		else
-			dat += "No Occupant</H2>"
-		dat += "<H2>Controls</H2>"
-		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
-		dat += "<H3>Inject</H3>"
-		if(mob_occupant)
-
-		else
-			dat += "<br> No patient to inject"
-
 		dat += "</font>"
-		var/datum/browser/popup = new(user, "Sleeper", "Sleeper Control", 900, 500)
+		var/datum/browser/popup = new(user, "Sleeper", "Sleeper Control", 400, 500)
 		popup.set_content(dat)
 		popup.open()
 		onclose(user, "Sleeper")
