@@ -42,7 +42,6 @@
 		"[user] attempts to patch some of [target]'s [woundtype].",
 		"[user] attempts to patch some of [target]'s [woundtype].")
 
-
 /datum/surgery_step/heal/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	if(..())
 		while((brutehealing && target.getBruteLoss()) || (burnhealing && target.getFireLoss()))
@@ -57,7 +56,6 @@
 	return TRUE
 
 /datum/surgery_step/heal/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] screws up!", "<span class='warning'>You screwed up!</span>")
 	display_results(user, target, "<span class='warning'>You screwed up!</span>",
 		"[user] screws up!",
 		"[user] fixes some of [target]'s wounds.", TRUE)
