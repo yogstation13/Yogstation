@@ -1,7 +1,7 @@
 /datum/antagonist/valentine
 	name = "valentine"
 	roundend_category = "valentines" //there's going to be a ton of them so put them in separate category
-	show_in_antagpanel = FALSE
+	show_in_antagpanel = True
 	prevent_roundtype_conversion = FALSE
 	var/datum/mind/date
 
