@@ -49,11 +49,8 @@
 				break
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
-<<<<<<< HEAD
-=======
 	LoadPolicy()
 	LoadChatFilter()
->>>>>>> ce1575de23... Merge pull request #44668 from ike709/imaginehavingadminsenforcearulethatcouldeasilybeenforcedinthecode
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
