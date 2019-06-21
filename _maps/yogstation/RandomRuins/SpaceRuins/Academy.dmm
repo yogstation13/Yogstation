@@ -2076,7 +2076,7 @@
 	pixel_y = 0
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/item/dice/d20/fate,
+/obj/item/dice/d20/fate/one_use,
 /turf/open/floor/plasteel/cafeteria,
 /area/awaymission/academy/classrooms)
 "gp" = (
