@@ -250,8 +250,6 @@
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
-<<<<<<< HEAD
-=======
 /*
 Policy file should be a json file with a single object.
 Value is raw html.
@@ -280,7 +278,6 @@ Example config:
 			log_config("JSON parsing failure for policy.json")
 		else
 			policy = parsed
->>>>>>> ce1575de23... Merge pull request #44668 from ike709/imaginehavingadminsenforcearulethatcouldeasilybeenforcedinthecode
 
 /datum/controller/configuration/proc/loadmaplist(filename)
 	log_config("Loading config file [filename]...")
