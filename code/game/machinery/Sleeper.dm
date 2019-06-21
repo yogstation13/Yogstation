@@ -139,9 +139,7 @@
 		var/mob/living/mob_occupant = occupant
 		if(isOperable(user, mob_occupant, controls_inside))
 			return
-
 		var/dat
-		dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD>"
 		dat += "<H2>Ocupant: "
 		if(mob_occupant)
 			dat += "[mob_occupant.name]"
@@ -154,7 +152,14 @@
 					dat += "  <font color = #DAE632>Unconscious</font>"
 				if(DEAD)
 					dat += "  <font color = #C13131>Dead</font>"
-			dat += "</H2>"
+		else
+			dat += "No Occupant"
+
+		dat += "</H2>"
+
+		dat += "Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
+
+		if(mob_occupant)
 			dat += "<H3>Status  <a href='?src=[REF(src)];refresh=1'>(refresh)</a></H3>"
 			dat += 	   "	Health:			[mob_occupant.health] / [mob_occupant.maxHealth]"
 			dat += "<br>	Brute:			[mob_occupant.getBruteLoss()]"
@@ -173,29 +178,45 @@
 			else
 				dat += "normal"
 
-			dat += "<H3>Reagents</H3>"
+			var/table = ""
+			table += "<table style='width:100%'>"
+			table += "<tr>"
+			table += "<td style='width:50%'><H2>Reagents</H2></td>"
+			table += "<td style='width:50%'><H2>Inject</H2></td>"
+			table += "</tr>"
+			for(var/chem in available_chems)
+				table += "<tr><td style='width:50%' valign='top'>"
+				var/datum/reagent/R = mob_occupant.reagents.has_reagent(chem)
+				if(R)
+					table += "[R.name]	[R.volume] units"
+				table += "</td>"
+
+				table += "<td style='width:50%' valign='top'>"
+				table += "<a href='?src=[REF(src)];inject=[chem]'>"
+				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
+					table += "<font color=\"red\">"
+				table += "[GLOB.chemical_reagents_list[chem].name]</a>"
+				table += "</td></tr>"
+
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
-					dat += "<br>	[R.name]	[R.volume] units"
-		else
-			dat += "No Occupant</H2>"
-		dat += "<H2>Controls</H2>"
-		dat += "<br>Door: <a href='?src=[REF(src)];input=1'>[state_open ? "Open" : "Closed"]</a>"
-		dat += "<H3>Inject</H3>"
-		if(mob_occupant)
-			for(var/chem in available_chems)
-				var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-					dat += "<br>	<a color = #666633 href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
-				else
-					dat += "<br>	<a href='?src=[REF(src)];inject=[chem]'>[R.name]</a>"
-		else
-			dat += "<br> No patient to inject"
+					var/found = FALSE
+					for(var/chem in available_chems)
+						if(R.name == GLOB.chemical_reagents_list[chem].name)  // Shit code, i know that please make it better if know how
+							found = TRUE
+					if(!found)
+						table += "<tr><td style='width:50%' valign='top'>"
+						table += "[R.name]	[R.volume] units"
+						table += "</td></tr>"
+
+			table += "</table>"
+			dat += "<tt>[table]</tt>"
 
 		dat += "</font>"
-		user << browse(dat, "window=sleeper;size=520x500;can_resize=0")
-		onclose(user, "sleeper")
-		return TRUE
+		var/datum/browser/popup = new(user, "Sleeper", "Sleeper Control", 400, 500)
+		popup.set_content(dat)
+		popup.open()
+		onclose(user, "Sleeper")
 
 /obj/machinery/sleeper/Topic(href, href_list)
 	if(..())
