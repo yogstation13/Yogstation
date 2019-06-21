@@ -1,7 +1,7 @@
 /datum/antagonist/heartbreaker
 	name = "heartbreaker"
 	roundend_category = "valentines"
-	show_in_antagpanel = True
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 
 
