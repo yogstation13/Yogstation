@@ -1,0 +1,6 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "It is now possible to make fusion occur at much lower temperatures, via Dilithium Gas!"
+  - rscadd: "Dilithium Gas has been added to the game!"
+  - rscadd: "Dilithium Crystals have been added to the game, for facilitating Cold Fusion! Ask your local Miner for it today, Atmosian!"
