@@ -12,17 +12,8 @@
 /area/ruin/unpowered/no_grav)
 "ad" = (
 /obj/machinery/power/tracker,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
-/area/solar/derelict_starboard)
-"ae" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/template_noop,
 /area/solar/derelict_starboard)
 "af" = (
 /turf/open/floor/plating/airless{
@@ -30,13 +21,12 @@
 	},
 /area/solar/derelict_starboard)
 "ag" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged5"
 	},
 /area/solar/derelict_starboard)
+<<<<<<< HEAD
 "ah" = (
 /obj/machinery/power/solar{
 	id = "derelictsolar";
@@ -114,6 +104,8 @@
 	},
 /turf/template_noop,
 /area/solar/derelict_starboard)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "ap" = (
 /obj/machinery/power/solar{
 	id = "derelictsolar";
@@ -127,13 +119,6 @@
 /obj/structure/cable,
 /turf/template_noop,
 /area/solar/derelict_starboard)
-"ar" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/template_noop,
-/area/solar/derelict_starboard)
 "as" = (
 /turf/closed/wall,
 /area/ruin/space/derelict/solar_control)
@@ -145,23 +130,7 @@
 /obj/machinery/door/airlock/external{
 	name = "External Engineering"
 	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/derelict/solar_control)
-"av" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/derelict/solar_control)
-"aw" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/derelict/solar_control)
 "ax" = (
@@ -180,13 +149,18 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "aB" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "aC" = (
 /obj/machinery/power/smes,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -201,6 +175,8 @@
 	name = "Primary Solar Control";
 	track = 0
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
@@ -211,6 +187,7 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ruin/space/derelict/solar_control)
+<<<<<<< HEAD
 "aG" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -244,6 +221,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "aK" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -262,12 +241,15 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/derelict/solar_control)
+<<<<<<< HEAD
 "aN" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "aO" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -281,6 +263,7 @@
 /area/ruin/space/derelict/solar_control)
 "aQ" = (
 /obj/machinery/door/window,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "aR" = (
@@ -299,6 +282,7 @@
 	pixel_x = -25
 	},
 /obj/structure/cable,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -308,6 +292,8 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "aV" = (
@@ -331,6 +317,7 @@
 /obj/machinery/computer/monitor/secret{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -350,6 +337,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/solar_control)
+"ba" = (
+/obj/machinery/light/small,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "bc" = (
@@ -382,9 +377,13 @@
 	name = "Starboard Solar Access";
 	req_access_txt = "10"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "bi" = (
@@ -403,6 +402,7 @@
 "bl" = (
 /turf/closed/wall,
 /area/ruin/space/derelict/bridge/ai_upload)
+<<<<<<< HEAD
 "bm" = (
 /obj/machinery/door/window,
 /obj/structure/cable{
@@ -410,6 +410,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "bn" = (
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/plasteel,
@@ -435,9 +437,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "br" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
 "bs" = (
@@ -491,9 +497,13 @@
 	},
 /area/ruin/space/derelict/solar_control)
 "bC" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel{
 	icon_state = "damaged3"
 	},
@@ -601,6 +611,7 @@
 	name = "Worn-out APC";
 	pixel_x = -25
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -610,6 +621,13 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/bridge/ai_upload)
+"bX" = (
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/bridge/ai_upload)
 "bY" = (
@@ -635,17 +653,21 @@
 	icon_state = "damaged4"
 	},
 /area/space/nearstation)
+<<<<<<< HEAD
 "cc" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/bridge/ai_upload)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cd" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/ai_upload)
 "ce" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -661,6 +683,9 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/bridge/ai_upload)
 "ch" = (
@@ -669,6 +694,7 @@
 "ci" = (
 /turf/closed/wall/r_wall,
 /area/template_noop)
+<<<<<<< HEAD
 "cj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -681,6 +707,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/solar_control)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cl" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/gravity_generator)
@@ -714,9 +742,13 @@
 	},
 /area/ruin/space/derelict/gravity_generator)
 "cr" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/closed/wall,
 /area/ruin/space/derelict/bridge/access)
 "cs" = (
@@ -724,9 +756,13 @@
 /area/ruin/space/derelict/bridge/access)
 "ct" = (
 /obj/machinery/door/airlock/maintenance,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cu" = (
@@ -788,9 +824,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cF" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cG" = (
@@ -809,6 +849,7 @@
 /obj/item/stack/ore/slag,
 /turf/template_noop,
 /area/template_noop)
+<<<<<<< HEAD
 "cJ" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -836,11 +877,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cO" = (
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/gravity_generator)
 "cP" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red,
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged4"
 	},
@@ -851,6 +898,10 @@
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cR" = (
@@ -868,8 +919,8 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/stack/cable_coil/cut/red,
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cT" = (
@@ -887,9 +938,13 @@
 	name = "E.V.A.";
 	req_access_txt = "18"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cW" = (
@@ -901,9 +956,13 @@
 /area/ruin/space/derelict/bridge/access)
 "cX" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "cY" = (
@@ -945,13 +1004,17 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/space/nearstation)
 "df" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/item/wallframe/apc,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/gravity_generator)
 "dg" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -970,6 +1033,11 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/gravity_generator)
+"di" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/structure/frame/machine,
 /obj/item/stack/sheet/glass,
 /turf/open/floor/plating/airless,
@@ -978,7 +1046,7 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/space/nearstation)
 "dk" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/template_noop,
 /area/template_noop)
 "dl" = (
@@ -988,6 +1056,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "dm" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
@@ -1014,13 +1083,25 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/derelict/bridge/access)
+"dp" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "dq" = (
 /obj/item/reagent_containers/food/drinks/beer,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "dr" = (
@@ -1034,12 +1115,15 @@
 /obj/item/paper/fluff/ruins/thederelict/equipment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/gravity_generator)
+<<<<<<< HEAD
 "dt" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/gravity_generator)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "du" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1069,9 +1153,13 @@
 /area/ruin/space/derelict/bridge/access)
 "dy" = (
 /obj/structure/window/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "dz" = (
@@ -1090,9 +1178,12 @@
 	name = "Engineering Access";
 	req_access_txt = "10"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -1118,6 +1209,7 @@
 /obj/structure/frame/computer,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+<<<<<<< HEAD
 "dH" = (
 /obj/structure/frame/computer,
 /obj/structure/cable{
@@ -1125,6 +1217,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "dI" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -1189,6 +1283,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "dS" = (
@@ -1213,6 +1308,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/gravity_generator)
+=======
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/singularity_engine)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "dV" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1227,12 +1327,15 @@
 	icon_state = "damaged5"
 	},
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "dY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/derelict/bridge/access)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "dZ" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plasteel,
@@ -1318,6 +1421,7 @@
 /obj/machinery/field/generator,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "ep" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1325,6 +1429,8 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "eq" = (
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plasteel,
@@ -1399,11 +1505,12 @@
 	},
 /area/ruin/space/derelict/singularity_engine)
 "eG" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged4"
 	},
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "eH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1419,10 +1526,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/derelict/bridge/access)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "eJ" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1432,18 +1542,28 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/bridge/access)
+"eK" = (
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
 "eL" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "eM" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "eN" = (
 /obj/item/paper/fluff/ruins/thederelict/nukie_objectives,
 /turf/open/floor/plasteel/airless{
@@ -1465,12 +1585,15 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+<<<<<<< HEAD
 "eR" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "eS" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel,
@@ -1554,8 +1677,8 @@
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
-/obj/structure/cable,
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge)
 "fh" = (
@@ -1649,7 +1772,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "fu" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged5"
 	},
@@ -1716,7 +1839,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "fG" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
 	},
@@ -1739,9 +1862,13 @@
 /area/ruin/space/derelict/singularity_engine)
 "fK" = (
 /obj/machinery/door/window,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/access)
 "fL" = (
@@ -1791,9 +1918,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/bridge/access)
 "fT" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "fU" = (
@@ -1818,7 +1949,7 @@
 /obj/item/shard{
 	icon_state = "medium"
 	},
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "fY" = (
@@ -1835,22 +1966,31 @@
 /turf/closed/wall,
 /area/ruin/space/derelict/hallway/primary)
 "ga" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
 	},
 /area/ruin/space/derelict/hallway/primary)
 "gb" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
 /area/ruin/space/derelict/hallway/primary)
 "gc" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1877,6 +2017,15 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/hallway/primary)
+"gd" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/derelict/bridge/access)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "gg" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1901,9 +2050,13 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/hallway/primary)
 "gl" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
 "gm" = (
@@ -1952,6 +2105,7 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "gx" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -1964,6 +2118,8 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "gz" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "floorscorched2"
@@ -1979,6 +2135,10 @@
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "gC" = (
@@ -2071,12 +2231,15 @@
 /obj/effect/spawner/structure/window/hollow/reinforced/end,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "gU" = (
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "gV" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/arrival)
@@ -2095,12 +2258,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
+<<<<<<< HEAD
 "ha" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "hb" = (
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/airless{
@@ -2370,7 +2536,7 @@
 	},
 /area/space/nearstation)
 "ib" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "ic" = (
@@ -2441,9 +2607,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "ip" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
@@ -2528,6 +2698,7 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/unpowered/no_grav)
+<<<<<<< HEAD
 "iF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2536,6 +2707,8 @@
 	icon_state = "damaged2"
 	},
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "iG" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -2681,17 +2854,21 @@
 /obj/structure/table,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
+<<<<<<< HEAD
 "jc" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "jd" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
 "jf" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
@@ -2722,6 +2899,24 @@
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless/white,
+/area/ruin/space/derelict/medical)
+"jg" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless/white,
+/area/ruin/space/derelict/medical)
+"ji" = (
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plasteel/airless/white,
+/area/ruin/space/derelict/medical)
+"jj" = (
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
 	},
@@ -2805,9 +3000,13 @@
 	name = "Worn-out APC";
 	pixel_x = 24
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/medical/chapel)
 "jz" = (
@@ -2834,9 +3033,13 @@
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/derelict/medical)
 "jD" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
@@ -2884,22 +3087,31 @@
 /area/ruin/space/derelict/medical/chapel)
 "jM" = (
 /obj/machinery/door/window,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/medical/chapel)
 "jN" = (
 /obj/machinery/door/window/southleft,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/derelict/medical)
 "jO" = (
 /obj/machinery/door/window/southright,
 /turf/open/floor/plasteel/airless/white,
 /area/ruin/space/derelict/medical)
+<<<<<<< HEAD
 "jP" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2913,13 +3125,18 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+"jQ" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/research{
 	name = "Toxins Research";
 	req_access_txt = "7"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "jR" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
@@ -2929,6 +3146,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered/no_grav)
+"jS" = (
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
 "jT" = (
@@ -2962,9 +3186,13 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "jX" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "floorscorched1"
 	},
@@ -2985,6 +3213,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "kb" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -2994,6 +3223,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered/no_grav)
 "kd" = (
@@ -3010,6 +3242,7 @@
 /area/ruin/unpowered/no_grav)
 "kf" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3019,20 +3252,32 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/unpowered/no_grav)
+"kg" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/structure/window/fulltile,
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
 "kh" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/research{
 	name = "Toxins Research";
 	req_access_txt = "7"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/arrival)
 "ki" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3050,6 +3295,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/arrival)
+"kj" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/derelict/arrival)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "kl" = (
 /obj/machinery/door/airlock/command{
 	name = "Teleporter Room"
@@ -3057,7 +3311,11 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/medical/chapel)
 "km" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red,
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless{
 	icon_state = "floorscorched1"
 	},
@@ -3080,17 +3338,18 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "kr" = (
-/obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
 "ks" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/arrival)
+<<<<<<< HEAD
 "ku" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3099,12 +3358,15 @@
 	icon_state = "floorscorched1"
 	},
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "kw" = (
 /obj/machinery/door/window{
 	base_state = "right";
 	dir = 4;
 	icon_state = "right"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3138,6 +3400,9 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "kB" = (
@@ -3152,6 +3417,7 @@
 /obj/machinery/door/window,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
+<<<<<<< HEAD
 "kE" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -3176,6 +3442,8 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "kI" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/plasteel/airless,
@@ -3221,9 +3489,13 @@
 	name = "Security";
 	req_access_txt = "1"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "kS" = (
@@ -3263,11 +3535,11 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "la" = (
-/obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary)
 "lb" = (
@@ -3279,12 +3551,12 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "ld" = (
 /obj/structure/lattice,
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/template_noop,
 /area/space/nearstation)
 "le" = (
@@ -3314,9 +3586,13 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "lj" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "lk" = (
@@ -3410,10 +3686,14 @@
 /turf/template_noop,
 /area/ruin/space/derelict/hallway/primary/port)
 "lB" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "lC" = (
@@ -3494,9 +3774,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/atmospherics)
 "lQ" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "lS" = (
@@ -3555,7 +3839,11 @@
 /area/ruin/space/derelict/atmospherics)
 "mb" = (
 /obj/structure/lattice,
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red,
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/template_noop,
 /area/ruin/space/derelict/hallway/primary/port)
 "mc" = (
@@ -3690,7 +3978,11 @@
 /turf/template_noop,
 /area/ruin/space/derelict/atmospherics)
 "mA" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red,
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/template_noop,
 /area/ruin/space/derelict/hallway/primary/port)
 "mB" = (
@@ -3701,9 +3993,13 @@
 /area/ruin/space/derelict/hallway/secondary)
 "mC" = (
 /obj/item/wirecutters,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "mD" = (
@@ -3730,13 +4026,17 @@
 	},
 /area/ruin/space/derelict/hallway/primary/port)
 "mI" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "mJ" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary)
 "mL" = (
@@ -3795,15 +4095,22 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "mX" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Worn-out APC";
 	pixel_x = -25
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "mY" = (
@@ -3828,6 +4135,7 @@
 	name = "Worn-out APC";
 	pixel_y = 23
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -3843,72 +4151,104 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/hallway/secondary)
+"ne" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict9"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nf" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict10"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "ng" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict11"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nh" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict12"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "ni" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict13"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nj" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict14"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nk" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/plaque{
 	icon_state = "derelict15"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nl" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3930,6 +4270,12 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/effect/turf_decal/plaque{
+	icon_state = "derelict16"
+	},
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "no" = (
@@ -3996,13 +4342,17 @@
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/se_solar)
 "nC" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/engineering{
 	name = "Aft Solar Access";
 	req_access_txt = "10"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nD" = (
@@ -4017,10 +4367,14 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/secondary)
 "nF" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nG" = (
@@ -4038,6 +4392,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/se_solar)
 "nJ" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
@@ -4062,6 +4417,11 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
+=======
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ruin/space/derelict/se_solar)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "nM" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle,
 /turf/open/floor/plating/airless,
@@ -4073,12 +4433,6 @@
 "nO" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/derelict/se_solar)
-"nP" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nQ" = (
@@ -4109,10 +4463,15 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/item/drone_shell/dusty,
+=======
+/obj/item/drone_shell/dusty,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nV" = (
@@ -4133,6 +4492,10 @@
 	name = "Primary Solar Control";
 	track = 0
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nZ" = (
@@ -4145,6 +4508,10 @@
 	name = "Worn-out APC";
 	pixel_x = -25
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/se_solar)
 "oa" = (
@@ -4174,9 +4541,7 @@
 	dir = 4;
 	icon_state = "right"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "og" = (
@@ -4199,15 +4564,20 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "ok" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/external,
+=======
+/obj/machinery/door/airlock/external,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "ol" = (
-/obj/structure/cable,
 /obj/structure/lattice/catwalk,
+<<<<<<< HEAD
 /turf/template_noop,
 /area/solar/derelict_aft)
 "om" = (
@@ -4221,12 +4591,20 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+/obj/structure/cable,
+/turf/template_noop,
+/area/solar/derelict_aft)
+"on" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/power/solar{
 	id = "derelictsolar";
 	name = "Derelict Solar Array"
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/solar/derelict_aft)
+<<<<<<< HEAD
 "oo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4238,10 +4616,14 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+"op" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/power/solar{
 	id = "derelictsolar";
 	name = "Derelict Solar Array"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
 	},
@@ -4251,6 +4633,7 @@
 	icon_state = "platingdmg2"
 	},
 /area/solar/derelict_aft)
+<<<<<<< HEAD
 "or" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -4325,6 +4708,8 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/solar/derelict_aft)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "oy" = (
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
@@ -4334,6 +4719,7 @@
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
 /area/solar/derelict_aft)
+<<<<<<< HEAD
 "oA" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -4361,6 +4747,8 @@
 	},
 /turf/template_noop,
 /area/solar/derelict_aft)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "oD" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable,
@@ -4444,9 +4832,13 @@
 /turf/closed/wall,
 /area/ruin/space/derelict/hallway/primary/port)
 "KT" = (
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/cut/red{
 	amount = 2
 	},
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "Le" = (
@@ -4461,14 +4853,28 @@
 "Lv" = (
 /turf/closed/wall,
 /area/space/nearstation)
+<<<<<<< HEAD
+=======
+"MQ" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/derelict/se_solar)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "Oj" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/bridge/access)
 "OT" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/derelict/hallway/primary/port)
+"Pi" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/solar_control)
 "Rd" = (
-/obj/item/stack/cable_coil/red,
+/obj/item/stack/cable_coil,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged4"
 	},
@@ -4494,7 +4900,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "Xq" = (
-/obj/item/stack/cable_coil/cut/red,
+/obj/item/stack/cable_coil/cut,
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged2"
 	},
@@ -6268,7 +6674,7 @@ jw
 gX
 jW
 gL
-gU
+mJ
 gn
 gL
 ZB
@@ -6494,7 +6900,7 @@ gX
 gX
 jY
 km
-gy
+gl
 fZ
 fZ
 fZ
@@ -6607,7 +7013,7 @@ iA
 fZ
 go
 go
-ku
+jX
 fZ
 kN
 kW
@@ -7280,7 +7686,7 @@ hX
 iC
 hI
 hI
-jh
+jf
 jB
 fZ
 go
@@ -7506,7 +7912,7 @@ il
 hY
 hX
 hI
-jh
+jf
 hI
 fZ
 ka
@@ -7735,10 +8141,10 @@ hX
 hX
 jD
 jN
-jc
-jc
-kx
-kE
+gc
+gc
+gc
+gc
 kO
 kZ
 lf
@@ -8384,7 +8790,7 @@ cY
 df
 ds
 dB
-dS
+dW
 ei
 ex
 dO
@@ -8497,7 +8903,7 @@ cZ
 dg
 cO
 cl
-dT
+da
 da
 dr
 eG
@@ -8529,8 +8935,8 @@ fZ
 go
 go
 go
-kG
-jc
+gc
+gc
 la
 fZ
 lu
@@ -8548,7 +8954,7 @@ ma
 ls
 lx
 md
-nd
+mI
 mU
 nz
 ac
@@ -8607,10 +9013,10 @@ cH
 cO
 cO
 RF
-dh
-dt
+dg
+dg
 dC
-dU
+ej
 ej
 dr
 ez
@@ -9319,8 +9725,8 @@ ay
 jp
 fZ
 go
-ky
-kH
+gc
+gc
 go
 go
 fZ
@@ -9565,7 +9971,7 @@ lz
 lA
 lz
 md
-nd
+mI
 mU
 nz
 eu
@@ -9678,7 +10084,7 @@ lz
 lA
 lz
 md
-nd
+mI
 mU
 nz
 eu
@@ -9791,7 +10197,7 @@ lA
 KN
 lz
 md
-nd
+mI
 mU
 nz
 ac
@@ -9874,7 +10280,7 @@ tS
 tS
 tS
 gL
-gU
+mJ
 gm
 gn
 fZ
@@ -9904,7 +10310,7 @@ KN
 KN
 KN
 md
-nd
+mI
 mU
 nz
 ac
@@ -9989,15 +10395,15 @@ gl
 gl
 gm
 gm
-iF
+gb
 ip
-jc
-jc
-jc
-jP
-jc
-jc
-kz
+gc
+gc
+gc
+gc
+gc
+gc
+gc
 go
 gk
 Vz
@@ -10017,7 +10423,7 @@ lz
 lA
 lz
 md
-nd
+mI
 mU
 nz
 ac
@@ -10095,8 +10501,8 @@ gk
 gk
 gk
 GM
-gx
-ha
+gl
+gl
 gL
 gm
 gm
@@ -10110,8 +10516,8 @@ go
 gc
 go
 go
-kA
-jc
+gc
+gc
 kR
 lc
 li
@@ -10130,7 +10536,7 @@ lz
 lA
 lz
 md
-nd
+mI
 mU
 md
 aY
@@ -10145,12 +10551,12 @@ nB
 aa
 aa
 on
-or
-ox
+ol
+on
 aa
 on
-oz
-ox
+ol
+on
 aa
 vf
 "}
@@ -10205,10 +10611,10 @@ ZB
 dr
 dr
 gk
-gx
 gl
 gl
-gU
+gl
+mJ
 gm
 gm
 gn
@@ -10243,7 +10649,7 @@ lz
 lA
 lz
 md
-nd
+mI
 mU
 nz
 ac
@@ -10258,12 +10664,17 @@ aa
 aa
 aa
 on
+<<<<<<< HEAD
 os
 ox
+=======
+ol
+on
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 on
-oA
-ox
+ol
+on
 aa
 vf
 "}
@@ -10318,7 +10729,7 @@ cs
 cs
 fZ
 fZ
-gy
+gl
 fZ
 fZ
 fZ
@@ -10356,7 +10767,7 @@ lA
 lA
 Tm
 md
-nd
+mI
 mU
 nz
 ac
@@ -10371,12 +10782,17 @@ nB
 aa
 aa
 on
+<<<<<<< HEAD
 os
 ox
+=======
+ol
+on
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 on
-os
-ox
+ol
+on
 aa
 vf
 "}
@@ -10469,7 +10885,7 @@ lz
 Tm
 Vz
 md
-nd
+mI
 mU
 nz
 ac
@@ -10484,11 +10900,15 @@ nB
 ZB
 aa
 aa
-ot
+ol
 aa
 aa
 aa
+<<<<<<< HEAD
 oB
+=======
+ol
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 aa
 vf
@@ -10582,7 +11002,7 @@ lz
 Tm
 Vz
 md
-nd
+mI
 mU
 nz
 ac
@@ -10592,17 +11012,17 @@ nO
 nU
 nY
 of
-nP
+MQ
 ok
 ol
-om
-oo
-ou
-oo
+ol
+ol
+ol
+ol
 oz
-oo
-ou
-oo
+ol
+ol
+ol
 oD
 vf
 "}
@@ -10630,7 +11050,7 @@ bz
 bK
 bO
 bX
-cc
+bX
 ce
 aa
 aa
@@ -10695,12 +11115,12 @@ Tm
 Vz
 Vz
 md
-nd
+mI
 mU
 md
 nB
 nB
-nK
+nJ
 nB
 nV
 nB
@@ -10710,11 +11130,15 @@ nB
 ZB
 aa
 aa
-ot
+ol
 aa
 aa
 aa
+<<<<<<< HEAD
 oB
+=======
+ol
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 aa
 ZB
@@ -10744,7 +11168,7 @@ bE
 bK
 bY
 cd
-cf
+ce
 ci
 ci
 ci
@@ -10808,14 +11232,20 @@ Vz
 Vz
 Vz
 md
-nm
+mI
 mI
 mI
 nC
 nF
+<<<<<<< HEAD
 nL
 nP
 nP
+=======
+nC
+MQ
+MQ
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 nZ
 nR
 nR
@@ -10823,12 +11253,12 @@ nB
 aa
 aa
 on
-ov
-ox
+ol
+on
 aa
 on
-ov
-ox
+ol
+on
 aa
 vf
 "}
@@ -10857,7 +11287,7 @@ bE
 bQ
 bK
 bO
-cf
+ce
 aa
 aa
 aa
@@ -10921,7 +11351,7 @@ md
 md
 md
 md
-nd
+mI
 mU
 mZ
 nB
@@ -10936,12 +11366,12 @@ nB
 aa
 aa
 op
-ow
+ol
 oy
 aa
 on
-ov
-ox
+ol
+on
 aa
 vf
 "}
@@ -10970,7 +11400,7 @@ bL
 bR
 bF
 bE
-cf
+ce
 aa
 aa
 aa
@@ -11034,7 +11464,7 @@ mI
 mI
 mI
 mX
-nn
+mI
 mU
 mZ
 mZ
@@ -11053,8 +11483,8 @@ dk
 aa
 dk
 on
-oC
-ox
+ol
+on
 aa
 ZB
 "}
@@ -11083,7 +11513,7 @@ bM
 bL
 bE
 bO
-cf
+ce
 aa
 aa
 aa
@@ -11196,13 +11626,13 @@ bK
 bK
 bZ
 bz
-cg
-cj
-cj
-cj
+ce
+ce
+ce
+ce
 cr
 cr
-cJ
+cr
 cs
 cs
 cs
@@ -11315,7 +11745,7 @@ bj
 bj
 cs
 cx
-cK
+cF
 cx
 cT
 cx
@@ -11333,7 +11763,7 @@ cs
 cs
 cs
 fx
-ge
+fT
 gq
 fx
 fZ
@@ -11428,7 +11858,7 @@ bj
 bj
 cs
 cx
-cK
+cF
 cx
 cT
 cx
@@ -11446,7 +11876,7 @@ cx
 cx
 cs
 fx
-ge
+fT
 fx
 fx
 fZ
@@ -11514,7 +11944,7 @@ aa
 ZB
 aa
 af
-ai
+aq
 ap
 ZB
 ZB
@@ -11541,17 +11971,17 @@ bj
 bj
 cs
 cy
-cK
+cF
 cx
 cT
 cx
 dm
 dy
 cF
-dY
-ep
+dm
+dy
 cF
-eH
+cF
 cF
 cF
 cF
@@ -11559,7 +11989,7 @@ cF
 cF
 fK
 fT
-gf
+fT
 fT
 gB
 cs
@@ -11627,7 +12057,7 @@ aa
 vf
 aa
 ag
-ai
+aq
 ap
 aa
 aa
@@ -11654,17 +12084,17 @@ bj
 bj
 cs
 cz
-cK
+cF
 cx
 cU
 cx
-cK
+cF
 dw
 cx
 cx
 dw
 cx
-cK
+cF
 cx
 cs
 cs
@@ -11739,8 +12169,8 @@ aa
 (65,1,1) = {"
 vf
 aa
-ah
-aj
+ap
+aq
 ap
 aa
 aa
@@ -11767,17 +12197,17 @@ bj
 bj
 cs
 cA
-cM
+cF
 cF
 cV
 cF
-dn
+cF
 dw
 cx
 cx
 dw
 cx
-eI
+dm
 cx
 cx
 cs
@@ -11803,7 +12233,7 @@ aa
 Uz
 aa
 jG
-kc
+kb
 jG
 aa
 aa
@@ -11853,7 +12283,7 @@ aa
 vf
 aa
 aa
-ak
+aq
 aa
 aa
 aa
@@ -11880,11 +12310,11 @@ bj
 bj
 cs
 cB
-cN
+cx
 cQ
 cs
 cs
-do
+cX
 cs
 dF
 dF
@@ -11965,8 +12395,8 @@ aa
 (67,1,1) = {"
 vf
 aa
-ah
-al
+ap
+aq
 ap
 aa
 aa
@@ -12078,15 +12508,15 @@ aa
 (68,1,1) = {"
 vf
 aa
-ah
-al
+ap
+aq
 ap
 aa
 aa
 at
 az
-aB
-aN
+az
+az
 aT
 aZ
 as
@@ -12110,9 +12540,9 @@ cx
 cR
 cT
 dd
-cK
+cF
 cs
-dH
+dG
 ea
 ea
 ea
@@ -12191,16 +12621,16 @@ aa
 (69,1,1) = {"
 aa
 aa
-ah
-al
+ap
+aq
 ap
 aa
 aa
 at
+Pi
 aA
-aG
 aO
-aU
+az
 ba
 as
 bj
@@ -12223,7 +12653,7 @@ cx
 cx
 cW
 cx
-cK
+cF
 cs
 dI
 eb
@@ -12303,18 +12733,18 @@ aa
 "}
 (70,1,1) = {"
 ad
-ae
-ae
-am
 aq
-ar
-ae
+aq
+aq
+aq
+aq
+aq
 au
 aB
-aH
+az
 aP
 az
-bb
+aB
 as
 as
 as
@@ -12336,14 +12766,14 @@ cx
 cS
 cT
 cx
-cK
+cF
 cs
 dJ
 ea
 ea
 ea
-eM
-eR
+eK
+eK
 fg
 fo
 ay
@@ -12368,7 +12798,7 @@ aa
 ZB
 aa
 ch
-kc
+kb
 jG
 aa
 aa
@@ -12417,17 +12847,17 @@ aa
 (71,1,1) = {"
 aa
 aa
-ah
-an
+ap
+aq
 ap
 aa
 aa
-av
+at
 aC
-aI
+az
 aP
 az
-bb
+aB
 as
 bk
 as
@@ -12449,7 +12879,7 @@ cs
 cs
 cs
 cx
-cK
+cF
 cs
 dK
 ea
@@ -12530,30 +12960,30 @@ aa
 (72,1,1) = {"
 ZB
 aa
-ah
-an
+ap
+aq
 ap
 aa
 aa
-aw
-aD
-aJ
+at
+aB
+aB
 aQ
-az
-aU
+aB
+aB
 bh
-aN
-bm
+aB
+aQ
 br
 bu
 bB
 br
-aN
-aN
-aN
-aN
-aN
-ck
+aB
+aB
+aB
+aB
+aB
+aB
 az
 cm
 cs
@@ -12562,7 +12992,7 @@ cs
 cx
 cs
 cx
-cK
+cF
 cs
 dL
 ea
@@ -12594,7 +13024,7 @@ gV
 Uz
 aa
 ch
-kc
+kb
 jG
 aa
 aa
@@ -12643,8 +13073,8 @@ aa
 (73,1,1) = {"
 ZB
 aa
-ah
-an
+ap
+aq
 ap
 aa
 aa
@@ -12666,9 +13096,9 @@ bS
 az
 az
 az
-aU
-aN
-aN
+aB
+aB
+aB
 ct
 cF
 ct
@@ -12707,7 +13137,7 @@ gV
 Uz
 ZB
 hc
-kc
+kb
 jG
 aa
 kL
@@ -12757,7 +13187,7 @@ aa
 vf
 aa
 aa
-ak
+aq
 aa
 aa
 aa
@@ -12869,8 +13299,8 @@ aa
 (75,1,1) = {"
 vf
 aa
-ah
-an
+ap
+aq
 ap
 aa
 aa
@@ -12982,8 +13412,8 @@ aa
 (76,1,1) = {"
 vf
 aa
-ah
-an
+ap
+aq
 ap
 aa
 aa
@@ -13095,8 +13525,8 @@ aa
 (77,1,1) = {"
 vf
 aa
-ah
-ao
+ap
+aq
 ap
 ZB
 ZB
@@ -13159,7 +13589,7 @@ gW
 hf
 hf
 hf
-kk
+ki
 kr
 gW
 gW

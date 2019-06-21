@@ -8,13 +8,18 @@
 	anchored = 1;
 	power = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "ac" = (
 /obj/effect/spawner/structure/window/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -59,6 +64,11 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
+=======
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/abandonedzoo)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "ag" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -192,7 +202,22 @@
 	name = "Bio Containment";
 	req_one_access_txt = "47"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark/side,
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /area/ruin/space/has_grav/abandonedzoo)
 "aE" = (
 /obj/machinery/shieldwallgen{
@@ -200,6 +225,7 @@
 	anchored = 1;
 	power = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -212,6 +238,9 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/abandonedzoo)
 "aF" = (
@@ -255,6 +284,7 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
+<<<<<<< HEAD
 "aJ" = (
 /obj/machinery/shieldwallgen{
 	active = 2;
@@ -272,6 +302,8 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/abandonedzoo)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "aK" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -279,6 +311,7 @@
 /turf/template_noop,
 /area/space/nearstation)
 "aL" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "aM" = (
@@ -286,6 +319,20 @@
 	icon_state = "1-2"
 	},
 /turf/closed/wall/r_wall,
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /area/ruin/space/has_grav/abandonedzoo)
 "aN" = (
 /obj/structure/table/reinforced,
@@ -324,7 +371,22 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark/side,
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /area/ruin/space/has_grav/abandonedzoo)
 "aS" = (
 /obj/machinery/power/apc/unlocked{
@@ -341,6 +403,10 @@
 /obj/structure/rack,
 /obj/item/melee/baton/cattleprod,
 /obj/effect/spawner/lootdrop/maintenance,
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "aT" = (
@@ -408,7 +474,22 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark/side,
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /area/ruin/space/has_grav/abandonedzoo)
 "bb" = (
 /obj/machinery/door/airlock/hatch{
@@ -461,6 +542,10 @@
 /area/ruin/space/has_grav/abandonedzoo)
 "be" = (
 /obj/structure/reagent_dispensers/fueltank,
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bf" = (
@@ -469,14 +554,21 @@
 	name = "power storage unit"
 	},
 /obj/structure/cable,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bg" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light,
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bh" = (
@@ -522,6 +614,7 @@
 /obj/item/reagent_containers/food/snacks/carrotfries,
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
+<<<<<<< HEAD
 "bo" = (
 /obj/machinery/shieldwallgen{
 	active = 2;
@@ -540,6 +633,8 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/abandonedzoo)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "bp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -564,6 +659,7 @@
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bs" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -581,6 +677,15 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/shieldwallgen,
+=======
+/obj/machinery/shieldwallgen,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/abandonedzoo)
+"bt" = (
+/obj/machinery/shieldwallgen,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "bu" = (
@@ -712,6 +817,10 @@
 /area/ruin/space/has_grav/abandonedzoo)
 "bN" = (
 /obj/structure/grille/broken,
+<<<<<<< HEAD
+=======
+/obj/item/stack/cable_coil/cut,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/item/shard{
 	icon_state = "small"
 	},
@@ -744,6 +853,7 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+<<<<<<< HEAD
 "bS" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -752,6 +862,8 @@
 /obj/machinery/shieldwallgen,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "bT" = (
 /obj/structure/grille,
 /obj/item/shard{
@@ -791,16 +903,80 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/abandonedzoo)
+<<<<<<< HEAD
+=======
+"rY" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/stack/cable_coil/cut,
+/obj/item/stack/tile/plasteel{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/wirecutters,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/abandonedzoo)
+"wF" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Bio-Research Station"
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/abandonedzoo)
+"Ck" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/abandonedzoo)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "KN" = (
 /turf/template_noop,
 /area/space/nearstation)
 
 (1,1,1) = {"
 ab
+<<<<<<< HEAD
 ag
 ag
 ag
 ag
+=======
+ac
+ac
+ac
+ac
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 ab
 aa
 aa
@@ -809,10 +985,17 @@ aa
 aa
 aa
 ab
+<<<<<<< HEAD
 ag
 ag
 ag
 ag
+=======
+ac
+ac
+ac
+ac
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 ab
 aa
 "}
@@ -888,8 +1071,13 @@ ar
 ac
 at
 aS
+<<<<<<< HEAD
 ay
 ay
+=======
+Ck
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 be
 at
 ac
@@ -901,17 +1089,26 @@ ac
 aa
 "}
 (6,1,1) = {"
+<<<<<<< HEAD
 ad
 ak
 ak
 ak
 ak
+=======
+ab
+ac
+ac
+ac
+ac
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aE
 aM
 aT
 bc
 bd
 bf
+<<<<<<< HEAD
 aM
 bo
 ak
@@ -919,6 +1116,15 @@ ak
 ak
 ak
 bQ
+=======
+at
+aE
+ac
+ac
+ac
+ac
+ab
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 "}
 (7,1,1) = {"
@@ -931,7 +1137,11 @@ aF
 at
 aU
 ay
+<<<<<<< HEAD
 ay
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bg
 at
 aF
@@ -952,7 +1162,11 @@ aG
 aN
 aV
 ay
+<<<<<<< HEAD
 ay
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bh
 bm
 bp
@@ -973,6 +1187,10 @@ aH
 aO
 ay
 ay
+<<<<<<< HEAD
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 ay
 ay
 ay
@@ -995,6 +1213,11 @@ ay
 ay
 ay
 ay
+<<<<<<< HEAD
+=======
+Ck
+ay
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 ay
 ay
 bq
@@ -1015,7 +1238,11 @@ aI
 aP
 aW
 ay
+<<<<<<< HEAD
 ay
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bi
 bn
 br
@@ -1036,7 +1263,11 @@ aF
 at
 aX
 ay
+<<<<<<< HEAD
 ay
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bj
 at
 aF
@@ -1048,6 +1279,7 @@ aa
 aa
 "}
 (13,1,1) = {"
+<<<<<<< HEAD
 ae
 ak
 ak
@@ -1066,6 +1298,26 @@ ak
 ak
 ak
 bS
+=======
+ab
+ac
+ac
+ac
+ac
+aE
+at
+aY
+ay
+Ck
+bk
+at
+bs
+ac
+ac
+ac
+ac
+bt
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 "}
 (14,1,1) = {"
@@ -1078,7 +1330,11 @@ ac
 at
 aZ
 ay
+<<<<<<< HEAD
 ay
+=======
+Ck
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bl
 at
 ac
@@ -1120,9 +1376,15 @@ aD
 aL
 ba
 aL
+<<<<<<< HEAD
 aL
 ba
 aL
+=======
+aL
+rY
+aL
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aD
 bD
 bB
@@ -1153,12 +1415,21 @@ bP
 aa
 "}
 (18,1,1) = {"
+<<<<<<< HEAD
 af
 ak
 ak
 ak
 ak
 af
+=======
+ab
+ac
+ac
+ac
+ac
+ab
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 aa
 aa
 aa
@@ -1166,8 +1437,13 @@ aa
 aa
 aa
 bt
+<<<<<<< HEAD
 ag
 ag
+=======
+ac
+ac
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 bN
 bP
 KN

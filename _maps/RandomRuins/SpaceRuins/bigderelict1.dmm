@@ -58,9 +58,13 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "an" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ao" = (
@@ -70,9 +74,13 @@
 	name = "Cargo Bay APC";
 	pixel_x = 24
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "ap" = (
@@ -101,12 +109,15 @@
 "at" = (
 /turf/closed/wall/mineral/titanium,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
+<<<<<<< HEAD
 "au" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "av" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -295,14 +306,19 @@
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "bb" = (
 /obj/machinery/power/smes,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "bc" = (
 /obj/structure/table,
 /obj/item/stock_parts/cell/hyper,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -316,6 +332,9 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "be" = (
@@ -455,9 +474,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "bs" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "bt" = (
@@ -800,6 +823,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+<<<<<<< HEAD
 "bZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -809,6 +833,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "ca" = (
 /obj/machinery/power/apc{
 	start_charge = 0;
@@ -817,9 +843,13 @@
 	pixel_x = 24;
 	pixel_y = 2
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "cb" = (
@@ -850,9 +880,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cf" = (
@@ -915,9 +949,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
 "cj" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
 "ck" = (
@@ -927,9 +965,13 @@
 	name = "Tradepost APC";
 	pixel_y = -23
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
 "cl" = (
@@ -966,6 +1008,7 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+<<<<<<< HEAD
 "cp" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -977,6 +1020,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+"cq" = (
+/obj/structure/barricade/wooden,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
 "cr" = (
@@ -985,6 +1033,7 @@
 	req_access_txt = "10"
 	},
 /obj/structure/barricade/wooden,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1002,6 +1051,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/powerstorage)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cu" = (
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "trails_1";
@@ -1022,6 +1076,7 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+<<<<<<< HEAD
 "cw" = (
 /obj/structure/alien/weeds{
 	color = "#4BAE56";
@@ -1047,12 +1102,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cy" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/poddoor{
 	id = "bigderelictcheckpoint";
 	name = "checkpoint security doors"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1063,6 +1121,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/machinery/door/firedoor,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
 "cA" = (
@@ -1071,6 +1133,7 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1080,6 +1143,9 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost)
 "cC" = (
@@ -1154,6 +1220,7 @@
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -1163,7 +1230,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/cargobay)
+"cI" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/structure/janitorialcart,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cJ" = (
@@ -1172,10 +1246,14 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/item/mop,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cK" = (
@@ -1189,9 +1267,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cL" = (
@@ -1205,9 +1287,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cM" = (
@@ -1217,6 +1303,7 @@
 	name = "gelatinous floor"
 	},
 /obj/structure/glowshroom/single,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1234,6 +1321,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cO" = (
@@ -1390,9 +1480,13 @@
 	name = "gelatinous floor"
 	},
 /obj/machinery/light,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "dg" = (
@@ -1406,9 +1500,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "dh" = (
@@ -1427,9 +1525,13 @@
 	desc = "A pried-open airlock. Scratch marks mark the sidings of the door.";
 	name = "pried-open airlock"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "di" = (
@@ -1444,9 +1546,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "dj" = (
@@ -1539,9 +1645,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "ds" = (
@@ -1659,9 +1769,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "dC" = (
@@ -1743,9 +1857,13 @@
 	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
 	name = "gelatinous floor"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "dJ" = (
@@ -1793,9 +1911,13 @@
 	icon_state = "trails_1";
 	dir = 9
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "dN" = (
@@ -1958,9 +2080,13 @@
 	icon_state = "trails_1";
 	name = "dried blood trail"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "ef" = (
@@ -2020,9 +2146,13 @@
 	name = "Cargo Storage APC";
 	pixel_x = 24
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "em" = (
@@ -2077,9 +2207,13 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eu" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "ev" = (
@@ -2123,9 +2257,13 @@
 	icon_state = "trails_1";
 	dir = 5
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eA" = (
@@ -2186,9 +2324,13 @@
 	icon_state = "trails_1";
 	dir = 10
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eJ" = (
@@ -2202,9 +2344,13 @@
 	icon_state = "trails_1";
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "eK" = (
@@ -2213,9 +2359,13 @@
 	icon_state = "trails_1";
 	dir = 6
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
 "eL" = (
@@ -2395,8 +2545,8 @@ aA
 bc
 bs
 bs
-bZ
-cp
+bs
+bJ
 aS
 cT
 ak
@@ -2428,7 +2578,7 @@ ad
 aC
 aC
 aA
-bd
+bb
 br
 bJ
 ca
@@ -2504,7 +2654,7 @@ aJ
 az
 bK
 cb
-cs
+an
 cG
 ak
 db
@@ -2540,7 +2690,7 @@ ak
 ak
 ak
 ak
-ct
+an
 cH
 cV
 dc
@@ -2577,7 +2727,7 @@ ae
 ae
 ae
 ae
-cs
+an
 bx
 bx
 ab
@@ -2685,7 +2835,7 @@ be
 bL
 cc
 ae
-cx
+ce
 aX
 cW
 ab
@@ -2721,7 +2871,7 @@ bv
 bM
 cc
 ae
-cx
+ce
 cW
 aN
 ab
@@ -2865,7 +3015,7 @@ ae
 ae
 ae
 cv
-cx
+ce
 bx
 de
 ab
@@ -2891,17 +3041,17 @@ ab
 ab
 aj
 an
-au
-au
-au
-au
-au
-au
-au
-au
+an
+an
+an
+an
+an
+an
+an
+an
 ce
-cw
-cN
+ce
+ce
 ce
 df
 ab
@@ -2936,7 +3086,7 @@ av
 bx
 bP
 bx
-cx
+ce
 ak
 ak
 dg
@@ -2972,7 +3122,7 @@ ab
 bx
 bx
 ak
-cs
+an
 ak
 ab
 dh
@@ -3044,7 +3194,7 @@ aK
 bz
 bQ
 bC
-cz
+cj
 cO
 aZ
 aZ
@@ -3080,7 +3230,7 @@ aK
 bz
 bR
 cf
-cz
+cj
 cP
 aK
 cR
@@ -3152,7 +3302,7 @@ aK
 bB
 bT
 bC
-cz
+cj
 cQ
 aK
 cR
@@ -3260,7 +3410,7 @@ bi
 bj
 bn
 bj
-cz
+cj
 bF
 ci
 bl
@@ -3332,7 +3482,7 @@ bk
 bl
 bn
 cj
-cB
+cj
 bF
 bl
 dl

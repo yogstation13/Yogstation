@@ -245,9 +245,13 @@
 	pixel_x = 24;
 	start_charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/comm)
 "aP" = (
@@ -297,9 +301,13 @@
 /area/ruin/space/has_grav/ancientstation)
 "aU" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "aV" = (
@@ -529,10 +537,14 @@
 /area/ruin/space/has_grav/ancientstation/betanorth)
 "bx" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "by" = (
@@ -618,22 +630,30 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation)
 "bP" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "bR" = (
@@ -776,6 +796,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/powered)
+<<<<<<< HEAD
 "cl" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -784,6 +805,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "cm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -891,44 +914,66 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-25"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot/strong,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cA" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/science,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cC" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot/range,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cD" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -940,8 +985,11 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cF" = (
@@ -999,14 +1047,18 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "cO" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "cP" = (
@@ -1070,11 +1122,18 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "cY" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1178,9 +1237,12 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/engi)
 "dm" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 8
@@ -1190,6 +1252,7 @@
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "dn" = (
@@ -1283,9 +1346,12 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/sec)
 "dw" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 8
@@ -1294,6 +1360,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "dx" = (
@@ -1361,19 +1428,27 @@
 /area/template_noop)
 "dK" = (
 /obj/structure/lattice/catwalk,
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/template_noop,
 /area/template_noop)
 "dL" = (
 /obj/machinery/power/solar,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "dM" = (
@@ -1438,9 +1513,12 @@
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Charlie Security APC";
@@ -1456,6 +1534,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "dT" = (
@@ -1490,15 +1569,19 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/sec)
 "dW" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "dX" = (
@@ -1567,6 +1650,7 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betanorth)
+<<<<<<< HEAD
 "ei" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -1574,6 +1658,8 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "ej" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer{
@@ -1666,9 +1752,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "et" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1676,6 +1765,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "eu" = (
@@ -1713,6 +1803,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+<<<<<<< HEAD
 "ey" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1721,6 +1812,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "ez" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -1776,6 +1869,7 @@
 	dir = 4
 	},
 /area/ruin/space/has_grav/ancientstation/betanorth)
+<<<<<<< HEAD
 "eI" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1789,6 +1883,8 @@
 	},
 /turf/open/floor/plating/airless,
 /area/template_noop)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "eK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -1834,9 +1930,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "eO" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -1844,6 +1943,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "eP" = (
@@ -1888,9 +1988,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "eU" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 8
@@ -1901,6 +2004,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "eV" = (
@@ -1915,10 +2019,16 @@
 /area/ruin/space/has_grav/ancientstation/sec)
 "eW" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -1959,8 +2069,10 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
+<<<<<<< HEAD
 "fd" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -1972,15 +2084,21 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "fe" = (
 /obj/machinery/power/smes/engineering{
 	charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ff" = (
@@ -1993,13 +2111,17 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "fg" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "fh" = (
@@ -2108,14 +2230,18 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "ft" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "fu" = (
@@ -2177,10 +2303,14 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "fE" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "fF" = (
@@ -2235,13 +2365,17 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "fL" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "fM" = (
@@ -2275,22 +2409,32 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "fQ" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Delta Main Corridor APC";
 	pixel_y = 23;
 	start_charge = 0
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "fR" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2360,6 +2504,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2373,6 +2518,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/ancientstation/betanorth)
+"ga" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betanorth)
 "gb" = (
@@ -2390,6 +2546,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -2422,6 +2579,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/template_noop,
 /area/template_noop)
 "gg" = (
@@ -2436,9 +2596,13 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "gh" = (
@@ -2446,9 +2610,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "gi" = (
@@ -2457,6 +2625,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -2487,6 +2656,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
+=======
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "gl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil{
@@ -2495,6 +2669,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "gm" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2505,27 +2680,36 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+=======
+/obj/effect/decal/cleanable/dirt,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "gn" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/machinery/door/poddoor{
 	id = "ancient"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/powered)
 "go" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -2535,41 +2719,56 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "gp" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "gq" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gr" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gs" = (
@@ -2580,26 +2779,34 @@
 	pixel_y = 23;
 	start_charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "gt" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gu" = (
@@ -2607,6 +2814,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gv" = (
@@ -2617,6 +2827,7 @@
 	pixel_y = -23;
 	start_charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2629,61 +2840,85 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/kitchen)
+"gw" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gx" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "gy" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "gz" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "gA" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/machinery/door/poddoor{
 	id = "ancient"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/sec)
 "gB" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
@@ -2702,17 +2937,24 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+/obj/effect/decal/cleanable/dirt,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "gD" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
@@ -2720,42 +2962,56 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "gE" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/sec)
 "gF" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "gG" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "gH" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -2772,23 +3028,31 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "gJ" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "gK" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -2798,11 +3062,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "gL" = (
@@ -2813,13 +3080,17 @@
 	pixel_x = 24;
 	start_charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "gM" = (
@@ -2904,6 +3175,7 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
+<<<<<<< HEAD
 "gW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -2920,6 +3192,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "gY" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/kitchen)
@@ -3004,12 +3278,16 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "hl" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hm" = (
@@ -3021,21 +3299,16 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
-"hn" = (
-/obj/machinery/power/smes/engineering{
-	charge = 0
-	},
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/engi)
 "ho" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hp" = (
@@ -3044,13 +3317,17 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "hq" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "hr" = (
@@ -3136,14 +3413,18 @@
 /area/ruin/space/has_grav/ancientstation/sec)
 "hC" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "hD" = (
@@ -3235,11 +3516,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "hL" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betanorth)
+<<<<<<< HEAD
 "hM" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -3253,6 +3533,8 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "hO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -3260,9 +3542,12 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/oil,
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
@@ -3273,6 +3558,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hP" = (
@@ -3285,9 +3571,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hQ" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
 	dir = 4
@@ -3296,6 +3585,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "hR" = (
@@ -3380,6 +3670,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
+<<<<<<< HEAD
 "ib" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -3387,13 +3678,14 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 "id" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/solar_control{
 	name = "Station Solar Control Computer"
 	},
 /obj/item/paper/guides/jobs/engi/solars,
-/obj/structure/cable/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -3401,6 +3693,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ie" = (
@@ -3428,23 +3721,31 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ig" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "ih" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "ii" = (
@@ -3620,7 +3921,6 @@
 	pixel_x = 24;
 	start_charge = 0
 	},
-/obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -3628,6 +3928,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
 "iy" = (
@@ -3683,14 +3984,22 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
 "iC" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
 	dir = 4;
 	pixel_x = -23
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /mob/living/simple_animal/hostile/hivebot,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -3872,9 +4181,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "iV" = (
@@ -3882,10 +4194,15 @@
 	charge = 0;
 	name = "backup power storage unit"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "iW" = (
@@ -3964,9 +4281,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "jh" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "ji" = (
@@ -3990,9 +4305,13 @@
 	name = "Backup Generator Room"
 	},
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "jl" = (
@@ -4156,6 +4475,7 @@
 /obj/item/paper/fluff/ruins/oldstation/generator_manual,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
+<<<<<<< HEAD
 "jE" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4171,9 +4491,13 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+"jF" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "jG" = (
@@ -4199,6 +4523,7 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-25"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -4213,10 +4538,16 @@
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/hivebot,
 /obj/effect/decal/cleanable/dirt,
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "jL" = (
 /obj/machinery/door/firedoor,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -4228,17 +4559,14 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "jO" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/atmo)
-"jP" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "jQ" = (
@@ -4281,9 +4609,13 @@
 	name = "Prototype Laboratory";
 	req_access_txt = "200"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/white/side,
 /area/ruin/space/has_grav/ancientstation/proto)
 "jX" = (
@@ -4302,8 +4634,8 @@
 	pixel_x = 24;
 	start_charge = 0
 	},
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "jZ" = (
@@ -4355,16 +4687,24 @@
 	pixel_y = 23;
 	start_charge = 0
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "kh" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "ki" = (
@@ -4722,6 +5062,10 @@
 /obj/structure/cable,
 /obj/item/storage/backpack/old,
 /obj/item/storage/backpack/old,
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "kZ" = (
@@ -4927,9 +5271,13 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "py" = (
@@ -4952,15 +5300,19 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "rv" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "sC" = (
@@ -5022,12 +5374,16 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "Af" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "BH" = (
@@ -5101,6 +5457,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+<<<<<<< HEAD
 "LY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5116,12 +5473,16 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+"MS" = (
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "MZ" = (
@@ -5171,13 +5532,17 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Pl" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/item/solar_assembly,
 /obj/item/stack/sheet/glass{
 	amount = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "PV" = (
@@ -5240,6 +5605,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"Wn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "XJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -5247,19 +5618,26 @@
 /area/ruin/space/has_grav/ancientstation/engi)
 "Yc" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "Yi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+=======
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "Ym" = (
@@ -5362,7 +5740,7 @@ dF
 iT
 km
 km
-jP
+jh
 jY
 km
 km
@@ -5931,13 +6309,13 @@ aa
 gb
 aa
 aa
-hM
+jR
 lz
 lz
 aA
 lz
 lz
-eI
+dL
 aa
 aa
 aa
@@ -5973,19 +6351,19 @@ aa
 aA
 dH
 dH
-ei
+dK
 dH
 dH
 gc
-ei
-ei
-hN
+dK
+dK
+dK
 dH
-ib
+dK
 dH
-ei
+dK
 dH
-hN
+dK
 dF
 aa
 aa
@@ -6021,14 +6399,14 @@ aa
 aa
 lz
 lz
-eI
+dL
 aa
 aa
-gd
+gc
 aa
 aa
 lz
-hM
+jR
 lz
 aA
 lz
@@ -6070,19 +6448,19 @@ aA
 dH
 dH
 dK
-ei
-ei
-ge
-ei
+dK
+dK
+gc
+dK
 dH
 dH
-hN
+dK
 dH
-ei
+dK
 dH
 dH
 dH
-jR
+lz
 aa
 aa
 aa
@@ -6117,10 +6495,10 @@ aa
 aa
 lz
 lz
-eJ
+jR
 aa
 aa
-gd
+gc
 aa
 aa
 lz
@@ -6164,20 +6542,20 @@ bd
 aa
 aA
 dK
-ei
+dK
 dH
 dH
 dH
 gc
-ei
-ei
-ei
-ib
-ei
+dK
+dK
+dK
+dK
+dK
 dH
-ei
-ei
-ib
+dK
+dK
+dH
 dF
 aa
 aa
@@ -6216,16 +6594,16 @@ lz
 lz
 aa
 aa
-gd
+gc
 aa
 aa
 lz
-eJ
+jR
 lz
 aA
 lz
-eJ
-eJ
+jR
+jR
 aa
 aa
 aa
@@ -6407,9 +6785,9 @@ dl
 ej
 eK
 fc
-em
+Wn
 gi
-gW
+Wn
 hl
 hO
 id
@@ -6454,9 +6832,9 @@ dl
 dl
 ek
 em
-fd
+hm
 Yi
-gj
+Yi
 Yi
 hm
 em
@@ -6504,9 +6882,9 @@ el
 eL
 fe
 fE
-gk
+Wn
 fE
-hn
+fe
 em
 if
 iv
@@ -6601,7 +6979,7 @@ eN
 ff
 el
 gm
-gX
+Wn
 ho
 hQ
 ig
@@ -6688,24 +7066,24 @@ bi
 aY
 aG
 bP
-cl
+bQ
 cO
 dm
-cl
+bQ
 rv
 eO
 fg
-cl
+bQ
 go
-cl
+bQ
 hq
 eO
 ih
 rv
 dm
 cO
-LY
-jE
+bQ
+bP
 aG
 jZ
 yk
@@ -7080,7 +7458,7 @@ er
 dQ
 fl
 cQ
-gu
+aU
 gY
 hw
 hV
@@ -7176,7 +7554,7 @@ dQ
 dQ
 dp
 cQ
-gu
+aU
 gY
 hx
 ht
@@ -7512,7 +7890,7 @@ eu
 eu
 fq
 fM
-gC
+gB
 hb
 hA
 eu
@@ -7560,7 +7938,7 @@ ev
 eu
 fr
 mP
-gC
+gB
 fN
 fr
 eu
@@ -7608,7 +7986,7 @@ ew
 eu
 eu
 eu
-gC
+gB
 eu
 eu
 eu
@@ -8040,7 +8418,7 @@ aa
 aa
 bD
 fQ
-gI
+gH
 he
 bD
 aa
@@ -8137,14 +8515,14 @@ eW
 ft
 fR
 gK
-ey
+cD
 hC
-ey
+cD
 MS
 iC
 dw
-ey
-ey
+cD
+cD
 jJ
 bD
 aa
@@ -8289,7 +8667,7 @@ iD
 iP
 dy
 jt
-jK
+fR
 jV
 kd
 kt
@@ -8416,7 +8794,7 @@ aB
 aN
 bG
 lx
-cE
+cD
 dc
 dy
 fo
@@ -8481,7 +8859,7 @@ eb
 fU
 jc
 dc
-jM
+cD
 jW
 kh
 kw

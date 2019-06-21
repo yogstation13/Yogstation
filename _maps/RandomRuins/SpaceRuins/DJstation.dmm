@@ -61,12 +61,20 @@
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
 	name = "power storage unit"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "ao" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
+"ao" = (
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "ap" = (
@@ -77,6 +85,10 @@
 	name = "Worn-out APC";
 	pixel_y = -24
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "aq" = (
@@ -87,12 +99,16 @@
 /obj/structure/sign/warning/electricshock{
 	pixel_y = -32
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "ar" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 65e9888fa6... [READY] Smart Cables (#44265)
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "as" = (
@@ -594,7 +610,7 @@ ah
 aj
 an
 ao
-ar
+ao
 at
 aw
 aw
