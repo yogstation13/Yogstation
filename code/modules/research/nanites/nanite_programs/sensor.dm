@@ -345,6 +345,13 @@
 	var/sentence = ""
 	var/inclusive = TRUE
 
+/datum/nanite_program/sensor/voice/on_mob_add()
+	. = ..()
+	RegisterSignal(host_mob, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+
+/datum/nanite_program/sensor/voice/on_mob_remove()
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_HEAR, .proc/on_hear)
+
 /datum/nanite_program/sensor/voice/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
