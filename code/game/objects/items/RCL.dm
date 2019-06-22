@@ -137,6 +137,7 @@
 				last = C
 				break
 
+<<<<<<< HEAD
 /obj/item/twohanded/rcl/proc/setActive(toggle, mob/user)
 	active = toggle
 	if (active && user)
@@ -146,6 +147,15 @@
 			mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/trigger)))
 	else
 		QDEL_NULL(mobhook)
+=======
+/obj/item/twohanded/rcl/proc/getMobhook(mob/to_hook)
+	if(listeningTo == to_hook)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(to_hook, COMSIG_MOVABLE_MOVED, .proc/trigger)
+	listeningTo = to_hook
+>>>>>>> a79be996d9... Cable Layer signal getMobhook fix (#44715)
 
 /obj/item/twohanded/rcl/proc/trigger(mob/user)
 	if(!isturf(user.loc))
