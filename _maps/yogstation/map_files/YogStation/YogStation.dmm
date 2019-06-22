@@ -11537,11 +11537,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/engineering{
-	name = "Electrical Maintenance";
-	req_access_txt = "11"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
@@ -11550,7 +11545,10 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
+	icon_state = "stairs_alone";
+	dir = 8
+	},
 /area/maintenance/department/electrical)
 "awQ" = (
 /obj/structure/cable{
@@ -21945,7 +21943,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/maintenance/disposal/incinerator)
 "aRx" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -44509,11 +44507,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
-"bIS" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/port/aft)
 "bIT" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/sign/departments/xenobio{
@@ -49344,7 +49337,10 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/stairs/goon/dark_stairs{
+	icon_state = "dark_stairs";
+	dir = 1
+	},
 /area/maintenance/port/aft)
 "cfg" = (
 /obj/structure/cable{
@@ -55277,7 +55273,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/stairs/goon/white_stairs_alone,
 /area/medical/virology)
 "mkO" = (
 /obj/machinery/nanite_program_hub,
@@ -55605,7 +55601,10 @@
 /obj/item/radio/intercom{
 	pixel_y = 30
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
+	icon_state = "stairs_alone";
+	dir = 8
+	},
 /area/tcommsat/lounge)
 "nJW" = (
 /obj/structure/closet/secure_closet/atmospherics,
@@ -55749,6 +55748,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"ofO" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Electrical Maintenance";
+	req_access_txt = "11"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "ogl" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -57116,7 +57134,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/stairs,
+/turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/escapepodbay)
 "tsI" = (
 /obj/structure/disposalpipe/segment{
@@ -83708,7 +83726,7 @@ bIa
 bSo
 bIv
 bIN
-bIS
+bPS
 bIv
 bJC
 bJQ
@@ -106002,7 +106020,7 @@ asB
 asB
 asB
 avo
-awN
+ofO
 avo
 asB
 asB
