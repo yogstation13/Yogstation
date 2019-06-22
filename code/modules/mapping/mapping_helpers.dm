@@ -120,6 +120,8 @@
 	icon_state = "airlock_cyclelink_helper"
 
 /obj/effect/mapping_helpers/airlock/cyclelink_helper/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)																		//yogs start
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, new variebles are already in use!")	//yogs end
 	if(airlock.cyclelinkeddir)
 		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
 	else

@@ -83,7 +83,9 @@
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
 
-	var/cyclelinkeddir = 0
+	var/cyclelinkeddir = 0			//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
+	var/cyclelinkedx = 0			//yogs start	negative is left positive is right
+	var/cyclelinkedy = 0			//yogs end		negative is down positive is up
 	var/obj/machinery/door/airlock/cyclelinkedairlock
 	var/shuttledocked = 0
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
@@ -127,8 +129,11 @@
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
-	if (cyclelinkeddir)
+	if(cyclelinkedx || cyclelinkedy)	//yogs start
 		cyclelinkairlock()
+	else
+		if(cyclelinkeddir)
+			cyclelinkairlock_old		//yogs end
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
@@ -166,7 +171,48 @@
 	if (cyclelinkedairlock)
 		cyclelinkedairlock.cyclelinkedairlock = null
 		cyclelinkedairlock = null
-	if (!cyclelinkeddir)
+	if(!cyclelinkedx && !cyclelinkedy)		//yogs start
+		return
+	var/turf/T = get_turf(src)
+	var/obj/machinery/door/airlock/FoundDoor
+	var/mod
+	var/dir
+	if(cyclelinkedx)
+		if(cyclelinkedx > 0)
+			mod = 1
+			dir = 4
+		else
+			mod = -1
+			dir = 8
+		for(var/i = 1; i <= cyclelinkedx; i = i + mod)
+			T = get_step(T, dir)
+
+	if(cyclelinkedy)
+		if(cyclelinkedy > 0)
+			mod = 1
+			dir = 1
+		else
+			mod = -1
+			dir = 2
+		for(var/i = 1; i <= cyclelinkedy; i = i + mod)
+			T = get_step(T, dir)
+
+	FoundDoor = locate() in T
+	if (FoundDoor && FoundDoor.cyclelinkedy == -1 * cyclelinkedy && FoundDoor.cyclelinkedx == -1 * cyclelinkedx)
+		FoundDoor = null
+	if (!FoundDoor)
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with!")
+		return
+	FoundDoor.cyclelinkedairlock = src
+	cyclelinkedairlock = FoundDoor
+
+/obj/machinery/door/airlock/proc/cyclelinkairlock_old(var/cyclelinkeddir)
+	if(cyclelinkedx || cyclelinkedy)		//this means we should be running the new method
+		return
+	if (cyclelinkedairlock)
+		cyclelinkedairlock.cyclelinkedairlock = null
+		cyclelinkedairlock = null
+	if(!cyclelinkeddir)
 		return
 	var/limit = world.view
 	var/turf/T = get_turf(src)
@@ -179,16 +225,18 @@
 		limit--
 	while(!FoundDoor && limit)
 	if (!FoundDoor)
-		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with!")
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with using  the old method!")
 		return
 	FoundDoor.cyclelinkedairlock = src
 	cyclelinkedairlock = FoundDoor
-
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
-		if ("cyclelinkeddir")
+		if ("cyclelinkedx" || "cyclelinkedy")
 			cyclelinkairlock()
+		if ("cyclelinkeddir")
+			cyclelinkairlock_old()							//yogs end
+
 
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
 	return !requiresID() || ..()
