@@ -7363,6 +7363,10 @@
 /obj/machinery/door/airlock/external{
 	req_one_access_txt = "13,8"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = -1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "amI" = (
@@ -60312,6 +60316,10 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 2;
+	diry = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cel" = (
@@ -82293,6 +82301,16 @@
 "lvi" = (
 /turf/closed/wall,
 /area/maintenance/starboard/secondary)
+"lwz" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "lGS" = (
 /obj/docking_port/stationary/public_mining_dock,
 /turf/open/floor/plating,
@@ -82334,6 +82352,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/storage_shared)
+"mGq" = (
+/obj/machinery/door/airlock/external{
+	req_one_access_txt = "13,8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "mGS" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -99113,7 +99141,7 @@ dux
 cll
 dux
 dux
-cek
+lwz
 dux
 dux
 cjq
@@ -123462,7 +123490,7 @@ aaa
 aaf
 dni
 amG
-amH
+mGq
 anN
 dnS
 arJ
