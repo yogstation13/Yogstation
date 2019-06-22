@@ -184,7 +184,7 @@
 		else
 			mod = -1
 			dir = 8
-		for(var/i = 1; i <= cyclelinkedx; i = i + mod)
+		for(var/i = 1; i < cyclelinkedx; i = i + mod)
 			T = get_step(T, dir)
 
 	if(cyclelinkedy)
@@ -194,11 +194,11 @@
 		else
 			mod = -1
 			dir = 2
-		for(var/i = 1; i <= cyclelinkedy; i = i + mod)
+		for(var/i = 1; i < cyclelinkedy; i = i + mod)
 			T = get_step(T, dir)
 
 	FoundDoor = locate() in T
-	if (FoundDoor && FoundDoor.cyclelinkedy == -1 * cyclelinkedy && FoundDoor.cyclelinkedx == -1 * cyclelinkedx)
+	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
 		FoundDoor = null
 	if (!FoundDoor)
 		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with!")
