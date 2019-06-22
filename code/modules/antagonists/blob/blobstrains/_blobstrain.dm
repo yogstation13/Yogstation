@@ -71,4 +71,11 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 	return
 
 /datum/blobstrain/proc/emp_reaction(obj/structure/blob/B, severity, coefficient = 1) //when the blob is hit with an emp, do this
+<<<<<<< HEAD
 	return
+=======
+	return
+
+/datum/blobstrain/proc/examine(mob/user)
+	return list("<b>Progress to Critical Mass:</b> <span class='notice'>[overmind.blobs_legit.len]/[overmind.blobwincount].</span>")
+>>>>>>> 2c784b29a4... Examine fixes (#44688)
