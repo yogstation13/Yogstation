@@ -133,7 +133,7 @@
 		cyclelinkairlock()
 	else
 		if(cyclelinkeddir)
-			cyclelinkairlock_old		//yogs end
+			cyclelinkairlock_old()		//yogs end
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
