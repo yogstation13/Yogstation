@@ -1102,15 +1102,25 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					. += (health_deficiency / 75)
 				else
 					. += (health_deficiency / 25)
+<<<<<<< HEAD
 		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
+=======
+		if(CONFIG_GET(flag/disable_human_mood))
+>>>>>>> 6b31268b30... Merge pull request #44677 from actioninja/revert-44256-legacymovespeedkill
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
 			else if(isethereal(H))
 				var/datum/species/ethereal/E = H.dna.species
+<<<<<<< HEAD
 				if(E.ethereal_charge <= ETHEREAL_CHARGE_NORMAL)
 					. += 1.5 * (1 - E.ethereal_charge / 100)
+=======
+				var/charge = E.get_charge()
+				if(charge <= ETHEREAL_CHARGE_NORMAL)
+					. += 1.5 * (1 - charge / 100)
+>>>>>>> 6b31268b30... Merge pull request #44677 from actioninja/revert-44256-legacymovespeedkill
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)

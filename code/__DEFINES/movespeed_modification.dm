@@ -62,3 +62,10 @@
 
 #define MOVESPEED_ID_SLAUGHTER                          "SLAUGHTER"
 #define MOVESPEED_ID_DIE_OF_FATE                        "DIE_OF_FATE"
+<<<<<<< HEAD
+=======
+
+#define MOVESPEED_ID_SHOVE                              "SHOVE"
+#define MOVESPEED_ID_PRONE_DRAGGING                     "PRONE_DRAG"
+#define MOVESPEED_ID_HUMAN_CARRYING                     "HUMAN_CARRY"
+>>>>>>> 6b31268b30... Merge pull request #44677 from actioninja/revert-44256-legacymovespeedkill
