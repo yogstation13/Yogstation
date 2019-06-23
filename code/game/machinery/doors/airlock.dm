@@ -952,8 +952,8 @@
 	else if(istype(C, /obj/item/airlock_painter))
 		change_paintjob(C, user)
 	else if(istype(C, /obj/item/airlock_scaner))
-		/obj/item/airlock_scaner = C
-		C.show_accses(electronics, user)
+		var/obj/item/airlock_scaner/scan = C
+		scan.show_accses(electronics, user)
 	else if(istype(C, /obj/item/doorCharge))
 		if(!panel_open || security_level)
 			to_chat(user, "<span class='warning'>The maintenance panel must be open to apply [C]!</span>")

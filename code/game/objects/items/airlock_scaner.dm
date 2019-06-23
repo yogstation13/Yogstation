@@ -13,10 +13,10 @@
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 
-/obj/item/airlock_scaner/proc/show_accses(/obj/item/electronics/airlock/electronics, mob/user)
+/obj/item/airlock_scaner/proc/show_accses(obj/item/electronics/airlock/board, mob/user)
 	var/t1 = ""
 
-	if(electronics.one_access)
+	if(board.one_access)
 		t1 += "Restriction Type: At least one access required<br>"
 	else
 		t1 += "Restriction Type: All accesses required<br>"
@@ -32,7 +32,7 @@
 	for(var/i = 1; i <= 7; i++)
 		accesses += "<td style='width:14%' valign='top'>"
 		for(var/A in get_region_accesses(i))
-			if(A in electronics.accesses)
+			if(A in board.accesses)
 				accesses += "<font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font> "
 			else
 				accesses += "[replacetext(get_access_desc(A), " ", "&nbsp")] "
