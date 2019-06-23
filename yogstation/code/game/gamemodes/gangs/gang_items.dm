@@ -268,7 +268,7 @@
 /datum/gang_item/equipment/implant_breaker
 	name = "Implant Breaker"
 	id = "implant_breaker"
-	cost = 20
+	cost = 50
 	item_path = /obj/item/implanter/gang
 	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
 
