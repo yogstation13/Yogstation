@@ -28,7 +28,6 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/head/collectable/HoS, \
 						/obj/item/clothing/head/collectable/thunderdome, \
 						/obj/item/clothing/head/collectable/swat, \
-						/obj/item/clothing/head/hardhat/cakehat, \
 						/obj/item/clothing/head/ushanka, \
 						/obj/item/clothing/head/hardhat/pumpkinhead, \
 						/obj/item/clothing/head/kitty, \
