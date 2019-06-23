@@ -23,6 +23,8 @@
 			canister_break()
 		if(disassembled)
 			new /obj/item/canister_holding_parts (loc, 1)
+		else
+			new /obj/item/stack/sheet/metal (loc, 5)
 	qdel(src)
 
 /obj/item/canister_holding_parts
