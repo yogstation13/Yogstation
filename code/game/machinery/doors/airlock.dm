@@ -130,10 +130,10 @@
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
 	if(cyclelinkedx || cyclelinkedy)	//yogs start
-		cyclelinkairlock()
+		cyclelinkairlock_target()
 	else
 		if(cyclelinkeddir)
-			cyclelinkairlock_old()		//yogs end
+			cyclelinkairlock()		//yogs end
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
@@ -167,48 +167,46 @@
 			closeOther = A
 			break
 
-/obj/machinery/door/airlock/proc/cyclelinkairlock()
+/obj/machinery/door/airlock/proc/cyclelinkairlock_target()		//yogs start
 	if (cyclelinkedairlock)
 		cyclelinkedairlock.cyclelinkedairlock = null
 		cyclelinkedairlock = null
-	if(!cyclelinkedx && !cyclelinkedy)		//yogs start
+	if(!cyclelinkedx && !cyclelinkedy)
 		return
 	var/turf/T = get_turf(src)
 	var/obj/machinery/door/airlock/FoundDoor
 	var/mod
-	var/dir
+	var/dirlook
 	if(cyclelinkedx)
 		if(cyclelinkedx > 0)
 			mod = 1
-			dir = 4
+			dirlook = 4
 		else
 			mod = -1
-			dir = 8
-		for(var/i = 1; i < cyclelinkedx; i = i + mod)
-			T = get_step(T, dir)
+			dirlook = 8
+		for(var/i = 0; i < cyclelinkedx; i = i + mod)
+			T = get_step(T, dirlook)
 
 	if(cyclelinkedy)
 		if(cyclelinkedy > 0)
 			mod = 1
-			dir = 1
+			dirlook = 1
 		else
 			mod = -1
-			dir = 2
-		for(var/i = 1; i < cyclelinkedy; i = i + mod)
-			T = get_step(T, dir)
+			dirlook = 2
+		for(var/i = 0; i < cyclelinkedy; i = i + mod)
+			T = get_step(T, dirlook)
 
 	FoundDoor = locate() in T
-	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
+/*	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
 		FoundDoor = null
 	if (!FoundDoor)
-		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with!")
-		return
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink_target with!")
+		return*/
 	FoundDoor.cyclelinkedairlock = src
-	cyclelinkedairlock = FoundDoor
+	cyclelinkedairlock = FoundDoor				//yogs end
 
-/obj/machinery/door/airlock/proc/cyclelinkairlock_old(var/cyclelinkeddir)
-	if(cyclelinkedx || cyclelinkedy)		//this means we should be running the new method
-		return
+/obj/machinery/door/airlock/proc/cyclelinkairlock()
 	if (cyclelinkedairlock)
 		cyclelinkedairlock.cyclelinkedairlock = null
 		cyclelinkedairlock = null
@@ -225,18 +223,20 @@
 		limit--
 	while(!FoundDoor && limit)
 	if (!FoundDoor)
-		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with using  the old method!")
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink with!")
 		return
 	FoundDoor.cyclelinkedairlock = src
 	cyclelinkedairlock = FoundDoor
+
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
-		if ("cyclelinkedx" || "cyclelinkedy")
-			cyclelinkairlock()
+		if ("cyclelinkedx")				//yogs start
+			cyclelinkairlock_target()
+		if ("cyclelinkedy")
+			cyclelinkairlock_target()	//yogs end
 		if ("cyclelinkeddir")
-			cyclelinkairlock_old()							//yogs end
-
+			cyclelinkairlock()
 
 /obj/machinery/door/airlock/check_access_ntnet(datum/netdata/data)
 	return !requiresID() || ..()
