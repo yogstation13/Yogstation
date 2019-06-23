@@ -26,6 +26,11 @@ endmap
 	#voteweight 1.5
 #endmap
 
+map omegastation
+	maxplayers 35
+endmap
+
+
 #map metastation
 	#minplayers 25
 #endmap
