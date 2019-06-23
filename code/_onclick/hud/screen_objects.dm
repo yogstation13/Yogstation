@@ -66,12 +66,6 @@
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
-/obj/screen/craft/Click()
-	var/mob/living/M = usr
-	if(isobserver(usr))
-		return
-	M.OpenCraftingMenu()
-
 /obj/screen/area_creator
 	name = "create new area"
 	icon = 'icons/mob/screen_midnight.dmi'
@@ -639,6 +633,12 @@
 	icon = 'icons/mob/screen_construct.dmi'
 	icon_state = "artificer_health0"
 	screen_loc = ui_construct_health
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/screen/healths/slime
+	icon = 'icons/mob/screen_slime.dmi'
+	icon_state = "slime_health0"
+	screen_loc = ui_slime_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healthdoll
