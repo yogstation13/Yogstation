@@ -65,12 +65,12 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
 
-/datum/design/canister_holding_parts			//yogs start
-	name = "Canister of Holding Parts"
-	desc = "Parts used to build a canister of holding."
-	id = "canister_holding_parts"
+/datum/design/canister_bluespace_parts			//yogs start
+	name = "Bluespace Canister Parts"
+	desc = "Parts used to build a bluespace canister."
+	id = "canister_bluespace_parts"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250, MAT_BLUESPACE = 2000) //the same as a bag of holding + canister
-	build_path = /obj/item/canister_holding_parts
+	build_path = /obj/item/canister_bluespace_parts
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING //yogs end

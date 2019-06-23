@@ -22,20 +22,20 @@
 		if(!(stat & BROKEN))
 			canister_break()
 		if(disassembled)
-			new /obj/item/canister_holding_parts (loc, 1)
+			new /obj/item/canister_bluespace_parts (loc, 1)
 		else
 			new /obj/item/stack/sheet/metal (loc, 5)
 	qdel(src)
 
-/obj/item/canister_holding_parts
-	name = "canister of holding parts"
-	desc = "Used to build a canister of holding."
+/obj/item/canister_bluespace_parts
+	name = "bluespace canister parts"
+	desc = "Used to build a bluespace canister."
 	icon = 'icons/obj/assemblies.dmi'
-	icon_state = "canister_holding_parts"
+	icon_state = "canister_bluespace_parts"
 	force = 5 //the same as a metal sheet
 	throwforce = 10 //the same as a metal sheet
 
-/obj/item/canister_holding_parts/attack_self(mob/user)
+/obj/item/canister_bluespace_parts/attack_self(mob/user)
 	if(do_after(user, 30, target = user))
 		new /obj/machinery/portable_atmospherics/canister/bluespace(get_turf(user))
 		qdel(src)
