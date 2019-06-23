@@ -13,8 +13,6 @@
 		add_overlay("bluespace-1")
 		return
 
-	var/last_update = update
-	update = 0
 	..()
 	add_overlay("bluespace")
 
@@ -28,3 +26,16 @@
 		else
 			new /obj/item/stack/sheet/metal (loc, 5)
 	qdel(src)
+
+/obj/item/canister_holding_parts
+	name = "canister of holding parts"
+	desc = "Used to build a canister of holding."
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "canister_holding_parts"
+	force = 5 //the same as a metal sheet
+	throwforce = 10 //the same as a metal sheet
+
+/obj/item/canister_holding_parts/attack_self(mob/user)
+	if(do_after(user, 30, target = user))
+		new /obj/machinery/portable_atmospherics/canister/bluespace(get_turf(user))
+		qdel(src)
