@@ -952,8 +952,7 @@
 	else if(istype(C, /obj/item/airlock_painter))
 		change_paintjob(C, user)
 	else if(istype(C, /obj/item/airlock_scaner))
-		var/obj/item/airlock_scaner/scan = C
-		scan.show_accses(electronics, user)
+		show_accses(user)
 	else if(istype(C, /obj/item/doorCharge))
 		if(!panel_open || security_level)
 			to_chat(user, "<span class='warning'>The maintenance panel must be open to apply [C]!</span>")
@@ -1274,6 +1273,44 @@
 			overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 			assemblytype = /obj/structure/door_assembly/door_assembly_extmai
 	update_icon()
+
+/obj/machinery/door/airlock/proc/show_accses(mob/user)
+	var/t1 = ""
+	var/list/accses_list
+	if(length(req_one_access))
+		t1 += "Restriction Type: At least one access required<br>"
+		accses_list = req_one_access
+	else
+		t1 += "Restriction Type: All accesses required<br>"
+		accses_list = req_access
+
+	var/accesses = ""
+	accesses += "<div align='center'><b>Access</b></div>"
+	accesses += "<table style='width:100%'>"
+	accesses += "<tr>"
+	for(var/i = 1; i <= 7; i++)
+		accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
+	accesses += "</tr><tr>"
+	for(var/i = 1; i <= 7; i++)
+		accesses += "<td style='width:14%' valign='top'>"
+		for(var/A in get_region_accesses(i))
+			if(A in accses_list)
+				accesses += "<font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font> "
+			else
+				accesses += "[replacetext(get_access_desc(A), " ", "&nbsp")] "
+			accesses += "<br>"
+		accesses += "</td>"
+	accesses += "</tr></table>"
+	t1 += "<tt>[accesses]</tt>"
+
+	t1 += "<p><a href='?src=[REF(src)];close=1'>Close</a></p>\n"
+
+	var/datum/browser/popup = new(user, "airlock_scan", "Access Scan", 900, 500)
+	popup.set_content(t1)
+	popup.open()
+	onclose(user, "airlock_scan")
+
+
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
