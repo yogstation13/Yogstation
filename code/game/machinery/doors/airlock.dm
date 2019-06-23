@@ -951,7 +951,7 @@
 		cable.plugin(src, user)
 	else if(istype(C, /obj/item/airlock_painter))
 		change_paintjob(C, user)
-	else if(istype(C, /obj/item/airlock_scaner))
+	else if(istype(C, /obj/item/airlock_scanner))
 		show_accses(user)
 	else if(istype(C, /obj/item/doorCharge))
 		if(!panel_open || security_level)
