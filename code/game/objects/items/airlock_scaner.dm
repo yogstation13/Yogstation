@@ -1,6 +1,6 @@
 /obj/item/airlock_scaner
 	name = "airlock scaner"
-	desc = "a tool used to idetifying accses requiremnts without disassembling airlocks."
+	desc = "A tool used to idetifying accses requiremnts without disassembling airlocks. Make sure airlocks id scan routines were activated at least once before the scan"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "paint sprayer"
 	item_state = "paint sprayer"
