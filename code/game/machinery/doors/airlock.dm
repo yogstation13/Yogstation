@@ -1311,7 +1311,6 @@
 	popup.open()
 	onclose(user, "airlock_scan")
 
-
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
 	return !density || (check_access(ID) && !locked && hasPower())
