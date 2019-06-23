@@ -1,6 +1,6 @@
-
+// yogs file
 /obj/machinery/portable_atmospherics/canister/bluespace
-	name = "A bluespace canister"
+	name = "bluespace canister"
 	desc = "A canister for storing adn moving all of the gas."
 	icon_state = "yellow"
 
