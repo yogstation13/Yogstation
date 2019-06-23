@@ -6,7 +6,7 @@
 
 	volume = 3000
 
-/obj/machinery/portable_atmospherics/canister/update_icon()
+/obj/machinery/portable_atmospherics/canister/bluespace/update_icon()
 	if(stat & BROKEN)
 		cut_overlays()
 		icon_state = "[icon_state]-1"
@@ -17,14 +17,12 @@
 	add_overlay("bluespace")
 
 
-/obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
+/obj/machinery/portable_atmospherics/canister/bluespace/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(stat & BROKEN))
 			canister_break()
 		if(disassembled)
-			new /obj/item/stack/sheet/metal (loc, 10)
-		else
-			new /obj/item/stack/sheet/metal (loc, 5)
+			new /obj/item/canister_holding_parts (loc, 1)
 	qdel(src)
 
 /obj/item/canister_holding_parts
