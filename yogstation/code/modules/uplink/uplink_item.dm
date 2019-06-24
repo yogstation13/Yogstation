@@ -83,6 +83,7 @@
 	
 /datum/uplink_item/device_tools/arm/nuke
 	cost = 15
+	exclude_modes = list()
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
