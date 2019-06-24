@@ -66,3 +66,9 @@
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."
+
+/obj/structure/closet/secure_closet/chemical/PopulateContents()
+	..()
+	new /obj/item/reagent_containers/glass/bottle/facid(src)
+	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
+	new /obj/item/reagent_containers/glass/bottle/mutagen(src)
