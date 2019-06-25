@@ -26,6 +26,21 @@
 	if (user.head == src)
 		user.faction -= "goat"
 
+/obj/item/clothing/head/helmet/juggernaut
+	name = "Juggernaut Helmet"
+	desc = "I...am...the...JUGGERNAUT!!!."
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	icon = 'yogstation/icons/obj/clothing/hats.dmi'
+	icon_state = "juggernauthelm"
+	item_state = "juggernauthelm"
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 40, "acid" = 90)
+	strip_delay = 120
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	flash_protect = TRUE
+	obj_flags = IMMUTABLE_SLOW
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	slowdown = 1
+
 /obj/item/clothing/head/yogs/whitecap
 	name = "white cap"
 	desc = "A white cap. For some reason it smells like metal."
