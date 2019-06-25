@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(economy)
 	var/crew_safety_bounty = 1500
 	var/monster_bounty = 150
 	var/mood_bounty = 100
-	var/techweb_bounty = 25
+	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
 	var/slime_bounty = list("grey" = 10,
 							// tier 1
 							"orange" = 75,
@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(economy)
 							"pyrite" = 350,
 							"light pink" = 350,
 							"oil" = 350,
-							"adamantine" = 350,
+							"adamantine" = 350, // yogs end
 							// tier 4
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
