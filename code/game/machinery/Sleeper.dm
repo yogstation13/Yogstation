@@ -137,7 +137,7 @@
 			ui.open()
 	else //yogs start   aplly backup UI
 		var/mob/living/mob_occupant = occupant
-		if(isOperable(user, mob_occupant, controls_inside))
+		if(isOperable(user, mob_occupant))
 			return
 		var/dat
 		dat += "<H2>Ocupant: "
@@ -222,35 +222,34 @@
 	if(..())
 		return
 	var/mob/living/mob_occupant = occupant
-	if(isOperable(usr, mob_occupant, controls_inside))
+	if(isOperable(usr, mob_occupant))
 		return
 	if(href_list["input"])
 		if(state_open)
 			close_machine()
 		else
 			open_machine()
-	else
-		if(href_list["inject"])
-			if(!is_operational() || !mob_occupant)
+
+	if(href_list["inject"])
+		if(!is_operational() || !mob_occupant)
+			return
+		else
+			if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
 				return
 			else
-				if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
-					return
-				else
-					for(var/chem in available_chems)
-						if("[chem]" == href_list["inject"])
-							if(src.inject_chem(chem, mob_occupant))
-								. = TRUE
-							break
-			if(.)
-				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+				for(var/chem in available_chems)
+					if("[chem]" == href_list["inject"])
+						if(src.inject_chem(chem, mob_occupant))
+							. = TRUE
+						break
+		if(.)
+			if(scrambled_chems && prob(5))
+				to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
 
 	usr.set_machine(src)
+	ui_interact(usr)
 
-	updateUsrDialog()
-
-/obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside, con_in)// returns false if it is
+/obj/machinery/sleeper/proc/isOperable(mob/user, mob/living/mob_inside)// returns false if it is
 	if(!is_operational())
 		return TRUE
 	if(issilicon(user))
@@ -259,9 +258,8 @@
 		return TRUE
 	if(mob_inside != usr)
 		return FALSE
-	if(!controls_inside)
-		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
-		return TRUE
+	if(controls_inside)
+		return FALSE
 	if(!istype(mob_inside,/mob/living/carbon/human))
 		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
 		return TRUE
@@ -269,6 +267,7 @@
 	if(!HU.dna.check_mutation(TK))
 		to_chat(usr, "<span class='warning'>You cant reach the controls from inside!</span>")
 		return TRUE
+	return FALSE
 	 // yogs end
 
 /obj/machinery/sleeper/AltClick(mob/user)
