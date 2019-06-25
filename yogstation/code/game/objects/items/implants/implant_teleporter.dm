@@ -46,7 +46,7 @@
 
 /obj/item/implant/teleporter/proc/retrieve_exile()
 	if(!is_centcom_level(imp_in.z))
-		do_teleport(imp_in, pointofreturn)
+		do_teleport(imp_in, pointofreturn, 0, channel = TELEPORT_CHANNEL_WORMHOLE)
 		say(retrievalmessage)
 
 /obj/item/implant/teleporter/implant(mob/living/target, mob/user, silent = 0)
