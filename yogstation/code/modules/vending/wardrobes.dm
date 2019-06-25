@@ -8,7 +8,7 @@
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
 					/obj/item/flashlight = 2,
-					/obj/item/caution = 6,
+					/obj/item/clothing/suit/caution = 6,
 					/obj/item/holosign_creator = 2,
 					/obj/item/lightreplacer = 2,
 					/obj/item/soap/nanotrasen = 2,
