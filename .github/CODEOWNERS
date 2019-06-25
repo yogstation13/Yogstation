@@ -16,6 +16,7 @@
 
 /code/__DEFINES/MC.dm @AsV9
 /code/controllers/master.dm @AsV9
+/yogstation/code/datums/ruins/lavaland.dm @AsV9
 
 #Altoids
 
