@@ -20,30 +20,30 @@ SUBSYSTEM_DEF(economy)
 	var/crew_safety_bounty = 1500
 	var/monster_bounty = 150
 	var/mood_bounty = 100
-	var/techweb_bounty = 250
+	var/techweb_bounty = 25
 	var/slime_bounty = list("grey" = 10,
 							// tier 1
-							"orange" = 100,
-							"metal" = 100,
-							"blue" = 100,
-							"purple" = 100,
+							"orange" = 75,
+							"metal" = 75,
+							"blue" = 75,
+							"purple" = 75,
 							// tier 2
-							"dark purple" = 500,
-							"dark blue" = 500,
-							"green" = 500,
-							"silver" = 500,
-							"gold" = 500,
-							"yellow" = 500,
-							"red" = 500,
-							"pink" = 500,
+							"dark purple" = 200,
+							"dark blue" = 200,
+							"green" = 200,
+							"silver" = 200,
+							"gold" = 200,
+							"yellow" = 200,
+							"red" = 200,
+							"pink" = 200,
 							// tier 3
-							"cerulean" = 750,
-							"sepia" = 750,
-							"bluespace" = 750,
-							"pyrite" = 750,
-							"light pink" = 750,
-							"oil" = 750,
-							"adamantine" = 750,
+							"cerulean" = 350,
+							"sepia" = 350,
+							"bluespace" = 350,
+							"pyrite" = 350,
+							"light pink" = 350,
+							"oil" = 350,
+							"adamantine" = 350,
 							// tier 4
 							"rainbow" = 1000)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
