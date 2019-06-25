@@ -168,7 +168,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			A = get_area(H.loc)
 			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 				return target = current_victim
-		
+
 		A = get_area(H.loc)
 		if(H && ishuman(H) && H.stat != DEAD && H != current_victim && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(A, invalid_area_typecache) && is_station_level(H.z))
 			current_victim = H
@@ -211,10 +211,11 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
+	if(!H)
+		FindTarget()
+		return
 	switch(stage)
-
 		if(STAGE_HAUNT)
-
 			if(prob(5))
 				H.blur_eyes(1)
 
@@ -231,7 +232,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
 
 		if(STAGE_SPOOK)
-
 			if(prob(4))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
@@ -272,7 +272,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Reset_View, screens), 10)
 
 		if(STAGE_TORMENT)
-
 			if(prob(5))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
@@ -346,6 +345,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
 						O.MakeSlippery(TURF_WET_LUBE, 20)
+						empulse(src, 6, 6)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 				eating = TRUE
 
