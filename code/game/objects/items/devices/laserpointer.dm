@@ -60,9 +60,15 @@
 	..()
 	if(in_range(user, src) || isobserver(user))
 		if(!diode)
+<<<<<<< HEAD
 			to_chat(user, "<span class='notice'>The diode is missing.<span>")
 		else
 			to_chat(user, "<span class='notice'>A class <b>[diode.rating]</b> laser diode is installed. It is <i>screwed</i> in place.<span>")
+=======
+			. += "<span class='notice'>The diode is missing.</span>"
+		else
+			. += "<span class='notice'>A class <b>[diode.rating]</b> laser diode is installed. It is <i>screwed</i> in place.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/item/laser_pointer/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()

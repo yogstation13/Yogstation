@@ -49,7 +49,11 @@
 /obj/machinery/hydroponics/constructable/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Tray efficiency at <b>[rating*100]%</b>.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Tray efficiency at <b>[rating*100]%</b>.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 
 /obj/machinery/hydroponics/Destroy()

@@ -54,7 +54,11 @@
 /obj/machinery/chem_heater/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Heating reagents at <b>[heater_coefficient*1000]%</b> speed.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/machinery/chem_heater/process()
 	..()

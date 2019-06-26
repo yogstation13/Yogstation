@@ -119,7 +119,11 @@
 	if(anchored)
 		to_chat(user, "<span class='notice'>It is anchored to the ground.</span>")
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)

@@ -29,7 +29,11 @@
 	if(charging)
 		to_chat(user, "Current charge: [round(charging.percent(), 1)]%.")
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Charge rate at <b>[charge_rate]J</b> per cycle.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Charge rate at <b>[charge_rate]J</b> per cycle.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stock_parts/cell) && !panel_open)

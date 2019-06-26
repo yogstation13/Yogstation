@@ -78,9 +78,15 @@
 	..()
 	to_chat(user, "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>")
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>")
 		if(efficiency > 5)
 			to_chat(user, "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.</span>"
+		if(efficiency > 5)
+			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.

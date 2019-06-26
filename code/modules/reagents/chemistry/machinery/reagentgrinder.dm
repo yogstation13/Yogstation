@@ -70,8 +70,13 @@
 			to_chat(user, "<span class='notice'>- \A [O.name].</span>")
 
 	if(!(stat & (NOPOWER|BROKEN)))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads:</span>")
 		to_chat(user, "<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.<span>")
+=======
+		. += {"<span class='notice'>The status display reads:</span>\n
+		<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.</span>"}
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 		if(beaker)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				to_chat(user, "<span class='notice'>- [R.volume] units of [R.name].</span>")

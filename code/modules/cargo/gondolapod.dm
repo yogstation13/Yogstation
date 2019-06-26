@@ -44,9 +44,15 @@
 /mob/living/simple_animal/pet/gondola/gondolapod/examine(mob/user)
 	..()
 	if (contents.len)
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>It looks like it hasn't made its delivery yet.</b><span>")
 	else
 		to_chat(user, "<span class='notice'>It looks like it has already made its delivery.</b><span>")
+=======
+		. += "<span class='notice'>It looks like it hasn't made its delivery yet.</b></span>"
+	else
+		. += "<span class='notice'>It looks like it has already made its delivery.</b></span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /mob/living/simple_animal/pet/gondola/gondolapod/verb/check()
 	set name = "Count Contents"

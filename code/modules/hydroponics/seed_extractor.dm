@@ -59,7 +59,11 @@
 /obj/machinery/seed_extractor/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Extracting <b>[seed_multiplier]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]%</b> seeds.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Extracting <b>[seed_multiplier]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]%</b> seeds.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/machinery/seed_extractor/attackby(obj/item/O, mob/user, params)
 

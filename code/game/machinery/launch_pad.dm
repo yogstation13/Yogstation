@@ -49,7 +49,11 @@
 /obj/machinery/launchpad/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>The status display reads: Maximum range: <b>[range]</b> units.<span>")
+=======
+		. += "<span class='notice'>The status display reads: Maximum range: <b>[range]</b> units.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 
 /obj/machinery/launchpad/attackby(obj/item/I, mob/user, params)
 	if(stationary)

@@ -26,7 +26,11 @@
 /obj/machinery/defibrillator_mount/examine(mob/user)
 	..()
 	if(defib)
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>There is a defib unit hooked up. Alt-click to remove it.<span>")
+=======
+		. += "<span class='notice'>There is a defib unit hooked up. Alt-click to remove it.</span>"
+>>>>>>> d7dd679b5a... Fix span endings (#44812)
 		if(GLOB.security_level >= SEC_LEVEL_RED)
 			to_chat(user, "<span class='notice'>Due to a security situation, its locking clamps can be toggled by swiping any ID.</span>")
 		else
