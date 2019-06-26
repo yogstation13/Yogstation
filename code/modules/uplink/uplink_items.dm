@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
@@ -1589,7 +1589,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Assistant")
 	surplus = 0
-	
+
 /datum/uplink_item/role_restricted/oldtoolboxclean
 	name = "Ancient Toolbox"
 	desc = "An iconic toolbox design notorious with Assistants everywhere, this design was especially made to become more robust the more telecrystals it has inside it! Tools and insulated gloves included."
@@ -1644,7 +1644,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Clown")
 
 
-/datum/uplink_item/role_restricted/spider_injector
+/*/datum/uplink_item/role_restricted/spider_injector //YOGS START - /|SEAL OF BINDING|\ CANNOT BE BROKEN >:( ALSO WARDS OFF XENOBIOlOGIT MAINS
 	name = "Australicus Slime Mutator"
 	desc = "Crikey mate, it's been a wild travel from the Australicus sector but we've managed to get \
 			some special spider extract from the giant spiders down there. Use this injector on a gold slime core \
@@ -1652,7 +1652,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			also give them a bit of sentience though."
 	item = /obj/item/reagent_containers/syringe/spider_extract
 	cost = 10
-	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")*/ //YOGS END
 
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"

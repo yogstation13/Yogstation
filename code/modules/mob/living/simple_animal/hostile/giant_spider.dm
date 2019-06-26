@@ -141,7 +141,7 @@
 	maxHealth = 40
 	health = 40
 	var/datum/action/innate/spider/comm/letmetalkpls
-	gold_core_spawnable = HOSTILE_SPAWN //yogs xenobio spiders best spiders
+	gold_core_spawnable = NO_SPAWN //YOGS - */|SEAL OF BINDING|\* CANNOT BE BROKEN >:( ALSO WARDS OFF XENOBIOlOGIT MAINS
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize()
 	. = ..()

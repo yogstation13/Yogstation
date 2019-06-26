@@ -1744,9 +1744,9 @@
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
 
-/datum/reagent/spider_extract
+/*/datum/reagent/spider_extract //YOGS START
 	name = "Spider Extract"
 	description = "A highly specialized extract coming from the Australicus sector, used to create broodmother spiders."
 	color = "#ED2939"
 	taste_description = "upside down"
-	can_synth = FALSE
+	can_synth = FALSE */ //YOGS END

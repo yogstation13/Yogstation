@@ -152,7 +152,7 @@
 								for(var/datum/symptom/S in DD.symptoms)
 									viruslist += "[S.name] "
 								viruslist += "\]"
-				
+
 				if(viruslist)
 					investigate_log("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]", INVESTIGATE_VIROLOGY)
 					log_game("[user.real_name] ([user.ckey]) injected [L.real_name] ([L.ckey]) with [viruslist]")
@@ -274,7 +274,7 @@
 	volume = 10
 	proj_piercing = 1
 
-/obj/item/reagent_containers/syringe/spider_extract
+/*/obj/item/reagent_containers/syringe/spider_extract //YOGS START - DISGUSTING, SHOULD NOT EXIST
 	name = "spider extract syringe"
 	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
-	list_reagents = list(/datum/reagent/spider_extract = 1)
+	list_reagents = list(/datum/reagent/spider_extract = 1)*/ //YOGS END
