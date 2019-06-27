@@ -179,8 +179,13 @@
 	else
 		to_chat(user, "<span class='info'>It has an empty port for a <b>power cell</b>.</span>")
 	if(wired)
+<<<<<<< HEAD
 		to_chat(user, "Its all wired up[cell ? " and ready for usage" : ""].")
 		to_chat(user, "<span class='info'>You can use <b>wirecutters</b> to remove the wiring.</span>")
+=======
+		. += "Its all wired up[cell ? " and ready for usage" : ""].\n"+\
+		"<span class='info'>You can use <b>wirecutters</b> to remove the wiring.</span>"
+>>>>>>> a61b86a052... fixes2 (#44736)
 	else
 		to_chat(user, "<span class='info'>It has a couple spots that still need to be <b>wired</b>.</span>")
 

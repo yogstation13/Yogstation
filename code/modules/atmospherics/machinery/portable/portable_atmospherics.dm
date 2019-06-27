@@ -99,8 +99,13 @@
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	..()
 	if(holding)
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>")
 		to_chat(user, "<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>")
+=======
+		. += "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>"+\
+			"<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>"
+>>>>>>> a61b86a052... fixes2 (#44736)
 
 /obj/machinery/portable_atmospherics/proc/replace_tank(mob/living/user, close_valve, obj/item/tank/new_tank)
 	if(holding)

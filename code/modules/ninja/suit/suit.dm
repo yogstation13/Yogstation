@@ -152,10 +152,17 @@ Contents:
 	..()
 	if(s_initialized)
 		if(user == affecting)
+<<<<<<< HEAD
 			to_chat(user, "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.")
 			to_chat(user, "The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.")
 			to_chat(user, "There are <B>[s_bombs]</B> smoke bomb\s remaining.")
 			to_chat(user, "There are <B>[a_boost]</B> adrenaline booster\s remaining.")
+=======
+			. += "All systems operational. Current energy capacity: <B>[DisplayEnergy(cell.charge)]</B>.\n"+\
+			"The CLOAK-tech device is <B>[stealth?"active":"inactive"]</B>.\n"+\
+			"There are <B>[s_bombs]</B> smoke bomb\s remaining.\n"+\
+			"There are <B>[a_boost]</B> adrenaline booster\s remaining."
+>>>>>>> a61b86a052... fixes2 (#44736)
 
 /obj/item/clothing/suit/space/space_ninja/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/initialize_ninja_suit))
