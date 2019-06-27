@@ -64,6 +64,7 @@
 				var/N = new type(get_turf(user))
 				user.visible_message("[user] cuts [N] from [src].", "<span class='notice'>You cut [N] from [src].</span>")
 				salvage_num--
+				wirecutters_salvage -= type
 			else
 				to_chat(user, "<span class='warning'>You fail to salvage anything valuable from [src]!</span>")
 
