@@ -34725,6 +34725,20 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"bEy" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "bEz" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -47857,12 +47871,17 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "clC" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line,
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "clD" = (
@@ -47895,6 +47914,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+<<<<<<< HEAD
 "clF" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -47919,6 +47939,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+=======
+"clG" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "clI" = (
@@ -48178,6 +48203,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cmz" = (
@@ -48196,6 +48222,23 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+=======
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+"cmz" = (
+/obj/structure/cable,
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -48208,6 +48251,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+<<<<<<< HEAD
 "cmB" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -48215,6 +48259,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+=======
+"cmA" = (
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -48225,6 +48272,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cmC" = (
@@ -48427,12 +48478,25 @@
 /turf/open/space,
 /area/solar/port/aft)
 "cnm" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+=======
+/obj/structure/cable,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
@@ -48453,6 +48517,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cnp" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
@@ -48462,6 +48527,18 @@
 /obj/machinery/camera{
 	c_tag = "SMES Room";
 	dir = 8
+=======
+/obj/structure/cable,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/dark,
@@ -48816,9 +48893,16 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cov" = (
+<<<<<<< HEAD
 /obj/machinery/power/port_gen/pacman,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+=======
+/obj/structure/window/reinforced,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48849,6 +48933,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+<<<<<<< HEAD
 "coy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -48862,6 +48947,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+=======
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 "coz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -49081,11 +49168,26 @@
 	dir = 1;
 	pixel_y = -22
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+"cpn" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
@@ -55803,6 +55905,21 @@
 	},
 /turf/closed/wall,
 /area/maintenance/starboard)
+"gEP" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "gES" = (
 /obj/item/radio/intercom{
 	pixel_x = 28;
@@ -56305,6 +56422,17 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
+"kEm" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "kGA" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -56861,6 +56989,24 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"oYX" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "pgP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57662,6 +57808,27 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+<<<<<<< HEAD
+=======
+"vnY" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 "voe" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/bot{
@@ -80322,7 +80489,11 @@ ckw
 clC
 cmy
 cnm
+<<<<<<< HEAD
 cnL
+=======
+gEP
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 cov
 cpj
 cpS
@@ -81091,10 +81262,17 @@ aaa
 cjJ
 cky
 clG
+<<<<<<< HEAD
 cmB
 clG
 cnP
 coz
+=======
+oYX
+bEy
+oYX
+kEm
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 cpn
 cjJ
 cjJ
@@ -81346,12 +81524,21 @@ bUs
 bLv
 aaa
 cjJ
+<<<<<<< HEAD
 ckz
 clF
 cmy
 cnp
 cnO
 coy
+=======
+ckw
+clC
+vnY
+cnp
+gEP
+coz
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 cpm
 cjJ
 aaf

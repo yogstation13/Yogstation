@@ -8606,6 +8606,13 @@
 /area/maintenance/starboard)
 "auq" = (
 /obj/structure/table,
+<<<<<<< HEAD
+=======
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/twohanded/rcl/pre_loaded,
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "aur" = (
@@ -54312,8 +54319,6 @@
 /obj/item/storage/box/lights/mixed,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/meson,
-/obj/item/twohanded/rcl/pre_loaded,
-/obj/item/twohanded/rcl/pre_loaded,
 /obj/item/crowbar/large,
 /turf/open/floor/plasteel,
 /area/engine/engineering)

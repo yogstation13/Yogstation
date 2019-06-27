@@ -36,8 +36,13 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable
 	name = "power cable"
 	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
+<<<<<<< HEAD
 	icon = 'icons/obj/power_cond/cables.dmi'
 	icon_state = "0-1"
+=======
+	icon = 'icons/obj/power_cond/cable.dmi'
+	icon_state = "1-2-4-8-node"
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	level = 1 //is underfloor
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
@@ -91,6 +96,49 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(level==1)
 		hide(T.intact)
 	GLOB.cable_list += src //add it to the global cable list
+<<<<<<< HEAD
+=======
+	connect_wire()
+
+/obj/structure/cable/proc/connect_wire(clear_before_updating = FALSE)
+	var/under_thing = NONE
+	if(clear_before_updating)
+		linked_dirs = 0
+	var/obj/machinery/power/search_parent
+	for(var/obj/machinery/power/P in loc)
+		if(istype(P, /obj/machinery/power/terminal))
+			under_thing = UNDER_TERMINAL
+			search_parent = P
+			break
+		if(istype(P, /obj/machinery/power/smes))
+			under_thing = UNDER_SMES
+			search_parent = P
+			break
+	for(var/check_dir in GLOB.cardinals)
+		var/TB = get_step(src, check_dir)
+		//don't link from smes to its terminal
+		if(under_thing)
+			switch(under_thing)
+				if(UNDER_SMES)
+					var/obj/machinery/power/terminal/term = locate(/obj/machinery/power/terminal) in TB
+					//Why null or equal to the search parent?
+					//during map init it's possible for a placed smes terminal to not have initialized to the smes yet
+					//but the cable underneath it is ready to link.
+					//I don't believe null is even a valid state for a smes terminal while the game is actually running
+					//So in the rare case that this happens, we also shouldn't connect
+					//This might break.
+					if(term && (!term.master || term.master == search_parent))
+						continue
+				if(UNDER_TERMINAL)
+					var/obj/machinery/power/smes/S = locate(/obj/machinery/power/smes) in TB
+					if(S && (!S.terminal || S.terminal == search_parent))
+						continue
+		var/inverse = turn(check_dir, 180)
+		for(var/obj/structure/cable/C in TB)
+			linked_dirs |= check_dir
+			C.linked_dirs |= inverse
+			C.update_icon()
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 
 	if(d1)
 		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
@@ -369,6 +417,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
+<<<<<<< HEAD
 	//get matching cables from the first direction
 	if(d1) //if not a node cable
 		T = get_step(src, d1)
@@ -415,6 +464,15 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if(PN.is_empty()) //can happen with machines made nodeless when smoothing cables
 			qdel(PN)
+=======
+	for(var/check_dir in GLOB.cardinals)
+		if(linked_dirs & check_dir && check_dir != ignore_dir)
+			T = get_step(src, check_dir)
+			if(T)
+				. += power_list(T, src, powernetless_only)
+
+	. += power_list(loc, src, powernetless_only) //get on turf matching cables
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 
 /obj/structure/cable/proc/auto_propogate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
@@ -424,9 +482,9 @@ By design, d1 is the smallest direction and d2 is the highest
 // cut the cable's powernet at this cable and updates the powergrid
 /obj/structure/cable/proc/cut_cable_from_powernet(remove=TRUE)
 	var/turf/T1 = loc
-	var/list/P_list
 	if(!T1)
 		return
+<<<<<<< HEAD
 	if(d1)
 		T1 = get_step(T1, d1)
 		P_list = power_list(T1, src, turn(d1,180),0,cable_only = 1)	// what adjacently joins on to cut cable...
@@ -443,11 +501,25 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	var/obj/O = P_list[1]
+=======
+
+	//clear the powernet of any machines on tile first
+	for(var/obj/machinery/power/P in T1)
+		P.disconnect_from_network() 
+
+	var/list/P_list = list()
+	for(var/dir_check in GLOB.cardinals)
+		if(linked_dirs & dir_check)
+			T1 = get_step(T1, dir_check)
+			P_list += locate(/obj/structure/cable) in T1
+
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
 	if(remove)
 		moveToNullspace()
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
+<<<<<<< HEAD
 	addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 	// Disconnect machines connected to nodes
@@ -456,6 +528,10 @@ By design, d1 is the smallest direction and d2 is the highest
 			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
 				P.disconnect_from_network() //remove from current network
 
+=======
+	for(var/obj/O in P_list)
+		addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+>>>>>>> 532cc7ea63... Smart cable fixes (#44784)
 
 ///////////////////////////////////////////////
 // The cable coil object, used for laying cable
@@ -469,7 +545,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
-	custom_price = 15
+	custom_price = 30
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
