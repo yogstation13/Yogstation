@@ -147,7 +147,7 @@
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
@@ -195,7 +195,7 @@
 
 /obj/item/storage/toolbox/brass/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 28
 	STR.max_items = 28
@@ -233,21 +233,36 @@
 
 /obj/item/storage/toolbox/artistic/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 20
 	STR.max_items = 10
 
 /obj/item/storage/toolbox/artistic/PopulateContents()
-	new/obj/item/storage/crayons(src)
-	new/obj/item/crowbar(src)
-	new/obj/item/stack/cable_coil/red(src)
-	new/obj/item/stack/cable_coil/yellow(src)
-	new/obj/item/stack/cable_coil/blue(src)
-	new/obj/item/stack/cable_coil/green(src)
-	new/obj/item/stack/cable_coil/pink(src)
-	new/obj/item/stack/cable_coil/orange(src)
-	new/obj/item/stack/cable_coil/cyan(src)
-	new/obj/item/stack/cable_coil/white(src)
+	new /obj/item/storage/crayons(src)
+	new /obj/item/crowbar(src)
+	new /obj/item/stack/cable_coil/red(src)
+	new /obj/item/stack/cable_coil/yellow(src)
+	new /obj/item/stack/cable_coil/blue(src)
+	new /obj/item/stack/cable_coil/green(src)
+	new /obj/item/stack/cable_coil/pink(src)
+	new /obj/item/stack/cable_coil/orange(src)
+	new /obj/item/stack/cable_coil/cyan(src)
+	new /obj/item/stack/cable_coil/white(src)
+
+/obj/item/storage/toolbox/ammo
+	name = "ammo box"
+	desc = "It contains a few clips."
+	icon_state = "ammobox"
+	item_state = "ammobox"
+
+/obj/item/storage/toolbox/ammo/PopulateContents()
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_box/a762(src)
 
 //floorbot assembly
 /obj/item/storage/toolbox/attackby(obj/item/stack/tile/plasteel/T, mob/user, params)
@@ -260,7 +275,7 @@
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
 		return
-	if(!is_type_in_list(src, allowed_toolbox))
+	if(!is_type_in_list(src, allowed_toolbox) && (type != /obj/item/storage/toolbox))
 		return
 	if(contents.len >= 1)
 		to_chat(user, "<span class='warning'>They won't fit in, as there is already stuff inside!</span>")
@@ -269,6 +284,8 @@
 		var/obj/item/bot_assembly/floorbot/B = new
 		B.toolbox = type
 		switch(B.toolbox)
+			if(/obj/item/storage/toolbox)
+				B.toolbox_color = "r"
 			if(/obj/item/storage/toolbox/emergency)
 				B.toolbox_color = "r"
 			if(/obj/item/storage/toolbox/electrical)
@@ -279,7 +296,7 @@
 				B.toolbox_color = "s"
 		user.put_in_hands(B)
 		B.update_icon()
-		to_chat(user, "<span class='notice'>You add the tiles into the empty [src.name]. They protrude from the top.</span>")
+		to_chat(user, "<span class='notice'>You add the tiles into the empty [name]. They protrude from the top.</span>")
 		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>You need 10 floor tiles to start building a floorbot!</span>")

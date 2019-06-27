@@ -1,0 +1,4 @@
+author: " 4dplanner"
+delete-after: true 
+changes: 
+  - bugfix: "Colossi now cannot kill themselves with colossus bolts."

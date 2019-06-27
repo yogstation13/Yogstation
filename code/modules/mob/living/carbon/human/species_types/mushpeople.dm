@@ -3,14 +3,14 @@
 	id = "mush"
 	mutant_bodyparts = list("caps")
 	default_features = list("caps" = "Round")
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN | SLIME_EXTRACT
 
 	fixed_mut_color = "DBBF92"
 	hair_color = "FF4B19" //cap color, spot color uses eye color
 	nojumpsuit = TRUE
 
 	say_mod = "poofs" //what does a mushroom sound like
-	species_traits = list(MUTCOLORS, NOEYES, NO_UNDERWEAR)
+	species_traits = list(MUTCOLORS, NOEYESPRITES,NOFLASH, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_NOBREATH)
 	speedmod = 1.5 //faster than golems but not by much
 
@@ -51,9 +51,9 @@
 	QDEL_NULL(mush)
 
 /datum/species/mush/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.id == "weedkiller")
+	if(chem.type == /datum/reagent/toxin/plantbgone/weedkiller)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
 		return TRUE
 
 /datum/species/mush/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)

@@ -1,0 +1,5 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - rscadd: "Added trafic consoles to Tcomms on YogsDonut, YogsDelta, Yogsmeta"
+  - rscdel: "Removed monitoring consoles from Tcomms on YogsDonut, YogsDelta, Yogsmeta"

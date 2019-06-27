@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Mops can now be printed at the autolathe and protolathe."

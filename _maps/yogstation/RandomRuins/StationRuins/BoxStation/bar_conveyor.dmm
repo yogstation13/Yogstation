@@ -45,7 +45,6 @@
 	amount = 50
 	},
 /obj/item/stack/cable_coil,
-/obj/item/gun/ballistic/shotgun/doublebarrel,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ai" = (
@@ -976,12 +975,12 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
 "cD" = (
-/obj/structure/closet/gmcloset,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil,
 /obj/item/flashlight/lamp,
 /obj/item/flashlight/lamp/green,
+/obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cE" = (
@@ -1110,6 +1109,12 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"gz" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-26"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/bar)
 "nw" = (
 /obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
@@ -1189,7 +1194,7 @@ ab
 "}
 (4,1,1) = {"
 ac
-ao
+gz
 KY
 aP
 bc

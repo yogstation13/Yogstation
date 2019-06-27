@@ -1,0 +1,5 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "Engineers now can access gravity generator on delta"
+  - tweak: "Engineers now cant access atmos on delta"

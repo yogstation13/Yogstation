@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Stealthmins can now be pinged by their fake ckey."

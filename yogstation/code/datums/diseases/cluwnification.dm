@@ -4,7 +4,7 @@
 	max_stages = 5
 	stage_prob = 2
 	cure_text = "A small mix of nothing" // heh
-	cures = list("nothing")
+	cures = list(/datum/reagent/consumable/nothing)
 	agent = "Fury from the circus of hell itself."
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "Subject will become dizzy, confused and steadily more retarded before being turned into a cluwne!"

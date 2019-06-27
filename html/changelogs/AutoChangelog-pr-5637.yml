@@ -1,0 +1,4 @@
+author: " kriskog"
+delete-after: true 
+changes: 
+  - bugfix: "Communications console window no longer updates, won't steal focus anymore."

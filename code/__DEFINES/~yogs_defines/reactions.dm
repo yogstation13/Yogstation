@@ -1,0 +1,2 @@
+#define FUSION_TEMPERATURE_THRESHOLD_MINIMUM 4000 // This is the minimum possible required temperature that dilithium can lower fusion to.
+#define DILITHIUM_LAMBDA 0.0087 // Affects how much Dilithium is required to get the required fusion temperature down to FUSION_TEMPERATURE_THRESHOLD_MINIMUM
