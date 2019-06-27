@@ -105,14 +105,14 @@
 		if(EFFECT_SLUR)
 			slurring = max(slurring,(effect * hit_percent))
 		if(EFFECT_STUTTER)
-			if((status_flags & CANSTUN) && !has_trait(TRAIT_STUNIMMUNE)) // stun is usually associated with stutter
+			if((status_flags & CANSTUN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) // stun is usually associated with stutter
 				stuttering = max(stuttering,(effect * hit_percent))
 		if(EFFECT_EYE_BLUR)
 			blur_eyes(effect * hit_percent)
 		if(EFFECT_DROWSY)
 			drowsyness = max(drowsyness,(effect * hit_percent))
 		if(EFFECT_JITTER)
-			if((status_flags & CANSTUN) && !has_trait(TRAIT_STUNIMMUNE))
+			if((status_flags & CANSTUN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))
 				jitteriness = max(jitteriness,(effect * hit_percent))
 		if(EFFECT_PARALYZE)
 			Paralyze(effect * hit_percent)
@@ -242,10 +242,10 @@
 /mob/living/proc/getStaminaLoss()
 	return staminaloss
 
-/mob/living/proc/adjustStaminaLoss(amount, updating_stamina = TRUE, forced = FALSE)
+/mob/living/proc/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
 
-/mob/living/proc/setStaminaLoss(amount, updating_stamina = TRUE, forced = FALSE)
+/mob/living/proc/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
@@ -258,7 +258,7 @@
 		update_stamina()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
+/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE)
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
 	adjustStaminaLoss(stamina, FALSE)

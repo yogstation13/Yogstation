@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Lightbulbs discoloured by spraycans can now actually be cleaned by space cleaner, as intended."

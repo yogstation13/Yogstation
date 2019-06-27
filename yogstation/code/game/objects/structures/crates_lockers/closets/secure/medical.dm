@@ -31,6 +31,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
 	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/clothing/suit/toggle/labcoat/pmedic_jacket(src)
 	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/storage/belt/medical(src)
 
@@ -65,3 +66,9 @@
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."
+
+/obj/structure/closet/secure_closet/chemical/PopulateContents()
+	..()
+	new /obj/item/reagent_containers/glass/bottle/facid(src)
+	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
+	new /obj/item/reagent_containers/glass/bottle/mutagen(src)

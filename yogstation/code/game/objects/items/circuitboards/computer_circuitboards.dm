@@ -15,3 +15,7 @@
 	name = "Telecommunications Traffic Control (Computer Board)"
 	build_path = /obj/machinery/computer/telecomms/traffic
 //END NTSL PORT
+
+/obj/item/circuitboard/computer/arcade/minesweeper
+	name = "Minesweeper (Computer Board)"
+	build_path = /obj/machinery/computer/arcade/minesweeper

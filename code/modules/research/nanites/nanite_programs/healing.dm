@@ -61,7 +61,7 @@
 /datum/nanite_program/purging/active_effect()
 	host_mob.adjustToxLoss(-1)
 	for(var/datum/reagent/R in host_mob.reagents.reagent_list)
-		host_mob.reagents.remove_reagent(R.id,1)
+		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/brain_heal
 	name = "Neural Regeneration"
@@ -155,7 +155,7 @@
 /datum/nanite_program/purging_advanced/active_effect()
 	host_mob.adjustToxLoss(-1)
 	for(var/datum/reagent/toxin/R in host_mob.reagents.reagent_list)
-		host_mob.reagents.remove_reagent(R.id,1)
+		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/regenerative_advanced
 	name = "Bio-Reconstruction"
@@ -215,7 +215,7 @@
 	if(!iscarbon(host_mob)) //nonstandard biology
 		return FALSE
 	var/mob/living/carbon/C = host_mob
-	if(C.suiciding || C.hellbound || C.has_trait(TRAIT_HUSK)) //can't revive
+	if(C.suiciding || C.hellbound || HAS_TRAIT(C, TRAIT_HUSK)) //can't revive
 		return FALSE
 	if((world.time - C.timeofdeath) > 1800) //too late
 		return FALSE

@@ -20,6 +20,8 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.registered_name = H.real_name
 	W.update_label(W.registered_name, W.assignment)
+	
+	H.ignores_capitalism = TRUE // Yogs -- Lets ERTs buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander
 	name = "ERT Commander"
@@ -191,6 +193,8 @@
 	W.assignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
+	
+	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"

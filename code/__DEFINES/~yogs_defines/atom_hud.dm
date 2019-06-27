@@ -1,1 +1,1 @@
-#define ANTAG_HUD_VAMPIRE 20
+#define ANTAG_HUD_VAMPIRE 23

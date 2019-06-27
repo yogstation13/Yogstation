@@ -21,6 +21,14 @@
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
 	req_access = list(ACCESS_TCOM_ADMIN)
+	
+/obj/machinery/computer/telecomms/traffic/Initialize(mapload)
+	. = ..()
+	GLOB.traffic_comps += src
+
+/obj/machinery/computer/telecomms/traffic/Destroy()
+	GLOB.traffic_comps -= src
+	return ..()
 
 /obj/machinery/computer/telecomms/traffic/proc/stop_editing()
 	if(editingcode)

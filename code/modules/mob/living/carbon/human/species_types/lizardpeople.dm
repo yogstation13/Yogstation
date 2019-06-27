@@ -78,7 +78,9 @@
 	id = "ashlizard"
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE)
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH)
+	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
+	mutantlungs = /obj/item/organ/lungs/ashwalker
+	breathid = "n2" // yogs end
 
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
