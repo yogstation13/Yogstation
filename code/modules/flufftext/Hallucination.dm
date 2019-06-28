@@ -1089,6 +1089,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/lava/Crossed(atom/movable/AM)
 	if(AM == target)
+		//Yogs start -- Sometimes-real hallucinations
+		if(prob(5))
+			burn_stuff(AM)
+			return
+		//yogs end
 		target.adjustStaminaLoss(20)
 		new /datum/hallucination/fire(target)
 
@@ -1131,6 +1136,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/anomaly/Crossed(atom/movable/AM)
 	if(AM == target)
+		//yogs start -- Sometimes-real hallucinations
+		if(prob(5))
+			mobShock(AM)
+			return
+		//yogs end
 		new /datum/hallucination/shock(target)
 
 /datum/hallucination/death
