@@ -16,7 +16,7 @@
 	REMOVE_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE, GENETIC_MUTATION)
 
 /datum/mutation/human/alcohol_generate
-	name = "Alcohol Generation"
+	name = "Auto-brewery Syndrome"
 	desc = "The patient's body now naturally produces alcohol into their bloodstream."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Your liver feels amazing.</span>"
