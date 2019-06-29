@@ -62,7 +62,7 @@
 				if(!T.density)
 					if(prob(EFFECT_PROB_VERYHIGH) && !(locate(/obj/effect/decal/cleanable/greenglow) in T))
 						var/obj/effect/decal/cleanable/reagentdecal = new/obj/effect/decal/cleanable/greenglow(T)
-						reagentdecal.reagents.add_reagent("radium", 7)
+						reagentdecal.reagents.add_reagent(/datum/reagent/uranium/radium, 7)
 		else if(prob(EFFECT_PROB_MEDIUM-badThingCoeffIfCrit))
 			var/savedName = "[exp_on]"
 			ejectItem(TRUE)
@@ -82,7 +82,7 @@
 			new /obj/item/stack/sheet/mineral/plasma(get_turf(pick(oview(1,src))))
 		else if(prob(EFFECT_PROB_VERYLOW-badThingCoeffIfCrit))
 			visible_message("<span class='danger'>[src] destroys [exp_on], leaking dangerous gas!</span>")
-			chosenchem = pick("carbon","radium","toxin","condensedcapsaicin","mushroomhallucinogen","space_drugs","ethanol","beepskysmash")
+			chosenchem = pick(/datum/reagent/carbon,/datum/reagent/uranium/radium,/datum/reagent/toxin,/datum/reagent/consumable/condensedcapsaicin,/datum/reagent/drug/mushroomhallucinogen,/datum/reagent/drug/space_drugs,/datum/reagent/consumable/ethanol,/datum/reagent/consumable/ethanol/beepsky_smash)
 			var/datum/reagents/R = new/datum/reagents(50)
 			R.my_atom = src
 			R.add_reagent(chosenchem , 50)
@@ -95,7 +95,7 @@
 			ejectItem(TRUE)
 		else if(prob(EFFECT_PROB_VERYLOW-badThingCoeffIfCrit))
 			visible_message("<span class='danger'>[src]'s chemical chamber has sprung a leak!</span>")
-			chosenchem = pick("mutationtoxin","nanomachines","sacid")
+			chosenchem = pick(/datum/reagent/mutationtoxin/felinid,/datum/reagent/nanomachines,/datum/reagent/toxin/acid)
 			var/datum/reagents/R = new/datum/reagents(50)
 			R.my_atom = src
 			R.add_reagent(chosenchem , 50)
@@ -213,7 +213,7 @@
 	if(exp == SCANTYPE_OBLITERATE)
 		visible_message("<span class='warning'>[exp_on] activates the crushing mechanism, [exp_on] is destroyed!</span>")
 		if(linked_console.linked_lathe)
-			GET_COMPONENT_FROM(linked_materials, /datum/component/material_container, linked_console.linked_lathe)
+			var/datum/component/material_container/linked_materials = linked_console.linked_lathe.GetComponent(/datum/component/material_container)
 			for(var/material in exp_on.materials)
 				linked_materials.insert_amount( min((linked_materials.max_amount - linked_materials.total_amount), (exp_on.materials[material])), material)
 		if(prob(EFFECT_PROB_LOW) && criticalReaction)

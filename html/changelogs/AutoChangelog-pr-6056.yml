@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - tweak: "Quantum teleportation now makes pretty rainbow sparks instead of the normal ones."
+  - bugfix: "Non-bluespace teleportation (spells etc.) no longer makes sparks."

@@ -219,12 +219,9 @@
 	if(marked == target)
 		to_chat(user, "<span class='warning'>This specimen is already marked!</span>")
 		return
-	if(ishuman(target))
-		if(isabductor(target))
-			marked = target
-			to_chat(user, "<span class='notice'>You mark [target] for future retrieval.</span>")
-		else
-			prepare(target,user)
+	if(isabductor(target) || iscow(target))
+		marked = target
+		to_chat(user, "<span class='notice'>You mark [target] for future retrieval.</span>")
 	else
 		prepare(target,user)
 
@@ -755,7 +752,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon_state = "bed"
 	can_buckle = 1
 
-	var/static/list/injected_reagents = list("corazone")
+	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
 /obj/structure/table/optable/abductor/Crossed(atom/movable/AM)
 	. = ..()

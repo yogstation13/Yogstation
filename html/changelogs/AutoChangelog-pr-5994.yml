@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Quiet Mode no longer has the opposite effect of basically forcing you to be antagonist."

@@ -78,11 +78,16 @@
 	build_zooming()
 
 /obj/item/gun/Destroy()
-	QDEL_NULL(pin)
-	QDEL_NULL(gun_light)
-	QDEL_NULL(bayonet)
-	QDEL_NULL(chambered)
-	QDEL_NULL(azoom)
+	if(isobj(pin)) //Can still be the initial path, then we skip
+		QDEL_NULL(pin)
+	if(gun_light)
+		QDEL_NULL(gun_light)
+	if(bayonet)
+		QDEL_NULL(bayonet)
+	if(chambered) //Not all guns are chambered (EMP'ed energy guns etc)
+		QDEL_NULL(chambered)
+	if(azoom)
+		QDEL_NULL(azoom)
 	return ..()
 
 /obj/item/gun/handle_atom_del(atom/A)
@@ -262,7 +267,7 @@
 		else //Smart spread
 			sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
 		before_firing(target,user)
-		if(!chambered.fire_casing(target, user, params, ,suppressed, zone_override, sprd))
+		if(!chambered.fire_casing(target, user, params, ,suppressed, zone_override, sprd, src))
 			shoot_with_empty_chamber(user)
 			firing_burst = FALSE
 			return FALSE
@@ -308,7 +313,7 @@
 					return
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 			before_firing(target,user)
-			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd))
+			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, src))
 				shoot_with_empty_chamber(user)
 				return
 			else
