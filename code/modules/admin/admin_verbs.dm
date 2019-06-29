@@ -76,6 +76,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
+<<<<<<< HEAD
 	/datum/admins/proc/open_borgopanel,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
@@ -86,6 +87,10 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/nerf_or_nothing, // yogs -- Groudon's meme nerf verb
 	/client/proc/delay_shuttle, // yogs -- Allows admins to delay the shuttle from launching
 	/client/proc/queue_check // Yogs -- Some queue manipulation/debuggin kinda verbs
+=======
+	/client/proc/discord_id_manipulation,
+	/datum/admins/proc/open_borgopanel
+>>>>>>> c4e75bc40b... [READY] SSdiscord and Round Notifications (#44231)
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
