@@ -237,10 +237,13 @@
 	//BZ (Facepunch port of their Agent B)
 	if(breath_gases[/datum/gas/bz])
 		var/bz_partialpressure = (breath_gases[/datum/gas/bz][MOLES]/breath.total_moles())*breath_pressure
+		/* Yogs comment-out: Smoothed BZ hallucination levels
 		if(bz_partialpressure > 1)
 			hallucination += 10
 		else if(bz_partialpressure > 0.01)
 			hallucination += 5
+		*/
+		hallucination += round(BZ_MAX_HALLUCINATION * (1 - NUM_E ** (-BZ_LAMBDA * bz_partialpressure))) // Yogs -- Better BZ hallucination values. Keep in mind that hallucination has to be an integer value, due to how it's handled in handle_hallucination()
 
 	//TRITIUM
 	if(breath_gases[/datum/gas/tritium])
