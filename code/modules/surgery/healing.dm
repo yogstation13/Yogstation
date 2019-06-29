@@ -36,7 +36,7 @@
 		woundtype = "wounds"
 	else if(brutehealing)
 		woundtype = "bruises"
-	else //why are you trying to 0,0...?
+	else //why are you trying to 0,0...? 
 		woundtype = "burns"
 	user.visible_message("[user] attempts to patch some of [target]'s [woundtype].", "<span class='notice'>You attempt to patch some of [target]'s [woundtype].</span>")
 
