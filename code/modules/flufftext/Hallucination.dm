@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				A = image('icons/mob/monkey.dmi',H,"monkey1")
 				A.name = "Monkey ([rand(1,999)])"
 			if("carp")//Carp
-				A = image('icons/mob/animal.dmi',H,"carp")
+				A = image('icons/mob/carp.dmi',H,"carp")
 				A.name = "Space Carp"
 			if("corgi")//Corgi
 				A = image('icons/mob/pets.dmi',H,"corgi")
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			chosen = capitalize(pick(speak_messages))
 		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		var/message = target.compose_message(person,understood_language,chosen,null,person.get_spans(),face_name = TRUE)
+		var/message = target.compose_message(person,understood_language,chosen,null,list(person.speech_span),face_name = TRUE)
 		feedback_details += "Type: Talk, Source: [person.real_name], Message: [message]"
 		to_chat(target, message)
 		if(target.client)
@@ -711,7 +711,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 			humans += H
 		person = pick(humans)
-		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",person.get_spans(),face_name = TRUE)
+		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",list(person.speech_span),face_name = TRUE)
 		feedback_details += "Type: Radio, Source: [person.real_name], Message: [message]"
 		to_chat(target, message)
 	qdel(src)
@@ -1073,6 +1073,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	target = _target
 	show_icon()
+	creationtime = world.time // Yogs -- part of the balancing for sometimes-real hallucinations
 	QDEL_IN(src, rand(200, 450))
 
 /obj/effect/hallucination/danger/Destroy()
@@ -1089,6 +1090,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/lava/Crossed(atom/movable/AM)
 	if(AM == target)
+		//Yogs start -- Sometimes-real hallucinations
+		if(prob(10) && (target.hallucination > 100) && (world.time > creationtime + 20) ) // If halluc stacks are high enough and we're old enough to do bad things
+			burn_stuff(AM)
+			return
+		//yogs end
 		target.adjustStaminaLoss(20)
 		new /datum/hallucination/fire(target)
 
@@ -1131,6 +1137,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/anomaly/Crossed(atom/movable/AM)
 	if(AM == target)
+		//yogs start -- Sometimes-real hallucinations
+		if(prob(10) && (target.hallucination > 100) && (world.time > creationtime + 20) ) // If halluc stacks are high enough and we're old enough to do bad things
+			mobShock(AM)
+			return
+		//yogs end
 		new /datum/hallucination/shock(target)
 
 /datum/hallucination/death

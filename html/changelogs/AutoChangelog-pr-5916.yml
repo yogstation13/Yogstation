@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a cell charger to the free miner ship. Adds fans to the airlocks that were missing them."
+  - bugfix: "The Free miner RIPLEY can actually be built and made space-proof. Engines also face the correct direction."
