@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "A new objective type: \"Protect Object\". Please use it at leasure for badminnery."
+  - rscadd: "Ashlizards are now more savage and like stuff like sacrificing and head spikes."

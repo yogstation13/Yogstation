@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(!on)
 		return
-		
+
 	if(filter && !ispath(filter)) // Yogs -- for debugging telecomms later when I soop up NTSL some more
 		CRASH("relay_information() was given a path filter that wasn't actually a path!")
 	var/send_count = 0
@@ -144,6 +144,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(traffic > 0)
 		traffic -= netspeed
+		if (traffic < 0)  //yogs start
+			traffic = 0   //yogs end
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
