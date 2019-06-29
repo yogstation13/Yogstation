@@ -233,13 +233,8 @@
 					/obj/item/clothing/suit/armor/vest/alt = 1,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/glasses/sunglasses/reagent = 1,
-<<<<<<< HEAD
 					/obj/item/storage/belt/bandolier = 1) // yogs - removed pet collar
-=======
-					/obj/item/clothing/neck/petcollar = 1,
-					/obj/item/storage/belt/bandolier = 1)
 	premium = list(/obj/item/storage/box/dishdrive = 1)
->>>>>>> 2bb0e101e4... Merge pull request #44756 from Mickyan/dishdrive_stuff
 	refill_canister = /obj/item/vending_refill/wardrobe/bar_wardrobe
 	payment_department = ACCOUNT_SRV
 /obj/item/vending_refill/wardrobe/bar_wardrobe
