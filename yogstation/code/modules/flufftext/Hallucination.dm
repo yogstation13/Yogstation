@@ -1,3 +1,6 @@
+/obj/effect/hallucination/danger
+	var/creationtime // Stores the time this halluc was spawned in, to determine whether it can even do the "it's actually real" meme that occurs sometimes
+
 /obj/effect/hallucination/danger/lava/proc/burn_stuff(AM) // A slightly-altered copy of /turf/open/lava/proc/burn_stuff(), from 28 June 2019.
 	if(!AM)
 		return

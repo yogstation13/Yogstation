@@ -1073,6 +1073,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	target = _target
 	show_icon()
+	creationtime = world.time // Yogs -- part of the balancing for sometimes-real hallucinations
 	QDEL_IN(src, rand(200, 450))
 
 /obj/effect/hallucination/danger/Destroy()
@@ -1090,7 +1091,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/danger/lava/Crossed(atom/movable/AM)
 	if(AM == target)
 		//Yogs start -- Sometimes-real hallucinations
-		if(prob(5))
+		if(prob(10) && (target.hallucination > 100) && (world.time > creationtime + 20) ) // If halluc stacks are high enough and we're old enough to do bad things
 			burn_stuff(AM)
 			return
 		//yogs end
@@ -1137,7 +1138,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/danger/anomaly/Crossed(atom/movable/AM)
 	if(AM == target)
 		//yogs start -- Sometimes-real hallucinations
-		if(prob(5))
+		if(prob(10) && (target.hallucination > 100) && (world.time > creationtime + 20) ) // If halluc stacks are high enough and we're old enough to do bad things
 			mobShock(AM)
 			return
 		//yogs end
