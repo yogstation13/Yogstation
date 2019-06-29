@@ -10,14 +10,9 @@
 	var/alarm_health = HEALTH_THRESHOLD_CRIT
 
 /obj/item/assembly/health/examine(mob/user)
-<<<<<<< HEAD
-	..()
-	to_chat(user, "<span class='notice'>Use a multitool to swap between \"detect death\" mode and \"detect critical state\" mode.</span>")
-=======
 	. = ..()
 	. += "Use it in hand to turn it off/on and Alt-click to swap between \"detect death\" mode and \"detect critical state\" mode."
 	. += "[src.scanning ? "The sensor is on and you can see [health_scan] displayed on the screen" : "The sensor is off"]."
->>>>>>> 7b59c0f3b4... Simplify health sensor commands (#44687)
 
 /obj/item/assembly/health/activate()
 	if(!..())
