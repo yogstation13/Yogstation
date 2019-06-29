@@ -956,13 +956,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 1
 	return FALSE
 
-/datum/species/proc/handle_speech(message, mob/living/carbon/human/H)
-	return message
-
-//return a list of spans or an empty list
-/datum/species/proc/get_spans()
-	return list()
-
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
 	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
 
@@ -1109,7 +1102,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					. += (health_deficiency / 75)
 				else
 					. += (health_deficiency / 25)
-		if(CONFIG_GET(flag/disable_human_mood))
+		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
