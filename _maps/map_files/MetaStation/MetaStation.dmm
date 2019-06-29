@@ -11260,6 +11260,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
+<<<<<<< HEAD
 /area/maintenance/port/fore)
 "auO" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -11279,6 +11280,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+=======
+/area/maintenance/starboard)
+"auR" = (
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
+>>>>>>> c863766ea4... THE VOMITGOOSE PR (#44563)
 "auU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -100713,7 +100721,7 @@ ckP
 ckS
 ckP
 ckP
-ckP
+auR
 cjt
 crh
 ckN

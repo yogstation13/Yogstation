@@ -6,9 +6,18 @@
 /turf/closed/wall,
 /area/space/nearstation)
 "aac" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/processing)
+=======
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/department/crew_quarters/bar)
+>>>>>>> c863766ea4... THE VOMITGOOSE PR (#44563)
 "aad" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -80116,7 +80125,7 @@ bYm
 bXA
 bVM
 bVU
-bSy
+aac
 bSy
 bWC
 aRr
