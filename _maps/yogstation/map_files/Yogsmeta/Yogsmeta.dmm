@@ -81973,9 +81973,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"fvJ" = (
-/turf/open/space/basic,
-/area/quartermaster/miningdock)
 "fwb" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -98550,7 +98547,7 @@ aaa
 aaa
 aaa
 aaa
-fvJ
+aaa
 aaa
 aaa
 aaa
