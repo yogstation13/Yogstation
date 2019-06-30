@@ -173,7 +173,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	can_adjust = FALSE
+	can_adjust = TRUE
 
 /obj/item/clothing/under/yogs/krofficer
 	name = "armory officer uniform"
