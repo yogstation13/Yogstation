@@ -3025,6 +3025,7 @@
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\security.dm"
 #include "yogstation\code\game\objects\structures\crates_lockers\closets\secure\service.dm"
+#include "yogstation\code\game\objects\structures\signs\signs_plaques.dm"
 #include "yogstation\code\game\turfs\simulated\ballpit.dm"
 #include "yogstation\code\game\turfs\simulated\minerals.dm"
 #include "yogstation\code\game\turfs\simulated\floor\fancy_floor.dm"
