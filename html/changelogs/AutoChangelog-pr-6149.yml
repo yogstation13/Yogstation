@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "the TB antidotes injectors now actually cure TB and have some omnizine so you dont die from perfluoride"
