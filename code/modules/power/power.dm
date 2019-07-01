@@ -252,9 +252,18 @@
 		if( istype(P, /obj/structure/cable))
 			var/obj/structure/cable/C = P
 			if(C.powernet != PN) //add it to the powernet, if it isn't already there
+<<<<<<< HEAD
 				PN.add_cable(C)
 			worklist |= C.get_connections() //get adjacents power objects, with or without a powernet
 
+=======
+				if(!propogate_after_search)
+					PN.add_cable(C)
+				if(C.powernet && use_old_if_found)
+					propagate_network(C, C.powernet, FALSE, TRUE, TRUE)
+					return
+				worklist += C.get_connections(skip_assigned_powernets, worklist[P]) //get adjacents power objects, with or without a powernet
+>>>>>>> a7401c80dd... Fix smart cable lag issues (#44899)
 		else if(P.anchored && istype(P, /obj/machinery/power))
 			var/obj/machinery/power/M = P
 			found_machines |= M //we wait until the powernet is fully propagates to connect the machines
