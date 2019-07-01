@@ -340,12 +340,7 @@
 	name = "syndicate xray goggles"
 	desc = "A pair of xray goggles manufactured by the Syndicate."
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-<<<<<<< HEAD
-	flash_protect = -1
-	
-=======
 
->>>>>>> 6ce5766f3f... Makes NVGs, It's HUDs and Thermals more sensitive to bright lights. (#44847)
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
