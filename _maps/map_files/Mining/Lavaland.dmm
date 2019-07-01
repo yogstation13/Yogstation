@@ -1701,12 +1701,18 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "eq" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
+=======
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "er" = (

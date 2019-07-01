@@ -5852,6 +5852,7 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/security/warden)
+<<<<<<< HEAD
 "akG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -5866,6 +5867,8 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "akI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -9971,9 +9974,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/machinery/camera{
 	c_tag = "Labor Shuttle Control Desk";
 	dir = 4
@@ -12162,9 +12162,6 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "awC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -15127,9 +15124,6 @@
 /area/security/brig)
 "aCs" = (
 /obj/structure/table/wood,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Detective APC";
@@ -19342,11 +19336,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aKZ" = (
-/obj/machinery/door/window/northleft{
-	dir = 8;
-	name = "MuleBot Supply Access";
-	req_access_txt = "50"
-	},
 /obj/structure/plasticflaps/opaque,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -33263,7 +33252,6 @@
 /area/aisat)
 "blB" = (
 /obj/machinery/computer/teleporter,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -26
@@ -35164,6 +35152,14 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
+=======
+/obj/effect/turf_decal/box/red,
+/obj/effect/turf_decal/arrows/red{
+	icon_state = "arrows_red";
+	dir = 4
+	},
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpm" = (
@@ -35328,8 +35324,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
+=======
+/obj/effect/turf_decal/box/red,
+/obj/effect/turf_decal/arrows/red{
+	icon_state = "arrows_red";
+	dir = 8
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
@@ -36520,6 +36523,7 @@
 	dir = 1;
 	network = list("minisat")
 	},
+<<<<<<< HEAD
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "MiniSat Exterior APC";
@@ -36529,6 +36533,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -36564,6 +36570,12 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "MiniSat Exterior APC";
+	areastring = "/area/aisat";
+	pixel_y = -23
+	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "brU" = (
@@ -36583,6 +36595,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "brV" = (
@@ -38162,12 +38175,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bvb" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
 "bvd" = (
@@ -51177,7 +51188,6 @@
 /turf/closed/wall,
 /area/hallway/secondary/service)
 "bVA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
@@ -52827,10 +52837,6 @@
 	},
 /obj/item/clothing/neck/stethoscope,
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -55837,9 +55843,6 @@
 "ceF" = (
 /obj/structure/bed/roller,
 /obj/item/radio/intercom{
-	frequency = 1485;
-	listening = 1;
-	name = "Station Intercom (Medbay)";
 	pixel_y = -30
 	},
 /obj/machinery/camera{
@@ -58372,10 +58375,6 @@
 "cjE" = (
 /obj/structure/bed/roller,
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_x = -30
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -59153,10 +59152,6 @@
 /area/medical/medbay/central)
 "clm" = (
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_y = -30
 	},
 /turf/open/floor/plasteel/white,
@@ -60179,10 +60174,6 @@
 "cnt" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_x = 30
 	},
 /obj/structure/bedsheetbin{
@@ -62477,10 +62468,6 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_y = -30
 	},
 /obj/machinery/light,
@@ -62921,10 +62908,6 @@
 /area/medical/surgery)
 "csn" = (
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_y = -30
 	},
 /obj/structure/closet/crate/freezer/blood,
@@ -67584,10 +67567,6 @@
 "cAS" = (
 /obj/structure/chair/stool,
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_x = -30
 	},
 /turf/open/floor/plasteel/cafeteria{
@@ -67656,10 +67635,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel/white,
@@ -83254,6 +83229,27 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
+=======
+"iOo" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/security_officer,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/security/main)
+"iXM" = (
+/turf/open/space/basic,
+/area/space/nearstation)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "jah" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -84495,6 +84491,7 @@
 /area/maintenance/department/science)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/janitor)
 "xop" = (
@@ -112716,7 +112713,7 @@ agU
 ahH
 aeq
 ajy
-akH
+arj
 amb
 ans
 amf
@@ -124324,7 +124321,7 @@ bmY
 bhT
 bhT
 bhT
-bvm
+bhT
 bxc
 bxc
 bAA
@@ -137173,7 +137170,7 @@ aSG
 bnt
 bpG
 brT
-aOU
+bvt
 aOY
 bcQ
 bzl
@@ -137430,8 +137427,8 @@ blA
 bnu
 bpH
 brU
-aOV
-aaa
+bvt
+iXM
 aMq
 bzm
 aOT
@@ -137688,7 +137685,7 @@ bnv
 bpI
 brV
 aRy
-aaa
+iXM
 aaa
 aTT
 aOY

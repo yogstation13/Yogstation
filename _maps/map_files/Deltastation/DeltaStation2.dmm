@@ -8220,7 +8220,6 @@
 	dir = 4;
 	id = "garbage"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/turf_decal/stripes/line,
@@ -10440,7 +10439,7 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "axx" = (
-/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/power/rad_collector/anchored/delta,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
 	},
@@ -10468,7 +10467,7 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "axB" = (
-/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/power/rad_collector/anchored/delta,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
@@ -11165,10 +11164,14 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/power/rad_collector/anchored,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/machinery/power/rad_collector/anchored/delta,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /obj/structure/window/plasma/reinforced{
 	dir = 4
 	},
@@ -11182,10 +11185,14 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/power/rad_collector/anchored,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/machinery/power/rad_collector/anchored/delta,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
@@ -11818,7 +11825,7 @@
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "azT" = (
-/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/power/rad_collector/anchored/delta,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
@@ -11831,7 +11838,7 @@
 /turf/open/floor/circuit/green,
 /area/engine/supermatter)
 "azU" = (
-/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/power/rad_collector/anchored/delta,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
 	},
@@ -17438,7 +17445,6 @@
 /area/maintenance/solars/port/fore)
 "aJH" = (
 /obj/structure/sign/warning/electricshock,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/port/fore)
 "aJI" = (
@@ -19875,11 +19881,23 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/embedded_controller/radio/airlock_controller/incinerator_atmos{
 	pixel_y = 27
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+=======
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/solars/port/fore)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aNV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -35456,7 +35474,7 @@
 	melee_damage_lower = 20;
 	melee_damage_upper = 20;
 	name = "Lia";
-	random_color = FALSE
+	random_color = 0
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/hos)
@@ -47429,6 +47447,13 @@
 	name = "Shared Engineering Storage";
 	req_one_access_txt = "32;19"
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "bEF" = (
@@ -67692,10 +67717,14 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cje" = (
+<<<<<<< HEAD
 /obj/machinery/power/rad_collector/anchored,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+=======
+/obj/machinery/power/rad_collector/anchored/delta,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -77715,7 +77744,6 @@
 	name = "Maintenance Hatch";
 	req_access_txt = "12"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -77870,7 +77898,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "cAK" = (
-/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/power/rad_collector/anchored/delta,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -84124,9 +84152,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "cLa" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -84136,6 +84161,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)

@@ -6,9 +6,21 @@
 /turf/closed/wall,
 /area/space/nearstation)
 "aac" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/security/processing)
+=======
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/department/crew_quarters/bar)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aad" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -1408,6 +1420,9 @@
 	id = "cargowarehouse"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "adF" = (
@@ -2365,6 +2380,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "afV" = (
@@ -3263,6 +3281,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "ahW" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3271,6 +3290,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "ahX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -6324,6 +6345,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
@@ -13168,7 +13192,6 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/bot{
 	dir = 2
 	},
@@ -19048,6 +19071,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+<<<<<<< HEAD
 "aRk" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -19067,6 +19091,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aRn" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -19080,6 +19106,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "aRo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -19092,11 +19119,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aRp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
@@ -19116,6 +19146,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+=======
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aRr" = (
@@ -19191,9 +19225,13 @@
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;35"
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "aRx" = (
@@ -19580,6 +19618,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+<<<<<<< HEAD
 "aSz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -19589,6 +19628,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aSA" = (
 /obj/machinery/atmospherics/components/unary/tank/toxins{
 	dir = 4
@@ -22782,6 +22823,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+<<<<<<< HEAD
 "aYv" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -22812,6 +22854,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aYx" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -22903,6 +22947,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+<<<<<<< HEAD
 "aYG" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -22927,6 +22972,8 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "aYI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -30987,6 +31034,7 @@
 /obj/item/toy/figure/virologist,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+<<<<<<< HEAD
 "boe" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -30994,6 +31042,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "bof" = (
 /obj/machinery/door/poddoor{
 	id = "toxinsdriver";
@@ -33437,12 +33487,6 @@
 /turf/open/floor/plating,
 /area/solar/aft)
 "bsC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/structure/closet/crate{
 	name = "Excess Courtroom Supplies"
 	},
@@ -48709,6 +48753,9 @@
 	pixel_x = 6;
 	pixel_y = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -48824,6 +48871,9 @@
 /area/maintenance/department/crew_quarters/bar)
 "bWx" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -49945,12 +49995,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/security)
 "bZs" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
 /obj/structure/closet/crate,
 /obj/item/clothing/head/wig/random,
 /obj/item/clothing/head/wig/random,
@@ -50363,6 +50407,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+<<<<<<< HEAD
 "cah" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -50401,6 +50446,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "cal" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -50703,6 +50750,9 @@
 /obj/structure/chair/stool/bar,
 /obj/effect/decal/cleanable/glass,
 /obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -50843,8 +50893,8 @@
 /turf/open/floor/plating,
 /area/science/research)
 "cbq" = (
+/obj/machinery/vending/wardrobe/science_wardrobe,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
 /area/science/research)
 "cbr" = (
@@ -51575,7 +51625,11 @@
 	icon_state = "2-4"
 	},
 /obj/structure/closet,
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+=======
+/obj/structure/cable,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "ccU" = (
@@ -51585,6 +51639,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
 "ccV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -51593,6 +51648,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "ccW" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -52179,9 +52236,13 @@
 	pixel_y = 25
 	},
 /obj/effect/decal/cleanable/cobweb,
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "cem" = (
@@ -52190,6 +52251,7 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+<<<<<<< HEAD
 "cen" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -52199,6 +52261,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "ceo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -52209,8 +52273,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
+=======
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -52892,9 +52962,48 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+<<<<<<< HEAD
 "esp" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 4
+=======
+"eqn" = (
+/obj/machinery/suit_storage_unit/hos,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
+"ery" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/department/crew_quarters/bar)
+"esb" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft{
+	name = "AI Access";
+	req_access_txt = "16"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
+"esN" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -53180,9 +53289,39 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+<<<<<<< HEAD
 "fOk" = (
 /obj/structure/cable{
 	icon_state = "4-8"
+=======
+"fMr" = (
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"fNR" = (
+/obj/machinery/power/apc{
+	areastring = "/area/library/lounge";
+	dir = 2;
+	name = "Lounge APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"fRQ" = (
+/obj/structure/grille/broken,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"fSj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
@@ -53999,6 +54138,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+<<<<<<< HEAD
 "lxq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -54017,6 +54157,22 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+"lzi" = (
+/obj/structure/rack,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/plant_analyzer,
+/obj/item/plant_analyzer{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "lzq" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -54397,10 +54553,13 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
 "nyL" = (
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+=======
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -54588,6 +54747,15 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+<<<<<<< HEAD
+=======
+"ovO" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/port)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "oAn" = (
 /obj/item/reagent_containers/food/snacks/salad/validsalad,
 /turf/open/floor/plating,
@@ -55159,6 +55327,32 @@
 /obj/machinery/light/small,
 /turf/open/floor/engine,
 /area/engine/engine_room/external)
+<<<<<<< HEAD
+=======
+"rSs" = (
+/obj/machinery/computer/monitor,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/service)
+"rTb" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating,
+/area/science/research)
+"rUx" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/turf/open/floor/plating,
+/area/space/nearstation)
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 "rUR" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -80373,7 +80567,7 @@ bMs
 bLQ
 bVM
 bVW
-bSy
+ery
 ccd
 cci
 bVM
@@ -82118,7 +82312,7 @@ cbm
 aeA
 bTH
 aXX
-afM
+rTb
 cbo
 cbp
 bRa
@@ -86493,7 +86687,7 @@ bDs
 bth
 axm
 axm
-aRq
+aHH
 aVz
 aLn
 aLn
@@ -87006,8 +87200,8 @@ axF
 aaT
 aaT
 aaT
-aRk
-aSz
+cam
+aRA
 bQr
 aZb
 aLs
@@ -87263,7 +87457,7 @@ aaT
 aaT
 bRT
 bRU
-aRl
+aRA
 bQr
 bQr
 aLn
@@ -87520,7 +87714,7 @@ bSp
 aXG
 bTm
 bQr
-aRl
+aRA
 bQr
 bmx
 aLn
@@ -87776,8 +87970,13 @@ auJ
 aTm
 bLB
 bTn
+<<<<<<< HEAD
 aRu
 aRl
+=======
+aRA
+aRA
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aaT
 aLm
 aLm
@@ -88034,8 +88233,13 @@ aCz
 aCz
 aCz
 bsg
+<<<<<<< HEAD
 aRo
 aTx
+=======
+aRA
+fNR
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aLm
 ars
 aLp
@@ -88291,8 +88495,13 @@ aCC
 aCC
 aCz
 aCz
+<<<<<<< HEAD
 bQr
 aRl
+=======
+aRA
+bQr
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aLm
 bvj
 bvk
@@ -88548,8 +88757,13 @@ bvf
 avj
 aCE
 aCz
+<<<<<<< HEAD
 bQr
 aYw
+=======
+aRA
+bsp
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aLm
 aHv
 aHv
@@ -88805,8 +89019,13 @@ bvg
 avd
 aCM
 aCz
+<<<<<<< HEAD
 bCh
 aYG
+=======
+bmo
+aBC
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aLm
 aLp
 byx
@@ -89062,8 +89281,13 @@ bvh
 avd
 aCN
 aCz
+<<<<<<< HEAD
 bQr
 aRl
+=======
+aRA
+aRA
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aLm
 aLm
 aLm
@@ -89320,6 +89544,7 @@ avj
 aLl
 aCz
 bQr
+<<<<<<< HEAD
 rmC
 ahW
 boe
@@ -89331,6 +89556,19 @@ nyL
 boe
 vtD
 aRv
+=======
+aRA
+bLB
+aRA
+aRA
+bmo
+aRA
+aRA
+nyL
+aRA
+aRA
+aRA
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 aaT
 aaT
 aaT
@@ -98591,7 +98829,11 @@ aSb
 aSa
 aSa
 cel
+<<<<<<< HEAD
 cak
+=======
+aSg
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 ceo
 btV
 btV
@@ -98838,6 +99080,7 @@ aRZ
 aSg
 aSj
 cad
+<<<<<<< HEAD
 aSj
 aSj
 aSj
@@ -98845,9 +99088,18 @@ aSj
 cah
 caj
 cak
+=======
+aSg
+aSg
+aSg
+aSg
+xOW
+aSg
+aSg
+>>>>>>> 61d39f1450... Fix a bunch of map issues (#44876)
 ccT
-ccV
-cen
+cae
+aSg
 aRZ
 bbE
 cao
