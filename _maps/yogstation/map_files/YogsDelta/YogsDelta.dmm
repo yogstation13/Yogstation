@@ -33725,9 +33725,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"bce" = (
-/turf/open/space/basic,
-/area/quartermaster/miningdock)
 "bcf" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
 	name = "Pete"
@@ -174853,7 +174850,7 @@ aad
 aaa
 aaa
 aaa
-bce
+aaa
 aaa
 aaa
 aaa

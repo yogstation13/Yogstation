@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscdel: "Removes the cake hat from the donor hat list as it offered a mechanical advantage."
