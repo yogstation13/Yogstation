@@ -33,8 +33,19 @@
 	else
 		var/datum/objective/brainwashing/obj = new(objective)
 		vessel.objectives += obj
+<<<<<<< refs/remotes/origin/master
 		var/message = " has been brainwashed with the following objectives: [objective]."
 		deadchat_broadcast(message, "<b>[M]</b>", follow_target = M, turf_target = get_turf(M), message_type=DEADCHAT_REGULAR)
+=======
+<<<<<<< HEAD
+		var/message = "<span class='deadsay'><b>[M]</b> has been brainwashed with the following objectives: [objective]."
+		deadchat_broadcast(message, follow_target = M, turf_target = get_turf(M), message_type=DEADCHAT_REGULAR)
+=======
+		var/message = " has been awoken with the following objectives: [objective]."
+		deadchat_broadcast(message, "<b>[M]</b>", follow_target = M, turf_target = get_turf(M), message_type=DEADCHAT_REGULAR)
+		log_game("[key_name(M)] has been awoken with the following objectives: [objective]")
+>>>>>>> fe6aa97f29... Fix hivemind awakening logs (#44882)
+>>>>>>> Hivemind Awakening Log Fix
 	if(!M.has_antag_datum(/datum/antagonist/hivevessel))
 		M.add_antag_datum(vessel)
 
