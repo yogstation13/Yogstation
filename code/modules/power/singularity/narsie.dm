@@ -188,9 +188,15 @@
 	to_chat(target, "<span class='cultsmall'>NAR-SIE HAS LOST INTEREST IN YOU.</span>")
 	target = food
 	if(ishuman(target))
+<<<<<<< HEAD
 		to_chat(target, "<span class ='cult'>NAR-SIE HUNGERS FOR YOUR SOUL.</span>")
 	else
 		to_chat(target, "<span class ='cult'>NAR-SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL.</span>")
+=======
+		to_chat(target, "<span class='cult'>NAR'SIE HUNGERS FOR YOUR SOUL.</span>")
+	else
+		to_chat(target, "<span class='cult'>NAR'SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL.</span>")
+>>>>>>> 6e44bd3a93... Merge pull request #44796 from kingofkosmos/addswarningspans
 
 //Wizard narsie
 /obj/singularity/narsie/wizard

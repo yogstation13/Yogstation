@@ -299,6 +299,11 @@
 				var/mob/living/carbon/C = L
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
+<<<<<<< HEAD
+=======
+
+			update_pull_movespeed()
+>>>>>>> 6e44bd3a93... Merge pull request #44796 from kingofkosmos/addswarningspans
 
 		set_pull_offsets(M, state)
 
@@ -433,7 +438,7 @@
 	set category = "IC"
 
 	if(IsSleeping())
-		to_chat(src, "<span class='notice'>You are already sleeping.</span>")
+		to_chat(src, "<span class='warning'>You are already sleeping!</span>")
 		return
 	else
 		if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
@@ -452,7 +457,7 @@
 		if(do_after(src, 10, target = src))
 			set_resting(FALSE, FALSE)
 		else
-			to_chat(src, "<span class='notice'>You fail to get up.</span>")
+			to_chat(src, "<span class='warning'>You fail to get up!</span>")
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(!silent)

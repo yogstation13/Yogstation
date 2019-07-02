@@ -844,11 +844,47 @@
 		buckle_mob(target,TRUE,TRUE)
 	. = ..()
 
+<<<<<<< HEAD
 //Can C try to piggyback at all.
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/C)
 	if(istype(C) && C.stat == CONSCIOUS)
 		return TRUE
 	return FALSE
+=======
+//src is the user that will be carrying, target is the mob to be carried
+/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
+	return (istype(target) && target.stat == CONSCIOUS)
+
+/mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
+	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
+
+/mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
+	if(can_be_firemanned(target))
+		visible_message("<span class='notice'>[src] starts lifting [target] onto their back...</span>",
+			"<span class='notice'>You start lifting [target] onto your back...</span>")
+		if(do_after(src, 50, TRUE, target))
+			//Second check to make sure they're still valid to be carried
+			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
+				buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+				return
+		visible_message("<span class='warning'>[src] fails to fireman carry [target]!")
+	else
+		to_chat(src, "<span class='warning'>You can't fireman carry [target] while they're standing!</span>")
+
+/mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
+	if(can_piggyback(target))
+		visible_message("<span class='notice'>[target] starts to climb onto [src]...</span>")
+		if(do_after(target, 15, target = src))
+			if(can_piggyback(target))
+				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
+					target.visible_message("<span class='warning'>[target] can't hang onto [src]!</span>")
+					return
+				buckle_mob(target, TRUE, TRUE, FALSE, 0, 2)
+		else
+			visible_message("<span class='warning'>[target] fails to climb onto [src]!</span>")
+	else
+		to_chat(target, "<span class='warning'>You can't piggyback ride [src] right now!</span>")
+>>>>>>> 6e44bd3a93... Merge pull request #44796 from kingofkosmos/addswarningspans
 
 /mob/living/carbon/human/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
@@ -862,6 +898,7 @@
 	riding_datum.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4)))
 	if(buckled_mobs && ((M in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled || (M.stat != CONSCIOUS))
 		return
+<<<<<<< HEAD
 	if(can_piggyback(M))
 		riding_datum.ride_check_ridden_incapacitated = TRUE
 		visible_message("<span class='notice'>[M] starts to climb onto [src]...</span>")
@@ -880,6 +917,43 @@
 	else
 		stop_pulling()
 		. = ..(M,force,check_loc)
+=======
+	var/equipped_hands_self
+	var/equipped_hands_target
+	if(hands_needed)
+		equipped_hands_self = riding_datum.equip_buckle_inhands(src, hands_needed, target)
+	if(target_hands_needed)
+		equipped_hands_target = riding_datum.equip_buckle_inhands(target, target_hands_needed)
+
+	if(hands_needed || target_hands_needed)
+		if(hands_needed && !equipped_hands_self)
+			src.visible_message("<span class='warning'>[src] can't get a grip on [target] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [target] because your hands are full!</span>")
+			return
+		else if(target_hands_needed && !equipped_hands_target)
+			target.visible_message("<span class='warning'>[target] can't get a grip on [src] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+			return
+
+	stop_pulling()
+	riding_datum.handle_vehicle_layer()
+	. = ..(target, force, check_loc)
+
+/mob/living/carbon/human/proc/is_shove_knockdown_blocked() //If you want to add more things that block shove knockdown, extend this
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	for(var/bp in body_parts)
+		if(istype(bp, /obj/item/clothing))
+			var/obj/item/clothing/C = bp
+			if(C.blocks_shove_knockdown)
+				return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/clear_shove_slowdown()
+	remove_movespeed_modifier(MOVESPEED_ID_SHOVE)
+	var/active_item = get_active_held_item()
+	if(is_type_in_typecache(active_item, GLOB.shove_disarming_types))
+		visible_message("<span class='warning'>[src.name] regains their grip on \the [active_item]!</span>", "<span class='warning'>You regain your grip on \the [active_item]</span>", null, COMBAT_MESSAGE_RANGE)
+>>>>>>> 6e44bd3a93... Merge pull request #44796 from kingofkosmos/addswarningspans
 
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
