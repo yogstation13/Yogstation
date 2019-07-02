@@ -3260,6 +3260,7 @@
 #include "yogstation\code\modules\power\antimatter\containment_jar.dm"
 #include "yogstation\code\modules\power\antimatter\control.dm"
 #include "yogstation\code\modules\power\antimatter\shielding.dm"
+#include "yogstation\code\modules\power\singularity\particle_accelerator\particle_control.dm"
 #include "yogstation\code\modules\projectiles\ammunition\caseless\misc.dm"
 #include "yogstation\code\modules\projectiles\boxes_magazines\internal\misc.dm"
 #include "yogstation\code\modules\projectiles\guns\ballistic\launchers.dm"
