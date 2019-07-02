@@ -27,6 +27,7 @@
 			new /obj/item/clothing/under/rank/medical/green(src)
 		if ("purple")
 			new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/suit/space/hardsuit/paramedic(src)
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/suit/toggle/labcoat/emt(src)
 	new /obj/item/clothing/head/soft/emt(src)
