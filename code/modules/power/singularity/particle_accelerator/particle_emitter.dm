@@ -39,8 +39,8 @@
 			if(3)
 				P = new/obj/effect/accelerated_particle/powerful(T)
 			//yogs start -- Emaggable PAs
-            if(4)
-                P = new/obj/effect/accelerated_particle/catastrophic(T)
+			if(4)
+				P = new/obj/effect/accelerated_particle/catastrophic(T)
  	         //yogs end
 		P.setDir(dir)
 		return 1
