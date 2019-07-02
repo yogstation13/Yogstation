@@ -6113,7 +6113,6 @@
 /area/centcom/ferry)
 "om" = (
 /obj/machinery/computer/card/centcom,
-/obj/item/card/id/centcom,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "on" = (
@@ -7918,7 +7917,6 @@
 /area/centcom/ferry)
 "ry" = (
 /obj/machinery/computer/card/centcom,
-/obj/item/card/id/centcom,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons and the AI's satellite from the safety of his office.";
 	name = "Research Monitor";
@@ -8492,6 +8490,14 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+/obj/item/storage/box/ids{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+>>>>>>> 231631d2f2... Fix more minor Donut and CentCom map issues (#44909)
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "sB" = (
@@ -8618,6 +8624,13 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/door/airlock/vault{
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/shutters/indestructible,
+>>>>>>> 231631d2f2... Fix more minor Donut and CentCom map issues (#44909)
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "sI" = (

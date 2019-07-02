@@ -44008,9 +44008,13 @@
 /obj/machinery/power/smes{
 	charge = 5e+006
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> 231631d2f2... Fix more minor Donut and CentCom map issues (#44909)
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bMI" = (
