@@ -656,3 +656,7 @@
 	item_state = "cosby"
 	item_color = "cosby"
 	can_adjust = 0
+
+/obj/item/clothing/under/plasmaman/Initialize()
+	. = ..()
+	alternate_worn_icon = 'yogstation/icons/mob/uniform.dmi'
