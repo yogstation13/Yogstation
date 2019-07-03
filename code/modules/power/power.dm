@@ -205,6 +205,7 @@
 // GLOBAL PROCS for powernets handling
 //////////////////////////////////////////
 
+<<<<<<< HEAD
 
 // returns a list of all power-related objects (nodes, cable, junctions) in turf,
 // excluding source, that match the direction d
@@ -239,10 +240,17 @@
 //remove the old powernet and replace it with a new one throughout the network.
 /proc/propagate_network(obj/O, datum/powernet/PN)
 	var/list/worklist = list()
+=======
+//remove the old powernet and replace it with a new one throughout the network.
+/proc/propagate_network(obj/structure/cable/C, datum/powernet/PN, skip_assigned_powernets = FALSE)
+>>>>>>> f8ee5be8ee... Properly fixes smart cable lag issues and also fixes the awful connection issues. (#44945)
 	var/list/found_machines = list()
+	var/list/cables = list()
 	var/index = 1
-	var/obj/P = null
+	var/obj/structure/cable/working_cable
+	var/current_ignore_dir = 128 //Bullshit dir that will never exist in game, but still passes boolean checks
 
+<<<<<<< HEAD
 	worklist+=O //start propagating from the passed object
 
 	while(index<=worklist.len) //until we've exhausted all power objects
@@ -262,6 +270,25 @@
 		else
 			continue
 
+=======
+	cables[C] = current_ignore_dir
+
+	while(index <= length(cables))
+		working_cable = cables[index]
+		current_ignore_dir = cables[working_cable]
+		index++
+
+		var/list/connections = working_cable.get_cable_connections(skip_assigned_powernets)
+		
+		for(var/obj/structure/cable/cable_entry in connections)
+			if(!cables[cable_entry]) //Since it's an associated list, we can just do an access and check it's null before adding; prevents duplicate entries
+				cables[cable_entry] = connections[cable_entry]
+
+	for(var/obj/structure/cable/cable_entry in cables)
+		PN.add_cable(cable_entry)
+		found_machines += cable_entry.get_machine_connections(skip_assigned_powernets)
+
+>>>>>>> f8ee5be8ee... Properly fixes smart cable lag issues and also fixes the awful connection issues. (#44945)
 	//now that the powernet is set, connect found machines to it
 	for(var/obj/machinery/power/PM in found_machines)
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...

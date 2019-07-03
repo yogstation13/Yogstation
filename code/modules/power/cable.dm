@@ -364,6 +364,7 @@ By design, d1 is the smallest direction and d2 is the highest
 // Powernets handling helpers
 //////////////////////////////////////////////
 
+<<<<<<< HEAD
 //if powernetless_only = 1, will only get connections without powernet
 /obj/structure/cable/proc/get_connections(powernetless_only = 0)
 	. = list()	// this will be a list of all connected power objects
@@ -415,6 +416,25 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if(PN.is_empty()) //can happen with machines made nodeless when smoothing cables
 			qdel(PN)
+=======
+/obj/structure/cable/proc/get_cable_connections(powernetless_only, ignore_dir = null)
+	. = list()
+	var/turf/T
+	for(var/check_dir in GLOB.cardinals)
+		if(check_dir != ignore_dir)
+			T = get_step(src, check_dir)
+			if(T)
+				var/obj/structure/cable/C = locate(/obj/structure/cable) in T
+				if(C)
+					.[C] = check_dir
+
+/obj/structure/cable/proc/get_machine_connections(powernetless_only)
+	. = list()
+	for(var/obj/machinery/power/P in get_turf(src))
+		if(!powernetless_only || !P.powernet)
+			if(P.anchored)
+				. += P
+>>>>>>> f8ee5be8ee... Properly fixes smart cable lag issues and also fixes the awful connection issues. (#44945)
 
 /obj/structure/cable/proc/auto_propogate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
