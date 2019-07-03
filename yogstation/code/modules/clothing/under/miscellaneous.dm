@@ -659,4 +659,4 @@
 
 /obj/item/clothing/under/plasmaman/Initialize()
 	. = ..()
-	alternate_worn_icon = 'yogstation/icons/mob/uniform.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/uniform.dmi' //Yog envirosuit sprite fixes - https://github.com/yogstation13/Yogstation-TG/pull/6219
