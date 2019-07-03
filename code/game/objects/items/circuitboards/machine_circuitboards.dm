@@ -639,8 +639,17 @@
 	name = "Tesla Corona Researcher (Machine Board)"
 	build_path = PATH_RPCOIL
 
+<<<<<<< HEAD
 #undef PATH_POWERCOIL
 #undef PATH_RPCOIL
+=======
+/obj/item/circuitboard/machine/vending/donksofttoyvendor
+	name = "Donksoft Toy Vendor (Machine Board)"
+	build_path = /obj/machinery/vending/donksofttoyvendor
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/vending_refill/donksoft = 1)
+>>>>>>> c52fda145c... Merge pull request #44950 from AutomaticFrenzy/patch/indentation-fix
 
 /obj/item/circuitboard/machine/grounding_rod
 	name = "Grounding Rod (Machine Board)"
@@ -1012,6 +1021,7 @@
 	req_components = list(/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/kitchen/fork = 1)
 
+<<<<<<< HEAD
 /obj/item/circuitboard/machine/stasis
 	name = "Lifeform Stasis Unit (Machine Board)"
 	build_path = /obj/machinery/stasis
@@ -1019,3 +1029,13 @@
 		/obj/item/stack/cable_coil = 3,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/capacitor = 1)
+=======
+/obj/item/circuitboard/machine/plantgenes/vault
+	name = "alien board (Plant DNA Manipulator)"
+	icon_state = "abductor_mod"
+	// It wasn't made by actual abductors race, so no abductor tech here.
+	def_components = list(
+		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/femto,
+		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
+		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
+>>>>>>> c52fda145c... Merge pull request #44950 from AutomaticFrenzy/patch/indentation-fix
