@@ -126694,6 +126694,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
+=======
+"hZA" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/disposal/incinerator)
+>>>>>>> a2af00a933... Fix unpowered air injector to space in Delta incinerator (#44957)
 "iaF" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
