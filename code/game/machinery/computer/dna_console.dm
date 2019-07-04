@@ -714,12 +714,9 @@
 						var/obj/item/dnainjector/activator/I = new /obj/item/dnainjector/activator(loc)
 						I.add_mutations += new HM.type (copymut = HM)
 						I.name = "[HM.name] activator"
+						I.damage_coeff = connected.damage_coeff*4
 						I.research = TRUE
-						if(connected)
-							I.damage_coeff = connected.damage_coeff*4
-							injectorready = world.time + INJECTOR_TIMEOUT * (1 - 0.1 * connected.precision_coeff) //precision_coeff being the manipulator rating
-						else
-							injectorready = world.time + INJECTOR_TIMEOUT
+						injectorready = world.time + INJECTOR_TIMEOUT * (1 - 0.1 * connected.precision_coeff) //precision_coeff being the manipulator rating
 		if("mutator")
 			if(injectorready < world.time)
 				var/mutation = text2path(href_list["path"])
@@ -730,11 +727,8 @@
 						I.add_mutations += new HM.type (copymut = HM)
 						I.doitanyway = TRUE
 						I.name = "[HM.name] injector"
-						if(connected)
-							I.damage_coeff = connected.damage_coeff
-							injectorready = world.time + INJECTOR_TIMEOUT*5 * (1 - 0.1 * connected.precision_coeff)
-						else
-							injectorready = world.time + INJECTOR_TIMEOUT *5
+						I.damage_coeff = connected.damage_coeff
+						injectorready = world.time + INJECTOR_TIMEOUT*5 * (1 - 0.1 * connected.precision_coeff)
 		if("nullify")
 			if(viable_occupant)
 				var/datum/mutation/human/A = viable_occupant.dna.get_mutation(current_mutation)

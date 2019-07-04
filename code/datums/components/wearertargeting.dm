@@ -3,7 +3,7 @@
 /datum/component/wearertargeting
 	var/list/valid_slots = list()
 	var/list/signals = list()
-	var/proctype = .proc/pass
+	var/datum/callback/callback = CALLBACK(GLOBAL_PROC, .proc/pass)
 	var/mobtype = /mob/living
 
 /datum/component/wearertargeting/Initialize()
@@ -14,9 +14,13 @@
 
 /datum/component/wearertargeting/proc/on_equip(datum/source, mob/equipper, slot)
 	if((slot in valid_slots) && istype(equipper, mobtype))
-		RegisterSignal(equipper, signals, proctype, TRUE)
+		RegisterSignal(equipper, signals, callback, TRUE)
 	else
 		UnregisterSignal(equipper, signals)
 
 /datum/component/wearertargeting/proc/on_drop(datum/source, mob/user)
 	UnregisterSignal(user, signals)
+
+/datum/component/wearertargeting/Destroy()
+	QDEL_NULL(callback) //is likely to ourselves.
+	return ..()

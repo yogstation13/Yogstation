@@ -108,7 +108,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
-	var/mob/listeningTo
+	var/datum/component/mobhook
 
 /obj/item/storage/bag/ore/ComponentInitialize()
 	. = ..()
@@ -120,18 +120,15 @@
 
 /obj/item/storage/bag/ore/equipped(mob/user)
 	. = ..()
-	if(listeningTo == user)
-		return
-	if(listeningTo)
-		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/Pickup_ores)
-	listeningTo = user
+	if (mobhook && mobhook.parent != user)
+		QDEL_NULL(mobhook)
+	if (!mobhook)
+		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/Pickup_ores)))
 
 /obj/item/storage/bag/ore/dropped()
 	. = ..()
-	if(listeningTo)
-		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-		listeningTo = null
+	if (mobhook)
+		QDEL_NULL(mobhook)
 
 /obj/item/storage/bag/ore/proc/Pickup_ores(mob/living/user)
 	var/show_message = FALSE
@@ -370,24 +367,3 @@
 	STR.max_items = 25
 	STR.insert_preposition = "in"
 	STR.set_holdable(list(/obj/item/slime_extract, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/food/snacks/deadmouse, /obj/item/reagent_containers/food/snacks/monkeycube))
-
-/*
- *  Construction bag (for engineering, holds stock parts and electronics)
- */
-
-/obj/item/storage/bag/construction
-	name = "construction bag"
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "construction_bag"
-	desc = "A bag for storing small construction components."
-	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = FLAMMABLE
-
-/obj/item/storage/bag/construction/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 100
-	STR.max_items = 50
-	STR.max_w_class = WEIGHT_CLASS_SMALL
-	STR.insert_preposition = "in"
-	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics))

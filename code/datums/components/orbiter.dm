@@ -2,6 +2,8 @@
 	can_transfer = TRUE
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/list/orbiters
+	var/datum/callback/orbiter_spy
+	var/datum/callback/orbited_spy
 
 //radius: range to orbit at, radius of the circle formed by orbiting (in pixels)
 //clockwise: whether you orbit clockwise or anti clockwise
@@ -13,6 +15,8 @@
 		return COMPONENT_INCOMPATIBLE
 
 	orbiters = list()
+	orbiter_spy = CALLBACK(src, .proc/orbiter_move_react)
+	orbited_spy = CALLBACK(src, .proc/move_react)
 
 	var/atom/master = parent
 	master.orbiters = src
@@ -22,7 +26,7 @@
 /datum/component/orbiter/RegisterWithParent()
 	var/atom/target = parent
 	while(ismovableatom(target))
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/move_react)
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, orbited_spy)
 		target = target.loc
 
 /datum/component/orbiter/UnregisterFromParent()
@@ -37,6 +41,8 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
+	QDEL_NULL(orbiter_spy)
+	QDEL_NULL(orbited_spy)
 	return ..()
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, list/arguments)
@@ -59,7 +65,7 @@
 			orbiter.orbiting.end_orbit(orbiter)
 	orbiters[orbiter] = TRUE
 	orbiter.orbiting = src
-	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, .proc/orbiter_move_react)
+	RegisterSignal(orbiter, COMSIG_MOVABLE_MOVED, orbiter_spy)
 	var/matrix/initial_transform = matrix(orbiter.transform)
 
 	// Head first!
@@ -115,7 +121,7 @@
 	if(orbited?.loc && orbited.loc != newturf) // We want to know when anything holding us moves too
 		var/atom/target = orbited.loc
 		while(ismovableatom(target))
-			RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/move_react, TRUE)
+			RegisterSignal(target, COMSIG_MOVABLE_MOVED, orbited_spy, TRUE)
 			target = target.loc
 
 	var/atom/curloc = master.loc
