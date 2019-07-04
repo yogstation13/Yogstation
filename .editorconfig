@@ -2,3 +2,13 @@
 insert_final_newline = true
 indent_style = tab
 indent_size = 4
+<<<<<<< HEAD
+=======
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[*.py]
+indent_style = space
+>>>>>>> 6bb6eab0fd... Merge pull request #44898 from AutomaticFrenzy/patch/editorconfig
