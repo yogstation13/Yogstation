@@ -126,6 +126,13 @@ Made by Xhuis
 	text += "<br>"
 	to_chat(world, text)
 
+/datum/game_mode/shadowling/set_round_result()
+	..()
+	if(check_shadow_victory())
+		SSticker.mode_result = "win - shadowling has ascended"
+	else
+		SSticker.mode_result = "loss - staff stopped the shadowling"
+
 /*
 	MISCELLANEOUS
 */
