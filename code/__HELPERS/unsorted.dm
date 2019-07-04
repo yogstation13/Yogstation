@@ -1567,3 +1567,12 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		return -1
 	else
 		return 0
+<<<<<<< HEAD
+=======
+
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))
+
+#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+>>>>>>> 3316f0dcbe... Merge pull request #44895 from ninjanomnom/signal-async
