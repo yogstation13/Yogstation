@@ -104,6 +104,13 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		return
 	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
+/datum/game_mode/fortnite/set_round_result()
+	..()
+	if(royalers.len)
+		SSticker.mode_result = "win - [pick(royalers)] won the battle royale"
+	else
+		SSticker.mode_result = "loss - nobody won the battle royale!"
+
 /datum/game_mode/fortnite/proc/shrinkborders()
 	loot_spawn()
 	switch(borderstage)
