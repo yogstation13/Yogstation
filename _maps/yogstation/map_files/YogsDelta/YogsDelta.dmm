@@ -118059,9 +118059,6 @@
 	req_access_txt = "30"
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/structure/sign/plaques/cave{
-	pixel_y = -32
-	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "dCk" = (

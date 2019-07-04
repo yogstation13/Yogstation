@@ -126,8 +126,6 @@
 
 	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
 		propability = 1
-	else if(locate(/obj/machinery/stasis, T))
-		propability = 0.9
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
 	else if(locate(/obj/structure/bed, T))
@@ -156,10 +154,10 @@
 	. = ..()
 	surgeries = list()
 	var/list/req_tech_surgeries = subtypesof(/datum/surgery)
-	for(var/i in req_tech_surgeries)
-		var/datum/surgery/beep = i
-		if(beep.requires_tech)
-			surgeries += beep
+		for(var/i in req_tech_surgeries)
+			var/datum/surgery/beep = i
+			if(beep.requires_tech)
+				surgeries += beep
 
 //INFO
 //Check /mob/living/carbon/attackby for how surgery progresses, and also /mob/living/carbon/attack_hand.

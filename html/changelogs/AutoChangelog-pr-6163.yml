@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - tweak: "BZ's hallucinogenic properties now actually vary based on concentration. Maximum effect (double the previous maximum) occurs at 1 atm of BZ pressure. Additionally, it now takes 700 Pascal (up from 10 Pascal) of BZ pressure before BZ has any hallucinogenic effect at all."

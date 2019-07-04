@@ -208,7 +208,6 @@
 	log_game("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? "[key_name(usr)]" : "outside forces"] at [AREACOORD(src)]")
 	if(active)
 		use_power = ACTIVE_POWER_USE
-		active_power_usage = initial(active_power_usage) * (1 + strength) // Yogs -- Makes the PA use different amounts of power depending on its power level.
 		for(var/CP in connected_parts)
 			var/obj/structure/particle_accelerator/part = CP
 			part.strength = strength

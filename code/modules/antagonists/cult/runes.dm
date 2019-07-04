@@ -117,11 +117,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 		invokers += user
 	if(req_cultists > 1 || istype(src, /obj/effect/rune/convert))
 		var/list/things_in_range = range(1, src)
-		//Yogs start -- Preserves nar-nar plushies being able to invoke
 		var/obj/item/toy/plush/narplush/plushsie = locate() in things_in_range
 		if(istype(plushsie) && plushsie.is_invoker)
 			invokers += plushsie
-		//Yogs end
 		for(var/mob/living/L in things_in_range)
 			if(iscultist(L))
 				if(L == user)
