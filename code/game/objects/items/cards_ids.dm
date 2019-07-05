@@ -73,12 +73,18 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	var/prox_check = TRUE //If the emag requires you to be in range
+	var/limit = 3 //yogs - Isn't checked for, so it is effectively infinite
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
 	color = rgb(40, 130, 255)
 	prox_check = FALSE
+
+/obj/item/card/emag/limited //yogs start - limited emag
+	name = "flimsy cryptographic sequencer"
+	desc = "It's a card with a magnetic strip attached to some circuitry. It looks pretty fragile."
+	limit = 2 //yogs end - 2 uses
 
 /obj/item/card/emag/attack()
 	return
@@ -89,7 +95,20 @@
 	if(!proximity && prox_check)
 		return
 	log_combat(user, A, "attempted to emag")
-	A.emag_act(user)
+	if (limit == 1||2||0) //yogs start - limited emag check
+		if (limit == 0)
+			playsound(src.loc, "sparks", 50, 1)
+			return
+		if (limit == 1)
+			limit--
+			desc = "It's a card with a magnetic strip attached to some circuitry. It's broken."
+			A.emag_act(user)
+		if (limit == 2)
+			limit--
+			desc = "It's a card with a magnetic strip attached to some circuitry. It's barely held together."
+			A.emag_act(user)
+		else //yogs end
+			A.emag_act(user)
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."

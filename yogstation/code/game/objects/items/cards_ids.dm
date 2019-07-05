@@ -66,35 +66,6 @@
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
 
-/obj/item/card/limitedemag
-	name = "flimsy cryptographic sequencer"
-	desc = "It's a card with a magnetic strip attached to some circuitry. It looks pretty fragile."
-	icon_state = "emag"
-	item_state = "card-id"
-	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
-	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
-	var/u = 2
-
-/obj/item/card/limitedemag/attack()
-	return
-
-/obj/item/card/limitedemag/afterattack(atom/target, mob/user, proximity)
-	. = ..()
-	var/atom/A = target
-	log_combat(user, A, "attempted to emag")
-	if (u == 0)
-		playsound(src.loc, "sparks", 50, 1)
-		return
-	if (u == 1)
-		u--
-		desc = "It's a card with a magnetic strip attached to some circuitry. It's broken."
-		A.emag_act(user)
-	if (u == 2)
-		u--
-		desc = "It's a card with a magnetic strip attached to some circuitry. It's barely held together."
-		A.emag_act(user)
-
 /obj/item/card/emag/emag_act(mob/user)
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)

@@ -91,12 +91,12 @@
 	user.change_number_of_hands(limbs+1)
 	to_chat(user, "You feel more dexterous")
 
-/datum/uplink_item/device_tools/limitedemag
+/datum/uplink_item/device_tools/emag/limited
 	name = "Flimsy Cryptographic Sequencer"
 	desc = "This thing has been through hell, but it still has a couple uses left to it. \
 			Identical to the original in every way except for its durability; \
 			this card will only last you two swipes."
-	item = /obj/item/card/limitedemag
+	item = /obj/item/card/emag/limited
 	cost = 3
 
 /datum/uplink_item/role_restricted/gondola_meat
