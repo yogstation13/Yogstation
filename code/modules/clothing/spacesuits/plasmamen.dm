@@ -165,4 +165,20 @@
 	name = "janitor's plasma envirosuit helmet"
 	desc = "A grey helmet bearing a pair of purple stripes, designating the wearer as a janitor."
 	icon_state = "janitor_envirohelm"
+<<<<<<< HEAD
 	item_state = "janitor_envirohelm"
+=======
+	item_state = "janitor_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/mime
+	name = "mime envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	icon_state = "mime_envirohelm"
+	item_state = "mime_envirohelm"
+
+/obj/item/clothing/head/helmet/space/plasmaman/clown
+	name = "clown envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	icon_state = "clown_envirohelm"
+	item_state = "clown_envirohelm"
+>>>>>>> e8686b0f96... Add mime and clown plasma-envirosuits (#44881)
