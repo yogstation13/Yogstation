@@ -18251,8 +18251,15 @@
 /area/crew_quarters/locker)
 "aQY" = (
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
+=======
+/obj/item/twohanded/rcl/pre_loaded,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+/obj/item/stack/pipe_cleaner_coil/random,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aQZ" = (
@@ -41065,12 +41072,15 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
+<<<<<<< HEAD
 "bUs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "bUt" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -43956,6 +43966,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cbw" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -43966,6 +43977,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cbx" = (
@@ -44633,6 +44653,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
 "cdi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -44642,6 +44663,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cdj" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -44650,9 +44673,13 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cdk" = (
@@ -44668,7 +44695,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cdl" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet,
@@ -44756,9 +44783,13 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cdw" = (
@@ -44914,6 +44945,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -44921,8 +44953,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+=======
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cdU" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -45020,6 +45055,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+<<<<<<< HEAD
 "cej" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Engineering";
@@ -45054,13 +45090,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cen" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ceo" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -28
@@ -45114,13 +45152,14 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cev" = (
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cew" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
@@ -45301,7 +45340,7 @@
 	req_access_txt = "11"
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cfa" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility,
@@ -45357,6 +45396,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cfg" = (
@@ -45498,7 +45538,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+=======
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cfF" = (
@@ -45510,6 +45554,7 @@
 /area/crew_quarters/heads/chief)
 "cfG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cfH" = (
@@ -45570,6 +45615,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cfM" = (
@@ -45827,10 +45873,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cgw" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cgx" = (
@@ -46278,9 +46326,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -46296,6 +46347,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "chD" = (
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -46305,6 +46357,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+=======
+/obj/effect/turf_decal/loading_area,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "chE" = (
@@ -46467,27 +46522,26 @@
 "chY" = (
 /obj/machinery/shieldgen,
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cia" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"cic" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/structure/cable,
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -46496,26 +46550,59 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cid" = (
-/obj/effect/turf_decal/bot{
+=======
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+"cic" = (
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/watertank,
-/obj/machinery/power/apc/highcap/fifteen_k{
-	dir = 1;
-	name = "Engineering APC";
-	areastring = "/area/engine/engineering";
-	pixel_y = 23
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
+"cid" = (
+/obj/machinery/power/smes/engineering,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cie" = (
-/obj/effect/turf_decal/bot{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/table,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/clothing/gloves/color/yellow,
@@ -46526,23 +46613,33 @@
 	},
 /obj/machinery/light{
 	dir = 1
+=======
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"cif" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
 	pixel_y = 30
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cig" = (
 /turf/closed/wall,
 /area/engine/engineering)
@@ -46580,7 +46677,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cik" = (
 /obj/machinery/computer/apc_control{
 	dir = 4
@@ -46777,10 +46874,15 @@
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "ciN" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+=======
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -46843,7 +46945,7 @@
 "ciW" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ciX" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/metal/fifty,
@@ -46856,14 +46958,14 @@
 	amount = 30
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ciY" = (
 /obj/machinery/door/poddoor{
 	id = "Secure Storage";
 	name = "secure storage"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ciZ" = (
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -46875,10 +46977,9 @@
 /area/engine/engineering)
 "cjb" = (
 /obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel{
-	name = "floor"
-	},
-/area/engine/engineering)
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cjc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -46892,6 +46993,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -46910,6 +47012,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cjf" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -46917,6 +47024,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
@@ -46933,6 +47041,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+=======
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cjg" = (
 /obj/machinery/computer/card/minor/ce{
 	dir = 4
@@ -47202,7 +47315,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cjN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -47468,6 +47581,7 @@
 /obj/machinery/power/smes,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+<<<<<<< HEAD
 "ckv" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -47501,6 +47615,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "ckA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -47508,16 +47624,28 @@
 "ckB" = (
 /obj/machinery/field/generator,
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ckC" = (
 /obj/machinery/power/emitter,
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "ckD" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
+/obj/structure/cable,
 /obj/structure/table,
+<<<<<<< HEAD
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/item/storage/box/lights/mixed,
@@ -47526,17 +47654,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "ckF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ckG" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
 /obj/structure/closet/crate/solarpanel_small,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "ckH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -47544,19 +47688,39 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ckI" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
 /obj/machinery/suit_storage_unit/engine,
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "ckK" = (
-/obj/structure/tank_dispenser,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
+/obj/structure/tank_dispenser,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "ckL" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -47841,12 +48005,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
-"clA" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "clB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -47856,6 +48014,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+<<<<<<< HEAD
 "clC" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -47921,6 +48080,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "clI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -47949,6 +48110,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -48174,6 +48338,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+<<<<<<< HEAD
 "cmy" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48227,6 +48392,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cmC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
@@ -48283,18 +48450,31 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cmN" = (
+<<<<<<< HEAD
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable,
+/obj/machinery/power/apc/highcap/fifteen_k{
+	dir = 1;
+	name = "Engineering APC";
+	areastring = "/area/engine/engineering";
+	pixel_y = 23
+	},
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cmU" = (
@@ -48416,6 +48596,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+<<<<<<< HEAD
 "cnl" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -48466,6 +48647,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cnr" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -48513,17 +48696,27 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnA" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
+/obj/structure/cable,
 /obj/structure/table,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/apc,
-/obj/item/electronics/apc,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -48531,6 +48724,10 @@
 /obj/item/twohanded/rcl/pre_loaded,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cnB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -48717,6 +48914,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnY" = (
@@ -48729,6 +48927,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnZ" = (
@@ -48741,6 +48940,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "coa" = (
@@ -48751,6 +48951,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cob" = (
@@ -48815,6 +49016,7 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+<<<<<<< HEAD
 "cov" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -48926,6 +49128,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "coJ" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
@@ -49057,6 +49261,7 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/aft)
+<<<<<<< HEAD
 "cpj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -49117,10 +49322,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cpq" = (
-/obj/structure/sign/warning/electricshock{
-	pixel_x = -32
-	},
+/obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cps" = (
@@ -49159,12 +49364,15 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cpx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cpy" = (
@@ -49251,6 +49459,7 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
 "cpS" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -49286,6 +49495,8 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cpV" = (
 /obj/machinery/camera{
 	c_tag = "Engineering Storage";
@@ -49492,6 +49703,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+<<<<<<< HEAD
 "cqv" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
@@ -49502,6 +49714,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cqx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -49604,11 +49818,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+<<<<<<< HEAD
 "cqJ" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/aft)
+=======
+"cqH" = (
+/obj/machinery/door/airlock/external{
+	name = "External Access";
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cqK" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -49635,24 +49860,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cqO" = (
-/obj/structure/table,
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/stack/cable_coil,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "cqP" = (
-/obj/structure/table,
-/obj/item/folder/yellow,
-/obj/item/clothing/ears/earmuffs{
-	pixel_x = -3;
-	pixel_y = -2
-	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cqQ" = (
@@ -50127,12 +50336,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "csA" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -53275,6 +53481,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -53284,8 +53491,14 @@
 "cDe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/radiation,
+=======
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cDg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -53552,10 +53765,20 @@
 /turf/open/space,
 /area/space/nearstation)
 "cDZ" = (
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/closet/radiation,
+=======
+/obj/structure/table,
+/obj/item/folder/yellow,
+/obj/item/clothing/ears/earmuffs{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/structure/cable,
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cEa" = (
@@ -54702,22 +54925,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/machinery/computer/security/telescreen/engine{
-	dir = 8;
-	pixel_x = 30
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cMD" = (
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
@@ -55045,11 +55254,12 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cSN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
@@ -55076,10 +55286,20 @@
 /area/engine/engineering)
 "cSQ" = (
 /obj/effect/turf_decal/stripes/line{
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+"cSQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cSR" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable{
@@ -55088,6 +55308,7 @@
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/machinery/camera{
 	c_tag = "Engineering Power Storage"
 	},
@@ -55102,80 +55323,61 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
+=======
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering SMES"
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cST" = (
-/obj/effect/landmark/start/station_engineer,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cSU" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cSV" = (
 /obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
+/area/engine/engine_smes)
 "cSW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cSX" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cSY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/computer/security/telescreen/engine{
+	dir = 8;
+	pixel_x = 24
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "cSZ" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -55184,20 +55386,32 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "cTa" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+"cTb" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cTb" = (
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/pump,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cTc" = (
@@ -55207,10 +55421,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+=======
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cTd" = (
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
+<<<<<<< HEAD
 /area/engine/engineering)
 "cTe" = (
 /obj/structure/cable{
@@ -55224,6 +55444,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "cTf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -55241,6 +55464,12 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/light{
+	dir = 1
+	},
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cTD" = (
@@ -55453,6 +55682,15 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"dCG" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = -32
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "dCN" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable{
@@ -55814,6 +56052,7 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
+<<<<<<< HEAD
 "gGE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -55824,6 +56063,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "gHj" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white/corner{
@@ -56061,6 +56302,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/security/courtroom)
+<<<<<<< HEAD
+=======
+"joy" = (
+/obj/machinery/door/firedoor,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "jrH" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "rnd2";
@@ -56248,6 +56497,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kul" = (
+/turf/closed/wall,
+/area/engine/engine_smes)
 "kwA" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -56546,6 +56798,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+<<<<<<< HEAD
+=======
+"lWA" = (
+/obj/machinery/door/airlock/external{
+	name = "External Access";
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "mdr" = (
 /obj/machinery/nuclearbomb/beer,
 /turf/open/floor/plating,
@@ -56616,6 +56881,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+<<<<<<< HEAD
+=======
+"mRR" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/space,
+/area/space/nearstation)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "mSf" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -56774,6 +57049,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+<<<<<<< HEAD
+=======
+"nZl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/starboard/aft)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "ofT" = (
 /obj/machinery/computer/bounty,
 /turf/open/floor/plasteel,
@@ -56924,6 +57209,34 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"pzA" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/engine/engine_smes";
+	dir = 1;
+	name = "SMES room APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "pDu" = (
 /obj/machinery/computer/nanite_cloud_controller,
 /obj/effect/turf_decal/bot,
@@ -56955,6 +57268,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"pIS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "pKm" = (
 /obj/structure/table,
 /obj/item/nanite_remote,
@@ -57195,6 +57518,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"rZR" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/table,
+/obj/item/storage/box/lights/mixed,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "sdX" = (
 /turf/closed/wall,
 /area/quartermaster/office)
@@ -57243,10 +57587,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
 "suO" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "suU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -57269,6 +57616,11 @@
 	dir = 9
 	},
 /area/science/research)
+"swV" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/port/aft)
 "sxs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table,
@@ -57325,6 +57677,7 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+<<<<<<< HEAD
 "sYI" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -57339,6 +57692,8 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "tal" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
@@ -57406,12 +57761,20 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/nanite)
+<<<<<<< HEAD
 "thy" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+=======
+"tgF" = (
+/obj/structure/table,
+/obj/item/wrench,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "tjy" = (
 /obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
@@ -57419,6 +57782,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"tqy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "trb" = (
 /obj/structure/chair{
 	dir = 8;
@@ -57654,6 +58027,11 @@
 	dir = 8
 	},
 /area/science/research)
+"vkD" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "vmV" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -57800,6 +58178,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"wba" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = 32
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "wfU" = (
 /obj/machinery/atmospherics/components/trinary/mixer{
 	dir = 8
@@ -57873,6 +58261,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+<<<<<<< HEAD
+=======
+"wLh" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "wQy" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57962,6 +58359,17 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+<<<<<<< HEAD
+=======
+"xpa" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/hallway/primary/port)
+"xwN" = (
+/turf/open/floor/plating,
+/area/engine/engine_smes)
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 "xEu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -58008,6 +58416,13 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"ybI" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "ydA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -70045,7 +70460,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+aaa
 aaa
 aaa
 aaa
@@ -71328,7 +71743,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aae
 aaa
 aaa
 aaa
@@ -73136,7 +73551,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+aaa
 aaa
 aaa
 aaa
@@ -73390,7 +73805,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aae
 aaa
 aaa
 aaa
@@ -76463,8 +76878,8 @@ cfx
 chO
 cfx
 aaa
-aaf
-aaf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76721,8 +77136,8 @@ chN
 cfx
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -76979,8 +77394,8 @@ cfx
 cfx
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77237,8 +77652,8 @@ cfw
 aaa
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77495,8 +77910,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -77748,13 +78163,13 @@ cgB
 chQ
 ciR
 cfw
-aag
-aag
-aag
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78006,13 +78421,13 @@ chS
 cfw
 cfw
 bCq
-bXv
-bCq
 aaa
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78262,15 +78677,15 @@ cgD
 bUs
 bHE
 cjI
-bCq
-clA
-bCq
+bLv
 aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78519,18 +78934,18 @@ bHE
 bUs
 bHE
 bLu
-bCq
-cyE
-bCq
+bLv
 aaa
 aaa
-aaf
 aaa
-bCq
-bCq
-bLv
-bLv
-bLv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78771,27 +79186,33 @@ bCq
 cda
 cgF
 bCq
+<<<<<<< HEAD
 cqn
 cAh
 chT
+=======
+bCq
+bUt
+bUt
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 bHE
-bHE
-ckv
 bHE
 bCq
-bLv
-bLv
-bLv
-bLv
 bCq
-ciT
-cqK
-crl
-bLv
+bCq
+aag
 aaa
 aaa
 aaa
-aae
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79028,6 +79449,7 @@ bCq
 bQa
 cpY
 cyL
+<<<<<<< HEAD
 cqy
 cAi
 bQa
@@ -79035,16 +79457,25 @@ bHE
 bHE
 bHE
 bHE
+=======
+bUt
+bUt
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 bHE
 bHE
 bHE
-bHE
-bHE
-cpR
-bHE
-cAQ
-crm
-bLv
+cqH
+dCG
+lWA
+aag
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79285,23 +79716,23 @@ bCq
 cdb
 bSs
 bCq
-bCq
-cgG
-bCq
-bCq
+cqn
+bUt
 bCq
 bCq
-cTF
 bCq
-bLv
-bLv
-bLv
-bLv
 bCq
-cqv
-cqL
-bJe
-bLv
+bCq
+bCq
+aag
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79542,23 +79973,30 @@ bCq
 bCq
 bCq
 bCq
+<<<<<<< HEAD
 bLv
 bUs
 bLv
 aaa
+=======
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 bCq
-ckv
-bHE
+cgG
 bCq
+gXs
+gXs
+aaa
+gXs
 aaa
 aaa
-aaf
 aaa
-bCq
-bCq
-bCq
-bCq
-bCq
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79803,19 +80241,26 @@ bLv
 bUs
 bLv
 aaa
-bLv
-bJf
-ccd
-bCq
 aaa
 aaa
-aaf
 aaa
 aaa
+<<<<<<< HEAD
 aaf
 aaf
 cig
 aaf
+=======
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -80059,20 +80504,24 @@ aaf
 bLv
 bUs
 bLv
-aaf
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
-cjJ
 aaa
 crn
 aaa
+<<<<<<< HEAD
+=======
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aae
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -80317,6 +80766,7 @@ bLv
 bUs
 bLv
 aaa
+<<<<<<< HEAD
 cjJ
 ckw
 clC
@@ -80329,6 +80779,20 @@ cpS
 cjJ
 aaa
 crn
+=======
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -80574,6 +81038,7 @@ bLv
 bUs
 bLv
 aaa
+<<<<<<< HEAD
 cjJ
 cky
 clE
@@ -80587,6 +81052,21 @@ cjJ
 aaf
 crn
 aaa
+=======
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -80828,6 +81308,7 @@ aaf
 aaf
 aaf
 bLv
+<<<<<<< HEAD
 bUs
 bLv
 aaf
@@ -80843,6 +81324,23 @@ cpT
 cjJ
 aaa
 crn
+=======
+bUt
+bLv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -81088,6 +81586,7 @@ bLv
 bUs
 bLv
 aaa
+<<<<<<< HEAD
 cjJ
 cky
 clG
@@ -81101,6 +81600,21 @@ cjJ
 aaa
 crn
 aaa
+=======
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -81345,6 +81859,7 @@ bLv
 bUs
 bLv
 aaa
+<<<<<<< HEAD
 cjJ
 ckz
 clF
@@ -81358,6 +81873,21 @@ aaf
 aaf
 crn
 aaa
+=======
+aaa
+aaa
+gXs
+aaa
+aaa
+aaa
+bCq
+bCq
+bLv
+bLv
+bLv
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaa
 aaa
@@ -81598,6 +82128,7 @@ aoV
 aoV
 aaf
 aaf
+<<<<<<< HEAD
 bLv
 bUs
 bLv
@@ -81615,6 +82146,25 @@ aaa
 aaa
 crn
 aaf
+=======
+bCq
+bUt
+bCq
+bCq
+bLv
+bLv
+bCq
+bLv
+bLv
+bCq
+bCq
+bPX
+cqK
+crl
+bLv
+gXs
+gXs
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaT
 aaT
 aaT
@@ -81856,6 +82406,7 @@ aoV
 aoV
 aoV
 bCq
+<<<<<<< HEAD
 bUs
 bCq
 aaa
@@ -81872,6 +82423,24 @@ aaa
 aaa
 crn
 aaf
+=======
+bUt
+bSp
+bHE
+bPW
+bHE
+wba
+bHE
+swV
+bHE
+cpR
+bHE
+cAQ
+crm
+bLv
+aaa
+aaa
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaT
 ctv
 ctv
@@ -82118,8 +82687,15 @@ bCq
 bCq
 bCq
 bCq
+bJf
+bLu
+bRg
 bCq
+tgF
+bPZ
+ccd
 bCq
+<<<<<<< HEAD
 cjJ
 cnS
 coC
@@ -82129,6 +82705,14 @@ aaf
 aaf
 cig
 aaf
+=======
+swV
+cqL
+bJe
+bLv
+gXs
+gXs
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaT
 aaT
 aaT
@@ -82371,9 +82955,8 @@ bLw
 bLw
 caq
 cbw
-ccu
-ciT
 bCq
+<<<<<<< HEAD
 bSs
 ceY
 ccw
@@ -82381,10 +82964,21 @@ ccw
 cnR
 cgT
 cjJ
+=======
+bCq
+bCq
+bCq
+bCq
+bCq
+ccw
+ccw
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 ccw
 ccw
 ccw
 ccw
+ccw
+aaa
 aaa
 aaf
 aaa
@@ -82627,9 +83221,15 @@ bVI
 bVI
 bVI
 bTA
+<<<<<<< HEAD
 bEP
 cdi
 bCq
+=======
+pIS
+ccu
+ciT
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 bCq
 bHE
 bHE
@@ -82637,11 +83237,19 @@ cmD
 cnr
 cnU
 chD
+<<<<<<< HEAD
 cpq
 cpV
 cqw
 cqO
 crp
+=======
+cpV
+cpq
+cpq
+ccw
+ccw
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 aaa
 aaf
 aaa
@@ -82894,6 +83502,10 @@ cmC
 cmC
 cfJ
 chB
+<<<<<<< HEAD
+=======
+ckF
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 cpW
 cgR
 cgR
@@ -83144,9 +83756,9 @@ caz
 cby
 cdj
 cdv
-cem
-cem
-cem
+bGq
+bGq
+bGq
 cfe
 cfD
 cgv
@@ -83398,16 +84010,16 @@ cdc
 cdZ
 bVI
 cay
-ccw
-ccw
-ccw
-ccw
-ccw
-ccw
-ccw
-ccw
+cjJ
+cjJ
+cjJ
+cjJ
+cjJ
+cjJ
+cjJ
+cjJ
 cfL
-coH
+cjS
 cBO
 cgR
 cDB
@@ -83655,16 +84267,16 @@ bWB
 cec
 bVI
 cay
-ccw
+cjJ
 chY
 ciX
 cjM
 ckB
 ckB
 ckB
-ccw
+cjJ
 cnY
-coH
+cjS
 cgR
 cgR
 cqx
@@ -83912,16 +84524,16 @@ cde
 ceb
 bVI
 cay
-ccw
+cjJ
 chY
-ciZ
+xwN
 ciW
 ckB
 ckB
 ckC
-ccw
+cjJ
 cnX
-coH
+cjS
 cps
 cpX
 cqz
@@ -84169,14 +84781,14 @@ cdf
 ced
 bVI
 cay
-ccw
-ciZ
-ciZ
-ciZ
+cjJ
+xwN
+xwN
+xwN
 ckC
 ckC
 ckC
-ccw
+cjJ
 coa
 coJ
 clJ
@@ -84426,16 +85038,16 @@ bWB
 bWB
 bVI
 cay
-ccw
-ccw
+cjJ
+cjJ
 ciY
 ciY
-ccw
-ccw
-ccw
-ccw
+cjJ
+cjJ
+cjJ
+cjJ
 cnZ
-coH
+cjS
 cpt
 cpZ
 cig
@@ -84683,17 +85295,23 @@ bXF
 cef
 bVJ
 cay
-ccw
-cig
+cjJ
+pzA
 cjb
 cjb
-cig
-cig
+rZR
+kul
 cmG
 cnt
+<<<<<<< HEAD
 cob
 coL
 cDo
+=======
+kcN
+cjS
+cgR
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 cgR
 cqA
 cqT
@@ -84940,17 +85558,22 @@ cdg
 cee
 bVJ
 cay
-ccw
+cjJ
 cia
 cSN
-cSS
+ecF
 ckD
+<<<<<<< HEAD
 cTc
 cTe
+=======
+rdP
+cmL
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 cfG
 cgw
 coK
-cpu
+cgL
 cMm
 ccw
 ccw
@@ -85197,12 +85820,12 @@ bWt
 cBK
 bVJ
 cay
-ccw
+cjJ
 cid
 cSO
 cen
 ckG
-clJ
+rdP
 cmF
 cgR
 cgI
@@ -85454,9 +86077,9 @@ bWs
 ceg
 bVJ
 cay
-ccw
+cjJ
 cic
-cSP
+cSQ
 cST
 cTa
 ceZ
@@ -85711,8 +86334,13 @@ bWv
 cei
 bVJ
 cay
+<<<<<<< HEAD
 ccw
 cif
+=======
+cjJ
+cid
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 cSQ
 cSU
 cTb
@@ -85968,14 +86596,14 @@ bWu
 bVJ
 bVJ
 cay
-ccw
+cjJ
 cie
 cdT
 cCY
 cnA
 cev
 cfg
-cgU
+aeT
 cgJ
 chG
 cpx
@@ -86225,14 +86853,14 @@ bWK
 bYp
 bCq
 cay
-ccw
-cig
+cjJ
+kul
 cSR
 cSV
-cig
-cig
+kul
+kul
 cTf
-cgR
+ckH
 ccw
 cDh
 cpy
@@ -86482,14 +87110,14 @@ bWJ
 bYn
 bZB
 caC
-ccw
+cjJ
 cSM
 cjd
 cSW
 ckI
-clJ
-cmL
-cBO
+rdP
+cmF
+vkD
 ccw
 chV
 cpx
@@ -86739,17 +87367,24 @@ bXm
 bYE
 bCq
 bHE
-ccw
+cjJ
 cij
 cjf
 cSX
 ckK
-clJ
+rdP
 cmL
+<<<<<<< HEAD
 cgR
 cgL
 chX
 cpx
+=======
+ckH
+cpu
+tqy
+cDp
+>>>>>>> bbf97558cf... Move Boxstation SMESs back into engineering (#44844)
 cqh
 cqF
 cra
@@ -86996,13 +87631,13 @@ bXk
 bYq
 bCq
 ceW
-ccw
+cjJ
 cdk
 cMC
 cSY
 ckI
-clJ
-cmL
+rdP
+cmF
 cnv
 cMm
 chX
@@ -94956,7 +95591,7 @@ bVu
 bVu
 bVu
 bVu
-caJ
+mRR
 aaf
 aaf
 aaf
@@ -98289,7 +98924,7 @@ bOr
 bOt
 bOr
 bRQ
-bOr
+ybI
 bSQ
 bNj
 bNs
