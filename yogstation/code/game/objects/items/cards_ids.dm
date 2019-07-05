@@ -69,12 +69,14 @@
 /obj/item/card/emag/limited
 	name = "flimsy cryptographic sequencer"
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks pretty fragile."
-	var/uses = 2
+	var/uses = 3
 
 /obj/item/card/emag/limited/afterattack(atom/target, mob/user, proximity)
-	if(!uses)
+	if(!uses) // If we're out of uses
 		to_chat(user, "<span class='warning'>The card is broken.</span>")
 		log_combat(user, target, "failed to emag (no more uses)")
+		return
+	if(!proximity && prox_check) // If we're not close enough
 		return
 
 	uses--
