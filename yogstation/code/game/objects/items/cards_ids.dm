@@ -66,6 +66,27 @@
 /obj/item/card/id/captains_spare
 	icon_state = "id_gold"
 
+/obj/item/card/emag/limited
+	name = "flimsy cryptographic sequencer"
+	desc = "It's a card with a magnetic strip attached to some circuitry. It looks pretty fragile."
+	var/uses = 2
+
+/obj/item/card/emag/limited/afterattack(atom/target, mob/user, proximity)
+	if(!uses)
+		to_chat(user, "<span class='warning'>The card is broken.</span>")
+		log_combat(user, target, "failed to emag (no more uses)")
+		return
+
+	uses--
+	if(!uses) // If this is our final use
+		playsound(src.loc, "sparks", 50, 1)
+		to_chat(user, "<span class='warning'>The card breaks!</span>")
+		desc = "It's a card with a magnetic strip attached to some circuitry. It's broken."
+	else if(uses == 1) // If we got a spare use left after this one
+		to_chat(user, "<span class='notice'>The card starts to fall apart.</span>")
+		desc = "It's a card with a magnetic strip attached to some circuitry. It's barely held together."
+	return ..()
+
 /obj/item/card/emag/emag_act(mob/user)
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
