@@ -256,6 +256,7 @@
 	filling_color = color
 	foodtype |= FRIED
 
+<<<<<<< HEAD
 /obj/item/reagent_containers/food/snacks/butteredtoast
 	name = "buttered toast"
 	desc = "Butter lightly spread over a piece of toast."
@@ -267,6 +268,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "toast" = 1)
 
+=======
+>>>>>>> b9fa8ad730... Make breakfast foods give a positive moodie before 15 mins (#44914)
 /obj/item/reagent_containers/food/snacks/butterbiscuit
 	name = "butter biscuit"
 	desc = "Well butter my biscuit!"
@@ -276,6 +279,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
+	foodtype = GRAIN | BREAKFAST
 
 /obj/item/reagent_containers/food/snacks/butterdog
 	name = "butterdog"
