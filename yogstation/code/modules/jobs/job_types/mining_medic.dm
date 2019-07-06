@@ -1,20 +1,20 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
 	flag = MMEDIC
-	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
+	department_head = list("Quartermaster")
+	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#ffeef0"
+	supervisors = "the quartermaster and the chief medical officer"
+	selection_color = "#dcba97"
 
 	outfit = /datum/outfit/job/miningmedic
 
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
-	paycheck_department = ACCOUNT_MED
+	paycheck_department = ACCOUNT_CAR
 	display_order = JOB_DISPLAY_ORDER_MINING_MEDIC
 
 /datum/outfit/job/miningmedic

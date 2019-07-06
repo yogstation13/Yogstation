@@ -24,8 +24,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 	// yogs start - Yog jobs
 	"Chemist",
 	"Paramedic",
-	"Psychiatrist",
-	"Mining Medic"))
+	"Psychiatrist"))
 	// yogs end
 
 
@@ -39,8 +38,10 @@ GLOBAL_LIST_INIT(supply_positions, list(
 	"Head of Personnel",
 	"Quartermaster",
 	"Cargo Technician",
-	"Shaft Miner"))
-
+	"Shaft Miner",
+	// yogs start - Yog jobs
+	"Mining Medic"))
+	// yogs end
 
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Bartender",
