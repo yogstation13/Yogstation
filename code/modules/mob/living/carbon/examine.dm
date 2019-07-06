@@ -68,7 +68,7 @@
 			else
 				msg += "<b>[t_He] [t_is] severely deformed!</b>\n"
 
-	if(HAS_TRAIT(src, TRAIT_DUMB))
+	if(has_trait(TRAIT_DUMB))
 		msg += "[t_He] seem[p_s()] to be clumsy and unable to think.\n"
 
 	if(fire_stacks > 0)

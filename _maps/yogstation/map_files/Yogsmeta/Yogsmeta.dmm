@@ -27591,7 +27591,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;22;25;37;38;46"
+	req_one_access_txt = "12;25;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -31508,7 +31508,7 @@
 /area/storage/tools)
 "bdW" = (
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;22;25;37;38;46"
+	req_one_access_txt = "12;25;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -39548,14 +39548,16 @@
 /turf/closed/wall,
 /area/hallway/secondary/service)
 "brW" = (
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "null";
+	req_one_access_txt = "25;26;35;28"
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/card{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "brX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -41792,16 +41794,14 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "bwn" = (
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28;22;37;46;38"
+/obj/machinery/computer/card{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "bwo" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/start/head_of_personnel,
@@ -42417,7 +42417,7 @@
 	network = list("tcomms");
 	pixel_x = 26
 	},
-/obj/machinery/computer/telecomms/traffic{
+/obj/machinery/computer/telecomms/monitor{
 	dir = 8;
 	network = "tcommsat"
 	},
@@ -53211,15 +53211,17 @@
 /turf/closed/wall/r_wall,
 /area/science/server)
 "bRL" = (
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28;22;37;46;38"
+/obj/structure/mineral_door/wood{
+	name = "The Gobbetting Barmaid"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/hallway/secondary/service)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/port/aft)
 "bRM" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -53936,14 +53938,6 @@
 /obj/item/bedsheet/medical/virology,
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
-"bTc" = (
-/obj/machinery/door/airlock/wood{
-	doorClose = 'sound/effects/doorcreaky.ogg';
-	doorOpen = 'sound/effects/doorcreaky.ogg';
-	name = "The Gobetting Barmaid"
-	},
-/turf/open/floor/wood,
-/area/maintenance/port/aft)
 "bTd" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
@@ -57598,20 +57592,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/atmos)
-"bZN" = (
-/obj/machinery/door/airlock/wood{
-	doorClose = 'sound/effects/doorcreaky.ogg';
-	doorOpen = 'sound/effects/doorcreaky.ogg';
-	name = "The Gobetting Barmaid"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/port/aft)
 "bZO" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/blue,
@@ -64040,6 +64020,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"ckf" = (
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "null";
+	req_one_access_txt = "25;26;35;28"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/hallway/secondary/service)
 "ckg" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Incinerator Access";
@@ -65827,6 +65817,12 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
+/area/maintenance/port/aft)
+"cnl" = (
+/obj/structure/mineral_door/wood{
+	name = "The Gobbetting Barmaid"
+	},
+/turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cnm" = (
 /obj/structure/table,
@@ -100402,8 +100398,8 @@ dux
 cjv
 diG
 dux
-bTc
-bZN
+cnl
+bRL
 dux
 diI
 bFq
@@ -107568,7 +107564,7 @@ bkz
 btC
 bsQ
 bdz
-brW
+bwn
 bxZ
 bzL
 bBB
@@ -120434,10 +120430,10 @@ dir
 byN
 bqz
 brC
-bwn
+brW
 cjB
 cjR
-bRL
+ckf
 clh
 bcd
 bcd

@@ -8,8 +8,6 @@
 	var/climbable = FALSE
 	var/mob/living/structureclimber
 	var/broken = 0 //similar to machinery's stat BROKEN
-	layer = BELOW_OBJ_LAYER
-
 
 /obj/structure/Initialize()
 	if (!armor)
@@ -74,7 +72,7 @@
 		adjusted_climb_time *= 2
 	if(isalien(user))
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast
-	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
+	if(user.has_trait(TRAIT_FREERUNNING)) //do you have any idea how fast I am???
 		adjusted_climb_time *= 0.8
 	structureclimber = user
 	if(do_mob(user, user, adjusted_climb_time))

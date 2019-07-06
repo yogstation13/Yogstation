@@ -46,11 +46,9 @@
 			for(var/j = 1, j<= gibamounts[i], j++)
 				var/gibType = gibtypes[i]
 				gib = new gibType(loc, diseases)
-				//yogs start -- Yogs Vorecode
 				if(iscarbon(loc))
 					var/mob/living/carbon/digester = loc
 					digester.stomach_contents += gib
-				//yogs end
 
 				gib.add_blood_DNA(dna_to_add)
 

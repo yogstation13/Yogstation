@@ -84,7 +84,7 @@ Slimecrossing Weapons
 
 /obj/item/gun/magic/bloodchill/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/gun/magic/bloodchill/process()
 	charge_tick++

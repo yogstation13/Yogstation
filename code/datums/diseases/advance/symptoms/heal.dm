@@ -233,7 +233,7 @@
 
 /datum/symptom/heal/coma/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
-	if(HAS_TRAIT(M, TRAIT_DEATHCOMA))
+	if(M.has_trait(TRAIT_DEATHCOMA))
 		return power
 	else if(M.IsUnconscious() || M.stat == UNCONSCIOUS)
 		return power * 0.9

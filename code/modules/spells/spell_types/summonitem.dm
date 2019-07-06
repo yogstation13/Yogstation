@@ -25,7 +25,7 @@
 			for(var/obj/item/item in hand_items)
 				if(item.item_flags & ABSTRACT)
 					continue
-				if(HAS_TRAIT(item, TRAIT_NODROP))
+				if(item.has_trait(TRAIT_NODROP))
 					message += "Though it feels redundant, "
 				marked_item = 		item
 				message += "You mark [item] for recall.</span>"
@@ -78,10 +78,8 @@
 
 						if(iscarbon(M)) //Edge case housekeeping
 							var/mob/living/carbon/C = M
-							//yogs start -- Yogs Vorecode
-							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)	
+							if(C.stomach_contents && item_to_retrieve in C.stomach_contents)
 								C.stomach_contents -= item_to_retrieve
-							//Yogs end
 							for(var/X in C.bodyparts)
 								var/obj/item/bodypart/part = X
 								if(item_to_retrieve in part.embedded_objects)

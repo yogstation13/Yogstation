@@ -8,77 +8,9 @@
 "ac" = (
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ad" = (
-/obj/machinery/washing_machine,
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"ae" = (
-/obj/machinery/camera{
-	c_tag = "Storage";
-	dir = 2;
-	network = list("mine")
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"af" = (
-/obj/machinery/mineral/equipment_vendor,
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"ag" = (
-/obj/structure/closet/secure_closet/miner,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"ah" = (
-/obj/structure/ore_box,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"ai" = (
-/obj/structure/closet/secure_closet/miner,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"aj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "ak" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"al" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"am" = (
-/obj/structure/ore_box,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"an" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "ao" = (
 /turf/closed/wall,
 /area/mine/eva)
@@ -86,37 +18,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/eva)
-"aq" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"ar" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"as" = (
-/obj/machinery/computer/security/mining{
-	icon_state = "computer";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "at" = (
 /obj/structure/table,
 /obj/item/pickaxe,
@@ -208,51 +109,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/eva)
-"aC" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"aD" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"aE" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"aF" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "aG" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -337,19 +193,6 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"aP" = (
-/obj/machinery/computer/crew{
-	icon_state = "computer";
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"aQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "aR" = (
 /obj/structure/sign/warning/docking,
 /obj/effect/spawner/structure/window/reinforced,
@@ -476,61 +319,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"be" = (
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"bf" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"bg" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"bh" = (
-/obj/vehicle/ridden/atv,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"bi" = (
-/obj/machinery/camera{
-	c_tag = "Sleeper Room";
-	dir = 1;
-	network = list("mine")
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
-"bj" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/random,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "bk" = (
 /obj/docking_port/stationary{
 	area_type = /area/lavaland/surface/outdoors;
@@ -648,10 +436,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"by" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "bE" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -925,6 +709,56 @@
 	},
 /turf/open/floor/circuit,
 /area/mine/maintenance)
+"co" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cp" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cq" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cr" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
 "cs" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -1022,6 +856,56 @@
 	},
 /turf/open/floor/circuit,
 /area/mine/maintenance)
+"cF" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/blood/AMinus,
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/machinery/camera{
+	c_tag = "Sleeper Room";
+	dir = 1;
+	network = list("mine")
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"cI" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
 "cJ" = (
 /obj/structure/cable,
 /obj/structure/cable{
@@ -1154,6 +1038,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/mine/living_quarters)
+"cX" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "cY" = (
 /obj/effect/spawner/structure/window,
@@ -1876,6 +1767,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"eD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/mine/living_quarters)
 "eE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/purple{
@@ -1984,6 +1879,58 @@
 	},
 /turf/open/floor/plating,
 /area/mine/production)
+"eQ" = (
+/obj/machinery/mineral/equipment_vendor,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"eR" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"eS" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"eT" = (
+/obj/machinery/camera{
+	c_tag = "Storage";
+	dir = 2;
+	network = list("mine")
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "eU" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -2082,9 +2029,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"ff" = (
+/obj/structure/ore_box,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "fg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fh" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2145,6 +2117,52 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fo" = (
+/obj/structure/ore_box,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fp" = (
+/obj/machinery/recharge_station,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fq" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fr" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
+"fs" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2678,9 +2696,9 @@ di
 dJ
 di
 bQ
-as
-aP
-bh
+eQ
+ff
+fo
 bQ
 ak
 ab
@@ -2709,11 +2727,11 @@ cU
 dj
 dK
 el
-an
-aC
-aQ
-bi
 bQ
+eR
+di
+fp
+bU
 ak
 ab
 ab
@@ -2741,11 +2759,11 @@ cV
 dk
 dL
 em
-aq
-aD
-be
-bj
-bQ
+eC
+do
+fg
+fq
+bU
 ak
 ab
 ab
@@ -2773,11 +2791,11 @@ bT
 dl
 dM
 en
-ar
-aE
-bf
-by
 bQ
+eS
+di
+fr
+bU
 ak
 bI
 bI
@@ -2805,10 +2823,10 @@ bT
 dm
 dN
 eo
-bQ
-aF
-bg
-by
+eD
+eT
+fh
+fs
 bQ
 bI
 bP
@@ -2829,7 +2847,7 @@ ab
 ac
 ac
 ak
-bQ
+ak
 bT
 bT
 bT
@@ -2861,10 +2879,10 @@ ab
 ab
 ac
 ac
+ak
 bQ
-ad
-ag
-ai
+co
+cF
 bQ
 di
 dO
@@ -2893,10 +2911,10 @@ ab
 ab
 ac
 ac
-bQ
-ae
-du
-aj
+ak
+bU
+cp
+cG
 cW
 dj
 dN
@@ -2925,11 +2943,11 @@ ab
 ab
 ac
 ac
-bQ
-di
-di
-al
-eC
+ak
+bU
+cq
+cH
+cX
 do
 dP
 ep
@@ -2957,10 +2975,10 @@ ab
 ac
 ac
 bI
+bP
 bQ
-af
-ah
-am
+cr
+cI
 cY
 dl
 dM

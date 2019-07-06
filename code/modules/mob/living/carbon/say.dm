@@ -46,9 +46,4 @@
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/trauma = T
 		message = trauma.on_hear(message, speaker, message_language, raw_message, radio_freq)
-
-	if (src.mind.has_antag_datum(/datum/antagonist/traitor))
-		message = GLOB.syndicate_code_phrase_regex.Replace(message, "<span class='blue'>$1</span>")
-		message = GLOB.syndicate_code_response_regex.Replace(message, "<span class='red'>$1</span>")
-
 	return message

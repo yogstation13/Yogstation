@@ -57,14 +57,14 @@
 	var/success = FALSE
 
 	if(target.mind && target.client && target.stat != DEAD)
-		if(!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield)
-			if(HAS_TRAIT(target, TRAIT_MINDSHIELD) && ignore_mindshield)
+		if(!target.has_trait(TRAIT_MINDSHIELD) || ignore_mindshield)
+			if(target.has_trait(TRAIT_MINDSHIELD) && ignore_mindshield)
 				to_chat(user, "<span class='notice'>We bruteforce our way past the mental barriers of [target.name] and begin linking our minds!</span>")
 			else
 				to_chat(user, "<span class='notice'>We begin linking our mind with [target.name]!</span>")
 			if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && target in view(range))
 				if(do_after(user,5*(1.5**get_dist(user, target)),0,user) && target in view(range))
-					if((!HAS_TRAIT(target, TRAIT_MINDSHIELD) || ignore_mindshield) && target in view(range))
+					if((!target.has_trait(TRAIT_MINDSHIELD) || ignore_mindshield) && target in view(range))
 						to_chat(user, "<span class='notice'>[target.name] was added to the Hive!</span>")
 						success = TRUE
 						hive.add_to_hive(target)
@@ -516,7 +516,7 @@
 		if(target.is_real_hivehost())
 			continue
 		if(prob(20))
-			var/text = pick(":h Help!!",":h Run!",":h They're here!",":h Get out!",":h Hide!",":h Kill them!",":h Cult!",":h Changeling!",":h Traitor!",":h Nuke ops!",":h Revolutionaries!",":h Wizard!",":h Zombies!",":h Ghosts!",":h AI rogue!",":h Borgs emagged!",":h Maint!!",":h Dying!!",":h AI lock down the borgs law 1!",":h I'm losing control of the situation!!")
+			var/text = pick(";HELP!","I'm losing control of the situation!!","Get me outta here!")
 			target.say(text, forced = "panic")
 		var/effect = rand(1,4)
 		switch(effect)
@@ -732,7 +732,7 @@
 	for(var/mob/living/carbon/C in targets)
 		if(!is_hivehost(C))
 			continue
-		if(C.InCritical() || (C.stat == DEAD && C.timeofdeath + 150 >= world.time) )
+		if(C.InCritical() || (C.stat == DEAD && C?.mind.last_death + 150 >= world.time) )
 			C.gib()
 			hive.track_bonus += TRACKER_BONUS_LARGE
 			hive.size_mod += 5

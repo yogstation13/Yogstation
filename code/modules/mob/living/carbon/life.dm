@@ -8,33 +8,28 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(!IsInStasis())
+	if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
+		handle_organs()
 
-		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
-			handle_organs()
+	. = ..()
 
-		. = ..()
+	if (QDELETED(src))
+		return
 
-		if (QDELETED(src))
-			return
+	if(.) //not dead
+		handle_blood()
 
-		if(.) //not dead
-			handle_blood()
+	if(stat != DEAD)
+		var/bprv = handle_bodyparts()
+		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
+			updatehealth()
+			update_stamina()
 
-		if(stat != DEAD)
-			var/bprv = handle_bodyparts()
-			if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-				updatehealth()
-				update_stamina()
+	if(stat != DEAD)
+		handle_brain_damage()
 
-		if(stat != DEAD)
-			handle_brain_damage()
-
-		if(stat != DEAD)
-			handle_liver()
-
-	else
-		. = ..()
+	if(stat != DEAD)
+		handle_liver()
 
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -77,7 +72,7 @@
 	var/datum/gas_mixture/breath
 
 	if(!getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		if(health <= HEALTH_THRESHOLD_FULLCRIT || (pulledby && pulledby.grab_state >= GRAB_KILL) || HAS_TRAIT(src, TRAIT_MAGIC_CHOKE))
+		if(health <= HEALTH_THRESHOLD_FULLCRIT || (pulledby && pulledby.grab_state >= GRAB_KILL) || has_trait(TRAIT_MAGIC_CHOKE))
 			losebreath++  //You can't breath at all when in critical or when being choked, so you're going to miss a breath
 
 		else if(health <= crit_threshold)
@@ -119,7 +114,7 @@
 		air_update_turf()
 
 /mob/living/carbon/proc/has_smoke_protection()
-	if(HAS_TRAIT(src, TRAIT_NOBREATH))
+	if(has_trait(TRAIT_NOBREATH))
 		return TRUE
 	return FALSE
 
@@ -128,7 +123,7 @@
 /mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
-	if(HAS_TRAIT(src, TRAIT_NOBREATH))
+	if(has_trait(TRAIT_NOBREATH))
 		return
 
 	var/lungs = getorganslot(ORGAN_SLOT_LUNGS)
@@ -388,6 +383,23 @@
 	if(radiation > RAD_MOB_SAFE)
 		adjustToxLoss(log(radiation-RAD_MOB_SAFE)*RAD_TOX_COEFFICIENT)
 
+/mob/living/carbon/handle_stomach()
+	set waitfor = 0
+	for(var/mob/living/M in stomach_contents)
+		if(M.loc != src)
+			stomach_contents.Remove(M)
+			continue
+		if(iscarbon(M) && stat != DEAD)
+			if(M.stat == DEAD)
+				M.death(1)
+				stomach_contents.Remove(M)
+				qdel(M)
+				continue
+			if(SSmobs.times_fired%3==1)
+				if(!(M.status_flags & GODMODE))
+					M.adjustBruteLoss(5)
+				adjust_nutrition(10)
+
 
 /*
 Alcohol Poisoning Chart
@@ -501,7 +513,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(prob(25))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
+			if(has_trait(TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.12, FALSE)
 				adjustFireLoss(-0.06, FALSE)
 		else
@@ -531,7 +543,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(prob(25))
 				confused += 2
 			Dizzy(10)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
+			if(has_trait(TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
 				adjustBruteLoss(-0.3, FALSE)
 				adjustFireLoss(-0.15, FALSE)
 
@@ -544,7 +556,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(drunkenness >= 61)
 			if(prob(50))
 				blur_eyes(5)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
+			if(has_trait(TRAIT_DRUNK_HEALING))
 				adjustBruteLoss(-0.4, FALSE)
 				adjustFireLoss(-0.2, FALSE)
 
@@ -612,8 +624,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		L.damage += d
 
 /mob/living/carbon/proc/liver_failure()
-	reagents.metabolize(src, can_overdose=HAS_TRAIT(src, TRAIT_STABLEHEART), liverless = !HAS_TRAIT(src, TRAIT_STABLEHEART)) // yogs make it so reagents process normally if you have corazone
-	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
+	reagents.metabolize(src, can_overdose=has_trait(TRAIT_STABLEHEART), liverless = !has_trait(TRAIT_STABLEHEART)) // yogs make it so reagents process normally if you have corazone
+	if(has_trait(TRAIT_STABLEHEART))
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
 	if(prob(30))
@@ -649,7 +661,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	return TRUE
 
 /mob/living/carbon/proc/needs_heart()
-	if(HAS_TRAIT(src, TRAIT_STABLEHEART))
+	if(has_trait(TRAIT_STABLEHEART))
 		return FALSE
 	if(dna && dna.species && (NOBLOOD in dna.species.species_traits)) //not all carbons have species!
 		return FALSE

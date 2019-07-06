@@ -32,7 +32,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ai" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/sand,
@@ -40,11 +40,11 @@
 /area/lavaland/surface)
 "aj" = (
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ak" = (
 /obj/machinery/atmospherics/pipe/simple,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "al" = (
 /obj/machinery/door/airlock,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -52,14 +52,14 @@
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "an" = (
 /obj/item/trash/syndi_cakes,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ao" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/light{
@@ -69,7 +69,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ap" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -78,27 +78,27 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aq" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ar" = (
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "as" = (
 /obj/structure/sink,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "at" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -106,7 +106,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "au" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
@@ -115,7 +115,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "av" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks,
@@ -127,21 +127,21 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ax" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "ay" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "az" = (
 /obj/machinery/light{
 	dir = 4;
@@ -149,7 +149,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aA" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
@@ -157,14 +157,14 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aB" = (
 /obj/item/trash/candy,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aC" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -172,7 +172,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aD" = (
 /obj/structure/sink{
 	icon_state = "sink";
@@ -187,7 +187,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aF" = (
 /obj/item/trash/raisins,
 /obj/machinery/light{
@@ -198,7 +198,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aG" = (
 /obj/machinery/vending/boozeomat{
 	products = list(/obj/item/reagent_containers/food/drinks/bottle/gin = 2, /obj/item/reagent_containers/food/drinks/bottle/whiskey = 2, /obj/item/reagent_containers/food/drinks/bottle/tequila = 3, /obj/item/reagent_containers/food/drinks/bottle/vodka = 1, /obj/item/reagent_containers/food/drinks/bottle/vermouth = 3, /obj/item/reagent_containers/food/drinks/bottle/rum = 5, /obj/item/reagent_containers/food/drinks/bottle/wine = 2, /obj/item/reagent_containers/food/drinks/bottle/cognac = 3, /obj/item/reagent_containers/food/drinks/bottle/kahlua = 1, /obj/item/reagent_containers/food/drinks/bottle/absinthe = 2, /obj/item/reagent_containers/food/drinks/ale = 3, /obj/item/reagent_containers/food/drinks/flask = 1)
@@ -207,7 +207,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aH" = (
 /obj/machinery/vending/cigarette{
 	products = list(/obj/item/storage/fancy/cigarettes = 3, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 2, /obj/item/storage/fancy/cigarettes/cigpack_robust = 1, /obj/item/storage/fancy/cigarettes/cigpack_carp = 0, /obj/item/storage/fancy/cigarettes/cigpack_midori = 0, /obj/item/storage/box/matches = 4, /obj/item/lighter/greyscale = 1, /obj/item/storage/fancy/rollingpapers = 3)
@@ -216,7 +216,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aI" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/raisins,
@@ -228,7 +228,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aJ" = (
 /obj/structure/table,
 /obj/structure/window,
@@ -241,7 +241,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aK" = (
 /obj/structure/table,
 /obj/structure/window,
@@ -253,7 +253,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aL" = (
 /obj/structure/table,
 /obj/structure/window,
@@ -264,7 +264,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aM" = (
 /obj/structure/table,
 /obj/structure/window,
@@ -277,7 +277,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aN" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/cobweb,
@@ -291,7 +291,7 @@
 	network = list("gasstation")
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aO" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -308,7 +308,7 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aP" = (
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
@@ -320,7 +320,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aQ" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -335,7 +335,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aR" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -349,7 +349,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aS" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -361,7 +361,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aT" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -374,17 +374,17 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aU" = (
 /obj/machinery/door/airlock/centcom{
 	req_access_txt = "36"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aV" = (
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aW" = (
 /obj/structure/table/reinforced,
 /obj/machinery/paystand/register{
@@ -399,14 +399,14 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aX" = (
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aY" = (
 /obj/structure/window{
 	dir = 4
@@ -422,7 +422,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "aZ" = (
 /obj/structure/window{
 	dir = 8
@@ -438,7 +438,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bb" = (
 /obj/structure/table,
 /obj/item/storage/box/pillbottles,
@@ -449,7 +449,7 @@
 	name = "ATV Key"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bc" = (
 /obj/structure/table,
 /obj/item/clothing/mask/gas,
@@ -460,7 +460,7 @@
 /obj/item/storage/toolbox/mechanical/insulateds,
 /obj/item/hand_labeler,
 /turf/open/floor/plating,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bd" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -473,7 +473,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "be" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -486,7 +486,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bf" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -499,7 +499,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bg" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -513,7 +513,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bh" = (
 /obj/item/trash/chips,
 /obj/machinery/light{
@@ -522,7 +522,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bi" = (
 /obj/machinery/door/window{
 	req_access = null;
@@ -536,7 +536,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bj" = (
 /obj/structure/window{
 	dir = 1
@@ -552,7 +552,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bk" = (
 /obj/structure/window{
 	dir = 1
@@ -566,7 +566,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bl" = (
 /obj/structure/window{
 	dir = 1
@@ -579,7 +579,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bm" = (
 /obj/structure/window{
 	dir = 1
@@ -592,7 +592,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bn" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -621,14 +621,14 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bq" = (
 /obj/item/trash/popcorn,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "br" = (
 /obj/machinery/door/airlock/glass_large{
 	doorOpen = 'sound/machines/defib_success.ogg'
@@ -641,7 +641,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bs" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "gasstation"
@@ -651,7 +651,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bt" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/light{
@@ -659,7 +659,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bu" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
@@ -678,7 +678,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "bx" = (
 /obj/item/melee/skateboard{
 	dir = 4
@@ -729,12 +729,14 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "dc" = (
 /obj/effect/turf_decal/sand,
 /obj/item/beacon,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "fP" = (
 /obj/structure/toilet{
 	icon_state = "toilet00";
@@ -744,7 +746,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "gF" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
@@ -766,7 +768,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "lg" = (
 /obj/machinery/light,
 /obj/machinery/camera{
@@ -779,7 +781,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "md" = (
 /obj/machinery/shower{
 	icon_state = "shower";
@@ -789,12 +791,14 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "pE" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/teleport/hub,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "rr" = (
 /obj/item/gps/internal{
 	desc = "You can just FEEL the money oozing out of this signal.";
@@ -805,7 +809,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "su" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -815,7 +819,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "tZ" = (
 /obj/machinery/camera{
 	c_tag = "Inside Back Exit Camera";
@@ -826,18 +830,18 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "uH" = (
 /obj/item/instrument/piano_synth,
 /turf/open/floor/plasteel{
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "wF" = (
 /obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "wQ" = (
 /obj/machinery/computer/arcade/orion_trail,
 /obj/machinery/light{
@@ -848,7 +852,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "xf" = (
 /obj/machinery/door/airlock/hatch{
 	req_access = null;
@@ -859,7 +863,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "zr" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/computer/teleporter{
@@ -868,7 +872,9 @@
 	id = null
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "AD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -879,7 +885,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "DY" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
@@ -893,7 +899,7 @@
 "FJ" = (
 /obj/machinery/light_switch,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Hu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -902,7 +908,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Lb" = (
 /obj/machinery/button/door{
 	id = "cashiershutters";
@@ -910,7 +916,7 @@
 	req_access_txt = "36"
 	},
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Lo" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -921,11 +927,11 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Mq" = (
 /obj/structure/sign/poster/contraband/robust_softdrinks,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "NI" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -938,7 +944,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "PN" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen{
@@ -949,7 +955,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Ql" = (
 /obj/machinery/light{
 	dir = 4;
@@ -959,7 +965,7 @@
 	icon_state = "white";
 	temperature = 273.15
 	},
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Qu" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
@@ -974,7 +980,9 @@
 /obj/effect/turf_decal/sand,
 /obj/machinery/teleport/station,
 /turf/open/floor/plasteel,
-/area/ruin/powered/gasstation)
+/area/ruin/powered{
+	name = "Lavaland Gas Station"
+	})
 "Wf" = (
 /obj/machinery/button/door{
 	id = "gasstation";
@@ -982,7 +990,7 @@
 	req_access_txt = "36"
 	},
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "WI" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/camera{
@@ -996,11 +1004,11 @@
 "Xr" = (
 /obj/structure/sign/poster/official/foam_force_ad,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 "Xt" = (
 /obj/structure/sign/poster/contraband/donut_corp,
 /turf/closed/wall/rust,
-/area/ruin/powered/gasstation)
+/area/ruin/powered)
 
 (1,1,1) = {"
 aa

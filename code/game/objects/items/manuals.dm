@@ -434,7 +434,7 @@
 			H.dropItemToGround(W)
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
-		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
+		H.add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
 		H.bleed_rate = 5
 		H.gib_animation()
 		sleep(3)

@@ -23,11 +23,9 @@
 			var/mob/living/carbon/C = energyKatana.loc
 			C.transferItemToLoc(energyKatana, get_turf(energyKatana), TRUE)
 
-			//Yogs start -- Yogs vorecode
-			//Somebody swollowed my sword, probably the clown doing a circus act.	
+			//Somebody swollowed my sword, probably the clown doing a circus act.
 			if(energyKatana in C.stomach_contents)
 				C.stomach_contents -= energyKatana
-			//Yogs end
 		else
 			energyKatana.forceMove(get_turf(energyKatana))
 

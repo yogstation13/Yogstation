@@ -268,7 +268,7 @@
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
 					target.Knockdown(120)
-					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
+					if(target.has_trait(TRAIT_MINDSHIELD))
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time...</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering!</span>")
@@ -611,7 +611,7 @@
 					to_chat(user, "<span class='warning'>[thrallToRevive] is not dead.</span>")
 					revert_cast()
 					return
-				if(HAS_TRAIT(thrallToRevive, TRAIT_BADDNA))
+				if(thrallToRevive.has_trait(TRAIT_BADDNA))
 					to_chat(user, "<span class='warning'>[thrallToRevive] is too far gone.</span>")
 					revert_cast()
 					return
@@ -684,7 +684,7 @@
 		M.visible_message("<span class='warning'>[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing.</span>", \
 						  "<span class='warning'><b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all...</span>")
 		M.death()
-		ADD_TRAIT(M, TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
+		M.add_trait(TRAIT_BADDNA, "shadow-sacrifice") //sacrificed thrall is permadead
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
@@ -997,7 +997,7 @@
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		return
 	if(is_shadow_or_thrall(target))
-		to_chat(user, "<span class='warning'>You cannot enthrall an ally.</span>")
+		to_chat(user, "<span class='warning'>You cannot enthrall an ally.<span>")
 		revert_cast()
 		return
 	if(!target.ckey || !target.mind)

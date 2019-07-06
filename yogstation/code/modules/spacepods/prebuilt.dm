@@ -1,5 +1,5 @@
 /obj/spacepod/prebuilt
-	icon = 'goon/icons/obj/spacepods/2x2.dmi'
+	icon = 'yogstation/goon/icons/obj/spacepods/2x2.dmi'
 	icon_state = "pod_civ"
 	var/cell_type = /obj/item/stock_parts/cell/high/plus
 	var/armor_type = /obj/item/pod_parts/armor

@@ -33,12 +33,12 @@
 /datum/mutation/human/mute/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	ADD_TRAIT(owner, TRAIT_MUTE, GENETIC_MUTATION)
+	owner.add_trait(TRAIT_MUTE, GENETIC_MUTATION)
 
 /datum/mutation/human/mute/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	REMOVE_TRAIT(owner, TRAIT_MUTE, GENETIC_MUTATION)
+	owner.remove_trait(TRAIT_MUTE, GENETIC_MUTATION)
 
 
 /datum/mutation/human/smile
@@ -109,12 +109,12 @@
 /datum/mutation/human/unintelligible/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	ADD_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
+	owner.add_trait(TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
 
 /datum/mutation/human/unintelligible/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	REMOVE_TRAIT(owner, TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
+	owner.remove_trait(TRAIT_UNINTELLIGIBLE_SPEECH, GENETIC_MUTATION)
 
 /datum/mutation/human/swedish
 	name = "Swedish"

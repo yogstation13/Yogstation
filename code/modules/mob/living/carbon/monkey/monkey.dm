@@ -71,7 +71,7 @@
 /mob/living/carbon/monkey/updatehealth()
 	. = ..()
 	var/slow = 0
-	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
+	if(!has_trait(TRAIT_IGNOREDAMAGESLOWDOWN))
 		var/health_deficiency = (maxHealth - health)
 		if(health_deficiency >= 45)
 			slow += (health_deficiency / 25)
@@ -146,7 +146,7 @@
 			threatcount += 4 //trigger look_for_perp() since they're nonhuman and very likely hostile
 
 	//mindshield implants imply trustworthyness
-	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
+	if(has_trait(TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	return threatcount

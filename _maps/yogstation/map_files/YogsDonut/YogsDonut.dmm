@@ -53144,12 +53144,12 @@
 /turf/open/floor/plasteel,
 /area/gateway)
 "caX" = (
+/obj/machinery/computer/telecomms/monitor{
+	icon_state = "computer";
+	dir = 8
+	},
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/machinery/computer/telecomms/traffic{
-	dir = 8;
-	network = "tcommsat"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)

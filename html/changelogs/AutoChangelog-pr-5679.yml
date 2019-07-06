@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "lightning holoparasite will no longer zap across the entire zlevel after death"

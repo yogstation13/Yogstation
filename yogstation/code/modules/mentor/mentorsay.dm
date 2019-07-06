@@ -12,7 +12,6 @@
 	if(!msg)
 		return
 
-	msg = pretty_filter(msg)
 	msg = emoji_parse(msg)
 	log_mentor("MSAY: [key_name(src)] : [msg]")
 

@@ -74,7 +74,7 @@
 	var/propability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T)) //yogs: stasis beds work for surgery
+	if(locate(/obj/structure/table/optable, T))
 		propability = 1
 	else if(locate(/obj/structure/table, T))
 		propability = 0.8
@@ -90,7 +90,7 @@
 	if(!..())
 		return FALSE
 	// True surgeons (like abductor scientists) need no instructions
-	if(HAS_TRAIT(user, TRAIT_SURGEON))
+	if(user.has_trait(TRAIT_SURGEON))
 		return TRUE
 
 	if(iscyborg(user))
@@ -103,24 +103,12 @@
 
 	var/turf/T = get_turf(target)
 	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	var/obj/machinery/stasis/bed = locate(/obj/machinery/stasis, T) //yogs start: stasis beds doing surgery
-	if(table)
-		if(!table.computer)
-			return FALSE
-		if(table.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in table.computer.advanced_surgeries)
-			return TRUE
-	if(bed)
-		if(!bed.computer)
-			return FALSE
-		if(bed.occupant != target)
-			return FALSE
-		if(bed.computer.stat & (NOPOWER|BROKEN))
-			return FALSE
-		if(type in bed.computer.advanced_surgeries)
-			return TRUE //yogs end
-
+	if(!table || !table.computer)
+		return FALSE
+	if(table.computer.stat & (NOPOWER|BROKEN))
+		return FALSE
+	if(type in table.computer.advanced_surgeries)
+		return TRUE
 
 /obj/item/disk/surgery
 	name = "Surgery Procedure Disk"

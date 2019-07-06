@@ -234,12 +234,6 @@
 	owner = null
 	module_locked = "Security"
 
-/datum/borg_skin/cola
-	name = "Sec Cola"
-	icon_state = "colaborg"
-	owner = "boodaliboo"
-	module_locked = "Security"
-
 
 
 //Begin AI skins://

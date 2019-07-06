@@ -112,15 +112,15 @@ Contents:
 		to_chat(H, "<span class='userdanger'>ERROR</span>: 110223 UNABLE TO LOCATE HAND GEAR\nABORTING...")
 		return FALSE
 	affecting = H
-	ADD_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 0
 	n_hood = H.head
-	ADD_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	n_hood.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes = H.shoes
-	ADD_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	n_shoes.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	n_shoes.slowdown--
 	n_gloves = H.gloves
-	ADD_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	n_gloves.add_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	return TRUE
 
 /obj/item/clothing/suit/space/space_ninja/proc/lockIcons(mob/living/carbon/human/H)
@@ -132,18 +132,18 @@ Contents:
 //This proc allows the suit to be taken off.
 /obj/item/clothing/suit/space/space_ninja/proc/unlock_suit()
 	affecting = null
-	REMOVE_TRAIT(src, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+	remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	slowdown = 1
 	icon_state = "s-ninja"
 	if(n_hood)//Should be attached, might not be attached.
-		REMOVE_TRAIT(n_hood, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		n_hood.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 	if(n_shoes)
-		REMOVE_TRAIT(n_shoes, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		n_shoes.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_shoes.slowdown++
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninja"
 		n_gloves.item_state = "s-ninja"
-		REMOVE_TRAIT(n_gloves, TRAIT_NODROP, NINJA_SUIT_TRAIT)
+		n_gloves.remove_trait(TRAIT_NODROP, NINJA_SUIT_TRAIT)
 		n_gloves.candrain = FALSE
 		n_gloves.draining = FALSE
 

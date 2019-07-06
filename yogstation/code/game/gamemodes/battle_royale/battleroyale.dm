@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			message_admins("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
-		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
+		virgin.current.add_trait(TRAIT_XRAY_VISION) //so they can see where theyre dropping
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
-	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
+	Ltaker.remove_trait(TRAIT_XRAY_VISION)
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 

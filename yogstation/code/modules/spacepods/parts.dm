@@ -1,5 +1,5 @@
 /obj/item/pod_parts
-	icon = 'goon/icons/obj/spacepods/parts.dmi'
+	icon = 'yogstation/goon/icons/obj/spacepods/parts.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	flags_1 = CONDUCT_1
 
@@ -119,7 +119,7 @@
 	name = "civilian pod armor"
 	icon_state = "pod_armor_civ"
 	desc = "Spacepod armor. This is the civilian version. It looks rather flimsy."
-	var/pod_icon = 'goon/icons/obj/spacepods/2x2.dmi'
+	var/pod_icon = 'yogstation/goon/icons/obj/spacepods/2x2.dmi'
 	var/pod_icon_state = "pod_civ"
 	var/pod_desc = "A sleek civilian space pod."
 	var/pod_integrity = 250
