@@ -1,3 +1,10 @@
+#define AIRLOCK_CLOSED	1
+#define AIRLOCK_CLOSING	2
+#define AIRLOCK_OPEN	3
+#define AIRLOCK_OPENING	4
+#define AIRLOCK_DENY	5
+#define AIRLOCK_EMAG	6
+
 /obj/machinery/door/airlock
 	var/obj/structure/deployed_brace/brace
 
@@ -63,3 +70,10 @@
 
 /obj/machinery/door/airlock/emag_act(mob/user)
 	return
+
+#undef AIRLOCK_CLOSED
+#undef AIRLOCK_CLOSING
+#undef AIRLOCK_OPEN
+#undef AIRLOCK_OPENING
+#undef AIRLOCK_DENY
+#undef AIRLOCK_EMAG
