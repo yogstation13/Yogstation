@@ -60,6 +60,19 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
+	can_be_sawn_off = TRUE
+
+/obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
+	. = ..()
+	if(.)
+		spread = 36
+		can_bayonet = FALSE
+
+/obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
+	. = 0
+	if(chambered && chambered.BB)
+		process_fire(user, user, FALSE)
+		. = 1
 
 /obj/item/gun/ballistic/rifle/boltaction/attackby(obj/item/A, mob/user, params)
 	..()
@@ -90,6 +103,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	desc = "Careful not to lose your head."
 	var/guns_left = 30
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	can_be_sawn_off = FALSE
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage
 	name = "arcane barrage"
