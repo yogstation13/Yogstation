@@ -442,7 +442,7 @@
 					else if (obj_flags & EMAGGED)
 						obj_flags &= ~EMAGGED
 						user.visible_message(\
-							"[user.name] has discarded an sparking power control board from [src.name]!", // Yogs -- Makes this message make more sense.
+							"[user.name] has discarded a sparking power control board from [src.name]!", // Yogs -- Makes this message make more sense.
 							"<span class='notice'>You discard the emagged power control board.</span>")
 						return
 					else if (malfhack)
