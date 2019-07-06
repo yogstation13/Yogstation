@@ -83,3 +83,25 @@
 /obj/item/card/id/gasclerk/New()
 	..()
 	registered_account = new("Clerk", FALSE)
+
+/obj/item/card/cracker
+	name = "airlock cracker"
+	desc = "It's a card with a variety of magnetic strips attached to a central circuit board."
+	icon_state = "cracker"
+	item_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
+
+/obj/item/card/cracker/attack()
+	return
+
+/obj/item/card/cracker/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	var/atom/A = target
+	if(!proximity)
+		return
+	log_combat(user, A, "attempted to crack")
+	if(istype(A,/obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/B = A
+		B.cracker_act(user)
