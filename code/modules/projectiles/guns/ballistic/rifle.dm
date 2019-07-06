@@ -58,8 +58,6 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
-<<<<<<< HEAD
-=======
 	can_be_sawn_off = TRUE
 
 /obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
@@ -73,7 +71,6 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	if(chambered && chambered.BB)
 		process_fire(user, user, FALSE)
 		. = 1
->>>>>>> b337b403d0... Improve sawing off guns, let chainsaws do it too (#44908)
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted
 	name = "enchanted bolt action rifle"
