@@ -45,7 +45,7 @@
 		brace.remove()
 	return ..()
 
-/obj/machinery/door/airlock/cracker_act(mob/user)
+/obj/machinery/door/airlock/proc/cracker_act(mob/user)
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
 		update_icon(AIRLOCK_EMAG, 1)
