@@ -174,7 +174,7 @@
 				if(!current_ticket)
 					to_chat(src, "<span class='notice'>Ticket closed, please make a new one before trying to contact admins!</span>")
 					return
-				admin_ticket_log(src, keywordparsedmsg, FALSE)
+				admin_ticket_log(src, msg, FALSE)
 				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
 				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>")
 				//YOGS END
