@@ -1,4 +1,4 @@
-/obj/item/nullrod/claymore/spear
+/obj/item/nullrod/scythe/spear
 	name = "bronze spear"
 	desc = "Purge untruths and honor... rats?"
 	slot_flags = ITEM_SLOT_BELT
@@ -7,4 +7,7 @@
 	item_state = "ratvarian_spear"
 	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+	throwforce= 15
+	armor_penetration = 25
+	slot_flags = null
 	attack_verb = list("stabbed", "poked", "slashed", "enlightened")
