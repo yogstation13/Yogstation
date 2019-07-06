@@ -1573,4 +1573,3 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
->>>>>>> 3316f0dcbe... Merge pull request #44895 from ninjanomnom/signal-async
