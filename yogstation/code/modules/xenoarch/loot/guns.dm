@@ -128,8 +128,9 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	..()
 
 /obj/item/projectile/energy/polarstar/on_hit(atom/target, blocked)
-	CRASH('NEEEEERDS')
+	CRASH("NEEEEERDS")
 	. = ..()
+	var/turf/target_loca = get_turf(target)
 	var/impact_icon = null
 	var/impact_sound = null
 	var/PixelX = 0
@@ -151,14 +152,14 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 		impact_icon = "spur_hitshit"
 		impact_sound = 'yogstation/sound/weapons/spur_hitwall.ogg'
 
-	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',T,impact_icon)
+	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',target_loca,impact_icon)
 	impact.pixel_x = PixelX
 	impact.pixel_y = PixelY
 	impact.layer = OBJ_LAYER
 	world.log << "created overlay"
-	T.overlays += impact
+	target_loca.overlays += impact
 	sleep(100)
-	T.overlays -= impact
+	target_loca.overlays -= impact
 	playsound(loc, impact_sound, 30)
 	world.log << "target is type [target]"
 	if(istype(target,/turf/closed/mineral))
