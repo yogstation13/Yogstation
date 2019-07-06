@@ -4,12 +4,8 @@
 	desc = "Why is it detached..."
 	force = 3
 	throwforce = 3
-<<<<<<< HEAD
 	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
-=======
 	w_class = WEIGHT_CLASS_SMALL
-	icon = 'icons/mob/human_parts.dmi'
->>>>>>> 6fa189a822... Make limbs small, to fit in trashbags (#44730)
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
