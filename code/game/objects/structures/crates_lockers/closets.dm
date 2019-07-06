@@ -75,6 +75,8 @@
 
 /obj/structure/closet/examine(mob/user)
 	..()
+	if(notreallyacloset) // Yogs -- Fixes bodybags complaining they can be welded together
+		return // Yogs
 	if(welded)
 		to_chat(user, "<span class='notice'>It's welded shut.</span>")
 	if(anchored)
