@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 		range = 7
 	..()
 
-/obj/item/projectile/energy/polarstar/on_range()
+/obj/item/projectile/bullet/polarstar/on_range()
 	if(!loc)
 		return 
 	var/turf/T = loc
@@ -127,7 +127,7 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	qdel(impact)
 	..()
 
-/obj/item/projectile/energy/polarstar/on_hit(atom/target, blocked)
+/obj/item/projectile/bullet/polarstar/on_hit(atom/target, blocked)
 	CRASH("NEEEEERDS")
 	. = ..()
 	var/turf/target_loca = get_turf(target)
