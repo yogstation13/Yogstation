@@ -50,13 +50,9 @@
 /datum/mood_event/honk
 	description = "<span class='nicegreen'>I've been honked!</span>\n"
 	mood_change = 2
-<<<<<<< HEAD
-	timeout = 2400
-=======
 	timeout = 4 MINUTES
 	special_screen_obj = "honked_nose"
 	special_screen_replace = FALSE
->>>>>>> 10cbc2219c... Update honked moodlet (#44863)
 
 /datum/mood_event/perform_cpr
 	description = "<span class='nicegreen'>It feels good to save a life.</span>\n"
