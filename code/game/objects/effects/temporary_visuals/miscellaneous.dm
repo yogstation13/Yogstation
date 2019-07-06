@@ -456,9 +456,4 @@
 			skew *= 2
 			animate(src, alpha = 0, transform = skew, time = duration)
 	else
-<<<<<<< HEAD
 		return INITIALIZE_HINT_QDEL
-=======
-		return INITIALIZE_HINT_QDEL
-
->>>>>>> bbcd45a648... Add style to BSA's Laser (#44911)
