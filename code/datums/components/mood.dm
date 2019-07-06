@@ -191,11 +191,11 @@
 		if(9)
 			setSanity(sanity+0.4, maximum=INFINITY)
 
-	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
+	if(owner.has_trait(TRAIT_DEPRESSION))
 		if(prob(0.05))
 			add_event(null, "depression", /datum/mood_event/depression)
 			clear_event(null, "jolly")
-	if(HAS_TRAIT(owner, TRAIT_JOLLY))
+	if(owner.has_trait(TRAIT_JOLLY))
 		if(prob(0.05))
 			add_event(null, "jolly", /datum/mood_event/jolly)
 			clear_event(null, "depression")
@@ -216,7 +216,7 @@
 		amount = sanity - 0.5
 
 	// Disturbed stops you from getting any more sane
-	if(HAS_TRAIT(owner, TRAIT_UNSTABLE))
+	if(owner.has_trait(TRAIT_UNSTABLE))
 		sanity = min(amount,sanity)
 	else
 		sanity = amount
@@ -323,11 +323,11 @@
 		var/mob/living/carbon/human/H = L
 		if(isethereal(H))
 			HandleCharge(H)
-		if(HAS_TRAIT(H, TRAIT_NOHUNGER))
+		if(H.has_trait(TRAIT_NOHUNGER))
 			return FALSE //no mood events for nutrition
 	switch(L.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			if (!HAS_TRAIT(L, TRAIT_VORACIOUS))
+			if (!L.has_trait(TRAIT_VORACIOUS))
 				add_event(null, "nutrition", /datum/mood_event/fat)
 			else
 				add_event(null, "nutrition", /datum/mood_event/wellfed) // round and full
@@ -358,20 +358,20 @@
 /datum/component/mood/proc/HandleHygiene(mob/living/carbon/human/H)
 	switch(H.hygiene)
 		if(0 to HYGIENE_LEVEL_DIRTY)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
+			if(H.has_trait(TRAIT_NEAT))
 				add_event(null, "neat", /datum/mood_event/dirty)
-			if(HAS_TRAIT(H, TRAIT_NEET))
+			if(H.has_trait(TRAIT_NEET))
 				add_event(null, "NEET", /datum/mood_event/happy_neet)
 			HygieneMiasma(H)
 		if(HYGIENE_LEVEL_DIRTY to HYGIENE_LEVEL_NORMAL)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
+			if(H.has_trait(TRAIT_NEAT))
 				clear_event(null, "neat")
-			if(HAS_TRAIT(H, TRAIT_NEET))
+			if(H.has_trait(TRAIT_NEET))
 				clear_event(null, "NEET")
 		if(HYGIENE_LEVEL_NORMAL to HYGIENE_LEVEL_CLEAN)
-			if(HAS_TRAIT(H, TRAIT_NEAT))
+			if(H.has_trait(TRAIT_NEAT))
 				add_event(null, "neat", /datum/mood_event/neat)
-			if(HAS_TRAIT(H, TRAIT_NEET))
+			if(H.has_trait(TRAIT_NEET))
 				clear_event(null, "NEET")
 
 /datum/component/mood/proc/HygieneMiasma(mob/living/carbon/human/H)

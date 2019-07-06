@@ -4,31 +4,51 @@
 /area/space)
 "ab" = (
 /turf/closed/mineral,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ac" = (
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ad" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/unpowered)
 "ae" = (
 /turf/closed/wall,
-/area/ruin/powered/spacebar)
+/area/ruin/unpowered)
+"af" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/powered)
 "ah" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aj" = (
 /turf/closed/wall/mineral/titanium,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ak" = (
 /obj/structure/grille,
 /obj/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "al" = (
 /obj/structure/chair{
 	dir = 1
@@ -40,28 +60,46 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
+"am" = (
+/turf/closed/wall,
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ao" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ap" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dispensable_reagents = list("beer","kahlua","whiskey","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","absinthe","hcider","creme_de_menthe","creme_de_cacao","triple_sec","sake","ethanol","iron","minttoxin","atomicbomb","fernet");
 	emagged_reagents = null;
-	name = "Exotic booze dispenser"
+	name = "\"exotic\"booze dispenser"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aq" = (
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks{
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","pwr_game","shamblers","sugar","orangejuice","grenadine","limejuice","tomatojuice","lemonjuice","menthol","thirteenloko","whiskeycola","mindbreaker","tirizene");
 	emagged_reagents = null;
-	name = "Exotic soda dispenser"
+	name = "\"exotic\" soda dispenser"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ar" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -72,11 +110,17 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "as" = (
 /obj/machinery/autolathe,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "at" = (
 /obj/structure/table,
 /obj/item/toy/figure/bartender{
@@ -87,24 +131,39 @@
 /obj/item/storage/belt/bandolier,
 /obj/item/radio/headset/headset_srv,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "au" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "av" = (
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/closed/wall/mineral/titanium,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aw" = (
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ax" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ay" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
@@ -113,19 +172,28 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "az" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
 	req_access_txt = "25"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aA" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aB" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -133,13 +201,19 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aC" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "Escape Pod Airlock"
 	},
 /turf/open/floor/plasteel/shuttle,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aD" = (
 /obj/machinery/light{
 	dir = 1
@@ -150,7 +224,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aE" = (
 /obj/machinery/button/door{
 	id = "spacebardock";
@@ -158,25 +235,40 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aF" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aG" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aH" = (
 /obj/machinery/light/small,
 /obj/structure/table,
 /obj/machinery/microwave,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aI" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aJ" = (
 /obj/item/rcd_ammo/large,
 /obj/item/rcd_ammo/large,
@@ -184,24 +276,36 @@
 /obj/structure/closet/crate/rcd,
 /obj/structure/closet/crate,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aL" = (
 /obj/structure/table,
 /mob/living/carbon/monkey{
 	name = "Nup Nup"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aM" = (
 /obj/structure/table,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aN" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aO" = (
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
@@ -210,7 +314,10 @@
 /turf/open/floor/plasteel{
 	icon_state = "wood"
 	},
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aP" = (
 /obj/structure/chair{
 	dir = 4;
@@ -222,7 +329,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aQ" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
@@ -230,7 +340,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aR" = (
 /obj/structure/chair{
 	dir = 8;
@@ -242,33 +355,54 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aT" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/closed/wall,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aU" = (
 /obj/machinery/computer/teleporter{
 	id = null
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aV" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aW" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aX" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aY" = (
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "aZ" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -280,7 +414,10 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ba" = (
 /obj/structure/chair{
 	dir = 4;
@@ -293,7 +430,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bb" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
@@ -302,7 +442,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bc" = (
 /obj/structure/chair{
 	dir = 8;
@@ -315,7 +458,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bd" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/bar{
@@ -323,7 +469,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "be" = (
 /obj/machinery/vending/cola,
 /obj/effect/turf_decal/tile/bar,
@@ -332,7 +481,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bf" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/bar,
@@ -341,7 +493,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bg" = (
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/tile/bar,
@@ -350,7 +505,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bh" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light,
@@ -360,7 +518,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bi" = (
 /obj/machinery/vending/dinnerware,
 /obj/effect/turf_decal/tile/bar,
@@ -369,7 +530,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bj" = (
 /obj/structure/chair{
 	dir = 1
@@ -379,7 +543,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bk" = (
 /obj/machinery/computer/arcade/orion_trail,
 /obj/effect/turf_decal/tile/bar,
@@ -388,13 +555,19 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bl" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Bathroom"
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bm" = (
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/tile/bar,
@@ -403,16 +576,25 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bn" = (
 /obj/structure/urinal{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bo" = (
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bp" = (
 /obj/structure/sink{
 	dir = 4;
@@ -424,7 +606,10 @@
 	pixel_x = 28
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bq" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/bar,
@@ -433,13 +618,19 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "br" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bs" = (
 /obj/structure/toilet{
 	dir = 4
@@ -448,17 +639,26 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bt" = (
 /obj/machinery/door/airlock{
 	name = "Toilet"
 	},
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bu" = (
 /obj/effect/temp_visual/ratvar/window/single,
 /turf/open/floor/plasteel/freezer,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bx" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar,
@@ -471,21 +671,30 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "by" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "spacebardock";
 	name = "airlock dock"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bz" = (
 /obj/machinery/door/poddoor{
 	id = "spacebardock";
 	name = "airlock dock"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bA" = (
 /obj/structure/chair{
 	dir = 1
@@ -496,23 +705,35 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bB" = (
 /obj/effect/turf_decal/stripes,
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bC" = (
 /obj/effect/mob_spawn/human/bartender/alive{
 	flavour_text = "<span class='big bold'>You are a space bartender!</span><b> Time to mix drinks and change lives. Do not leave your post under any circumstances!! </b>";
 	name = "space bartender sleeper"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bD" = (
 /obj/item/radio,
 /obj/item/radio,
 /turf/open/floor/wood,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bE" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
@@ -524,7 +745,10 @@
 	name = "space bar gps"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "bG" = (
 /obj/structure/chair{
 	dir = 1
@@ -536,25 +760,45 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
+"oA" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "ER" = (
 /obj/item/beacon,
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "FA" = (
 /obj/machinery/light{
 	icon_state = "tube";
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 "Sr" = (
 /obj/machinery/light{
 	dir = 4;
 	light_color = "#e8eaff"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered/spacebar)
+/area/ruin/powered{
+	dynamic_lighting = 0;
+	name = "Space Bar"
+	})
 
 (1,1,1) = {"
 aa
@@ -822,23 +1066,23 @@ aa
 aa
 ac
 ac
-ad
-ad
-ae
-ad
+oA
+oA
+am
+oA
 ac
 ac
 ac
-ad
-ad
-ad
-ad
-ad
+oA
+oA
+oA
+oA
+oA
 ac
 ac
-ae
+am
 aX
-ae
+am
 ac
 ac
 ab
@@ -864,23 +1108,23 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ad
+oA
 ac
-ad
-ad
-ac
-ac
+oA
+oA
 ac
 ac
 ac
-ad
-ad
-ae
+ac
+ac
+oA
+oA
+am
 aY
-ae
+am
 ac
 ab
 ab
@@ -905,12 +1149,12 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -920,12 +1164,12 @@ ac
 ac
 ac
 ac
-ae
+am
 aY
-ae
-ae
-ae
-ae
+am
+am
+am
+am
 ab
 ab
 aa
@@ -946,7 +1190,7 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -962,12 +1206,12 @@ ac
 ac
 ac
 ac
-ae
+am
 aX
-ae
+am
 ac
 ac
-ae
+am
 ab
 ab
 aa
@@ -987,7 +1231,7 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1007,14 +1251,14 @@ ac
 ac
 ac
 ac
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+am
+am
+am
+am
+am
+am
+am
+am
 aa
 aa
 "}
@@ -1028,7 +1272,7 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 aj
 aj
@@ -1069,7 +1313,7 @@ aa
 aa
 ac
 ac
-ad
+oA
 ac
 ac
 ak
@@ -1111,7 +1355,7 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 aj
@@ -1153,7 +1397,7 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1246,9 +1490,9 @@ ab
 ac
 ac
 ac
-ae
+am
 aX
-ae
+am
 ac
 ac
 ac
@@ -1288,9 +1532,9 @@ ab
 ab
 ac
 ac
-ad
+oA
 aY
-ad
+oA
 ac
 ac
 ac
@@ -1301,14 +1545,14 @@ av
 ac
 ac
 ac
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+am
+am
+am
+am
+am
+am
+am
+am
 aa
 aa
 "}
@@ -1332,7 +1576,7 @@ ac
 ac
 aT
 aY
-ad
+oA
 ac
 ac
 ac
@@ -1345,7 +1589,7 @@ ac
 ac
 ac
 ac
-ae
+am
 ac
 ac
 ac
@@ -1366,20 +1610,20 @@ ad
 ac
 ab
 ab
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+am
+am
+am
+am
+am
+am
+am
 aX
-ae
-ae
-ae
-ae
-ae
-ad
+am
+am
+am
+am
+am
+oA
 ac
 ac
 ac
@@ -1387,7 +1631,7 @@ ac
 ab
 ac
 ac
-ae
+am
 ac
 ac
 ac
@@ -1405,10 +1649,10 @@ ab
 ac
 ac
 ac
-ad
+oA
 ac
 ab
-ae
+am
 ap
 aw
 aE
@@ -1422,14 +1666,14 @@ aQ
 bj
 aB
 aB
-ad
+oA
 ac
 ac
 ab
 ab
 ab
 ac
-ae
+am
 ac
 ac
 ac
@@ -1447,10 +1691,10 @@ ab
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 aq
 aw
 aw
@@ -1465,13 +1709,13 @@ aB
 aB
 aB
 aB
-ad
+oA
 ac
 ab
 ab
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1490,9 +1734,9 @@ ab
 ac
 ac
 ac
-ad
+oA
 ac
-ae
+am
 ar
 aw
 aw
@@ -1508,12 +1752,12 @@ aB
 aB
 aB
 aB
-ad
+oA
 ac
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 aa
@@ -1532,9 +1776,9 @@ ab
 ac
 ac
 ac
-ad
+oA
 ac
-ae
+am
 as
 aw
 aw
@@ -1550,12 +1794,12 @@ bm
 bq
 bx
 bA
-ae
+am
 ac
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 aa
@@ -1573,31 +1817,31 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
-ae
+am
+am
 az
 aF
-ae
+am
 aB
 aB
 aB
 bc
 aB
 be
-ae
-ae
-ae
-ae
-ae
-ae
+am
+am
+am
+am
+am
+am
 ac
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 aa
@@ -1615,31 +1859,31 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 at
 aw
 aG
-ae
+am
 aB
 aB
 aB
 aB
 aB
 bf
-ae
+am
 bn
 bn
-ae
+am
 bs
-ae
+am
 ab
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1657,31 +1901,31 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 au
 aw
 aH
-ae
+am
 aD
 aB
 aP
 aB
 aB
 bg
-ae
+am
 bo
 bo
-ae
+am
 bt
-ae
+am
 ab
 ac
 ac
 ac
-ad
+oA
 ac
 ab
 ac
@@ -1699,31 +1943,31 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 bC
 aw
 aI
-ae
+am
 aB
 aB
 bE
 aB
 aB
 bh
-ae
+am
 bo
 bo
 br
 bo
-ae
+am
 ab
 ab
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1741,10 +1985,10 @@ aa
 ac
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 bD
 aw
 aw
@@ -1755,17 +1999,17 @@ aR
 aB
 aB
 bi
-ae
+am
 bo
 bo
 bo
 bu
-ae
+am
 ab
 ab
 ac
 ac
-ad
+oA
 ac
 ac
 ab
@@ -1783,14 +2027,14 @@ aa
 aa
 ac
 ac
-ad
+oA
 ac
 ac
-ae
+am
 ax
 aA
 aJ
-ae
+am
 aB
 aB
 aB
@@ -1802,12 +2046,12 @@ bo
 bp
 bp
 bo
-ae
+am
 ab
 ab
 ab
 ac
-ad
+oA
 ac
 ac
 ab
@@ -1828,28 +2072,28 @@ ac
 ah
 ac
 ac
-ae
-ae
-ae
-ae
-ae
-ae
-ad
-ad
-ad
-ad
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+am
+am
+am
+am
+am
+am
+oA
+oA
+oA
+oA
+am
+am
+am
+am
+am
+am
+am
 ab
 ab
 ab
 ac
-ad
+oA
 ac
 ac
 aa
@@ -1868,7 +2112,7 @@ aa
 aa
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1891,7 +2135,7 @@ ab
 ab
 ab
 ac
-ae
+am
 ac
 ac
 aa
@@ -1910,7 +2154,7 @@ aa
 aa
 ac
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1932,7 +2176,7 @@ ab
 ab
 ab
 ac
-ad
+oA
 ac
 ac
 ac
@@ -1953,18 +2197,18 @@ aa
 aa
 ac
 ac
-ad
-ad
-ad
+oA
+oA
+oA
 ac
 ac
 ac
 ac
-ad
-ad
-ad
-ad
-ad
+oA
+oA
+oA
+oA
+oA
 ac
 ac
 ac
@@ -1972,9 +2216,9 @@ ac
 ac
 ac
 ac
-ad
-ad
-ae
+oA
+oA
+am
 ac
 ac
 aa
@@ -1998,22 +2242,22 @@ ac
 ac
 ac
 ac
-ad
-ad
-ae
-ad
+oA
+oA
+am
+oA
 ac
 ac
 ac
 ac
 ac
-ad
+oA
 ac
 ac
 ac
 ac
-ad
-ad
+oA
+oA
 ac
 ac
 ac
@@ -2050,10 +2294,10 @@ ac
 ac
 ac
 ac
-ad
-ad
-ad
-ad
+af
+af
+af
+af
 ac
 ac
 ac

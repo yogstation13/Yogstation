@@ -35,10 +35,10 @@
 	name_source = GLOB.commando_names
 
 /datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
-	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+	owner.add_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
 
 /datum/antagonist/ert/deathsquad/remove_innate_effects(mob/living/mob_override)
-	REMOVE_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+	owner.remove_trait(TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
 
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 

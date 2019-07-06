@@ -150,7 +150,7 @@
 /mob/living/simple_animal/slime/updatehealth()
 	. = ..()
 	var/mod = 0
-	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
+	if(!has_trait(TRAIT_IGNOREDAMAGESLOWDOWN))
 		var/health_deficiency = (maxHealth - health)
 		if(health_deficiency >= 45)
 			mod += (health_deficiency / 25)

@@ -28,14 +28,14 @@
 		if(SPACEPOD_ARMOR_WELDED)
 			if(hatch_open)
 				if(cell || internal_tank || equipment.len)
-					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.</span>")
+					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and there are parts inside that can be <b>removed</b>.")
 				else
 					to_chat(user, "<span class='notice'>The maintenance hatch is <i>pried</i> open and the armor is <b>welded</b> on.</span>")
 			else
 				if(locked)
 					to_chat(user, "<span class='notice'>[src] is <b>locked</b>.</span>")
 				else
-					to_chat(user, "<span class='notice'>The maintenance hatch is <b>closed</b>.</span>")
+					to_chat(user, "<span class='notice'>The maintenance hatch is <b>closed</b>.")
 
 /obj/spacepod/proc/handle_spacepod_construction(obj/item/W, mob/living/user)
 	// time for a construction/deconstruction process to rival r-walls

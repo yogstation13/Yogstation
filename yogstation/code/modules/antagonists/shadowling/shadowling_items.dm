@@ -19,7 +19,7 @@
 
 /obj/item/clothing/suit/space/shadowling/Initialize()
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/shadowling
 	name = "chitin helm"
@@ -38,4 +38,4 @@
 
 /obj/item/clothing/head/shadowling/Initialize()
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)

@@ -593,7 +593,7 @@
 /datum/species/jelly/stargazer/proc/link_mob(mob/living/M)
 	if(QDELETED(M) || M.stat == DEAD)
 		return FALSE
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD)) //mindshield implant, no dice
+	if(M.has_trait(TRAIT_MINDSHIELD)) //mindshield implant, no dice
 		return FALSE
 	if(M in linked_mobs)
 		return FALSE

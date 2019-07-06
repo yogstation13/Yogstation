@@ -83,44 +83,6 @@
 	icon_state = "asleep"
 
 
-//STASIS
-/datum/status_effect/incapacitating/stasis
-	id = "stasis"
-	duration = -1
-	tick_interval = 10
-	alert_type = /obj/screen/alert/status_effect/stasis
-	var/last_dead_time
-
-/datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
-	if(last_dead_time)
-		var/delta = world.time - last_dead_time
-		var/new_timeofdeath = owner.timeofdeath + delta
-		owner.timeofdeath = new_timeofdeath
-		owner.tod = station_time_timestamp(wtime=new_timeofdeath)
-		last_dead_time = null
-	if(owner.stat == DEAD)
-		last_dead_time = world.time
-
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
-	. = ..()
-	update_time_of_death()
-
-/datum/status_effect/incapacitating/stasis/tick()
-	update_time_of_death()
-
-/datum/status_effect/incapacitating/stasis/on_remove()
-	update_time_of_death()
-	return ..()
-
-/datum/status_effect/incapacitating/stasis/be_replaced()
-	update_time_of_death()
-	return ..()
-
-/obj/screen/alert/status_effect/stasis
-	name = "Stasis"
-	desc = "Your biological functions have halted. You could live forever this way, but it's pretty boring."
-	icon_state = "stasis"
-
 //GOLEM GANG
 
 //OTHER DEBUFFS
@@ -130,11 +92,11 @@
 	alert_type = /obj/screen/alert/status_effect/strandling
 
 /datum/status_effect/strandling/on_apply()
-	ADD_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
+	owner.add_trait(TRAIT_MAGIC_CHOKE, "dumbmoron")
 	return ..()
 
 /datum/status_effect/strandling/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_MAGIC_CHOKE, "dumbmoron")
+	owner.remove_trait(TRAIT_MAGIC_CHOKE, "dumbmoron")
 	return ..()
 
 /obj/screen/alert/status_effect/strandling
@@ -156,15 +118,15 @@
 /datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()
+	. = ..()	
 
 /datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
+	owner.add_trait(TRAIT_PACIFISM, "status_effect")
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-
+	owner.remove_trait(TRAIT_PACIFISM, "status_effect")
+	
 //OTHER DEBUFFS
 /datum/status_effect/pacify
 	id = "pacify"
@@ -172,18 +134,18 @@
 	tick_interval = 1
 	duration = 100
 	alert_type = null
-
+	
 /datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()
+	. = ..()	
 
 /datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
+	owner.add_trait(TRAIT_PACIFISM, "status_effect")
 	return ..()
 
 /datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
+	owner.remove_trait(TRAIT_PACIFISM, "status_effect")
 
 /datum/status_effect/his_wrath //does minor damage over time unless holding His Grace
 	id = "his_wrath"
@@ -619,16 +581,16 @@
 	alert_type = null
 
 /datum/status_effect/gonbolaPacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "gonbolaPacify")
-	ADD_TRAIT(owner, TRAIT_MUTE, "gonbolaMute")
-	ADD_TRAIT(owner, TRAIT_JOLLY, "gonbolaJolly")
+	owner.add_trait(TRAIT_PACIFISM, "gonbolaPacify")
+	owner.add_trait(TRAIT_MUTE, "gonbolaMute")
+	owner.add_trait(TRAIT_JOLLY, "gonbolaJolly")
 	to_chat(owner, "<span class='notice'>You suddenly feel at peace and feel no need to make any sudden or rash actions...</span>")
 	return ..()
 
 /datum/status_effect/gonbolaPacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "gonbolaPacify")
-	REMOVE_TRAIT(owner, TRAIT_MUTE, "gonbolaMute")
-	REMOVE_TRAIT(owner, TRAIT_JOLLY, "gonbolaJolly")
+	owner.remove_trait(TRAIT_PACIFISM, "gonbolaPacify")
+	owner.remove_trait(TRAIT_MUTE, "gonbolaMute")
+	owner.remove_trait(TRAIT_JOLLY, "gonbolaJolly")
 
 /datum/status_effect/trance
 	id = "trance"
@@ -638,7 +600,7 @@
 	examine_text = "<span class='warning'>SUBJECTPRONOUN seems slow and unfocused.</span>"
 	var/stun = TRUE
 	alert_type = /obj/screen/alert/status_effect/trance
-
+	
 /obj/screen/alert/status_effect/trance
 	name = "Trance"
 	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."
@@ -653,7 +615,7 @@
 	if(!iscarbon(owner))
 		return FALSE
 	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/hypnotize)
-	ADD_TRAIT(owner, TRAIT_MUTE, "trance")
+	owner.add_trait(TRAIT_MUTE, "trance")
 	if(!owner.has_quirk(/datum/quirk/monochromatic))
 		owner.add_client_colour(/datum/client_colour/monochrome)
 	owner.visible_message("[stun ? "<span class='warning'>[owner] stands still as [owner.p_their()] eyes seem to focus on a distant point.</span>" : ""]", \
@@ -667,7 +629,7 @@
 
 /datum/status_effect/trance/on_remove()
 	UnregisterSignal(owner, COMSIG_MOVABLE_HEAR)
-	REMOVE_TRAIT(owner, TRAIT_MUTE, "trance")
+	owner.remove_trait(TRAIT_MUTE, "trance")
 	owner.dizziness = 0
 	if(!owner.has_quirk(/datum/quirk/monochromatic))
 		owner.remove_client_colour(/datum/client_colour/monochrome)

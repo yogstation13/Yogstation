@@ -31,17 +31,18 @@
 	decksize = 50
 	card_text_file = "strings/cas_black.txt"
 
-/obj/item/toy/cards/deck/cas/populate_deck()
+/obj/item/toy/cards/deck/cas/Initialize()
+	. = ..()
 	var/static/list/cards_against_space = list("cas_white" = world.file2list("strings/cas_white.txt"),"cas_black" = world.file2list("strings/cas_black.txt"))
 	allcards = cards_against_space[card_face]
 	var/list/possiblecards = allcards.Copy()
 	if(possiblecards.len < decksize) // sanity check
 		decksize = (possiblecards.len - 1)
 	var/list/randomcards = list()
-	for(var/x in 1 to decksize)
+	while (randomcards.len < decksize)
 		randomcards += pick_n_take(possiblecards)
-	for(var/x in 1 to randomcards.len)
-		var/cardtext = randomcards[x]
+	for(var/i=1 to randomcards.len)
+		var/cardtext = randomcards[i]
 		var/datum/playingcard/P
 		P = new()
 		P.name = "[cardtext]"
@@ -49,7 +50,7 @@
 		cards += P
 	if(!blanks)
 		return
-	for(var/x in 1 to blanks)
+	for(var/x=1 to blanks)
 		var/datum/playingcard/P
 		P = new()
 		P.name = "Blank Card"
@@ -57,7 +58,10 @@
 		cards += P
 	shuffle_inplace(cards) // distribute blank cards throughout deck
 
-/obj/item/toy/cards/deck/cas/draw_card(mob/user)
+/obj/item/toy/cards/deck/cas/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!(L.mobility_flags & MOBILITY_PICKUP))

@@ -43,7 +43,7 @@
 	. = list()
 	if(!isinhands)
 		var/bloody = FALSE
-		if(HAS_BLOOD_DNA(src))
+		IF_HAS_BLOOD_DNA(src)
 			bloody = TRUE
 		else
 			bloody = bloody_shoes[BLOOD_STATE_HUMAN]

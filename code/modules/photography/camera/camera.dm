@@ -47,16 +47,14 @@
 	. = ..()
 	to_chat(user, "<span class='notice'>Alt-click to change its focusing, allowing you to set how big of an area it will capture.</span>")
 
-/obj/item/camera/proc/adjust_zoom(mob/user)
+/obj/item/camera/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
 	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num
 	var/desired_y = input(user, "How wide do you want the camera to shoot, between [picture_size_y_min] and [picture_size_y_max]?", "Zoom", picture_size_y) as num
 	picture_size_x = min(CLAMP(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	picture_size_y = min(CLAMP(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
-/obj/item/camera/AltClick(mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE))
-		return
-	adjust_zoom(user)
 
 /obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -128,7 +126,7 @@
 
 	var/realcooldown = cooldown
 	var/mob/living/carbon/human/H = user
-	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
+	if (H.has_trait(TRAIT_PHOTOGRAPHER))
 		realcooldown *= 0.5
 	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
 
@@ -223,7 +221,7 @@
 		else
 			if(default_picture_name)
 				picture.picture_name = default_picture_name
-
+			
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()

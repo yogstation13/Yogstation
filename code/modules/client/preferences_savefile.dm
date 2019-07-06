@@ -60,18 +60,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 /datum/preferences/proc/load_preferences()
 	if(!path)
-		return FALSE
+		return 0
 	if(!fexists(path))
-		return FALSE
+		return 0
 
 	var/savefile/S = new /savefile(path)
 	if(!S)
-		return FALSE
+		return 0
 	S.cd = "/"
 
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
-		return FALSE
+		return 0
 
 	//general preferences
 	S["asaycolor"]			>> asaycolor
@@ -102,7 +102,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["parallax"]			>> parallax
 	S["ambientocclusion"]	>> ambientocclusion
 	S["auto_fit_viewport"]	>> auto_fit_viewport
-	S["widescreenpref"]	    >> widescreenpref
 	S["menuoptions"]		>> menuoptions
 	S["enable_tips"]		>> enable_tips
 	S["tip_delay"]			>> tip_delay
@@ -129,14 +128,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	tgui_fancy		= sanitize_integer(tgui_fancy, 0, 1, initial(tgui_fancy))
 	tgui_lock		= sanitize_integer(tgui_lock, 0, 1, initial(tgui_lock))
 	buttons_locked	= sanitize_integer(buttons_locked, 0, 1, initial(buttons_locked))
-	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	windowflashing		= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
 	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
 	clientfps		= sanitize_integer(clientfps, 0, 1000, 0)
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	ambientocclusion	= sanitize_integer(ambientocclusion, 0, 1, initial(ambientocclusion))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, 0, 1, initial(auto_fit_viewport))
-	widescreenpref  = sanitize_integer(widescreenpref, 0, 1, initial(widescreenpref))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_orbit 	= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_accs		= sanitize_inlist(ghost_accs, GLOB.ghost_accs_options, GHOST_ACCS_DEFAULT_OPTION)
@@ -155,14 +153,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	load_keybindings(S) // yogs - Custom keybindings
 
-	return TRUE
+	return 1
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
-		return FALSE
+		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)
-		return FALSE
+		return 0
 	S.cd = "/"
 
 	WRITE_FILE(S["version"] , SAVEFILE_VERSION_MAX)		//updates (or failing that the sanity checks) will ensure data is not invalid at load. Assume up-to-date
@@ -194,7 +192,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	WRITE_FILE(S["widescreenpref"], widescreenpref)
 	WRITE_FILE(S["menuoptions"], menuoptions)
 	WRITE_FILE(S["enable_tips"], enable_tips)
 	WRITE_FILE(S["tip_delay"], tip_delay)
@@ -210,16 +207,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	save_keybindings(S) // yogs - Custom keybindings
 
-	return TRUE
+	return 1
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
-		return FALSE
+		return 0
 	if(!fexists(path))
-		return FALSE
+		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)
-		return FALSE
+		return 0
 	S.cd = "/"
 	if(!slot)
 		slot = default_slot
@@ -231,7 +228,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S.cd = "/character[slot]"
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
-		return FALSE
+		return 0
 
 	//Species
 	var/species_id
@@ -380,14 +377,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	negative_quirks = SANITIZE_LIST(negative_quirks)
 	neutral_quirks = SANITIZE_LIST(neutral_quirks)
 
-	return TRUE
+	return 1
 
 /datum/preferences/proc/save_character()
 	if(!path)
-		return FALSE
+		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)
-		return FALSE
+		return 0
 	S.cd = "/character[default_slot]"
 
 	WRITE_FILE(S["version"]			, SAVEFILE_VERSION_MAX)	//load_character will sanitize any bad data, so assume up-to-date.)
@@ -449,7 +446,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["negative_quirks"]		, negative_quirks)
 	WRITE_FILE(S["neutral_quirks"]		, neutral_quirks)
 
-	return TRUE
+	return 1
 
 
 #undef SAVEFILE_VERSION_MAX

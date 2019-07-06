@@ -79,7 +79,7 @@
 	back = /obj/item/storage/backpack/holding
 	head = /obj/item/clothing/head/beanie/red
 	ears = /obj/item/clothing/ears/headphones
-	implants = list(/obj/item/implant/teleporter/gasclerk)
+	implants = list(/obj/item/implant/teleporter/ghost_role)
 	r_pocket = /obj/item/paper/gasstation_lore
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/gasclerk

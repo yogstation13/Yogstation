@@ -1640,6 +1640,12 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
+"aei" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
 "aej" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
@@ -52575,22 +52581,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
-"clO" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/machinery/airalarm{
-	pixel_y = 25
-	},
-/turf/open/floor/plasteel,
-/area/medical/cryo)
-"csr" = (
-/obj/machinery/airalarm/server{
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "csH" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 4
@@ -81586,13 +81576,13 @@ bkQ
 avi
 adO
 ako
-adP
-adP
-adP
-adP
-adP
-adP
-adP
+aei
+aei
+aei
+aei
+aei
+aei
+aei
 bkX
 cIZ
 gst
@@ -82099,7 +82089,7 @@ avi
 avi
 avi
 adP
-adP
+aei
 aej
 auk
 auy

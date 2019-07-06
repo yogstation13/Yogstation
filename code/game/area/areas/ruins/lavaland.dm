@@ -32,15 +32,6 @@
 /area/ruin/powered/seedvault
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/gasstation //yogs start
-	name = "Lavaland Gas Station"
-	icon_state = "dk_yellow" // yogs end
-
-/area/ruin/powered/spacebar //yogs start
-	name = "Space Bar"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	icon_state = "dk_yellow" //yogs end
-
 /area/ruin/unpowered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"

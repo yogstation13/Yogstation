@@ -125,13 +125,6 @@
 	if(mapload && access_txt)
 		access = text2access(access_txt)
 
-/obj/item/card/id/Destroy()
-	if (registered_account)
-		registered_account.bank_cards -= src
-	if (my_store && my_store.my_card == src)
-		my_store.my_card = null
-	return ..()
-
 /obj/item/card/id/attack_self(mob/user)
 	if(Adjacent(user))
 		user.visible_message("<span class='notice'>[user] shows you: [icon2html(src, viewers(user))] [src.name].</span>", "<span class='notice'>You show \the [src.name].</span>")
@@ -182,7 +175,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-
+	
 	return TRUE
 
 /obj/item/card/id/AltClick(mob/living/user)
@@ -204,13 +197,7 @@
 				return
 		to_chat(user, "<span class='warning'>The account ID number provided is invalid.</span>")
 		return
-
-	if (world.time < registered_account.withdrawDelay)
-		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
-		return
-
-	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
-
+	var/amount_to_remove = input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, "<span class='warning'>You're pretty sure that's not how money works.</span>")
 		return
@@ -223,7 +210,7 @@
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
+		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE) 
 
 /obj/item/card/id/examine(mob/user)
 	..()
@@ -252,6 +239,7 @@
 Usage:
 update_label()
 	Sets the id name to whatever registered_name and assignment is
+
 update_label("John Doe", "Clowny")
 	Properly formats the name and occupation and sets the id name to the arguments
 */
@@ -303,33 +291,29 @@ update_label("John Doe", "Clowny")
 		var/obj/item/card/id/I = O
 		src.access |= I.access
 		if(isliving(user) && user.mind)
-			if(user.mind.special_role || anyone)
+			if(user.mind.special_role)
 				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
 
 /obj/item/card/id/syndicate/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
-			if(!registered_name) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
-				anyone = TRUE
-			else
-				return ..()
-		if(alert(user, "Action", "Agent ID", "Show", "Forge") == "Forge")
-			var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name))as text | null),1,26)
-			if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/dead/new_player/prefrences.dm
-				if (t)
-					alert("Invalid name.")
-				return
-			registered_name = t
+		if(user.mind.special_role || anyone)
+			if(alert(user, "Action", "Agent ID", "Show", "Forge") == "Forge")
+				var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name))as text | null),1,26)
+				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/dead/new_player/prefrences.dm
+					if (t)
+						alert("Invalid name.")
+					return
+				registered_name = t
 
-			var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")as text | null),1,MAX_MESSAGE_LEN)
-			if(!u)
-				registered_name = ""
+				var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")as text | null),1,MAX_MESSAGE_LEN)
+				if(!u)
+					registered_name = ""
+					return
+				assignment = u
+				update_label()
+				to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 				return
-			assignment = u
-			update_label()
-			to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
-			return
-	return ..()
+	..()
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE

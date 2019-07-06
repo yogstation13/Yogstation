@@ -14,5 +14,5 @@
 /mob/living/simple_animal/drone/Initialize()
 	.=..()
 	if(pacifism)
-		ADD_TRAIT(src, TRAIT_PACIFISM, JOB_TRAIT)
-		ADD_TRAIT(src, TRAIT_NOGUNS, JOB_TRAIT) //love drones t. Altoids <3
+		add_trait(TRAIT_PACIFISM, JOB_TRAIT)
+		add_trait(TRAIT_NOGUNS, JOB_TRAIT) //love drones t. Altoids <3
