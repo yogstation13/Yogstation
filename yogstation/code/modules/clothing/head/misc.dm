@@ -49,7 +49,7 @@
 
 /obj/item/clothing/head/yogs/goatpope
 	name = "goat pope hat"
-	desc = "And on the seventh day King Goat said let there be cabbage!"
+	desc = "And on the seventh day King Goat said ''let there be cabbage!''"
 	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
