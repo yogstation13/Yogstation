@@ -166,9 +166,7 @@ Difficulty: Insanely Hard
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	move_to_delay = 3
-
-/mob/living/simple_animal/hostile/retaliate/goat/guard/pope/OnDeath()
-		new /obj/item/clothing/head/yogs/goatpope(loc)
+	loot = list(/obj/item/clothing/head/yogs/goatpope)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()
