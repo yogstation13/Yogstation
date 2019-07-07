@@ -55,7 +55,8 @@
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,
 					/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
-					/obj/item/clothing/head/clownmitre = 1)
+					/obj/item/clothing/head/clownmitre = 1,
+					/obj/item/clothing/head/yogs/goatpope = 1)
 	premium = list(/obj/item/clothing/suit/chaplainsuit/bishoprobe = 1,
 					/obj/item/clothing/head/bishopmitre = 1)
 
