@@ -1,14 +1,3 @@
-#define XENOARCH_SPUR_SPAWN_POLARSTAR 0
-#define XENOARCH_SPUR_SPAWN_MODKIT 1
-#define XENOARCH_SPUR_SPAWN_NOTHING 2
-
-
-
-//this is currently unimplemented but it will be used in order to prevent multiple 
-// guns from spawning as only 1 copy should exists in the game would at any time
-
-GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
-
 /obj/item/gun/energy/polarstar
 	name = "Polar Star"
 	desc = "Despite being incomplete, the severe wear on this gun shows to which extent it's been used already."
@@ -61,6 +50,7 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	name = "Spur"
 	desc = "A masterpiece crafted by the legendary gunsmith of a far-away planet."
 	icon_state = "spur"
+	item_state = "spur"
 	fire_delay = 0 //pewpew
 	ammo_type = list(/obj/item/ammo_casing/energy/polarstar/spur)
 	selfcharge = TRUE
@@ -92,11 +82,11 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	icon = 'yogstation/icons/obj/xenoarch/guns.dmi'
 	icon_state = "spur_high"
 	var/skip = FALSE //this is the hackiest thing ive ever done but i dont know any other solution other than deparent the spur projectile
-	
+
 /obj/item/projectile/bullet/polarstar/fire(angle, atom/direct_target)
 	if(!fired_from || !istype(fired_from,/obj/item/gun/energy) || skip)
 		return ..()
-	
+
 	var/obj/item/gun/energy/polarstar/fired_gun = fired_from
 	var/maxcharge = fired_gun.cell.maxcharge
 	var/charge = fired_gun.cell.charge
@@ -117,10 +107,10 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 
 /obj/item/projectile/bullet/polarstar/on_range()
 	if(!loc)
-		return 
+		return
 	var/turf/T = loc
 	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',T,"spur_range")
-	impact.layer = OBJ_LAYER
+	impact.layer = ABOVE_MOB_LAYER
 	T.overlays += impact
 	sleep(3)
 	T.overlays -= impact
@@ -128,40 +118,22 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	..()
 
 /obj/item/projectile/bullet/polarstar/on_hit(atom/target, blocked)
-	CRASH("NEEEEERDS")
 	. = ..()
-	var/turf/target_loca = get_turf(target)
 	var/impact_icon = null
 	var/impact_sound = null
-	var/PixelX = 0
-	var/PixelY = 0
 
-	switch(get_dir(src,target))
-		if(NORTH)
-			PixelY = 16
-		if(SOUTH)
-			PixelY = -16
-		if(EAST)
-			PixelX = 16
-		if(WEST)
-			PixelX = -16
 	if(ismob(target))
 		impact_icon = "spur_hitmob"
 		impact_sound = 'yogstation/sound/weapons/spur_hitmob.ogg'
 	else
-		impact_icon = "spur_hitshit"
+		impact_icon = "spur_hitwall"
 		impact_sound = 'yogstation/sound/weapons/spur_hitwall.ogg'
 
-	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',target_loca,impact_icon)
-	impact.pixel_x = PixelX
-	impact.pixel_y = PixelY
-	impact.layer = OBJ_LAYER
-	world.log << "created overlay"
-	target_loca.overlays += impact
-	sleep(100)
-	target_loca.overlays -= impact
+	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',target,impact_icon)
+	target.overlays += impact
+	spawn(30)
+		target.overlays -= impact
 	playsound(loc, impact_sound, 30)
-	world.log << "target is type [target]"
 	if(istype(target,/turf/closed/mineral))
 		var/turf/closed/mineral/M = target
 		M.gets_drilled()
@@ -180,11 +152,11 @@ GLOBAL_VAR_INIT(polarstar, XENOARCH_SPUR_SPAWN_POLARSTAR)
 	icon = 'yogstation/icons/obj/xenoarch/guns.dmi'
 	icon_state = "spur_high"
 	skip = TRUE
-	
+
 /obj/item/projectile/bullet/polarstar/spur/fire(angle, atom/direct_target)
 	if(!fired_from || !istype(fired_from,/obj/item/gun/energy))
 		return ..()
-	
+
 	var/obj/item/gun/energy/polarstar/fired_gun = fired_from
 	var/maxcharge = fired_gun.cell.maxcharge
 	var/charge = fired_gun.cell.charge
