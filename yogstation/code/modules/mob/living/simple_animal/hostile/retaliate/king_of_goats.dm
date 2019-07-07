@@ -160,8 +160,8 @@ Difficulty: Insanely Hard
 	icon_state = "goat_pope"
 	icon_living = "goat_pope"
 	icon_dead = "goat_pope_dead"
-	health = 300
-	maxHealth = 300
+	health = 1
+	maxHealth = 1
 	armour_penetration = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 30
