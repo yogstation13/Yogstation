@@ -156,7 +156,7 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope
 	name = "Goat Pope"
-	desc = "For what is a god without a pope to spread their holy words"
+	desc = "For what is a God without a pope to spread their holy words"
 	icon_state = "goat_pope"
 	icon_living = "goat_pope"
 	icon_dead = "goat_pope_dead"
