@@ -112,3 +112,11 @@
 /datum/outputs/squelch
 	text = "You hear a horrendous squelching sound."
 	sounds = 'sound/effects/blobattack.ogg'
+
+/datum/outputs/goat //yogs added a goat sound baaaaa
+	text = "You hear a goat bleating."
+	sounds = 'yogstation/sound/items/goatsound.ogg'
+
+/datum/outputs/bee
+	text = "You hear a buzzing noise."
+	sounds = 'sound/voice/moth/scream_moth.ogg'

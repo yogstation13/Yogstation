@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed silicon items (e.g. cyborg modules) being destroyed by explosion epicenters"

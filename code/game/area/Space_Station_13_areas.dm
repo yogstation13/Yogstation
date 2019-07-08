@@ -932,7 +932,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/science/research
 	name = "Research Division"
-	icon_state = "medresearch"
+	icon_state = "research_development" //yogs
 
 /area/science/research/abandoned
 	name = "Abandoned Research Lab"

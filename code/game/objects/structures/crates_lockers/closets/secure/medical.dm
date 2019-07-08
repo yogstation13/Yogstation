@@ -74,7 +74,6 @@
 	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/CMO(src)
-	new /obj/item/clothing/head/beret/cmo(src) //yogs
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
@@ -98,11 +97,6 @@
 	new /obj/item/storage/box/pillbottles(src)
 	new /obj/item/storage/box/medsprays(src)
 	new /obj/item/storage/box/medsprays(src)
-	//yogs start - adds reagent bottles
-	new /obj/item/reagent_containers/glass/bottle/facid(src)
-	new /obj/item/reagent_containers/glass/bottle/capsaicin(src)
-	new /obj/item/reagent_containers/glass/bottle/mutagen(src)
-	//yogs end
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
 	name = "advanced chemical closet"
