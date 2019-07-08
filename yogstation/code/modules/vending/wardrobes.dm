@@ -8,7 +8,7 @@
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
 					/obj/item/flashlight = 2,
-					/obj/item/caution = 6,
+					/obj/item/clothing/suit/caution = 6,
 					/obj/item/holosign_creator = 2,
 					/obj/item/lightreplacer = 2,
 					/obj/item/soap/nanotrasen = 2,
@@ -55,7 +55,8 @@
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,
 					/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
-					/obj/item/clothing/head/clownmitre = 1)
+					/obj/item/clothing/head/clownmitre = 1,
+					/obj/item/clothing/head/yogs/goatpope = 1)
 	premium = list(/obj/item/clothing/suit/chaplainsuit/bishoprobe = 1,
 					/obj/item/clothing/head/bishopmitre = 1)
 
@@ -101,6 +102,7 @@
 					/obj/item/clothing/mask/bandana/red = 3,
 					/obj/item/clothing/suit/armor/vest/secmiljacket = 3,
 					/obj/item/clothing/shoes/yogs/namboots = 5,
+					/obj/item/clothing/gloves/yogs/namgloves = 5,
 					/obj/item/clothing/under/yogs/namjumpsuit = 5,
 					/obj/item/clothing/suit/armor/vest/namflakjacket = 5,
 					/obj/item/clothing/head/helmet/namhelm = 5,

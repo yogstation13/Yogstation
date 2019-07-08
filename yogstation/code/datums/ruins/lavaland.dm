@@ -151,6 +151,7 @@
 	suffix = "lavaland_surface_cosmicashwalkerpod.dmm"
 	allow_duplicates = FALSE
 	cost = 15
+	unpickable = TRUE //council-vote
 
 /datum/map_template/ruin/lavaland/yogstation/medical
 	name = "Orion Medical Outpost"

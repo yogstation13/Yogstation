@@ -1,0 +1,5 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Yogstation-exclusive emojis now override TG ones. Say hello to good ol' thinking!"
+  - imageadd: "The blob emojis should now look OK in darkmode."

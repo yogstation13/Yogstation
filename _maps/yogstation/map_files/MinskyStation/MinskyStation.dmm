@@ -172,7 +172,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
 "aav" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
@@ -20248,9 +20248,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/goat/spiffles{
-	name = "Spiffles"
-	},
+/mob/living/simple_animal/spiffles,
 /turf/open/floor/plasteel,
 /area/gateway{
 	name = "Ira Petrov's Interstellar Provisions"

@@ -1,0 +1,4 @@
+author: " Arkatos"
+delete-after: true 
+changes: 
+  - tweak: "Examine tooltips now work on items put into storage, such as backpacks"
