@@ -16,6 +16,7 @@
 					/obj/item/clothing/under/gladiator = 1,
 					/obj/item/clothing/head/helmet/gladiator = 1,
 					/obj/item/clothing/under/gimmick/rank/captain/suit = 1,
+					/obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 1,
 					/obj/item/clothing/head/flatcap = 1,
 					/obj/item/clothing/suit/toggle/labcoat/mad = 1,
 					/obj/item/clothing/shoes/jackboots = 10, //yogs added more jack boots
@@ -31,6 +32,8 @@
 					/obj/item/clothing/head/that = 1,
 					/obj/item/clothing/under/kilt = 1,
 					/obj/item/clothing/head/beret = 1,
+					/obj/item/clothing/head/beret/vintage = 1,
+					/obj/item/clothing/head/beret/archaic = 1,
 					/obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/glasses/monocle = 1, //yogs added a single space the horrors!
 					/obj/item/clothing/head/bowler = 1,
@@ -73,6 +76,7 @@
 					/obj/item/clothing/under/rank/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,
 					/obj/item/clothing/under/sexymime = 1,
+					/obj/item/clothing/under/rank/mime/skirt = 1,
 					/obj/item/clothing/mask/rat/bat = 1,
 					/obj/item/clothing/mask/rat/bee = 1,
 					/obj/item/clothing/mask/rat/bear = 1,
@@ -206,6 +210,9 @@
 		           /obj/item/clothing/head/yogs/toad = 1,
 		           /obj/item/clothing/head/helmet/justice = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
+
+/obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
 
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50

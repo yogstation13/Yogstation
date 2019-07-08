@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Added a bunch of previously missing adjacency checks to ui window actions and alt clicks."

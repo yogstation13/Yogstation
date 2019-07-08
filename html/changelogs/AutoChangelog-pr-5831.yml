@@ -1,0 +1,9 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - rscadd: "An extra tile to the Box chapel's width"
+  - rscadd: "Clerk now has a cash register"
+  - tweak: "Replaced the stools with chapel pews"
+  - tweak: "Spiffles has been sent to the farm up north for a week and has came back better then ever!"
+  - tweak: "Replaced the centcom megafauna with some exotic mobs cause the megafauna kept gettin out"
+  - tweak: "Replaced the sm crystals with ducks cause sm spam bad"
