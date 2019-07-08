@@ -33,7 +33,7 @@
 	density = TRUE
 	pixel_z = -8
 	layer = LARGE_MOB_LAYER
-	max_integrity = 600
+	max_integrity = 1800 //yogs doubled health
 	var/list/accounts_to_rob
 	var/mob/living/carbon/human/bogdanoff
 	var/canwalk = FALSE
@@ -161,7 +161,7 @@
 	dump()
 
 /obj/structure/checkoutmachine/proc/dump()
-	var/percentage_lost = (rand(1, 10) / 100)
+	var/percentage_lost = (rand(5, 15) / 100)
 	for(var/i in accounts_to_rob)
 		var/datum/bank_account/B = i
 		if(!B.being_dumped)
@@ -210,7 +210,7 @@
 	bogdanoff = user
 	addtimer(CALLBACK(src, .proc/startLaunch), 100)
 	sound_to_playing_players('sound/items/dump_it.ogg', 20)
-	deadchat_broadcast("<span class='deadsay'>Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!</span>", turf_target = get_turf(src))
+	deadchat_broadcast("Protocol CRAB-17 has been activated. A space-coin market has been launched at the station!", turf_target = get_turf(src))
 
 /obj/effect/dumpeetTarget/proc/startLaunch()
 	DF = new /obj/effect/dumpeetFall(drop_location())
