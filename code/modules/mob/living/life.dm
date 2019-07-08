@@ -1,4 +1,5 @@
-/mob/living/Life(seconds, times_fired)
+/mob/living/proc/Life(seconds, times_fired)
+	set waitfor = FALSE
 	set invisibility = 0
 
 	if(digitalinvis)
@@ -34,7 +35,7 @@
 	if(!loc)
 		return
 
-	if(!IsInStasis())
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD)
 			//Mutations and radiation

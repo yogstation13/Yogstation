@@ -1,0 +1,5 @@
+author: "Mr-Space"
+delete-after: true 
+changes: 
+  - rscadd: "Added white caps from Chernobyl"
+  - experiment: "This is experimental, reactor may explode. There's no graphite on ground, radiation levels at 3.6 röntgens."

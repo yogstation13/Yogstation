@@ -229,7 +229,7 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(major = FALSE) && number_legs)
+	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
@@ -322,7 +322,7 @@
 		if(owner.confused)
 			owner.confused = 0
 		severity = 0
-	else if(!owner.anti_magic_check(major = FALSE) && owner.stat != DEAD && severity)
+	else if(!owner.anti_magic_check(chargecost = 0) && owner.stat != DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -355,7 +355,7 @@
 
 /datum/status_effect/cultghost/tick()
 	if(owner.reagents)
-		owner.reagents.del_reagent("holywater") //can't be deconverted
+		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
@@ -470,7 +470,7 @@
 		apply_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE, set_curse)
 	else
 		C.apply_curse(set_curse)
-		C.duration += 3000 //additional curses add 5 minutes
+		C.duration += 3000 //time added by additional curses
 
 /datum/status_effect/necropolis_curse
 	id = "necrocurse"
@@ -481,6 +481,10 @@
 	var/effect_last_activation = 0
 	var/effect_cooldown = 100
 	var/obj/effect/temp_visual/curse/wasting_effect = new
+	
+/datum/status_effect/necropolis_curse/hivemind
+	id = "hivecurse"
+	duration = 600
 
 /datum/status_effect/necropolis_curse/on_creation(mob/living/new_owner, set_curse)
 	. = ..()

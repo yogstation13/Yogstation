@@ -7,7 +7,7 @@
 		return
 	
 	listclearnulls(SSticker.queued_players)
-	to_chat(usr,"<span class='notice'><b>List of queued players:/<b></span>")
+	to_chat(usr,"<span class='notice'><b>List of queued players:</b></span>")
 	for(var/mob/dead/new_player/guy in SSticker.queued_players)
 		to_chat(usr,"\t[guy]")
 

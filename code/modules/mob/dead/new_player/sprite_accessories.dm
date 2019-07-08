@@ -1477,6 +1477,10 @@
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
 
+/datum/sprite_accessory/socks/bee_knee
+	name = "Knee-high (Bee)"
+	icon_state = "bee_knee"
+
 /datum/sprite_accessory/socks/black_norm
 	name = "Normal (Black)"
 	icon_state = "black_norm"
@@ -1496,10 +1500,6 @@
 /datum/sprite_accessory/socks/white_short
 	name = "Short (White)"
 	icon_state = "white_short"
-
-/datum/sprite_accessory/socks/stockings_black
-	name = "Stockings (Black)"
-	icon_state = "stockings_black"
 
 /datum/sprite_accessory/socks/stockings_blue
 	name = "Stockings (Blue)"
@@ -1564,6 +1564,10 @@
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
+
+/datum/sprite_accessory/socks/bee_thigh
+	name = "Thigh-high (Bee)"
+	icon_state = "bee_thigh"
 
 //////////.//////////////////
 // MutantParts Definitions //

@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(Yogs)
 	//PRIZEPOOL MODIFIER THING
 	GLOB.arcade_prize_pool[/obj/item/grenade/plastic/glitterbomb/pink] = 1
 	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry] = 2
+	GLOB.arcade_prize_pool[/obj/item/toy/plush/goatplushie/angry/realgoat] = 2
 	GLOB.arcade_prize_pool[/obj/item/stack/tile/ballpit] = 2
 	
 	//MULTI-PORTAL HANDLER
@@ -48,4 +49,3 @@ SUBSYSTEM_DEF(Yogs)
 			if(bwoink.check_owner())
 				GLOB.unclaimed_tickets -= bwoink
 	return
-

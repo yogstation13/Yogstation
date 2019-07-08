@@ -15276,6 +15276,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "aGJ" = (
@@ -18107,7 +18110,9 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "aMV" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe,
+/obj/machinery/vending/wardrobe/jani_wardrobe{
+	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
+	},
 /turf/open/floor/plasteel,
 /area/janitor)
 "aMW" = (
@@ -43904,6 +43909,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "bIk" = (
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "bIl" = (
@@ -53573,6 +53579,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/item/radio/headset,
+/obj/item/radio/headset,
+/obj/item/radio/headset,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "cbT" = (
