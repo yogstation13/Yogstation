@@ -24,3 +24,13 @@
 	sensor_mode = 3
 	random_sensor = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 15, rad = 0)
+
+/obj/item/clothing/under/yogs/rank/clerk/skirt
+	desc = "Oh, look it comes with its own vest."
+	name = "clerk's skirt"
+	icon_state = "clerk_skirt"
+	item_state = "clerk_skirt"
+	item_color = "clerk_skirt"
+	body_parts_covered = CHEST|GROIN|ARMS
+	fitted = FEMALE_UNIFORM_TOP
+	can_adjust = FALSE
