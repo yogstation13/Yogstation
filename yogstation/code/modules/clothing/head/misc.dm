@@ -46,3 +46,18 @@
 	desc = "A white cap. For some reason it smells like metal."
 	icon_state = "chernobyl"
 	item_state = "chernobyl"
+
+/obj/item/clothing/head/yogs/goatpope
+	name = "goat pope hat"
+	desc = "And on the seventh day King Goat said there will be cabbage!"
+	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
+	icon_state = "goatpope"
+	item_state = "goatpope"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	resistance_flags = FLAMMABLE
+
+/obj/item/clothing/head/yogs/goatpope/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if (slot == SLOT_HEAD)
+		user.faction |= "goat"
