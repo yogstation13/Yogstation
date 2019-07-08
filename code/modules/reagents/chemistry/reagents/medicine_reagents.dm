@@ -531,27 +531,13 @@
 
 /datum/reagent/medicine/perfluorodecalin
 	name = "Perfluorodecalin"
-<<<<<<< HEAD
-	id = "perfluorodecalin"
-	description = "Extremely rapidly restores oxygen deprivation, but inhibits speech. May also heal small amounts of bruising and burns."
-=======
 	description = "Restores oxygen deprivation while producing a lesser amount of toxic byproducts. Both scale with exposure to the drug and current amount of oxygen deprivation. Overdose causes toxic byproducts regardless of oxygen deprivation."
->>>>>>> 405205843f... Merge pull request #44279 from ExcessiveUseOfCobblestone/breathe-into-me
 	reagent_state = LIQUID
 	color = "#FF6464"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 35 // at least 2 full syringes +some, this stuff is nasty if left in for long
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
-<<<<<<< HEAD
-	M.adjustOxyLoss(-12*REM, 0)
-	// yogs start
-	M.silent = max(M.silent, 5)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM, 0)
-		M.adjustFireLoss(-0.5*REM, 0)
-	// yogs end
-=======
 	var/oxycalc = 2.5*REM*current_cycle
 	if(!overdosed)
 		oxycalc = min(oxycalc,M.getOxyLoss()+PERF_BASE_DAMAGE) //if NOT overdosing, we lower our toxdamage to only the damage we actually healed with a minimum of 0.5. IE if we only heal 10 oxygen damage but we COULD have healed 20, we will only take toxdamage for the 10. We would take the toxdamage for the extra 10 if we were overdosing.
@@ -559,7 +545,9 @@
 	M.adjustToxLoss(oxycalc/2.5, 0)
 	if(prob(current_cycle) && M.losebreath)
 		M.losebreath--
->>>>>>> 405205843f... Merge pull request #44279 from ExcessiveUseOfCobblestone/breathe-into-me
+	//yogs - start
+	M.silent = max(M.silent, 5)
+	//yogs - end
 	..()
 	return TRUE
 
