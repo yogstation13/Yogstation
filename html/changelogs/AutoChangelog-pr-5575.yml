@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - rscadd: " Janniborgs can now refil lightreplacer by clicking on glass stacks."

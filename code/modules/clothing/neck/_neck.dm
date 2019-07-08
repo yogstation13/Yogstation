@@ -204,6 +204,7 @@
 		if(iscatperson(T))
 			return TRUE
 		return FALSE // yogs end
+	return ..()
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = copytext(sanitize(input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot") as null|text),1,MAX_NAME_LEN)
@@ -247,4 +248,4 @@
 			user.put_in_hand(newBand, currentHandIndex)
 			user.visible_message("You untie [oldName] back into a [newBand.name]", "[user] unties [oldName] back into a [newBand.name]")
 		else
-			to_chat(user, "<span class='warning'>You must be holding [src] in order to untie it!")
+			to_chat(user, "<span class='warning'>You must be holding [src] in order to untie it!</span>")
