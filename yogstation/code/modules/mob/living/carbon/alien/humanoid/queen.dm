@@ -9,6 +9,7 @@
 /mob/living/carbon/alien/humanoid/royal/queen/proc/unmaidify()
 	name = "alien queen"
 	desc = ""
+	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "alienq"
 	caste = "q"
 	update_icons()
