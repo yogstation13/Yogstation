@@ -21746,6 +21746,8 @@
 /area/crew_quarters/locker)
 "aQY" = (
 /obj/structure/table,
+/obj/item/canvas/twentythreeXnineteen,
+/obj/item/canvas/nineteenXnineteen,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel,
@@ -22986,6 +22988,7 @@
 "aTE" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
+/obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aTF" = (
@@ -22997,6 +23000,7 @@
 /area/storage/art)
 "aTG" = (
 /obj/structure/table,
+/obj/item/storage/toolbox/artistic,
 /obj/item/storage/crayons,
 /obj/item/storage/crayons,
 /turf/open/floor/plasteel,
@@ -56359,6 +56363,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/construction)
+"qsS" = (
+/obj/structure/easel,
+/obj/item/canvas/twentythreeXtwentythree,
+/turf/open/floor/plasteel,
+/area/storage/art)
 "qtJ" = (
 /obj/machinery/blackbox_recorder,
 /obj/effect/turf_decal/tile/neutral{
@@ -80873,7 +80882,7 @@ aLE
 aOl
 aPF
 aQZ
-aRa
+qsS
 aTF
 aPG
 bcb
