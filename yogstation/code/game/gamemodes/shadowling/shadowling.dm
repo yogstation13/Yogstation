@@ -129,9 +129,9 @@ Made by Xhuis
 /datum/game_mode/shadowling/set_round_result()
 	..()
 	if(check_shadow_victory())
-		SSticker.mode_result = "win - shadowling has ascended"
+		SSticker.mode_result = "win - shadowlings have ascended"
 	else
-		SSticker.mode_result = "loss - staff stopped the shadowling"
+		SSticker.mode_result = "loss - staff stopped the shadowlings"
 
 /*
 	MISCELLANEOUS

@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/game_mode/fortnite/set_round_result()
 	..()
 	if(royalers.len)
-		SSticker.mode_result = "win - [pick(royalers)] won the battle royale"
+		SSticker.mode_result = "win - [royalers[1]] won the battle royale"
 	else
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
