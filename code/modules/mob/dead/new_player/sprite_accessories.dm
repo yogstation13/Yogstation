@@ -1828,7 +1828,7 @@
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/wings.dmi'
+	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
 
 /datum/sprite_accessory/moth_wings/plain
