@@ -5,6 +5,7 @@
 	force = 3
 	throwforce = 3
 	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
@@ -450,7 +451,7 @@
 	px_x = 0
 	px_y = 0
 	stam_damage_coeff = 1
-	max_stamina_damage = 100
+	max_stamina_damage = 120
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
