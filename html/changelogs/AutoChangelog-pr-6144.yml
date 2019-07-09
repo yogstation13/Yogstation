@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "added department skirts"
+  - bugfix: "fixed secskirt dixel"
