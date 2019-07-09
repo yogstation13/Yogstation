@@ -9,8 +9,9 @@ TRICORDER
 
 
 //Tricorder
+//The tricorder is a child of a multitool for the sole purpose to make it work with Tcomms
 
-/obj/item/tricorder
+/obj/item/multitool/tricorder
 	name = "tricorder"
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
@@ -33,13 +34,13 @@ TRICORDER
 	var/medicalTricorder = 0	//Set to 1 for normal medical scanner, set to 0 for a gutted version
 
 
-obj/item/tricorder/suicide_act(mob/living/carbon/user)
+obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] thinks today IS a good day to die!</span>")
 	return BRUTELOSS
 
 
 //Tricorder differentiates from slimes and nonslimes
-/obj/item/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
+/obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
 	atmosanalyzer_scan()
 	if(user.stat || user.eye_blind)
@@ -55,12 +56,12 @@ obj/item/tricorder/suicide_act(mob/living/carbon/user)
 		return
 
 //Gas Analyzer functions
-/obj/item/tricorder/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+/obj/item/multitool/tricorder/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
 	if(!proximity)
 		return
 	A.analyzer_act(user, src)
 
-/obj/item/tricorder/attack_self(mob/user)
+/obj/item/multitool/tricorder/attack_self(mob/user)
 	//Copy + Pasted right off the Gas Analyzer
 	add_fingerprint(user)
 
