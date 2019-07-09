@@ -120,6 +120,7 @@
 	design_ids = list("surgery_brainwashing")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
 	export_price = 7000
+
 /datum/techweb_node/cyborg_upg_custodial
 	id = "cyborg_upg_custodial"
 	display_name = "Cyborg Upgrades: Custodial"
