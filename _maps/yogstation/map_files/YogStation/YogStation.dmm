@@ -22792,6 +22792,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aTl" = (
+/turf/closed/wall/r_wall,
+/area/quartermaster/sorting)
 "aTm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23505,6 +23508,9 @@
 	dir = 4
 	},
 /area/chapel/main)
+"aUI" = (
+/turf/closed/wall/r_wall,
+/area/hallway/primary/central)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -55323,9 +55329,6 @@
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"mof" = (
-/turf/closed/wall/r_wall,
-/area/vacant_room/office/office_b)
 "mxJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -82417,7 +82420,7 @@ gXs
 aaa
 gXs
 aaa
-mof
+aTl
 aZK
 aZK
 aZK
@@ -82674,7 +82677,7 @@ aBa
 aBa
 aBa
 gXs
-mof
+aTl
 bfj
 aZK
 bfj
@@ -82931,7 +82934,7 @@ pmX
 iVI
 aBa
 aaa
-mof
+aTl
 hGf
 aZK
 bhZ
@@ -83188,7 +83191,7 @@ bde
 aLO
 aBa
 gXs
-mof
+aTl
 weD
 bgD
 aBK
@@ -83445,7 +83448,7 @@ bdh
 baX
 aBa
 aaa
-mof
+aTl
 aZH
 bnL
 bgo
@@ -83702,7 +83705,7 @@ lGF
 vra
 aBa
 gXs
-mof
+aTl
 wEx
 mxJ
 aMx
@@ -83959,7 +83962,7 @@ aHF
 aBa
 aBa
 aaa
-mof
+aTl
 beA
 aaV
 cNG
@@ -84216,7 +84219,7 @@ pYY
 aaa
 gXs
 aaa
-mof
+aTl
 bfn
 beW
 bfR
@@ -84473,7 +84476,7 @@ tby
 hGh
 hGh
 kTo
-mof
+aUI
 aZK
 aZK
 cNI
