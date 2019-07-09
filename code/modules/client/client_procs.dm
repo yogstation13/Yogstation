@@ -48,10 +48,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		//	into letting append to a list without limit.
 		if (asset_cache_job > 0 && asset_cache_job <= last_asset_job && !(asset_cache_job in completed_asset_jobs))
 			completed_asset_jobs += asset_cache_job
-			return
-		else if (job in completed_asset_jobs) //byond bug ID:2256651
-			to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
-			src << browse("...", "window=asset_cache_browser")
 
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
 	if (!holder && mtl)
@@ -88,14 +84,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
-<<<<<<< HEAD
-=======
 	
 	//byond bug ID:2256651
 	if (asset_cache_job && asset_cache_job in completed_asset_jobs)
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
 		src << browse("...", "window=asset_cache_browser")
->>>>>>> efec302bfd... Fix my fix (#44750)
 
 	// Admin PM
 	if(href_list["priv_msg"])
