@@ -18,7 +18,7 @@
 /obj/item/clothing/gloves/proc/clean_blood(datum/source, strength)
 	var/datum/component/forensics/D = GetComponent(/datum/component/forensics)
 	if(D)
-		D.clean_act(datum/source, strength)
+		D.clean_act(source, strength)
 	if(strength < CLEAN_STRENGTH_BLOOD)
 		return
 	transfer_blood = 0
