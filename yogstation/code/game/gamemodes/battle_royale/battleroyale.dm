@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/stage_interval = 1200 //Copied from Nich's homework. Storm shrinks every 2 minutes
 	var/borderstage = 0
 	var/finished = FALSE
+	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.sortedAreas //Assuming we've gotten this far, let's spawn the battle bus.
@@ -96,9 +97,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(royalers.len == 1) //We have a wiener!
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
-		var/mob/living/dub = pick(royalers)
+		winner = pick(royalers)
 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")
-		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [dub] </span>")
+		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [winner] </span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
@@ -106,8 +107,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/set_round_result()
 	..()
-	if(royalers.len)
-		SSticker.mode_result = "win - [royalers[1]] won the battle royale"
+	if(winner)
+		SSticker.mode_result = "win - [winner] won the battle royale"
 	else
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
