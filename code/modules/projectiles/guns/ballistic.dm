@@ -54,6 +54,7 @@
 	var/rack_delay = 5
 	var/recent_rack = 0
 	var/tac_reloads = TRUE //Snowflake mechanic no more.
+	var/can_be_sawn_off  = FALSE
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -156,6 +157,9 @@
 	update_icon()
 
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+	if(!istype(AM, mag_type))
+		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
+		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
@@ -179,12 +183,15 @@
 	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
-		insert_magazine(user, tac_load, FALSE)
-		to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].")
+		if (insert_magazine(user, tac_load, FALSE))
+			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
+			magazine = null
+	else
+		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_icon()
-	if (!tac_load)
-		magazine = null
 	if (display_message)
 		to_chat(user, "<span class='notice'>You pull the [magazine_wording] out of \the [src].</span>")
 	update_icon()
@@ -193,15 +200,15 @@
 	return chambered
 
 /obj/item/gun/ballistic/attackby(obj/item/A, mob/user, params)
-	..()
+	. = ..()
 	if (.)
 		return
 	if (!internal_magazine && istype(A, /obj/item/ammo_box/magazine))
 		var/obj/item/ammo_box/magazine/AM = A
-		if (!magazine && istype(AM, mag_type))
+		if (!magazine)
 			insert_magazine(user, AM)
-		else if (magazine)
-			if(tac_reloads)
+		else
+			if (tac_reloads)
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
@@ -234,6 +241,9 @@
 		if(user.transferItemToLoc(A, src))
 			to_chat(user, "<span class='notice'>You screw \the [S] onto \the [src].</span>")
 			install_suppressor(A)
+			return
+	if (can_be_sawn_off)
+		if (sawoff(user, A))
 			return
 	return FALSE
 
@@ -378,11 +388,23 @@
 #undef BRAINS_BLOWN_THROW_SPEED
 #undef BRAINS_BLOWN_THROW_RANGE
 
+GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
+	/obj/item/circular_saw,
+	/obj/item/gun/energy/plasmacutter,
+	/obj/item/melee/transforming/energy,
+	/obj/item/twohanded/required/chainsaw,
+	/obj/item/nullrod/claymore/chainsaw_sword,
+	/obj/item/nullrod/chainsaw,
+	/obj/item/mounted_chainsaw)))
 
-
-/obj/item/gun/ballistic/proc/sawoff(mob/user)
+/obj/item/gun/ballistic/proc/sawoff(mob/user, obj/item/saw)
+	if(!saw.is_sharp() || !is_type_in_typecache(saw, GLOB.gun_saw_types)) //needs to be sharp. Otherwise turned off eswords can cut this.
+		return
 	if(sawn_off)
 		to_chat(user, "<span class='warning'>\The [src] is already shortened!</span>")
+		return
+	if(bayonet)
+		to_chat(user, "<span class='warning'>You cannot saw-off \the [src] with \the [bayonet] attached!</span>")
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message("[user] begins to shorten \the [src].", "<span class='notice'>You begin to shorten \the [src]...</span>")

@@ -40,7 +40,7 @@
 
 /obj/item/storage/belt/tool_switcher/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	var/static/list/can_hold = typecacheof(list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -212,7 +212,7 @@
 		. = tool.melee_attack_chain(arglist(args)) // copy the tool's actions
 		// make sure the tool didn't get removed
 		if(!QDELETED(tool) && tool.loc != src)
-			GET_COMPONENT(STR, /datum/component/storage)
+			var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 			STR.remove_from_storage(tool, tool.loc) // update the shizz
 	else
 		. = ..()

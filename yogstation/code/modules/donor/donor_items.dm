@@ -28,7 +28,6 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/head/collectable/HoS, \
 						/obj/item/clothing/head/collectable/thunderdome, \
 						/obj/item/clothing/head/collectable/swat, \
-						/obj/item/clothing/head/hardhat/cakehat, \
 						/obj/item/clothing/head/ushanka, \
 						/obj/item/clothing/head/hardhat/pumpkinhead, \
 						/obj/item/clothing/head/kitty, \
@@ -57,7 +56,26 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/head/wizard/fake/red, \
 						/obj/item/clothing/head/wizard/fake/yellow, \
 						/obj/item/clothing/head/wizard/fake/black, \
-						/obj/item/clothing/head/wizard/marisa/fake, \
+						/obj/item/clothing/head/wizard/marisa/fake
+						)
+
+var/list/donor_pdas = list("Normal", "Transparent", "Pip Boy", "Rainbow")
+
+var/list/donor_start_tools = list(\
+						/obj/item/storage/backpack/snail/green, \
+						/obj/item/banhammer, \
+						/obj/item/bedsheet/cosmos, \
+						/obj/item/bedsheet/wiz, \
+						/obj/item/bedsheet/cult, \
+						/obj/item/bedsheet/nanotrasen, \
+						/obj/item/bedsheet/centcom, \
+						/obj/item/bedsheet/syndie, \
+						/obj/item/bikehorn/airhorn, \
+						/obj/item/camera, \
+						/obj/item/cane, \
+						/obj/item/clothing/shoes/sneakers/rainbow, \
+						/obj/item/clothing/gloves/color/rainbow, \
+						/obj/item/clothing/under/color/rainbow, \
 						/obj/item/clothing/neck/yogs/sith_cloak, \
 						/obj/item/clothing/suit/yogs/armor/sith_suit, \
 						/obj/item/clothing/suit/yogs/armor/hardsuit_clown, \
@@ -69,24 +87,8 @@ var/list/donor_start_items = list(\
 						/obj/item/clothing/shoes/yogs/trainers/black, \
 						/obj/item/clothing/suit/yogs/zebrasweat, \
 						/obj/item/clothing/suit/yogs/blackwhitesweat, \
-						/obj/item/clothing/shoes/yogs/fuzzy_slippers
-						)
-
-var/list/donor_pdas = list("Normal", "Transparent", "Pip Boy", "Rainbow")
-
-var/list/donor_start_tools = list(\
-						/obj/item/storage/backpack/snail/green, \
-						/obj/item/banhammer, \
-						/obj/item/bedsheet/cosmos, \
-						/obj/item/bedsheet/wiz, \
-						/obj/item/bedsheet/nanotrasen, \
-						/obj/item/bedsheet/syndie, \
-						/obj/item/bikehorn/airhorn, \
-						/obj/item/camera, \
-						/obj/item/cane, \
-						/obj/item/clothing/shoes/sneakers/rainbow, \
-						/obj/item/clothing/gloves/color/rainbow, \
-						/obj/item/clothing/under/color/rainbow, \
+						/obj/item/clothing/shoes/yogs/fuzzy_slippers, \
+						/obj/item/clothing/suit/xenos, \
 						/obj/item/grown/sunflower, \
 						/obj/item/hot_potato/harmless/toy, \
 						/obj/item/instrument/accordion, \

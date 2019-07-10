@@ -18,6 +18,7 @@
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
 					/obj/item/seeds/eggplant = 3,
+					/obj/item/seeds/garlic = 3,
 					/obj/item/seeds/grape = 3,
 					/obj/item/seeds/grass = 3,
 					/obj/item/seeds/lemon = 3,
@@ -31,6 +32,7 @@
 					/obj/item/seeds/replicapod = 3,
 					/obj/item/seeds/wheat/rice = 3,
 					/obj/item/seeds/soya = 3,
+					/obj/item/seeds/sugarcane = 3,
 					/obj/item/seeds/sunflower = 3,
 					/obj/item/seeds/tea = 3,
 					/obj/item/seeds/tobacco = 3,
@@ -47,7 +49,7 @@
 					  /obj/item/seeds/reishi = 2,
 					  /obj/item/seeds/cannabis = 3,
 					  /obj/item/seeds/starthistle = 2,
-					  /obj/item/seeds/random = 2)
+					  /obj/item/seeds/random = 3)//yogs -- reverted to three instead of /tg/'s two
 	premium = list(/obj/item/reagent_containers/spray/waterflower = 1)
 	refill_canister = /obj/item/vending_refill/hydroseeds
 	default_price = 10

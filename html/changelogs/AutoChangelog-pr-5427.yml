@@ -1,0 +1,4 @@
+author: " Menshin"
+delete-after: true 
+changes: 
+  - bugfix: "Janitor ERT leader now spawns properly equipped"

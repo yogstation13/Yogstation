@@ -90,12 +90,12 @@
 				if(!R || (R.fields["criminal"] == "*Arrest*"))
 					beep = TRUE
 		if(SCANGATE_MINDSHIELD)
-			if(M.has_trait(TRAIT_MINDSHIELD))
+			if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
 				beep = TRUE
 		if(SCANGATE_NANITES)
 			if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 				if(nanite_cloud)
-					GET_COMPONENT_FROM(nanites, /datum/component/nanites, M)
+					var/datum/component/nanites/nanites = M.GetComponent(/datum/component/nanites)
 					if(nanites && nanites.cloud_id == nanite_cloud)
 						beep = TRUE
 				else
@@ -210,6 +210,7 @@
 		if("set_target_species")
 			var/new_species = input("Set target species","Scan Mode") as null|anything in list("Human",
 																								"Lizardperson",
+																								"Gorillaperson", // yogs -- gorilla people
 																								"Flyperson",
 																								"Plasmaman",
 																								"Mothmen",
@@ -223,6 +224,10 @@
 						detect_species = /datum/species/human
 					if("Lizardperson")
 						detect_species = /datum/species/lizard
+					// yogs start -- gorilla people
+					if("Gorillaperson")
+						detect_species = /datum/species/gorilla
+					// yogs end
 					if("Flyperson")
 						detect_species = /datum/species/fly
 					if("Plasmaman")

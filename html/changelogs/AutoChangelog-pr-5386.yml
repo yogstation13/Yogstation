@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Syndrones, Cogscarabs, and FREEDRONES are no longer forced into pacifism."

@@ -23,6 +23,7 @@
 	jobtype = /datum/job/curator
 
 	belt = /obj/item/pda/curator
+	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/curator
 	l_hand = /obj/item/storage/bag/books
 	r_pocket = /obj/item/key/displaycase

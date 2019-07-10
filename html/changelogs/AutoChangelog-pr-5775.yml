@@ -1,0 +1,4 @@
+author: " shellspeed1"
+delete-after: true 
+changes: 
+  - bugfix: "removes an exploit using plux to generate massive amounts of credits."

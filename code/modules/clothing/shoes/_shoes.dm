@@ -43,7 +43,7 @@
 	. = list()
 	if(!isinhands)
 		var/bloody = FALSE
-		IF_HAS_BLOOD_DNA(src)
+		if(HAS_BLOOD_DNA(src))
 			bloody = TRUE
 		else
 			bloody = bloody_shoes[BLOOD_STATE_HUMAN]
@@ -78,6 +78,9 @@
 		M.update_inv_shoes()
 
 /obj/item/clothing/shoes/proc/clean_blood(datum/source, strength)
+	var/datum/component/forensics/D = GetComponent(/datum/component/forensics)//yogs start:fuck
+	if(D)
+		D.clean_act(source, strength)//yogs end
 	if(strength < CLEAN_STRENGTH_BLOOD)
 		return
 	bloody_shoes = list(BLOOD_STATE_HUMAN = 0,BLOOD_STATE_XENO = 0, BLOOD_STATE_OIL = 0, BLOOD_STATE_NOT_BLOODY = 0)

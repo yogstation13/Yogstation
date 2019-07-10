@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Added gutlunch babies."
+  - bugfix: "Gutlunches now actually reproduce."

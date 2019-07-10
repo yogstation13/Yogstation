@@ -32,6 +32,7 @@ GLOBAL_LIST_EMPTY(donators)
 		P = GLOB.preferences_datums[ckey]
 		if(P)
 			P.unlock_content |= 2
+	
 
 /world/update_status()
 
@@ -43,6 +44,11 @@ GLOBAL_LIST_EMPTY(donators)
 	
 	s += "<b>[station_name()]</b>]<br>"; // The station & server name line
 	s += "(<a href=\"https://forums.yogstation.net/index.php\">Forums</a>|<a href=\"https://discord.gg/8hphvMe\">Discord</a>)<br>" // The Forum & Discord links line
+	
+	//TAGLINE
+	//s += "<br><i>[pick(world.file2list("yogstation/strings/taglines.txt"))]</i><br>"
+	
+	//MAP AND GAMEMODE
 	s += "Mode: <b>[GLOB.master_mode]</b><br>" // The Gamemode line
 	s += "Map: <b>[SSmapping.config?.map_name || "Loading..."]</b><br>" // The map line
 	
@@ -53,6 +59,8 @@ GLOBAL_LIST_EMPTY(donators)
 	
 	if(features.len)
 		s += "[jointext(features,", ")]<br>" // The features line
+	
+	
 	
 	//PLAYER COUNT
 	var/players = GLOB.clients.len

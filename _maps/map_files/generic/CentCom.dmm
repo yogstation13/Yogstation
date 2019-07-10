@@ -1264,9 +1264,9 @@
 /area/holodeck/rec_center/chapelcourt)
 "dw" = (
 /obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/nun,
+/obj/item/clothing/suit/chaplainsuit/nun,
 /obj/item/clothing/head/nun_hood,
-/obj/item/clothing/suit/holidaypriest,
+/obj/item/clothing/suit/chaplainsuit/holidaypriest,
 /turf/open/floor/holofloor{
 	dir = 8;
 	icon_state = "dark"
@@ -4108,7 +4108,6 @@
 /area/centcom/control)
 "ki" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dir = 1;
 	dwidth = 25;
 	height = 50;
@@ -4197,9 +4196,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"ku" = (
-/turf/closed/indestructible/riveted,
-/area/syndicate_mothership/control)
 "kv" = (
 /obj/machinery/door/poddoor/shuttledock{
 	checkdir = 1;
@@ -5448,8 +5444,7 @@
 	},
 /area/abductor_ship)
 "ng" = (
-/obj/effect/baseturf_helper/asteroid/snow,
-/turf/closed/indestructible/riveted,
+/turf/closed/indestructible/syndicate,
 /area/syndicate_mothership/control)
 "nh" = (
 /obj/item/toy/figure/syndie,
@@ -5637,7 +5632,7 @@
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
 "nz" = (
-/turf/closed/indestructible/fakeglass,
+/turf/closed/indestructible/opsglass,
 /area/syndicate_mothership/control)
 "nA" = (
 /obj/structure/sign/warning/nosmoking,
@@ -7952,7 +7947,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Commander's Office APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/metal/fifty,
@@ -8321,7 +8316,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "si" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
@@ -8832,7 +8826,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "tg" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -9211,6 +9204,10 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"tY" = (
+/obj/effect/baseturf_helper/asteroid/snow,
+/turf/closed/indestructible/syndicate,
+/area/syndicate_mothership/control)
 "ud" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "nukeop_ready";
@@ -9527,7 +9524,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "uM" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -9956,7 +9952,7 @@
 	name = "Hanger Bay Shutters";
 	pixel_x = -8;
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
@@ -10318,7 +10314,7 @@
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -10502,9 +10498,6 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "wV" = (
-/obj/machinery/computer/telecrystals/boss{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -10798,7 +10791,6 @@
 /area/syndicate_mothership/control)
 "xN" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership/control;
 	dir = 1;
 	dwidth = 3;
 	height = 7;
@@ -11994,7 +11986,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Briefing Area APC";
-	pixel_x = 26
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12693,7 +12685,7 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Briefing Room APC";
-	pixel_y = -26
+	pixel_y = -23
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17226,7 +17218,6 @@
 /area/centcom/holding)
 "My" = (
 /obj/docking_port/stationary{
-	area_type = /area/syndicate_mothership;
 	dheight = 1;
 	dir = 8;
 	dwidth = 12;
@@ -35241,10 +35232,10 @@ hl
 hl
 hl
 hl
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
 kt
 hl
 hl
@@ -35501,7 +35492,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 hl
 hl
@@ -35758,7 +35749,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 hl
 hl
@@ -35768,16 +35759,16 @@ hl
 hl
 kt
 kt
-ku
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
+ng
 ud
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
 kt
 kt
 hl
@@ -36015,7 +36006,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 mz
 hl
@@ -36024,8 +36015,8 @@ my
 hl
 hl
 oW
-ku
 ng
+tY
 qJ
 re
 se
@@ -36034,8 +36025,8 @@ pZ
 uL
 vu
 wl
-ku
-ku
+ng
+ng
 kt
 hl
 hl
@@ -36272,7 +36263,7 @@ ki
 kv
 kR
 lm
-ku
+ng
 kt
 hl
 hl
@@ -36291,8 +36282,13 @@ pZ
 rf
 vv
 wm
+<<<<<<< HEAD
 si
 ku
+=======
+tw
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 kt
 my
 nx
@@ -36529,7 +36525,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 kt
 kt
@@ -36548,8 +36544,13 @@ pZ
 rf
 vw
 wn
+<<<<<<< HEAD
 wV
 ku
+=======
+oV
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 kt
 hl
 mz
@@ -36786,16 +36787,16 @@ hl
 kv
 kR
 ll
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
 pZ
 pZ
 rf
@@ -36805,8 +36806,13 @@ pZ
 rf
 vv
 wn
+<<<<<<< HEAD
 wW
 ku
+=======
+si
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 oW
 hl
 my
@@ -37062,8 +37068,13 @@ pZ
 pZ
 vx
 wo
+<<<<<<< HEAD
 wX
 ku
+=======
+tg
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 kt
 ma
 oW
@@ -37300,17 +37311,17 @@ hl
 kv
 kR
 ll
-ku
-ku
+ng
+ng
 nz
 nz
 nz
-ku
-ku
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
+ng
+ng
 qK
 pZ
 pZ
@@ -37319,12 +37330,12 @@ pZ
 pZ
 pZ
 pZ
-ku
-ku
-ku
+ng
+ng
+ng
 nz
-ku
-ku
+ng
+ng
 hh
 hh
 hh
@@ -37557,7 +37568,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 mC
 nh
@@ -37567,7 +37578,7 @@ ma
 ma
 kt
 kt
-ku
+ng
 qL
 pZ
 sh
@@ -37581,7 +37592,7 @@ xG
 xG
 xG
 zx
-ku
+ng
 aa
 aa
 aa
@@ -37814,7 +37825,7 @@ hl
 kv
 kR
 lm
-ku
+ng
 kt
 mz
 hl
@@ -37824,6 +37835,7 @@ hl
 hl
 mz
 ma
+<<<<<<< HEAD
 ku
 qM
 pZ
@@ -37831,14 +37843,23 @@ si
 tg
 tg
 uM
+=======
+ng
+ng
+ng
+rh
+ng
+ng
+tQ
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 pZ
 wp
-ku
+ng
 xG
 xG
 xG
 zx
-ku
+ng
 aa
 aa
 aa
@@ -38071,7 +38092,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 hl
 hl
@@ -38080,6 +38101,7 @@ hl
 mz
 hl
 kt
+<<<<<<< HEAD
 pG
 ku
 ku
@@ -38087,15 +38109,24 @@ rh
 ku
 ku
 ku
+=======
+kt
+ng
+ng
+qN
+ri
+Wj
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 nz
 uJ
 nz
-ku
+ng
 xH
 xG
 xG
 zx
-ku
+ng
 aa
 aa
 aa
@@ -38328,7 +38359,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 kt
 hl
 mz
@@ -38337,6 +38368,7 @@ mA
 hl
 hl
 pG
+<<<<<<< HEAD
 ku
 ku
 qN
@@ -38344,15 +38376,24 @@ ri
 Wj
 ku
 ku
+=======
+qM
+ng
+qO
+OA
+ri
+sj
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 nz
 ll
 nz
-ku
+ng
 xI
 xG
 xG
 zx
-ku
+ng
 aa
 aa
 aa
@@ -38585,7 +38626,7 @@ hl
 kv
 kR
 ll
-ku
+ng
 ma
 hl
 hl
@@ -38594,6 +38635,7 @@ mz
 hl
 hl
 pG
+<<<<<<< HEAD
 ku
 qO
 OA
@@ -38601,15 +38643,24 @@ ri
 sj
 ku
 ku
+=======
+qM
+nz
+pY
+qP
+rj
+ng
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 nz
 ll
 nz
-ku
+ng
 xJ
 xG
 xG
 zx
-ku
+ng
 aa
 aa
 aa
@@ -38839,10 +38890,10 @@ hl
 hl
 hl
 hl
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
 kt
 hl
 mz
@@ -38851,6 +38902,7 @@ hl
 hl
 mA
 kt
+<<<<<<< HEAD
 nz
 pY
 qP
@@ -38858,15 +38910,24 @@ rj
 ku
 ku
 ku
+=======
+qM
+ng
+ng
+ng
+ng
+ng
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 nz
 ll
 nz
-ku
+ng
 xK
 xG
 yX
 zy
-ku
+ng
 aa
 aa
 aa
@@ -39107,6 +39168,7 @@ hl
 mA
 mz
 hl
+<<<<<<< HEAD
 ma
 ku
 ku
@@ -39115,15 +39177,25 @@ ku
 ku
 ku
 ku
+=======
+hl
+qM
+tv
+aa
+ng
+ng
+ng
+ng
+>>>>>>> ad0c7416d7... Merge pull request #44490 from AarontheIdiot/aaron-patch-05
 nz
 ll
 nz
-ku
-ku
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
+ng
+ng
 aa
 aa
 aa
@@ -39368,7 +39440,7 @@ pG
 ma
 hh
 aa
-ku
+ng
 sk
 sk
 sk
@@ -39378,7 +39450,7 @@ nz
 sk
 sk
 sk
-ku
+ng
 aa
 aa
 aa
@@ -39625,7 +39697,7 @@ mA
 hl
 hh
 aa
-ku
+ng
 sk
 th
 ue
@@ -39635,7 +39707,7 @@ nz
 ue
 xL
 sk
-ku
+ng
 aa
 aa
 aa
@@ -39882,7 +39954,7 @@ hl
 mz
 hh
 aa
-ku
+ng
 sl
 ti
 sk
@@ -39892,7 +39964,7 @@ sk
 sk
 xM
 xP
-ku
+ng
 aa
 aa
 aa
@@ -40139,7 +40211,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 sm
 sk
 sk
@@ -40149,7 +40221,7 @@ sk
 sk
 sk
 yl
-ku
+ng
 aa
 aa
 aa
@@ -40396,7 +40468,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 sn
 sk
 sk
@@ -40406,7 +40478,7 @@ sk
 sk
 sk
 ym
-ku
+ng
 aa
 aa
 aa
@@ -40653,7 +40725,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 sm
 sk
 sk
@@ -40663,7 +40735,7 @@ sk
 sk
 xN
 yl
-ku
+ng
 aa
 aa
 aa
@@ -40910,7 +40982,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 sm
 sk
 sk
@@ -40920,7 +40992,7 @@ sk
 sk
 sk
 yl
-ku
+ng
 aa
 aa
 aa
@@ -41167,7 +41239,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 so
 sk
 sk
@@ -41177,7 +41249,7 @@ sk
 sk
 sk
 yl
-ku
+ng
 aa
 aa
 aa
@@ -41424,7 +41496,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 yk
 tn
 sk
@@ -41434,7 +41506,7 @@ sk
 sk
 xO
 sp
-ku
+ng
 aa
 aa
 aa
@@ -41681,7 +41753,7 @@ hl
 hl
 hh
 aa
-ku
+ng
 sk
 yk
 ui
@@ -41691,7 +41763,7 @@ ui
 ui
 sp
 sk
-ku
+ng
 aa
 aa
 aa
@@ -41938,17 +42010,17 @@ hl
 hl
 hh
 aa
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
-ku
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
+ng
 aa
 aa
 aa
