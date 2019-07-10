@@ -131,12 +131,12 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/t_scanner(src)
 	new /obj/item/crowbar(src)
-	new /obj/item/stack/cable_coil(src,30,pickedcolor)
-	new /obj/item/stack/cable_coil(src,30,pickedcolor)
+	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
+	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 	if(prob(5))
 		new /obj/item/clothing/gloves/color/yellow(src)
 	else
-		new /obj/item/stack/cable_coil(src,30,pickedcolor)
+		new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 
 /obj/item/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
@@ -147,7 +147,7 @@
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
@@ -178,7 +178,7 @@
 	new /obj/item/wrench(src)
 	new /obj/item/weldingtool(src)
 	new /obj/item/crowbar(src)
-	new /obj/item/stack/cable_coil(src,30,pickedcolor)
+	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 
@@ -195,7 +195,7 @@
 
 /obj/item/storage/toolbox/brass/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 28
 	STR.max_items = 28
@@ -233,7 +233,7 @@
 
 /obj/item/storage/toolbox/artistic/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 20
 	STR.max_items = 10
 

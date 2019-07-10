@@ -1501,10 +1501,6 @@
 	name = "Short (White)"
 	icon_state = "white_short"
 
-/datum/sprite_accessory/socks/stockings_black
-	name = "Stockings (Black)"
-	icon_state = "stockings_black"
-
 /datum/sprite_accessory/socks/stockings_blue
 	name = "Stockings (Blue)"
 	icon_state = "stockings_blue"
@@ -1832,7 +1828,7 @@
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/wings.dmi'
+	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
 
 /datum/sprite_accessory/moth_wings/plain

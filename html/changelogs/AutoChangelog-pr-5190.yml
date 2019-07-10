@@ -1,0 +1,8 @@
+author: "1fbff5f83b23d39d38b1dfcb4cac8d9b"
+delete-after: true 
+changes: 
+  - imageadd: "Adds new sprites for all berets."
+  - imageadd: "Adds the sprites for the archaic and vintage berets."
+  - imagedel: "Removes old sprites for all berets."
+  - rscadd: "Adds the archaic and vintage berets, the vintage one being the current one and the archaic one being the one from 2014."
+  - rscadd: "Adds the vintage and archaic berets to the autodrobe."

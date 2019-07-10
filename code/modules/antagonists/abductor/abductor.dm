@@ -44,14 +44,14 @@
 	owner.assigned_role = "[name] [sub_role]"
 	objectives += team.objectives
 	finalize_abductor()
-	ADD_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	ADD_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/on_removal()
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [owner.special_role]!</span>")
 	owner.special_role = null
-	REMOVE_TRAIT(owner, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST)
+	REMOVE_TRAIT(owner.current, TRAIT_ABDUCTOR_TRAINING, ABDUCTOR_ANTAGONIST) // Yogs -- Fixes abductors having their traits associated with their mind instead of their mob
 	return ..()
 
 /datum/antagonist/abductor/greet()

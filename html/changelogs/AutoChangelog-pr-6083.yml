@@ -1,0 +1,4 @@
+author: "Lostlarry"
+delete-after: true 
+changes: 
+  - bugfix: "Sleepers can be interacted with when they have controls inside"

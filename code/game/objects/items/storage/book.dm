@@ -11,7 +11,7 @@
 
 /obj/item/storage/book/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
 
 /obj/item/storage/book/attack_self(mob/user)
@@ -171,16 +171,16 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			for(var/obj/effect/rune/R in orange(2,user))
 				R.invisibility = 0
 	if(user.mind && (user.mind.isholy))
-		if(A.reagents && A.reagents.has_reagent("water")) // blesses all the water in the holder
+		if(A.reagents && A.reagents.has_reagent(/datum/reagent/water)) // blesses all the water in the holder
 			to_chat(user, "<span class='notice'>You bless [A].</span>")
-			var/water2holy = A.reagents.get_reagent_amount("water")
-			A.reagents.del_reagent("water")
-			A.reagents.add_reagent("holywater",water2holy)
-		if(A.reagents && A.reagents.has_reagent("unholywater")) // yeah yeah, copy pasted code - sue me
+			var/water2holy = A.reagents.get_reagent_amount(/datum/reagent/water)
+			A.reagents.del_reagent(/datum/reagent/water)
+			A.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
+		if(A.reagents && A.reagents.has_reagent(/datum/reagent/fuel/unholywater)) // yeah yeah, copy pasted code - sue me
 			to_chat(user, "<span class='notice'>You purify [A].</span>")
-			var/unholy2clean = A.reagents.get_reagent_amount("unholywater")
-			A.reagents.del_reagent("unholywater")
-			A.reagents.add_reagent("holywater",unholy2clean)
+			var/unholy2clean = A.reagents.get_reagent_amount(/datum/reagent/fuel/unholywater)
+			A.reagents.del_reagent(/datum/reagent/fuel/unholywater)
+			A.reagents.add_reagent(/datum/reagent/water/holywater,unholy2clean)
 		if(istype(A, /obj/item/storage/book/bible) && !istype(A, /obj/item/storage/book/bible/syndicate))
 			to_chat(user, "<span class='notice'>You purify [A], conforming it to your belief.</span>")
 			var/obj/item/storage/book/bible/B = A
@@ -202,11 +202,13 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				SS.release_shades(user)
 				qdel(SS)
 			new /obj/item/nullrod/claymore(get_turf(sword))
-			user.visible_message("<span class='notice'>[user] has purified the [sword]!</span>")
+			user.visible_message("<span class='notice'>[user] has purified [sword]!</span>")
 			qdel(sword)
 
 	else if(istype(A, /obj/item/soulstone) && !iscultist(user))
 		var/obj/item/soulstone/SS = A
+		if(SS.purified)
+			return
 		to_chat(user, "<span class='notice'>You begin to exorcise [SS].</span>")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
 		if(do_after(user, 40, target = SS))
@@ -219,8 +221,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 					SS.icon_state = "purified_soulstone2"
 			for(var/mob/living/simple_animal/shade/EX in SS)
 				EX.icon_state = "ghost1"
-				EX.name = "Purified [EX.name]"				
-			user.visible_message("<span class='notice'>[user] has purified the [SS]!</span>")
+				EX.name = "Purified [initial(EX.name)]"				
+			user.visible_message("<span class='notice'>[user] has purified [SS]!</span>")
 			
 /obj/item/storage/book/bible/booze
 	desc = "To be applied to the head repeatedly."
