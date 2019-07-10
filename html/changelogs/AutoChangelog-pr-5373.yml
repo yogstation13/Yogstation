@@ -1,0 +1,5 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed thralls and slings sometimes not receiving their deconversion message when blinded."
+  - spellcheck: "Borged thralls should now no longer be discriminated against by their deconversion message."

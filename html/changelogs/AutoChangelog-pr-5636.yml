@@ -1,0 +1,4 @@
+author: " AffectedArc07"
+delete-after: true 
+changes: 
+  - tweak: "Religion is now a globalvar instead of being a subsystem for some reason"

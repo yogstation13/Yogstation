@@ -25,7 +25,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
-.ooc					{					font-weight: bold;}
+.ooc					{color: #0000d1;	font-weight: bold;} /* yogs - OOC */
 .adminobserverooc		{color: #0099cc;	font-weight: bold;}
 .adminooc				{color: #700038;	font-weight: bold;}
 
@@ -195,7 +195,7 @@ h1.alert, h2.alert		{color: #000000;}
 	font-weight: bold;
 }
 .ticket-text-sent {
-	color: #000099;
+	color: #47beff;
 	font-weight: bold;
 }
 .ticket-text-received {

@@ -45,6 +45,7 @@ Difficulty: Insanely Hard
 	a_intent = INTENT_HARM
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	maxHealth = 500
 	armour_penetration = 35
 	melee_damage_lower = 35
@@ -129,6 +130,7 @@ Difficulty: Insanely Hard
 	attack_same = FALSE
 	sentience_type = SENTIENCE_BOSS
 	stat_attack = DEAD
+	wander = FALSE
 	robust_searching = TRUE
 	health = 125
 	maxHealth = 125
@@ -151,6 +153,20 @@ Difficulty: Insanely Hard
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3
+
+/mob/living/simple_animal/hostile/retaliate/goat/guard/pope
+	name = "Goat Pope"
+	desc = "For what is a God without a pope to spread their holy words"
+	icon_state = "goat_pope"
+	icon_living = "goat_pope"
+	icon_dead = "goat_pope_dead"
+	health = 1
+	maxHealth = 1
+	armour_penetration = 25
+	melee_damage_lower = 25
+	melee_damage_upper = 30
+	move_to_delay = 3
+	loot = list(/obj/item/clothing/head/yogs/goatpope)
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/Retaliate()
 	..()
@@ -294,6 +310,7 @@ Difficulty: Insanely Hard
 		visible_message("<span class='cult'>\The [src] shrieks as the seal on his power breaks and he starts to break apart!</span>")
 		new /obj/structure/ladder/unbreakable/goat(loc)
 		new /obj/item/gun/energy/meteorgun(loc)
+		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
@@ -311,6 +328,8 @@ Difficulty: Insanely Hard
 	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
+		if(L.stat == DEAD)
+			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
 			L.confused += 1
@@ -319,8 +338,5 @@ Difficulty: Insanely Hard
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()
 	. = ..()
 	if(isliving(target))
-		var/mob/living/L = target
-		if(L.stat == DEAD)
-			L.gib()
 		if(melee_damage_type != BRUTE)
 			special_attacks++

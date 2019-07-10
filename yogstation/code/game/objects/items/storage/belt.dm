@@ -6,7 +6,7 @@
 
 /obj/item/storage/belt/mining/medical/Initialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.can_hold = typecacheof(list(
 		/obj/item/pickaxe,

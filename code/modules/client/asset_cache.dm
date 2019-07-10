@@ -1,11 +1,9 @@
 /*
 Asset cache quick users guide:
-
 Make a datum at the bottom of this file with your assets for your thing.
 The simple subsystem will most like be of use for most cases.
 Then call get_asset_datum() with the type of the datum you created and store the return
 Then call .send(client) on that stored return value.
-
 You can set verify to TRUE if you want send() to sleep until the client has the assets.
 */
 
@@ -661,6 +659,40 @@ GLOBAL_LIST_EMPTY(asset_datums)
 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
+	return ..()
+
+/datum/asset/spritesheet/vending
+	name = "vending"
+
+/datum/asset/spritesheet/vending/register()
+	for (var/k in GLOB.vending_products)
+		var/atom/item = k
+
+
+		var/icon_file
+		var/icon_state
+		var/icon/I
+
+
+		if (!ispath(item, /atom))
+			continue
+
+		icon_file = initial(item.icon)
+		icon_state = initial(item.icon_state)
+
+		if(icon_state in icon_states(icon_file))
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(initial(c), ICON_MULTIPLY)
+		else
+			item = new item()
+			I = icon(item.icon, item.icon_state, SOUTH)
+			qdel(item)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		Insert(imgid, I)
 	return ..()
 
 /datum/asset/simple/genetics

@@ -14,6 +14,7 @@
 	new /obj/item/pet_carrier(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/rank/captain(src)
+	new /obj/item/clothing/under/rank/captain/skirt(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace(src)
 	new /obj/item/clothing/head/caphat(src)
 	new /obj/item/clothing/under/captainparade(src)
@@ -33,12 +34,7 @@
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
-	new /obj/item/clothing/under/yogs/captainartillery(src) //yogs start
-	new /obj/item/clothing/under/yogs/casualcaptain(src)
-	new /obj/item/clothing/under/yogs/whitecaptainsuit(src)
-	new /obj/item/clothing/head/yogs/whitecaptaincap(src)
-	new /obj/item/clothing/under/yogs/victoriouscaptainuniform(src)
-	new /obj/item/clothing/head/beret/captain(src) //yogs end
+
 /obj/structure/closet/secure_closet/hop
 	name = "\proper head of personnel's locker"
 	req_access = list(ACCESS_HOP)
@@ -48,6 +44,7 @@
 	..()
 	new /obj/item/clothing/neck/cloak/hop(src)
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
+	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/cartridge/hop(src)
 	new /obj/item/radio/headset/heads/hop(src)
@@ -59,15 +56,11 @@
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
-	new /obj/item/gun/energy/e_gun/mini(src) //yogs - hop doesn't get a proper gun :/
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
 	new /obj/item/door_remote/civillian(src)
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/HoP(src)
-	new /obj/item/clothing/suit/yogs/armor/rurmcoat(src) //yogs start
-	new /obj/item/clothing/suit/yogs/armor/sovietcoat(src)
-	new /obj/item/clothing/under/yogs/hopcasual(src) //yogs end
 
 /obj/structure/closet/secure_closet/hos
 	name = "\proper head of security's locker"
@@ -83,7 +76,9 @@
 	new /obj/item/clothing/under/hosparademale(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
 	new /obj/item/clothing/suit/armor/hos(src)
+	new /obj/item/clothing/under/rank/head_of_security/skirt(src)
 	new /obj/item/clothing/under/rank/head_of_security/alt(src)
+	new /obj/item/clothing/under/rank/head_of_security/alt/skirt(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
@@ -101,12 +96,6 @@
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/HoS(src)
-	new /obj/item/clothing/under/yogs/lieutgeneral(src) //yogs start
-	new /obj/item/clothing/under/yogs/dictatorhos(src)
-	new /obj/item/clothing/suit/yogs/armor/germancoat(src)
-	new /obj/item/clothing/under/yogs/hoslatenight(src)
-	new /obj/item/clothing/under/yogs/hoscasual(src)
-	new /obj/item/clothing/suit/yogs/armor/hosjacket(src) //yogs end
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -122,6 +111,7 @@
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
 	new /obj/item/clothing/under/rank/warden/navyblue(src)
+	new /obj/item/clothing/under/rank/warden/skirt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/holosign_creator/security(src)
 	new /obj/item/clothing/mask/gas/sechailer(src)
@@ -132,9 +122,6 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
-	new /obj/item/clothing/under/yogs/krofficer(src) //yogs start
-	new /obj/item/clothing/head/beret/corpwarden(src)
-	new /obj/item/clothing/suit/yogs/armor/wardenjacket(src) //yogs end
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
@@ -194,10 +181,12 @@
 /obj/structure/closet/secure_closet/detective/PopulateContents()
 	..()
 	new /obj/item/clothing/under/rank/det(src)
+	new /obj/item/clothing/under/rank/det/skirt(src)
 	new /obj/item/clothing/suit/det_suit(src)
 	new /obj/item/clothing/head/fedora/det_hat(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/under/rank/det/grey(src)
+	new /obj/item/clothing/under/rank/det/grey/skirt(src)
 	new /obj/item/clothing/accessory/waistcoat(src)
 	new /obj/item/clothing/suit/det_suit/grey(src)
 	new /obj/item/clothing/suit/det_suit/noir(src)
@@ -213,14 +202,6 @@
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/twohanded/binoculars(src)
-	new /obj/item/clothing/under/yogs/forensictech(src) //yogs start
-	new /obj/item/clothing/under/yogs/bluedetective(src)
-	new /obj/item/clothing/under/yogs/golddetective(src)
-	new /obj/item/clothing/under/yogs/greydetective(src)
-	new /obj/item/clothing/under/yogs/blackdetective(src)
-	new /obj/item/clothing/suit/yogs/golddetective(src)
-	new /obj/item/clothing/suit/yogs/detectivecoat(src)
-	new /obj/item/clothing/suit/yogs/bluedetective(src) //yogs end
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"
@@ -246,6 +227,7 @@
 /obj/structure/closet/secure_closet/brig/PopulateContents()
 	..()
 	new /obj/item/clothing/under/rank/prisoner( src )
+	new /obj/item/clothing/under/rank/prisoner/skirt( src )
 	new /obj/item/clothing/shoes/sneakers/orange( src )
 
 /obj/structure/closet/secure_closet/courtroom

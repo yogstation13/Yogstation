@@ -30,5 +30,10 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		quirk_points[initial(T.name)] = initial(T.value)
 
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
+	if(!checkquirks(user,cli)) return// Yogs -- part of Adding Mood as Preference
 	for(var/V in cli.prefs.all_quirks)
-		user.add_quirk(V, spawn_effects)
+		var/datum/quirk/Q = quirks[V]
+		if(Q)
+			user.add_quirk(Q, spawn_effects)
+		else
+			stack_trace("Invalid quirk \"[V]\" in client [cli.ckey] preferences")

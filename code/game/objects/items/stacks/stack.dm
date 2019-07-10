@@ -9,7 +9,7 @@
  * Stacks
  */
 /obj/item/stack
-	icon = 'icons/obj/stack_objects.dmi'
+	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
 	gender = PLURAL
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
@@ -182,7 +182,7 @@
 		if(!building_checks(R, multiplier))
 			return
 		if (R.time)
-			usr.visible_message("<span class='notice'>[usr] starts building [R.title].</span>", "<span class='notice'>You start building [R.title]...</span>")
+			usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>", "<span class='notice'>You start building \a [R.title]...</span>")
 			if (!do_after(usr, R.time, target = usr))
 				return
 			if(!building_checks(R, multiplier))
@@ -355,6 +355,9 @@
 		. = ..()
 
 /obj/item/stack/AltClick(mob/living/user)
+	. = ..()
+	if(isturf(loc)) // to prevent people that are alt clicking a tile to see its content from getting undesidered pop ups
+		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(is_cyborg)
@@ -371,7 +374,7 @@
 			return
 		else
 			change_stack(user, stackmaterial)
-			to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
+			to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack.</span>")
 
 /obj/item/stack/proc/change_stack(mob/user, amount)
 	if(!use(amount, TRUE, FALSE))

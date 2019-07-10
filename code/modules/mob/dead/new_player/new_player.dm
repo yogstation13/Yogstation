@@ -121,6 +121,12 @@
 			return
 
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
+			//yogs start -- donors bypassing the queue
+			if(ckey(key) in get_donators())
+				to_chat(usr, "<span class='notice'>Because you are a donator, you have bypassed the queue! Thank you for donating!</span>")
+				LateChoices()
+				return
+			//yogs end
 			to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
 
 			var/queue_position = SSticker.queued_players.Find(usr)
@@ -348,7 +354,7 @@
 	SSjob.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	character.mind.quiet_round = character.client.prefs.toggles & QUIET_ROUND // yogs - Donor Features
+	character.mind.quiet_round = character.client.prefs.yogtoggles & QUIET_ROUND // yogs - Donor Features
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip

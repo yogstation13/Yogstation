@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Blood brothers succeeding at some objective no longer bolds the entire rest of the round-end report."

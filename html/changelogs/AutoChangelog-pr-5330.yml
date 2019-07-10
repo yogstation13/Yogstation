@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - soundadd: "Killer Queen's detonator sound will now play when the explosive holoparasites trap is triggered."

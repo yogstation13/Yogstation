@@ -1,0 +1,5 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - bugfix: "Floor cluwnes will no longer flip out if you transform into something else while its grabbing you"
+  - tweak: "Floor cluwnes will now emp the area around it while its grabbing something"

@@ -23,6 +23,7 @@
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
+	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 
 /datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/draconic)
@@ -78,7 +79,9 @@
 	id = "ashlizard"
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE)
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH)
+	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
+	mutantlungs = /obj/item/organ/lungs/ashwalker
+	breathid = "n2" // yogs end
 
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)

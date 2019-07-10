@@ -1,4 +1,0 @@
-author: " monster860"
-delete-after: true 
-changes: 
-  - tweak: "If you have corazone reagents will now process normally, this should fix the infinite-chems-liver-failure-thingy bug"

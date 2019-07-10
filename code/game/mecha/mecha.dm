@@ -37,6 +37,7 @@
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
+	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell
 	var/state = 0
 	var/last_message = 0
@@ -154,7 +155,6 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
-	diag_hud_set_mechtracking()
 
 /obj/mecha/update_icon()
 	if (silicon_pilot && silicon_icon_state)
@@ -220,6 +220,15 @@
 
 	GLOB.mechas_list -= src //global mech list
 	return ..()
+
+/obj/mecha/proc/restore_equipment()
+	equipment_disabled = 0
+	if(istype(src, /obj/mecha/combat))
+		mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
+	if(occupant)
+		SEND_SOUND(occupant, sound('sound/items/timer.ogg', volume=50))
+		to_chat(occupant, "<span=notice>Equipment control unit has been rebooted successfuly.</span>")
+		occupant.update_mouse_pointer()
 
 /obj/mecha/CheckParts(list/parts_list)
 	..()
@@ -429,9 +438,9 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
-	diag_hud_set_mechtracking()
 
 /obj/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
+	. = ..()
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
 			occupant.fire_stacks += 1
@@ -489,13 +498,13 @@
 	var/mob/living/L = user
 	if(!Adjacent(target))
 		if(selected && selected.is_ranged())
-			if(L.has_trait(TRAIT_PACIFISM) && selected.harmful)
+			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 				return
 			if(selected.action(target,params))
 				selected.start_cooldown()
 	else if(selected && selected.is_melee())
-		if(isliving(target) && selected.harmful && L.has_trait(TRAIT_PACIFISM))
+		if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 			to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 			return
 		if(selected.action(target,params))
@@ -848,10 +857,6 @@
 		. = t_air.return_temperature()
 	return
 
-/obj/mecha/portableConnectorReturnAir()
-	return internal_tank.return_air()
-
-
 /obj/mecha/MouseDrop_T(mob/M, mob/user)
 	if (!user.canUseTopic(src) || (user != M))
 		return
@@ -976,8 +981,14 @@
 	return TRUE
 
 /obj/mecha/container_resist(mob/living/user)
-	go_out()
-
+	is_currently_ejecting = TRUE
+	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
+	if(do_after(occupant,exit_delay, target = src))
+		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
+		go_out()
+	else
+		to_chat(occupant, "<span class='notice'>You stop exiting the mech. Weapons are enabled again.<span>")
+	is_currently_ejecting = FALSE
 
 /obj/mecha/Exited(atom/movable/M, atom/newloc)
 	if(occupant && occupant == M) // The occupant exited the mech without calling go_out()

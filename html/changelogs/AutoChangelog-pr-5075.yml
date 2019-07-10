@@ -1,5 +1,0 @@
-author: " Iamgoofball"
-delete-after: true 
-changes: 
-  - bugfix: "Characters with the NEET quirk no longer also give welfare to everybody else with the same job."
-  - tweak: "NEETs only receive one welfare check at roundstart rather than five."
