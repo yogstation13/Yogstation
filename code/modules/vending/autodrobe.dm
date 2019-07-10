@@ -7,8 +7,8 @@
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
-		            /obj/item/clothing/head/chicken = 1,
-		            /obj/item/clothing/under/rank/blueclown = 1,
+					/obj/item/clothing/head/chicken = 1,
+					/obj/item/clothing/under/rank/blueclown = 1,
 					/obj/item/clothing/under/rank/greenclown = 1,
 					/obj/item/clothing/under/rank/yellowclown = 1,
 					/obj/item/clothing/under/rank/orangeclown = 1,
@@ -188,19 +188,19 @@
 					/obj/item/clothing/suit/yogs/armor/sith_suit = 1,
 					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
-		              /obj/item/clothing/head/powdered_wig = 1,
-		              /obj/item/gun/magic/wand = 2,
-		              /obj/item/clothing/glasses/sunglasses/garb = 2,
-		              /obj/item/clothing/glasses/blindfold = 1,
-		              /obj/item/clothing/mask/muzzle = 2)
+					  /obj/item/clothing/head/powdered_wig = 1,
+					  /obj/item/gun/magic/wand = 2,
+					  /obj/item/clothing/glasses/sunglasses/garb = 2,
+					  /obj/item/clothing/glasses/blindfold = 1,
+					  /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
-		           /obj/item/clothing/head/pirate/captain = 2,
+				   /obj/item/clothing/head/pirate/captain = 2,
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
-		           /obj/item/clothing/head/helmet/roman/fake = 1,
-		           /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
-		           /obj/item/clothing/under/roman = 1,
-		           /obj/item/clothing/shoes/roman = 1,
-		           /obj/item/shield/riot/roman/fake = 1,
+				   /obj/item/clothing/head/helmet/roman/fake = 1,
+				   /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
+				   /obj/item/clothing/under/roman = 1,
+				   /obj/item/clothing/shoes/roman = 1,
+				   /obj/item/shield/riot/roman/fake = 1,
 				   /obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
 				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
@@ -210,11 +210,11 @@
 		           /obj/item/clothing/head/yogs/toad = 1,
 		           /obj/item/clothing/head/helmet/justice = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
+	refill_canister = /obj/item/vending_refill/autodrobe
 
 /obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
 	return (I.type in products)
 
-	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
