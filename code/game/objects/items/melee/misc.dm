@@ -76,17 +76,15 @@
 		final_block_chance = 0 //Don't bring a sword to a gunfight
 	return ..()
 
-/obj/item/melee/sabre/on_exit_storage(obj/item/storage/S)
-	..()
-	var/obj/item/storage/belt/sabre/B = S
+/obj/item/melee/sabre/on_exit_storage(datum/component/storage/concrete/S)
+	var/obj/item/storage/belt/sabre/B = S.real_location()
 	if(istype(B))
-		playsound(B, 'sound/items/unsheath.ogg', 25, 1)
+		playsound(B, 'sound/items/unsheath.ogg', 25, TRUE)
 
-/obj/item/melee/sabre/on_enter_storage(obj/item/storage/S)
-	..()
-	var/obj/item/storage/belt/sabre/B = S
+/obj/item/melee/sabre/on_enter_storage(datum/component/storage/concrete/S)
+	var/obj/item/storage/belt/sabre/B = S.real_location()
 	if(istype(B))
-		playsound(B, 'sound/items/sheath.ogg', 25, 1)
+		playsound(B, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -130,6 +128,27 @@
 		user.adjustBruteLoss(200)
 		user.death(FALSE)
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
+
+/obj/item/melee/sabre/bee
+	name = "the stinger"
+	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "stinger"
+	item_state = "stinger"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	force = 7
+	block_chance = 20
+	armour_penetration = 85
+	attack_verb = list("slashed", "stung", "prickled", "poked")
+
+/obj/item/melee/sabre/bee/afterattack(atom/target, mob/user, proximity = TRUE)
+	. = ..()
+	user.changeNext_move(CLICK_CD_RAPID)
+	if(iscarbon(target))
+		var/mob/living/carbon/H = target
+		H.reagents.add_reagent(/datum/reagent/toxin/histamine, 4)
 
 /obj/item/melee/classic_baton
 	name = "police baton"
