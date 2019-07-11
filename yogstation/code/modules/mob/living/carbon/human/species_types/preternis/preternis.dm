@@ -29,6 +29,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
+	screamsound = 'goon/sound/robot_scream.ogg'
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
