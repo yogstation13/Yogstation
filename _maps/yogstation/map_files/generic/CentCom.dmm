@@ -6910,9 +6910,6 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pz" = (
-/turf/closed/indestructible/rock/snow,
-/area/syndicate_mothership/control)
 "pA" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -43029,7 +43026,7 @@ mz
 hl
 mA
 kt
-pz
+hh
 aa
 ku
 ku
