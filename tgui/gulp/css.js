@@ -17,12 +17,8 @@ export function css () {
       s.opacity,
       s.rgba({oldie: true}),
       s.plsfilters({oldIE: true}),
-<<<<<<< HEAD
-      s.fontweights
-=======
       s.fontweights,
       ... f.min ? [s.cssnano()] : [],
->>>>>>> 991058be78... Fix building unminified tgui (#44923)
     ]))
     .pipe(g.bytediff.start())
     .pipe(g.if(f.min, g.cssnano({autoprefixer: false})))
