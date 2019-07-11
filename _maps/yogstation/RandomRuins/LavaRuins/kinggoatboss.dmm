@@ -60,14 +60,6 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered/kinggoat_arena)
-"k" = (
-/mob/living/simple_animal/hostile/retaliate/goat/guard/master,
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered/kinggoat_arena)
 "l" = (
 /turf/template_noop,
 /area/template_noop)
@@ -188,6 +180,14 @@
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
 	icon_state = "gold";
 	name = "gold floor"
+	},
+/area/ruin/powered/kinggoat_arena)
+"y" = (
+/mob/living/simple_animal/hostile/retaliate/goat/guard/pope,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
 /area/ruin/powered/kinggoat_arena)
 "H" = (
@@ -776,7 +776,7 @@ h
 (6,1,2) = {"
 h
 i
-k
+i
 i
 i
 i
@@ -839,8 +839,8 @@ h
 "}
 (8,1,2) = {"
 h
+y
 i
-k
 i
 i
 i
