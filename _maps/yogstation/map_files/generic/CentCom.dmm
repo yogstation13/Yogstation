@@ -2248,6 +2248,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fR" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -3714,6 +3721,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"jA" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/syndicate_mothership/control)
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -4818,6 +4833,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"lS" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "lT" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -6887,6 +6910,40 @@
 	smooth = 1
 	},
 /area/centcom/holding)
+"pz" = (
+/turf/closed/indestructible/rock/snow,
+/area/syndicate_mothership/control)
+"pA" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	dir = 4;
+	icon_state = "nboard00";
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
+"pB" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
+"pC" = (
+/obj/structure/chair/stool,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/landmark/start/nukeop,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "pD" = (
 /obj/structure/destructible/cult/tome,
 /obj/item/shuttle_curse,
@@ -7082,12 +7139,9 @@
 /turf/open/ai_visible,
 /area/ai_multicam_room)
 "pX" = (
-/obj/item/storage/crayons,
-/obj/structure/table,
-/obj/item/storage/crayons,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/obj/structure/table/wood,
+/obj/item/paper/fluff/stations/centcom/disk_memo,
+/turf/open/floor/wood,
 /area/syndicate_mothership/control)
 "pY" = (
 /obj/machinery/washing_machine,
@@ -7471,6 +7525,11 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
+"qF" = (
+/obj/structure/table/wood,
+/obj/item/paicard,
+/turf/open/floor/wood,
+/area/syndicate_mothership/control)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7516,14 +7575,6 @@
 /area/syndicate_mothership/control)
 "qL" = (
 /obj/machinery/vending/cola,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"qM" = (
-/obj/machinery/vending/cigarette/syndicate,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -7651,17 +7702,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"re" = (
-/obj/item/paper/fluff/stations/centcom/disk_memo,
-/obj/structure/noticeboard{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "rf" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
@@ -8219,15 +8259,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"sf" = (
-/obj/structure/table/wood,
-/obj/item/paicard,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "sg" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox,
@@ -8236,21 +8267,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"sh" = (
-/obj/structure/chair/stool,
-/obj/effect/landmark/start/nukeop,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"si" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/syndicate_mothership/control)
 "sj" = (
 /obj/structure/toilet{
@@ -8736,12 +8752,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"tg" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/syndicate_mothership/control)
 "th" = (
 /obj/structure/closet/cardboard,
@@ -9579,12 +9589,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"uM" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/syndicate_mothership/control)
 "uN" = (
 /obj/machinery/portable_atmospherics/canister/pluoxium,
@@ -10637,12 +10641,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"wV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/syndicate_mothership/control)
 "wW" = (
 /obj/structure/sign/map/left{
 	pixel_y = -32
@@ -39949,7 +39947,7 @@ oW
 ku
 ng
 qJ
-re
+pA
 se
 pZ
 pZ
@@ -40204,16 +40202,16 @@ hl
 hl
 kt
 ku
-pX
+lS
 pZ
 pZ
 rf
-rf
+pC
 pZ
-rf
+pC
 vv
 wm
-si
+pX
 ku
 kt
 my
@@ -40461,16 +40459,16 @@ kt
 kt
 kt
 nz
-pY
+fR
 pZ
 rf
-sf
+pB
 te
 pZ
-rf
+pC
 vw
 wn
-wV
+qF
 ku
 kt
 hl
@@ -40724,7 +40722,7 @@ rf
 sg
 tf
 pZ
-rf
+pC
 vv
 wn
 wW
@@ -41492,10 +41490,10 @@ kt
 ku
 qL
 pZ
-sh
-sh
-sh
-sh
+pZ
+pZ
+pZ
+pZ
 pZ
 pZ
 wY
@@ -41747,12 +41745,12 @@ hl
 mz
 ma
 ku
-qM
-pZ
-si
-tg
-tg
-uM
+ku
+rh
+ku
+ku
+ku
+fR
 pZ
 wp
 ku
@@ -42005,9 +42003,9 @@ hl
 pG
 ku
 ku
-rh
-ku
-ku
+qN
+ri
+jA
 ku
 nz
 uJ
@@ -42261,10 +42259,10 @@ hl
 mz
 kt
 ku
-qN
+qO
 ri
 ri
-ku
+sj
 ku
 nz
 ll
@@ -42517,10 +42515,10 @@ hl
 hl
 mz
 ma
-ku
-qO
-ri
-sj
+nz
+pY
+qP
+rj
 ku
 ku
 nz
@@ -42774,9 +42772,9 @@ hl
 mA
 hl
 pG
-nz
-qP
-rj
+ku
+ku
+ku
 ku
 ku
 ku
@@ -43031,8 +43029,8 @@ mz
 hl
 mA
 kt
-ku
-ku
+pz
+aa
 ku
 ku
 ku
