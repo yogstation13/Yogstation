@@ -10,6 +10,8 @@
 
     strength = 4 // Set the new strength to lvl 4
     strength_change() // Update the emitter
+    update_icon()
 
     if(!active)
         toggle_power()
+        update_icon()

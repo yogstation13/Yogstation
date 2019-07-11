@@ -18,6 +18,10 @@
 	var/strength = 0
 	var/powered = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	//yogs start- sprite fix
+	var/reference = null
+	reference = "control_box"
+	//yogs end
 
 /obj/machinery/particle_accelerator/control_box/Initialize()
 	. = ..()
@@ -59,7 +63,7 @@
 
 /obj/machinery/particle_accelerator/control_box/update_icon()
 	if(active)
-		icon_state = "control_boxp1"
+		icon_state = "[reference]p[strength]"		//yogs- fix sprite not updating		(note that /tg/ PA power 2 sprite is incomplete)
 	else
 		if(use_power)
 			if(assembled)
