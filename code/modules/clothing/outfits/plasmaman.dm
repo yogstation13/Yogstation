@@ -115,7 +115,6 @@
 
 /datum/outfit/plasmaman/mime
 	name = "Plasmamime"
-
 	head = /obj/item/clothing/head/helmet/space/plasmaman/mime
 	uniform = /obj/item/clothing/under/plasmaman/mime
 	mask = /obj/item/clothing/mask/gas/mime
