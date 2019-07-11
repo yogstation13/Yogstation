@@ -22794,7 +22794,7 @@
 /area/hallway/secondary/exit)
 "aTl" = (
 /turf/closed/wall/r_wall,
-/area/vacant_room/office/office_b)
+/area/quartermaster/sorting)
 "aTm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23508,6 +23508,9 @@
 	dir = 4
 	},
 /area/chapel/main)
+"aUI" = (
+/turf/closed/wall/r_wall,
+/area/hallway/primary/central)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -84724,7 +84727,7 @@ tby
 hGh
 hGh
 kTo
-aTl
+aUI
 aZK
 aZK
 cNI
