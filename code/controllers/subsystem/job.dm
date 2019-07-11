@@ -304,7 +304,6 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	var/list/levels = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 	for(var/level in level_order)
 		//Check the head jobs first each level
 		CheckHeadPositions(level)
