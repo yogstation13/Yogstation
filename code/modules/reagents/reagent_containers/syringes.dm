@@ -203,6 +203,11 @@
 	desc = "Contains charcoal."
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
 
+/obj/item/reagent_containers/syringe/perfluorodecalin
+	name = "syringe (perfluorodecalin)"
+	desc = "Contains perfluorodecalin."
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+
 /obj/item/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
@@ -273,3 +278,8 @@
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
 	volume = 10
 	proj_piercing = 1
+
+/obj/item/reagent_containers/syringe/spider_extract
+	name = "spider extract syringe"
+	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
+	list_reagents = list(/datum/reagent/spider_extract = 1)

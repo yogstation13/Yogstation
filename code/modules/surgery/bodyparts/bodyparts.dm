@@ -5,6 +5,7 @@
 	force = 3
 	throwforce = 3
 	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
@@ -23,7 +24,7 @@
 
 	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
 	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
-	var/stam_damage_coeff = 0.5
+	var/stam_damage_coeff = 0.75
 	var/brutestate = 0
 	var/burnstate = 0
 	var/brute_dam = 0
@@ -98,7 +99,7 @@
 	..()
 
 /obj/item/bodypart/attackby(obj/item/W, mob/user, params)
-	if(W.sharpness)
+	if(W.is_sharp())
 		add_fingerprint(user)
 		if(!contents.len)
 			to_chat(user, "<span class='warning'>There is nothing left inside [src]!</span>")
@@ -182,9 +183,7 @@
 	burn_dam += burn
 
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
-	var/current_damage = get_damage(TRUE)		//This time around, count stamina loss too.
-	var/available_damage = max_damage - current_damage
-	stamina_dam += round(CLAMP(stamina, 0, min(max_stamina_damage - stamina_dam, available_damage)), DAMAGE_PRECISION)
+	stamina_dam += round(CLAMP(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
 
 
 	if(owner && updating_health)
@@ -192,9 +191,10 @@
 		if(stamina > DAMAGE_PRECISION)
 			owner.update_stamina()
 			owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
+			. = TRUE
 	consider_processing()
 	update_disabled()
-	return update_bodypart_damage_state()
+	return update_bodypart_damage_state() || .
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
@@ -451,7 +451,7 @@
 	px_x = 0
 	px_y = 0
 	stam_damage_coeff = 1
-	max_stamina_damage = 100
+	max_stamina_damage = 120
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)

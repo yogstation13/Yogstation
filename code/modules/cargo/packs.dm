@@ -1487,7 +1487,13 @@
 	contains = list(/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/fifty,
 					/obj/item/stack/tile/carpet/black/fifty,
-					/obj/item/stack/tile/carpet/black/fifty)
+					/obj/item/stack/tile/carpet/black/fifty,
+					/obj/item/stack/tile/carpet/blue/fifty, //yogs start - adds coloured carpets
+					/obj/item/stack/tile/carpet/blue/fifty,
+					/obj/item/stack/tile/carpet/green/fifty,
+					/obj/item/stack/tile/carpet/green/fifty,
+					/obj/item/stack/tile/carpet/purple/fifty,
+					/obj/item/stack/tile/carpet/purple/fifty) //yogs end
 	crate_name = "premium carpet crate"
 
 /datum/supply_pack/service/lightbulbs
@@ -1576,6 +1582,13 @@
 	cost = 1000
 	contains = list(/obj/item/vending_refill/assist)
 	crate_name = "vendomat supply crate"
+
+/datum/supply_pack/service/emptycrate
+	name = "Empty Crate"
+	desc = "It's an empty crate, for all your storage needs."
+	cost = 700
+	contains = list()
+	crate_name = "crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Organic /////////////////////////////////////////

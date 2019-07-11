@@ -1,5 +1,5 @@
 /datum/job
-	//The name of the job
+	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
 	var/title = "NOPE"
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
@@ -13,8 +13,9 @@
 	var/list/head_announce = null
 
 	//Bitflags for the job
-	var/flag = 0
-	var/department_flag = 0
+	var/department_flag = NONE //Deprecated
+	var/flag = NONE //Deprecated
+	var/auto_deadmin_role_flags = NONE
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
