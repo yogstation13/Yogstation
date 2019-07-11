@@ -7,7 +7,7 @@
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			players += player
-			if(player.client.prefs.toggles & QUIET_ROUND)
+			if(player.client.prefs.yogtoggles & QUIET_ROUND)
 				player.mind.quiet_round = TRUE
 
 	//CANDIDATE GENERATION -- Get a list of all the people who could be an antagonist this round
