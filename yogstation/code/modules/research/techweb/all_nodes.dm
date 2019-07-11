@@ -124,7 +124,7 @@
 /datum/techweb_node/cyborg_upg_custodial
 	id = "cyborg_upg_custodial"
 	display_name = "Cyborg Upgrades: Custodial"
-	description = "We really should fire those janitors."
+	description = "We really should fire and borg those janitors."
 	prereq_ids = list("adv_robotics", "janitor")
 	design_ids = list("borg_upgrade_janispray")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
