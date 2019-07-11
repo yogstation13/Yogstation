@@ -1,4 +1,4 @@
-/datum/design/borg_upgrade_restart
+/datum/design/borg_upgrade_spray
 	name = "Cyborg Upgrade (Janitor Chem Sprayer)"
 	id = "borg_upgrade_janispray"
 	build_type = MECHFAB
