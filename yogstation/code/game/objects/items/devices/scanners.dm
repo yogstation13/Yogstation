@@ -31,7 +31,7 @@ TRICORDER
 	throw_range = 7
 	materials = list(MAT_METAL=500,MAT_SILVER=300,MAT_GOLD=300)
 
-	var/medicalTricorder = 0	//Set to 1 for normal medical scanner, set to 0 for a gutted version
+	var/medicalTricorder = FALSE	//Set to TRUE for normal medical scanner, set to FALSE for a gutted version
 
 
 obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
@@ -48,7 +48,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	if (isslime(M))
 		var/mob/living/simple_animal/slime/T = M
 		slime_scan(T, user)
-	else if (medicalTricorder > 0)
+	else if (medicalTricorder)
 		healthscan(user, M)
 		return
 	else
