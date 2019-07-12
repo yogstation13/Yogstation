@@ -2982,6 +2982,7 @@
 #include "yogstation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "yogstation\code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "yogstation\code\game\objects\items\devices\powersink.dm"
+#include "yogstation\code\game\objects\items\devices\scanners.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\cart.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA.dm"
 #include "yogstation\code\game\objects\items\devices\PDA\PDA_types.dm"
