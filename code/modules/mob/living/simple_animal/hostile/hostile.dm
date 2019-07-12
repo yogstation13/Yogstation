@@ -319,6 +319,9 @@
 	return 0
 
 /mob/living/simple_animal/hostile/proc/Goto(target, delay, minimum_distance)
+	INVOKE_ASYNC(src, /mob/living/simple_animal/hostile.proc/async_Goto,target,delay,minimum_distance)
+
+/mob/living/simple_animal/hostile/proc/async_Goto(target, delay, minimum_distance)
 	var/turf/T = get_turf(target)
 	current_path = list()
 	if(target == src.target)
