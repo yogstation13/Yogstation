@@ -6,7 +6,7 @@
 	attack_verb = list("thumped", "whomped", "bumped")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
-	var/component = /datum/component/squeak
+	var/list/squeak_override //Weighted list; If you want your plush to have different squeak sounds use this
 	var/stuffed = TRUE //If the plushie has stuffing in it
 	var/obj/item/grenade/grenade //You can remove the stuffing from a plushie and add a grenade to it for *nefarious uses*
 	//--love ~<3--
@@ -33,7 +33,7 @@
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
-	AddComponent(component)
+	AddComponent(/datum/component/squeak, squeak_override)
 
 	//have we decided if Pinocchio goes in the blue or pink aisle yet?
 	if(gender == NEUTER)
@@ -87,7 +87,7 @@
 	scorned_by = null
 
 	//null remaining lists
-	datum_outputs = null
+	squeak_override = null
 
 	love_message = null
 	partner_message = null
@@ -505,7 +505,6 @@
 	attack_verb = list("blorbled", "slimed", "absorbed")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
 	gender = FEMALE	//given all the jokes and drawings, I'm not sure the xenobiologists would make a slimeboy
-	component = /datum/component/squeak/slimeplushie
 
 /obj/item/toy/plush/awakenedplushie
 	name = "awakened plushie"
@@ -524,4 +523,4 @@
 	item_state = "plushie_h"
 	attack_verb = list("stung")
 	gender = FEMALE
-	component = /datum/component/squeak/beeplushie
+	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
