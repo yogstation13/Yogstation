@@ -3107,6 +3107,7 @@
 #include "yogstation\code\modules\clothing\gloves\miscellaneous.dm"
 #include "yogstation\code\modules\clothing\head\jobs.dm"
 #include "yogstation\code\modules\clothing\head\misc.dm"
+#include "yogstation\code\modules\clothing\head\misc_special.dm"
 #include "yogstation\code\modules\clothing\neck\_neck.dm"
 #include "yogstation\code\modules\clothing\outfits\event.dm"
 #include "yogstation\code\modules\clothing\shoes\miscellaneous.dm"
