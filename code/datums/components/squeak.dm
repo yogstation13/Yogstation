@@ -87,39 +87,3 @@
 	//If the dir changes it means we're going through a bend in the pipes, let's pretend we bumped the wall
 	if(old_dir != new_dir)
 		play_squeak()
-
-/datum/component/squeak/carp
-	datum_outputs = list(/datum/outputs/bite)
-
-/datum/component/squeak/bubbleplush
-	datum_outputs = list(/datum/outputs/demonattack)
-
-/datum/component/squeak/lizardplushie
-	datum_outputs = list(/datum/outputs/slash)
-
-/datum/component/squeak/snakeplushie
-	datum_outputs = list(/datum/outputs/bite)
-
-/datum/component/squeak/nukeplushie
-	datum_outputs = list(/datum/outputs/punch)
-
-/datum/component/squeak/slimeplushie
-	datum_outputs = list(/datum/outputs/squelch)
-
-/datum/component/squeak/beeplushie
-	datum_outputs = list(/datum/outputs/bee)
-
-/datum/component/squeak/mouse
-	datum_outputs = list(/datum/outputs/squeak)
-
-/datum/component/squeak/clownstep
-	datum_outputs = list(/datum/outputs/clownstep)
-
-/datum/component/squeak/bikehorn
-	datum_outputs = list(/datum/outputs/bikehorn)
-
-/datum/component/squeak/airhorn
-	datum_outputs = list(/datum/outputs/airhorn)
-
-/datum/component/squeak/goat
-	datum_outputs = list(/datum/outputs/goat) //yogs added goat squeak
