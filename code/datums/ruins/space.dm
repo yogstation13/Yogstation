@@ -288,3 +288,9 @@
 	suffix = "hilbertshoteltestingsite.dmm"
 	name = "Hilbert Research Facility"
 	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."
+
+/datum/map_template/ruin/space/snowdin
+	id = "snowdin"
+	suffix = "snowdin.dmm"
+	name = "Snowdin mining facility"
+	description = "A mining facility thats been long sense abandoned or has it?"
