@@ -23,12 +23,12 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	grind_results = list(/datum/reagent/lye = 10)
+	grind_results = list("lye" = 10)
 	var/cleanspeed = 35 //slower than mop
 	force_string = "robust... against germs"
 	var/uses = 100
 
-/obj/item/soap/ComponentInitialize()
+/obj/item/soap/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 
@@ -39,13 +39,13 @@
 	if(uses != max_uses)
 		var/percentage_left = uses / max_uses
 		switch(percentage_left)
-			if(0 to 0.15)
+			if(0 to 14)
 				msg = "There's just a tiny bit left of what it used to be, you're not sure it'll last much longer."
-			if(0.15 to 0.30)
+			if(15 to 29)
 				msg = "It's dissolved quite a bit, but there's still some life to it."
-			if(0.30 to 0.50)
+			if(30 to 49)
 				msg = "It's past its prime, but it's definitely still good."
-			if(0.50 to 0.75)
+			if(50 to 74)
 				msg = "It's started to get a little smaller than it used to be, but it'll definitely still last for a while."
 			else
 				msg = "It's seen some light use, but it's still pretty fresh."
@@ -53,7 +53,7 @@
 
 /obj/item/soap/nanotrasen
 	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
-	grind_results = list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
+	grind_results = list("plasma" = 10, "lye" = 10)
 	icon_state = "soapnt"
 	cleanspeed = 28 //janitor gets this
 	uses = 300
@@ -147,21 +147,16 @@
 	throwforce = 0
 	hitsound = null //To prevent tap.ogg playing, as the item lacks of force
 	w_class = WEIGHT_CLASS_TINY
-	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
-	var/component = /datum/component/squeak/bikehorn
 
 /obj/item/bikehorn/Initialize()
 	. = ..()
-	AddComponent(component, 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(user != M && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if (HAS_TRAIT(H, TRAIT_CLUMSY)) //only clowns can unlock its true powers
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
 	return ..()
 
 /obj/item/bikehorn/suicide_act(mob/user)
@@ -174,7 +169,10 @@
 	name = "air horn"
 	desc = "Damn son, where'd you find this?"
 	icon_state = "air_horn"
-	component = /datum/component/squeak/airhorn
+
+/obj/item/bikehorn/airhorn/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/items/airhorn2.ogg'=1), 50)
 
 //golden bikehorn
 /obj/item/bikehorn/golden
@@ -209,4 +207,4 @@
 	name = "Canned Laughter"
 	desc = "Just looking at this makes you want to giggle."
 	icon_state = "laughter"
-	list_reagents = list(/datum/reagent/consumable/laughter = 50)
+	list_reagents = list("laughter" = 50)
