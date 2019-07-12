@@ -760,7 +760,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abP" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	onstation = 0
+	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1181,6 +1183,7 @@
 /obj/machinery/vending/sustenance{
 	desc = "A vending machine normally reserved for work camps.";
 	name = "\improper sustenance vendor";
+	onstation = 0;
 	product_slogans = "Enjoy your meal.;Enough calories to support any worker."
 	},
 /obj/effect/turf_decal/tile/brown,

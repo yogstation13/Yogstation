@@ -25342,7 +25342,9 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aPs" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	onstation = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/yellow{
@@ -25351,7 +25353,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aPt" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
