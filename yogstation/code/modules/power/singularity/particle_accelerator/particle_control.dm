@@ -13,3 +13,4 @@
 
     if(!active)
         toggle_power()
+    update_icon()
