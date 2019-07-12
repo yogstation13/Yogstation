@@ -1,0 +1,4 @@
+author: "yacabo"
+delete-after: true 
+changes: 
+  - rscadd: "Tricorders have been added! They act as a mix of Gas Analyzer, Multitool, and whatever else Yacabo thought to add!"
