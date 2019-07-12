@@ -51,6 +51,8 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
+	var/current_path = list()//path for AStar to find target
+
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()
 
@@ -317,11 +319,24 @@
 	return 0
 
 /mob/living/simple_animal/hostile/proc/Goto(target, delay, minimum_distance)
+	var/turf/T = get_turf(target)
+	current_path = list()
 	if(target == src.target)
 		approaching_target = TRUE
 	else
 		approaching_target = FALSE
-	walk_to(src, target, minimum_distance, delay)
+
+	walk_to(src,target,minimum_distance,delay) //start the dumb pathfinder while we are getting a new path
+	current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
+
+	if(length(current_path))
+		walk_to(src,0) //cancel the dumb pathfinder and start following the a* path
+		while(length(current_path))
+			if(length(current_path) >= 1)
+				walk_to(src,current_path[1],0,delay)
+				sleep(delay) //needed so it doesnt eat the whole list since walk_to is an async proc
+				current_path -= current_path[1]	
+	
 
 /mob/living/simple_animal/hostile/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
