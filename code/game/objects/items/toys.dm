@@ -992,10 +992,6 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nuketoyidle"
 	w_class = WEIGHT_CLASS_SMALL
-<<<<<<< HEAD
-	datum_outputs = list(/datum/outputs/alarm)
-=======
->>>>>>> parent of b55756c5a4... [Ready] Outputs datum (#41535)
 	var/cooldown = 0
 
 /obj/item/toy/nuke/attack_self(mob/user)
