@@ -324,8 +324,6 @@
 	LoseTarget()
 	return 0
 
-#define PATHFINDER_RETRY_COUNT 20
-
 /mob/living/simple_animal/hostile/proc/Goto(target, minimum_distance)
 	INVOKE_ASYNC(src, /mob/living/simple_animal/hostile.proc/async_Goto,target,minimum_distance)
 
