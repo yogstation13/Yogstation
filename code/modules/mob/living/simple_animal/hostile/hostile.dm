@@ -53,7 +53,7 @@
 
 	var/current_path = list()
 	var/target_queue = list()
-	var/useastar = TRUE //tracks wheter it is doing an a* pathfinding or a walk_to pathfinding
+	var/calculating_path = TRUE //tracks wheter it is doing an a* pathfinding or a walk_to pathfinding
 	var/basicpathfindargs = list()
 	var/turf/lasttargetloc
 	var/moving = FALSE
@@ -338,37 +338,43 @@
 	lasttargetloc = T
 
 	current_path = list() //reset path
-	useastar = FALSE //while we are waiting,use walk_to
+	calculating_path = TRUE //while we are waiting,use walk_to
 	basicpathfindargs = list(target,minimum_distance) //setup the args for walk_to
 
-	
-
-	if(target == src.target)
-		approaching_target = TRUE
-	else
-		approaching_target = FALSE
+	approaching_target = (target == src.target) //if we are moving towards the main enemy
 
 	current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
 	if(length(current_path))
-		useastar = TRUE
+		calculating_path = FALSE
 
 /mob/living/simple_animal/hostile/proc/stepToTarget()
 	if(moving)
-		return
-	if(minimum_distance <= 3 && get_dist(target,src) <= 3 && !(length(current_path) >= 3))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
-		useastar = FALSE
-	if(useastar)
-		if(!length(current_path) || moving)
-			return
-		if(length(current_path) >= 1)
+		return FALSE
+	var/turf/S = get_turf(src)
+	var/turf/T = basicpathfindargs[1]
+	var/distance = S.Distance_cardinal(T) - minimum_distance
+
+	var/cond1 = (minimum_distance <= 1 ) //basicpathfind is just to be used if we need to stay in melee range
+	var/cond2 = (length(current_path) == distance) //should always be a direct line
+
+	if((cond1 && cond2) || calculating_path) //combine those two conditions,if we are calculating an a* path,use the basic pathfinder until it works
+		basic_pathfind()
+	else
+		INVOKE_ASYNC(src, /mob/living/simple_animal/hostile.proc/async_navAStar)
+
+/mob/living/simple_animal/hostile/proc/async_navAStar(maxNodes = 5)
+	walk_to(src,0) //halts any pathfinding
+	for(var/i=1,i <= maxNodes,i++)
+		if(length(current_path))
 			moving = TRUE //so ticks dont stack and end up making it do weird behaviour
-			walk_to(src,current_path[1],0,move_to_delay)
-			sleep(move_to_delay + 5) //needed so it doesnt eat the whole list since walk_to is an async proc
+			walk_to(src,current_path[i],0,move_to_delay)
+			sleep(move_to_delay + 1) //needed so it doesnt eat the whole list since walk_to is an async proc
 			current_path -= current_path[1]
 		walk_to(src,0) //stops navigating to the current node
 		moving = FALSE
-	else
-		walk_to(src, basicpathfindargs[1],basicpathfindargs[2],move_to_delay)
+
+/mob/living/simple_animal/hostile/proc/basic_pathfind()
+	walk_to(src, basicpathfindargs[1],basicpathfindargs[2],move_to_delay)
 
 /mob/living/simple_animal/hostile/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
