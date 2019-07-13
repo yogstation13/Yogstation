@@ -349,7 +349,7 @@
 		approaching_target = FALSE
 
 	current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
-	if(minimum_distance >= 3 && get_dist(target,src) >= 3 && !(lenght(current_path) >= 5))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
+	if(minimum_distance >= 3 && get_dist(target,src) >= 3 && !(length(current_path) >= 5))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
 		return
 	if(length(current_path))
 		useastar = TRUE
