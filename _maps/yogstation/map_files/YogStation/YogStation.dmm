@@ -58297,6 +58297,7 @@
 "xSu" = (
 /obj/structure/rack,
 /obj/effect/landmark/event_spawn,
+/obj/item/clothing/under/yogs/rank/clerk/skirt,
 /turf/open/floor/plasteel,
 /area/clerk)
 "xSE" = (
