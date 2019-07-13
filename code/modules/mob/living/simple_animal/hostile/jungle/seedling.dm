@@ -102,7 +102,7 @@
 	icon_state = "seedling_beam_indicator"
 	screen_loc = "CENTER:-16,CENTER:-16"
 
-/mob/living/simple_animal/hostile/jungle/seedling/Goto()
+/mob/living/simple_animal/hostile/jungle/seedling/Goto(target, minimum_distance)
 	if(combatant_state != SEEDLING_STATE_NEUTRAL)
 		return
 	return ..()
@@ -199,7 +199,7 @@
 	combatant_state = SEEDLING_STATE_NEUTRAL
 	if(target && !stat)
 		update_icons()
-		Goto(target, move_to_delay, minimum_distance)
+		Goto(target, minimum_distance)
 
 /mob/living/simple_animal/hostile/jungle/seedling/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()

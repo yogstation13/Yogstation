@@ -288,7 +288,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/syndicate/mecha_pilot/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/syndicate/mecha_pilot/Goto(target, minimum_distance)
 	if(mecha)
 		walk_to(mecha, target, minimum_distance, mecha.step_in)
 	else

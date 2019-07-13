@@ -95,7 +95,7 @@ Difficulty: Medium
 				transform_weapon()
 		return
 
-	Goto(target, move_to_delay, minimum_distance)
+	Goto(target, minimum_distance)
 	if(get_dist(src, target) > MINER_DASH_RANGE && dash_cooldown <= world.time)
 		dash_attack()
 	else

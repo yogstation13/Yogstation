@@ -244,7 +244,7 @@
 		//1% chance to skitter madly away
 		if(!busy && prob(1))
 			stop_automated_movement = 1
-			Goto(pick(urange(20, src, 1)), move_to_delay)
+			Goto(pick(urange(20, src, 1)))
 			spawn(50)
 				stop_automated_movement = 0
 				walk(src,0)
@@ -267,7 +267,7 @@
 				if(C.stat && !istype(C, /mob/living/simple_animal/hostile/poison/giant_spider) && !C.anchored)
 					cocoon_target = C
 					busy = MOVING_TO_TARGET
-					Goto(C, move_to_delay)
+					Goto(C)
 					//give up if we can't reach them after 10 seconds
 					GiveUp(C)
 					return
@@ -291,7 +291,7 @@
 							cocoon_target = O
 							busy = MOVING_TO_TARGET
 							stop_automated_movement = 1
-							Goto(O, move_to_delay)
+							Goto(O)
 							//give up if we can't reach them after 10 seconds
 							GiveUp(O)
 

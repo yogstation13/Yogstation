@@ -51,7 +51,12 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
-	var/current_path = list()//path for AStar to find target
+	var/current_path = list()
+	var/target_queue = list()
+	var/useastar = TRUE //tracks wheter it is doing an a* pathfinding or a walk_to pathfinding
+	var/basicpathfindargs = list()
+	var/turf/lasttargetloc
+	var/moving = FALSE
 
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()
@@ -78,6 +83,8 @@
 
 	if(environment_smash)
 		EscapeConfinement()
+
+	stepToTarget()
 
 	if(AICanContinue(possible_targets))
 		if(!QDELETED(target) && !targets_from.Adjacent(target))
@@ -124,7 +131,7 @@
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
-		Goto(P.starting, move_to_delay, 3)
+		Goto(P.starting, 3)
 	return ..()
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
@@ -292,9 +299,9 @@
 			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
 				walk_away(src,target,retreat_distance,move_to_delay)
 			else
-				Goto(target,move_to_delay,minimum_distance) //Otherwise, get to our minimum distance so we chase them
+				Goto(target,minimum_distance) //Otherwise, get to our minimum distance so we chase them
 		else
-			Goto(target,move_to_delay,minimum_distance)
+			Goto(target,minimum_distance)
 		if(target)
 			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
 				MeleeAction()
@@ -309,7 +316,7 @@
 			if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
 				OpenFire(target)
 			if((environment_smash & ENVIRONMENT_SMASH_WALLS) || (environment_smash & ENVIRONMENT_SMASH_RWALLS)) //If we're capable of smashing through walls, forget about vision completely after finding our target
-				Goto(target,move_to_delay,minimum_distance)
+				Goto(target,minimum_distance)
 				FindHidden()
 				return 1
 			else
@@ -318,28 +325,48 @@
 	LoseTarget()
 	return 0
 
-/mob/living/simple_animal/hostile/proc/Goto(target, delay, minimum_distance)
-	INVOKE_ASYNC(src, /mob/living/simple_animal/hostile.proc/async_Goto,target,delay,minimum_distance)
+#define PATHFINDER_RETRY_COUNT 20
 
-/mob/living/simple_animal/hostile/proc/async_Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/proc/Goto(target, minimum_distance)
+	INVOKE_ASYNC(src, /mob/living/simple_animal/hostile.proc/async_Goto,target,minimum_distance)
+
+/mob/living/simple_animal/hostile/proc/async_Goto(target,minimum_distance)
 	var/turf/T = get_turf(target)
-	current_path = list()
+
+	if(get_dist(T,lasttargetloc) < 2)
+		return FALSE //do not repath if the target is close enough to its last position
+	lasttargetloc = T
+
+	current_path = list() //reset path
+	useastar = FALSE //while we are waiting,use walk_to
+	basicpathfindargs = list(target,minimum_distance) //setup the args for walk_to
+
+	
+
 	if(target == src.target)
 		approaching_target = TRUE
 	else
 		approaching_target = FALSE
 
-	walk_to(src,target,minimum_distance,delay) //start the dumb pathfinder while we are getting a new path
 	current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
-
+	if(minimum_distance >= 3 && get_dist(target,src) >= 3 && !(lenght(current_path) >= 5))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
+		return
 	if(length(current_path))
-		walk_to(src,0) //cancel the dumb pathfinder and start following the a* path
-		while(length(current_path))
-			if(length(current_path) >= 1)
-				walk_to(src,current_path[1],0,delay)
-				sleep(delay) //needed so it doesnt eat the whole list since walk_to is an async proc
-				current_path -= current_path[1]	
-	
+		useastar = TRUE
+
+/mob/living/simple_animal/hostile/proc/stepToTarget()
+	if(useastar)
+		if(!length(current_path) || moving)
+			return
+		if(length(current_path) >= 1)
+			moving = TRUE //so ticks dont stack and end up making it do weird behaviour
+			walk_to(src,current_path[1],0,move_to_delay)
+			sleep(move_to_delay + 5) //needed so it doesnt eat the whole list since walk_to is an async proc
+			moving = FALSE
+			current_path -= current_path[1]
+		walk_to(src,0) //stops navigating to the current node
+	else
+		walk_to(src, basicpathfindargs[1],basicpathfindargs[2],move_to_delay)
 
 /mob/living/simple_animal/hostile/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
@@ -392,7 +419,7 @@
 			if(M.AIStatus == AI_OFF)
 				return
 			else
-				M.Goto(src,M.move_to_delay,M.minimum_distance)
+				M.Goto(src,M.minimum_distance)
 
 /mob/living/simple_animal/hostile/proc/CheckFriendlyFire(atom/A)
 	if(check_friendly_fire)
@@ -506,7 +533,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 /mob/living/simple_animal/hostile/proc/FindHidden()
 	if(istype(target.loc, /obj/structure/closet) || istype(target.loc, /obj/machinery/disposal) || istype(target.loc, /obj/machinery/sleeper))
 		var/atom/A = target.loc
-		Goto(A,move_to_delay,minimum_distance)
+		Goto(A,minimum_distance)
 		if(A.Adjacent(targets_from))
 			A.attack_animal(src)
 		return 1

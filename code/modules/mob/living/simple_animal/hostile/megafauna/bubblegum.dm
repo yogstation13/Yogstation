@@ -451,7 +451,7 @@ Difficulty: Hard
 		return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/Goto(target, delay, minimum_distance)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/Goto(target, minimum_distance)
 	if(!charging)
 		..()
 
