@@ -538,7 +538,6 @@ Difficulty: Hard
 		return TRUE
 	return FALSE
 
-
 /obj/effect/temp_visual/hierophant/chaser //a hierophant's chaser. follows target around, moving and producing a blast every speed deciseconds.
 	duration = 98
 	var/mob/living/target //what it's following
