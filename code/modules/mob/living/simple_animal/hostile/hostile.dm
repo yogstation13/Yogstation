@@ -343,7 +343,7 @@
 			break
 	
 	if(people)
-		current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
+		current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 32, 150, minimum_distance, id=access_card)
 	else
 		current_path = list()
 
