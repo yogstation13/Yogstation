@@ -538,15 +538,6 @@ Difficulty: Hard
 		return TRUE
 	return FALSE
 
-//yogs start allow mobs to path around it
-/obj/effect/temp_visual/hierophant/wall/CanAStarPass(caller)
-	if(QDELETED(caster)) //frankly,i dont know why this is here but sure,why not,praise copy pasting
-		return FALSE
-	if(caller == caster)//let the caster path through
-		return TRUE
-	return FALSE //otherwise avoid
-//yogs end
-
 
 /obj/effect/temp_visual/hierophant/chaser //a hierophant's chaser. follows target around, moving and producing a blast every speed deciseconds.
 	duration = 98
