@@ -349,12 +349,14 @@
 		approaching_target = FALSE
 
 	current_path = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 150, minimum_distance, id=access_card)
-	if(minimum_distance >= 3 && get_dist(target,src) >= 3 && !(length(current_path) >= 5))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
-		return
 	if(length(current_path))
 		useastar = TRUE
 
 /mob/living/simple_animal/hostile/proc/stepToTarget()
+	if(moving)
+		return
+	if(minimum_distance <= 3 && get_dist(target,src) <= 3 && !(length(current_path) >= 3))//if we are at close range and the a* path isnt more complex than a straight line,just use the normal pathfinder which is faster at tracking people down 
+		useastar = FALSE
 	if(useastar)
 		if(!length(current_path) || moving)
 			return
@@ -362,9 +364,9 @@
 			moving = TRUE //so ticks dont stack and end up making it do weird behaviour
 			walk_to(src,current_path[1],0,move_to_delay)
 			sleep(move_to_delay + 5) //needed so it doesnt eat the whole list since walk_to is an async proc
-			moving = FALSE
 			current_path -= current_path[1]
 		walk_to(src,0) //stops navigating to the current node
+		moving = FALSE
 	else
 		walk_to(src, basicpathfindargs[1],basicpathfindargs[2],move_to_delay)
 
