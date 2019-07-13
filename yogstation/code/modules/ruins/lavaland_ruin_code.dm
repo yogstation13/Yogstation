@@ -45,7 +45,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/gun/ballistic/shotgun/lethal
-	belt = /obj/item/gun/energy/e_gun/advtaser
+	belt = /obj/item/gun/energy/disabler
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/swat
 	mask = /obj/item/clothing/mask/gas
