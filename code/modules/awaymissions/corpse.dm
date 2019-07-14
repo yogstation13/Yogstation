@@ -99,10 +99,11 @@
 
 	if(ckey)
 		M.ckey = ckey
-		if(show_flavour)
-			to_chat(M, "[flavour_text]")
 		var/datum/mind/MM = M.mind
 		var/datum/antagonist/A
+		if(show_flavour)
+			to_chat(M, "[flavour_text]")
+			MM.flavour_text = flavour_text
 		if(antagonist_type)
 			A = MM.add_antag_datum(antagonist_type)
 		if(objectives)
