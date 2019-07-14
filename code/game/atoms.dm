@@ -654,6 +654,8 @@
 			log_ooc(log_text)
 		if(LOG_LOOC) // yogs - LOOC log
 			log_looc(log_text) // yogs - LOOC log
+		if(LOG_TOCHAT)
+			log_tochat(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)

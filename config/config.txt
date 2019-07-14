@@ -146,6 +146,9 @@ LOG_CLONING
 ##Log camera pictures - Must have picture logging enabled
 PICTURE_LOGGING_CAMERA
 
+## log to_chat() calls
+LOG_TOCHAT
+
 ## period of time in seconds for players to be considered inactive
 # INACTIVITY_PERIOD 300
 

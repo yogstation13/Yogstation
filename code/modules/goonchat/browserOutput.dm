@@ -233,6 +233,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			if (!C)
 				continue
 
+			C.mob.log_message(message, LOG_TOCHAT)
+
 			//Send it to the old style output window.
 			SEND_TEXT(C, original_message)
 
@@ -251,6 +253,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			return
 
 		message = to_utf8(message, target) // yogs - LibVG
+
+		C.mob.log_message(message, LOG_TOCHAT)
 
 		//Send it to the old style output window.
 		SEND_TEXT(C, original_message)
