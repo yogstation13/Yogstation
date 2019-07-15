@@ -174,7 +174,7 @@
 				if(!current_ticket)
 					to_chat(src, "<span class='notice'>Ticket closed, please make a new one before trying to contact admins!</span>")
 					return
-				admin_ticket_log(src, keywordparsedmsg, FALSE)
+				admin_ticket_log(src, msg, FALSE)
 				to_chat(recipient, "<span class='danger'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
 				to_chat(src, "<span class='notice'>-- [key_name(src, null, 0)] -> <b>Admins</b>: <span class='linkify'>[msg]</span></span>")
 				//YOGS END
@@ -190,12 +190,12 @@
 				if(!recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
 
-				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></span>")
+				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 				to_chat(recipient, "<span class='adminsay'>Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span></span>")
 				to_chat(recipient, "<span class='adminsay'><i>Click on the administrator's name to reply.</i></span>")
 				to_chat(src, "<span class='notice'>Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span></span>")
 
-				admin_ticket_log(recipient, "<span class='notice'>PM From [key_name_admin(src)]: [keywordparsedmsg]</span>")
+				admin_ticket_log(recipient, "PM From [src]: [msg]")// yogs - Yog Tickets
 
 				//always play non-admin recipients the adminhelp sound
 				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -309,11 +309,11 @@
 	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
 	msg = emoji_parse(msg)
 
-	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></span>")
-	to_chat(C, "<span class='danger'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>")
-	to_chat(C, "<span class='danger'><i>Click on the administrator's name to reply.</i></span>")
+	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
+	to_chat(C, "<span class='danger'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</span>") // yogs - Yog Tickets
+	to_chat(C, "<span class='danger'><i>Click on the administrator's name to reply.</i></span>") // yogs - Yog Tickets
 
-	admin_ticket_log(C, "<span class='notice'>PM From [irc_tagged]: [msg]</span>")
+	admin_ticket_log(C, "<span class='notice'>PM From [irc_tagged]: [msg]</span>") // yogs - Yog Tickets
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound

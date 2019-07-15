@@ -23,6 +23,10 @@
 /area/centcom/ferry
 	name = "CentCom Transport Shuttle Dock"
 
+/area/centcom/testchamber
+	name = "CentCom Test Chamber"
+
+
 /area/centcom/prison
 	name = "Admin Prison"
 

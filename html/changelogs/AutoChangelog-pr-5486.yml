@@ -1,0 +1,5 @@
+author: "  JJRcop and Kmc2000 (sprites) for the code, theos for porting and QoL stuff"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the stasis bed, a medical machine that can stabilize a patient and stops the body from deteriorating after death"
+  - rscadd: "The stasis bed is capable of being used as a fully functional surgical platform, though the patient will need to be buckled to it to apply advanced surgeries"

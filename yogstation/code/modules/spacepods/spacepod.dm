@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 /obj/spacepod
 	name = "space pod"
 	desc = "A frame for a spacepod."
-	icon = 'yogstation/goon/icons/obj/spacepods/construction_2x2.dmi'
+	icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'
 	icon_state = "pod_1"
 	density = 1
 	opacity = 0
@@ -164,14 +164,14 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(repairing && obj_integrity >= max_integrity)
 				to_chat(user, "<span class='warning'>[src] is fully repaired!</span>")
 				return TRUE
-			to_chat(user, "<span class='notice'>You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]")
+			to_chat(user, "<span class='notice'>You start [repairing ? "repairing [src]" : "slicing off [src]'s armor'"]</span>")
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
 					obj_integrity = min(max_integrity, obj_integrity + 10)
 					update_icon()
 					to_chat(user, "<span class='notice'>You mend some [pick("dents","bumps","damage")] with [W]</span>")
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
-					user.visible_message("[user] slices off [src]'s armor.", "You slice off [src]'s armor.")
+					user.visible_message("[user] slices off [src]'s armor.", "<span class='notice'>You slice off [src]'s armor.</span>")
 					construction_state = SPACEPOD_ARMOR_SECURED
 					update_icon()
 				return TRUE
@@ -399,10 +399,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 /obj/spacepod/update_icon()
 	cut_overlays()
 	if(construction_state != SPACEPOD_ARMOR_WELDED)
-		icon = 'yogstation/goon/icons/obj/spacepods/construction_2x2.dmi'
+		icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'
 		icon_state = "pod_[construction_state]"
 		if(pod_armor && construction_state >= SPACEPOD_ARMOR_LOOSE)
-			var/mutable_appearance/masked_armor = mutable_appearance(icon = 'yogstation/goon/icons/obj/spacepods/construction_2x2.dmi', icon_state = "armor_mask")
+			var/mutable_appearance/masked_armor = mutable_appearance(icon = 'goon/icons/obj/spacepods/construction_2x2.dmi', icon_state = "armor_mask")
 			var/mutable_appearance/armor = mutable_appearance(pod_armor.pod_icon, pod_armor.pod_icon_state)
 			armor.blend_mode = BLEND_MULTIPLY
 			masked_armor.overlays = list(armor)
@@ -414,13 +414,13 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		icon = pod_armor.pod_icon
 		icon_state = pod_armor.pod_icon_state
 	else
-		icon = 'yogstation/goon/icons/obj/spacepods/2x2.dmi'
+		icon = 'goon/icons/obj/spacepods/2x2.dmi'
 		icon_state = initial(icon_state)
 
 	if(obj_integrity <= max_integrity / 2)
-		add_overlay(image(icon='yogstation/goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_damage"))
+		add_overlay(image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_damage"))
 		if(obj_integrity <= max_integrity / 4)
-			add_overlay(image(icon='yogstation/goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_fire"))
+			add_overlay(image(icon='goon/icons/obj/spacepods/2x2.dmi', icon_state="pod_fire"))
 
 	if(weapon && weapon.overlay_icon_state)
 		add_overlay(image(icon=weapon.overlay_icon,icon_state=weapon.overlay_icon_state))

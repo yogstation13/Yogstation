@@ -4,6 +4,7 @@
 	icon = 'yogstation/icons/obj/items.dmi'
 	icon_state = "deodorant"
 	item_flags = NOBLUDGEON
+	w_class = WEIGHT_CLASS_SMALL
 	var/uses = 15
 
 /obj/item/deodorant/attack_self(mob/living/carbon/human/user)

@@ -1,0 +1,5 @@
+author: " Skoglol"
+delete-after: true 
+changes: 
+  - spellcheck: "Revival surgery now asks you to shock body instead of repair it."
+  - spellcheck: "All surgeries now have capital letters."

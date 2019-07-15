@@ -194,6 +194,14 @@
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/stock_parts/subspace/filter = 1)
 
+/obj/item/circuitboard/machine/telecomms/message_server
+	name = "Messaging Server (Machine Board)"
+	build_path = /obj/machinery/telecomms/message_server
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stack/cable_coil = 1,
+		/obj/item/stock_parts/subspace/filter = 3)
+
 /obj/item/circuitboard/machine/teleporter_hub
 	name = "Teleporter Hub (Machine Board)"
 	build_path = /obj/machinery/teleport/hub
@@ -254,7 +262,9 @@
 		/obj/machinery/vending/cart = "PTech",
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
-		/obj/machinery/vending/sovietsoda = "BODA")
+		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/security = "SecTech")//Yogs
+		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -683,6 +693,13 @@
 		/obj/item/stock_parts/cell = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/chem_dispenser/abductor
+	name = "Reagent Synthetizer (Abductor Machine Board)"
+	icon_state = "abductor_mod"
+	build_path = /obj/machinery/chem_dispenser/abductor
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
+	needs_anchored = FALSE
+
 /obj/item/circuitboard/machine/chem_heater
 	name = "Chemical Heater (Machine Board)"
 	build_path = /obj/machinery/chem_heater
@@ -1001,3 +1018,11 @@
 	build_path = /obj/machinery/fat_sucker
 	req_components = list(/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/kitchen/fork = 1)
+
+/obj/item/circuitboard/machine/stasis
+	name = "Lifeform Stasis Unit (Machine Board)"
+	build_path = /obj/machinery/stasis
+	req_components = list(
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)

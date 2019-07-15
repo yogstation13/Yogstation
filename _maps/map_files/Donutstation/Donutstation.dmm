@@ -67,6 +67,10 @@
 	dir = 8
 	},
 /area/hallway/secondary/exit/departure_lounge)
+"aaj" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "aak" = (
 /turf/closed/wall,
 /area/medical/morgue)
@@ -1640,12 +1644,6 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
-"aei" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "aej" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
@@ -18888,7 +18886,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -20766,7 +20764,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_y = -32
 	},
@@ -20898,7 +20896,6 @@
 /area/construction/mining/aux_base)
 "aVl" = (
 /obj/docking_port/stationary{
-	area_type = /area/construction/mining/aux_base;
 	dheight = 4;
 	dir = 8;
 	dwidth = 4;
@@ -31575,7 +31572,7 @@
 /obj/item/multitool,
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -35755,7 +35752,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -52581,6 +52578,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+"clO" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"csr" = (
+/obj/machinery/airalarm/server{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "csH" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
 	dir = 4
@@ -81576,13 +81589,13 @@ bkQ
 avi
 adO
 ako
-aei
-aei
-aei
-aei
-aei
-aei
-aei
+adP
+adP
+adP
+adP
+adP
+adP
+adP
 bkX
 cIZ
 gst
@@ -82089,7 +82102,7 @@ avi
 avi
 avi
 adP
-aei
+adP
 aej
 auk
 auy
@@ -99828,7 +99841,7 @@ aar
 cba
 aar
 aYm
-aar
+aaj
 aov
 aTi
 byM

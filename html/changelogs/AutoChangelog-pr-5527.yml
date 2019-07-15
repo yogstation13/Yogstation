@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscadd: "Traitors now recognize codewords automatically in spoken conversation. Phrases in blue, responses in red."
+  - tweak: "Changed traitor greet text slightly."

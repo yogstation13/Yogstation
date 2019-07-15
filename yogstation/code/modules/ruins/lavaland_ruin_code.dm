@@ -45,7 +45,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/gun/ballistic/shotgun/lethal
-	belt = /obj/item/gun/energy/e_gun/advtaser
+	belt = /obj/item/gun/energy/disabler
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/swat
 	mask = /obj/item/clothing/mask/gas
@@ -79,7 +79,7 @@
 	back = /obj/item/storage/backpack/holding
 	head = /obj/item/clothing/head/beanie/red
 	ears = /obj/item/clothing/ears/headphones
-	implants = list(/obj/item/implant/teleporter/ghost_role)
+	implants = list(/obj/item/implant/teleporter/gasclerk)
 	r_pocket = /obj/item/paper/gasstation_lore
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/gasclerk
