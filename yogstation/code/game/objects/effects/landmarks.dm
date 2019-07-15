@@ -68,7 +68,7 @@
 	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM", "Engine Singulo")
+	template_names = list("Engine SM", "Engine Singulo And Tesla")
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/foreportmaint1

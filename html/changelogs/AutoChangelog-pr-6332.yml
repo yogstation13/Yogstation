@@ -1,0 +1,5 @@
+author: "   Identification"
+delete-after: true 
+changes: 
+  - bugfix: "Certain suits could not hold tanks."
+  - tweak: "Certain suits can now hold plasma tanks."
