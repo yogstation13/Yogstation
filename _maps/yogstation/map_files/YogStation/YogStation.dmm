@@ -22924,7 +22924,9 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aTy" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -23219,8 +23221,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "aUg" = (
-/obj/machinery/vending/cola/random,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/cola{
+	onstation = 0
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aUh" = (
