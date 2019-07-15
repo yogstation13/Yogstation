@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Mentorhelps should now be much easier to see, especially in darkmode."

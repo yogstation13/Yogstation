@@ -23,11 +23,10 @@
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 	physiology = new()
 
-	handcrafting = new()
-
 	. = ..()
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -37,16 +36,13 @@
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
+	if(!(CONFIG_GET(flag/disable_human_mood)))
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	return ..()
 
-
-/mob/living/carbon/human/OpenCraftingMenu()
-	handcrafting.ui_interact(src)
 
 /mob/living/carbon/human/prepare_data_huds()
 	//Update med hud images...
@@ -261,7 +257,7 @@
 
 		var/delay_denominator = 1
 		if(pocket_item && !(pocket_item.item_flags & ABSTRACT))
-			if(pocket_item.has_trait(TRAIT_NODROP))
+			if(HAS_TRAIT(pocket_item, TRAIT_NODROP))
 				to_chat(usr, "<span class='warning'>You try to empty [src]'s [pocket_side] pocket, it seems to be stuck!</span>")
 			to_chat(usr, "<span class='notice'>You try to empty [src]'s [pocket_side] pocket.</span>")
 		else if(place_item && place_item.mob_can_equip(src, usr, pocket_id, 1) && !(place_item.item_flags & ABSTRACT))
@@ -503,7 +499,7 @@
 	. = 1 // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
-	if(has_trait(TRAIT_PIERCEIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
 	// If targeting anything else, see if the wear suit is thin enough.
@@ -584,7 +580,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -617,7 +613,7 @@
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
 
-	if(C.stat == DEAD || (C.has_trait(TRAIT_FAKEDEATH)))
+	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
 		to_chat(src, "<span class='warning'>[C.name] is dead!</span>")
 		return
 	if(is_mouth_covered())
@@ -634,7 +630,7 @@
 			to_chat(src, "<span class='warning'>You fail to perform CPR on [C]!</span>")
 			return 0
 
-		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
+		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
@@ -718,7 +714,7 @@
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
 	if(!Adjacent(M) && (M.loc != src))
-		if((be_close == 0) || (!no_tk && (dna.check_mutation(TK) && tkMaxRangeCheck(src, M))))
+		if((be_close == FALSE) || (!no_tk && (dna.check_mutation(TK) && tkMaxRangeCheck(src, M))))
 			return TRUE
 		to_chat(src, "<span class='warning'>You are too far away!</span>")
 		return FALSE
@@ -750,7 +746,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health - getStaminaLoss()
+			var/health_amount = min(health, maxHealth - getStaminaLoss())
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -894,12 +890,12 @@
 	dna?.species.spec_updatehealth(src)
 
 /mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 
 /mob/living/carbon/human/set_nutrition(var/change) //Seriously fuck you oldcoders.
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 

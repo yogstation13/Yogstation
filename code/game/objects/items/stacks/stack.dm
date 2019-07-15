@@ -182,7 +182,7 @@
 		if(!building_checks(R, multiplier))
 			return
 		if (R.time)
-			usr.visible_message("<span class='notice'>[usr] starts building [R.title].</span>", "<span class='notice'>You start building [R.title]...</span>")
+			usr.visible_message("<span class='notice'>[usr] starts building \a [R.title].</span>", "<span class='notice'>You start building \a [R.title]...</span>")
 			if (!do_after(usr, R.time, target = usr))
 				return
 			if(!building_checks(R, multiplier))
@@ -355,6 +355,9 @@
 		. = ..()
 
 /obj/item/stack/AltClick(mob/living/user)
+	. = ..()
+	if(isturf(loc)) // to prevent people that are alt clicking a tile to see its content from getting undesidered pop ups
+		return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(is_cyborg)

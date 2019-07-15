@@ -5,7 +5,7 @@
 	icon_state = "buttcinnpie"
 	slice_path = /obj/item/reagent_containers/food/snacks/buttcinnpieslice
 	slices_num = 5
-	bonus_reagents = list("nutriment" = 1, "vitamin" = 5, "cinnamon" = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cinnamon = 1)
 	tastes = list("cinnamon" = 1, "determination" = 1)
 
 /obj/item/reagent_containers/food/snacks/buttcinnpieslice
@@ -15,5 +15,5 @@
 	icon_state = "buttcinnpieslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#D2691E"
-	list_reagents = list("nutriment" = 5, "cinnamon" = 5, "sugar" = 5, "vitamin" = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("cinnamon" = 1, "determination" = 1)

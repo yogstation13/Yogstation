@@ -21,7 +21,7 @@
 	if(!mob)	return						//this doesn't happen
 
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
-	var/mentor_msg = "<span class='mentornotice'><b><font color='purple'>MENTORHELP:</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</font></span>"
+	var/mentor_msg = "<span class='mentornotice purple'><b>MENTORHELP:</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</span>"
 	log_mentor("MENTORHELP: [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
@@ -29,7 +29,7 @@
 			send_mentor_sound(X)
 		to_chat(X, mentor_msg)
 
-	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
+	to_chat(src, "<span class='mentornotice purple'>PM to-<b>Mentors</b>: [msg]</span>")
 
 	var/datum/mentorticket/mt
 	if(ckey in SSYogs.mentortickets)

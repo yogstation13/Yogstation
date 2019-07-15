@@ -1,7 +1,7 @@
 /obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Console"
 	desc = "This controls the density of the particles."
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'yogstation/icons/obj/machines/particle_accelerator.dmi'//Yogs PA Sprites
 	icon_state = "control_box"
 	anchored = FALSE
 	density = TRUE
@@ -59,7 +59,7 @@
 
 /obj/machinery/particle_accelerator/control_box/update_icon()
 	if(active)
-		icon_state = "control_boxp1"
+		icon_state = "control_boxp[strength]"		//yogs- fix sprite not updating		(note that /tg/ PA power 2 sprite is incomplete)
 	else
 		if(use_power)
 			if(assembled)
@@ -208,6 +208,7 @@
 	log_game("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? "[key_name(usr)]" : "outside forces"] at [AREACOORD(src)]")
 	if(active)
 		use_power = ACTIVE_POWER_USE
+		active_power_usage = initial(active_power_usage) * (1 + strength) // Yogs -- Makes the PA use different amounts of power depending on its power level.
 		for(var/CP in connected_parts)
 			var/obj/structure/particle_accelerator/part = CP
 			part.strength = strength

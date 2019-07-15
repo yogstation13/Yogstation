@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "Clones no longer have their genetic sequence quantum garble fucked together"

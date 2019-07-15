@@ -435,19 +435,19 @@
 					has_electronics = APC_ELECTRONICS_MISSING
 					if (stat & BROKEN)
 						user.visible_message(\
-							"[user.name] has broken the power control board inside [src.name]!",\
+							"[user.name] has broken the charred power control board inside [src.name]!", //Yogs -- Makes this message a bit more clear
 							"<span class='notice'>You break the charred power control board and remove the remains.</span>",
 							"<span class='italics'>You hear a crack.</span>")
 						return
 					else if (obj_flags & EMAGGED)
 						obj_flags &= ~EMAGGED
 						user.visible_message(\
-							"[user.name] has discarded an emagged power control board from [src.name]!",\
+							"[user.name] has discarded a sparking power control board from [src.name]!", // Yogs -- Makes this message make more sense.
 							"<span class='notice'>You discard the emagged power control board.</span>")
 						return
 					else if (malfhack)
 						user.visible_message(\
-							"[user.name] has discarded a strangely programmed power control board from [src.name]!",\
+							"[user.name] has discarded a strange-looking power control board from [src.name]!", //Yogs -- Makes this message make more sense.
 							"<span class='notice'>You discard the strangely programmed board.</span>")
 						malfai = null
 						malfhack = 0

@@ -8,6 +8,7 @@
 	var/signal_enabled = FALSE
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
+	var/list/datum_outputs
 
 #ifdef TESTING
 	var/running_find_references
@@ -17,6 +18,10 @@
 #ifdef DATUMVAR_DEBUGGING_MODE
 	var/list/cached_vars
 #endif
+
+/datum/Topic(href, href_list[])
+	..()
+	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
 
 // Default implementation of clean-up code.
 // This should be overridden to remove all references pointing to the object being destroyed.

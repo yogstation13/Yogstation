@@ -22,7 +22,7 @@
 	var/dressing_type = "brute"
 
 /datum/surgery_step/apply_dressing/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] starts dressing [target]'s [parse_zone(target_zone)] wounds with [tool]..", "<span class='notice'>You start wrapping and dressing [target]'s [parse_zone(target_zone)] with [tool]..")
+	user.visible_message("[user] starts dressing [target]'s [parse_zone(target_zone)] wounds with [tool]..", "<span class='notice'>You start wrapping and dressing [target]'s [parse_zone(target_zone)] with [tool]..</span>")
 
 /datum/surgery_step/apply_dressing/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if (ishuman(target))

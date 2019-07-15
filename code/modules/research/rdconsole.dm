@@ -167,7 +167,9 @@ Nothing else in the console has ID requirements.
 					var/obj/item/card/id/ID = I.GetID()
 					if(istype(ID))
 						logname = "User: [ID.registered_name]"
-			stored_research.research_logs += "[logname] researched node id [id] with cost [json_encode(price)]."
+			var/i = stored_research.research_logs.len
+			stored_research.research_logs += null
+			stored_research.research_logs[++i] = list(TN.display_name, price["General Research"], logname, "[get_area(src)] ([src.x],[src.y],[src.z])")
 			return TRUE
 		else
 			say("Failed to research node: Internal database error!")
@@ -398,7 +400,7 @@ Nothing else in the console has ID requirements.
 	l += "<h3>Chemical Storage:</h3>"
 	for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 		l += "[R.name]: [R.volume]"
-		l += "<A href='?src=[REF(src)];disposeP=[R.id]'>Purge</A>"
+		l += "<A href='?src=[REF(src)];disposeP=[R]'>Purge</A>"
 	l += "</div>"
 	return l
 
@@ -501,7 +503,7 @@ Nothing else in the console has ID requirements.
 	l += "<h3>Chemical Storage:</h3>"
 	for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
 		l += "[R.name]: [R.volume]"
-		l += "<A href='?src=[REF(src)];disposeI=[R.id]'>Purge</A>"
+		l += "<A href='?src=[REF(src)];disposeI=[R]'>Purge</A>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_circuit_materials()	//Legacy code!

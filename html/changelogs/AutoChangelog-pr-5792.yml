@@ -1,0 +1,4 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - rscdel: "Nurse spiders no longer spawn from gold slime core and life chemical reactions."

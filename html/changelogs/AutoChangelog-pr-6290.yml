@@ -1,0 +1,4 @@
+author: " Identification"
+delete-after: true 
+changes: 
+  - bugfix: "A fix with an area of Moth wing sprites not appearing. Moths should look a little bit different now."
