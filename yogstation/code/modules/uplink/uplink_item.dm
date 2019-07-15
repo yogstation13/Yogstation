@@ -3,7 +3,7 @@
 	var/list/exclude_objectives = list() //objectives to disallow the buyer from buying this item
 	var/surplus_nullcrates
 
-/datum/uplink_item/New()	
+/datum/uplink_item/New()
 	. = ..()
 	if(isnull(surplus_nullcrates))
 		surplus_nullcrates = surplus
@@ -80,7 +80,7 @@
 	cost = 5
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/device_tools/arm/nuke
 	cost = 15
 	exclude_modes = list()
@@ -118,3 +118,10 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/device_tools/loud_headset
+	name = "Loud Headset"
+	desc = "A syndicate headset with a volume setting"
+	item = /obj/item/radio/headset/syndicate/alt/leader/loud
+	cost = 1
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
