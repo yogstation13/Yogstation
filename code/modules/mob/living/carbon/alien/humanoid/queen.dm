@@ -26,7 +26,7 @@
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
-	addtimer(CALLBACK(src, .proc/game_end), 15 MINUTES) //yogs: time until shuttle is freed/called
+	addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -56,7 +56,7 @@
 	SSshuttle.clearHostileEnvironment(src)
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		priority_announce("Xenomorph infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies. P.S.: Bring back a live one please.")
-		SSshuttle.emergency.request(null, set_coefficient=0.4)
+		SSshuttle.emergency.request(null, set_coefficient=0.5)
 		SSshuttle.emergencyNoRecall = TRUE
 
 /mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
