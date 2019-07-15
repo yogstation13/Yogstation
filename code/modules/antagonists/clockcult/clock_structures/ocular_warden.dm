@@ -119,6 +119,8 @@
 			continue
 		if(L.stat || (L.IsStun())) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
 			continue
+		if(isslime(L)) //Ocular wardens heal slimes
+			continue
 		if (iscarbon(L))
 			var/mob/living/carbon/c = L
 			if (istype(c.handcuffed,/obj/item/restraints/handcuffs/clockwork))
