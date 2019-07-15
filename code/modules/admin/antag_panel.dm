@@ -105,8 +105,6 @@ GLOBAL_VAR(antag_prototypes)
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=[REF(src)];role_edit=1'>Edit</a><br>"
 	out += "Faction and special role: <b><font color='red'>[special_role]</font></b><br>"
-	if(flavour_text)
-		out += "<br>This mind has been created with the following flavour text: <b>[flavour_text]</b><br>"
 
 	var/special_statuses = get_special_statuses()
 	if(length(special_statuses))
