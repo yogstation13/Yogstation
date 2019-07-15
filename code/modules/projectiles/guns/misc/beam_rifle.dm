@@ -273,13 +273,9 @@
 		current_user = null
 	if(istype(user))
 		current_user = user
-<<<<<<< HEAD
 		LAZYOR(current_user.mousemove_intercept_objects, src)
-		mobhook = user.AddComponent(/datum/component/redirect, list(COMSIG_MOVABLE_MOVED = CALLBACK(src, .proc/on_mob_move)))
-=======
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
 		listeningTo = user
->>>>>>> 45ec62931d... Finally removes the signal redirect component (#44251)
 
 /obj/item/gun/energy/beam_rifle/onMouseDrag(src_object, over_object, src_location, over_location, params, mob)
 	if(aiming)
