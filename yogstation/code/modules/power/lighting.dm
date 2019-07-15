@@ -1,6 +1,6 @@
 /obj/machinery/light/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT= CALLBACK(src, .proc/clean_light)))
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_light)
 
 /obj/machinery/light/proc/clean_light(O,strength)
 	if(strength < CLEAN_STRENGTH_BLOOD)
