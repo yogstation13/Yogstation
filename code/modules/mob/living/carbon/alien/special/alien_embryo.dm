@@ -24,18 +24,18 @@
 /obj/item/organ/body_egg/alien_embryo/on_life()
 	switch(stage)
 		if(2, 3)
-			if(prob(2))
+			if(prob(4)) //yogs
 				owner.emote("sneeze")
-			if(prob(2))
+			if(prob(4)) //Yogs
 				owner.emote("cough")
 			if(prob(2))
 				to_chat(owner, "<span class='danger'>Your throat feels sore.</span>")
 			if(prob(2))
 				to_chat(owner, "<span class='danger'>Mucous runs down the back of your throat.</span>")
 		if(4)
-			if(prob(2))
+			if(prob(8)) //Yogs
 				owner.emote("sneeze")
-			if(prob(2))
+			if(prob(8)) //Yogs
 				owner.emote("cough")
 			if(prob(4))
 				to_chat(owner, "<span class='danger'>Your muscles ache.</span>")
@@ -46,11 +46,12 @@
 				if(prob(20))
 					owner.adjustToxLoss(1)
 		if(5)
-			to_chat(owner, "<span class='danger'>You feel something tearing its way out of your stomach...</span>")
-			owner.adjustToxLoss(10)
+			if(prob(5)) //yogs
+			    to_chat(owner, "<span class='danger'>You feel something tearing its way out of your stomach...</span>")
+			    owner.adjustToxLoss(10)
 
 /obj/item/organ/body_egg/alien_embryo/egg_process()
-	if(stage < 5 && prob(3))
+	if(stage < 5 && prob(2)) //yogs
 		stage++
 		INVOKE_ASYNC(src, .proc/RefreshInfectionImage)
 
@@ -107,7 +108,7 @@
 		owner.gib(TRUE)
 	else
 		new_xeno.visible_message("<span class='danger'>[new_xeno] wriggles out of [owner]!</span>", "<span class='userdanger'>You exit [owner], your previous host.</span>")
-		owner.adjustBruteLoss(40)
+		owner.adjustBruteLoss(20) //yogs
 		owner.cut_overlay(overlay)
 	qdel(src)
 
