@@ -2948,7 +2948,9 @@
 	},
 /area/maintenance/department/engine)
 "afZ" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "aga" = (
@@ -3065,7 +3067,9 @@
 /turf/open/floor/wood,
 /area/medical/medbay/central)
 "agn" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "ago" = (
