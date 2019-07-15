@@ -57048,6 +57048,10 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"hdY" = (
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "heC" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 8;
@@ -105635,7 +105639,7 @@ bFX
 aKu
 aZX
 beS
-aFi
+hdY
 aEj
 bcI
 lEn
