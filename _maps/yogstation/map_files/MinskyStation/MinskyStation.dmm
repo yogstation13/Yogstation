@@ -100764,6 +100764,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
+"vZH" = (
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "wfS" = (
 /turf/closed/wall,
 /area/security/checkpoint/customs)
@@ -116082,7 +116086,7 @@ bfebfe
 bhQbfe
 bfebfe
 beCbeC
-bfebfe
+bfevZH
 bfebfe
 bkLbkL
 cvHblS
