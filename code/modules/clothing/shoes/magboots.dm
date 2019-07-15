@@ -57,3 +57,10 @@
 	name = "blood-red magboots"
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"
+
+/obj/item/clothing/shoes/magboots/security
+	name = "combat magboots"
+	desc = "Combat-edition magboots issued by Nanotrasen Security for extravehicular missions."
+	icon_state = "cmagboots0"
+	magboot_state = "cmagboots"
+	slowdown_active = 1
