@@ -10,8 +10,6 @@
 	layer = LARGE_MOB_LAYER //above most mobs, but below speechbubbles
 	pressure_resistance = 200 //Because big, stompy xenos should not be blown around like paper.
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 20, /obj/item/stack/sheet/animalhide/xeno = 3)
-	var/fuck_this_shit = 0 //yogs
-	var/im_out = 15 MINUTES //yogs: set this to whatever time you want xenos to get the shuttle called after/delayed until if the queen is alive
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
 
@@ -28,6 +26,7 @@
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
+	addtimer(CALLBACK(src, .proc/game_end), 15 MINUTES) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -53,16 +52,14 @@
 	internal_organs += new /obj/item/organ/alien/eggsac
 	..()
 
-/mob/living/carbon/alien/humanoid/royal/queen/Life()//yogs start: xenos temporarily stop shuttle
-	fuck_this_shit++
-	if(fuck_this_shit == im_out)
-		SSshuttle.clearHostileEnvironment(src)
-		if(EMERGENCY_IDLE_OR_RECALLED)
-			priority_announce("Xenomorph infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies. P.S.: Bring back a live one please.")
-			SSshuttle.emergency.request(null, set_coefficient=0.4)
-	..()
+/mob/living/carbon/alien/humanoid/royal/queen/proc/game_end()
+	SSshuttle.clearHostileEnvironment(src)
+	if(EMERGENCY_IDLE_OR_RECALLED)
+		priority_announce("Xenomorph infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies. P.S.: Bring back a live one please.")
+		SSshuttle.emergency.request(null, set_coefficient=0.4)
+		SSshuttle.emergencyNoRecall = TRUE
 
-/mob/living/carbon/alien/humanoid/royal/queen/death()
+/mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
 	SSshuttle.clearHostileEnvironment(src)
 	..()
 
