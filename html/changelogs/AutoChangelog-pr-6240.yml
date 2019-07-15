@@ -1,0 +1,4 @@
+author: "  Altoids"
+delete-after: true 
+changes: 
+  - rscadd: "Altoids can now more easily determine how broken shadowlings are."
