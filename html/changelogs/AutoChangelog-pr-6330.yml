@@ -1,0 +1,4 @@
+author: "GenericDM"
+delete-after: true 
+changes: 
+  - rscadd: "You can now shove an emag into a jack o' lantern to turn it into a hack o' lantern"
