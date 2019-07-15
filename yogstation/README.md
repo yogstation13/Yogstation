@@ -1,3 +1,14 @@
+# THIS IS ALL DEPRECATED AND NO LONGER NECESSARY. YOU CAN STILL DO THIS IF YOU WANT, BUT IT IS NO LONGER A REQUIREMENT, SINCE THE MIRRORBOT IS NO LONGER ACTIVE
+
+
+
+
+
+
+
+
+
+
 ###### Special thanks to [HippieStation](https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md) for the help.
 
 # Why do we use this /yogstation/ folder?

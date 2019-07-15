@@ -1042,7 +1042,7 @@
 /datum/supply_pack/materials/bz
 	name = "BZ Canister Crate"
 	desc = "Contains a canister of BZ. Requires Toxins access to open."
-	cost = 4000
+	cost = 8000
 	access = ACCESS_TOX_STORAGE
 	contains = list(/obj/machinery/portable_atmospherics/canister/bz)
 	crate_name = "BZ canister crate"
@@ -1582,6 +1582,13 @@
 	cost = 1000
 	contains = list(/obj/item/vending_refill/assist)
 	crate_name = "vendomat supply crate"
+
+/datum/supply_pack/service/emptycrate
+	name = "Empty Crate"
+	desc = "It's an empty crate, for all your storage needs."
+	cost = 700
+	contains = list()
+	crate_name = "crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Organic /////////////////////////////////////////
