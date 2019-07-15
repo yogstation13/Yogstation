@@ -3207,7 +3207,6 @@
 #include "yogstation\code\modules\mining\lavaland\necropolis_chests.dm"
 #include "yogstation\code\modules\mob\mob.dm"
 #include "yogstation\code\modules\mob\say.dm"
-#include "yogstation\code\modules\mob\dead\new_player\new_player.dm"
 #include "yogstation\code\modules\mob\dead\new_player\sprite_accessories.dm"
 #include "yogstation\code\modules\mob\living\emote.dm"
 #include "yogstation\code\modules\mob\living\life.dm"
