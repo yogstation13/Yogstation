@@ -81896,6 +81896,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"dFY" = (
+/obj/item/cigbutt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "dIs" = (
 /obj/machinery/door/airlock/external{
 	name = "Supply Dock Airlock";
@@ -101670,7 +101675,7 @@ aqO
 bMG
 alC
 bPN
-apz
+dFY
 bTt
 bTv
 alC
