@@ -98,19 +98,8 @@
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
-<<<<<<< HEAD
 	var/datum/component/redirect/listener
 	var/datum/callback/CB
-=======
-
-	var/static/list/signalCache = list(
-		COMSIG_LIVING_STATUS_STUN,
-		COMSIG_LIVING_STATUS_KNOCKDOWN,
-		COMSIG_LIVING_STATUS_IMMOBILIZE,
-		COMSIG_LIVING_STATUS_PARALYZE,
-	)
-
->>>>>>> f2ff96683b... Fixes CNS rebooter. (#44630)
 	var/stun_cap_amount = 40
 
 /obj/item/organ/cyberimp/brain/anti_stun/Initialize()
