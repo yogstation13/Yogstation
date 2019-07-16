@@ -92,12 +92,7 @@
 /datum/antagonist/brother/proc/give_pinpointer(var/datum/mind/target_brother)
 	if(owner && owner.current)
 		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
-		P.preset_target = determine_other_brother()
-
-/datum/antagonist/brother/proc/determine_other_brother()
-	var/datum/mind/list/other_brother = team.members - owner
-	for(var/i = 1 to other_brother.len)
-		return other_brother[1]
+		P.allowed_targets = team.members - owner
 
 /datum/team/brother_team
 	name = "brotherhood"
