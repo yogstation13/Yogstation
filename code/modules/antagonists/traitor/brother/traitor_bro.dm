@@ -1,13 +1,12 @@
 /datum/status_effect/agent_pinpointer/brother
 	id = "brother_pinpointer"
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/brother
-	var/datum/mind/preset_target
+	var/datum/mind/set_target
+	var/datum/mind/list/allowed_targets
 
 	//ree magic numbers
 	minimum_range = 2
 	range_fuzz_factor = 0
-	range_mid = 8
-	range_far = 16
 
 /obj/screen/alert/status_effect/agent_pinpointer/brother
 	name = "Blood Brother Integrated Pinpointer"
@@ -17,15 +16,16 @@
 
 /datum/status_effect/agent_pinpointer/brother/scan_for_target()
 	scan_target = null
-
-	if(preset_target)
-		scan_target = preset_target.current
+	if(set_target)
+		scan_target = set_target.current
+		return
+	if(allowed_targets.len == 1)
+		var/datum/mind/picked = pick(allowed_targets)
+		scan_target = picked.current
 		return
 
-	//fallback method
-	if(owner && owner.mind)
-		for(var/datum/antagonist/brother/Q in owner.mind.has_antag_datum(/datum/antagonist/brother))
-			var/datum/mind/list/other_brother = Q.team.members - owner.mind
-			for(var/i = 1 to other_brother.len)
-				scan_target = other_brother[1].current
-				break
+/obj/screen/alert/status_effect/agent_pinpointer/brother/Click()
+	if(attached_effect)
+		var/datum/status_effect/agent_pinpointer/brother/E = attached_effect
+		E.set_target = input(usr,"Select target to track","Pinpointer") as null|anything in E.allowed_targets
+	..()
