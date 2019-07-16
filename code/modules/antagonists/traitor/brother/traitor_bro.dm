@@ -19,10 +19,8 @@
 	if(set_target)
 		scan_target = set_target.current
 		return
-	if(allowed_targets.len == 1)
-		var/datum/mind/picked = pick(allowed_targets)
-		scan_target = picked.current
-		return
+	var/datum/mind/picked = pick(allowed_targets)
+	scan_target = picked.current
 
 /obj/screen/alert/status_effect/agent_pinpointer/brother/Click()
 	if(attached_effect)
