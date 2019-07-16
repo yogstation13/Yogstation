@@ -89,7 +89,7 @@
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
 
-/datum/antagonist/brother/proc/give_pinpointer(var/datum/mind/target_brother)
+/datum/antagonist/brother/proc/give_pinpointer()
 	if(owner && owner.current)
 		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
 		P.allowed_targets = team.members - owner
