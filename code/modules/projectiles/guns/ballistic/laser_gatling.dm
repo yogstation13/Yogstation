@@ -137,11 +137,11 @@
 			ammo_pack.overheat += burst_size
 			..()
 		else
-			to_chat(user, "<span class='warning'>The gun's heat sensor locked the trigger to prevent lens damage!</span>")
+			to_chat(user, "The gun's heat sensor locked the trigger to prevent lens damage.")
 
 /obj/item/gun/ballistic/minigun/afterattack(atom/target, mob/living/user, flag, params)
 	if(!ammo_pack || ammo_pack.loc != user)
-		to_chat(user, "<span class='warning'>You need the backpack power source to fire the gun!</span>")
+		to_chat(user, "You need the backpack power source to fire the gun!")
 	. = ..()
 
 /obj/item/gun/ballistic/minigun/dropped(mob/living/user)
