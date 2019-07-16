@@ -47,8 +47,8 @@
 					owner.adjustToxLoss(1)
 		if(5)
 			if(prob(5)) //yogs
-			    to_chat(owner, "<span class='danger'>You feel something tearing its way out of your stomach...</span>")
-			    owner.adjustToxLoss(10)
+				to_chat(owner, "<span class='danger'>You feel something tearing its way out of your stomach...</span>")
+				owner.adjustToxLoss(10)
 
 /obj/item/organ/body_egg/alien_embryo/egg_process()
 	if(stage < 5 && prob(2)) //yogs
