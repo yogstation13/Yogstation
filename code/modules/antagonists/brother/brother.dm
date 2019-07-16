@@ -21,6 +21,8 @@
 	SSticker.mode.brothers += owner
 	objectives += team.objectives
 	owner.special_role = special_role
+	if(owner.current)
+		give_pinpointer()
 	finalize_brother()
 	return ..()
 
@@ -28,6 +30,7 @@
 	SSticker.mode.brothers -= owner
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>You are no longer the [special_role]!</span>")
+		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/brother)
 	owner.special_role = null
 	return ..()
 
@@ -85,6 +88,16 @@
 	T.update_name()
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
+
+/datum/antagonist/brother/proc/give_pinpointer(var/datum/mind/target_brother)
+	if(owner && owner.current)
+		var/datum/status_effect/agent_pinpointer/brother/P = owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/brother)
+		P.preset_target = determine_other_brother()
+
+/datum/antagonist/brother/proc/determine_other_brother()
+	var/datum/mind/list/other_brother = team.members - owner
+	for(var/i = 1 to other_brother.len)
+		return other_brother[1]
 
 /datum/team/brother_team
 	name = "brotherhood"
