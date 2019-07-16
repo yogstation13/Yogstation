@@ -150,6 +150,9 @@
 			new /obj/effect/mob_spawn/human/corpse/damaged/legioninfested(T)
 	..(gibbed)
 
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril
+	fromtendril = TRUE
+
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril
 	fromtendril = TRUE
 
