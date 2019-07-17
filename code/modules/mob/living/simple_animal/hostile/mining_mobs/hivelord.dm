@@ -108,6 +108,7 @@
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "bounces harmlessly off of"
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
+	crusher_drop_mod = 20
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	del_on_death = 1
@@ -132,7 +133,6 @@
 	maxHealth = 60
 	health = 60
 	speed = 2 //faster!
-	crusher_drop_mod = 20
 	dwarf_mob = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
@@ -149,9 +149,6 @@
 		else
 			new /obj/effect/mob_spawn/human/corpse/damaged/legioninfested(T)
 	..(gibbed)
-
-/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril
-	fromtendril = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril
 	fromtendril = TRUE
