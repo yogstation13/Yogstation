@@ -9,7 +9,9 @@
 	name = "hollow plushie"
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "theknight"
+	attack_verb = list("parried", "slashed at")
 	desc = "Ident is fucking stupid"
+	component = /datum/component/squeak/lizardplushie
 
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
