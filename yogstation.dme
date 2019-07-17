@@ -3155,6 +3155,7 @@
 #include "yogstation\code\modules\holodeck\computer.dm"
 #include "yogstation\code\modules\hydroponics\grown\misc.dm"
 #include "yogstation\code\modules\jobs\job_types\_job.dm"
+#include "yogstation\code\modules\jobs\job_types\assistant.dm"
 #include "yogstation\code\modules\jobs\job_types\atmospheric_technician.dm"
 #include "yogstation\code\modules\jobs\job_types\captain.dm"
 #include "yogstation\code\modules\jobs\job_types\chief_engineer.dm"

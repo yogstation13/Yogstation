@@ -42,3 +42,6 @@
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-rainbow"
+
+/datum/job
+	exp_requirements = 1
