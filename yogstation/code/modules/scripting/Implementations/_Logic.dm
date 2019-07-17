@@ -187,7 +187,7 @@
 /datum/n_function/default/randseed
 	name = "randseed"
 /datum/n_function/default/randseed/execute(this_obj, list/params)
-	var/seed = params.len >= 1 ? params[1] : null
+	//var/seed = params.len >= 1 ? params[1] : null
 	//rand_seed(seed)
 
 /datum/n_function/default/rand
