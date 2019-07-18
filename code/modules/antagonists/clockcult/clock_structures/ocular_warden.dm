@@ -75,12 +75,14 @@
 						else
 							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
 						L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
+						Beam(L, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
 						last_process = world.time
 						if(GLOB.ratvar_awakens && L)
 							L.adjust_fire_stacks(damage_per_tick)
 							L.IgniteMob()
 				else if(ismecha(target))
 					var/obj/mecha/M = target
+					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
 					M.take_damage(damage_per_tick * get_efficiency_mod(), BURN, "melee", 1, get_dir(src, M))
 					last_process = world.time //yogs end
 
