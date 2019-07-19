@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		say("Explosion not large enough for research calculations.")
 		return
 	else
-		point_gain = (30 * orig_dev) / 2 + (15 * orig_heavy) / 2 + (5 * orig_light) / 2     //Yogs Changes to point gains and point cap.
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital rule
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)
