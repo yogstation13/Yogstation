@@ -33,6 +33,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/rd/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/rd
 	name = "Research Director"
 	jobtype = /datum/job/rd

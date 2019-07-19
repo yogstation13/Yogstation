@@ -29,6 +29,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/cmo/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/cmo
 	name = "Chief Medical Officer"
 	jobtype = /datum/job/cmo

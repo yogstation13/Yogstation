@@ -18,11 +18,19 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 
-	changed_maps = list("MinskyStation")
+	changed_maps = list("MinskyStation", "OmegaStation")
 
 /datum/job/doctor/proc/MinskyStationChanges()
 	total_positions = 6
 	spawn_positions = 5
+
+/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
+	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/doctor
 	name = "Medical Doctor"

@@ -23,11 +23,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
-	changed_maps = list("MinskyStation")
+	changed_maps = list("MinskyStation", "OmegaStation")
 
 /datum/job/detective/proc/MinskyStationChanges()
 	total_positions = 2
 	spawn_positions = 2
+
+/datum/job/detective/proc/OmegaStationChanges()
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
+	supervisors = "the captain"
 
 /datum/outfit/job/detective
 	name = "Detective"

@@ -18,11 +18,18 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
-	changed_maps = list("MinskyStation")
+	changed_maps = list("MinskyStation", "OmegaStation")
 
 /datum/job/cargo_tech/proc/MinskyStationChanges()
 	total_positions = 5
 	spawn_positions = 4
+
+/datum/job/cargo_tech/proc/OmegaStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
+	supervisors = "the head of personnel"
 
 /datum/outfit/job/cargo_tech
 	name = "Cargo Technician"
