@@ -16,6 +16,12 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_CLERK
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/clerk/proc/MinskyStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+
 /datum/outfit/job/clerk
 	name = "Clerk"
 	jobtype = /datum/job/clerk

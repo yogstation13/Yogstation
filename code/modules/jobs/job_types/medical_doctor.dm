@@ -18,6 +18,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/doctor/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
 /datum/outfit/job/doctor
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor

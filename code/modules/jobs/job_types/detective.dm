@@ -23,6 +23,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/detective/proc/MinskyStationChanges()
+	total_positions = 2
+	spawn_positions = 2
+
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective

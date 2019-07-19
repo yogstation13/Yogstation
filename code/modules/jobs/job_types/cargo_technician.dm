@@ -18,6 +18,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/cargo_tech/proc/MinskyStationChanges()
+	total_positions = 5
+	spawn_positions = 4
+
 /datum/outfit/job/cargo_tech
 	name = "Cargo Technician"
 	jobtype = /datum/job/cargo_tech

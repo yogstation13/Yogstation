@@ -23,6 +23,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
+	changed_maps = list("MinskyStation", "YogsPubby")
+
+/datum/job/officer/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 6
+
+/datum/job/officer/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
 /datum/job/officer/get_access()
 	var/list/L = list()
 	L |= ..() | check_config_for_sec_maint()

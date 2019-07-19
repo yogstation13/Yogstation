@@ -23,12 +23,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
-	changed_maps = list("YogStation")
+	changed_maps = list("YogsPubby")
 
-/datum/job/warden/proc/YogStationChanges()
-	spawn_positions = 2
-	total_positions = 2
-	return TRUE
+/datum/job/warden/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
 
 /datum/job/warden/get_access()
 	var/list/L = list()
