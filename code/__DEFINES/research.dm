@@ -72,5 +72,6 @@
 	TECHWEB_POINT_TYPE_GENERIC = "General Research"\
 	)
 
-#define TOXINS_RESEARCH_MAX = 70000
-#define TOXINS_RESEARCH_LAMBDA = 3940
+
+#define TOXINS_RESEARCH_MAX 70000 // This is the maximum amount of research points a toxins bomb can get.
+#define TOXINS_RESEARCH_LAMBDA 3940 // This determines how easy it is for a toxins bomb to reach the max research cap.
