@@ -968,7 +968,9 @@
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
-		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")		//yogs end
+		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
+	else
+		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)
