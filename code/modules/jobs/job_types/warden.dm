@@ -23,6 +23,13 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
+	changed_maps = list("YogStation")
+
+/datum/job/warden/proc/YogStationChanges()
+	spawn_positions = 2
+	total_positions = 2
+	return TRUE
+
 /datum/job/warden/get_access()
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()
