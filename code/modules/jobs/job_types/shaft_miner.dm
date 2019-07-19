@@ -18,6 +18,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/mining/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
 /datum/outfit/job/miner
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining

@@ -22,6 +22,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/engineer/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
 /datum/outfit/job/engineer
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer

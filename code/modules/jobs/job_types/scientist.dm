@@ -21,6 +21,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
+	changed_maps = list("MinskyStation")
+
+/datum/job/scientist/proc/MinskyStationChanges()
+	total_positions = 6
+	spawn_positions = 5
+
 /datum/outfit/job/scientist
 	name = "Scientist"
 	jobtype = /datum/job/scientist
