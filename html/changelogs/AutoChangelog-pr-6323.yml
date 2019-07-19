@@ -1,0 +1,5 @@
+author: "  Ktlwjec, Partheo"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new crafting recipe: Lasagna!"
+  - imageadd: "Lasagna!"

@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "clock cult armor should now appropriately buff itself when war is declared or ratvar shows up"

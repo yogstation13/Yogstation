@@ -1,0 +1,4 @@
+author: "MacHac"
+delete-after: true 
+changes: 
+  - rscdel: "Bubblegum will no longer call slaughterlings to his aid."
