@@ -83,3 +83,21 @@
 	r_pocket = /obj/item/paper/gasstation_lore
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/gasclerk
+
+///Loot Spawner For UFO
+/obj/effect/spawner/lootdrop/lavaland_surface_ufo_crash
+	name = "alien tile"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/obj/item/organ/heart/gland/heals = 8,
+				/obj/item/organ/heart/gland/slime = 8,
+				/obj/item/organ/heart/gland/mindshock = 8,
+				/obj/item/organ/heart/gland/pop = 8,
+				/obj/item/organ/heart/gland/ventcrawling = 8,
+				/obj/item/organ/heart/gland/viral = 8,
+				/obj/item/organ/heart/gland/trauma = 8,
+				/obj/item/organ/heart/gland/spiderman = 8,
+				/obj/item/organ/heart/gland/egg = 8,
+				/obj/item/organ/heart/gland/electric = 8,
+				/obj/item/organ/heart/gland/chem = 8,
+				/obj/item/organ/heart/gland/plasma = 8)
