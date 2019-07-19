@@ -125,8 +125,12 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(orig_light < 10)
 		say("Explosion not large enough for research calculations.")
 		return
+	else if(orig_light >= INFINITY) // Colton-proofs the doppler array
+		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
+		point_gain = TOXINS_RESEARCH_MAX
 	else
-		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital rule
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
+	
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)
