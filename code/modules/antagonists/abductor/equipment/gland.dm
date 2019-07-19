@@ -23,13 +23,8 @@
 
 /obj/item/organ/heart/gland/examine(mob/user)
 	. = ..()
-<<<<<<< HEAD
 	if(HAS_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || isobserver(user))
-		to_chat(user, "<span class='notice'>It is \a [true_name].</span>")
-=======
-	if((user.mind && HAS_TRAIT(user.mind, TRAIT_ABDUCTOR_SCIENTIST_TRAINING)) || isobserver(user))
 		. += "<span class='notice'>It is \a [true_name].</span>"
->>>>>>> 49e7b39a97...  Adds and modifies abductor glands  (#44741)
 
 /obj/item/organ/heart/gland/proc/ownerCheck()
 	if(ishuman(owner))
