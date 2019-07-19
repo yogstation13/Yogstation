@@ -2185,11 +2185,19 @@
 "adw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/biogenerator,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/seed_extractor,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
@@ -2207,6 +2215,9 @@
 /obj/machinery/camera{
 	c_tag = "Prison Common Room North";
 	network = list("ss13","prison")
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -2673,8 +2684,8 @@
 /area/hallway/primary/starboard)
 "aeo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "1-4"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -4226,12 +4237,19 @@
 /turf/closed/wall/r_wall,
 /area/security/brig)
 "agG" = (
-/turf/open/floor/plating/asteroid/airless,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "agH" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "4-8"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -4835,7 +4853,14 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ahA" = (
-/turf/closed/mineral/random/labormineral,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/security/prison)
 "ahB" = (
 /obj/machinery/photocopier,
@@ -5386,11 +5411,7 @@
 /area/security/prison)
 "air" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/instrument/harmonica,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/toy/cards/deck,
-/obj/machinery/light,
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ais" = (
@@ -6493,7 +6514,9 @@
 /area/security/brig)
 "ajZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/chair/stool,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aka" = (
@@ -7396,9 +7419,7 @@
 /area/hallway/primary/starboard)
 "alz" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/cola{
-	onstation = 0
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "alA" = (
@@ -17093,6 +17114,10 @@
 	pixel_y = 25;
 	specialfunctions = 4
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "azV" = (
@@ -17187,24 +17212,26 @@
 	pixel_y = 25;
 	specialfunctions = 4
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/flasher{
-	id = "PCell 1";
-	pixel_x = -28
-	},
+/obj/structure/chair/stool,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAd" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/instrument/harmonica,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/toy/cards/deck,
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAe" = (
@@ -17790,11 +17817,11 @@
 	},
 /area/maintenance/starboard/central)
 "aAW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/table,
-/obj/item/paper,
-/obj/item/pen,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aAX" = (
@@ -18725,11 +18752,12 @@
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "aCp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/flasher{
-	id = "PCell 2";
-	pixel_x = -28
+/obj/machinery/vending/cola{
+	onstation = 0
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -19874,16 +19902,16 @@
 /area/hallway/secondary/exit)
 "aEg" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security/glass{
-	name = "Security E.V.A. Storage";
-	req_access_txt = "63"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -19913,10 +19941,6 @@
 /area/security/prison)
 "aEk" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security/glass{
-	name = "Security E.V.A. Storage";
-	req_access_txt = "63"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -19926,6 +19950,10 @@
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -21260,6 +21288,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"aFZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/flasher{
+	id = "PCell 1";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aGa" = (
 /obj/effect/landmark/event_spawn,
 /obj/item/beacon,
@@ -21293,6 +21336,17 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"aGd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aGe" = (
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
@@ -21338,6 +21392,34 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"aGk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/table,
+/obj/item/paper,
+/obj/item/pen,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"aGl" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/flasher{
+	id = "PCell 2";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aGm" = (
 /obj/structure/sign/warning/radiation,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -21506,6 +21588,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/port/central)
+"aGC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aGD" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
@@ -77067,12 +77160,12 @@ aaa
 aac
 aac
 aad
-agG
-ahA
-ahA
-ahA
-ahA
-ahA
+aac
+aad
+aad
+aad
+aad
+aad
 aad
 aad
 aad
@@ -77845,7 +77938,7 @@ aem
 ajb
 arD
 azT
-aAc
+aFZ
 arD
 aCv
 agF
@@ -78098,11 +78191,11 @@ aad
 abO
 adz
 aem
-aem
-aem
+air
+alz
 ayi
 aem
-aAd
+aGd
 aCq
 aCx
 aDm
@@ -78353,13 +78446,13 @@ aac
 aac
 aac
 acx
-aem
+aeo
 ajb
-aem
-ajZ
+agH
+aAc
 arD
 azU
-aAW
+aGk
 aCr
 aCy
 aDn
@@ -78610,10 +78703,10 @@ aac
 aac
 aac
 acE
-aem
+aeo
 ajb
-aem
-air
+aeo
+aAd
 arD
 arD
 arD
@@ -78867,13 +78960,13 @@ aac
 aac
 aac
 acH
-aeo
-aem
-aem
+agG
+agH
+ajZ
 aFM
 arD
 aAa
-aCp
+aGl
 aCt
 aDc
 aDo
@@ -79127,10 +79220,10 @@ abO
 aep
 aFo
 ahz
-ahz
+aAW
 azn
 ahz
-ahz
+aGC
 aCu
 aDf
 aDp
@@ -79382,12 +79475,12 @@ aad
 aad
 abO
 afb
-agH
+ahA
 aiq
-alz
+aCp
 arD
 aAb
-aAW
+aGk
 aCr
 aDk
 aDq
