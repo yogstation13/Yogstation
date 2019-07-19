@@ -1,4 +1,3 @@
-
 //Current rate: 135000 research points in 90 minutes
 
 //Base Nodes
@@ -199,16 +198,25 @@
 	display_name = "Miniaturized Bluespace Research"
 	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
 	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
-	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "bag_holding", "quantum_keycard", "wormholeprojector")
+	design_ids = list("bluespace_matter_bin", "femto_mani", "bluespacebodybag", "triphasic_scanning", "quantum_keycard", "wormholeprojector")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
+
+/datum/techweb_node/advanced_bluespace
+	id = "bluespace_storage"
+	display_name = "Advanced Bluespace Storage"
+	description = "With the use of bluespace we can create even more advanced storage devices than we could have ever done"
+	prereq_ids = list("micro_bluespace", "janitor")
+	design_ids = list("bag_holding")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 3000
 
 /datum/techweb_node/practical_bluespace
 	id = "practical_bluespace"
 	display_name = "Applied Bluespace Research"
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
-	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "bluespacebodybag", "phasic_scanning", "roastingstick", "ore_silo")
+	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "phasic_scanning", "roastingstick", "ore_silo")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -545,7 +553,7 @@
 	id = "exp_tools"
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
-	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "tool_switcher") // yogs - tool switcher
+	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "tool_switcher", "tricorder") // yogs - tool switcher and tricorder
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
@@ -821,16 +829,16 @@
 	id = "mech_missile_rack"
 	display_name = "Exosuit Weapon (SRM-8 Missile Rack)"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("explosive_weapons")
+	prereq_ids = list("explosive_weapons","syndicate_basic")
 	design_ids = list("mech_missile_rack")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
 /datum/techweb_node/clusterbang_launcher
 	id = "clusterbang_launcher"
 	display_name = "Exosuit Module (SOB-3 Clusterbang Launcher)"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("explosive_weapons")
+	prereq_ids = list("explosive_weapons","syndicate_basic")
 	design_ids = list("clusterbang_launcher")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000

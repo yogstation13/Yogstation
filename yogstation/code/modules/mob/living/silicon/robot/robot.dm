@@ -53,7 +53,7 @@
 
 /mob/living/silicon/robot/examine(mob/user)
 	. = ..()
-	to_chat(user, "It seems to have the <b>[module.name] module</b> loaded.")
+	. += "It seems to have the <b>[module.name] module</b> loaded."
 
 /mob/living/silicon/robot/verb/self_self_destruct()
 	set category = "Robot Commands"
@@ -61,10 +61,10 @@
 
 	if(usr.stat == DEAD)
 		return //won't work if dead
-	
+
 	if(alert("WARNING: Are you sure you wish to self-destruct? This action cannot be undone!",,"Yes","No") != "Yes")
 		return
-	
+
 	var/turf/T = get_turf(usr)
 	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated themselves at [ADMIN_VERBOSEJMP(T)]!</span>")
 	log_game("\<span class='notice'>[key_name(usr)] detonated themselves!</span>")
