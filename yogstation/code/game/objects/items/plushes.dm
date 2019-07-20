@@ -80,16 +80,18 @@
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "flowerbunch"
 
+/obj/item/toy/plush/goatplushie
+	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
+
 /obj/item/toy/plush/goatplushie/angry/realgoat
 	name = "goat plushie"
 	icon_state = "realgoat"
-	component = /datum/component/squeak/goat
 
 /obj/item/toy/plush/realgoat
 	name = "goat plushie"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same, or atleast it would if it wasnt a normal plushie."
 	icon_state = "realgoat"
-	component = /datum/component/squeak/goat
+	squeak_override = list('yogstation/sound/items/goatsound.ogg'=1)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat
 	name = "King Goat Plushie"
@@ -99,7 +101,6 @@
 	throwforce = 25
 	force = 25
 	attack_verb = list("chomped")
-	component = /datum/component/squeak/goat
 
 /obj/item/toy/plush/goatplushie/angry/ascendedkinggoat
 	name = "Ascended King Goat Plushie"
@@ -109,7 +110,6 @@
 	throwforce = 30
 	force = 30
 	attack_verb = list("chomped")
-	component = /datum/component/squeak/goat
 
 /obj/item/toy/plush/goatplushie/angry/ascendedkinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())
@@ -153,7 +153,6 @@
 	icon_state = "guardgoat"
 	cooldown_modifier = 5
 	throwforce = 10
-	component = /datum/component/squeak/goat
 
 /obj/item/toy/plush/goatplushie/angry/masterguardgoat
 	name = "royal guard goat plushie"
@@ -161,4 +160,3 @@
 	icon_state = "royalguardgoat"
 	cooldown_modifier = 4
 	throwforce = 15
-	component = /datum/component/squeak/goat
