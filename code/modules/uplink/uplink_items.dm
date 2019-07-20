@@ -1653,6 +1653,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/syringe/spider_extract
 	cost = 25 //yogs - increase price to reduce grief potential
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
 
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
