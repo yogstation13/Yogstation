@@ -1,0 +1,5 @@
+author: "yogstation13-bot"
+delete-after: true 
+changes: 
+  - bugfix: "You can no longer infinitely purify a soulstone."
+  - bugfix: "Cultists can't use purified soulstones anymore."
