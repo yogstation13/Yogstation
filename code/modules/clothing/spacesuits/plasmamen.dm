@@ -91,9 +91,8 @@
 /obj/item/clothing/head/helmet/space/plasmaman/curator
 	name = "prototype envirosuit helmet"
 	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
-	icon_state = "plasmaman_helm_OLD"
-	item_state = "plasmaman_helm_OLD"
-	actions_types = list()
+	icon_state = "curator_envirohelm"
+	item_state = "curator_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mime
 	name = "mime envirosuit helmet"
