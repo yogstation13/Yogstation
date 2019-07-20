@@ -12,7 +12,7 @@
 	SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, -100)
 	Stop()
 
-/obj/item/organ/heart/cybernetic/on_life()
+/obj/item/organ/heart/nanite/on_life()
 	. = ..()
 	if(SEND_SIGNAL(owner, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, nanite_boost)
