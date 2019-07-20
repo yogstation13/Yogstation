@@ -12,9 +12,15 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/smartfridge
-	var/max_n_of_items = 1500
+	var/max_n_of_items = 1000
 	var/allow_ai_retrieve = FALSE
 	var/list/initial_contents
+	var/full_indicator_state = "smartfridge-indicator" //the icon state for the "oh no, we're full" indicator light
+	var/retrieval_state = "smartfridge-retrieve" //the icon state for the dispensing animation 
+	var/const/retrieval_time = 19 //the length (in ticks) of the retrieval_state
+	var/supports_full_indicator_state = TRUE //whether or not the smartfridge supports a full inventory indicator icon state
+	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
+	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -30,12 +36,15 @@
 
 /obj/machinery/smartfridge/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
-		max_n_of_items = 1500 * B.rating
+		max_n_of_items = initial(max_n_of_items) * B.rating
 
 /obj/machinery/smartfridge/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: This unit can hold a maximum of <b>[max_n_of_items]</b> items.<span>"
+		if (contents.len >= max_n_of_items)
+			. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
+		else
+			. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
 
 /obj/machinery/smartfridge/power_change()
 	..()
@@ -45,10 +54,39 @@
 	var/startstate = initial(icon_state)
 	if(!stat)
 		icon_state = startstate
+		//Capacity indication:
+		if(supports_capacity_indication && contents.len > 0 && max_n_of_items > 0)
+			var/current_capacity_percent = (contents.len/max_n_of_items)*100
+			if(current_capacity_percent <= 2)
+				icon_state = startstate
+			else if(current_capacity_percent < 25)
+				icon_state = "[startstate]-1"
+			else if (current_capacity_percent < 45)
+				icon_state = "[startstate]-2"
+			else if (current_capacity_percent < 65)
+				icon_state = "[startstate]-3"
+			else if (current_capacity_percent < 85)
+				icon_state = "[startstate]-4"
+			else if (current_capacity_percent <= 100)
+				icon_state = "[startstate]-5"
+
 	else
 		icon_state = "[startstate]-off"
 
+/obj/machinery/smartfridge/proc/animate_dispenser()
+	//visually animate the smartfridge dispensing an item
+	if (supports_retrieval_state && !(stat & (NOPOWER|BROKEN)))
+		//hacky way to flick an animated overlay in the same DMI
+		var/current_icon_state = icon_state
+		src.underlays += current_icon_state
+		flick(retrieval_state, src)
+		src.underlays -= current_icon_state
 
+/obj/machinery/smartfridge/proc/indicate_full()
+	//turn on the blinking red full to capacity indicator
+	if (supports_full_indicator_state && !(stat & (NOPOWER|BROKEN)))
+		add_overlay(full_indicator_state)
+		src.visible_message("<span class='warning'>\The [src]'s \"Full Inventory\" indicator light blinks on.</span>", "<span class='warning'>Your \"Full Inventory\" indicator light blinks on, you are now at capacity.</span>", "<span class='notice'>You hear a clunk, then a quiet beep.</span>")
 
 /*******************
 *   Item Adding
@@ -75,16 +113,22 @@
 
 	if(!stat)
 
+		//Unable to add an item, it's already full.
 		if(contents.len >= max_n_of_items)
 			to_chat(user, "<span class='warning'>\The [src] is full!</span>")
 			return FALSE
 
+		//Adding a single item
 		if(accept_check(O))
 			load(O)
 			user.visible_message("[user] has added \the [O] to \the [src].", "<span class='notice'>You add \the [O] to \the [src].</span>")
+			update_icon()
 			updateUsrDialog()
+			if(contents.len >= max_n_of_items)
+				indicate_full()
 			return TRUE
 
+		//Adding items from a bag
 		if(istype(O, /obj/item/storage/bag))
 			var/obj/item/storage/P = O
 			var/loaded = 0
@@ -94,10 +138,12 @@
 				if(accept_check(G))
 					load(G)
 					loaded++
+			update_icon()
 			updateUsrDialog()
 
 			if(loaded)
 				if(contents.len >= max_n_of_items)
+					indicate_full()
 					user.visible_message("[user] loads \the [src] with \the [O].", \
 									 "<span class='notice'>You fill \the [src] with \the [O].</span>")
 				else
@@ -128,7 +174,7 @@
 	if(ismob(O.loc))
 		var/mob/M = O.loc
 		if(!M.transferItemToLoc(O, src))
-			to_chat(usr, "<span class='warning'>\the [O] is stuck to your hand, you cannot put it in \the [src]!</span>")
+			to_chat(usr, "<span class='warning'>\The [O] is stuck to your hand, you cannot put it in \the [src]!</span>")
 			return FALSE
 		else
 			return TRUE
@@ -190,23 +236,35 @@
 				desired = text2num(params["amount"])
 			else
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
+			
+			if(desired <= 0)
+				return FALSE
 
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
 				return FALSE
 
+			//Retrieving a single item into your hand
 			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
 				for(var/obj/item/O in src)
 					if(O.name == params["name"])
 						dispense(O, usr)
 						break
+				update_icon()
+				cut_overlay(full_indicator_state)
+				animate_dispenser()
 				return TRUE
 
+			//Retrieving many items
 			for(var/obj/item/O in src)
 				if(desired <= 0)
 					break
 				if(O.name == params["name"])
 					dispense(O, usr)
 					desired--
+
+			update_icon()
+			cut_overlay(full_indicator_state)
+			animate_dispenser()
 			return TRUE
 	return FALSE
 
@@ -222,6 +280,9 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 200
+	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
+	supports_retrieval_state = FALSE //whether or not the smartfridge supports a retrieval_state dispensing animation
+	supports_capacity_indication = FALSE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 	var/drying = FALSE
 
 /obj/machinery/smartfridge/drying_rack/Initialize()
@@ -476,6 +537,9 @@
 	desc = "A machine capable of storing a variety of disks. Denoted by most as the DSU (disk storage unit)."
 	icon_state = "disktoaster"
 	pass_flags = PASSTABLE
+	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
+	supports_retrieval_state = FALSE //whether or not the smartfridge supports a retrieval_state dispensing animation
+	supports_capacity_indication = FALSE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 
 /obj/machinery/smartfridge/disks/accept_check(obj/item/O)
 	if(istype(O, /obj/item/disk/))
