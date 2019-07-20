@@ -17,7 +17,7 @@
 	if(SEND_SIGNAL(owner, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, nanite_boost)
 	else
-		if prob(25)
+		if(prob(25))
 			to_chat(owner, "<span class = 'userdanger'>Your heart flutters and stops...</span>")
 		Stop()
 
