@@ -16,7 +16,7 @@
 
 /obj/item/clothing/under/rank/yogs/scaryclown/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/bikehorn, 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/yogs/harveyflint
 	name = "black and red suit"
@@ -656,3 +656,7 @@
 	item_state = "cosby"
 	item_color = "cosby"
 	can_adjust = 0
+
+/obj/item/clothing/under/plasmaman/Initialize()
+	. = ..()
+	alternate_worn_icon = 'yogstation/icons/mob/uniform.dmi' //Yog envirosuit sprite fixes - https://github.com/yogstation13/Yogstation-TG/pull/6219
