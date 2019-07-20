@@ -186,11 +186,11 @@
 
 /datum/reagent/medicine/rezadone
 	name = "Rezadone"
-	description = "A powder derived from fish toxin, Rezadone can effectively treat genetic damage as well as restoring minor wounds. Overdose will cause intense nausea and minor toxin damage."
+	description = "A powder derived from Chili's seeds, Rezadone can effectively treat genetic damage as well as restoring minor wounds. Overdose will cause intense nausea and minor toxin damage."
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
 	overdose_threshold = 30
-	taste_description = "fish"
+	taste_description = "spicy"
 
 /datum/reagent/medicine/rezadone/on_mob_life(mob/living/carbon/M)
 	M.setCloneLoss(0) //Rezadone is almost never used in favor of cryoxadone. Hopefully this will change that.
