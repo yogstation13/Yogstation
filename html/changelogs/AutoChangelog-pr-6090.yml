@@ -1,0 +1,4 @@
+author: "AdamElTablawy"
+delete-after: true 
+changes: 
+  - rscadd: "clusterbang and SRM-8 missile launchers now take syndicate weaponry to unlock due to balance issues"

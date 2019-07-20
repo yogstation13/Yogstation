@@ -105,18 +105,6 @@
 	else
 		to_chat(src, msg)
 
-/mob/proc/display_output(sound/S, mutable_appearance/vfx, text, turf/turf_source, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
-	if(!can_hear())
-		return
-	//Process sound
-	if(S)
-		SEND_SOUND(src, S)
-	//Process text
-	if(text)
-		to_chat(src, "<span class='italics'>[text]</span>")
-	//to whoever sees this: icons are handled in living.dm
-
-
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
 // Use for atoms performing visible actions
@@ -317,7 +305,8 @@
 		return
 
 	face_atom(A)
-	A.examine(src)
+	var/list/result = A.examine(src)
+	to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 //same as above
@@ -760,26 +749,6 @@
 //Can the mob interact() with an atom?
 /mob/proc/can_interact_with(atom/A)
 	return IsAdminGhost(src) || Adjacent(A)
-
-//Can the mob see reagents inside of containers?
-/mob/proc/can_see_reagents()
-	if(stat == DEAD) //Ghosts and such can always see reagents
-		return 1
-	if(has_unlimited_silicon_privilege) //Silicons can automatically view reagents
-		return 1
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.head && istype(H.head, /obj/item/clothing))
-			var/obj/item/clothing/CL = H.head
-			if(CL.scan_reagents)
-				return 1
-		if(H.wear_mask && H.wear_mask.scan_reagents)
-			return 1
-		if(H.glasses && istype(H.glasses, /obj/item/clothing))
-			var/obj/item/clothing/CL = H.glasses
-			if(CL.scan_reagents)
-				return 1
-	return 0
 
 //Can the mob use Topic to interact with machines
 /mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)

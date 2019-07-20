@@ -919,6 +919,7 @@
 /obj/machinery/vending/sustenance{
 	desc = "A vending machine normally reserved for work camps.";
 	name = "\improper sustenance vendor";
+	onstation = 0;
 	product_slogans = "Enjoy your meal.;Enough calories to support any worker."
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -69814,12 +69815,12 @@
 	},
 /area/crew_quarters/heads/hor)
 "ctc" = (
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
 /obj/effect/spawner/xmastree/rdrod,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/structure/sign/plaques/cave{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
@@ -81895,6 +81896,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"dFY" = (
+/obj/item/cigbutt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "dIs" = (
 /obj/machinery/door/airlock/external{
 	name = "Supply Dock Airlock";
@@ -101669,7 +101675,7 @@ aqO
 bMG
 alC
 bPN
-apz
+dFY
 bTt
 bTv
 alC
