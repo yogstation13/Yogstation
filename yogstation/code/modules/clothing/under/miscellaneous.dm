@@ -656,7 +656,3 @@
 	item_state = "cosby"
 	item_color = "cosby"
 	can_adjust = 0
-
-/obj/item/clothing/under/plasmaman/Initialize()
-	. = ..()
-	alternate_worn_icon = 'icons/mob/uniform.dmi' //Yog envirosuit sprite fixes - https://github.com/yogstation13/Yogstation-TG/pull/6219
