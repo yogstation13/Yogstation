@@ -86,8 +86,7 @@
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random/Initialize()
 	. = ..()
 	if(prob(1))
-		if(prob(75))
-			new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
+		new /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing(loc)
 		return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing
