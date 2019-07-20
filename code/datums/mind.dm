@@ -66,6 +66,8 @@
 
 	var/list/learned_recipes //List of learned recipe TYPES.
 
+	var/flavour_text = null
+
 /datum/mind/New(var/key)
 	src.key = key
 	soulOwner = src
@@ -173,6 +175,7 @@
 	if(antag_team)
 		antag_team.add_member(src)
 	A.on_gain()
+	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 
 /datum/mind/proc/remove_antag_datum(datum_type)
