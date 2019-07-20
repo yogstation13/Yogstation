@@ -578,7 +578,7 @@
 	return TRUE
 
 /datum/status_effect/regenerative_core/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, "regenerative_core")
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 
 /datum/status_effect/antimagic
 	id = "antimagic"
