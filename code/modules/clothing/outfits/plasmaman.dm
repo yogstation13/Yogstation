@@ -1,13 +1,11 @@
 /datum/outfit/plasmaman/bar
 	name = "Bartender Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 
 /datum/outfit/plasmaman/chef
 	name = "Chef Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/chef
 
 /datum/outfit/plasmaman/botany
@@ -25,13 +23,11 @@
 /datum/outfit/plasmaman/chaplain
 	name = "Chaplain Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/chaplain
 
 /datum/outfit/plasmaman/janitor
 	name = "Janitor Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/janitor
 
 /datum/outfit/plasmaman/security
@@ -43,7 +39,6 @@
 /datum/outfit/plasmaman/detective
 	name = "Detective Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	ears = /obj/item/radio/headset/headset_sec
 
@@ -56,19 +51,16 @@
 /datum/outfit/plasmaman/cargo
 	name = "Cargo Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/cargo
 
 /datum/outfit/plasmaman/qm
 	name = "Quartermaster Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/qm
 
 /datum/outfit/plasmaman/mining
 	name = "Mining Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/mining
 
 /datum/outfit/plasmaman/medical
@@ -86,7 +78,6 @@
 /datum/outfit/plasmaman/chemist
 	name = "Chemist Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/chemist
 
 /datum/outfit/plasmaman/genetics
@@ -98,13 +89,11 @@
 /datum/outfit/plasmaman/science
 	name = "Science Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/science
 
 /datum/outfit/plasmaman/robotics
 	name = "Robotics Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman/robotics
 
 /datum/outfit/plasmaman/engineering
