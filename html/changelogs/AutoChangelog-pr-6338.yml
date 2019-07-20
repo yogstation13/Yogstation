@@ -1,0 +1,4 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - imageadd: "The empowered burger no longer has a jarring sprite."
