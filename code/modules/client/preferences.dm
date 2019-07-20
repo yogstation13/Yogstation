@@ -142,6 +142,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)
 		return
+	
+	if(!SSjob || (SSjob.occupations.len <= 0))
+		to_chat(user, "<span class='notice'>The job SSticker is not yet finished creating jobs, please try again later</span>")
+		return
+	
 	update_preview_icon()
 	var/list/dat = list("<center>")
 
