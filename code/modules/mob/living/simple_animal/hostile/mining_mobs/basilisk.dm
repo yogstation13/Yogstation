@@ -105,7 +105,7 @@
 	crusher_loot = /obj/item/crusher_trophy/blaster_tubes/magma_wing
 	crusher_drop_mod = 10
 	loot = list()
-	butcher_results = list(/obj/item/stack/ore/diamond = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
+	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
 	name = "icewing watcher"
