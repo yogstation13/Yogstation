@@ -38,7 +38,7 @@
 
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
-	
+
 	//Yogs start
 	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
 	var/space_law_notify
@@ -64,6 +64,14 @@
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+
+	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
+
+/datum/job/New()
+	.=..()
+	if(changed_maps.len)
+		for(var/map in changed_maps)
+			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it

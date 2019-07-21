@@ -17,6 +17,13 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/paramedic/proc/OmegaStationChanges()
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/paramedic
 	name = "Paramedic"
 	jobtype = /datum/job/paramedic
