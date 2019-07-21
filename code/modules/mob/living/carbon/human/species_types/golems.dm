@@ -1052,7 +1052,7 @@
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), SLOT_HEAD)
 	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), SLOT_GLASSES)
 	C.revive(full_heal = TRUE)
-	to_chat(owner, "<span class='alert'>You are now a capitalist golem! Do not harm fellow capitalist golems, kill communist golems, and hit people with your fists to spread the industrializing lilght of capitalism to others! Hello I like money!</span>") //yogs memes
+	to_chat(C, "<span class='alert'>You are now a capitalist golem! Do not harm fellow capitalist golems, kill communist golems, and hit people with your fists to spread the industrializing lilght of capitalism to others! Hello I like money!</span>") //yogs memes
 
 	SEND_SOUND(C, sound('sound/misc/capitialism.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
@@ -1095,7 +1095,7 @@
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), SLOT_HEAD)
 	C.revive(full_heal = TRUE)
-	to_chat(owner, "<span class='alert'>You are now a soviet golem! Do not harm fellow soviet golems, kill captalist golems, and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!</span>") //yogs memes
+	to_chat(C, "<span class='alert'>You are now a soviet golem! Do not harm fellow soviet golems, kill captalist golems, and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!</span>") //yogs memes
 
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
