@@ -83,7 +83,9 @@
 	if(isconstruct(M)) //is it a construct?
 		var/mob/living/simple_animal/hostile/construct/C = M
 		if(!C.can_repair_constructs || (C == src && !C.can_repair_self))
-			return
+			return ..()
+		if(holy != C.holy)
+			return ..()
 		if(health < maxHealth)
 			adjustHealth(-5)
 			if(src != M)
