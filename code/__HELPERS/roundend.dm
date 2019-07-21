@@ -163,12 +163,7 @@
 	set waitfor = FALSE
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
-<<<<<<< HEAD
-	if(LAZYLEN(GLOB.round_end_notifiees))
-		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
-=======
 	log_game("The round has ended.")
->>>>>>> c4e75bc40b... [READY] SSdiscord and Round Notifications (#44231)
 
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I
