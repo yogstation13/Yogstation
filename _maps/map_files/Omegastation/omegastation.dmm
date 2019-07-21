@@ -2297,7 +2297,6 @@
 /turf/closed/wall,
 /area/crew_quarters/heads/captain/private)
 "adI" = (
-/obj/structure/filingcabinet,
 /obj/structure/cable/white{
 	icon_state = "2-4"
 	},
@@ -2309,6 +2308,7 @@
 	dir = 4;
 	name = "command camera"
 	},
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "adJ" = (
@@ -2325,10 +2325,6 @@
 	icon_state = "plant-22"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Captain's Quarters";
 	dir = 1
 	},
 /turf/open/floor/wood{
