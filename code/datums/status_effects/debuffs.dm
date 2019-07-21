@@ -102,14 +102,9 @@
 		last_dead_time = world.time
 
 /datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
-<<<<<<< HEAD
 	. = ..()
 	update_time_of_death()
-=======
-        . = ..()
-        update_time_of_death()
-        owner.reagents?.end_metabolization(owner, FALSE)
->>>>>>> 391c65ec4a... Merge pull request #44840 from JJRcop/stasis_stops_metab
+	owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
