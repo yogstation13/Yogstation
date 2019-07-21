@@ -84,8 +84,11 @@
 		if("Warden")
 			O = new /datum/outfit/plasmaman/warden
 
-		if("Cargo Technician", "Quartermaster")
+		if("Cargo Technician")
 			O = new /datum/outfit/plasmaman/cargo
+
+		if("Quartermaster")
+			O = new /datum/outfit/plasmaman/qm
 
 		if("Shaft Miner")
 			O = new /datum/outfit/plasmaman/mining
