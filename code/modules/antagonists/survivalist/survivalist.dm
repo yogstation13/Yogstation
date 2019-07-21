@@ -16,7 +16,7 @@
 
 /datum/antagonist/survivalist/greet()
 	to_chat(owner, "<B>You are the survivalist![greet_message]</B>")
-	MM.memory += "<B>You are the survivalist![greet_message]</B>"
+	owner.memory += "<B>You are the survivalist![greet_message]</B>"
 	owner.announce_objectives()
 
 /datum/antagonist/survivalist/guns
