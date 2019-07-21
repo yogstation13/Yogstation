@@ -469,7 +469,7 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam))
+		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam, needs_metabolizing = TRUE))
 			if(T)
 				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
@@ -878,9 +878,9 @@
 	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
 	if(mood)
 		switch(mood.sanity) //Alters do_after delay based on how sane you are
-			if(SANITY_INSANE to SANITY_DISTURBED)
+			if(-INFINITY to SANITY_DISTURBED)
 				. *= 1.25
-			if(SANITY_NEUTRAL to SANITY_GREAT)
+			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
 /mob/living/carbon/proc/create_internal_organs()
@@ -920,3 +920,4 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+
