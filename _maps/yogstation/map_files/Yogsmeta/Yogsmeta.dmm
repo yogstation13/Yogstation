@@ -31381,9 +31381,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/filingcabinet{
-	pixel_x = 4
-	},
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bdN" = (

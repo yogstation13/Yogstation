@@ -23515,6 +23515,10 @@
 "aUI" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
+"aUJ" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -27883,10 +27887,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"bdi" = (
-/obj/machinery/computer/arcade,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "bdj" = (
 /obj/structure/toilet{
 	dir = 1
@@ -90705,7 +90705,7 @@ aYr
 aZV
 bbo
 bch
-bdi
+aUJ
 bei
 bfy
 bgS
