@@ -237,6 +237,9 @@
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
+	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
+		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+
 	if(!appears_dead)
 		if(drunkenness && !skipface) //Drunkenness
 			switch(drunkenness)
