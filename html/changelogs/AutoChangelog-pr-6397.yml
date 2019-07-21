@@ -1,0 +1,7 @@
+author: "Ihonkification"
+delete-after: true 
+changes: 
+  - rscadd: "The QM now has a envirosuit."
+  - wip: "Yogjobs, clown, and mime are missing custom or updated envirosuits."
+  - imageadd: "Envirosuits have been resprited."
+  - imagedel: "Most of the old envirosuits."

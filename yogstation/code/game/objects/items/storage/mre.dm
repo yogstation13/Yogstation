@@ -8,7 +8,7 @@
 
 /obj/item/storage/box/mre/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>")
+	. += "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>"
 
 /obj/item/storage/box/mre/Initialize()
 	. = ..()

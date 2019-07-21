@@ -14,7 +14,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
-	meat = null
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
 	brutemod = 1.25
 	burnmod = 1.5
