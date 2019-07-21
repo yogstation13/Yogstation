@@ -16,8 +16,8 @@
 	var/allow_ai_retrieve = FALSE
 	var/list/initial_contents
 	var/full_indicator_state = "smartfridge-indicator" //the icon state for the "oh no, we're full" indicator light
-	var/retrieval_state = "smartfridge-retrieve" //the icon state for the dispensing animation 
-	var/const/retrieval_time = 19 //the length (in ticks) of the retrieval_state
+	var/retrieval_state = "smartfridge-retrieve" //the icon state for the dispensing animation
+	var/retrieval_time = 19 //the length (in ticks) of the retrieval_state
 	var/supports_full_indicator_state = TRUE //whether or not the smartfridge supports a full inventory indicator icon state
 	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
@@ -396,6 +396,7 @@
 /obj/machinery/smartfridge/drinks
 	name = "drink showcase"
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	max_n_of_items = 100
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
 	if(!istype(O, /obj/item/reagent_containers) || (O.item_flags & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
@@ -408,6 +409,7 @@
 // ----------------------------
 /obj/machinery/smartfridge/food
 	desc = "A refrigerated storage unit for food."
+	max_n_of_items = 200
 
 /obj/machinery/smartfridge/food/accept_check(obj/item/O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
@@ -420,6 +422,7 @@
 /obj/machinery/smartfridge/extract
 	name = "smart slime extract storage"
 	desc = "A refrigerated storage unit for slime extracts."
+	max_n_of_items = 200
 
 /obj/machinery/smartfridge/extract/accept_check(obj/item/O)
 	if(istype(O, /obj/item/slime_extract))
@@ -486,6 +489,7 @@
 /obj/machinery/smartfridge/chemistry
 	name = "smart chemical storage"
 	desc = "A refrigerated storage unit for medicine storage."
+	max_n_of_items = 100
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
 	if(istype(O, /obj/item/storage/pill_bottle))
@@ -518,6 +522,7 @@
 /obj/machinery/smartfridge/chemistry/virology
 	name = "smart virus storage"
 	desc = "A refrigerated storage unit for volatile sample storage."
+	max_n_of_items = 100
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded
 	initial_contents = list(
@@ -538,7 +543,9 @@
 	icon_state = "disktoaster"
 	pass_flags = PASSTABLE
 	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
-	supports_retrieval_state = FALSE //whether or not the smartfridge supports a retrieval_state dispensing animation
+	retrieval_state = "disktoaster-retrieve" //the icon state for the dispensing animation
+	retrieval_time = 5 //the length (in ticks) of the retrieval_state
+	supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	supports_capacity_indication = FALSE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 
 /obj/machinery/smartfridge/disks/accept_check(obj/item/O)
