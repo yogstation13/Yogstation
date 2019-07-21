@@ -67,6 +67,30 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
+/* 
+	If you want to change a job on a specific map with this system, you will want to go onto that job datum
+	and add said map's name to the changed_maps list, like so:
+	
+	changed_maps = list("OmegaStation")
+	
+	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
+	actually making the changes, like so:
+
+	/datum/job/miner/proc/OmegaStationChanges()
+
+	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
+	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
+	on OmegaStation, we'd do the following:
+
+	/datum/job/warden
+		changed_maps = list("OmegaStation")
+	
+	/datum/job/warden/proc/OmegaStationChanges()
+		total_positions = 2
+		spawn_positions = 2
+*/
+
+
 /datum/job/New()
 	.=..()
 	if(changed_maps.len)
