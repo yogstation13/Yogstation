@@ -95,7 +95,7 @@
 				speak_advert()
 		else if(slogan_list.len > 0) //no contents to advertise, display a slogan instead
 			speak_slogan()
-	last_pitch = world.time
+		last_pitch = world.time
 
 /obj/machinery/smartfridge/proc/speak_slogan()
 	//speak a generic slogan from our slogan list (if possible)
@@ -380,6 +380,8 @@
 	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
 	supports_retrieval_state = FALSE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	supports_capacity_indication = FALSE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
+	product_slogans = "Smokin'!;Blaze it.;Roll 'em up!;This machine is made out of 85% organic hemp product.;Warning: Do not insert limbs into machine.;Enjoy your dried \"plant products\".;This machine was last inspected on April 20th, 2550.;Wait, I forgot what I was going to do... Oh yeah, dry things.;Tell the Cook to bring some food over here, I'm starving."
+	pitches = FALSE
 	var/drying = FALSE
 
 /obj/machinery/smartfridge/drying_rack/Initialize()
@@ -492,8 +494,10 @@
 // ----------------------------
 /obj/machinery/smartfridge/drinks
 	name = "drink showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
+	desc = "A refrigerated storage unit for tasty, tasty alcohol."
 	max_n_of_items = 100
+	product_slogans = "Only the finest beverages for the discerning crewmember.;All our drinks are served ice-cold.;Happy Hour begins every shift at 12:00.;Don't worry, we won't tell the Captain if you drink on the shift.;This'll get ya drunk.;Bottoms up!;Delightfully refreshing!;Show me the way to go home, I'm tired and I want to go to bed...;This unit contains the bartender's latest creations."
+	pitches = TRUE
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
 	if(!istype(O, /obj/item/reagent_containers) || (O.item_flags & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
@@ -506,6 +510,7 @@
 // ----------------------------
 /obj/machinery/smartfridge/food
 	desc = "A refrigerated storage unit for food."
+	product_slogans = "Clean your refrigerator regularly!;Is your refrigerator running?;Much better than storing your food in space.;Feeling hungry? Have a snack!;Tasty and nutritious!"
 	max_n_of_items = 200
 
 /obj/machinery/smartfridge/food/accept_check(obj/item/O)
@@ -520,6 +525,8 @@
 	name = "smart slime extract storage"
 	desc = "A refrigerated storage unit for slime extracts."
 	max_n_of_items = 200
+	pitches = FALSE
+	product_slogans = "Slime on a dime.;Don't let the Syndicate get their hands on these!;Those slimes won't know what hit 'em.;Hi slimes!;Xeno guts, on ice.;For a lavaland creature, they're pretty cute!;Hello slimes!"
 
 /obj/machinery/smartfridge/extract/accept_check(obj/item/O)
 	if(istype(O, /obj/item/slime_extract))
@@ -587,6 +594,7 @@
 	name = "smart chemical storage"
 	desc = "A refrigerated storage unit for medicine storage."
 	max_n_of_items = 100
+	product_slogans = "Medicine for what ails ya.;Get your medicine here!;Disclaimer: These chemicals are not regulated by the Nanotrasen Drug Administration.;Do you have a prescription for that?;This unit can dispense chemicals, medicines, toxins, and quite possibly also narcotics.;Ask your doctor or CMO about Chloral Hydrate(tm) today!;Check out our expanded inventory of pharmaceuticals.;Chemist, did you remember to make Mannitol?"
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
 	if(istype(O, /obj/item/storage/pill_bottle))
@@ -607,6 +615,7 @@
 	return FALSE
 
 /obj/machinery/smartfridge/chemistry/preloaded
+	pitches = TRUE
 	initial_contents = list(
 		/obj/item/reagent_containers/pill/epinephrine = 12,
 		/obj/item/reagent_containers/pill/charcoal = 5,
@@ -620,6 +629,7 @@
 	name = "smart virus storage"
 	desc = "A refrigerated storage unit for volatile sample storage."
 	max_n_of_items = 100
+	product_slogans = "Try not to spill these.;Wear your biohazard gear when operating this machine.;Whoops, I think I dropped one.;Storage solutions for any and all biohazardous material."
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded
 	initial_contents = list(
@@ -638,6 +648,7 @@
 	name = "disk compartmentalizer"
 	desc = "A machine capable of storing a variety of disks. Denoted by most as the DSU (disk storage unit)."
 	icon_state = "disktoaster"
+	product_slogans = "Toasty!;Burnt to a crisp.;Puts a new meaning to the term \"burning a disk\", eh?;Store your plant data disks here. Or any kind of disk really. I don't discriminate."
 	pass_flags = PASSTABLE
 	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
 	retrieval_state = "disktoaster-retrieve" //the icon state for the dispensing animation
