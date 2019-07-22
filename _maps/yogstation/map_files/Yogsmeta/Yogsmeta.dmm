@@ -38952,7 +38952,6 @@
 /area/crew_quarters/heads/captain/private)
 "bqX" = (
 /obj/structure/table/wood,
-/obj/item/stamp/captain,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
