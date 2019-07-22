@@ -20143,9 +20143,6 @@
 /area/hallway/primary/central)
 "aND" = (
 /obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -26660,6 +26657,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	icon_state = "manifold-3";
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -36094,6 +36094,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"bso" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "bsp" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue{
@@ -49418,12 +49426,6 @@
 "cfj" = (
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
-"cfk" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "cfm" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -54467,11 +54469,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"iGw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "iJP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/meter{
@@ -55049,12 +55046,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/aft)
-"ldn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "leB" = (
@@ -56128,14 +56119,6 @@
 /obj/machinery/rnd/production/techfab/department/medical,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"pnx" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "prH" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -98411,11 +98394,11 @@ bwZ
 bLT
 bLT
 aND
-ldn
-ldn
-ldn
-ldn
-cfk
+bAw
+bAw
+bAw
+bAw
+bAw
 cfY
 rfW
 cfY
@@ -98668,11 +98651,11 @@ bZN
 bHX
 bAw
 baH
-iGw
-iGw
-iGw
-iGw
-pnx
+bso
+bso
+bso
+bso
+bso
 kyM
 aZh
 kyM
