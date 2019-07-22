@@ -48,11 +48,6 @@
 	var/total = 0
 	var/lowest_paying_sum = 0
 	var/datum/syndicate_contract/lowest_paying_contract
-<<<<<<< HEAD
-	
-	for (var/i = 1; i <= contract_generation_quantity; i++)
-		var/datum/syndicate_contract/contract_to_add = new(owner)
-=======
 
 	// Randomise order, so we don't have contracts always in payout order.
 	to_generate = shuffle(to_generate)
@@ -61,7 +56,6 @@
 	// Generate contracts, and find the lowest paying.
 	for (var/i = 1; i <= to_generate.len; i++)
 		var/datum/syndicate_contract/contract_to_add = new(owner, to_generate[i], assigned_targets)
->>>>>>> b2b91a2875... Contract tweaks (#44869)
 		var/contract_payout_total = contract_to_add.contract.payout + contract_to_add.contract.payout_bonus
 		
 		assigned_targets.Add(contract_to_add.contract.target)

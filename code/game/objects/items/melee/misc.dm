@@ -240,14 +240,9 @@
 
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-<<<<<<< HEAD
-		to_chat(user, "<span class ='danger'>You club yourself over the head.</span>")
-		user.Paralyze(60 * force)
-=======
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
 		user.Paralyze(stun_time_carbon * force)
 		additional_effects_carbon(user) // user is the target here
->>>>>>> b2b91a2875... Contract tweaks (#44869)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
@@ -300,16 +295,10 @@
 			additional_effects_carbon(target, user)
 
 			log_combat(user, target, "stunned", src)
-<<<<<<< HEAD
-			src.add_fingerprint(user)
-			target.visible_message("<span class ='danger'>[user] has knocked down [target] with [src]!</span>", \
-				"<span class ='userdanger'>[user] has knocked down [target] with [src]!</span>")
-=======
 			add_fingerprint(user)
 
 			target.visible_message(desc["visible"], desc["local"])
 
->>>>>>> b2b91a2875... Contract tweaks (#44869)
 			if(!iscarbon(user))
 				target.LAssailant = null
 			else
@@ -365,17 +354,6 @@
 	var/list/desc = get_on_description()
 
 	if(on)
-<<<<<<< HEAD
-		to_chat(user, "<span class ='warning'>You extend the baton.</span>")
-		icon_state = "telebaton_1"
-		item_state = "nullrod"
-		w_class = WEIGHT_CLASS_BULKY //doesnt fit in backpack when its on for balance
-		force = 10 //stun baton damage
-		attack_verb = list("smacked", "struck", "cracked", "beaten")
-	else
-		to_chat(user, "<span class ='notice'>You collapse the baton.</span>")
-		icon_state = "telebaton_0"
-=======
 		to_chat(user, desc["local_on"])
 		icon_state = on_icon_state
 		item_state = on_item_state
@@ -385,7 +363,6 @@
 	else
 		to_chat(user, desc["local_off"])
 		icon_state = off_icon_state
->>>>>>> b2b91a2875... Contract tweaks (#44869)
 		item_state = null //no sprite for concealment even when in hand
 		slot_flags = ITEM_SLOT_BELT
 		w_class = WEIGHT_CLASS_SMALL
