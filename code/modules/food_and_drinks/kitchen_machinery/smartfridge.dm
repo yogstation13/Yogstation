@@ -8,6 +8,12 @@
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
+	verb_say = "beeps"
+	verb_ask = "beeps"
+	verb_exclaim = "beeps"
+	max_integrity = 300
+	integrity_failure = 100
+	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -21,6 +27,12 @@
 	var/supports_full_indicator_state = TRUE //whether or not the smartfridge supports a full inventory indicator icon state
 	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
+	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
+	var/last_pitch = 0			//When did we last pitch?
+	var/pitch_delay = 6000 //How long until we can pitch again?
+	var/product_slogans = "" //String of slogans separated by semicolons, optional
+	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
+	var/list/slogan_list = list()
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -33,6 +45,14 @@
 				amount = 1
 			for(var/i in 1 to amount)
 				load(new typekey(src))
+	
+	//Slogan pitches work almost identically to the vendor code:
+	slogan_list = splittext(product_slogans, ";")
+	last_pitch = world.time + rand(0, pitch_delay)
+
+/obj/machinery/smartfridge/Destroy()
+	//QDEL_NULL(wires) TODO: add wires
+	return ..()
 
 /obj/machinery/smartfridge/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
@@ -41,18 +61,73 @@
 /obj/machinery/smartfridge/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		if (contents.len >= max_n_of_items)
-			. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
-		else
-			. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
+		if(!stat)//machine must be operable
+			if (contents.len >= max_n_of_items)
+				. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
+			else
+				. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
 
 /obj/machinery/smartfridge/power_change()
 	..()
+	if(!(stat & BROKEN))
+		if(powered())
+			stat &= ~NOPOWER
+			START_PROCESSING(SSmachines, src)
+		else
+			stat |= NOPOWER
+
 	update_icon()
+
+/obj/machinery/smartfridge/process()
+	if(stat & (BROKEN|NOPOWER))
+		return PROCESS_KILL
+
+	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
+		seconds_electrified--
+
+	//Slogans and pitches.
+	if(last_pitch + pitch_delay <= world.time && slogan_list.len > 0 && pitches && prob(5))
+		var/pitch = pick(slogan_list)
+		speak(pitch)
+		last_pitch = world.time
+
+/obj/machinery/smartfridge/proc/speak(message)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	if(!message)
+		return
+	say(message)
+
+//Shock functionality is identical to the vending machines.
+/obj/machinery/smartfridge/proc/shock(mob/user, prb)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	if(!prob(prb))
+		return FALSE
+	do_sparks(5, TRUE, src)
+	var/check_range = TRUE
+	if(electrocute_mob(user, get_area(src), src, 0.7, check_range))
+		return TRUE
+	else
+		return FALSE
+
+/obj/machinery/smartfridge/_try_interact(mob/user)
+	if(seconds_electrified && !(stat & NOPOWER))
+		if(shock(user, 100))
+			return
+	return ..()
+
+/obj/machinery/smartfridge/obj_break(damage_flag)
+	if(!(stat & BROKEN))
+		stat |= BROKEN
+		update_icon()
+	..(damage_flag)
 
 /obj/machinery/smartfridge/update_icon()
 	var/startstate = initial(icon_state)
-	if(!stat)
+	if(stat & BROKEN)
+		icon_state = "[startstate]-broken"
+	else if(powered())
 		icon_state = startstate
 		//Capacity indication:
 		if(supports_capacity_indication && contents.len > 0 && max_n_of_items > 0)
@@ -69,7 +144,6 @@
 				icon_state = "[startstate]-4"
 			else if (current_capacity_percent <= 100)
 				icon_state = "[startstate]-5"
-
 	else
 		icon_state = "[startstate]-off"
 
@@ -156,13 +230,15 @@
 				to_chat(user, "<span class='warning'>There is nothing in [O] to put in [src]!</span>")
 				return FALSE
 
-	if(user.a_intent != INTENT_HARM)
-		to_chat(user, "<span class='warning'>\The [src] smartly refuses [O].</span>")
-		updateUsrDialog()
-		return FALSE
+		if(user.a_intent != INTENT_HARM)
+			to_chat(user, "<span class='warning'>\The [src] smartly refuses [O].</span>")
+			updateUsrDialog()
+			return FALSE
+		else
+			return ..()
+
 	else
 		return ..()
-
 
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O)
