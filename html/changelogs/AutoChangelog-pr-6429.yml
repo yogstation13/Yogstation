@@ -1,0 +1,4 @@
+author: "Ihonkification"
+delete-after: true 
+changes: 
+  - bugfix: "The white jumpskirt now has a object sprite."
