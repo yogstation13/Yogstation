@@ -28,7 +28,7 @@
 	var/supports_retrieval_state = TRUE //whether or not the smartfridge supports a retrieval_state dispensing animation
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
-	var/last_pitch = 0			//When did we last pitch?
+	var/last_pitch = 0 //When did we last pitch?
 	var/pitch_delay = 6000 //How long until we can pitch again?
 	var/product_slogans = "" //String of slogans separated by semicolons, optional
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
@@ -86,10 +86,31 @@
 		seconds_electrified--
 
 	//Slogans and pitches.
-	if(last_pitch + pitch_delay <= world.time && slogan_list.len > 0 && pitches && prob(5))
-		var/pitch = pick(slogan_list)
-		speak(pitch)
-		last_pitch = world.time
+	if(pitches && prob(5) && last_pitch + pitch_delay <= world.time && (contents.len > 0 || slogan_list.len > 0))
+		if(contents.len > 0) //if we have contents to advertise, advertise them
+			if(prob(25) && slogan_list.len > 0)
+				//Even if we have contents to advertise, 25% of the time it will use a slogan (if available)
+				speak_slogan()
+			else
+				speak_advert()
+		else if(slogan_list.len > 0) //no contents to advertise, display a slogan instead
+			speak_slogan()
+	last_pitch = world.time
+
+/obj/machinery/smartfridge/proc/speak_slogan()
+	//speak a generic slogan from our slogan list (if possible)
+	if(slogan_list.len > 0)
+		speak(pick(slogan_list))
+
+/obj/machinery/smartfridge/proc/speak_advert()
+	//advertise our contents (if possible)
+	if(contents.len > 0)
+		var/selected_item1 = pick(contents).name
+		var/selected_item2 = pick(contents).name
+		if(contents.len > 1 && selected_item1 == selected_item2)
+			//make an attempt to choose another item for the advertisement.
+			selected_item2 = pick(contents).name
+		speak("This unit contains [contents.len] items, such as the [(selected_item1 != selected_item2) ? "\"[selected_item1]\" and \"[selected_item2]\"!" : "\"[selected_item1]\"!"]")
 
 /obj/machinery/smartfridge/proc/speak(message)
 	if(stat & (BROKEN|NOPOWER))
