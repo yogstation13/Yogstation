@@ -40,8 +40,8 @@
 	return clothing_flags & NOSLIP
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
-	..()
-	to_chat(user, "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"].")
+	. = ..()
+	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
 
 
 /obj/item/clothing/shoes/magboots/advance
@@ -57,3 +57,10 @@
 	name = "blood-red magboots"
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"
+
+/obj/item/clothing/shoes/magboots/security
+	name = "combat magboots"
+	desc = "Combat-edition magboots issued by Nanotrasen Security for extravehicular missions."
+	icon_state = "cmagboots0"
+	magboot_state = "cmagboots"
+	slowdown_active = 1

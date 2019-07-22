@@ -5,6 +5,7 @@
 	force = 3
 	throwforce = 3
 	icon = 'yogstation/icons/mob/human_parts.dmi' // yogs -- use yog icons instead of tg
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = ""
 	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
 	var/mob/living/carbon/owner = null
@@ -66,11 +67,11 @@
 	var/bandaged // yogs - FALSE if the limb is not bandaged, TRUE if the limb is bandaged
 
 /obj/item/bodypart/examine(mob/user)
-	..()
+	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		to_chat(user, "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>")
+		. += "<span class='warning'>This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.</span>"
 	if(burn_dam > DAMAGE_PRECISION)
-		to_chat(user, "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>")
+		. += "<span class='warning'>This limb has [burn_dam > 30 ? "severe" : "minor"] burns.</span>"
 
 /obj/item/bodypart/blob_act()
 	take_damage(max_damage)
@@ -450,7 +451,7 @@
 	px_x = 0
 	px_y = 0
 	stam_damage_coeff = 1
-	max_stamina_damage = 100
+	max_stamina_damage = 120
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)

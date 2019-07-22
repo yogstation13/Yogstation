@@ -2,45 +2,6 @@
 //The effects include: stun, knockdown, unconscious, sleeping, resting, jitteriness, dizziness, ear damage,
 //eye_blind, eye_blurry, druggy, TRAIT_BLIND trait, TRAIT_NEARSIGHT trait, and TRAIT_HUSK trait.
 
-<<<<<<< HEAD
-/mob/living/carbon/damage_eyes(amount)
-	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
-	if (!eyes)
-		return
-	if(amount>0)
-		eyes.eye_damage = amount
-		if(eyes.eye_damage > 20)
-			if(eyes.eye_damage > 30)
-				overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 2)
-			else
-				overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 1)
-
-/mob/living/carbon/set_eye_damage(amount)
-	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
-	if (!eyes)
-		return
-	eyes.eye_damage = max(amount,0)
-	if(eyes.eye_damage > 20)
-		if(eyes.eye_damage > 30)
-			overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 2)
-		else
-			overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 1)
-	else
-		clear_fullscreen("eye_damage")
-
-/mob/living/carbon/adjust_eye_damage(amount)
-	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
-	if (!eyes)
-		return
-	eyes.eye_damage = max(eyes.eye_damage+amount, 0)
-	if(eyes.eye_damage > 20)
-		if(eyes.eye_damage > 30)
-			overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 2)
-		else
-			overlay_fullscreen("eye_damage", /obj/screen/fullscreen/impaired, 1)
-	else
-		clear_fullscreen("eye_damage")
-=======
 
 /mob/living/carbon/IsParalyzed(include_stamcrit = TRUE)
 	return ..() || (include_stamcrit && stam_paralyzed)
@@ -53,7 +14,6 @@
 	if(!IsParalyzed())
 		to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
 	stam_paralyzed = TRUE
->>>>>>> e9dab4c665... Universal Organ Damage system (#44710)
 
 /mob/living/carbon/adjust_drugginess(amount)
 	druggy = max(druggy+amount, 0)

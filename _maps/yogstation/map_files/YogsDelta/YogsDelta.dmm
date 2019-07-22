@@ -25342,7 +25342,9 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aPs" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	onstation = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/yellow{
@@ -25351,7 +25353,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aPt" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -33725,6 +33729,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"bce" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain/private)
 "bcf" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
 	name = "Pete"
@@ -72599,10 +72607,6 @@
 	},
 /obj/structure/cable/white,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
-"cgx" = (
-/obj/structure/filingcabinet/security,
-/turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "cgy" = (
 /obj/structure/dresser,
@@ -125745,6 +125749,11 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"iya" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "iQh" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 1
@@ -156910,7 +156919,7 @@ cBa
 cCH
 cEp
 caG
-ceb
+iya
 cjp
 bUl
 cMY
@@ -169228,7 +169237,7 @@ dkG
 dlB
 dlS
 bvL
-cgx
+bce
 bUQ
 cjP
 cjL

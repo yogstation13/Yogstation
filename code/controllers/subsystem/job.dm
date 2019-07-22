@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
-	var/list/name_occupations = list()	//Dict of all jobs, keys are titles
+	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
 	var/list/unassigned = list()		//Players who need jobs
 	var/initial_players_to_assign = 0 	//used for checking against population caps
@@ -13,6 +13,8 @@ SUBSYSTEM_DEF(job)
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
 	var/overflow_role = "Assistant"
+
+	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
 /datum/controller/subsystem/job/Initialize(timeofday)
 	SSmapping.HACK_LoadMapConfig()
@@ -121,7 +123,7 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
-		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+		if(player.client.prefs.job_preferences[job.title] == level)
 			JobDebug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
 	return candidates
@@ -179,7 +181,7 @@ SUBSYSTEM_DEF(job)
 //it locates a head or runs out of levels to check
 //This is basically to ensure that there's atleast a few heads in the round
 /datum/controller/subsystem/job/proc/FillHeadPosition()
-	for(var/level = 1 to 3)
+	for(var/level in level_order)
 		for(var/command_position in GLOB.command_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)
@@ -246,7 +248,7 @@ SUBSYSTEM_DEF(job)
 
 	//Get the players who are ready
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.ready == PLAYER_READY_TO_PLAY && player.mind && !player.mind.assigned_role)
+		if(player.ready == PLAYER_READY_TO_PLAY && player.check_preferences() && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
 	initial_players_to_assign = unassigned.len
@@ -302,7 +304,7 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	for(var/level = 1 to 3)
+	for(var/level in level_order)
 		//Check the head jobs first each level
 		CheckHeadPositions(level)
 
@@ -337,7 +339,7 @@ SUBSYSTEM_DEF(job)
 					continue
 
 				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+				if(player.client.prefs.job_preferences[job.title] == level)
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 						JobDebug("DO pass, Player: [player], Level:[level], Job:[job.title]")
@@ -358,7 +360,7 @@ SUBSYSTEM_DEF(job)
 		if(!GiveRandomJob(player))
 			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
 				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
-	
+
 	return validate_required_jobs(required_jobs)
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
@@ -468,6 +470,9 @@ SUBSYSTEM_DEF(job)
 		//YOGS end
 		if(CONFIG_GET(number/minimal_access_threshold))
 			to_chat(M, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
+	var/related_policy = get_policy(rank)
+	if(related_policy)
+		to_chat(M,related_policy)
 	if(ishuman(H))
 		var/mob/living/carbon/human/wageslave = H
 		to_chat(M, "<b>Your account ID is [wageslave.account_id].</b>")
@@ -547,13 +552,15 @@ SUBSYSTEM_DEF(job)
 			if(job.required_playtime_remaining(player.client))
 				young++
 				continue
-			if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
-				high++
-			else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)
-				medium++
-			else if(player.client.prefs.GetJobDepartment(job, 3) & job.flag)
-				low++
-			else never++ //not selected
+			switch(player.client.prefs.job_preferences[job.title])
+				if(JP_HIGH)
+					high++
+				if(JP_MEDIUM)
+					medium++
+				if(JP_LOW)
+					low++
+				else
+					never++
 		SSblackbox.record_feedback("nested tally", "job_preferences", high, list("[job.title]", "high"))
 		SSblackbox.record_feedback("nested tally", "job_preferences", medium, list("[job.title]", "medium"))
 		SSblackbox.record_feedback("nested tally", "job_preferences", low, list("[job.title]", "low"))

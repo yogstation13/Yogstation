@@ -2948,7 +2948,9 @@
 	},
 /area/maintenance/department/engine)
 "afZ" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "aga" = (
@@ -3065,7 +3067,9 @@
 /turf/open/floor/wood,
 /area/medical/medbay/central)
 "agn" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	onstation = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "ago" = (
@@ -16586,7 +16590,6 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "aGm" = (
-/obj/machinery/computer/arcade,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -16597,6 +16600,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "aGn" = (
@@ -57048,6 +57052,10 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"hdY" = (
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "heC" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 8;
@@ -105635,7 +105643,7 @@ bFX
 aKu
 aZX
 beS
-aFi
+hdY
 aEj
 bcI
 lEn

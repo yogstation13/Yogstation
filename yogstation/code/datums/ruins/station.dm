@@ -56,6 +56,6 @@
 	name = "Engine SM"
 
 /datum/map_template/ruin/station/box/engine/singulo
-	id = "engine_singulo"
-	suffix = "engine_singulo.dmm"
-	name = "Engine Singulo"
+	id = "engine_singulo_tesla"
+	suffix = "engine_singulo_tesla.dmm"
+	name = "Engine Singulo And Tesla"
