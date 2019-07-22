@@ -1,0 +1,4 @@
+author: "fluffe9911"
+delete-after: true 
+changes: 
+  - tweak: "Shadowling thralls are now discovered by looking at there eyes instead of scanning there body temp"

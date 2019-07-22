@@ -41,12 +41,6 @@
 	..()
 	new /obj/item/clipboard/yog/paperwork/captain(src)
 	new /obj/item/card/id/departmental_budget/civ(src)
-	new /obj/item/clothing/under/yogs/captainartillery(src)
-	new /obj/item/clothing/under/yogs/casualcaptain(src)
-	new /obj/item/clothing/under/yogs/whitecaptainsuit(src)
-	new /obj/item/clothing/head/yogs/whitecaptaincap(src)
-	new /obj/item/clothing/under/yogs/victoriouscaptainuniform(src)
-	new /obj/item/clothing/head/beret/captain(src)
 
 //CE's locker
 /obj/structure/closet/secure_closet/engineering_chief/PopulateContents()
