@@ -29,6 +29,3 @@
 		for(var/V in all_quirks)
 			to_chat(parent, "<span class='notice'>[V]</span>")
 		all_quirks = list()
-		positive_quirks = list()
-		negative_quirks = list()
-		neutral_quirks = list()
