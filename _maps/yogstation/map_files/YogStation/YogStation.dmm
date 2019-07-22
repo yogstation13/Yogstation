@@ -23515,6 +23515,10 @@
 "aUI" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
+"aUJ" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -27883,10 +27887,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"bdi" = (
-/obj/machinery/computer/arcade,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "bdj" = (
 /obj/structure/toilet{
 	dir = 1
@@ -51320,6 +51320,10 @@
 	name = "External Access";
 	req_access_txt = "13"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = -1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cqv" = (
@@ -53310,7 +53314,10 @@
 	name = "Engineering External Access";
 	req_access_txt = "10;13"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 2;
+	diry = -2
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "eqZ" = (
@@ -54198,6 +54205,10 @@
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
 	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 2
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -55715,8 +55726,9 @@
 	name = "Engineering External Access";
 	req_access_txt = "10;13"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 2;
+	diry = -1
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -55851,6 +55863,10 @@
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
 	req_access_txt = "10; 13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = -2
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -57138,6 +57154,17 @@
 "tcL" = (
 /turf/open/floor/plasteel,
 /area/janitor)
+"tgg" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "thb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -57740,6 +57767,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"vFt" = (
+/obj/machinery/door/airlock/external{
+	name = "Solar Maintenance";
+	req_access_txt = "10; 13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 2
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "vFw" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
@@ -58275,6 +58313,17 @@
 "xIa" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"xIo" = (
+/obj/machinery/door/airlock/external{
+	name = "External Access";
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "xIU" = (
@@ -90656,7 +90705,7 @@ aYr
 aZV
 bbo
 bch
-bdi
+aUJ
 bei
 bfy
 bgS
@@ -93038,7 +93087,7 @@ cig
 hvz
 cig
 cig
-hvz
+tgg
 pBI
 aaa
 aaa
@@ -102017,7 +102066,7 @@ cri
 cNW
 bAw
 bAw
-ogO
+vFt
 aag
 pEf
 aaa
@@ -105108,7 +105157,7 @@ aaa
 aaa
 cOT
 cOe
-cqu
+xIo
 aag
 aaa
 aaa

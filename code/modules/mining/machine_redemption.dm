@@ -58,7 +58,7 @@
 	if (!mat_container)
 		return
 
-	if(O.refined_type == null)
+	if(!O || O.refined_type == null)
 		return
 
 	ore_buffer -= O
