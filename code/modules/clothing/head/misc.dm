@@ -1,5 +1,3 @@
-
-
 /obj/item/clothing/head/centhat
 	name = "\improper CentCom hat"
 	icon_state = "centcom"
@@ -121,6 +119,7 @@
 	desc = "A working man's cap."
 	icon_state = "flat_cap"
 	item_state = "detective"
+
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
@@ -247,7 +246,7 @@
 /obj/item/clothing/head/cone
 	desc = "This cone is trying to warn you of something!"
 	name = "warning cone"
-	icon = 'yogstation/icons/obj/janitor.dmi' //yogs changed icon path
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cone"
 	item_state = "cone"
 	force = 1
