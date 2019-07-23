@@ -41,7 +41,7 @@
 		H.adjustBruteLoss(5)
 		to_chat(H, "<span class='danger'>You feel empty!</span>")
 
-	if(H.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(H.blood_volume < BLOOD_VOLUME_NORMAL(H))
 		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
 			H.blood_volume += 3
 			H.adjust_nutrition(-2.5)
@@ -131,7 +131,7 @@
 	bodies -= C // This means that the other bodies maintain a link
 	// so if someone mindswapped into them, they'd still be shared.
 	bodies = null
-	C.blood_volume = min(C.blood_volume, BLOOD_VOLUME_NORMAL)
+	C.blood_volume = min(C.blood_volume, BLOOD_VOLUME_NORMAL(C))
 	..()
 
 /datum/species/jelly/slime/on_species_gain(mob/living/carbon/C, datum/species/old_species)

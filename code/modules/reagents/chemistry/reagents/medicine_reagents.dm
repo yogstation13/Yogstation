@@ -59,8 +59,8 @@
 	M.confused = 0
 	M.SetSleeping(0, 0)
 	M.jitteriness = 0
-	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-		M.blood_volume = BLOOD_VOLUME_NORMAL
+	if(M.blood_volume < BLOOD_VOLUME_NORMAL(M))
+		M.blood_volume = BLOOD_VOLUME_NORMAL(M)
 
 	M.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	for(var/thing in M.diseases)
@@ -295,7 +295,7 @@
 	overdose_threshold = 60
 	taste_description = "sweetness and salt"
 	var/last_added = 0
-	var/maximum_reachable = BLOOD_VOLUME_NORMAL - 10	//So that normal blood regeneration can continue with salglu active
+	var/maximum_reachable = BLOOD_VOLUME_GENERIC - 10	//So that normal blood regeneration can continue with salglu active
 
 /datum/reagent/medicine/salglu_solution/on_mob_life(mob/living/carbon/M)
 	if(last_added)

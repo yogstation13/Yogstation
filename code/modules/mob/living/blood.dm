@@ -18,10 +18,10 @@
 /mob/living/carbon/monkey/handle_blood()
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src))
 			blood_volume += 0.1 // regenerate blood VERY slowly
 			if(blood_volume < BLOOD_VOLUME_OKAY(src))
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
@@ -33,7 +33,7 @@
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -49,7 +49,7 @@
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min(BLOOD_VOLUME_NORMAL, blood_volume + 0.5 * nutrition_ratio)
+			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
@@ -57,9 +57,9 @@
 			if(BLOOD_OKAY)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.01, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.01, 1))
 			if(BLOOD_BAD)
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
 					to_chat(src, "<span class='warning'>You feel very [word].</span>")
@@ -108,10 +108,10 @@
 
 
 /mob/living/proc/restore_blood()
-	blood_volume = initial(blood_volume)
+	blood_volume = BLOOD_VOLUME_NORMAL(src)
 
 /mob/living/carbon/human/restore_blood()
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_NORMAL(src)
 	bleed_rate = 0
 
 /****************************************************
