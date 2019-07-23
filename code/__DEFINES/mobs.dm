@@ -35,12 +35,12 @@
 #define BLOOD_SURVIVE 1
 #define BLOOD_DEAD 0
 
-//Legacy defines, based on the default human blood level. Left here just in case I forgot something somewhere
-#define BLOOD_VOLUME_MAXIMUM		2000
-#define BLOOD_VOLUME_SAFE			475 // 84.8%
-#define BLOOD_VOLUME_OKAY			336 // 60%
-#define BLOOD_VOLUME_BAD			224 // 40%
-#define BLOOD_VOLUME_SURVIVE		122 // 20%
+//Defines to get the actual volumes for these varying states
+#define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
+#define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
+#define BLOOD_VOLUME_OKAY(L)		(initial(##L.blood_volume) * BLOOD_OKAY_MULTI)
+#define BLOOD_VOLUME_BAD(L)			(initial(##L.blood_volume) * BLOOD_BAD_MULTI)
+#define BLOOD_VOLUME_SURVIVE(L)		(initial(##L.blood_volume) * BLOOD_SURVIVE_MULTI)
 
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
