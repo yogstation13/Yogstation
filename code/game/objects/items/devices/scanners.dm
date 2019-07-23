@@ -336,9 +336,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
+			if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "<span class='danger'>LOW blood level [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>")
-			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)
+			else if(C.blood_volume <= BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>")
 			else
 				to_chat(user, "<span class='info'>Blood level [blood_percent] %, [C.blood_volume] cl, type: [blood_type]</span>")

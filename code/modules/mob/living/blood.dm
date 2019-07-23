@@ -20,7 +20,7 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
-			if(blood_volume < BLOOD_VOLUME_OKAY)
+			if(blood_volume < BLOOD_VOLUME_OKAY(src))
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
 
 // Takes care blood loss and regeneration
@@ -53,22 +53,22 @@
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
-		switch(blood_volume)
-			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.01, 1))
-			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+			if(BLOOD_BAD)
 				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
 					to_chat(src, "<span class='warning'>You feel very [word].</span>")
-			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+			if(BLOOD_SURVIVE)
 				adjustOxyLoss(5)
 				if(prob(15))
 					Unconscious(rand(20,60))
 					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
-			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
+			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
 				if(!HAS_TRAIT(src, TRAIT_NODEATH))
 					death()
 
@@ -122,7 +122,7 @@
 /mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
 	if(!blood_volume || !AM.reagents)
 		return 0
-	if(blood_volume < BLOOD_VOLUME_BAD && !forced)
+	if(blood_volume < BLOOD_VOLUME_BAD(src) && !forced)
 		return 0
 
 	if(blood_volume < amount)
@@ -150,7 +150,7 @@
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return 1
 
-			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 			return 1
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
