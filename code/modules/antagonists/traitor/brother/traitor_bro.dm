@@ -2,7 +2,7 @@
 	id = "brother_pinpointer"
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/brother
 	var/datum/mind/set_target
-	var/datum/mind/list/allowed_targets
+	var/list/datum/mind/allowed_targets
 
 	//ree magic numbers
 	minimum_range = 2
