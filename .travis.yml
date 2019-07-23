@@ -19,7 +19,7 @@ matrix:
       install:
         - tools/travis/install_build_tools.sh
       script:
-        - tools/travis/check_filedirs.sh tgstation.dme
+        - tools/travis/check_filedirs.sh yogstation.dme
         - tools/travis/build_tools.sh
         - tools/travis/lint_grep.sh
 
@@ -37,7 +37,7 @@ matrix:
       before_script:
         - tools/travis/template_dm_generator.py
       script:
-        - tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
+        - tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS yogstation.dme
 
     - name: "Compile and Run Tests"
       addons:
@@ -57,25 +57,6 @@ matrix:
         directories:
           - $HOME/.cargo
           - $HOME/.rustup
-<<<<<<< HEAD
-
-install:
-  - tools/travis/install_build_tools.sh
-  - if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then mysql -u root -e 'CREATE DATABASE tg_travis;'; fi
-  - if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then mysql -u root tg_travis < SQL/tgstation_schema.sql; fi
-  - if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then mysql -u root -e 'CREATE DATABASE tg_travis_prefixed;'; fi
-  - if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then mysql -u root tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql; fi
-
-before_script:
-  - tools/travis/before_build_tools.sh
-  - tools/travis/before_build_byond.sh
-
-script:
-  - tools/travis/check_filedirs.sh yogstation.dme
-  - tools/travis/build_tools.sh || travis_terminate 1
-  - tools/travis/build_dependencies.sh || travis_terminate 1
-  - tools/travis/build_byond.sh
-=======
           - $HOME/BYOND
           - $HOME/libmariadb
       install:
@@ -92,6 +73,5 @@ script:
         - tools/travis/build_rust_g.sh
         - tools/travis/build_bsql.sh
       script:
-        - tools/travis/dm.sh -DTRAVISBUILDING tgstation.dme || travis_terminate 1
+        - tools/travis/dm.sh -DTRAVISBUILDING yogstation.dme || travis_terminate 1
         - tools/travis/run_server.sh
->>>>>>> e5ccafd0b0... Split Travis shell scripts by job (#44845)
