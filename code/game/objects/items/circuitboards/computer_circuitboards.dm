@@ -274,7 +274,7 @@
 	icon_state = "medical"
 	build_path = /obj/machinery/computer/cloning
 
-	/obj/item/circuitboard/computer/crew
+/obj/item/circuitboard/computer/crew
 	name = "Crew Monitoring Console (Computer Board)"
 	icon_state = "medical"
 	build_path = /obj/machinery/computer/crew
@@ -405,6 +405,11 @@
 	name = "Security Records Console (Computer Board)"
 	icon_state = "security"
 	build_path = /obj/machinery/computer/secure_data
+
+/obj/item/circuitboard/computer/warrant
+	name = "Security Warrant Viewer (Computer Board)"
+	icon_state = "security"
+	build_path = /obj/machinery/computer/warrant
 
 /obj/item/circuitboard/computer/security
 	name = "Security Cameras (Computer Board)"

@@ -42467,6 +42467,16 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"bEu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/computer/warrant{
+	icon_state = "computer";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "bEw" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -91636,7 +91646,7 @@ akZ
 auY
 axg
 aiX
-anA
+bEu
 anz
 aoE
 ahn

@@ -16553,6 +16553,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/machinery/computer/warrant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aDB" = (
