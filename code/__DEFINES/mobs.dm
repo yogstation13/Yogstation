@@ -12,9 +12,9 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood volumes, in cL
-#define BLOOD_VOLUME_NORMAL			560 // The default amount of blood in a Carbon, in cL, based off IRL data about humans
+#define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
 #define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
-#define BLOOD_VOLUME_XENO			700 // Based of data from my asshole
+#define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
 
 #define BLOOD_VOLUME_SLIME_SPLIT	(2.0 * BLOOD_VOLUME_NORMAL) // Amount of blood needed by slimebois for splitting in twain
 
@@ -37,6 +37,7 @@
 
 //Defines to get the actual volumes for these varying states
 #define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
+#define BLOOD_VOLUME_NORMAL(L)		(initial(##L.blood_volume)
 #define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
 #define BLOOD_VOLUME_OKAY(L)		(initial(##L.blood_volume) * BLOOD_OKAY_MULTI)
 #define BLOOD_VOLUME_BAD(L)			(initial(##L.blood_volume) * BLOOD_BAD_MULTI)
