@@ -11,14 +11,27 @@
 #define MOVE_INTENT_WALK "walk"
 #define MOVE_INTENT_RUN  "run"
 
-//Blood levels
+//Blood volumes, in cL
+#define BLOOD_VOLUME_NORMAL			560 // The default amount of blood in a Carbon, in cL, based off IRL data about humans
+#define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
+#define BLOOD_VOLUME_XENO			700 // Based of data from my asshole
+
+#define BLOOD_VOLUME_SLIME_SPLIT	(2.0 * BLOOD_VOLUME_NORMAL) // Amount of blood needed by slimebois for splitting in twain
+
+//Blood multiplers -- Multiply the original default value of blood your Carbon has with these in order to get the actual blood tiers
+// i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever 
+#define BLOOD_MAXIMUM_MULTI 3.6 // 360%
+#define BLOOD_SAFE_MULTI 0.848	// 84.8%
+#define BLOOD_OKAY_MULTI 0.6	// 60%
+#define BLOOD_BAD_MULTI 0.4		// 40%
+#define BLOOD_SURVIVE_MULTI 0.2	// 20%
+
+//Legacy defines, based on the default human blood level. Left here just in case I forgot something somewhere
 #define BLOOD_VOLUME_MAXIMUM		2000
-#define BLOOD_VOLUME_SLIME_SPLIT	1120
-#define BLOOD_VOLUME_NORMAL			560
-#define BLOOD_VOLUME_SAFE			475
-#define BLOOD_VOLUME_OKAY			336
-#define BLOOD_VOLUME_BAD			224
-#define BLOOD_VOLUME_SURVIVE		122
+#define BLOOD_VOLUME_SAFE			475 // 84.8%
+#define BLOOD_VOLUME_OKAY			336 // 60%
+#define BLOOD_VOLUME_BAD			224 // 40%
+#define BLOOD_VOLUME_SURVIVE		122 // 20%
 
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
