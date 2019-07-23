@@ -230,7 +230,7 @@
 								"<span class='userdanger'>[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>")
 
 /mob/living/carbon/fall(forced)
-    if(loc)
+	if(loc)
 		loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
 /mob/living/carbon/is_muzzled()
