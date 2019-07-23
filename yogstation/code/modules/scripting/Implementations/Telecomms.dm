@@ -39,7 +39,6 @@ GLOBAL_LIST_INIT(allowed_custom_spans,list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPA
 	/* -- Compile a raw block of text -- */
 
 /datum/TCS_Compiler/proc/Compile(code as message)
-	log_telecomms(code)
 	var/n_scriptOptions/nS_Options/options = new()
 	var/n_Scanner/nS_Scanner/scanner       = new(code, options)
 	var/list/tokens                        = scanner.Scan()
