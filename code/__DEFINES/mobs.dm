@@ -20,11 +20,20 @@
 
 //Blood multiplers -- Multiply the original default value of blood your Carbon has with these in order to get the actual blood tiers
 // i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever 
+//used by :living/proc/get_blood_state()
 #define BLOOD_MAXIMUM_MULTI 3.6 // 360%
 #define BLOOD_SAFE_MULTI 0.848	// 84.8%
 #define BLOOD_OKAY_MULTI 0.6	// 60%
 #define BLOOD_BAD_MULTI 0.4		// 40%
 #define BLOOD_SURVIVE_MULTI 0.2	// 20%
+
+//Blood state enums, again used by get_blood_state()
+#define BLOOD_MAXIMUM 5
+#define BLOOD_SAFE 4
+#define BLOOD_OKAY 3
+#define BLOOD_BAD 2
+#define BLOOD_SURVIVE 1
+#define BLOOD_DEAD 0
 
 //Legacy defines, based on the default human blood level. Left here just in case I forgot something somewhere
 #define BLOOD_VOLUME_MAXIMUM		2000
