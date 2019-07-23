@@ -11,7 +11,7 @@ for file in sys.argv[1:]:
         try:
             json.load(f)
         except ValueError as exception:
-			print("JSON error in {}".format(file))
+            print("JSON error in {}".format(file))
             print(exception)
             status = 1
         else:
