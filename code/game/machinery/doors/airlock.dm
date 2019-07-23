@@ -175,34 +175,34 @@
 		return
 	var/turf/T = get_turf(src)
 	var/obj/machinery/door/airlock/FoundDoor
-	var/mod
 	var/dirlook
+	var/targ
 	if(cyclelinkedx)
 		if(cyclelinkedx > 0)
-			mod = 1
+			targ = cyclelinkedx
 			dirlook = 4
 		else
-			mod = -1
+			targ = cyclelinkedx * -1
 			dirlook = 8
-		for(var/i = 0; i < cyclelinkedx; i = i + mod)
+		for(var/i = 0; i < targ; i++)
 			T = get_step(T, dirlook)
 
 	if(cyclelinkedy)
 		if(cyclelinkedy > 0)
-			mod = 1
+			targ = cyclelinkedy
 			dirlook = 1
 		else
-			mod = -1
+			targ = cyclelinkedy * -1
 			dirlook = 2
-		for(var/i = 0; i < cyclelinkedy; i = i + mod)
+		for(var/i = 0; i < targ; i++)
 			T = get_step(T, dirlook)
 
 	FoundDoor = locate() in T
-/*	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
+	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
 		FoundDoor = null
 	if (!FoundDoor)
-		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink_target with!")
-		return*/
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink_target with! Was targeting [T.x], [T.y], [T.z].")
+		return
 	FoundDoor.cyclelinkedairlock = src
 	cyclelinkedairlock = FoundDoor				//yogs end
 

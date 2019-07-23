@@ -1,4 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - bugfix: "Virus cures should no longer reshuffle in a different host."

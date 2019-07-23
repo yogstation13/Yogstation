@@ -37,6 +37,12 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/hop/proc/OmegaStationChanges()
+	access = get_all_accesses()
+	minimal_access = get_all_accesses()
+
 /datum/outfit/job/hop
 	name = "Head of Personnel"
 	jobtype = /datum/job/hop
