@@ -40807,11 +40807,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/computer/warrant{
+	icon_state = "computer";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)

@@ -19,6 +19,13 @@
 
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/janitor/proc/OmegaStationChanges()
+	access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	supervisors = "the captain and the head of personnel"
+
 /datum/outfit/job/janitor
 	name = "Janitor"
 	jobtype = /datum/job/janitor

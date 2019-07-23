@@ -1,6 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed bug where hivemind vessel awakening would not be logged."
-  - bugfix: "Fixed bug where awoken hivemind vessel objectives would not be logged."
-  - tweak: "slightly modified the deadchat text for awakening."

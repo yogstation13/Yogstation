@@ -2139,9 +2139,6 @@
 /turf/closed/wall,
 /area/hallway/primary/starboard)
 "ads" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
@@ -2152,6 +2149,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/machinery/computer/warrant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "adt" = (

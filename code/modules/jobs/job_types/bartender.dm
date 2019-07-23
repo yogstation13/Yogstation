@@ -18,6 +18,12 @@
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/bartender/proc/OmegaStationChanges()
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
+	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_WEAPONS)
+
 /datum/outfit/job/bartender
 	name = "Bartender"
 	jobtype = /datum/job/bartender
