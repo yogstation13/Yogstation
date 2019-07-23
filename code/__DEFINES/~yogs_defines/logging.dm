@@ -1,4 +1,4 @@
-#define LOG_LOOC	(1 << 15)
+#define LOG_LOOC	(1 << 19)
 
 #define INDIVIDUAL_LOOC_LOG	(LOG_LOOC)
 
