@@ -51,6 +51,6 @@
 		to_chat(user, "<span class='warning'>You are banned from using NTSL.</span>")
 		return
 	if(Compiler)
-		user.log_message(rawcode, LOG_TELECOMMS)
+		user.log_message(rawcode, LOG_NTSL)
 		return Compiler.Compile(rawcode)
 //end-NTSL
