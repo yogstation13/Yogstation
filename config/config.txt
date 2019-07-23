@@ -112,7 +112,7 @@ LOG_PDA
 ## log telecomms messages
 LOG_TELECOMMS
 
-## log ntsl compilation
+## log ntsl compilations
 LOG_NTSL
 
 ## log prayers
