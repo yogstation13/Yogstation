@@ -306,8 +306,12 @@
 		var/chosen_plaque = stripped_input(user, "What would you like the plaque to say? Default value is item's description.", "Trophy Plaque")
 		if(chosen_plaque)
 			if(user.Adjacent(src))
-				trophy_message = chosen_plaque
-				to_chat(user, "You set the plaque's text.")
+				if(isnotpretty(chosen_plaque)) // Yogs -- Adds the pretty filter to plaques
+					to_chat(user, "<span class='notice'>That's not a terribly good plaque. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 0.1.1</a>.</span>")
+					message_admins("[key_name(user)] just tripped a pretty filter while enscribing a plaque: '[chosen_plaque]'.")
+				else// Yogs end I guess
+					trophy_message = chosen_plaque
+					to_chat(user, "You set the plaque's text.")
 			else
 				to_chat(user, "You are too far to set the plaque's text.")
 
