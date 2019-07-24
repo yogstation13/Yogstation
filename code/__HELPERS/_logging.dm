@@ -139,6 +139,10 @@
 	if (CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
 
+/proc/log_ntsl(text)
+	if (CONFIG_GET(flag/log_ntsl))
+		WRITE_LOG(GLOB.world_ntsl_log, "NTSL: [text]")
+
 /proc/log_chat(text)
 	if (CONFIG_GET(flag/log_pda))
 		//same thing here
