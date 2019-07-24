@@ -4,7 +4,8 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
-	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles
+	var/list/datum/job/name_occupations = list()	//Dict of jobs, keys are titles
+	var/list/datum/job/name_occupations_all = list()	//Dict of ALL JOBS, EVEN DISABLED ONES, keys are titles
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
 	var/list/unassigned = list()		//Players who need jobs
 	var/initial_players_to_assign = 0 	//used for checking against population caps
@@ -55,11 +56,13 @@ SUBSYSTEM_DEF(job)
 		if(!job.config_check())
 			continue
 
+		name_occupations_all[job.title] = job
+
 		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config");
 			continue
-		occupations += job
 		name_occupations[job.title] = job
+		occupations += job
 		type_occupations[J] = job
 
 	return 1
