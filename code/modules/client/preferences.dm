@@ -1067,6 +1067,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				var/datum/quirk/t = new T(no_init = TRUE)
 				lock_reason = t.check_quirk(src) // Yogs -- allows for specific denial of quirks based on current preferences
+				qdel(t)
 			if(has_quirk)
 				if(lock_reason)
 					all_quirks -= quirk_name
