@@ -2,7 +2,7 @@
 	if(!initial(blood_volume))
 		return BLOOD_SAFE // I... guess we're fine?
 	
-	switch(blood_volume / initial(blood_volume))
+	switch(blood_volume)
 		if(BLOOD_VOLUME_MAXIMUM(src) to INFINITY)
 			return BLOOD_MAXIMUM
 		if(BLOOD_VOLUME_SAFE(src) to BLOOD_VOLUME_MAXIMUM(src))

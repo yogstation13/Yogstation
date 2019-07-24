@@ -295,15 +295,17 @@
 	overdose_threshold = 60
 	taste_description = "sweetness and salt"
 	var/last_added = 0
-	var/maximum_reachable = BLOOD_VOLUME_GENERIC - 10	//So that normal blood regeneration can continue with salglu active
+	var/max_blood_decrement = 10 //Yogs -- How much less than BLOOD_VOLUME_NORMAL(M) is the point where salglu stops refilling blood?
+	//^ Used so that normal blood regeneration can continue with salglu active
 
 /datum/reagent/medicine/salglu_solution/on_mob_life(mob/living/carbon/M)
 	if(last_added)
 		M.blood_volume -= last_added
 		last_added = 0
-	if(M.blood_volume < maximum_reachable)	//Can only up to double your effective blood level.
+	var/max_blood = BLOOD_VOLUME_NORMAL(M) - max_blood_decrement // The highest blood volume that salglu will work at.
+	if(M.blood_volume < max_blood)
 		var/amount_to_add = min(M.blood_volume, volume*5)
-		var/new_blood_level = min(M.blood_volume + amount_to_add, maximum_reachable)
+		var/new_blood_level = min(M.blood_volume + amount_to_add, max_blood)
 		last_added = new_blood_level - M.blood_volume
 		M.blood_volume = new_blood_level
 	if(prob(33))
