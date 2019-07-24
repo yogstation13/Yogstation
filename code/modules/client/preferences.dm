@@ -1065,7 +1065,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
 			else
-				lock_reason = T.check_quirk(src)
+				var/datum/quirk/t = new T(no_init = TRUE)
+				lock_reason = t.check_quirk(src) // Yogs -- allows for specific denial of quirks based on current preferences
 			if(has_quirk)
 				if(lock_reason)
 					all_quirks -= quirk_name
