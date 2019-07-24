@@ -1,5 +1,5 @@
 /mob/living/carbon
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 
 /mob/living/carbon/Initialize()
 	. = ..()

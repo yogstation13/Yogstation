@@ -3208,6 +3208,7 @@
 #include "yogstation\code\modules\mob\dead\new_player\sprite_accessories.dm"
 #include "yogstation\code\modules\mob\living\emote.dm"
 #include "yogstation\code\modules\mob\living\life.dm"
+#include "yogstation\code\modules\mob\living\living.dm"
 #include "yogstation\code\modules\mob\living\living_defines.dm"
 #include "yogstation\code\modules\mob\living\brain\brain_item.dm"
 #include "yogstation\code\modules\mob\living\brain\MMI.dm"
