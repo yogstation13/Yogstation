@@ -377,7 +377,10 @@
 		mind.active = FALSE
 
 	. = new /mob/living/silicon/ai(pick(landmark_loc), null, src)
-
+	
+	var/mob/living/silicon/ai/hate = .
+	stack_trace("AIize() called on mob [src] ([x],[y],[z]),AI created at loc [hate.x],[hate.y],[hate.z]")
+	
 	if(preference_source)
 		apply_pref_name("ai",preference_source)
 
