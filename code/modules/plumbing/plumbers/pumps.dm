@@ -21,7 +21,7 @@
 	return ..()
 
 /obj/machinery/power/liquid_pump/ComponentInitialize()
-	AddComponent(/datum/component/plumbing/simple_supply)
+	_AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/machinery/power/liquid_pump/wrench_act(mob/living/user, obj/item/I)
 	default_unfasten_wrench(user, I)

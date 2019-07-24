@@ -13,7 +13,7 @@
 	PopulateContents()
 
 /obj/item/storage/ComponentInitialize()
-	AddComponent(component_type)
+	_AddComponent(component_type)
 
 /obj/item/storage/AllowDrop()
 	return FALSE

@@ -14,7 +14,7 @@
 		death(FALSE)
 
 /mob/living/proc/initialize_footstep()
-	AddComponent(/datum/component/footstep)
+	_AddComponent(/datum/component/footstep)
 
 /mob/living/prepare_huds()
 	..()

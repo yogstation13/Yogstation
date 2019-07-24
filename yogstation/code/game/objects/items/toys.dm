@@ -91,7 +91,7 @@
 	icon_state = "toyglock"
 	item_state = "toyglock"
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 
 /obj/item/toy/gun/toyflaregun
@@ -101,5 +101,5 @@
 	icon_state = "toyflaregun"
 	item_state = "toyflaregun"
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=10, MAT_GLASS=10)
+	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")

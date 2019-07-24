@@ -197,7 +197,7 @@ obj/structure/elite_tumor/proc/return_elite()
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
-	//AddComponent(/datum/component/gps, "Menacing Signal")
+	//_AddComponent(/datum/component/gps, "Menacing Signal")
 	internal = new /obj/item/gps/internal/elite(src)
 	START_PROCESSING(SSobj, src)
 

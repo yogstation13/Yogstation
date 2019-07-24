@@ -74,7 +74,7 @@
 	// This works even with the species picks since we're only accessing the name
 
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/bane, picked_mobtype)
+	comp.appliedComponents += master._AddComponent(/datum/component/bane, picked_mobtype)
 	return "[newName] of [initial(picked_mobtype.name)] slaying"
 
 /datum/fantasy_affix/summoning
@@ -109,7 +109,7 @@
 	var/obj/item/master = comp.parent
 	var/max_mobs = max(CEILING(comp.quality/2, 1), 1)
 	var/spawn_delay = 300 - 30 * comp.quality
-	comp.appliedComponents += master.AddComponent(/datum/component/summoning, list(picked_mobtype), 100, max_mobs, spawn_delay)
+	comp.appliedComponents += master._AddComponent(/datum/component/summoning, list(picked_mobtype), 100, max_mobs, spawn_delay)
 	return "[newName] of [initial(picked_mobtype.name)] summoning"
 
 /datum/fantasy_affix/shrapnel
@@ -143,7 +143,7 @@
 	var/obj/item/projectile/picked_projectiletype = pickweight(weighted_projectile_types)
 
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/shrapnel, picked_projectiletype)
+	comp.appliedComponents += master._AddComponent(/datum/component/shrapnel, picked_projectiletype)
 	return "[newName] of [initial(picked_projectiletype.name)] shrapnel"
 
 /datum/fantasy_affix/strength
@@ -153,7 +153,7 @@
 /datum/fantasy_affix/strength/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/knockback, CEILING(comp.quality/2, 1), FLOOR(comp.quality/10, 1))
+	comp.appliedComponents += master._AddComponent(/datum/component/knockback, CEILING(comp.quality/2, 1), FLOOR(comp.quality/10, 1))
 	return "[newName] of strength"
 
 //////////// Bad suffixes
@@ -165,5 +165,5 @@
 /datum/fantasy_affix/fool/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+	comp.appliedComponents += master._AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 	return "[newName] of the fool"

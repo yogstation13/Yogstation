@@ -19,7 +19,7 @@
 	light_range = 5
 	light_power = 1
 	armour_penetration = 10
-	materials = list(MAT_METAL=1150, MAT_GLASS=2075)
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("smashed", "crushed", "cleaved", "chopped", "pulped")
 	sharpness = IS_SHARP
@@ -31,7 +31,7 @@
 
 /obj/item/twohanded/required/kinetic_crusher/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
+	_AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
 
 /obj/item/twohanded/required/kinetic_crusher/Destroy()
 	QDEL_LIST(trophies)

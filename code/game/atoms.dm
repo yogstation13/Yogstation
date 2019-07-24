@@ -76,6 +76,12 @@
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
 	var/atom/orbit_target //Reference to atom being orbited
+
+	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	var/list/custom_materials
+	///Bitfield for how the atom handles materials.
+	var/material_flags = NONE
+	
 /**
   * Called when an atom is created in byond (built in engine proc)
   *
@@ -175,7 +181,7 @@
 /atom/proc/LateInitialize()
 	return
 
-/// Put your AddComponent() calls here
+/// Put your _AddComponent() calls here
 /atom/proc/ComponentInitialize()
 	return
 

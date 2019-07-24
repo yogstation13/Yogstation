@@ -10,7 +10,7 @@
 	flags_1 =  CONDUCT_1
 	obj_flags = UNIQUE_RENAME
 	slot_flags = ITEM_SLOT_BELT
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
 	throw_speed = 3
@@ -195,7 +195,7 @@
 			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
 				if(G && G.weapon == src) //spam check
 					return
-			user.AddComponent(/datum/component/gunpoint, target, src)
+			user._AddComponent(/datum/component/gunpoint, target, src)
 			return
 
 	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.

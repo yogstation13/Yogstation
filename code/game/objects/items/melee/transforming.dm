@@ -23,7 +23,7 @@
 		if(attack_verb_off.len)
 			attack_verb = attack_verb_off
 	if(is_sharp())
-		AddComponent(/datum/component/butchering, 50, 100, 0, hitsound, !active)
+		_AddComponent(/datum/component/butchering, 50, 100, 0, hitsound, !active)
 
 /obj/item/melee/transforming/attack_self(mob/living/carbon/user)
 	if(transform_weapon(user))

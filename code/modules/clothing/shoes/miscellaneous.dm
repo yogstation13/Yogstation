@@ -91,13 +91,13 @@
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
+	_AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
 
 /obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_SHOES)
 		if(enabled_waddle)
-			waddle = user.AddComponent(/datum/component/waddling)
+			waddle = user._AddComponent(/datum/component/waddling)
 		if(user.mind && user.mind.assigned_role == "Clown")
 			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "clownshoes", /datum/mood_event/clownshoes)
 
@@ -150,7 +150,7 @@
 
 /obj/item/clothing/shoes/jackboots/warden/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('sound/effects/spurstep.ogg'))
+	_AddComponent(/datum/component/squeak, list('sound/effects/spurstep.ogg'))
 
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
@@ -290,7 +290,7 @@
 
 /obj/item/clothing/shoes/bronze/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('sound/machines/clockcult/integration_cog_install.ogg' = 1, 'sound/magic/clockwork/fellowship_armory.ogg' = 1), 50)
+	_AddComponent(/datum/component/squeak, list('sound/machines/clockcult/integration_cog_install.ogg' = 1, 'sound/magic/clockwork/fellowship_armory.ogg' = 1), 50)
 
 /obj/item/clothing/shoes/wheelys
 	name = "Wheely-Heels"

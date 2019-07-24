@@ -28,7 +28,7 @@
 	return 0
 
 /obj/item/integrate_amount() //returns the amount of resources gained when eating this item
-	if(materials[MAT_METAL] || materials[MAT_GLASS])
+	if(materials[/datum/material/iron] || materials[/datum/material/glass])
 		return 1
 	return ..()
 

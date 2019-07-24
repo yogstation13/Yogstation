@@ -28,11 +28,11 @@
 
 /obj/item/clothing/suit/hooded/explorer/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate)
+	_AddComponent(/datum/component/armor_plate)
 
 /obj/item/clothing/head/hooded/explorer/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate)
+	_AddComponent(/datum/component/armor_plate)
 
 /obj/item/clothing/mask/gas/explorer
 	name = "explorer gas mask"
@@ -70,7 +70,7 @@
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
 	. = ..()
-	AddComponent(/datum/component/spraycan_paintable)
+	_AddComponent(/datum/component/spraycan_paintable)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/space/hostile_environment/Destroy()
@@ -99,7 +99,7 @@
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
 	. = ..()
-	AddComponent(/datum/component/spraycan_paintable)
+	_AddComponent(/datum/component/spraycan_paintable)
 	update_icon()
 
 /obj/item/clothing/head/helmet/space/hostile_environment/update_icon()

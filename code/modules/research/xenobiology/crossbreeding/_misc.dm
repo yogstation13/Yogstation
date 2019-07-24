@@ -144,7 +144,7 @@ Slimecrossing Items
 		to_chat(target, "<span class=notice>You'll remember this moment forever!</span>")
 
 		used = TRUE
-		target.AddComponent(/datum/component/dejavu, 2)
+		target._AddComponent(/datum/component/dejavu, 2)
 	.=..()
 
 

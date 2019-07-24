@@ -319,7 +319,7 @@
 
 /obj/item/twohanded/required/kirbyplants/Initialize()
 	. = ..()
-	AddComponent(/datum/component/tactical)
+	_AddComponent(/datum/component/tactical)
 
 /obj/item/twohanded/required/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'

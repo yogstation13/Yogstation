@@ -181,13 +181,13 @@
 		update_icon()
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
-	if(materials.len != 1 || materials[1] != MAT_BIOMASS)
+	if(materials.len != 1 || materials[1] != /datum/material/biomass)
 		return FALSE
-	if (materials[MAT_BIOMASS]*multiplier/efficiency > points)
+	if (materials[/datum/material/biomass]*multiplier/efficiency > points)
 		return FALSE
 	else
 		if(remove_points)
-			points -= materials[MAT_BIOMASS]*multiplier/efficiency
+			points -= materials[/datum/material/biomass]*multiplier/efficiency
 		update_icon()
 		return TRUE
 
@@ -290,7 +290,7 @@
 			cat["items"] += list(list(
 				"id" = D.id,
 				"name" = D.name,
-				"cost" = D.materials[MAT_BIOMASS]/efficiency,
+				"cost" = D.materials[/datum/material/biomass]/efficiency,
 			))
 		data["categories"] += list(cat)
 

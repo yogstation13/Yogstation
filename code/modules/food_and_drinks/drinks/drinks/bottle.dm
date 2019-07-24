@@ -169,7 +169,7 @@
 
 /obj/item/broken_bottle/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 200, 55)
+	_AddComponent(/datum/component/butchering, 200, 55)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "Griffeater gin"

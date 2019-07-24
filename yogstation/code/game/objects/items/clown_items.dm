@@ -17,4 +17,4 @@
 
 /obj/item/bikehorn/rubber_pigeon/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('yogstation/sound/items/rubber_pigeon.ogg'=1), 50)
+	_AddComponent(/datum/component/squeak, list('yogstation/sound/items/rubber_pigeon.ogg'=1), 50)

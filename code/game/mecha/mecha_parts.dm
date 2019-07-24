@@ -28,7 +28,7 @@
 /obj/item/mecha_parts/chassis/Initialize()
 	. = ..()
 	if(construct_type)
-		AddComponent(construct_type)
+		_AddComponent(construct_type)
 
 /////////// Ripley
 

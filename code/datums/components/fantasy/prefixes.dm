@@ -45,7 +45,7 @@
 
 /datum/fantasy_affix/tactical/apply(datum/component/fantasy/comp, newName)
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/tactical)
+	comp.appliedComponents += master._AddComponent(/datum/component/tactical)
 	return "tactical [newName]"
 
 /datum/fantasy_affix/pyromantic
@@ -54,7 +54,7 @@
 
 /datum/fantasy_affix/pyromantic/apply(datum/component/fantasy/comp, newName)
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/igniter, clamp(comp.quality, 1, 10))
+	comp.appliedComponents += master._AddComponent(/datum/component/igniter, clamp(comp.quality, 1, 10))
 	return "pyromantic [newName]"
 
 /datum/fantasy_affix/vampiric
@@ -64,5 +64,5 @@
 
 /datum/fantasy_affix/vampiric/apply(datum/component/fantasy/comp, newName)
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/lifesteal, comp.quality)
+	comp.appliedComponents += master._AddComponent(/datum/component/lifesteal, comp.quality)
 	return "vampiric [newName]"

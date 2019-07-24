@@ -47,7 +47,7 @@
 					var/datum/component/storage/old_other_storage = twin.GetComponent(/datum/component/storage)
 					old_other_storage.RemoveComponent()
 					var/datum/component/storage/this_storage = GetComponent(/datum/component/storage)
-					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
+					var/datum/component/storage/twin_storage = twin._AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 					twin_storage.max_combined_w_class = 35
@@ -87,7 +87,7 @@
 			var/datum/component/storage/m_storage = m_obj.GetComponent(/datum/component/storage)
 			if(m_storage)
 				m_storage.RemoveComponent()
-			m_storage = m_obj.AddComponent(m_obj.component_type)
+			m_storage = m_obj._AddComponent(m_obj.component_type)
 			m_storage.allow_big_nesting = TRUE
 			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 			m_storage.max_combined_w_class = 35

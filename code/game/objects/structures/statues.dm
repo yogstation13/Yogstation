@@ -18,7 +18,7 @@
 
 /obj/structure/statue/Initialize()
 	. = ..()
-	AddComponent(/datum/component/art, impressiveness)
+	_AddComponent(/datum/component/art, impressiveness)
 
 /obj/structure/statue/attackby(obj/item/W, mob/living/user, params)
 	add_fingerprint(user)

@@ -315,4 +315,4 @@
 
 /mob/living/simple_animal/hostile/viscerator/Initialize()
 	. = ..()
-	AddComponent(/datum/component/swarming)
+	_AddComponent(/datum/component/swarming)

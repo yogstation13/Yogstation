@@ -37,7 +37,7 @@
 		add_gravity(T, 4)
 
 /datum/guardian_ability/major/gravity/proc/add_gravity(atom/A, new_gravity = 2)
-    var/datum/component/C = A.AddComponent(/datum/component/forced_gravity,new_gravity)
+    var/datum/component/C = A._AddComponent(/datum/component/forced_gravity,new_gravity)
     RegisterSignal(A, COMSIG_MOVABLE_MOVED, .proc/__distance_check)
     gravito_targets.Add(C)
     playsound(src, 'sound/effects/gravhit.ogg', 100, 1)

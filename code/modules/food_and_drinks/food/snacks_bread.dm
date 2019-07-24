@@ -214,7 +214,7 @@
 
 /obj/item/reagent_containers/food/snacks/butterdog/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/slippery, 80)
+	_AddComponent(/datum/component/slippery, 80)
 
 /obj/item/reagent_containers/food/snacks/frenchtoast
 	name = "french toast"

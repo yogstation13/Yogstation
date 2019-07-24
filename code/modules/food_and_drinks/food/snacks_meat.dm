@@ -300,7 +300,7 @@
 
 /obj/item/reagent_containers/food/snacks/meatclown/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/slippery, 30)
+	_AddComponent(/datum/component/slippery, 30)
 
 ////////////////////////////////////////////ANIMAL CUBES////////////////////////////////////////////
 

@@ -18,7 +18,7 @@
 	var/ore_pickup_rate = 15
 	var/sheet_per_ore = 1
 	var/point_upgrade = 1
-	var/list/ore_values = list(MAT_GLASS = 1, MAT_METAL = 1, MAT_PLASMA = 15, MAT_SILVER = 16, MAT_GOLD = 18, MAT_TITANIUM = 30, MAT_URANIUM = 30, MAT_DIAMOND = 50, MAT_BLUESPACE = 50, MAT_BANANIUM = 60)
+	var/list/ore_values = list(/datum/material/glass = 1, /datum/material/iron = 1, MAT_PLASMA = 15, MAT_SILVER = 16, MAT_GOLD = 18, MAT_TITANIUM = 30, /datum/material/uranium = 30, MAT_DIAMOND = 50, MAT_BLUESPACE = 50, MAT_BANANIUM = 60)
 	var/message_sent = FALSE
 	var/list/ore_buffer = list()
 	var/datum/techweb/stored_research
@@ -28,7 +28,7 @@
 /obj/machinery/mineral/ore_redemption/Initialize(mapload)
 	. = ..()
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
-	materials = AddComponent(/datum/component/remote_materials, "orm", mapload)
+	materials = _AddComponent(/datum/component/remote_materials, "orm", mapload)
 
 /obj/machinery/mineral/ore_redemption/Destroy()
 	QDEL_NULL(stored_research)
@@ -91,14 +91,14 @@
 
 	var/build_amount = 0
 
-	for(var/mat_id in D.materials)
-		var/M = D.materials[mat_id]
-		var/datum/material/redemption_mat = mat_container.materials[mat_id]
+	for(var/mat in D.materials)
+		var/amount = D.materials[mat]
+		var/datum/material/redemption_mat_amount = mat_container.materials[mat]
 
-		if(!M || !redemption_mat)
+		if(!amount || !redemption_mat_amount)
 			return FALSE
 
-		var/smeltable_sheets = FLOOR(redemption_mat.amount / M, 1)
+		var/smeltable_sheets = FLOOR(redemption_mat_amount / amount, 1)
 
 		if(!smeltable_sheets)
 			return FALSE
@@ -121,16 +121,15 @@
 	var/datum/component/material_container/mat_container = materials.mat_container
 	if(!mat_container || !is_station_level(z))
 		return
-	message_sent = TRUE
 
 	var/area/A = get_area(src)
 	var/msg = "Now available in [A]:<br>"
 
 	var/has_minerals = FALSE
 
-	for(var/mat_id in mat_container.materials)
-		var/datum/material/M = mat_container.materials[mat_id]
-		var/mineral_amount = M.amount / MINERAL_MATERIAL_AMOUNT
+	for(var/mat in mat_container.materials)
+		var/datum/material/M = mat
+		var/mineral_amount = mat_container.materials[mat] / MINERAL_MATERIAL_AMOUNT
 		if(mineral_amount)
 			has_minerals = TRUE
 		msg += "[capitalize(M.name)]: [mineral_amount] sheets<br>"
@@ -213,10 +212,12 @@
 	data["materials"] = list()
 	var/datum/component/material_container/mat_container = materials.mat_container
 	if (mat_container)
-		for(var/mat_id in mat_container.materials)
-			var/datum/material/M = mat_container.materials[mat_id]
-			var/sheet_amount = M.amount ? M.amount / MINERAL_MATERIAL_AMOUNT : "0"
-			data["materials"] += list(list("name" = M.name, "id" = M.id, "amount" = sheet_amount, "value" = ore_values[M.id] * point_upgrade))
+		for(var/mat in mat_container.materials)
+			var/datum/material/M = mat
+			var/amount = mat_container.materials[M]
+			var/sheet_amount = amount / MINERAL_MATERIAL_AMOUNT
+			var/ref = REF(M)
+			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "value" = ore_values[M.type]))
 
 		data["alloys"] = list()
 		for(var/v in stored_research.researched_designs)
@@ -271,7 +272,7 @@
 				if(!mat_container.materials[mat_id])
 					return
 				var/datum/material/mat = mat_container.materials[mat_id]
-				var/stored_amount = mat.amount / MINERAL_MATERIAL_AMOUNT
+				var/stored_amount = mat.get_material_amount / MINERAL_MATERIAL_AMOUNT
 
 				if(!stored_amount)
 					return

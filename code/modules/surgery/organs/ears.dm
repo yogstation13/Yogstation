@@ -119,7 +119,7 @@
 	. = ..()
 	if(istype(H))
 		to_chat(H, "<span class='notice'>You suddenly feel like you've lost your balance.</span>")
-		waddle = H.AddComponent(/datum/component/waddling)
+		waddle = H._AddComponent(/datum/component/waddling)
 
 /obj/item/organ/ears/penguin/Remove(mob/living/carbon/human/H,  special = 0)
 	. = ..()

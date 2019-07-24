@@ -191,4 +191,4 @@
 
 /obj/structure/displaycase/stand/Initialize()
 	. = ..()
-	//AddComponent(/datum/component/gps, "Powerful Signal") //lol
+	//_AddComponent(/datum/component/gps, "Powerful Signal") //lol

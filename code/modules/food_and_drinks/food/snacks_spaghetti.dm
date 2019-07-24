@@ -16,7 +16,7 @@
 		var/list/display_message = list(
 			"<span class='notice'>Something wet falls out of their pocket and hits the ground. Is that... [name]?</span>",
 			"<span class='warning'>Oh shit! All your pocket [name] fell out!</span>")
-		AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg')
+		_AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg')
 
 /obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti
 	name = "boiled spaghetti"

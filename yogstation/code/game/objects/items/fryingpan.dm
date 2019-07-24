@@ -12,7 +12,7 @@
 	var/bonkpower = 15
 	var/pantrify = FALSE
 	block_chance = 10
-	materials = list(MAT_METAL=75)
+	materials = list(/datum/material/iron=75)
 	attack_verb = list("BONKED", "panned")
 	hitsound = 'yogstation/sound/weapons/pan.ogg'
 
@@ -38,7 +38,7 @@
 
 /obj/item/melee/fryingpan/bananium/Initialize()
 	. = ..()
-	AddComponent(/datum/component/randomcrits, force)
+	_AddComponent(/datum/component/randomcrits, force)
 
 /obj/item/melee/fryingpan/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity || !isliving(target) || !iscarbon(user))

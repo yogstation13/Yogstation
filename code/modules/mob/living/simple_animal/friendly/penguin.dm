@@ -20,7 +20,7 @@
 
 /mob/living/simple_animal/pet/penguin/Initialize()
 	. = ..()
-	AddComponent(/datum/component/waddling)
+	_AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/pet/penguin/emperor
 	name = "Emperor penguin"

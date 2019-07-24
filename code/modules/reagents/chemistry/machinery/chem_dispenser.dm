@@ -417,7 +417,7 @@
 
 /obj/machinery/chem_dispenser/drinks/Initialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
+	_AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 
 /obj/machinery/chem_dispenser/drinks/setDir()
 	var/old = dir

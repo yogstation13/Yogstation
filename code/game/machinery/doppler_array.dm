@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	GLOB.doppler_arrays += src
 
 /obj/machinery/doppler_array/ComponentInitialize()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE,null,null,CALLBACK(src,.proc/rot_message))
+	_AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE,null,null,CALLBACK(src,.proc/rot_message))
 
 /obj/machinery/doppler_array/Destroy()
 	GLOB.doppler_arrays -= src
