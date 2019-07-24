@@ -99,7 +99,7 @@
 	
 /mob/living/silicon/ai/New()
 	..()
-	stack_trace("AI([name]) mob spawned at [x],[y],[z] with ckey [ckey]")
+	stack_trace("AI([name]) mob spawned at [x],[y],[z] with ckey [ckey] via New()")
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
