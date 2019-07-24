@@ -58,6 +58,8 @@
 /datum/quirk/proc/clone_data() //return additional data that should be remembered by cloning
 /datum/quirk/proc/on_clone(data) //create the quirk from clone data
 
+/datum/quirk/proc/check_quirk(datum/preferences/prefs) // Yogs -- allows quirks to check the preferences of the user who may acquire it
+
 /datum/quirk/process()
 	if(QDELETED(quirk_holder))
 		quirk_holder = null

@@ -1058,16 +1058,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/quirk_name = initial(T.name)
 			var/has_quirk
 			var/quirk_cost = initial(T.value) * -1
-			var/lock_reason = "This trait is unavailable."
-			var/quirk_conflict = FALSE
+			var/lock_reason = FALSE // Also marks whether this quirk ought to be locked at all; FALSE implies it's OK for this person to have this quirk
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
 			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
-				quirk_conflict = TRUE
+			else
+				lock_reason = T.check_quirk(src)
 			if(has_quirk)
-				if(quirk_conflict)
+				if(lock_reason)
 					all_quirks -= quirk_name
 					has_quirk = FALSE
 				else
@@ -1077,7 +1077,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/font_color = "#AAAAFF"
 			if(initial(T.value) != 0)
 				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
-			if(quirk_conflict)
+			if(lock_reason)
 				dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
 				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"
 			else
