@@ -26,8 +26,5 @@
 	if(!HAS_TRAIT(wearer, TRAIT_DEAF))
 		var/obj/item/organ/ears/ears = wearer.getorganslot(ORGAN_SLOT_EARS)
 		if (ears)
-			var/minDeaf = 0
-			if(ears.damage >= ears.maxHealth)
-				minDeaf = 1
-			ears.deaf = max(ears.deaf - 1, minDeaf) // Do not completly undeaf until we are healed
-			ears.damage = max(ears.damage - 0.1, 0)
+			ears.deaf = max(ears.deaf - 1, (ears.ear_damage < UNHEALING_EAR_DAMAGE ? 0 : 1)) // Do not clear deafness while above the unhealing ear damage threshold
+			ears.ear_damage = max(ears.ear_damage - 0.1, 0)
