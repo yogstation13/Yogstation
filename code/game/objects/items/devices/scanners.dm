@@ -144,12 +144,8 @@ GENE SCANNER
 		var/mob/living/carbon/human/H = M
 		if(H.undergoing_cardiac_arrest() && H.stat != DEAD)
 			to_chat(user, "<span class='danger'>Subject suffering from heart attack: Apply defibrillation or other electric shock immediately!</span>")
-		//organ failure messages
-		for(var/O in H.internal_organs)
-			var/obj/item/organ/organ = O
-			if(!istype(organ, /obj/item/organ/heart))
-				if(organ.failing)
-					to_chat(user, organ.Assemble_Failure_Message())
+		if(H.undergoing_liver_failure() && H.stat != DEAD)
+			to_chat(user, "<span class='danger'>Subject is suffering from liver failure: Apply Corazone and begin a liver transplant immediately!</span>")
 
 	to_chat(user, "<span class='info'>Analyzing results for [M]:\n\tOverall status: [mob_status]</span>")
 
@@ -220,11 +216,11 @@ GENE SCANNER
 					healthy = FALSE
 					to_chat(user, "\t<span class='alert'>Subject is deaf.</span>")
 				else
-					if(ears.damage)
-						to_chat(user, "\t<span class='alert'>Subject has [ears.damage > ears.maxHealth ? "permanent ": "temporary "]hearing damage.</span>")
+					if(ears.ear_damage)
+						to_chat(user, "\t<span class='alert'>Subject has [ears.ear_damage > UNHEALING_EAR_DAMAGE? "permanent ": "temporary "]hearing damage.</span>")
 						healthy = FALSE
 					if(ears.deaf)
-						to_chat(user, "\t<span class='alert'>Subject is [ears.damage > ears.maxHealth ? "permanently ": "temporarily "] deaf.</span>")
+						to_chat(user, "\t<span class='alert'>Subject is [ears.ear_damage > UNHEALING_EAR_DAMAGE ? "permanently ": "temporarily "] deaf.</span>")
 						healthy = FALSE
 				if(healthy)
 					to_chat(user, "\t<span class='info'>Healthy.</span>")
@@ -240,13 +236,13 @@ GENE SCANNER
 				if(HAS_TRAIT(C, TRAIT_NEARSIGHT))
 					to_chat(user, "\t<span class='alert'>Subject is nearsighted.</span>")
 					healthy = FALSE
-				if(eyes.damage > 30)
+				if(eyes.eye_damage > 30)
 					to_chat(user, "\t<span class='alert'>Subject has severe eye damage.</span>")
 					healthy = FALSE
-				else if(eyes.damage > 20)
+				else if(eyes.eye_damage > 20)
 					to_chat(user, "\t<span class='alert'>Subject has significant eye damage.</span>")
 					healthy = FALSE
-				else if(eyes.damage)
+				else if(eyes.eye_damage)
 					to_chat(user, "\t<span class='alert'>Subject has minor eye damage.</span>")
 					healthy = FALSE
 				if(healthy)
@@ -257,10 +253,9 @@ GENE SCANNER
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/O in H.internal_organs)
-			var/obj/item/organ/organ = O
-			if((organ.damage > organ.low_threshold)&&(!istype(organ, /obj/item/organ/brain)))
-				to_chat(user, "\t<span class='alert'>[organ.damage > organ.high_threshold ? "Severe" : "Minor"] damage detected within [organ].</span>")
+		var/ldamage = H.return_liver_damage()
+		if(ldamage > 10)
+			to_chat(user, "\t<span class='alert'>[ldamage > 45 ? "Severe" : "Minor"] liver damage detected.</span>")
 		if(advanced && H.has_dna())
 			to_chat(user, "\t<span class='info'>Genetic Stability: [H.dna.stability]%.</span>")
 

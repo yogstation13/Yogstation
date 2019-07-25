@@ -797,9 +797,9 @@
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	if(reagents)
 		reagents.clear_reagents()
-	for(var/O in internal_organs)
-		var/obj/item/organ/organ = O
-		organ.setOrganDamage(0)
+	var/obj/item/organ/liver/L = getorganslot(ORGAN_SLOT_LIVER)
+	if(L)
+		L.damage = 0
 	var/obj/item/organ/brain/B = getorgan(/obj/item/organ/brain)
 	if(B)
 		B.brain_death = FALSE
@@ -937,3 +937,4 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+

@@ -10,9 +10,10 @@
 	// to hear anything.
 	var/deaf = 0
 
-	// `damage` in this case measures long term damage to the ears, if too high,
+	// `ear_damage` measures long term damage to the ears, if too high,
 	// the person will not have either `deaf` or `ear_damage` decrease
 	// without external aid (earmuffs, drugs)
+	var/ear_damage = 0
 
 	//Resistance against loud noises
 	var/bang_protect = 0
@@ -22,20 +23,17 @@
 /obj/item/organ/ears/on_life()
 	if(!iscarbon(owner))
 		return
-	..()
 	var/mob/living/carbon/C = owner
-	if((damage < maxHealth) && failing)	//ear damage can be repaired from the failing condition
-		failing = FALSE
 	// genetic deafness prevents the body from using the ears, even if healthy
 	if(HAS_TRAIT(C, TRAIT_DEAF))
 		deaf = max(deaf, 1)
-	else if(!failing) // if this organ is failing, do not clear deaf stacks.
+	else if(ear_damage < UNHEALING_EAR_DAMAGE) // if higher than UNHEALING_EAR_DAMAGE, no natural healing occurs.
+		ear_damage = max(ear_damage - 0.05, 0)
 		deaf = max(deaf - 1, 0)
 
 /obj/item/organ/ears/proc/restoreEars()
 	deaf = 0
-	damage = 0
-	failing = FALSE
+	ear_damage = 0
 
 	var/mob/living/carbon/C = owner
 
@@ -43,7 +41,7 @@
 		deaf = 1
 
 /obj/item/organ/ears/proc/adjustEarDamage(ddmg, ddeaf)
-	damage = max(damage + (ddmg*damage_multiplier), 0)
+	ear_damage = max(ear_damage + (ddmg*damage_multiplier), 0)
 	deaf = max(deaf + (ddeaf*damage_multiplier), 0)
 
 /obj/item/organ/ears/proc/minimumDeafTicks(value)
@@ -118,4 +116,5 @@
 	name = "tin ears"
 	desc = "The robust ears of a bronze golem. "
 	damage_multiplier = 0.1 //STRONK
-	bang_protect = 1 //Fear me weaklings.
+	bang_protect = 1 //Fear me weaklings. 
+
