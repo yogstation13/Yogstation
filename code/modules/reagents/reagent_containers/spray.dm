@@ -1,13 +1,8 @@
 /obj/item/reagent_containers/spray
 	name = "spray bottle"
 	desc = "A spray bottle, with an unscrewable top."
-<<<<<<< HEAD
-	icon = 'yogstation/icons/obj/janitor.dmi'
-	icon_state = "cleaner"
-=======
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "sprayer_large"
->>>>>>> ffe578aacb... [READY]Replaces Trekchems with Cobby Category 2 Chems + Chem Tweaks (#44531)
 	item_state = "cleaner"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
