@@ -89,7 +89,7 @@
 	return "<span class='warning'>[src] falls apart and breaks!</span>"
 
 /obj/item/clothing/under/examine(mob/user)
-	..()
+	.=..()
 	if(tearhealth)
 		switch (tearhealth)
 			if (100)

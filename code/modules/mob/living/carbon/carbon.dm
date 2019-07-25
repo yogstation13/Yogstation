@@ -1,5 +1,5 @@
 /mob/living/carbon
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 
 /mob/living/carbon/Initialize()
 	. = ..()
@@ -230,7 +230,8 @@
 								"<span class='userdanger'>[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name].</span>")
 
 /mob/living/carbon/fall(forced)
-    loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
+	if(loc)
+		loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
 /mob/living/carbon/is_muzzled()
 	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
@@ -469,7 +470,7 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam))
+		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam, needs_metabolizing = TRUE))
 			if(T)
 				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
@@ -827,6 +828,22 @@
 	if(!getorgan(/obj/item/organ/brain) && (!mind || !mind.has_antag_datum(/datum/antagonist/changeling)))
 		return 0
 
+/mob/living/carbon/proc/can_defib() //yogs start
+	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
+		return FALSE
+	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT * 10) //too late
+		return FALSE
+	if((getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE) || !can_be_revived()) //too damaged
+		return FALSE
+	if(!getorgan(/obj/item/organ/heart)) //what are we even shocking
+		return FALSE
+	var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
+	if(QDELETED(BR) || BR.brain_death || BR.damaged_brain || BR.suicided)
+		return FALSE
+	if(get_ghost())
+		return FALSE
+	return TRUE //yogs end
+
 /mob/living/carbon/harvest(mob/living/user)
 	if(QDELETED(src))
 		return
@@ -920,3 +937,4 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
+

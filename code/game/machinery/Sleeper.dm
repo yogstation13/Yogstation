@@ -195,14 +195,16 @@
 				table += "<a href='?src=[REF(src)];inject=[chem]'>"
 				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 					table += "<font color=\"red\">"
-				table += "[GLOB.chemical_reagents_list[chem].name]</a>"
+				var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
+				table += "[thing.name]</a>"
 				table += "</td></tr>"
 
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
 					var/found = FALSE
 					for(var/chem in available_chems)
-						if(R.name == GLOB.chemical_reagents_list[chem].name)  // Shit code, i know that please make it better if know how
+						var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
+						if(R.name == thing.name)  // Shit code, i know that please make it better if know how
 							found = TRUE
 					if(!found)
 						table += "<tr><td style='width:50%' valign='top'>"

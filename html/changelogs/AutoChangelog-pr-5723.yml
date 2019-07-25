@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Charcoal now purges other chemicals again. It will no longer purge itself."

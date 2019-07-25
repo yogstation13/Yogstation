@@ -297,15 +297,7 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, "<span class='info'>Species: [S.name][mutant ? "-derived mutant" : ""]</span>")
-
-	//Health analyzers warn you about very cold people, like thralls or victims of shadowlings. //yogs start
-	if(M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) || M.bodytemperature < (11 + T0C))
-		//Thralls get a fake temperature so they always read as too cold.
-		var/faketemp = (M.mind?.has_antag_datum(ANTAG_DATUM_THRALL) ? M.bodytemperature - rand(25, 26) : M.bodytemperature)
-		to_chat(user, "<span class='danger'>Body temperature: [round(faketemp - T0C,0.1)] &deg;C ([round(faketemp*1.8-459.67,0.1)] &deg;F)</span>")
-		to_chat(user, "<span class='danger'>Internal temperature hazardously low.</span>")
-	else
-		to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>") //yogs end
+	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
@@ -328,7 +320,7 @@ GENE SCANNER
 				var/mob/living/carbon/human/H = C
 				if(H.bleed_rate)
 					to_chat(user, "<span class='danger'>Subject is bleeding!</span>")
-			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
+			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL(C))*100)
 			var/blood_type = C.dna.blood_type
 			if(blood_id != /datum/reagent/blood)//special blood substance
 				var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
@@ -336,9 +328,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
+			if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "<span class='danger'>LOW blood level [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>")
-			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)
+			else if(C.blood_volume <= BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "<span class='danger'>CRITICAL blood level [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>")
 			else
 				to_chat(user, "<span class='info'>Blood level [blood_percent] %, [C.blood_volume] cl, type: [blood_type]</span>")
