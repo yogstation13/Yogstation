@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Shuttles that go to a custom dock are no longer forever trapped by their hubris"

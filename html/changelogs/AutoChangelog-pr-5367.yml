@@ -1,5 +1,0 @@
-author: "SiclaRogue"
-delete-after: true 
-changes: 
-  - rscdel: "Removed cargo paramedic spawn"
-  - rscadd: "Added cargo mining medic spawn"

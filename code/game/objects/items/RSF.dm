@@ -141,7 +141,7 @@ RSF
 	if((obj_flags & EMAGGED)&&!toxin)
 		toxin = 1
 		to_chat(user, "Cookie Synthesizer Hacked")
-	else if(P.emagged&&!toxin)
+	else if(P && P.emagged && !toxin)
 		toxin = 1
 		to_chat(user, "Cookie Synthesizer Hacked")
 	else
