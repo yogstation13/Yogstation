@@ -227,7 +227,7 @@
 	icon_state = "refill_costume"
 
 /obj/machinery/vending/autodrobe/capdrobe
-	name = "\improper Captain's Autodrobe"
+	name = "\improper CapDrobe"
 	desc = "A vending machine for captain outfits."
 	icon_state = "capdrobe"
 	icon_deny = "capdrobe-deny"
