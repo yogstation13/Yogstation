@@ -838,7 +838,7 @@ What a mess.*/
 /obj/machinery/computer/secure_data/proc/canUseSecurityRecordsConsole(mob/user, message1 = 0, record1, record2)
 	if(user)
 		if(authenticated)
-			if(issilicon(user)||in_range(user, src))		//yogs
+			if(user.canUseTopic(src, !issilicon(user)))
 				if(!trim(message1))
 					return 0
 				if(!record1 || record1 == active1)
