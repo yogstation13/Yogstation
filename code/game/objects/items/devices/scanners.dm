@@ -260,7 +260,7 @@ GENE SCANNER
 		for(var/O in H.internal_organs)
 			var/obj/item/organ/organ = O
 			if((organ.damage > organ.low_threshold)&&(!istype(organ, /obj/item/organ/brain)))
-				to_chat(user, "\t<span class='alert'>[organ.damage > organ.high_threshold ? "Severe" : "Minor"] damaged detected within [organ].</span>")
+				to_chat(user, "\t<span class='alert'>[organ.damage > organ.high_threshold ? "Severe" : "Minor"] damage detected within [organ].</span>")
 		if(advanced && H.has_dna())
 			to_chat(user, "\t<span class='info'>Genetic Stability: [H.dna.stability]%.</span>")
 
