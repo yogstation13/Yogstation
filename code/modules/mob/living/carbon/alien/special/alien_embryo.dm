@@ -104,7 +104,11 @@
 
 	if(gib_on_success)
 		new_xeno.visible_message("<span class='danger'>[new_xeno] bursts out of [owner] in a shower of gore!</span>", "<span class='userdanger'>You exit [owner], your previous host.</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
-		owner.gib()             //yogs
+		var/obj/item/organ/brain/BR = owner.getorgan(/obj/item/organ/brain) //yogs start
+		if(BR)
+			BR.damaged_brain = TRUE
+		owner.adjustbrainloss(199,199)//trauma from having a FUCKING XENO COME OUT OF YOUR BODY
+		owner.gib()             //yogs end
 	else
 		new_xeno.visible_message("<span class='danger'>[new_xeno] wriggles out of [owner]!</span>", "<span class='userdanger'>You exit [owner], your previous host.</span>")
 		owner.adjustBruteLoss(40)
