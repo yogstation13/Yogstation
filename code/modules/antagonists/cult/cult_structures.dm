@@ -187,7 +187,7 @@
 						var/mob/living/simple_animal/M = L
 						if(M.health < M.maxHealth)
 							M.adjustHealth(-3)
-				if(ishuman(L) && L.blood_volume < BLOOD_VOLUME_NORMAL)
+				if(ishuman(L) && L.blood_volume < BLOOD_VOLUME_NORMAL(L))
 					L.blood_volume += 1.0
 			CHECK_TICK
 	if(last_corrupt <= world.time)
