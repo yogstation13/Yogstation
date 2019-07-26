@@ -3,6 +3,9 @@ CONTAINS:
 SAFES
 FLOOR SAFES
 */
+#define DIAL_RANGE 72 // How many options there are on the dial, including 0.
+#define MODULO_INC(x,r) ((x + 1)%r) // Does modulo arithmetic to x, incrementing it in range r
+#define MODULO_DEC(x,r) ((x - 1 + r)%r) // Modulo decrement, (x-1) mod r
 
 //SAFES
 /obj/structure/safe
@@ -26,11 +29,11 @@ FLOOR SAFES
 
 /obj/structure/safe/Initialize()
 	. = ..()
-	tumbler_1_pos = rand(0, 71)
-	tumbler_1_open = rand(0, 71)
+	tumbler_1_pos = rand(DIAL_RANGE-1)
+	tumbler_1_open = rand(DIAL_RANGE-1)
 
-	tumbler_2_pos = rand(0, 71)
-	tumbler_2_open = rand(0, 71)
+	tumbler_2_pos = rand(DIAL_RANGE-1)
+	tumbler_2_open = rand(DIAL_RANGE-1)
 
 
 /obj/structure/safe/Initialize(mapload)
@@ -49,7 +52,7 @@ FLOOR SAFES
 
 /obj/structure/safe/proc/check_unlocked(mob/user, canhear)
 	if(explosion_count > 2)
-		return 1
+		return TRUE
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
 			to_chat(user, "<span class='italics'>You hear a [pick("tonk", "krunk", "plunk")] from [src].</span>")
@@ -60,18 +63,6 @@ FLOOR SAFES
 			visible_message("<i><b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!</b></i>")
 		return TRUE
 	return FALSE
-
-/obj/structure/safe/proc/decrement(num)
-	num -= 1
-	if(num < 0)
-		num = 71
-	return num
-
-/obj/structure/safe/proc/increment(num)
-	num += 1
-	if(num > 71)
-		num = 0
-	return num
 
 /obj/structure/safe/update_icon()
 	if(open)
@@ -115,13 +106,13 @@ FLOOR SAFES
 			return
 
 	if(href_list["decrement"])
-		dial = decrement(dial)
-		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
-			tumbler_1_pos = decrement(tumbler_1_pos)
+		dial = MODULO_DEC(dial,DIAL_RANGE)
+		if(dial == MODULO_INC(tumbler_1_pos,DIAL_RANGE)) // If the dial is slightly ahead of #1
+			tumbler_1_pos = MODULO_DEC(tumbler_1_pos,DIAL_RANGE) // Increment #1
 			if(canhear)
 				to_chat(user, "<span class='italics'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>")
-			if(tumbler_1_pos == tumbler_2_pos + 37 || tumbler_1_pos == tumbler_2_pos - 35)
-				tumbler_2_pos = decrement(tumbler_2_pos)
+			if(tumbler_1_pos == (tumbler_2_pos + round(DIAL_RANGE/2) + 1) % DIAL_RANGE) // If #1 is slightly more than 180 degrees away from #2
+				tumbler_2_pos = MODULO_DEC(tumbler_2_pos,DIAL_RANGE)
 				if(canhear)
 					to_chat(user, "<span class='italics'>You hear a [pick("click", "chink", "clink")] from [src].</span>")
 			check_unlocked(user, canhear)
@@ -129,13 +120,13 @@ FLOOR SAFES
 		return
 
 	if(href_list["increment"])
-		dial = increment(dial)
-		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
-			tumbler_1_pos = increment(tumbler_1_pos)
+		dial = MODULO_INC(dial,DIAL_RANGE)
+		if(dial == MODULO_DEC(tumbler_1_pos,DIAL_RANGE)) // If the dial is slightly behind #1
+			tumbler_1_pos = MODULO_INC(tumbler_1_pos,DIAL_RANGE) // Decrement #1
 			if(canhear)
 				to_chat(user, "<span class='italics'>You hear a [pick("clack", "scrape", "clank")] from [src].</span>")
-			if(tumbler_1_pos == tumbler_2_pos - 37 || tumbler_1_pos == tumbler_2_pos + 35)
-				tumbler_2_pos = increment(tumbler_2_pos)
+			if(tumbler_1_pos == (tumbler_2_pos + round(DIAL_RANGE/2) - 1) % DIAL_RANGE) // If #1 is slightly less than 180 degrees away from #2
+				tumbler_2_pos = MODULO_INC(tumbler_2_pos,DIAL_RANGE)
 				if(canhear)
 					to_chat(user, "<span class='italics'>You hear a [pick("click", "chink", "clink")] from [src].</span>")
 			check_unlocked(user, canhear)
@@ -209,3 +200,5 @@ FLOOR SAFES
 
 /obj/structure/safe/floor/hide(var/intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
+
+#undef DIAL_RANGE
