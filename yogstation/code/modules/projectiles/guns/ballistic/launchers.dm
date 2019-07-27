@@ -11,6 +11,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/speargun
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	casing_ejector = FALSE
+	internal_magazine = TRUE
 
 /obj/item/gun/ballistic/speargun/update_icon()
 	return
