@@ -392,13 +392,6 @@ If you are porting features/tools from other codebases, you must give them credi
 
 Regarding sprites & sounds, you must credit the artist and possibly the codebase. All yogstation assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the yogstation codebase.
 
-## Banned content
-Do not add any of the following in a Pull Request or risk getting the PR closed:
-* National Socialist Party of Germany content, National Socialist Party of Germany related content, or National Socialist Party of Germany references
-* Code where one line of code is split across mutiple lines (except for multiple, separate strings and comments; in those cases, existing longer lines must not be split up)
-
-Just because something isn't on this list doesn't mean that it's acceptable. Use common sense above all else.
-
 ## A word on Git
 Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.
 

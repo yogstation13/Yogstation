@@ -32,6 +32,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 
+	changed_maps = list("YogsPubby", "OmegaStation")
+
+/datum/job/hos/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
+/datum/job/hos/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/hos
 	name = "Head of Security"
 	jobtype = /datum/job/hos

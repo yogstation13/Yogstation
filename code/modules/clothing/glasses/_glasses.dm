@@ -23,9 +23,9 @@
 	return BRUTELOSS
 
 /obj/item/clothing/glasses/examine(mob/user)
-	..()
+	. = ..()
 	if(glass_colour_type && ishuman(user))
-		to_chat(user, "<span class='notice'>Alt-click to toggle its colors.</span>")
+		. += "<span class='notice'>Alt-click to toggle its colors.</span>"
 
 /obj/item/clothing/glasses/visor_toggling()
 	..()
@@ -45,13 +45,14 @@
 /obj/item/clothing/glasses/proc/thermal_overload()
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
+		var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
 		if(!(HAS_TRAIT(H, TRAIT_BLIND)))
 			if(H.glasses == src)
 				to_chat(H, "<span class='danger'>[src] overloads and blinds you!</span>")
 				H.flash_act(visual = 1)
 				H.blind_eyes(3)
 				H.blur_eyes(5)
-				H.adjust_eye_damage(5)
+				eyes.applyOrganDamage(5)
 
 /obj/item/clothing/glasses/meson
 	name = "optical meson scanner"
@@ -368,13 +369,12 @@
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
 
 /obj/item/clothing/glasses/thermal/monocle/examine(mob/user) //Different examiners see a different description!
-	var/desk = desc
 	if(user.gender == MALE)
 		desc = replacetext(desc, "person", "man")
 	else if(user.gender == FEMALE)
 		desc = replacetext(desc, "person", "woman")
-	..()
-	desc = desk
+	. = ..()
+	desc = initial(desc)
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "optical thermal eyepatch"

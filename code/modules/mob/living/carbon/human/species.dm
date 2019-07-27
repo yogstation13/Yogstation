@@ -952,7 +952,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == exotic_blood)
-		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM(H))
 		H.reagents.del_reagent(chem.type)
 		return 1
 	return FALSE
@@ -1110,8 +1110,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					. += hungry / 50
 			else if(isethereal(H))
 				var/datum/species/ethereal/E = H.dna.species
-				if(E.ethereal_charge <= ETHEREAL_CHARGE_NORMAL)
-					. += 1.5 * (1 - E.ethereal_charge / 100)
+				var/charge = E.get_charge()
+				if(charge <= ETHEREAL_CHARGE_NORMAL)
+					. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)
