@@ -1,6 +1,6 @@
 /obj/item/airlock_scanner
-	name = "accses scaner"
-	desc = "A tool used to idetifying accses requiremnts of various machinery. Make sure airlocks id scan routines were activated at least once before the scan"
+	name = "access scaner"
+	desc = "A tool used to idetifying access requiremnts of various machinery. Make sure airlocks id scan routines were activated at least once before the scan"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "airlock_scanner"
 
@@ -12,7 +12,7 @@
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 
-/obj/item/airlock_scanner/proc/show_accses(obj/target, mob/user)
+/obj/item/airlock_scanner/proc/show_access(obj/target, mob/user)
 	var/t1 = ""
 	var/list/accses_list
 	if(length(target.req_one_access))

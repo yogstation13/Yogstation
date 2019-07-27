@@ -102,7 +102,7 @@
 		return attack_hand(user)
 	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
 		var/obj/item/airlock_scanner/S = W
-		S.show_accses(src, user)					//yogs end
+		S.show_access(src, user)					//yogs end
 	else
 		return ..()
 
