@@ -647,6 +647,8 @@
 			log_comment(log_text)
 		if(LOG_TELECOMMS)
 			log_telecomms(log_text)
+		if(LOG_NTSL)
+			log_ntsl(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
 		if(LOG_LOOC) // yogs - LOOC log

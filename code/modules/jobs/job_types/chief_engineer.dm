@@ -31,6 +31,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/chief_engineer/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/ce
 	name = "Chief Engineer"
 	jobtype = /datum/job/chief_engineer

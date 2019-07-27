@@ -1,5 +1,0 @@
-author: "GenericDM"
-delete-after: true 
-changes: 
-  - bugfix: "preternis can be gibbed"
-  - rscadd: "preternis produce synthmeat when gibbed"
