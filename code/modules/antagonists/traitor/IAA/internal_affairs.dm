@@ -108,9 +108,9 @@
 			continue
 		remove_objective(objective_)
 
-	var/datum/objective/martyr/martyr_objective = new
-	martyr_objective.owner = owner
-	add_objective(martyr_objective)
+	var/datum/objective/escape/assumed_identity/assumed = new // Yogs -- IAA have to escape under an assumed identity if they "win"
+	assumed.owner = owner
+	add_objective(assumed)
 
 /datum/antagonist/traitor/proc/reinstate_escape_objective()
 	if(!owner||!objectives.len)
@@ -168,9 +168,9 @@
 			return
 	if(last_man_standing)
 		if(syndicate)
-			to_chat(owner.current,"<span class='userdanger'> All the loyalist agents are dead, and no more is required of you. Die a glorious death, agent. </span>")
+			to_chat(owner.current,"<span class='userdanger'> All the loyalist agents are dead, and no more is required of you. Escape on the shuttle under an assumed name, and await further instructions, agent. </span>")
 		else
-			to_chat(owner.current,"<span class='userdanger'> All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage.</span>")
+			to_chat(owner.current,"<span class='userdanger'> All the other agents are dead, and you're job is complete. To preserve secrecy, escape on the shuttle under an assumed name, and await further instructions upon return to Central Command, agent.</span>")
 		replace_escape_objective(owner)
 
 /datum/antagonist/traitor/internal_affairs/proc/iaa_process()
