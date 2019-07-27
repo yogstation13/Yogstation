@@ -952,8 +952,8 @@
 	else if(istype(C, /obj/item/airlock_painter))
 		change_paintjob(C, user)
 	else if(istype(C, /obj/item/airlock_scanner))		//yogs start
-		var/obj/item/airlock_scanner = C
-		C.show_accses(src, user)					//yogs end
+		var/obj/item/airlock_scanner/S = C
+		S.show_accses(src, user)					//yogs end
 	else if(istype(C, /obj/item/doorCharge))
 		if(!panel_open || security_level)
 			to_chat(user, "<span class='warning'>The maintenance panel must be open to apply [C]!</span>")
