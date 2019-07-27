@@ -810,7 +810,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/update_explanation_text()
 	..()
 	if(target && target.current)
-		explanation_text = "Destroy [target.name], the experimental AI."
+		var/mob/living/silicon/target_silicon = target		//yogs start
+		explanation_text = "Destroy [target_silicon.designation], the experimental AI." //yogs start
 	else
 		explanation_text = "Free Objective"
 
