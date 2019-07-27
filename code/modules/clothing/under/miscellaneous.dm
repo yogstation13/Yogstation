@@ -665,7 +665,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/plasmaman
-	name = "plasma envirosuit"
+	name = "envirosuit"
 	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
@@ -680,9 +680,8 @@
 
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>")
-
+	. = ..()
+	. += "<span class='notice'>There are [extinguishes_left] extinguisher charges left in this suit.</span>"
 
 /obj/item/clothing/under/plasmaman/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -803,3 +802,25 @@
 	can_adjust = FALSE
 	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5)
 
+/obj/item/clothing/under/mech_suit
+	name = "red mech pilot's suit"
+	desc = "A red mech pilot's suit. Might make your butt look big."
+	icon_state = "red_mech_suit"
+	item_state = "red_mech_suit"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	fitted = NO_FEMALE_UNIFORM
+	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
+	can_adjust = FALSE
+
+/obj/item/clothing/under/mech_suit/white
+	name = "white mech pilot's suit"
+	desc = "A white mech pilot's suit. Very fetching."
+	icon_state = "white_mech_suit"
+	item_state = "white_mech_suit"
+
+/obj/item/clothing/under/mech_suit/blue
+	name = "blue mech pilot's suit"
+	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
+	icon_state = "blue_mech_suit"
+	item_state = "blue_mech_suit"

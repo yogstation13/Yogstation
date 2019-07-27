@@ -14,7 +14,7 @@
 	var/should_equip = TRUE
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
 	var/datum/syndicate_contract/current_contract
-	var/list/assigned_contracts = list()
+	var/list/datum/syndicate_contract/assigned_contracts = list()
 	var/contract_TC_payed_out = 0
 	var/contract_TC_to_redeem = 0
 	can_hijack = HIJACK_HIJACKER
@@ -28,20 +28,37 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
+	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	..()
 
 /datum/antagonist/traitor/proc/create_contracts()
-	var/contract_generation_quantity = 6
+	// 6 contracts
+	var/list/to_generate = list(
+		CONTRACT_PAYOUT_LARGE,
+		CONTRACT_PAYOUT_MEDIUM,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL,
+		CONTRACT_PAYOUT_SMALL
+	)
+
 	// We don't want the sum of all the payouts to be under this amount
-	var/lowest_TC_threshold = 28
+	var/lowest_TC_threshold = 30
 
 	var/total = 0
 	var/lowest_paying_sum = 0
 	var/datum/syndicate_contract/lowest_paying_contract
+
+	// Randomise order, so we don't have contracts always in payout order.
+	to_generate = shuffle(to_generate)
 	
-	for (var/i = 1; i <= contract_generation_quantity; i++)
-		var/datum/syndicate_contract/contract_to_add = new(owner)
+	var/list/assigned_targets = list()
+	// Generate contracts, and find the lowest paying.
+	for (var/i = 1; i <= to_generate.len; i++)
+		var/datum/syndicate_contract/contract_to_add = new(owner, to_generate[i], assigned_targets)
 		var/contract_payout_total = contract_to_add.contract.payout + contract_to_add.contract.payout_bonus
+		
+		assigned_targets.Add(contract_to_add.contract.target)
 
 		if (!lowest_paying_contract || (contract_payout_total < lowest_paying_sum))
 			lowest_paying_sum = contract_payout_total
@@ -77,12 +94,18 @@
 		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
 		A.malf_picker.remove_malf_verbs(A)
 		qdel(A.malf_picker)
-
+	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")
 	owner.special_role = null
 	..()
+
+/datum/antagonist/traitor/proc/handle_hearing(datum/source, list/hearing_args)
+	var/message = hearing_args[HEARING_MESSAGE]
+	message = GLOB.syndicate_code_phrase_regex.Replace(message, "<span class='blue'>$1</span>")
+	message = GLOB.syndicate_code_response_regex.Replace(message, "<span class='red'>$1</span>")
+	hearing_args[HEARING_MESSAGE] = message
 
 /datum/antagonist/traitor/proc/add_objective(datum/objective/O)
 	objectives += O
@@ -387,7 +410,7 @@
 
 	if (completed_contracts > 0)
 		var/pluralCheck = "contract"
-		if (completed_contracts > 1) 
+		if (completed_contracts > 1)
 			pluralCheck = "contracts"
 		result += "<br>Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
 					<span class='greentext'>[tc_total] TC</span>!<br>"

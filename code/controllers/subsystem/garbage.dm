@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-	
+
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -267,7 +267,7 @@ SUBSYSTEM_DEF(garbage)
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETED, force, hint) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force, hint) // Let the (remaining) components know about the result of Destroy
 		if(world.time != start_time)
 			I.slept_destroy++
 		else

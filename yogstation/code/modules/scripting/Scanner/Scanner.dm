@@ -180,9 +180,9 @@
 	Reads characters separated by an item in <delim> into a token.
 */
 		ReadWord()
-			var
-				char=copytext(code, codepos, codepos+1)
-				buf
+			var/char = copytext(code, codepos, codepos+1)
+			var/buf
+			
 			while(!delim.Find(char) && codepos<=lentext(code))
 				buf+=char
 				char=copytext(code, ++codepos, codepos+1)
@@ -197,9 +197,8 @@
 	Reads a symbol into a token.
 */
 		ReadSymbol()
-			var
-				char=copytext(code, codepos, codepos+1)
-				buf
+			var/char = copytext(code, codepos, codepos+1)
+			var/buf
 
 			while(options.symbols.Find(buf+char))
 				buf+=char
@@ -214,10 +213,9 @@
 	Reads a number into a token.
 */
 		ReadNumber()
-			var
-				char=copytext(code, codepos, codepos+1)
-				buf
-				dec=0
+			var/char = copytext(code, codepos, codepos+1)
+			var/buf
+			var/dec=0
 
 			while(options.IsDigit(char) || (char=="." && !dec))
 				if(char==".") dec=1

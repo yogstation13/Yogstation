@@ -45,7 +45,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/gun/ballistic/shotgun/lethal
-	belt = /obj/item/gun/energy/e_gun/advtaser
+	belt = /obj/item/gun/energy/disabler
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/swat
 	mask = /obj/item/clothing/mask/gas
@@ -83,3 +83,21 @@
 	r_pocket = /obj/item/paper/gasstation_lore
 	l_pocket = /obj/item/flashlight/seclite
 	id = /obj/item/card/id/gasclerk
+
+///Loot Spawner For UFO
+/obj/effect/spawner/lootdrop/lavaland_surface_ufo_crash
+	name = "alien tile"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/obj/item/organ/heart/gland/heals = 8,
+				/obj/item/organ/heart/gland/slime = 8,
+				/obj/item/organ/heart/gland/mindshock = 8,
+				/obj/item/organ/heart/gland/pop = 8,
+				/obj/item/organ/heart/gland/ventcrawling = 8,
+				/obj/item/organ/heart/gland/viral = 8,
+				/obj/item/organ/heart/gland/trauma = 8,
+				/obj/item/organ/heart/gland/spiderman = 8,
+				/obj/item/organ/heart/gland/egg = 8,
+				/obj/item/organ/heart/gland/electric = 8,
+				/obj/item/organ/heart/gland/chem = 8,
+				/obj/item/organ/heart/gland/plasma = 8)
