@@ -5812,12 +5812,10 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akS" = (
-/obj/machinery/computer/security/telescreen{
-	dir = 8;
-	name = "Test Chamber Monitor";
-	network = list("test");
-	pixel_x = 30
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+<<<<<<< Updated upstream
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
@@ -5825,6 +5823,13 @@
 /obj/item/hand_labeler,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+=======
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/white/corner{
+	dir = 4
+	},
+/area/hallway/secondary/exit)
+>>>>>>> Stashed changes
 "akT" = (
 /obj/machinery/door/window/brigdoor/security/cell{
 	id = "Cell 3";
@@ -14573,12 +14578,18 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aCE" = (
+<<<<<<< Updated upstream
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
 	dir = 8
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+>>>>>>> Stashed changes
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
-/area/teleporter)
+/area/hallway/secondary/exit)
 "aCF" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -23515,6 +23526,10 @@
 "aUI" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
+"aUJ" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -24160,6 +24175,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"aVW" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/exit)
 "aVX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
@@ -26585,6 +26611,25 @@
 	dir = 8
 	},
 /area/hallway/secondary/exit)
+"baD" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants{
+	desc = "About as helpful as an actual cargo tech.";
+	icon_state = "plant-27";
+	name = "Planty the Cargo Technician "
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "baE" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -27122,6 +27167,14 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/chapel/main)
+"bbG" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics2";
+	name = "robotics lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/robotics/lab)
 "bbH" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -27884,9 +27937,20 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
 "bdi" = (
+<<<<<<< Updated upstream
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+=======
+/obj/machinery/camera{
+	c_tag = "Teleporter"
+	},
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
+>>>>>>> Stashed changes
 "bdj" = (
 /obj/structure/toilet{
 	dir = 1
@@ -28007,6 +28071,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bdw" = (
+<<<<<<< Updated upstream
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28014,12 +28079,21 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "bdx" = (
+=======
+>>>>>>> Stashed changes
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bdx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
 "bdy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28608,15 +28682,24 @@
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/exit)
 "beI" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
+/obj/machinery/light_switch{
+	pixel_x = 27
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
+<<<<<<< Updated upstream
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/exit)
+=======
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/teleporter)
+>>>>>>> Stashed changes
 "beJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -29751,24 +29834,23 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "bgW" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
 	},
+<<<<<<< Updated upstream
 /obj/item/twohanded/required/kirbyplants{
 	desc = "About as helpful as a actual cargo tech.";
 	icon_state = "plant-27";
 	name = "Planty the Cargo Technician "
 	},
+=======
+>>>>>>> Stashed changes
 /turf/open/floor/plasteel,
-/area/quartermaster/sorting)
+/area/teleporter)
 "bgX" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/westleft{
@@ -31874,11 +31956,15 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "bkQ" = (
-/obj/machinery/camera{
-	c_tag = "Teleporter"
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/machinery/airalarm{
-	pixel_y = 23
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -32590,6 +32676,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bmf" = (
+<<<<<<< Updated upstream
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -32614,9 +32701,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
-	},
+=======
+/obj/structure/closet/l3closet/scientist,
 /turf/open/floor/plasteel,
-/area/teleporter)
+/area/science/misc_lab)
+"bmg" = (
+/obj/machinery/computer/security/telescreen{
+	dir = 8;
+	name = "Test Chamber Monitor";
+	network = list("test");
+	pixel_x = 30
+>>>>>>> Stashed changes
+	},
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/crowbar,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
 "bmh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32624,7 +32726,9 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bmi" = (
+/obj/structure/lattice/catwalk,
 /obj/structure/cable{
+<<<<<<< Updated upstream
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
@@ -32637,9 +32741,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 9
+=======
+	icon_state = "0-8"
+>>>>>>> Stashed changes
 	},
-/turf/open/floor/plasteel,
-/area/teleporter)
+/turf/open/space,
+/area/solar/starboard/aft)
 "bmj" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -32656,10 +32763,19 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "bml" = (
+<<<<<<< Updated upstream
 /obj/effect/spawner/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+=======
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/space,
+/area/solar/starboard/aft)
+>>>>>>> Stashed changes
 "bmm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -34740,6 +34856,7 @@
 	},
 /area/science/research)
 "bpW" = (
+<<<<<<< Updated upstream
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics2";
 	name = "robotics lab shutters"
@@ -34748,9 +34865,14 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics2";
 	name = "robotics lab shutters"
+=======
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-2"
+>>>>>>> Stashed changes
 	},
-/turf/open/floor/plating,
-/area/science/robotics/lab)
+/turf/open/space,
+/area/solar/starboard/aft)
 "bpX" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -36079,16 +36201,20 @@
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bso" = (
-/obj/machinery/light_switch{
-	pixel_x = 27
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< Updated upstream
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/teleporter)
+=======
+/turf/open/floor/plating,
+/area/maintenance/aft)
+>>>>>>> Stashed changes
 "bsp" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue{
@@ -42454,6 +42580,16 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"bEu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/computer/warrant{
+	icon_state = "computer";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "bEw" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -47303,12 +47439,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+<<<<<<< Updated upstream
 "bSb" = (
 /obj/structure/closet/l3closet/scientist{
 	pixel_x = -2
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+=======
+>>>>>>> Stashed changes
 "bSl" = (
 /obj/machinery/computer/nanite_cloud_controller,
 /obj/effect/turf_decal/bot{
@@ -51539,6 +51678,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/entrance)
+<<<<<<< Updated upstream
 "csE" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -51567,6 +51707,8 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/aft)
+=======
+>>>>>>> Stashed changes
 "ctv" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
@@ -54493,11 +54635,14 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+<<<<<<< Updated upstream
 "iGw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+=======
+>>>>>>> Stashed changes
 "iJP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/meter{
@@ -57138,6 +57283,20 @@
 "tcL" = (
 /turf/open/floor/plasteel,
 /area/janitor)
+<<<<<<< Updated upstream
+=======
+"tgg" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+>>>>>>> Stashed changes
 "thb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
@@ -57740,6 +57899,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"vFt" = (
+/obj/machinery/door/airlock/external{
+	name = "Solar Maintenance";
+	req_access_txt = "10; 13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 2
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "vFw" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
@@ -58275,6 +58445,17 @@
 "xIa" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"xIo" = (
+/obj/machinery/door/airlock/external{
+	name = "External Access";
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "xIU" = (
@@ -81458,10 +81639,17 @@ bCq
 bCq
 cTF
 bCq
+<<<<<<< Updated upstream
 bLv
 bLv
 bLv
 bLv
+=======
+bLv
+bLv
+bLv
+bLv
+>>>>>>> Stashed changes
 bCq
 cqv
 cqL
@@ -84236,7 +84424,7 @@ aTl
 bfn
 beW
 bfR
-bgW
+baD
 bNH
 aZK
 bnJ
@@ -90656,7 +90844,7 @@ aYr
 aZV
 bbo
 bch
-bdi
+aUJ
 bei
 bfy
 bgS
@@ -91649,7 +91837,11 @@ akZ
 auY
 axg
 aiX
+<<<<<<< Updated upstream
 anA
+=======
+bEu
+>>>>>>> Stashed changes
 anz
 aoE
 ahn
@@ -91952,8 +92144,8 @@ bmC
 boa
 bpm
 bqH
-bkQ
-bmf
+bdi
+bgW
 asD
 asD
 bqH
@@ -92209,8 +92401,13 @@ bmx
 bmx
 bmx
 bqH
+<<<<<<< Updated upstream
 aCE
 bmg
+=======
+bdx
+bgW
+>>>>>>> Stashed changes
 buX
 buX
 bqH
@@ -92466,8 +92663,8 @@ bmD
 cTD
 bmD
 bqK
-bso
-bmi
+beI
+bkQ
 buZ
 buZ
 bqH
@@ -93038,7 +93235,11 @@ cig
 hvz
 cig
 cig
+<<<<<<< Updated upstream
 hvz
+=======
+tgg
+>>>>>>> Stashed changes
 pBI
 aaa
 aaa
@@ -94985,6 +95186,10 @@ aiA
 aiA
 aiA
 ahn
+<<<<<<< Updated upstream
+aiA
+=======
+>>>>>>> Stashed changes
 aiA
 aiA
 aiA
@@ -98664,11 +98869,19 @@ bZN
 bHX
 bAw
 baH
+<<<<<<< Updated upstream
 iGw
 iGw
 iGw
 iGw
 pnx
+=======
+bso
+bso
+bso
+bso
+bso
+>>>>>>> Stashed changes
 kyM
 aZh
 kyM
@@ -102017,7 +102230,11 @@ cri
 cNW
 bAw
 bAw
+<<<<<<< Updated upstream
 ogO
+=======
+vFt
+>>>>>>> Stashed changes
 aag
 pEf
 aaa
@@ -105108,7 +105325,11 @@ aaa
 aaa
 cOT
 cOe
+<<<<<<< Updated upstream
 cqu
+=======
+xIo
+>>>>>>> Stashed changes
 aag
 aaa
 aaa
@@ -105828,7 +106049,7 @@ bfV
 bfV
 bfV
 box
-bpW
+bbG
 brs
 box
 box
@@ -106107,7 +106328,7 @@ bID
 bJo
 bPK
 bQO
-bSb
+bmf
 bOu
 aku
 akF
@@ -106881,7 +107102,7 @@ aho
 bXl
 ajw
 akz
-akS
+bmg
 bWr
 lop
 bby
@@ -108388,9 +108609,15 @@ aXD
 aXD
 aMZ
 aMZ
+<<<<<<< Updated upstream
 sho
 bdy
 beI
+=======
+akS
+aCE
+aVW
+>>>>>>> Stashed changes
 bgc
 bhF
 dEY
@@ -109665,7 +109892,11 @@ aMZ
 aOa
 oNI
 dXc
+<<<<<<< Updated upstream
 dCK
+=======
+aNa
+>>>>>>> Stashed changes
 rGU
 aTm
 aTm
@@ -110000,7 +110231,7 @@ crD
 aaa
 aaa
 aaa
-csZ
+bmi
 aaa
 aaa
 aaa
@@ -110255,10 +110486,17 @@ crk
 crk
 crk
 crk
+<<<<<<< Updated upstream
 csE
 cpi
 csY
 cpi
+=======
+crk
+crk
+crk
+bpW
+>>>>>>> Stashed changes
 cpi
 cpi
 ctB
@@ -110514,7 +110752,11 @@ crF
 aaa
 aaa
 aaa
+<<<<<<< Updated upstream
 csZ
+=======
+bml
+>>>>>>> Stashed changes
 aaa
 aaa
 aaa
