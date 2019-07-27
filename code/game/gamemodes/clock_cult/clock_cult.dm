@@ -143,7 +143,7 @@ Credit where due:
 	<span class='notice'>Crew</span>: Stop the servants before they can summon the Clockwork Justiciar."
 	var/servants_to_serve = list()
 	var/roundstart_player_count
-	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 30 + (number of players / 5) (max 40 mins.)
+	var/ark_time //In minutes, how long the Ark waits before activation; this is equal to 20 + (number of players / 5) (max 30 mins.)
 
 	var/datum/team/clockcult/main_clockcult
 
@@ -174,8 +174,8 @@ Credit where due:
 		servant.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.special_role = ROLE_SERVANT_OF_RATVAR
 		starter_servants--
-	ark_time = 30 + round((roundstart_player_count / 5)) //In minutes, how long the Ark will wait before activation
-	ark_time = min(ark_time, 35) //35 minute maximum for the activation timer
+	ark_time = 20 + round((roundstart_player_count / 5)) //In minutes, how long the Ark will wait before activation
+	ark_time = min(ark_time, 30) //30 minute maximum for the activation timer
 	return 1
 
 /datum/game_mode/clockwork_cult/post_setup()
