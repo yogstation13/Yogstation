@@ -22,9 +22,11 @@
 		Stop()
 
 /obj/item/organ/heart/nanite/Remove(mob/living/carbon/M, special = 0)
+	. = ..()
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_SET_MAX_VOLUME, 800)
 
 /obj/item/organ/heart/nanite/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	. = ..()
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_SET_MAX_VOLUME, 500)
