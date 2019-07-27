@@ -30,6 +30,15 @@
 
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
+	
+	//Gives Cyanide dental implant
+	var/obj/item/reagent_containers/pill/cyanide/cyan = new
+	owner.current.transferItemToLoc(cyan, target, TRUE)
+	var/datum/action/item_action/hands_free/activate_pill/P = new(cyan)
+	P.button.name = "Activate [cyan.name]"
+	P.target = cyan
+	P.Grant(owner.curren)//The pill never actually goes in an inventory slot, so the owner doesn't inherit actions from it
+	
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
@@ -246,6 +255,7 @@
 		to_chat(owner.current, "<B><font size=5 color=red>While you have a license to kill, unneeded property damage or loss of employee life will lead to your contract being terminated.</font></B>")
 		to_chat(owner.current, "<span class='userdanger'>For the sake of plausible deniability, you have been equipped with an array of captured Syndicate weaponry available via uplink.</span>")
 
+	to_chat(owner.current, "<span class='userdanger'>If deemed necessary, you may use your cyanide-laced dental implant to ensure the secrecy of your operation.</span>")
 	to_chat(owner.current, "<span class='userdanger'>Finally, watch your back. Your target has friends in high places, and intel suggests someone may have taken out a contract of their own to protect them.</span>")
 	owner.announce_objectives()
 
