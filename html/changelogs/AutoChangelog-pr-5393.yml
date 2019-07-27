@@ -1,4 +1,0 @@
-author: " AnturK"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed ED209 not shooting any projectiles."

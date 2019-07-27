@@ -33729,6 +33729,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"bce" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain/private)
 "bcf" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
 	name = "Pete"
@@ -40803,11 +40807,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/computer/warrant{
+	icon_state = "computer";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -72603,10 +72608,6 @@
 	},
 /obj/structure/cable/white,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
-"cgx" = (
-/obj/structure/filingcabinet/security,
-/turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "cgy" = (
 /obj/structure/dresser,
@@ -169237,7 +169238,7 @@ dkG
 dlB
 dlS
 bvL
-cgx
+bce
 bUQ
 cjP
 cjL

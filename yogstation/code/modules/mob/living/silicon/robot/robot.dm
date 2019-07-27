@@ -21,6 +21,7 @@
 		var/datum/borg_skin/A //Defining A as a borg_skin datum so we can pick out the vars we want and reskin the unit
 		A = show_radial_menu(src, src, skins, radius = 42)//Pick any datum from the list we just established up here ^^
 		if(!A)
+			special_skin = FALSE
 			return FALSE
 		if(!istype(A))
 			to_chat(src, "You've chosen to use the standard skinset instead of a custom one.")

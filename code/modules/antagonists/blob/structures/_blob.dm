@@ -238,6 +238,7 @@
 		return ..()
 
 /obj/structure/blob/proc/chemeffectreport(mob/user)
+	RETURN_TYPE(/list)
 	. = list()
 	if(overmind)
 		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font><span class='notice'>.</span></b>",
@@ -247,10 +248,10 @@
 		. += "<b>No Material Detected!</b>"
 
 /obj/structure/blob/proc/typereport(mob/user)
+	RETURN_TYPE(/list)
 	return list("<b>Blob Type:</b> <span class='notice'>[uppertext(initial(name))]</span>",
 							"<b>Health:</b> <span class='notice'>[obj_integrity]/[max_integrity]</span>",
 							"<b>Effects:</b> <span class='notice'>[scannerreport()]</span>")
-
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/M)
 	if(ROLE_BLOB in M.faction) //sorry, but you can't kill the blob as a blobbernaut

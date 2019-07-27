@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "mechs will now only be able to drop one cable coil instead of being able to drop solely coils"

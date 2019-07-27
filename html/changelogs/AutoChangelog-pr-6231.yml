@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Mobs with negative armor no longer get damage decreased by armor penetration."
