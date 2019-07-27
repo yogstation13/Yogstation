@@ -255,7 +255,7 @@
 		to_chat(owner.current, "<B><font size=5 color=red>While you have a license to kill, unneeded property damage or loss of employee life will lead to your contract being terminated.</font></B>")
 		to_chat(owner.current, "<span class='userdanger'>For the sake of plausible deniability, you have been equipped with an array of captured Syndicate weaponry available via uplink.</span>")
 
-	to_chat(owner.current, "<span class='userdanger'>If deemed necessary, you may use your cyanide-laced dental implant to ensure the secrecy of your operation.</span>")
+	to_chat(owner.current, "<span class='userdanger'>If your secrecy is compromised, you must use your cyanide-laced dental implant to ensure the secrecy of this operation.</span>")
 	to_chat(owner.current, "<span class='userdanger'>Finally, watch your back. Your target has friends in high places, and intel suggests someone may have taken out a contract of their own to protect them.</span>")
 	owner.announce_objectives()
 
