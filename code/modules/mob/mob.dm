@@ -395,8 +395,8 @@
 		return
 
 	if(memory_amt == 50)
-		log_game("[key_name(src)] has a lot of memories, rate-limiting them.")
-		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] has a lot of memories, rate-limiting them.</span>")
+		log_game("[key_name(src)] might be trying to crash the server by spamming memories, rate-limiting them.")
+		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] might be trying to crash the server by spamming memories, rate-limiting them.</span>")
 		
 	memory_amt++
 
