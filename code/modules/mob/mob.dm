@@ -391,9 +391,12 @@
 	set name = "Add Note"
 	set category = "IC"
 	
-	if(memory_amt >= 10)
-		to_chat(src, "You can't remember all of that.")
+	if(memory_amt > 50)
 		return
+
+	if(memory_amt == 50)
+		log_game("[key_name(src)] has a lot of memories, rate-limiting them.")
+		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] has a lot of memories, rate-limiting them.</span>")
 		
 	memory_amt++
 
