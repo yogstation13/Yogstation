@@ -390,6 +390,12 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
+	
+	if(memory_amt >= 10)
+		to_chat(src, "You can't remember all of that.")
+		return
+		
+	memory_amt++
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
