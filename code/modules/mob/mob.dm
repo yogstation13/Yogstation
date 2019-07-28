@@ -391,10 +391,12 @@
 	set name = "Add Note"
 	set category = "IC"
 	
-	if(memory_amt >= 50)
+	if(memory_amt > 50)
+		return
+
+	if(memory_amt == 50)
 		log_game("[key_name(src)] has a lot of memories, rate-limiting them.")
 		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] has a lot of memories, rate-limiting them.</span>")
-		return
 		
 	memory_amt++
 
