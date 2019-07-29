@@ -25,6 +25,7 @@
 /datum/game_mode/malf/pre_setup()
 	var/datum/mind/AI = antag_pick(antag_candidates)
 	SSjob.AssignRole(AI.current, "AI")
+	return TRUE
 
 /datum/game_mode/malf/post_setup()
 	for(var/mob/living/silicon/ai/AI in GLOB.ai_list) //triumvirate AIs ride for free. Oh well, it's basically an event in that case
