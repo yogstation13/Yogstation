@@ -36,12 +36,7 @@ SUBSYSTEM_DEF(chat)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
 	message += "<br>"
-	
-	message = to_utf8(message, I) // yogs - LibVG
 
-	//url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
-	//Do the double-encoding here to save nanoseconds
-	var/twiceEncoded = url_encode(url_encode(message))
 
 	if(islist(target))
 		for(var/I in target)
@@ -53,8 +48,9 @@ SUBSYSTEM_DEF(chat)
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
 				C.chatOutput.messageQueue += message
 				continue
-
-			payload[C] += twiceEncoded
+			
+			message = to_utf8(message, I) // yogs - LibVG
+			payload[C] += url_encode(url_encode(message))
 
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
@@ -66,4 +62,5 @@ SUBSYSTEM_DEF(chat)
 			C.chatOutput.messageQueue += message
 			return
 
-		payload[C] += twiceEncoded
+		message = to_utf8(message, target) // yogs - LibVG
+		payload[C] += url_encode(url_encode(message))
