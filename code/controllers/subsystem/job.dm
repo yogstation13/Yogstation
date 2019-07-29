@@ -216,11 +216,13 @@ SUBSYSTEM_DEF(job)
 		AssignRole(candidate, command_position)
 
 /datum/controller/subsystem/job/proc/FillAIPosition()
-	var/ai_selected = 0
+	var/ai_selected = FALSE
 	var/datum/job/job = GetJob("AI")
 	if(!job)
-		return 0
+		return FALSE
 	for(var/i = job.total_positions, i > 0, i--)
+		if(job.current positions >= job.total_positions) //in case any AIs are assigned before this proc (like with the malf gamemode)
+			return TRUE
 		for(var/level in level_order)
 			var/list/candidates = list()
 			candidates = FindOccupationCandidates(job, level)
@@ -230,8 +232,8 @@ SUBSYSTEM_DEF(job)
 					ai_selected++
 					break
 	if(ai_selected)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /** Proc DivideOccupations
