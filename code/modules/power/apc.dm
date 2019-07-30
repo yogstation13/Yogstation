@@ -363,7 +363,7 @@
 			update_state |= UPSTATE_OPENED1
 		if(opened==APC_COVER_REMOVED)
 			update_state |= UPSTATE_OPENED2
-	else if((obj_flags & EMAGGED) || malfai)
+	else if(obj_flags & EMAGGED)
 		update_state |= UPSTATE_BLUESCREEN
 	else if(panel_open)
 		update_state |= UPSTATE_WIREEXP
