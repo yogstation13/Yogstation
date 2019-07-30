@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(job)
 	if(!job)
 		return FALSE
 	for(var/i = job.total_positions, i > 0, i--)
-		if(job.current positions >= job.total_positions) //in case any AIs are assigned before this proc (like with the malf gamemode)
+		if(job.current_positions >= job.total_positions) //in case any AIs are assigned before this proc (like with the malf gamemode)
 			return TRUE
 		for(var/level in level_order)
 			var/list/candidates = list()
