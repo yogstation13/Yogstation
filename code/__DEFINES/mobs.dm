@@ -11,14 +11,37 @@
 #define MOVE_INTENT_WALK "walk"
 #define MOVE_INTENT_RUN  "run"
 
-//Blood levels
-#define BLOOD_VOLUME_MAXIMUM		2000
-#define BLOOD_VOLUME_SLIME_SPLIT	1120
-#define BLOOD_VOLUME_NORMAL			560
-#define BLOOD_VOLUME_SAFE			475
-#define BLOOD_VOLUME_OKAY			336
-#define BLOOD_VOLUME_BAD			224
-#define BLOOD_VOLUME_SURVIVE		122
+//Blood volumes, in cL
+#define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
+#define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
+#define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
+
+#define BLOOD_VOLUME_SLIME_SPLIT	(2.0 * BLOOD_VOLUME_GENERIC) // Amount of blood needed by slimebois for splitting in twain
+
+//Blood multiplers -- Multiply the original default value of blood your Carbon has with these in order to get the actual blood tiers
+// i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever 
+//used by :living/proc/get_blood_state()
+#define BLOOD_MAXIMUM_MULTI 3.6 // 360%
+#define BLOOD_SAFE_MULTI 0.848	// 84.8%
+#define BLOOD_OKAY_MULTI 0.6	// 60%
+#define BLOOD_BAD_MULTI 0.4		// 40%
+#define BLOOD_SURVIVE_MULTI 0.2	// 20%
+
+//Blood state enums, again used by get_blood_state()
+#define BLOOD_MAXIMUM 5
+#define BLOOD_SAFE 4
+#define BLOOD_OKAY 3
+#define BLOOD_BAD 2
+#define BLOOD_SURVIVE 1
+#define BLOOD_DEAD 0
+
+//Defines to get the actual volumes for these varying states
+#define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
+#define BLOOD_VOLUME_NORMAL(L)		(initial(##L.blood_volume))
+#define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
+#define BLOOD_VOLUME_OKAY(L)		(initial(##L.blood_volume) * BLOOD_OKAY_MULTI)
+#define BLOOD_VOLUME_BAD(L)			(initial(##L.blood_volume) * BLOOD_BAD_MULTI)
+#define BLOOD_VOLUME_SURVIVE(L)		(initial(##L.blood_volume) * BLOOD_SURVIVE_MULTI)
 
 //Sizes of mobs, used by mob/living/var/mob_size
 #define MOB_SIZE_TINY 0
@@ -219,10 +242,9 @@
 #define SLIDE					(1<<1)
 #define GALOSHES_DONT_HELP		(1<<2)
 #define SLIDE_ICE				(1<<3)
+#define SLIP_WHEN_CRAWLING		(1<<4) //clown planet ruin
 
 #define MAX_CHICKENS 50
-
-#define UNHEALING_EAR_DAMAGE 100
 
 
 #define INCORPOREAL_MOVE_BASIC 1

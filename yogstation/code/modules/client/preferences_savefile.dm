@@ -19,12 +19,6 @@
 				continue
 			T = T2
 		if(initial(T.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
-			if(T in positive_quirks)
-				positive_quirks -= V
-			if(T in negative_quirks)
-				negative_quirks -= V
-			if(T in neutral_quirks)
-				neutral_quirks -= V
 			all_quirks -= V
 		else
 			value += initial(T.value)
@@ -35,6 +29,3 @@
 		for(var/V in all_quirks)
 			to_chat(parent, "<span class='notice'>[V]</span>")
 		all_quirks = list()
-		positive_quirks = list()
-		negative_quirks = list()
-		neutral_quirks = list()

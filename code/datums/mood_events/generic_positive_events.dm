@@ -48,9 +48,11 @@
 	description = "<span class='nicegreen'>\The [animal.name] is adorable! I can't stop petting [animal.p_them()]!</span>\n"
 
 /datum/mood_event/honk
-	description = "<span class='nicegreen'>Maybe clowns aren't so bad after all. Honk!</span>\n"
+	description = "<span class='nicegreen'>I've been honked!</span>\n"
 	mood_change = 2
-	timeout = 2400
+	timeout = 4 MINUTES
+	special_screen_obj = "honked_nose"
+	special_screen_replace = FALSE
 
 /datum/mood_event/perform_cpr
 	description = "<span class='nicegreen'>It feels good to save a life.</span>\n"
@@ -125,6 +127,11 @@
 /datum/mood_event/clownshoes
 	description = "<span class='nicegreen'>The shoes are a clown's legacy, I never want to take them off!</span>\n"
 	mood_change = 5
+
+/datum/mood_event/sacrifice_good
+	description ="<span class='nicegreen'>The gods are pleased with this offering!</span>\n"
+	mood_change = 5
+	timeout = 3 MINUTES
 
 /datum/mood_event/artok
 	description = "<span class='nicegreen'>It's nice to see people are making art around here.</span>\n"

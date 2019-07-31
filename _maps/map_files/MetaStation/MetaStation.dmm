@@ -17,6 +17,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"aae" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "aaf" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -17128,7 +17132,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aGo" = (
-/obj/item/beacon,
+/obj/machinery/computer/warrant{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/red{
 	dir = 2
 	},
@@ -24371,7 +24377,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 0;
 	department = "Engineering";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Engineering RC"
 	},
 /turf/closed/wall,
@@ -25113,7 +25119,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_y = 32
 	},
@@ -40994,7 +41000,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -45149,7 +45155,7 @@
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
 "bJg" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "bJh" = (
@@ -50022,7 +50028,7 @@
 "bTj" = (
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -83690,7 +83696,6 @@
 /area/science/misc_lab/range)
 "obX" = (
 /obj/docking_port/stationary{
-	area_type = /area/construction/mining/aux_base;
 	dheight = 4;
 	dir = 1;
 	dwidth = 4;
@@ -84190,6 +84195,12 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/mixing/chamber)
+"tru" = (
+/obj/machinery/computer/warrant{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
 "tsx" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -109720,7 +109731,7 @@ ctA
 cCj
 cCj
 cDY
-cCj
+aae
 cCj
 cCe
 cHJ
@@ -114540,7 +114551,7 @@ aPD
 aSa
 aSa
 aTp
-aIT
+tru
 aTk
 aXS
 dCE

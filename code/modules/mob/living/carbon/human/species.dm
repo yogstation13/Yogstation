@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/deathsound //used to set the mobs deathsound on species change
 	var/list/special_step_sounds //Sounds to override barefeet walkng
 	var/grab_sound //Special sound for grabbing
+	var/screamsound //yogs - audio of a species' scream
 
 	// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
@@ -951,17 +952,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == exotic_blood)
-		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+		H.blood_volume = min(H.blood_volume + round(chem.volume, 0.1), BLOOD_VOLUME_MAXIMUM(H))
 		H.reagents.del_reagent(chem.type)
 		return 1
 	return FALSE
-
-/datum/species/proc/handle_speech(message, mob/living/carbon/human/H)
-	return message
-
-//return a list of spans or an empty list
-/datum/species/proc/get_spans()
-	return list()
 
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
 	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
@@ -1109,15 +1103,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					. += (health_deficiency / 75)
 				else
 					. += (health_deficiency / 25)
-		if(CONFIG_GET(flag/disable_human_mood))
+		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
 					. += hungry / 50
 			else if(isethereal(H))
 				var/datum/species/ethereal/E = H.dna.species
-				if(E.ethereal_charge <= ETHEREAL_CHARGE_NORMAL)
-					. += 1.5 * (1 - E.ethereal_charge / 100)
+				var/charge = E.get_charge()
+				if(charge <= ETHEREAL_CHARGE_NORMAL)
+					. += 1.5 * (1 - charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)

@@ -10195,15 +10195,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Access";
-	req_one_access_txt = "24;10"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Access";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
 "arU" = (
@@ -25341,7 +25342,9 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aPs" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	onstation = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/yellow{
@@ -25350,7 +25353,9 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aPt" = (
-/obj/machinery/vending/sustenance,
+/obj/machinery/vending/sustenance{
+	onstation = 0
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -27694,16 +27699,17 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Engine Access";
-	req_one_access_txt = "24;10"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Engine Access";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
 "aTb" = (
@@ -32822,16 +32828,17 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Access";
-	req_one_access_txt = "24;10"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Access";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "baJ" = (
@@ -33723,8 +33730,9 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bce" = (
-/turf/open/space/basic,
-/area/quartermaster/miningdock)
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain/private)
 "bcf" = (
 /mob/living/simple_animal/hostile/retaliate/goat{
 	name = "Pete"
@@ -34643,10 +34651,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Access";
-	req_one_access_txt = "24;10"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -34655,6 +34659,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Access";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bdv" = (
@@ -40602,7 +40611,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
 	name = "Gravity Generator Chamber";
-	req_access_txt = "19; 61"
+	req_access_txt = "11"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -40798,11 +40807,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/computer/warrant{
+	icon_state = "computer";
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -41787,7 +41797,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/highsecurity{
 	name = "Gravity Generator Room";
-	req_access_txt = "19;23"
+	req_access_txt = "11"
 	},
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -42456,7 +42466,7 @@
 	},
 /obj/machinery/door/airlock/highsecurity{
 	name = "Gravity Generator Foyer";
-	req_access_txt = "10"
+	req_access_txt = "32"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -43993,7 +44003,7 @@
 /turf/open/floor/plasteel,
 /area/security/execution/transfer)
 "brb" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
@@ -72598,10 +72608,6 @@
 	},
 /obj/structure/cable/white,
 /turf/open/floor/plasteel/grimy,
-/area/crew_quarters/heads/captain/private)
-"cgx" = (
-/obj/structure/filingcabinet/security,
-/turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "cgy" = (
 /obj/structure/dresser,
@@ -112938,10 +112944,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Access";
-	req_one_access_txt = "24;10"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -112949,6 +112951,11 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Access";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "dos" = (
@@ -112961,7 +112968,8 @@
 	},
 /obj/machinery/door/airlock/atmos{
 	name = "Atmospherics Engine Access";
-	req_one_access_txt = "24;10"
+	req_access_txt = "24";
+	req_one_access_txt = "0"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -118056,6 +118064,9 @@
 	req_access_txt = "30"
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/sign/plaques/cave{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "dCk" = (
@@ -125739,6 +125750,11 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"iya" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "iQh" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 1
@@ -156904,7 +156920,7 @@ cBa
 cCH
 cEp
 caG
-ceb
+iya
 cjp
 bUl
 cMY
@@ -169222,7 +169238,7 @@ dkG
 dlB
 dlS
 bvL
-cgx
+bce
 bUQ
 cjP
 cjL
@@ -174847,7 +174863,7 @@ aad
 aaa
 aaa
 aaa
-bce
+aaa
 aaa
 aaa
 aaa
