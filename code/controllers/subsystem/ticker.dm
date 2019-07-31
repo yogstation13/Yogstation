@@ -663,6 +663,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/yeehaw.ogg',
 		'yogstation/sound/roundend/aww_shit.ogg', // yogs -- adds "Aww shit, here we go again"
 		'yogstation/sound/roundend/ass_blast_usa.ogg', // yogs -- adds "Ass Blast USA" vox
+		'sound/roundend/itshappening.ogg',
 		'sound/roundend/disappointed.ogg',
 		'sound/roundend/scrunglartiy.ogg'\
 		)
