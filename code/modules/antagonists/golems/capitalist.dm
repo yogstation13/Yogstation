@@ -15,7 +15,7 @@
 /datum/antagonist/capitalist/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_capitalist_icons_added(M)
-	M.set_species(/datum/species/golem/soviet)
+	M.set_species(/datum/species/golem/capitalist)
 
 /datum/antagonist/capitalist/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
