@@ -125,21 +125,18 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(orig_light < 10)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light < 4500)
-		point_gain = (83300 * orig_light) / (orig_light + 3000)
+	else if(orig_light >= INFINITY) // Colton-proofs the doppler array
+		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
+		point_gain = TOXINS_RESEARCH_MAX
 	else
-		point_gain = TECHWEB_BOMB_POINTCAP
+		point_gain = (TOXINS_RESEARCH_MAX * orig_light) / (orig_light + TOXINS_RESEARCH_LAMBDA)//New yogs function has the limit built into it because l'Hopital's rule
+	
 
 	/*****The Point Capper*****/
 	if(point_gain > linked_techweb.largest_bomb_value)
-		if(point_gain <= TECHWEB_BOMB_POINTCAP || linked_techweb.largest_bomb_value < TECHWEB_BOMB_POINTCAP)
-			var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
-			linked_techweb.largest_bomb_value = point_gain
-			point_gain -= old_tech_largest_bomb_value
-			point_gain = min(point_gain,TECHWEB_BOMB_POINTCAP)
-		else
-			linked_techweb.largest_bomb_value = TECHWEB_BOMB_POINTCAP
-			point_gain = 1000
+		var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
+		linked_techweb.largest_bomb_value = point_gain
+		point_gain -= old_tech_largest_bomb_value
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SCI)
 		if(D)
 			D.adjust_money(point_gain)

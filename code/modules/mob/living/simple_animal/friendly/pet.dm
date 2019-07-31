@@ -2,7 +2,7 @@
 	icon = 'icons/mob/pets.dmi'
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 	var/unique_pet = FALSE // if the mob can be renamed
 	var/obj/item/clothing/neck/petcollar/pcollar
 	var/collar_type //if the mob has collar sprites, define them.
@@ -24,7 +24,7 @@
 		fully_replace_character_name(null, "\proper [P.tagname]")
 
 /mob/living/simple_animal/pet/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar && collar_type)
+	if(istype(O, /obj/item/clothing/neck/petcollar) && !pcollar)
 		add_collar(O, user)
 		return
 

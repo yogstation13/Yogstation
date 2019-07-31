@@ -2,6 +2,10 @@
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
+"aab" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "aad" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating{
@@ -10349,13 +10353,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "ayR" = (
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
+/obj/machinery/computer/warrant{
+	dir = 8
 	},
-/obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "ayS" = (
@@ -41781,7 +41785,7 @@
 "bRu" = (
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -43288,7 +43292,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_x = -32
 	},
@@ -49375,7 +49379,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "cmH" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
 "cmK" = (
@@ -55081,15 +55085,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "hnu" = (
-/obj/machinery/button/door{
-	id = "lawyer_shutters";
-	name = "law office shutters control";
-	pixel_x = 34;
-	pixel_y = -1;
-	req_access_txt = "38"
-	},
-/obj/machinery/light_switch{
-	pixel_x = 24
+/obj/machinery/computer/warrant{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -55955,7 +55952,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 0;
 	department = "Engineering";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Engineering RC";
 	pixel_x = -32
 	},
@@ -59575,7 +59572,6 @@
 /area/maintenance/department/engine)
 "rJZ" = (
 /obj/docking_port/stationary{
-	area_type = /area/construction/mining/aux_base;
 	dheight = 4;
 	dir = 1;
 	dwidth = 4;
@@ -60418,6 +60414,10 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/department/science)
+"tSN" = (
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/wood,
+/area/maintenance/department/crew_quarters/dorms)
 "tSU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer1,
 /obj/effect/turf_decal/stripes/line{
@@ -89169,7 +89169,7 @@ bil
 biY
 bjT
 ble
-bmq
+aab
 bmq
 boC
 bpI
@@ -99390,7 +99390,7 @@ cBk
 jhD
 cBo
 alQ
-alb
+tSN
 cBw
 alb
 aiS

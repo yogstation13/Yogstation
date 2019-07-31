@@ -1,6 +1,7 @@
 /datum/job/hos
 	title = "Head of Security"
 	flag = HOS
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("Captain")
 	department_flag = ENGSEC
 	head_announce = list(RADIO_CHANNEL_SECURITY)
@@ -31,6 +32,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 
+	changed_maps = list("YogsPubby", "OmegaStation")
+
+/datum/job/hos/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
+/datum/job/hos/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/hos
 	name = "Head of Security"
 	jobtype = /datum/job/hos
@@ -47,7 +57,7 @@
 	suit_store = /obj/item/gun/energy/e_gun
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-	backpack_contents = list(/obj/item/melee/baton/loaded=1) //yogs - removed departmental budget ID
+	backpack_contents = list(/obj/item/melee/baton/loaded=1) //yogs - removed departmental budget ID //come here often?
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

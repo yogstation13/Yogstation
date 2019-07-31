@@ -18,6 +18,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/qm/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
@@ -28,7 +33,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	backpack_contents = list(/obj/item/card/id/departmental_budget/car=1)
+	backpack_contents = list() //yogs - removes cargo budget
 
 	chameleon_extras = /obj/item/stamp/qm
 

@@ -16,7 +16,7 @@
 
 /obj/item/clothing/under/rank/yogs/scaryclown/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/bikehorn, 50)
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/clothing/under/yogs/harveyflint
 	name = "black and red suit"
@@ -173,7 +173,7 @@
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	can_adjust = FALSE
+	can_adjust = TRUE
 
 /obj/item/clothing/under/yogs/krofficer
 	name = "armory officer uniform"

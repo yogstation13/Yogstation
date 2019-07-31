@@ -29,7 +29,7 @@
 			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
-				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 
 
 /datum/reagent/blood/on_new(list/data)
@@ -184,12 +184,13 @@
 	glass_icon_state  = "glass_clear"
 	glass_name = "glass of holy water"
 	glass_desc = "A glass of holy water."
+	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
 
-/datum/reagent/water/holywater/on_mob_add(mob/living/L)
+/datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_HOLY, type)
 
-/datum/reagent/water/holywater/on_mob_delete(mob/living/L)
+/datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
 	..()
 
@@ -285,7 +286,7 @@
 		M.adjustOxyLoss(-2, 0)
 		M.adjustBruteLoss(-2, 0)
 		M.adjustFireLoss(-2, 0)
-		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else  // Will deal about 90 damage when 50 units are thrown
 		M.adjustBrainLoss(3, 150)
@@ -824,7 +825,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/iron/on_mob_life(mob/living/carbon/C)
-	if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 		C.blood_volume += 0.5
 	..()
 
@@ -1181,12 +1182,12 @@
 	color = "E1A116"
 	taste_description = "sourness"
 
-/datum/reagent/stimulum/on_mob_add(mob/living/L)
+/datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 
-/datum/reagent/stimulum/on_mob_delete(mob/living/L)
+/datum/reagent/stimulum/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	..()
@@ -1203,11 +1204,11 @@
 	color = "90560B"
 	taste_description = "burning"
 
-/datum/reagent/nitryl/on_mob_add(mob/living/L)
+/datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
 	..()
 	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 
-/datum/reagent/nitryl/on_mob_delete(mob/living/L)
+/datum/reagent/nitryl/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	..()
 
@@ -1616,7 +1617,7 @@
 	H.update_transform()
 	..()
 
-/datum/reagent/growthserum/on_mob_delete(mob/living/M)
+/datum/reagent/growthserum/on_mob_end_metabolize(mob/living/M)
 	M.resize = 1/current_size
 	M.update_transform()
 	..()
@@ -1664,11 +1665,11 @@
 	taste_description = "water"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 
-/datum/reagent/pax/on_mob_add(mob/living/L)
+/datum/reagent/pax/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_PACIFISM, type)
 
-/datum/reagent/pax/on_mob_delete(mob/living/L)
+/datum/reagent/pax/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_PACIFISM, type)
 	..()
 
@@ -1679,13 +1680,13 @@
 	taste_description = "acrid cinnamon"
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 
-/datum/reagent/bz_metabolites/on_mob_add(mob/living/L)
+/datum/reagent/bz_metabolites/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
 		to_chat(L, "<span class='userdanger'>We have toxins in our blood, our powers are weakening rapidly!</span>") //yogs
 
-/datum/reagent/bz_metabolites/on_mob_delete(mob/living/L)
+/datum/reagent/bz_metabolites/on_mob_end_metabolize(mob/living/L)
 	..()
 	REMOVE_TRAIT(L, CHANGELING_HIVEMIND_MUTE, type)
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
@@ -1742,3 +1743,11 @@
 /datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
 	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
+
+
+/datum/reagent/spider_extract
+	name = "Spider Extract"
+	description = "A highly specialized extract coming from the Australicus sector, used to create broodmother spiders."
+	color = "#ED2939"
+	taste_description = "upside down"
+	can_synth = FALSE

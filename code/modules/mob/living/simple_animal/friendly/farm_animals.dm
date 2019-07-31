@@ -28,7 +28,7 @@
 	melee_damage_upper = 2
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 	var/obj/item/udder/udder = null
 
 	do_footstep = TRUE
@@ -97,6 +97,9 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/AttackingTarget()
 	. = ..()
+	if(. && isliving(target)) //yogs start goat memes
+		var/mob/living/L = target
+		L.visible_message("<span class='warning'>[src] rams [L]!</span>") //yogs end
 	if(. && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(istype(H.dna.species, /datum/species/pod))
@@ -131,7 +134,7 @@
 	maxHealth = 50
 	var/obj/item/udder/udder = null
 	gold_core_spawnable = FRIENDLY_SPAWN
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_GENERIC
 
 	do_footstep = TRUE
 

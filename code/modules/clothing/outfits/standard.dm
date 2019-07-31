@@ -227,7 +227,7 @@
 	W.assignment = "CentCom Commander"
 	W.registered_name = H.real_name
 	W.update_label()
-	
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/spec_ops
@@ -371,7 +371,7 @@
 /datum/outfit/death_commando
 	name = "Death Commando"
 
-	uniform = /obj/item/clothing/under/color/green
+	uniform = /obj/item/clothing/under/rank/centcom_commander
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -428,7 +428,7 @@
 
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
-	uniform = /obj/item/clothing/under/patriotsuit 
+	uniform = /obj/item/clothing/under/patriotsuit
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	shoes = /obj/item/clothing/shoes/magboots/advance
 	suit_store = /obj/item/tank/internals/oxygen
