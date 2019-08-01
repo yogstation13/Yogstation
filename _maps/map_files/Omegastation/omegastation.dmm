@@ -36496,7 +36496,9 @@
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
 "buP" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server{
+	autolinkers = "messaging"
+	},
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
 "buQ" = (
@@ -37531,7 +37533,7 @@
 	name = "Maintenance Hatch";
 	req_access_txt = "12"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/maintenance/port)
 "eva" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
