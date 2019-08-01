@@ -17,6 +17,11 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/psych/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/psych
 	name = "Psych"
 	jobtype = /datum/job/psych

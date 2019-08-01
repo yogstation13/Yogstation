@@ -29,7 +29,7 @@
 			if(!data || !(data["blood_type"] in get_safe_blood(C.dna.blood_type)))
 				C.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 			else
-				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 
 
 /datum/reagent/blood/on_new(list/data)
@@ -184,6 +184,7 @@
 	glass_icon_state  = "glass_clear"
 	glass_name = "glass of holy water"
 	glass_desc = "A glass of holy water."
+	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
@@ -285,7 +286,7 @@
 		M.adjustOxyLoss(-2, 0)
 		M.adjustBruteLoss(-2, 0)
 		M.adjustFireLoss(-2, 0)
-		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL)
+		if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 			M.blood_volume += 3
 	else  // Will deal about 90 damage when 50 units are thrown
 		M.adjustBrainLoss(3, 150)
@@ -824,7 +825,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/iron/on_mob_life(mob/living/carbon/C)
-	if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+	if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 		C.blood_volume += 0.5
 	..()
 

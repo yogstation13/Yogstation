@@ -18,10 +18,10 @@
 /mob/living/carbon/monkey/handle_blood()
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src))
 			blood_volume += 0.1 // regenerate blood VERY slowly
-			if(blood_volume < BLOOD_VOLUME_OKAY)
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+			if(blood_volume < BLOOD_VOLUME_OKAY(src))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
@@ -33,7 +33,7 @@
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+		if(blood_volume < BLOOD_VOLUME_NORMAL(src) && !HAS_TRAIT(src, TRAIT_NOHUNGER))
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -49,26 +49,26 @@
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
 			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
-			blood_volume = min(BLOOD_VOLUME_NORMAL, blood_volume + 0.5 * nutrition_ratio)
+			blood_volume = min(BLOOD_VOLUME_NORMAL(src), blood_volume + 0.5 * nutrition_ratio)
 
 		//Effects of bloodloss
 		var/word = pick("dizzy","woozy","faint")
-		switch(blood_volume)
-			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+		switch(get_blood_state())
+			if(BLOOD_OKAY)
 				if(prob(5))
 					to_chat(src, "<span class='warning'>You feel [word].</span>")
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.01, 1))
-			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL - blood_volume) * 0.02, 1))
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.01, 1))
+			if(BLOOD_BAD)
+				adjustOxyLoss(round((BLOOD_VOLUME_NORMAL(src) - blood_volume) * 0.02, 1))
 				if(prob(5))
 					blur_eyes(6)
 					to_chat(src, "<span class='warning'>You feel very [word].</span>")
-			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+			if(BLOOD_SURVIVE)
 				adjustOxyLoss(5)
 				if(prob(15))
 					Unconscious(rand(20,60))
 					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
-			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
+			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
 				if(!HAS_TRAIT(src, TRAIT_NODEATH))
 					death()
 
@@ -108,10 +108,10 @@
 
 
 /mob/living/proc/restore_blood()
-	blood_volume = initial(blood_volume)
+	blood_volume = BLOOD_VOLUME_NORMAL(src)
 
 /mob/living/carbon/human/restore_blood()
-	blood_volume = BLOOD_VOLUME_NORMAL
+	blood_volume = BLOOD_VOLUME_NORMAL(src)
 	bleed_rate = 0
 
 /****************************************************
@@ -122,7 +122,7 @@
 /mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
 	if(!blood_volume || !AM.reagents)
 		return 0
-	if(blood_volume < BLOOD_VOLUME_BAD && !forced)
+	if(blood_volume < BLOOD_VOLUME_BAD(src) && !forced)
 		return 0
 
 	if(blood_volume < amount)
@@ -150,7 +150,7 @@
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return 1
 
-			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 			return 1
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)

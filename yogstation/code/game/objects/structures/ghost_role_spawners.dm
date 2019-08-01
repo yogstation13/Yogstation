@@ -90,7 +90,7 @@
 		ashwalker.forceMove(get_turf(src))
 		ashwalker.real_name = name
 		ashwalker.name = name
-		ashwalker.blood_volume = BLOOD_VOLUME_NORMAL
+		ashwalker.blood_volume = BLOOD_VOLUME_NORMAL(ashwalker)
 		reset_rebirth()
 		ashwalker.grab_ghost()
 		ashwalker = null
