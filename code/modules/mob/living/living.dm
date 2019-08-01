@@ -544,7 +544,7 @@
 	set_blindness(0)
 	set_blurriness(0)
 	set_dizziness(0)
-	set_eye_damage(0)
+
 	cure_nearsighted()
 	cure_blind()
 	cure_husk()
@@ -608,7 +608,7 @@
 		var/trail_type = getTrail()
 		if(trail_type)
 			var/brute_ratio = round(getBruteLoss() / maxHealth, 0.1)
-			if(blood_volume && blood_volume > max(BLOOD_VOLUME_NORMAL*(1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
+			if(blood_volume && blood_volume > max(BLOOD_VOLUME_NORMAL(src)*(1 - brute_ratio * 0.25), 0))//don't leave trail if blood volume below a threshold
 				blood_volume = max(blood_volume - max(1, brute_ratio * 2), 0) 					//that depends on our brute damage.
 				var/newdir = get_dir(target_turf, start)
 				if(newdir != direction)
@@ -1290,7 +1290,9 @@
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_damage")
-			set_eye_damage(var_value)
+			var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
+			if(E)
+				E.setOrganDamage(var_value)
 		if("eye_blurry")
 			set_blurriness(var_value)
 		if("maxHealth")

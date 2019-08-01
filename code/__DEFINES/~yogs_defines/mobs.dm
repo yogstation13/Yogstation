@@ -11,3 +11,5 @@
 #define PRETERNIS_NV_ON 8 
 
 #define BODYPART_ANY -1 //use this when healing with something that needs a specefied bodypart type for all
+
+#define REGEN_BLOOD_REQUIREMENT 40 // The amount of "blood" that a slimeperson consumes when regenerating a single limb.

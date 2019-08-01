@@ -4,7 +4,8 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
-	var/list/name_occupations = list()	//Dict of all jobs, keys are titles
+	var/list/datum/job/name_occupations = list()	//Dict of jobs, keys are titles
+	var/list/datum/job/name_occupations_all = list()	//Dict of ALL JOBS, EVEN DISABLED ONES, keys are titles
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
 	var/list/unassigned = list()		//Players who need jobs
 	var/initial_players_to_assign = 0 	//used for checking against population caps
@@ -17,7 +18,6 @@ SUBSYSTEM_DEF(job)
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
 /datum/controller/subsystem/job/Initialize(timeofday)
-	SSmapping.HACK_LoadMapConfig()
 	if(!occupations.len)
 		SetupOccupations()
 	if(CONFIG_GET(flag/load_jobs_from_txt))
@@ -55,7 +55,10 @@ SUBSYSTEM_DEF(job)
 			continue
 		if(!job.config_check())
 			continue
-		if(!job.map_check())	//Even though we initialize before mapping, this is fine because the config is loaded at new
+
+		name_occupations_all[job.title] = job
+
+		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config");
 			continue
 		occupations += job
@@ -213,12 +216,14 @@ SUBSYSTEM_DEF(job)
 		AssignRole(candidate, command_position)
 
 /datum/controller/subsystem/job/proc/FillAIPosition()
-	var/ai_selected = 0
+	var/ai_selected = FALSE
 	var/datum/job/job = GetJob("AI")
 	if(!job)
-		return 0
+		return FALSE
 	for(var/i = job.total_positions, i > 0, i--)
-		for(var/level = 1 to 3)
+		if(job.current_positions >= job.total_positions) //in case any AIs are assigned before this proc (like with the malf gamemode)
+			return TRUE
+		for(var/level in level_order)
 			var/list/candidates = list()
 			candidates = FindOccupationCandidates(job, level)
 			if(candidates.len)
@@ -227,8 +232,8 @@ SUBSYSTEM_DEF(job)
 					ai_selected++
 					break
 	if(ai_selected)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /** Proc DivideOccupations
@@ -360,7 +365,7 @@ SUBSYSTEM_DEF(job)
 		if(!GiveRandomJob(player))
 			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
 				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
-	
+
 	return validate_required_jobs(required_jobs)
 
 /datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)

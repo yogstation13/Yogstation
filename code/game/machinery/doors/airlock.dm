@@ -83,7 +83,9 @@
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
 
-	var/cyclelinkeddir = 0
+	var/cyclelinkeddir = 0			//yogs note im keeping this in order to not break stuff (airlock_helpers and shutle doors)
+	var/cyclelinkedx = 0			//yogs start	negative is left positive is right
+	var/cyclelinkedy = 0			//yogs end		negative is down positive is up
 	var/obj/machinery/door/airlock/cyclelinkedairlock
 	var/shuttledocked = 0
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
@@ -127,8 +129,11 @@
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
-	if (cyclelinkeddir)
-		cyclelinkairlock()
+	if(cyclelinkedx || cyclelinkedy)	//yogs start
+		cyclelinkairlock_target()
+	else
+		if(cyclelinkeddir)
+			cyclelinkairlock()		//yogs end
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
@@ -162,11 +167,50 @@
 			closeOther = A
 			break
 
+/obj/machinery/door/airlock/proc/cyclelinkairlock_target()		//yogs start
+	if (cyclelinkedairlock)
+		cyclelinkedairlock.cyclelinkedairlock = null
+		cyclelinkedairlock = null
+	if(!cyclelinkedx && !cyclelinkedy)
+		return
+	var/turf/T = get_turf(src)
+	var/obj/machinery/door/airlock/FoundDoor
+	var/dirlook
+	var/targ
+	if(cyclelinkedx)
+		if(cyclelinkedx > 0)
+			targ = cyclelinkedx
+			dirlook = 4
+		else
+			targ = cyclelinkedx * -1
+			dirlook = 8
+		for(var/i = 0; i < targ; i++)
+			T = get_step(T, dirlook)
+
+	if(cyclelinkedy)
+		if(cyclelinkedy > 0)
+			targ = cyclelinkedy
+			dirlook = 1
+		else
+			targ = cyclelinkedy * -1
+			dirlook = 2
+		for(var/i = 0; i < targ; i++)
+			T = get_step(T, dirlook)
+
+	FoundDoor = locate() in T
+	if (FoundDoor && (FoundDoor.cyclelinkedy != -1 * cyclelinkedy || FoundDoor.cyclelinkedx != -1 * cyclelinkedx))
+		FoundDoor = null
+	if (!FoundDoor)
+		log_mapping("[src] at [AREACOORD(src)] failed to find a valid airlock to cyclelink_target with! Was targeting [T.x], [T.y], [T.z].")
+		return
+	FoundDoor.cyclelinkedairlock = src
+	cyclelinkedairlock = FoundDoor				//yogs end
+
 /obj/machinery/door/airlock/proc/cyclelinkairlock()
 	if (cyclelinkedairlock)
 		cyclelinkedairlock.cyclelinkedairlock = null
 		cyclelinkedairlock = null
-	if (!cyclelinkeddir)
+	if(!cyclelinkeddir)
 		return
 	var/limit = world.view
 	var/turf/T = get_turf(src)
@@ -187,6 +231,10 @@
 /obj/machinery/door/airlock/vv_edit_var(var_name)
 	. = ..()
 	switch (var_name)
+		if ("cyclelinkedx")				//yogs start
+			cyclelinkairlock_target()
+		if ("cyclelinkedy")
+			cyclelinkairlock_target()	//yogs end
 		if ("cyclelinkeddir")
 			cyclelinkairlock()
 

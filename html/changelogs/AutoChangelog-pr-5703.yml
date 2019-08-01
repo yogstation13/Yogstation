@@ -1,4 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "Extracting a sliver of an SM is now properly logged."
