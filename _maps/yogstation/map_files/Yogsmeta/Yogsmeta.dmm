@@ -16553,6 +16553,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/machinery/computer/warrant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aDB" = (
@@ -31381,9 +31382,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/filingcabinet{
-	pixel_x = 4
-	},
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bdN" = (
@@ -38954,7 +38953,6 @@
 /area/crew_quarters/heads/captain/private)
 "bqX" = (
 /obj/structure/table/wood,
-/obj/item/stamp/captain,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)

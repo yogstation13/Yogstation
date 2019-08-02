@@ -49,10 +49,12 @@
 	return S
 
 /obj/item/organ/heart/on_life()
+	..()
 	if(owner.client && beating)
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
+  
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
@@ -137,7 +139,7 @@
 		var/mob/living/carbon/human/H = owner
 		if(istype(H))
 			if(H.dna && !(NOBLOOD in H.dna.species.species_traits))
-				H.blood_volume = min(H.blood_volume + cursed_heart.blood_loss*0.5, BLOOD_VOLUME_MAXIMUM)
+				H.blood_volume = min(H.blood_volume + cursed_heart.blood_loss*0.5, BLOOD_VOLUME_MAXIMUM(H))
 				H.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 				cursed_heart.add_colour = TRUE
 				H.adjustBruteLoss(-cursed_heart.heal_brute)

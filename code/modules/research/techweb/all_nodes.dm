@@ -40,7 +40,7 @@
 	starting_node = TRUE
 	display_name = "Basic Exosuit Equipment"
 	description = "Various tools fit for basic mech units"
-	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher")
+	design_ids = list("mech_drill", "mech_mscanner", "mech_extinguisher", "mech_cable_layer")
 
 /datum/techweb_node/basic_tools
 	id = "basic_tools"
@@ -55,7 +55,7 @@
 	display_name = "Biological Technology"
 	description = "What makes us tick."	//the MC, silly!
 	prereq_ids = list("base")
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner")
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "vr_sleeper", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray", "genescanner", "stasis")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -111,8 +111,8 @@
 	display_name = "Alien Surgery"
 	description = "Abductors did nothing wrong."
 	prereq_ids = list("exp_surgery", "alientech")
-	design_ids = list("surgery_brainwashing","surgery_zombie","surgery_heal_combo_upgrade_femto")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	design_ids = list("surgery_zombie","surgery_heal_combo_upgrade_femto")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
 	export_price = 5000
 
 /////////////////////////data theory tech/////////////////////////
@@ -189,7 +189,7 @@
 	display_name = "Bluespace Travel"
 	description = "Application of Bluespace for static teleportation technology."
 	prereq_ids = list("practical_bluespace")
-	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod")
+	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod", "bluespace_pipe")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -377,7 +377,7 @@
 	display_name = "Computer Consoles"
 	description = "Computers and how they work."
 	prereq_ids = list("datatheory")
-	design_ids = list("cargo", "cargorequest", "libraryconsole", "mining", "crewconsole", "rdcamera", "comconsole", "idcardconsole", "seccamera")
+	design_ids = list("cargo", "cargorequest", "libraryconsole", "mining", "crewconsole", "rdcamera", "comconsole", "idcardconsole", "seccamera", "stockexchange")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
@@ -397,7 +397,7 @@
 	display_name = "Arcade Games"
 	description = "For the slackers on the station."
 	prereq_ids = list("comptech")
-	design_ids = list("arcade_battle", "arcade_orion", "slotmachine")
+	design_ids = list("arcade_battle", "arcade_orion", "slotmachine", "minesweeper")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -418,7 +418,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 	design_ids = list("s-receiver", "s-bus", "s-broadcaster", "s-processor", "s-hub", "s-server", "s-relay", "comm_monitor", "comm_server",
-	"s-ansible", "s-filter", "s-amplifier", "ntnet_relay", "s-treatment", "s-analyzer", "s-crystal", "s-transmitter", "s-messaging")
+	"s-ansible", "s-filter", "s-amplifier", "ntnet_relay", "s-treatment", "s-analyzer", "s-crystal", "s-transmitter", "s-traffic")
 
 /datum/techweb_node/integrated_HUDs
 	id = "integrated_HUDs"
@@ -453,7 +453,7 @@
 	display_name = "Cryostasis Technology"
 	description = "Smart freezing of objects to preserve them!"
 	prereq_ids = list("adv_engi", "biotech")
-	design_ids = list("splitbeaker", "noreactsyringe", "cryotube", "cryo_Grenade", "stasis")
+	design_ids = list("splitbeaker", "noreactsyringe", "cryotube", "cryo_Grenade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 4000
 

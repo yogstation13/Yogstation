@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed multiple map voting issues when DEFAULT_NO_VOTE is not enabled"

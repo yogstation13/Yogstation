@@ -25,6 +25,9 @@
 /obj/structure/spawner/lavaland/legion
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril)
 
+/obj/structure/spawner/lavaland/magmawing
+	mob_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/tendril)
+
 GLOBAL_LIST_INIT(tendrils, list())
 /obj/structure/spawner/lavaland/Initialize()
 	. = ..()
@@ -46,7 +49,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 	var/last_tendril = TRUE
 	if(GLOB.tendrils.len>1)
 		last_tendril = FALSE
-	
+
 	if(last_tendril && !(flags_1 & ADMIN_SPAWNED_1))
 		if(SSmedals.hub_enabled)
 			for(var/mob/living/L in view(7,src))

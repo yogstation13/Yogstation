@@ -1,6 +1,0 @@
-author: " MMMiracles"
-delete-after: true 
-changes: 
-  - tweak: "Donutstation: CE's windows are electrified."
-  - tweak: "Donutstation: Atmospherics now has 2 rad suits and an extra regular fire suit."
-  - rscdel: "Donutstation: The pipe dispensers and redundant tech fabs in Atmos were removed."

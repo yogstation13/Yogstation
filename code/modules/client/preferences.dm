@@ -72,10 +72,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_RANDOM
 
-		//Quirk list
-	var/list/positive_quirks = list()
-	var/list/negative_quirks = list()
-	var/list/neutral_quirks = list()
+	//Quirk list
 	var/list/all_quirks = list()
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
@@ -907,7 +904,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(job_preferences[j] == JP_HIGH)
 				job_preferences[j] = JP_MEDIUM
 				//technically break here
-	
+
 	job_preferences[job.title] = level
 	return TRUE
 
@@ -925,7 +922,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		to_chat(user, "<span class='danger'>UpdateJobPreference - desired level was not a number. Please notify coders!</span>")
 		ShowChoices(user)
 		return
-	
+
 	var/jpval = null
 	switch(desiredLvl)
 		if(3)
@@ -940,7 +937,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			jpval = null
 		else
 			jpval = JP_LOW
-	
+
 	SetJobPreferenceLevel(job, jpval)
 	SetChoices(user)
 
@@ -959,7 +956,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!SSquirks.quirks.len)
 		dat += "The quirk subsystem hasn't finished initializing, please hold..."
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center><br>"
-
 	else
 		dat += "<center><b>Choose quirk setup</b></center><br>"
 		dat += "<div align='center'>Left-click to add or remove quirks. You need negative quirks to have positive ones.<br>\
@@ -967,23 +963,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center>"
 		dat += "<hr>"
 		dat += "<center><b>Current quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
-		dat += "<center>[positive_quirks.len] / [MAX_QUIRKS] max positive quirks<br>\
+		dat += "<center>[GetPositiveQuirkCount()] / [MAX_QUIRKS] max positive quirks<br>\
 		<b>Quirk balance remaining:</b> [GetQuirkBalance()]</center><br>"
 		for(var/V in SSquirks.quirks)
 			var/datum/quirk/T = SSquirks.quirks[V]
 			var/quirk_name = initial(T.name)
 			var/has_quirk
 			var/quirk_cost = initial(T.value) * -1
-			var/lock_reason = "This trait is unavailable."
-			var/quirk_conflict = FALSE
+			var/lock_reason = FALSE // Also marks whether this quirk ought to be locked at all; FALSE implies it's OK for this person to have this quirk
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
 			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
-				quirk_conflict = TRUE
+			else
+				var/datum/quirk/t = new T(no_init = TRUE)
+				lock_reason = t.check_quirk(src) // Yogs -- allows for specific denial of quirks based on current preferences
+				qdel(t)
 			if(has_quirk)
-				if(quirk_conflict)
+				if(lock_reason)
 					all_quirks -= quirk_name
 					has_quirk = FALSE
 				else
@@ -993,7 +991,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/font_color = "#AAAAFF"
 			if(initial(T.value) != 0)
 				font_color = initial(T.value) > 0 ? "#AAFFAA" : "#FFAAAA"
-			if(quirk_conflict)
+			if(lock_reason)
 				dat += "<font color='[font_color]'>[quirk_name]</font> - [initial(T.desc)] \
 				<font color='red'><b>LOCKED: [lock_reason]</b></font><br>"
 			else
@@ -1016,6 +1014,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/quirk/T = SSquirks.quirks[V]
 		bal -= initial(T.value)
 	return bal
+
+/datum/preferences/proc/GetPositiveQuirkCount()
+	. = 0
+	for(var/q in all_quirks)
+		if(SSquirks.quirk_points[q] > 0)
+			.++
 
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
@@ -1108,42 +1112,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							to_chat(user, "<span class='danger'>[quirk] is incompatible with [Q].</span>")
 							return
 				var/value = SSquirks.quirk_points[quirk]
-				if(value == 0)
-					if(quirk in neutral_quirks)
-						neutral_quirks -= quirk
-						all_quirks -= quirk
-					else
-						neutral_quirks += quirk
-						all_quirks += quirk
+				var/balance = GetQuirkBalance()
+				if(quirk in all_quirks)
+					if(balance + value < 0)
+						to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
+						return
+					all_quirks -= quirk
 				else
-					var/balance = GetQuirkBalance()
-					if(quirk in positive_quirks)
-						positive_quirks -= quirk
-						all_quirks -= quirk
-					else if(quirk in negative_quirks)
-						if(balance + value < 0)
-							to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
-							return
-						negative_quirks -= quirk
-						all_quirks -= quirk
-					else if(value > 0)
-						if(positive_quirks.len >= MAX_QUIRKS)
-							to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
-							return
-						if(balance - value < 0)
-							to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
-							return
-						positive_quirks += quirk
-						all_quirks += quirk
-					else
-						negative_quirks += quirk
-						all_quirks += quirk
+					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
+						to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
+						return
+					if(balance - value < 0)
+						to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
+						return
+					all_quirks += quirk
 				SetQuirks(user)
 			if("reset")
 				all_quirks = list()
-				positive_quirks = list()
-				negative_quirks = list()
-				neutral_quirks = list()
 				SetQuirks(user)
 			else
 				SetQuirks(user)
@@ -1625,7 +1610,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					auto_fit_viewport = !auto_fit_viewport
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
-				
+
 				if("widescreenpref")
 					widescreenpref = !widescreenpref
 					user.client.change_view(CONFIG_GET(string/default_view))
@@ -1701,7 +1686,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type
-	if(!(pref_species.id in GLOB.roundstart_races) && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
+	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()

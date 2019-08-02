@@ -225,3 +225,39 @@
 /obj/item/vending_refill/autodrobe
 	machine_name = "AutoDrobe"
 	icon_state = "refill_costume"
+
+/obj/machinery/vending/autodrobe/capdrobe
+	name = "\improper CapDrobe"
+	desc = "A vending machine for captain outfits."
+	icon_state = "capdrobe"
+	icon_deny = "capdrobe-deny"
+	req_access = list(ACCESS_CAPTAIN)
+	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use the Captain's Autodrobe!"
+	vend_reply = "Thank you for using the Captain's Autodrobe!"
+	products = list(/obj/item/clothing/suit/hooded/wintercoat/captain = 1,
+					/obj/item/storage/backpack/captain = 1,
+					/obj/item/storage/backpack/satchel/cap = 1,
+					/obj/item/storage/backpack/duffelbag/captain = 1,
+					/obj/item/clothing/neck/cloak/cap = 1,
+					/obj/item/clothing/shoes/sneakers/brown = 1,
+					/obj/item/clothing/under/rank/captain = 1,
+					/obj/item/clothing/under/rank/captain/skirt = 1,
+					/obj/item/clothing/suit/armor/vest/capcarapace = 1,
+					/obj/item/clothing/head/caphat = 1,
+					/obj/item/clothing/under/captainparade = 1,
+					/obj/item/clothing/suit/armor/vest/capcarapace/alt = 1,
+					/obj/item/clothing/head/caphat/parade = 1,
+					/obj/item/clothing/suit/captunic = 1,
+					/obj/item/clothing/glasses/sunglasses/gar/supergar = 1,
+					/obj/item/clothing/gloves/color/captain = 1,
+					/obj/item/clothing/under/yogs/captainartillery = 1,
+					/obj/item/clothing/under/yogs/casualcaptain = 1,
+					/obj/item/clothing/under/yogs/whitecaptainsuit = 1,
+					/obj/item/clothing/head/yogs/whitecaptaincap = 1,
+					/obj/item/clothing/under/yogs/victoriouscaptainuniform = 1,
+					/obj/item/clothing/head/beret/captain = 1)
+	premium = list(/obj/item/clothing/head/crown/fancy = 1)
+
+	default_price = 50
+	extra_price = 75
+	payment_department = ACCOUNT_SRV
