@@ -257,10 +257,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE //Burnable (but the casing isn't)
 	var/adminlog = null
-	var/range_heavy = 3
-	var/range_medium = 9
-	var/range_light = 17
-	var/range_flame = 17
+	var/range_heavy = 5
+	var/range_medium = 10
+	var/range_light = 20
+	var/range_flame = 20
 
 /obj/item/bombcore/ex_act(severity, target) // Little boom can chain a big boom.
 	detonate()
