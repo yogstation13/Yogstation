@@ -70,4 +70,4 @@
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.adjustBrainLoss(5)
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
