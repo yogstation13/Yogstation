@@ -20,6 +20,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/geneticist/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/geneticist
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist

@@ -436,9 +436,9 @@
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
 	for(var/list/category in list(GLOB.command_positions) + list(GLOB.engineering_positions) + list(GLOB.supply_positions) + list(GLOB.nonhuman_positions - "pAI") + list(GLOB.civilian_positions) + list(GLOB.science_positions) + list(GLOB.security_positions) + list(GLOB.medical_positions) )
-		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
+		var/cat_color = SSjob.name_occupations_all[category[1]].selection_color
 		dat += "<fieldset style='width: 185px; border: 2px solid [cat_color]; display: inline'>"
-		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
+		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations_all[category[1]].exp_type_department]</legend>"
 		var/list/dept_dat = list()
 		for(var/job in category)
 			var/datum/job/job_datum = SSjob.name_occupations[job]
@@ -542,6 +542,6 @@
 		if(has_antags)
 			log_admin("[src.ckey] just got booted back to lobby with no jobs, but antags enabled.")
 			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
-		
+
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE

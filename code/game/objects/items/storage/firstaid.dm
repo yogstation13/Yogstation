@@ -156,6 +156,7 @@
 	name = "combat medical kit"
 	desc = "I hope you've got insurance."
 	icon_state = "bezerk"
+	item_state = "firstaid-bezerk"
 
 /obj/item/storage/firstaid/tactical/ComponentInitialize()
 	. = ..()

@@ -13629,6 +13629,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/computer/warrant,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
 "aAS" = (
@@ -29602,6 +29603,10 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"bhV" = (
+/obj/machinery/vending/autodrobe/capdrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain/private)
 "bhW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
@@ -32076,10 +32081,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"bno" = (
-/obj/machinery/vending/autodrobe,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain/private)
 "bnp" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -125487,7 +125488,7 @@ bjIbgL
 bkqbkq
 blGbmg
 bmfboy
-bmfbno
+bmfbhV
 bzbbqX
 bmdbpw
 bqLbqL
