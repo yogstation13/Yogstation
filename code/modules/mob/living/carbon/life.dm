@@ -30,6 +30,9 @@
 		if(stat != DEAD)
 			handle_brain_damage()
 
+		if(stat != DEAD)
+			handle_liver()
+
 	else
 		. = ..()
 
