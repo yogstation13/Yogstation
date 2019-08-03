@@ -145,27 +145,30 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
-	if(istype(T,/turf/open))
-		var/turf/open/Tile = T
-		var/temperature = Tile.GetTemperature()
-		if(temperature <= 150)				// 150K optimal operating parameters
-			net_efective = 100
-		else
-			if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
-				net_efective = 0
-				speedloss = netspeed
-			else
-				var/ratio = netspeed * 0.001			// temp per one unit of speedloss
-				speedloss = round((temperature - 150)/ratio)	// exact speedloss
-				net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
+	var/datum/gas_mixture/env = T.return_air()
+	var/temperature = env.temperature
+	if(temperature <= 150)				// 150K optimal operating parameters
+		net_efective = 100
 	else
-		net_efective = 100 // yogs end
+		if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
+			net_efective = 0
+			speedloss = netspeed
+		else
+			var/ratio = netspeed * 0.001			// temp per one unit of speedloss
+			speedloss = round((temperature - 150)/ratio)	// exact speedloss
+			net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
+	//yogs end
 
 
 	if(traffic > 0)
-		traffic -= netspeed - speedloss
-		if (traffic < 0)  //yogs start
-			traffic = 0   //yogs end
+		var/deltaT = netspeed - speedloss  //yogs start
+		if (traffic < 0)
+			deltaT = traffic
+			traffic = 0
+		else
+			traffic -= deltaT
+		env.temperature += deltaT * 2500 /env.heat_capacity()   //yogs end
+
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
