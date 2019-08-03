@@ -295,7 +295,7 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = "[chem]", "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = "[chem]", "allowed" = chem_allowed(chem)))   //yogs modifies id
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -342,7 +342,7 @@
 				open_machine()
 			. = TRUE
 		if("inject")
-			if(!is_operational() || !mob_occupant)
+			if(!is_operational() || !mob_occupant)				//yogs start
 				return
 			for(var/chem in available_chems)
 				if("[chem]" == params["chem"])
@@ -350,7 +350,7 @@
 						. = TRUE
 						if(scrambled_chems && prob(5))
 							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
-					break
+					break				//yogs end
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
@@ -367,10 +367,10 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	if(mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency)
+	if(mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency)			//yogs start
 		if(mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine)
 			return TRUE
-	return FALSE
+	return FALSE				//yogs end
 
 /obj/machinery/sleeper/proc/reset_chem_buttons()
 	scrambled_chems = FALSE
