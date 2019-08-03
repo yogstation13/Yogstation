@@ -26393,6 +26393,7 @@
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /obj/item/wrench,
+/obj/item/poster/Neverforget,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bai" = (
