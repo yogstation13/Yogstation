@@ -151,13 +151,13 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 		if(temperature <= 150)				// 150K optimal operating parameters
 			net_efective = 100
 		else
-			if(temperature <= 10150)		// at 10000K above 150K the efectivity becomes 0
+			if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
 				net_efective = 0
 				speedloss = netspeed
 			else
-				var/temp = netspeed * 0.0001			// temp per one unit of speedloss
-				speedloss = (temperature - 150)/temp	// exact speedloss
-				net_efective = speedloss/netspeed		// percantage speedloss ui use only
+				var/ratio = netspeed * 0.001			// temp per one unit of speedloss
+				speedloss = round((temperature - 150)/ratio)	// exact speedloss
+				net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
 	else
 		net_efective = 100 // yogs end
 
