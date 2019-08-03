@@ -10,6 +10,7 @@
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
 	var/syndicate = FALSE
+	var/silicon_operative = FALSE			//yogs used to diferetiate IAA AI from borged operatives
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
 
@@ -22,6 +23,8 @@
 	.=..() //in case the base is used in future
 	if(owner && owner.current)
 		give_pinpointer(owner.current)
+		if(issilicon(owner.current))
+			silicon_operative = TRUE
 
 /datum/antagonist/traitor/internal_affairs/remove_innate_effects()
 	.=..()
@@ -204,7 +207,7 @@
 	if(SSticker.mode.target_list.len && SSticker.mode.target_list[owner]) // Is a double agent
 		// Assassinate
 		var/datum/mind/target_mind = SSticker.mode.target_list[owner]
-		if(issilicon(target_mind.current))
+		if(issilicon(target_mind.current) && silicon_operative)
 			var/datum/objective/destroy/internal/destroy_objective = new
 			destroy_objective.owner = owner
 			destroy_objective.target = target_mind
