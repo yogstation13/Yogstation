@@ -11,12 +11,12 @@
 
 /obj/structure/sign/poster/official/neverforget
     name = "24605"
-    desc = "The longer you look at this poster the more heat it gives almost as if it were a real star."
+    desc = "The longer you look at this poster the more heat it gives off, almost as if it were a real star."
     icon = 'yogstation/icons/obj/contraband.dmi'
     icon_state = "24605"
 
 /obj/item/poster/neverforget
     name = "24605"
-    desc = "This almost looks hot to the touch maybe you should just put it on the wall."
+    desc = "This looks almost hot to the touch! Maybe you should just put it on the wall."
     poster_type = /obj/structure/sign/poster/official/neverforget
     icon_state = "rolled_legit"
