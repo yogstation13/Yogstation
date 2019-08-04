@@ -31,7 +31,7 @@
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
 	
-	if(ishuman(owner.current)
+	if(ishuman(owner.current))
 		//Gives Cyanide dental implant
 		var/obj/item/reagent_containers/pill/cyanide/cyan = new
 		owner.current.transferItemToLoc(cyan, owner, TRUE)
