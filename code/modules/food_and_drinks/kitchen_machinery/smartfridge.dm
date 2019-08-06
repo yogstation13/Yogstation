@@ -29,7 +29,7 @@
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
 	var/last_pitch = 0 //When did we last pitch?
-	var/pitch_delay = 6000 //How long until we can pitch again?
+	var/pitch_delay = 3000 //How long until we can pitch again?
 	var/product_slogans = "" //String of slogans separated by semicolons, optional
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
 	var/dispenser_arm = TRUE //whether or not the dispenser is active (wires can disable this)
@@ -573,8 +573,10 @@
 // -------------------------
 /obj/machinery/smartfridge/organ
 	name = "smart organ storage"
-	desc = "A refrigerated storage unit for organ storage."
+	desc = "A refrigerated storage unit for organ storage. Upgraded parts will activate its advanced organ healing technology."
 	max_n_of_items = 20	//vastly lower to prevent processing too long
+	product_slogans = "Right in the spleen.;Body parts, on ice!;Low-temperature organ storage decreases patient transplant rejection rates.;Register as an organ donor today!;You can't play these organs.;THIS UNIT DOES NOT CONTAIN FOOD.;Keeps your heart colder than HoS's.;This unit is equipped with state-of-the-art organ healing technology, just upgrade it's parts to activate this feature.;Upgrade this unit's parts to increase organ healing speed.;Also check out our new product, the Organ Harvester machine! Pairs well with this unit!"
+	pitches = FALSE
 	var/repair_rate = 0
 
 /obj/machinery/smartfridge/organ/accept_check(obj/item/O)
@@ -609,6 +611,7 @@
 		var/obj/item/organ/O = organ
 		if(O)
 			O.damage = max(0, O.damage - repair_rate)
+	..()
 
 /obj/machinery/smartfridge/organ/deconstruct()
 	for(var/organ in src)
@@ -625,6 +628,7 @@
 	desc = "A refrigerated storage unit for medicine storage."
 	max_n_of_items = 100
 	product_slogans = "Medicine for what ails ya.;Get your medicine here!;Disclaimer: These chemicals are not regulated by the Nanotrasen Drug Administration.;Do you have a prescription for that?;This unit can dispense chemicals, medicines, toxins, and quite possibly also narcotics.;Ask your doctor or CMO about Chloral Hydrate(tm) today!;Check out our expanded inventory of pharmaceuticals.;Chemist, did you remember to make Mannitol?"
+	pitches = TRUE
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
 	if(istype(O, /obj/item/storage/pill_bottle))
@@ -645,7 +649,7 @@
 	return FALSE
 
 /obj/machinery/smartfridge/chemistry/preloaded
-	pitches = TRUE
+	pitches = FALSE
 	initial_contents = list(
 		/obj/item/reagent_containers/pill/epinephrine = 12,
 		/obj/item/reagent_containers/pill/charcoal = 5,
@@ -659,9 +663,10 @@
 	name = "smart virus storage"
 	desc = "A refrigerated storage unit for volatile sample storage."
 	max_n_of_items = 100
-	product_slogans = "Try not to spill these.;Wear your biohazard gear when operating this machine.;Whoops, I think I dropped one.;Storage solutions for any and all biohazardous material."
+	product_slogans = "Try not to spill these.;Use of level-3 biohazard equipment or higher is mandatory when operating this machine.;Whoops, I think I dropped one.;Storage solutions for any and all biohazardous material."
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded
+	pitches = FALSE
 	initial_contents = list(
 		/obj/item/reagent_containers/syringe/antiviral = 4,
 		/obj/item/reagent_containers/glass/bottle/cold = 1,
