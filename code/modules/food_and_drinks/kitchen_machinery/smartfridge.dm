@@ -29,7 +29,7 @@
 	var/supports_capacity_indication = TRUE //whether or not the smartfridge supports 5 levels of inventory quantity indication icon states
 	var/pitches = FALSE //whether or not it should use "sales pitches" similar to a vendor machine
 	var/last_pitch = 0 //When did we last pitch?
-	var/pitch_delay = 3000 //How long until we can pitch again?
+	var/pitch_delay = 2000 //How long until we can pitch again?
 	var/product_slogans = "" //String of slogans separated by semicolons, optional
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
 	var/dispenser_arm = TRUE //whether or not the dispenser is active (wires can disable this)
@@ -112,12 +112,12 @@
 /obj/machinery/smartfridge/proc/speak_advert()
 	//advertise our contents (if possible)
 	if(contents.len > 0)
-		var/selected_item1 = pick(contents).name
-		var/selected_item2 = pick(contents).name
+		var/selected_item1 = pick(contents)
+		var/selected_item2 = pick(contents)
 		if(contents.len > 1 && selected_item1 == selected_item2)
 			//make an attempt to choose another item for the advertisement.
-			selected_item2 = pick(contents).name
-		speak("This unit contains [contents.len] items, such as the [(selected_item1 != selected_item2) ? "\"[selected_item1]\" and \"[selected_item2]\"!" : "\"[selected_item1]\"!"]")
+			selected_item2 = pick(contents)
+		speak("This unit contains [contents.len] items, such as [(selected_item1 != selected_item2) ? "\"[selected_item1]\" and \"[selected_item2]\"!" : "\"[selected_item1]\"!"]")
 
 /obj/machinery/smartfridge/proc/speak(message)
 	if(stat & (BROKEN|NOPOWER))		// unpowered, no speak
