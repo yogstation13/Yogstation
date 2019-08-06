@@ -32,12 +32,15 @@
 	var/pitch_delay = 6000 //How long until we can pitch again?
 	var/product_slogans = "" //String of slogans separated by semicolons, optional
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED	//Shock users like an airlock.
+	var/dispenser_arm = TRUE //whether or not the dispenser is active (wires can disable this)
+	var/power_wire_cut = FALSE
 	var/list/slogan_list = list()
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
 	create_reagents(100, NO_REACT)
 
+	wires = new /datum/wires/smartfridge(src)
 	if(islist(initial_contents))
 		for(var/typekey in initial_contents)
 			var/amount = initial_contents[typekey]
@@ -49,9 +52,10 @@
 	//Slogan pitches work almost identically to the vendor code:
 	slogan_list = splittext(product_slogans, ";")
 	last_pitch = world.time + rand(0, pitch_delay)
+	power_change()
 
 /obj/machinery/smartfridge/Destroy()
-	//QDEL_NULL(wires) TODO: add wires
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/smartfridge/RefreshParts()
@@ -66,11 +70,14 @@
 				. += "<span class='notice'>The status display reads: <b>Inventory full!</b> Please remove items or upgrade the parts of this storage unit.</span>"
 			else
 				. += "<span class='notice'>The status display reads: Inventory quantity is currently <b>[contents.len] out of [max_n_of_items]</b> items.</span>"
+		else
+			if(!(stat & BROKEN))
+				. += "<span class='notice'>The status display is off.</span>"
 
 /obj/machinery/smartfridge/power_change()
 	..()
 	if(!(stat & BROKEN))
-		if(powered())
+		if(powered() && !power_wire_cut)
 			stat &= ~NOPOWER
 			START_PROCESSING(SSmachines, src)
 		else
@@ -113,7 +120,7 @@
 		speak("This unit contains [contents.len] items, such as the [(selected_item1 != selected_item2) ? "\"[selected_item1]\" and \"[selected_item2]\"!" : "\"[selected_item1]\"!"]")
 
 /obj/machinery/smartfridge/proc/speak(message)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no speak
 		return
 	if(!message)
 		return
@@ -148,7 +155,7 @@
 	var/startstate = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state = "[startstate]-broken"
-	else if(powered())
+	else if(powered() && !power_wire_cut)
 		icon_state = startstate
 		//Capacity indication:
 		if(supports_capacity_indication && contents.len > 0 && max_n_of_items > 0)
@@ -188,6 +195,10 @@
 ********************/
 
 /obj/machinery/smartfridge/attackby(obj/item/O, mob/user, params)
+	if(panel_open && is_wire_tool(O))
+		wires.interact(user)
+		return
+
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
 		cut_overlays()
 		if(panel_open)
@@ -198,9 +209,13 @@
 	if(default_pry_open(O))
 		return
 
-	if(default_unfasten_wrench(user, O))
-		power_change()
-		return
+	if(!(flags_1 & NODECONSTRUCT_1) && O.tool_behaviour == TOOL_WRENCH)
+		if(panel_open || !anchored)
+			if(default_unfasten_wrench(user, O))
+				power_change()
+				return
+		else
+			to_chat(user, "<span class='warning'>[src] needs to have it's maintenance panel open before you can reach the anchoring bolts!</span>")
 
 	if(default_deconstruction_crowbar(O))
 		updateUsrDialog()
@@ -328,6 +343,10 @@
 			if(!allow_ai_retrieve && isAI(usr))
 				to_chat(usr, "<span class='warning'>[src] does not seem to be configured to respect your authority!</span>")
 				return
+			
+			if(!dispenser_arm)
+				audible_message("<span class='warning'>\The [src] makes a loud clunk and the dispenser arm twitches slightly.</span>", "<span class='warning'>The dispenser arm on the [src] twitches slightly.</span>")
+				return
 
 			if (params["amount"])
 				desired = text2num(params["amount"])
@@ -395,12 +414,23 @@
 	..()
 
 /obj/machinery/smartfridge/drying_rack/RefreshParts()
-/obj/machinery/smartfridge/drying_rack/default_deconstruction_screwdriver()
 /obj/machinery/smartfridge/drying_rack/exchange_parts()
 /obj/machinery/smartfridge/drying_rack/spawn_frame()
 
 /obj/machinery/smartfridge/drying_rack/default_deconstruction_crowbar(obj/item/crowbar/C, ignore_panel = 1)
 	..()
+
+//Whoever made this hacky drying_rack smartfridge thing didn't use the standard construction method
+//so we have to override the wiring/deconstruction of the default smartfridge here
+/obj/machinery/smartfridge/drying_rack/attackby(obj/item/O, mob/user, params)
+	if(!(flags_1 & NODECONSTRUCT_1) && O.tool_behaviour == TOOL_SCREWDRIVER)
+		to_chat(user, "<span class='warning'>[src] has nothing to unscrew! You think you can probably pry out the shelves, though.</span>")
+		return
+	else if(!(flags_1 & NODECONSTRUCT_1) && O.tool_behaviour == TOOL_WRENCH)
+		to_chat(user, "<span class='warning'>[src] has no bolts to wrench! You think you can probably pry out the shelves, though.</span>")
+		return
+	else
+		return ..()
 
 /obj/machinery/smartfridge/drying_rack/ui_data(mob/user)
 	. = ..()
@@ -496,7 +526,7 @@
 	name = "drink showcase"
 	desc = "A refrigerated storage unit for tasty, tasty alcohol."
 	max_n_of_items = 100
-	product_slogans = "Only the finest beverages for the discerning crewmember.;All our drinks are served ice-cold.;Happy Hour begins every shift at 12:00.;Don't worry, we won't tell the Captain if you drink on the shift.;This'll get ya drunk.;Bottoms up!;Delightfully refreshing!;Show me the way to go home, I'm tired and I want to go to bed...;This unit contains the bartender's latest creations."
+	product_slogans = "Only the finest beverages for the discerning crewmember.;All our drinks are served ice-cold.;Happy Hour begins every shift at 12:00.;Don't worry, I won't tell the Captain you drink on the shift.;This'll get ya drunk.;Bottoms up!;Delightfully refreshing!;Show me the way to go home, I'm tired and I want to go to bed...;This unit contains the bartender's latest creations."
 	pitches = TRUE
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
