@@ -1,5 +1,5 @@
 // -------------------------
-//  SmartFridge.  Much todo
+//  Smartfridges
 // -------------------------
 /obj/machinery/smartfridge
 	name = "smartfridge"
