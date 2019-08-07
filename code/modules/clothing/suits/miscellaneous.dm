@@ -112,6 +112,23 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	resistance_flags = NONE
 
+/obj/item/clothing/head/syndicatefake/nuke
+	name = "Nuclear Operative Helmet replica"
+	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
+	icon_state = "fake_nuke_helmet"
+	item_state = "fake_nuke_helmet"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS
+
+/obj/item/clothing/suit/syndicatefake/nuke
+	name = "Nuclear Operative Hardsuit replica"
+	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
+	icon_state = "fake_nuke_suit"
+	item_state = "fake_nuke_suit"
+	body_parts_covered = CHEST|ARMS|GROIN|LEGS|FEET
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
+
+
 /obj/item/clothing/suit/hastur
 	name = "\improper Hastur's robe"
 	desc = "Robes not meant to be worn by man."
