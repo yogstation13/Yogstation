@@ -459,3 +459,9 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+//Different types of events
+#define EVENT_TYPE_MINOR 1
+#define EVENT_TYPE_MEDIUM 2
+#define EVENT_TYPE_MAJOR 3
+#define EVENT_TYPE_ANTAG 4
