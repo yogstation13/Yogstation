@@ -117,17 +117,12 @@
 	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
 	icon_state = "fake_nuke_helmet"
 	item_state = "fake_nuke_helmet"
-	body_parts_covered = HEAD
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/syndicatefake/nuke
 	name = "Nuclear Operative Hardsuit replica"
 	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
 	icon_state = "fake_nuke_suit"
 	item_state = "fake_nuke_suit"
-	w_class = WEIGHT_CLASS_NORMAL
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
-
 
 /obj/item/clothing/suit/hastur
 	name = "\improper Hastur's robe"
