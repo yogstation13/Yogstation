@@ -127,10 +127,6 @@
 	item_state = "fake_nuke_suit"
 	w_class = WEIGHT_CLASS_NORMAL
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	resistance_flags = NONE
-	body_parts_covered = CHEST|ARMS|GROIN|LEGS|FEET
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/hastur
