@@ -118,15 +118,19 @@
 	icon_state = "fake_nuke_helmet"
 	item_state = "fake_nuke_helmet"
 	body_parts_covered = HEAD
-	flags_inv = HIDEHAIR|HIDEEARS
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/syndicatefake/nuke
 	name = "Nuclear Operative Hardsuit replica"
 	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
 	icon_state = "fake_nuke_suit"
 	item_state = "fake_nuke_suit"
+	w_class = WEIGHT_CLASS_NORMAL
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	resistance_flags = NONE
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS|FEET
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/hastur
