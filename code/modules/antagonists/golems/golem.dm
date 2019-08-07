@@ -6,12 +6,14 @@
 	var/golem_species
 	var/antag_hud
 	var/antag_hud_name
+	var/removing = FALSE //whether we're already in the process of removing this antag datum (needed for remove_innate_effects() on admin_remove())
 
 /datum/antagonist/golem/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.current.set_species(golem_species)
 	.=..()
 
 /datum/antagonist/golem/admin_remove(mob/admin)
+	removing = TRUE
 	owner.current.set_species(/datum/species/golem/adamantine)
 	.=..()
 
