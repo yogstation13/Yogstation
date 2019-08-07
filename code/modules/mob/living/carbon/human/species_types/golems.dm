@@ -1064,7 +1064,8 @@
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
 		C.RemoveSpell(spell)
-	C.mind.remove_antag_datum(/datum/antagonist/golem/capitalist)
+	if(!C.mind.has_antag_datum(/datum/antagonist/golem/capitalist).removing)
+		C.mind.remove_antag_datum(/datum/antagonist/golem/capitalist)
 
 /datum/species/golem/capitalist/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	..()
