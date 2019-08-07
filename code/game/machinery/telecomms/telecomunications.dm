@@ -32,6 +32,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
 	var/hide = FALSE  // Is it a hidden machine?
 
+	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
+	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
+
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -162,12 +165,13 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	if(traffic > 0)
 		var/deltaT = netspeed - speedloss  //yogs start
-		if (traffic < 0)
+		if (traffic < deltaT)
 			deltaT = traffic
 			traffic = 0
 		else
 			traffic -= deltaT
-		env.temperature += deltaT * 2500 /env.heat_capacity()   //yogs end
+		if(generates_heat)
+			env.temperature += deltaT * heatoutput / env.heat_capacity()   //yogs end
 
 
 /obj/machinery/telecomms/emp_act(severity)
