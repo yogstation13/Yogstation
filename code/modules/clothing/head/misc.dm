@@ -65,6 +65,12 @@
 	desc = "A plastic replica of a Syndicate agent's space helmet. You'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
+/obj/item/clothing/head/syndicatefake/nuke
+	name = "Nuclear Operative Helmet replica"
+	desc = "The feared suit of a Syndicate Nuclear agent, now in plastic!"
+	icon_state = "fake_nuke_helmet"
+	item_state = "fake_nuke_helmet"
+
 /obj/item/clothing/head/cueball
 	name = "cueball helmet"
 	desc = "A large, featureless white orb meant to be worn on your head. How do you even see out of this thing?"
