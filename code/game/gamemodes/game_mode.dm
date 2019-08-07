@@ -590,3 +590,6 @@
 		SSticker.news_report = STATION_EVACUATED
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
+
+/datum/game_mode/proc/handle_point_change() //this proc exists entirely for /datum/game_mode/storyteller, but I don't wanna check the gamemode every time I call this to prevent runtimes :)
+	return
