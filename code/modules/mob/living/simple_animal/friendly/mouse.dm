@@ -106,6 +106,9 @@
 	. = ..()
 	if(gibbed == FALSE)
 		src.gib()
+		if(toast)
+			M.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
+			M.desc = "It's toast."
 
 /mob/living/simple_animal/mouse/brown
 	body_color = "brown"
