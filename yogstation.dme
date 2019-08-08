@@ -2915,6 +2915,7 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
+#include "yogstation\code\datums\wires\smartfridge.dm"
 #include "yogstation\code\game\communications.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
