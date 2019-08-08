@@ -102,13 +102,10 @@
 	desc = "Oh no..."
 	icon_state = "mouse_operative"
 
-/mob/living/simple_animal/mouse/mouse_op/death(var/gibbed = FALSE)
+/mob/living/simple_animal/mouse/mouse_op/death(var/gibbed = FALSE, toast)
 	. = ..()
 	if(gibbed == FALSE)
 		src.gib()
-		if(toast)
-			M.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
-			M.desc = "It's toast."
 
 /mob/living/simple_animal/mouse/brown
 	body_color = "brown"
