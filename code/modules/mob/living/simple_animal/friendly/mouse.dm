@@ -26,6 +26,7 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/chew_probability = 1
 	datum_outputs = list(/datum/outputs/squeak)
+	var/mutations
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -89,6 +90,24 @@
 /mob/living/simple_animal/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
+
+/mob/living/simple_animal/mouse/mouse_op
+	name = "mouse operative"
+	minbodytemp = 0
+	maxbodytemp = 5000
+	maxHealth = 20
+	health = 20
+	mob_biotypes = list(MOB_INORGANIC)
+
+/mob/living/simple_animal/mouse/mouse_op/New()
+	..()
+	desc = "Oh no..."
+	icon_state = "mouse_operative"
+
+/mob/living/simple_animal/mouse/mouse_op/death(var/gibbed = FALSE)
+	. = ..()
+	if(gibbed == FALSE)
+		src.gib()
 
 /mob/living/simple_animal/mouse/brown
 	body_color = "brown"
