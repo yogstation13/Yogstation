@@ -27,6 +27,8 @@
 
 	var/triggering	//admin cancellation
 
+	var/mob/living/target			//a possible target for the event (used for the storyteller gamemode)
+
 /datum/round_event_control/New()
 	if(config && !wizardevent) // Magic is unaffected by configs
 		earliest_start = CEILING(earliest_start * CONFIG_GET(number/events_min_time_mul), 1)

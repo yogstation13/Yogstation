@@ -57,6 +57,8 @@
 	SSevents.scheduled = INFINITY //stops SSevents from running any events on its own
 
 	for(var/datum/round_event_control/event in SSevents.control)
+		if(!can_run_storyteller)
+			continue
 		if(event.wizardevent)
 			wizard_events += event
 			continue
@@ -70,3 +72,32 @@
 				major_events += event
 			if(EVENT_TYPE_ANTAG)
 				antag_events += event
+
+	minor_events = shuffle(minor_events)
+	medium_events = shuffle(medium_events)
+	major_events = shuffle(major_events)
+	antag_events = shuffle(antag_events)
+
+	return TRUE
+
+/datum/game_mode/storyteller/post_setup()
+	var/datum/round_event_control/event
+
+	for(var/E in antag_events)
+		event = E
+		if(event.can_run_storyteller())
+			antag_events -= event
+			SSevents.TriggerEvent(event)
+			return TRUE
+
+	message_admins("The storyteller gamemode could not spawn any antags at roundstart, proceding without them")
+	return TRUE
+
+/datum/game_mode/storyteller/make_antag_chance(mob/living/carbon/human/character)
+	if(antag_points > (antag_point_requirement / 100 * 90)) //we'll be lenient and maybe allow the latejoin to be an antag if we have 90% of the points required
+		var/datum/round_event_control/event = pick(antag_events) //if the random event that gets picked allows them to be an antag
+		if(event.can_run_storyteller(character))
+			event.target = character
+			antag_events -= event
+			SSevents.TriggerEvent(event)
+			antag_points -= antag_point_requirement
