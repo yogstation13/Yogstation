@@ -1064,7 +1064,8 @@
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
 		C.RemoveSpell(spell)
-	if(!C.mind.has_antag_datum(/datum/antagonist/golem/capitalist).removing)
+	var/datum/antagonist/golem/capitalist/CA = C.mind.has_antag_datum(/datum/antagonist/golem/capitalist)
+	if(CA && !CA.removing)
 		C.mind.remove_antag_datum(/datum/antagonist/golem/capitalist)
 
 /datum/species/golem/capitalist/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -1110,7 +1111,8 @@
 	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
 		C.RemoveSpell(spell)
 	UnregisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
-	if(!C.mind.has_antag_datum(/datum/antagonist/golem/communist).removing)
+	var/datum/antagonist/golem/communist/CU = C.mind.has_antag_datum(/datum/antagonist/golem/communist)
+	if(CU && !CU.removing)
 		C.mind.remove_antag_datum(/datum/antagonist/golem/communist)
 
 /datum/species/golem/soviet/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
