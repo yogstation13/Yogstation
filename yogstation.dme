@@ -2917,10 +2917,7 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
-<<<<<<< HEAD
-=======
 #include "yogstation\code\datums\wires\smartfridge.dm"
->>>>>>> e21d2d710724997fafa3ce9a4281f433f8bbb005
 #include "yogstation\code\game\communications.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
