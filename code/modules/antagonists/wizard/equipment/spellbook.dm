@@ -369,6 +369,8 @@
 	if(.)
 		new /obj/item/clothing/shoes/sandal/magic(get_turf(user)) //In case they've lost them.
 		new /obj/item/clothing/gloves/color/purple(get_turf(user))//To complete the outfit
+		new /obj/item/tank/internals/oxygen(get_turf(user))
+		new /obj/item/clothing/mask/breath(get_turf(user))
 
 /datum/spellbook_entry/item/contract
 	name = "Contract of Apprenticeship"
