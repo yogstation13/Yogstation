@@ -520,7 +520,7 @@
 		return
 	else
 		panel_open = !panel_open
-		to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
 		update_icon()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
