@@ -58381,6 +58381,10 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+"nDa" = (
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/plasteel/freezer,
+/area/medical/surgery)
 "nDo" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -90001,7 +90005,7 @@ bHb
 bIk
 bvM
 bKB
-bKB
+nDa
 bFU
 bNS
 aZd
