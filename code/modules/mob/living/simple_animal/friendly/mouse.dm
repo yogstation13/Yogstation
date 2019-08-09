@@ -96,9 +96,6 @@
 	maxHealth = 20
 	health = 20
 	mob_biotypes = list(MOB_INORGANIC)
-
-/mob/living/simple_animal/mouse/mouse_op/New()
-	..()
 	desc = "Oh no..."
 	icon_state = "mouse_operative"
 
