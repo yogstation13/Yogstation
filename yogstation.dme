@@ -1,4 +1,4 @@
-// DM Environment file for tgstation.dme.
+// DM Environment file for yogstation.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
 // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -2917,6 +2917,10 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
+<<<<<<< HEAD
+=======
+#include "yogstation\code\datums\wires\smartfridge.dm"
+>>>>>>> e21d2d710724997fafa3ce9a4281f433f8bbb005
 #include "yogstation\code\game\communications.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
@@ -3366,5 +3370,6 @@
 #include "yogstation\code\modules\vending\wardrobes.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
+#include "yogstation\code\modules\xenoarch\loot\guns.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE
