@@ -97,6 +97,7 @@
 	health = 20
 	mob_biotypes = list(MOB_INORGANIC)
 	desc = "Oh no..."
+	icon = 'yogstation/icons/mob/animal.dmi'
 	icon_state = "mouse_operative"
 
 /mob/living/simple_animal/mouse/mouse_op/death(var/gibbed = FALSE, toast)
