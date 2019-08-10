@@ -624,13 +624,17 @@
 	return result
 
 /obj/mecha/Bump(var/atom/obstacle)
+	var/turf/newloc = get_step(src,dir)
+	if(newloc.flags_1 & NOJAUNT_1)
+		to_chat(occupant, "<span class='warning'>Some strange aura is blocking the way.</span>")
+		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
 		spawn()
 			if(can_move)
 				can_move = 0
 				if(phase_state)
 					flick(phase_state, src)
-				forceMove(get_step(src,dir))
+				forceMove(newloc)
 				use_power(phasing_energy_drain)
 				sleep(step_in*3)
 				can_move = 1
@@ -641,7 +645,7 @@
 			if(nextsmash < world.time)
 				obstacle.mech_melee_attack(src)
 				nextsmash = world.time + smashcooldown
-				if(!obstacle || obstacle.CanPass(src,get_step(src,dir)))
+				if(!obstacle || obstacle.CanPass(src,newloc))
 					step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
