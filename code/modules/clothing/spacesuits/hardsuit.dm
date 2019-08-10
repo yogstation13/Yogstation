@@ -421,6 +421,17 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
 
+/obj/item/clothing/suit/space/hardsuit/wizard/equipped(mob/living/carbon/human/user, slot) //Removes the need for internals
+	. = ..()
+	if(slot == SLOT_WEAR_SUIT)
+		ADD_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
+		user.failed_last_breath = FALSE
+		user.clear_alert("not_enough_oxy")
+
+/obj/item/clothing/suit/space/hardsuit/wizard/dropped(mob/living/carbon/human/user) //So they start breathing again once they take it off
+	..()
+	REMOVE_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
+
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
