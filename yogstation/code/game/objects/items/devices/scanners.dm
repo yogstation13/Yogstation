@@ -153,3 +153,6 @@ proc/lesserhealthscan(mob/user, mob/living/M)
 	// Time of death
 	if(M.tod && (M.stat == DEAD))
 		to_chat(user, "<span class='info'>Time of Death:</span> [M.tod]")
+		var/tdelta = round(world.time - M.timeofdeath)
+		if(tdelta < (DEFIB_TIME_LIMIT * 10))
+			to_chat(user, "<span class='danger'>Subject died [DisplayTimeText(tdelta)] ago</span>")
