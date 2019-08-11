@@ -947,7 +947,7 @@
 		to_chat(src, "<span class='danger'>Hack aborted. \The [apc] is no longer responding to our systems.</span>")
 		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 50, 1, ignore_walls = FALSE)
 	else
-		malf_picker.processing_time += 10
+		malf_picker.processing_time += 5
 
 		apc.malfai = parent || src
 		apc.malfhack = TRUE
