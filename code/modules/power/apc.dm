@@ -363,7 +363,7 @@
 			update_state |= UPSTATE_OPENED1
 		if(opened==APC_COVER_REMOVED)
 			update_state |= UPSTATE_OPENED2
-	else if((obj_flags & EMAGGED) || malfai)
+	else if(obj_flags & EMAGGED)
 		update_state |= UPSTATE_BLUESCREEN
 	else if(panel_open)
 		update_state |= UPSTATE_WIREEXP
@@ -520,7 +520,7 @@
 		return
 	else
 		panel_open = !panel_open
-		to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
 		update_icon()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
@@ -1003,7 +1003,7 @@
 		return
 	to_chat(malf, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
 	malf.malfhack = src
-	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 600, TIMER_STOPPABLE)
+	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 300, TIMER_STOPPABLE)
 
 	var/obj/screen/alert/hackingapc/A
 	A = malf.throw_alert("hackingapc", /obj/screen/alert/hackingapc)

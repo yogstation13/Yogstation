@@ -78,7 +78,7 @@ proc/lesserhealthscan(mob/user, mob/living/M)
 
 	// Status Readout
 	// Tricorder can detect damage but can only give estimates in most cases
-	//Temperature
+    //Temperature
 	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 	//Brute
 	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
@@ -92,3 +92,4 @@ proc/lesserhealthscan(mob/user, mob/living/M)
 	to_chat(user, "\t <font color='Fuchsia'>*</font> Brain Activity: <font color ='orange'>[brain_status >= 200 ? "<font color='red'>Not Detected</font>" : brain_status > 100 ? "Low" : brain_status > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
 	//Radiation
 	to_chat(user, "\t <font color='yellow'>*</font> Radiation Levels: [M.radiation ? "<font color='red'>[M.radiation]</font>" : "<font color='blue'>None</font>"]</span>")
+
