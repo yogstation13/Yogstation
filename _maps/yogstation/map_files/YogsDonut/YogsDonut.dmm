@@ -16975,6 +16975,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aKj" = (
+/obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -16993,6 +16994,11 @@
 	},
 /area/medical/surgery)
 "aKn" = (
+/obj/machinery/camera{
+	c_tag = "Medical - Surgery";
+	dir = 1;
+	network = list("ss13","Medical")
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
@@ -46666,12 +46672,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "bNI" = (
-/obj/structure/closet/secure_closet/medical2,
-/obj/machinery/camera{
-	c_tag = "Medical - Surgery";
-	dir = 1;
-	network = list("ss13","Medical")
-	},
+/obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "bNJ" = (

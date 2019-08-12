@@ -267,6 +267,11 @@
 		var/obj/item/mecha_parts/P = W
 		P.try_attach_part(user, src)
 		return
+
+	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = W
+		S.show_access(src, user)					//yogs end
+
 	else
 		return ..()
 
