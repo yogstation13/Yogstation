@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
-  var/net_efective = 100 //yogs percentage of netspeed aplied
+	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
 	var/id = "NULL" // identification string
 	var/network = "NULL" // the network of the machinery
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
 	var/hide = FALSE  // Is it a hidden machine?
 
-  var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
+	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
 	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	// Update the icon
 	update_icon()
   
-  var/turf/T = get_turf(src) //yogs
+	var/turf/T = get_turf(src) //yogs
 	var/speedloss = 0
 	var/datum/gas_mixture/env = T.return_air()
 	var/temperature = env.temperature
