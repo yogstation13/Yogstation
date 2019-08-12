@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// asset_cache
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = text2num(href_list["asset_cache_confirm_arrival"])
+		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//	into letting append to a list without limit.
 		if (job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
@@ -132,6 +132,27 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return 1
 
 /client/proc/handle_spam_prevention(message, mute_type)
+	//Increment message count
+	total_message_count += 1
+
+	//store the total to act on even after a reset
+	var/cache = total_message_count
+
+	if(total_count_reset <= world.time)
+		total_message_count = 0
+		total_count_reset = world.time + (5 SECONDS)
+
+	//If they're really going crazy, mute them
+	if(cache >= SPAM_TRIGGER_AUTOMUTE * 2)
+		total_message_count = 0
+		total_count_reset = 0
+		cmd_admin_mute(src, mute_type, 1)
+		return 1
+
+	//Otherwise just supress the message
+	else if(cache >= SPAM_TRIGGER_AUTOMUTE)
+		return 1
+
 	if(CONFIG_GET(flag/automute_on) && !holder && last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
@@ -253,8 +274,8 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		//add_donor_verbs()
 	else
 		prefs.unlock_content &= ~2
-		if(prefs.toggles & QUIET_ROUND)
-			prefs.toggles &= ~QUIET_ROUND
+		if(prefs.yogtoggles & QUIET_ROUND)
+			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
 	// yogs end
 	// yogs start - mentor stuff
@@ -265,7 +286,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
 			GLOB.mentors += src
 	// yogs end
-	
+
 
 	. = ..()	//calls mob.Login()
 
@@ -355,7 +376,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
+			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel.glitch.me/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)

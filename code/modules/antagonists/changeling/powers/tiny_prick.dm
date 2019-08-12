@@ -199,7 +199,7 @@
 /datum/action/changeling/sting/mute/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "mute sting")
 	if(target.reagents)
-		target.reagents.add_reagent("mutetoxin", 17)
+		target.reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 17)
 	return TRUE
 
 /datum/action/changeling/sting/blind
@@ -231,7 +231,7 @@
 /datum/action/changeling/sting/LSD/sting_action(mob/user, mob/living/carbon/target)
 	log_combat(user, target, "stung", "LSD sting")
 	if(target.reagents)
-		target.reagents.add_reagent("mindbreaker", 30)
+		target.reagents.add_reagent(/datum/reagent/toxin/mindbreaker, 30)
 	return TRUE
 
 /datum/action/changeling/sting/cryo

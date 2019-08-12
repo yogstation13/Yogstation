@@ -66,6 +66,8 @@
 
 	var/list/learned_recipes //List of learned recipe TYPES.
 
+	var/flavour_text = null
+
 /datum/mind/New(var/key)
 	src.key = key
 	soulOwner = src
@@ -88,14 +90,15 @@
 	var/mood_was_enabled = FALSE//Yogs -- Mood Preferences
 	if(current)	// remove ourself from our old body's mind variable
 		// Yogs start -- Mood preferences
-		if(current.client && current.client.prefs.toggles & PREF_MOOD)
+		if(current.client && current.client.prefs.yogtoggles & PREF_MOOD)
 			mood_was_enabled = TRUE
-		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood)) 
+		else if(ishuman(current) && CONFIG_GET(flag/disable_human_mood))
 			var/mob/living/carbon/human/H = current
 			if(H.mood_enabled)
 				mood_was_enabled = TRUE
 				var/datum/component/mood/c = H.GetComponent(/datum/component/mood)
-				c.RemoveComponent()
+				if(c)
+					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
 		UnregisterSignal(current, COMSIG_MOB_DEATH)
@@ -172,6 +175,7 @@
 	if(antag_team)
 		antag_team.add_member(src)
 	A.on_gain()
+	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 
 /datum/mind/proc/remove_antag_datum(datum_type)

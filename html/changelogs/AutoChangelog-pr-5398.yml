@@ -1,5 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborgs can no longer move wheelchairs around, as they do not have arms."
-  - bugfix: "Fixed a speed exploit."

@@ -71,9 +71,11 @@ All foods are distributed among various categories. Use common sense.
 	if(!eater)
 		return
 	if(!reagents.total_volume)
-		var/obj/item/trash_item = generate_trash(eater)
+		var/mob/living/location = loc
+		var/obj/item/trash_item = generate_trash(location)
 		qdel(src)
-		eater.put_in_hands(trash_item)
+		if(istype(location))
+			location.put_in_hands(trash_item)
 
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user)
@@ -151,16 +153,16 @@ All foods are distributed among various categories. Use common sense.
 	return 0
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
-	..()
-	if(bitecount == 0)
-		return
-	else if(bitecount == 1)
-		to_chat(user, "[src] was bitten by someone!")
-	else if(bitecount <= 3)
-		to_chat(user, "[src] was bitten [bitecount] times!")
-	else
-		to_chat(user, "[src] was bitten multiple times!")
-
+	. = ..()
+	switch (bitecount)
+		if (0)
+			return
+		if(1)
+			. += "[src] was bitten by someone!"
+		if(2,3)
+			. += "[src] was bitten [bitecount] times!"
+		else
+			. += "[src] was bitten multiple times!"
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage))

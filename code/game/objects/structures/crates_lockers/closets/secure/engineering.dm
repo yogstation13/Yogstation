@@ -7,6 +7,7 @@
 	..()
 	new /obj/item/clothing/neck/cloak/ce(src)
 	new /obj/item/clothing/under/rank/chief_engineer(src)
+	new /obj/item/clothing/under/rank/chief_engineer/skirt(src)
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/hardhat/weldhat/white(src)
 	new /obj/item/clothing/head/welding(src)
@@ -31,10 +32,6 @@
 	new /obj/item/circuitboard/machine/techfab/department/engineering(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/CE(src)
-	new /obj/item/clothing/under/yogs/ceturtleneck(src) //yogs start
-	new /obj/item/clothing/under/yogs/cecasual(src)
-	new /obj/item/clothing/head/beret/ce(src)
-	new /obj/item/poster/firstsingularity(src)  //yogs end
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"
@@ -79,6 +76,7 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
 	new /obj/item/storage/box/emptysandbags(src)
+	new /obj/item/storage/bag/construction(src)
 
 
 /obj/structure/closet/secure_closet/atmospherics
