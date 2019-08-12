@@ -100,6 +100,9 @@
 
 	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
 		return attack_hand(user)
+	else if(istype(W, /obj/item/airlock_scanner))		//yogs start
+		var/obj/item/airlock_scanner/S = W
+		S.show_access(src, user)					//yogs end
 	else
 		return ..()
 
