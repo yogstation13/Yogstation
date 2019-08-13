@@ -457,7 +457,7 @@ GENE SCANNER
 	add_fingerprint(user)
 	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
 
-proc/scangasses(mob/user)
+obj/item/proc/scangasses(mob/user)
 	//yogs stop
 
 	if (user.stat || user.eye_blind)
