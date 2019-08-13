@@ -81,7 +81,7 @@
 	hive.threat_level = max(0, hive.threat_level-0.1)
 	if(bruteforce)
 		if(target.anti_magic_check(FALSE, FALSE, TRUE, 6))
-			target.adjustBrainLoss(10)
+			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 		to_chat(user, "<span class='warning'>We are briefly exhausted by the effort required by our enhanced assimilation abilities.</span>")
 		user.Immobilize(50)
 		SEND_SIGNAL(target, COMSIG_NANITE_SET_VOLUME, 0)
@@ -311,7 +311,7 @@
 	var/list/carbon_members = hive.get_carbon_members()
 	if(!carbon_members.len)
 		return
-	if(!user.getBruteLoss() && !user.getFireLoss() && !user.getCloneLoss() && !user.getBrainLoss() && !user.getStaminaLoss())
+	if(!user.getBruteLoss() && !user.getFireLoss() && !user.getCloneLoss() && !user.getOrganLoss(ORGAN_SLOT_BRAIN) && !user.getStaminaLoss())
 		to_chat(user, "<span class='notice'>We cannot heal ourselves any more with this power!</span>")
 		revert_cast()
 	to_chat(user, "<span class='notice'>We begin siphoning power from our many vessels!</span>")
@@ -324,7 +324,7 @@
 			to_chat(user, "<span class='warning'>We have run out of vessels to drain.</span>")
 			break
 		var/regen = target.anti_magic_check(FALSE, FALSE, TRUE) ? 5 : 10
-		target.adjustBrainLoss(regen/2)
+		target.adjustOrganLoss(ORGAN_SLOT_BRAIN, regen/2)
 		if(user.getBruteLoss() > user.getFireLoss())
 			user.heal_ordered_damage(regen, list(CLONE, BRUTE, BURN, STAMINA))
 		else
@@ -333,7 +333,7 @@
 			to_chat(user, "<span class='warning'>We finish our healing</span>")
 			break
 		iterations++
-	user.setBrainLoss(0)
+	user.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 
 
 /mob/living/passenger
@@ -478,13 +478,13 @@
 /obj/effect/proc_holder/spell/target_hive/hive_control/process()
 	if(active)
 		if(QDELETED(vessel)) //If we've been gibbed or otherwise deleted, ghost both of them and kill the original
-			original_body.adjustBrainLoss(200)
+			original_body.adjustOrganLoss(ORGAN_SLOT_BRAIN, 200)
 			release_control()
 		else if(!is_hivemember(backseat)) //If the vessel is no longer a hive member, return to original bodies
 			to_chat(vessel, "<span class='warning'>Our vessel is one of us no more!</span>")
 			release_control()
 		else if(!QDELETED(original_body) && (!backseat.ckey || vessel.stat == DEAD)) //If the original body exists and the vessel is dead/ghosted, return both to body but not before killing the original
-			original_body.adjustBrainLoss(200)
+			original_body.adjustOrganLoss(ORGAN_SLOT_BRAIN, 200)
 			to_chat(vessel.mind, "<span class='warning'>Our vessel is one of us no more!</span>")
 			release_control()
 		else if(!QDELETED(original_body) && original_body.z != vessel.z) //Return to original bodies
@@ -647,7 +647,7 @@
 	item_state = "hivehand"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
-	
+
 	reach = 3
 	min_reach = -1
 	item_flags = ABSTRACT | DROPDEL
@@ -673,7 +673,7 @@
 	else
 		to_chat(user,"<span class='notice'>You cannot make a telekinetic hand while holding something!</span>")
 		revert_cast()
-		
+
 /obj/effect/proc_holder/spell/targeted/hive_hack
 	name = "Network Invasion"
 	desc = "We probe the mind of an adjacent target and extract valuable information on any enemy hives they may belong to. Takes longer if the target is not in our hive or wearing tinfoil protection."
