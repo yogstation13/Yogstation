@@ -390,6 +390,15 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
+	
+	if(memory_amt > 50)
+		return
+
+	if(memory_amt == 50)
+		log_game("[key_name(src)] might be trying to crash the server by spamming memories, rate-limiting them.")
+		message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] might be trying to crash the server by spamming memories, rate-limiting them.</span>")
+		
+	memory_amt++
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)

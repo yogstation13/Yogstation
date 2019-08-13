@@ -535,7 +535,6 @@
 	setToxLoss(0, 0) //zero as second argument not automatically call updatehealth().
 	setOxyLoss(0, 0)
 	setCloneLoss(0, 0)
-	setBrainLoss(0)
 	remove_CC(FALSE)
 	set_disgust(0)
 	radiation = 0
