@@ -65,7 +65,7 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 	scangasses(user)
 
 //If medicalTricorder is set to FALSE then the tricorder will not be as effective as a regular medical scanner
-proc/lesserhealthscan(mob/user, mob/living/M)
+/obj/item/proc/lesserhealthscan(mob/user, mob/living/M)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
