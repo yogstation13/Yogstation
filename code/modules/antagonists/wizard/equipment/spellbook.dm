@@ -361,8 +361,7 @@
 /datum/spellbook_entry/item/armor
 	name = "Mastercrafted Armor Set"
 	desc = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space. \
-			It has been modified with a special gem that nullifies the user's need for air."
-
+		It has been modified with a special gem that nullifies the user's need for air."
 	item_path = /obj/item/clothing/suit/space/hardsuit/wizard
 	category = "Defensive"
 
