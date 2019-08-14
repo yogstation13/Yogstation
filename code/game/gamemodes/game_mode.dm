@@ -589,5 +589,5 @@
 		if(SSshuttle.emergency.is_hijacked())
 			SSticker.news_report = SHUTTLE_HIJACK
 
-/datum/game_mode/proc/handle_point_change() //this proc exists entirely for /datum/game_mode/storyteller, but I don't wanna check the gamemode every time I call this to prevent runtimes :)
-  return 
+/datum/game_mode/proc/handle_point_change(amount, type, reason) //this proc exists entirely for /datum/game_mode/storyteller, but I don't wanna check the gamemode every time I call this to prevent runtimes :)
+  return
