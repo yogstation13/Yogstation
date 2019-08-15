@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			net_efective = 0
 			speedloss = netspeed
 		else
-			var/ratio = netspeed * 0.001			// temp per one unit of speedloss
+			var/ratio = 1000/netspeed			// temp per one unit of speedloss
 			speedloss = round((temperature - 150)/ratio)	// exact speedloss
 			net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
 	//yogs end
