@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/ghost_role/zombie
 	max_occurrences = 1
 	min_players = 20
-	weight = 4
+	weight = 0
 /datum/round_event/ghost_role/zombie
 	minimum_required = 1
 	role_name = "zombie"
