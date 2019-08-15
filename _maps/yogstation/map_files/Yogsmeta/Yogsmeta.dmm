@@ -59715,10 +59715,8 @@
 	},
 /area/medical/surgery)
 "cdg" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24
-	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
@@ -66826,11 +66824,10 @@
 	},
 /area/medical/surgery)
 "coD" = (
-/obj/structure/bed/roller,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "coE" = (
