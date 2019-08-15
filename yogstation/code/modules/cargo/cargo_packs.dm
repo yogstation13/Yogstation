@@ -175,9 +175,9 @@
 		new I.item(C)
 
 /datum/supply_pack/misc/milliondollarhat
-	name = "Million Dollar Hat"
-	desc = "Contains a hat that defies both logic and fashion sense."
-	cost = 1000000
+	name = "Half Off Million Dollar Hat"
+	desc = "Contains a hat that defies both logic and fashion sense. Now half off!"
+	cost = 500000
 	contains = list(/obj/item/clothing/head/milliondollarhat)
 	crate_name = "million dollar hat crate"
 	crate_type = /obj/structure/closet/crate/large
