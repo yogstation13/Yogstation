@@ -26393,6 +26393,7 @@
 /obj/structure/table,
 /obj/item/storage/box/lights/mixed,
 /obj/item/wrench,
+/obj/item/poster/neverforget,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "bai" = (
@@ -42071,6 +42072,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bDB" = (
+/obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -94519,7 +94521,7 @@ biA
 aMR
 bjL
 nFF
-bpM
+bjQ
 bqT
 aWG
 bJG
@@ -95285,7 +95287,7 @@ bes
 bfF
 bfF
 bir
-bjQ
+bpM
 blh
 bfF
 bfF

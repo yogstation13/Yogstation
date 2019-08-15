@@ -9,6 +9,7 @@
 	var/autoruncode = FALSE		// 1 if the code is set to run every time a signal is picked up
 	var/list/memory = list()	// stored memory, for mem() in NTSL
 	var/rawcode = ""	// the code to compile (raw-ass text)
+	var/compiledcode = ""	//the last compiled code (also raw-ass text)
 	var/obj/item/radio/server/server_radio // Allows the server to talk on the radio, via broadcast() in NTSL
 	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
 	var/list/compile_warnings = list()
@@ -46,11 +47,15 @@
 	if(t)
 		if(istext(t))
 			rawcode = t
+
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
 	if(is_banned_from(user.ckey, "Signal Technician"))
 		to_chat(user, "<span class='warning'>You are banned from using NTSL.</span>")
 		return
 	if(Compiler)
-		user.log_message(rawcode, LOG_NTSL)
-		return Compiler.Compile(rawcode)
+		var/list/compileerrors = Compiler.Compile(rawcode)
+		if(!compileerrors.len && (compiledcode != rawcode))
+			user.log_message(rawcode, LOG_NTSL)
+			compiledcode = rawcode
+		return compileerrors
 //end-NTSL

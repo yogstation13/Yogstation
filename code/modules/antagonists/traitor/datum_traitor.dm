@@ -17,6 +17,7 @@
 	var/list/datum/syndicate_contract/assigned_contracts = list()
 	var/contract_TC_payed_out = 0
 	var/contract_TC_to_redeem = 0
+	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/traitor/on_gain()
@@ -51,13 +52,13 @@
 
 	// Randomise order, so we don't have contracts always in payout order.
 	to_generate = shuffle(to_generate)
-	
+
 	var/list/assigned_targets = list()
 	// Generate contracts, and find the lowest paying.
 	for (var/i = 1; i <= to_generate.len; i++)
 		var/datum/syndicate_contract/contract_to_add = new(owner, to_generate[i], assigned_targets)
 		var/contract_payout_total = contract_to_add.contract.payout + contract_to_add.contract.payout_bonus
-		
+
 		assigned_targets.Add(contract_to_add.contract.target)
 
 		if (!lowest_paying_contract || (contract_payout_total < lowest_paying_sum))
@@ -91,9 +92,10 @@
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
-		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
-		A.malf_picker.remove_malf_verbs(A)
-		qdel(A.malf_picker)
+		if(malf)
+			A.verbs -= /mob/living/silicon/ai/proc/choose_modules
+			A.malf_picker.remove_malf_verbs(A)
+			qdel(A.malf_picker)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -316,7 +318,8 @@
 	killer.set_zeroth_law(law, law_borg)
 	killer.set_syndie_radio()
 	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
-	killer.add_malf_picker()
+	if(malf)
+		killer.add_malf_picker()
 
 /datum/antagonist/traitor/proc/equip(var/silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
