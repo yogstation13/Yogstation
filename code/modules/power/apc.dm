@@ -1204,6 +1204,11 @@
 			lighting = autoset(lighting, 0)
 			environ = autoset(environ, 0)
 			area.poweralert(0, src)
+		else if(obj_flags & EMAGGED)			// it has charge and it's emagged, make it randomly toggle things on/off
+			equipment = autoset(equipment, rand(0, 3))
+			lighting = autoset(equipment, rand(0, 3))
+			environ = autoset(environ, rand(0, 3))
+			area.poweralert(1, src) //no alarm for you
 		else if(cell.percent() < 15 && longtermpower < 0)	// <15%, turn off lighting & equipment
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 2)
