@@ -148,7 +148,7 @@
 
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='notice'>Do not attempt to circumvent the permissions system using proc calls or SDQL2</span>")
-		message_admins("[key_name_admin(user)] attempted to circumvent the permissions system and activate buildmode using proc calls.")
+		message_admins("[key_name_admin(usr)] attempted to circumvent the permissions system and activate buildmode using proc calls.")
 		return
 	if(M.client)
 		if(istype(M.client.click_intercept,/datum/buildmode))
