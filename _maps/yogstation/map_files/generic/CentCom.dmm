@@ -2248,13 +2248,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"fR" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -3721,14 +3714,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"jA" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/syndicate_mothership/control)
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -4833,14 +4818,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"lS" = (
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "lT" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -6910,37 +6887,6 @@
 	smooth = 1
 	},
 /area/centcom/holding)
-"pA" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/noticeboard{
-	dir = 4;
-	icon_state = "nboard00";
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"pB" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/item/storage/crayons,
-/obj/item/storage/crayons,
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
-"pC" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/landmark/start/nukeop,
-/turf/open/floor/plasteel,
-/area/syndicate_mothership/control)
 "pD" = (
 /obj/structure/destructible/cult/tome,
 /obj/item/shuttle_curse,
@@ -7136,9 +7082,12 @@
 /turf/open/ai_visible,
 /area/ai_multicam_room)
 "pX" = (
-/obj/structure/table/wood,
-/obj/item/paper/fluff/stations/centcom/disk_memo,
-/turf/open/floor/wood,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/machinery/vending/cigarette/syndicate,
+/turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "pY" = (
 /obj/machinery/washing_machine,
@@ -7522,11 +7471,6 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
-"qF" = (
-/obj/structure/table/wood,
-/obj/item/paicard,
-/turf/open/floor/wood,
-/area/syndicate_mothership/control)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -7699,6 +7643,18 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"re" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	dir = 4;
+	icon_state = "nboard00";
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "rf" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/bar,
@@ -8256,6 +8212,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
+"sf" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "sg" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox,
@@ -8264,6 +8230,11 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
+"si" = (
+/obj/structure/table/wood,
+/obj/item/paper/fluff/stations/centcom/disk_memo,
+/turf/open/floor/wood,
 /area/syndicate_mothership/control)
 "sj" = (
 /obj/structure/toilet{
@@ -10638,6 +10609,11 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
+"wV" = (
+/obj/structure/table/wood,
+/obj/item/paicard,
+/turf/open/floor/wood,
+/area/syndicate_mothership/control)
 "wW" = (
 /obj/structure/sign/map/left{
 	pixel_y = -32
@@ -18427,6 +18403,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"Nl" = (
+/obj/structure/chair/stool,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/landmark/start/nukeop,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Nm" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/autodrobe,
@@ -20638,6 +20623,14 @@
 /obj/item/storage/pill_bottle/stimulant,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Uc" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/syndicate_mothership/control)
 "Ud" = (
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
@@ -20917,6 +20910,13 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"Vf" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Vg" = (
 /obj/structure/table/wood,
 /obj/item/nullrod,
@@ -21654,7 +21654,9 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/beam_rifle/debug,
+/obj/item/gun/energy/beam_rifle{
+	pin = /obj/item/firing_pin
+	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "Xv" = (
@@ -39944,7 +39946,7 @@ oW
 ku
 ng
 qJ
-pA
+re
 se
 pZ
 pZ
@@ -40199,16 +40201,16 @@ hl
 hl
 kt
 ku
-lS
+pX
 pZ
 pZ
 rf
-pC
+Nl
 pZ
-pC
+Nl
 vv
 wm
-pX
+si
 ku
 kt
 my
@@ -40456,16 +40458,16 @@ kt
 kt
 kt
 nz
-fR
+Vf
 pZ
 rf
-pB
+sf
 te
 pZ
-pC
+Nl
 vw
 wn
-qF
+wV
 ku
 kt
 hl
@@ -40719,7 +40721,7 @@ rf
 sg
 tf
 pZ
-pC
+Nl
 vv
 wn
 wW
@@ -41747,7 +41749,7 @@ rh
 ku
 ku
 ku
-fR
+Vf
 pZ
 wp
 ku
@@ -42002,7 +42004,7 @@ ku
 ku
 qN
 ri
-jA
+Uc
 ku
 nz
 uJ

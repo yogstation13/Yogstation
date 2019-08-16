@@ -1,4 +1,4 @@
-// DM Environment file for tgstation.dme.
+// DM Environment file for yogstation.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
 // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -1365,6 +1365,7 @@
 #include "code\modules\antagonists\fugitive\fugitive_ship.dm"
 #include "code\modules\antagonists\fugitive\hunter.dm"
 #include "code\modules\antagonists\fugitive\old_god.dm"
+#include "code\modules\antagonists\golems\golem.dm"
 #include "code\modules\antagonists\greentext\greentext.dm"
 #include "code\modules\antagonists\highlander\highlander.dm"
 #include "code\modules\antagonists\hivemind\hivemind.dm"
@@ -2730,6 +2731,7 @@
 #include "code\modules\surgery\brain_surgery.dm"
 #include "code\modules\surgery\cavity_implant.dm"
 #include "code\modules\surgery\core_removal.dm"
+#include "code\modules\surgery\coronary_bypass.dm"
 #include "code\modules\surgery\dental_implant.dm"
 #include "code\modules\surgery\experimental_dissection.dm"
 #include "code\modules\surgery\eye_surgery.dm"
@@ -2738,6 +2740,7 @@
 #include "code\modules\surgery\implant_removal.dm"
 #include "code\modules\surgery\limb_augmentation.dm"
 #include "code\modules\surgery\lipoplasty.dm"
+#include "code\modules\surgery\lobectomy.dm"
 #include "code\modules\surgery\mechanic_steps.dm"
 #include "code\modules\surgery\organ_manipulation.dm"
 #include "code\modules\surgery\organic_steps.dm"
@@ -2913,6 +2916,7 @@
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"
+#include "yogstation\code\datums\wires\smartfridge.dm"
 #include "yogstation\code\game\communications.dm"
 #include "yogstation\code\game\sound.dm"
 #include "yogstation\code\game\world.dm"
@@ -3362,5 +3366,6 @@
 #include "yogstation\code\modules\vending\wardrobes.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
+#include "yogstation\code\modules\xenoarch\loot\guns.dm"
 #include "yogstation\interface\interface.dm"
 // END_INCLUDE

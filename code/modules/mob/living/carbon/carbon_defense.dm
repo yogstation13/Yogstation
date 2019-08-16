@@ -249,7 +249,7 @@
 			emote("gasp")
 			Jitter(100)
 			SEND_SIGNAL(src, COMSIG_LIVING_MINOR_SHOCK)
-			adjustBrainLoss(100, 199) //yogs end
+			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
 	if(override)
 		return override
 	else
