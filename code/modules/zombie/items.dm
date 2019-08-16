@@ -35,7 +35,7 @@
 		if(ishuman(target))
 			var/mob/living/human/H = target
 			var/flesh_wound = ran_zone(user.zone_selected)
-			if(prob(100-H.getarmor(flesh_wound, "melee"))
+			if(prob(100-H.getarmor(flesh_wound, "melee")))
 				try_to_zombie_infect(target)
 		else
 			check_feast(target, user)
