@@ -1,6 +1,6 @@
 /datum/antagonist/santa
 	name = "Santa"
-	show_in_antagpanel = True
+	show_in_antagpanel = TRUE
 	show_name_in_check_antagonists = TRUE
 
 /datum/antagonist/santa/on_gain()
