@@ -81,7 +81,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	H.Paralyze(60)
 	switch(emag_lvl)
 		if(1)
-			H.adjustBrainLoss(50) //HALP AM DUMB
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50) //HALP AM DUMB
 			to_chat(H,"<span class='danger'>ALERT! MEMORY UNIT [rand(1,5)] FAILURE.NERVEOUS SYSTEM DAMAGE.</span>")
 		if(2)
 			H.overlay_fullscreen("preternis_emag", /obj/screen/fullscreen/high)
