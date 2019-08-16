@@ -2,44 +2,44 @@
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
 
-#define PLASMA_HEAT_PENALTY 15     // Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
-#define OXYGEN_HEAT_PENALTY 1
-#define CO2_HEAT_PENALTY 0.1
-#define NITROGEN_HEAT_MODIFIER -1.5
+#define PLASMA_HEAT_PENALTY 150     // Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
+#define OXYGEN_HEAT_PENALTY 10
+#define CO2_HEAT_PENALTY 1
+#define NITROGEN_HEAT_MODIFIER -15
 
-#define OXYGEN_TRANSMIT_MODIFIER 1.5   //Higher == Bigger bonus to power generation.
-#define PLASMA_TRANSMIT_MODIFIER 4
+#define OXYGEN_TRANSMIT_MODIFIER 15   //Higher == Bigger bonus to power generation.
+#define PLASMA_TRANSMIT_MODIFIER 40
 
-#define N2O_HEAT_RESISTANCE 6          //Higher == Gas makes the crystal more resistant against heat damage.
+#define N2O_HEAT_RESISTANCE 60          //Higher == Gas makes the crystal more resistant against heat damage.
 
-#define POWERLOSS_INHIBITION_GAS_THRESHOLD 0.20         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
-#define POWERLOSS_INHIBITION_MOLE_THRESHOLD 20        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
-#define POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD 500  //bonus powerloss inhibition boost if this amount of moles is reached
+#define POWERLOSS_INHIBITION_GAS_THRESHOLD 2         //Higher == Higher percentage of inhibitor gas needed before the charge inertia chain reaction effect starts.
+#define POWERLOSS_INHIBITION_MOLE_THRESHOLD 200        //Higher == More moles of the gas are needed before the charge inertia chain reaction effect starts.        //Scales powerloss inhibition down until this amount of moles is reached
+#define POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD 5000  //bonus powerloss inhibition boost if this amount of moles is reached
 
-#define MOLE_PENALTY_THRESHOLD 1800           //Higher == Shard can absorb more moles before triggering the high mole penalties.
-#define MOLE_HEAT_PENALTY 350                 //Heat damage scales around this. Too hot setups with this amount of moles do regular damage, anything above and below is scaled
-#define POWER_PENALTY_THRESHOLD 5000          //Higher == Engine can generate more power before triggering the high power penalties.
-#define SEVERE_POWER_PENALTY_THRESHOLD 7000   //Same as above, but causes more dangerous effects
-#define CRITICAL_POWER_PENALTY_THRESHOLD 9000 //Even more dangerous effects, threshold for tesla delamination
-#define HEAT_PENALTY_THRESHOLD 40             //Higher == Crystal safe operational temperature is higher.
-#define DAMAGE_HARDCAP 0.002
-#define DAMAGE_INCREASE_MULTIPLIER 0.25
+#define MOLE_PENALTY_THRESHOLD 18000           //Higher == Shard can absorb more moles before triggering the high mole penalties.
+#define MOLE_HEAT_PENALTY 3500                 //Heat damage scales around this. Too hot setups with this amount of moles do regular damage, anything above and below is scaled
+#define POWER_PENALTY_THRESHOLD 50000          //Higher == Engine can generate more power before triggering the high power penalties.
+#define SEVERE_POWER_PENALTY_THRESHOLD 70000   //Same as above, but causes more dangerous effects
+#define CRITICAL_POWER_PENALTY_THRESHOLD 90000 //Even more dangerous effects, threshold for tesla delamination
+#define HEAT_PENALTY_THRESHOLD 400             //Higher == Crystal safe operational temperature is higher.
+#define DAMAGE_HARDCAP 0.02
+#define DAMAGE_INCREASE_MULTIPLIER 2.5
 
 
-#define THERMAL_RELEASE_MODIFIER 5         //Higher == less heat released during reaction, not to be confused with the above values
-#define PLASMA_RELEASE_MODIFIER 750        //Higher == less plasma released by reaction
-#define OXYGEN_RELEASE_MODIFIER 325        //Higher == less oxygen released at high temperature/power
+#define THERMAL_RELEASE_MODIFIER 50         //Higher == less heat released during reaction, not to be confused with the above values
+#define PLASMA_RELEASE_MODIFIER 7500        //Higher == less plasma released by reaction
+#define OXYGEN_RELEASE_MODIFIER 3250        //Higher == less oxygen released at high temperature/power
 
-#define REACTION_POWER_MODIFIER 0.55       //Higher == more overall power
+#define REACTION_POWER_MODIFIER 5.5       //Higher == more overall power
 
-#define MATTER_POWER_CONVERSION 10         //Crystal converts 1/this value of stored matter into energy.
+#define MATTER_POWER_CONVERSION 100         //Crystal converts 1/this value of stored matter into energy.
 
 //These would be what you would get at point blank, decreases with distance
-#define DETONATION_RADS 200
-#define DETONATION_HALLUCINATION 600
+#define DETONATION_RADS 2000
+#define DETONATION_HALLUCINATION 6000
 
 
-#define WARNING_DELAY 60
+#define WARNING_DELAY 600
 
 #define HALLUCINATION_RANGE(P) (min(7, round(P ** 0.25)))
 
