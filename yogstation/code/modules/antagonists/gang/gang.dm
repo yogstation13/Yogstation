@@ -423,7 +423,7 @@
 		if(ishuman(gangmind.current))
 			var/mob/living/carbon/human/gangster = gangmind.current
 			//Gangster must be alive and on station
-			if((gangster.stat == DEAD) || (is_station_level(gangster.z)))
+			if((gangster.stat == DEAD) || (!is_station_level(gangster.z)))
 				continue
 
 			var/obj/item/clothing/outfit
