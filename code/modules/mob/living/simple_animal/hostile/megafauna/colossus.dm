@@ -279,6 +279,10 @@ Difficulty: Very Hard
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	pixel_y = -4
 	use_power = NO_POWER_USE
+	supports_full_indicator_state = FALSE
+	supports_retrieval_state = FALSE
+	supports_capacity_indication = FALSE
+	pitches = FALSE
 	var/memory_saved = FALSE
 	var/list/stored_items = list()
 	var/list/blacklist = list()

@@ -194,6 +194,10 @@
 	max_n_of_items = 10
 	pixel_y = -4
 	flags_1 = NODECONSTRUCT_1
+	supports_full_indicator_state = FALSE
+	supports_retrieval_state = FALSE
+	supports_capacity_indication = FALSE
+	pitches = FALSE
 	var/empty = FALSE
 
 /obj/machinery/smartfridge/survival_pod/update_icon()

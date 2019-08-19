@@ -179,7 +179,7 @@ Made by Xhuis
 		else if (light_amount < LIGHT_HEAL_THRESHOLD  && !istype(H.loc, /obj/effect/dummy/phased_mob/shadowling)) //Can't heal while jaunting
 			H.heal_overall_damage(5,5)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25) //Shad O. Ling gibbers, "CAN U BE MY THRALL?!!"
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
@@ -220,7 +220,7 @@ Made by Xhuis
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(2,2)
 			H.adjustToxLoss(-5)
-			H.adjustBrainLoss(-25)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-1)
 
 /datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)

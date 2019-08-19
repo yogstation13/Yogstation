@@ -393,6 +393,4 @@ If you are porting features/tools from other codebases, you must give them credi
 Regarding sprites & sounds, you must credit the artist and possibly the codebase. All yogstation assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the yogstation codebase.
 
 ## A word on Git
-Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.
-
-Therefore, EOF settings of main repo are forbidden territory one must avoid wandering into, at risk of losing body and/or mind to the Git gods.
+All .dmm .dm .md .txt .html are required to end with CRLF(DOS/WINDOWS) line endings,git will enforce said line endings automatically. Other file types have non enforced line endings.
