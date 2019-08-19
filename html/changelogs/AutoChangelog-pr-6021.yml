@@ -1,4 +1,0 @@
-author: "yogstation13-bot"
-delete-after: true 
-changes: 
-  - bugfix: "Cult teleport rune will no longer teleport ghosts or camera mobs."

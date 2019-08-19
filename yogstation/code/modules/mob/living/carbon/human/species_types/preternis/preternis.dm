@@ -14,7 +14,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
-	meat = null
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
 	brutemod = 1.25
 	burnmod = 1.5
@@ -29,6 +29,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
+	screamsound = 'goon/sound/robot_scream.ogg'
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
@@ -80,7 +81,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	H.Paralyze(60)
 	switch(emag_lvl)
 		if(1)
-			H.adjustBrainLoss(50) //HALP AM DUMB
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50) //HALP AM DUMB
 			to_chat(H,"<span class='danger'>ALERT! MEMORY UNIT [rand(1,5)] FAILURE.NERVEOUS SYSTEM DAMAGE.</span>")
 		if(2)
 			H.overlay_fullscreen("preternis_emag", /obj/screen/fullscreen/high)

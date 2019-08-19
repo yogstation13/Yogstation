@@ -15,7 +15,7 @@
 	max_integrity = INFINITY
 
 /obj/effect/proc_holder/spell/self/shadowling_hatch/cast(list/targets,mob/user = usr)
-	if(user.stat || !ishuman(user) || !user || !is_shadow(user || isinspace(user)))
+	if(user.stat || !ishuman(user) || !user || !is_shadow(user) || isinspace(user))
 		return
 	var/mob/living/carbon/human/H = user
 	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")

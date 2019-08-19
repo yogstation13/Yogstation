@@ -858,10 +858,6 @@
 	name = "Beard (Moonshiner)"
 	icon_state = "facial_moonshiner"
 
-/datum/sprite_accessory/facial_hair/tribearder
-	name = "Beard (Tribearder)"
-	icon_state = "facial_tribearder"
-
 /datum/sprite_accessory/facial_hair/longbeard
 	name = "Beard (Long)"
 	icon_state = "facial_longbeard"
@@ -1828,7 +1824,7 @@
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/wings.dmi'
+	icon = 'yogstation/icons/mob/wings.dmi' //yogs moth sprite fix
 	color_src = null
 
 /datum/sprite_accessory/moth_wings/plain

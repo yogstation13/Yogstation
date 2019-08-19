@@ -72,4 +72,6 @@
 	TECHWEB_POINT_TYPE_GENERIC = "General Research"\
 	)
 
-#define TECHWEB_BOMB_POINTCAP		50000 //Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100
+
+#define TOXINS_RESEARCH_MAX 70000 // This is the maximum amount of research points a toxins bomb can get.
+#define TOXINS_RESEARCH_LAMBDA 3940 // This determines how easy it is for a toxins bomb to reach the max research cap.

@@ -33,8 +33,8 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 /obj/item/survivalcapsule/attack_self()
 	//Can't grab when capsule is New() because templates aren't loaded then
@@ -151,13 +151,6 @@
 /obj/machinery/stasis/survival_pod/update_icon()
 	return
 
- //NanoMed
-/obj/machinery/vending/wallmed/survival_pod
-	name = "survival pod medical supply"
-	desc = "Wall-mounted Medical Equipment dispenser. This one seems just a tiny bit smaller."
-	refill_canister = null
-	onstation = FALSE
-
 //Computer
 /obj/item/gps/computer
 	name = "pod computer"
@@ -201,6 +194,10 @@
 	max_n_of_items = 10
 	pixel_y = -4
 	flags_1 = NODECONSTRUCT_1
+	supports_full_indicator_state = FALSE
+	supports_retrieval_state = FALSE
+	supports_capacity_indication = FALSE
+	pitches = FALSE
 	var/empty = FALSE
 
 /obj/machinery/smartfridge/survival_pod/update_icon()

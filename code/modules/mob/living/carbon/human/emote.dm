@@ -68,8 +68,8 @@
 			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
-	else if(islizard(H)) //yogs start: adds lizard screams
-		return 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs end
+	else if(H.dna?.species?.screamsound) //yogs start: grabs scream from screamsound located in the appropriate species file.
+		return H.dna.species.screamsound //yogs end - current added screams: lizard, preternis.
 
 
 /datum/emote/living/carbon/human/pale

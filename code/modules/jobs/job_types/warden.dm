@@ -23,6 +23,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 
+	changed_maps = list("YogsPubby", "OmegaStation")
+
+/datum/job/warden/proc/YogsPubbyChanges()
+	access += ACCESS_CREMATORIUM
+	minimal_access += ACCESS_CREMATORIUM
+
+/datum/job/warden/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/job/warden/get_access()
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()

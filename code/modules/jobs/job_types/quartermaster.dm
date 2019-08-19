@@ -18,6 +18,11 @@
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
 
+	changed_maps = list("OmegaStation")
+
+/datum/job/qm/proc/OmegaStationChanges()
+	return TRUE
+
 /datum/outfit/job/quartermaster
 	name = "Quartermaster"
 	jobtype = /datum/job/qm

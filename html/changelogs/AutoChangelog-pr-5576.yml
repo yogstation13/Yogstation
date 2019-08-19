@@ -1,4 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - tweak: "tweaks latices outside disposal to prevent objects getting stuck"
