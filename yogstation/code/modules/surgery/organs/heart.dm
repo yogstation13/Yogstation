@@ -19,4 +19,4 @@
 	else
 		if(prob(25))
 			to_chat(owner, "<span class = 'userdanger'>You feel your heart collapse in on itself!</span>")
-		Stop() //doesnt restart with defib even after re adding nanites, im calling this a feature because the heart itself is made of nanites
+		Destroy() //the heart is made of nanites so without them it just breaks down
