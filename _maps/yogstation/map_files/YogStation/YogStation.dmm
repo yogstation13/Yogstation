@@ -884,6 +884,37 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"abQ" = (
+/obj/item/assembly/prox_sensor{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = 9;
+	pixel_y = -2
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_y = 2
+	},
+/obj/structure/table/reinforced,
+/obj/item/assembly/voice{
+	step_x = -6;
+	step_y = -1
+	},
+/obj/item/assembly/voice{
+	step_x = -5;
+	step_y = 12
+	},
+/obj/item/assembly/voice{
+	step_x = 8;
+	step_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "abR" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/machinery/light{
@@ -13623,6 +13654,37 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"aAM" = (
+/obj/item/assembly/signaler{
+	pixel_y = 8
+	},
+/obj/item/assembly/signaler{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/assembly/signaler{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/assembly/signaler{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/structure/table/reinforced,
+/obj/item/assembly/health{
+	step_x = -7;
+	step_y = -4
+	},
+/obj/item/assembly/health{
+	step_x = 7;
+	step_y = -4
+	},
+/obj/item/assembly/health{
+	step_x = 2;
+	step_y = 7
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "aAN" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/mime,
@@ -43272,25 +43334,6 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
-"bGl" = (
-/obj/item/assembly/prox_sensor{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = 9;
-	pixel_y = -2
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_y = 2
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
 "bGm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -44937,25 +44980,6 @@
 	name = "Science Requests Console";
 	pixel_y = -30;
 	receive_ore_updates = 1
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
-"bJX" = (
-/obj/item/assembly/signaler{
-	pixel_y = 8
-	},
-/obj/item/assembly/signaler{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/item/assembly/signaler{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/assembly/signaler{
-	pixel_x = -2;
-	pixel_y = -2
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
@@ -107904,8 +107928,8 @@ bvK
 abb
 fxI
 bsv
-bGl
-bJX
+abQ
+aAM
 ado
 aeo
 afs
