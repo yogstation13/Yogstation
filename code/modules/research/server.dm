@@ -2,7 +2,7 @@
 	name = "\improper R&D Server"
 	desc = "A computer system running a deep neural network that processes arbitrary information to produce data useable in the development of new technologies. In layman's terms, it makes research points."
 	icon = 'icons/obj/machines/research.dmi'
-	icon_state = "server"
+	icon_state = "RD-server-on"
 	var/datum/techweb/stored_research
 	var/heat_health = 100
 	//Code for point mining here.
