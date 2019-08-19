@@ -125,6 +125,22 @@
 	else
 		airlock.cyclelinkeddir = dir
 
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target	//yogs start
+	name = "airlock cyclelink helper target"
+	icon_state = "airlock_cyclelink_helper_target"
+	var/dirx
+	var/diry
+
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)
+		log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but they're already set")
+	else
+		if(!dirx && !diry)
+			log_mapping("[src] at [AREACOORD(src)] tried to set [airlock] cyclelinkedx and y, but has dirx and diry are uninitialized")
+			return
+		airlock.cyclelinkedx = dirx
+		airlock.cyclelinkedy = diry//yogs end
+
 
 /obj/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
@@ -225,8 +241,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		var/obj/structure/bodycontainer/morgue/j = pick(trays)
 		var/mob/living/carbon/human/h = new /mob/living/carbon/human(j, 1)
 		h.death()
-		for (var/part in h.internal_organs) //randomly remove organs from each body
+		for (var/part in h.internal_organs) //randomly remove organs from each body, set those we keep to be in stasis
 			if (prob(40))
 				qdel(part)
+			else
+				var/obj/item/organ/O = part
+				O.organ_flags |= ORGAN_FROZEN
 		j.update_icon()
 	qdel(src)

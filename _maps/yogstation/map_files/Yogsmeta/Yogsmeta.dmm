@@ -919,6 +919,7 @@
 /obj/machinery/vending/sustenance{
 	desc = "A vending machine normally reserved for work camps.";
 	name = "\improper sustenance vendor";
+	onstation = 0;
 	product_slogans = "Enjoy your meal.;Enough calories to support any worker."
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -7362,6 +7363,10 @@
 "amH" = (
 /obj/machinery/door/airlock/external{
 	req_one_access_txt = "13,8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = -1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -16548,6 +16553,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/machinery/computer/warrant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aDB" = (
@@ -31376,9 +31382,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/filingcabinet{
-	pixel_x = 4
-	},
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bdN" = (
@@ -38949,7 +38953,6 @@
 /area/crew_quarters/heads/captain/private)
 "bqX" = (
 /obj/structure/table/wood,
-/obj/item/stamp/captain,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
@@ -59712,10 +59715,8 @@
 	},
 /area/medical/surgery)
 "cdg" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 24
-	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
@@ -60311,6 +60312,10 @@
 "cek" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 2;
+	diry = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -66819,11 +66824,10 @@
 	},
 /area/medical/surgery)
 "coD" = (
-/obj/structure/bed/roller,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "coE" = (
@@ -81895,6 +81899,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"dFY" = (
+/obj/item/cigbutt,
+/mob/living/simple_animal/hostile/retaliate/goose/vomit,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "dIs" = (
 /obj/machinery/door/airlock/external{
 	name = "Supply Dock Airlock";
@@ -82290,6 +82299,16 @@
 "lvi" = (
 /turf/closed/wall,
 /area/maintenance/starboard/secondary)
+"lwz" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -2;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "lGS" = (
 /obj/docking_port/stationary/public_mining_dock,
 /turf/open/floor/plating,
@@ -82331,6 +82350,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/storage_shared)
+"mGq" = (
+/obj/machinery/door/airlock/external{
+	req_one_access_txt = "13,8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "mGS" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -99110,7 +99139,7 @@ dux
 cll
 dux
 dux
-cek
+lwz
 dux
 dux
 cjq
@@ -101669,7 +101698,7 @@ aqO
 bMG
 alC
 bPN
-apz
+dFY
 bTt
 bTv
 alC
@@ -123459,7 +123488,7 @@ aaa
 aaf
 dni
 amG
-amH
+mGq
 anN
 dnS
 arJ

@@ -17,9 +17,9 @@
 	var/list/available_chems
 	var/controls_inside = FALSE
 	var/list/possible_chems = list(
-		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane),
+		list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/morphine, /datum/reagent/medicine/perfluorodecalin, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane),
 		list(/datum/reagent/medicine/oculine,/datum/reagent/medicine/inacusiate),
-		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/mutadone, /datum/reagent/medicine/mannitol, /datum/reagent/medicine/pen_acid),
+		list(/datum/reagent/medicine/antitoxin, /datum/reagent/medicine/mutadone, /datum/reagent/medicine/mannitol, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/pen_acid),
 		list(/datum/reagent/medicine/omnizine)
 	)
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: antitoxin -> morphine
@@ -27,7 +27,7 @@
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
-	var/static/UIbackup = TRUE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
+	var/static/UIbackup = FALSE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
 /obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -167,7 +167,7 @@
 			dat += "<br>	Toxin:			[mob_occupant.getToxLoss()]"
 			dat += "<br>	Burn:			[mob_occupant.getFireLoss()]"
 			dat += "<br>	Brain:			"
-			if(mob_occupant.getBrainLoss())
+			if(mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN))
 				dat += "abnormal"
 			else
 				dat += "normal"
@@ -195,14 +195,16 @@
 				table += "<a href='?src=[REF(src)];inject=[chem]'>"
 				if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 					table += "<font color=\"red\">"
-				table += "[GLOB.chemical_reagents_list[chem].name]</a>"
+				var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
+				table += "[thing.name]</a>"
 				table += "</td></tr>"
 
 			if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 				for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
 					var/found = FALSE
 					for(var/chem in available_chems)
-						if(R.name == GLOB.chemical_reagents_list[chem].name)  // Shit code, i know that please make it better if know how
+						var/datum/reagent/thing = GLOB.chemical_reagents_list[chem]
+						if(R.name == thing.name)  // Shit code, i know that please make it better if know how
 							found = TRUE
 					if(!found)
 						table += "<tr><td style='width:50%' valign='top'>"
@@ -234,17 +236,13 @@
 		if(!is_operational() || !mob_occupant)
 			return
 		else
-			if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
-				return
-			else
-				for(var/chem in available_chems)
-					if("[chem]" == href_list["inject"])
-						if(src.inject_chem(chem, mob_occupant))
-							. = TRUE
-						break
-		if(.)
-			if(scrambled_chems && prob(5))
-				to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			for(var/chem in available_chems)
+				if("[chem]" == href_list["inject"])
+					if(inject_chem(chem, usr))
+						. = TRUE
+						if(scrambled_chems && prob(5))
+							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					break
 
 	usr.set_machine(src)
 	ui_interact(usr)
@@ -279,8 +277,8 @@
 		open_machine()
 
 /obj/machinery/sleeper/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>")
+	.=..()
+	. += "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>"
 
 /obj/machinery/sleeper/process()
 	..()
@@ -297,7 +295,7 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = ckey(R.name), "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = "[chem]", "allowed" = chem_allowed(chem)))   //yogs modifies id
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -324,7 +322,7 @@
 		data["occupant"]["toxLoss"] = mob_occupant.getToxLoss()
 		data["occupant"]["fireLoss"] = mob_occupant.getFireLoss()
 		data["occupant"]["cloneLoss"] = mob_occupant.getCloneLoss()
-		data["occupant"]["brainLoss"] = mob_occupant.getBrainLoss()
+		data["occupant"]["brainLoss"] = mob_occupant.getOrganLoss(ORGAN_SLOT_BRAIN)
 		data["occupant"]["reagents"] = list()
 		if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
 			for(var/datum/reagent/R in mob_occupant.reagents.reagent_list)
@@ -344,15 +342,15 @@
 				open_machine()
 			. = TRUE
 		if("inject")
-			var/chem = params["chem"]
-			if(!is_operational() || !mob_occupant)
+			if(!is_operational() || !mob_occupant)				//yogs start
 				return
-			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-				return
-			if(inject_chem(chem, usr))
-				. = TRUE
-				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			for(var/chem in available_chems)
+				if("[chem]" == params["chem"])
+					if(inject_chem(chem, usr))
+						. = TRUE
+						if(scrambled_chems && prob(5))
+							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					break				//yogs end
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
@@ -369,9 +367,10 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	var/amount = mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency
-	var/occ_health = mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine
-	return amount && occ_health
+	if(mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency)			//yogs start
+		if(mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine)
+			return TRUE
+	return FALSE				//yogs end
 
 /obj/machinery/sleeper/proc/reset_chem_buttons()
 	scrambled_chems = FALSE

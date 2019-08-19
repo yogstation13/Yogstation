@@ -7,7 +7,7 @@
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
 
 //print a warning message to world.log
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
+#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
@@ -138,6 +138,10 @@
 /proc/log_telecomms(text)
 	if (CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
+
+/proc/log_ntsl(text)
+	if (CONFIG_GET(flag/log_ntsl))
+		WRITE_LOG(GLOB.world_ntsl_log, "NTSL: [text]")
 
 /proc/log_chat(text)
 	if (CONFIG_GET(flag/log_pda))

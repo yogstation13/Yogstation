@@ -560,8 +560,13 @@
 	color = "#000000" // black
 
 /obj/item/melee/blood_magic/construction/examine(mob/user)
-	..()
-	to_chat(user,"<u>A sinister spell used to convert:</u><br>Plasteel into runed metal<br>[METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)")
+	. = ..()
+	. += {"<u>A sinister spell used to convert:</u>\n
+	Plasteel into runed metal\n
+	[METAL_TO_CONSTRUCT_SHELL_CONVERSION] metal into a construct shell\n
+	Living cyborgs into constructs after a delay\n
+	Cyborg shells into construct shells\n
+	Airlocks into brittle runed airlocks after a delay (harm intent)"}
 
 /obj/item/melee/blood_magic/construction/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(proximity_flag && iscultist(user))
@@ -657,7 +662,8 @@
 	color = "#7D1717"
 
 /obj/item/melee/blood_magic/manipulator/examine(mob/user)
-	to_chat(user,"Blood spear, blood bolt barrage, and blood beam cost [BLOOD_SPEAR_COST], [BLOOD_BARRAGE_COST], and [BLOOD_BEAM_COST] charges respectively.")
+	. = ..()
+	. += "Blood spear, blood bolt barrage, and blood beam cost [BLOOD_SPEAR_COST], [BLOOD_BARRAGE_COST], and [BLOOD_BEAM_COST] charges respectively."
 
 /obj/item/melee/blood_magic/manipulator/afterattack(atom/target, mob/living/carbon/human/user, proximity)
 	if(proximity)
@@ -670,15 +676,15 @@
 				if(H.stat == DEAD)
 					to_chat(user,"<span class='warning'>Only a revive rune can bring back the dead!</span>")
 					return
-				if(H.blood_volume < BLOOD_VOLUME_SAFE)
-					var/restore_blood = BLOOD_VOLUME_SAFE - H.blood_volume
+				if(H.blood_volume < BLOOD_VOLUME_SAFE(H))
+					var/restore_blood = BLOOD_VOLUME_SAFE(H) - H.blood_volume
 					if(uses*2 < restore_blood)
 						H.blood_volume += uses*2
 						to_chat(user,"<span class='danger'>You use the last of your blood rites to restore what blood you could!</span>")
 						uses = 0
 						return ..()
 					else
-						H.blood_volume = BLOOD_VOLUME_SAFE
+						H.blood_volume = BLOOD_VOLUME_SAFE(H)
 						uses -= round(restore_blood/2)
 						to_chat(user,"<span class='warning'>Your blood rites have restored [H == user ? "your" : "[H.p_their()]"] blood to safe levels!</span>")
 				var/overall_damage = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss() + H.getOxyLoss()
@@ -713,7 +719,7 @@
 				if(H.cultslurring)
 					to_chat(user,"<span class='danger'>[H.p_their(TRUE)] blood has been tainted by an even stronger form of blood magic, it's no use to us like this!</span>")
 					return
-				if(H.blood_volume > BLOOD_VOLUME_SAFE)
+				if(H.blood_volume > BLOOD_VOLUME_SAFE(H))
 					H.blood_volume -= 100
 					uses += 50
 					user.Beam(H,icon_state="drainbeam",time=10)

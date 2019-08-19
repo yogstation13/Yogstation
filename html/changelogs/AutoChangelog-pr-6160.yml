@@ -1,4 +1,0 @@
-author: " Tetr4"
-delete-after: true 
-changes: 
-  - bugfix: "Turning a tile with gas effects into space now gets rid of the effects."

@@ -95,9 +95,9 @@
 		badThingCoeff += M.rating
 
 /obj/machinery/rnd/experimentor/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Malfunction probability reduced by <b>[badThingCoeff]%</b>.<br>Cooldown interval between experiments at <b>[resetTime*0.1]</b> seconds.<span>")
+		. += "<span class='notice'>The status display reads: Malfunction probability reduced by <b>[badThingCoeff]%</b>.<br>Cooldown interval between experiments at <b>[resetTime*0.1]</b> seconds.<span>"
 
 /obj/machinery/rnd/experimentor/proc/checkCircumstances(obj/item/O)
 	//snowflake check to only take "made" bombs
@@ -565,7 +565,7 @@
 
 /obj/item/relic/Initialize()
 	. = ..()
-	icon_state = pick("shock_kit","armor-igniter-analyzer","infra-igniter0","infra-igniter1","radio-multitool","prox-radio1","radio-radio","timer-multitool0","radio-igniter-tank")
+	icon_state = pick("shock_kit","armor-igniter-analyzer","infra-igniter0","infra-igniter1","radio-multitool","prox-radio1","radio-radio","timer-multitool0","radio-igniter-tank","infra-igniter-tank0","infra-igniter-tank1","infrared-radio0","infrared-radio1","prox-igniter0","prox-igniter1","prox-igniter2","prox-multitool0","prox-multitool1","prox-multitool2","prox-radio0","prox-radio1","prox-radio2","prox-igniter-tank0","prox-igniter-tank1","prox-igniter-tank2","radio-igniter","timer-igniter0","timer-igniter1","timer-igniter2","timer-igniter-tank0","timer-igniter-tank1","timer-igniter-tank2","timer-multitool1","timer-multitool2","timer-radio0","timer-radio1","timer-radio2")
 	realName = "[pick("broken","twisted","spun","improved","silly","regular","badly made")] [pick("device","object","toy","illegal tech","weapon")]"
 
 
