@@ -902,16 +902,15 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/assembly/voice{
-	step_x = -6;
-	step_y = -1
+	pixel_x = -3
 	},
 /obj/item/assembly/voice{
-	step_x = -5;
-	step_y = 12
+	pixel_x = 8;
+	pixel_y = -6
 	},
 /obj/item/assembly/voice{
-	step_x = 8;
-	step_y = 3
+	pixel_x = -4;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -13672,16 +13671,16 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/assembly/health{
-	step_x = -7;
-	step_y = -4
+	pixel_x = 8;
+	pixel_y = 5
 	},
 /obj/item/assembly/health{
-	step_x = 7;
-	step_y = -4
+	pixel_x = -8;
+	pixel_y = 5
 	},
 /obj/item/assembly/health{
-	step_x = 2;
-	step_y = 7
+	pixel_x = -4;
+	pixel_y = -7
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
