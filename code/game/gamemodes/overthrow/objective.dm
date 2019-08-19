@@ -1,3 +1,4 @@
+/*
 // This is a point based objective. You can only lose if you fail to even handle one single command personnel, else you win. But, if you win, you're given a certain number of points,
 // based on the role of the head (Captain, HoP/HoS, other heads, warden, security officers) and whether you converted them, exiled or just killed (applying a modifier of 1.5, 1 and 0.5 respectively)
 // because this is meant for the overthrow gamemode, which is a bloodless coup, unlike revs.
@@ -138,7 +139,7 @@
 	else
 		explanation_text = "Nothing."
 
-/datum/objective/overthrow/target/is_unique_objective(datum/mind/possible_target,dupe_search_range) 
+/datum/objective/overthrow/target/is_unique_objective(datum/mind/possible_target,dupe_search_range)
 	if(possible_target.assigned_role in GLOB.command_positions)
 		return FALSE
 	return TRUE
@@ -150,3 +151,4 @@
 
 /datum/objective/overthrow/target/get_points()
 	return result_points(target, TARGETPTS)
+*/

@@ -1,3 +1,4 @@
+/*
 // Overthrow gamemode, based on the sleeping agent antagonist.
 /datum/game_mode/overthrow
 	name = "overthrow"
@@ -75,3 +76,4 @@
 		if(teams[Tagain] == max_points)
 			winners += Tagain.name
 	return "<span class='greentext big'>The [english_list(winners)] team[winners.len > 1 ? "s tied" : " won"] with [max_points] points!</span>"
+*/

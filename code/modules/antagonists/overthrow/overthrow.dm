@@ -1,3 +1,4 @@
+/*
 #define INITIAL_CRYSTALS 5 // initial telecrystals in the boss' uplink
 
 // Syndicate mutineer agents. They're agents selected by the Syndicate to take control of stations when assault teams like nuclear operatives cannot be sent.
@@ -153,3 +154,4 @@
 			Your team objective is to deal with the heads, the AI and a special target who angered us for several reasons which you're not entitled to know. Converting to your team will let us \
 			take control of the station faster, so it should be prioritized, especially over killing, which should be avoided where possible. The other Syndicate teams are NOT friends and should not \
 			be trusted.</font></B>")
+*/

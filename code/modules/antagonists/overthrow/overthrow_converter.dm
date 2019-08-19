@@ -1,3 +1,4 @@
+/*
 /obj/item/overthrow_converter // nearly equal to an implanter, as an object
 	name = "agent activation implant"
 	desc = "Wakes up syndicate sleeping agents."
@@ -54,3 +55,4 @@
 		icon_state = "implanter1"
 	else
 		icon_state = "implanter0"
+*/

@@ -52,7 +52,7 @@
 #define HIJACK_PREVENT 2 //Prevents hijacking same way as non-antags
 
 //Overthrow time to update heads obj
-#define OBJECTIVE_UPDATING_TIME 300
+//#define OBJECTIVE_UPDATING_TIME 300
 
 //Assimilation
 #define TRACKER_DEFAULT_TIME 900

@@ -321,16 +321,16 @@ AI MODULES
 	if(law_datum.owner)
 		law_datum.owner.clear_inherent_laws()
 		law_datum.owner.clear_zeroth_law(0)
-		remove_antag_datums(law_datum)
+//		remove_antag_datums(law_datum)
 	else
 		law_datum.clear_inherent_laws()
 		law_datum.clear_zeroth_law(0)
-
+/*
 /obj/item/aiModule/reset/purge/proc/remove_antag_datums(datum/ai_laws/law_datum)
 	if(istype(law_datum.owner, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = law_datum.owner
 		AI.mind.remove_antag_datum(/datum/antagonist/overthrow)
-
+*/
 /******************* Full Core Boards *******************/
 /obj/item/aiModule/core
 	desc = "An AI Module for programming core laws to an AI."
@@ -458,7 +458,7 @@ AI MODULES
 /obj/item/aiModule/core/freeformcore/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
 	return laws[1]
-
+/*
 /******************** Overthrow ******************/
 /obj/item/aiModule/core/full/overthrow
 	name = "'Overthrow' Hacked AI Module"
@@ -492,7 +492,7 @@ AI MODULES
 	if(AI)
 		to_chat(AI, "<span class='warning'>You serve the [T.team] team now! Assist them in completing the team shared objectives, which you can see in your notes.</span>")
 	..()
-
+*/
 /******************** Hacked AI Module ******************/
 
 /obj/item/aiModule/syndicate // This one doesn't inherit from ion boards because it doesn't call ..() in transmitInstructions. ~Miauw

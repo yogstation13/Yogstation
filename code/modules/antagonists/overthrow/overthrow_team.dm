@@ -1,3 +1,4 @@
+/*
 /datum/team/overthrow
 	name = "overthrow" // The team name is set on creation by the leader.
 	member_name = "syndicate agent"
@@ -41,3 +42,4 @@
 	heads_obj.find_targets()
 
 	addtimer(CALLBACK(src,.proc/update_objectives),OBJECTIVE_UPDATING_TIME,TIMER_UNIQUE)
+*/
