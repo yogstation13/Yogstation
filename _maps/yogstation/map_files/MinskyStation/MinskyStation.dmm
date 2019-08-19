@@ -98707,6 +98707,18 @@
 	},
 /turf/open/floor/plating/airless,
 /area/maintenance/disposal/incinerator)
+"jvc" = (
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/turf/open/floor/plasteel/freezer,
+/area/medical/medbay/zone2{
+	name = "Surgical Suite"
+	})
+"jDH" = (
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/plasteel/freezer,
+/area/medical/medbay/zone2{
+	name = "Surgical Suite"
+	})
 "kZP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
@@ -98751,6 +98763,13 @@
 /turf/open/floor/plasteel/sepia,
 /area/hallway/secondary/entry{
 	name = "Aft Port Hallway"
+	})
+"mpH" = (
+/obj/structure/closet/crate/freezer/surplus_limbs,
+/obj/item/reagent_containers/glass/beaker/synthflesh,
+/turf/open/floor/plasteel/freezer,
+/area/medical/medbay/zone2{
+	name = "Surgical Suite"
 	})
 "npO" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -107893,7 +107912,7 @@ blMblM
 boLboL
 bqcbqc
 brtbru
-brubru
+jvcmpH
 boLboL
 bxfbxg
 bwTccl
@@ -108243,7 +108262,7 @@ blAblC
 bjqbjq
 blMbnE
 boLboM
-bqcbqd
+bqebqd
 brubrv
 brubru
 boLboL
@@ -108595,7 +108614,7 @@ bkDbRs
 bmvbwo
 bnFbzf
 boLboL
-bqeboL
+jDHboL
 bruboL
 bruboL
 bukboL

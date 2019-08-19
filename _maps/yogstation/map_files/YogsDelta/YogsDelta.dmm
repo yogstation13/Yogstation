@@ -116557,6 +116557,7 @@
 	pixel_x = 26
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dxr" = (
@@ -116890,13 +116891,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dyF" = (
-/obj/machinery/computer/crew{
-	dir = 1
-	},
 /obj/machinery/status_display/evac{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/machinery/smartfridge/organ,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dyG" = (
