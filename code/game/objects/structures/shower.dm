@@ -54,11 +54,17 @@
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
 				current_temperature = SHOWER_FREEZING
+				var/turf/T = get_turf(src)
+				T.atmos_spawn_air("water_vapor=200;TEMP=100") //Blast of cold air as you hack the shower
 			if(SHOWER_FREEZING)
 				current_temperature = SHOWER_BOILING
+				var/turf/T = get_turf(src)
+				T.atmos_spawn_air("water_vapor=200;TEMP=450") //Blast of hot air as you hack the shower
 			if(SHOWER_BOILING)
 				current_temperature = SHOWER_NORMAL
-		user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I] to [current_temperature] temperature.</span>")
+				var/turf/T = get_turf(src)
+				T.atmos_spawn_air("water_vapor=150;TEMP=273") //Blast of normal air as you hack the shower
+		user.visible_message("<span class='danger'>[user] adjusts the shower with \the [I] causing a spray of [current_temperature] water!</span>", "<span class='danger'>A blast of [current_temperature] water sprays out as you adjust the shower with \the [I]!</span>")
 		user.log_message("has wrenched a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
 		add_hiddenprint(user)
 	handle_mist()
