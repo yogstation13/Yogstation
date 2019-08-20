@@ -36,10 +36,6 @@
 								)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)
-	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container,
-	 list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE), 0,
-		TRUE, /obj/item/stack, CALLBACK(src, .proc/is_insertion_ready), CALLBACK(src, .proc/AfterMaterialInsert))
-	materials.precise_insertion = TRUE
 	stored_research = new
 	rmat = AddComponent(/datum/component/remote_materials, "mechfab", mapload)
 	return ..()
@@ -123,7 +119,7 @@
 				output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[mat_id]'>All</a>\]</span>"
 			output += "<br>"
 	else
-		output += "<font color='red'>No material storage connected, please contact the quartermaster.</font>"
+		output += "<font color='red'>No material storage connected, please contact the quartermaster.</font><br>"
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
@@ -152,6 +148,11 @@
 	if (rmat.on_hold())
 		say("Mineral access is on hold, please contact the quartermaster.")
 		return 0
+	if(!check_resources(D))
+		say("Not enough resources. Queue processing stopped.")
+		temp = {"<span class='alert'>Not enough resources to build next part.</span><br>
+					<a href='?src=[REF(src)];process_queue=1'>Try again</a> | <a href='?src=[REF(src)];clear_temp=1'>Return</a><a>"}
+		return FALSE
 	materials.use_amount(res_coef)
 	rmat.silo_log(src, "built", -1, "[D.name]", res_coef)
 
@@ -209,13 +210,10 @@
 	while(D)
 		if(stat&(NOPOWER|BROKEN))
 			return FALSE
-		if(!check_resources(D))
-			say("Not enough resources. Queue processing stopped.")
-			temp = {"<span class='alert'>Not enough resources to build next part.</span><br>
-						<a href='?src=[REF(src)];process_queue=1'>Try again</a> | <a href='?src=[REF(src)];clear_temp=1'>Return</a><a>"}
+		if(build_part(D))
+			remove_from_queue(1)
+		else
 			return FALSE
-		remove_from_queue(1)
-		build_part(D)
 		D = listgetindex(queue, 1)
 	say("Queue processing finished successfully.")
 
