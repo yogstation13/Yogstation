@@ -27,6 +27,7 @@
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/rdserver(null)
 	B.apply_default_parts(src)
 	current_temp = get_env_temp()
+	update_icon()
 
 /obj/machinery/rnd/server/Destroy()
 	SSresearch.servers -= src
@@ -39,6 +40,9 @@
 	heat_gen /= max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_icon()
+	if(panel_open)
+		icon_state = "server_t"
+		return
 	if (stat & EMPED || stat & NOPOWER)
 		icon_state = "RD-server-off"
 		return
@@ -46,6 +50,10 @@
 		icon_state = "RD-server-halt"
 		return
 	icon_state = "RD-server-on"
+
+/obj/machinery/rnd/server/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
+	.=..()
+	update_icon()
 
 /obj/machinery/rnd/server/power_change()
 	. = ..()

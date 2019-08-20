@@ -55,7 +55,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "moistnugget"
 	item_state = "moistnugget"
-	slot_flags = 0 //no ITEM_SLOT_BACK sprite, alas
+	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
 	can_bayonet = TRUE
 	knife_x_offset = 27
