@@ -1,6 +1,6 @@
-#define SHOWER_FREEZING "freezing"
-#define SHOWER_NORMAL "normal"
-#define SHOWER_BOILING "boiling"
+#define SHOWER_FREEZING "numbingly cold"
+#define SHOWER_NORMAL "comfortable"
+#define SHOWER_BOILING "searing"
 
 /obj/machinery/shower
 	name = "shower"
@@ -49,7 +49,7 @@
 		return ..()
 
 /obj/machinery/shower/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I]...</span>")
+	to_chat(user, "<span class='notice'>You begin to force the temperature valve with \the [I]...</span>")
 	if(I.use_tool(src, user, 50))
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
@@ -64,7 +64,7 @@
 				current_temperature = SHOWER_NORMAL
 				var/turf/T = get_turf(src)
 				T.atmos_spawn_air("water_vapor=150;TEMP=273") //Blast of normal air as you hack the shower
-		user.visible_message("<span class='danger'>[user] adjusts the shower with \the [I] causing a spray of [current_temperature] water!</span>", "<span class='danger'>A blast of [current_temperature] water sprays out as you adjust the shower with \the [I]!</span>")
+		user.visible_message("<span class='danger'>[user] forces the shower with \the [I] causing a spray of [current_temperature] water!</span>", "<span class='danger'>A blast of [current_temperature] water sprays out as you force the shower with \the [I]!</span>")
 		user.log_message("has wrenched a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
 		add_hiddenprint(user)
 	handle_mist()
