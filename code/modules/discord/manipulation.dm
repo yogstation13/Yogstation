@@ -6,7 +6,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
- 	holder.discord_manipulation()
+	holder.discord_manipulation()
 
 
 /datum/admins/proc/discord_manipulation()
