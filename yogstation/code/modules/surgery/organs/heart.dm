@@ -19,4 +19,6 @@
 	else
 		if(prob(25))
 			to_chat(owner, "<span class = 'userdanger'>You feel your heart collapse in on itself!</span>")
-		Destroy() //the heart is made of nanites so without them it just breaks down
+		if(owner)
+			Remove(owner) //the heart is made of nanites so without them it just breaks down
+		qdel(src)
