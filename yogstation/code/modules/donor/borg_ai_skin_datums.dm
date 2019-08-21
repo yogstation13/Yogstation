@@ -184,12 +184,6 @@
 	icon_state = "tau_sec"
 	module_locked = "Security"
 
-/datum/borg_skin/gold_experience
-	name = "Gold Experience"
-	icon_state = "gold_experience"
-	module_locked = "Security"
-	owner = "identification"
-
 /datum/borg_skin/qualified_doctor
 	name = "Qualified Doctor"
 	icon_state = "qualified_doctor"
@@ -284,11 +278,6 @@
 /datum/ai_skin/tokamak
 	name = "Tokamak fusion generator mk.1"
 	icon_state = "tokamak"
-
-/datum/ai_skin/urquan
-	name = "Ur-Quan Kzer-Za Master"
-	icon_state = "urquan_kzer_za"
-	owner = "identification"
 
 /datum/ai_skin/realisticface
 	name = "Hyper Realistic Face"
