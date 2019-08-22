@@ -17371,16 +17371,11 @@
 /area/crew_quarters/theatre)
 "aHJ" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "aHK" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /obj/effect/turf_decal/tile/red{
@@ -22776,20 +22771,15 @@
 	},
 /area/chapel/main)
 "aTg" = (
-/obj/machinery/door/airlock/medical{
-	name = "Operating Theatre";
-	req_access_txt = "45;29;47"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
+/obj/machinery/computer/secure_data{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
 "aTh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
@@ -23533,7 +23523,16 @@
 "aUJ" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre";
-	req_access_txt = "45;29;47"
+	req_access_txt = "0";
+	req_one_access_txt = "5; 45; 29; 47"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -29259,18 +29258,17 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "bfS" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/closet/crate/freezer/surplus_limbs,
-/obj/effect/turf_decal/tile/blue,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
 /obj/effect/turf_decal/box,
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /obj/item/reagent_containers/glass/beaker/synthflesh,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -30598,27 +30596,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"biy" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_x = 25
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "biz" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall,
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "biA" = (
 /obj/structure/disposalpipe/segment,
@@ -31436,19 +31419,18 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bkd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 4
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
-/obj/machinery/door/airlock/maintenance{
-	name = "Surgery Maintenance";
-	req_access_txt = "45"
-	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bke" = (
 /obj/item/stamp{
@@ -31588,24 +31570,18 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bkq" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Robotics Lab APC";
-	areastring = "/area/science/robotics/lab";
-	pixel_x = -25
-	},
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 5
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/maintenance{
+	name = "Surgery Maintenance";
+	req_access_txt = "45"
 	},
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
+/turf/open/floor/plating,
+/area/medical/surgery)
 "bkr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -31823,30 +31799,17 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bkP" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Robotics Lab APC";
+	areastring = "/area/science/robotics/lab";
+	pixel_x = -25
 	},
 /obj/structure/cable{
-	icon_state = "2-8"
+	icon_state = "0-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
 "bkQ" = (
 /obj/machinery/camera{
 	c_tag = "Teleporter"
@@ -32229,28 +32192,16 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bly" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
-	dir = 10
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
+/turf/closed/wall,
+/area/medical/surgery)
 "blz" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -32273,14 +32224,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "blA" = (
-/obj/machinery/door/airlock/medical{
-	name = "Morgue";
-	req_access_txt = "6;5"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/wall/r_wall,
 /area/medical/surgery)
 "blB" = (
 /obj/effect/turf_decal/stripes/line{
@@ -33831,12 +33775,11 @@
 /turf/open/floor/plasteel/white,
 /area/security/checkpoint/medical)
 "bol" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 1
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
 	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
 "bom" = (
 /obj/machinery/light{
@@ -33889,17 +33832,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bot" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -22
+/obj/machinery/door/airlock/medical{
+	name = "Operating Theatre";
+	req_access_txt = "0";
+	req_one_access_txt = "5;45;29;47"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bou" = (
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -33990,10 +33929,12 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "boD" = (
-/obj/machinery/recharge_station,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 1
 	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/recharge_station,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "boE" = (
@@ -35374,14 +35315,33 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bri" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold-3";
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "brj" = (
 /obj/structure/bed/roller,
 /obj/effect/turf_decal/tile/blue,
@@ -36359,10 +36319,25 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bsS" = (
-/obj/machinery/camera{
-	c_tag = "Robotics Lab - South";
-	dir = 1;
-	network = list("ss13","rd")
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
@@ -46487,6 +46462,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"bNy" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
 "bNz" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -46543,6 +46530,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
+"bNG" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plasteel/white,
+/area)
 "bNH" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom{
@@ -46566,12 +46562,35 @@
 "bNJ" = (
 /turf/open/floor/plating,
 /area/construction)
+"bNK" = (
+/obj/machinery/camera{
+	c_tag = "Robotics Lab - South";
+	dir = 1;
+	network = list("ss13","rd")
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
 "bNL" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
 /turf/open/floor/plating,
 /area/construction)
+"bNM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
+"bNN" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "bNO" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -46584,6 +46603,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"bNP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/medical{
+	name = "Surgery Waiting Room";
+	req_access_txt = "0";
+	req_one_access_txt = "5; 45; 29; 47"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -53549,13 +53579,6 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
-"fDx" = (
-/obj/machinery/light,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "fEe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -98074,7 +98097,7 @@ aBB
 aYV
 bfK
 bhl
-biy
+aTg
 bjY
 aML
 bkO
@@ -98331,7 +98354,7 @@ bdQ
 aYV
 bfK
 bfK
-bfK
+bhi
 bfK
 bfK
 bfK
@@ -98849,7 +98872,7 @@ aPp
 bdN
 bgC
 biK
-blA
+bNP
 bmV
 bkV
 brh
@@ -99366,7 +99389,7 @@ bjv
 aqW
 bom
 blc
-bri
+bNG
 bsu
 fzU
 aWX
@@ -99616,7 +99639,7 @@ aYV
 bey
 arb
 aqW
-aTg
+aUJ
 aqW
 aqW
 aqW
@@ -100644,7 +100667,7 @@ aYV
 jTR
 aqW
 aqW
-aTg
+aUJ
 aqW
 aqW
 aqW
@@ -100898,7 +100921,7 @@ cBg
 bam
 aYV
 aYV
-jTR
+aHJ
 aqW
 aEn
 aTl
@@ -101155,7 +101178,7 @@ bam
 aYV
 aYV
 aYV
-fDx
+jTR
 aso
 aCa
 aUq
@@ -101672,10 +101695,10 @@ aYV
 beB
 aqW
 aqW
-aUJ
+bot
 aqW
 aqW
-bkd
+bly
 bon
 bon
 bon
@@ -101928,10 +101951,10 @@ aYV
 bdK
 bdl
 aqW
-aHJ
-aVN
 bfS
-biz
+aVN
+bkd
+bkq
 bkf
 bLT
 bLT
@@ -102185,16 +102208,16 @@ baZ
 aTH
 aMr
 aso
-aEn
+biz
 aVW
 bfU
-aqW
+blA
 bfx
-bfT
-bfT
-bfT
-bfT
-bfT
+bnc
+bnc
+bnc
+bnc
+bnc
 bto
 bnu
 bvB
@@ -102445,13 +102468,13 @@ aso
 aIE
 aWv
 bgm
-aqW
+blA
 bkk
 biG
-blw
+bol
 blu
 bnb
-bfT
+bnc
 bvx
 bnx
 byf
@@ -102702,12 +102725,12 @@ aqW
 aKe
 baD
 bgn
-aqW
+blA
 bkk
 biJ
 bhM
 biD
-bol
+boD
 bfT
 boG
 bnD
@@ -102959,8 +102982,8 @@ aso
 aEn
 baD
 bgq
-aqW
-bkP
+blA
+bri
 biH
 cHN
 biE
@@ -103216,12 +103239,12 @@ aso
 aMJ
 bbG
 bgw
-aqW
+blA
 bkk
 biJ
 bhM
 bhY
-bot
+bNM
 bhu
 boL
 bnH
@@ -103473,12 +103496,12 @@ aso
 aMT
 aUI
 bgy
-aqW
+blA
 bkk
 cHL
 blw
 bjP
-boD
+bNN
 bht
 bgp
 bnT
@@ -103726,17 +103749,17 @@ aFu
 aYV
 aXq
 aYV
-box
-box
+bfV
+bfV
 bsw
-box
-box
+bfV
+bfV
 bls
 bmg
 bmg
 bmg
 bfT
-bnc
+bfT
 btA
 bnH
 byf
@@ -103987,12 +104010,12 @@ bfV
 aOy
 biL
 biL
-biL
-bly
-bkq
+bkP
+bsS
+bNy
 bpR
 biL
-bsS
+bNK
 box
 bgp
 bnH
