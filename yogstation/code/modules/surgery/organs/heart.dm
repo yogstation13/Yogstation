@@ -7,8 +7,8 @@
 
 /obj/item/organ/heart/nanite/emp_act()
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
+	if(!owner || . & EMP_PROTECT_SELF)
+		return .
 	SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, -100) // nanites are more susceptible to EMP
 	Stop()
 
