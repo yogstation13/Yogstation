@@ -586,6 +586,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /obj/item/guardiancreator/choose/chaplain/antimagic
 	name = "deck of holy tarot cards"
 	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "deck_caswhite_full"
 
 /obj/item/guardiancreator/choose/chaplain/antimagic/Initialize()
 	. = ..()
