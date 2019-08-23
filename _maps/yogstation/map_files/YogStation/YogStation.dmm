@@ -8819,10 +8819,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "arb" = (
-/obj/structure/sign/departments/medbay/alt,
-/obj/structure/sign/departments/medbay,
-/turf/closed/wall,
-/area/medical/surgery)
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/primary/starboard)
 "arc" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -27872,9 +27876,7 @@
 	pixel_y = -30
 	},
 /obj/machinery/light,
-/turf/open/floor/plasteel/white/corner{
-	dir = 2
-	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bdd" = (
 /obj/machinery/vending/cola/random,
@@ -28045,12 +28047,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bdw" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/primary/starboard)
 "bdx" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -28919,18 +28918,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bfi" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = 28
+/turf/open/floor/plasteel/white/side{
+	dir = 2
 	},
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 0
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
+/area/hallway/primary/starboard)
 "bfj" = (
 /obj/structure/disposaloutlet{
 	dir = 4
@@ -29170,18 +29161,11 @@
 /turf/closed/wall,
 /area/medical/medbay/central)
 "bfI" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	icon_state = "vent_map_on-1";
-	dir = 4
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
+/turf/closed/wall,
+/area/security/checkpoint/medical)
 "bfJ" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
@@ -29190,14 +29174,7 @@
 /turf/closed/wall,
 /area/security/checkpoint/medical)
 "bfL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 5
-	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bfM" = (
@@ -29212,25 +29189,21 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bfN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
+/obj/structure/sign/departments/medbay/alt,
+/turf/closed/wall,
 /area/medical/surgery)
 "bfO" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bfP" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	icon_state = "manifold-3";
-	dir = 8
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
@@ -30596,6 +30569,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"biy" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 28
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/structure/curtain,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "biz" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -46614,6 +46597,70 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"bNQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	icon_state = "vent_map_on-1";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
+"bNR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 5
+	},
+/obj/machinery/door/window/southleft{
+	name = "Surgical Shield";
+	req_one_access_txt = "5; 29; 45; 47"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
+"bNS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
+"bNT" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	icon_state = "manifold-3";
+	dir = 8
+	},
+/obj/machinery/door/window/southleft{
+	name = "Surgical Shield";
+	req_one_access_txt = "5; 29; 45; 47"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
+"bNU" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 0
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -52123,10 +52170,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"cBm" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "cBn" = (
 /obj/machinery/camera{
 	c_tag = "Locker Room Toilets";
@@ -98351,8 +98394,8 @@ qQV
 bbz
 aYV
 bdQ
-aYV
-bfK
+bdc
+bfI
 bfK
 bhi
 bfK
@@ -98612,7 +98655,7 @@ aYV
 acM
 asY
 aEn
-bdw
+bfP
 bgB
 biB
 aqW
@@ -98865,7 +98908,7 @@ qQV
 bbz
 aYV
 bdQ
-cBm
+bdw
 acM
 ats
 aPp
@@ -99122,9 +99165,9 @@ qQV
 bbz
 aYV
 bdQ
-bdc
-aqW
-ats
+bfi
+bfL
+aEn
 aQB
 bff
 bgK
@@ -99383,7 +99426,7 @@ bdb
 ara
 atO
 aSp
-bfi
+biy
 bfQ
 bjv
 aqW
@@ -99633,11 +99676,11 @@ qQV
 qQV
 qQV
 qQV
-bbz
+arb
 aYV
 aYV
 bey
-arb
+bfN
 aqW
 aUJ
 aqW
@@ -99897,7 +99940,7 @@ bcq
 aqW
 aBV
 aTl
-bfI
+bNQ
 bhm
 bjx
 bon
@@ -100154,7 +100197,7 @@ aYV
 aso
 aCa
 aTK
-bfL
+bNR
 aPp
 bjF
 bon
@@ -100411,7 +100454,7 @@ paA
 aqW
 aCP
 aUm
-bfN
+bNS
 bhn
 bjK
 bon
@@ -100925,7 +100968,7 @@ aHJ
 aqW
 aEn
 aTl
-bfI
+bNQ
 bhm
 bjM
 bon
@@ -101182,7 +101225,7 @@ jTR
 aso
 aCa
 aUq
-bfP
+bNT
 bho
 bjN
 bon
@@ -101439,7 +101482,7 @@ jTR
 aqW
 aHo
 aUI
-bfQ
+bNU
 bhp
 bkc
 bon
