@@ -550,6 +550,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("Gravitokinetic")
 			pickedtype = /mob/living/simple_animal/hostile/guardian/gravitokinetic
 
+		if("Holyparasite")
+			pickedtype = /mob/living/simple_animal/hostile/guardian/chaplain
+
 	var/list/guardians = user.hasparasites()
 	if(guardians.len && !allowmultiple)
 		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>" )
@@ -576,6 +579,17 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /obj/item/guardiancreator/choose
 	random = FALSE
+
+/obj/item/guardiancreator/choose/chaplain
+	possible_guardians = list("Holyparasite")
+
+/obj/item/guardiancreator/choose/chaplain/antimagic
+	name = "deck of holy tarot cards"
+	desc = "A holy deck of tarot cards, harboring a healing spirit."
+
+/obj/item/guardiancreator/choose/chaplain/antimagic/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
 /obj/item/guardiancreator/choose/dextrous
 	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
