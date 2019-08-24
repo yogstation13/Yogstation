@@ -101,9 +101,6 @@
 	revolution.update_objectives()
 	revolution.update_heads()
 
-	SSshuttle.registerHostileEnvironment(src)
-	..()
-
 
 /datum/game_mode/revolution/process()
 	check_counter++
