@@ -1,4 +1,4 @@
-/obj/item/storage/pill_bottle/dice
+</obj/item/storage/pill_bottle/dice
 	name = "bag of dice"
 	desc = "Contains all the luck you'll ever need."
 	icon = 'icons/obj/dice.dmi'
@@ -188,6 +188,11 @@
 		result = (result - 1)*10
 	if(special_faces.len == sides)
 		result = special_faces[result]
+	if(!has_gravity())
+		if(user)
+			user.visible_message("[user] has thrown [src].", \
+							 "<span class='notice'>You throw [src].</span>")
+		return
 	if(user != null) //Dice was rolled in someone's hand
 		user.visible_message("[user] has thrown [src]. It lands on [result]. [comment]", \
 							 "<span class='notice'>You throw [src]. It lands on [result]. [comment]</span>", \
