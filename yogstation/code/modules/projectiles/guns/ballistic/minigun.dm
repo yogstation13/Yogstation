@@ -12,7 +12,7 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 35
+	var/overheat_max = 36
 	var/heat_diffusion = 1
 
 /obj/item/minigunbackpack/Initialize()
@@ -101,11 +101,11 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
-	burst_size = 3
+	burst_size = 4
 	automatic = 0
 	fire_delay = 1
 	recoil = 1
-	spread = 2
+	spread = 50
 	fire_sound_volume = 75
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
