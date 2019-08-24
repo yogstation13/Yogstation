@@ -90,7 +90,7 @@
 				var/obj/item/card/id/id_card = user.get_idcard(TRUE)
 				if(!id_card || id_card.registered_account || (id_card.registered_account == buyer_account))
 					to_chat(user, "<span class='notice'>Bank account does not match with buyer!</span>")
-					return false
+					return
 			if(iscarbon(user))
 				add_fingerprint(user)
 			locked = !locked
