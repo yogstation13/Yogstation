@@ -453,7 +453,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "M-556 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
 			This deadly giant weapon has a massive 700-round magazine of devastating 5.56mm ammunition."
-	item = /obj/item/gun/ballistic/minigunosprey
+	item = /obj/item/minigunbackpack
 	cost = 36
 	surplus = 0
 	cant_discount = TRUE
