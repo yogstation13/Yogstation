@@ -105,7 +105,7 @@
 	automatic = 0
 	fire_delay = 1
 	recoil = 1
-	spread = 50
+	spread = 30
 	fire_sound_volume = 75
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
