@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/minigun
-	name = "M-762 Osprey"
+	name = "M-556 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
 			This deadly giant weapon has a massive 700-round magazine of devastating 5.56mm ammunition."
 	item = /obj/item/gun/ballistic/minigunosprey
