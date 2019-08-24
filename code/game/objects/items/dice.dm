@@ -1,4 +1,4 @@
-</obj/item/storage/pill_bottle/dice
+/obj/item/storage/pill_bottle/dice
 	name = "bag of dice"
 	desc = "Contains all the luck you'll ever need."
 	icon = 'icons/obj/dice.dmi'
