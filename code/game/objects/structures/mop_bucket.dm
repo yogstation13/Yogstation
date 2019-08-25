@@ -14,13 +14,13 @@
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/mop))
-		var/obj/item/mop/m=I
-		if(reagents.total_volume < 1 || (m.reagents.total_volume >= m.reagents.maximum_volume && !ourmop))
-			if(!user.transferItemToLoc(m, src)
+		var/obj/item/mop/M=I
+		if((reagents.total_volume < 1) || (M.reagents.total_volume >= M.reagents.maximum_volume && !ourmop))
+			if(!user.transferItemToLoc(M, src))
 				return
-			icon_state = "mopbucket_and_mop"
-			ourmop = m
-			to_chat(user, "<span class='notice'>You put [m] into [src].</span>")
+			ourmop = M
+			update_icon()
+			to_chat(user, "<span class='notice'>You put [M] into [src].</span>")
 		else
 			reagents.trans_to(M, 5, transfered_by = user)
 			to_chat(user, "<span class='notice'>You wet [M] in [src].</span>")
@@ -31,11 +31,11 @@
 		update_icon()
 
 /obj/structure/mopbucket/attack_hand(mob/user)
-	if(mymop)
+	if(ourmop)
 		user.put_in_hands(ourmop)
 		to_chat(user, "<span class='notice'>You take [ourmop] from [src].</span>")
 		ourmop = null
-		icon_state = "mopbucket"
+		update_icon()
 		return
 	return ..()
 
@@ -43,3 +43,5 @@
 	cut_overlays()
 	if(reagents.total_volume > 0)
 		add_overlay("mopbucket_water")
+	if(ourmop)
+		add_overlay("mopbucket_mop")
