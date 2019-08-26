@@ -57,7 +57,7 @@
 				brass_floor = TRUE
 			if(W.use(2 - brass_floor))
 				if(anchored)
-					T.PlaceOnTop(/turf/closed/wall/clockwork)
+					T.PlaceOnTop(/turf/open/floor/clockwork, flags = CHANGETURF_INHERIT_AIR)
 				else
 					T.PlaceOnTop(/turf/open/floor/clockwork)
 					new /obj/structure/falsewall/brass(T)

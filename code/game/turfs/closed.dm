@@ -24,7 +24,7 @@
 	explosion_block = 50
 	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1
 
-/turf/closed/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
+/turf/closed/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
 /turf/closed/indestructible/acid_act(acidpwr, acid_volume, acid_id)
