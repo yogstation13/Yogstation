@@ -29,7 +29,7 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
-	if(src.loc == user)
+	if(loc == user)
 		if(!armed)
 			if(user.get_item_by_slot(SLOT_BACK) == src)
 				armed = 1
