@@ -667,10 +667,14 @@
 
 /obj/item/wantedposterposter
 	name = "Wanted Poster Poster"
-	desc = "This piece of high-tech machinery prints out a poster on walls that it's used on"
+	desc = "This piece of high-tech machinery prints out a poster on walls that it's used on."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "borg_wanted_poster"
 	var/datum/data/record/chosen
+
+/obj/item/wantedposterposter/examine(mob/user)
+	.=..()
+	. += "<span class='notice>Use the poster in-hand to choose who goes on the poster.</span>"
 
 /obj/item/wantedposterposter/attack_self(mob/user)
 	var/list/potential_records = list()
