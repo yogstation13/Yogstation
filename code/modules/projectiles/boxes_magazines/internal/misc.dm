@@ -8,4 +8,4 @@
 	name = "Minigun back stash box"
 	ammo_type = /obj/item/ammo_casing/a556
 	caliber = "a556"
-	max_ammo = 700
+	max_ammo = 400
