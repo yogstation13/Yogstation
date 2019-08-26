@@ -85,7 +85,7 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You attach the [gun.name] to the [name].</span>")
 	else
-		src.visible_message("<span class='warning'>The [gun.name] snaps back onto the [name]!</span>")
+		visible_message("<span class='warning'>The [gun.name] snaps back onto the [name]!</span>")
 	update_icon()
 	user.update_inv_back()
 
