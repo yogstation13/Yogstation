@@ -177,7 +177,7 @@
 
 /obj/item/clothing/under/yogs/ocelot
 	name = "gulag officer uniform"
-	desc = "You got one job boy dont screw it up."
+	desc = "For wardens particular to the use of the gulag."
 	icon_state = "gru_officer_s"
 	item_state = "gru_officer"
 	item_color = "gru_officer_s"
