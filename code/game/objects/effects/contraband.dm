@@ -675,7 +675,8 @@
 /obj/item/wantedposterposter/attack_self(mob/user)
 	var/list/potential_records = list()
 	for(var/datum/data/record/R in GLOB.data_core.general)
-		potential_records[R.fields["name"]] = R.fields["photo_front"].picture.picture_image
+		var/obj/item/photo/P = R.fields["photo_front"]
+		potential_records[R.fields["name"]] = P.picture.picture_image
 
 	var/choice = show_radial_menu(user, src, potential_records, tooltips = TRUE)
 	if(choice)
