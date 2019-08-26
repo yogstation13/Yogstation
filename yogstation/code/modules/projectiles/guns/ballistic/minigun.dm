@@ -32,7 +32,7 @@
 	if(loc == user)
 		if(!armed)
 			if(user.get_item_by_slot(SLOT_BACK) == src)
-				armed = 1
+				armed = TRUE
 				if(!user.put_in_hands(gun))
 					armed = 0
 					to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
