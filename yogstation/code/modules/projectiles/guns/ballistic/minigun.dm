@@ -81,7 +81,7 @@
 	if(!gun)
 		gun = new(src)
 	gun.forceMove(src)
-	armed = 0
+	armed = FALSE
 	if(user)
 		to_chat(user, "<span class='notice'>You attach the [gun.name] to the [name].</span>")
 	else
