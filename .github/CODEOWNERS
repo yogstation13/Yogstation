@@ -21,3 +21,8 @@
 #Altoids
 
 /yogstation/code/modules/scripting/ @Altoids1
+
+#Identification
+
+/icons/ @Ihonkification
+/yogstation/icons/ @Ihonkification
