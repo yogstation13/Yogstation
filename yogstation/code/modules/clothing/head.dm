@@ -270,3 +270,16 @@
 	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "carpwelding"
 	item_state = "carpwelding"
+
+/obj/item/clothing/head/milliondollarhat
+	name = "millionaires hat"
+	desc = "On a small label at the bottom of the hat it reads.''My name is Doug Dimmadome, owner of the Dimmsdale Dimmadome and thank you for buying one of my top quality dimmahats!`` On a even smaller label hidden in the small label it reads ''No refunds''"
+	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/1024x1024/head.dmi'
+	icon = 'yogstation/icons/obj/clothing/1024x1024/hats.dmi'
+	icon_state = "milliondollarhat"
+	item_state = "milliondollarhat"
+	worn_x_dimension = 1024
+	worn_y_dimension = 1024
+	armor = list(melee = 20) //lets say the hat itself doesnt provide any melee protection but people are so shocked at how huge your hat is they unconsciously soften there blows as to not hurt the hat.
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	strip_delay = 120

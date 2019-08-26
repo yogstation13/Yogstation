@@ -923,7 +923,6 @@
 /area/crew_quarters/bar)
 "dg" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/chair/americandiner/black{
