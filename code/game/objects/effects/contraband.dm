@@ -221,7 +221,7 @@
 			return
 
 	to_chat(user, "<span class='notice'>The poster falls down!</span>")
-	D.roll_and_drop(temp_loc)
+	qdel(D)
 
 // Various possible posters follow
 
@@ -672,16 +672,13 @@
 	icon_state = "borg_wanted_poster"
 	var/datum/data/record/chosen
 
-/obj/item/wantedposterposter/examine(mob/user)
-	.=..()
-	. += "<span class='notice>Use the poster in-hand to choose who goes on the poster.</span>"
-
 /obj/item/wantedposterposter/attack_self(mob/user)
 	var/list/potential_records = list()
 	for(var/datum/data/record/R in GLOB.data_core.general)
 		potential_records[R.fields["name"]] = R.fields["photo_front"].picture.picture_image
 
-	var/choice = show_radial_menu(user, src, potential_records)
-	chosen = find_record("name", choice, GLOB.data_core.general)
+	var/choice = show_radial_menu(user, src, potential_records, tooltips = TRUE)
+	if(choice)
+		chosen = find_record("name", choice, GLOB.data_core.general)
 
 #undef PLACE_SPEED
