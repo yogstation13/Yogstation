@@ -175,12 +175,12 @@
 	random_sensor = FALSE
 	can_adjust = TRUE
 
-/obj/item/clothing/under/yogs/krofficer
-	name = "armory officer uniform"
+/obj/item/clothing/under/yogs/ocelot
+	name = "gulag officer uniform"
 	desc = "You got one job boy dont screw it up."
-	icon_state = "kr_officer_s"
-	item_state = "kr_officer"
-	item_color = "kr_officer_s"
+	icon_state = "gru_officer_s"
+	item_state = "gru_officer"
+	item_color = "gru_officer_s"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
 	strip_delay = 50
 	alt_covers_chest = TRUE
