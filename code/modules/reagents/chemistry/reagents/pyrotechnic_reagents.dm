@@ -21,16 +21,38 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
 
-/datum/reagent/nitroglycerin/on_mob_life(mob/living/carbon/M)
-	addtimer(CALLBACK(src, .proc/nitro_mob_boom, M), 50)
+/datum/reagent/unstableglycerin/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_FAT)) //Fat boy go boom
+		addtimer(CALLBACK(src, .proc/nitro_big_mob_explosion, M), 50)
 	..()
-	return TRUE
 
-/datum/reagent/nitroglycerin/proc/nitro_mob_boom(M)
+/datum/reagent/unstableglycerin
+	name = "Unstable Glycerin"
+	description = "Unstable Glycerin is a heavy, oily, unstable explosive liquid obtained by overnitrating glycerol."
+	color = "#555555" // rgb: 128, 128, 128
+	taste_description = "oil"
+
+/datum/reagent/unstableglycerin/on_mob_life(mob/living/carbon/M)
+	if(volume>=14)
+		addtimer(CALLBACK(src, .proc/nitro_big_mob_explosion, M), 50)
+	else
+		addtimer(CALLBACK(src, .proc/nitro_mini_mob_explosion, M), 50)
+	..()
+
+/datum/reagent/proc/nitro_big_mob_explosion(mob/living/M)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/reagents_explosion/e = new()
 	e.set_up(1 + round(volume/2, 1), location, 0, 0, message = 0) //Big boom
 	e.start()
+	M.reagents.remove_all_type(/datum/reagent/unstableglycerin, 100, 0, 1)
+	M.gib()
+
+/datum/reagent/proc/nitro_mini_mob_explosion(mob/living/M)
+	var/location = get_turf(holder.my_atom)
+	var/datum/effect_system/reagents_explosion/e = new()
+	e.set_up(1 + round(volume/20, 1), location, 0, 0, message = 0) //Small boom
+	e.start()
+	M.reagents.remove_all_type(/datum/reagent/unstableglycerin, 100, 0, 1)
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"

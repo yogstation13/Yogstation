@@ -409,3 +409,17 @@
 /obj/item/reagent_containers/glass/bottle/bromine
 	name = "bromine bottle"
 	list_reagents = list(/datum/reagent/bromine = 30)
+
+/obj/item/reagent_containers/glass/bottle/glycerol
+	name = "glycerol bottle"
+	list_reagents = list(/datum/reagent/glycerol = 30)
+
+/obj/item/reagent_containers/glass/bottle/nitroglycerin
+	name = "nitroglycerin bottle"
+	desc = "A small bottle. Contains nitroglycerin - a potent explosive."
+	list_reagents = list(/datum/reagent/nitroglycerin = 30)
+
+/obj/item/reagent_containers/glass/bottle/unstableglycerin
+	name = "unstable glycerin bottle"
+	desc = "A small bottle. Contains unstable glycerin - a potent explosive."
+	list_reagents = list(/datum/reagent/unstableglycerin = 30)

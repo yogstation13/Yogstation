@@ -43,6 +43,24 @@
 	required_temp = 474
 	strengthdiv = 2
 
+/datum/chemical_reaction/reagent_explosion/unstableglycerin
+	id = /datum/reagent/unstableglycerin
+	results = list(/datum/reagent/unstableglycerin = 2)
+	required_reagents = list(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/fluacid = 1, /datum/reagent/clf3 = 1)
+	strengthdiv = 4
+
+/datum/chemical_reaction/reagent_explosion/unstableglycerin/on_reaction(datum/reagents/holder, created_volume)
+	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
+		return
+	holder.remove_reagent(/datum/reagent/unstableglycerin, created_volume*2)
+	..()
+
+/datum/chemical_reaction/reagent_explosion/unstableglycerin_explosion
+	name = "Nitroglycerin explosion"
+	id = "nitroglycerin_explosion"
+	required_reagents = list(/datum/reagent/unstableglycerin = 1)
+	required_temp = 424
+	strengthdiv = 4
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion
 	name = "Explosion"
