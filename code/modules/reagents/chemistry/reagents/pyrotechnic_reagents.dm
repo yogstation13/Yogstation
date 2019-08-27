@@ -21,6 +21,17 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
 
+/datum/reagent/nitroglycerin/on_mob_life(mob/living/carbon/M)
+	addtimer(CALLBACK(src, .proc/nitro_mob_boom, M), 50)
+	..()
+	return TRUE
+
+/datum/reagent/nitroglycerin/proc/nitro_mob_boom(M)
+	var/location = get_turf(holder.my_atom)
+	var/datum/effect_system/reagents_explosion/e = new()
+	e.set_up(1 + round(volume/2, 1), location, 0, 0, message = 0) //Big boom
+	e.start()
+
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
 	description = "Keeps unstable chemicals stable. This does not work on everything."
