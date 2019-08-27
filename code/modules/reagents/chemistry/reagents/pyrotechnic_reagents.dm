@@ -21,7 +21,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
 
-/datum/reagent/unstableglycerin/on_mob_life(mob/living/carbon/M)
+/datum/reagent/nitroglycerin/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_FAT)) //Fat boy go boom
 		addtimer(CALLBACK(src, .proc/nitro_big_mob_explosion, M), 50)
 	..()
