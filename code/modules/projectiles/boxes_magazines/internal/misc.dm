@@ -6,6 +6,6 @@
 
 /obj/item/ammo_box/magazine/internal/minigunosprey
 	name = "Minigun back stash box"
-	ammo_type = /obj/item/ammo_casing/a556
+	ammo_type = /obj/item/ammo_casing/a546
 	caliber = "a556"
-	max_ammo = 400
+	max_ammo = 500

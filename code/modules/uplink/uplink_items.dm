@@ -450,9 +450,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/minigun
-	name = "M-556 Osprey"
+	name = "M-546 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
-			This deadly giant weapon has a massive 700-round magazine of devastating 5.56mm ammunition."
+			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm ammunition. Slaughter your enemies through \
+			sheer force and dont worry about bullet casings as tiny unseen syndicate bots will pick them up before you can even see them. "
 	item = /obj/item/minigunbackpack
 	cost = 36
 	surplus = 0
