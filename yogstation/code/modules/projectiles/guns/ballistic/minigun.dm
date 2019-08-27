@@ -91,7 +91,7 @@
 
 
 /obj/item/gun/ballistic/minigunosprey
-	name = "M-556 Osprey"
+	name = "M-546 Osprey"
 	desc = "An advanced minigun with an incredible rate of fire. Requires a bulky backpack to store all that ammo."
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "minigun_spin"
