@@ -12,8 +12,8 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 36
-	var/heat_diffusion = 1
+	var/overheat_max = 40
+	var/heat_diffusion = 1.2
 
 /obj/item/minigunbackpack/Initialize()
 	. = ..()
@@ -97,7 +97,7 @@
 	icon_state = "minigun_spin"
 	item_state = "minigun"
 	flags_1 = CONDUCT_1
-	slowdown = 1.5
+	slowdown = 1.6
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
