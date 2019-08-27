@@ -3,6 +3,9 @@
 	desc = "Retracts stuff."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "clamps"
 	materials = list(MAT_METAL=6000, MAT_GLASS=3000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -24,6 +27,9 @@
 	desc = "You think you have seen this before."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "clamps"
 	materials = list(MAT_METAL=5000, MAT_GLASS=2500)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -47,6 +53,9 @@
 	desc = "This stops bleeding."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "cautery"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "cautery"
 	materials = list(MAT_METAL=2500, MAT_GLASS=750)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
@@ -101,6 +110,7 @@
 	icon_state = "scalpel"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "scalpel"
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 
@@ -185,6 +195,9 @@
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "surgical_drapes"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	item_state = "drapes"
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("slapped")
 
