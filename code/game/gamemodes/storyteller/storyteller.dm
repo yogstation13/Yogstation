@@ -50,6 +50,8 @@
 	var/scheduled = 0					//next time we check whether we should run an event
 	var/event_interval = 1 MINUTES
 
+	var/list/run_events = list()		//list of antag/major events that have been run, we use this to check for mutually exclusive events
+
 
 /datum/game_mode/storyteller/pre_setup()//where we setup the storyteller and choose our first antags
 	for(var/S in subtypesof(/datum/storyteller))
@@ -74,7 +76,7 @@
 			if(EVENT_TYPE_MEDIUM)
 				medium_events[event] = event.weight
 			if(EVENT_TYPE_MAJOR)
-				major_events[event] = event.weight
+				major_events[event] = event.weight //weights aren't used for major and antag events, but oh well
 			if(EVENT_TYPE_ANTAG)
 				antag_events[event] = event.weight
 
@@ -155,18 +157,22 @@
 	for(var/E in antag_events)
 		event = E
 		if(event.canRunStoryteller())
+			run_events += event.name
 			antag_events -= event
 			SSevents.TriggerEvent(event)
 			scheduled = world.time + event_interval
+			return
 
 /datum/game_mode/storyteller/proc/run_major_event()
 	var/datum/round_event_control/event
 	for(var/E in major_events)
 		event = E
 		if(event.canRunStoryteller())
+			run_events += event.name
 			major_events -= event
 			SSevents.TriggerEvent(event)
 			scheduled = world.time + event_interval
+			return
 
 /datum/game_mode/storyteller/proc/run_medium_event()
 	for(var/i in 1 to 10) //we'll try 10 times max

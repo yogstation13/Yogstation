@@ -27,9 +27,10 @@
 
 	var/triggering	//admin cancellation
 
-	var/mob/living/target			//a possible target for the event (used for the storyteller gamemode)
-	var/storyteller_runnable = TRUE //whether or not the event can run on the storyteller gamemode
-	var/storyteller_type			//Set to either EVENT_TYPE_MINOR, EVENT_TYPE_MEDIUM, EVENT_TYPE_MAJOR, or EVENT_TYPE_ANTAG. Determines which pool of points the event draws and rolls from.
+	var/mob/living/target						//a possible target for the event (used for the storyteller gamemode)
+	var/storyteller_runnable = TRUE 			//whether or not the event can run on the storyteller gamemode
+	var/storyteller_type						//Set to either EVENT_TYPE_MINOR, EVENT_TYPE_MEDIUM, EVENT_TYPE_MAJOR, or EVENT_TYPE_ANTAG. Determines which pool of points the event draws and rolls from.
+	var/mutually_exclusive_events = list()		//list of events that we can't run alongside, IE gangs and revs, since they're both mindsheild-dependent.
 
 /datum/round_event_control/New()
 	if(config && !wizardevent) // Magic is unaffected by configs
@@ -38,6 +39,9 @@
 
 /datum/round_event_control/wizard
 	wizardevent = TRUE
+
+/datum/round_event_control/storyteller
+	gamemode_whitelist = list("storyteller")
 
 // Checks if the event can be spawned. Used by event controller and "false alarm" event.
 // Admin-created events override this.
@@ -110,6 +114,12 @@
 
 //requirements for running during the storyteller gamemode
 /datum/round_event_control/proc/canRunStoryteller(var/mob/living/character)
+	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+	if(!canSpawnEvent(players_amt, "storyteller"))
+		return FALSE
+	for(var/i in SSticker.mode.run_events)
+		if(i in mutually_exclusive_events)
+			return FALSE
 	return TRUE
 
 /datum/round_event	//NOTE: Times are measured in master controller ticks!

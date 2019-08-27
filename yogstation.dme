@@ -1708,6 +1708,7 @@
 #include "code\modules\events\holiday\halloween.dm"
 #include "code\modules\events\holiday\vday.dm"
 #include "code\modules\events\holiday\xmas.dm"
+#include "code\modules\events\storyteller\traitors.dm"
 #include "code\modules\events\wizard\aid.dm"
 #include "code\modules\events\wizard\blobies.dm"
 #include "code\modules\events\wizard\curseditems.dm"
