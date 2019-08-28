@@ -205,6 +205,9 @@
 	else if(istype(W, /obj/item/poster))
 		place_poster(W,user)
 		return TRUE
+	//Borg Poster STuff
+	else if(istype(W, /obj/item/wantedposterposter))
+		place_borg_poster(W, user)
 
 	return FALSE
 

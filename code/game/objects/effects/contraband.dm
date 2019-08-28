@@ -162,6 +162,67 @@
 	to_chat(user, "<span class='notice'>The poster falls down!</span>")
 	D.roll_and_drop(temp_loc)
 
+/turf/closed/wall/proc/place_borg_poster(obj/item/wantedposterposter/P, mob/user)
+	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
+	if (smooth & SMOOTH_DIAGONAL)
+		for (var/O in overlays)
+			var/image/I = O
+			if (copytext(I.icon_state, 1, 3) == "d-")
+				return
+
+	var/stuff_on_wall = 0
+	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
+		if(istype(O, /obj/structure/sign/poster))
+			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			return
+		stuff_on_wall++
+		if(stuff_on_wall >= 3)
+			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			return
+
+	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>"	)
+
+	var/datum/data/record/R = P.chosen
+	var/datum/data/record/S = find_record("name", R.fields["name"], GLOB.data_core.security) //Curse old coders
+	if(!R)
+		to_chat(user, "<span class='notice'>The criminal record seems to be missing!</span>")
+		return
+	var/obj/item/photo/photo = R.fields["photo_front"]
+	var/wanted_name = R.fields["name"]
+	var/description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
+	var/list/major_crimes = S.fields["ma_crim"]
+	var/list/minor_crimes = S.fields["mi_crim"]
+	if(major_crimes.len || minor_crimes.len)
+		description += "\n[wanted_name] is wanted for the following crimes:\n"
+	if(minor_crimes.len)
+		description += "\nMinor Crimes:"
+		for(var/datum/data/crime/c in S.fields["mi_crim"])
+			description += "\n[c.crimeName]\n"
+			description += "[c.crimeDetails]\n"
+	if(major_crimes.len)
+		description += "\nMajor Crimes:"
+		for(var/datum/data/crime/c in S.fields["ma_crim"])
+			description += "\n[c.crimeName]\n"
+			description += "[c.crimeDetails]\n"
+	var/obj/structure/sign/poster/wanted/D = new(P, photo.picture.picture_image, wanted_name, description, "WANTED", "#FF0000", "wanted_background", "wanted poster", "A wanted poster for")
+
+
+	var/temp_loc = get_turf(user)
+	flick("poster_being_set",D)
+	D.forceMove(src)
+	playsound(D.loc, 'sound/items/poster_being_created.ogg', 100, 1)
+
+	if(do_after(user, PLACE_SPEED, target=src))
+		if(!D || QDELETED(D))
+			return
+
+		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
+			to_chat(user, "<span class='notice'>You place the poster!</span>")
+			return
+
+	to_chat(user, "<span class='notice'>The poster falls down!</span>")
+	qdel(D)
+
 // Various possible posters follow
 
 /obj/structure/sign/poster/ripped
@@ -603,5 +664,22 @@
 	name = "Carbon Dioxide"
 	desc = "This informational poster teaches the viewer what carbon dioxide is."
 	icon_state = "poster35_legit"
+
+/obj/item/wantedposterposter
+	name = "Wanted Poster Poster"
+	desc = "This piece of high-tech machinery prints out a poster on walls that it's used on."
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "borg_wanted_poster"
+	var/datum/data/record/chosen
+
+/obj/item/wantedposterposter/attack_self(mob/user)
+	var/list/potential_records = list()
+	for(var/datum/data/record/R in GLOB.data_core.general)
+		var/obj/item/photo/P = R.fields["photo_front"]
+		potential_records[R.fields["name"]] = P.picture.picture_image
+
+	var/choice = show_radial_menu(user, src, potential_records, tooltips = TRUE)
+	if(choice)
+		chosen = find_record("name", choice, GLOB.data_core.general)
 
 #undef PLACE_SPEED

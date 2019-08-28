@@ -522,7 +522,6 @@
 /area/crew_quarters/bar)
 "bp" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor/carpet,
@@ -899,7 +898,6 @@
 /area/crew_quarters/bar)
 "db" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/chair/americandiner{
