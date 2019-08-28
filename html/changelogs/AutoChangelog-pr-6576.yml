@@ -1,0 +1,4 @@
+author: " The CDC"
+delete-after: true 
+changes: 
+  - rscadd: "Zombie infections are now blocked a % of the time scaling with melee armor"
