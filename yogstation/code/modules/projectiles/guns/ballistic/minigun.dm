@@ -1,4 +1,4 @@
-//The ammo/gun is stored in a back slot item
+		//The ammo/gun is stored in a back slot item
 /obj/item/minigunbackpack
 	name = "The back stash"
 	desc = "The massive back stash can hold alot of ammo on your back."
@@ -12,7 +12,7 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 40
+	var/overheat_max = 100
 	var/heat_diffusion = 1.2
 
 /obj/item/minigunbackpack/Initialize()
@@ -101,9 +101,8 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
-	burst_size = 4
-	automatic = 0
 	fire_delay = 1
+	burst_size = 5
 	recoil = 1
 	spread = 30
 	fire_sound_volume = 75
@@ -113,24 +112,39 @@
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
+	canMouseDown = TRUE
 	var/obj/item/minigunbackpack/ammo_pack
+	var/rev = FALSE
+	var/revtime = 10
+	var/timeleftrev
+	var/mob/current_user
 
 /obj/item/gun/ballistic/minigunosprey/Initialize()
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
+		START_PROCESSING(SSobj, src)
 	else
 		return INITIALIZE_HINT_QDEL //No pack, no gun
 
 	return ..()
 
+/obj/item/gun/ballistic/minigunosprey/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
 /obj/item/gun/ballistic/minigunosprey/attack_self(mob/living/user)
+	return
+
+/obj/item/gun/ballistic/minigunosprey/attack_hand(mob/living/user)
 	return
 
 /obj/item/gun/ballistic/minigunosprey/dropped(mob/user)
 	if(ammo_pack)
 		ammo_pack.attach_gun(user)
+		STOP_PROCESSING(SSobj, src)
 	else
 		qdel(src)
+
 
 /obj/item/gun/ballistic/minigunosprey/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(ammo_pack)
@@ -145,5 +159,23 @@
 		to_chat(user, "You need the more ammo to fire the gun!")
 	. = ..()
 
-/obj/item/gun/ballistic/minigunosprey/dropped(mob/living/user)
-	ammo_pack.attach_gun(user)
+/obj/item/gun/ballistic/minigunosprey/onMouseDown(object, location, params, mob/mob)
+	timeleftrev = revtime + world.time
+	if(istype(mob))
+		current_user = mob
+
+/obj/item/gun/ballistic/minigunosprey/onMouseUp(object, location, params, mob/mob)
+	timeleftrev = null
+	rev = FALSE
+	current_user = null
+
+/obj/item/gun/ballistic/minigunosprey/onMouseDrag(object, location, params, mob/mob)
+	var/angle = mouse_angle_from_client(current_user.client)
+	current_user.setDir(angle2dir_cardinal(angle))
+
+/obj/item/gun/ballistic/minigunosprey/process()
+	if(world.time >= timeleftrev)
+		rev = TRUE
+	if(!rev)
+		return
+	process_fire(current_user.client.mouseObject, current_user)
