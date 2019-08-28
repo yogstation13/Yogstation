@@ -117,7 +117,8 @@
 	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 	if(!canSpawnEvent(players_amt, "storyteller"))
 		return FALSE
-	for(var/i in SSticker.mode.run_events)
+	var/datum/game_mode/storyteller/S = SSticker.mode
+	for(var/i in S.run_events)
 		if(i in mutually_exclusive_events)
 			return FALSE
 	return TRUE
