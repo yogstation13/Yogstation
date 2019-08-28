@@ -33,6 +33,7 @@
 	new /obj/item/clipboard/yog/paperwork/warden(src)
 	new /obj/item/card/id/departmental_budget/sec(src)
 	new /obj/item/clothing/under/yogs/ocelot(src)
+	new /obj/item/clothing/under/yogs/krofficer(src)
 	new /obj/item/clothing/head/beret/corpwarden(src)
 	new /obj/item/clothing/suit/armor/vest/wardenjacket(src)
 
