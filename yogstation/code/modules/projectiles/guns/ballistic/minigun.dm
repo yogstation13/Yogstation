@@ -13,7 +13,7 @@
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 40
-	var/heat_diffusion = 1.5
+	var/heat_diffusion = 1.2
 
 /obj/item/minigunbackpack/Initialize()
 	. = ..()
@@ -95,7 +95,7 @@
 	desc = "An advanced minigun with an incredible rate of fire. Requires a bulky backpack to store all that ammo."
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "minigun_spin"
-	item_state = "minigun"
+	item_state = "minigunosprey"
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
@@ -106,7 +106,7 @@
 	fire_delay = 1
 	burst_size = 1
 	recoil = 0
-	spread = 17
+	spread = 24
 	fire_sound_volume = 75
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
