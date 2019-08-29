@@ -12,8 +12,8 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 100
-	var/heat_diffusion = 1.2
+	var/overheat_max = 40
+	var/heat_diffusion = 1.5
 
 /obj/item/minigunbackpack/Initialize()
 	. = ..()
@@ -96,15 +96,17 @@
 	icon = 'yogstation/icons/obj/guns/minigunosprey.dmi'
 	icon_state = "minigun_spin"
 	item_state = "minigun"
+	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
 	slowdown = 1.6
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
 	fire_delay = 1
-	burst_size = 5
-	recoil = 1
-	spread = 30
+	burst_size = 1
+	recoil = 0
+	spread = 17
 	fire_sound_volume = 75
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
@@ -115,14 +117,14 @@
 	canMouseDown = TRUE
 	var/obj/item/minigunbackpack/ammo_pack
 	var/rev = FALSE
-	var/revtime = 10
+	var/revtime = 3
 	var/timeleftrev
 	var/mob/current_user
 
 /obj/item/gun/ballistic/minigunosprey/Initialize()
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSfastprocess, src)
 	else
 		return INITIALIZE_HINT_QDEL //No pack, no gun
 
