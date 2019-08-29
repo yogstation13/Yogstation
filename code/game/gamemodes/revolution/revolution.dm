@@ -101,9 +101,6 @@
 	revolution.update_objectives()
 	revolution.update_heads()
 
-	SSshuttle.registerHostileEnvironment(src)
-	..()
-
 
 /datum/game_mode/revolution/process()
 	check_counter++
@@ -119,6 +116,8 @@
 /datum/game_mode/revolution/check_win()
 	if(check_rev_victory())
 		finished = 1
+	else if(check_centcom_victory())
+		finished = 3
 	else if(check_heads_victory())
 		finished = 2
 	return
@@ -154,6 +153,15 @@
 			return FALSE
 	return TRUE
 
+////////////////////////////////
+//Checks for a centcom victory//
+////////////////////////////////
+
+/datum/game_mode/revolution/proc/check_centcom_victory()
+	if(!station_was_nuked)
+		return FALSE
+	return TRUE
+
 /////////////////////////////
 //Checks for a head victory//
 /////////////////////////////
@@ -174,6 +182,9 @@
 	else if(finished == 2)
 		SSticker.mode_result = "loss - rev heads killed"
 		SSticker.news_report = REVS_LOSE
+	else if(finished == 3)
+		SSticker.mode_result = "loss - everyone killed"
+		SSticker.news_report = STATION_DESTROYED_NUKE
 
 //TODO What should be displayed for revs in non-rev rounds
 /datum/game_mode/revolution/special_report()
@@ -181,6 +192,8 @@
 		return "<span class='redtext big'>The heads of staff were killed or exiled! The revolutionaries win!</span>"
 	else if(finished == 2)
 		return "<span class='redtext big'>The heads of staff managed to stop the revolution!</span>"
+	else if(finished == 3)
+		return "<span class='redtext big'>Centcom has destroyed the station!</span>"
 
 /datum/game_mode/revolution/generate_report()
 	return "Employee unrest has spiked in recent weeks, with several attempted mutinies on heads of staff. Some crew have been observed using flashbulb devices to blind their colleagues, \
@@ -192,24 +205,24 @@
 	config_tag = "extended_revolution"
 	end_when_heads_dead = FALSE
 
-/datum/game_mode/revolution/speedy
-	name = "speedy_revolution"
-	config_tag = "speedy_revolution"
-	end_when_heads_dead = FALSE
+/datum/game_mode/revolution/timed
+	name = "timed_revolution"
+	config_tag = "timed_revolution"
+	end_when_heads_dead = TRUE
 	var/endtime = null
 	var/fuckingdone = FALSE
 
-/datum/game_mode/revolution/speedy/pre_setup()
-	endtime = world.time + 20 MINUTES
+/datum/game_mode/revolution/timed/pre_setup()
+	endtime = world.time + 40 MINUTES
 	return ..()
 
-/datum/game_mode/revolution/speedy/process()
+/datum/game_mode/revolution/timed/process()
 	. = ..()
 	if(check_counter == 0)
 		if (world.time > endtime && !fuckingdone)
 			fuckingdone = TRUE
 			for (var/obj/machinery/nuclearbomb/N in GLOB.nuke_list)
 				if (!N.timing)
-					N.timer_set = 200
+					N.timer_set = 360 //6 minutes, time's running out
 					N.set_safety()
 					N.set_active()
