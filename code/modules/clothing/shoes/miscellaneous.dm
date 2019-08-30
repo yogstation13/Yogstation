@@ -132,6 +132,16 @@
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
 
+/obj/item/clothing/shoes/jackboots/warden
+	name = "warden's spur jackboots"
+	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. These boots have spurs attached to them."
+	icon_state = "spurboots"
+	item_state = "spurboots"
+
+/obj/item/clothing/shoes/jackboots/warden/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/effects/spurstep.ogg'))
+
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
