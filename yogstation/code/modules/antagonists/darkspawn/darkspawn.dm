@@ -22,7 +22,8 @@
 
 	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
-	var/lucidity_drained = 0 //How much lucidity has been drained from other players
+	var/list/succs() //Keeps track of each player drained
+	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
 
 	//Ability and upgrade variables
 	var/list/abilities = list() //An associative list ("id" = ability datum) containing the abilities the darkspawn has
@@ -80,7 +81,7 @@
 		.["Give Upgrade"] = CALLBACK(src, .proc/admin_give_upgrade)
 		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, .proc/admin_edit_psi)
 		.["[lucidity] Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity)
-		.["[lucidity_drained] / 20 Lucidity Drained"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
+		.["[lucidity_drained] / 20 Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
 		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, .proc/sacrament)
 
 /datum/antagonist/darkspawn/proc/admin_give_ability(mob/admin)
@@ -354,7 +355,7 @@
 /datum/antagonist/darkspawn/ui_data(mob/user)
 	var/list/data = list()
 
-	data["lucidity"] = "[lucidity]  |  [lucidity_drained] / 20 drained total"
+	data["lucidity"] = "[lucidity]  |  [lucidity_drained] / 20 unique drained total"
 
 	var/list/abilities = list()
 	var/list/upgrades = list()

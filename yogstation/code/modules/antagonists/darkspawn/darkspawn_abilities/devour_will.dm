@@ -39,6 +39,6 @@
 /datum/action/innate/darkspawn/devour_will/proc/make_eligible(mob/living/L)
 	if(!L || !victims[L])
 		return
-	victims[L] = null
+	victims[L] = FALSE
 	to_chat(owner, "<span class='notice'>[L] has recovered from their draining and is vulnerable to Devour Will again.</span>")
 	return TRUE
