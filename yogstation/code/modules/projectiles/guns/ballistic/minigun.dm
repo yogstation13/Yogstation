@@ -34,7 +34,7 @@
 			if(user.get_item_by_slot(SLOT_BACK) == src)
 				armed = TRUE
 				if(!user.put_in_hands(gun))
-					armed = 0
+					armed = FALSE
 					to_chat(user, "<span class='warning'>You need a free hand to hold the gun!</span>")
 					return
 				update_icon()
