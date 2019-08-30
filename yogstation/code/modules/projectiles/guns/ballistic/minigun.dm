@@ -9,6 +9,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
+	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
@@ -106,7 +107,7 @@
 	fire_delay = 1
 	burst_size = 1
 	recoil = 0
-	spread = 24
+	spread = 28
 	fire_sound_volume = 75
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
