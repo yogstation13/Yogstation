@@ -105,7 +105,7 @@
 			to_chat(user, "<span class='notice'>There's no room for another cooling unit!</span>")
 			return FALSE
 
-		T.charge_delay = max(2 , T.charge_delay - 4)
+		T.charge_delay = 0
 
 /obj/item/borg/upgrade/disablercooler/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
