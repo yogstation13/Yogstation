@@ -452,8 +452,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/minigun
 	name = "M-546 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
-			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition. Slaughter your enemies through \
-			sheer force. We mad this gun soadvanced that it fires the whole bullet. Thats 60% more bullet per bullet and no more useless casings!"
+			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
+			Slaughter your enemies through sheer force. We made this gun soa dvanced that it fires the whole bullet.\
+			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
 	cost = 36
 	surplus = 0
