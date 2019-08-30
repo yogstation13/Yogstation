@@ -41,7 +41,7 @@
 	if(!L.health || L.stat)
 		to_chat(user, "<span class='warning'>[L] is too weak to drain.</span>")
 		return
-	if(linked_ability.victims[L.real_name])
+	if(linked_ability.victims[L])
 		to_chat(user, "<span class='warning'>[L] must be given time to recover from their last draining.</span>")
 		return
 	if(linked_ability.last_victim == L.ckey)
@@ -75,12 +75,16 @@
 	user.visible_message("<span class='warning'>[user] gently lowers [L] to the ground...</span>", "<span class='velvet'><b>...aranupdejc</b><br>\
 	You devour [L]'s will. Your Psi has been fully restored.\n\
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.<br>\
-	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span>, \
+	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span> \
 	<span class='warning'>Additionally, you can not drain them again without first draining someone else.</span>")
 	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
 	darkspawn.psi = darkspawn.psi_cap
 	darkspawn.lucidity++
-	darkspawn.lucidity_drained++
+	if(linked_ability.victims[L] == FALSE)
+		to_chat(user, "<span class ='warning'> You have already drained this individual previously, and their lucidity will not contribute any more to the sacrament!</span>")
+	else
+		to_chat(user, "<span class ='velvet'> This individual's lucidity brings you one step closer to the sacrament...</span>")
+		darkspawn.lucidity_drained++
 	darkspawn.update_psi_hud()
 	linked_ability.victims[L] = TRUE
 	linked_ability.last_victim = L.ckey
