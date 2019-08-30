@@ -173,6 +173,10 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
+
+/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
+
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return 0
@@ -185,6 +189,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
@@ -246,7 +251,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
-	delay *= user.do_after_coefficent()
+	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
 	var/datum/progressbar/progbar
 	if (progress)
@@ -312,6 +317,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		originalloc[target] = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if(progress)
 		progbar = new(user, time, targets[1])
