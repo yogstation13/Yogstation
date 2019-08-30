@@ -16,11 +16,11 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/obj/effect/simulacrum/examine(mob/user)
+/*/obj/effect/simulacrum/examine(mob/user) //I can't currently get this to work properly
 	if(mimicking)
 		mimicking.examine(user)
 		return
-	. = ..()
+	. = ..() */
 
 /obj/effect/simulacrum/process()
 	var/turf/T = get_step(src, dir)
