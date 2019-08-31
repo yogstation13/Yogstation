@@ -9,7 +9,6 @@
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
-	var/static/sacrament_complete = FALSE //This causes any darkspawn beyond the first to perform the Sacrament instantaneously
 
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
@@ -22,7 +21,6 @@
 
 	//Lucidity variables
 	var/lucidity = 3 //Lucidity is used to buy abilities and is gained by using Devour Will
-	var/list/succs() //Keeps track of each player drained
 	var/lucidity_drained = 0 //How much lucidity has been drained from unique players
 
 	//Ability and upgrade variables
@@ -35,12 +33,14 @@
 /datum/antagonist/darkspawn/on_gain()
 	SSticker.mode.darkspawn += owner
 	owner.special_role = "darkspawn"
-	forge_objectives()
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
 	add_ability("divulge")
 	addtimer(CALLBACK(src, .proc/force_divulge), 4800) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
+	var/datum/objective/darkspawn/O = new
+	objectives += O
+	owner.announce_objectives()
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -59,6 +59,30 @@
 /datum/antagonist/darkspawn/remove_innate_effects()
 	adjust_darkspawn_hud(FALSE)
 	owner.current.remove_language(/datum/language/darkspawn)
+
+//Round end stuff
+/datum/antagonist/darkspawn/proc/check_darkspawn_death()
+	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
+		var/datum/mind/dark_mind = DM
+		if(istype(dark_mind))
+			if((dark_mind) && (dark_mind.current.stat != DEAD) && ishuman(dark_mind.current))
+				return FALSE
+	return TRUE
+
+/datum/antagonist/darkspawn/roundend_report()
+	return "[owner ? printplayer(owner) : "Unnamed Darkspawn"]"
+
+/datum/antagonist/darkspawn/roundend_report_header()
+	if(SSticker.mode.sacrament_done)
+		return "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
+	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
+		return "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
+	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+		return "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
+	else
+		return "<span class='redtext big'>The darkspawn have failed!</span><br>"
+
+//Admin panel stuff
 
 /datum/antagonist/darkspawn/antag_panel_data()
 	. = "<b>Abilities:</b><br>"
@@ -156,35 +180,18 @@
 	to_chat(owner.current, "<i>If you do not do this within ten minutes, this will happen involuntarily. Prepare quickly.</i>")
 	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
-	owner.announce_objectives()
 
-/datum/antagonist/darkspawn/proc/forge_objectives()
-	var/datum/objective/darkspawn/sacrament = new
-	sacrament.owner = owner
-	objectives += sacrament
+/datum/objective/darkspawn
+	explanation_text = "Become lucid and perform the Sacrament."
+
+/datum/objective/darkspawn/check_completion()
+	return (SSticker.mode.sacrament_done)
 
 /datum/antagonist/darkspawn/proc/adjust_darkspawn_hud(add_hud)
 	if(add_hud)
 		SSticker.mode.update_darkspawn_icons_added(owner)
 	else
 		SSticker.mode.update_darkspawn_icons_removed(owner)
-
-
-// Gamemode variables as needed (but note that there is no darkspawn gamemode)//
-
-/datum/game_mode
-	var/list/darkspawn = list()
-
-/datum/game_mode/proc/update_darkspawn_icons_added(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.join_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, "darkspawn")
-
-/datum/game_mode/proc/update_darkspawn_icons_removed(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.leave_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, null)
-
 
 // Darkspawn-related things like Psi //
 
@@ -326,7 +333,7 @@
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
-	if(!sacrament_complete)
+	if(!SSticker.mode.sacrament_done)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
@@ -336,7 +343,7 @@
 	psi_cap = 9999
 	psi_regen = 9999
 	psi_regen_delay = 1
-	sacrament_complete = TRUE
+	SSticker.mode.sacrament_done = TRUE
 	darkspawn_state = PROGENITOR
 	QDEL_IN(user, 5)
 
