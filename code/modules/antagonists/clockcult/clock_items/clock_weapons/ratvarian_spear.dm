@@ -3,7 +3,7 @@
 	name = "ratvarian spear"
 	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
 	clockwork_desc = "A powerful spear of Ratvarian making. It's more effective against enemy cultists and silicons."
-	icon_state = "ratvarian_spear"
+	icon_state = "ratvarianspear"
 	item_state = "ratvarian_spear"
 	force = 15 //Extra damage is dealt to targets in attack()
 	throwforce = 25
