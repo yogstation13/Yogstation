@@ -634,13 +634,13 @@
 	examine_text = "<span class='warning'>SUBJECTPRONOUN is moving jerkily and unpredictably!</span>"
 
 /datum/status_effect/time_dilation/on_apply()
-	owner.next_move_modifier -= 0.5
-	owner.action_speed_modifier -= 0.5
+	owner.next_move_modifier *= 0.5
+	owner.action_speed_modifier *= 0.5
 	return TRUE
 
 /datum/status_effect/time_dilation/on_remove()
-	owner.next_move_modifier += 0.5
-	owner.action_speed_modifier += 0.5
+	owner.next_move_modifier *= 2
+	owner.action_speed_modifier *= 2
 
 /obj/screen/alert/status_effect/time_dilation
 	name = "Time Dilation"
