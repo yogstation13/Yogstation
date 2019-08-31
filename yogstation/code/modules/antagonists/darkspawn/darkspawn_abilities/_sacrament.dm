@@ -9,7 +9,7 @@
 	var/datum/looping_sound/sacrament/soundloop
 
 /datum/action/innate/darkspawn/sacrament/Activate()
-	if(darkspawn.sacrament_complete)
+	if(SSticker.mode.sacrament_done)
 		darkspawn.sacrament()
 		return
 	if(!darkspawn || darkspawn.lucidity_drained < 20)
@@ -80,7 +80,7 @@
 	new/obj/effect/temp_visual/revenant/cracks(T)
 
 /datum/action/innate/darkspawn/sacrament/proc/shatter_lights()
-	if(darkspawn.sacrament_complete)
+	if(SSticker.mode.sacrament_done)
 		return
 	for(var/obj/machinery/light/light in SSmachines.processing)
 		light.break_light_tube()
