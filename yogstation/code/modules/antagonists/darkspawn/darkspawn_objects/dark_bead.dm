@@ -62,7 +62,7 @@
 			return
 	else
 		L.visible_message("<span class='userdanger italics'>[L] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
-		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>", ignore_mob = user)
+		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
 		to_chat(user, "<span class='velvet'><b>cera qo...</b><br>You begin siphoning [L]'s will...</span>")
 		L.Stun(50)
 		playsound(L, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)

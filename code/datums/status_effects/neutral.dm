@@ -162,7 +162,7 @@
 	if(owner.loc == shadowing)
 		owner.forceMove(cached_location ? cached_location : get_turf(owner))
 		shadowing.visible_message("<span class='warning'>[owner] breaks away from [shadowing]'s shadow!</span>", \
-		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>", ignore_mob = owner)
+		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
 		to_chat(owner, "<span class='velvet'>You break away from [shadowing].</span>")
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
@@ -175,7 +175,7 @@
 	cached_location = get_turf(shadowing)
 	if(cached_location.get_lumcount() < DARKSPAWN_DIM_LIGHT)
 		owner.forceMove(cached_location)
-		shadowing.visible_message("<span class='warning'>[owner] suddenly appears from the dark!</span>", ignore_mob = owner)
+		shadowing.visible_message("<span class='warning'>[owner] suddenly appears from the dark!</span>")
 		to_chat(owner, "<span class='warning'>You are forced out of [shadowing]'s shadow!</span>")
 		owner.Knockdown(30)
 		qdel(src)

@@ -12,7 +12,7 @@
 	if(isliving(owner.loc))
 		var/mob/living/L = owner.loc
 		L.visible_message("<span class='warning'>[owner] breaks away from [L]'s shadow!</span>", \
-		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>", ignore_mob = owner)
+		"<span class='userdanger'>You feel a sense of freezing cold pass through you!</span>")
 		to_chat(owner, "<span class='velvet'><b>zayaera</b><br>You create an illusion of yourself.</span>")
 	else
 		owner.visible_message("<span class='warning'>[owner] splits in two!</span>", \
