@@ -23,7 +23,11 @@
 	light_range = 15
 	light_color = "#21007F"
 	weather_immunities = list("lava", "ash")
-	anchored = TRUE
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
+	mob_size = MOB_SIZE_LARGE
+	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
 	var/time_since_last_roar = 0
 
@@ -55,7 +59,7 @@
 	if(time_since_last_roar <= world.time)
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/say()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
 	if(time_since_last_roar > world.time + 350) //at least give it SOME time
 		return
@@ -84,5 +88,6 @@
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/singularity_act()
 	return
+
 /mob/living/simble_animal/hostile/darkspawn_progenitor/ex_act() //sorry no bombs
 	return
