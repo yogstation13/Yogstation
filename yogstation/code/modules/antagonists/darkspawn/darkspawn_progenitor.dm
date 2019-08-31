@@ -56,6 +56,7 @@
 		roar()
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/say()
+	..()
 	if(time_since_last_roar > world.time + 350) //at least give it SOME time
 		return
 	roar()
