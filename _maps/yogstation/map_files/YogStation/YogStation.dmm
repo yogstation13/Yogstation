@@ -21891,6 +21891,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/bridge)
 "aRn" = (
@@ -43525,6 +43528,7 @@
 	icon_state = "pipe11-3";
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bGD" = (
