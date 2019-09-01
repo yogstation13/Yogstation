@@ -17429,7 +17429,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "aHN" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty,
@@ -22601,8 +22601,11 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "aSR" = (
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
@@ -42233,7 +42236,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bEf" = (
 /obj/machinery/camera{
 	c_tag = "Telecomms Life Support";
@@ -42249,7 +42252,7 @@
 	target_layer = 1
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bEg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
 	dir = 1
@@ -43276,8 +43279,11 @@
 	icon_state = "pipe11-1";
 	dir = 10
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bGh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -43325,7 +43331,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bGm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -43336,7 +43342,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bGn" = (
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/plasteel,
@@ -46647,7 +46653,7 @@
 	piping_layer = 1
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "bOQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53382,7 +53388,7 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "eYN" = (
 /obj/item/clothing/gloves/color/rainbow,
 /obj/item/clothing/head/soft/rainbow,
@@ -53406,7 +53412,7 @@
 	charge = 5e+006
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "fba" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -53784,7 +53790,7 @@
 /area/maintenance/disposal/incinerator)
 "gfH" = (
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "ggH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
@@ -53853,7 +53859,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "gyl" = (
 /obj/machinery/light{
 	dir = 4
@@ -54062,7 +54068,7 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/gloves/color/black,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "hlU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -54297,7 +54303,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "inp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -54445,7 +54451,7 @@
 	target_layer = 1
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "iMi" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -54660,7 +54666,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "jBX" = (
 /turf/closed/wall/r_wall,
 /area/medical/medbay/central)
@@ -55724,7 +55730,7 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "nYC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -56016,7 +56022,7 @@
 	target_temperature = 80
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "phT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -56859,7 +56865,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "sti" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -57615,8 +57621,17 @@
 /area/maintenance/aft)
 "uYt" = (
 /obj/machinery/atmospherics/components/binary/valve/layer1,
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/tcoms";
+	dir = 4;
+	name = "Telecommunications Maintenance APC";
+	pixel_x = 25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "vbD" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -57636,7 +57651,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/tcommsat/computer)
+/area/maintenance/department/tcoms)
 "vfv" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment{
