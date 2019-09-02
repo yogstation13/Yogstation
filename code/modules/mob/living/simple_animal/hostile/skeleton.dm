@@ -83,6 +83,7 @@
 	if(prob(1) && (!istype(src, /mob/living/simple_animal/hostile/skeleton/templar/royal)))
 		var/turf/T = get_turf(src)
 		new /mob/living/simple_animal/hostile/skeleton/templar/royal(T)
+		qdel(src)
 
 /mob/living/simple_animal/hostile/skeleton/templar/royal
 	name = "undead royal templar"
