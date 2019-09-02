@@ -512,6 +512,55 @@
 		qdel(src)
 	..()
 
+/obj/item/twohanded/spear/gold
+	icon_state = "speargold0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "Royal Spear"
+	desc = "A powerful royal item of ancient design. It's wooden structure makes it seem like it would be a one use affair if you decided to throw it."
+	force = 30
+	force_unwielded = 26
+	force_wielded = 36
+	throwforce = 1 //It's weak if not thrown properly
+	throw_speed = 6
+	armour_penetration = 20
+	materials = list(MAT_GOLD=1000, MAT_METAL=1000, MAT_WOOD=500)
+	icon_prefix = "speargold"
+
+
+/obj/item/twohanded/spear/gold/equipped(mob/user, slot)
+	if(istype(user, /mob/living/carbon/human/species/lizard/ashwalker))
+		var/mob/living/carbon/human/species/lizard/ashwalker/A = user
+		A.adjustFireLoss(6)
+		to_chat(user, "<span class='warning'>The [src] emits heat as you touch it, burning your hand and your body which causes you to drop it.</span>")
+		A.dropItemToGround(src)
+		A.Paralyze(5)
+	..()
+
+/obj/item/twohanded/spear/gold/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/turf/T = get_turf(hit_atom)
+	if(isliving(hit_atom))
+		var/mob/living/L = hit_atom
+		L.adjustBruteLoss(89+rand(1,20)) //Gets through armour
+		L.Paralyze(100)
+		break_spear(T)
+	..()
+
+/obj/item/twohanded/spear/gold/proc/break_spear(turf/T)
+	if(src)
+		if(!T)
+			T = get_turf(src)
+		if(T) //make sure we're not in null or something
+			T.visible_message("<span class='warning'>[src] [pick("cracks in two and fades away", "snaps in two and dematerializes")]!</span>")
+			new /obj/effect/temp_visual/gold/spearbreak(T)
+			qdel(src)
+
+/obj/effect/temp_visual/gold/spearbreak
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "goldspearbreak"
+	layer = BELOW_MOB_LAYER
+	pixel_y = -16
+	pixel_x = -16
 
 /obj/item/twohanded/spear/explosive
 	name = "explosive lance"
