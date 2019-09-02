@@ -106,6 +106,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Electrical Maintenance"
 	icon_state = "maint_electrical"
 
+/area/maintenance/department/tcoms
+	name = "Telecommunications Maintenance"
+	icon_state = "tcomsatmaint"
+
 /area/maintenance/department/engine/atmos
 	name = "Atmospherics Maintenance"
 	icon_state = "maint_atmos"
