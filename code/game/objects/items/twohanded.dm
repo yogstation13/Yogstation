@@ -534,7 +534,7 @@
 		A.adjustFireLoss(6)
 		to_chat(user, "<span class='warning'>The [src] emits heat as you touch it, burning your hand and your body which causes you to drop it.</span>")
 		A.dropItemToGround(src)
-		A.Paralyze(5)
+		A.Paralyze(2)
 	..()
 
 /obj/item/twohanded/spear/gold/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
