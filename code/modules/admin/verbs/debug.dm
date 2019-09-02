@@ -344,6 +344,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	else
 		alert("Invalid mob")
 
+/client/proc/cmd_admin_pacmanize(mob/M in GLOB.mob_list)
+	set category = "Fun"
+	set name = "Make pacman"
+
+	if(!SSticker.HasRoundStarted())
+		alert("Wait until the game starts")
+		return
+	if(ishuman(M))
+		INVOKE_ASYNC(M, /mob/living/carbon/human/proc/pacmanize)
+		SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Pacman") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		log_admin("[key_name(usr)] made [key_name(M)] into a pacman at [AREACOORD(M)].")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] made [ADMIN_LOOKUPFLW(M)] into a pacman.</span>")
+	else
+		alert("Invalid mob")
+
 /proc/make_types_fancy(var/list/types)
 	if (ispath(types))
 		types = list(types)
