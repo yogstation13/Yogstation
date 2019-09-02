@@ -78,6 +78,32 @@
 				/obj/item/clothing/head/helmet/chaplain,
 				/obj/item/claymore/weak{name = "holy sword"})
 
+/mob/living/simple_animal/hostile/skeleton/templar/Initialize()
+	. = ..()
+	if(prob(1) && (!istype(src, /mob/living/simple_animal/hostile/skeleton/templar/royal)))
+		var/turf/T = get_turf(src)
+		new /mob/living/simple_animal/hostile/skeleton/templar/royal(T)
+
+/mob/living/simple_animal/hostile/skeleton/templar/royal
+	name = "undead royal templar"
+	desc = "The reanimated remains of a holy royal knight."
+	icon_state = "templar_royal"
+	icon_living = "templar_royal"
+	icon_dead = "templar_royal_dead"
+	maxHealth = 350
+	health = 350
+	speed = 3
+	force_threshold = 13
+	obj_damage = 50
+	melee_damage_lower = 35
+	melee_damage_upper = 40 //Strong boy
+	deathmessage = "collapses into a pile of bones, its gear clanging as it hits the ground! The dark aura around their armour dissipates, leaving a normal chaplain suit of armour in its place."
+	loot = list(/obj/effect/decal/remains/human,
+				/obj/item/clothing/suit/armor/riot/chaplain,
+				/obj/item/clothing/head/helmet/chaplain,
+				/obj/item/twohanded/spear/gold,
+				/obj/item/twohanded/spear/gold)
+
 /mob/living/simple_animal/hostile/skeleton/ice
 	name = "ice skeleton"
 	desc = "A reanimated skeleton protected by a thick sheet of natural ice armor. Looks slow, though."
