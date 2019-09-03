@@ -3,6 +3,8 @@
 #define is_shadow_or_thrall(M) (is_thrall(M) || is_shadow(M))
 
 #define isdarkspawn(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/darkspawn))
+#define isveil(A) (A.mind && A.mind.has_antag_datum(/datum/antagonist/veil))
+#define is_darkspawn_or_veil(A) (A.mind && isdarkspawn(A) || isveil(A))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))
 

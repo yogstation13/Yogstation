@@ -12,4 +12,5 @@
 	key = "a"
 	default_priority = 10
 	space_chance = 40
+	icon = 'yogstation/icons/misc/language.dmi'
 	icon_state = "darkspeak"

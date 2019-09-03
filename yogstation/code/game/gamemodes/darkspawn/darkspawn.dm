@@ -1,7 +1,9 @@
 /datum/game_mode
 	var/list/datum/mind/darkspawn = list()
 	var/list/datum/mind/veils = list()
-	//var/required_succs = 15 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	var/list/umbrages_and_veils = list()
+	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	var/succ_ratio = 1
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
 
 /datum/game_mode/darkspawn
@@ -24,7 +26,7 @@
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/darkbois = max(3, round(num_players()/14))
+	var/darkbois = max(required_enemies, round(num_players()/14))
 	while(darkbois)
 		var/datum/mind/darkboi = pick(antag_candidates)
 		darkspawn += darkboi
@@ -32,11 +34,14 @@
 		darkboi.special_role = "Darkspawn"
 		darkboi.restricted_roles = restricted_jobs
 		darkbois--
+	var/succ_scaling = round(num_players() / 3)
+	required_succs = CLAMP(succ_scaling, 15, 30)
+	succ_ratio = required_succs / 15
 	return TRUE
 
 /datum/game_mode/darkspawn/generate_report()
 	return "Sightings of strange alien creatures have been observed in your area. These aliens appear to be searching for specific patterns of brain activity, with their method for doing so causing victims to lapse into a short coma. \
-	Be wary of dark areas and ensure all lights are kept well-maintained. Investigate all reports of odd or suspicious sightings in maintenance."
+	Be wary of dark areas and ensure all lights are kept well-maintained. Investigate all reports of odd or suspicious sightings in maintenance, and be on the lookout for anyone sympathizing with these aliens, as they may be compromised"
 
 /datum/game_mode/darkspawn/post_setup()
 	for(var/T in darkspawn)
@@ -70,11 +75,11 @@
 			var/datum/mind/darkboi = D
 			text += printplayer(darkboi)
 		text += "<br>"
-		/*if(veils.len)
+		if(veils.len)
 			text += "<br><span class='big'><b>The veils were:</b></span>"
 			for(var/V in veils)
 				var/datum/mind/veil = V
-				text += printplayer(veil)*/
+				text += printplayer(veil)
 	text += "<br>"
 	to_chat(world, text)
 
@@ -88,7 +93,7 @@
 /datum/game_mode/proc/update_darkspawn_icons_added(datum/mind/darkspawn_mind)
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
 	hud.join_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, "darkspawn")
+	set_antag_hud(darkspawn_mind.current, ((isdarkspawn(darkspawn_mind.current)) ? "darkspawn" : "veil"))
 
 /datum/game_mode/proc/update_darkspawn_icons_removed(datum/mind/darkspawn_mind)
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
@@ -104,3 +109,22 @@
 	if(!istype(mind))
 		return FALSE
 	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
+
+/mob/living/proc/add_veil()
+	if(!istype(mind))
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
+		src.visible_message("<span class='warning'>[src] seems to resist an unseen force!</span>")
+		to_chat(src, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
+		A mind brushes against your own. You dream.\n\
+		Of a vast, empty Void in the deep of space.\n\
+		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
+		Eyes filled with stars.</b>\n\
+		<span class='boldwarning'>It needs to die.</span>")
+		return FALSE
+	return mind.add_antag_datum(/datum/antagonist/veil)
+
+/mob/living/proc/remove_veil()
+	if(!istype(mind))
+		return FALSE
+	return mind.remove_antag_datum(/datum/antagonist/veil)
