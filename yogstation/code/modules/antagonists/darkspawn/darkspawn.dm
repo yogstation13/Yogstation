@@ -63,6 +63,10 @@
 	owner.current.grant_language(/datum/language/darkspawn)
 
 /datum/antagonist/darkspawn/remove_innate_effects()
+	if(owner.assigned_role == "Clown")
+		var/mob/living/carbon/human/traitor_mob = owner.current
+		if(traitor_mob && istype(traitor_mob))
+			traitor_mob.dna.add_mutation(CLOWNMUT)
 	adjust_darkspawn_hud(FALSE)
 	owner.current.remove_language(/datum/language/darkspawn)
 
