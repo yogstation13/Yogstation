@@ -41,12 +41,6 @@
 	var/datum/objective/darkspawn/O = new
 	objectives += O
 	owner.announce_objectives()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
 	return ..()
 
 /datum/antagonist/darkspawn/on_removal()
@@ -59,6 +53,12 @@
 	return ..()
 
 /datum/antagonist/darkspawn/apply_innate_effects()
+	if(owner.assigned_role == "Clown")
+		var/mob/living/carbon/human/traitor_mob = owner.current
+		if(traitor_mob && istype(traitor_mob))
+			if(!silent)
+				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+			traitor_mob.dna.remove_mutation(CLOWNMUT)	
 	adjust_darkspawn_hud(TRUE)
 	owner.current.grant_language(/datum/language/darkspawn)
 
