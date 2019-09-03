@@ -1335,23 +1335,6 @@
 			message_admins("<span class='notice'>[key_name(usr)] has made [key_name(H)] into a Cluwne.</span>")
 			return // yogs end
 
-		else if(href_list["makepacman"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["makepacman"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("makepacman"=href_list["makepacman"]))
-
-
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 			if(!check_rights(NONE))
 				return

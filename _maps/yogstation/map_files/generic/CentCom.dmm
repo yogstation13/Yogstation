@@ -9059,7 +9059,10 @@
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "ud" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/poddoor/shutters{
+	id = "nukeop_ready";
+	name = "shuttle dock"
+	},
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
 "ue" = (
@@ -9464,6 +9467,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
+"uL" = (
+/obj/machinery/button/door/indestructible{
+	id = "nukeop_ready";
+	name = "mission launch control";
+	pixel_x = -26;
+	req_access_txt = "151"
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "uN" = (
 /obj/machinery/portable_atmospherics/canister/pluoxium,
 /turf/open/floor/bluespace,
@@ -39239,7 +39255,7 @@ kt
 kt
 kt
 nz
-ll
+uJ
 nz
 kt
 rd
@@ -39754,7 +39770,7 @@ re
 se
 pZ
 pZ
-pZ
+uL
 vu
 wl
 ku
