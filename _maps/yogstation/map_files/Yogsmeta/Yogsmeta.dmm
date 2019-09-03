@@ -10024,6 +10024,9 @@
 	icon_state = "pipe11-3";
 	dir = 4
 	},
+/obj/structure/sign/departments/minsky/engineering/engineering{
+	pixel_y = -32
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "arM" = (
@@ -14246,17 +14249,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"azw" = (
-/obj/structure/sign/map/left{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-left-MS";
-	pixel_y = 32
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "azx" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral{
@@ -14278,11 +14270,6 @@
 /obj/machinery/camera{
 	c_tag = "Cargo Bay - Fore";
 	dir = 2
-	},
-/obj/structure/sign/map/right{
-	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
-	icon_state = "map-right-MS";
-	pixel_y = 32
 	},
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -15251,6 +15238,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/landmark/blobstart,
+/obj/structure/sign/departments/minsky/supply/cargo{
+	pixel_y = 32
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aBd" = (
@@ -18771,6 +18761,9 @@
 	icon_state = "vent_map_on-1";
 	dir = 4
 	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "aHw" = (
@@ -19134,9 +19127,6 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aId" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = 28
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -19144,6 +19134,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
 	dir = 8
+	},
+/obj/structure/sign/departments/minsky/medical/clone/cloning2{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -29811,11 +29804,11 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "baY" = (
-/obj/structure/sign/warning/securearea{
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
@@ -30205,6 +30198,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -33089,6 +33085,9 @@
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/sign/departments/minsky/engineering/atmospherics{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
@@ -39196,10 +39195,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "brv" = (
-/obj/structure/sign/departments/botany{
-	pixel_x = 32;
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -42619,6 +42614,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = -32
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bxN" = (
@@ -43131,6 +43129,9 @@
 	name = "Engineering Security Doors"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/sign/departments/minsky/engineering/engineering{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "byL" = (
@@ -45215,20 +45216,17 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bCI" = (
-/obj/structure/sign/departments/chemistry{
-	pixel_x = -32
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/structure/sign/departments/minsky/medical/chemistry/chemical2{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bCJ" = (
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/structure/sign/departments/science{
-	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 2
@@ -47190,6 +47188,9 @@
 	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 8
+	},
+/obj/structure/sign/departments/minsky/research/research{
+	pixel_y = 32
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science/central)
@@ -52082,12 +52083,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/sign/departments/science{
-	name = "\improper ROBOTICS!";
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
+	},
+/obj/structure/sign/departments/minsky/research/robotics{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -57212,7 +57212,7 @@
 /turf/open/floor/plating,
 /area/medical/medbay/central)
 "bZb" = (
-/obj/structure/sign/departments/medbay/alt,
+/obj/structure/sign/departments/minsky/medical/medical2,
 /turf/closed/wall,
 /area/medical/medbay/central)
 "bZc" = (
@@ -57305,7 +57305,7 @@
 /turf/open/floor/plating,
 /area/science/research)
 "bZk" = (
-/obj/structure/sign/departments/science,
+/obj/structure/sign/departments/minsky/research/research,
 /turf/closed/wall,
 /area/science/research)
 "bZl" = (
@@ -61513,7 +61513,7 @@
 /turf/closed/wall,
 /area/medical/chemistry)
 "cfW" = (
-/obj/structure/sign/departments/chemistry,
+/obj/structure/sign/departments/minsky/medical/chemistry/chemical2,
 /turf/closed/wall,
 /area/medical/chemistry)
 "cfX" = (
@@ -64708,6 +64708,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/supply/hydroponics{
+	pixel_y = 32
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -74812,6 +74815,9 @@
 /area/science/mixing)
 "cEz" = (
 /obj/structure/closet/wardrobe/grey,
+/obj/structure/sign/departments/minsky/research/research{
+	pixel_y = 32
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cEA" = (
@@ -75295,9 +75301,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cHB" = (
-/obj/structure/sign/warning/biohazard{
-	pixel_x = -32
-	},
 /obj/item/storage/box/gloves{
 	pixel_x = 3;
 	pixel_y = 4
@@ -75306,6 +75309,9 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/medical/virology/virology2{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -75621,6 +75627,9 @@
 /area/science/robotics/lab)
 "cIP" = (
 /obj/effect/spawner/structure/window,
+/obj/structure/sign/departments/minsky/research/robotics{
+	pixel_y = -32
+	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cIQ" = (
@@ -77720,7 +77729,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cRu" = (
-/obj/structure/sign/warning/biohazard,
+/obj/structure/sign/departments/minsky/research/xenobiology,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
 "cRw" = (
@@ -81949,6 +81958,10 @@
 /obj/structure/sign/directions/evac,
 /turf/closed/wall,
 /area/maintenance/department/science/central)
+"eoq" = (
+/obj/structure/sign/departments/minsky/research/xenobiology,
+/turf/closed/wall,
+/area/science/xenobiology)
 "eqG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -82049,6 +82062,25 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"gZY" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/minsky/research/research{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
+"her" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "hfn" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82130,6 +82162,15 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iZd" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/departments/minsky/supply/mining{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "jeV" = (
 /obj/machinery/conveyor/inverted{
 	dir = 10;
@@ -82377,6 +82418,10 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"mNI" = (
+/obj/structure/sign/departments/minsky/supply/hydroponics,
+/turf/closed/wall,
+/area/hallway/primary/central)
 "mWg" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -82616,6 +82661,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
+"rpI" = (
+/obj/structure/sign/departments/minsky/research/genetics,
+/turf/closed/wall,
+/area/medical/paramedic)
 "rrB" = (
 /turf/closed/wall,
 /area/vacant_room/commissary)
@@ -82677,6 +82726,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
+"sAy" = (
+/obj/structure/sign/departments/minsky/supply/cargo,
+/turf/closed/wall,
+/area/quartermaster/office)
 "sGh" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -82818,6 +82871,10 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard/secondary)
+"uZK" = (
+/obj/structure/sign/departments/minsky/supply/mining,
+/turf/closed/wall,
+/area/quartermaster/miningoffice)
 "vgd" = (
 /obj/item/taperecorder,
 /obj/item/camera,
@@ -82851,6 +82908,10 @@
 	dir = 8
 	},
 /area/engine/storage_shared)
+"vEI" = (
+/obj/structure/sign/departments/minsky/supply/cargo,
+/turf/closed/wall,
+/area/quartermaster/warehouse)
 "vKx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -82971,6 +83032,10 @@
 	},
 /turf/open/floor/plating,
 /area/medical/surgery)
+"xuZ" = (
+/obj/structure/sign/departments/minsky/research/research,
+/turf/closed/wall/r_wall,
+/area/science/lab)
 "xwG" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Library Maintenance";
@@ -100880,7 +100945,7 @@ auI
 aop
 dnk
 dnk
-doJ
+iZd
 ayj
 azp
 aAI
@@ -100888,8 +100953,8 @@ aBX
 aDj
 aEz
 aFJ
-ayj
-azw
+uZK
+aYM
 bLL
 aMu
 aMv
@@ -102194,7 +102259,7 @@ aPL
 bdt
 biK
 bkn
-bat
+sAy
 aXW
 bqc
 bcq
@@ -102680,7 +102745,7 @@ awb
 auL
 avS
 awU
-ayl
+vEI
 ayl
 ayl
 ayl
@@ -105072,7 +105137,7 @@ crn
 bMP
 cBX
 cxU
-bUU
+her
 cxU
 cxU
 cGL
@@ -108921,7 +108986,7 @@ azi
 azi
 azi
 azi
-azi
+rpI
 cqQ
 ctA
 ctA
@@ -110966,7 +111031,7 @@ cge
 cgd
 cge
 cgd
-cgd
+xuZ
 cpb
 cpb
 cqv
@@ -113563,7 +113628,7 @@ cJO
 cKI
 bVi
 cQR
-cRa
+eoq
 cSd
 cRe
 cRe
@@ -115834,7 +115899,7 @@ bOP
 bOP
 bOP
 bKe
-bSS
+mNI
 bUd
 bVq
 bVq
@@ -117914,7 +117979,7 @@ dwL
 bGO
 bxH
 bxH
-bxH
+gZY
 bJE
 dzR
 cqU
