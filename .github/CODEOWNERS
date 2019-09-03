@@ -9,28 +9,20 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Altoids
-
-/yogstation/code/modules/scripting/ @Altoids1
+#Ktlwjec
+/_maps/map_files/ @Ktlwjec
 
 #AsV9
 
 /code/__DEFINES/MC.dm @AsV9
-/code/__DEFINES/tick.dm @AsV9
 /code/controllers/master.dm @AsV9
 /yogstation/code/datums/ruins/lavaland.dm @AsV9
-/SQL/database_changelog.txt @AsV9
-/code/controllers/admin.dm @AsV9
-/code/controllers/failsafe.dm @AsV9
-/code/controllers/subsystem.dm @AsV9
-/code/controllers/subsystem/timer.dm @AsV9
+
+#Altoids
+
+/yogstation/code/modules/scripting/ @Altoids1
 
 #Identification
 
 /icons/ @Ihonkification
 /yogstation/icons/ @Ihonkification
-
-#Ktlwjec
-/_maps/map_files/ @Ktlwjec
-
-#Multiple Owners

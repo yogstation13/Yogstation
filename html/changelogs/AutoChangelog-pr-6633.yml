@@ -1,4 +1,0 @@
-author: " Dennok"
-delete-after: true 
-changes: 
-  - bugfix: "Air on tiles will no longer get reset when tiles are changed in certain ways"
