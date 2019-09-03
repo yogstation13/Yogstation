@@ -1679,6 +1679,12 @@
 	},
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"nB" = (
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/mine/laborcamp)
 "Uq" = (
 /obj/docking_port/stationary{
 	area_type = /area/lavaland/surface/outdoors;
@@ -7335,7 +7341,7 @@ az
 az
 az
 az
-az
+nB
 aq
 cb
 bh
