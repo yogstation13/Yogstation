@@ -9,6 +9,7 @@
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
+	antag_moodlet = /datum/mood_event/sling
 
 	//Psi variables
 	var/psi = 100 //Psi is the resource used for darkspawn powers
@@ -40,6 +41,7 @@
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
+	O.update_explanation_text()
 	owner.announce_objectives()
 	return ..()
 
@@ -58,7 +60,7 @@
 		if(traitor_mob && istype(traitor_mob))
 			if(!silent)
 				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)	
+			traitor_mob.dna.remove_mutation(CLOWNMUT)
 	adjust_darkspawn_hud(TRUE)
 	owner.current.grant_language(/datum/language/darkspawn)
 
@@ -193,6 +195,9 @@
 
 /datum/objective/darkspawn
 	explanation_text = "Become lucid and perform the Sacrament."
+
+/datum/objective/darkspawn/update_explanation_text()
+	explanation_text = "Become lucid and perform the Sacrament. You will need to devour [SSticker.mode.required_succs] different people's wills and purchase all passive upgrades to do so."
 
 /datum/objective/darkspawn/check_completion()
 	return (SSticker.mode.sacrament_done)

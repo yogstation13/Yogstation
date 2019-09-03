@@ -103,13 +103,13 @@
 	. = ..()
 
 /obj/item/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
-	if(isliving(target) && target.lying)
-		return BULLET_ACT_FORCE_PIERCE
 	if(blocked >= 100)
 		return
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
+		if(L.lying)
+			return BULLET_ACT_FORCE_PIERCE
 		if(!iscyborg(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)

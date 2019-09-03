@@ -2,7 +2,7 @@
 /datum/action/innate/darkspawn/sacrament
 	name = "Sacrament"
 	id = "sacrament"
-	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 20 different people for this to work, and purchased all passive upgrades."
+	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
 	button_icon_state = "sacrament"
 	check_flags = AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline
@@ -12,8 +12,8 @@
 	if(SSticker.mode.sacrament_done)
 		darkspawn.sacrament()
 		return
-	if(!darkspawn || darkspawn.lucidity_drained < 20)
-		to_chat(usr, "<span class='warning'>You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / 20)</span>")
+	if(!darkspawn || darkspawn.lucidity_drained < SSticker.mode.required_succs)
+		to_chat(usr, "<span class='warning'>You do not have enough unique lucidity! ([darkspawn.lucidity_drained] / [SSticker.mode.required_succs])</span>")
 		return
 	var/list/unpurchased_upgrades = list()
 	for(var/V in subtypesof(/datum/darkspawn_upgrade))

@@ -35,7 +35,7 @@
 	if(!linked_ability) //how did you even get this?
 		qdel(src)
 		return
-	if(!L.mind || isdarkspawn(L))
+	if(!L.mind || is_darkspawn_or_veil(L))
 		to_chat(user, "<span class='warning'>You cannot drain allies or the mindless.</span>")
 		return
 	if(!L.health || L.stat)
