@@ -33,3 +33,6 @@
 #define UNHUSK_DAMAGE_THRESHOLD 50
 ///Amount of synthflesh required to unhusk someone
 #define SYNTHFLESH_UNHUSK_AMOUNT 100
+//used by chem masters and pill presses
+#define PILL_STYLE_COUNT 22 //Update this if you add more pill icons or you die
+#define RANDOM_PILL_STYLE 22 //Dont change this one though
