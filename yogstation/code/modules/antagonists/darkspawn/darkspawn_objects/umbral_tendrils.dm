@@ -103,6 +103,8 @@
 	. = ..()
 
 /obj/item/projectile/umbral_tendrils/on_hit(atom/movable/target, blocked = FALSE)
+	if(isliving(target) && target.lying)
+		return BULLET_ACT_FORCE_PIERCE
 	if(blocked >= 100)
 		return
 	. = TRUE
@@ -113,13 +115,13 @@
 			if(!twinned)
 				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target], knocking them off their feet!</span>", \
 				"<span class='userdanger'>You're knocked off your feet!</span>")
-				L.Paralyze(20)
+				L.Paralyze(10)
 				L.Knockdown(40)
 			else
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target] and drag them across the ground!</span>", \
 				"<span class='userdanger'>You're suddenly dragged across the floor!</span>")
-				L.Paralyze(30) //these can't hit people who are already on the ground but they can be spammed to all shit
+				L.Paralyze(20) //these can't hit people who are already on the ground but they can be spammed to all shit
 				L.Knockdown(60)
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
