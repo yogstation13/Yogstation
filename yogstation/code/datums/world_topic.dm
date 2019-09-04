@@ -99,7 +99,7 @@
 		else
 			return "That ckey is not associated to this discord account. If someone has used your ID, please inform an administrator"
 	else
-		return "Failure (Double check your ckey)"
+		return "Failure! Have you initiated the linking process on the server (Link Discord Account in the Admin tab)? If you did, double check your ckey!"
 
 /datum/world_topic/unlink
 	keyword = "unlink"

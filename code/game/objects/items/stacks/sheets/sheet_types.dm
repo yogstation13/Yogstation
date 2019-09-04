@@ -431,9 +431,12 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 			to_chat(user, "<span class='notice'>You stamp the cardboard! It's a clown box! Honk!</span>")
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
+				
+	else if(I.is_hot())
+		fire_act(I.is_hot())
+		
 	else
 		. = ..()
-
 
 /*
  * Runed Metal
