@@ -19,14 +19,14 @@
 
 	var/obj/item/card/id/W = H.wear_id
 	W.registered_name = H.real_name
-	W.update_label(W.registered_name, W.assignment)
-	
+	W.update_label()
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets ERTs buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander
 	name = "ERT Commander"
 
-	id = /obj/item/card/id/ert
+	id = /obj/item/card/id/centcom
 	suit = /obj/item/clothing/suit/space/hardsuit/ert
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	back = /obj/item/storage/backpack/ert
@@ -187,13 +187,12 @@
 	pda.update_label()
 
 	var/obj/item/card/id/W = H.wear_id
-	W.icon_state = "centcom"
 	W.access = get_centcom_access("CentCom Official")
 	W.access += ACCESS_WEAPONS
 	W.assignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
-	
+
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 
 /datum/outfit/ert/commander/inquisitor
