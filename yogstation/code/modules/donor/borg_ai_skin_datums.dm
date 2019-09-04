@@ -234,6 +234,12 @@
 	owner = "boodaliboo"
 	module_locked = "Security"
 
+/datum/borg_skin/polis
+	name = "Police Borg"
+	icon_state = "policeborg"
+	owner = null
+	module_locked = "Security"
+
 
 
 //Begin AI skins://
