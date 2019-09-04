@@ -37,7 +37,7 @@
 	Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 	Eyes filled with stars.\n\
 	You feel a vast consciousness slowly consume your own and the veil falls away.\n\
-	Serve the umbrages above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
+	Serve the darkspawn above all else. Your former allegiances are now forfeit. Their goal is yours, and yours is theirs.</b>")
 	to_chat(owner, "<i>Use <b>.a</b> before your messages to speak over the Mindlink. This only works across your current z-level.</i>")
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
