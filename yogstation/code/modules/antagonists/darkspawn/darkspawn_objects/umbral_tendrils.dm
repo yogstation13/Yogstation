@@ -45,10 +45,15 @@
 	sleep(1)
 	if(twin && twinned_attack && user.Adjacent(target))
 		twin.attack(target, user, FALSE)
+	if(istype(target, /obj/structure/glowshroom)
+		visible_message("[target] is completely shredded!")
+		qdel(target)
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	if(!darkspawn)
 		return
+	if(!target)
+		return //if the target got destroyed (glowshrooms)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
 			if(isopenturf(target))
