@@ -824,38 +824,3 @@
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
-
-/obj/item/clothing/under/lampskirt
-	name = "lamp skirt"
-	desc = "A white suit, suitable for an excellent host."
-	icon_state = "lampskirt_male"
-	item_state = "lampskirt_male"
-	item_color = "lampskirt_male"
-	body_parts_covered = CHEST|GROIN|LEGS|FEET
-	can_adjust = FALSE
-	var/brightness_on = 1 //luminosity when the light is on
-	var/on = FALSE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light)
-
-/obj/item/clothing/under/lampskirt/attack_self(mob/user)
-	on = !on
-	icon_state = "[initial(icon_state)][on ? "-light":""]"
-	item_state = icon_state
-	user.update_inv_w_uniform() //So the mob overlay updates
-
-	if(on)
-		set_light(brightness_on)
-	else
-		set_light(0)
-
-	for(var/X in actions)
-		var/datum/action/A=X
-		A.UpdateButtonIcon()
-
-/obj/item/clothing/under/lampskirt/female
-	icon_state = "lampskirt_female"
-	item_state = "lampskirt_female"
-	item_color = "lampskirt_female"
-	body_parts_covered = CHEST|GROIN|LEGS|FEET
-	can_adjust = FALSE
-	fitted = FEMALE_UNIFORM_TOP
