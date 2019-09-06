@@ -249,7 +249,7 @@ GLOBAL_VAR(restart_counter)
 			TgsEndProcess()
 
 	log_world("World rebooted at [time_stamp()]")
-	call("Hookerino.dll", "BHook_Unload")()
+	world.log << call("Hookerino.dll", "BHOOK_Unload")()
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
