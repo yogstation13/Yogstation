@@ -34516,14 +34516,11 @@
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bpG" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Genetics APC";
-	areastring = "/area/medical/genetics";
-	pixel_y = 24
-	},
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "2-4"
+	},
+/obj/machinery/vending/wallmonkey{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -34537,8 +34534,6 @@
 	name = "Genetics Requests Console";
 	pixel_y = 30
 	},
-/obj/item/storage/pill_bottle/mutadone,
-/obj/item/storage/pill_bottle/mannitol,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bpI" = (
@@ -34550,14 +34545,23 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bpJ" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/airalarm{
-	pixel_y = 23
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Genetics APC";
+	areastring = "/area/medical/genetics";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -35262,7 +35266,6 @@
 /area/medical/genetics)
 "bra" = (
 /obj/structure/table/glass,
-/obj/item/storage/box/rxglasses,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "brb" = (
@@ -36264,14 +36267,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"bsK" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "bsL" = (
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -100217,7 +100212,7 @@ bjK
 bon
 bpH
 bra
-bsK
+bra
 bpE
 bpE
 bpE
