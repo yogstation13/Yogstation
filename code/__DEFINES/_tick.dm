@@ -1,4 +1,7 @@
-#define TICK_LIMIT_RUNNING 80
+#define TICK_LIMIT_SENDMAPS_HEADROOM 3 //Percentage of tick to leave unused in addition to byond internal tick usage
+#define TICK_SENDMAPS_USAGE ((get_sendmaps_time_raw() / world.tick_lag) * 100) //Percentage of tick used for client updates
+
+#define TICK_LIMIT_RUNNING (100 - TICK_LIMIT_SENDMAPS_HEADROOM - TICK_SENDMAPS_USAGE)
 #define TICK_LIMIT_TO_RUN 70
 #define TICK_LIMIT_MC 70
 #define TICK_LIMIT_MC_INIT_DEFAULT 98
