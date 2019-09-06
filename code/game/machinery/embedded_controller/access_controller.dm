@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/idSelf
 
 /obj/machinery/doorButtons/attackby(obj/O, mob/user)
@@ -35,7 +35,7 @@
 	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
 
 /obj/machinery/doorButtons/proc/removeMe()
-
+	return
 
 /obj/machinery/doorButtons/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
