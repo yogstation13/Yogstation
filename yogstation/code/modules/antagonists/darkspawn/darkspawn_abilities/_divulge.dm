@@ -17,9 +17,9 @@
 	if(alert(user, "You are ready to divulge. Are you sure?", name, "Yes", "No") == "No")
 		return
 	in_use = TRUE
-	if(is_type(user.dna.species, /datum/species/pod))
+	if(istype(user.dna.species, /datum/species/pod))
 		to_chat(user, "<span class='notice>Your disguise is stabilized by the divulgance...</span>")
-		user.reagents.add_reagent(/datum/reagent/medicine/salbutemol,20)
+		user.reagents.add_reagent(/datum/reagent/medicine/salbutamol,20)
 	user.visible_message("<b>[user]</b> flaps their wings.", "<span class='velvet'>You begin creating a psychic barrier around yourself...</span>")
 	if(!do_after(user, 30, target = user))
 		in_use = FALSE
