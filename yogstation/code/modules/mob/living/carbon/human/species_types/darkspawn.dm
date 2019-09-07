@@ -39,7 +39,7 @@
 			H.adjustBruteLoss(-healing_amount)
 			H.adjustFireLoss(-healing_amount * 0.5)
 			H.adjustToxLoss(-healing_amount)
-			H.adjustStaminaLoss(-healing_amount * 2)
+			H.adjustStaminaLoss(-healing_amount * 20)
 			H.AdjustStun(-healing_amount * 4)
 			H.AdjustKnockdown(-healing_amount * 4)
 			H.AdjustUnconscious(-healing_amount * 4)
