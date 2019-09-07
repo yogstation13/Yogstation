@@ -48,8 +48,7 @@ GLOBAL_VAR(restart_counter)
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
-	world.log << call("hookerino.dll","BHOOK_Init")()
-	world.log << call("hookerino.dll", "BHOOK_RunLua")("dofile'boom.lua'")
+	maptick_initialize()
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -249,7 +248,7 @@ GLOBAL_VAR(restart_counter)
 			TgsEndProcess()
 
 	log_world("World rebooted at [time_stamp()]")
-	world.log << call("Hookerino.dll", "BHOOK_Unload")()
+	maptick_shutdown()
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
