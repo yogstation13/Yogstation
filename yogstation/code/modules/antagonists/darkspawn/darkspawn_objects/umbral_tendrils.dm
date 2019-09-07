@@ -46,7 +46,7 @@
 	if(twin && twinned_attack && user.Adjacent(target))
 		twin.attack(target, user, FALSE)
 	if(istype(target, /obj/structure/glowshroom))
-		visible_message("[src] tears [target] to shreds!")
+		visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
 		qdel(target)
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
