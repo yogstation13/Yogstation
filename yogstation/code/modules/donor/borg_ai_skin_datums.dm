@@ -240,6 +240,11 @@
 	owner = null
 	module_locked = "Security"
 
+/datum/borg_skin/klein
+	name = "Dr Klein"
+	icon_state = "dr_klein"
+	owner = null
+	module_locked = "Standard"
 
 
 //Begin AI skins://
