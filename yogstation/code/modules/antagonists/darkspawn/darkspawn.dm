@@ -37,7 +37,7 @@
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
 	add_ability("divulge")
-	addtimer(CALLBACK(src, .proc/force_divulge), 4800) //this won't trigger if they've divulged when the proc runs
+	addtimer(CALLBACK(src, .proc/begin_force_divulge), 4800) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
@@ -117,7 +117,7 @@
 		.["Give Upgrade"] = CALLBACK(src, .proc/admin_give_upgrade)
 		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, .proc/admin_edit_psi)
 		.["[lucidity] Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity)
-		.["[lucidity_drained] / 20 Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
+		.["[lucidity_drained] / [SSticker.mode.required_succs] Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
 		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, .proc/sacrament)
 
 /datum/antagonist/darkspawn/proc/admin_give_ability(mob/admin)
@@ -189,7 +189,7 @@
 	to_chat(owner.current, "<span class='velvet bold big'>You are a darkspawn!</span>")
 	to_chat(owner.current, "<i>Append :a or .a before your message to silently speak with any other darkspawn.</i>")
 	to_chat(owner.current, "<i>When you're ready, retreat to a hidden location and Divulge to shed your human skin.</i>")
-	to_chat(owner.current, "<i>If you do not do this within ten minutes, this will happen involuntarily. Prepare quickly.</i>")
+	to_chat(owner.current, "<span class='boldwarning'>If you do not do this within ten minutes, this will happen involuntarily. Prepare quickly.</span>")
 	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")
 	owner.current.playsound_local(get_turf(owner.current), 'yogstation/sound/ambience/antag/darkspawn.ogg', 50, FALSE)
 
