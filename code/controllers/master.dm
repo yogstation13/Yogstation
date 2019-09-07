@@ -14,9 +14,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 //Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
 //GOT IT MEMORIZED?
 
-/proc/get_sendmaps_time_raw()
-	return 0.2 * world.tick_lag //Allows 80% of current tick to be used by subystems. This proc gets overwritten by Lunar so in theory it should never run.
-
 /datum/controller/master
 	name = "Master"
 
