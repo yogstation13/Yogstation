@@ -1,4 +1,4 @@
-#define TICK_LIMIT_SENDMAPS_HEADROOM 3 //Percentage of tick to leave unused in addition to byond internal tick usage
+#define TICK_LIMIT_SENDMAPS_HEADROOM 10 //Percentage of tick to leave unused in addition to byond internal tick usage
 
 #define TICK_LIMIT_RUNNING (100 - TICK_LIMIT_SENDMAPS_HEADROOM - MAPTICK_LAST_INTERNAL_TICK_USAGE)
 #define TICK_LIMIT_TO_RUN 70
