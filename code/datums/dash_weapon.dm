@@ -32,6 +32,8 @@
 	if(!IsAvailable())
 		return
 	var/turf/T = get_turf(target)
+	if(get_area(T).noteleport || get_area(user).noteleport)
+		return
 	if(target in view(user.client.view, get_turf(user)))
 		var/obj/spot1 = new phaseout(get_turf(user), user.dir)
 		user.forceMove(T)
