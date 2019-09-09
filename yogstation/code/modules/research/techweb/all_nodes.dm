@@ -111,7 +111,7 @@
 	export_price = 2750
 	prereq_ids = list("spacepod_storage", "high_efficiency")
 	design_ids = list("podarmor_industiral", "podarmor_sec", "podarmor_gold")
-	
+
 /datum/techweb_node/syndicate_surgery
 	id = "syndicate_surgery"
 	display_name = "Syndicate Surgery"
@@ -120,3 +120,6 @@
 	design_ids = list("surgery_brainwashing")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7000)
 	export_price = 7000
+
+/datum/techweb_node/nanite_harmonic
+	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites","adrenaline_nanites","nanite_heart")

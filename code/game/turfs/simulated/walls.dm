@@ -171,7 +171,7 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//the istype cascade has been spread among various procs for easy overriding
-	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T) || try_destroy(W, user, T))
+	if(try_clean(W, user, T) || try_wallmount(W, user, T) || try_decon(W, user, T))
 		return
 
 	return ..()
@@ -205,6 +205,9 @@
 	else if(istype(W, /obj/item/poster))
 		place_poster(W,user)
 		return TRUE
+	//Borg Poster STuff
+	else if(istype(W, /obj/item/wantedposterposter))
+		place_borg_poster(W, user)
 
 	return FALSE
 
@@ -220,18 +223,6 @@
 				dismantle_wall()
 			return TRUE
 
-	return FALSE
-
-
-/turf/closed/wall/proc/try_destroy(obj/item/I, mob/user, turf/T)
-	if(istype(I, /obj/item/pickaxe/drill/jackhammer))
-		if(!iswallturf(src))
-			return TRUE
-		if(user.loc == T)
-			I.play_tool_sound(src)
-			dismantle_wall()
-			visible_message("<span class='warning'>[user] smashes through [src] with [I]!</span>", "<span class='italics'>You hear the grinding of metal.</span>")
-			return TRUE
 	return FALSE
 
 /turf/closed/wall/singularity_pull(S, current_size)
