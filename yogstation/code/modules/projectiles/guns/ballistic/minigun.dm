@@ -9,7 +9,6 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
