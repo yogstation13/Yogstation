@@ -162,6 +162,8 @@
 	. = ..()
 
 /obj/item/gun/ballistic/minigunosprey/onMouseDown(object, location, params, mob/mob)
+	if(object == ammo_pack)
+		return
 	timeleftrev = revtime + world.time
 	if(istype(mob))
 		current_user = mob
