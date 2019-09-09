@@ -24,4 +24,3 @@
 	verb_ask = "chitters inquisitively"
 	verb_exclaim = "chitters loudly"
 	verb_yell = "chitters loudly"
-
