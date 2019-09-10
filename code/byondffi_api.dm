@@ -38,6 +38,7 @@ var/byondffi_initialized = FALSE
 	world.log << result
 	if(findtext(result, "ERROR"))
 		return FALSE
+	byondffi_initialized = TRUE
 	return TRUE
 
 /proc/byondffi_shutdown()
