@@ -1,7 +1,6 @@
 /datum/game_mode
 	var/list/datum/mind/darkspawn = list()
 	var/list/datum/mind/veils = list()
-	var/list/umbrages_and_veils = list()
 	var/required_succs = 20 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
 	var/succ_ratio = 1
 	var/sacrament_done = FALSE //If at least one darkspawn has finished the Sacrament
