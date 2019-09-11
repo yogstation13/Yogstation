@@ -37,7 +37,7 @@
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
 	add_ability("divulge")
-	addtimer(CALLBACK(src, .proc/begin_force_divulge), 4800) //this won't trigger if they've divulged when the proc runs
+	addtimer(CALLBACK(src, .proc/begin_force_divulge), 7800) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
