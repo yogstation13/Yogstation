@@ -1,4 +1,4 @@
-//Created during Divulge. Has a regenerating health pool and protects the umbrage from harm.
+//Created during Divulge. Has a regenerating health pool and protects the darkspawn from harm.
 /obj/structure/psionic_barrier
 	name = "psionic barrier"
 	desc = "Shimmering violet particles dancing in the air. They're impossible to move past."
