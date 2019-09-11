@@ -1,5 +1,5 @@
 //Used to access the Psi Web to buy abilities.
-//Accesses the Psi Web, which umbrages use to purchase abilities using lucidity. Lucidity is drained from people using the Devour Will ability.
+//Accesses the Psi Web, which darkspawn use to purchase abilities using lucidity. Lucidity is drained from people using the Devour Will ability.
 /datum/action/innate/darkspawn/psi_web
 	name = "Psi Web"
 	id = "psi_web"
