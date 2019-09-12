@@ -538,9 +538,6 @@
 	M.adjustToxLoss(oxycalc/2.5, 0)
 	if(prob(current_cycle) && M.losebreath)
 		M.losebreath--
-	//yogs - start
-	M.silent = max(M.silent, 5)
-	//yogs - end
 	..()
 	return TRUE
 
