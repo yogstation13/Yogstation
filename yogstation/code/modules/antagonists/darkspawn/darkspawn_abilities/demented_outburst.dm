@@ -39,11 +39,13 @@
 			var/mob/living/carbon/C = AM
 			if(distance <= 1) //you done fucked up now
 				C.visible_message("<span class='warning'>The blast sends [C] flying!</span>", "<span class='userdanger'>The force sends you flying!</span>")
+				C.Paralyze(25)
 				C.Knockdown(50)
 				C.adjustBruteLoss(10)
 				C.soundbang_act(1, 5, 15, 5)
 			else if(distance <= 3)
 				C.visible_message("<span class='warning'>The blast knocks [C] off their feet!</span>", "<span class='userdanger'>The force bowls you over!</span>")
+				C.Paralyze(15)
 				C.Knockdown(30)
 				C.soundbang_act(1, 3, 5, 0)
 	return TRUE
