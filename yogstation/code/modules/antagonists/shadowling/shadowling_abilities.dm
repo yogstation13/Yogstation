@@ -167,8 +167,8 @@
 				LO.emp_act(2)
 			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		if(!istype(G, obj/structure/glowshroom/shadowshroom)
-			var/obj/structure/glowshroom/shadowshroom/S = new obj/structure/glowshroom/shadowshroom(getturf(G)) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
+		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
 			S.generation = G.generation
 			G.visible_message("<span class='warning'>[G] suddenly turns dark!</span>")
 			qdel(G)
