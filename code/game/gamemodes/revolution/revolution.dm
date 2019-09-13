@@ -213,9 +213,12 @@
 	end_when_heads_dead = TRUE
 	var/endtime = null
 	var/fuckingdone = FALSE
+	var/turkishcheckmate = null //Checkmate, soviets
+	var/dontrepeat = FALSE
 
 /datum/game_mode/revolution/timed/pre_setup()
 	endtime = world.time + 40 MINUTES
+	turkishcheckmate = world.time + 30 MINUTES
 	return ..()
 
 /datum/game_mode/revolution/timed/process()
@@ -228,3 +231,6 @@
 					N.timer_set = 360 //6 minutes, time's running out
 					N.set_safety()
 					N.set_active()
+		if (world.time > turkishcheckmate && !dontrepeat)
+			dontrepeat = TRUE
+			priority_announce("Revolutionary activities have been detected on [station_name()]! Resolve these issues before the termination of the station is issued. Time till termination: 10 minutes.")
