@@ -166,13 +166,12 @@
 			if(prob(10))
 				LO.emp_act(2)
 			continue
-		if(istype(LO, /obj/structure/glowshroom))
-			LO.visible_message("<span class='warning'>[LO] withers away!</span>")
-			qdel(LO)
-			continue
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		G.visible_message("<span class='warning'>[G] withers away!</span>")
-		qdel(G)
+		if(!istype(G, obj/structure/glowshroom/shadowshroom)
+			var/obj/structure/glowshroom/shadowshroom/S = new obj/structure/glowshroom/shadowshroom(getturf(G)) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
+			S.generation = G.generation
+			G.visible_message("<span class='warning'>[G] suddenly turns dark!</span>")
+			qdel(G)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
