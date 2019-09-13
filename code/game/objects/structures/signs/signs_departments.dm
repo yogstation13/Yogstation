@@ -99,7 +99,7 @@
 	icon_state = "minskyengi"
 
 /obj/structure/sign/departments/minsky/engineering/telecommmunications
-	name = "Engineering Department"
+	name = "Telecommunications Department"
 	desc = "A sign labeling telecommunications division of the station. 'Nuff said."
 	icon_state = "minskytcom"
 
@@ -129,22 +129,22 @@
 	icon_state = "minskycloneb"
 
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical1
-	name = "Chemicals Division"
+	name = "Chemistry Division"
 	desc = "A sign labeling the chemicals division of the station. Similar to the kitchens, just don't lick the spoon."
 	icon_state = "minskychem"
 
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical2
-	name = "Chemicals Division"
+	name = "Chemistry Division"
 	desc = "A sign labeling the chemicals division of the station. Similar to the kitchens, just don't lick the spoon."
 	icon_state = "minskychemb"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology1
-	name = "Chemicals Division"
+	name = "Virology Division"
 	desc = "A sign labeling the virology division of the station. Free hugs!!!."
 	icon_state = "minskyviro"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology2
-	name = "Chemicals Division"
+	name = "Virology Division"
 	desc = "A sign labeling the virology division of the station. Free hugs!!!."
 	icon_state = "minskyvirob"
 
