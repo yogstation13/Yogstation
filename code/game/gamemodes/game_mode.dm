@@ -554,7 +554,7 @@
 	if(rev)
 		rev.remove_revolutionary(TRUE)
 
-/datum/game_mode/proc/generate_station_goals()
+/datum/game_mode/proc/generate_station_goals() //YOGS: mirrored in the yogstation gamemode file, changes here won't do anything
 	var/list/possible = list()
 	for(var/T in subtypesof(/datum/station_goal))
 		var/datum/station_goal/G = T
