@@ -16,8 +16,8 @@
 /obj/item/dark_bead/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
-	animate(src, alpha = 30, time = 30)
-	QDEL_IN(src, 30)
+	animate(src, alpha = 50, time = 50)
+	QDEL_IN(src, 50)
 
 /obj/item/dark_bead/Destroy(force)
 	if(isliving(loc) && !eating && !force)
