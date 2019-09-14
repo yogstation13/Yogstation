@@ -53,6 +53,7 @@
 		<span class='danger'>You begin siphoning [L]'s mental energy...</span>")
 		to_chat(L, "<span class='userdanger'><i>AAAAAAAAAAAAAA-</i></span>")
 		L.Stun(30)
+		L.silent += 4
 		playsound(L, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
 		if(!do_mob(user, L, 30))
 			user.Knockdown(30)
