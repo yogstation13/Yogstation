@@ -1,4 +1,0 @@
-author: "   Identification"
-delete-after: true 
-changes: 
-  - bugfix: "removes a hairstyle option which had shown as an error. no sprite exists."
