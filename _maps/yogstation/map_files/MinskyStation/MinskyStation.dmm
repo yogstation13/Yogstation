@@ -21358,9 +21358,6 @@
 	layer = 4.1
 	},
 /obj/structure/table,
-/obj/item/deodorant,
-/obj/item/deodorant,
-/obj/item/deodorant,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/toilet)
 "aRa" = (
