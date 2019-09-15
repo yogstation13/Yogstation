@@ -485,12 +485,12 @@
 	crate_name = "energy gun crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
-/datum/supply_pack/security/armory/exileimp
+/*/datum/supply_pack/security/armory/exileimp
 	name = "Exile Implants Crate"
 	desc = "Contains five Exile implants. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/storage/box/exileimp)
-	crate_name = "exile implant crate"
+	crate_name = "exile implant crate"*/
 
 /datum/supply_pack/security/armory/fire
 	name = "Incendiary Weapons Crate"
