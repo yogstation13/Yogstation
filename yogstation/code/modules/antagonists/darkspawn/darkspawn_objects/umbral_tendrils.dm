@@ -36,6 +36,7 @@
 		to_chat(user, "<span class='velvet'><b>Help intent:</b> Click on an open tile within seven tiles to jump to it for 10 Psi.</span>")
 		to_chat(user, "<span class='velvet'><b>Disarm intent:</b> Click on an airlock to force it open for 15 Psi (or 30 if it's bolted.)</span>")
 		to_chat(user, "<span class='velvet'><b>Harm intent:</b> Fire a projectile that travels up to five tiles, knocking down[twin ? " and pulling forwards" : ""] the first creature struck.</span>")
+		to_chat(user, "<span class='velvet'>The tendrils will break any lights hit in melee,</span>")
 		to_chat(user, "<span class='velvet'>The tendrils will shatter light fixtures instantly, as opposed to in several attacks.</span>")
 		to_chat(user, "<span class='velvet'>Also functions to pry open depowered airlocks on any intent other than harm.</span>")
 
@@ -52,13 +53,38 @@
 	if(istype(target, /obj/structure/glowshroom))
 		visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
 		qdel(target)
-		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(isethereal(target))
+			target.emp_act(EMP_LIGHT)
+		for(var/obj/item/O in target)
+			if(O.light_range && O.light_power)
+				disintegrate(O)
+			if(L.pulling && L.pulling.light_range && isitem(L.pulling))
+				disintegrate(L.pulling)
+	else if(isitem(target))
+		var/obj/item/I = target
+		if(I.light_range && I.light_power)
+			disintegrate(I)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
 			if(isopenturf(target))
 				tendril_jump(user, target)
 		if(INTENT_HARM)
 			tendril_swing(user, target)
+
+/obj/item/umbral_tendrils/proc/disintegrate(obj/item/O)
+	if(istype(O, /obj/item/pda))
+		var/obj/item/pda/PDA = O
+		PDA.set_light(0)
+		PDA.fon = FALSE
+		PDA.f_lum = 0
+		PDA.update_icon()
+		visible_message("<span class='danger'>The light in [PDA] shorts out!</span>")
+	else
+		visible_message("<span class='danger'>[O] is disintegrated by [src]!</span>")
+		O.burn()
+	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/umbral_tendrils/proc/tendril_jump(mob/living/user, turf/open/target) //throws the user towards the target turf
 	if(!darkspawn.has_psi(10))
