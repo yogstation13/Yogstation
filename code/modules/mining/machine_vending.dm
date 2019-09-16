@@ -82,10 +82,6 @@
 	cost = pcost
 	category = cat
 
-/obj/machinery/mineral/equipment_vendor/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/mineral/equipment_vendor/Initialize()
 	. = ..()
 	build_inventory()
