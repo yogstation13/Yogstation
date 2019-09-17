@@ -4,7 +4,7 @@
 	stage_prob = 5
 	spread_text = "Non-Contagious"
 	spread_flags = DISEASE_SPREAD_SPECIAL
-	cure_text = "Antibiotics"
+	cure_text = "Spaceacillin"
 	cures = list(/datum/reagent/medicine/spaceacillin)
 	agent = "Grave Dust"
 	cure_chance = 20
