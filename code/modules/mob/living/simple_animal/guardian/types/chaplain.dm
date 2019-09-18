@@ -26,17 +26,16 @@
 	. = ..()
 	if(is_deployed() && toggle && iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.adjustBruteLoss(-2.5)
-		C.adjustFireLoss(-2.5)
-		C.adjustOxyLoss(-2.5)
-		C.adjustToxLoss(-2.5)
-		var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(C))
-		if(namedatum)
-			H.color = namedatum.colour
 		if(C == summoner)
-			update_health_hud()
-			med_hud_set_health()
-			med_hud_set_status()
+			return
+		else
+			C.adjustBruteLoss(-2.5)
+			C.adjustFireLoss(-2.5)
+			C.adjustOxyLoss(-2.5)
+			C.adjustToxLoss(-2.5)
+			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(C))
+			if(namedatum)
+				H.color = namedatum.colour
 
 /mob/living/simple_animal/hostile/guardian/chaplain/ToggleMode()
 	if(src.loc == summoner)
