@@ -75,17 +75,17 @@
 /obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		if(R.has_movespeed_modifier(MOVESPEED_ID_SLIME_STATUS))
+		if(R.has_movespeed_modifier("VTEC"))
 			to_chat(R, "<span class='notice'>A VTEC unit is already installed!</span>")
 			to_chat(user, "<span class='notice'>There's no room for another VTEC unit!</span>")
 			return FALSE
 
-		R.add_movespeed_modifier(MOVESPEED_ID_SLIME_STATUS, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+		R.add_movespeed_modifier("VTEC", update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 
 /obj/item/borg/upgrade/vtec/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		R.remove_movespeed_modifier(MOVESPEED_ID_SLIME_STATUS)
+		R.remove_movespeed_modifier("VTEC")
 
 /obj/item/borg/upgrade/disablercooler
 	name = "cyborg rapid disabler cooling module"
