@@ -217,11 +217,10 @@
 	var/mob/living/carbon/C = host_mob
 	if(C.suiciding || C.hellbound || HAS_TRAIT(C, TRAIT_HUSK)) //can't revive
 		return FALSE
-	if((world.time - C.timeofdeath) > 1800) //too late
+	var/obj/item/organ/heart/HE = C.getorgan(/obj/item/organ/heart)
+	if(QDELETED(HE) || HE.organ_flags & ORGAN_FAILING) //too late/no heart
 		return FALSE
 	if((C.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (C.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE) || !C.can_be_revived()) //too damaged
-		return FALSE
-	if(!C.getorgan(/obj/item/organ/heart)) //what are we even shocking
 		return FALSE
 	var/obj/item/organ/brain/BR = C.getorgan(/obj/item/organ/brain)
 	if(QDELETED(BR) || BR.brain_death || (BR.organ_flags & ORGAN_FAILING) || BR.suicided)
