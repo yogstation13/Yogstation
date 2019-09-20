@@ -5,7 +5,7 @@
 		return "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_female)]"
 
 /proc/corporate_lizard_name()
-	return "[pick(GLOB.lizard_verbs)] the [pick(GLOB.lizard_nouns)]"
+	return "[capitalize(pick(GLOB.lizard_verbs))]-the-[capitalize(pick(GLOB.lizard_nouns))]"
 
 /proc/ethereal_name()
 	var/tempname = "[pick(GLOB.ethereal_names)] [random_capital_letter()]"
