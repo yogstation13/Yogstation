@@ -5983,6 +5983,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "ajl" = (
@@ -8533,6 +8536,7 @@
 "ann" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/sign/departments/minsky/supply/cargo,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "ano" = (
@@ -8851,6 +8855,9 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/supply/hydroponics{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -10583,6 +10590,7 @@
 "aqp" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/sign/departments/minsky/medical/clone/cloning2,
 /turf/open/floor/plating,
 /area/medical)
 "aqq" = (
@@ -18967,6 +18975,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
+/obj/structure/sign/departments/minsky/engineering/atmospherics,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "aCI" = (
@@ -22113,6 +22122,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
+/obj/structure/sign/departments/minsky/engineering/engineering,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aHx" = (
@@ -24343,6 +24353,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "aLK" = (
@@ -25468,10 +25481,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/hydroponics)
-"aOk" = (
-/obj/structure/sign/departments/botany,
-/turf/closed/wall,
-/area/hydroponics)
 "aOm" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -25793,6 +25802,9 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/supply/hydroponics{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -29181,6 +29193,7 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/sign/departments/minsky/medical/chemistry/chemical2,
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "aWP" = (
@@ -29248,6 +29261,7 @@
 "aWV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/sign/departments/minsky/research/research,
 /turf/open/floor/plating,
 /area/science/lab)
 "aWW" = (
@@ -30824,6 +30838,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/sign/departments/minsky/research/robotics,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "baV" = (
@@ -33087,9 +33102,6 @@
 	name = "Xenobiology Lab";
 	req_access_txt = "47"
 	},
-/obj/structure/sign/departments/xenobio{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -33102,6 +33114,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/research/xenobiology{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
@@ -34935,6 +34950,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/structure/sign/departments/minsky/research/xenobiology{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bjc" = (
@@ -37535,6 +37553,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"emY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/departments/minsky/supply/mining,
+/turf/open/floor/plating,
+/area/hallway/primary/starboard)
 "eva" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -38478,6 +38501,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
+"jtg" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/departments/minsky/medical/medical2,
+/turf/open/floor/plating,
+/area/medical)
 "jtZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -43517,10 +43545,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"xFw" = (
-/obj/structure/sign/departments/xenobio,
-/turf/closed/wall,
-/area/science/xenobiology)
 "xIm" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -79741,7 +79765,7 @@ abO
 agF
 ajc
 ajc
-aip
+agF
 ajc
 ajc
 anG
@@ -84139,7 +84163,7 @@ aJU
 aLd
 aMs
 aNw
-aOk
+aHM
 aPh
 aQk
 aRf
@@ -84150,10 +84174,10 @@ aRf
 aRg
 aRf
 aph
-art
+jtg
 atA
 aut
-art
+jtg
 aph
 aph
 aqn
@@ -89308,7 +89332,7 @@ ibv
 psq
 bgZ
 bgm
-xFw
+ibv
 bjb
 bju
 bjH
@@ -89512,7 +89536,7 @@ ado
 adp
 ajD
 ajO
-lFi
+emY
 sOF
 sOG
 atq

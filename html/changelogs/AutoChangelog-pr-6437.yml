@@ -1,6 +1,0 @@
-author: "  Altoids"
-delete-after: true 
-changes: 
-  - rscadd: "Living creatures no longer have always exactly the blood volume of a human."
-  - tweak: "Monkeys now have 40% less blood."
-  - tweak: "Xenomorphs now have 25% more (acidic!) blood."
