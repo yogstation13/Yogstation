@@ -50,7 +50,7 @@
 	var/datum/team/ashwalkers/team
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
-	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
+	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender, corporate = FALSE))
 	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>") //yogs - removed a sentence
 
 	new_spawn.grant_language(/datum/language/draconic)
