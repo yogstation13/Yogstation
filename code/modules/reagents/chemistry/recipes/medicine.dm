@@ -281,7 +281,7 @@
 	results = list(/datum/reagent/medicine/burnmix = 3) // Fuel burns away to form BurnMix from Nutriment and ash
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/ash = 2) // Some welding fluid, any food and ash (burn some paper)
 
-/datum/chemical_reaction/burnmix2 // Ghetto recipe 2; wasteful . Replaces nutriment with ethenol but most of the ethenol dissolves in the process
+/datum/chemical_reaction/burnmix3 // Ghetto recipe 2; wasteful . Replaces nutriment with ethenol but most of the ethenol dissolves in the process
 	name = "BurnMix"
 	id = /datum/reagent/medicine/burnmix
 	required_temp = 500
