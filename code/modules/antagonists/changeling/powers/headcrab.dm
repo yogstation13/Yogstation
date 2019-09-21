@@ -6,6 +6,7 @@
 	chemical_cost = 20
 	dna_cost = 1
 	req_human = 1
+	ignores_fakedeath = TRUE
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
