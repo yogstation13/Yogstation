@@ -73,10 +73,10 @@
 		L.Knockdown(50)
 	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [user.real_name] has removed their human disguise and is now DARKSPAWN_NAME.</b></span>"
 	darkspawn.divulge()
-	processed_message = replacetext(processed_message, "DARKSPAWN_NAME", "[user.real_name]")
-	for(var/mob/M in GLOB.player_list)
-		if(M.stat == DEAD)
-			var/link = FOLLOW_LINK(M, user)
-			to_chat(M, "[link] [processed_message]")
-		else if(isdarkspawn(M))
-			to_chat(M, processed_message)
+	for(var/T in GLOB.alive_mob_list)
+		var/mob/M = T
+		if(is_darkspawn_or_veil(M))
+			to_chat(M, hatchannounce)
+	for(var/T in GLOB.dead_mob_list)
+		var/mob/M = T
+		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
