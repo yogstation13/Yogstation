@@ -136,7 +136,7 @@
 		playsound(src, 'sound/machines/fryer/deep_fryer_emerge.ogg', 50, TRUE)
 		heated = TRUE
 		hardness = -100 //Lower numbers are tougher, so this makes the wall essentially impervious to smashing
-		slicing_duration = 150
+		slicing_duration = 170
 		animate(realappearance, color = "#FFC3C3", time = 5)
 	else
 		name = initial(name)
