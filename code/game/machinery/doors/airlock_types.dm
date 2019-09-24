@@ -649,7 +649,8 @@
 	return 0
 
 /obj/machinery/door/airlock/clockwork/brass
-	glass = FALSE
+	glass = TRUE
+	opacity = 0
 
 //////////////////////////////////
 /*
