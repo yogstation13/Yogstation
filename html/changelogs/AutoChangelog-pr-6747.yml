@@ -1,0 +1,4 @@
+author: "AsV9"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed the emergency pod space suits unlocking at round start"
