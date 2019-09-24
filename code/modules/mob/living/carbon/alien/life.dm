@@ -2,6 +2,9 @@
 	findQueen()
 	return..()
 
+/mob/living/carbon/alien/breathe()
+	return
+
 /mob/living/carbon/alien/check_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
