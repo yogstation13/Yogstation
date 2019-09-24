@@ -50,7 +50,7 @@
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
 	explosion_block = 2
-	hardness = 15
+	hardness = 6
 	slicing_duration = 100
 	sheet_type = /obj/item/stack/tile/brass
 	sheet_amount = 1
