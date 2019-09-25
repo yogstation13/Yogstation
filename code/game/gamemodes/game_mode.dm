@@ -554,7 +554,7 @@
 	if(rev)
 		rev.remove_revolutionary(TRUE)
 
-/datum/game_mode/generate_station_goals()
+/datum/game_mode/proc/generate_station_goals()
 	for(var/T in subtypesof(/datum/station_goal))
 		var/datum/station_goal/G = T
 		if(config_tag in initial(G.gamemode_blacklist))
