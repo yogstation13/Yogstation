@@ -103,7 +103,6 @@
 	if(slot == SLOT_HANDS)
 		return
 	qdel(src)
-	return
 
 /obj/item/tk_grab/examine(user)
 	if (focus)
