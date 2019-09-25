@@ -33690,7 +33690,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bqg" = (
-/obj/machinery/computer/camera_advanced/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bqh" = (
@@ -49103,9 +49102,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bSe" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
 /turf/open/floor/plasteel/white/side,
 /area/science/xenobiology)
 "bSf" = (
@@ -53342,13 +53338,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cbz" = (
-/obj/machinery/computer/camera_advanced/xenobio{
-	icon_state = "computer";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "cbA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -73102,7 +73091,7 @@ aAI
 bXK
 aAI
 cfc
-cbz
+bqg
 aAH
 aTp
 cca
