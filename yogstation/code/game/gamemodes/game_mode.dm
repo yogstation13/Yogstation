@@ -39,9 +39,3 @@
 
 	return shuffle(filtered_candidates + drafted)
 
-/datum/game_mode/generate_station_goals()
-	for(var/T in subtypesof(/datum/station_goal))
-		var/datum/station_goal/G = T
-		if(config_tag in initial(G.gamemode_blacklist))
-			continue
-		station_goals += new T
