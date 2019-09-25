@@ -554,19 +554,12 @@
 	if(rev)
 		rev.remove_revolutionary(TRUE)
 
-/datum/game_mode/proc/generate_station_goals() //YOGS: mirrored in the yogstation gamemode file, changes here won't do anything
-	var/list/possible = list()
+/datum/game_mode/generate_station_goals()
 	for(var/T in subtypesof(/datum/station_goal))
 		var/datum/station_goal/G = T
 		if(config_tag in initial(G.gamemode_blacklist))
 			continue
-		possible += T
-	var/goal_weights = 0
-	while(possible.len && goal_weights < STATION_GOAL_BUDGET)
-		var/datum/station_goal/picked = pick_n_take(possible)
-		goal_weights += initial(picked.weight)
-		station_goals += new picked
-
+		station_goals += new T
 
 /datum/game_mode/proc/generate_report() //Generates a small text blurb for the gamemode in centcom report
 	return "Gamemode report for [name] not set.  Contact a coder."
