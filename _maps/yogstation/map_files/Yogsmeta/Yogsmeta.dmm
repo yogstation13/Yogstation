@@ -56216,10 +56216,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/computer/camera_advanced/xenobio,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXh" = (
@@ -56360,13 +56360,13 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "bXw" = (
-/obj/machinery/computer/camera_advanced/xenobio,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXx" = (
