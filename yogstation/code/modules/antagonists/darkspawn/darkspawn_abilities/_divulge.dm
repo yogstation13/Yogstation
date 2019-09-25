@@ -76,7 +76,7 @@
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(is_darkspawn_or_veil(M))
-			to_chat(M, hatchannounce)
+			to_chat(M, processed_message)
 	for(var/T in GLOB.dead_mob_list)
 		var/mob/M = T
-		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [hatchannounce]")
+		to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [processed_message]")
