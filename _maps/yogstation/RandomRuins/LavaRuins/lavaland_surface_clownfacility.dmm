@@ -190,14 +190,8 @@
 	pixel_x = 7;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/snacks/honkdae{
-	pixel_x = 0;
-	pixel_y = 0
-	},
-/obj/item/reagent_containers/food/snacks/honkdae{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/reagent_containers/food/snacks/honkdae,
+/obj/item/reagent_containers/food/snacks/honkdae,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -351,11 +345,9 @@
 "bi" = (
 /obj/structure/table,
 /obj/item/clothing/mask/gas/clown_hat{
-	pixel_x = 0;
 	pixel_y = 9
 	},
 /obj/item/clothing/mask/gas/clown_hat{
-	pixel_x = 0;
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -364,7 +356,6 @@
 "bj" = (
 /obj/structure/table,
 /obj/item/target/clown{
-	pixel_x = 0;
 	pixel_y = 8
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -372,12 +363,8 @@
 /area/ruin/unpowered)
 "bk" = (
 /obj/structure/table,
-/obj/item/megaphone/clown{
-	pixel_x = 0
-	},
-/obj/item/megaphone/clown{
-	pixel_x = 0
-	},
+/obj/item/megaphone/clown,
+/obj/item/megaphone/clown,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -421,7 +408,6 @@
 /area/ruin/unpowered)
 "bq" = (
 /obj/item/clothing/mask/gas/clown_hat{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/tile/red,
@@ -608,13 +594,9 @@
 "bG" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/banana{
-	pixel_x = 0;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/grown/banana{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "lb" = (

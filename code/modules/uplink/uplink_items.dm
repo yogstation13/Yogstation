@@ -434,7 +434,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/storage/box/syndie_kit/guardian
-	cost = 18
+	cost = 15
 	surplus = 0
 	//exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs: removes restrictions on liabilit- I mean punchghosts
 	player_minimum = 25
@@ -447,6 +447,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/l6_saw
 	cost = 18
 	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/minigun
+	name = "M-546 Osprey"
+	desc = "A fully-loaded minigun which packs a big punch. \
+			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
+			Slaughter your enemies through sheer force. We made this gun soa dvanced that it fires the whole bullet.\
+			Thats 60% more bullet per bullet and no more useless casings!"
+	item = /obj/item/minigunbackpack
+	cost = 36
+	surplus = 0
+	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/carbine

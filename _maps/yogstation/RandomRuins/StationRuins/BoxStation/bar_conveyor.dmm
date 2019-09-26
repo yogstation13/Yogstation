@@ -1089,7 +1089,6 @@
 /area/crew_quarters/bar)
 "dx" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/statue/sandstone/venus{
