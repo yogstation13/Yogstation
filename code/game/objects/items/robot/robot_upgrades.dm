@@ -81,7 +81,7 @@
 			to_chat(user, "<span class='notice'>There's no room for another VTEC unit!</span>")
 			return FALSE
 
-		R.add_movespeed_modifier("VTEC", update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+		R.add_movespeed_modifier("VTEC", update=TRUE, priority=100, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
 
 /obj/item/borg/upgrade/vtec/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
