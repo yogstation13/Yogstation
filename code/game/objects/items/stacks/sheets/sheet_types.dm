@@ -431,9 +431,12 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 			to_chat(user, "<span class='notice'>You stamp the cardboard! It's a clown box! Honk!</span>")
 			if (amount >= 0)
 				new/obj/item/storage/box/clown(droploc) //bugfix
+				
+	else if(I.is_hot())
+		fire_act(I.is_hot())
+		
 	else
 		. = ..()
-
 
 /*
  * Runed Metal
@@ -470,7 +473,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
 	var/area/A = get_area(user)
-	if((!is_station_level(T.z) && !is_mining_level(T.z)) || (A && !A.blob_allowed))
+	if((!is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)) || (A && !A.blob_allowed))
 		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
 		return FALSE
 	return ..()

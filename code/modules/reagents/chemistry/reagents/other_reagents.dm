@@ -971,7 +971,6 @@
 			var/mob/living/carbon/C = M
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.adjust_hygiene((30 * reac_volume) / (3 + reac_volume))
 				if(H.lip_style)
 					H.lip_style = null
 					H.update_body()
@@ -1364,7 +1363,7 @@
 /datum/reagent/carpet/reaction_turf(turf/T, reac_volume)
 	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
 		var/turf/open/floor/F = T
-		F.PlaceOnTop(/turf/open/floor/carpet)
+		F.PlaceOnTop(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
 	..()
 
 /datum/reagent/bromine
