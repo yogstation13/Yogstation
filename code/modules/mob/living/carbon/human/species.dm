@@ -1114,7 +1114,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					. += hungry / 50
 			else if(isethereal(H))
 				var/datum/species/ethereal/E = H.dna.species
-				var/charge = E.get_charge()
+				var/charge = E.get_charge(H)
 				if(charge <= ETHEREAL_CHARGE_NORMAL)
 					. += 1.5 * (1 - charge / 100)
 
@@ -1377,9 +1377,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.add_splatter_floor(location)
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
-					if(ishuman(user))
-						var/mob/living/carbon/human/dirtyboy = user
-						dirtyboy.adjust_hygiene(-10)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)

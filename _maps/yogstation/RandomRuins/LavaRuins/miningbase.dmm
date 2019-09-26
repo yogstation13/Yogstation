@@ -529,6 +529,9 @@
 /obj/item/reagent_containers/blood/APlus,
 /obj/item/reagent_containers/blood/random,
 /obj/machinery/light,
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "bk" = (
@@ -672,6 +675,9 @@
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
+	},
+/obj/structure/sign/departments/minsky/supply/mining{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
@@ -1322,6 +1328,9 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
+	},
+/obj/structure/sign/departments/minsky/engineering/engineering{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2466,6 +2475,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"Cu" = (
+/obj/structure/sign/departments/minsky/supply/mining,
+/turf/closed/wall,
+/area/mine/eva)
+"LN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/engineering/telecommmunications{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 
 (1,1,1) = {"
 ab
@@ -2706,7 +2731,7 @@ bT
 ck
 cB
 cU
-dj
+LN
 dK
 el
 an
@@ -3975,11 +4000,11 @@ ab
 ac
 ac
 ak
-ao
+Cu
 ap
 bd
 ap
-ao
+Cu
 bI
 aw
 aw
