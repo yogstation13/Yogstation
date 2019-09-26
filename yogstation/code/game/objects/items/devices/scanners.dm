@@ -41,7 +41,8 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 //Tricorder differentiates from slimes and nonslimes
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
-	atmosanalyzer_scan()
+	var/turf/T = get_turf(M)
+	atmosanalyzer_scan(T.return_air(), user, src)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))
