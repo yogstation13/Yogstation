@@ -666,7 +666,8 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/itshappening.ogg',
 		'yogstation/sound/roundend/bamboozeled.ogg',// yogs -- adds "We've been tricked, we've been backstabed, and we've quite possibly been bamboozeled.
 		'sound/roundend/disappointed.ogg',
-		'sound/roundend/scrunglartiy.ogg'\
+		'sound/roundend/scrunglartiy.ogg',
+		'sound/roundend/windowsxp.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
