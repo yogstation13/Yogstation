@@ -49,6 +49,10 @@
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
 		if(!isopenturf(T))
+			if(atmos_adjacent_turfs[T])
+				atmos_adjacent_turfs -= T
+			if(T.atmos_adjacent_turfs[src])
+				T.atmos_adjacent_turfs -= src
 			continue
 		if(!(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (canvpass && CANVERTICALATMOSPASS(T, src)) : (canpass && CANATMOSPASS(T, src))) )
 			LAZYINITLIST(atmos_adjacent_turfs)
