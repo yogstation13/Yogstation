@@ -247,8 +247,10 @@
 		to_chat(M, "[src] is now skinned as '[choice].'")
 
 /obj/analyzer_act(mob/living/user, obj/item/I)
-	if(atmosanalyzer_scan(user, src))
-		return TRUE
+	var/turf/T = get_turf(src)
+	if(T)
+		if(atmosanalyzer_scan(T.return_air(), user, src))
+			return TRUE
 	return ..()
 
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
