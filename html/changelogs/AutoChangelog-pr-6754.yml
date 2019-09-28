@@ -1,0 +1,4 @@
+author: "AsV9"
+delete-after: true 
+changes: 
+  - tweak: "The Xenobiology console must now be constructed, it no longer spawns at round start."
