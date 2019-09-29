@@ -6,6 +6,8 @@
 	nodamage = TRUE
 	armour_penetration = 100
 	flag = "magic"
+	var/tile_dropoff = 0
+	var/tile_dropoff_s = 0
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"
@@ -119,7 +121,7 @@
 /obj/item/projectile/magic/door/proc/CreateDoor(turf/T)
 	var/door_type = pick(door_types)
 	var/obj/structure/mineral_door/D = new door_type(T)
-	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
+	T.ChangeTurf(/turf/open/floor/plating)
 	D.Open()
 
 /obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
@@ -688,3 +690,220 @@
 	armour_penetration = 100
 	temperature = 50
 	flag = "magic"
+
+
+/obj/item/projectile/temp/runic_icycle
+	name = "Icycle"
+	icon_state = "runic_icycle"
+	damage = 7
+	damage_type = BRUTE
+	flag = "magic"
+	armour_penetration = 0
+	nodamage = FALSE
+	temperature = 80
+/obj/item/projectile/temp/runic_icycle/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_spear
+	name = "Spear"
+	icon_state = "runic_spear"
+	damage = 21
+	damage_type = BRUTE
+	flag = "magic"
+	armour_penetration = 30
+	nodamage = FALSE
+	embedding = list("embedded_impact_pain_multiplier" = 3)
+
+/obj/item/projectile/magic/runic_spear/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_heal
+	name = "Runic Heal"
+	icon_state = "runic_heal"
+	flag = "magic"
+	nodamage = TRUE
+/obj/item/projectile/magic/runic_heal/on_hit(target)
+
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(-10)
+		X.adjustFireLoss(-10)
+		X.adjustToxLoss(-10)
+		X.adjustOxyLoss(-10)
+		X.adjustCloneLoss(-10)
+	var/mob/M = target
+	if(M.anti_magic_check())
+		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+		qdel(src)
+		return BULLET_ACT_BLOCK
+	. = ..()
+
+
+/obj/item/projectile/magic/runic_fire
+	name = "Runic Fire"
+	icon_state = "lava"
+	flag = "magic"
+	damage = 5
+	damage_type = BURN
+	nodamage = FALSE
+
+/obj/item/projectile/magic/runic_fire/on_hit(target)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.fire_stacks += 4
+		X.IgniteMob()
+	var/mob/M = target
+	if(M.anti_magic_check())
+		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+		qdel(src)
+		return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_honk
+	name = "Runic Peel"
+	icon_state = "runic_honk"
+	flag = "magic"
+	damage_type = STAMINA
+	damage = 300
+	range = 200
+	nodamage = FALSE
+	movement_type = FLYING | UNSTOPPABLE
+
+/obj/item/projectile/magic/runic_honk/on_hit(target)
+	. = ..()
+	var/mob/X = target
+	if(istype(X))
+		X.slip(75, X.loc, GALOSHES_DONT_HELP|SLIDE, 0, FALSE)
+	var/mob/M = target
+	if(M.anti_magic_check())
+		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+		qdel(src)
+		return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_honk/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_bomb
+	name = "Runic Bomb"
+	icon_state = "runic_bomb"
+	flag = "magic"
+	damage = 7
+	damage_type = BRUTE
+	range = 1000
+	var/exp_heavy = 1
+	var/exp_light = 2
+	var/exp_flash = 3
+	var/exp_fire = 2
+
+/obj/item/projectile/magic/runic_bomb/on_hit(target)
+	if(ismob(target))
+		var/turf/Y = get_turf(target)
+		explosion(Y, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_toxin
+	name = "Runic Toxin"
+	icon_state = "syringeproj"
+	flag = "magic"
+	damage = 1
+	damage_type = BRUTE
+
+/obj/item/projectile/magic/runic_toxin/on_hit(target)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.reagents.add_reagent(/datum/reagent/toxin, 10)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/runic_death
+	name = "Runic Death"
+	icon_state = "antimagic"
+	flag = "magic"
+
+/obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
+	if(iszombie(target))
+		target.gib()
+	if(isskeleton(target))
+		target.gib()
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+/obj/item/projectile/magic/shotgun_slug
+	name = "12g shotgun slug"
+	icon_state = "bullet"
+	damage = 10
+	damage_type = BRUTE
+
+/obj/item/projectile/magic/runic_mutation
+	name = "Runic Mutation"
+	icon_state = "toxin"
+	flag = "magic"
+
+/obj/item/projectile/magic/runic_mutation/on_hit(target)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.randmuti()
+		if(prob(50))
+			X.easy_randmut(NEGATIVE)
+		else
+			if(prob(33))
+				X.easy_randmut(POSITIVE)
+			else
+				X.easy_randmut(MINOR_NEGATIVE)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
+
+/obj/item/projectile/magic/runic_resizement
+	name = "Runic Resizement"
+	flag = "magic"
+	icon_state = "cursehand1"
+
+/obj/item/projectile/magic/runic_resizement/on_hit(target)
+	if(isliving(target))
+		var/mob/living/X = target
+		var/newsize = pick(0.9, 0.8, 0.7, 0.6, 1.1, 1.2, 1.3, 1.4)
+		var/current_size = 1
+		X.resize = newsize*current_size
+		current_size = newsize
+		X.update_transform()
+		..()
