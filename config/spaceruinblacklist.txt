@@ -36,6 +36,7 @@
 #_maps/RandomRuins/SpaceRuins/oldAIsat.dmm
 #_maps/RandomRuins/SpaceRuins/oldstation.dmm
 #_maps/RandomRuins/SpaceRuins/oldteleporter.dmm
+#_maps/RandomRuins/SpaceRuins/Old_Wizard_Tower.dmm
 #_maps/RandomRuins/SpaceRuins/onehalf.dmm
 #_maps/RandomRuins/SpaceRuins/originalcontent.dmm
 #_maps/RandomRuins/SpaceRuins/shuttlerelic.dmm
