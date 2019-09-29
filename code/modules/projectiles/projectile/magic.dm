@@ -121,7 +121,7 @@
 /obj/item/projectile/magic/door/proc/CreateDoor(turf/T)
 	var/door_type = pick(door_types)
 	var/obj/structure/mineral_door/D = new door_type(T)
-	T.ChangeTurf(/turf/open/floor/plating)
+	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
 /obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
@@ -907,3 +907,10 @@
 		current_size = newsize
 		X.update_transform()
 		..()
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
