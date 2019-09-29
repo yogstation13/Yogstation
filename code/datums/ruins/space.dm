@@ -288,3 +288,10 @@
 	suffix = "hilbertshoteltestingsite.dmm"
 	name = "Hilbert Research Facility"
 	description = "A research facility of great bluespace discoveries. Long since abandoned, willingly or not..."
+
+/datum/map_template/ruin/space/old_wizard_tower
+	id = "old_wizard_tower"
+	suffix = "old_wizard_tower.dmm"
+	name = "Old Wizard Tower"
+	description = "Remnants of an old wizard tower, maybe it has something interesting inside?"
+
