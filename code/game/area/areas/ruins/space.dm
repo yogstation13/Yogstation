@@ -408,8 +408,3 @@
 	icon_state = "yellow"
 
 
-//OLD WIZARD TOWER
-
-/area/ruin/space/has_grav/old_wizard_tower
-	name = "Old Wizard Tower"
-	icon_state = "old_wizard_tower"
