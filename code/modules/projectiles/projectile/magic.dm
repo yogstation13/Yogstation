@@ -809,15 +809,13 @@
 	damage = 7
 	damage_type = BRUTE
 	range = 1000
-	var/exp_heavy = 1
-	var/exp_light = 2
-	var/exp_flash = 3
+	var/exp_light = 1
 	var/exp_fire = 2
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
 	if(ismob(target))
 		var/turf/Y = get_turf(target)
-		explosion(Y, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
+		explosion(Y, -1, exp_light, 0, flame_range = exp_fire)
 		var/mob/M = target
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
@@ -867,6 +865,18 @@
 	icon_state = "bullet"
 	damage = 10
 	damage_type = BRUTE
+
+/obj/item/projectile/magic/incediary_slug
+	name = "Incendiary shotgun slug"
+	icon_state = "bullet"
+	damage = 5
+	damage_type = BURN
+
+/obj/item/projectile/magic/incediary_slug/on_hit(target)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.fire_stacks += 1
+		X.IgniteMob()
 
 /obj/item/projectile/magic/runic_mutation
 	name = "Runic Mutation"
