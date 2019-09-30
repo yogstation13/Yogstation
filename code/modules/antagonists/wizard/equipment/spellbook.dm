@@ -393,7 +393,10 @@
 	desc = "A wizard specialized in runes, is offering to sent you a chest full of runes! The problem is, he mixed them up so you won't know what you will get!"
 	item_path = /obj/structure/closet/crate/magic
 	category = "Offensive"
-	cost = 0.5
+	cost = 1
+	buy_word = "Order"
+
+
 
 /datum/spellbook_entry/item/bloodbottle
 	name = "Bottle of Blood"
