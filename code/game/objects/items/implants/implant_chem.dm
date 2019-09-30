@@ -29,11 +29,8 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/trigger(emote, mob/living/source)
-	if(emote == "deathgasp")
-		if(istype(source) && !(source.stat == DEAD))
-			return
-		activate(reagents.total_volume)
+/obj/item/implant/chem/on_mob_death(mob/living/L, gibbed) //yogs - chem implants dump chems when host dies
+	activate("action_button")
 
 /obj/item/implant/chem/activate(cause)
 	. = ..()
