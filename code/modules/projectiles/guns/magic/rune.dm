@@ -139,6 +139,13 @@
 	recharge_rate = 2
 	charge_tick = 1
 	spread = 1
+	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun_slug, /obj/item/projectile/magic/incediary_slug)
+
+
+/obj/item/gun/magic/rune/bullet_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	chambered.projectile_type = pick(allowed_projectile_types)
+	. = ..()
+
 
 /obj/item/gun/magic/rune/mutation_rune
 	name = "Mutation Rune"
