@@ -1,11 +1,12 @@
 /obj/item/gun/magic/rune
+	name = "Rune"
+	desc = "This obsidian rune is glowing with a weak light, its probably useless."
 	slot_flags = list(ITEM_SLOT_BELT,ITEM_SLOT_POCKET)
 	icon_state = "rune"
 	w_class = WEIGHT_CLASS_SMALL
 	max_charges = 10
-	charges = 4
+	charges = 10
 	recharge_rate = 5
-	charge_tick = 0
 
 /obj/item/gun/magic/rune/icycle_rune
 	name = "Icycle Rune"
@@ -14,10 +15,9 @@
 	icon_state = "icycle-rune"
 	item_state = "icycle-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_icycle
-	max_charges = 6
-	charges = 2
-	recharge_rate = 4
-	charge_tick = 0
+	max_charges = 3
+	charges = 3
+	recharge_rate = 2
 
 /obj/item/gun/magic/rune/spear_rune
 	name = "Spear Rune"
@@ -26,10 +26,10 @@
 	icon_state = "spear-rune"
 	item_state = "spear-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_spear
-	max_charges = 6
-	charges = 0
-	recharge_rate = 4
-	charge_tick = 0
+	max_charges = 3
+	charges = 3
+	recharge_rate = 2
+
 
 
 /obj/item/gun/magic/rune/heal_rune
@@ -39,10 +39,10 @@
 	icon_state = "heal-rune"
 	item_state = "heal-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_heal
-	max_charges = 6
-	charges = 0
-	recharge_rate = 4
-	charge_tick = 0
+	max_charges = 3
+	charges = 3
+	recharge_rate = 2
+
 
 /obj/item/gun/magic/rune/fire_rune
 	name = "Fire Rune"
@@ -51,10 +51,10 @@
 	icon_state = "fire-rune"
 	item_state = "fire-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_fire
-	max_charges = 6
-	charges = 0
-	recharge_rate = 4
-	charge_tick = 0
+	max_charges = 3
+	charges = 3
+	recharge_rate = 2
+
 
 
 /obj/item/gun/magic/rune/honk_rune
@@ -65,9 +65,9 @@
 	item_state = "honk-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_honk
 	max_charges = 6
-	charges = 0
+	charges = 6
 	recharge_rate = 4
-	charge_tick = 0
+
 
 /obj/item/gun/magic/rune/chaos_rune
 	name = "Chaos Rune"
@@ -76,10 +76,10 @@
 	icon_state = "chaos-rune"
 	item_state = "chaos-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_chaos
-	max_charges = 6
-	charges = 0
-	recharge_rate = 4
-	charge_tick = 0
+	max_charges = 3
+	charges = 3
+	recharge_rate = 2
+
 	//Please update the var below with more projectiles if they get added
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_spear, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
 
@@ -97,9 +97,9 @@
 	item_state = "bomb-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_bomb
 	max_charges = 1
-	charges = 0
-	recharge_rate = 1
-	charge_tick = 0
+	charges = 1
+	recharge_rate = 0.12
+
 
 /obj/item/gun/magic/rune/toxic_rune
 	name = "Toxic Rune"
@@ -109,9 +109,9 @@
 	icon_state = "toxic-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_toxin
 	max_charges = 5
-	charges = 0
+	charges = 5
 	recharge_rate = 1
-	charge_tick = 1
+
 
 //I am retard
 
@@ -123,9 +123,9 @@
 	icon_state = "death-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_death
 	max_charges = 5
-	charges = 0
+	charges = 5
 	recharge_rate = 1
-	charge_tick = 1
+
 
 /obj/item/gun/magic/rune/bullet_rune
 	name = "Bullet Rune"
@@ -135,9 +135,8 @@
 	fire_sound = "sound/weapons/bulletflyby2.ogg"
 	ammo_type = /obj/item/ammo_casing/magic/runic_bullet
 	max_charges = 5
-	charges = 0
+	charges = 5
 	recharge_rate = 2
-	charge_tick = 1
 	spread = 1
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun_slug, /obj/item/projectile/magic/incediary_slug)
 
@@ -154,11 +153,11 @@
 	icon_state = "mutation-rune"
 	item_state = "mutation-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_mutation
-	max_charges = 5
-	charges = 0
+	max_charges = 4
+	charges = 4
 	recharge_rate = 2
-	charge_tick = 1
-	spread = 1
+
+
 
 /obj/item/gun/magic/rune/resizement_rune
 	name = "Resizement Rune"
@@ -167,7 +166,7 @@
 	icon_state = "resize-rune"
 	item_state = "resize-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_resizement
-	max_charges = 5
-	charges = 0
-	recharge_rate = 2
-	charge_tick = 1
+	max_charges = 2
+	charges = 2
+	recharge_rate = 1
+
