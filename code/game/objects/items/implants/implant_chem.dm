@@ -29,11 +29,8 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/trigger(emote, mob/living/source)
-	if(emote == "deathgasp")
-		if(istype(source) && !(source.stat == DEAD))
-			return
-		activate(reagents.total_volume)
+/obj/item/implant/chem/on_mob_death(mob/living/L, gibbed)
+	activate("death")
 
 /obj/item/implant/chem/activate(cause)
 	. = ..()
@@ -41,7 +38,7 @@
 		return 0
 	var/mob/living/carbon/R = imp_in
 	var/injectamount = null
-	if (cause == "action_button")
+	if (cause == "action_button" || cause == "death")
 		injectamount = reagents.total_volume
 	else
 		injectamount = cause
