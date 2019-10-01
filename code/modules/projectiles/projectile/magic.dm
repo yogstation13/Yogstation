@@ -702,22 +702,14 @@
 	nodamage = FALSE
 	temperature = 80
 
-/obj/item/projectile/temp/runic_icycle/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
 
 /obj/item/projectile/magic/runic_spear
 	name = "Spear"
 	icon_state = "runic_spear"
-	damage = 21
+	damage = 17
 	damage_type = BRUTE
 	flag = "magic"
-	armour_penetration = 30
+	armour_penetration = 10
 	nodamage = FALSE
 	embedding = list("embedded_impact_pain_multiplier" = 3)
 
@@ -799,9 +791,9 @@
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
 	flag = "magic"
-	damage = 7
+	damage = 5
 	damage_type = BRUTE
-	range = 1000
+	range = 10
 	var/exp_light = 1
 	var/exp_fire = 2
 
