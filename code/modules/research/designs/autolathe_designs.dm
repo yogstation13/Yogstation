@@ -676,6 +676,14 @@
 	category = list("initial", "Misc")
 
 //hacked autolathe recipes
+/datum/design/flamethrower
+	name = "Flamethrower"
+	id = "flamethrower"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 500)
+	build_path = /obj/item/flamethrower/full
+	category = list("hacked", "Security")
+
 /datum/design/rcd
 	name = "Rapid Construction Device (RCD)"
 	id = "rcd"
