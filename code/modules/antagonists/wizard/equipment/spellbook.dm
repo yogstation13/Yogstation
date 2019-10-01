@@ -396,6 +396,11 @@
 	cost = 1
 	buy_word = "Order"
 
+/datum/spellbook_entry/item/rune_crate/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
+	if(.)
+		new /obj/structure/closet/crate/magic(get_turf(user)) //Two crates full of magic goodies
+
 
 
 /datum/spellbook_entry/item/bloodbottle
