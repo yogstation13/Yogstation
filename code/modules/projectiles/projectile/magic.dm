@@ -701,6 +701,7 @@
 	armour_penetration = 0
 	nodamage = FALSE
 	temperature = 80
+
 /obj/item/projectile/temp/runic_icycle/on_hit(target)
 	if(ismob(target))
 		var/mob/M = target
@@ -720,14 +721,6 @@
 	nodamage = FALSE
 	embedding = list("embedded_impact_pain_multiplier" = 3)
 
-/obj/item/projectile/magic/runic_spear/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
 
 /obj/item/projectile/magic/runic_heal
 	name = "Runic Heal"
@@ -814,13 +807,13 @@
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
 	if(ismob(target))
-		var/turf/Y = get_turf(target)
-		explosion(Y, -1, exp_light, 0, flame_range = exp_fire)
 		var/mob/M = target
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
+	var/turf/X = get_turf(target)
+	explosion(X, -1, exp_light, 0, flame_range = exp_fire)
 	. = ..()
 
 /obj/item/projectile/magic/runic_toxin
@@ -915,6 +908,10 @@
 		var/current_size = 1
 		X.resize = newsize*current_size
 		current_size = newsize
+		if(current_size > 1)
+			X.pass_flags &= ~PASSTABLE
+		if(current_size < 0.85)
+			X.pass_flags = PASSTABLE
 		X.update_transform()
 		..()
 	if(ismob(target))
