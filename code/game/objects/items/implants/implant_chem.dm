@@ -29,8 +29,8 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/on_mob_death(mob/living/L, gibbed) //yogs - chem implants dump chems when host dies
-	activate("action_button")
+/obj/item/implant/chem/on_mob_death(mob/living/L, gibbed)
+	activate("death")
 
 /obj/item/implant/chem/activate(cause)
 	. = ..()
@@ -38,7 +38,7 @@
 		return 0
 	var/mob/living/carbon/R = imp_in
 	var/injectamount = null
-	if (cause == "action_button")
+	if (cause == "action_button" || cause == "death")
 		injectamount = reagents.total_volume
 	else
 		injectamount = cause
