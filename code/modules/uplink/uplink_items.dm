@@ -1731,8 +1731,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
 	
-/datum/uplink_item/role_restricted/explosive_pizza
-	name = "Explosive Pizza"
+/datum/uplink_item/role_restricted/arnold_pizza
+	name = "Arnold Pizza"
 	desc = "A pizza riddled with 9mm casings. Anyone that takes a bite out of this will find themselves missing a limb. \
 			Using a pen to rename it can go a long way for an unobservant assistant, but prepare for a lynch party. Also works for force-feeding."
 	item = /obj/item/reagent_containers/food/snacks/pizza/arnold
