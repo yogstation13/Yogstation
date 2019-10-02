@@ -64,7 +64,7 @@
 		if(do_after(user, 40, target = src))
 			if(!card.registered_account.being_dumped)
 				return
-			to_chat(user, "<span class='warning'>You quickly cash out your funds to a more secure banking location. Funds are safu.</span>")
+			to_chat(user, "<span class='warning'>You quickly cash out your funds to a more secure banking location. Funds are safe.</span>")
 			card.registered_account.being_dumped = FALSE
 			card.registered_account.withdrawDelay = 0
 			if(check_if_finished())
@@ -80,7 +80,6 @@
 	add_overlay("hatch")
 	add_overlay("legs_retracted")
 	addtimer(CALLBACK(src, .proc/startUp), 50)
-
 
 /obj/structure/checkoutmachine/proc/startUp() //very VERY snowflake code that adds a neat animation when the pod lands.
 	start_dumping() //The machine doesnt move during this time, giving people close by a small window to grab their funds before it starts running around
