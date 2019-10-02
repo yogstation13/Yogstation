@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_icycle
 	max_charges = 3
 	charges = 3
-	recharge_rate = 2
+	recharge_rate = 2.25
 
 /obj/item/gun/magic/rune/spear_rune
 	name = "Spear Rune"
@@ -28,7 +28,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_spear
 	max_charges = 3
 	charges = 3
-	recharge_rate = 2
+	recharge_rate = 1.8
 
 
 
@@ -39,9 +39,9 @@
 	icon_state = "heal-rune"
 	item_state = "heal-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_heal
-	max_charges = 3
-	charges = 3
-	recharge_rate = 2
+	max_charges = 4
+	charges = 4
+	recharge_rate = 2.5
 
 
 /obj/item/gun/magic/rune/fire_rune
@@ -51,9 +51,9 @@
 	icon_state = "fire-rune"
 	item_state = "fire-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_fire
-	max_charges = 3
-	charges = 3
-	recharge_rate = 2
+	max_charges = 5
+	charges = 5
+	recharge_rate = 1.45
 
 
 
@@ -76,9 +76,9 @@
 	icon_state = "chaos-rune"
 	item_state = "chaos-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_chaos
-	max_charges = 3
-	charges = 3
-	recharge_rate = 2
+	max_charges = 5
+	charges = 5
+	recharge_rate = 2.5
 
 	//Please update the var below with more projectiles if they get added
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_spear, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
@@ -122,9 +122,9 @@
 	item_state = "death-rune"
 	icon_state = "death-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_death
-	max_charges = 5
-	charges = 5
-	recharge_rate = 1
+	max_charges = 1
+	charges = 1
+	recharge_rate = 0.1
 
 
 /obj/item/gun/magic/rune/bullet_rune
@@ -136,7 +136,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_bullet
 	max_charges = 5
 	charges = 5
-	recharge_rate = 2
+	recharge_rate = 1.7
 	spread = 1
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun_slug, /obj/item/projectile/magic/incediary_slug)
 
@@ -166,7 +166,7 @@
 	icon_state = "resize-rune"
 	item_state = "resize-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_resizement
-	max_charges = 2
-	charges = 2
-	recharge_rate = 1
+	max_charges = 6
+	charges = 6
+	recharge_rate = 1.53
 
