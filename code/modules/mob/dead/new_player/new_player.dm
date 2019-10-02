@@ -389,6 +389,9 @@
 		if(GLOB.highlander)
 			to_chat(humanc, "<span class='userdanger'><i>THERE CAN BE ONLY ONE!!!</i></span>")
 			humanc.make_scottish()
+	
+	if(GLOB.curse_of_madness_triggered)
+		give_madness(humanc, GLOB.curse_of_madness_triggered)
 
 	GLOB.joined_player_list += character.ckey
 
