@@ -551,6 +551,16 @@
 	surgery = /datum/surgery/advanced/experimental_dissection
 	research_icon_state = "surgery_chest"
 
+/datum/design/surgery/experimental_dissection/exp
+	name = "Experimental Dissection"
+	id = "surgery_exp_dissection"
+	surgery = /datum/surgery/advanced/experimental_dissection/exp
+
+/datum/design/surgery/experimental_dissection/ext
+	name = "Extraterrestrial Dissection"
+	id = "surgery_ext_dissection"
+	surgery = /datum/surgery/advanced/experimental_dissection/alien
+
 /datum/design/surgery/lobotomy
 	name = "Lobotomy"
 	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
