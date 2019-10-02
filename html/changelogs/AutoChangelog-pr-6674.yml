@@ -1,6 +1,0 @@
-author: "MayhemSailor"
-delete-after: true 
-changes: 
-  - rscadd: "Added Minsky Signs to YogStation, YogsPubby, YogsMeta, Omega, Mining Outpost & Labor Prison & removes old signs"
-  - bugfix: "fixes #5757"
-  - spellcheck: "fixed a few typos in signs_departments.dm introduced in #6667"
