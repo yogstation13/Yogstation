@@ -15571,6 +15571,13 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
+"aEn" = (
+/obj/structure/table/optable,
+/obj/item/surgical_drapes,
+/obj/item/scalpel,
+/obj/item/hemostat,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "aEo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -45928,11 +45935,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"bMl" = (
-/obj/machinery/processor/slime,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bMm" = (
 /obj/machinery/monkey_recycler,
@@ -104859,7 +104861,7 @@ bHe
 bIz
 bIz
 bJN
-bMl
+aEn
 bPD
 bMi
 bPE

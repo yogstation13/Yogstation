@@ -16937,10 +16937,13 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "aKe" = (
-/obj/machinery/processor/slime,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/structure/table/optable,
+/obj/item/scalpel,
+/obj/item/hemostat,
+/obj/item/surgical_drapes,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKf" = (

@@ -69376,6 +69376,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
+"cbK" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/optable,
+/obj/item/surgical_drapes,
+/obj/item/scalpel,
+/obj/item/hemostat,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "cbL" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
@@ -103202,14 +103213,6 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
-"daB" = (
-/obj/machinery/processor/slime,
-/obj/effect/turf_decal/bot,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "daC" = (
@@ -157959,7 +157962,7 @@ cTQ
 bVY
 cQg
 bXU
-daB
+cbK
 dcp
 ddS
 dfc

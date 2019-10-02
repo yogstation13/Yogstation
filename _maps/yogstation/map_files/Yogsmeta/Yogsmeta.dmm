@@ -14249,6 +14249,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"azw" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/structure/table/optable,
+/obj/item/scalpel,
+/obj/item/hemostat,
+/obj/item/surgical_drapes,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "azx" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral{
@@ -77824,11 +77832,6 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
-"cRM" = (
-/obj/machinery/processor/slime,
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cRO" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -116468,7 +116471,7 @@ dca
 cZa
 cSt
 cyk
-cRM
+azw
 cRa
 cSj
 cSs

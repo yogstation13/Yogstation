@@ -17550,6 +17550,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
+"aIe" = (
+/obj/structure/table/optable,
+/obj/item/scalpel,
+/obj/item/hemostat,
+/obj/item/surgical_drapes,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "aIf" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue,
@@ -57353,10 +57360,6 @@
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"ilD" = (
-/obj/machinery/processor/slime,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "iqc" = (
 /turf/open/floor/plasteel/stairs/right,
 /area/maintenance/department/crew_quarters/dorms)
@@ -106009,7 +106012,7 @@ vYN
 bnd
 blZ
 mQm
-ilD
+aIe
 edJ
 bqF
 aKS
