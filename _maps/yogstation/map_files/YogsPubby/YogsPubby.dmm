@@ -33398,13 +33398,14 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/dock)
 "blZ" = (
-/obj/machinery/computer/camera_advanced/xenobio,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/table/glass,
+/obj/item/extinguisher,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bma" = (
@@ -35925,14 +35926,12 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bqF" = (
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bqG" = (

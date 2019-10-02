@@ -77,8 +77,8 @@
 /mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/attack_hand(mob/living/L)
 	..()
 	if(L.a_intent == INTENT_HARM && L.reagents && !stat)
-		L.reagents.add_reagent("nutriment", 0.4)
-		L.reagents.add_reagent("vitamin", 0.4)
+		L.reagents.add_reagent(/datum/reagent/consumable/nutriment, 0.4)
+		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
 
 /mob/living/simple_animal/hostile/retaliate/goat/glowing
 	name = "Glowing Goat"
