@@ -1,4 +1,0 @@
-author: "  Xhuis for code, Theos for porting"
-delete-after: true 
-changes: 
-  - rscadd: "Adds darkspawn, a shadowling-like gamemode without the pesky thrall count"
