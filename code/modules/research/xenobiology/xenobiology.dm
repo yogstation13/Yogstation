@@ -579,7 +579,7 @@
 		if(SLIME_ACTIVATE_MAJOR)
 			to_chat(user, "<span class='warning'>You feel time slow down...</span>")
 			if(do_after(user, 30, target = user))
-				new /obj/effect/timestop(get_turf(user), 2, 50, list(user))
+				new /obj/effect/timestop(get_turf(user), 2, 50, null))
 				return 900
 
 /obj/item/slime_extract/rainbow
