@@ -22839,11 +22839,8 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aTr" = (
@@ -24483,6 +24480,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/components/binary/valve/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aWB" = (
@@ -26685,7 +26683,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "baN" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/general/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
+/obj/machinery/meter,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "baO" = (
@@ -27660,8 +27662,11 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bcM" = (
@@ -27903,10 +27908,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bdm" = (
-/obj/machinery/meter{
-	target_layer = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/pipe/simple/general/visible/layer1{
 	icon_state = "pipe11-1";
 	dir = 10
 	},
@@ -54979,6 +54981,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kou" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "krw" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/wood,
@@ -76316,7 +76328,7 @@ aSg
 bdm
 baN
 aWA
-aTu
+kou
 bdH
 bel
 bdH
