@@ -903,19 +903,13 @@ datum/status_effect/stabilized/blue/on_remove()
 	id = "stabilizedlightpink"
 	colour = "light pink"
 
-/datum/status_effect/stabilized/lightpink/on_apply()
-	owner.add_movespeed_modifier(MOVESPEED_ID_SLIME_STATUS, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-	return ..()
-
 /datum/status_effect/stabilized/lightpink/tick()
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
-		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine) && !H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
 			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.p_them()] alive.")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
+			H.reagents.add_reagent(/datum/reagent/medicine/salglu_solution, 5)
 	return ..()
-
-/datum/status_effect/stabilized/lightpink/on_remove()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_SLIME_STATUS)
 
 /datum/status_effect/stabilized/adamantine
 	id = "stabilizedadamantine"
