@@ -1390,6 +1390,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			sends you a small beacon that will teleport the larger beacon to your location upon activation."
 	item = /obj/item/sbeacondrop
 	cost = 10
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
 
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
