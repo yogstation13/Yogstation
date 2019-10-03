@@ -11,7 +11,7 @@
 				/datum/surgery_step/clamp_bleeders,
 				/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
-	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
+	target_mobtypes = list(/mob/living/carbon)
 	replaced_by = /datum/surgery/advanced/experimental_dissection/adv
 	requires_tech = FALSE
 	var/value_multiplier = 1
