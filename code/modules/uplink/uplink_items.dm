@@ -1294,7 +1294,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
-
+/*
 /datum/uplink_item/device_tools/camera_bug
 	name = "Camera Bug"
 	desc = "Enables you to view all cameras on the main network, set up motion alerts and track a target. \
@@ -1302,7 +1302,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/camera_bug
 	cost = 1
 	surplus = 90
-
+*/
 /datum/uplink_item/device_tools/military_belt
 	name = "Chest Rig"
 	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment."
