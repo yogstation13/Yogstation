@@ -214,8 +214,9 @@
 	name = "Rune Crate"
 	desc = "This crate glows with a weak glow, are you sure you want to open it?"
 
+
 /obj/structure/closet/crate/magic/PopulateContents()
-	var/table = rand(1,10) //10 customized surprise mechanics™  for you all
+	var/table = rand(1,12) //10 customized surprise mechanics™  for you all
 	switch(table)
 		if(1)
 			new /obj/item/gun/magic/rune/icycle_rune(src)
@@ -267,4 +268,16 @@
 			new /obj/item/gun/magic/rune/bomb_rune(src)
 			new /obj/item/gun/magic/rune/bullet_rune(src)
 			new /obj/item/gun/magic/rune/icycle_rune(src)
+		if(11)
+			new /obj/item/gun/magic/rune/honk_rune(src)
+			new /obj/item/gun/magic/rune/toxic_rune(src)
+			new /obj/item/gun/magic/rune/mutation_rune(src)
+			new /obj/item/gun/magic/rune/spear_rune(src)
+		if(12)
+			new /obj/item/gun/magic/rune/chaos_rune(src)
+			new /obj/item/gun/magic/rune/death_rune(src)
+			new /obj/item/gun/magic/rune/resizement_rune(src)
+			new /obj/item/gun/magic/rune/heal_rune(src)
+
+
 

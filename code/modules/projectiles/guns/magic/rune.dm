@@ -1,7 +1,7 @@
 /obj/item/gun/magic/rune
 	name = "Rune"
 	desc = "This obsidian rune is glowing with a weak light, its probably useless."
-	slot_flags = list(ITEM_SLOT_BELT,ITEM_SLOT_POCKET)
+	slot_flags = ITEM_SLOT_BELT
 	icon_state = "rune"
 	w_class = WEIGHT_CLASS_SMALL
 	max_charges = 10
