@@ -556,11 +556,6 @@
 	id = "surgery_exp_dissection"
 	surgery = /datum/surgery/advanced/experimental_dissection/exp
 
-/datum/design/surgery/experimental_dissection/exp
-	name = "Extraterrestrial Dissection"
-	id = "surgery_ext_dissection"
-	surgery = /datum/surgery/advanced/experimental_dissection/alien
-
 /datum/design/surgery/experimental_dissection/ext
 	name = "Extraterrestrial Dissection"
 	id = "surgery_ext_dissection"
