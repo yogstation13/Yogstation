@@ -906,10 +906,10 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/lightpink/tick()
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
 		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
-			boost = TRUE
 			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.p_them()] alive.")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
-			if(H.health <= -50 && !H.reagents.has_reagent(/datum/reagent/medicine/regen_jelly))
+			if(H.health <= -40 && !H.reagents.has_reagent(/datum/reagent/medicine/regen_jelly))
+				to_chat(owner, "[linked_extract] glows as it tries to keep [H.p_them()] alive.")
 				H.reagents.add_reagent(/datum/reagent/medicine/regen_jelly, 10)
 	return ..()
 
