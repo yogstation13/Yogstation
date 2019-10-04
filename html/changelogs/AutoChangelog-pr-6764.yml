@@ -1,0 +1,4 @@
+author: "AsV9"
+delete-after: true 
+changes: 
+  - rscdel: "You can no longer print AI or Cyborg upload boards in R&D"
