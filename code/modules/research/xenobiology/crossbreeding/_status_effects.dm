@@ -904,15 +904,13 @@ datum/status_effect/stabilized/blue/on_remove()
 	colour = "light pink"
 
 /datum/status_effect/stabilized/lightpink/tick()
-	var/boost = FALSE
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
-		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine) && !H.reagents.has_reagent(/datum/reagent/medicine/salglu_solution))
+		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
 			boost = TRUE
 			to_chat(owner, "[linked_extract] pulses in sync with [H]'s heartbeat, trying to keep [H.p_them()] alive.")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
-			H.reagents.add_reagent(/datum/reagent/medicine/atropine, 5)
-	if(boost && owner.stat != DEAD && !owner.reagents.has_reagent(/datum/reagent/medicine/ephedrine))
-		owner.reagents.add_reagent(/datum/reagent/medicine/ephedrine,5)
+			if(H.health <= -50 && !H.reagents.has_reagent(/datum/reagent/medicine/regen_jelly))
+				H.reagents.add_reagent(/datum/reagent/medicine/regen_jelly, 10)
 	return ..()
 
 /datum/status_effect/stabilized/adamantine
