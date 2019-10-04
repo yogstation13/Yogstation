@@ -793,6 +793,7 @@
 	flag = "magic"
 	damage = 5
 	damage_type = BRUTE
+	nodamage = FALSE
 	range = 10
 	var/exp_light = 1
 	var/exp_fire = 2
@@ -814,6 +815,7 @@
 	flag = "magic"
 	damage = 1
 	damage_type = BRUTE
+	nodamage = FALSE
 
 /obj/item/projectile/magic/runic_toxin/on_hit(target)
 	if(iscarbon(target))
@@ -846,16 +848,19 @@
 	. = ..()
 
 /obj/item/projectile/magic/shotgun_slug
-	name = "12g shotgun slug"
+	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
 	damage_type = BRUTE
+	nodamage = FALSE
+	flag = "magic"
 
 /obj/item/projectile/magic/incediary_slug
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
 	damage = 5
 	damage_type = BURN
+	flag = "magic"
 
 /obj/item/projectile/magic/incediary_slug/on_hit(target)
 	if(iscarbon(target))
