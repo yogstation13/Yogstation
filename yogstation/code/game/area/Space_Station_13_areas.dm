@@ -2,6 +2,17 @@
 	name = "Paramedic Staging Area"
 	icon_state = "emergencystorage"
 
+//Minsky Specific Areas
+/area/medical/paramedic/a
+	name = "Primary Paramedic Staging Area"
+	icon_state = "emergencystorage"
+
+/area/medical/paramedic/b
+	name = "Secondary Paramedic Staging Area"
+	icon_state = "emergencystorage"
+
+//end Minsky Specific Areas
+
 /area/medical/psych
 	name = "Psychiatrists office"
 	icon_state = "exam_room"
