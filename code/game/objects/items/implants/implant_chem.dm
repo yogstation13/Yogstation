@@ -42,7 +42,7 @@
 		injectamount = reagents.total_volume
 	else
 		injectamount = cause
-	reagents.reaction(R, INJECT, injectamount)
+	reagents.reaction(R, INJECT)
 	reagents.trans_to(R, injectamount)
 	to_chat(R, "<span class='italics'>You hear a faint beep.</span>")
 	if(!reagents.total_volume)
