@@ -747,7 +747,7 @@
 /obj/item/projectile/magic/runic_fire/on_hit(target)
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 4
+		X.fire_stacks += 2
 		X.IgniteMob()
 	var/mob/M = target
 	if(M.anti_magic_check())
@@ -764,7 +764,10 @@
 	damage = 300
 	range = 200
 	nodamage = FALSE
-	movement_type = FLYING | UNSTOPPABLE
+	movement_type = FLYING
+	reflectable = REFLECT_NORMAL
+	ricochet_chance = 100
+	ricochets_max = 66
 
 /obj/item/projectile/magic/runic_honk/on_hit(target)
 	. = ..()
@@ -778,15 +781,6 @@
 		return BULLET_ACT_BLOCK
 	. = ..()
 
-/obj/item/projectile/magic/runic_honk/on_hit(target)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
-
 /obj/item/projectile/magic/runic_bomb
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
@@ -796,7 +790,7 @@
 	nodamage = FALSE
 	range = 10
 	var/exp_light = 1
-	var/exp_fire = 2
+	var/exp_fire = 1
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
 	if(ismob(target))
@@ -816,6 +810,7 @@
 	damage = 1
 	damage_type = BRUTE
 	nodamage = FALSE
+	eyeblur = 10
 
 /obj/item/projectile/magic/runic_toxin/on_hit(target)
 	if(iscarbon(target))
@@ -839,6 +834,8 @@
 		target.gib()
 	if(isskeleton(target))
 		target.gib()
+	if(isvampire(target))
+		target.gib()
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
@@ -860,6 +857,7 @@
 	icon_state = "bullet"
 	damage = 5
 	damage_type = BURN
+	nodamage = FALSE
 	flag = "magic"
 
 /obj/item/projectile/magic/incediary_slug/on_hit(target)
@@ -872,7 +870,7 @@
 	name = "Runic Mutation"
 	icon_state = "toxin"
 	flag = "magic"
-
+	irradiate = 12
 /obj/item/projectile/magic/runic_mutation/on_hit(target)
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
