@@ -1,4 +1,3 @@
-
 /* Table Frames
  * Contains:
  *		Frames

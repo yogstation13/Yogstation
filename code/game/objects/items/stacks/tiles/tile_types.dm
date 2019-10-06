@@ -1,4 +1,3 @@
-
 /obj/item/stack/tile
 	name = "broken tile"
 	singular_name = "broken tile"
