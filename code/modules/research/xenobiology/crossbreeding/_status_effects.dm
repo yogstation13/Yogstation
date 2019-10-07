@@ -827,7 +827,6 @@ datum/status_effect/stabilized/blue/on_remove()
 			M.faction |= faction_name
 	for(var/mob/living/simple_animal/M in mobs)
 		if(!(M in view(7,get_turf(owner))))
-			M.faction -= faction_name
 			M.remove_status_effect(/datum/status_effect/pinkdamagetracker)
 			mobs -= M
 		var/datum/status_effect/pinkdamagetracker/C = M.has_status_effect(/datum/status_effect/pinkdamagetracker)

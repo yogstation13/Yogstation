@@ -24,8 +24,7 @@
 	starting_node = TRUE
 	display_name = "Cyborg Construction"
 	description = "Sapient robots with preloaded tool modules and programmable laws."
-	design_ids = list("robocontrol", "sflash", "borg_suit", "borg_head", "borg_chest", "borg_r_arm", "borg_l_arm", "borg_r_leg", "borg_l_leg", "borgupload",
-	"cyborgrecharger", "borg_upgrade_restart", "borg_upgrade_rename")
+	design_ids = list("robocontrol", "sflash", "borg_suit", "borg_head", "borg_chest", "borg_r_arm", "borg_l_arm", "borg_r_leg", "borg_l_leg", "cyborgrecharger", "borg_upgrade_restart", "borg_upgrade_rename")
 
 /datum/techweb_node/mech
 	id = "mecha"
@@ -93,7 +92,7 @@
 	display_name = "Advanced Surgery"
 	description = "When simple medicine doesn't cut it."
 	prereq_ids = list("imp_wt_surgery")
-	design_ids = list("surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto","surgery_heal_combo", "surgery_revival")
+	design_ids = list("surgery_lobotomy", "surgery_heal_brute_upgrade_femto","surgery_heal_burn_upgrade_femto","surgery_heal_combo", "surgery_revival", "surgery_dna_recovery")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 4000
 
@@ -312,15 +311,6 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 
-/datum/techweb_node/cyborg_upg_combat
-	id = "cyborg_upg_combat"
-	display_name = "Cyborg Upgrades: Combat"
-	description = "Military grade upgrades for cyborgs."
-	prereq_ids = list("adv_robotics", "adv_engi" , "weaponry")
-	design_ids = list("borg_upgrade_vtec", "borg_upgrade_disablercooler")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	export_price = 5000
-
 /datum/techweb_node/ai
 	id = "ai"
 	display_name = "Artificial Intelligence"
@@ -328,7 +318,7 @@
 	prereq_ids = list("robotics", "posibrain")
 	design_ids = list("aifixer", "aicore", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module",
 	"reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "paladin_module", "tyrant_module", "overlord_module", "corporate_module",
-	"default_module", "borg_ai_control", "mecha_tracking_ai_control", "aiupload", "intellicard")
+	"default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
