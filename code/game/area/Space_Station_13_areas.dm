@@ -343,6 +343,20 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "Sleep"
 	safe = TRUE
 
+//Minsky Specific Areas
+
+/area/crew_quarters/dorms/a
+	name = "Dormitories"
+	icon_state = "Sleep"
+	safe = TRUE
+
+/area/crew_quarters/dorms/b
+	name = "Dormitories"
+	icon_state = "Sleep"
+	safe = TRUE
+
+//End Minsky Specific Areas
+
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
@@ -614,6 +628,46 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Teleporter Room"
 	icon_state = "teleporter"
 	ambientsounds = ENGINEERING
+
+//Minsky Specific Areas
+
+/area/teleporter/hub/bridge
+	name = "Bridge Quantum Hub"
+	icon_state = "teleporter"
+	ambientsounds = ENGINEERING
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+
+/area/teleporter/hub/engineering
+	name = "Engineering Quantum Hub"
+	icon_state = "teleporter"
+	ambientsounds = ENGINEERING
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+
+/area/teleporter/hub/medical
+	name = "Medical Quantum Hub"
+	icon_state = "teleporter"
+	ambientsounds = ENGINEERING
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+
+/area/teleporter/hub/science
+	name = "R&D Quantum Hub"
+	icon_state = "teleporter"
+	ambientsounds = ENGINEERING
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+
+/area/teleporter/hub/security
+	name = "Security Quantum Hub"
+	icon_state = "teleporter"
+	ambientsounds = ENGINEERING
+	clockwork_warp_allowed = FALSE
+	clockwork_warp_fail = "The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
+
+//End Minsky Specific Areas
+
 
 /area/gateway
 	name = "Gateway"
