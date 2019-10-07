@@ -720,7 +720,6 @@
 	flag = "magic"
 	nodamage = TRUE
 /obj/item/projectile/magic/runic_heal/on_hit(target)
-
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.adjustBruteLoss(-10)
@@ -728,6 +727,12 @@
 		X.adjustToxLoss(-10)
 		X.adjustOxyLoss(-10)
 		X.adjustCloneLoss(-10)
+		var/mob/living/carbon/Y = firer
+		Y.adjustBruteLoss(-10)
+		Y.adjustFireLoss(-10)
+		Y.adjustToxLoss(-10)
+		Y.adjustOxyLoss(-10)
+		Y.adjustCloneLoss(-10)
 	var/mob/M = target
 	if(M.anti_magic_check())
 		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
