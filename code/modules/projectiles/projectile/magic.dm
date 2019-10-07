@@ -698,7 +698,7 @@
 	damage = 7
 	damage_type = BRUTE
 	flag = "magic"
-	armour_penetration = 0
+	armour_penetration = 5
 	nodamage = FALSE
 	temperature = 80
 
@@ -711,7 +711,6 @@
 	flag = "magic"
 	armour_penetration = 10
 	nodamage = FALSE
-	embedding = list("embedded_impact_pain_multiplier" = 3)
 
 
 /obj/item/projectile/magic/runic_heal
