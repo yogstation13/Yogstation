@@ -589,6 +589,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /obj/item/guardiancreator/choose/chaplain/antimagic
 	name = "deck of holy tarot cards"
 	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	w_class = WEIGHT_CLASS_SMALL
 	theme = "holy"
 	mob_name = "Holyparasite"
 	icon = 'icons/obj/toy.dmi'
