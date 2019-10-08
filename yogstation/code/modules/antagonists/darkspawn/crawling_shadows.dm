@@ -87,8 +87,6 @@
 	to_chat(src, "<span class='warning'>This will last for around a minute.</span>")
 	var/datum/action/innate/darkspawn/end_shadows/E = new
 	E.Grant(src)
-	addtimer(CALLBACK(E, .proc/Activate), 600)
-	
 
 /mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
 	if(ishuman(target) && !knocking_out)
@@ -128,7 +126,10 @@
 	qdel(owner) //edgi
 	qdel(src)
 
+/datum/action/innate/darkspawn/end_shadows/New()
+	addtimer(CALLBACK(src, .proc/Activate), 600)
+
 /datum/action/innate/darkspawn/end_shadows/IsAvailable()
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
 		return TRUE
-	return
+	return FALSE
