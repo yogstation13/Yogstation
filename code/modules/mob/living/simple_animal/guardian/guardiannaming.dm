@@ -102,10 +102,10 @@
 	theme = "holy"
 
 /datum/guardianname/holy/New()
-	prefixname = "Holy"
+	prefixname = pick("Aries", "Leo", "Sagittarius", "Taurus", "Virgo", "Capricorn", "Gemini", "Libra", "Aquarius", "Cancer", "Scorpio", "Pisces", "Ophiuchus")
 
 /datum/guardianname/holy/holypara
-	suffixcolour = pick("Aries", "Leo", "Sagittarius", "Taurus", "Virgo", "Capricorn", "Gemini", "Libra", "Aquarius", "Cancer", "Scorpio", "Pisces", "Ophiuchus")
+	suffixcolour = "Devout"
 	parasiteicon = "holypara"
 
 /datum/guardianname/tech/New()
