@@ -907,8 +907,12 @@
 		var/current_size = 1
 		X.resize = newsize*current_size
 		current_size = newsize
+		if(current_size < 0.25)	//if someone is smaller than 1/4 of their original size, it makes them not go that smol
+			current_size = 0.26
+		if(current_size > 2)
+			current_size = 1.99 //if someone is 2 times bigger then their original size, it makes them not go as high as doug dimmadone hat is
 		if(current_size > 1)
-			X.pass_flags &= ~PASSTABLE
+			X.pass_flags &= ~PASSTABLE //You won't passtables now big boy
 		if(current_size < 0.85)
 			X.pass_flags = PASSTABLE
 		X.update_transform()
