@@ -5,7 +5,7 @@
 	desc = "Assumes a shadowy form that can crawl through vents and squeeze through the cracks in doors. You can also knock people out by attacking them."
 	button_icon_state = "crawling_shadows"
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-	psi_cost = 50
+	psi_cost = 60
 	lucidity_price = 2 //probably going to replace creep with this
 
 /datum/action/innate/darkspawn/crawling_shadows/Activate()
