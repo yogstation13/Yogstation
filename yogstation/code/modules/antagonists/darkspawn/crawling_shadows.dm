@@ -70,7 +70,7 @@
 	else
 		invisibility = initial(invisibility)
 		speed = 0
-		alpha += min(lums * 60, 255) //Slowly becomes more visible in brighter light
+		alpha = min(lums * 60, 255) //Slowly becomes more visible in brighter light
 
 /mob/living/simple_animal/hostile/crawling_shadows/death(gibbed)
 	if(darkspawn_mob)
@@ -87,6 +87,7 @@
 	to_chat(src, "<span class='warning'>This will last for around a minute.</span>")
 	var/datum/action/innate/darkspawn/end_shadows/E = new
 	E.Grant(src)
+	QDEL_IN(600)
 
 /mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
 	if(ishuman(target) && !knocking_out)
@@ -125,9 +126,6 @@
 /datum/action/innate/darkspawn/end_shadows/Activate()
 	qdel(owner) //edgi
 	qdel(src)
-
-/datum/action/innate/darkspawn/end_shadows/New()
-	addtimer(CALLBACK(src, .proc/Activate), 600)
 
 /datum/action/innate/darkspawn/end_shadows/IsAvailable()
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
