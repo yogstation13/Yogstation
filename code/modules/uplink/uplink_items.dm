@@ -1632,6 +1632,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
+	
+	/datum/uplink_item/role_restricted/arm_medical_gun
+	name = "Arm Mounted Medical Beamgun"
+	desc = "A Arm Mounted medgun to heal your best buds (disclaimer: does not come with friends)."
+	item = /obj/item/autosurgeon/medibeam
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
+	cost = 12
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
