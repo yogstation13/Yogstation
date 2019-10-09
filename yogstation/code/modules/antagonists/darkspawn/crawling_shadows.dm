@@ -87,7 +87,7 @@
 	to_chat(src, "<span class='warning'>This will last for around a minute.</span>")
 	var/datum/action/innate/darkspawn/end_shadows/E = new
 	E.Grant(src)
-	QDEL_IN(600)
+	QDEL_IN(src, 600)
 
 /mob/living/simple_animal/hostile/crawling_shadows/AttackingTarget()
 	if(ishuman(target) && !knocking_out)
