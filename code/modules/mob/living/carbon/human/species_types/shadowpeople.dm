@@ -216,5 +216,22 @@
 		O.burn()
 	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
+/datum/species/fakeshadow //yogs start
+	// Humans wearing extremely detailed full body makeup. Very spooky
+	name = "Fake shadowling"
+	id = "fakeshadow"
+	limbs_id = "shadow"
+	species_traits = list(NOEYESPRITES)
+	sexes = 0
+	changesource_flags = MIRROR_BADMIN
+
+/datum/species/fakeshadow/qualifies_for_rank(rank, list/features)
+	return TRUE	//They are just humans in very detailed costumes.
+
+/datum/species/fakeshadow/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() //yogs end
+
 #undef HEART_SPECIAL_SHADOWIFY
 #undef HEART_RESPAWN_THRESHHOLD

@@ -17,3 +17,19 @@
 	. = ..()
 	var/datum/atom_hud/abductor_hud = GLOB.huds[DATA_HUD_ABDUCTOR]
 	abductor_hud.remove_hud_from(C)
+
+/datum/species/fakeabductor //yogs start
+	name = "Fake Abductor"
+	id = "fakeabductor"
+	limbs_id = "abductor"
+	say_mod = "gibbers"
+	sexes = FALSE
+	changesource_flags = MIRROR_BADMIN
+
+/datum/species/fakeabductor/qualifies_for_rank(rank, list/features)
+	return TRUE	//They are just humans in very detailed costumes.
+
+/datum/species/fakeabductor/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() //yogs end

@@ -59,3 +59,26 @@
 /datum/species/mush/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour)
 	forced_colour = FALSE
 	..()
+
+/datum/species/fakemush //yogs what mush? this is just a midget in a super glued costume.
+	name = "Fake Mushroomperson"
+	id = "fakemush"
+	limbs_id = "mush"
+	mutant_bodyparts = list("caps")
+	default_features = list("caps" = "Round")
+	changesource_flags = MIRROR_BADMIN
+	species_traits = list(MUTCOLORS, NOEYESPRITES, NO_UNDERWEAR)
+	fixed_mut_color = "DBBF92"
+	hair_color = "FF4B19" //cap color, spot color uses eye color
+	nojumpsuit = TRUE
+	say_mod = "poofs" //what does a mushroom sound like
+	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM)
+	use_skintones = FALSE
+
+/datum/species/fakemush/qualifies_for_rank(rank, list/features)
+	return TRUE	//They are just humans in very detailed costumes.
+
+/datum/species/fakemush/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() //yogs end

@@ -48,7 +48,7 @@
 /datum/species/zombie/infectious/spec_life(mob/living/carbon/C)
 	. = ..()
 	C.a_intent = INTENT_HARM // THE SUFFERING MUST FLOW
-	
+
 	//Zombies never actually die, they just fall down until they regenerate enough to rise back up.
 	//They must be restrained, beheaded or gibbed to stop being a threat.
 	if(regen_cooldown < world.time)
@@ -59,7 +59,7 @@
 		C.adjustToxLoss(-heal_amt)
 	if(!C.InCritical() && prob(4))
 		playsound(C, pick(spooks), 50, TRUE, 10)
-		
+
 //Congrats you somehow died so hard you stopped being a zombie
 /datum/species/zombie/infectious/spec_death(mob/living/carbon/C)
 	. = ..()
@@ -90,5 +90,22 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
+
+/datum/species/fakezombie //yogs start
+	name = "Fake Zombie"
+	id = "fakezombies"
+	limbs_id = "zombie" //They look like zombies
+	sexes = 0
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
+	mutanttongue = /obj/item/organ/tongue/zombie
+	changesource_flags = MIRROR_BADMIN
+
+/datum/species/fakezombie/qualifies_for_rank(rank, list/features)
+	return TRUE	//They are just humans in very detailed costumes.
+
+/datum/species/fakezombie/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() //yogs end
 
 #undef REGENERATION_DELAY

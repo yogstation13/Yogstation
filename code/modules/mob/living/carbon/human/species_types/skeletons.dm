@@ -19,3 +19,24 @@
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
+
+/datum/species/fakeskeleton //yogs start
+	// 2spooky?
+	name = "Fake Spooky Scary Skeleton"
+	id = "fakeskeleton"
+	limbs_id = "skeleton"
+	say_mod = "rattles"
+	sexes = 0
+	mutanttongue = /obj/item/organ/tongue/bone
+	damage_overlay_type = ""
+	disliked_food = GROSS | RAW
+	liked_food = JUNKFOOD | FRIED
+	changesource_flags = MIRROR_BADMIN
+
+/datum/species/fakeskeleton/qualifies_for_rank(rank, list/features)
+	return TRUE	//They are just humans in very detailed costumes.
+
+/datum/species/fakeskeleton/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return ..() //yogs end
