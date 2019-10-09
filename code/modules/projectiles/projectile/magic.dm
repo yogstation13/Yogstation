@@ -702,6 +702,14 @@
 	nodamage = FALSE
 	temperature = 80
 
+/obj/item/projectile/temp/runic_icycle/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	.=..()
 
 /obj/item/projectile/magic/runic_spear
 	name = "Spear"
@@ -712,13 +720,27 @@
 	armour_penetration = 10
 	nodamage = FALSE
 
-
+/obj/item/projectile/magic/runic_spear/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	.=..()
 /obj/item/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
 	flag = "magic"
 	nodamage = TRUE
 /obj/item/projectile/magic/runic_heal/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.adjustBruteLoss(-10)
@@ -732,12 +754,7 @@
 		Y.adjustToxLoss(-10)
 		Y.adjustOxyLoss(-10)
 		Y.adjustCloneLoss(-10)
-	var/mob/M = target
-	if(M.anti_magic_check())
-		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-		qdel(src)
-		return BULLET_ACT_BLOCK
-	. = ..()
+
 
 
 /obj/item/projectile/magic/runic_fire
@@ -749,16 +766,18 @@
 	nodamage = FALSE
 
 /obj/item/projectile/magic/runic_fire/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.fire_stacks += 2
 		X.IgniteMob()
-	var/mob/M = target
-	if(M.anti_magic_check())
-		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-		qdel(src)
-		return BULLET_ACT_BLOCK
-	. = ..()
+
 
 /obj/item/projectile/magic/runic_honk
 	name = "Runic Peel"
@@ -774,16 +793,17 @@
 	ricochets_max = 66
 
 /obj/item/projectile/magic/runic_honk/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
 	. = ..()
 	var/mob/X = target
 	if(istype(X))
 		X.slip(75, X.loc, GALOSHES_DONT_HELP|SLIDE, 0, FALSE)
-	var/mob/M = target
-	if(M.anti_magic_check())
-		M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-		qdel(src)
-		return BULLET_ACT_BLOCK
-	. = ..()
+
 
 /obj/item/projectile/magic/runic_bomb
 	name = "Runic Bomb"
@@ -817,9 +837,6 @@
 	eyeblur = 10
 
 /obj/item/projectile/magic/runic_toxin/on_hit(target)
-	if(iscarbon(target))
-		var/mob/living/carbon/X = target
-		X.reagents.add_reagent(/datum/reagent/toxin, 10)
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
@@ -827,19 +844,17 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.reagents.add_reagent(/datum/reagent/toxin, 10)
 
 /obj/item/projectile/magic/runic_death
 	name = "Runic Death"
 	icon_state = "antimagic"
 	flag = "magic"
+	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
 /obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
-	if(iszombie(target))
-		target.gib()
-	if(isskeleton(target))
-		target.gib()
-	if(isvampire(target))
-		target.gib()
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
@@ -847,6 +862,13 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	. = ..()
+	if(iszombie(target))
+		target.gib()
+	if(isskeleton(target))
+		target.gib()
+	if(isvampire(target))
+		target.adjustBruteLoss(40)
+
 
 /obj/item/projectile/magic/shotgun_slug
 	name = "Shotgun slug"
@@ -856,6 +878,15 @@
 	nodamage = FALSE
 	flag = "magic"
 
+/obj/item/projectile/magic/shotgun_slug/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
+
 /obj/item/projectile/magic/incediary_slug
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
@@ -864,7 +895,15 @@
 	nodamage = FALSE
 	flag = "magic"
 
+
 /obj/item/projectile/magic/incediary_slug/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.fire_stacks += 1
@@ -876,6 +915,13 @@
 	flag = "magic"
 	irradiate = 12
 /obj/item/projectile/magic/runic_mutation/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.randmuti()
@@ -886,13 +932,6 @@
 				X.easy_randmut(POSITIVE)
 			else
 				X.easy_randmut(MINOR_NEGATIVE)
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
 
 
 /obj/item/projectile/magic/runic_resizement
@@ -901,6 +940,13 @@
 	icon_state = "cursehand1"
 
 /obj/item/projectile/magic/runic_resizement/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(M.anti_magic_check())
+			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	. = ..()
 	if(isliving(target))
 		var/mob/living/X = target
 		var/newsize = pick(0.9, 0.8, 0.7, 0.6, 1.1, 1.2, 1.3, 1.4)
@@ -917,10 +963,3 @@
 			X.pass_flags = PASSTABLE
 		X.update_transform()
 		..()
-	if(ismob(target))
-		var/mob/M = target
-		if(M.anti_magic_check())
-			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-	. = ..()
