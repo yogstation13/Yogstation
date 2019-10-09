@@ -308,7 +308,16 @@
 	frame = /obj/structure/table_frame
 	framestack = /obj/item/stack/rods
 	buildstack = /obj/item/stack/tile/carpet
-	canSmoothWith = list(/obj/structure/table/wood/fancy, /obj/structure/table/wood/fancy/black)
+	canSmoothWith = list(/obj/structure/table/wood/fancy,
+		/obj/structure/table/wood/fancy/black,
+		/obj/structure/table/wood/fancy/exoticblue,
+		/obj/structure/table/wood/fancy/cyan,
+		/obj/structure/table/wood/fancy/exoticgreen,
+		/obj/structure/table/wood/fancy/orange,
+		/obj/structure/table/wood/fancy/exoticpurple,
+		/obj/structure/table/wood/fancy/red,
+		/obj/structure/table/wood/fancy/royalblack,
+		/obj/structure/table/wood/fancy/royalblue)
 	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
 
 /obj/structure/table/wood/fancy/Initialize()
@@ -324,6 +333,45 @@
 	buildstack = /obj/item/stack/tile/carpet/black
 	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
 
+/obj/structure/table/wood/fancy/exoticblue
+	icon_state = "fancy_table_exoticblue"
+	buildstack = /obj/item/stack/tile/carpet/exoticblue
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticblue.dmi'
+
+/obj/structure/table/wood/fancy/cyan
+	icon_state = "fancy_table_cyan"
+	buildstack = /obj/item/stack/tile/carpet/cyan
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+
+/obj/structure/table/wood/fancy/exoticgreen
+	icon_state = "fancy_table_exoticgreen"
+	buildstack = /obj/item/stack/tile/carpet/exoticgreen
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticgreen.dmi'
+
+/obj/structure/table/wood/fancy/orange
+	icon_state = "fancy_table_orange"
+	buildstack = /obj/item/stack/tile/carpet/orange
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+
+/obj/structure/table/wood/fancy/exoticpurple
+	icon_state = "fancy_table_exoticpurple"
+	buildstack = /obj/item/stack/tile/carpet/exoticpurple
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_exoticpurple.dmi'
+
+/obj/structure/table/wood/fancy/red
+	icon_state = "fancy_table_red"
+	buildstack = /obj/item/stack/tile/carpet/red
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+
+/obj/structure/table/wood/fancy/royalblack
+	icon_state = "fancy_table_royalblack"
+	buildstack = /obj/item/stack/tile/carpet/royalblack
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+
+/obj/structure/table/wood/fancy/royalblue
+	icon_state = "fancy_table_royalblue"
+	buildstack = /obj/item/stack/tile/carpet/royalblue
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
 /*
  * Reinforced tables
  */
