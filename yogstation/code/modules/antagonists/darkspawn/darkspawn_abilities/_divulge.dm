@@ -71,8 +71,9 @@
 			continue
 		L.flash_act(1, 1)
 		L.Knockdown(50)
-	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [user.real_name] has removed their human disguise and is now DARKSPAWN_NAME.</b></span>"
+	var/old_name = user.real_name
 	darkspawn.divulge()
+	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b></span>"
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(is_darkspawn_or_veil(M))
