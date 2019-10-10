@@ -107,7 +107,7 @@
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
 	id = "emp_pulse"
-	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 4) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
