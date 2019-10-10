@@ -50,22 +50,23 @@
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	if(!darkspawn)
 		return
-	if(istype(target, /obj/structure/glowshroom))
-		visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
-		qdel(target)
-	if(isliving(target))
-		var/mob/living/L = target
-		if(isethereal(target))
-			target.emp_act(EMP_LIGHT)
-		for(var/obj/item/O in target)
-			if(O.light_range && O.light_power)
-				disintegrate(O)
-			if(L.pulling && L.pulling.light_range && isitem(L.pulling))
-				disintegrate(L.pulling)
-	else if(isitem(target))
-		var/obj/item/I = target
-		if(I.light_range && I.light_power)
-			disintegrate(I)
+	if(proximity)
+		if(istype(target, /obj/structure/glowshroom))
+			visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
+			qdel(target)
+		if(isliving(target))
+			var/mob/living/L = target
+			if(isethereal(target))
+				target.emp_act(EMP_LIGHT)
+			for(var/obj/item/O in target)
+				if(O.light_range && O.light_power)
+					disintegrate(O)
+				if(L.pulling && L.pulling.light_range && isitem(L.pulling))
+					disintegrate(L.pulling)
+		else if(isitem(target))
+			var/obj/item/I = target
+			if(I.light_range && I.light_power)
+				disintegrate(I)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
 			if(isopenturf(target))
@@ -163,3 +164,4 @@
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get
 			R.adjustBruteLoss(10)
+
