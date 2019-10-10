@@ -164,3 +164,4 @@
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get
 			R.adjustBruteLoss(10)
+
