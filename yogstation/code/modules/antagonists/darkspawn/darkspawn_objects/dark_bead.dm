@@ -31,6 +31,8 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
 	if(!darkspawn || eating || L == user) //no eating urself ;)))))))
 		return
+	if(!istype(L, /mob/living/carbon))
+		return
 	linked_ability = darkspawn.has_ability("devour_will")
 	if(!linked_ability) //how did you even get this?
 		qdel(src)
