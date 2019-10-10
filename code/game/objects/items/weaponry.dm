@@ -358,6 +358,19 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	else
 		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]'s cord! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
+	
+/obj/item/phone/real
+	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication monitored by Nanotrasen Officials."
+
+/obj/item/phone/real/attack_self(mob/user)
+	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back. This seems very risky.", "Send a message to the enemy.", "")
+	if(!input || !(usr in view(1,src)))
+		return
+	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+	Syndicate_announce(input, usr)
+	to_chat(usr, "<span class='danger'>Message sent. Pray you made the right choice.</span>")
+	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
+	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr)
 
 /obj/item/cane
 	name = "cane"
