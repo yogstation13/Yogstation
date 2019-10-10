@@ -1379,6 +1379,13 @@
 	crate_type = /obj/structure/closet/crate/secure/science
 	dangerous = TRUE
 
+/datum/supply_pack/science/genetics
+	name = "Genetics Resupply Crate"
+	desc = "It's got what geneticists crave, its got Monkey Cubes!."
+	cost = 750
+	contains = list(/obj/item/vending_refill/wallgene)
+	crate_name = "Genetics Crate"
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// Service //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
