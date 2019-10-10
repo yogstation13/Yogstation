@@ -1,5 +1,0 @@
-author: "yacabo"
-delete-after: true 
-changes: 
-  - tweak: "Tricorder code has been redone, functionally it only gives it a unique medical scanner UI"
-  - tweak: "Part of the gas analyzer can be now used as a proc."

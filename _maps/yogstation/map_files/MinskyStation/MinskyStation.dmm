@@ -21358,9 +21358,6 @@
 	layer = 4.1
 	},
 /obj/structure/table,
-/obj/item/deodorant,
-/obj/item/deodorant,
-/obj/item/deodorant,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/toilet)
 "aRa" = (
@@ -85174,9 +85171,8 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
+/obj/structure/table/glass,
+/obj/item/extinguisher,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "dpv" = (
@@ -85221,9 +85217,8 @@
 	req_access_txt = 1
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
+/obj/structure/table/glass,
+/obj/item/extinguisher,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "dpA" = (

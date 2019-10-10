@@ -101011,12 +101011,11 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "cXm" = (
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 8
-	},
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
+/obj/structure/table/reinforced,
+/obj/item/extinguisher,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "cXn" = (
@@ -125718,6 +125717,15 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/space,
 /area/space/nearstation)
+"hFQ" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/turf/open/floor/circuit/green,
+/area/science/xenobiology)
 "hLm" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -159244,7 +159252,7 @@ cTV
 cVT
 cXm
 cZb
-cXm
+hFQ
 dcu
 ddV
 cMY

@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(Yogs)
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
 	//END OF SHIFT ANNOUNCER
-	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift)
+	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift && !(EMERGENCY_AT_LEAST_DOCKED))
 		priority_announce("Crew, your shift has come to an end. \n You may call the shuttle whenever you find it appropriate.", "End of shift announcement", 'sound/ai/commandreport.ogg')
 		endedshift = TRUE
 	

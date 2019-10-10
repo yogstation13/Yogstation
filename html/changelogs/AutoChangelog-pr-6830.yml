@@ -1,0 +1,6 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Holyparasite ghost poll now correctly says holyparasite instead of holoparasite"
+  - bugfix: "Holyparasite sprite now shows correctly"
+  - tweak: "Holyparasite cards are now small and fit in pockets for proper anti-magic use"
