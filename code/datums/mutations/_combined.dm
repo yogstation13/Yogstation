@@ -28,3 +28,7 @@
 /datum/generecipe/shock
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/radioactive"
 	result = SHOCKTOUCH
+	
+/datum/generecipe/laser_eye
+	required = "/datum/mutation/human/thermal/x_ray; /datum/mutation/human/firebreath"
+	result = Laser Eye
