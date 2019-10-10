@@ -360,7 +360,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	return(OXYLOSS)
 	
 /obj/item/phone/real
-	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication monitored by Nanotrasen Officials."
+	desc = "A bluespace last resort negotiation tool connected directly to the enemy should anything ever go wrong. Misuse will likely lead to the line being cut or anything else they're capable of. All communication is monitored by Nanotrasen Officials."
 
 /obj/item/phone/real/attack_self(mob/user)
 	var/input = stripped_input(usr, "Please choose a message to send. If you are unsure, you can still turn back. This seems very risky.", "Send a message to the enemy.", "")
