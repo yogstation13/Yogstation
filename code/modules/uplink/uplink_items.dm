@@ -1638,7 +1638,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A Arm Mounted medgun to heal your best buds (disclaimer: does not come with friends)."
 	item = /obj/item/autosurgeon/medibeam
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
-	cost = 12
+	cost = 8
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
