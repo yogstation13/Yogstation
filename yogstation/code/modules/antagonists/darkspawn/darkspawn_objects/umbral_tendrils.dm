@@ -48,7 +48,7 @@
 		twin.attack(target, user, FALSE)
 
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
-	if(!darkspawn)
+	if(!darkspawn || !proximity)
 		return
 	if(istype(target, /obj/structure/glowshroom))
 		visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
