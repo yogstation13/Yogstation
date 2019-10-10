@@ -861,7 +861,6 @@
 /area/crew_quarters/bar)
 "bM" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/structure/flora/ausbushes/sunnybush,
@@ -1404,10 +1403,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "du" = (
-/obj/machinery/vending/cigarette{
-	pixel_x = 0;
-	pixel_y = 0
-	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "dv" = (

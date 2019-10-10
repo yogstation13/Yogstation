@@ -300,7 +300,7 @@
 	light_color = "#c1caff"
 	},
 /obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity East";
+	c_tag = "Engineering Particle Accelerator";
 	network = list("ss13","engine")
 	},
 /turf/open/floor/engine,
@@ -784,7 +784,7 @@
 /area/space)
 "bZ" = (
 /obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Particle Accelerator";
+	c_tag = "Engineering Singularity Southwest";
 	dir = 1;
 	network = list("ss13","engine")
 	},
@@ -823,14 +823,14 @@
 /area/engine/engineering)
 "ce" = (
 /obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity West";
+	c_tag = "Engineering Singularity Northwest";
 	network = list("ss13","engine")
 	},
 /turf/open/space/basic,
 /area/space)
 "cf" = (
 /obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity East";
+	c_tag = "Engineering Singularity Northeast";
 	network = list("ss13","engine")
 	},
 /turf/open/space/basic,
@@ -908,6 +908,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"qG" = (
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southeast";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "xH" = (
 /obj/machinery/door/airlock/external{
@@ -1671,7 +1679,7 @@ bs
 aN
 aa
 yi
-bZ
+qG
 ad
 bu
 aa

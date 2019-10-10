@@ -1012,7 +1012,6 @@
 /area/crew_quarters/bar)
 "dh" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /obj/effect/turf_decal/ameritard,

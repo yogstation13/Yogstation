@@ -286,7 +286,9 @@
 		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
 		if(!isnull(userinput))
 			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			name = newname ? newname : initial(name)
+			if(newname)
+				log_game("[key_name(usr)] renamed [name] to [newname]")
+				name = newname ? newname : initial(name)
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access

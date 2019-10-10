@@ -156,12 +156,6 @@
 
 /datum/config_entry/flag/join_with_mutant_humans	//players can pick mutant bodyparts for humans before joining the game
 
-/datum/config_entry/flag/no_summon_guns	//No
-
-/datum/config_entry/flag/no_summon_magic	//Fun
-
-/datum/config_entry/flag/no_summon_events	//Allowed
-
 /datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
 /datum/config_entry/number/arrivals_shuttle_dock_window	//Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station

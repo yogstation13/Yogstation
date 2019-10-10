@@ -240,6 +240,9 @@ BROTHER_OBJECTIVES_AMOUNT 2
 ## Uncomment to prohibit assistants from becoming most antagonists.
 #PROTECT_ASSISTANT_FROM_ANTAGONIST
 
+## Uncomment to prohibit AI from becoming traitor (not malf!).
+#PROTECT_AI_FROM_TRAITOR
+
 ## If non-human species are barred from joining as a head of staff
 #ENFORCE_HUMAN_AUTHORITY
 
@@ -505,13 +508,6 @@ MIDROUND_ANTAG_TIME_CHECK 60
 
 ## A ratio of living to total crew members, the lower this is, the more people will have to die in order for midround antag to be skipped
 MIDROUND_ANTAG_LIFE_CHECK 0.7
-
-##Limit Spell Choices##
-## Uncomment to disallow wizards from using certain spells that may be too chaotic/fun for your playerbase
-
-#NO_SUMMON_GUNS
-#NO_SUMMON_MAGIC
-#NO_SUMMON_EVENTS
 
 ## Comment this out for "normal" explosions, which ignore obstacles
 ## Uncomment for explosions that react to doors and walls

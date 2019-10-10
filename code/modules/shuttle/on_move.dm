@@ -288,7 +288,8 @@ All ShuttleMove procs go here
 	// ignores the movement of the shuttle from the staging area on CentCom to
 	// the station as it is loaded in.
 	if (oldT && !is_centcom_level(oldT.z))
-		unlocked = TRUE
+		if(!is_station_level(src.z))
+			unlocked = TRUE
 
 /************************************Mob move procs************************************/
 
