@@ -102,6 +102,8 @@
 		if(ASSEMBLY_FOURTH_STEP)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(W.use_tool(src, user, 0, volume=40))
+					if(build_step != 4)
+						return
 					name = "shielded frame assembly"
 					to_chat(user, "<span class='notice'>You weld the vest to [src].</span>")
 					build_step++
@@ -180,6 +182,8 @@
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				to_chat(user, "<span class='notice'>You start attaching the gun to the frame...</span>")
 				if(W.use_tool(src, user, 40, volume=100))
+					if(build_step != 8)
+						return
 					name = "armed [name]"
 					to_chat(user, "<span class='notice'>The gun is now securely fastened to the frame.</span>")
 					build_step++
@@ -343,6 +347,8 @@
 		if(ASSEMBLY_FIRST_STEP)
 			if(I.tool_behaviour == TOOL_WELDER)
 				if(I.use_tool(src, user, 0, volume=40))
+					if(build_step != 1)
+						return
 					add_overlay("hs_hole")
 					to_chat(user, "<span class='notice'>You weld a hole in [src]!</span>")
 					build_step++
@@ -365,6 +371,8 @@
 
 			else if(I.tool_behaviour == TOOL_WELDER) //deconstruct
 				if(I.use_tool(src, user, 0, volume=40))
+					if(build_step != 2)
+						return
 					cut_overlay("hs_hole")
 					to_chat(user, "<span class='notice'>You weld the hole in [src] shut!</span>")
 					build_step--
