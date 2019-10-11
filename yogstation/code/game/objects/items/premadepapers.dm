@@ -157,7 +157,7 @@
 /obj/item/paper/paperwork/kojuhs_rant
 	name = "The Super SECRET PRETERNIS GUIDE"
 	fields = 2
-	info = {"<center><h3>General Request Form NT-010</h3></center><hr>
+	info = {"<center><h3>THE RANT</h3></center><hr>
 	<b>powergame bad: </b><span class=\"paper_field\"></span><br><br>
 	<b>-kojuh: </b><span class=\"paper_field\"></span><br><br>
 
