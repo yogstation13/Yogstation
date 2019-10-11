@@ -154,13 +154,6 @@
 	<b>Signed, </b><span class=\"paper_field\"></span><br><br><br>
 	<b>Stamp Below if Approved</b>"}
 
-/obj/item/paper/paperwork/kojuhs_rant
-	name = "The Super SECRET PRETERNIS GUIDE"
-	fields = 2
-	info = {"<center><h3>THE RANT</h3></center><hr>\
-			<b>powergame bad: </b><span class=\"paper_field\"></span><br><br>\
-			<b>-kojuh: </b><span class=\"paper_field\"></span><br><br>"
-
 
 //clipboards
 /obj/item/clipboard/yog/paperwork
@@ -273,5 +266,4 @@
 	new /obj/item/paper/paperwork/rd_form(src)
 	new /obj/item/paper/paperwork/mech_form(src)
 	toppaper = contents[contents.len]
-	
 	update_icon()
