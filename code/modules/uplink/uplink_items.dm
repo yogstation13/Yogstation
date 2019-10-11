@@ -1603,6 +1603,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
+
+/datum/uplink_item/race_restricted/Deadrat
+	name = "Dead Rat"
+	desc = "You weirdos like to eat rats"
+	cost = 1
+	item = /obj/item/reagent_containers/food/snacks/deadmouse
+	restricted_species = list("felinid")	
+
 	/datum/uplink_item/race_restricted/Syndletter
 	name = "Super Strong Preternis-Only Special Item!"
 	desc = "THIS SUPER SECRET ITEM WILL SHOW YOU THE MAGIC OF BEING PRETERNIS AND HOW TO ONE SHOT KILL ANYBODY WITHOUT MOVING"
@@ -1630,7 +1638,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
-
 
 // Role-specific items
 /datum/uplink_item/role_restricted
