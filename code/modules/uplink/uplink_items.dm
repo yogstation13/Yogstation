@@ -1602,6 +1602,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
+	
+	/datum/uplink_item/race_restricted/syndigenetics
+	name = "Fire Breath implanter"
+	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
+	cost = 6
+	item = /obj/item/dnainjector/firebreath
+	restricted_species = list("lizard")
 
 /datum/uplink_item/race_restricted/angelcoolboy
 	name = "Angel Potion"
@@ -1609,7 +1616,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
-	
+
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
