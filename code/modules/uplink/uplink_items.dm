@@ -1602,8 +1602,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
-	
-	/datum/uplink_item/race_restricted/syndigenetics
+
+/datum/uplink_item/race_restricted/discoballtime
+	name = "Etheral disco ball"
+	desc = "A fun disco ball that has strobe lights on it"
+	cost = 2
+	item = /obj/item/etherealballdeployer
+	restricted_species = list("ethereal")
+
+/datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
 	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
 	cost = 6
