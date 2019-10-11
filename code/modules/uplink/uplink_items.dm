@@ -1609,7 +1609,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
-
+	
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
