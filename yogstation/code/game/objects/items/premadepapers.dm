@@ -275,4 +275,5 @@
 	new /obj/item/paper/paperwork/rd_form(src)
 	new /obj/item/paper/paperwork/mech_form(src)
 	toppaper = contents[contents.len]
+	
 	update_icon()
