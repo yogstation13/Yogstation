@@ -1603,6 +1603,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
+	/datum/uplink_item/race_restricted/Syndletter
+	name = "Super Strong Preternis-Only Special Item!"
+	desc = "THIS SUPER SECRET ITEM WILL SHOW YOU THE MAGIC OF BEING PRETERNIS AND HOW TO ONE SHOT KILL ANYBODY WITHOUT MOVING"
+	cost = 20
+	item = /obj/item/paper/paperwork/kojuhs_rant
+	restricted_species = list("preternis")
+
 /datum/uplink_item/race_restricted/discoballtime
 	name = "Etheral disco ball"
 	desc = "A fun disco ball that has strobe lights on it"
@@ -1623,6 +1630,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
+
 
 // Role-specific items
 /datum/uplink_item/role_restricted
