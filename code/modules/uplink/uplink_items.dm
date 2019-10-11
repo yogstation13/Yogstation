@@ -1602,7 +1602,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
+/obj/item/etherealballdeployer
 
+
+/datum/uplink_item/race_restricted/discoballtime
+	name = "Etheral disco ball"
+	desc = "A fun disco ball that has strobe lights on it"
+	cost = 2
+	item = /obj/item/etherealballdeployer
+	restricted_species = list("ethereal")
+	
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
