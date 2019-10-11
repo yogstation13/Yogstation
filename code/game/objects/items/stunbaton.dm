@@ -188,6 +188,21 @@
 	if (!(. & EMP_PROTECT_SELF))
 		deductcharge(1000 / severity)
 
+/obj/item/melee/baton/equipped(mob/user, slot)
+	.=..()
+	if(slot == SLOT_HANDS)
+		RegisterSignal(user, COMSIG_HUMAN_DISARM_HIT, .proc/disarm_act, TRUE)
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_DISARM_HIT)
+
+/obj/item/melee/baton/dropped(mob/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_HUMAN_DISARM_HIT)
+
+/obj/item/melee/baton/proc/disarm_act(mob/user, mob/disarmer, zone_selected)
+	if(status)
+		baton_stun(disarmer, user)
+
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
 	name = "stunprod"
