@@ -1603,16 +1603,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
-
-
-/datum/uplink_item/race_restricted/Deadrat
+/datum/uplink_item/race_restricted/deadrat
 	name = "Dead Rat"
 	desc = "You weirdos like to eat rats"
 	cost = 1
 	item = /obj/item/reagent_containers/food/snacks/deadmouse
 	restricted_species = list("felinid")	
 
-	/datum/uplink_item/race_restricted/Syndletter
+/datum/uplink_item/race_restricted/syndletter
 	name = "Super Strong Preternis-Only Special Item!"
 	desc = "THIS SUPER SECRET ITEM WILL SHOW YOU THE MAGIC OF BEING PRETERNIS AND HOW TO ONE SHOT KILL ANYBODY WITHOUT MOVING"
 	cost = 20
