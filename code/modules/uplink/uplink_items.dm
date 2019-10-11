@@ -1604,6 +1604,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_species = list("moth")
 
 
+
 /datum/uplink_item/race_restricted/Deadrat
 	name = "Dead Rat"
 	desc = "You weirdos like to eat rats"
