@@ -376,7 +376,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue! -</b></font><br>"
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue by [key_name]! -</b></font><br>"
 	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
 	msg += "<font color='red'>Your character will frequently die, sometimes without even a possibility of avoiding it. Events will often be out of your control. No matter how good or prepared you are, sometimes you just lose.</font>"
 
