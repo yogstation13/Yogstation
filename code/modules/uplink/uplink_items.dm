@@ -1604,6 +1604,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_species = list("moth")
 
 	
+	/datum/uplink_item/race_restricted/Syndletter
+	name = "Super Strong Preternis-Only Special Item!"
+	desc = "THIS SUPER SECRET ITEM WILL SHOW YOU THE MAGIC OF BEING PRETERNIS AND HOW TO ONE SHOT KILL ANYBODY WITHOUT MOVING"
+	cost = 20
+	item = /obj/item/paper/paperwork/kojuhs_rant
+	restricted_species = list("preternis")
+
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
