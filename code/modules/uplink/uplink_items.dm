@@ -1603,19 +1603,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
-/datum/uplink_item/race_restricted/deadrat
-	name = "Dead Rat"
-	desc = "You weirdos like to eat rats"
-	cost = 1
-	item = /obj/item/reagent_containers/food/snacks/deadmouse
-	restricted_species = list("felinid")	
-
-/datum/uplink_item/race_restricted/discoballtime
-	name = "Etheral disco ball"
-	desc = "A fun disco ball that has strobe lights on it"
-	cost = 2
-	item = /obj/item/etherealballdeployer
-	restricted_species = list("ethereal")
 
 /datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
