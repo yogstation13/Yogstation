@@ -702,3 +702,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"dna_undiscovered.png"	= 'html/dna_undiscovered.png',
 		"dna_extra.png" 		= 'html/dna_extra.png'
 )
+
+/datum/asset/simple/crewmonitor
+	assets = list(
+		"yogbox.png"	= 'icons/yogbox.png',
+	)

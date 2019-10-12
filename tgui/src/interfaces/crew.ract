@@ -102,7 +102,7 @@
 					<div class='blip' style='left:{{pos_x/256*600}}px;bottom:{{pos_y/256*600}}px'></div>
 				{{/if}}
 			{{/each}}
-			<img src='http://www.placehold.it/600x600'>
+			<img src='yogbox.png'>
 		</div>
 	</ui-section>
 </ui-display>
