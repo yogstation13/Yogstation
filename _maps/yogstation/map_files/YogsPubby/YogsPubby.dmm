@@ -49248,7 +49248,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bLZ" = (
-/obj/effect/spawner/structure/window,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/library/lounge)
 "bMa" = (
@@ -53701,10 +53701,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"cgG" = (
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating,
-/area/chapel/main/monastery)
 "cgH" = (
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
@@ -76777,8 +76773,8 @@ cfm
 bFb
 bhm
 bWV
-cgG
-cgG
+bLP
+bLP
 bWV
 cuX
 bWV
