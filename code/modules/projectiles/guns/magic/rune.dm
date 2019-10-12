@@ -19,16 +19,16 @@
 	charges = 3
 	recharge_rate = 2.25
 
-/obj/item/gun/magic/rune/spear_rune
-	name = "Spear Rune"
-	desc = "This obsidian rune has the ability to shoot spears out of it. You do not want to hit yourself with it."
-	fire_sound = 'sound/magic/fireball.ogg'
-	icon_state = "spear-rune"
-	item_state = "spear-rune"
-	ammo_type = /obj/item/ammo_casing/magic/runic_spear
+/obj/item/gun/magic/rune/tentacle_rune
+	name = "Tentacle Rune"
+	desc = "This obsidian rune has the ability to shoot tentacles out of it. Gross."
+	fire_sound = 'sound/magic/tail_swing.ogg'
+	icon_state = "tentacle-rune"
+	item_state = "tentacle-rune"
+	ammo_type = /obj/item/ammo_casing/magic/runic_tentacle
 	max_charges = 3
 	charges = 3
-	recharge_rate = 1.8
+	recharge_rate = 1
 
 
 
@@ -81,7 +81,7 @@
 	recharge_rate = 2.5
 
 	//Please update the var below with more projectiles if they get added
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_spear, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
+	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
 
 //shamelessly stolen from chaos staff honk
 /obj/item/gun/magic/rune/chaos_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)

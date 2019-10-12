@@ -69,8 +69,8 @@
 /obj/item/ammo_casing/magic/runic_icycle
 	projectile_type = /obj/item/projectile/temp/runic_icycle
 
-/obj/item/ammo_casing/magic/runic_spear
-	projectile_type = /obj/item/projectile/magic/runic_spear
+/obj/item/ammo_casing/magic/runic_tentacle
+	projectile_type = /obj/item/projectile/magic/runic_tentacle
 
 /obj/item/ammo_casing/magic/runic_heal
 	projectile_type = /obj/item/projectile/magic/runic_heal
