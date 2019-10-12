@@ -616,12 +616,20 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/datum/timedevent/density_timer
 	var/recharging = FALSE
 
+/obj/effect/rune/wall/Initialize(mapload, set_keyword)	
+	. = ..()	
+	GLOB.wall_runes += src
+
 /obj/effect/rune/wall/examine(mob/user)
 	..()
 	if(density && iscultist(user))
 		var/datum/timedevent/TMR = active_timers[1]
 		if(TMR)
 			to_chat(user, "<span class='cultitalic'>The air above this rune has hardened into a barrier that will last [DisplayTimeText(TMR.timeToRun - world.time)].</span>")
+
+/obj/effect/rune/wall/Destroy()	
+	GLOB.wall_runes -= src	
+	return ..()
 
 /obj/effect/rune/wall/BlockSuperconductivity()
 	return density
@@ -643,8 +651,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 		C.apply_damage(2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 
 /obj/effect/rune/wall/proc/spread_density()
-	for(var/obj/effect/rune/wall/W in range(2, src)) //yogs: removed the GLOBAL VARIABLE to find ALL BARRIER RUNES used here
-		if(!W.density && !W.recharging)
+	for(var/R in GLOB.wall_runes)
+		var/obj/effect/rune/wall/W = R
+		if(W.z == z && get_dist(src, W) <= 2 && !W.density && !W.recharging)
 			W.density = TRUE
 			W.update_state()
 			W.spread_density()
