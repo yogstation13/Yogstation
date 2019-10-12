@@ -1618,7 +1618,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
 	
-/datum/uplink_item/race_restricted/killer tomatos
+/datum/uplink_item/race_restricted/killertomatos
 	name = "Killer Tomatos"
 	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
 	cost = 5
