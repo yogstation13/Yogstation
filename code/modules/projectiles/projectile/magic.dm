@@ -846,7 +846,20 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.reagents.add_reagent(/datum/reagent/toxin, 10)
+		if(prob(25))
+			X.reagents.add_reagent(/datum/reagent/toxin, 10)
+		else
+			if(prob(25))
+				X.reagents.add_reagent(/datum/reagent/toxin/amatoxin, 10)
+			else
+				if(prob(50))
+					X.reagents.add_reagent(/datum/reagent/toxin/fentanyl, 10)
+				else
+					if(prob(5))
+						X.reagents.add_reagent(/datum/reagent/drug/methamphetamine, 20)
+					else
+						X.reagents.add_reagent(/datum/reagent/toxin/plasma, 10)
+
 
 /obj/item/projectile/magic/runic_death
 	name = "Runic Death"
@@ -925,19 +938,17 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.randmuti()
-		if(prob(50))
+		if(prob(66))
 			X.easy_randmut(NEGATIVE)
 		else
-			if(prob(33))
-				X.easy_randmut(POSITIVE)
-			else
-				X.easy_randmut(MINOR_NEGATIVE)
+			X.easy_randmut(MINOR_NEGATIVE)
 
 
 /obj/item/projectile/magic/runic_resizement
 	name = "Runic Resizement"
 	flag = "magic"
 	icon_state = "cursehand1"
+
 
 /obj/item/projectile/magic/runic_resizement/on_hit(target)
 	if(ismob(target))
@@ -949,17 +960,16 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/X = target
-		var/newsize = pick(0.9, 0.8, 0.7, 0.6, 1.1, 1.2, 1.3, 1.4)
-		var/current_size = 1
-		X.resize = newsize*current_size
-		current_size = newsize
-		if(current_size < 0.25)	//if someone is smaller than 1/4 of their original size, it makes them not go that smol
-			current_size = 0.26
-		if(current_size > 2)
-			current_size = 1.99 //if someone is 2 times bigger then their original size, it makes them not go as high as doug dimmadone hat is
-		if(current_size > 1)
+		var/newsize1 = 0.5
+		var/newsize2 = 0.75
+		var/newsize3 = 1
+		var/newsize4 = 1.25
+		var/newsize5 = 1.50
+		var/resize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
+		X.resize = resize*resize
+		if(resize > 1)
 			X.pass_flags &= ~PASSTABLE //You won't passtables now big boy
-		if(current_size < 0.85)
+		if(resize < 0.85)
 			X.pass_flags = PASSTABLE
 		X.update_transform()
-		..()
+		.=..()
