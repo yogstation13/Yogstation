@@ -95,6 +95,14 @@
 		</tbody>
 		</table>
 	</ui-section>
+	<ui-section>
+		<div class='map'>
+			{{#each data.sensors}}
+				<div class='blip' style='left:{{pos_x/256*600}}px;bottom:{{pos_y/256*600}}px'></div>
+			{{/each}}
+			<img src='icons/yogbox.png'>
+		</div>
+	</ui-section>
 </ui-display>
 
 <style>
@@ -135,4 +143,17 @@
 	table.crew td {
 		padding : 0px 10px;
 	}
+	
+	.map {
+       width: 600px;
+       height: 600px;
+       position: relative;
+    }
+    .blip {
+       position: absolute;
+       z-index: 1000;
+	   width: 5px;
+	   height: 5px;
+       background-color: #FF0000;
+    }
 </style>
