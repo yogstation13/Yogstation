@@ -711,16 +711,17 @@
 			return BULLET_ACT_BLOCK
 	.=..()
 
-/obj/item/projectile/magic/runic_spear
-	name = "Spear"
-	icon_state = "runic_spear"
-	damage = 17
+/obj/item/projectile/magic/runic_tentacle
+	name = "Tentacle"
+	icon_state = "tentacle_end"
+	damage = 10
 	damage_type = BRUTE
 	flag = "magic"
 	armour_penetration = 10
 	nodamage = FALSE
+	impact_effect_type = /obj/effect_temp_visual/dir_setting/tentacle
 
-/obj/item/projectile/magic/runic_spear/on_hit(target)
+/obj/item/projectile/magic/runic_tentacle/on_hit(target)
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
@@ -728,6 +729,10 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	.=..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.Paralyze(30)
+		X.visible_message("<span class='warning'>Tentacle wraps around [target]!</span>")
 /obj/item/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
