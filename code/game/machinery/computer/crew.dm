@@ -79,6 +79,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if (!ui)
+		var/datum/asset/simple/assets = get_asset_datum(/datum/asset/simple/crewmonitor)
+		assets.send(user)
 		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 800, 600 , master_ui, state)
 		ui.open()
 
