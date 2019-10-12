@@ -1617,6 +1617,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/syndicate
 	restricted_species = list("human")
+	
+/datum/uplink_item/race_restricted/killer tomatos
+	name = "Killer Tomatos"
+	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
+	cost = 5
+	item = /obj/item/seeds/tomato/killer
+	restricted_species = list("pod")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
