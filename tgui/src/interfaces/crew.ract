@@ -98,9 +98,11 @@
 	<ui-section>
 		<div class='map'>
 			{{#each data.sensors}}
-				<div class='blip' style='left:{{pos_x/256*600}}px;bottom:{{pos_y/256*600}}px'></div>
+				{{#if pos_x != null}}
+					<div class='blip' style='left:{{pos_x/256*600}}px;bottom:{{pos_y/256*600}}px'></div>
+				{{/if}}
 			{{/each}}
-			<img src='icons/yogbox.png'>
+			<img src='http://www.placehold.it/600x600'>
 		</div>
 	</ui-section>
 </ui-display>
@@ -151,7 +153,7 @@
     }
     .blip {
        position: absolute;
-       z-index: 1000;
+       z-index: 500;
 	   width: 5px;
 	   height: 5px;
        background-color: #FF0000;
