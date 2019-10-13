@@ -1625,7 +1625,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/seeds/tomato/killer
 	restricted_species = list("pod")
 
-/datum/uplink_item/race_restricted/radiation bomb
+/datum/uplink_item/race_restricted/radiationbomb
 	name = "Radiation grenade"
 	desc = "A radiation bomb guarenteed to irridiate the fuck out of non gaseous lifeforms."
 	cost = 2
