@@ -104,7 +104,7 @@
 
 /obj/item/reagent_containers/food/snacks/deadmouse
 	name = "dead mouse"
-	desc = "It looks like somebody dropped the bass on it. A Lizards favorite meal."
+	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "mouse_gray_dead"
 	bitesize = 3
