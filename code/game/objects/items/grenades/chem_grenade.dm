@@ -329,7 +329,7 @@
 	desc = "the best grenade to irridiate the fuck out of someone"
 	stage = GRENADE_READY
 
-/obj/item/grenade/chem_grenade/metalfoam/Initialize()
+/obj/item/grenade/chem_grenade/radiation/Initialize()
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
