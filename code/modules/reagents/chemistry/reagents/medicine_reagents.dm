@@ -1368,7 +1368,7 @@
 				M.adjustStaminaLoss(1.25*REM, 0) // end IF has Epinephrine in body
 
 	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin)) // start IF has Perfluorodecalin in body
-		jitter = jitter + 5
+		jitter += 5
 		slur = slur + 25
 		M.drowsyness += 0.5
 		heal_roll = heal_roll - 0.2 // start IF has Perfluorodecalin in body
