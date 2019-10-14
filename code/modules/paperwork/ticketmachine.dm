@@ -13,13 +13,13 @@
 	maptext_y = 10
 	layer = HIGH_OBJ_LAYER
 	var/ticket_number = 0 //Increment the ticket number whenever the HOP presses his button
-	var/current_number = 0 //What ticket are we currently serving?
-	var/max_number = 100 //To stop the text going fucky. At this point, you need to refill it.
+	var/current_number = 0 //What ticket number are we currently serving?
+	var/max_number = 100 //At this point, you need to refill it.
 	var/cooldown = 50
 	var/ready = TRUE
 	var/id = "ticket_machine_default" //For buttons
 	var/list/ticket_holders = list()
-	var/list/obj/item/ticket_machine_ticket/ticket = list()
+	var/list/obj/item/ticket_machine_ticket/tickets = list()
 
 /obj/machinery/ticket_machine/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I)) //make sure it has a data buffer
@@ -29,7 +29,7 @@
 	to_chat(user, "<span class='notice'>You store linkage information in [I]'s buffer.</span>")
 	return TRUE
 
-/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its customer number to destroy the HoP's mind.
+/obj/machinery/ticket_machine/emag_act(mob/user) //Emag the ticket machine to dispense burning tickets, as well as randomize its number to destroy the HoP's mind.
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='warning'>You overload [src]'s bureaucratic logic circuitry to its MAXIMUM setting.</span>")
@@ -50,18 +50,13 @@
 /obj/machinery/ticket_machine/proc/increment()
 	if(current_number > ticket_number)
 		return
-	playsound(src, 'sound/misc/announce_dig.ogg', 50, 0)
-		if(current_number && !(obj_flags & EMAGGED) && tickets[current_number])
+	if(current_number && !(obj_flags & EMAGGED) && tickets[current_number])
 		tickets[current_number].audible_message("<span class='notice'>\the [tickets[current_number]] disperses!</span>")
 		qdel(tickets[current_number])
 	if(current_number < ticket_number)
-	say("Now serving ticket #[current_number]!")
 		current_number ++ //Increment the one we're serving.
-	if(!(obj_flags & EMAGGED) && tickets[current_number])
 		playsound(src, 'sound/misc/announce_dig.ogg', 50, FALSE)
-		tickets[current_number].visible_message("<span class='notice'>\the [tickets[current_number]] vibrates!</span>")
 		say("Now serving ticket #[current_number]!")
-	update_icon() //Update our icon here rather than when they take a ticket to show the current ticket number being served
 		if(!(obj_flags & EMAGGED) && tickets[current_number])
 			tickets[current_number].audible_message("<span class='notice'>\the [tickets[current_number]] vibrates!</span>")
 		update_icon() //Update our icon here rather than when they take a ticket to show the current ticket number being served
@@ -80,6 +75,7 @@
 		ours.id = id
 
 /obj/machinery/button/ticket_machine/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		var/obj/item/multitool/M = I
 		if(M.buffer && !istype(M.buffer, /obj/machinery/ticket_machine))
@@ -142,9 +138,6 @@
 
 /obj/machinery/ticket_machine/attackby(obj/item/I, mob/user, params)
 	..()
-	if(ticket_number >= max_number)
-		to_chat(user, "<span class='notice'>[src] refuses [I]!, perhaps it's already full?.</span>")
-		return
 	if(istype(I, /obj/item/hand_labeler_refill))
 		if(!(ticket_number >= max_number))
 			to_chat(user, "<span class='notice'>[src] refuses [I]! There [max_number-ticket_number==1 ? "is" : "are"] still [max_number-ticket_number] ticket\s left!</span>")
@@ -170,18 +163,17 @@
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
 	. = ..()
 	if(!ready)
-		to_chat(user,"You press the button but nothing happens...")
+		to_chat(user,"You press the button, but nothing happens...")
 		return
 	if(ticket_number >= max_number)
 		to_chat(user,"Ticket supply depleted, please refill this unit with a hand labeller refill cartridge!")
 		return
-		if((user in ticket_holders) && !(obj_flags & EMAGGED))
+	if((user in ticket_holders) && !(obj_flags & EMAGGED))
 		to_chat(user, "You already have a ticket!")
 		return
-	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
-	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)//Small cooldown to prevent the clown from ripping out every ticket
+	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, FALSE)
 	ticket_number ++
-	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're #[ticket_number]...</span>")
+	to_chat(user, "<span class='notice'>You take a ticket from [src], looks like you're ticket number #[ticket_number]...</span>")
 	var/obj/item/ticket_machine_ticket/theirticket = new /obj/item/ticket_machine_ticket(get_turf(src))
 	theirticket.name = "Ticket #[ticket_number]"
 	theirticket.maptext = "<font color='#000000'>[ticket_number]</font>"
@@ -193,7 +185,7 @@
 	ticket_holders += user
 	tickets += theirticket
 	if(obj_flags & EMAGGED) //Emag the machine to destroy the HOP's life.
-			ready = FALSE
+		ready = FALSE
 		addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown)//Small cooldown to prevent piles of flaming tickets
 		theirticket.fire_act()
 		user.dropItemToGround(theirticket)
@@ -236,7 +228,6 @@
 /obj/item/paper/extinguish()
 	..()
 	update_icon()
-
 
 /obj/item/ticket_machine_ticket/Destroy()
 	if(owner && source)
