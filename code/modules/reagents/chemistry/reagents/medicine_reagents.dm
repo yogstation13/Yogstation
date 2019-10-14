@@ -1341,7 +1341,7 @@
 	description = "Take in moderation. Heals damage at a snail's pace. Effects increase when used with Epinephrine or Perfluorodecalin. You don't want this in your body for longer than needed."
 	reagent_state = LIQUID
 	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet 
-	overdose_threshold = 12
+	overdose_threshold = 15
 	taste_description = "dixel"
 	glass_name = "glass of ...red?"
 	glass_desc = "Looks like some chunky dark red mix."
