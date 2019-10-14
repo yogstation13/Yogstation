@@ -1422,7 +1422,7 @@
 	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
 		heal_roll = heal_roll - 0.4
 		jitter = jitter + 15
-		slur = slur + 25
+		slur += 25
 		if(prob(25))
 			M.adjustToxLoss(0.5*REM, 0)
 			M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half perfluorodecalin tox damage
