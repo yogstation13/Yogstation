@@ -1447,7 +1447,7 @@
 		if(prob(60))
 			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0,1,2,2.5,-1,-2))
 		if(prob(15))
-			M.set_drugginess(pick(2,4,6))
+			M.set_drugginess(rand(2,6))
 		M.Jitter(jitter)
 	if(prob(40))	
 		M.adjustToxLoss(pick(1,-1)*REM, 0)
