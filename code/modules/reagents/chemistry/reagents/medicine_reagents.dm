@@ -1454,7 +1454,7 @@
 	if(prob(1))
 		M.Dizzy(jitter) // end last set of OD probability effects
 	M.Jitter(jitter) // OD slur and jitter after calculations
-	M.slurring = slur
+	M.apply_effect(slur, EFFECT_SLUR)
 	if(heal_roll < 0) // OD Healing payload after calculations
 		M.adjustFireLoss(heal_roll*REM, FALSE, FALSE, BODYPART_ORGANIC)
 		M.adjustBruteLoss(heal_roll*REM, 0)
