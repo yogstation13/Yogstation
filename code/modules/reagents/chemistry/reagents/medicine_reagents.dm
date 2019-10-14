@@ -1411,7 +1411,7 @@
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		heal_roll = heal_roll - 0.35
 		jitter = jitter + 15
-		slur = slur + 25
+		slur += 25
 		if(prob(25))
 			M.losebreath++
 			M.adjustStaminaLoss(2.5*REM, 0)
