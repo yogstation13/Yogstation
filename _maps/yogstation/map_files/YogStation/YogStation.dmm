@@ -14324,10 +14324,17 @@
 /area/ai_monitored/storage/eva)
 "aCd" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 5;
+	pixel_y = 8
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
 	dir = 8
+	},
+/obj/item/phone/real{
+	pixel_x = -2;
+	pixel_y = -4
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
