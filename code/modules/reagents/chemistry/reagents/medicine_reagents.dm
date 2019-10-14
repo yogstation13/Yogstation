@@ -1361,7 +1361,7 @@
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine)) // start IF has Epinephrine in body
 		jitter += 5
 		slur += 25
-		heal_roll = heal_roll - 0.15
+		heal_roll -= 0.15
 		if(prob(15))
 			M.losebreath++
 			if(prob(80))
