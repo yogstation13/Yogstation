@@ -1433,7 +1433,7 @@
 		if(prob(60)) // Original edit did too much brain damage. Moved to both drug effects. Was default OD effect
 			M.adjustOrganLoss(ORGAN_SLOT_BRAIN,pick(1,-1))
 		if(prob(30))
-			slur = slur + 25
+			slur += 25
 		if(prob(30))
 			jitter = 50
 		if(prob(30))
