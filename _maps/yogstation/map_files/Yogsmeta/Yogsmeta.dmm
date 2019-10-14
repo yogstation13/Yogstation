@@ -32456,6 +32456,7 @@
 	pixel_x = -30;
 	pixel_y = 1
 	},
+/obj/item/phone/real,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "bfz" = (

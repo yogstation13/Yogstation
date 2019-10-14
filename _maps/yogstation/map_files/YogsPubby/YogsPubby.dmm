@@ -12330,7 +12330,6 @@
 /area/crew_quarters/heads/captain)
 "axT" = (
 /obj/structure/table/wood,
-/obj/machinery/recharger,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Captain's Desk";
@@ -12338,6 +12337,7 @@
 	name = "Captain RC";
 	pixel_y = 30
 	},
+/obj/item/phone/real,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "axU" = (
@@ -13501,6 +13501,7 @@
 /area/crew_quarters/heads/captain)
 "aAx" = (
 /obj/structure/table/wood,
+/obj/machinery/recharger,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "aAy" = (
