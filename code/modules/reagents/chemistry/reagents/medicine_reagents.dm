@@ -1384,7 +1384,7 @@
 		M.Jitter(jitter)
 	if(prob(1)) // Last set of non OD probability effects
 		M.Dizzy(jitter)
-		M.slurring = slur // End of base probability effects
+		M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
 	if(heal_roll < 0) // Healing payload after calculations
 		if (M.stat == DEAD) // Non OD , if dead , 30% chance to discard healing payload
 			if(prob(70))
