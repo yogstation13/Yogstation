@@ -1410,7 +1410,7 @@
 		heal_roll = 0 // Burnmix has a chance not to basic heal at all
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		heal_roll = heal_roll - 0.35
-		jitter = jitter + 15
+		jitter += 15
 		slur += 25
 		if(prob(25))
 			M.losebreath++
