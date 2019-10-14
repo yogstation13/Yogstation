@@ -1371,7 +1371,7 @@
 		jitter += 5
 		slur += 25
 		M.drowsyness += 0.5
-		heal_roll = heal_roll - 0.2 // start IF has Perfluorodecalin in body
+		heal_roll -= 0.2 // start IF has Perfluorodecalin in body
 
 	if(prob(10)) // Start of base probability effects
 		var/tox_roll = pick(1,-1) // Rolls for damage or healing
