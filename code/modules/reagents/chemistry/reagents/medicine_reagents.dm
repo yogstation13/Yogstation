@@ -1405,7 +1405,7 @@
 	var/slur = 20
 	var/jitter = 2
 	if(M.health <= M.crit_threshold)
-		heal_roll = heal_roll + 0.2 // Burnmix in overdose will heal inside of crit without epipen or perfluorodecalin. Being in crit means a roll for either no base healing or half reduction to base heal.
+		heal_roll -= 0.2 // Burnmix in overdose will heal inside of crit without epipen or perfluorodecalin. Being in crit means a roll for either no base healing or half reduction to base heal.
 	if(heal_roll > 0 && prob(10))
 		heal_roll = 0 // Burnmix has a chance not to basic heal at all
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
