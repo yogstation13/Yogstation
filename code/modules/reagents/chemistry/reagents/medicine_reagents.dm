@@ -1420,7 +1420,7 @@
 				M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half epinephrine tox damage
 
 	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
-		heal_roll = heal_roll - 0.4
+		heal_roll -= 0.4
 		jitter = jitter + 15
 		slur += 25
 		if(prob(25))
