@@ -51,6 +51,7 @@
 	desc = "An energy-based laser gun that self charges. So this is what freedom looks like?"
 	charge_delay = 5
 	selfcharge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/cyborg)
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
 	return
