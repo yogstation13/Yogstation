@@ -1479,7 +1479,7 @@
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 				M.adjustBruteLoss(RNG_ROLL*reac_volume)
 				M.adjustFireLoss(RNG_ROLL*reac_volume)
-				M.visible_message("<span class='warning'>[M]'s body reacts with the Burnmix. It seemed to have [RNG_TEXT]!</span>")
+				M.visible_message("<span class='warning'>[M]'s body reacts with the medicine. It seemed to have [RNG_TEXT]!</span>")
 	..()
 
 
