@@ -41818,9 +41818,15 @@
 /area/crew_quarters/heads/captain/private)
 "bnY" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -5;
+	pixel_y = 10
+	},
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/item/phone/real{
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/captain/private)

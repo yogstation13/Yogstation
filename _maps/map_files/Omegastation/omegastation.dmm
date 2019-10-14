@@ -2344,7 +2344,8 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/closet/crate/bin,
+/obj/structure/table/wood,
+/obj/item/phone/real,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "adM" = (
