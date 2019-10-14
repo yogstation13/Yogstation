@@ -578,6 +578,11 @@
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 
+
+/obj/item/reagent_containers/glass/bottle/potion/syndicate
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "potionflask"
+	
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
