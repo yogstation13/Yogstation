@@ -324,6 +324,24 @@
 	beakers += B1
 	beakers += B2
 
+/obj/item/grenade/chem_grenade/radiation
+	name = "Rad Bomb"
+	desc = "the best grenade to irridiate the fuck out of someone"
+	stage = GRENADE_READY
+
+/obj/item/grenade/chem_grenade/radiation/Initialize()
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/toxin/mutagen, 40)
+	B1.reagents.add_reagent(/datum/reagent/consumable/sugar, 10)
+	B2.reagents.add_reagent(/datum/reagent/potassium, 10)
+	B2.reagents.add_reagent(/datum/reagent/phosphorus, 10)
+	B2.reagents.add_reagent(/datum/reagent/toxin/mutagen, 30)
+	
+	beakers += B1
+	beakers += B2
 
 /obj/item/grenade/chem_grenade/smart_metal_foam
 	name = "smart metal foam grenade"
