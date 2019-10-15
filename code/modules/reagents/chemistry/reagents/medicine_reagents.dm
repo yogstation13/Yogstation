@@ -1416,8 +1416,7 @@
 			M.losebreath++
 			M.adjustStaminaLoss(2.5*REM, 0)
 			if(prob(80))
-				M.adjustToxLoss(0.5*REM, 0)
-				M.adjustToxLoss(pick(0,-0.25), 0) // gives a chance to negate half epinephrine tox damage
+				M.adjustToxLoss(pick(0.5,0.25,0,0,-0.25)*REM, 0)
 
 	if(holder.has_reagent(/datum/reagent/medicine/perfluorodecalin))
 		heal_roll -= 0.4
