@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "Divulge message says the name instead of DARKSPAWN_NAME"

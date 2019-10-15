@@ -2,6 +2,8 @@
 //Please do not bother them with bugs from this port, however, as it has been modified quite a bit.
 //Modifications include removing the world-ending full supermatter variation, and leaving only the shard.
 
+#define SUPERMATTER_MAXIMUM_ENERGY 1e6
+
 #define PLASMA_HEAT_PENALTY 15     // Higher == Bigger heat and waste penalty from having the crystal surrounded by this gas. Negative numbers reduce penalty.
 #define OXYGEN_HEAT_PENALTY 1
 #define CO2_HEAT_PENALTY 0.1
@@ -383,7 +385,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			temp_factor = 30
 			icon_state = base_icon_state
 
-		power = max( (removed.temperature * temp_factor / T0C) * gasmix_power_ratio + power, 0) //Total laser power plus an overload
+		power = CLAMP( (removed.temperature * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
 
 		if(prob(50))
 			radiation_pulse(src, power * (1 + power_transmission_bonus/10))

@@ -21,7 +21,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "ae" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -53,7 +53,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "aj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -172,7 +172,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 26
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -641,10 +641,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bC" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
@@ -655,6 +651,11 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -924,6 +925,27 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"cg" = (
+/obj/machinery/processor,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"ch" = (
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "cl" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -1057,14 +1079,6 @@
 /area/crew_quarters/kitchen)
 "cB" = (
 /obj/machinery/deepfryer,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
-"cC" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "cD" = (
@@ -1244,18 +1258,6 @@
 	dir = 1
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
-"cX" = (
-/obj/machinery/light,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "cY" = (
@@ -1459,7 +1461,7 @@ bx
 bx
 bw
 bx
-cX
+ch
 ag
 "}
 (6,1,1) = {"
@@ -1760,7 +1762,7 @@ al
 bS
 ce
 ce
-cC
+cg
 cJ
 cT
 al
