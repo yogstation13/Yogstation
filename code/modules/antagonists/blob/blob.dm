@@ -53,7 +53,7 @@
 	if(!blobtag)
 		Remove()
 		return
-	var/mob/camera/blob/B = new /mob/camera/blob(get_turf(old_body), blobtag.starting_points_human_blob)
+	var/mob/camera/blob/infection/B = new /mob/camera/blob/infection(get_turf(old_body), blobtag.starting_points_human_blob)
 	owner.mind.transfer_to(B)
 	old_body.gib()
 	B.place_blob_core(blobtag.point_rate_human_blob, pop_override = TRUE)
@@ -64,3 +64,12 @@
 		var/mob/camera/blob/B = owner.current
 		if(istype(B))
 			. += "(Progress: [B.blobs_legit.len]/[B.blobwincount])"
+
+/datum/antagonist/blob/infection
+	name = "Infection"
+	roundend_category = "blobs"
+	antagpanel_category = "Blob"
+	job_rank = ROLE_BLOB
+
+	starting_points_human_blob = 0
+	point_rate_human_blob = 1

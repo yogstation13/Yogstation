@@ -22,11 +22,22 @@
 
 /obj/structure/blob/Initialize(mapload, owner_overmind)
 	. = ..()
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		var/area/ourArea = get_area(src)
+		if(ourArea.infection_block_level > temp.zone)
+			qdel(src)
+			return
+
 	if(owner_overmind)
 		overmind = owner_overmind
 		var/area/Ablob = get_area(src)
 		if(Ablob.blob_allowed) //Is this area allowed for winning as blob?
 			overmind.blobs_legit += src
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		max_integrity = max_integrity * temp.stage_health
+
 	GLOB.blobs += src //Keep track of the blob in the normal list either way
 	setDir(pick(GLOB.cardinals))
 	update_icon()
@@ -165,6 +176,15 @@
 		return 0
 	var/make_blob = TRUE //can we make a blob?
 
+
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		var/area/turfArea = get_area(T)
+		if(turfArea.infection_block_level > temp.zone)
+			make_blob = FALSE
+			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+
+
 	if(isspaceturf(T) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
@@ -271,9 +291,18 @@
 /obj/structure/blob/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
-			damage_amount *= brute_resist
+			if(istype(overmind, /mob/camera/blob/infection))
+				var/mob/camera/blob/infection/temp = overmind
+				damage_amount *= (brute_resist - temp.brute_resistance)
+			else
+				damage_amount *= brute_resist
 		if(BURN)
-			damage_amount *= fire_resist
+			if(istype(overmind, /mob/camera/blob/infection))
+				var/mob/camera/blob/infection/temp = overmind
+				damage_amount *= (fire_resist - temp.fire_resistance)
+			else
+				damage_amount *= fire_resist
+
 		if(CLONE)
 		else
 			return 0
