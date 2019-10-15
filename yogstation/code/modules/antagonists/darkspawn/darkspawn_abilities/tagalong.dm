@@ -39,6 +39,6 @@
 	var/mob/living/L = owner
 	tagalong = L.apply_status_effect(STATUS_EFFECT_TAGALONG, target)
 	to_chat(owner, "<span class='velvet'><b>iahz</b><br>\
-	You slip into [target]'s shadow. This will last until canceled or you are forced out.</span>")
+	You slip into [target]'s shadow. This will last five minutes, until canceled, or you are forced out.</span>")
 	owner.forceMove(target)
 	return TRUE
