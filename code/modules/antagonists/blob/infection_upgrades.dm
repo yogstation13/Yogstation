@@ -5,7 +5,7 @@
 	var/cost = 0
 	var/bought = FALSE
 
-/datum/infection_upgrade/proc/onPurchase(/mob/camera/blob/infection)
+/datum/infection_upgrade/proc/onPurchase(mob/camera/blob/infection)
 	return FALSE
 
 
@@ -15,7 +15,7 @@
 	desc = "Gives +10% resistance to brute damage"
 	cost = 1
 
-/datum/infection_upgrade/onPurchase()
+/datum/infection_upgrade/onPurchase(mob/camera/blob/infection)
 	if(bought)
 		return
 	if(infection.biopoints >= cost)
