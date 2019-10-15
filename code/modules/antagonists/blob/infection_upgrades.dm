@@ -2,15 +2,10 @@
 	var/id = "test"
 	var/name = "TEST"
 	var/desc = "Contact an admin"
-	var/cost = 1
+	var/cost = 0
 	var/bought = FALSE
 
 /datum/infection_upgrade/proc/onPurchase(/mob/camera/blob/infection)
-	return FALSE
-
-	if(infection.biopoints >= cost)
-		infection.biopoints -= cost
-		return TRUE
 	return FALSE
 
 
@@ -19,7 +14,6 @@
 	name = "Ballistic Gel"
 	desc = "Gives +10% resistance to brute damage"
 	cost = 1
-	bought = FALSE
 
 /datum/infection_upgrade/onPurchase()
 	if(bought)
