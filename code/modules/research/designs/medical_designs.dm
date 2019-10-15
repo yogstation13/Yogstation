@@ -622,6 +622,13 @@
 	surgery = /datum/surgery/advanced/revival
 	research_icon_state = "surgery_head"
 
+/datum/design/surgery/dna_recovery
+	name= "DNA Recovery"
+	desc= "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	id = "surgery_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery
+	research_icon_state = "surgery_head"
+
 /datum/design/surgery/brainwashing
 	name = "Brainwashing"
 	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
