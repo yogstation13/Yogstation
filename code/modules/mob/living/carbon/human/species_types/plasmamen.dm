@@ -57,7 +57,7 @@
 	var/current_job = J.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)
-		if("Bartender", "Lawyer")
+		if("Bartender")
 			O = new /datum/outfit/plasmaman/bartender
 
 		if("Cook")
