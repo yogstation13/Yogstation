@@ -2914,8 +2914,6 @@
 #include "yogstation\code\datums\mutations\alcohol.dm"
 #include "yogstation\code\datums\mutations\extendoarm.dm"
 #include "yogstation\code\datums\ruins\free_miners.dm"
-#include "yogstation\code\datums\ruins\lavaland.dm"
-#include "yogstation\code\datums\ruins\space.dm"
 #include "yogstation\code\datums\ruins\station.dm"
 #include "yogstation\code\datums\traits\negative.dm"
 #include "yogstation\code\datums\wires\disposals.dm"

@@ -1,6 +1,6 @@
 {
     "map_name": "Yogsdonut",
-    "map_path": "yogstation/map_files/YogsDonut",
+    "map_path": "map_files/YogsDonut",
     "map_file": "YogsDonut.dmm",
     "shuttles": {
 	    "emergency": "emergency_donut",
