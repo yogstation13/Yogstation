@@ -33,9 +33,10 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
 	can_be_held = TRUE
-	do_footstep = TRUE
 	wuv_happy = "purrs!"
 	wuv_angy = "hisses!"
+
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()

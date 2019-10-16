@@ -20,9 +20,10 @@
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
-	do_footstep = TRUE
 	wuv_happy = "screams happily!"
 	wuv_angy = "screams angrily!"
+
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault

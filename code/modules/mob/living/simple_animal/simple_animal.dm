@@ -92,9 +92,10 @@
 	//domestication
 	var/tame = 0
 
-	var/my_z // I don't want to confuse this with client registered_z
-
-	var/do_footstep = FALSE
+	///I don't want to confuse this with client registered_z.
+	var/my_z
+	///What kind of footstep this mob should have. Null if it shouldn't have any.
+	var/footstep_type
 
 	///How much wounding power it has
 	var/wound_bonus = CANT_WOUND
@@ -141,10 +142,6 @@
 	if(stat == DEAD)
 		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
-/mob/living/simple_animal/initialize_footstep()
-	if(do_footstep)
-		..()
-
 /mob/living/simple_animal/updatehealth()
 	..()
 	health = clamp(health, 0, maxHealth)
@@ -158,6 +155,8 @@
 		else
 			stat = CONSCIOUS
 	med_hud_set_status()
+	if(footstep_type)
+		AddComponent(/datum/component/footstep, footstep_type)
 
 /mob/living/simple_animal/handle_status_effects()
 	..()

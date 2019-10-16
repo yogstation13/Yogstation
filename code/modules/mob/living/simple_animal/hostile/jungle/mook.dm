@@ -32,7 +32,7 @@
 	var/attack_state = MOOK_ATTACK_NEUTRAL
 	var/struck_target_leap = FALSE
 
-	do_footstep = TRUE
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
 
 /mob/living/simple_animal/hostile/jungle/mook/CanAllowThrough(atom/movable/O)
 	. = ..()

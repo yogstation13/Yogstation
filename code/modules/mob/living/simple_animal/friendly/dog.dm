@@ -21,9 +21,10 @@
 	turns_per_move = 10
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
-	do_footstep = TRUE
 	wuv_happy = "yaps happily!"
 	wuv_angy = "growls!"
+
+	footstep_type = FOOTSTEP_MOB_CLAW
 
 //Corgis and pugs are now under one dog subtype
 
