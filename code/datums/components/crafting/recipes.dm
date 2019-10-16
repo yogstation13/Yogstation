@@ -1020,3 +1020,10 @@
 	time = 10
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+/datum/crafting_recipe/multiduct
+	name = "Multi-layer duct"
+	result = /obj/machinery/duct/multilayered
+	time = 5
+	reqs = list(/obj/item/stack/ducts = 5)
+	category = CAT_MISC
+	tools = list(TOOL_WELDER)

@@ -819,6 +819,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Surgery"
 	icon_state = "surgery"
 
+/area/medical/apothecary
+	name = "Apothecary"
+	icon_state = "apothecary"
+
 /area/medical/cryo
 	name = "Cryogenics"
 	icon_state = "cryo"
