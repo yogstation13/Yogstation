@@ -179,7 +179,7 @@
 
 /obj/screen/alert/disgusted
 	name = "DISGUSTED"
-	desc = "ABSOLUTELY DISGUSTIN'"
+	desc = "ABSOLUTELY DISGUSTIN'!"
 	icon_state = "gross3"
 
 /obj/screen/alert/hot
@@ -215,7 +215,7 @@ or something covering your eyes."
 
 /obj/screen/alert/hypnosis
 	name = "Hypnosis"
-	desc = "Something's hypnotizing you, but you're not really sure about what."
+	desc = "Something's hypnotizing you, but you're not sure what."
 	icon_state = "hypnosis"
 	var/phrase
 
@@ -329,7 +329,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /obj/screen/alert/bloodsense/process()
 	var/atom/blood_target
-	
+
 	if(!mob_viewer.mind)
 		return
 
