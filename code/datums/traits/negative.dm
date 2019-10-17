@@ -550,5 +550,5 @@
 /datum/quirk/sheltered/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(H.can_speak_in_language(/datum/language/draconic) == FALSE && H.can_speak_in_language(/datum/language/machine) == FALSE || H.can_speak_in_language(/datum/language/codespeak) == TRUE || H.can_speak_in_language(/datum/language/narsie) == TRUE || H.can_speak_in_language(/datum/language/ratvar) == TRUE)
+	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
