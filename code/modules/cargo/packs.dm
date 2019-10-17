@@ -519,12 +519,12 @@
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor
-	name = "Reflector Vest Crate"
+	name = "Reflective Jacket Crate"
 	desc = "Contains two vests of highly reflective material. Each armor piece diffuses a laser's energy by over half, as well as offering a good chance to reflect the laser entirely. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/laserproof)
-	crate_name = "reflector vest crate"
+	crate_name = "reflective jacket crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/riotarmor
