@@ -547,7 +547,7 @@
 	medical_record_text = "Patient looks perplexed when questioned in galactic common."
 
 
-/datum/quirk/sheltered/on_process()
+/datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
 	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
