@@ -1654,6 +1654,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 
+/datum/uplink_item/role_restricted/clownvirus
+	name = "Pierrot's Throat"
+	desc = "A brain disease that was brought back with the original explorers of Clown Planet that damages the basal ganglia, victims will have an uncontrollable urge to HONK."
+	item = /obj/item/reagent_containers/glass/bottle/pierrot_throat
+	cost = 20
+	restricted_roles = list("Virologist")
+	surplus = 0
+
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
