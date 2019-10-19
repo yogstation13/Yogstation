@@ -703,7 +703,12 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"dna_extra.png" 		= 'html/dna_extra.png'
 )
 
-/datum/asset/simple/crewmonitor
+/datum/asset/simple/mapimage // Returns an image of the current map
 	assets = list(
-		"yogbox.png"	= 'icons/yogbox.png',
+		//Initialized in New()
 	)
+/datum/asset/simple/mapimage/New()
+	assets = list(
+		"map.png" = 'icons/mapimages/[SSmapping.config.map_name].png'
+	)
+	..()
