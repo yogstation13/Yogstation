@@ -10,6 +10,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
+	item_flags = ABSTRACT | DROPDEL
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
 
