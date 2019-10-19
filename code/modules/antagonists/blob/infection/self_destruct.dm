@@ -39,36 +39,37 @@
 	var/dat
 
 	dat += "<h2>Self Destruct</h2>"
+	if(detonation_timer)
+		dat += "<h1>Time to Detonation: [(detonation_timer - world.time) / 10]</h1>"
+
 
 	if(crew.defcon == 5)
-		dat += "<br><h3>There are currently no detectd threats, Self-destruct has been locked</h3>"
+		dat += "<br><h3>There are currently no detected threats, Self-destruct has been locked</h3>"
 	else if(crew.tier < 4 && crew.defcon != 5)
 		dat += "<br><h3>We do not have enough info to detonate. Please advance in your research first</h3>"
 	else
 		if(auth)
 			dat += "<h3>Nuclear Authentication Disk: <font color='green'>Confirmed</font></h3><br>"
-			dat += "<a href='?src=[REF(src)]?disk_eject=1'>Eject Disk</a><br"
+			dat += "<a href='?src=[REF(src)];disk_eject=1'>Eject Disk</a><br>"
 		else
 			dat += "<h3>Nuclear Authentication Disk: <font color='red'>MISSING</font></h5><br>"
 
 		if(capKey)
 			dat += "<h3>Detonation Key #1: <font color='green'>Confirmed</font></h3><br>"
-			dat += "<a href='?src=[REF(src)]?key_1=1'>Eject Key #1</a><br"
+			dat += "<a href='?src=[REF(src)];key_1=1'>Eject Key #1</a><br>"
 		else
 			dat += "<h3>Detonation Key #1: <font color='red'>MISSING</font></h5><br>"
 
 		if(hosKey)
 			dat += "<h3>Detonation Key #2: <font color='green'>Confirmed</font></h3><br>"
-			dat += "<a href='?src=[REF(src)]?key_2=1'>Eject Key #2</a><br"
+			dat += "<a href='?src=[REF(src)];key_2=1'>Eject Key #2</a><br>"
 		else
 			dat += "<h3>Detonation Key #2: <font color='red'>MISSING</font></h5><br>"
 
 		if(hosKey && capKey && auth)
 			dat += "<br>"
-			dat += "<a href='?src=[REF(src)]?go=1'>Initiate Self-Destruct</a><br"
+			dat += "<a href='?src=[REF(src)];go=1'>Initiate Self-Destruct</a><br>"
 
-		if(detonation_timer)
-			dat += "<h1>Time to Detonation: [(detonation_timer - world.time) / 10]</h1>"
 
 	var/datum/browser/popup = new(user, "computer", "Self Destruct", 400, 500)
 	popup.set_content(dat)

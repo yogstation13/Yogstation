@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	//ZONES
 	var/zone = 0
-	var/zone_interval = 3000
+	var/zone_interval = 4500
 	var/zone_timer
 
 	var/timers_enabled = FALSE

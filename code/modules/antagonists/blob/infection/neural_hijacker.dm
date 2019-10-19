@@ -44,6 +44,8 @@
 	else
 		if(!begun)
 			dat += "<a href='?src=[REF(src)];begin=1'>Begin Hijacking</a><br><br>"
+		else if(finished)
+			dat += "<h1>Neural Hijacking Finished!</h1>"
 		else
 			dat += "<h1>Time remaining: [(endTimer - world.time) / 10] seconds</h1><br>"
 			dat += "<span>Pay 20 points to quicken hijacking</span><br>"

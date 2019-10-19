@@ -34,6 +34,12 @@
 	if(!usr.client.holder)
 		return
 
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			if(crew.defcon < 5)
+				return
+
 	message_admins("INFECTION BEGUN")
 	for(var/W in GLOB.blob_walls)
 		qdel(W)

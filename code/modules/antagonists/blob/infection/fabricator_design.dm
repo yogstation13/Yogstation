@@ -41,29 +41,29 @@
 	max_fuel = 30
 
 /datum/fab_design/ammo
-	name = "Rifle Ammo"
+	name = "4x Rifle Ammo"
 	cost = 500
 	id = "rifle_ammo"
-	item = /obj/item/ammo_box/magazine/m556/infection
+	item = /obj/item/storage/backpack/duffelbag/infection/ammo
 
 /datum/fab_design/p_ammo
-	name = "Pistol Ammo"
+	name = "3x Pistol Ammo"
 	cost = 250
 	id = "pistol_ammo"
-	item = /obj/item/ammo_box/magazine/m10mm/infection
+	item = /obj/item/storage/backpack/duffelbag/infection/pistol_ammo
 
 /datum/fab_design/lammo
-	name = "Lazarus Ammo for Rifles"
+	name = "3x Lazarus Ammo for Rifles"
 	cost = 700
 	id = "lammo"
-	item = /obj/item/ammo_box/magazine/m556/infection/lazarus
+	item = /obj/item/storage/backpack/duffelbag/infection/ammo_lazarus
 	requiredResearch = list("lazarus_rounds")
 
 /datum/fab_design/pammo
-	name = "Purifier Ammo for Rifles"
+	name = "3x Purifier Ammo for Rifles"
 	cost = 1200
 	id = "pammo"
-	item = /obj/item/ammo_box/magazine/m556/infection/purifier
+	item = /obj/item/storage/backpack/duffelbag/infection/ammo_purifier
 	requiredResearch = list("purifier")
 
 /datum/fab_design/healing_gel
@@ -82,7 +82,7 @@
 	name = "First-aid Kit"
 	cost = 300
 	id = "medkit"
-	item = /obj/item/storage/firstaid
+	item = /obj/item/storage/firstaid/regular
 
 /datum/fab_design/bertha
 	name = "Big Bertha"
@@ -106,14 +106,14 @@
 	item = /obj/item/clothing/suit/armor/bulletproof/infection
 	requiredResearch = list("bio_armor")
 
-/datum/fab_design/bio_armor
+/datum/fab_design/mech_armor
 	name = "Bio-assisted Mechanized Armor"
 	cost = 1000
 	id= "mecho"
 	item = /obj/item/storage/backpack/duffelbag/infection/mech
 	requiredResearch = list("mech_armor")
 
-/datum/fab_design/bio_armor
+/datum/fab_design/jugger_armor
 	name = "'Juggernaut' Armor"
 	cost = 1750
 	id = "jugg"

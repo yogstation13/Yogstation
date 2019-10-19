@@ -44,6 +44,8 @@
 	else
 		if(!begun)
 			dat += "<a href='?src=[REF(src)];begin=1'>Begin Cultivation</a><br><br>"
+		else if(finished)
+			dat += "<h1>Cultivation Complete</h1>"
 		else
 			dat += "<h1>Time remaining: [(endTimer - world.time) / 10] seconds</h1><br>"
 			dat += "<span>Using additional sample extractors on this machine will shorten the time taken!</span>"

@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(crewDatum)
 		if(tier < 4)
 			if(tier4Timer <= world.time)
 				tier = 4
-				priority_announce("Tier 4 has been unlocked. The Self Destruct device is now ready. It will need both detonation keys, the nuclear authentication disk & a willing human to offer their life, by entering the device", "Nanotrasen Biological Research Department")
+				priority_announce("Tier 4 has been unlocked. The Self Destruct device is now ready. It will need both detonation keys & the nuclear authentication disk. The timer is set to 15 minutes, you CANNOT deactivate the device once active.", "Nanotrasen Biological Research Department")
 
 
 

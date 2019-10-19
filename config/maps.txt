@@ -32,6 +32,9 @@ map omegastation
 	maxplayers 35
 endmap
 
+map redoubt
+endmap
+
 
 #map metastation
 	#minplayers 25
