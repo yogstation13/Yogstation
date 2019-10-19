@@ -42,7 +42,8 @@
 
 	message_admins("INFECTION BEGUN")
 	for(var/W in GLOB.blob_walls)
-		qdel(W)
+		var/turf/closed/indestructible/riveted/infection/wall = W
+		wall.ScrapeAway()
 
 	for(var/O in GLOB.overminds)
 		if(istype(O, /mob/camera/blob/infection))

@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	name = "Infection Overmind"
 	real_name = "Infection Overmind"
 	desc = "The overmind. It controls the infection."
-	max_blob_points = 150
+	max_blob_points = 750
 	blobstrain = /datum/blobstrain/reagent/infection
 	free_strain_rerolls = 0
 	blobwincount = "Infinity"
@@ -405,6 +405,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/infection/Initialize(mapload, starting_points = 60)
 	..()
+	blob_points = 250
 	biopoint_timer = world.time + biopoint_interval
 	stage_timer_begun = world.time
 	zone_timer = world.time + zone_interval

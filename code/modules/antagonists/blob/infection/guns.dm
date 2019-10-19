@@ -29,19 +29,19 @@
 	projectile_type = /obj/item/projectile/bullet/a556/infection
 
 /obj/item/projectile/bullet/a556/infection
-	damage = 20
+	damage = 16
 
 /obj/item/ammo_casing/a556/infection/purifier
 	projectile_type = /obj/item/projectile/bullet/a556/infection/purifier
 
 /obj/item/projectile/bullet/a556/infection/purifier
-	damage = 30
+	damage = 26
 
 /obj/item/ammo_casing/a556/infection/lazarus
 	projectile_type = /obj/item/projectile/bullet/a556/infection/lazarus
 
 /obj/item/projectile/bullet/a556/infection/lazarus
-	damage = 25
+	damage = 21
 
 //PISTOL
 /obj/item/gun/ballistic/automatic/pistol/infection
@@ -76,12 +76,12 @@
 
 /obj/item/stock_parts/cell/pulse/pistol/infection
 	name = "pulse pistol power cell"
-	maxcharge = 600
+	maxcharge = 500
 
 //BIG BERTHA
 /obj/item/minigunbackpack/infection
 	name = "The 'Big Bertha' back stash"
-	overheat_max = 30
+	overheat_max = 35
 
 /obj/item/minigunbackpack/infection/Initialize()
 	. = ..()
@@ -91,8 +91,8 @@
 	name = "M-472 'Big Berha'"
 	desc = "A simple minigun firing biological destruction rounds. Requires a bulky backpack to store all that ammo."
 	slowdown = 1.8
-	fire_delay = 1.25
-	spread = 30
+	fire_delay = 1
+	spread = 34
 	mag_type = /obj/item/ammo_box/magazine/internal/minigunosprey/infection
 	revtime = 5
 
@@ -100,10 +100,10 @@
 	name = "Minigun back stash box"
 	ammo_type = /obj/item/ammo_casing/a546/infection
 	caliber = "a556"
-	max_ammo = 500
+	max_ammo = 600
 
 /obj/item/ammo_casing/a546/infection
 	projectile_type = /obj/item/projectile/bullet/a546/infection
 
 /obj/item/projectile/bullet/a546/infection
-	damage = 10
+	damage = 18

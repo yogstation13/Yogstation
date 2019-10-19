@@ -1,5 +1,9 @@
 #define JOB_MODIFICATION_MAP_NAME "Redoubt"
 
+/datum/job/New()
+	..()
+	MAP_JOB_CHECK
+
 MAP_REMOVE_JOB(clerk) //YOGS start - yogjobs
 MAP_REMOVE_JOB(paramedic)
 MAP_REMOVE_JOB(psych)

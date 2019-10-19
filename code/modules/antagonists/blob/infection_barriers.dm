@@ -1,6 +1,7 @@
 GLOBAL_LIST_EMPTY(blob_walls)
 
 /turf/closed/indestructible/riveted/infection
+	baseturfs = /turf/open/floor/plating/asteroid
 
 /turf/closed/indestructible/riveted/infection/Initialize(mapload)
 	GLOB.blob_walls += src

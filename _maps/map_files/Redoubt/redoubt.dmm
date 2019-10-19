@@ -42,7 +42,7 @@
 "aP" = (/obj/structure/table,/obj/item/storage/firstaid/regular,/turf/open/floor/plating,/area/infection/zero/triage)
 "aQ" = (/obj/structure/table,/turf/open/floor/plating,/area/infection/zero/triage)
 "aR" = (/obj/machinery/door/airlock/medical{name = "Triage"},/turf/open/floor/plating,/area/infection/zero/triage)
-"aS" = (/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plating,/area/infection/zero/triage)
+"aS" = (/obj/effect/turf_decal/stripes/line{dir = 8},/obj/machinery/light/small,/turf/open/floor/plating,/area/infection/zero/triage)
 "aT" = (/obj/structure/table,/obj/item/reagent_containers/glass/beaker/cryoxadone,/obj/item/reagent_containers/glass/beaker/cryoxadone,/turf/open/floor/plasteel,/area/infection/three/main_hallway)
 "aU" = (/turf/closed/wall/r_wall,/area/infection/four/nuke)
 "aV" = (/turf/closed/wall/r_wall,/area/infection/one/bunker)
@@ -101,7 +101,7 @@
 "bW" = (/obj/machinery/atmospherics/pipe/manifold/general/visible{dir = 1},/turf/open/floor/plasteel,/area/infection/three/main_hallway)
 "bX" = (/obj/structure/table,/obj/item/storage/firstaid/regular,/turf/open/floor/plasteel,/area/infection/one/bunker)
 "bY" = (/obj/structure/table,/obj/item/stack/sheet/metal/fifty,/turf/open/floor/plating,/area/infection/one/bunker)
-"bZ" = (/mob/living/simple_animal/hostile/mimic/crate,/turf/open/floor/circuit,/area/infection/four/nuke)
+"bZ" = (/obj/structure/closet/crate,/turf/open/floor/circuit,/area/infection/four/nuke)
 "ca" = (/turf/open/floor/circuit,/area/infection/four/nuke)
 "cb" = (/turf/open/floor/circuit/green,/area/infection/four/nuke)
 "cc" = (/turf/closed/wall/r_wall,/area/infection/three/command)
@@ -184,7 +184,7 @@
 "dB" = (/obj/structure/table,/obj/item/flashlight,/obj/item/shovel,/turf/open/floor/plasteel,/area/infection/three/cargo_combined)
 "dC" = (/turf/open/floor/plasteel,/area/infection/three/cargo_combined)
 "dD" = (/obj/structure/table,/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/mineral/sandbags,/obj/item/stack/sheet/mineral/sandbags,/obj/item/stack/sheet/mineral/sandbags,/obj/item/stack/sheet/mineral/sandbags,/obj/item/stack/sheet/mineral/sandbags,/obj/item/stack/sheet/mineral/sandbags,/turf/open/floor/plasteel,/area/infection/three/cargo_combined)
-"dE" = (/obj/structure/table,/obj/item/storage/firstaid/brute,/turf/open/floor/plating,/area/infection/zero/triage)
+"dE" = (/obj/structure/table,/obj/item/storage/firstaid/brute,/obj/machinery/light/small,/turf/open/floor/plating,/area/infection/zero/triage)
 "dF" = (/turf/closed/indestructible/riveted,/area/infection/one)
 "dG" = (/turf/open/floor/plating/asteroid,/area/infection/one)
 "dH" = (/turf/open/floor/plating,/area/infection/one)
@@ -373,7 +373,6 @@
 "hi" = (/obj/machinery/light,/turf/open/floor/plasteel,/area/infection/three/science)
 "hj" = (/obj/effect/turf_decal/stripes/line{dir = 6},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/infection/three/science)
 "hk" = (/obj/structure/closet/firecloset/full,/obj/machinery/light,/turf/open/floor/plasteel,/area/infection/three/main_hallway)
-"hl" = (/turf/open/space/basic,/area/infection/two/tunnel/big)
 "hm" = (/obj/machinery/door/poddoor/multi_tile/three_tile_ver{id = "outer"},/turf/open/floor/plating,/area/infection/two/tunnel/big)
 "hn" = (/obj/machinery/door/poddoor/multi_tile/two_tile_ver{id = "small"},/turf/open/floor/plating,/area/infection/two/tunnel/small)
 "ho" = (/obj/machinery/light,/obj/effect/landmark/start/warden,/turf/open/floor/plasteel,/area/infection/three/main_hallway)
@@ -420,7 +419,7 @@ aabTcceZcfcpcfcqcicicrccclclclclcccicscWcWfjcWgPcWcTbTbTbTbTbTbTbTbTbTbTbTbTbTbT
 aabTccctcfcfcucccicicicccccccvccccgLcscWgOeEcWcWgOcTbTbTbTbTbTbTbTbTbTbTbTbTbTbTbTdLdLdLdLdLdLdLdGdGdGdGdGaVaVaVaVaVaVbPbdbdbnbdbjaXdGdGdHdHdGdGdGdGdGdGdGdGdGdGdGdGdGdGadadadadadafafajafafbtagafadadadadadadadadaeaeaeaeadadadanadadadadadadadadadadadadadadac
 aabTaUaUaUaUaUaUcicicicccwgKcicyccczcscWcWcTfadVfbcTbTbTbTbTbTbTbTbTbTbTbTbTbTdLbTdLdLdLdLdLdLdLdGdGdGdGdGaVbQbSbXbQaVbYfAfBbnbdbjaXdGdGdHdHdGdGdGdGdGdGdGdGdGdGdGdGdGdGadafafbtafafakahaxalahbwafadadadadadadadadaeaeaeaeaeadadanadadadadadadadadadadadadadadac
 aabTaUbZbZcacaaUcicicicccAcicicBcCcDcidZcWcTcTcTcTcTbUbUbUbUbUbUbUbUbUbUbUbUbUbUfndLdLdLdLdLdLdLdGfCaVaVaVaVfDfEfEfEaVaVaVaVfFbdfGaVdGdGdHdHdGdGdGdGdGdGdGdGdGdGdGdGdGdGayafamaxapagbuahahahahbyagadadadadadadadaeaeaeaeaeaeadadanadadadadadadadadadadadadadadac
-aabTaUgIcbcbcaaUcicicicccccEcccccccccccWcWcWcWcWcWcWgegegeeTgegeeUgegeeTgegegehldMdMdMdMdMdMdMdMdGdGaVfHfEaVfEfEfIfEaVfJfKaVbnbdbjaXdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHatajarauavafaBahahaCahbyagadadadadadadadadaeaeaeaeaeadadanadadadadadadadadadadadadadadac
+aabTaUgIcbcbcaaUcicicicccccEcccccccccccWcWcWcWcWcWcWgegegeeTgegeeUgegeeTgegegegedMdMdMdMdMdMdMdMdGdGaVfHfEaVfEfEfIfEaVfJfKaVbnbdbjaXdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHatajarauavafaBahahaCahbyagadadadadadadadadaeaeaeaeaeadadanadadadadadadadadadadadadadadac
 aabTaUcbcRcbcacScicicicicicicicicicicFcWcWcWcWcWcWcWgegegegfgegegfgegegfgegegegedMdMdMdMdMdMdMdMdHdKfLfMfNfLfMfEbQfEfLfEfEfLbnbdbjaXdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdHdGdGadafahahbBajbuahahahahaAafadadadadadadadadadaeaeaeadadadanadadadadadadadadaoadadadadadac
 aabTaUgIcbcbcaaUcicicGgMcicicicicicjccdVcWcWcWcWcWcWgggegeeVgegeeWgegeeVgegegehmdMdMdMdMdMdMdMdMdGdGaVfOfEaVfEfEfPfEaVfJfQaVbnbdbjaXdGdGdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHdHatajbuahasbtaBahahaDahbyagadadadadadadadadaeaeaeaeaeadadanadadadadadadadadadadadadadadac
 aabTaUgdcacacaaUcicicccccFcccccccccccccTcTcTcTcWcWcTbUbUbUbUbUbUbUbUbUbUbUbUbUbUfndLdLdLdLdMdLdLdGfCaVaVaVaVfDfEfEfEaVaVaVaVfFbdfGaVdGdGdHdHdGdGdGdGdGdGdGdGdGdGdGdHdGdGayafaqawbvagbuahahahahbyagadadadadadadadadaeaeaeaeaeaeadanadadadadadadadadadadadadadadac
