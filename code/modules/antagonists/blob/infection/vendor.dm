@@ -6,7 +6,8 @@
 					/obj/item/flashlight/seclite = 5,
 					/obj/item/gun/ballistic/automatic/pistol/infection = 5,
 					/obj/item/ammo_box/magazine/m10mm/infection = 5,
-					/obj/item/storage/belt/security/webbing = 5)
+					/obj/item/storage/belt/security/webbing = 5,
+					/obj/item/flashlight/flare = 10)
 	contraband = list()
 	premium = list()
 	refill_canister = /obj/item/vending_refill/security/infection
