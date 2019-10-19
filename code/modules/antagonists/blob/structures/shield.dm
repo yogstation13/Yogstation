@@ -16,6 +16,12 @@
 		return "Will prevent the spread of atmospheric changes."
 	return "N/A"
 
+/obj/structure/blob/shield/Initialize()
+	..()
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/O = overmind
+		max_integrity = max_integrity * O.strong_blob_bonus
+
 /obj/structure/blob/shield/core
 	point_return = 0
 

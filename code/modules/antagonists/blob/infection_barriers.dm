@@ -1,0 +1,1 @@
+GLOBAL_LIST_EMPTY(blob_walls)

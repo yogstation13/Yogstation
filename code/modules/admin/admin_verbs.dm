@@ -77,6 +77,12 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/client/proc/discord_id_manipulation,
+	/client/proc/begin_infect,
+	/client/proc/raiseDefcon,
+	/client/proc/stopSelfDestruct,
+	/client/proc/start_blob,
+	/client/proc/stop_blob,
+	/client/proc/change_fab_rate,
 	/datum/admins/proc/open_borgopanel,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs

@@ -305,6 +305,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/stage_attack = 1
 	var/stage_resources = 1
 
+	var/health_modifier = 1
+
 	//Point Buffer, very hacky, love you Nich
 	var/stage_point_buffer
 
@@ -333,6 +335,9 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/victory_timer
 	var/victory_timer_started = FALSE
 
+	var/strong_blob_bonus = 1
+
+	var/won
 
 	//ZONES
 	var/zone = 0
@@ -341,9 +346,13 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	var/timers_enabled = FALSE
 
+	var/available_upgrades = list()
+
 
 
 /mob/camera/blob/infection/process()
+	if(!blob_core)
+		qdel(src)
 	if(!victory_in_progress && max_count < blobs_legit.len)
 		max_count = blobs_legit.len
 
@@ -371,10 +380,12 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 	if(victory_timer_started)
 		if(victory_timer <= world.time)
-			victory()
+			if(!won)
+				victory()
+				won = TRUE
 
 	if(zone_timer <= world.time)
-		zone ++
+		zone++
 		zone_timer = world.time + zone_interval
 
 
@@ -397,6 +408,14 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	biopoint_timer = world.time + biopoint_interval
 	stage_timer_begun = world.time
 	zone_timer = world.time + zone_interval
+	var/datum/blobstrain/BS = /datum/blobstrain/reagent/infection
+	set_strain(BS)
+	color = blobstrain.complementary_color
+	if(blob_core)
+		blob_core.update_icon()
+
+	for(var/U in subtypesof(/datum/infection_upgrade))
+		available_upgrades += new U
 
 
 /mob/camera/blob/infection/proc/handleStage()
@@ -429,3 +448,12 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	stage_point_buffer += (points * stage_resources) - points
 	blob_points = CLAMP(blob_points + points, 0, max_blob_points)
 	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
+
+/mob/camera/blob/infection/Stat()
+	..()
+	if(statpanel("Status"))
+		stat(null, "Bio-points: [biopoints]")
+		stat(null, "Time to next Bio-point: [max(round((biopoint_timer - world.time)*0.1, 0.1), 0)]")
+		stat(null, "Stage: [stage]")
+		stat(null, "Zone: [zone]")
+		stat(null, "Time to next zone: [max(round((zone_timer - world.time)*0.1, 0.1), 0)]")

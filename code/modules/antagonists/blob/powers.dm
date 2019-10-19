@@ -394,7 +394,7 @@
 	set category = "Blob"
 	set name = "Infection Upgrades"
 	set desc = "Upgrades for your infection!."
-	open_upgrades_menu()
+	open_upgrades_menu(usr)
 
 /mob/camera/blob/infection/create_blobbernaut()
 	if(!blobbers_enabled)
@@ -402,33 +402,42 @@
 		return
 	..()
 
-/mob/camera/blob/infection/proc/open_upgrades_menu()
+/mob/camera/blob/infection/proc/open_upgrades_menu(mob/user)
 	var/dat
 	dat += "<h1>Infection Upgrades</h1>"
 	dat += "<span>Bio-points: [biopoints]</span>"
 	dat += "<br><br>"
 
-	for(var/datum/infection_upgrade/upgrade in subtypesof(/datum/infection_upgrade))
 
-		dat += "<span>[upgrade.name]<br>[upgrade.desc]<br>Cost: [upgrade.cost] bio-points</span>"
-		dat += "<a href='?src=[REF(src)];buy=[upgrade.id]'>Purchase</a>"
+	for(var/i in available_upgrades)
+		var/datum/infection_upgrade/U = i
+		if(U.bought)
+			continue
+		dat += "<span>[initial(U.name)]<br>[initial(U.desc)]<br>Cost: [initial(U.cost)] bio-points</span><br>"
+		if(U.desc_req)
+			dat += "<b>Prequisites: [U.desc_req]</b><br>"
+		dat += "<a href='?src=[REF(src)];buy=[initial(U.id)]'>Purchase</a><br><br>"
 
 
-	var/datum/browser/popup = new(usr, "Infection", "Infection Upgrades", 800, 1000)
+	var/datum/browser/popup = new(user, "Infection", "Infection Upgrades", 800, 1000)
 	popup.set_content(dat)
 	popup.open()
-	onclose(usr, "Infection")
+	onclose(user, "Infection")
 
 
 /mob/camera/blob/infection/Topic(href, href_list)
-	if(..())
-		return
 	if(href_list["buy"])
-		for(var/datum/infection_upgrade/upgrade in subtypesof(/datum/infection_upgrade))
-			if(upgrade.id == href_list["buy"])
-				if(!upgrade.onPurchase(usr))
+		for(var/U in available_upgrades)
+			var/datum/infection_upgrade/upgrade = U
+			if("[upgrade.id]" == href_list["buy"])
+				var/returnVal = upgrade.onPurchase(usr)
+				if(returnVal == 0)
 					to_chat(usr, "<span class='big'>Not enough bio-points to purchase that upgrade!</span>")
+				else if(returnVal == 2)
+					to_chat(usr, "<span class='big'>Upgrade prerequisite not met!</span>")
 				else
 					to_chat(usr, "<span class='big'>Upgrade purchased!</span>")
+
+	open_upgrades_menu(usr)
 
 

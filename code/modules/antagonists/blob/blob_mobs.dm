@@ -321,6 +321,10 @@
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
 	flick("blobbernaut_death", src)
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			crew.addPoints(15)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent
 	independent = TRUE
