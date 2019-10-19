@@ -845,6 +845,7 @@
 
 	if(on)
 		set_light(brightness_on)
+		user.visible_message("<span class='notice'>[user] discreetly pulls a cord from under their skirt, turning on the bulb underneath.</span>")
 	else
 		set_light(0)
 
