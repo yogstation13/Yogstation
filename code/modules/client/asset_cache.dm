@@ -709,6 +709,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	)
 /datum/asset/simple/mapimage/New()
 	assets = list(
-		"map.png" = 'icons/mapimages/[SSmapping.config.map_name].png'
+		"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
 	)
 	..()
