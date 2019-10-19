@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "camera bugs actually work now"

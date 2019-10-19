@@ -28,7 +28,7 @@
 	var/see_invisible = SEE_INVISIBLE_LIVING
 	var/lighting_alpha
 	var/no_glasses
-	var/damaged	= FALSE	//damaged indicates that our eyes are undergoing some level of negative effect
+	var/damaged	= TRUE	//damaged indicates that our eyes are undergoing some level of negative effect,starts as true so it removes the impaired vision overlay if it is replacing damaged eyes
 
 /obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
 	. = ..()

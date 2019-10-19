@@ -1,0 +1,5 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - tweak: "Stabilized light pink extract now gives the user a small dose of Ephedrine as a speed boost if someone in crit is near them"
+  - tweak: "Stabilized light pink extract now give the patient in crit epinephrine and atropine instead of epinephrine and saline glucose solution"

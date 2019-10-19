@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Emagging a empty clone no longer kills the last clone"

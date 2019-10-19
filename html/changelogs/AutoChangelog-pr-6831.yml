@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new ability, crawling shadows, to darkspawn that can be used as a movement and offensive ability"
