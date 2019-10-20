@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(crewDatum)
 
 /datum/infection_crew/proc/addOrbPoints(amount)
 	orbital_points += amount
-	priority_announce("CentComm has granted you an additional [amount] points for Orbital Support. Use them wisely", "CentComm Defence Department")
+	priority_announce("CentComm has granted you an additional [amount] points for Orbital Support. Use them wisely", "CentCom Defence Department")
 
 /datum/infection_crew/proc/closeTunnel()
 	if(tunnelClosed)
