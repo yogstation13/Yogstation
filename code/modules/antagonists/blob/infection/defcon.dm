@@ -17,6 +17,8 @@ GLOBAL_LIST_EMPTY(crewDatum)
 	var/tier4Interval = 9000
 	var/tier4
 
+	var/orbital_points = 0
+
 /datum/infection_crew/New()
 	message_admins("CREW INIT COMPLETE")
 	for(var/R in subtypesof(/datum/crew_researches))
@@ -91,6 +93,10 @@ GLOBAL_LIST_EMPTY(crewDatum)
 
 /datum/infection_crew/proc/addPoints(amount)
 	points += amount
+
+/datum/infection_crew/proc/addOrbPoints(amount)
+	orbital_points += amount
+	priority_announce("CentComm has granted you an additional [amount] points for Orbital Support. Use them wisely", "CentComm Defence Department")
 
 /datum/infection_crew/proc/closeTunnel()
 	if(tunnelClosed)

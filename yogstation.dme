@@ -1262,6 +1262,8 @@
 #include "code\modules\antagonists\blob\infection\guns.dm"
 #include "code\modules\antagonists\blob\infection\neural_hijacker.dm"
 #include "code\modules\antagonists\blob\infection\self_destruct.dm"
+#include "code\modules\antagonists\blob\infection\support.dm"
+#include "code\modules\antagonists\blob\infection\supports.dm"
 #include "code\modules\antagonists\blob\infection\vendor.dm"
 #include "code\modules\antagonists\blob\structures\_blob.dm"
 #include "code\modules\antagonists\blob\structures\core.dm"

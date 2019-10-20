@@ -133,3 +133,22 @@
 		if(istype(O, /mob/camera/blob/infection))
 			var/mob/camera/blob/infection/infection = O
 			infection.stopVictory()
+
+/client/proc/giveOrbitalPoints()
+	set name = "Give Orbital Points"
+	set category = "Infection"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	holder.gib_points()
+
+/datum/admins/proc/gib_points()
+	if(!usr.client.holder)
+		return
+
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			var/points = input(usr, "Award how many points?") as num
+			crew.addOrbPoints(points)
