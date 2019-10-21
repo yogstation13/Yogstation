@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "barrier rune will now actually use its cooldown period when disabled"
+  - tweak: "barrier rune code is less hot garbage"

@@ -2,10 +2,6 @@
 /mob/living/simple_animal/hostile/guardian/chaplain
 	a_intent = INTENT_HARM
 	friendly = "heals"
-	icon = 'icons/mob/guardian.dmi'
-	icon_state = "holypara"
-	icon_living = "holypara"
-	icon_dead = "holypara"
 	speed = 0
 	damage_coeff = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, CLONE = 0.9, STAMINA = 0, OXY = 0.9)
 	obj_damage = 10
