@@ -68,6 +68,6 @@
 
 /datum/emote/living/dab/run_emote(mob/user, params)
 	. = ..()
-	if(ishuman(user))
+	if(. && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)

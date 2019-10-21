@@ -46,7 +46,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
 		C.current_ticket.initiator = C
-		C.current_ticket.AddInteraction("Client reconnected.")
+		C.current_ticket.AddInteraction("Client reconnected.", ckey = C.ckey)
 
 //Dissasociate ticket
 /datum/admin_help_tickets/proc/ClientLogout(client/C)
@@ -184,9 +184,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return FALSE
 	return TRUE
 
-/datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE)
+/datum/admin_help/proc/AddInteraction(msg, for_admins = FALSE, ckey = null)
 	_interactions += new /datum/ticket_log(src, usr, msg, for_admins)
-	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = usr.client.ckey))
+	webhook_send("ticket", list("ticketid" = id, "message" = strip_html_simple(msg), "roundid" = GLOB.round_id, "user" = ckey ? ckey : usr.client.ckey))
 
 //Removes the ahelp verb and returns it after 2 minutes
 /datum/admin_help/proc/TimeoutVerb()
@@ -376,7 +376,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue! -</b></font><br>"
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as an IC issue by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]! -</b></font><br>"
 	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
 	msg += "<font color='red'>Your character will frequently die, sometimes without even a possibility of avoiding it. Events will often be out of your control. No matter how good or prepared you are, sometimes you just lose.</font>"
 
