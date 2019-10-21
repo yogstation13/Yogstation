@@ -88,7 +88,7 @@
 				L["[get_area(com.target)] (Active)"] = com.target
 			else
 				L["[get_area(com.target)] (Inactive)"] = com.target
-		L["None (Dangerous)"] = null
+	L["None (Dangerous)"] = null
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "DRAGnet") as anything in L
 	if(user.incapacitated())
 		return
