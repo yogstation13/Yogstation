@@ -13,4 +13,3 @@
 	if(blood_volume >= BLOOD_VOLUME_SURVIVE(src))
 		return BLOOD_SURVIVE
 	return BLOOD_DEAD
-	
