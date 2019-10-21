@@ -826,8 +826,8 @@
 	item_state = "blue_mech_suit"
 
 /obj/item/clothing/under/lampskirt
-	name = "lamp skirt"
-	desc = "A white suit, suitable for an excellent host."
+	name = "lamp dress"
+	desc = "A peculier garment woven in silk; under the lower dress appears to be a lamp and a switch."
 	icon_state = "lampskirt_male"
 	item_state = "lampskirt_male"
 	item_color = "lampskirt_male"
@@ -845,7 +845,7 @@
 
 	if(on)
 		set_light(brightness_on)
-		user.visible_message("<span class='notice'>[user] discreetly pulls a cord from under their skirt, turning on the bulb underneath.</span>")
+		user.visible_message("<span class='notice'>[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on.</span>")
 	else
 		set_light(0)
 
