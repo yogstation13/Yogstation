@@ -1,4 +1,4 @@
-/mob/living/proc/get_blood_state() // Returns how our good or bad our blood situation is, using the blood enums in Yogstation-TG\code\__DEFINES\mobs.dm 
+/mob/living/proc/get_blood_state() // Returns how our good or bad our blood situation is, using the blood enums in Yogstation-TG\code\__DEFINES\mobs.dm
 	if(!initial(blood_volume))
 		return BLOOD_SAFE // I... guess we're fine?
 
@@ -13,3 +13,4 @@
 	if(blood_volume >= BLOOD_VOLUME_SURVIVE(src))
 		return BLOOD_SURVIVE
 	return BLOOD_DEAD
+	
