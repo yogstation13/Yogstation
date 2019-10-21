@@ -47,4 +47,5 @@
 	charge_delay = 5
 	can_charge = FALSE
 	selfcharge = 1
+	charge_amount = 3
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/cyborg)
