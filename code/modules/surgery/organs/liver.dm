@@ -98,9 +98,8 @@
 	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It can even heal minor amounts of toxin damage."
 	alcohol_tolerance = 0.0005
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	healing_factor = 1.5 * STANDARD_ORGAN_HEALING
+	healing_factor = 2 * STANDARD_ORGAN_HEALING
 	toxTolerance = 20
-	toxLethality = 0.008
 
 /obj/item/organ/liver/cybernetic/upgraded/on_life()
 	. = ..()
