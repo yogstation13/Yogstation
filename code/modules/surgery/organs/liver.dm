@@ -85,20 +85,28 @@
 /obj/item/organ/liver/cybernetic
 	name = "cybernetic liver"
 	icon_state = "liver-c"
-	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
+	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins better than an organic liver."
 	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
-	toxTolerance = 3.3
-	toxLethality = 0.009
+	alcohol_tolerance = 0.001
+	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD  //double the health of a normal liver
+	toxTolerance = 10  //can shrug off up to 10u of toxins
+	toxLethality = 0.008  //20% less damage than a normal liver
 
 /obj/item/organ/liver/cybernetic/upgraded
 	name = "upgraded cybernetic liver"
 	icon_state = "liver-c-u"
-	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It is resistant to alcohol poisoning and is very robust at filtering toxins."
-	alcohol_tolerance = 0.001
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD //double the health of a normal liver
-	toxTolerance = 15 //can shrug off up to 15u of toxins
-	toxLethality = 0.008 //20% less damage than a normal liver
+	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It can even heal minor amounts of toxin damage."
+	alcohol_tolerance = 0.0005
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	healing_factor = 1.5 * STANDARD_ORGAN_HEALING
+	toxTolerance = 20
+	toxLethality = 0.008
+
+/obj/item/organ/liver/cybernetic/upgraded/on_life()
+	. = ..()
+	var/mob/living/carbon/C = owner
+	if(!(organ_flags & ORGAN_FAILING)) //Passive Toxin damage healing
+		C.adjustToxLoss(-0.5, TRUE, FALSE)
 
 /obj/item/organ/liver/cybernetic/emp_act(severity)
 	. = ..()

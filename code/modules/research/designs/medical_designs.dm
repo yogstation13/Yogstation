@@ -484,7 +484,7 @@
 	id = "cybernetic_liver_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
-	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER=500)
 	build_path = /obj/item/organ/liver/cybernetic/upgraded
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
