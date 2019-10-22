@@ -177,7 +177,7 @@
 
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma, regenerates after use."
 	icon_state = "heart-c"
 	organ_flags = ORGAN_SYNTHETIC
 	var/dose_available = TRUE
@@ -198,15 +198,13 @@
 
 /obj/item/organ/heart/cybernetic/proc/used_dose()
 	dose_available = FALSE
+	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma. This upgraded model can regenerate its dose after use."
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of atropine, used automatically after facing severe trauma, regenerates after use."
 	icon_state = "heart-c-u"
-
-/obj/item/organ/heart/cybernetic/upgraded/used_dose()
-	. = ..()
-	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
+	rid = /datum/reagent/medicine/atropine
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

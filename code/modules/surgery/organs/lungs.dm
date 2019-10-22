@@ -429,8 +429,9 @@
 	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 13
+	safe_co2_max = 20
 
 /obj/item/organ/lungs/cybernetic/emp_act()
 	. = ..()
@@ -438,15 +439,22 @@
 		return
 	owner.losebreath = 20
 
-
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features the ability to filter out lower levels of toxins and carbon dioxide."
+	desc = "A more advanced version of the stock cybernetic lungs. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
-	safe_toxins_max = 20
-	safe_co2_max = 20
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	safe_oxygen_min = 10
+	safe_co2_max = 20
+	safe_toxins_max = 20 //Higher resistance to most harmful gasses 
+	SA_para_min = 3
+	SA_sleep_min = 6
+	BZ_trip_balls_min = 2
 
-	cold_level_1_threshold = 200
-	cold_level_2_threshold = 140
-	cold_level_3_threshold = 100
+	cold_level_1_threshold = 220
+	cold_level_2_threshold = 160
+	cold_level_3_threshold = 80
+
+	heat_level_1_threshold = 400
+	heat_level_2_threshold = 500
+	heat_level_3_threshold = 1200
