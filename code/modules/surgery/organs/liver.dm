@@ -88,7 +88,7 @@
 	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins better than an organic liver."
 	organ_flags = ORGAN_SYNTHETIC
 	alcohol_tolerance = 0.001
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD  //double the health of a normal liver
+	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD  //150% health of a normal liver
 	toxTolerance = 10  //can shrug off up to 10u of toxins
 	toxLethality = 0.008  //20% less damage than a normal liver
 
