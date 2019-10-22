@@ -1,0 +1,4 @@
+author: "Trustback"
+delete-after: true 
+changes: 
+  - rscdel: " Pheromone receptors are now out of reach for xenolings."
