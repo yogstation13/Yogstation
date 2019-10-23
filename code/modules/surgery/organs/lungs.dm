@@ -426,12 +426,11 @@
 
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
-	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
+	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Slightly more effecient than organic lungs."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 13
-	safe_co2_max = 20
 
 /obj/item/organ/lungs/cybernetic/emp_act()
 	. = ..()
@@ -441,7 +440,7 @@
 
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
+	desc = "A more advanced version of the stock cybernetic lungs, for use in hazardous environments. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	safe_oxygen_min = 10

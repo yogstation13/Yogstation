@@ -85,21 +85,22 @@
 /obj/item/organ/liver/cybernetic
 	name = "cybernetic liver"
 	icon_state = "liver-c"
-	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins better than an organic liver."
+	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
 	organ_flags = ORGAN_SYNTHETIC
 	alcohol_tolerance = 0.001
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD  //150% health of a normal liver
-	toxTolerance = 10  //can shrug off up to 10u of toxins
-	toxLethality = 0.008  //20% less damage than a normal liver
+	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	toxTolerance = 3.3
+	toxLethality = 0.009
 
 /obj/item/organ/liver/cybernetic/upgraded
 	name = "upgraded cybernetic liver"
 	icon_state = "liver-c-u"
-	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It can even heal minor amounts of toxin damage."
+	desc = "An upgraded version of the cybernetic liver, designed to handle extreme levels of toxins. It can even heal minor amounts of toxin damage."
 	alcohol_tolerance = 0.0005
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	healing_factor = 2 * STANDARD_ORGAN_HEALING
+	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD //150% health of a normal liver
+	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
 	toxTolerance = 20
+	toxLethality = .007
 
 /obj/item/organ/liver/cybernetic/upgraded/on_life()
 	. = ..()
