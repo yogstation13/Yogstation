@@ -262,7 +262,7 @@
 	bitesize = 4
 	filling_color = "#7FFF00"
 	tastes = list("meat" = 1, "the colour green" = 1)
-	foodtype = MEAT
+	foodtype = MEAT | EGG
 
 /obj/item/reagent_containers/food/snacks/sashimi
 	name = "carp sashimi"

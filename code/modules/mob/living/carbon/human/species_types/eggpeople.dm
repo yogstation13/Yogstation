@@ -18,7 +18,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
 	disliked_food = GROSS | DAIRY | EGG
-	liked_food = MEAT
+	liked_food = MEAT // Eggpeople are carnivores.
 
 /datum/species/egg/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/egg)
