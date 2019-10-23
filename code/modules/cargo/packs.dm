@@ -363,6 +363,14 @@
 	contains = list(/obj/item/vending_refill/security)
 	crate_name = "SecTech supply crate"
 
+/datum/supply_pack/security/secway
+    name = "Secway Crate"
+    desc = "A stylish way to travel for all law enforcement. Requires Security access to open."
+    cost = 5000
+    contains = list(/obj/vehicle/ridden/secway,
+                    /obj/item/key/security)
+    crate_name = "secway crate"
+
 /datum/supply_pack/security/firingpins
 	name = "Standard Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 standard firing pins. Requires Security access to open."
