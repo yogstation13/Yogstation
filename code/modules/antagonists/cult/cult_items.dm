@@ -503,7 +503,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		user.Paralyze(100)
 		to_chat(user, "<span class='warning'>A powerful force shoves you away from [src]!</span>")
 		return
-	if(GLOB.curselimit)
+	if(GLOB.curselimit >= 2)
 		to_chat(user, "<span class='notice'>We have exhausted our ability to curse the shuttle.</span>")
 		return
 	if(locate(/obj/singularity/narsie) in GLOB.poi_list)
