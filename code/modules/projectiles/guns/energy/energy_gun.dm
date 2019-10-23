@@ -94,6 +94,7 @@
 		return
 	if(!L[t1])
 		teletarget = null
+		user.show_message("<span class='notice'>Random teleport enabled.</span>")
 	else
 		var/obj/item/beacon/T = L[t1]
 		var/area/A = get_area(T)
@@ -106,7 +107,7 @@
 			to_chat(user, "<span class='notice'>\The [src] isn't capable of locking a beacon from here.</span>")
 			return
 		teletarget = T
-	user.show_message("<span class='notice'>Locked In.</span>", 2)
+		user.show_message("<span class='notice'>Locked In.</span>", 2)
 
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
