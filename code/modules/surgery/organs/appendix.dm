@@ -55,10 +55,11 @@
 /obj/item/organ/appendix/cybernetic/on_life()
 	..()
 	if(inflamed)
+		var/mob/living/carbon/M = owner
 		for(var/datum/disease/appendicitis/A in M.diseases)
-		A.cure()
-		inflamed = FALSE
-		M.emote("chuckle") //you really think that will stop me?
+			A.cure()
+			inflamed = FALSE
+			M.emote("chuckle") //you really think that will stop me?
 
 /obj/item/organ/appendix/cybernetic/update_icon()
 	icon_state = "implant-filter"

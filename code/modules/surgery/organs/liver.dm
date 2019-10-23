@@ -100,7 +100,7 @@
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD //150% health of a normal liver
 	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
 	toxTolerance = 20
-	toxLethality = .007
+	toxLethality = 0.007
 
 /obj/item/organ/liver/cybernetic/upgraded/on_life()
 	. = ..()

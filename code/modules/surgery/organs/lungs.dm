@@ -450,10 +450,10 @@
 	SA_sleep_min = 6
 	BZ_trip_balls_min = 2
 
-	cold_level_1_threshold = 220
-	cold_level_2_threshold = 160
+	cold_level_1_threshold = 200
+	cold_level_2_threshold = 140
 	cold_level_3_threshold = 80
 
-	heat_level_1_threshold = 400
-	heat_level_2_threshold = 500
-	heat_level_3_threshold = 1200
+	heat_level_1_threshold = 500
+	heat_level_2_threshold = 800
+	heat_level_3_threshold = 1400
