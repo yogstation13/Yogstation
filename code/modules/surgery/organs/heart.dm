@@ -207,7 +207,7 @@
 
 /obj/item/organ/heart/cybernetic/upgraded/emp_act()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/restart), 80) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, .proc/Restart), 80) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"
