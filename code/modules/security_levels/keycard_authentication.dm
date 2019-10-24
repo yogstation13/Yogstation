@@ -52,6 +52,9 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 		if(!A.dextrous)
 			to_chat(user, "<span class='warning'>You are too primitive to use this device!</span>")
 			return UI_CLOSE
+	if(isdrone(user))
+		to_chat(user, "<span class='warning'>You are unable to interface with this device!</span>")
+		return UI_CLOSE
 	return ..()
 
 /obj/machinery/keycard_auth/ui_act(action, params)
