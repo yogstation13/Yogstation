@@ -970,11 +970,30 @@
 		var/newsize3 = 1
 		var/newsize4 = 1.25
 		var/newsize5 = 1.50
-		var/resize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
-		X.resize = resize*resize
-		if(resize > 1)
-			X.pass_flags &= ~PASSTABLE //You won't passtables now big boy
-		if(resize < 0.85)
-			X.pass_flags = PASSTABLE
+		var/reresize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
+		X.resize = reresize
 		X.update_transform()
+		sleep(100)
+		if(reresize == 0.5)
+			reresize = 2
+			X.resize = reresize
+			X.update_transform()
+		else
+			if(reresize == 0.75)
+				reresize = 1.3333334
+				X.resize = reresize
+				X.update_transform()
+			else
+				if(reresize == 1)
+					return
+				else
+					if(reresize == 1.25)
+						reresize = 0.8
+						X.resize = reresize
+						X.update_transform()
+					else
+						if(reresize == 1.5)
+							reresize = 0.66666667
+							X.resize = reresize
+							X.update_transform()
 		.=..()
