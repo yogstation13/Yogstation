@@ -80604,6 +80604,7 @@
 	icon_state = "manifold-1";
 	dir = 4
 	},
+/obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "ctu" = (
@@ -80619,7 +80620,6 @@
 	pixel_y = 6
 	},
 /obj/item/folder/white,
-/obj/item/pen,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -80630,6 +80630,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
+/obj/item/stamp/cmo,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "ctv" = (
@@ -89263,7 +89264,6 @@
 /turf/open/floor/plating,
 /area/crew_quarters/toilet/restrooms)
 "cGL" = (
-/obj/machinery/vending/clothing,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -89274,6 +89274,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGM" = (
@@ -89305,6 +89306,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/vending/clothing,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "cGO" = (
