@@ -10,7 +10,6 @@
 		#include "map_files\YogsMeta\YogsMeta.dmm"
 		#include "map_files\YogsPubby\YogsPubby.dmm"
 		#include "map_files\YogsDelta\YogsDelta.dmm"
-		#include "map_files\YogsDonut\YogsDonut.dmm"
 		#include "map_files\MinskyStation\MinskyStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
