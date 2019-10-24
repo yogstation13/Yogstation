@@ -171,7 +171,7 @@
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "ax" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -326,22 +326,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "aJ" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -596,11 +585,22 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "bx" = (
 /obj/structure/closet/radiation,
@@ -881,6 +881,12 @@
 "cj" = (
 /obj/machinery/light,
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"ck" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "du" = (
 /obj/structure/sign/warning/radiation/rad_area,
@@ -1491,7 +1497,7 @@ aa
 aa
 "}
 (19,1,1) = {"
-bw
+aI
 ai
 ay
 as
@@ -1549,7 +1555,7 @@ aa
 (21,1,1) = {"
 du
 ad
-aI
+bw
 ad
 ad
 zh
@@ -1744,7 +1750,7 @@ aa
 "}
 (28,1,1) = {"
 ab
-ac
+ck
 aH
 aE
 bb

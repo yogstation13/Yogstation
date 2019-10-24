@@ -1603,6 +1603,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
+
+/datum/uplink_item/race_restricted/syndigenetics
+	name = "Fire Breath implanter"
+	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
+	cost = 6
+	item = /obj/item/dnainjector/firebreath
+	restricted_species = list("lizard")
+
+/datum/uplink_item/race_restricted/angelcoolboy
+	name = "Angel Potion"
+	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creatures"
+	cost = 7
+	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
+	restricted_species = list("human")
+	
+/datum/uplink_item/race_restricted/killertomatos
+	name = "Killer Tomatos"
+	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
+	cost = 3
+	item = /obj/item/seeds/tomato/killer
+	restricted_species = list("pod")
+
+/datum/uplink_item/race_restricted/radiationbomb
+	name = "Radiation grenade"
+	desc = "A radiation bomb guarenteed to irridiate the fuck out of non gaseous lifeforms."
+	cost = 4
+	item = /obj/item/grenade/chem_grenade/radiation
+	restricted_species = list("plasmaman")
+	
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
@@ -1632,6 +1661,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
+	
+	/datum/uplink_item/role_restricted/arm_medical_gun
+	name = "Arm Mounted Medical Beamgun"
+	desc = "A Arm Mounted medgun to heal your best buds (disclaimer: does not come with friends)."
+	item = /obj/item/autosurgeon/medibeam
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
+	cost = 8
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
