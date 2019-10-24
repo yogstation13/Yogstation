@@ -5016,8 +5016,7 @@
 /turf/open/space,
 /area/solar/port/fore)
 "ajr" = (
-/obj/structure/table,
-/obj/item/restraints/handcuffs,
+/obj/machinery/computer/prisoner,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajs" = (
@@ -5033,6 +5032,7 @@
 /obj/machinery/camera{
 	c_tag = "Labor Shuttle Dock North"
 	},
+/obj/item/restraints/handcuffs,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "aju" = (
@@ -5218,15 +5218,15 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ajJ" = (
-/obj/structure/chair{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 6
+	},
+/obj/structure/chair{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -7079,14 +7079,6 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "anu" = (
-/obj/machinery/button/door{
-	desc = "A remote control switch for the exit.";
-	id = "laborexit";
-	name = "exit button";
-	normaldoorcontrol = 1;
-	pixel_x = 26;
-	pixel_y = -6
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -7255,8 +7247,11 @@
 /area/space)
 "anP" = (
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 8
+	},
 /obj/machinery/door/airlock/security{
-	id_tag = "laborexit";
 	name = "Labor Shuttle";
 	req_access_txt = "63"
 	},

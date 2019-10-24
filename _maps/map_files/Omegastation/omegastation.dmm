@@ -13193,9 +13193,6 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -18234,14 +18231,9 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aBB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -25052,9 +25044,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"aLC" = (
-/turf/open/space/basic,
-/area/science/xenobiology)
 "aLD" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/effect/turf_decal/stripes/line{
@@ -25842,6 +25831,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"aMQ" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "aMR" = (
 /obj/machinery/camera{
 	c_tag = "Supermatter Chamber";
@@ -25901,6 +25895,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"aMY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
 "aMZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -25914,6 +25914,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"aNa" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
 "aNb" = (
 /obj/machinery/light,
 /obj/structure/extinguisher_cabinet{
@@ -26068,6 +26074,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"aNo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"aNp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/tcommsat/server)
 "aNq" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/cable/white,
@@ -37110,13 +37135,6 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/server)
-"bxt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/tcommsat/server)
 "bxu" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -37598,13 +37616,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"csP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "csX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/white{
@@ -38037,11 +38048,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/hallway/secondary/entry)
-"ezP" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "eCg" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -38431,12 +38437,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port/fore)
-"gNH" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/asteroid/nearstation)
 "gPY" = (
 /obj/machinery/vr_sleeper,
 /obj/effect/turf_decal/tile/red{
@@ -43738,12 +43738,6 @@
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"xPz" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/asteroid/nearstation)
 "xSr" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -69917,7 +69911,7 @@ bpn
 xZO
 dMl
 uhz
-gNH
+aMY
 aad
 aad
 aad
@@ -70174,7 +70168,7 @@ pvX
 gSv
 xtL
 uhz
-gNH
+aMY
 aad
 aad
 aad
@@ -70430,8 +70424,8 @@ ueC
 qMr
 kiw
 nUk
-ezP
-xPz
+aMQ
+aNa
 aad
 aad
 aad
@@ -73013,7 +73007,7 @@ aMN
 aMN
 sJD
 aMN
-bxt
+aNp
 bwW
 aMJ
 aMJ
@@ -76596,7 +76590,7 @@ wZa
 dBX
 toF
 jWK
-csP
+aBB
 auC
 aqz
 aEt
@@ -76853,7 +76847,7 @@ scU
 axb
 azr
 aAt
-aBB
+aNo
 vhn
 utN
 aVM
@@ -85889,7 +85883,7 @@ bix
 bgU
 aaa
 aaa
-aLC
+aaa
 aaa
 aaa
 aaa
@@ -86146,7 +86140,7 @@ biw
 bgU
 aaa
 aaa
-aLC
+aaa
 aaa
 aaa
 aaa
