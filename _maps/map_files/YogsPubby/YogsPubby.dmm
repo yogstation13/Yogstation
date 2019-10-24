@@ -11733,6 +11733,10 @@
 	dirx = -1;
 	diry = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "awI" = (
@@ -49468,6 +49472,9 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/exit/departure_lounge)
+"bMv" = (
+/turf/closed/wall,
+/area/hallway/primary/fore)
 "bMy" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -80856,8 +80863,8 @@ apE
 avq
 apE
 ajM
-aiu
-aiu
+bMv
+bMv
 gSH
 xJy
 aEX

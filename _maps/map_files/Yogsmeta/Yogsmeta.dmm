@@ -2518,6 +2518,10 @@
 	dirx = -1;
 	diry = 1
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
 "aeF" = (
