@@ -714,12 +714,11 @@
 /obj/item/projectile/magic/runic_tentacle
 	name = "Tentacle"
 	icon_state = "tentacle_end"
-	damage = 10
+	damage = 6
 	damage_type = BRUTE
 	flag = "magic"
-	armour_penetration = 10
 	nodamage = FALSE
-	impact_effect_type = /obj/effect_temp_visual/dir_setting/tentacle
+
 
 /obj/item/projectile/magic/runic_tentacle/on_hit(target)
 	if(ismob(target))
@@ -728,6 +727,8 @@
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
+		else
+			new /obj/effect/temp_visual/goliath_tentacle/original(target)
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
