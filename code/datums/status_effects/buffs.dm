@@ -428,7 +428,9 @@
 	alert_type = /obj/screen/alert/status_effect/fleshmend
 
 /datum/status_effect/fleshmend/tick()
-	if(owner.on_fire)
+	var/protecc = owner.get_thermal_protection()
+	
+	if(owner.on_fire && (thermal_protection < FIRE_IMMUNITY_MAX_TEMP_PROTECT))
 		linked_alert.icon_state = "fleshmend_fire"
 		return
 	else
