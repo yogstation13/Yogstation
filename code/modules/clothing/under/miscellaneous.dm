@@ -59,7 +59,7 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	desc = "It's a very smart uniform with a special pocket for tips."
 	icon_state = "waiter"
 	item_state = "waiter"
 	item_color = "waiter"
@@ -658,7 +658,7 @@
 
 /obj/item/clothing/under/sailor
 	name = "sailor suit"
-	desc = "Skipper's in the wardroom drinkin gin'."
+	desc = "Skipper's in the wardroom drinkin' gin."
 	icon_state = "sailor"
 	item_state = "b_suit"
 	item_color = "sailor"
@@ -720,7 +720,7 @@
 
 /obj/item/clothing/under/rank/security/navyblue/russian
 	name = "\improper Russian officer's uniform"
-	desc = "The latest in fashionable russian outfits."
+	desc = "The latest in fashionable Russian outfits."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"

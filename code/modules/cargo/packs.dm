@@ -460,6 +460,22 @@
 					/obj/item/storage/belt/bandolier)
 	crate_name = "combat shotguns crate"
 
+/datum/supply_pack/security/armory/riotshotgun
+	name = "Riot Shotguns Crate"
+	desc = "Tip: techically, it counts as non-lethally subduing a target as long as they don't die before Medbay can get to them. Contains three security-grade riot shotguns. Requires Armory access to open."
+	cost = 6000
+	contains = list(/obj/item/gun/ballistic/shotgun/riot,
+					/obj/item/gun/ballistic/shotgun/riot,
+					/obj/item/gun/ballistic/shotgun/riot)
+	crate_name = "riot shotguns crate"
+
+/datum/supply_pack/security/armory/riotshotgun_single
+	name = "Riot Shotgun Single-Pack"
+	desc = "Stop that Clown in his tracks with this magic stick of non-lethal subduction! Contains one security-grade riot shotgun. Requires Armory access to open."
+	cost = 2500
+	small_item = TRUE
+	contains = list(/obj/item/gun/ballistic/shotgun/riot)
+
 /datum/supply_pack/security/armory/dragnet
 	name = "DRAGnet Crate"
 	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, a recent breakthrough in law enforcement prisoner management technology. Requires armory access to open."
@@ -519,12 +535,12 @@
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor
-	name = "Reflector Vest Crate"
+	name = "Reflective Jacket Crate"
 	desc = "Contains two vests of highly reflective material. Each armor piece diffuses a laser's energy by over half, as well as offering a good chance to reflect the laser entirely. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/laserproof)
-	crate_name = "reflector vest crate"
+	crate_name = "reflective jacket crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/riotarmor
