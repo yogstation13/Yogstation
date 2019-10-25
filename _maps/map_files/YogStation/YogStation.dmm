@@ -17669,7 +17669,11 @@
 "aIi" = (
 /obj/structure/window/reinforced,
 /obj/effect/turf_decal/bot_white,
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/machinery/smoke_machine,
+/obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	name = "liquid pepper spray"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aIj" = (
@@ -51015,14 +51019,6 @@
 "cmd" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
-"cml" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "cmn" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -90013,7 +90009,7 @@ aEu
 aeN
 age
 aIV
-cml
+agt
 agV
 cxk
 agt
