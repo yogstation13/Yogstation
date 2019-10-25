@@ -695,11 +695,7 @@
 /obj/item/projectile/temp/runic_icycle
 	name = "Icycle"
 	icon_state = "runic_icycle"
-	damage = 7
-	damage_type = BRUTE
 	flag = "magic"
-	armour_penetration = 5
-	nodamage = FALSE
 	temperature = 80
 
 /obj/item/projectile/temp/runic_icycle/on_hit(target)
@@ -789,8 +785,6 @@
 	name = "Runic Peel"
 	icon_state = "runic_honk"
 	flag = "magic"
-	damage_type = STAMINA
-	damage = 300
 	range = 200
 	nodamage = FALSE
 	movement_type = FLYING
@@ -933,6 +927,7 @@
 	icon_state = "toxin"
 	flag = "magic"
 	irradiate = 12
+
 /obj/item/projectile/magic/runic_mutation/on_hit(target)
 	if(ismob(target))
 		var/mob/M = target
