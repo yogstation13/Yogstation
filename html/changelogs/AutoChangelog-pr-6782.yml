@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Mech fabs no longer go into softlock if they run out of mats."

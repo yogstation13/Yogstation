@@ -9,7 +9,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "ac" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/stack/spacecash/c10,
@@ -124,7 +124,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "ao" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -229,10 +229,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 2;
-	pixel_y = 24
-	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -242,6 +238,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 26
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -1110,13 +1110,14 @@
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 "cn" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/effect/turf_decal/stripes{
 	icon_state = "warningline";
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
@@ -1288,10 +1289,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cC" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -1301,6 +1298,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)

@@ -31,7 +31,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "ag" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -89,7 +89,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "am" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -145,7 +145,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 26
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
@@ -1084,6 +1084,23 @@
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
+"ci" = (
+/obj/machinery/processor,
+/obj/effect/turf_decal/tile/purple{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	icon_state = "tile_corner";
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/kitchen)
 "cm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
@@ -1236,22 +1253,6 @@
 "cR" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
-"cS" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "cY" = (
 /obj/structure/table/reinforced{
@@ -1845,7 +1846,7 @@ ak
 bW
 cr
 cr
-cS
+ci
 dd
 ds
 ak

@@ -1,0 +1,5 @@
+author: "Altoids1"
+delete-after: true 
+changes: 
+  - rscadd: "The Crew Monitor map is back, and now actually shows you where fully-tracked crew are on the station!"
+  - spellcheck: "Fixed up the Crew Monitor's pop-up window title."

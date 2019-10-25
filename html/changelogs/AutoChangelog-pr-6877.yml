@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "the admin who marked your ticket as something is now shown, regardless of what it was marked as."
