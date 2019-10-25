@@ -28,8 +28,8 @@
 	H.grant_language(/datum/language/egg)
 
 /datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
-	if(damagetype == BURN) // Dynamic burn resist. The more fried the egg, the harder the shell!!
-		var/x = getFireLoss()
+	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!
+		var/x = H.getFireLoss()
 		brutemod = EGG_MAXBRUTEMOD - (EGG_MAXBRUTEMOD - EGG_MINBRUTEMOD) * (1 - NUM_E ** (-EGG_BRUTELAMBDA * x)) //https://www.desmos.com/calculator/uvkwjltevf
 	..()
 
