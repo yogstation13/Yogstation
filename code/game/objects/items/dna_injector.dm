@@ -164,6 +164,11 @@
 	name = "\improper DNA injector (Stutt.)"
 	desc = "Makes you s-s-stuttterrr."
 	add_mutations = list(NERVOUS)
+	
+	/obj/item/dnainjector/firebreath
+	name = "\improper DNA injector (Fire Breath)"
+	desc = "Restores the dragon ancestry."
+	add_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/antistutt
 	name = "\improper DNA injector (Anti-Stutt.)"

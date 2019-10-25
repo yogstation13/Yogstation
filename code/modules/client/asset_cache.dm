@@ -702,3 +702,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"dna_undiscovered.png"	= 'html/dna_undiscovered.png',
 		"dna_extra.png" 		= 'html/dna_extra.png'
 )
+
+/datum/asset/simple/mapimage // Returns an image of the current map
+	assets = list(
+		//Initialized in New()
+	)
+/datum/asset/simple/mapimage/New()
+	assets = list(
+		"map.png" = file("icons/mapimages/[SSmapping.config.map_name].png") //AFAIK this doesn't race with SSmapping loading up.
+	)
+	..()

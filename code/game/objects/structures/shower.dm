@@ -133,7 +133,8 @@
 		var/mob/living/carbon/M = L
 		. = TRUE
 		for(var/I in M.held_items)
-			wash_obj(I)
+			if(isobj(I))
+				wash_obj(I)
 
 		if(M.back && wash_obj(M.back))
 			M.update_inv_back(0)

@@ -435,10 +435,6 @@
 	suffix = "birdboat"
 	name = "supply shuttle (Birdboat)"
 
-/datum/map_template/shuttle/cargo/donut
-	suffix = "donut"
-	name = "supply shuttle (Donut)"
-
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
 	name = "Delta Station Emergency Shuttle"
@@ -470,10 +466,6 @@
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
 	name = "labour shuttle (Box)"
-
-/datum/map_template/shuttle/arrival/donut
-	suffix = "donut"
-	name = "arrival shuttle (Donut)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"

@@ -1,0 +1,4 @@
+author: "MayhemSailor"
+delete-after: true 
+changes: 
+  - rscadd: "Adds NanoGene Refills to Supply Request Console"

@@ -275,6 +275,7 @@
 
 /obj/item/storage/backpack/duffelbag/mining_conscript/PopulateContents()
 	new /obj/item/pickaxe/mini(src)
+	new /obj/item/gun/energy/kinetic_accelerator(src)
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/t_scanner/adv_mining_scanner/lesser(src)
 	new /obj/item/storage/bag/ore(src)
