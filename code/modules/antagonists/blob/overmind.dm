@@ -296,7 +296,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	blobwincount = "Infinity"
 	var/stage = 1
 	var/biopoints = 0
-	var/biopoint_interval = 4500
+	var/biopoint_interval = 3000
 	var/biopoint_timer
 	var/stage_timer_begun
 

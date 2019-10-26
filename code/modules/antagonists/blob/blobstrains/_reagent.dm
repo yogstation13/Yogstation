@@ -3,6 +3,7 @@
 
 /datum/blobstrain/reagent/New(mob/camera/blob/new_overmind)
 	. = ..()
+	overmind = new_overmind
 	reagent = new reagent()
 
 
@@ -25,6 +26,7 @@
 	color = "#FFFFFF"
 	taste_description = "bad code and slime"
 	can_synth = FALSE
+	var/overmind
 
 
 /datum/reagent/blob/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/O)

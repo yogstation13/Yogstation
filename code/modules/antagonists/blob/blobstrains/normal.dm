@@ -12,8 +12,8 @@
 
 
 /datum/reagent/blob/infection
-	name = "Replicating Foam"
-	taste_description = "duplication"
+	name = "Infection"
+	taste_description = "infecty"
 	color = "#7B5A57"
 
 /datum/reagent/blob/infection/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message, touch_protection, mob/camera/blob/infection/O)

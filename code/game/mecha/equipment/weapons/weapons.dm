@@ -313,17 +313,17 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
-	desc = "A weapon for combat exosuits. Shoots a rapid, three shot burst."
+	desc = "A weapon for combat exosuits. Shoots a rapid, five shot burst."
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/lmg
 	projectiles = 300
 	projectiles_cache = 300
 	projectiles_cache_max = 1200
-	projectiles_per_shot = 3
+	projectiles_per_shot = 5
 	variance = 6
 	randomspread = 1
-	projectile_delay = 2
+	projectile_delay = 1
 	harmful = TRUE
 	ammo_type = "lmg"
 

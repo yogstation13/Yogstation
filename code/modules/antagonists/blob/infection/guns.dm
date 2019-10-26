@@ -11,37 +11,37 @@
 	icon_state = "5.56m"
 	ammo_type = /obj/item/ammo_casing/a556/infection
 	caliber = "a556"
-	max_ammo = 15
+	max_ammo = 20
 
 /obj/item/ammo_box/magazine/m556/infection/lazarus
 	name = "lazarus magazine (5.56mm)"
 	icon_state = "5.56mp"
 	ammo_type = /obj/item/ammo_casing/a556/infection/lazarus
-	max_ammo = 14
+	max_ammo = 18
 
 /obj/item/ammo_box/magazine/m556/infection/purifier
 	name = "purifier magazine (5.56mm)"
 	icon_state = "5.56ml"
 	ammo_type = /obj/item/ammo_casing/a556/infection/purifier
-	max_ammo = 12
+	max_ammo = 16
 
 /obj/item/ammo_casing/a556/infection
 	projectile_type = /obj/item/projectile/bullet/a556/infection
 
 /obj/item/projectile/bullet/a556/infection
-	damage = 16
+	damage = 20
 
 /obj/item/ammo_casing/a556/infection/purifier
 	projectile_type = /obj/item/projectile/bullet/a556/infection/purifier
 
 /obj/item/projectile/bullet/a556/infection/purifier
-	damage = 26
+	damage = 30
 
 /obj/item/ammo_casing/a556/infection/lazarus
 	projectile_type = /obj/item/projectile/bullet/a556/infection/lazarus
 
 /obj/item/projectile/bullet/a556/infection/lazarus
-	damage = 21
+	damage = 25
 
 //PISTOL
 /obj/item/gun/ballistic/automatic/pistol/infection
@@ -64,7 +64,7 @@
 
 /obj/item/projectile/bullet/c10mm/infection
 	name = "10mm bullet"
-	damage = 15
+	damage = 20
 
 //GRASSCUTTER
 /obj/item/gun/energy/pulse/pistol/infection
@@ -81,7 +81,7 @@
 //BIG BERTHA
 /obj/item/minigunbackpack/infection
 	name = "The 'Big Bertha' back stash"
-	overheat_max = 35
+	overheat_max = 40
 
 /obj/item/minigunbackpack/infection/Initialize()
 	. = ..()
@@ -106,4 +106,4 @@
 	projectile_type = /obj/item/projectile/bullet/a546/infection
 
 /obj/item/projectile/bullet/a546/infection
-	damage = 18
+	damage = 23

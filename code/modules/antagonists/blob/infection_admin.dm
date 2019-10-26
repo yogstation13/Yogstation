@@ -152,3 +152,45 @@
 			var/datum/infection_crew/crew = D
 			var/points = input(usr, "Award how many points?") as num
 			crew.addOrbPoints(points)
+
+/client/proc/giveOrbitalMunitions()
+	set name = "Give Orbital Munitions"
+	set category = "Infection"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	holder.gib_boom()
+
+/datum/admins/proc/gib_boom()
+	if(!usr.client.holder)
+		return
+
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			var/which = input(usr, "Which missile?", "Missile") as null|anything in list("AGM", "Fatty", "Sidewinder", "Cancel")
+			if(which == "Cancel")
+				return
+			var/amount = input(usr, "Award how many?") as num
+			crew.addBoom(which, amount)
+
+/client/proc/giveFactoryUpgrade()
+	set name = "Give Factory Upgrade Points"
+	set category = "Infection"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	holder.gib_factory()
+
+/datum/admins/proc/gib_factory()
+	if(!usr.client.holder)
+		return
+
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			var/amount = input(usr, "Award how many?") as num
+			crew.upgradePoints += amount
+			priority_announce("You have been awarded [amount] point(s) for Factory Upgrades!", "Nanotrasen Cargo Department")

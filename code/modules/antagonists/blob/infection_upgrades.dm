@@ -239,3 +239,19 @@
 		infection.strong_blob_bonus += 0.25
 		return TRUE
 	return returned
+
+/datum/infection_upgrade/hardlight_blob
+	id = "hardlight_blob"
+	name = "Hardlight Biomass"
+	desc = "Gives 'strong blobs' +25% health, and regular blob +30% health"
+	desc_req = "Requires the Alloyed Biomass upgrade!"
+	cost = 5
+	required_upgrades = list("alloyed_biomass")
+
+/datum/infection_upgrade/hardlight_blob/onPurchase(mob/camera/blob/infection/infection)
+	var/returned = ..()
+	if(returned == TRUE)
+		infection.strong_blob_bonus += 0.25
+		infection.health_modifier += 0.3
+		return TRUE
+	return returned

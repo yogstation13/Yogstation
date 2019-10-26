@@ -72,7 +72,7 @@
 /obj/machinery/computer/crewResearch/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/implanter/blob))
 		var/obj/item/implanter/blob/sample = I
-		if(sample.sample)
+		if(sample.sample && crew.tier == 0)
 			crew.tier = 1
 			priority_announce("A sample of the blob has been procured, your research tier has been increased to 1!", "Nanotrasen Biological Research Department")
 			qdel(sample)

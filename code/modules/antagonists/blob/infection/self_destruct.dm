@@ -20,6 +20,9 @@
 	..()
 
 /obj/machinery/nuclearbomb/selfdestruct/infection/attackby(obj/item/I, mob/user, params)
+	if(crew.defcon != 1)
+		..()
+		return
 	if (istype(I, /obj/item/detonation_key/captain))
 		if(!user.transferItemToLoc(I, src))
 			return

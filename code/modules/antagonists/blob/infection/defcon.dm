@@ -19,10 +19,16 @@ GLOBAL_LIST_EMPTY(crewDatum)
 
 	var/orbital_points = 0
 
+	var/upgradePoints = 0
+
+	var/orbital_missiles = list()
+
 /datum/infection_crew/New()
 	message_admins("CREW INIT COMPLETE")
 	for(var/R in subtypesof(/datum/crew_researches))
 		available_researches += new R()
+	for(var/M in subtypesof(/datum/orb_munition))
+		orbital_missiles += new M()
 	openDoors("outer")
 	openDoors("inner")
 	START_PROCESSING(SSobj, src)
@@ -62,7 +68,7 @@ GLOBAL_LIST_EMPTY(crewDatum)
 		if(3)
 			openDoors("advanced_armory")
 			message_admins("DEFCON 3 triggered")
-			priority_announce("The DEFCON level has been raised to 3. There is a confirmed threat to the facility, and the Heavy Duty Armory has been unlocked.", "Nanotrasen Defence Department")
+			priority_announce("The DEFCON level has been raised to 3. There is a confirmed threat to the facility. Orbital Bombardment is also available now.", "Nanotrasen Defence Department")
 			return
 		if(2)
 			message_admins("DEFCON 2 triggered")
@@ -110,3 +116,23 @@ GLOBAL_LIST_EMPTY(crewDatum)
 /datum/infection_crew/proc/tier3()
 	tier4Timer = world.time + tier4Interval
 	tier4 = TRUE
+
+/datum/infection_crew/proc/addBoom(which, amount)
+	switch(which)
+		if("AGM")
+			for(var/datum/orb_munition/munition in orbital_missiles)
+				if(munition.id == "regular")
+					munition.amountLeft += amount
+					priority_announce("You have been awarded [amount] AGM-472", "CentCom")
+
+		if("Fatty")
+			for(var/datum/orb_munition/munition in orbital_missiles)
+				if(munition.id == "fatty")
+					munition.amountLeft += amount
+					priority_announce("You have been awarded [amount] AS-212", "CentCom")
+
+		if("Sidewinder")
+			for(var/datum/orb_munition/munition in orbital_missiles)
+				if(munition.id == "sidewinder")
+					munition.amountLeft += amount
+					priority_announce("You have been awarded [amount] AGO-2", "CentCom")

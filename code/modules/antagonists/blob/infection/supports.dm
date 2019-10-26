@@ -97,7 +97,7 @@
 /datum/support_callin/durand
 	name = "Durand"
 	desc = "Sends down 1 Durand exosuit"
-	cost = 3
+	cost = 4
 	item = /obj/mecha/combat/durand
 	id = "durand"
 
@@ -105,7 +105,7 @@
 /datum/support_callin/durand_gun
 	name = "Durand LMG"
 	desc = "Sends down 1 LMG for a Durand"
-	cost = 1
+	cost = 2
 	item = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	id = "durand_lmg"
 
@@ -113,6 +113,20 @@
 /datum/support_callin/durand_gun_ammo
 	name = "Durand LMG Ammo"
 	desc = "Sends down 1 box of LMG ammo for a Durand"
-	cost = 1
+	cost = 2
 	item = /obj/item/mecha_ammo/lmg
 	id = "durand_lmg_ammo"
+
+/datum/support_callin/metal
+	name = "50x metal"
+	desc = "Sends down 50 metal sheets"
+	cost = 1
+	item = /obj/item/stack/sheet/metal/fifty
+	id = "metal"
+
+/datum/support_callin/plasteel
+	name = "50x Plasteel"
+	desc = "Sends down 50 plasteel sheets"
+	cost = 2
+	item = /obj/item/stack/sheet/plasteel/fifty
+	id = "plas"

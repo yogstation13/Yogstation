@@ -84,6 +84,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/stop_blob,
 	/client/proc/change_fab_rate,
 	/client/proc/giveOrbitalPoints,
+	/client/proc/giveOrbitalMunitions,
+	/client/proc/giveFactoryUpgrade,
 	/datum/admins/proc/open_borgopanel,
 	/datum/admins/proc/restart, //yogs - moved from +server
 	/client/proc/admin_pick_random_player, //yogs
