@@ -6,9 +6,10 @@
 	var/cooldownBase = 300
 	var/cooldown = 0
 
-/obj/machinery/factory/bag_creator/attackby(obj/item/I, mob/user, params)
+/obj/machinery/factory/bag_creator/attack_hand(mob/living/user)
 	if (cooldown < world.time)
-		new /obj/item/storage/backpack/duffelbag(src)
+		var/turf/ourTurf = get_turf(src)
+		new /obj/item/storage/backpack/duffelbag(ourTurf)
 		cooldown = world.time + cooldownBase
 	else
 		to_chat(user, "<span class='warning'>The cooldown is still active! Please wait [cooldown / 10] seconds!</span>")
