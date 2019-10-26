@@ -12,5 +12,5 @@
 		new /obj/item/storage/backpack/duffelbag(ourTurf)
 		cooldown = world.time + cooldownBase
 	else
-		to_chat(user, "<span class='warning'>The cooldown is still active! Please wait [cooldown / 10] seconds!</span>")
+		to_chat(user, "<span class='warning'>The cooldown is still active! Please wait [(cooldown - world.time) / 10] seconds!</span>")
 	..()
