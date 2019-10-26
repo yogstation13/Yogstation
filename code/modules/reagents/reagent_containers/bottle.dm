@@ -68,7 +68,7 @@
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
-	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
+	desc = "A small bottle of Chloral Hydrate. Mickey's favorite!"
 	icon_state = "bottle20"
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 15)
 
@@ -157,17 +157,17 @@
 
 /obj/item/reagent_containers/glass/bottle/venom
 	name = "venom bottle"
-	desc = "A small bottle. Contains Venom."
+	desc = "A small bottle. Contains venom."
 	list_reagents = list(/datum/reagent/toxin/venom = 30)
 
 /obj/item/reagent_containers/glass/bottle/fentanyl
 	name = "fentanyl bottle"
-	desc = "A small bottle. Contains Fentanyl."
+	desc = "A small bottle. Contains fentanyl."
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 30)
 
 /obj/item/reagent_containers/glass/bottle/formaldehyde
 	name = "formaldehyde bottle"
-	desc = "A small bottle. Contains Formaldehyde."
+	desc = "A small bottle. Contains formaldehyde."
 	list_reagents = list(/datum/reagent/toxin/formaldehyde = 30)
 
 /obj/item/reagent_containers/glass/bottle/initropidril
@@ -202,7 +202,7 @@
 
 /obj/item/reagent_containers/glass/bottle/histamine
 	name = "histamine bottle"
-	desc = "A small bottle. Contains Histamine."
+	desc = "A small bottle. Contains histamine."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
@@ -228,7 +228,7 @@
 
 /obj/item/reagent_containers/glass/bottle/romerol
 	name = "romerol bottle"
-	desc = "A small bottle of Romerol. The REAL zombie powder."
+	desc = "A small bottle of romerol. The REAL zombie powder."
 	list_reagents = list(/datum/reagent/romerol = 30)
 
 /obj/item/reagent_containers/glass/bottle/random_virus
