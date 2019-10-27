@@ -695,6 +695,7 @@
 /obj/item/projectile/temp/runic_icycle
 	name = "Icycle"
 	icon_state = "runic_icycle"
+	damage = 6
 	flag = "magic"
 	temperature = 80
 
@@ -706,14 +707,15 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	.=..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(5)
 
 /obj/item/projectile/magic/runic_tentacle
 	name = "Tentacle"
 	icon_state = "tentacle_end"
 	damage = 6
-	damage_type = BRUTE
 	flag = "magic"
-	nodamage = FALSE
 
 
 /obj/item/projectile/magic/runic_tentacle/on_hit(target)
@@ -723,13 +725,15 @@
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
-		else
-			new /obj/effect/temp_visual/goliath_tentacle/original(target)
+		new /obj/effect/temp_visual/goliath_tentacle/original(target)
 	.=..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
 		X.Paralyze(30)
 		X.visible_message("<span class='warning'>Tentacle wraps around [target]!</span>")
+		X.adjustBruteLoss(6)
+		new /obj/effect/temp_visual/goliath_tentacle/original(target)
+
 /obj/item/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
@@ -763,8 +767,6 @@
 	name = "Runic Fire"
 	icon_state = "lava"
 	flag = "magic"
-	damage = 5
-	damage_type = BURN
 	nodamage = FALSE
 
 /obj/item/projectile/magic/runic_fire/on_hit(target)
@@ -786,7 +788,6 @@
 	icon_state = "runic_honk"
 	flag = "magic"
 	range = 200
-	nodamage = FALSE
 	movement_type = FLYING
 	reflectable = REFLECT_NORMAL
 	ricochet_chance = 100
@@ -809,9 +810,6 @@
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
 	flag = "magic"
-	damage = 5
-	damage_type = BRUTE
-	nodamage = FALSE
 	range = 10
 	var/exp_light = 1
 	var/exp_fire = 1
@@ -887,8 +885,6 @@
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
-	damage_type = BRUTE
-	nodamage = FALSE
 	flag = "magic"
 
 /obj/item/projectile/magic/shotgun_slug/on_hit(target)
@@ -899,13 +895,14 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		X.adjustBruteLoss(10)
 
 /obj/item/projectile/magic/incediary_slug
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
 	damage = 5
-	damage_type = BURN
-	nodamage = FALSE
 	flag = "magic"
 
 
@@ -921,6 +918,7 @@
 		var/mob/living/carbon/X = target
 		X.fire_stacks += 1
 		X.IgniteMob()
+		X.adjustBruteLoss(5)
 
 /obj/item/projectile/magic/runic_mutation
 	name = "Runic Mutation"
