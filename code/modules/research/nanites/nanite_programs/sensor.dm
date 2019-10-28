@@ -418,7 +418,7 @@
 		"Jelly" = /datum/species/jelly,
 		"Preternis" = /datum/species/preternis
 	)
-
+//preternis is yog only baybe
 /datum/nanite_program/sensor/race/set_extra_setting(user, setting)
 	if(setting == "Sent Code")
 		var/new_code = input(user, "Set the sent code (1-9999):", name, null) as null|num
