@@ -429,9 +429,9 @@
 
 /datum/status_effect/fleshmend/tick()
 	var/prot = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	if(iscarbon(owner))
-		var/mob/living/carbon/C = owner
-		prot = C.get_thermal_protection()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		prot = H.get_thermal_protection()
 
 	
 	if(owner.on_fire && (prot < FIRE_IMMUNITY_MAX_TEMP_PROTECT))
