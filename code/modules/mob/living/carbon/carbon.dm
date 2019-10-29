@@ -618,7 +618,7 @@
 	else
 		. += INFINITY
 
- /mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
+/mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
 	var/list/tally = list()
 	for(var/obj/item/I in get_equipped_items())
 		for(var/zone in target_zones)
