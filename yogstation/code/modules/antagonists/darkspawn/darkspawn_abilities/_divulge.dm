@@ -20,6 +20,9 @@
 	if(istype(user.dna.species, /datum/species/pod))
 		to_chat(user, "<span class='notice'>Your disguise is stabilized by the divulgance...</span>")
 		user.reagents.add_reagent(/datum/reagent/medicine/salbutamol,20)
+	if(istype(user.dna.species, /datum/species/plasmaman))
+		to_chat(user, "<span class='notice'>Your bones harden to protect you from the atmosphere...</span>")
+		user.set_species(/datum/species/skeleton)
 	user.visible_message("<b>[user]</b> flaps their wings.", "<span class='velvet'>You begin creating a psychic barrier around yourself...</span>")
 	if(!do_after(user, 30, target = user))
 		in_use = FALSE
@@ -71,8 +74,9 @@
 			continue
 		L.flash_act(1, 1)
 		L.Knockdown(50)
-	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [user.real_name] has removed their human disguise and is now DARKSPAWN_NAME.</b></span>"
+	var/old_name = user.real_name
 	darkspawn.divulge()
+	var/processed_message = "<span class='velvet'><b>\[Mindlink\] [old_name] has removed their human disguise and is now [user.real_name].</b></span>"
 	for(var/T in GLOB.alive_mob_list)
 		var/mob/M = T
 		if(is_darkspawn_or_veil(M))

@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new clothing item to the autodrobe, the lamp-dress."
+  - imageadd: "Lamp-dress, light off and light on version."

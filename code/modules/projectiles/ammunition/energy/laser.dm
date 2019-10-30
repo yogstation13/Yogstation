@@ -32,6 +32,11 @@
 	variance = 15
 	harmful = FALSE
 
+/obj/item/ammo_casing/energy/laser/cyborg
+	projectile_type = /obj/item/projectile/beam/laser
+	select_name = "kill"
+	e_cost = 125
+
 /obj/item/ammo_casing/energy/laser/heavy
 	projectile_type = /obj/item/projectile/beam/laser/heavylaser
 	select_name = "anti-vehicle"

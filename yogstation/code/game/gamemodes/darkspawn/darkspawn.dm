@@ -57,7 +57,7 @@
 	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/mind/dark_mind = DM
 		if(istype(dark_mind))
-			if((dark_mind) && (dark_mind.current.stat != DEAD) && ishuman(dark_mind.current))
+			if((dark_mind) && (dark_mind.current.stat != DEAD) && !issilicon(dark_mind))
 				return FALSE
 	return TRUE
 

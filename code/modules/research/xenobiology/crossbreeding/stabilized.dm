@@ -50,15 +50,15 @@ Stabilized extracts:
 //Colors and subtypes:
 /obj/item/slimecross/stabilized/grey
 	colour = "grey"
-	effect_desc = "Makes slimes friendly to the owner"
+	effect_desc = "Makes slimes friendly to the owner."
 
 /obj/item/slimecross/stabilized/orange
 	colour = "orange"
-	effect_desc = "Passively tries to increase or decrease the owner's body temperature to normal"
+	effect_desc = "Passively tries to increase or decrease the owner's body temperature to normal."
 
 /obj/item/slimecross/stabilized/purple
 	colour = "purple"
-	effect_desc = "Provides a regeneration effect"
+	effect_desc = "Provides a regeneration effect."
 
 /obj/item/slimecross/stabilized/blue
 	colour = "blue"
@@ -78,11 +78,11 @@ Stabilized extracts:
 
 /obj/item/slimecross/stabilized/darkblue
 	colour = "dark blue"
-	effect_desc = "Slowly extinguishes the owner if they are on fire, also wets items like monkey cubes, creating a monkey."
+	effect_desc = "Slowly extinguishes the owner if they are on fire. Also wets items like monkey cubes, creating a monkey."
 
 /obj/item/slimecross/stabilized/silver
 	colour = "silver"
-	effect_desc = "Slows the rate at which the owner loses nutrition"
+	effect_desc = "Slows the rate at which the owner loses nutrition."
 
 /obj/item/slimecross/stabilized/bluespace
 	colour = "bluespace"
@@ -169,7 +169,7 @@ Stabilized extracts:
 
 /obj/item/slimecross/stabilized/lightpink
 	colour = "light pink"
-	effect_desc = "The owner moves at high speeds while holding this extract, also stabilizes anyone in critical condition around you using Epinephrine."
+	effect_desc = "The owner moves at high speeds while holding this extract, also stabilizes anyone in critical condition around you using Epinephrine and Regenerative Jelly."
 
 /obj/item/slimecross/stabilized/adamantine
 	colour = "adamantine"

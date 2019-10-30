@@ -1,0 +1,4 @@
+author: "MayhemSailor"
+delete-after: true 
+changes: 
+  - bugfix: "Ports TG bugfix for Ticket Machine"

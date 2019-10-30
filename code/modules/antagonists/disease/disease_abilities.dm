@@ -347,7 +347,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 /datum/disease_ability/symptom/medium/vomit
 	symptoms = list(/datum/symptom/vomit)
 	short_desc = "Cause victims to vomit."
-	long_desc = "Cause victims to vomit. Slightly increases transmissibility. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
+	long_desc = "Cause victims to vomit. Slightly increases transmissibility. Vomiting also causes the victims to lose nutrition and removes some toxin damage."
 
 
 /datum/disease_ability/symptom/medium/voice_change
@@ -429,7 +429,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 
 /datum/disease_ability/symptom/powerful/inorganic_adaptation
 	symptoms = list(/datum/symptom/inorganic_adaptation)
-	
+
 //yogs start
 
 /datum/disease_ability/symptom/powerful/undead_adaptation
