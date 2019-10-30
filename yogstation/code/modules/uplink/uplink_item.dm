@@ -39,9 +39,6 @@
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
 
-/datum/uplink_item/device_tools/emag
-	cost = 8
-
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
 

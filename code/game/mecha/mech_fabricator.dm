@@ -137,8 +137,6 @@
 	return FALSE
 
 /obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D)
-	being_built = D
-	desc = "It's building \a [initial(D.name)]."
 	var/list/res_coef = get_resources_w_coeff(D)
 
 	var/datum/component/material_container/materials = rmat.mat_container
@@ -153,6 +151,9 @@
 		temp = {"<span class='alert'>Not enough resources to build next part.</span><br>
 					<a href='?src=[REF(src)];process_queue=1'>Try again</a> | <a href='?src=[REF(src)];clear_temp=1'>Return</a><a>"}
 		return FALSE
+		
+	being_built = D
+	desc = "It's building \a [initial(D.name)]."
 	materials.use_amount(res_coef)
 	rmat.silo_log(src, "built", -1, "[D.name]", res_coef)
 

@@ -1,0 +1,5 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "aiming lasers no longer trigger reactive armors"
+  - tweak: "attacks that do not directly cause damage no longer trigger reactive armors"
