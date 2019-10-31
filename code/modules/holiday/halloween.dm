@@ -46,7 +46,7 @@
 /obj/structure/closet/proc/set_spooky_trap()
 	if(prob(0.1))
 		trapped = INSANE_CLOWN
-		returncode/modules/holiday/halloween.dm
+		return
 	if(prob(1))
 		trapped = ANGRY_FAITHLESS
 		return
