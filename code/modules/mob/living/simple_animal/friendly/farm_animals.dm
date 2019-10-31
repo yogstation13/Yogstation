@@ -326,7 +326,56 @@
 			qdel(src)
 	else
 		STOP_PROCESSING(SSobj, src)
+		
+/mob/living/simple_animal/sheep
+	name = "sheep"
+	desc = "It's so fluffy!"
+	icon_state = "sheep"
+	icon_living = "sheep"
+	icon_dead = "sheep_dead"
+	gender = FEMALE
+	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	speak = list("baa?","baa","BAAAAAA")
+	speak_emote = list("bleats")
+	emote_hear = list("brays.")
+	emote_see = list("nibbles at the ground.")
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4)
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "kicks"
+	attacktext = "kicks"
+	attack_sound = 'sound/weapons/punch1.ogg'
+	health = 40
+	maxHealth = 40
+	var/obj/item/udder/udder = null
+	gold_core_spawnable = FRIENDLY_SPAWN
+	blood_volume = BLOOD_VOLUME_GENERIC
 
+	do_footstep = TRUE
+
+/mob/living/simple_animal/sheep/Initialize()
+	udder = new()
+	. = ..()
+
+/mob/living/simple_animal/sheep/Destroy()
+	qdel(udder)
+	udder = null
+	return ..()
+
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+		udder.milkAnimal(O, user)
+		return 1
+	else
+		return ..()
+
+/mob/living/simple_animal/sheep/Life()
+	. = ..()
+	if(stat == CONSCIOUS)
+		udder.generateMilk()
 
 /obj/item/udder
 	name = "udder"
