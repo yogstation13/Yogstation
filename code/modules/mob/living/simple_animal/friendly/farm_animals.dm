@@ -29,17 +29,17 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
-	var/obj/item/udder/goat_udder = null
+	var/obj/item/udder/goat/udder = null
 
 	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize()
-	goat_udder = new()
+	udder = new()
 	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
-	qdel(goat_udder)
-	goat_udder = null
+	qdel(udder)
+	udder = null
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
@@ -54,7 +54,7 @@
 			LoseTarget()
 			src.visible_message("<span class='notice'>[src] calms down.</span>")
 	if(stat == CONSCIOUS)
-		goat_udder.generateMilk()
+		udder.generateMilk()
 		eat_plants()
 		if(!pulledby)
 			for(var/direction in shuffle(list(1,2,4,8,5,6,9,10)))
@@ -89,7 +89,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user, params)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		goat_udder.milkAnimal(O, user)
+		udder.milkAnimal(O, user)
 		return 1
 	else
 		return ..()
@@ -109,15 +109,15 @@
 			NB.dismember()
 			
 //this doesnt work			
-/obj/item/udder/goat_udder
+/obj/item/udder/goat/udder
 	name = "goat udder"
 
-/obj/item/udder/goat_udder/Initialize()
+/obj/item/udder/goat/udder/Initialize()
 	create_reagents(50)
 	reagents.add_reagent(/datum/reagent/consumable/milk/goat, 20)
 	. = ..()
 
-/obj/item/udder/goat_udder/generateMilk()
+/obj/item/udder/goat/udder/generateMilk()
 	if(prob(5))
 		reagents.add_reagent(/datum/reagent/consumable/milk/goat, rand(5, 10))
 
@@ -364,7 +364,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
 	maxHealth = 40
-	var/obj/item/udder/sheep_udder = null
+	var/obj/item/udder/sheep/udder = null
 	var/shaved = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -372,17 +372,17 @@
 	do_footstep = TRUE
 
 /mob/living/simple_animal/sheep/Initialize()
-	sheep_udder = new()
+	udder = new()
 	. = ..()
 
 /mob/living/simple_animal/sheep/Destroy()
-	qdel(sheep_udder)
-	sheep_udder = null
+	qdel(udder)
+	udder = null
 	return ..()
 
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		sheep_udder.milkAnimal(O, user)
+		udder.milkAnimal(O, user)
 		return 1
 	else
 		return ..()
@@ -390,7 +390,7 @@
 /mob/living/simple_animal/sheep/Life()
 	. = ..()
 	if(stat == CONSCIOUS)
-		sheep_udder.generateMilk()
+		udder.generateMilk()
 		generateWool()
 		
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
@@ -422,20 +422,20 @@
 			icon_state = icon_living
 
 //this doesnt work either
-/obj/item/udder/sheep_udder
+/obj/item/udder/shee/udder
 	name = "sheep udder"
 
-/obj/item/udder/sheep_udder/Initialize()
+/obj/item/udder/sheep/udder/Initialize()
 	create_reagents(50)
 	reagents.add_reagent(/datum/reagent/consumable/milk/sheep, 20)
 	. = ..()
 
-/obj/item/udder/sheep_udder/generateMilk()
+/obj/item/udder/sheep/udder/generateMilk()
 	if(prob(5))
 		reagents.add_reagent(/datum/reagent/consumable/milk/sheep, rand(5, 10))
 
 //udder stuff I dont get
-/obj/item/udder
+/obj/item/udder/udder
 	name = "udder"
 
 /obj/item/udder/Initialize()
