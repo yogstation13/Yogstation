@@ -822,7 +822,7 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	var/turf/X = get_turf(target)
-	explosion(X, -1, exp_light, 0, flame_range = exp_fire)
+	explosion(X, -1, 0, exp_light, 0, flame_range = exp_fire)
 	. = ..()
 
 /obj/item/projectile/magic/runic_toxin
