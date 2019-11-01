@@ -355,6 +355,16 @@
 	blood_volume = BLOOD_VOLUME_GENERIC
 
 	do_footstep = TRUE
+	
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/razor))
+		if(prob(20))
+			new /obj/item/stack/sheet/wool(get_turf(src))
+			user.visible_message("[user] shears some wool off [src] using \the [O].", "<span class='notice'>You shear some wool off [src] using \the [O].</span>")
+		else
+			to_chat(user, "<span class='danger'>You couldn't find enough good wool, try again...</span>")
+	else
+		return ..()
 
 /mob/living/simple_animal/sheep/Initialize()
 	udder = new()
