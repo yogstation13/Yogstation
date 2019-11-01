@@ -29,17 +29,17 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
-	var/obj/item/udder/goat/udder = null
+	var/obj/item/udder/goat_udder = null
 
 	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize()
-	udder = new()
+	goat_udder = new()
 	. = ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
-	qdel(udder)
-	udder = null
+	qdel(goat_udder)
+	goat_udder = null
 	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
@@ -54,7 +54,7 @@
 			LoseTarget()
 			src.visible_message("<span class='notice'>[src] calms down.</span>")
 	if(stat == CONSCIOUS)
-		udder.generateMilk()
+		goat_udder.generateMilk()
 		eat_plants()
 		if(!pulledby)
 			for(var/direction in shuffle(list(1,2,4,8,5,6,9,10)))
@@ -89,7 +89,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user, params)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		udder.milkAnimal(O, user)
+		goat_udder.milkAnimal(O, user)
 		return 1
 	else
 		return ..()
@@ -109,15 +109,15 @@
 			NB.dismember()
 			
 //this doesnt work			
-/obj/item/udder/goat
+/obj/item/udder/goat_udder
 	name = "goat udder"
 
-/obj/item/udder/goat/Initialize()
+/obj/item/udder/goat_udder/Initialize()
 	create_reagents(50)
 	reagents.add_reagent(/datum/reagent/consumable/milk/goat, 20)
 	. = ..()
 
-/obj/item/udder/goat/generateMilk()
+/obj/item/udder/goat_udder/generateMilk()
 	if(prob(5))
 		reagents.add_reagent(/datum/reagent/consumable/milk/goat, rand(5, 10))
 
@@ -364,34 +364,25 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
 	maxHealth = 40
-	var/obj/item/udder/sheep/udder = null
+	var/obj/item/udder/sheep_udder = null
+	var/shaved = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
 
 	do_footstep = TRUE
-	
-/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
-	if(stat == CONSCIOUS && istype(O, /obj/item/razor))
-		if(prob(20))
-			new /obj/item/stack/sheet/wool(get_turf(src))
-			user.visible_message("[user] shears some wool off [src] using \the [O].", "<span class='notice'>You shear some wool off [src] using \the [O].</span>")
-		else
-			to_chat(user, "<span class='danger'>You couldn't find enough good wool, try again...</span>")
-	else
-		return ..()
 
 /mob/living/simple_animal/sheep/Initialize()
-	udder = new()
+	sheep_udder = new()
 	. = ..()
 
 /mob/living/simple_animal/sheep/Destroy()
-	qdel(udder)
-	udder = null
+	qdel(sheep_udder)
+	sheep_udder = null
 	return ..()
 
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		udder.milkAnimal(O, user)
+		sheep_udder.milkAnimal(O, user)
 		return 1
 	else
 		return ..()
@@ -399,18 +390,47 @@
 /mob/living/simple_animal/sheep/Life()
 	. = ..()
 	if(stat == CONSCIOUS)
-		udder.generateMilk()
+		sheep_udder.generateMilk()
+		generateWool()
+		
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if (istype(O, /obj/item/razor))
+		if(shaved)
+			to_chat(user, "<span class='warning'>The sheep doesn't have enough wool, try again later...</span>")
+			return
+		user.visible_message("[user] starts to shave [src] using \the [O].", "<span class='notice'>You start to shave [src] using \the [O]...</span>")
+		if(do_after(user, 50, target = src))
+			user.visible_message("[user] shaves some wool off [src] using \the [O].", "<span class='notice'>You shave some wool off [src] using \the [O].</span>")
+			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
+			shaved = TRUE
+			icon_living = "sheep_shaved"
+			icon_dead = "sheep_shaved_dead"
+			new /obj/item/stack/sheet/wool(get_turf(src), 8)
+			if(stat == CONSCIOUS)
+				icon_state = icon_living
+			else
+				icon_state = icon_dead
+
+		return
+	..()
+	
+/mob/living/simple_animal/sheep/proc/generateWool()
+	if(shaved)
+		if(prob(5))
+			shaved = FALSE
+			icon_living = "sheep"
+			icon_state = icon_living
 
 //this doesnt work either
-/obj/item/udder/sheep
+/obj/item/udder/sheep_udder
 	name = "sheep udder"
 
-/obj/item/udder/sheep/Initialize()
+/obj/item/udder/sheep_udder/Initialize()
 	create_reagents(50)
 	reagents.add_reagent(/datum/reagent/consumable/milk/sheep, 20)
 	. = ..()
 
-/obj/item/udder/sheep/generateMilk()
+/obj/item/udder/sheep_udder/generateMilk()
 	if(prob(5))
 		reagents.add_reagent(/datum/reagent/consumable/milk/sheep, rand(5, 10))
 
