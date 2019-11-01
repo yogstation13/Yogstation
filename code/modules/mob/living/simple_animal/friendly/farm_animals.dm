@@ -29,7 +29,7 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
-	var/obj/item/udder/udder = null
+	var/obj/item/udder/goat/udder = null
 
 	do_footstep = TRUE
 
@@ -107,6 +107,20 @@
 			H.visible_message("<span class='warning'>[src] takes a big chomp out of [H]!</span>", \
 								  "<span class='userdanger'>[src] takes a big chomp out of your [NB]!</span>")
 			NB.dismember()
+			
+//this doesnt work			
+/obj/item/udder/goat
+	name = "goat udder"
+
+/obj/item/udder/goat/Initialize()
+	create_reagents(50)
+	reagents.add_reagent(/datum/reagent/consumable/milk/goat, 20)
+	. = ..()
+
+/obj/item/udder/goat/generateMilk()
+	if(prob(5))
+		reagents.add_reagent(/datum/reagent/consumable/milk/goat, rand(5, 10))
+
 //cow
 /mob/living/simple_animal/cow
 	name = "cow"
@@ -350,7 +364,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
 	maxHealth = 40
-	var/obj/item/udder/udder = null
+	var/obj/item/udder/sheep/udder = null
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
 
@@ -387,6 +401,20 @@
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
 
+//this doesnt work either
+/obj/item/udder/sheep
+	name = "sheep udder"
+
+/obj/item/udder/sheep/Initialize()
+	create_reagents(50)
+	reagents.add_reagent(/datum/reagent/consumable/milk/sheep, 20)
+	. = ..()
+
+/obj/item/udder/sheep/generateMilk()
+	if(prob(5))
+		reagents.add_reagent(/datum/reagent/consumable/milk/sheep, rand(5, 10))
+
+//udder stuff I dont get
 /obj/item/udder
 	name = "udder"
 
