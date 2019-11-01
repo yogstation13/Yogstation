@@ -351,20 +351,11 @@
 	health = 40
 	maxHealth = 40
 	var/obj/item/udder/udder = null
+	var/shaved = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
 
 	do_footstep = TRUE
-	
-/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
-	if(stat == CONSCIOUS && istype(O, /obj/item/razor))
-		if(prob(20))
-			new /obj/item/stack/sheet/wool(get_turf(src))
-			user.visible_message("[user] shears some wool off [src] using \the [O].", "<span class='notice'>You shear some wool off [src] using \the [O].</span>")
-		else
-			to_chat(user, "<span class='danger'>You couldn't find enough good wool, try again...</span>")
-	else
-		return ..()
 
 /mob/living/simple_animal/sheep/Initialize()
 	udder = new()
@@ -386,6 +377,35 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
+		generateWool()
+		
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if (istype(O, /obj/item/razor))
+		if(shaved)
+			to_chat(user, "<span class='warning'>The sheep doesn't have enough wool, try again later...</span>")
+			return
+		user.visible_message("[user] starts to shave [src] using \the [O].", "<span class='notice'>You start to shave [src] using \the [O]...</span>")
+		if(do_after(user, 50, target = src))
+			user.visible_message("[user] shaves some wool off [src] using \the [O].", "<span class='notice'>You shave some wool off [src] using \the [O].</span>")
+			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
+			shaved = TRUE
+			icon_living = "sheep_shaved"
+			icon_dead = "sheep_shaved_dead"
+			new /obj/item/stack/sheet/wool(get_turf(src), 8)
+			if(stat == CONSCIOUS)
+				icon_state = icon_living
+			else
+				icon_state = icon_dead
+
+		return
+	..()
+
+/mob/living/simple_animal/sheep/proc/generateWool()
+	if(shaved)
+		if(prob(5))
+			shaved = FALSE
+			icon_living = "sheep"
+			icon_state = icon_living
 
 /obj/item/udder
 	name = "udder"
