@@ -28,5 +28,5 @@
 				if(!player.quiet_round) //and must not want a quiet round
 					filtered_candidates |= player
 
-	return shuffle(filtered_candidates) // No more drafting
+	return shuffle(filtered_candidates)
 
