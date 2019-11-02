@@ -37,7 +37,7 @@
 
 /obj/item/reagent_containers/food/snacks/store/bread/meat
 	name = "meatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
+	desc = "The culinary base of every self-respecting eloquent gentleman."
 	icon_state = "meatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/meat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
@@ -53,7 +53,7 @@
 
 /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
 	name = "xenomeatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman. Extra Heretical."
+	desc = "The culinary base of every self-respecting eloquent gentleman. Extra heretical."
 	icon_state = "xenomeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
@@ -63,7 +63,7 @@
 
 /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
 	name = "xenomeatbread slice"
-	desc = "A slice of delicious meatbread. Extra Heretical."
+	desc = "A slice of delicious meatbread. Extra heretical."
 	icon_state = "xenobreadslice"
 	filling_color = "#32CD32"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -252,7 +252,7 @@
 		if(60 to INFINITY)
 			add_atom_colour(rgb(33,19,9), FIXED_COLOUR_PRIORITY)
 			name = "the physical manifestation of the very concept of fried foods"
-			desc = "A heavily-fried...something.  Who can tell anymore?"
+			desc = "A heavily-fried...something. Who can tell anymore?"
 	filling_color = color
 	foodtype |= FRIED
 
