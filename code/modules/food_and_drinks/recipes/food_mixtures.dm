@@ -92,17 +92,6 @@
 	required_temp = 483.15
 	mob_react = FALSE
 
-/datum/chemical_reaction/cheesewheel
-	name = "Cheesewheel"
-	id = "cheesewheel"
-	required_reagents = list(/datum/reagent/consumable/milk = 40)
-	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-
-/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/store/cheesewheel(location)
-
 /datum/chemical_reaction/synthmeat
 	name = "synthmeat"
 	id = "synthmeat"
@@ -177,3 +166,27 @@
 	new /obj/item/reagent_containers/food/snacks/salad/ricebowl(location)
 	if(holder && holder.my_atom)
 		qdel(holder.my_atom)
+		
+////////////////////////////////////////////CHEESE////////////////////////////////////////////
+/datum/chemical_reaction/americancheeseblock
+	name = "American Cheese Block"
+	id = "americancheeseblock"
+	required_reagents = list(/datum/reagent/consumable/milk = 40)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/store/americancheeseblock(location)
+		
+/datum/chemical_reaction/cheddarcheesemix
+	name = "Cheddar Cheese Mix"
+	id = "cheddarcheesemix"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/mesophilicculture = 1)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/cheddarcheesemix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/store/cheddarcheesemix(location)
+
