@@ -174,19 +174,19 @@
 	required_reagents = list(/datum/reagent/consumable/milk = 40)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 
-/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/americancheeseblock/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/store/americancheeseblock(location)
+		new /obj/item/reagent_containers/food/snacks/americancheeseblock(location)
 		
-/datum/chemical_reaction/cheddarcheesemix
+/datum/chemical_reaction/cheddarmix
 	name = "Cheddar Cheese Mix"
-	id = "cheddarcheesemix"
+	id = "cheddarmix"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 
-/datum/chemical_reaction/cheddarcheesemix/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/cheddarmix/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/store/cheddarcheesemix(location)
+		new /obj/item/reagent_containers/food/snacks/cheddarmix(location)
 
