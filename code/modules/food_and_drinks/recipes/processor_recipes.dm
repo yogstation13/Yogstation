@@ -51,5 +51,5 @@
 	
 /datum/food_processor_process/cheddarmix
 	input = /obj/item/reagent_containers/food/snacks/cheddarmix/heated
-	output = /obj/item/reagent_containers/food/snacks/store/cheddarwheel
+	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel
 
