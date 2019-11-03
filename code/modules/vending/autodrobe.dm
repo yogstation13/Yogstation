@@ -256,6 +256,7 @@
 					/obj/item/clothing/head/yogs/whitecaptaincap = 1,
 					/obj/item/clothing/under/yogs/victoriouscaptainuniform = 1,
 					/obj/item/clothing/head/beret/captain = 1)
+	contraband = list(/obj/item/clothing/under/rank/centcom_officer = 2)
 	premium = list(/obj/item/clothing/head/crown/fancy = 1)
 
 	default_price = 50
