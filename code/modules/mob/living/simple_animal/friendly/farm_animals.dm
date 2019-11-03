@@ -363,7 +363,6 @@
 
 /mob/living/simple_animal/sheep/Destroy()
 	qdel(udder)
-	udder = null
 	return ..()
 
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
