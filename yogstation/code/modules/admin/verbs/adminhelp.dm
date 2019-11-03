@@ -785,7 +785,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
-		if(alert(usr, "You already have a ticket open. Would you like to create a new ticket and close your old one?",,"Yes","No") != "No")
+		if(alert(usr, "You already have a ticket open. Would you like to create a new ticket and close your old one?",,"Yes","No") != "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				current_ticket.TimeoutVerb()
