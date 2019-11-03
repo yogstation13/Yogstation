@@ -48,3 +48,8 @@
 	input = /mob/living/simple_animal/slime
 	output = null
 	required_machine = /obj/machinery/processor/slime
+	
+/datum/food_processor_process/cheddarmix
+	input = /obj/item/reagent_containers/food/snacks/cheddarmix/heated
+	output = /obj/item/reagent_containers/food/snacks/store/cheddarwheel
+
