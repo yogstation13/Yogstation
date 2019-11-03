@@ -1,7 +1,7 @@
 // This is the dumbest fucking thing I have ever programmed t. Altoids
 #define EGG_MAXBRUTEMOD 1.25
-#define EGG_MINBRUTEMOD 0.8
-#define EGG_BRUTELAMBDA 0.042
+#define EGG_ALPHA 0.000154
+#define EGG_BETA (-0.026)
 /datum/species/egg
 	// Egghead humanoids composed of eggs and stale memes
 	name = "Eggperson"
@@ -31,12 +31,12 @@
 /datum/species/egg/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H)
 	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!
 		var/x = H.getFireLoss()
-		brutemod = EGG_MAXBRUTEMOD - (EGG_MAXBRUTEMOD - EGG_MINBRUTEMOD) * (1 - NUM_E ** (-EGG_BRUTELAMBDA * x)) //https://www.desmos.com/calculator/uvkwjltevf
+		brutemod = EGG_ALPHA * x*x + EGG_BETA * x + EGG_MAXBRUTEMOD //A polynomial, to determine how much brute we take. https://www.desmos.com/calculator/dwxdxwt0rl
 		if(H.getBruteLoss() >= 200)
 			H.gib(FALSE)
 			return 1
 	..()
 
 #undef EGG_MAXBRUTEMOD
-#undef EGG_MINBRUTEMOD
-#undef EGG_BRUTELAMBDA
+#undef EGG_ALPHA
+#undef EGG_BETA
