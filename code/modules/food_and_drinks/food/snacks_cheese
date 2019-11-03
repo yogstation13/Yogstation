@@ -1,6 +1,6 @@
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/store/americancheeseblock
+/obj/item/reagent_containers/food/snacks/americancheeseblock
 	name = "american cheese block"
 	desc = "A block of american plastic cheese"
 	icon_state = "tba"
@@ -21,11 +21,11 @@
 	foodtype = DAIRY
 	
 
-/obj/item/reagent_containers/food/snacks/store/cheddarwheel
+/obj/item/reagent_containers/food/snacks/store/cheesewheel
 	name = "cheddar wheel"
 	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
-	slice_path = /obj/item/reagent_containers/food/snacks/cheddarwedge
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
 	slices_num = 5
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
 	w_class = WEIGHT_CLASS_NORMAL
@@ -46,7 +46,7 @@
 	name = "heated cheddar mix"
 	desc = "Heated cheddar mix, you can see curds floating."	
 
-/obj/item/reagent_containers/food/snacks/cheddarwedge
+/obj/item/reagent_containers/food/snacks/cheesewedge
 	name = "cheddar wedge"
 	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
 	icon_state = "cheesewedge"
