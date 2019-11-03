@@ -1,7 +1,7 @@
 // This is the dumbest fucking thing I have ever programmed t. Altoids
-#define EGG_MAXBRUTEMOD 1.64
-#define EGG_ALPHA 0.000154
-#define EGG_BETA (-0.026)
+#define EGG_MAXBRUTEMOD 1.5
+#define EGG_ALPHA 0.00018
+#define EGG_BETA (-0.027)
 /datum/species/egg
 	// Egghead humanoids composed of eggs and stale memes
 	name = "Eggperson"
