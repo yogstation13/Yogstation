@@ -379,7 +379,6 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
-		generateWool()
 		
 /mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/razor))
@@ -388,26 +387,31 @@
 			return
 		user.visible_message("[user] starts to shave [src] using \the [O].", "<span class='notice'>You start to shave [src] using \the [O]...</span>")
 		if(do_after(user, 50, target = src))
+			if(shaved)
+					user.visible_message("[src] has already been shaved!")
+					return
 			user.visible_message("[user] shaves some wool off [src] using \the [O].", "<span class='notice'>You shave some wool off [src] using \the [O].</span>")
 			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
 			shaved = TRUE
-			icon_living = "sheep_shaved"
-			icon_dead = "sheep_shaved_dead"
+			icon_living = "sheep_sheared"
+			icon_dead = "sheep_sheared_dead"
 			new /obj/item/stack/sheet/wool(get_turf(src), 8)
 			if(stat == CONSCIOUS)
 				icon_state = icon_living
 			else
 				icon_state = icon_dead
+			addtimer(CALLBACK(src, .proc/generateWool), 3 MINUTES)
 
 		return
 	..()
 	
 /mob/living/simple_animal/sheep/proc/generateWool()
-	if(shaved)
-		if(prob(5))
-			shaved = FALSE
-			icon_living = "sheep"
-			icon_state = icon_living
+	if(stat == CONSCIOUS)
+		shaved = FALSE
+		icon_living = "sheep"
+		icon_dead = "sheep_dead"
+		icon_state = icon_living
+
 
 //udder-----------------------------------------
 /obj/item/udder
