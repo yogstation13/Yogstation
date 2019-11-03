@@ -10,5 +10,5 @@
 	syllables = list(
 		"blurb", "blub", "blab", "gurgle", "crack", "crick", "blirb"
 	)
-	//icon_state = "lizard"
+	icon_state = "egg"
 	default_priority = 90
