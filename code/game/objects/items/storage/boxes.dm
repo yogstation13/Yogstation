@@ -464,6 +464,24 @@
 /obj/item/storage/box/gorillacubes/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/gorilla(src)
+		
+/obj/item/storage/box/mixedcubes
+	name = "mixed farm animal cube box"
+	desc = "Farm Town's new cubes to make your farming dreams come true. Just add water!"
+	icon_state = "monkeycubebox"
+	illustration = null
+
+/obj/item/storage/box/mixedcubes/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 6
+	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+
+/obj/item/storage/box/mixedcubes/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
@@ -1004,6 +1022,15 @@
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
+	
+/obj/item/storage/box/cheese
+	name = "box of advanced cheese bacteria"
+	
+/obj/item/storage/box/cheese/PopulateContents()
+	new /obj/item/reagent_containers/food/condiment/mesophilic(src)
+	new /obj/item/reagent_containers/food/condiment/thermophilic(src)
+	new /obj/item/reagent_containers/food/condiment/pcandidum(src)
+	new /obj/item/reagent_containers/food/condiment/proqueforti(src)
 
 /obj/item/storage/box/emptysandbags
 	name = "box of empty sandbags"
