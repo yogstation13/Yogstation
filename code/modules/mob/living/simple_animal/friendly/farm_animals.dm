@@ -405,10 +405,10 @@
 
 /mob/living/simple_animal/sheep/proc/generateWool()
 	if(stat == CONSCIOUS)
-			shaved = FALSE
-			icon_living = "sheep"
-			icon_dead = "sheep_dead"
-			icon_state = icon_living
+		shaved = FALSE
+		icon_living = "sheep"
+		icon_dead = "sheep_dead"
+		icon_state = icon_living
 
 /obj/item/udder
 	name = "udder"
