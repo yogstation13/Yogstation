@@ -540,7 +540,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
 	materials = list(MAT_METAL = 200, MAT_GLASS = 200)
-	build_path = /obj/item/organ/lungs/cybernetic/upgraded
+	build_path = /obj/item/organ/appendix/cybernetic
 	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
