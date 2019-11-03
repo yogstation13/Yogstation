@@ -23,7 +23,7 @@
 	exotic_blood = /datum/reagent/consumable/eggyolk
 	disliked_food = GROSS | DAIRY | EGG
 	liked_food = MEAT // Eggpeople are carnivores.
-	//screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //I'm replacing this with an egg-crack sound when I can get a hold of one
+	screamsound = 'yogstation/sound/voice/eggperson/egg_scream.ogg' // (Hopefully) the sound of an egg cracking
 
 /datum/species/egg/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/egg)
