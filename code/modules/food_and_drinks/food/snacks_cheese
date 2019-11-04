@@ -1,17 +1,18 @@
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/americancheeseblock
+//plastic cheese
+/obj/item/reagent_containers/food/snacks/store/cheesewheel
 	name = "american cheese block"
 	desc = "A block of american plastic cheese"
 	icon_state = "tba"
-	slice_path = /obj/item/reagent_containers/food/snacks/americancheeseslice
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
 	slices_num = 5
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("plastic" = 1)
 	foodtype = DAIRY
 	
-/obj/item/reagent_containers/food/snacks/americancheeseslice
+/obj/item/reagent_containers/food/snacks/cheesewedge
 	name = "american cheese slice"
 	desc = "A slice of american plastic cheese"
 	icon_state = "tba"
@@ -20,37 +21,88 @@
 	tastes = list("plastic" = 1)
 	foodtype = DAIRY
 	
-
-/obj/item/reagent_containers/food/snacks/store/cheesewheel
+//cheesemix
+/obj/item/reagent_containers/food/snacks/cheesemix
+	icon_state = "tba"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("bitter milk" = 1)
+	foodtype = DAIRY
+	
+//cheddar
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar
 	name = "cheddar wheel"
 	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
-	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
-	slices_num = 5
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
-	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("cheese" = 1)
-	foodtype = DAIRY
+	tastes = list("cheddar" = 1)
 	
-/obj/item/reagent_containers/food/snacks/cheddarmix
+/obj/item/reagent_containers/food/snacks/cheesemix/cheddar
 	name = "cheddar mix"
 	desc = "Cheddar cheese mix, it's a bit cold..."
-	icon_state = "tba"
-	filling_color = "#FFD700"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("cheese" = 1)
-	cooked_type = /obj/item/reagent_containers/food/snacks/cheddarmix/heated
-	foodtype = DAIRY
+	cooked_type = /obj/item/reagent_containers/food/snacks/cheesemix/cheddar_heated
 	
-/obj/item/reagent_containers/food/snacks/cheddarmix/heated
+/obj/item/reagent_containers/food/snacks/cheesemix/cheddar_heated
 	name = "heated cheddar mix"
 	desc = "Heated cheddar mix, you can see curds floating."	
 
-/obj/item/reagent_containers/food/snacks/cheesewedge
+/obj/item/reagent_containers/food/snacks/cheesewedge/cheddar
 	name = "cheddar wedge"
 	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
 	icon_state = "cheesewedge"
 	filling_color = "#FFD700"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("cheese" = 1)
-	foodtype = DAIRY
+	tastes = list("cheddar" = 1)
+
+//swiss
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss
+	name = "swiss cheese wheel"
+	desc = "A big wheel of delcious Swiss cheese."
+	icon_state = "tba"
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/swiss
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("holes" = 1)
+	
+/obj/item/reagent_containers/food/snacks/cheesemix/swiss
+	name = "swiss cheese mix"
+	desc = "Swiss cheese mix, it's a bit cold..."
+	cooked_type = /obj/item/reagent_containers/food/snacks/cheesemix/swiss_heated
+	
+/obj/item/reagent_containers/food/snacks/cheesemix/swiss_heated
+	name = "heated swiss cheese mix"
+	desc = "Heated swiss cheese mix, you can see curds floating."	
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/swiss
+	name = "swiss cheese wedge"
+	desc = "A wedge of delicious Swiss cheese. The cheese wheel it was cut from can't have gone far."
+	icon_state = "tba"
+	filling_color = "#FFD700"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("holes" = 1)
+	
+//swiss
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/blue
+	name = "blue cheese wheel"
+	desc = "A big wheel of delcious Blue cheese."
+	icon_state = "tba"
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/blue
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 15)
+	tastes = list("mould" = 1)
+	
+/obj/item/reagent_containers/food/snacks/cheesemix/blue
+	name = "blue cheese mix"
+	desc = "Blue cheese mix, it's a bit cold..."
+	cooked_type = /obj/item/reagent_containers/food/snacks/cheesemix/blue_heated
+	
+/obj/item/reagent_containers/food/snacks/cheesemix/blue_heated
+	name = "heated blue cheese mix"
+	desc = "Heated blue cheese mix, you can see curds floating."	
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/blue
+	name = "blue cheese wedge"
+	desc = "A wedge of delicious Blue cheese. The cheese wheel it was cut from can't have gone far."
+	icon_state = "tba"
+	filling_color = "#FFD700"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
+	tastes = list("mould" = 1)
+
