@@ -50,6 +50,14 @@
 	required_machine = /obj/machinery/processor/slime
 	
 /datum/food_processor_process/cheddarmix
-	input = /obj/item/reagent_containers/food/snacks/cheddarmix/heated
-	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel
+	input = /obj/item/reagent_containers/food/snacks/cheesemix/cheddar_heated
+	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel/cheddar
+
+/datum/food_processor_process/swissmix
+	input = /obj/item/reagent_containers/food/snacks/cheesemix/swiss_heated
+	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss
+	
+/datum/food_processor_process/bluemix
+	input = /obj/item/reagent_containers/food/snacks/cheesemix/blue_heated
+	output = /obj/item/reagent_containers/food/snacks/store/cheesewheel/blue
 
