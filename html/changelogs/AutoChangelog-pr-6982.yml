@@ -1,0 +1,5 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - tweak: "You will no longer be drafted into an antag position that you don't want to be"
+  - tweak: "The game will now run extended if it cannot run any other modes"
