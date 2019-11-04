@@ -8822,7 +8822,7 @@
 /turf/open/floor/plating,
 /area/medical/sleeper)
 "arc" = (
-/obj/structure/table/reinforced,
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "ard" = (
@@ -8842,10 +8842,8 @@
 /turf/closed/wall,
 /area/crew_quarters/dorms)
 "arg" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
+/obj/structure/rack,
+/obj/item/storage/lockbox/loyalty,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "arh" = (
@@ -9773,11 +9771,14 @@
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "atl" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/structure/rack,
-/obj/item/storage/lockbox/loyalty,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 2;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -18676,7 +18677,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aKh" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/camera/motion{
 	c_tag = "Armory Motion Sensor";
 	dir = 2
@@ -46853,6 +46853,14 @@
 "bNR" = (
 /turf/closed/wall,
 /area/hallway/primary/fore)
+"bNS" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -88709,7 +88717,7 @@ aaa
 aaf
 aaa
 aaZ
-amN
+arc
 atX
 avB
 atX
@@ -88966,7 +88974,7 @@ aaa
 aaf
 aaa
 aaZ
-arc
+arg
 adl
 awX
 adl
@@ -89223,7 +89231,7 @@ aaa
 aaf
 aaa
 aaZ
-arg
+atl
 adl
 axd
 ada
@@ -90508,7 +90516,7 @@ aaa
 aaf
 aaa
 aaZ
-atl
+bNS
 auN
 azP
 aqH
