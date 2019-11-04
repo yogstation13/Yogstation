@@ -214,6 +214,23 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
+	
+/obj/item/reagent_containers/food/snacks/monkeycube/sheep
+	name = "sheep cube"
+	desc = "A Farm Town brand sheep cube."
+	bitesize = 15
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	tastes = list("fluff" = 1, "the farm" = 1)
+	spawned_mob = /mob/living/simple_animal/sheep
+	
+/obj/item/reagent_containers/food/snacks/monkeycube/cow
+	name = "cow cube"
+	desc = "A Farm Town brand cow cube."
+	bitesize = 18
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
+	tastes = list("milk" = 1, "the farm" = 1)
+	spawned_mob = /mob/living/simple_animal/cow
+	
 
 /obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
