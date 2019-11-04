@@ -1022,6 +1022,15 @@
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
+	
+/obj/item/storage/box/cheese
+	name = "box of advanced cheese bacteria"
+	
+/obj/item/storage/box/cheese/PopulateContents()
+	new /obj/item/reagent_containers/food/condiment/mesophilic(src)
+	new /obj/item/reagent_containers/food/condiment/thermophilic(src)
+	new /obj/item/reagent_containers/food/condiment/pcandidum(src)
+	new /obj/item/reagent_containers/food/condiment/proqueforti(src)
 
 /obj/item/storage/box/emptysandbags
 	name = "box of empty sandbags"
