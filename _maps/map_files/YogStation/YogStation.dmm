@@ -46861,6 +46861,39 @@
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"bNT" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
+"bNU" = (
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/awaymissions/snowdin/mining{
+	info = "Xenobiology wants us to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
+"bNV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -52695,16 +52728,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"cLv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "cLJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -53518,10 +53541,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"eIF" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "eOz" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -82374,7 +82393,7 @@ bEK
 byE
 byE
 byE
-eIF
+bNU
 bGi
 aaf
 aaf
@@ -103444,7 +103463,7 @@ bAB
 bBV
 bDb
 bEn
-bEm
+bNT
 bEm
 bEm
 bJL
@@ -103452,7 +103471,7 @@ bLa
 bMi
 buu
 bPy
-cLv
+bNV
 bJN
 bRW
 bTb
