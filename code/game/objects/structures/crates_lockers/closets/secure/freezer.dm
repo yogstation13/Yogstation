@@ -62,7 +62,7 @@
 	..()
 	for(var/i = 0, i < 4, i++)
 		new /obj/item/reagent_containers/food/snacks/meat/slab/monkey(src)
-	new /obj/item/storage/box/goatcubes(src) // yogs change added goat cubes to meat freezer
+	new /obj/item/storage/box/mixedcubes(src) // yogs change added mixed cubes to meat freezer
 
 /obj/structure/closet/secure_closet/freezer/meat/open
 	req_access = null
