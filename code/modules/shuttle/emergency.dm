@@ -17,7 +17,7 @@
 	. = ..()
 
 /obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen)
+	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen) 
 		SSshuttle.clearHostileEnvironment(user)
 
 /obj/machinery/computer/emergency_shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.human_adjacent_state)
