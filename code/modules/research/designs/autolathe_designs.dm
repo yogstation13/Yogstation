@@ -956,7 +956,7 @@
 /datum/design/penlight
 	name = "Penlight"
 	id = "penlight"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 100, MAT_GLASS = 20)
 	build_path = /obj/item/flashlight/pen
 	category = list("initial", "Medical", "Medical Designs")
