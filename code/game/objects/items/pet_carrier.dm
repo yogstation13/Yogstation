@@ -23,6 +23,27 @@
 	var/max_occupants = 3 //Hard-cap so you can't have infinite mice or something in one carrier
 	var/max_occupant_weight = MOB_SIZE_SMALL //This is calculated from the mob sizes of occupants
 
+/obj/item/pet_carrier/xenobio
+	name = "Xenological Containment Unit"
+	desc = "A pet carrier with a warning sticker on it and a slightly more robust interior. Good for lavaland mobs"
+	icon = 'icons/obj/pet_carrier.dmi'
+	icon_state = "xeno_carrier_open"
+	item_state = "xeno_carrier"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	force = 5
+	attack_verb = list("bashed", "carried")
+	w_class = WEIGHT_CLASS_BULKY
+	throw_speed = 2
+	throw_range = 3
+	materials = list(MAT_METAL = 7500, MAT_GLASS = 100)
+	open = TRUE
+	locked = FALSE
+	list/occupants = list()
+	occupant_weight = 0
+	max_occupants = 3 //Hard-cap so you can't have infinite mice or something in one carrier
+	max_occupant_weight = MOB_SIZE_LARGE //This is calculated from the mob sizes of occupants
+
 /obj/item/pet_carrier/Destroy()
 	if(occupants.len)
 		for(var/V in occupants)
@@ -146,9 +167,11 @@
 	cut_overlay("locked")
 	if(open)
 		icon_state = initial(icon_state)
+	else if(name == "Xenological Containment Unit")
+		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
 	else
 		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
-		add_overlay("[locked ? "" : "un"]locked")
+			add_overlay("[locked ? "" : "un"]locked")
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
