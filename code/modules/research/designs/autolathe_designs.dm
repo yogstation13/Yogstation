@@ -952,3 +952,12 @@
 	build_path = /obj/item/stack/tile/circuit/red
 	category = list("initial", "Misc")
 	maxstack = 50
+
+/datum/design/penlight
+	name = "Penlight"
+	id = "penlight"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 100, MAT_GLASS = 20)
+	build_path = /obj/item/flashlight/pen
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
