@@ -1,32 +1,44 @@
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
 
-//plastic cheese
+//cheese
 /obj/item/reagent_containers/food/snacks/store/cheesewheel
-	name = "american cheese block"
-	desc = "A block of american plastic cheese"
-	icon_state = "tba"
+	name = "cheese wheel or block"
+	desc = "A wheel or block of cheese"
+	icon = 'icons/obj/food/cheese.dmi'
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
 	slices_num = 5
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("plastic" = 1)
 	foodtype = DAIRY
-	
+
 /obj/item/reagent_containers/food/snacks/cheesewedge
-	name = "american cheese slice"
-	desc = "A slice of american plastic cheese"
-	icon_state = "tba"
-	filling_color = "#FFD700"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("plastic" = 1)
+	name = "cheese wedge or slice"
+	icon = 'icons/obj/food/cheese.dmi'
+	desc = "A wedge or slice of cheese"
 	foodtype = DAIRY
-	
+
 //cheesemix
 /obj/item/reagent_containers/food/snacks/cheesemix
 	icon_state = "tba"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bitter milk" = 1)
 	foodtype = DAIRY
+	
+//american cheese
+/obj/item/reagent_containers/food/snacks/store/cheesewheel/american
+	name = "american cheese block"
+	desc = "A block of american plastic cheese"
+	icon_state = "tba"
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/american
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("plastic" = 1)
+
+/obj/item/reagent_containers/food/snacks/cheesewedge/american
+	name = "american cheese slice"
+	desc = "A slice of american plastic cheese"
+	icon_state = "tba"
+	filling_color = "#FFD700"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("plastic" = 1)
 
 //blue
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/blue
@@ -108,9 +120,9 @@
 	tastes = list("cheddar" = 1)
 	
 /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom
-	name = "cheddar wedge"
+	name = "cheddar"
 	customfoodfilling = 0
-	icon_state = "cheesewedge"
+	icon_state = "cheesewheel_slice"
 	filling_color = "#FFFFFF"
 	foodtype = DAIRY
 	
