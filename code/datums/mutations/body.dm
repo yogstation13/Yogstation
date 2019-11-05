@@ -327,3 +327,22 @@
 	owner.resize = 0.8
 	owner.update_transform()
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
+	
+/datum/mutation/human/toxin
+	name = "Toxin Lover"
+	desc = "The affected person takes damage from toxin healing chems but heals from toxic chemicals"
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>Your Stomach feels weird.</span>"
+	text_lose_indication = "<span class='notice'>Your Stomach feels normal.</span>"
+	difficulty = 16
+	instability = 35
+
+/datum/mutation/human/toxin/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, TRAIT_TOXINLOVER, "genetics")
+
+/datum/mutation/human/toxin/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, TRAIT_TOXINLOVER, "genetics")
