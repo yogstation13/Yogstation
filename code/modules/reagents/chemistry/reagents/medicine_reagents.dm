@@ -1386,13 +1386,8 @@
 		M.Dizzy(jitter)
 		M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
 	if(heal_roll < 0) // Healing payload after calculations
-		if (M.stat == DEAD) // Non OD , if dead , 30% chance to discard healing payload
-			if(prob(70))
-				M.adjustFireLoss(heal_roll*REM, FALSE, FALSE, BODYPART_ORGANIC)
-				M.adjustBruteLoss(heal_roll*REM, 0)
-		else
-			M.adjustFireLoss(heal_roll*REM, 0) 
-			M.adjustBruteLoss(heal_roll*REM, 0) 
+		M.adjustFireLoss(heal_roll*REM, 0) 
+		M.adjustBruteLoss(heal_roll*REM, 0) 
 	..()
 	. = 1
 
