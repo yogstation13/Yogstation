@@ -168,6 +168,17 @@
 		qdel(holder.my_atom)
 		
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
+datum/chemical_reaction/american
+	name = "American Cheese Block"
+	id = "americancheeseblock"
+	required_reagents = list(/datum/reagent/consumable/milk = 40)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/american/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/store/cheesewheel/american(location)
+
 /datum/chemical_reaction/bluemix
 	name = "Blue Cheese Mix"
 	id = "bluemix"
@@ -189,17 +200,6 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/cheesemix/brie(location)
-
-/datum/chemical_reaction/cheesewheel
-	name = "American Cheese Block"
-	id = "americancheeseblock"
-	required_reagents = list(/datum/reagent/consumable/milk = 40)
-	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-
-/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/store/cheesewheel(location)
 		
 /datum/chemical_reaction/cheddarmix
 	name = "Cheddar Cheese Mix"
