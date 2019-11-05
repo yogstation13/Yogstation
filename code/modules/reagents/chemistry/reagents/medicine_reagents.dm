@@ -1342,7 +1342,7 @@
 	reagent_state = LIQUID
 	color = "#BD328A" //  R 189 G 50 B 138 , Medium Red Violet , Hue of Violet 
 	overdose_threshold = 15
-	taste_description = "dixel"
+	taste_description = "a chunky mess"
 	glass_name = "glass of ...red?"
 	glass_desc = "Looks like some chunky dark red mix."
 	reagent_weight = 4
