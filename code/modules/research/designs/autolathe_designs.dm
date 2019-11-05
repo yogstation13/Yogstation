@@ -2,6 +2,15 @@
 //////////Autolathe Designs ///////
 ///////////////////////////////////
 
+/datum/design/airlock_scanner
+	name = "Airlock scanner"
+	id = "airlock_scanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 50, MAT_GLASS = 50)
+	build_path = /obj/item/airlock_scanner
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/bucket
 	name = "Bucket"
 	id = "bucket"
