@@ -10631,10 +10631,20 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "aqu" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/awaymissions/snowdin/mining{
+	info = "Xenobiology wants us to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
+	},
+/obj/machinery/light,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
+/area/space)
 "aqv" = (
 /obj/effect/decal/cleanable/oil,
 /obj/structure/closet/crate,
@@ -24055,6 +24065,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKm" = (
@@ -24961,6 +24972,7 @@
 	name = "Containment Control";
 	req_access_txt = "55"
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aLw" = (
@@ -25677,6 +25689,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aME" = (
@@ -35373,6 +35386,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "biY" = (
