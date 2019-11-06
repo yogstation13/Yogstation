@@ -1399,7 +1399,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			traditional bags and boxes. Caution: Will explode if the powernet contains sufficient amounts of energy."
 	item = /obj/item/powersink
 	cost = 10
-
+	
+	/datum/uplink_item/device_tools/sechudimplantthing
+	name = "Contraband Security Hud Implant"
+	desc = "This package contains a autosurgeon that installs a CyberSun sec hud straight into your eye sockets.This hud will allow you to see anything a normal sec hud will without the chance of easy removal. "
+	item = /obj/item/autosurgeon/syndisecball
+	cost = 3
+	
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
 	desc = "A radioactive microlaser disguised as a standard Nanotrasen health analyzer. When used, it emits a \
