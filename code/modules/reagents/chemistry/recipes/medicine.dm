@@ -264,3 +264,9 @@
 	id = /datum/reagent/medicine/psicodine
 	results = list(/datum/reagent/medicine/psicodine = 5)
 	required_reagents = list( /datum/reagent/medicine/mannitol = 2, /datum/reagent/water = 2, /datum/reagent/impedrezene = 1)
+
+/datum/chemical_reaction/godsblood
+	name = "GodsBlood"
+	id = /datum/reagent/medicine/psicodine
+	results = list(/datum/reagent/medicine/omnizine/godblood = 2)
+	required_reagents = list( /datum/reagent/medicine/omnizine = 1, /datum/reagent/medicine/earthsblood = 1)
