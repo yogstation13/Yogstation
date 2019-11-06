@@ -210,6 +210,60 @@
 	description = "An opaque white liquid produced by the mammary glands of sheep."
 	taste_description = "sheep"
 	glass_name = "glass of sheep milk"
+	
+/datum/reagent/consumable/milk/blue
+	name = "Blue Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+
+/datum/reagent/consumable/milk/brie
+	name = "Brie Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+	
+/datum/reagent/consumable/milk/cheddar
+	name = "Cheddar Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+
+/datum/reagent/consumable/milk/feta
+	name = "Feta Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+	
+/datum/reagent/consumable/milk/goatcheese
+	name = "Goat Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+
+/datum/reagent/consumable/milk/halloumi
+	name = "Halloumi Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+	
+/datum/reagent/consumable/milk/mozzarella
+	name = "Mozzarella Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+
+/datum/reagent/consumable/milk/parmesan
+	name = "Parmesan Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
+	
+/datum/reagent/consumable/milk/swiss
+	name = "Swiss Cheese Milk"
+	description = "An opaque white liquid."
+	taste_description = "bitter"
+	glass_name = "glass of cheese milk"
 
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
