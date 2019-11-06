@@ -764,3 +764,19 @@
 	description = "A special bacterium used to make blue cheese."
 	color = "#365E30" // rgb: 54, 94, 48
 	taste_description = "bitterness"
+	
+/datum/reagent/consumable/parmesan_delight
+	name = "Parmesan Delight"
+	description = "The time spent cultivating parmesan has produced this magical liquid."
+	color = "#FFD700" // rgb: 255, 140, 255
+	quality = DRINK_VERYGOOD
+	taste_description = "salty goodness"
+
+/datum/reagent/consumable/parmesan_delight/on_mob_life(mob/living/carbon/M)
+	M.adjustBruteLoss(-0.5, 0)
+	M.adjustFireLoss(-0.5, 0)
+	M.adjustToxLoss(-0.5, 0)
+	M.adjustOxyLoss(-0.5, 0)
+	M.heal_bodypart_damage(1,1, 0)
+	..()
+
