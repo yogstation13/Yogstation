@@ -13937,12 +13937,18 @@
 /turf/closed/wall,
 /area/medical/paramedic)
 "azj" = (
-/obj/item/stack/ore/iron,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/awaymissions/snowdin/mining{
+	info = "Xenobiology wants us to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
+/area/space)
 "azk" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
@@ -56246,6 +56252,8 @@
 	dir = 9
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXh" = (
@@ -56393,6 +56401,8 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXx" = (

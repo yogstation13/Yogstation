@@ -35167,16 +35167,22 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "beh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/awaymissions/snowdin/mining{
+	info = "Xenobiology wants us to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
 	},
-/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
+/area/space)
 "bei" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -125762,6 +125768,10 @@
 /obj/structure/table/reinforced,
 /obj/item/extinguisher,
 /obj/item/extinguisher,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "hLm" = (
