@@ -8,8 +8,7 @@
 	id = "egg"
 	say_mod = "blurbles"
 	fixed_mut_color = "FFE7C9"
-	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,2), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,2), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
-	species_traits = list(EYECOLOR,LIPS, MUTCOLORS)
+	offset_features = list(OFFSET_EARS = list(0,2), OFFSET_HEAD = list(0,2))
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	brutemod = EGG_MAXBRUTEMOD // not the toughest egg in the dozen (handled by the #defines above)
 	heatmod = 1.1 // weak to being boiled
