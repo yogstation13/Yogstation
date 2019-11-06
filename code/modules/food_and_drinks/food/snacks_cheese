@@ -1,6 +1,4 @@
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
-
-//cheese
 /obj/item/reagent_containers/food/snacks/store/cheesewheel
 	name = "cheese wheel or block"
 	desc = "A wheel or block of cheese"
@@ -16,7 +14,6 @@
 	desc = "A wedge or slice of cheese"
 	foodtype = DAIRY
 
-//cheesemix
 /obj/item/reagent_containers/food/snacks/cheesemix
 	icon_state = "cheesemix"
 	icon = 'icons/obj/food/cheese.dmi'
