@@ -184,7 +184,7 @@
 	name = "Cheddar Cheese Milk"
 	id = "cheddarmilk"
 	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/mesophilicculture = 1)
-	results = list(/datum/reagent/consumable/milk/brie = 30)
+	results = list(/datum/reagent/consumable/milk/cheddar = 30)
 
 /datum/chemical_reaction/fetamilk
 	name = "Feta Cheese Milk"
