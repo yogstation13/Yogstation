@@ -89,6 +89,11 @@
 	name = "\improper DNA injector (Hulk)"
 	desc = "This will make you big and strong, but give you a bad skin condition."
 	add_mutations = list(HULK)
+	
+/obj/item/dnainjector/firebreath
+	name = "\improper DNA injector (Fire Breath)"
+	desc = "Restores the dragon ancestry."
+	add_mutations = list(FIREBREATH)
 
 /obj/item/dnainjector/xraymut
 	name = "\improper DNA injector (X-ray)"
