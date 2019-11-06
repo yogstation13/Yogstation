@@ -198,6 +198,18 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
+	
+/datum/reagent/consumable/milk/goat
+	name = "Goat Milk"
+	description = "An opaque white liquid produced by the mammary glands of goats."
+	taste_description = "goat"
+	glass_name = "glass of goat milk"
+
+/datum/reagent/consumable/milk/sheep
+	name = "Sheep Milk"
+	description = "An opaque white liquid produced by the mammary glands of sheep."
+	taste_description = "sheep"
+	glass_name = "glass of sheep milk"
 
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
