@@ -97,3 +97,6 @@
 	
 /obj/item/autosurgeon/medibeam
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
+	
+/obj/item/autosurgeon/syndisecball
+	starting_organ = /obj/item/organ/cyberimp/eyes/hud/security/syndicate
