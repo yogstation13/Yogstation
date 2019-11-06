@@ -29,7 +29,7 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
-	var/obj/item/udder/udder = null
+	var/obj/item/udder/goat/udder = null
 
 	do_footstep = TRUE
 
@@ -107,7 +107,8 @@
 			H.visible_message("<span class='warning'>[src] takes a big chomp out of [H]!</span>", \
 								  "<span class='userdanger'>[src] takes a big chomp out of your [NB]!</span>")
 			NB.dismember()
-//cow
+			
+//cow-------------------------------------------------------------------------
 /mob/living/simple_animal/cow
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
@@ -185,6 +186,7 @@
 	else
 		..()
 
+//chick-------------------------------------------------------------
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
@@ -235,6 +237,7 @@
 	..()
 	amount_grown = 0
 
+//chicken-----------------------------------------------------------
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
@@ -326,7 +329,8 @@
 			qdel(src)
 	else
 		STOP_PROCESSING(SSobj, src)
-		
+
+//sheep----------------------------------------------------
 /mob/living/simple_animal/sheep
 	name = "sheep"
 	desc = "It's so fluffy!"
@@ -350,7 +354,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
 	maxHealth = 40
-	var/obj/item/udder/udder = null
+	var/obj/item/udder/sheep/udder = null
 	var/shaved = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -409,17 +413,27 @@
 		icon_dead = "sheep_dead"
 		icon_state = icon_living
 
+//udder--------------------------------
 /obj/item/udder
 	name = "udder"
+	var/milktype = /datum/reagent/consumable/milk
+	
+/obj/item/udder/sheep
+	name = "sheep udder"
+	milktype = /datum/reagent/consumable/milk/sheep
+
+/obj/item/udder/goat
+	name = "goat udder"
+	milktype = /datum/reagent/consumable/milk/goat
 
 /obj/item/udder/Initialize()
 	create_reagents(50)
-	reagents.add_reagent(/datum/reagent/consumable/milk, 20)
+	reagents.add_reagent(milktype, 20)
 	. = ..()
 
 /obj/item/udder/proc/generateMilk()
 	if(prob(5))
-		reagents.add_reagent(/datum/reagent/consumable/milk, rand(5, 10))
+		reagents.add_reagent(milktype, rand(5, 10))
 
 /obj/item/udder/proc/milkAnimal(obj/O, mob/user)
 	var/obj/item/reagent_containers/glass/G = O
