@@ -171,7 +171,7 @@
 		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
 	else
 		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
-			add_overlay("[locked ? "" : "un"]locked")
+		add_overlay("[locked ? "" : "un"]locked")
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
