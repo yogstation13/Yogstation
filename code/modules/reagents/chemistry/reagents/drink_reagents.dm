@@ -240,6 +240,12 @@
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
+	
+/datum/reagent/consumable/milk/shoat
+	name = "Shoat Milk"
+	description = "An opaque white liquid."
+	taste_description = "sheep and goat"
+	glass_name = "glass of shoat milk"
 
 /datum/reagent/consumable/milk/halloumi
 	name = "Halloumi Cheese Milk"
