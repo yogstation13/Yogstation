@@ -1733,6 +1733,7 @@
 #include "code\modules\food_and_drinks\food\snacks_bread.dm"
 #include "code\modules\food_and_drinks\food\snacks_burgers.dm"
 #include "code\modules\food_and_drinks\food\snacks_cake.dm"
+#include "code\modules\food_and_drinks\food\snacks_cheese.dm"
 #include "code\modules\food_and_drinks\food\snacks_egg.dm"
 #include "code\modules\food_and_drinks\food\snacks_meat.dm"
 #include "code\modules\food_and_drinks\food\snacks_other.dm"
