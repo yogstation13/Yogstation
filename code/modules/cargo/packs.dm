@@ -1924,7 +1924,7 @@
 	name = "Chicken Crate"
 	desc = "The chicken goes bwaak!"
 	cost = 2000
-	contains = list( /mob/living/simple_animal/chick)
+	contains = list(/mob/living/simple_animal/chick)
 	crate_name = "chicken crate"
 
 /datum/supply_pack/critter/corgi
@@ -2001,6 +2001,13 @@
 	contains = list(/mob/living/simple_animal/pet/dog/pug,
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "pug crate"
+	
+/datum/supply_pack/critter/sheep
+	name = "Sheep Crate"
+	desc = "The sheep goes baa!"
+	cost = 2000
+	contains = list(/mob/living/simple_animal/sheep)
+	crate_name = "sheep crate"
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
@@ -2041,7 +2048,6 @@
 					/obj/item/clothing/head/collectable/swat,
 					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/police,
-					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/xenom,
 					/obj/item/clothing/head/collectable/petehat)
 	crate_name = "collectable hats crate"

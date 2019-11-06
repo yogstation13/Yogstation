@@ -2,6 +2,15 @@
 //////////Autolathe Designs ///////
 ///////////////////////////////////
 
+/datum/design/airlock_scanner
+	name = "Airlock scanner"
+	id = "airlock_scanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 50, MAT_GLASS = 50)
+	build_path = /obj/item/airlock_scanner
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/bucket
 	name = "Bucket"
 	id = "bucket"
@@ -952,3 +961,12 @@
 	build_path = /obj/item/stack/tile/circuit/red
 	category = list("initial", "Misc")
 	maxstack = 50
+
+/datum/design/penlight
+	name = "Penlight"
+	id = "penlight"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 100, MAT_GLASS = 20)
+	build_path = /obj/item/flashlight/pen
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
