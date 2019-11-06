@@ -198,10 +198,16 @@
 	required_reagents = list(/datum/reagent/consumable/milk/goat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/goatcheese = 30)
 	
+/datum/chemical_reaction/shoatmilk
+	name = "Shoat Milk"
+	id = "shoatmilk"
+	required_reagents = list(/datum/reagent/consumable/milk/goat = 15, /datum/reagent/consumable/milk/sheep = 15)
+	results = list(/datum/reagent/consumable/milk/shoat = 30)
+	
 /datum/chemical_reaction/halloumimilk
 	name = "Halloumi Cheese Milk"
 	id = "halloumimilk"
-	required_reagents = list(/datum/reagent/consumable/milk/goat = 15, /datum/reagent/consumable/milk/sheep = 15, /datum/reagent/consumable/mesophilicculture = 1)
+	required_reagents = list(/datum/reagent/consumable/milk/shoat = 30, /datum/reagent/consumable/mesophilicculture = 1)
 	results = list(/datum/reagent/consumable/milk/halloumi = 30)
 	
 /datum/chemical_reaction/mozzarellamilk
