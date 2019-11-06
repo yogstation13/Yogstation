@@ -31,7 +31,7 @@
 	if(damagetype == BRUTE) // Dynamic brute resist based on burn damage. The more fried the egg, the harder the shell!!
 		var/x = H.getFireLoss()
 		brutemod = EGG_ALPHA * x*x + EGG_BETA * x + EGG_MAXBRUTEMOD //A polynomial, to determine how much brute we take. https://www.desmos.com/calculator/dwxdxwt0rl
-		if(H.getBruteLoss() >= 200)
+		if(H.getBruteLoss() >= 200) // This makes it so the hit *after* taking 200 brute kills you.
 			H.gib(FALSE)
 			return 1
 	..()
