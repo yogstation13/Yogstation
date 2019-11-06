@@ -740,3 +740,27 @@
 	taste_mult = 2
 	taste_description = "bitter sweetness"
 	reagent_state = SOLID
+	
+/datum/reagent/consumable/mesophilicculture
+	name = "mesophilic culture"
+	description = "A mixture of mesophilic bacteria used to make most cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/thermophilicculture
+	name = "thermophilic culture"
+	description = "A mixture of thermophilic bacteria used to make some cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/penicilliumcandidum
+	name = "penicillium candidum"
+	description = "A special bacterium used to make brie."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/penicilliumroqueforti
+	name = "penicillium roqueforti"
+	description = "A special bacterium used to make blue cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
