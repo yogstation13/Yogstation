@@ -964,8 +964,8 @@
 	base_state = "right";
 	dir = 4;
 	icon_state = "right";
-	name = "Core Modules";
-	req_access_txt = "20"
+	name = "Patient Monitoring Room";
+	req_access_txt = "0"
 	},
 /turf/open/floor/wood,
 /area/medical/medbay/central)
@@ -11033,6 +11033,10 @@
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = -1
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "avr" = (
@@ -11045,6 +11049,10 @@
 	},
 /obj/machinery/gulag_item_reclaimer{
 	pixel_y = 24
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -11718,7 +11726,16 @@
 "awH" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Airlock"
+	name = "Labor Camp Shuttle Airlock";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 1
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -13393,9 +13410,6 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aAj" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 8
@@ -23822,6 +23836,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 6
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aTS" = (
@@ -23834,15 +23851,19 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
 /obj/machinery/meter/atmos/atmos_waste_loop,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -25158,14 +25179,18 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "aWj" = (
-/obj/effect/turf_decal/tile/yellow{
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 8;
+	name = "Distro to Waste"
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
+/obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -25177,15 +25202,19 @@
 	},
 /area/maintenance/department/science)
 "aWl" = (
-/obj/effect/turf_decal/tile/yellow{
+/obj/machinery/atmospherics/pipe/manifold/supply/visible{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/machinery/meter/atmos/distro_loop,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 8;
-	name = "Distro to Waste"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -26203,10 +26232,13 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
-/obj/machinery/meter/atmos/distro_loop,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aYd" = (
@@ -28197,7 +28229,12 @@
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard)
 "bbN" = (
-/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bbO" = (
@@ -39783,8 +39820,9 @@
 /turf/open/floor/plasteel/dark,
 /area/science/explab)
 "bwd" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
@@ -48604,8 +48642,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bKI" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	icon_state = "intact";
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	icon_state = "pipe11-2";
 	dir = 9
 	},
 /turf/closed/wall,
@@ -49376,6 +49414,13 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
+"bMo" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "bMp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -49406,6 +49451,30 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"bMs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"bMt" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"bMu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white/corner,
+/area/hallway/secondary/exit/departure_lounge)
+"bMv" = (
+/turf/closed/wall,
+/area/hallway/primary/fore)
 "bMy" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -49610,12 +49679,6 @@
 /area/engine/atmos)
 "bNc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
-"bNd" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -80310,7 +80373,7 @@ aML
 gmO
 aQt
 gpC
-ppQ
+bMu
 aYG
 aZy
 baK
@@ -80800,8 +80863,8 @@ apE
 avq
 apE
 ajM
-aiu
-aiu
+bMv
+bMv
 gSH
 xJy
 aEX
@@ -88785,7 +88848,7 @@ aKQ
 aKQ
 aLL
 aQN
-aRN
+aAj
 aRN
 aTX
 aUX
@@ -89042,7 +89105,7 @@ aNf
 aKT
 aLL
 azx
-aAj
+aPG
 bMb
 aUY
 aPU
@@ -96794,7 +96857,7 @@ bvA
 aXf
 bJN
 aTR
-bNd
+bbN
 bOl
 bQI
 bPR
@@ -97051,7 +97114,7 @@ bvE
 aXg
 bJN
 aTT
-bbN
+bMo
 bxI
 bpO
 bpO
@@ -97307,8 +97370,8 @@ btp
 bvF
 aXi
 bJN
-aWl
-bMf
+aWj
+bMs
 bxW
 bOV
 bPQ
@@ -97564,8 +97627,8 @@ aVD
 aJa
 aXj
 bJN
-aYc
-bbN
+aWl
+bMo
 bxZ
 bOW
 bPQ
@@ -97821,8 +97884,8 @@ bHt
 bIE
 bJN
 bJN
-aWj
-bMf
+aYc
+bMt
 bOk
 bOX
 bPQ

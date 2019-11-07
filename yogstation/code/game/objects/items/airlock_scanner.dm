@@ -1,7 +1,7 @@
 /obj/item/airlock_scanner
 	name = "access scanner"
-	desc = "A tool used to idetifying access requiremnts of various machinery. Make sure airlocks id scan routines were activated at least once before the scan"
-	icon = 'icons/obj/objects.dmi'
+	desc = "A tool used to identify the access requirements of various machinery. Only works on airlocks that have previously used their ID scan."
+	icon = 'yogstation/icons/obj/objects.dmi'
 	icon_state = "airlock_scanner"
 
 	w_class = WEIGHT_CLASS_SMALL
