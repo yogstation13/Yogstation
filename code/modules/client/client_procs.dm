@@ -55,11 +55,23 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(href_list["__keydown"])
 		var/keydown = js_keycode_to_byond(href_list["__keydown"])
+
+		if(href_list["ctrlKey"] == "0" && keydown != "Ctrl")
+			keyUp("Ctrl")
+		if(href_list["ctrlKey"] == "1" && keydown != "Ctrl")
+			keyDown("Ctrl")
+
 		if(keydown)
 			keyDown(keydown)
 		return
 	if(href_list["__keyup"])
 		var/keyup = js_keycode_to_byond(href_list["__keyup"])
+
+		if(href_list["ctrlKey"] == "0" && keyup != "Ctrl")
+			keyUp("Ctrl")
+		if(href_list["ctrlKey"] == "1" && keyup != "Ctrl")
+			keyDown("Ctrl")
+
 		if(keyup)
 			keyUp(keyup)
 		return
