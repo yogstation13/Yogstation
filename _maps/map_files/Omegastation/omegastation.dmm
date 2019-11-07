@@ -13193,9 +13193,6 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/structure/sign/barsign{
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -17999,21 +17996,16 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
 "aBj" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/computer/telecomms/traffic{
-	dir = 8;
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel,
 /area/tcommsat/server)
 "aBk" = (
 /obj/machinery/meter,
@@ -18234,14 +18226,9 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aBB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -25053,8 +25040,14 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "aLC" = (
-/turf/open/space/basic,
-/area/science/xenobiology)
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aLD" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/effect/turf_decal/stripes/line{
@@ -25842,6 +25835,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"aMQ" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "aMR" = (
 /obj/machinery/camera{
 	c_tag = "Supermatter Chamber";
@@ -25901,6 +25899,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"aMY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
 "aMZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -25914,6 +25918,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"aNa" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/asteroid/nearstation)
 "aNb" = (
 /obj/machinery/light,
 /obj/structure/extinguisher_cabinet{
@@ -26068,6 +26078,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"aNo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"aNp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/tcommsat/server)
 "aNq" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/cable/white,
@@ -26083,6 +26112,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"aNs" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/telecomms/traffic{
+	dir = 8;
+	network = "tcommsat";
+	req_access = list(61)
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/server)
 "aNt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -26207,6 +26254,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"aNF" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aNG" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -26264,6 +26331,35 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aNL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "aNU" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -26527,13 +26623,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
-"aOx" = (
-/obj/structure/chair/office/dark,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
@@ -37110,13 +37199,6 @@
 	},
 /turf/open/floor/plating,
 /area/tcommsat/server)
-"bxt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/tcommsat/server)
 "bxu" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -37598,13 +37680,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"csP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "csX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/white{
@@ -37813,18 +37888,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"drq" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/tcommsat/server)
 "dua" = (
 /obj/item/clothing/head/radiation,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -38037,11 +38100,6 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/hallway/secondary/entry)
-"ezP" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "eCg" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -38431,12 +38489,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port/fore)
-"gNH" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/asteroid/nearstation)
 "gPY" = (
 /obj/machinery/vr_sleeper,
 /obj/effect/turf_decal/tile/red{
@@ -39793,26 +39845,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"pTu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "pZU" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -39846,35 +39878,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"qgq" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "qgC" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/incinerator_input{
 	dir = 4
@@ -43738,12 +43741,6 @@
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"xPz" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/asteroid/nearstation)
 "xSr" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -69917,7 +69914,7 @@ bpn
 xZO
 dMl
 uhz
-gNH
+aMY
 aad
 aad
 aad
@@ -70174,7 +70171,7 @@ pvX
 gSv
 xtL
 uhz
-gNH
+aMY
 aad
 aad
 aad
@@ -70430,8 +70427,8 @@ ueC
 qMr
 kiw
 nUk
-ezP
-xPz
+aMQ
+aNa
 aad
 aad
 aad
@@ -72238,13 +72235,13 @@ sWz
 aJl
 aKu
 aLI
-drq
+aBj
 aNV
 xSr
 aNV
-pTu
+aNF
 aRD
-qgq
+aNL
 aTY
 aUP
 buL
@@ -72497,7 +72494,7 @@ aKv
 aLJ
 aMN
 aNW
-aOx
+aLC
 buC
 bxp
 sJP
@@ -72755,7 +72752,7 @@ aLK
 aMJ
 aNX
 aBi
-aBj
+aNs
 bxp
 aRE
 aSN
@@ -73013,7 +73010,7 @@ aMN
 aMN
 sJD
 aMN
-bxt
+aNp
 bwW
 aMJ
 aMJ
@@ -76596,7 +76593,7 @@ wZa
 dBX
 toF
 jWK
-csP
+aBB
 auC
 aqz
 aEt
@@ -76853,7 +76850,7 @@ scU
 axb
 azr
 aAt
-aBB
+aNo
 vhn
 utN
 aVM
@@ -85889,7 +85886,7 @@ bix
 bgU
 aaa
 aaa
-aLC
+aaa
 aaa
 aaa
 aaa
@@ -86146,7 +86143,7 @@ biw
 bgU
 aaa
 aaa
-aLC
+aaa
 aaa
 aaa
 aaa

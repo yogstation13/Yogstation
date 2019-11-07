@@ -326,7 +326,88 @@
 			qdel(src)
 	else
 		STOP_PROCESSING(SSobj, src)
+		
+/mob/living/simple_animal/sheep
+	name = "sheep"
+	desc = "It's so fluffy!"
+	icon_state = "sheep"
+	icon_living = "sheep"
+	icon_dead = "sheep_dead"
+	gender = FEMALE
+	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
+	speak = list("baa?","baa","BAAAAAA")
+	speak_emote = list("bleats")
+	emote_hear = list("brays.")
+	emote_see = list("nibbles at the ground.")
+	speak_chance = 1
+	turns_per_move = 5
+	see_in_dark = 6
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 4)
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "kicks"
+	attacktext = "kicks"
+	attack_sound = 'sound/weapons/punch1.ogg'
+	health = 40
+	maxHealth = 40
+	var/obj/item/udder/udder = null
+	var/shaved = FALSE
+	gold_core_spawnable = FRIENDLY_SPAWN
+	blood_volume = BLOOD_VOLUME_GENERIC
 
+	do_footstep = TRUE
+
+/mob/living/simple_animal/sheep/Initialize()
+	udder = new()
+	. = ..()
+
+/mob/living/simple_animal/sheep/Destroy()
+	QDEL_NULL(udder)
+	return ..()
+
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+		udder.milkAnimal(O, user)
+		return TRUE
+	else
+		return ..()
+
+/mob/living/simple_animal/sheep/Life()
+	. = ..()
+	if(stat == CONSCIOUS)
+		udder.generateMilk()
+		
+/mob/living/simple_animal/sheep/attackby(obj/item/O, mob/user, params)
+	if (istype(O, /obj/item/razor))
+		if(shaved)
+			to_chat(user, "<span class='warning'>The sheep doesn't have enough wool, try again later...</span>")
+			return
+		user.visible_message("[user] starts to shave [src] using \the [O].", "<span class='notice'>You start to shave [src] using \the [O]...</span>")
+		if(do_after(user, 50, target = src))
+			if(shaved)
+				user.visible_message("[src] has already been shaved!")
+				return
+			user.visible_message("[user] shaves some wool off [src] using \the [O].", "<span class='notice'>You shave some wool off [src] using \the [O].</span>")
+			playsound(loc, 'sound/items/welder2.ogg', 20, 1)
+			shaved = TRUE
+			icon_living = "sheep_sheared"
+			icon_dead = "sheep_sheared_dead"
+			new /obj/item/stack/sheet/wool(get_turf(src), 8)
+			if(stat == CONSCIOUS)
+				icon_state = icon_living
+			else
+				icon_state = icon_dead
+			addtimer(CALLBACK(src, .proc/generateWool), 3 MINUTES)
+
+		return
+	..()
+
+/mob/living/simple_animal/sheep/proc/generateWool()
+	if(stat == CONSCIOUS)
+		shaved = FALSE
+		icon_living = "sheep"
+		icon_dead = "sheep_dead"
+		icon_state = icon_living
 
 /obj/item/udder
 	name = "udder"
