@@ -677,7 +677,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/mob/living/user = AM
 		if(user.status_flags & GODMODE)
 			return
-		if(messages_admins)
+		if(messages_admins || user.client)
 			message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", INVESTIGATE_SUPERMATTER)
 		user.dust(force = TRUE)
