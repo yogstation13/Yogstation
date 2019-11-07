@@ -28,7 +28,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_tentacle
 	max_charges = 3
 	charges = 3
-	recharge_rate = 1
+	recharge_rate = 3
 
 
 
@@ -53,7 +53,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_fire
 	max_charges = 5
 	charges = 5
-	recharge_rate = 1.45
+	recharge_rate = 2
 
 
 
@@ -66,7 +66,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_honk
 	max_charges = 6
 	charges = 6
-	recharge_rate = 4
+	recharge_rate = 1.25
 
 
 /obj/item/gun/magic/rune/chaos_rune
@@ -78,7 +78,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_chaos
 	max_charges = 5
 	charges = 5
-	recharge_rate = 2.5
+	recharge_rate = 1
 
 	//Please update the var below with more projectiles if they get added
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
@@ -91,14 +91,14 @@
 
 /obj/item/gun/magic/rune/bomb_rune
 	name = "Bomb Rune"
-	desc = "This obsidian rune has the ability to shoot bombs out of it. Be careful."
+	desc = "This obsidian rune has the ability to shoot bombs out of it. There is a sticky note on the backside, it says 'Does not work on inanimate objects'."
 	fire_sound = 'sound/effects/explosion1.ogg'
 	icon_state = "bomb-rune"
 	item_state = "bomb-rune"
 	ammo_type = /obj/item/ammo_casing/magic/runic_bomb
 	max_charges = 1
 	charges = 1
-	recharge_rate = 0.12
+	recharge_rate = 10
 
 
 /obj/item/gun/magic/rune/toxic_rune
@@ -110,7 +110,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_toxin
 	max_charges = 5
 	charges = 5
-	recharge_rate = 1
+	recharge_rate = 1.66
 
 
 //I am retard
@@ -124,7 +124,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_death
 	max_charges = 1
 	charges = 1
-	recharge_rate = 0.1
+	recharge_rate = 3
 
 
 /obj/item/gun/magic/rune/bullet_rune
@@ -136,7 +136,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_bullet
 	max_charges = 5
 	charges = 5
-	recharge_rate = 1.7
+	recharge_rate = 2.66
 	spread = 1
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun_slug, /obj/item/projectile/magic/incediary_slug)
 

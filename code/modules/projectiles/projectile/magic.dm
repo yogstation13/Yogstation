@@ -811,19 +811,32 @@
 	icon_state = "runic_bomb"
 	flag = "magic"
 	range = 10
+	speed = 4
 	var/exp_light = 1
-	var/exp_fire = 1
+	var/exp_fire = 0
 
 /obj/item/projectile/magic/runic_bomb/on_hit(target)
+	var/mob/living/carbon/Z = firer
+	Z.adjustCloneLoss(4)
 	if(ismob(target))
 		var/mob/M = target
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
-	var/turf/X = get_turf(target)
-	explosion(X, -1, 0, exp_light, 0, flame_range = exp_fire)
-	. = ..()
+		else
+			explosion(M, -1, 0, exp_light, 0, flame_range = exp_fire)
+	if(iscarbon(target))
+		var/mob/living/carbon/X = target
+		ADD_TRAIT(X, TRAIT_NODISMEMBER, type)
+		ADD_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
+		ADD_TRAIT(X, TRAIT_STUNIMMUNE, type)
+		spawn(5)
+			REMOVE_TRAIT(X, TRAIT_NODISMEMBER, type)
+			REMOVE_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
+			REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, type)
+			X.adjustBruteLoss(-150)
+		explosion(X, -1, 0, exp_light, 0, flame_range = exp_fire)
 
 /obj/item/projectile/magic/runic_toxin
 	name = "Runic Toxin"
