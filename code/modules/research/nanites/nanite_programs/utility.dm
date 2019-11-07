@@ -213,6 +213,98 @@
 	rogue_types = list(/datum/nanite_program/skin_decay)
 	var/access = list()
 
+
+File filter... 
+0 / 4 files viewed
+ 1  code/controllers/subsystem/processing/nanites.dm 
+Viewed
+@@ -6,6 +6,7 @@ PROCESSING_SUBSYSTEM_DEF(nanites)
+	var/list/datum/nanite_cloud_backup/cloud_backups = list()		var/list/datum/nanite_cloud_backup/cloud_backups = list()
+	var/list/mob/living/nanite_monitored_mobs = list()		var/list/mob/living/nanite_monitored_mobs = list()
+	var/list/datum/nanite_program/relay/nanite_relays = list()		var/list/datum/nanite_program/relay/nanite_relays = list()
+	var/neural_network_count = 0
+
+
+/datum/controller/subsystem/processing/nanites/proc/check_hardware(datum/nanite_cloud_backup/backup)	/datum/controller/subsystem/processing/nanites/proc/check_hardware(datum/nanite_cloud_backup/backup)
+	if(QDELETED(backup.storage) || (backup.storage.stat & (NOPOWER|BROKEN)))		if(QDELETED(backup.storage) || (backup.storage.stat & (NOPOWER|BROKEN)))
+ 14  code/modules/research/designs/nanite_designs.dm 
+Viewed
+@@ -25,6 +25,20 @@
+	program_type = /datum/nanite_program/viral		program_type = /datum/nanite_program/viral
+	category = list("Utility Nanites")		category = list("Utility Nanites")
+
+
+/datum/design/nanites/research
+	name = "Distributed Computing"
+	desc = "The nanites aid the research servers by performing a portion of its calculations, increasing research point generation."
+	id = "research_nanites"
+	program_type = /datum/nanite_program/research
+	category = list("Utility Nanites")
+
+/datum/design/nanites/researchplus
+	name = "Neural Network"
+	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts. Can be overloaded to increase research output."
+	id = "researchplus_nanites"
+	program_type = /datum/nanite_program/researchplus
+	category = list("Utility Nanites")
+
+/datum/design/nanites/monitoring	/datum/design/nanites/monitoring
+	name = "Monitoring"		name = "Monitoring"
+	desc = "The nanites monitor the host's vitals and location, sending them to the suit sensor network."		desc = "The nanites monitor the host's vitals and location, sending them to the suit sensor network."
+ 47  code/modules/research/nanites/nanite_programs/utility.dm 
+Viewed
+@@ -227,6 +227,53 @@
+/datum/nanite_program/metabolic_synthesis/active_effect()	/datum/nanite_program/metabolic_synthesis/active_effect()
+	host_mob.adjust_nutrition(-0.5)		host_mob.adjust_nutrition(-0.5)
+
+
+/datum/nanite_program/research
+	name = "Distributed Computing"
+	desc = "The nanites aid the research servers by performing a portion of its calculations, increasing research point generation."
+	use_rate = 0.2
+	rogue_types = list(/datum/nanite_program/toxic)
+
+/datum/nanite_program/research/active_effect()
+	if(!iscarbon(host_mob))
+		return
+	var/points = 1
+	if(!host_mob.client) //less brainpower
+		points *= 0.25
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points))
+
+/datum/nanite_program/researchplus
+	name = "Neural Network"
+	desc = "The nanites link the host's brains together forming a neural research network, that becomes more efficient with the amount of total hosts."
+	use_rate = 0.3
+	rogue_types = list(/datum/nanite_program/brain_decay)
+
+/datum/nanite_program/researchplus/enable_passive_effect()
+	. = ..()
+	if(!iscarbon(host_mob))
+		return
+	if(host_mob.client)
+		SSnanites.neural_network_count++
+	else
+		SSnanites.neural_network_count += 0.25
+
+/datum/nanite_program/researchplus/disable_passive_effect()
+	. = ..()
+	if(!iscarbon(host_mob))
+		return
+	if(host_mob.client)
+		SSnanites.neural_network_count--
+	else
+		SSnanites.neural_network_count -= 0.25
+
+/datum/nanite_program/researchplus/active_effect()
+	if(!iscarbon(host_mob))
+		return
+	var/mob/living/carbon/C = host_mob
+	var/points = round(SSnanites.neural_network_count / 12, 0.1)
+	if(!C.client) //less brainpower
+		points *= 0.25
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = points))
+
 //Syncs the nanites with the cumulative current mob's access level. Can potentially wipe existing access.
 /datum/nanite_program/triggered/access/trigger()
 	var/list/new_access = list()
