@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - imageadd: "The airlock scanner is no longer invisible."

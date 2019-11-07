@@ -327,3 +327,4 @@
 	owner.resize = 0.8
 	owner.update_transform()
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
+
