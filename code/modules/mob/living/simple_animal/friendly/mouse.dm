@@ -25,6 +25,7 @@
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/chew_probability = 1
+	var/full = FALSE
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -85,10 +86,15 @@
 
 /mob/living/simple_animal/mouse/proc/eat_cheese()
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
-	if(CW)
+	if(CW && full == FALSE)
 		qdel(CW)
 		say("Squeak!")
 		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
+		full = TRUE
+		addtimer(CALLBACK(src, .proc/digestFood), 3 MINUTES)
+
+/mob/living/simple_animal/mouse/proc/digestFood()
+	full = FALSE
 		
 /mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge)) 
