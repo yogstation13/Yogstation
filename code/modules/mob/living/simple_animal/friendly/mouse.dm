@@ -34,7 +34,8 @@
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
-
+	if(stat == CONSCIOUS)
+		eat_cheese()
 
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
@@ -76,7 +77,27 @@
 				else
 					C.deconstruct()
 					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+					
+/mob/living/simple_animal/mouse/Move()
+	. = ..()
+	if(!stat)
+		eat_cheese()
 
+/mob/living/simple_animal/mouse/proc/eat_cheese()
+	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
+	if(CW)
+		qdel(CW)
+		say("Squeak!")
+		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
+		
+/mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge)) 
+		to_chat(user, "<span class='notice'>You feed [O] to [src].</span>")
+		visible_message("[src] squeaks happily!")
+		qdel(O)
+	else
+		..()
+		
 /*
  * Mouse types
  */
