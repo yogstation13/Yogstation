@@ -78,7 +78,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_chaos
 	max_charges = 5
 	charges = 5
-	recharge_rate = 1
+	recharge_rate = 1.11
 
 	//Please update the var below with more projectiles if they get added
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
@@ -98,7 +98,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/runic_bomb
 	max_charges = 1
 	charges = 1
-	recharge_rate = 10
+	recharge_rate = 8
 
 
 /obj/item/gun/magic/rune/toxic_rune
