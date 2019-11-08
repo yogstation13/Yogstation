@@ -509,6 +509,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=zgKazTrhXmI", // frosty the snowman
 		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // twelve days of christmas
 		"https://www.youtube.com/watch?v=maYCStVzjDs",  // deer song
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // jolly christmas
 		)
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
