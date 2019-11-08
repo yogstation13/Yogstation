@@ -437,7 +437,7 @@
 			var/list/temp_info = list("name" = "<font color=[scripture_color]><b>[S.name]</b></font>",
 			"descname" = "<font color=[scripture_color]>([S.descname])</font>",
 			"tip" = "[S.desc]\n[S.usage_tip]",
-			"required" = "([DisplayPower(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayEnergy(S.special_power_cost)]")]" : ""])",
+			"required" = "([DisplayEnergy(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayEnergy(S.special_power_cost)]")]" : ""])",
 			"type" = "[S.type]",
 			"quickbind" = S.quickbind)
 			if(S.important)
