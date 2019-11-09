@@ -146,7 +146,7 @@
 	cut_overlay("locked")
 	if(open)
 		icon_state = initial(icon_state)
-	else if(name == "Xenological Containment Unit")
+	else if(/obj/item/pet_carrier/xenobio)
 		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
 	else
 		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
