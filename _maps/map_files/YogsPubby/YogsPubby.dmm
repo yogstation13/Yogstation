@@ -28653,15 +28653,13 @@
 /obj/item/pet_carrier/xenobio,
 /obj/item/extraction_pack,
 /obj/item/extraction_pack,
-/obj/item/paper/fluff/awaymissions/snowdin/mining{
-	info = "Xenobiology wants us to use these carriers to capture and fulton extract lavaland wildlife, specifically slimes. Just make sure you target the xenobiology fulton retriever or else the wildlife may end up somewhere dangerous!"
-	},
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
-/area/space)
+/area/quartermaster/miningdock)
 "bcH" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/structure/sign/poster/official/random{
