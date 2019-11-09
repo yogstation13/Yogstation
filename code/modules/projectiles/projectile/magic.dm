@@ -832,7 +832,7 @@
 			REMOVE_TRAIT(X, TRAIT_NODISMEMBER, type)
 			REMOVE_TRAIT(X, TRAIT_SLEEPIMMUNE, type)
 			REMOVE_TRAIT(X, TRAIT_STUNIMMUNE, type)
-			X.adjustBruteLoss(-150)
+			X.adjustBruteLoss(-120)
 		explosion(X, -1, 0, boom, 0, 0)
 
 /obj/item/projectile/magic/runic_toxin
