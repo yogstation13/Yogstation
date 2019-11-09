@@ -176,7 +176,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	filling_color = "#F0E68C"
 	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN
+	foodtype = MEAT | GRAIN | EGG
 
 /obj/item/reagent_containers/food/snacks/beans
 	name = "tin of beans"
@@ -195,7 +195,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin = 2)
 	filling_color = "#008000"
 	tastes = list("cobwebs" = 1)
-	foodtype = MEAT | TOXIC
+	foodtype = MEAT | TOXIC | EGG // "Spidereggpeople" sounds like a fun ashwalker-ey variant of eggpeople
 
 /obj/item/reagent_containers/food/snacks/spiderling
 	name = "spiderling"

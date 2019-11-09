@@ -229,6 +229,7 @@
 	icon_state = "mayonnaise"
 	list_reagents = list(/datum/reagent/consumable/mayonnaise = 50)
 	possible_states = list()
+	foodtype = EGG
 
 
 
