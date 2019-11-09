@@ -124,7 +124,7 @@
 /datum/objective_item/steal/plasma/check_completion() //So special that not even check_special_completion is good enough for it
 	var/target_amount = text2num(name)
 	var/found_amount = 0
-	for(var/datum/mind/M in owners)
+	for(var/datum/mind/M in get_owners())
 		if(!isliving(M.current))
 			continue
 
