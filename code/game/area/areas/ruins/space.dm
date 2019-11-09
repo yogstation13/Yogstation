@@ -406,5 +406,3 @@
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"
 	icon_state = "yellow"
-
-

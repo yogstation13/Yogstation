@@ -1,4 +1,3 @@
-
 /datum/map_template/ruin
 	//name = "A Chest of Doubloons"
 	name = null
