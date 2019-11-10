@@ -91,7 +91,7 @@
 		say("Squeak!")
 		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
 		full = TRUE
-		addtimer(CALLBACK(src, .proc/digestFood), 3 MINUTES)
+		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
 
 /mob/living/simple_animal/mouse/proc/digestFood()
 	full = FALSE
