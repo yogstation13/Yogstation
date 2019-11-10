@@ -46861,6 +46861,10 @@
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"bNT" = (
+/obj/machinery/vending/wardrobe/sigtech_wardrobe,
+/turf/open/floor/plasteel,
+/area/tcommsat/computer)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -57822,10 +57826,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"vgm" = (
-/obj/structure/closet/wardrobe/tcomms,
-/turf/open/floor/plasteel,
-/area/tcommsat/computer)
 "vjX" = (
 /obj/structure/rack,
 /obj/item/clothing/head/welding,
@@ -100159,7 +100159,7 @@ yfa
 bGL
 aII
 bZv
-vgm
+bNT
 rvv
 vDq
 fkp

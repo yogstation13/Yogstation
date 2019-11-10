@@ -2001,7 +2001,7 @@
 	contains = list(/mob/living/simple_animal/pet/dog/pug,
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "pug crate"
-	
+
 /datum/supply_pack/critter/sheep
 	name = "Sheep Crate"
 	desc = "The sheep goes baa!"
@@ -2282,10 +2282,11 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Engineering Wardrobe Supply Crate"
-	desc = "This crate contains refills for the EngiDrobe and AtmosDrobe."
+	desc = "This crate contains refills for the EngiDrobe, AtmosDrobe and SigtechDrobe."
 	cost = 1500
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
-					/obj/item/vending_refill/wardrobe/atmos_wardrobe)
+					/obj/item/vending_refill/wardrobe/atmos_wardrobe,
+					/obj/item/vending_refill/wardrobe/sigtech_wardrobe)
 	crate_name = "engineering department wardrobe supply crate"
 
 /datum/supply_pack/costumes_toys/wardrobes/general

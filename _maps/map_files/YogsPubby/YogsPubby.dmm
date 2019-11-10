@@ -49475,6 +49475,14 @@
 "bMv" = (
 /turf/closed/wall,
 /area/hallway/primary/fore)
+"bMw" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/vending/wardrobe/sigtech_wardrobe,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "bMy" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -53519,14 +53527,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
-"ceT" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/closet/emcloset,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "ceX" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -88913,7 +88913,7 @@ bfR
 cae
 tPm
 bXk
-ceT
+bMw
 cfr
 cfO
 cgr
