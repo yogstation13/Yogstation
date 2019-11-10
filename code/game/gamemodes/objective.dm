@@ -767,7 +767,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		return FALSE
 	return TRUE
-
+/*
 /datum/objective/absorb_changeling
 	name = "absorb changeling"
 	explanation_text = "Absorb another Changeling."
@@ -788,7 +788,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		if(total_genetic_points > initial(changeling.geneticpoints))
 			return TRUE
 	return FALSE
-
+*/
 //End Changeling Objectives
 
 /datum/objective/destroy
