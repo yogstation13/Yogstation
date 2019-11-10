@@ -394,7 +394,7 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	var/changeling_objective = pick(list(1,2)) //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
@@ -405,11 +405,12 @@
 			var/datum/objective/absorb_most/ac = new
 			ac.owner = owner
 			objectives += ac
+		/*
 		if(3) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
-
+		*/
 	if(prob(60))
 		if(prob(85))
 			var/datum/objective/steal/steal_objective = new
