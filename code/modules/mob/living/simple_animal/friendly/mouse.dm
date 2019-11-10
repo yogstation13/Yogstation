@@ -88,7 +88,7 @@
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
 	if(CW && full == FALSE)
 		qdel(CW)
-		say("Squeak!")
+		say("Burp!")
 		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
 		full = TRUE
 		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
