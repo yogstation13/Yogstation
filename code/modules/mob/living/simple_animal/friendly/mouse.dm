@@ -35,9 +35,7 @@
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
-	if(stat == CONSCIOUS)
-		eat_cheese()
-
+	
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
 	src.icon_dead = "mouse_[body_color]_splat"
@@ -87,14 +85,11 @@
 /mob/living/simple_animal/mouse/proc/eat_cheese()
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
 	if(!QDELETED(CW) && full == FALSE)
-		qdel(CW)
 		say("Burp!")
 		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
+		qdel(CW)
 		full = TRUE
 		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
-
-/mob/living/simple_animal/mouse/proc/digestFood()
-	full = FALSE
 		
 /mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge)) 
