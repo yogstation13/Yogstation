@@ -12,7 +12,7 @@
 	throw_speed = 1
 	throw_range = 1
 	materials = list(MAT_METAL=750)
-	var/drain_rate = 1000000
+	var/drain_rate = 100000000
 	var/power_drained = 0
 
 	var/obj/structure/cable/attached
@@ -59,4 +59,4 @@
 		attached.add_delayedload(power_avaliable)
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_ENG)
 		if(D)
-			D.adjust_money(power_avaliable * 0.0001)
+			D.adjust_money(power_avaliable * 0.000005)
