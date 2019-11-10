@@ -150,7 +150,9 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"				//from base of
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/M, mob/user)
+#define COMSIG_MOB_APPLY_DAMAGE	"mob_apply_damage"				//from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
+#define COMSIG_MOB_ITEM_SHOOTED "mob_item_shooted"				//from base of obj/item/gun/afterattack() : (atom/target, mob/living/user, flag, params)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"					//from base of /mob/verb/examinate(): (atom/target)

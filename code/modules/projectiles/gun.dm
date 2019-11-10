@@ -184,6 +184,12 @@
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
+		if(ismob(target) && user.a_intent == INTENT_GRAB)
+			for(var/datum/component/gunpoint/G in user.GetComponents(/datum/component/gunpoint))
+				if(G && G.weapon == src) //spam check
+					return
+			user.AddComponent(/datum/component/gunpoint, target, src)
+			return
 
 	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.
 		var/mob/living/L = user
@@ -226,6 +232,7 @@
 				loop_counter++
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
 
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_SHOOTED)
 	process_fire(target, user, TRUE, params, null, bonus_spread)
 
 
