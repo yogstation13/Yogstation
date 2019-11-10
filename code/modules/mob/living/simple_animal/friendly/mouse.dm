@@ -102,7 +102,7 @@
 		visible_message("[src] squeaks happily!")
 		qdel(O)
 	else
-		..()
+		return ..()
 		
 /*
  * Mouse types
