@@ -86,7 +86,7 @@
 
 /mob/living/simple_animal/mouse/proc/eat_cheese()
 	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
-	if(CW && full == FALSE)
+	if(!QDELETED(CW) && full == FALSE)
 		qdel(CW)
 		say("Burp!")
 		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
