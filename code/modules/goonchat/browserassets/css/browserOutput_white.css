@@ -326,6 +326,7 @@ h1.alert, h2.alert		{color: #000000;}
 .shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
 .cult					{color: #960000;}
+.surrender				{color: #1235d1;	background-color: #e7e688 ;font-weight: bold; font-size: 27px;}
 
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}
