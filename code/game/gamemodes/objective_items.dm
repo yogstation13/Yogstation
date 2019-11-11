@@ -121,11 +121,21 @@
 	difficulty = 3
 	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Scientist","Atmospheric Technician")
 
-/datum/objective_item/steal/plasma/check_special_completion(obj/item/tank/T)
+/datum/objective_item/steal/plasma/check_completion() //So special that not even check_special_completion is good enough for it
 	var/target_amount = text2num(name)
 	var/found_amount = 0
-	found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
-	return found_amount>=target_amount
+	for(var/datum/mind/M in get_owners())
+		if(!isliving(M.current))
+			continue
+
+		var/list/all_items = M.current.GetAllContents()
+		for(var/o in all_items)
+			if(!istype(o, /obj/item/tank))
+				continue
+			var/obj/item/tank/T = o
+			found_amount += T.air_contents.gases[/datum/gas/plasma] ? T.air_contents.gases[/datum/gas/plasma][MOLES] : 0
+
+	return found_amount >= target_amount
 
 
 /datum/objective_item/steal/functionalai
