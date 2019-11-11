@@ -7,6 +7,7 @@
 	var/list/excludefromjob = list()				//If you don't want a job to get a certain objective (no captain stealing his own medal, etcetc)
 	var/list/altitems = list()				//Items which can serve as an alternative to the objective (darn you blueprints)
 	var/list/special_equipment = list()
+	var/datum/objective/steal/objective		//The objective datum for our objective
 
 /datum/objective_item/proc/check_special_completion() //for objectives with special checks (is that slime extract unused? does that intellicard have an ai in it? etcetc)
 	return 1
@@ -121,10 +122,10 @@
 	difficulty = 3
 	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Scientist","Atmospheric Technician")
 
-/datum/objective_item/steal/plasma/check_completion() //So special that not even check_special_completion is good enough for it
+/datum/objective_item/steal/plasma/check_special_completion() //So special that not even check_special_completion is good enough for it
 	var/target_amount = text2num(name)
 	var/found_amount = 0
-	for(var/datum/mind/M in get_owners())
+	for(var/datum/mind/M in objective.get_owners())
 		if(!isliving(M.current))
 			continue
 
