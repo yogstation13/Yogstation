@@ -122,7 +122,7 @@
 	difficulty = 3
 	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Scientist","Atmospheric Technician")
 
-/datum/objective_item/steal/plasma/check_special_completion() //So special that not even check_special_completion is good enough for it
+/datum/objective_item/steal/plasma/check_special_completion()
 	var/target_amount = text2num(name)
 	var/found_amount = 0
 	for(var/datum/mind/M in objective.get_owners())
