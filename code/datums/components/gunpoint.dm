@@ -75,7 +75,7 @@
 		damage_mult = GUNPOINT_MULT_STAGE_3
 
 /datum/component/gunpoint/proc/check_deescalate()
-	if(!if(!can_see(parent, target, GUNPOINT_SHOOTER_STRAY_RANGE - 1)))
+	if(!can_see(parent, target, GUNPOINT_SHOOTER_STRAY_RANGE - 1)))
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction(var/flinch)
