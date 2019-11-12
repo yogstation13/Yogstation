@@ -12,7 +12,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
-	set category = "Admin"
+	set category = "Admin" //makes boodaliboo coder
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
