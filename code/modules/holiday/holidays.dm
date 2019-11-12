@@ -253,7 +253,7 @@
 	begin_day = 4
 	begin_month = JULY
 lobby_music = list(
-		https://www.youtube.com/watch?v=MGQaH3-LK54", // america song yes hhaah
+		"https://www.youtube.com/watch?v=U1mlCPMYtPk", // america
 		)
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
@@ -504,16 +504,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	begin_month = DECEMBER
 	end_day = 27
 	drone_hat = /obj/item/clothing/head/santa
-	lobby_music = list(
-		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // jingle bells
-		"https://www.youtube.com/watch?v=x2YlbiyiuMc", // Winter Wonderland
-		"https://www.youtube.com/watch?v=cW38y4AFGyI", // The Grinch
-		"https://www.youtube.com/watch?v=zgKazTrhXmI", // frosty the snowman
-		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // twelve days of christmas
-		"https://www.youtube.com/watch?v=maYCStVzjDs",  // deer song
-		"https://www.youtube.com/watch?v=Dkq3LD-4pmM",  // jolly christmas
-		"https://www.youtube.com/watch?v=_9ePg09zV-0",  // i got a brand new dsi for christmas
-		)
+	
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 
