@@ -252,9 +252,8 @@
 	name = "Independence Day"
 	begin_day = 4
 	begin_month = JULY
-lobby_music = list(
-		"https://www.youtube.com/watch?v=U1mlCPMYtPk", //america
-		)
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=U1mlCPMYtPk", //america )
 
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
