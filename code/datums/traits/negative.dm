@@ -338,7 +338,6 @@
 	value = -1
 	var/slot_string = "limb"
 	var/specific = FALSE
-	var/limb_slot
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 
 /datum/quirk/prosthetic_limb/on_spawn()
