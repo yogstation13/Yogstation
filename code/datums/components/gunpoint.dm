@@ -52,14 +52,14 @@
 /datum/component/gunpoint/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW), .proc/noshooted)
-	RegisterSignal(parent, COMSIG_MOB_ITEM_SHOOTED, .proc/cancel)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_SHOOTED), .proc/noshooted)
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE)
 	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
 	UnregisterSignal(parent, COMSIG_MOB_THROW)
+	UnregisterSignal(parent, COMSIG_MOB_ITEM_SHOOTED)
 
 // if you're gonna try to break away from a holdup, better to do it right away
 /datum/component/gunpoint/proc/update_stage(new_stage)
