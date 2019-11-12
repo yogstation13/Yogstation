@@ -253,7 +253,7 @@
 	begin_day = 4
 	begin_month = JULY
 	lobby_music = list(
-		"https://www.youtube.com/watch?v=U1mlCPMYtPk", //america )
+		"https://www.youtube.com/watch?v=5uPoDNEn3I0", // americ
 
 /datum/holiday/USA/getStationPrefix()
 	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
