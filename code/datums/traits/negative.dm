@@ -342,8 +342,10 @@
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 
 /datum/quirk/prosthetic_limb/on_spawn()
-	if(!specific)
-		limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(specific)
+		limb_slot = specific
+		
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
 	var/obj/item/bodypart/prosthetic
@@ -371,26 +373,22 @@
 /datum/quirk/prosthetic_limb/left_arm
 	name = "Prosthetic Limb (Left Arm)"
 	desc = "An accident caused you to lose your left arm. Because of this, it's replaced with a prosthetic!"
-	limb_slot = BODY_ZONE_L_ARM
-	specific = TRUE
+	specific = BODY_ZONE_L_ARM
 
 /datum/quirk/prosthetic_limb/right_arm
 	name = "Prosthetic Limb (Right Arm)"
 	desc = "An accident caused you to lose your right arm. Because of this, it's replaced with a prosthetic!"
-	limb_slot = BODY_ZONE_R_ARM
-	specific = TRUE
+	specific = BODY_ZONE_R_ARM
 
 /datum/quirk/prosthetic_limb/left_leg
 	name = "Prosthetic Limb (Left Leg)"
 	desc = "An accident caused you to lose your left leg. Because of this, it's replaced with a prosthetic!"
-	limb_slot = BODY_ZONE_L_LEG
-	specific = TRUE
+	specific = BODY_ZONE_L_LEG
 
 /datum/quirk/prosthetic_limb/right_leg
 	name = "Prosthetic Limb (Right Leg)"
 	desc = "An accident caused you to lose your right leg. Because of this, it's replaced with a prosthetic!"
-	limb_slot = BODY_ZONE_R_LEG
-	specific = TRUE
+	specific = BODY_ZONE_R_LEG
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
