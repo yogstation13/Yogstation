@@ -9,7 +9,6 @@
 /datum/component/gunpoint
 	dupe_mode = COMPONENT_DUPE_ALLOWED
 
-	var/mob/living/shooter
 	var/mob/living/target
 	var/obj/item/gun/weapon
 
@@ -25,7 +24,7 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	shooter = parent
+	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
 	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_SHOOTED, COMSIG_MOVABLE_MOVED), .proc/trigger_reaction)
@@ -46,21 +45,21 @@
 	check_deescalate() //telekinesis can start this so make sure the user is in range
 
 /datum/component/gunpoint/Destroy(force, silent)
-	qdel(status_hold_up)
-	qdel(status_held_up)
+	QDEL_NULL(status_hold_up)
+	QDEL_NULL(status_held_up)
 	return ..()
 
 /datum/component/gunpoint/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW), .proc/noshooted)
-	RegisterSignal(parent, COMSIG_MOB_ITEM_SHOOTED, .proc/cancel)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_SHOOTED), .proc/noshooted)
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE)
 	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
 	UnregisterSignal(parent, COMSIG_MOB_THROW)
+	UnregisterSignal(parent, COMSIG_MOB_ITEM_SHOOTED)
 
 // if you're gonna try to break away from a holdup, better to do it right away
 /datum/component/gunpoint/proc/update_stage(new_stage)
@@ -76,13 +75,23 @@
 		damage_mult = GUNPOINT_MULT_STAGE_3
 
 /datum/component/gunpoint/proc/check_deescalate()
-	if(!can_see(shooter, target, GUNPOINT_SHOOTER_STRAY_RANGE))
+	if(!can_see(parent, target, GUNPOINT_SHOOTER_STRAY_RANGE - 1))
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction(var/flinch)
+	var/mob/living/shooter = parent
+
+	if(!weapon.can_shoot() || !weapon.can_trigger_gun(shooter) || (weapon.weapon_weight == WEAPON_HEAVY && shooter.get_inactive_held_item()))
+		shooter.visible_message("<span class='danger'>[shooter] fumbles [weapon]!</span>", \
+			"<span class='danger'>You fumble [weapon] and fail to fire at [target]!</span>", target)
+		to_chat(target, "<span class='userdanger'>[shooter] fumbles [weapon] and fails to fire at you!</span>")
+		qdel(src)
+		return
 	if(disrupted)
 		return
 	if(flinch != TRUE && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
+		return
+	if(weapon.check_botched(shooter))
 		return
 	if(weapon.chambered && weapon.chambered.BB)
 		weapon.chambered.BB.damage *= damage_mult
@@ -94,18 +103,21 @@
 	if(!disrupted)
 		disrupted = TRUE
 		addtimer(CALLBACK(src, .proc/reshooted), 5)
-		to_chat(shooter, "<span class='boldwarning'>You lose your aim for a second, try not to bump into things or throw stuff.</span>")
+		to_chat(parent, "<span class='boldwarning'>You lose your aim for a second, try not to bump into things or throw stuff.</span>")
 
 /datum/component/gunpoint/proc/reshooted()
 	disrupted = FALSE
 
 /datum/component/gunpoint/proc/cancel()
+	var/mob/living/shooter = parent
 	shooter.visible_message("<span class='danger'>[shooter] breaks [shooter.p_their()] aim on [target]!</span>", \
 		"<span class='danger'>You are no longer aiming [weapon] at [target].</span>", target)
 	to_chat(target, "<span class='userdanger'>[shooter] breaks [shooter.p_their()] aim on you!</span>")
 	qdel(src)
 
 /datum/component/gunpoint/proc/flinch(damage, damagetype, def_zone)
+	var/mob/living/shooter = parent
+
 	var/flinch_chance = 50
 	var/gun_hand = LEFT_HANDS
 
