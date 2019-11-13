@@ -26,7 +26,6 @@
 
 /obj/item/katana/faketoy
 	name = "replica katana"
-	force = 20
+	force = 30
 	throwforce = 13
-	sharpness = IS_BLUNT
-	block_chance = 25
+	block_chance = 35
