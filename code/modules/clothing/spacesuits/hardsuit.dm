@@ -854,7 +854,7 @@
 	icon_state = "hardsuit0-advancedpa1"
 	item_state = "advpa1_helm"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
-	item_color = "advancedpa1""
+	item_color = "advancedpa1"
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
 	name = "Advanced power armor"
