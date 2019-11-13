@@ -172,6 +172,8 @@
 				msg += "[t_He] [t_has] minor bruising.\n"
 			else if(temp < 50)
 				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
+			else if(src.dna.species.id == "egg" && temp >= 200)
+				msg += "[t_He] look[p_s()] ready to crack into a million pieces!"
 			else
 				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
 
