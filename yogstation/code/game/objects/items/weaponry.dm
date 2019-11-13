@@ -29,3 +29,4 @@
 	force = 20
 	throwforce = 13
 	sharpness = IS_BLUNT
+	block_chance = 25
