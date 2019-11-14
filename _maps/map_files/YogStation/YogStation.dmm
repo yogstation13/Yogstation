@@ -46861,6 +46861,14 @@
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"bNT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -90012,7 +90020,7 @@ aEu
 aeN
 age
 aIV
-agt
+bNT
 agV
 cxk
 agt
