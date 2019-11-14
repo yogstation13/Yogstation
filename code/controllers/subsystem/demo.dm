@@ -24,6 +24,8 @@ SUBSYSTEM_DEF(demo)
 	var/last_completed = 0
 
 /datum/controller/subsystem/demo/proc/write_time()
+	if(world.system_type != MS_WINDOWS)
+		return
 	var/new_time = world.time
 	if(last_written_time != new_time)
 		if(initialized)
@@ -33,6 +35,8 @@ SUBSYSTEM_DEF(demo)
 	last_written_time = new_time
 
 /datum/controller/subsystem/demo/proc/write_event_line(line)
+	if(world.system_type != MS_WINDOWS)
+		return
 	write_time()
 	if(initialized)
 		QUICKWRITE_WRITE(demo_file, line + "\n")
@@ -40,6 +44,8 @@ SUBSYSTEM_DEF(demo)
 		pre_init_lines += line
 
 /datum/controller/subsystem/demo/proc/write_chat(target, text)
+	if(world.system_type != MS_WINDOWS)
+		return
 	var/target_text = ""
 	if(target == GLOB.clients)
 		target_text = "world"
@@ -62,7 +68,7 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = text
 
 /datum/controller/subsystem/demo/Initialize()
-	if(system_type != MS_WINDOWS)
+	if(world.system_type != MS_WINDOWS)
 		can_fire = FALSE
 		return;
 	demo_file = "[GLOB.log_directory]/demo.txt"
