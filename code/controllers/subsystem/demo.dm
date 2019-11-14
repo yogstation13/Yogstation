@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(demo)
 	var/new_time = world.time
 	if(last_written_time != new_time)
 		if(initialized)
-			WRITE_FILE(demo_file, "time [new_time]")
+			QUICKWRITE_WRITE(demo_file, "time [new_time]\n")
 		else
 			pre_init_lines += "time [new_time]"
 	last_written_time = new_time
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/write_event_line(line)
 	write_time()
 	if(initialized)
-		WRITE_FILE(demo_file, line)
+		QUICKWRITE_WRITE(demo_file, line + "\n")
 	else
 		pre_init_lines += line
 
@@ -62,15 +62,16 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = text
 
 /datum/controller/subsystem/demo/Initialize()
-	demo_file = file("[GLOB.log_directory]/demo.txt")
-	WRITE_FILE(demo_file, "demo version 1") // increment this if you change the format
+	demo_file = "[GLOB.log_directory]/demo.txt"
+	quickwrite_open(demo_file)
+	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
-		WRITE_FILE(demo_file, "commit [GLOB.revdata.commit]")
+		QUICKWRITE_WRITE(demo_file, "commit [GLOB.revdata.commit]\n")
 
 	// write a "snapshot" of the world at this point.
 	// start with turfs
 	world.log << "Writing turfs..."
-	WRITE_FILE(demo_file, "init [world.maxx] [world.maxy] [world.maxz]")
+	QUICKWRITE_WRITE(demo_file, "init [world.maxx] [world.maxy] [world.maxz]\n")
 	marked_turfs.len = 0
 	for(var/z in 1 to world.maxz)
 		var/row_list = list()
@@ -103,7 +104,7 @@ SUBSYSTEM_DEF(demo)
 				last_appearance = this_appearance
 		if(rle_count > 1)
 			row_list += rle_count
-		WRITE_FILE(demo_file, jointext(row_list, ","))
+		QUICKWRITE_WRITE(demo_file, jointext(row_list, ",") + "\n")
 	CHECK_TICK
 	// then do objects
 	world.log << "Writing objects"
@@ -129,7 +130,7 @@ SUBSYSTEM_DEF(demo)
 					row_list += turf_list
 				spacing++
 			CHECK_TICK // This is a bit risky because something might change but meh, its not a big deal.
-		WRITE_FILE(demo_file, jointext(row_list, ","))
+		QUICKWRITE_WRITE(demo_file, jointext(row_list, ",") + "\n")
 
 	// track objects that exist in nullspace
 	var/nullspace_list = list()
@@ -139,10 +140,10 @@ SUBSYSTEM_DEF(demo)
 			continue
 		nullspace_list += encode_init_obj(M)
 		CHECK_TICK
-	WRITE_FILE(demo_file, jointext(nullspace_list, ","))
+	QUICKWRITE_WRITE(demo_file, jointext(nullspace_list, ",") + "\n")
 
 	for(var/line in pre_init_lines)
-		WRITE_FILE(demo_file, line)
+		QUICKWRITE_WRITE(demo_file, line + "\n")
 
 	return ..()
 
@@ -155,8 +156,8 @@ SUBSYSTEM_DEF(demo)
 
 	write_time()
 	if(src.del_list.len)
-		var/s = "del [jointext(src.del_list, ",")]" // if I don't do it like this I get "incorrect number of macro arguments" because byond is stupid and sucks
-		WRITE_FILE(demo_file, s)
+		var/s = "del [jointext(src.del_list, ",")]\n" // if I don't do it like this I get "incorrect number of macro arguments" because byond is stupid and sucks
+		QUICKWRITE_WRITE(demo_file, s)
 	src.del_list.len = 0
 
 	var/canceled = FALSE
@@ -188,8 +189,8 @@ SUBSYSTEM_DEF(demo)
 			canceled = TRUE
 			break
 	if(dirty_updates.len)
-		var/s = "update [jointext(dirty_updates, ",")]"
-		WRITE_FILE(demo_file, s)
+		var/s = "update [jointext(dirty_updates, ",")]\n"
+		QUICKWRITE_WRITE(demo_file, s)
 	if(canceled)
 		return;
 
@@ -213,8 +214,8 @@ SUBSYSTEM_DEF(demo)
 			canceled = TRUE
 			break
 	if(new_updates.len)
-		var/s = "new [jointext(new_updates, ",")]"
-		WRITE_FILE(demo_file, s)
+		var/s = "new [jointext(new_updates, ",")]\n"
+		QUICKWRITE_WRITE(demo_file, s)
 	if(canceled)
 		return;
 
@@ -232,8 +233,8 @@ SUBSYSTEM_DEF(demo)
 				canceled = TRUE
 				break
 	if(turf_updates.len)
-		var/s = "turf [jointext(turf_updates, ",")]"
-		WRITE_FILE(demo_file, s)
+		var/s = "turf [jointext(turf_updates, ",")]\n"
+		QUICKWRITE_WRITE(demo_file, s)
 	if(canceled)
 		return;
 
@@ -279,7 +280,7 @@ SUBSYSTEM_DEF(demo)
 		for(var/i in 1 to old_list.len)
 			inted[i] += round(old_list[i] * 255)
 		color_string = jointext(inted, ",")
-	var/overlays_string = "[]"
+	var/overlays_string = "\[]"
 	if(appearance.overlays.len)
 		var/list/overlays_list = list()
 		for(var/i in 1 to appearance.overlays.len)
@@ -287,7 +288,7 @@ SUBSYSTEM_DEF(demo)
 			overlays_list += encode_appearance(overlay, appearance, TRUE)
 		overlays_string = "\[[jointext(overlays_list, ",")]]"
 
-	var/underlays_string = "[]"
+	var/underlays_string = "\[]"
 	if(appearance.underlays.len)
 		var/list/underlays_list = list()
 		for(var/i in 1 to appearance.underlays.len)
