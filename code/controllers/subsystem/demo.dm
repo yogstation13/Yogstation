@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/Initialize()
 	if(world.system_type != MS_WINDOWS)
 		can_fire = FALSE
-		return;
+		return ..();
 	demo_file = "[GLOB.log_directory]/demo.txt"
 	quickwrite_open(demo_file)
 	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
