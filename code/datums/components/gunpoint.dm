@@ -33,7 +33,7 @@
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
 		"<span class='danger'>You aim [weapon] point blank at [target]!</span>", target)
 	to_chat(target, "<span class='userdanger'>[shooter] aims [weapon] point blank at you!</span>")
-	if(target.has_status_effect(STATUS_EFFECT_NOTSCARED))
+	if(!target.has_status_effect(STATUS_EFFECT_NOTSCARED))
 		target.Immobilize(2) //short immobilize to let them know they're getting shot at without totally stopping them from fighting
 		target.apply_status_effect(STATUS_EFFECT_NOTSCARED)//this can only trigger once per minute so you can't use it to meme people a bunch in a fight
 
