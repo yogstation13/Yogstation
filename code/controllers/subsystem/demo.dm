@@ -316,7 +316,7 @@ SUBSYSTEM_DEF(demo)
 		appearance.pixel_y == 0 ? "" : appearance.pixel_y,
 		appearance.blend_mode <= 1 ? "" : appearance.blend_mode,
 		appearance_transform_string != "i" ? appearance_transform_string : "",
-		appearance.invisibility == 0 ? "" : appearance.invisibility,
+		appearance:invisibility == 0 ? "" : appearance:invisibility, // colon because dreamchecker is dumb
 		appearance.pixel_w == 0 ? "" : appearance.pixel_w,
 		appearance.pixel_z == 0 ? "" : appearance.pixel_z,
 		appearance.overlays.len ? overlays_string : "",
@@ -371,7 +371,7 @@ SUBSYSTEM_DEF(demo)
 			appearance.pixel_y == diff_appearance.pixel_y ? "" : appearance.pixel_y,
 			appearance.blend_mode == diff_appearance.blend_mode ? "" : appearance.blend_mode,
 			appearance_transform_string == diff_transform_string ? "" : appearance_transform_string,
-			appearance.invisibility == diff_appearance.invisibility ? "" : appearance.invisibility,
+			appearance:invisibility == diff_appearance:invisibility ? "" : appearance:invisibility, // colon because dreamchecker is too dumb
 			appearance.pixel_w == diff_appearance.pixel_w ? "" : appearance.pixel_w,
 			appearance.pixel_z == diff_appearance.pixel_z ? "" : appearance.pixel_z,
 			overlays_identical ? "" : overlays_string,
