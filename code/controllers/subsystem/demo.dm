@@ -62,6 +62,9 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = text
 
 /datum/controller/subsystem/demo/Initialize()
+	if(system_type != MS_WINDOWS)
+		can_fire = FALSE
+		return;
 	demo_file = "[GLOB.log_directory]/demo.txt"
 	quickwrite_open(demo_file)
 	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
