@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(achievements)
 	for(var/i in subtypesof(/datum/achievement))
 		var/datum/achievement/A = i
 
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("achievements")] WHERE id = [initial(A.id)]")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]''")
 		if(!medalQuery.Execute())
 			qdel(medalQuery)
 			stack_trace("Could not run check for achievement [initial(A.name)]")
