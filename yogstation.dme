@@ -3406,4 +3406,5 @@
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"
 #include "yogstation\code\modules\xenoarch\loot\guns.dm"
 #include "yogstation\interface\interface.dm"
+#include "yogstation/code/modules/crafting/weaponry.dm"
 // END_INCLUDE
