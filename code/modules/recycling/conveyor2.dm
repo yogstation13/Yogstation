@@ -316,23 +316,17 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		transfer_fingerprints_to(C)
 		to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
 		qdel(src)
-	else if(I.tool_behaviour == TOOL_WRENCH)
-		if(position == 0 && oneway == FALSE)
-			oneway = TRUE
-			I.play_tool_sound(src, 75)
-			user.visible_message("<span class='notice'>[user] sets \the [src] to one-way.</span>", \
-							"<span class='notice'>You set \the [src] to one-way.</span>", \
-							"<span class='italics'>You hear a ratchet.</span>")
-			return
-		else if(position == 0 && oneway == TRUE)
-			oneway = FALSE
-			I.play_tool_sound(src, 75)
-			user.visible_message("<span class='notice'>[user] sets \the [src] to two-way.</span>", \
-				"<span class='notice'>You set \the [src] to two-way.</span>", \
+
+/obj/machinery/conveyor_switch/wrench_act(mob/living/user, obj/item/I)
+	if(position)
+		to_chat(user, "<span class='warning'>\The [src] must be off before attempting to change it's direction!</span>")
+		return FALSE
+	oneway = !oneway
+	I.play_tool_sound(src, 75)
+	user.visible_message("<span class='notice'>[user] sets \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
+				"<span class='notice'>You set \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
 				"<span class='italics'>You hear a ratchet.</span>")
-			return
-		else if(position != 0)
-			to_chat(user, "<span class='warning'>\The [src] must be off before attempting to change it's direction!</span>")
+	return TRUE
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
