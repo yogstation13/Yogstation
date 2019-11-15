@@ -1,3 +1,10 @@
+/datum/crafting_recipe/shank
+	name = "Shank"
+	result = /obj/item/shard/shank
+	reqs = list(/obj/item/shard = 1, /obj/item/stack/rods = 1, /obj/item/stack/cable_coil = 1)
+	time = 25
+	category = CAT_WEAPONRY
+
 /datum/crafting_recipe/improvised_bandage
 	name = "Improvised Bandage"
 	result = /obj/item/medical/bandage/improvised
