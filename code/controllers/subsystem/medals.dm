@@ -1,87 +1,70 @@
 SUBSYSTEM_DEF(medals)
 	name = "Medals"
 	flags = SS_NO_FIRE
-	var/hub_enabled = FALSE
+	var/list/achievements = list()
 
 /datum/controller/subsystem/medals/Initialize(timeofday)
-	if(CONFIG_GET(string/medal_hub_address) && CONFIG_GET(string/medal_hub_password))
-		hub_enabled = TRUE
+	for(var/i in subtypesof(/datum/achievement))
+		var/datum/achievement/A = i
+
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("achievements")] WHERE id = [initial(A.id)]")
+		if(!medalQuery.Execute())
+			qdel(medalQuery)
+			stack_trace("Could not run check for achievement [initial(A.name)]")
+			return ..()
+
+		if(!medalQuery.NextRow())
+			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id) VALUES ('[initial(A.name)]', '[initial(A.id)]')")
+			medalQuery2.Execute()
+			qdel(medalQuery2)
+		qdel(medalQuery)
+		achievements[A] = initial(A.id)
+	
+	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
+	if(!ridOldChieves.Execute())
+		stack_trace("Could not run check for outdated achievements")
+		qdel(ridOldChieves)
+		return ..()
+	
+	while(ridOldChieves.NextRow())
+		var/id = ridOldChieves.item[1]
+		var/found_achievement = FALSE
+		for(var/A in achievements)
+			if(achievements[A] == id)
+				found_achievement = TRUE
+				break
+		if(!found_achievement)
+			stack_trace("Old achievement [id] found in database, removing")
+			var/datum/DBQuery/getRidOfOldStuff = SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE id = '[id]'")
+			getRidOfOldStuff.Execute()
+			var/datum/DBQuery/ridTheOtherTableAsWell = SSdbcore.NewQuery("DELETE FROM [format_table_name("earned_achievements")] WHERE id = '[id]'")
+			ridTheOtherTableAsWell.Execute()
+			qdel(ridTheOtherTableAsWell)
+			qdel(getRidOfOldStuff)
+
+
 	return ..()
 
-/datum/controller/subsystem/medals/proc/UnlockMedal(medal, client/player)
-	set waitfor = FALSE
-	if(!medal || !hub_enabled)
-		return
-	if(isnull(world.SetMedal(medal, player, CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))))
-		hub_enabled = FALSE
-		log_game("MEDAL ERROR: Could not contact hub to award medal:[medal] player:[player.key]")
-		message_admins("Error! Failed to contact hub to award [medal] medal to [player.key]!")
-		return
-	to_chat(player, "<span class='greenannounce'><B>Achievement unlocked: [medal]!</B></span>")
+/datum/controller/subsystem/medals/proc/unlock_achievement(datum/achievement/achievement, client/C)
+	if(!achievements[achievement])
+		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
+		return FALSE
+	if(!has_achievement(achievement, C))
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievements[achievement]]')")
+		if(!medalQuery.Execute())
+			stack_trace("Could not unlock achievement [initial(achievement.name)] for [C.ckey]")
+			qdel(medalQuery)
+			return FALSE
+		qdel(medalQuery)
+		return TRUE
 
-
-/datum/controller/subsystem/medals/proc/SetScore(score, client/player, increment, force)
-	set waitfor = FALSE
-	if(!score || !hub_enabled)
-		return
-
-	var/list/oldscore = GetScore(score, player, TRUE)
-	if(increment)
-		if(!oldscore[score])
-			oldscore[score] = 1
-		else
-			oldscore[score] = (text2num(oldscore[score]) + 1)
-	else
-		oldscore[score] = force
-
-	var/newscoreparam = list2params(oldscore)
-
-	if(isnull(world.SetScores(player.ckey, newscoreparam, CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))))
-		hub_enabled = FALSE
-		log_game("SCORE ERROR: Could not contact hub to set score. Score:[score] player:[player.key]")
-		message_admins("Error! Failed to contact hub to set [score] score for [player.key]!")
-
-/datum/controller/subsystem/medals/proc/GetScore(score, client/player, returnlist)
-	if(!score || !hub_enabled)
-		return
-
-	var/scoreget = world.GetScores(player.ckey, score, CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))
-	if(isnull(scoreget))
-		hub_enabled = FALSE
-		log_game("SCORE ERROR: Could not contact hub to get score. Score:[score] player:[player.key]")
-		message_admins("Error! Failed to contact hub to get score: [score] for [player.key]!")
-		return
-	. = params2list(scoreget)
-	if(!returnlist)
-		return .[score]
-
-/datum/controller/subsystem/medals/proc/CheckMedal(medal, client/player)
-	if(!medal || !hub_enabled)
-		return
-
-	if(isnull(world.GetMedal(medal, player, CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))))
-		hub_enabled = FALSE
-		log_game("MEDAL ERROR: Could not contact hub to get medal:[medal] player: [player.key]")
-		message_admins("Error! Failed to contact hub to get [medal] medal for [player.key]!")
-		return
-	to_chat(player, "[medal] is unlocked")
-
-/datum/controller/subsystem/medals/proc/LockMedal(medal, client/player)
-	if(!player || !medal || !hub_enabled)
-		return
-	var/result = world.ClearMedal(medal, player, CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))
-	switch(result)
-		if(null)
-			hub_enabled = FALSE
-			log_game("MEDAL ERROR: Could not contact hub to clear medal:[medal] player:[player.key]")
-			message_admins("Error! Failed to contact hub to clear [medal] medal for [player.key]!")
-		if(TRUE)
-			message_admins("Medal: [medal] removed for [player.key]")
-		if(FALSE)
-			message_admins("Medal: [medal] was not found for [player.key]. Unable to clear.")
-
-
-/datum/controller/subsystem/medals/proc/ClearScore(client/player)
-	if(isnull(world.SetScores(player.ckey, "", CONFIG_GET(string/medal_hub_address), CONFIG_GET(string/medal_hub_password))))
-		log_game("MEDAL ERROR: Could not contact hub to clear scores for [player.key]!")
-		message_admins("Error! Failed to contact hub to clear scores for [player.key]!")
+/datum/controller/subsystem/medals/proc/has_achievement(datum/achievement/achievement, client/C)
+	if(!achievements[achievement])
+		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
+	var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("earned_achievements")] WHERE ckey = '[C.ckey]' AND id = '[achievements[achievement]]'")
+	medalQuery.Execute()
+	if(medalQuery.NextRow())
+		qdel(medalQuery)
+		return TRUE
+	qdel(medalQuery)
+	return FALSE
