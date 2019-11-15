@@ -366,7 +366,7 @@
 /area/hilbertshotel)
 "dV" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/reactive/repulse,
+/obj/item/clothing/suit/armor/reactive/tesla,
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)
 
