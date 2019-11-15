@@ -59,17 +59,6 @@
 	crate_name = "Exotic Goat Crate"
 	crate_type = /obj/structure/closet/crate/large
 
-/datum/supply_pack/misc/deodorant
-	name = "Deodorant Crate"
-	desc = "Contains several cans of portable shower solution."
-	cost = 1000
-	contains = list(/obj/item/deodorant,
-					/obj/item/deodorant,
-					/obj/item/deodorant,
-					/obj/item/deodorant,
-					/obj/item/deodorant)
-	crate_name = "deodorant crate"
-
 /datum/supply_pack/costumes_toys/plushes
 	name = "Plushie Crate"
 	desc = "Plushies sold in this crate come from affiliated allies of Nanotrasen. Note: Remove Phushvar from Narplush if you want to keep both."
@@ -173,3 +162,11 @@
 			continue
 		crate_value -= I.cost
 		new I.item(C)
+
+/datum/supply_pack/misc/milliondollarhat
+	name = "Half Off Million Dollar Hat"
+	desc = "Contains a hat that defies both logic and fashion sense. Now half off!"
+	cost = 500000
+	contains = list(/obj/item/clothing/head/milliondollarhat)
+	crate_name = "million dollar hat crate"
+	crate_type = /obj/structure/closet/crate/large

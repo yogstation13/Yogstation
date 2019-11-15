@@ -27,7 +27,7 @@
 	var/last_plantbgone_message = -STATUS_MESSAGE_COOLDOWN
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born on the core-worlds of G-D52, you are a distant relative of a vestige of humanity long discarded.</span>")
+	to_chat(H, "<span class='info'><b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'.</span>")
 	to_chat(H, "<span class='info'>Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race.</span>")
 	to_chat(H, "<span class='info'>Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe.</span>")
 	to_chat(H, "<span class='info'>Heat and cold will damage your epidermis far faster than your natural regeneration can match.</span>")

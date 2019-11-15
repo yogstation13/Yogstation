@@ -138,6 +138,8 @@
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
+#define TRAIT_SHELTERED			"sheltered"
+
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -159,8 +161,6 @@
 #define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
 #define TRAIT_PROSOPAGNOSIA		"prosopagnosia"
-#define	TRAIT_NEET				"NEET"
-#define	TRAIT_NEAT				"neat"
 #define TRAIT_DRUNK_HEALING		"drunk_healing"
 #define TRAIT_TAGGER			"tagger"
 #define TRAIT_PHOTOGRAPHER		"photographer"

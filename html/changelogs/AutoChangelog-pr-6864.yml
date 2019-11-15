@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "hypnosis now properly transfers the hypnosis phrase when cloning"

@@ -434,7 +434,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/storage/box/syndie_kit/guardian
-	cost = 18
+	cost = 15
 	surplus = 0
 	//exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs: removes restrictions on liabilit- I mean punchghosts
 	player_minimum = 25
@@ -447,6 +447,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/l6_saw
 	cost = 18
 	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/minigun
+	name = "M-546 Osprey"
+	desc = "A fully-loaded minigun which packs a big punch. \
+			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
+			Slaughter your enemies through sheer force. We made this gun soa dvanced that it fires the whole bullet.\
+			Thats 60% more bullet per bullet and no more useless casings!"
+	item = /obj/item/minigunbackpack
+	cost = 36
+	surplus = 0
+	cant_discount = TRUE
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/carbine
@@ -1378,6 +1390,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			sends you a small beacon that will teleport the larger beacon to your location upon activation."
 	item = /obj/item/sbeacondrop
 	cost = 10
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs
 
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
@@ -1590,6 +1603,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
+
+/datum/uplink_item/race_restricted/syndigenetics
+	name = "Fire Breath implanter"
+	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
+	cost = 6
+	item = /obj/item/dnainjector/firebreath
+	restricted_species = list("lizard")
+
+/datum/uplink_item/race_restricted/angelcoolboy
+	name = "Angel Potion"
+	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creatures"
+	cost = 7
+	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
+	restricted_species = list("human")
+	
+/datum/uplink_item/race_restricted/killertomatos
+	name = "Killer Tomatos"
+	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
+	cost = 3
+	item = /obj/item/seeds/tomato/killer
+	restricted_species = list("pod")
+
+/datum/uplink_item/race_restricted/radiationbomb
+	name = "Radiation grenade"
+	desc = "A radiation bomb guarenteed to irridiate the fuck out of non gaseous lifeforms."
+	cost = 4
+	item = /obj/item/grenade/chem_grenade/radiation
+	restricted_species = list("plasmaman")
+	
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
@@ -1619,6 +1661,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
+	
+	/datum/uplink_item/role_restricted/arm_medical_gun
+	name = "Arm Mounted Medical Beamgun"
+	desc = "A Arm Mounted medgun to heal your best buds (disclaimer: does not come with friends)."
+	item = /obj/item/autosurgeon/medibeam
+	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
+	cost = 8
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"

@@ -1,0 +1,4 @@
+author: " MoreRobustThanYou"
+delete-after: true 
+changes: 
+  - bugfix: "several href exploits have been fixed"

@@ -1,0 +1,7 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "plasmaman darkspawn no longer fucking die while hatching"
+  - bugfix: "umbral tendrils and dark beads can no longer be dropped"
+  - tweak: "darkspawn have nodismember"
+  - tweak: "darkspawn can now use devour will on veils for a small psi boost and to add their lucidity without needing to deconvert them or something stupid. Using devour will on a veil will not add lucidity for upgrades."

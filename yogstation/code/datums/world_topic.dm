@@ -83,3 +83,33 @@
 		if(X != C)
 			to_chat(X, "<B><font color='green'>Mentor PM: [discord_mentor_link(from, from_id)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <font color ='blue'> [msg]</font>")
 	return 1
+
+/datum/world_topic/verify
+	keyword = "verify"
+	require_comms_key = TRUE
+
+/datum/world_topic/verify/Run(list/input)
+	var/id = input["verify"]
+	var/ckey = input["ckey"]
+	var/lowerparams = replacetext(lowertext(ckey), " ", "") // Fuck spaces
+	if(SSdiscord.account_link_cache[lowerparams]) // First if they are in the list, then if the ckey matches
+		if(SSdiscord.account_link_cache[lowerparams] == "[SSdiscord.id_clean(id)]") // If the associated ID is the correct one
+			SSdiscord.link_account(lowerparams)
+			return "Successfully linked accounts"
+		else
+			return "That ckey is not associated to this discord account. If someone has used your ID, please inform an administrator"
+	else
+		return "Failure! Have you initiated the linking process on the server (Link Discord Account in the Admin tab)? If you did, double check your ckey!"
+
+/datum/world_topic/unlink
+	keyword = "unlink"
+	require_comms_key = TRUE
+
+/datum/world_topic/unlink/Run(list/input)
+	var/ckey = input["unlink"]
+	var/returned_id = SSdiscord.lookup_id(ckey)
+	if(returned_id)
+		SSdiscord.unlink_account(ckey)
+		return "[ckey] has been unlinked!"
+	else
+		return "Account not unlinked! Please contact a coder."

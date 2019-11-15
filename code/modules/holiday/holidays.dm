@@ -350,7 +350,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 10 // yogs - Changed halloween start day
+	begin_day = 26
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
