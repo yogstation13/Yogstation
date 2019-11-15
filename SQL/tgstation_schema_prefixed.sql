@@ -517,7 +517,7 @@ CREATE TABLE `SS13_stickyban_matched_cid` (
 --
 -- Table structure for table `SS13_achievements`
 --
-DROP TABLE IF EXISTS `SS13_achievements`
+DROP TABLE IF EXISTS `SS13_achievements`;
 CREATE TABLE `SS13_achievements` (
 	`ckey` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL

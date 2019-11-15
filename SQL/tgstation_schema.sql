@@ -517,7 +517,7 @@ CREATE TABLE `stickyban_matched_cid` (
 --
 -- Table structure for table `achievements`
 --
-DROP TABLE IF EXISTS `achievements`
+DROP TABLE IF EXISTS `achievements`;
 CREATE TABLE `achievements` (
 	`ckey` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL
