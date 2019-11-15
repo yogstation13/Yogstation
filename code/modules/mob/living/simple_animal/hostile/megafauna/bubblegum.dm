@@ -108,7 +108,7 @@ Difficulty: Hard
 	if(!(flags_1 & ADMIN_SPAWNED_1))
 		for(var/mob/living/L in view(7,src))
 			if(L.client)
-				SSmedals.unlock_achievement(/datum/achievement/bubblegum, L.client)
+				SSachievements.unlock_achievement(/datum/achievement/bubblegum, L.client)
 	
 
 

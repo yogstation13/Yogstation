@@ -237,7 +237,7 @@
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/arena/prerequisites_met()
-	return SSmedals.has_achievement(/datum/achievement/bubblegum, usr.client)
+	return SSachievements.has_achievement(/datum/achievement/bubblegum, usr.client)
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"

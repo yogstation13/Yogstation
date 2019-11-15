@@ -1,9 +1,9 @@
-SUBSYSTEM_DEF(medals)
-	name = "Medals"
+SUBSYSTEM_DEF(achievements)
+	name = "Achievements"
 	flags = SS_NO_FIRE
 	var/list/achievements = list()
 
-/datum/controller/subsystem/medals/Initialize(timeofday)
+/datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
 		var/datum/achievement/A = i
 
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(medals)
 
 	return ..()
 
-/datum/controller/subsystem/medals/proc/unlock_achievement(datum/achievement/achievement, client/C)
+/datum/controller/subsystem/achievements/proc/unlock_achievement(datum/achievement/achievement, client/C)
 	if(!achievements[achievement])
 		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
 		return FALSE
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(medals)
 		qdel(medalQuery)
 		return TRUE
 
-/datum/controller/subsystem/medals/proc/has_achievement(datum/achievement/achievement, client/C)
+/datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
 	if(!achievements[achievement])
 		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
 	var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("earned_achievements")] WHERE ckey = '[C.ckey]' AND id = '[achievements[achievement]]'")
