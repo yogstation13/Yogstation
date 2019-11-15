@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(achievements)
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		else if(medalQuery.item[1] != initial(A.name) || medalQuery.item[2] != initial(A.desc))
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[initial(A.name)]', desc = '[initial(A.desc)]'")
+			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[initial(A.name)]', desc = '[initial(A.desc)]' WHERE id = '[initial(A.id)]'")
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		
