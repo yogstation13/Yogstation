@@ -519,7 +519,7 @@ CREATE TABLE `stickyban_matched_cid` (
 --
 DROP TABLE IF EXISTS `achievements`;
 CREATE TABLE `achievements` (
-	`ckey` VARCHAR(32) NOT NULL,
+	`name` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 

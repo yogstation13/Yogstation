@@ -519,7 +519,7 @@ CREATE TABLE `SS13_stickyban_matched_cid` (
 --
 DROP TABLE IF EXISTS `SS13_achievements`;
 CREATE TABLE `SS13_achievements` (
-	`ckey` VARCHAR(32) NOT NULL,
+	`name` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 
