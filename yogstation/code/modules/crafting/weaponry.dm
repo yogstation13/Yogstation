@@ -8,5 +8,5 @@
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "shanked", "sliced", "cut")
 	siemens_coefficient = 0 //Means it's insulated
-	embed_chance = 10
+	embedding = list("embedded_pain_multiplier" = 1.5, "embed_chance" = 10, "embedded_fall_chance" = 45)
 	sharpness = IS_SHARP
