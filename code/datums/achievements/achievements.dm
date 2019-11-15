@@ -5,5 +5,5 @@
 
 /datum/achievement/bubblegum
 	name = "Bubblegum Killer"
-	desc = "Eliminate the last bubblegum on Lavaland"
+	desc = "Eliminate a bubblegum" //Should be improved
 	id = 1
