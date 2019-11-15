@@ -364,6 +364,11 @@
 /obj/item/paper/crumpled/bloody/docsdeathnote,
 /turf/open/indestructible/hotelwood,
 /area/hilbertshotel)
+"dV" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/armor/reactive/repulse,
+/turf/open/indestructible/hotelwood,
+/area/hilbertshotel)
 
 (1,1,1) = {"
 aa
@@ -477,7 +482,7 @@ ad
 aX
 ay
 aB
-aG
+dV
 bg
 aR
 aG
