@@ -6,12 +6,13 @@ SUBSYSTEM_DEF(achievements)
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
 		var/datum/achievement/A = i
+		achievements[A] = initial(A.id)
 
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, desc FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]''")
 		if(!medalQuery.Execute())
 			qdel(medalQuery)
 			stack_trace("Could not run check for achievement [initial(A.name)]")
-			return ..()
+			continue
 
 		if(!medalQuery.NextRow())
 			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, desc) VALUES ('[initial(A.name)]', '[initial(A.id)]', '[initial(A.desc)]')")
@@ -23,7 +24,7 @@ SUBSYSTEM_DEF(achievements)
 			qdel(medalQuery2)
 		
 		qdel(medalQuery)
-		achievements[A] = initial(A.id)
+		
 	
 	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
 	if(!ridOldChieves.Execute())
