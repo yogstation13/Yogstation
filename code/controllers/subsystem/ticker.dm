@@ -214,7 +214,11 @@ SUBSYSTEM_DEF(ticker)
 		if(GLOB.master_mode == "secret")
 			hide_mode = 1
 			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode = config.pick_mode(GLOB.secret_force_mode)
+				var/datum/game_mode/smode 
+				if(runnable_modes.len)
+					smode = config.pick_mode(GLOB.secret_force_mode)
+				else 
+					smode = new /datum/game_mode/extended()
 				if(!smode.can_start())
 					message_admins("<span class='notice'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
 				else
@@ -666,7 +670,8 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/itshappening.ogg',
 		'yogstation/sound/roundend/bamboozeled.ogg',// yogs -- adds "We've been tricked, we've been backstabed, and we've quite possibly been bamboozeled.
 		'sound/roundend/disappointed.ogg',
-		'sound/roundend/scrunglartiy.ogg'\
+		'sound/roundend/scrunglartiy.ogg',
+		'sound/roundend/windowsxp.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))

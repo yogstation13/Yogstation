@@ -102,12 +102,19 @@
 		if(!findname(.))
 			break
 
-/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(lizard_name(gender))
+/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10, corporate = TRUE)
+	if(corporate)
+		for(var/i in 1 to attempts_to_find_unique_name)
+			. = capitalize(corporate_lizard_name())
 
-		if(!findname(.))
-			break
+			if(!findname(.))
+				break
+	else
+		for(var/i in 1 to attempts_to_find_unique_name)
+			. = capitalize(lizard_name(gender))
+
+			if(!findname(.))
+				break
 
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
@@ -173,6 +180,10 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
+
+/mob/var/action_speed_modifier = 1 //Value to multiply action delays by //yogs start: fuck
+/mob/var/action_speed_adjust = 0 //Value to add or remove to action delays //yogs end
+
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return 0
@@ -185,6 +196,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if (progress)
 		progbar = new(user, time, target)
@@ -227,7 +239,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
@@ -246,7 +258,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
 
-	delay *= user.do_after_coefficent()
+	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
 	var/datum/progressbar/progbar
 	if (progress)
@@ -264,7 +276,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			Uloc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
 			. = 0
 			break
 
@@ -275,7 +287,7 @@ GLOBAL_LIST_EMPTY(species_list)
 				break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting)
+			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
 				. = 0
 				break
 
@@ -312,6 +324,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		originalloc[target] = target.loc
 
 	var/holding = user.get_active_held_item()
+	time = ((time + user.action_speed_adjust) * user.action_speed_modifier) //yogs: darkspawn
 	var/datum/progressbar/progbar
 	if(progress)
 		progbar = new(user, time, targets[1])

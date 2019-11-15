@@ -1,0 +1,4 @@
+author: "CMOisLing"
+delete-after: true 
+changes: 
+  - bugfix: "Chem implants dump contents on death"

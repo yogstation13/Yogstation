@@ -180,7 +180,16 @@
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "plaincake"
 	foodtype = GRAIN | DAIRY
-
+	
+/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/cheddar
+	name = "cheese"
+	ingredients_placement = INGREDIENTS_SCATTER
+	ingMax = 6
+	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom
+	slices_num = 5
+	icon = 'icons/obj/food/cheese.dmi'
+	icon_state = "cheesewheel"
+	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/customizable/kebab
 	name = "kebab"

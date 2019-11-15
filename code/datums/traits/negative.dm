@@ -536,3 +536,19 @@
 	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
 	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
 	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
+
+/datum/quirk/sheltered
+	name = "Sheltered"
+	desc = "You never learned galactic common."
+	value = -3
+	mob_trait = TRAIT_SHELTERED
+	gain_text = "<span class='danger'>You do not understand galactic common.</span>"
+	lose_text = "<span class='notice'>You start to put together what people are saying in galactic common.</span>"
+	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+
+
+/datum/quirk/sheltered/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common)
+	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
+		H.grant_language(/datum/language/japanese)

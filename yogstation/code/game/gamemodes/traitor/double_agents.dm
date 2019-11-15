@@ -22,7 +22,7 @@
 					other_traitors -= objective.target
 			for(var/tator in other_traitors)
 				var/datum/mind/tatortottle = tator
-				if(!tatortottle.current || tatortottle.current.stat == DEAD)
+				if(!tatortottle.current || tatortottle.current.stat == DEAD || iscyborg(tatortottle.current))
 					other_traitors -= tatortottle
 
 			if(other_traitors.len)

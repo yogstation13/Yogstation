@@ -152,7 +152,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/milo
 	name = "milosoup"
-	desc = "The universes best soup! Yum!!!"
+	desc = "The universe's best soup! Yum!!!"
 	icon_state = "milosoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("milo" = 1) // wtf is milo
