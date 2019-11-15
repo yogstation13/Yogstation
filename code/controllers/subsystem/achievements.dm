@@ -9,11 +9,7 @@ SUBSYSTEM_DEF(achievements)
 		achievements[A] = initial(A.id)
 
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, desc FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]'")
-		if(!medalQuery.Execute())
-			qdel(medalQuery)
-			stack_trace("Could not run check for achievement [initial(A.name)]")
-			continue
-
+		medalQuery.Execute()
 		if(!medalQuery.NextRow())
 			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, desc) VALUES ('[initial(A.name)]', '[initial(A.id)]', '[initial(A.desc)]')")
 			medalQuery2.Execute()
@@ -57,10 +53,7 @@ SUBSYSTEM_DEF(achievements)
 		return FALSE
 	if(!has_achievement(achievement, C))
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievements[achievement]]')")
-		if(!medalQuery.Execute())
-			stack_trace("Could not unlock achievement [initial(achievement.name)] for [C.ckey]")
-			qdel(medalQuery)
-			return FALSE
+		medalQuery.Execute()
 		qdel(medalQuery)
 		return TRUE
 
