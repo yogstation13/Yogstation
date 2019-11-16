@@ -226,7 +226,6 @@
 				loop_counter++
 				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
 
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_SHOOTED)
 	process_fire(target, user, TRUE, params, null, bonus_spread)
 
 /obj/item/gun/proc/check_botched(mob/living/user, params)
@@ -296,6 +295,9 @@
 	return TRUE
 
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(user)
+		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
+		
 	add_fingerprint(user)
 
 	if(semicd)
