@@ -1,7 +1,7 @@
 /datum/crafting_recipe/shank
 	name = "Shank"
 	result = /obj/item/shard/shank
-	reqs = list(/obj/item/shard = 1, /obj/item/stack/rods = 1, /obj/item/stack/cable_coil = 1)
+	reqs = list(/obj/item/shard = 1, /obj/item/clothing/torncloth = 1)
 	time = 25
 	category = CAT_WEAPONRY
 
