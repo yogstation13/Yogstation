@@ -46862,9 +46862,18 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bNT" = (
-/obj/machinery/vending/wardrobe/sigtech_wardrobe,
+/obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
+"bNU" = (
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/gloves/color/black,
+/obj/structure/closet,
+/turf/open/floor/plating,
+/area/maintenance/department/tcoms)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -54261,15 +54270,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"hlR" = (
-/obj/structure/rack,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/gloves/color/black,
-/turf/open/floor/plating,
-/area/maintenance/department/tcoms)
 "hlU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -99892,7 +99892,7 @@ aaa
 aaa
 bDW
 bZv
-hlR
+bNU
 gfH
 aSQ
 bEe

@@ -109,12 +109,12 @@
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
 	machine_name = "AtmosDrobe"
 
-/obj/machinery/vending/wardrobe/sigtech_wardrobe
-	name = "SigtechDrobe"
+/obj/machinery/vending/wardrobe/sig_wardrobe
+	name = "SigDrobe"
 	desc = "A rarely used vending machine that provides clothing for Signal Technicians."
-	icon_state = "sigtechdrobe"
+	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
-	vend_reply = "Thank you for using the SigtechDrobe!"
+	vend_reply = "Thank you for using the SigDrobe!"
 	products = list(/obj/item/storage/backpack/duffelbag/engineering = 1,
 					/obj/item/storage/backpack/industrial = 1,
 					/obj/item/storage/backpack/satchel/eng = 1,
@@ -122,10 +122,10 @@
 					/obj/item/clothing/under/yogs/rank/signal_tech = 1,
 					/obj/item/clothing/shoes/workboots = 1,
 					/obj/item/clothing/under/yogs/rank/signal_tech/skirt = 1)
-	refill_canister = /obj/item/vending_refill/wardrobe/sigtech_wardrobe
+	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG
-/obj/item/vending_refill/wardrobe/sigtech_wardrobe
-	machine_name = "SigtechDrobe"
+/obj/item/vending_refill/wardrobe/sig_wardrobe
+	machine_name = "SigDrobe"
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
