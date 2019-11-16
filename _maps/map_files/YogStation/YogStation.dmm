@@ -46862,9 +46862,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bNT" = (
-/obj/machinery/vending/wardrobe/sig_wardrobe,
-/turf/open/floor/plasteel,
-/area/tcommsat/computer)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "bNU" = (
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
@@ -46874,6 +46878,10 @@
 /obj/structure/closet,
 /turf/open/floor/plating,
 /area/maintenance/department/tcoms)
+"bNV" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel,
+/area/tcommsat/computer)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -90012,7 +90020,7 @@ aEu
 aeN
 age
 aIV
-agt
+bNT
 agV
 cxk
 agt
@@ -100159,7 +100167,7 @@ yfa
 bGL
 aII
 bZv
-bNT
+bNV
 rvv
 vDq
 fkp
