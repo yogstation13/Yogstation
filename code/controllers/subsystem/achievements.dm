@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(achievements)
 	name = "Achievements"
 	flags = SS_NO_FIRE
 	var/list/achievements = list()
+	var/list/cached_achievements = list()
 
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
@@ -55,15 +56,24 @@ SUBSYSTEM_DEF(achievements)
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievements[achievement]]')")
 		medalQuery.Execute()
 		qdel(medalQuery)
+		cached_achievements[C.ckey] += achievement
 		return TRUE
 
 /datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
 	if(!achievements[achievement])
 		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
-	var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT * FROM [format_table_name("earned_achievements")] WHERE ckey = '[C.ckey]' AND id = '[achievements[achievement]]'")
-	medalQuery.Execute()
-	if(medalQuery.NextRow())
-		qdel(medalQuery)
-		return TRUE
-	qdel(medalQuery)
-	return FALSE
+	if(!cached_achievements[C.ckey])
+		cache_achievements(C)
+
+	return (achievement in cached_achievements[C.ckey])
+
+/datum/controller/subsystem/achievements/proc/cache_achievements(client/C)
+	var/datum/DBQuery/cacheQuery = SSdbcore.NewQuery("SELECT id FROM [format_table_name("earned_achievements")] WHERE ckey = '[C.ckey]'")
+	cacheQuery.Execute()
+	cached_achievements[C.ckey] = list()
+	while(cacheQuery.NextRow())
+		for(var/i in achievements)
+			if(achievements[i] == cacheQuery.item[1])
+				cached_achievements[C.ckey] += i
+				break
+	return
