@@ -1,6 +1,6 @@
 /obj/item/shard/shank
 	name = "shank"
-	desc = "A nasty looking shard of glass. There's cables over one of the ends."
+	desc = "A nasty looking shard of glass. There's cloth over one of the ends."
 	icon = 'yogstation/icons/obj/weapons.dmi'
 	icon_state = "shank"
 	force = 10 //Average force
