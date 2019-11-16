@@ -26360,6 +26360,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"aNM" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aNU" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -40067,10 +40071,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rEd" = (
-/obj/structure/closet/wardrobe/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "rEx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -71724,7 +71724,7 @@ aLG
 aMJ
 aIq
 aOv
-rEd
+aNM
 bxp
 aRB
 aPG
