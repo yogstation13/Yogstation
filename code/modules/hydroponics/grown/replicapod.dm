@@ -13,6 +13,7 @@
 	production = 1
 	yield = 1 //seeds if there isn't a dna inside
 	potency = 30
+	mutatelist = list(/obj/item/seeds/replicapod/egg) //Yogs - Eggpeople
 	var/volume = 5
 	var/ckey = null
 	var/realName = null
@@ -23,6 +24,7 @@
 	var/factions = null
 	var/list/quirks = null
 	var/contains_sample = 0
+	var/speciestype = /datum/species/pod //Yogs - The species of the human this podplant variant shits out.
 
 /obj/item/seeds/replicapod/Initialize()
 	. = ..()
@@ -116,7 +118,7 @@
 			features["mcolor"] = "#59CE00"
 		for(var/V in quirks)
 			new V(podman)
-		podman.hardset_dna(null,null,podman.real_name,blood_type, new /datum/species/pod,features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
+		podman.hardset_dna(null,null,podman.real_name,blood_type, new speciestype,features)//Discard SE's and UI's, podman cloning is inaccurate, and always make them a podman
 		podman.set_cloned_appearance()
 		log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
 
@@ -132,3 +134,15 @@
 
 	parent.update_tray()
 	return result
+
+//Oh boy it's yog time
+/obj/item/seeds/replicapod/egg
+	name = "pack of replica eggpod seeds"
+	desc = "These seeds grow into replica eggpods. What these are for, you cannot say."
+	icon_state = "seed-replicaeggpod"
+	species = "replicaeggpod"
+	plantname = "Replica Eggpod"
+
+	mutatelist = list()
+	speciestype = /datum/species/egg
+
