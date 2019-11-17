@@ -24,11 +24,7 @@ SUBSYSTEM_DEF(achievements)
 		
 	
 	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
-	if(!ridOldChieves.Execute())
-		stack_trace("Could not run check for outdated achievements")
-		qdel(ridOldChieves)
-		return ..()
-	
+	ridOldChieves.Execute()
 	while(ridOldChieves.NextRow())
 		var/id = ridOldChieves.item[1]
 		var/found_achievement = FALSE
