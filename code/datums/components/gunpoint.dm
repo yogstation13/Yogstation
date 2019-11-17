@@ -27,7 +27,7 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
-	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_SHOOTED, COMSIG_MOVABLE_MOVED), .proc/trigger_reaction)
+	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOVABLE_MOVED), .proc/trigger_reaction)
 	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
 
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
@@ -52,14 +52,14 @@
 /datum/component/gunpoint/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_SHOOTED), .proc/noshooted)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN), .proc/noshooted)
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE)
 	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
 	UnregisterSignal(parent, COMSIG_MOB_THROW)
-	UnregisterSignal(parent, COMSIG_MOB_ITEM_SHOOTED)
+	UnregisterSignal(parent, COMSIG_MOB_FIRED_GUN)
 
 // if you're gonna try to break away from a holdup, better to do it right away
 /datum/component/gunpoint/proc/update_stage(new_stage)
