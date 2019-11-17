@@ -2,9 +2,7 @@
 	{{#each data.achievements}}
 		<ui-section label='{{name}}' candystripe right>
 			<span>{{desc}}</span>
-			{{unlocked ? "<span color='green'>Unlocked</span>" : "<span color='red'>locked</span>"}}
-
+			<span>{{unlocked ? "<span color='green'>Unlocked</span>" : "<span color='red'>locked</span>"}}</span>
 		</ui-section>
 	{{/each}}
-
 </ui-display>

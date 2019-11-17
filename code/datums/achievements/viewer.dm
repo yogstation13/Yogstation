@@ -37,9 +37,12 @@
 	set desc = "See all of your achivements"
 
 	if(!SSachievements.initialized)
-		to_chat(src, "SSachievements has not initialized yet, please wait.")
+		to_chat(src, "<span class='warning'>SSachievements has not initialized yet, please wait.</span>")
 		return
 
 	if(!achievement_browser)
-		achievement_browser = new(src)
+		achievement_browser = SSachievements.get_browser(src)
+		if(!achievement_browser)
+			achievement_browser = new(src)
+			SSachievements.browsers[ckey] = achievement_browser
 	achievement_browser.ui_interact(mob)
