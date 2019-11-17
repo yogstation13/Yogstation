@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(achievements)
 			qdel(ridTheOtherTableAsWell)
 			qdel(getRidOfOldStuff)
 
-
+	qdel(ridOldChieves)
 	return ..()
 
 /datum/controller/subsystem/achievements/proc/unlock_achievement(datum/achievement/achievement, client/C)
@@ -73,6 +73,7 @@ SUBSYSTEM_DEF(achievements)
 			if(achievements[i] == cacheQuery.item[1])
 				cached_achievements[C.ckey] += i
 				break
+	qdel(cacheQuery)
 	return
 
 /datum/controller/subsystem/achievements/proc/get_browser(client/C)
