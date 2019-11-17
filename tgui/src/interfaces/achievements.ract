@@ -1,4 +1,4 @@
-<ui-display title='Achievements'>
+<ui-display>
 	{{#each data.achievements}}
 		<ui-section label='{{name}}'>
 			<span>{{desc}}</span>
