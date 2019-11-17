@@ -146,8 +146,6 @@
 	cut_overlay("locked")
 	if(open)
 		icon_state = initial(icon_state)
-	else if(/obj/item/pet_carrier/xenobio)
-		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
 	else
 		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
 		add_overlay("[locked ? "" : "un"]locked")
@@ -203,3 +201,12 @@
 	icon_state = "xeno_carrier_open"
 	item_state = "xeno_carrier"
 	max_occupant_weight = MOB_SIZE_LARGE //This is calculated from the mob sizes of occupants
+
+/obj/item/pet_carrier/xenobio/update_icon()
+	cut_overlay("unlocked")
+	cut_overlay("locked")
+	if(open)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "xeno_carrier_[!occupants.len ? "closed" : "occupied"]"
+		add_overlay("[locked ? "" : "un"]locked")
