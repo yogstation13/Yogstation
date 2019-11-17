@@ -40,9 +40,8 @@
 		to_chat(src, "<span class='warning'>SSachievements has not initialized yet, please wait.</span>")
 		return
 
+	var/achievement_browser = SSachievements.get_browser(src)
 	if(!achievement_browser)
-		achievement_browser = SSachievements.get_browser(src)
-		if(!achievement_browser)
-			achievement_browser = new(src)
-			SSachievements.browsers[ckey] = achievement_browser
+		achievement_browser = new(src)
+		SSachievements.browsers[ckey] = achievement_browser
 	achievement_browser.ui_interact(mob)

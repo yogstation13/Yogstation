@@ -80,4 +80,3 @@
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
 
 	var/encoding = "1252" // yogs - LibVG
-	var/datum/achievement_browser/achievement_browser
