@@ -36,6 +36,10 @@
 	set name = "Check achievements"
 	set desc = "See all of your achivements"
 
+	if(!SSachievements.initialized)
+		to_chat(src, "SSachievements has not initialized yet, please wait.")
+		return
+
 	if(!achievement_browser)
 		achievement_browser = new(src)
 	achievement_browser.ui_interact(mob)
