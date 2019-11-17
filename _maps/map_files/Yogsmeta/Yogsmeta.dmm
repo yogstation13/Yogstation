@@ -50371,10 +50371,6 @@
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
 "bMo" = (
-/obj/machinery/airalarm/server{
-	dir = 4;
-	pixel_x = -22
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -50387,6 +50383,10 @@
 	dir = 4;
 	external_pressure_bound = 120;
 	name = "server vent"
+	},
+/obj/machinery/airalarm/tcomms{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
