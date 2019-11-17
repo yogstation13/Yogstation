@@ -7,7 +7,6 @@
 /datum/achievement_browser/New(client/C)
 	client = C
 	get_achievements()
-	ui_interact(C.mob)
 
 /datum/achievement_browser/proc/get_achievements()
 	for(var/i in SSachievements.achievements)
@@ -37,7 +36,6 @@
 	set name = "Check achievements"
 	set desc = "See all of your achivements"
 
-	if(achievement_browser)
-		achievement_browser.ui_interact(mob)
-	else
+	if(!achievement_browser)
 		achievement_browser = new(src)
+	achievement_browser.ui_interact(mob)
