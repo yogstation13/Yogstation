@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE)
+		to_chat(owner, message, handle_whitespace=FALSE, confidential=TRUE)
 
 	messageQueue = null
 	sendClientData()
