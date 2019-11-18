@@ -79385,10 +79385,6 @@
 /turf/open/floor/plasteel,
 /area/maintenance/starboard)
 "crz" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -23
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -125942,6 +125938,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/vacant_room/commissary)
+"kNc" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/airalarm/tcomms{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "ljP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -166916,7 +166928,7 @@ bKH
 bKH
 bKH
 bUG
-bUF
+kNc
 bUF
 bUF
 ccE
