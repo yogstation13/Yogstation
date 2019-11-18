@@ -102,7 +102,7 @@
 		if(ASSEMBLY_FOURTH_STEP)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(W.use_tool(src, user, 0, volume=40))
-					if(build_step != 4)
+					if(build_step != 3)
 						return
 					name = "shielded frame assembly"
 					to_chat(user, "<span class='notice'>You weld the vest to [src].</span>")
@@ -347,7 +347,7 @@
 		if(ASSEMBLY_FIRST_STEP)
 			if(I.tool_behaviour == TOOL_WELDER)
 				if(I.use_tool(src, user, 0, volume=40))
-					if(build_step != 1)
+					if(build_step != 0)
 						return
 					add_overlay("hs_hole")
 					to_chat(user, "<span class='notice'>You weld a hole in [src]!</span>")
