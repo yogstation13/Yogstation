@@ -1745,7 +1745,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Be warned, that spirits are often capricious or just little assholes. To use, simply speak your question aloud, then begin shaking."
 	item = /obj/item/toy/eightball/haunted
 	cost = 2
-	restricted_roles = list("Curator")
+	restricted_roles = list("Chaplain")
 	limited_stock = 1 //please don't spam deadchat
 
 /datum/uplink_item/role_restricted/his_grace
