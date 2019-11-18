@@ -27,9 +27,9 @@
 			to_chat(user, "<span class='notice'>You deactivate [F].</span>")
 			qdel(F)
 			return
-	var/turf/T = get_turf(target)
-	var/obj/structure/projected_forcefield/found_field = locate() in T
 	if(do_after(user, creation_time, target = target))
+		var/turf/T = get_turf(target)
+		var/obj/structure/projected_forcefield/found_field = locate() in T
 		if(found_field)
 			to_chat(user, "<span class='warning'>There is already a forcefield in that location!</span>")
 			return
@@ -40,6 +40,7 @@
 		if(LAZYLEN(current_fields) >= max_fields)
 			to_chat(user, "<span class='notice'>[src] cannot sustain any more forcefields!</span>")
 			return
+
 
 		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
 		user.visible_message("<span class='warning'>[user] projects a forcefield!</span>","<span class='notice'>You project a forcefield.</span>")
