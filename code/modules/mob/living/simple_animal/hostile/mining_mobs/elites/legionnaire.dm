@@ -12,7 +12,7 @@
   * - Charges at the target after a telegraph, throwing them across the arena should it connect.
   * - Legionnaire's head detaches, attacking as it's own entity.  Has abilities of it's own later into the fight.  Once dead, regenerates after a brief period.  If the skill is used while the head is off, it will be killed.
   * - Leaves a pile of bones at your location.  Upon using this skill again, you'll swap locations with the bone pile.
-  * - Spews a cloud of smoke from it's maw, wherever said maw is.  
+  * - Spews a cloud of smoke from it's maw, wherever said maw is.
   * A unique fight incorporating the head mechanic of legion into a whole new beast.  Combatants will need to make sure the tag-team of head and body don't lure them into a deadly trap.
   */
 
@@ -28,8 +28,8 @@
 	health = 800
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	attack_verb_continuous = "slashes its arms at"
-	attack_verb_simple = "slash your arms at"
+	attacktext = "slashes its arms at"
+	//attack_verb_simple = "slash your arms at"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	throw_message = "doesn't affect the sturdiness of"
 	speed = 1
@@ -43,35 +43,35 @@
 								/datum/action/innate/elite_attack/head_detach,
 								/datum/action/innate/elite_attack/bonfire_teleport,
 								/datum/action/innate/elite_attack/spew_smoke)
-								
+
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/myhead = null
 	var/obj/structure/legionnaire_bonfire/mypile = null
 	var/has_head = TRUE
-	
+
 /datum/action/innate/elite_attack/legionnaire_charge
 	name = "Legionnaire Charge"
 	button_icon_state = "legionnaire_charge"
 	chosen_message = "<span class='boldwarning'>You will attempt to grab your opponent and throw them.</span>"
 	chosen_attack_num = LEGIONNAIRE_CHARGE
-	
+
 /datum/action/innate/elite_attack/head_detach
 	name = "Release Head"
 	button_icon_state = "head_detach"
 	chosen_message = "<span class='boldwarning'>You will now detach your head or kill it if it is already released.</span>"
 	chosen_attack_num = HEAD_DETACH
-	
+
 /datum/action/innate/elite_attack/bonfire_teleport
 	name = "Bonfire Teleport"
 	button_icon_state = "bonfire_teleport"
 	chosen_message = "<span class='boldwarning'>You will leave a bonfire.  Second use will let you swap positions with it indefintiely.  Using this move on the same tile as your active bonfire removes it.</span>"
 	chosen_attack_num = BONFIRE_TELEPORT
-	
+
 /datum/action/innate/elite_attack/spew_smoke
 	name = "Spew Smoke"
 	button_icon_state = "spew_smoke"
 	chosen_message = "<span class='boldwarning'>Your head will spew smoke in an area, wherever it may be.</span>"
 	chosen_attack_num = SPEW_SMOKE
-	
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/OpenFire()
 	if(client)
 		switch(chosen_attack)
@@ -94,7 +94,7 @@
 			bonfire_teleport()
 		if(SPEW_SMOKE)
 			spew_smoke()
-	
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge(target)
 	ranged_cooldown = world.time + 50
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
@@ -105,7 +105,7 @@
 	playsound(src,'sound/magic/demon_attack1.ogg', 200, 1)
 	visible_message("<span class='boldwarning'>[src] prepares to charge!</span>")
 	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, dir_to_target, 0), 5)
-	
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(var/move_dir, var/times_ran)
 	if(times_ran >= 4)
 		return
@@ -133,7 +133,7 @@
 		L.Paralyze(20)
 		L.adjustBruteLoss(50)
 	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, move_dir, (times_ran + 1)), 2)
-		
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + 10
 	if(myhead != null)
@@ -157,11 +157,11 @@
 		else if(health < maxHealth * 0.5)
 			myhead.melee_damage_lower = 20
 			myhead.melee_damage_upper = 20
-		
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHeadDeath()
 	myhead = null
 	addtimer(CALLBACK(src, .proc/regain_head), 50)
-	
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/regain_head()
 	has_head = TRUE
 	if(stat == DEAD)
@@ -193,7 +193,7 @@
 		forceMove(pileturf)
 		visible_message("<span class='boldwarning'>[src] forms from the bonfire!</span>")
 		mypile.forceMove(legionturf)
-		
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/spew_smoke()
 	ranged_cooldown = world.time + 60
 	var/turf/T = null
@@ -210,7 +210,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(2, T)
 	smoke.start()
-	
+
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
 	name = "legionnaire head"
@@ -224,8 +224,8 @@
 	health = 80
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "bites at"
-	attack_verb_simple = "bite at"
+	attacktext = "bites at"
+	//attack_verb_simple = "bite at"
 	attack_sound = 'sound/effects/curse1.ogg'
 	throw_message = "simply misses"
 	speed = 0
@@ -235,12 +235,12 @@
 	faction = list()
 	ranged = FALSE
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
-	
+
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/death()
 	. = ..()
 	if(body)
 		body.onHeadDeath()
-	
+
 //The legionnaire's bonfire, which can be swapped positions with.  Also sets flammable living beings on fire when they walk over it.
 /obj/structure/legionnaire_bonfire
 	name = "bone pile"
@@ -254,20 +254,20 @@
 	light_range = 4
 	light_color = LIGHT_COLOR_RED
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/myowner = null
-	
-	
+
+
 /obj/structure/legionnaire_bonfire/Entered(atom/movable/mover, turf/target)
 	if(isliving(mover))
 		var/mob/living/L = mover
 		L.adjust_fire_stacks(3)
 		L.IgniteMob()
 	. = ..()
-	
+
 /obj/structure/legionnaire_bonfire/Destroy()
 	if(myowner != null)
 		myowner.mypile = null
 	. = ..()
-	
+
 //The visual effect which appears in front of legionnaire when he goes to charge.
 /obj/effect/temp_visual/dragon_swoop/legionnaire
 	duration = 10
@@ -276,7 +276,7 @@
 /obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize()
 	. = ..()
 	transform *= 0.33
-	
+
 // Legionnaire's loot: Legionnaire Spine
 
 /obj/item/crusher_trophy/legionnaire_spine
