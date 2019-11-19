@@ -46869,6 +46869,19 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"bNU" = (
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/gloves/color/black,
+/obj/structure/closet,
+/turf/open/floor/plating,
+/area/maintenance/department/tcoms)
+"bNV" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel,
+/area/tcommsat/computer)
 "bOd" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -54265,15 +54278,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"hlR" = (
-/obj/structure/rack,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/gloves/color/black,
-/turf/open/floor/plating,
-/area/maintenance/department/tcoms)
 "hlU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57830,10 +57834,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"vgm" = (
-/obj/structure/closet/wardrobe/tcomms,
-/turf/open/floor/plasteel,
-/area/tcommsat/computer)
 "vjX" = (
 /obj/structure/rack,
 /obj/item/clothing/head/welding,
@@ -99900,7 +99900,7 @@ aaa
 aaa
 bDW
 bZv
-hlR
+bNU
 gfH
 aSQ
 bEe
@@ -100167,7 +100167,7 @@ yfa
 bGL
 aII
 bZv
-vgm
+bNV
 rvv
 vDq
 fkp

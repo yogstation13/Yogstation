@@ -2282,10 +2282,11 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Engineering Wardrobe Supply Crate"
-	desc = "This crate contains refills for the EngiDrobe and AtmosDrobe."
+	desc = "This crate contains refills for the EngiDrobe, AtmosDrobe and SigDrobe."
 	cost = 1500
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
-					/obj/item/vending_refill/wardrobe/atmos_wardrobe)
+					/obj/item/vending_refill/wardrobe/atmos_wardrobe,
+					/obj/item/vending_refill/wardrobe/sig_wardrobe)
 	crate_name = "engineering department wardrobe supply crate"
 
 /datum/supply_pack/costumes_toys/wardrobes/general
