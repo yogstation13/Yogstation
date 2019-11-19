@@ -61,7 +61,6 @@ SUBSYSTEM_DEF(achievements)
 		return TRUE
 
 /datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
-	return TRUE
 	if(!achievements[achievement])
 		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
 	if(!cached_achievements[C.ckey])

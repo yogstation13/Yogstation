@@ -1,8 +1,12 @@
 <ui-display>
 	{{#each data.achievements}}
 		<ui-section label='{{name}}'>
-			{{desc}}
-			{{unlocked ? "<span color='green'>Unlocked</span>" : "<span color='red'>locked</span>"}}
+			{{desc}}<br>
+			{{#if unlocked}}
+				<th style="color: '#00FF00';">Unlocked</th>
+			{{else}}
+				<th style="color: '#c51e1e';">locked</th>
+			{{/if}}
 		</ui-section>
 	{{/each}}
 </ui-display>
