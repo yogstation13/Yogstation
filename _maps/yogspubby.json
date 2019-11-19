@@ -1,6 +1,6 @@
 {
     "map_name": "YogsPubby",
-    "map_path": "yogstation/map_files/Yogspubby",
+    "map_path": "map_files/Yogspubby",
     "map_file": "Yogspubby.dmm",
     "shuttles": {
 	    "emergency": "emergency_pubby",

@@ -1,6 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - rscadd: "The Space Gods can turn people into Pacman at will. Pacman can instantly devour mortals."
-  - soundadd: "AWA AWA AWA AWA. EUUEUEUEUOOWAWA."
-  - imageadd: "Adds pacman to the game. Includes all directions and animations for all directions."

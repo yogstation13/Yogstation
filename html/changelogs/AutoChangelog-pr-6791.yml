@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Disguised borgs will now have nice chat bubble instead of evil"

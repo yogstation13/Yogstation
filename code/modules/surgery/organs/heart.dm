@@ -177,12 +177,9 @@
 
 /obj/item/organ/heart/cybernetic
 	name = "cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
+	desc = "An electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c"
 	organ_flags = ORGAN_SYNTHETIC
-	var/dose_available = TRUE
-	var/rid = /datum/reagent/medicine/epinephrine
-	var/ramount = 10
 
 /obj/item/organ/heart/cybernetic/emp_act()
 	. = ..()
@@ -190,23 +187,27 @@
 		return
 	Stop()
 
-/obj/item/organ/heart/cybernetic/on_life()
+/obj/item/organ/heart/cybernetic/upgraded
+	name = "upgraded cybernetic heart"
+	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma, regenerates after use."
+	icon_state = "heart-c-u"
+	var/dose_available = TRUE
+	var/rid = /datum/reagent/medicine/epinephrine
+	var/ramount = 10
+
+/obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()
 	if(dose_available && owner.stat == UNCONSCIOUS && !owner.reagents.has_reagent(rid))
 		owner.reagents.add_reagent(rid, ramount)
 		used_dose()
 
-/obj/item/organ/heart/cybernetic/proc/used_dose()
+/obj/item/organ/heart/cybernetic/upgraded/proc/used_dose()
 	dose_available = FALSE
-
-/obj/item/organ/heart/cybernetic/upgraded
-	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma. This upgraded model can regenerate its dose after use."
-	icon_state = "heart-c-u"
-
-/obj/item/organ/heart/cybernetic/upgraded/used_dose()
-	. = ..()
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
+
+/obj/item/organ/heart/cybernetic/upgraded/emp_act()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/Restart), 80) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

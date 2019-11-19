@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Integration cogs correctly display how much power will be siphoned from APCs."

@@ -1,0 +1,4 @@
+author: "  alexkar598"
+delete-after: true 
+changes: 
+  - bugfix: "Doing a tool step twice on a bot assembly no longer makes it unsable"
