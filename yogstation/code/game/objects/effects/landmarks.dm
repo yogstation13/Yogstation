@@ -55,7 +55,7 @@
 	var/datum/map_template/template = SSmapping.station_room_templates[template_name]
 	if(!template)
 		return FALSE
-	log_world("Ruin \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
+	testing("Ruin \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
 	template.load(T, centered = FALSE)
 	template.loaded++
 	GLOB.stationroom_landmarks -= src

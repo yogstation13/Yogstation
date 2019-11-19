@@ -8,9 +8,6 @@
 
 
 /mob/living/proc/CanContractDisease(datum/disease/D)
-	if(stat == DEAD && !D.process_dead)
-		return FALSE
-
 	if(D.GetDiseaseID() in disease_resistances)
 		return FALSE
 
@@ -111,6 +108,8 @@
 		D.try_infect(src)
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
+	if(stat == DEAD) // no breathing when your dead
+		return
 	if( ((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob((50*D.permeability_mod) - 1))
 		ForceContractDisease(D)
 

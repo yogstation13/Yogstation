@@ -31,10 +31,8 @@
 					/obj/item/clothing/under/suit_jacket = 1,
 					/obj/item/clothing/head/that = 1,
 					/obj/item/clothing/under/kilt = 1,
-					/obj/item/clothing/head/beret = 1,
 					/obj/item/clothing/head/beret/vintage = 1,
 					/obj/item/clothing/head/beret/archaic = 1,
-					/obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/glasses/monocle = 1, //yogs added a single space the horrors!
 					/obj/item/clothing/head/bowler = 1,
 					/obj/item/cane = 1,
@@ -56,7 +54,6 @@
 					/obj/item/clothing/under/pirate = 1,
 					/obj/item/clothing/suit/pirate = 1,
 					/obj/item/clothing/head/pirate = 1,
-					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/head/bandana = 1,
 					/obj/item/clothing/under/soviet = 1,
 					/obj/item/clothing/head/ushanka = 1,
@@ -204,6 +201,7 @@
 				   /obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
 				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
+		           /obj/item/clothing/under/lampskirt = 1,
 		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs start
 		           /obj/item/clothing/under/yogs/enclaveo = 1,
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
