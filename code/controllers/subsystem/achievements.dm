@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(achievements)
 	var/list/achievements = list()
 	var/list/cached_achievements = list()
 	var/list/browsers = list()
+	var/list/achievementsEarned = list()
 
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
@@ -54,6 +55,9 @@ SUBSYSTEM_DEF(achievements)
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
+		if(!achievementsEarned[C.ckey])
+			achievementsEarned[C.ckey] = list()
+		achievementsEarned[C.ckey] += achievement
 		return TRUE
 
 /datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
