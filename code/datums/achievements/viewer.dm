@@ -21,8 +21,9 @@
 /datum/achievement_browser/ui_data(mob/user)
 	var/data = list("achievements" = list())
 	var/list/achievements = get_achievements()
-	for(var/datum/achievement/achievement in achievements)
+	for(var/B in achievements)
 		var/list/A = list(
+			var/datum/achievement/achievement = B
 			"name" = initial(achievement.name),
 			"desc" = initial(achievement.desc),
 			"unlocked" = achievements[achievement]
