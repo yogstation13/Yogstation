@@ -265,10 +265,10 @@
 	H.fire(set_angle)
 
 /obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	. = ..()
-	if(!rand(1,100) <= hit_reaction_chance)
-		return
+	if(!prob(hit_reaction_chance))
+		return FALSE
 	owner.visible_message("<span class='danger'>[owner]'s [src] emits a loud noise as [owner] is struck!</span>")
 	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
 	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 	addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)
+	return TRUE
