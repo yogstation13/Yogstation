@@ -6,8 +6,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
 	var/number = 0
-	var/anyai = 1
-	var/mob/living/silicon/ai/ai = list()
+	var/anyai = 1 //it literaly does nothing but the the intercomms in ai core set to one which makes it anoying to remove
 	var/last_tick //used to delay the powercheck
 	dog_fashion = null
 	var/unfastened = FALSE
@@ -114,11 +113,8 @@
 
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
-	. = ..()
 	if (message_mode == MODE_INTERCOM)
 		return  // Avoid hearing the same thing twice
-	if(!anyai && !(speaker in ai))
-		return
 	..()
 
 /obj/item/radio/intercom/process()
