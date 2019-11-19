@@ -7,10 +7,10 @@
 	client = C
 
 /datum/achievement_browser/proc/get_achievements()
-	var/list/achievements = list()
+	var/list/A = list()
 	for(var/i in SSachievements.achievements)
-		achievements[i] = SSachievements.has_achievement(i, client)
-	return achievements
+		A[i] = SSachievements.has_achievement(i, client)
+	return A
 
 /datum/achievement_browser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
