@@ -3,9 +3,9 @@
 		<ui-section label='{{name}}'>
 			{{desc}}<br>
 			{{#if unlocked}}
-				<th style="color: '#00FF00';">Unlocked</th>
+				<span class='good'>Unlocked</span>
 			{{else}}
-				<th style="color: '#c51e1e';">locked</th>
+				<span class='bad'>locked</span>
 			{{/if}}
 		</ui-section>
 	{{/each}}
