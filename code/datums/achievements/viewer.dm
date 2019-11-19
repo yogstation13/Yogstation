@@ -2,15 +2,15 @@
 
 /datum/achievement_browser
 	var/client/client
-	var/achievements = list()
 
 /datum/achievement_browser/New(client/C)
 	client = C
-	get_achievements()
 
 /datum/achievement_browser/proc/get_achievements()
+	var/list/achievements = list()
 	for(var/i in SSachievements.achievements)
 		achievements[i] = SSachievements.has_achievement(i, client)
+	return achievements
 
 /datum/achievement_browser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -20,7 +20,7 @@
 
 /datum/achievement_browser/ui_data(mob/user)
 	var/data = list("achievements" = list())
-	get_achievements()
+	var/list/achievements = get_achievements()
 	for(var/datum/achievement/achievement in achievements)
 		var/list/A = list(
 			"name" = initial(achievement.name),
