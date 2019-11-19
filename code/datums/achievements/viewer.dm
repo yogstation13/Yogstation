@@ -22,8 +22,8 @@
 	var/data = list("achievements" = list())
 	var/list/achievements = get_achievements()
 	for(var/B in achievements)
+		var/datum/achievement/achievement = B
 		var/list/A = list(
-			var/datum/achievement/achievement = B
 			"name" = initial(achievement.name),
 			"desc" = initial(achievement.desc),
 			"unlocked" = achievements[achievement]
