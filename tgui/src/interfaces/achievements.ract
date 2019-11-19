@@ -1,8 +1,8 @@
 <ui-display>
 	{{#each data.achievements}}
 		<ui-section label='{{name}}'>
-			<span>{{desc}}</span>
-			<span>{{unlocked ? "<span color='green'>Unlocked</span>" : "<span color='red'>locked</span>"}}</span>
+			{{desc}}
+			{{unlocked ? "<span color='green'>Unlocked</span>" : "<span color='red'>locked</span>"}}
 		</ui-section>
 	{{/each}}
 </ui-display>
