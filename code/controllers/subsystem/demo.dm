@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(demo)
 	quickwrite_open(demo_file)
 	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
-		QUICKWRITE_WRITE(demo_file, "commit [GLOB.revdata.commit]\n")
+		QUICKWRITE_WRITE(demo_file, "commit [GLOB.revdata.originmastercommit || GLOB.revdata.commit]\n")
 
 	// write a "snapshot" of the world at this point.
 	// start with turfs
