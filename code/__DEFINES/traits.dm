@@ -139,6 +139,8 @@
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
 #define TRAIT_SHELTERED			"sheltered"
+#define TRAIT_RANDOM_ACCENT		"random_accent"
+#define TRAIT_ACCENT			"accent"
 
 
 //non-mob traits
