@@ -17,6 +17,8 @@
 	var/datum/status_effect/status_held_up
 	var/damage_mult = GUNPOINT_MULT_STAGE_1
 
+	var/point_of_no_return = FALSE
+
 	var/disrupted = FALSE
 
 // *extremely bad russian accent* no!
@@ -79,6 +81,10 @@
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction(var/flinch)
+	if(point_of_no_return)
+		return
+	point_of_no_return = TRUE
+
 	var/mob/living/shooter = parent
 
 	if(!weapon.can_shoot() || !weapon.can_trigger_gun(shooter) || (weapon.weapon_weight == WEAPON_HEAVY && shooter.get_inactive_held_item()))
