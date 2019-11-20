@@ -521,7 +521,7 @@ DROP TABLE IF EXISTS `achievements`;
 CREATE TABLE `achievements` (
 	`name` VARCHAR(32) NOT NULL,
 	`id` INT UNSIGNED NOT NULL,
-	`desc` VARCHAR(2048) NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
