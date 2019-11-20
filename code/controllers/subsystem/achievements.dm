@@ -11,14 +11,14 @@ SUBSYSTEM_DEF(achievements)
 		var/datum/achievement/A = i
 		achievements[A] = initial(A.id)
 
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, desc FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]'")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]'")
 		medalQuery.Execute()
 		if(!medalQuery.NextRow())
 			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, desc) VALUES ('[initial(A.name)]', '[initial(A.id)]', '[initial(A.desc)]')")
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		else if(medalQuery.item[1] != initial(A.name) || medalQuery.item[2] != initial(A.desc))
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[initial(A.name)]', desc = '[initial(A.desc)]' WHERE id = '[initial(A.id)]'")
+			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[initial(A.name)]', descr = '[initial(A.desc)]' WHERE id = '[initial(A.id)]'")
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		
