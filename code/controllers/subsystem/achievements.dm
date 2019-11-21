@@ -33,7 +33,6 @@ SUBSYSTEM_DEF(achievements)
 		for(var/I in achievements)
 			var/datum/achievement/A = I
 			if(initial(A.id) != id)
-				to_chat(world, "[initial(A.id)] [id]")
 				continue
 			found_achievement = TRUE
 		if(!found_achievement)
