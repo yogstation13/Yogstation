@@ -306,7 +306,7 @@
 	name = "Programmers' Day"
 
 /datum/holiday/programmers/shouldCelebrate(dd, mm, yy, ww, ddd) //Programmer's day falls on the 2^8th day of the year
-	return (mm==9 && ((yy/4 == round(yy/4) && dd==12) || dd==13)
+	return (mm==9 && ((yy/4 == round(yy/4) && dd==12) || dd==13))
 
 /datum/holiday/programmers/getStationPrefix()
 	return pick("span>","DEBUG: ","null","/list","EVENT PREFIX NOT FOUND") //Portability
