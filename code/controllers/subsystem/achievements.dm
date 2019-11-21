@@ -31,11 +31,11 @@ SUBSYSTEM_DEF(achievements)
 		var/id = ridOldChieves.item[1]
 		var/found_achievement = FALSE
 		for(var/A in achievements)
-			if(achievements[A] == id)
-				found_achievement = TRUE
-				break
+			if(achievements[A] != id)
+				continue
+			found_achievement = TRUE
 		if(!found_achievement)
-			stack_trace("Old achievement [id] found in database, removing")
+			log_sql("Old achievement [id] found in database, removing")
 			var/datum/DBQuery/getRidOfOldStuff = SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE id = '[id]'")
 			getRidOfOldStuff.Execute()
 			var/datum/DBQuery/ridTheOtherTableAsWell = SSdbcore.NewQuery("DELETE FROM [format_table_name("earned_achievements")] WHERE id = '[id]'")
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/proc/unlock_achievement(datum/achievement/achievement, client/C)
 	if(!achievements[achievement])
-		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
+		log_sql("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
 		return FALSE
 	if(!has_achievement(achievement, C))
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievements[achievement]]')")
@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
 	if(!achievements[achievement])
-		stack_trace("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
+		log_sql("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
 	if(!cached_achievements[C.ckey])
 		cache_achievements(C)
 
