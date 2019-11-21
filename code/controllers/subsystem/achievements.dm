@@ -28,11 +28,12 @@ SUBSYSTEM_DEF(achievements)
 	var/datum/DBQuery/ridOldChieves = SSdbcore.NewQuery("SELECT id FROM [format_table_name("achievements")]")
 	ridOldChieves.Execute()
 	while(ridOldChieves.NextRow())
-		var/id = ridOldChieves.item[1]
+		var/id = text2num(ridOldChieves.item[1])
 		var/found_achievement = FALSE
 		for(var/I in achievements)
 			var/datum/achievement/A = I
 			if(initial(A.id) != id)
+				to_chat(world, "[initial(A.id)] [id]")
 				continue
 			found_achievement = TRUE
 		if(!found_achievement)
@@ -52,7 +53,7 @@ SUBSYSTEM_DEF(achievements)
 		log_sql("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
 		return FALSE
 	if(!has_achievement(achievement, C))
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievements[achievement]]')")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[initial(achievement.id)]')")
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
@@ -75,7 +76,7 @@ SUBSYSTEM_DEF(achievements)
 	cached_achievements[C.ckey] = list()
 	while(cacheQuery.NextRow())
 		for(var/i in achievements)
-			if(achievements[i] == cacheQuery.item[1])
+			if(achievements[i] == text2num(cacheQuery.item[1]))
 				cached_achievements[C.ckey] += i
 				break
 	qdel(cacheQuery)
