@@ -52724,6 +52724,10 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "cLJ" = (
@@ -53540,7 +53544,14 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "eIF" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "eOz" = (
@@ -53726,6 +53737,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"ftM" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "fxr" = (
 /obj/machinery/airalarm{
 	pixel_y = 25
@@ -103452,7 +103469,7 @@ bAB
 bBV
 bDb
 bEn
-bEm
+ftM
 bEm
 bEm
 bJL
