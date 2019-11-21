@@ -1,0 +1,4 @@
+author: "nichlas0010"
+delete-after: true 
+changes: 
+  - experiment: "Medals have been converted into achievements and moved from the hub to the database. This allows us to enable them."
