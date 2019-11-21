@@ -30,8 +30,9 @@ SUBSYSTEM_DEF(achievements)
 	while(ridOldChieves.NextRow())
 		var/id = ridOldChieves.item[1]
 		var/found_achievement = FALSE
-		for(var/A in achievements)
-			if(achievements[A] != id)
+		for(var/I in achievements)
+			var/datum/achievement/A = I
+			if(initial(A.id) != id)
 				continue
 			found_achievement = TRUE
 		if(!found_achievement)
