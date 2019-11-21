@@ -35175,14 +35175,18 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "beh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/brown,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "bei" = (
@@ -125761,6 +125765,10 @@
 /obj/structure/table/reinforced,
 /obj/item/extinguisher,
 /obj/item/extinguisher,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "hLm" = (
