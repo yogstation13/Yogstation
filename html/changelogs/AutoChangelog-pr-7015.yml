@@ -1,6 +1,0 @@
-author: "Nickvr628"
-delete-after: true 
-changes: 
-  - rscadd: "Slime hunting mechanics to lavaland. They spawn randomly and can be fulton recovered back to xenobiology."
-  - tweak: "Slime mutation rate is heavily nerfed to encourage hunting specific colors instead of breeding to that color."
-  - rscadd: "Slime hunting gear to mining and xenobio to support the above changes."
