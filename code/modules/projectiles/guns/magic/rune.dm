@@ -129,7 +129,7 @@
 
 /obj/item/gun/magic/rune/bullet_rune
 	name = "Bullet Rune"
-	desc = "This obsidian rune has the ability to shoot bullets out of it. I have yet to see someone who will outrun them."
+	desc = "This obsidian rune has the ability to shoot bullets out of it. I have yet to meet one that can outsmart them"
 	icon_state = "bullet-rune"
 	item_state = "bullet-rune"
 	fire_sound = "sound/weapons/bulletflyby2.ogg"
