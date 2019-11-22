@@ -46,7 +46,7 @@
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
 	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."desc = "A softdrink vendor provided by Robust Industries, LLC."
+	desc = "It vends cola, in space."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Now with cheaper prices!"
