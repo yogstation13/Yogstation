@@ -290,9 +290,7 @@
 	name = "Beer Day"
 
 /datum/holiday/beer/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if(mm == 8 && ddd == FRIDAY && ww == 1) //First Friday in August
-		return TRUE
-	return FALSE
+	return (mm == 8 && ddd == FRIDAY && ww == 1) //First Friday in August
 
 /datum/holiday/beer/getStationPrefix()
 	return pick("Stout","Porter","Lager","Ale","Malt","Bock","Doppelbock","Hefeweizen","Pilsner","IPA","Lite") //I'm sorry for the last one
@@ -313,14 +311,7 @@
 	name = "Programmers' Day"
 
 /datum/holiday/programmers/shouldCelebrate(dd, mm, yy, ww, ddd) //Programmer's day falls on the 2^8th day of the year
-	if(mm == 9)
-		if(yy/4 == round(yy/4)) //Note: Won't work right on September 12th, 2200 (at least it's a Friday!)
-			if(dd == 12)
-				return 1
-		else
-			if(dd == 13)
-				return 1
-	return 0
+	return (mm==9 && ((yy/4 == round(yy/4) && dd==12) || dd==13))
 
 /datum/holiday/programmers/getStationPrefix()
 	return pick("span>","DEBUG: ","null","/list","EVENT PREFIX NOT FOUND") //Portability
@@ -472,9 +463,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 */
 
 /datum/holiday/ramadan/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if (round(((world.realtime - 285984000) / 864000) % 354.373435326843) == 0)
-		return TRUE
-	return FALSE
+	return (round(((world.realtime - 285984000) / 864000) % 354.373435326843) == 0)
 
 /datum/holiday/ramadan/getStationPrefix()
 	return pick("Harm","Halaal","Jihad","Muslim")
@@ -483,9 +472,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = "End of Ramadan"
 
 /datum/holiday/ramadan/end/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if (round(((world.realtime - 312768000) / 864000) % 354.373435326843) == 0)
-		return TRUE
-	return FALSE
+	return (round(((world.realtime - 312768000) / 864000) % 354.373435326843) == 0)
 
 /datum/holiday/lifeday
 	name = "Life Day"
@@ -507,6 +494,15 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	begin_month = DECEMBER
 	end_day = 27
 	drone_hat = /obj/item/clothing/head/santa
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // jingle bells
+		"https://www.youtube.com/watch?v=x2YlbiyiuMc", // Winter Wonderland
+		"https://www.youtube.com/watch?v=cW38y4AFGyI", // The Grinch
+		"https://www.youtube.com/watch?v=zgKazTrhXmI", // frosty the snowman
+		"https://www.youtube.com/watch?v=oyEyMjdD2uk", // twelve days of christmas
+		"https://www.youtube.com/watch?v=maYCStVzjDs",  // deer song
+		"https://www.youtube.com/watch?v=Dkq3LD-4pmM"  // jolly christmas
+		)
 
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
@@ -546,9 +542,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = "Friday the 13th"
 
 /datum/holiday/friday_thirteenth/shouldCelebrate(dd, mm, yy, ww, ddd)
-	if(dd == 13 && ddd == FRIDAY)
-		return TRUE
-	return FALSE
+	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
 	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")

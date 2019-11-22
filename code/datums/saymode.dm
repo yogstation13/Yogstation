@@ -121,7 +121,7 @@
 	return TRUE
 
 /datum/saymode/darkspawn //yogs: darkspawn
-	key = "a"
+	key = "k"
 	mode = MODE_DARKSPAWN
 
 /datum/saymode/darkspawn/handle_message(mob/living/user, message, datum/language/language)

@@ -10631,8 +10631,16 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "aqu" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/machinery/light,
+/obj/effect/turf_decal/bot,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aqv" = (
@@ -17996,21 +18004,16 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/server)
 "aBj" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/computer/telecomms/traffic{
-	dir = 8;
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel,
 /area/tcommsat/server)
 "aBk" = (
 /obj/machinery/meter,
@@ -24055,6 +24058,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKm" = (
@@ -24961,6 +24965,7 @@
 	name = "Containment Control";
 	req_access_txt = "55"
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aLw" = (
@@ -25044,6 +25049,15 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"aLC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aLD" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/effect/turf_decal/stripes/line{
@@ -25677,6 +25691,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aME" = (
@@ -26108,6 +26123,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"aNs" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/telecomms/traffic{
+	dir = 8;
+	network = "tcommsat";
+	req_access = list(61)
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/server)
 "aNt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/tile/neutral{
@@ -26232,6 +26265,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"aNF" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aNG" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -26289,6 +26342,39 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aNL" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/airlock/hatch{
+	name = "Telecomms Control Room";
+	req_access_txt = "61"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
+"aNM" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/server)
 "aNU" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -26552,13 +26638,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
-"aOx" = (
-/obj/structure/chair/office/dark,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
@@ -35373,6 +35452,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "biY" = (
@@ -36955,9 +37035,9 @@
 /area/tcommsat/server)
 "buO" = (
 /obj/machinery/telecomms/receiver/preset_left/birdstation,
-/obj/machinery/airalarm/server{
+/obj/machinery/airalarm/tcomms{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -22
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
@@ -37824,18 +37904,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"drq" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/tcommsat/server)
 "dua" = (
 /obj/item/clothing/head/radiation,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -39793,26 +39861,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"pTu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "pZU" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -39846,35 +39894,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"qgq" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/hatch{
-	name = "Telecomms Control Room";
-	req_access_txt = "70"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "qgC" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/incinerator_input{
 	dir = 4
@@ -39919,6 +39938,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qzT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "qEl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -40064,10 +40107,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rEd" = (
-/obj/structure/closet/wardrobe/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "rEx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -71721,7 +71760,7 @@ aLG
 aMJ
 aIq
 aOv
-rEd
+aNM
 bxp
 aRB
 aPG
@@ -72232,13 +72271,13 @@ sWz
 aJl
 aKu
 aLI
-drq
+aBj
 aNV
 xSr
 aNV
-pTu
+aNF
 aRD
-qgq
+aNL
 aTY
 aUP
 buL
@@ -72491,14 +72530,14 @@ aKv
 aLJ
 aMN
 aNW
-aOx
+aLC
 buC
 bxp
 sJP
 aPG
 aBo
 buI
-buK
+qzT
 sKj
 aBu
 aMJ
@@ -72749,7 +72788,7 @@ aLK
 aMJ
 aNX
 aBi
-aBj
+aNs
 bxp
 aRE
 aSN

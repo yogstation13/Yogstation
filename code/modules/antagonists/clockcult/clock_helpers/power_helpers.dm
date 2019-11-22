@@ -24,7 +24,7 @@
 		hierophant_message(unlock_message)
 	return TRUE
 
-/proc/can_access_clockwork_power(atom/movable/access_point, amount) //Returns true if the access point has access to clockwork power (and optionally, a number of watts for it)
+/proc/can_access_clockwork_power(atom/movable/access_point, amount) //Returns true if the access point has access to clockwork power (and optionally, a number of joules for it)
 	if(amount && !get_clockwork_power(amount)) //No point in trying if we don't have the power anyway
 		return
 	var/list/possible_conduits = view(5, access_point)
