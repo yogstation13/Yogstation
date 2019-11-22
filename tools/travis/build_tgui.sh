@@ -17,3 +17,4 @@ echo "Building 'tgui-next'"
 cd "${base_dir}/tgui-next"
 bin/tgui --clean
 bin/tgui
+n
