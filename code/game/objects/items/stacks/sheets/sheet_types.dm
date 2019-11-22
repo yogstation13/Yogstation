@@ -285,6 +285,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("mining satchel", /obj/item/storage/bag/ore, 4), \
 	new/datum/stack_recipe("chemistry bag", /obj/item/storage/bag/chemistry, 4), \
 	new/datum/stack_recipe("bio bag", /obj/item/storage/bag/bio, 4), \
+	new/datum/stack_recipe("construction bag", /obj/item/storage/bag/construction, 4), \
 	null, \
 	new/datum/stack_recipe("improvised gauze", /obj/item/stack/medical/gauze/improvised, 1, 2, 6), \
 	new/datum/stack_recipe("rag", /obj/item/reagent_containers/glass/rag, 1), \
@@ -331,11 +332,27 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 /obj/item/stack/sheet/cloth/five
 	amount = 5
 
+/obj/item/stack/sheet/wool
+	name = "wool"
+	desc = "A bundle of wool ready to be spun on the loom."
+	singular_name = "wool ball"
+	icon_state = "sheet-wool"
+	item_state = "sheet-wool"
+	icon = 'icons/obj/stack_objects.dmi'
+	is_fabric = TRUE
+	resistance_flags = FLAMMABLE
+	force = 0
+	throwforce = 0
+	merge_type = /obj/item/stack/sheet/wool
+	pull_effort = 30
+	loom_result = /obj/item/stack/sheet/cloth
+
 /obj/item/stack/sheet/cotton
 	name = "raw cotton bundle"
 	desc = "A bundle of raw cotton ready to be spun on the loom."
 	singular_name = "raw cotton ball"
 	icon_state = "sheet-cotton"
+	item_state = "sheet-cotton"
 	is_fabric = TRUE
 	resistance_flags = FLAMMABLE
 	force = 0
