@@ -115,7 +115,6 @@
 						"alt_chems_needed" = alt_chems_needed))
 	data["bed"] = bed
 	if(bed)
-
 		var/list/surgeries = list()
 		for(var/X in advanced_surgeries)
 			var/datum/surgery/S = X
