@@ -258,7 +258,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 /proc/to_chat(target, message, handle_whitespace = TRUE, confidential = FALSE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, message, handle_whitespace)
+		to_chat_immediate(target, message, handle_whitespace, confidential)
 		return
 	SSchat.queue(target, message, handle_whitespace, confidential)
 
