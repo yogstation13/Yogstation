@@ -44,6 +44,12 @@
 /obj/machinery/vending/cola/black
 	icon_state = "cola_black"
 
+/obj/machinery/vending/cola/red
+	icon_state = "red_cola"
+	name = "\improper Space Cola Vendor"
+	desc = "It vends cola, in space."
+	product_slogans = "Cola in space!"
+	
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
 	name = "\improper Space-up! Vendor"
