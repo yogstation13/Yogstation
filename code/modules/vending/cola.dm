@@ -4,7 +4,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Now with cheaper prices!"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
@@ -19,7 +19,7 @@
 		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	refill_canister = /obj/item/vending_refill/cola
-	default_price = 10
+	default_price = 2
 	extra_price = 30
 	payment_department = ACCOUNT_SRV
 /obj/item/vending_refill/cola
@@ -46,7 +46,31 @@
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
 	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."
+	desc = "It vends cola, in space."desc = "A softdrink vendor provided by Robust Industries, LLC."
+	icon_state = "Cola_Machine"
+	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Now with cheaper prices!"
+	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
+		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
+					/obj/item/reagent_containers/glass/beaker/waterbottle = 10)
+					/obj/item/reagent_containers/glass/beaker/waterbottle = 2)
+	contraband = list(/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 6,
+		              /obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6)
+	premium = list(/obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola = 1,
+		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
+		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
+	refill_canister = /obj/item/vending_refill/cola
+	default_price = 10
+	default_price = 2
+	extra_price = 30
+	payment_department = ACCOUNT_SRV
+/obj/item/vending_refill/cola
 	product_slogans = "Cola in space!"
 
 /obj/machinery/vending/cola/space_up
