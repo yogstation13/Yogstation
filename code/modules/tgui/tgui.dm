@@ -133,7 +133,7 @@
   * optional template string The name of the new interface.
   * optional data list The new initial data.
  **/
-/datum/tgui/proc/reinitialize(interface, list/data, list/static_date)
+/datum/tgui/proc/reinitialize(interface, list/data, list/static_data)
 	if(interface)
 		set_interface(interface) // Set a new interface.
 	if(data)
