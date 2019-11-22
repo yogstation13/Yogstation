@@ -52,7 +52,7 @@
 			var/color = A.minimap_color || "#FF00FF"
 			if(locate(/obj/machinery/power/solar) in T)
 				color = "#02026a"
-			if((locate(/obj/effect/spawner/structure/window) in T) || (locate(/obj/structure/grill) in T))
+			if((locate(/obj/effect/spawner/structure/window) in T) || (locate(/obj/structure/grille) in T))
 				color = BlendRGB(color, "#000000", 0.5)
 			map_icon.DrawBox(color, img_x, img_y)
 	map_icon.Crop(crop_x1, crop_y1, crop_x2, crop_y2)
