@@ -36,7 +36,6 @@ import { Gps } from './interfaces/Gps';
 import { Holodeck } from './interfaces/Holodeck';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { MedicalKiosk } from './interfaces/MedicalKiosk';
-import { Mint } from './interfaces/Mint';
 import { NtosMain } from './interfaces/NtosMain';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
@@ -219,10 +218,6 @@ const ROUTES = {
   },
   medical_kiosk: {
     component: () => MedicalKiosk,
-    scrollable: false,
-  },
-  mint: {
-    component: () => Mint,
     scrollable: false,
   },
   ntos_main: {
