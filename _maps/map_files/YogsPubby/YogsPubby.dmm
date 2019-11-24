@@ -5971,7 +5971,6 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/clothing/head/bearpelt,
-/obj/item/skub,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
