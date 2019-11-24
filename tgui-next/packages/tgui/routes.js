@@ -15,15 +15,9 @@ import { Canister } from './interfaces/Canister';
 import { Cargo, CargoExpress } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
-import { ChemAcclimator } from './interfaces/ChemAcclimator';
-import { ChemDebugSynthesizer } from './interfaces/ChemDebugSynthesizer';
 import { ChemDispenser } from './interfaces/ChemDispenser';
-import { ChemFilter } from './interfaces/ChemFilter';
 import { ChemHeater } from './interfaces/ChemHeater';
 import { ChemMaster } from './interfaces/ChemMaster';
-import { ChemPress } from './interfaces/ChemPress';
-import { ChemSplitter } from './interfaces/ChemSplitter';
-import { ChemSynthesizer } from './interfaces/ChemSynthesizer';
 import { CodexGigas } from './interfaces/CodexGigas';
 import { ComputerFabricator } from './interfaces/ComputerFabricator';
 import { Crayon } from './interfaces/Crayon';
@@ -136,16 +130,8 @@ const ROUTES = {
     component: () => CentcomPodLauncher,
     scrollable: false,
   },
-  acclimator: {
-    component: () => ChemAcclimator,
-    scrollable: false,
-  },
   chem_dispenser: {
     component: () => ChemDispenser,
-    scrollable: true,
-  },
-  chemical_filter: {
-    component: () => ChemFilter,
     scrollable: true,
   },
   chem_heater: {
@@ -155,22 +141,6 @@ const ROUTES = {
   chem_master: {
     component: () => ChemMaster,
     scrollable: true,
-  },
-  chem_press: {
-    component: () => ChemPress,
-    scrollable: false,
-  },
-  chem_splitter: {
-    component: () => ChemSplitter,
-    scrollable: false,
-  },
-  chem_synthesizer: {
-    component: () => ChemDebugSynthesizer,
-    scrollable: false,
-  },
-  synthesizer: {
-    component: () => ChemSynthesizer,
-    scrollable: false,
   },
   codex_gigas: {
     component: () => CodexGigas,
