@@ -20627,7 +20627,6 @@
 	pixel_y = 30
 	},
 /obj/structure/healingfountain,
-/obj/item/skub,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "UJ" = (
