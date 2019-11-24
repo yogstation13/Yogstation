@@ -10631,8 +10631,16 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "aqu" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/machinery/light,
+/obj/effect/turf_decal/bot,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aqv" = (
@@ -24050,6 +24058,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 26
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aKm" = (
@@ -24956,6 +24965,7 @@
 	name = "Containment Control";
 	req_access_txt = "55"
 	},
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aLw" = (
@@ -25681,6 +25691,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "aME" = (
@@ -26359,6 +26370,10 @@
 	req_access_txt = "61"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
+"aNM" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/grimy,
 /area/tcommsat/server)
 "aNU" = (
 /obj/structure/chair/office/dark{
@@ -35437,6 +35452,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "biY" = (
@@ -37019,9 +37035,9 @@
 /area/tcommsat/server)
 "buO" = (
 /obj/machinery/telecomms/receiver/preset_left/birdstation,
-/obj/machinery/airalarm/server{
+/obj/machinery/airalarm/tcomms{
 	dir = 4;
-	pixel_x = -23
+	pixel_x = -22
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
@@ -39922,6 +39938,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qzT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "qEl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -40067,10 +40107,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"rEd" = (
-/obj/structure/closet/wardrobe/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/server)
 "rEx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -71724,7 +71760,7 @@ aLG
 aMJ
 aIq
 aOv
-rEd
+aNM
 bxp
 aRB
 aPG
@@ -72501,7 +72537,7 @@ sJP
 aPG
 aBo
 buI
-buK
+qzT
 sKj
 aBu
 aMJ
