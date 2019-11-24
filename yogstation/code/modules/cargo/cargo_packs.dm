@@ -97,16 +97,6 @@
 					/obj/item/clothing/shoes/sneakers/orange)
 	crate_name = "prison crate"
 
-/datum/supply_pack/misc/skub
-	name = "Skub Crate"
-	desc = "Contains skub, you skub."
-	cost = 1000
-	contains = list(/obj/item/skub,
-					/obj/item/skub,
-					/obj/item/skub,
-					/obj/item/skub,
-					/obj/item/skub)
-	crate_name = "skub crate"
 
 /datum/supply_pack/engine/am_jar
 	name = "Antimatter Containment Jar Crate"
