@@ -155,16 +155,6 @@
 /obj/machinery/light/broken,
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered)
-"aD" = (
-/obj/item/stack/sheet/metal,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plating/airless{
-	icon_state = "platingdmg2"
-	},
-/area/ruin/unpowered)
 "aE" = (
 /obj/structure/door_assembly/door_assembly_mhatch{
 	name = "broken airlock"
@@ -954,7 +944,7 @@ ag
 ai
 ap
 aV
-aD
+as
 ap
 ac
 ac
