@@ -1,4 +1,0 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - tweak: "the \"steal a full plasma tank\" objective now checks for the equivalent to a full tank, not necessarily a single full tank."
