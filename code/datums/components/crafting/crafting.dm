@@ -389,7 +389,10 @@
 			if(!isnull(params["category"]))
 				cur_category = params["category"]
 			if(!isnull(params["subcategory"]))
-				cur_subcategory = params["subcategory"]
+				if(params["subcategory"] == "0")
+					cur_subcategory = ""
+				else
+					cur_subcategory = params["subcategory"]
 			. = TRUE
 
 
