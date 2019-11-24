@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/unlock_note
 	var/unlock_code
 	var/failsafe_code
-
+	var/debug = FALSE
 	var/compact_mode = FALSE
 
 	var/list/previous_attempts
