@@ -973,7 +973,7 @@
 
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame" 
-	id =  "flasher" 
+	id =  "wallframe/flasher" 
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
 	build_path = /obj/item/wallframe/flasher
