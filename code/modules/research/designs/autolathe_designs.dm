@@ -971,8 +971,8 @@
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/flasher
-	name = "Mounted Flash" 
+/datum/design/wallframe/flasher
+	name = "Mounted Flash Frame" 
 	id =  "flasher" 
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
