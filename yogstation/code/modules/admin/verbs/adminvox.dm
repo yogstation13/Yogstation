@@ -33,7 +33,7 @@
 	else if(voxType == "male") // If we're doing the yog-ly male AI vox voice
 		voxlist = GLOB.vox_sounds_male
 	else
-		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>", confidential=TRUE)
+		to_chat(src,"<span class='notice'>Unknown or unsupported vox type. Yell at a coder about this.</span>")
 		return
 	
 	for(var/word in words) // For each word
@@ -45,7 +45,7 @@
 			incorrect_words += word
 	
 	if(incorrect_words.len)
-		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>", confidential=TRUE)
+		to_chat(src, "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>")
 		return
 
 	var/pitch = 0

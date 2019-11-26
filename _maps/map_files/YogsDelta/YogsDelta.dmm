@@ -33706,25 +33706,17 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "bca" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/power/apc/highcap/ten_k{
+	dir = 1;
+	name = "Telecomms Monitoring APC";
+	areastring = "/area/tcommsat/computer";
+	pixel_y = 28
 	},
-/obj/item/paper_bin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/structure/cable/white{
+	icon_state = "0-2"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	pixel_y = 26
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bcb" = (
 /obj/machinery/camera{
@@ -35175,18 +35167,14 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "beh" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "bei" = (
@@ -58952,21 +58940,29 @@
 /area/bridge/meeting_room/council)
 "bMx" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue,
-/obj/item/pen,
-/obj/machinery/power/apc/highcap/ten_k{
-	dir = 1;
-	name = "Telecomms Monitoring APC";
-	areastring = "/area/tcommsat/computer";
-	pixel_y = 28
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/structure/cable/white{
-	icon_state = "0-2"
+/obj/item/paper_bin,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/turf/open/floor/plasteel/grimy,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "bMy" = (
-/obj/machinery/vending/wardrobe/sig_wardrobe,
+/obj/structure/table/wood,
+/obj/item/radio/intercom{
+	pixel_y = 26
+	},
+/obj/item/folder/blue,
+/obj/item/pen,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bMz" = (
@@ -60542,9 +60538,6 @@
 "bOH" = (
 /obj/structure/chair/office/dark{
 	dir = 1
-	},
-/obj/structure/cable/white{
-	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -62719,12 +62712,12 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "bSa" = (
+/obj/structure/cable/white{
+	icon_state = "1-4"
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	icon_state = "scrub_map_on-3";
 	dir = 4
-	},
-/obj/structure/cable/white{
-	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -79392,6 +79385,10 @@
 /turf/open/floor/plasteel,
 /area/maintenance/starboard)
 "crz" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -125765,10 +125762,6 @@
 /obj/structure/table/reinforced,
 /obj/item/extinguisher,
 /obj/item/extinguisher,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "hLm" = (
@@ -125949,22 +125942,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/vacant_room/commissary)
-"kNc" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/airalarm/tcomms{
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "ljP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -164621,7 +164598,7 @@ aXe
 bHa
 bIM
 bKH
-bca
+bMx
 bOG
 bQH
 bSD
@@ -164878,7 +164855,7 @@ bBz
 bHb
 bIN
 bKH
-bMx
+bMy
 bOH
 drU
 bSE
@@ -165135,7 +165112,7 @@ aXh
 aYu
 aZn
 bKH
-bMy
+bca
 bSa
 bQJ
 bSF
@@ -166939,7 +166916,7 @@ bKH
 bKH
 bKH
 bUG
-kNc
+bUF
 bUF
 bUF
 ccE

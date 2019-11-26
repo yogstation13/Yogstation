@@ -30,6 +30,12 @@
 /turf/closed/wall/mineral/titanium,
 /area/ruin/unpowered)
 "k" = (
+/obj/item/stack/sheet/mineral/bananium{
+	amount = 15
+	},
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered)
+"m" = (
 /obj/structure/chair{
 	dir = 1
 	},
@@ -44,15 +50,12 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/unpowered)
-"l" = (
+"n" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /obj/item/storage/pod{
 	pixel_x = -26
-	},
-/obj/item/stack/sheet/mineral/bananium{
-	amount = 15
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/unpowered)
@@ -301,9 +304,9 @@ f
 f
 g
 g
-j
 k
-l
+m
+n
 p
 a
 "}

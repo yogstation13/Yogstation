@@ -13,7 +13,7 @@
 		var/moles = gas[MOLES]
 		if (moles >= 0.00001)
 			lines += "[gas[GAS_META][META_GAS_NAME]]: [moles] mol"
-	to_chat(usr, lines.Join("\n"), confidential=TRUE)
+	to_chat(usr, lines.Join("\n"))
 
 /client/proc/air_status(turf/target)
 	set category = "Debug"

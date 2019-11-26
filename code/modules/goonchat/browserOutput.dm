@@ -118,7 +118,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
-		to_chat(owner, message, handle_whitespace=FALSE, confidential=TRUE)
+		to_chat(owner, message, handle_whitespace=FALSE)
 
 	messageQueue = null
 	sendClientData()
@@ -199,7 +199,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 //Global chat procs
-/proc/to_chat_immediate(target, message, handle_whitespace = TRUE, confidential = FALSE)
+/proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
 	if(!target || !message)
 		return
 
@@ -210,9 +210,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
 		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
-
-	if(!confidential)
-		SSdemo.write_chat(target, message)
 
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
@@ -256,11 +253,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
 
-/proc/to_chat(target, message, handle_whitespace = TRUE, confidential = FALSE)
+/proc/to_chat(target, message, handle_whitespace = TRUE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, message, handle_whitespace, confidential)
+		to_chat_immediate(target, message, handle_whitespace)
 		return
-	SSchat.queue(target, message, handle_whitespace, confidential)
+	SSchat.queue(target, message, handle_whitespace)
 
 /datum/chatOutput/proc/swaptolightmode() //Dark mode light mode stuff. Yell at KMC if this breaks! (See darkmode.dm for documentation)
 	owner.force_white_theme()

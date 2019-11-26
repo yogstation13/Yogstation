@@ -240,7 +240,7 @@
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>", confidential=TRUE)
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>")
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return

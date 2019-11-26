@@ -88,7 +88,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "ar" = (
@@ -140,11 +139,8 @@
 /area/template_noop)
 "ax" = (
 /obj/structure/lattice,
-/obj/item/shard{
-	icon_state = "medium"
-	},
 /turf/template_noop,
-/area/space/nearstation)
+/area/ruin/space/has_grav/onehalf/hallway)
 "ay" = (
 /obj/structure/table_frame,
 /turf/open/floor/plasteel/airless{
@@ -202,12 +198,9 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/onehalf/drone_bay)
 "aH" = (
-/obj/structure/lattice,
-/obj/item/stack/cable_coil/cut/red{
-	amount = 2
-	},
+/obj/item/stack/rods,
 /turf/template_noop,
-/area/space/nearstation)
+/area/ruin/space/has_grav/onehalf/hallway)
 "aI" = (
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
@@ -909,15 +902,12 @@
 /turf/template_noop,
 /area/space/nearstation)
 "ct" = (
-/obj/machinery/door/airlock/external,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/lattice,
+/obj/item/shard{
+	icon_state = "medium"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/onehalf/drone_bay)
+/turf/template_noop,
+/area/ruin/space/has_grav/onehalf/hallway)
 "cu" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless{
@@ -940,11 +930,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cy" = (
+/obj/machinery/power/solar_control,
 /obj/structure/cable,
-/obj/machinery/power/solar_control{
-	icon_state = "computer";
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cz" = (
@@ -964,27 +951,8 @@
 /turf/template_noop,
 /area/template_noop)
 "cB" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/onehalf/bridge)
-"cC" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "bridge_onehalf";
-	name = "bridge blast door"
-	},
-/obj/machinery/door/airlock/command/glass{
-	name = "Bridge"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/onehalf/bridge)
+/turf/template_noop,
+/area/ruin/space/has_grav/onehalf/hallway)
 "cD" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/broken{
@@ -996,9 +964,8 @@
 /turf/template_noop,
 /area/ruin/space/has_grav/onehalf/hallway)
 "cE" = (
-/obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 8
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -1007,9 +974,12 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cG" = (
-/obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 1
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge_onehalf";
+	name = "bridge blast door"
+	},
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
@@ -1034,6 +1004,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
+"cK" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut/red{
+	amount = 2
+	},
+/turf/template_noop,
+/area/ruin/space/has_grav/onehalf/hallway)
 "cL" = (
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
@@ -1232,6 +1209,9 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"Ky" = (
+/turf/template_noop,
+/area/space/nearstation)
 "Me" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -1264,8 +1244,8 @@ aa
 aa
 aa
 aj
-Me
-cr
+ax
+aH
 aj
 bf
 bv
@@ -1286,9 +1266,9 @@ aa
 aa
 ae
 ak
-Me
+ax
 aI
-Me
+ax
 bg
 bw
 aj
@@ -1309,7 +1289,7 @@ aa
 ac
 ak
 ay
-Me
+ax
 aT
 bh
 bw
@@ -1469,11 +1449,11 @@ bl
 bz
 bR
 bR
-Me
+ax
 aj
-aa
+cB
 aj
-Me
+ax
 bR
 bQ
 di
@@ -1491,11 +1471,11 @@ bj
 bA
 bS
 bW
-Me
 ax
-aH
-aH
-aH
+ct
+cK
+cK
+cK
 cX
 dc
 dj
@@ -1537,7 +1517,7 @@ bU
 bY
 ci
 cv
-cB
+cE
 bU
 cQ
 cQ
@@ -1551,18 +1531,18 @@ ad
 ai
 aq
 aD
-ct
+aq
 aX
 bo
 bp
 bU
-aa
+Ky
 cj
 bU
 cF
 bU
 Me
-aa
+Ky
 bU
 ac
 aa
@@ -1581,7 +1561,7 @@ bU
 bZ
 ck
 bU
-cC
+cG
 bU
 bZ
 bZ
@@ -1672,7 +1652,7 @@ cn
 cI
 cn
 cS
-cG
+ce
 df
 ac
 aa
@@ -1694,7 +1674,7 @@ cn
 cn
 cn
 cn
-cG
+ce
 df
 ac
 aa
@@ -1735,8 +1715,8 @@ bU
 cg
 cp
 cy
-cE
-cE
+ce
+ce
 cU
 db
 bU

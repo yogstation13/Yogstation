@@ -198,7 +198,6 @@
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
 	rustg_log_close_all()
-	quickwrite_close_all()
 
 
 /* Helper procs for building detailed log lines */

@@ -48,8 +48,8 @@ GLOBAL_PROTECT(mentor_href_token)
 	var/tok = GLOB.mentor_href_token
 	if(!forceGlobal && usr)
 		var/client/C = usr.client
-		to_chat(world, C, confidential=TRUE)
-		to_chat(world, usr, confidential=TRUE)
+		to_chat(world, C)
+		to_chat(world, usr)
 		if(!C)
 			CRASH("No client for HrefToken()!")
 

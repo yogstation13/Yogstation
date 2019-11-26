@@ -15,7 +15,6 @@
 	var/max_fields = 3
 	var/list/current_fields
 	var/field_distance_limit = 7
-	var/creation_time = 30
 
 /obj/item/forcefield_projector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
@@ -27,26 +26,24 @@
 			to_chat(user, "<span class='notice'>You deactivate [F].</span>")
 			qdel(F)
 			return
-	if(do_after(user, creation_time, target = target))
-		var/turf/T = get_turf(target)
-		var/obj/structure/projected_forcefield/found_field = locate() in T
-		if(found_field)
-			to_chat(user, "<span class='warning'>There is already a forcefield in that location!</span>")
-			return
-		if(T.density)
-			return
-		if(get_dist(T,src) > field_distance_limit)
-			return
-		if(LAZYLEN(current_fields) >= max_fields)
-			to_chat(user, "<span class='notice'>[src] cannot sustain any more forcefields!</span>")
-			return
+	var/turf/T = get_turf(target)
+	var/obj/structure/projected_forcefield/found_field = locate() in T
+	if(found_field)
+		to_chat(user, "<span class='warning'>There is already a forcefield in that location!</span>")
+		return
+	if(T.density)
+		return
+	if(get_dist(T,src) > field_distance_limit)
+		return
+	if(LAZYLEN(current_fields) >= max_fields)
+		to_chat(user, "<span class='notice'>[src] cannot sustain any more forcefields!</span>")
+		return
 
-
-		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
-		user.visible_message("<span class='warning'>[user] projects a forcefield!</span>","<span class='notice'>You project a forcefield.</span>")
-		var/obj/structure/projected_forcefield/F = new(T, src)
-		current_fields += F
-		user.changeNext_move(CLICK_CD_MELEE)
+	playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
+	user.visible_message("<span class='warning'>[user] projects a forcefield!</span>","<span class='notice'>You project a forcefield.</span>")
+	var/obj/structure/projected_forcefield/F = new(T, src)
+	current_fields += F
+	user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/forcefield_projector/attack_self(mob/user)
 	if(LAZYLEN(current_fields))

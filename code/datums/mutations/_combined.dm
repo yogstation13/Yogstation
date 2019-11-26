@@ -28,7 +28,3 @@
 /datum/generecipe/shock
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/radioactive"
 	result = SHOCKTOUCH
-	
-/datum/generecipe/antiglow
-	required = "/datum/mutatin/human/glow; /datum/mutation/human/void"
-	result = ANTIGLOWY

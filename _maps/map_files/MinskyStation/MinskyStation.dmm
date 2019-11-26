@@ -26164,6 +26164,10 @@
 	icon_state = "vent_map_on-2";
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	icon_state = "vent_map_siphon_on-2";
+	dir = 1
+	},
 /turf/open/floor/circuit{
 	icon_state = "dark";
 	name = "Server Walkway";
@@ -26176,6 +26180,10 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	icon_state = "vent_map_siphon_on-2";
 	dir = 1
 	},
 /turf/open/floor/circuit{
@@ -51405,7 +51413,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/airalarm/tcomms{
+/obj/machinery/airalarm/server{
 	dir = 4;
 	pixel_x = -22
 	},

@@ -504,7 +504,6 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
 		targetinfo = item
-		targetinfo.objective = src
 		steal_target = targetinfo.targetitem
 		explanation_text = "Steal [targetinfo.name]"
 		give_special_equipment(targetinfo.special_equipment)

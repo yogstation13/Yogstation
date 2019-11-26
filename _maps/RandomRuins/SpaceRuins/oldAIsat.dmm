@@ -766,13 +766,6 @@
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"cA" = (
-/obj/structure/frame/computer{
-	icon_state = "0";
-	dir = 8
-	},
-/turf/open/floor/plasteel/airless,
-/area/tcommsat/oldaisat)
 "cB" = (
 /obj/effect/spawner/structure/window/hollow/reinforced,
 /turf/open/floor/plating,
@@ -2818,8 +2811,8 @@ ag
 ag
 ag
 aD
-cA
-cA
+aC
+aC
 ag
 bv
 ag

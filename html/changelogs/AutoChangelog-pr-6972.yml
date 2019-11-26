@@ -1,0 +1,5 @@
+author: "missatessatessy"
+delete-after: true 
+changes: 
+  - rscadd: "Adds sheep that you can shave or milk."
+  - imageadd: "sheep and wool icons"

@@ -7,17 +7,11 @@
 /area/ruin/powered)
 "c" = (
 /obj/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"d" = (
-/obj/machinery/door/airlock/shuttle,
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/space,
 /area/ruin/powered)
 "e" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "HippieVan"
-	},
-/turf/open/floor/mineral/titanium/yellow,
+/obj/machinery/door/airlock/shuttle,
+/turf/open/space,
 /area/ruin/powered)
 "f" = (
 /obj/structure/chair/comfy{
@@ -69,6 +63,12 @@
 /area/ruin/powered)
 "r" = (
 /turf/open/floor/plasteel/stairs/right,
+/area/ruin/powered)
+"t" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "HippieVan"
+	},
+/turf/open/space,
 /area/ruin/powered)
 "u" = (
 /obj/effect/mob_spawn/human/corpse/damaged,
@@ -217,12 +217,12 @@ a
 (5,1,1) = {"
 a
 b
-d
+e
 b
 b
-e
-e
-e
+t
+t
+t
 c
 b
 I
@@ -297,7 +297,7 @@ a
 (10,1,1) = {"
 a
 b
-d
+e
 b
 b
 b

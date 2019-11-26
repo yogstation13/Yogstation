@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/shuttle_purchased = FALSE //If the station has purchased a replacement escape shuttle this round
 	var/emag_shuttle_purchased = FALSE //If the traitors have purchased a replacement escape shuttle this round
+	var/list/shuttle_purchase_requirements_met = list() //For keeping track of ingame events that would unlock new shuttles, such as defeating a boss or discovering a secret item
 
 	var/lockdown = FALSE	//disallow transit after nuke goes off
 
@@ -537,6 +538,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	if (istype(SSshuttle.shuttle_loan))
 		shuttle_loan = SSshuttle.shuttle_loan
+
+	if (istype(SSshuttle.shuttle_purchase_requirements_met))
+		shuttle_purchase_requirements_met = SSshuttle.shuttle_purchase_requirements_met
 
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	centcom_message = SSshuttle.centcom_message

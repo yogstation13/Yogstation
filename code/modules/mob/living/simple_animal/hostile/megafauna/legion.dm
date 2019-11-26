@@ -39,6 +39,8 @@ Difficulty: Medium
 	var/size = 5
 	var/charging = FALSE
 	internal_type = /obj/item/gps/internal/legion
+	medal_type = BOSS_MEDAL_LEGION
+	score_type = LEGION_SCORE
 	pixel_y = -90
 	pixel_x = -75
 	loot = list(/obj/item/stack/sheet/bone = 3)

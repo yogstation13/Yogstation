@@ -70,14 +70,10 @@
 				spendtime.target = obsessionmind
 				objectives += spendtime
 			if("polaroid")
-				/*
-				 * This is currently commented out like this so that there still is a chance for a third objective if applicable
-				 * but this won't add the objective if it tries to select the picture one
 				var/datum/objective/polaroid/polaroid = new
 				polaroid.owner = owner
 				polaroid.target = obsessionmind
 				objectives += polaroid
-				*/
 			if("hug")
 				var/datum/objective/hug/hug = new
 				hug.owner = owner

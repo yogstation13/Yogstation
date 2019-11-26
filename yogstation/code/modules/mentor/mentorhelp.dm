@@ -3,7 +3,7 @@
 	set name = "Mentorhelp"
 
 	if(is_mentor())
-		to_chat(src, "<span class='notice'>Mentors cannot mentorhelp, use msay instead!</span>", confidential=TRUE)
+		to_chat(src, "<span class='notice'>Mentors cannot mentorhelp, use msay instead!</span>")
 		return
 
 	//clean the input msg
@@ -27,9 +27,9 @@
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			send_mentor_sound(X)
-		to_chat(X, mentor_msg, confidential=TRUE)
+		to_chat(X, mentor_msg)
 
-	to_chat(src, "<span class='mentornotice purple'>PM to-<b>Mentors</b>: [msg]</span>", confidential=TRUE)
+	to_chat(src, "<span class='mentornotice purple'>PM to-<b>Mentors</b>: [msg]</span>")
 
 	var/datum/mentorticket/mt
 	if(ckey in SSYogs.mentortickets)

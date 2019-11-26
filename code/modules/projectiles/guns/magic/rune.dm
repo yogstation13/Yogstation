@@ -9,8 +9,8 @@
 	recharge_rate = 5
 
 /obj/item/gun/magic/rune/icycle_rune
-	name = "Icicle Rune"
-	desc = "This obsidian rune has the ability to shoot icicles out of it. You do not want to hit yourself with it."
+	name = "Icycle Rune"
+	desc = "This obsidian rune has the ability to shoot icycles out of it. You do not want to hit yourself with it."
 	fire_sound = 'sound/magic/fireball.ogg'
 	icon_state = "icycle-rune"
 	item_state = "icycle-rune"
@@ -91,7 +91,7 @@
 
 /obj/item/gun/magic/rune/bomb_rune
 	name = "Bomb Rune"
-	desc = "This obsidian rune has the ability to shoot bombs out of it. There is a sticky note on the back which reads 'Does not work on inanimate objects'."
+	desc = "This obsidian rune has the ability to shoot bombs out of it. There is a sticky note on the backside, it says 'Does not work on inanimate objects'."
 	fire_sound = 'sound/effects/explosion1.ogg'
 	icon_state = "bomb-rune"
 	item_state = "bomb-rune"
@@ -103,7 +103,7 @@
 
 /obj/item/gun/magic/rune/toxic_rune
 	name = "Toxic Rune"
-	desc = "This obsidian rune has the ability to shoot syringes with toxins inside. You do not want to inject yourself with it."
+	desc = "This obsidian rune has the ability to shoot syringes with toxins inside. You do not want to inject yourself with it"
 	fire_sound = "syringeproj"
 	item_state = "toxic-rune"
 	icon_state = "toxic-rune"
@@ -117,7 +117,7 @@
 
 /obj/item/gun/magic/rune/death_rune
 	name = "Death To The Dead Rune"
-	desc = "This rune has the ability to put to grave some things that shouldn't rise from their grave. May it be useful for you."
+	desc = "This rune has the ability to put to grave some things that shouldnt rise from their grave. May it be useful for you"
 	fire_sound = "sound/magic/staff_animation.ogg"
 	item_state = "death-rune"
 	icon_state = "death-rune"
@@ -129,7 +129,7 @@
 
 /obj/item/gun/magic/rune/bullet_rune
 	name = "Bullet Rune"
-	desc = "This obsidian rune has the ability to shoot bullets out of it. I have yet to meet one that can outsmart them"
+	desc = "This obsidian rune has the ability to shoot bullets out of it. I have yet to see one who will outsmart them"
 	icon_state = "bullet-rune"
 	item_state = "bullet-rune"
 	fire_sound = "sound/weapons/bulletflyby2.ogg"
@@ -148,7 +148,7 @@
 
 /obj/item/gun/magic/rune/mutation_rune
 	name = "Mutation Rune"
-	desc = "This rune has the ability to mutate the target. Be careful, you don't want to mutate right?"
+	desc = "This rune has the ability to mutate the target. You do not want to mutate right?"
 	fire_sound = "sound/magic/mutate.ogg"
 	icon_state = "mutation-rune"
 	item_state = "mutation-rune"

@@ -3,7 +3,7 @@
 	set category = "Object"
 
 	if((O.obj_flags & DANGEROUS_POSSESSION) && CONFIG_GET(flag/forbid_singulo_possession))
-		to_chat(usr, "[O] is too powerful for you to possess.", confidential=TRUE)
+		to_chat(usr, "[O] is too powerful for you to possess.")
 		return
 
 	var/turf/T = get_turf(O)
@@ -32,7 +32,7 @@
 
 //Yogs start - fixed release object
 	if(!usr.control_object)
-		to_chat(usr, "You need to possess an object first!", confidential=TRUE)
+		to_chat(usr, "You need to possess an object first!")
 		return
 //Yogs end
 

@@ -1,6 +1,6 @@
 /datum/design/nanite_heart
 	name = "Nanite Heart"
-	desc = "A heart made of nanites that improves their function in the body."
+	desc = "A heart that improves the functions of nanites"
 	id = "nanite_heart"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80

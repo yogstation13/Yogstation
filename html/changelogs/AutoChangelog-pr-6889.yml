@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "DRAGnet now has its teleport destination set manually"
