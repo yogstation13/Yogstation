@@ -61,7 +61,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/ # this was interfering with nodejs stuff
 lib64/
 parts/
 sdist/
