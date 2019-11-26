@@ -10,8 +10,6 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-#define isappearance(A) (copytext("\ref[A]", 4, 6) == "3a")
-
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 

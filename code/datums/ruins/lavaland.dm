@@ -429,12 +429,3 @@
 	suffix = "kinggoatboss.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/elite_tumor
-	name = "Pulsating Tumor"
-	id = "tumor"
-	description = "A strange tumor which houses a powerful beast..."
-	suffix = "lavaland_surface_elite_tumor.dmm"
-	cost = 5
-	always_place = TRUE
-	allow_duplicates = TRUE

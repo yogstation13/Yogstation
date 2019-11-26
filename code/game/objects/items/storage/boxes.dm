@@ -126,7 +126,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -137,7 +136,6 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 
 // Engineer survival box
@@ -145,7 +143,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -161,7 +158,6 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
-	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -468,7 +464,7 @@
 /obj/item/storage/box/gorillacubes/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/gorilla(src)
-
+		
 /obj/item/storage/box/mixedcubes
 	name = "mixed farm animal cube box"
 	desc = "Farm Town's new cubes to make your farming dreams come true. Just add water!"
@@ -1026,7 +1022,7 @@
 		new /obj/item/reagent_containers/food/snacks/grown/soybeans(src)
 		new /obj/item/reagent_containers/food/snacks/grown/cabbage(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
-
+	
 /obj/item/storage/box/cheese
 	name = "box of advanced cheese bacteria"
 

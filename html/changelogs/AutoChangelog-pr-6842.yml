@@ -1,0 +1,4 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a new autosurgeon for the unused medical beam gun to the traitor uplink for cmo and medical doctors"

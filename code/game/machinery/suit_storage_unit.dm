@@ -357,7 +357,7 @@
 				return
 			storage = I
 
-		visible_message("<span class='notice'>[user] inserts [I] into [src].</span>", "<span class='notice'>You load [I] into [src].</span>")
+		visible_message("<span class='notice'>[user] inserts [I] into [src]</span>", "<span class='notice'>You load [I] into [src].</span>")
 		update_icon()
 		return
 

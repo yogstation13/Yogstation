@@ -73,6 +73,3 @@
 
 /obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")
-
-/obj/effect/landmark/stationroom/box/xenobridge
-	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")

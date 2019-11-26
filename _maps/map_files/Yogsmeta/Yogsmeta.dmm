@@ -13937,14 +13937,10 @@
 /turf/closed/wall,
 /area/medical/paramedic)
 "azj" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "azk" = (
@@ -50375,6 +50371,10 @@
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
 "bMo" = (
+/obj/machinery/airalarm/server{
+	dir = 4;
+	pixel_x = -22
+	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -50387,10 +50387,6 @@
 	dir = 4;
 	external_pressure_bound = 120;
 	name = "server vent"
-	},
-/obj/machinery/airalarm/tcomms{
-	dir = 4;
-	pixel_x = -22
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -56250,8 +56246,6 @@
 	dir = 9
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXh" = (
@@ -56399,8 +56393,6 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXx" = (

@@ -191,7 +191,7 @@
 
 /obj/item/storage/backpack/snail/green
 	name = "green shell backpack"
-	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt."
+	desc = "An emerald-green snail shell converted into a backpack. Still smells of salt"
 	item_state = "snail_green"
 	icon_state = "snail_green"
 
@@ -210,3 +210,4 @@
 	alternate_worn_icon = 'yogstation/icons/mob/back.dmi'
 	icon_state = "clownfacebackpack"
 	item_state = "clownfacebackpack"
+

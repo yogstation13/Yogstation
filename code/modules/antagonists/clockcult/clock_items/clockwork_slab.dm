@@ -128,7 +128,7 @@
 					continue
 				var/datum/clockwork_scripture/quickbind_slot = quickbound[i]
 				. += "<b>Quickbind</b> button: <span class='[get_component_span(initial(quickbind_slot.primary_component))]'>[initial(quickbind_slot.name)]</span>."
-		. += "<b>Available power:</b> <span class='bold brass'>[DisplayEnergy(get_clockwork_power())].</span>"
+		. += "<b>Available power:</b> <span class='bold brass'>[DisplayPower(get_clockwork_power())].</span>"
 
 //Slab actions; Hierophant, Quickbind
 /obj/item/clockwork/slab/ui_action_click(mob/user, action)
@@ -337,7 +337,7 @@
 			anything but a last resort. Instead, it is recommended that a <b>Sigil of Transmission</b> is created. This sigil serves as both battery  and power generator for nearby clockwork \
 			structures, and those structures will happily draw power from the sigil before they resort to APCs.<br><br>"
 			dat += "Generating power is less easy. The most reliable and efficient way is using brass sheets; attacking a sigil of transmission with brass sheets will convert them \
-			to power, at a rate of <b>[DisplayEnergy(POWER_FLOOR)]</b> per sheet. (Brass sheets are created from replica fabricators, which are explained more in detail in the <b>Conversion</b> section.) \
+			to power, at a rate of <b>[DisplayPower(POWER_FLOOR)]</b> per sheet. (Brass sheets are created from replica fabricators, which are explained more in detail in the <b>Conversion</b> section.) \
 			Activating a sigil of transmission will also cause it to drain power from the nearby area, which, while effective, serves as an obvious tell that there is something wrong.<br><br>"
 			dat += "Without power, many structures will not function, making a base vulnerable to attack. For this reason, it is critical that you keep an eye on your power reserves and \
 			ensure that they remain comfortably high.<br><br>"
@@ -405,7 +405,7 @@
 
 /obj/item/clockwork/slab/ui_data(mob/user) //we display a lot of data via TGUI
 	var/list/data = list()
-	data["power"] = "<b><font color=#B18B25>[DisplayEnergy(get_clockwork_power())]</b> power is available for scripture and other consumers.</font>"
+	data["power"] = "<b><font color=#B18B25>[DisplayPower(get_clockwork_power())]</b> power is available for scripture and other consumers.</font>"
 
 	switch(selected_scripture) //display info based on selected scripture tier
 		if(SCRIPTURE_DRIVER)
@@ -414,12 +414,12 @@
 			if(GLOB.scripture_states[SCRIPTURE_SCRIPT])
 				data["tier_info"] = "<font color=#B18B25><b>These scriptures are permanently unlocked.</b></font>"
 			else
-				data["tier_info"] = "<font color=#B18B25><i>These scriptures will automatically unlock when the Ark is halfway ready or if [DisplayEnergy(SCRIPT_UNLOCK_THRESHOLD)] of power is reached.</i></font>"
+				data["tier_info"] = "<font color=#B18B25><i>These scriptures will automatically unlock when the Ark is halfway ready or if [DisplayPower(SCRIPT_UNLOCK_THRESHOLD)] of power is reached.</i></font>"
 		if(SCRIPTURE_APPLICATION)
 			if(GLOB.scripture_states[SCRIPTURE_APPLICATION])
 				data["tier_info"] = "<font color=#B18B25><b>These scriptures are permanently unlocked.</b></font>"
 			else
-				data["tier_info"] = "<font color=#B18B25><i>Unlock these optional scriptures by converting another servant or if [DisplayEnergy(APPLICATION_UNLOCK_THRESHOLD)] of power is reached..</i></font>"
+				data["tier_info"] = "<font color=#B18B25><i>Unlock these optional scriptures by converting another servant or if [DisplayPower(APPLICATION_UNLOCK_THRESHOLD)] of power is reached..</i></font>"
 
 	data["selected"] = selected_scripture
 	data["scripturecolors"] = "<font color=#DAAA18>Scriptures in <b>yellow</b> are related to construction and building.</font><br>\
@@ -437,7 +437,7 @@
 			var/list/temp_info = list("name" = "<font color=[scripture_color]><b>[S.name]</b></font>",
 			"descname" = "<font color=[scripture_color]>([S.descname])</font>",
 			"tip" = "[S.desc]\n[S.usage_tip]",
-			"required" = "([DisplayEnergy(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayEnergy(S.special_power_cost)]")]" : ""])",
+			"required" = "([DisplayPower(S.power_cost)][S.special_power_text ? "+ [replacetext(S.special_power_text, "POWERCOST", "[DisplayPower(S.special_power_cost)]")]" : ""])",
 			"type" = "[S.type]",
 			"quickbind" = S.quickbind)
 			if(S.important)

@@ -59,12 +59,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(targetselected)
 		if(!hascall(target, procname))
-			to_chat(usr, "<span class='warning'>Error: callproc(): type [target.type] has no [proctype] named [procpath].</span>", confidential=TRUE)
+			to_chat(usr, "<span class='warning'>Error: callproc(): type [target.type] has no [proctype] named [procpath].</span>")
 			return
 	else
 		procpath = "/[proctype]/[procname]"
 		if(!text2path(procpath))
-			to_chat(usr, "<span class='warning'>Error: callproc(): [procpath] does not exist.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='warning'>Error: callproc(): [procpath] does not exist.</span>")
 			return
 
 	var/list/lst = get_callproc_args()
@@ -73,7 +73,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<span class='warning'>Error: callproc(): owner of proc no longer exists.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='warning'>Error: callproc(): owner of proc no longer exists.</span>")
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no argument"]."
 		log_admin(msg)
@@ -87,7 +87,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		returnval = WrapAdminProcCall(GLOBAL_PROC, procpath, lst) //calling globals needs full qualified name (e.g /proc/foo)
 	. = get_callproc_returnval(returnval, procname)
 	if(.)
-		to_chat(usr, ., confidential=TRUE)
+		to_chat(usr, .)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Advanced ProcCall") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 GLOBAL_VAR(AdminProcCaller)
@@ -105,11 +105,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target != GLOBAL_PROC && procname == "Del")
-		to_chat(usr, "<span class='warning'>Calling Del() is not allowed</span>", confidential=TRUE)
+		to_chat(usr, "<span class='warning'>Calling Del() is not allowed</span>")
 		return
 
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!", confidential=TRUE)
+		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
 		return
 	var/current_caller = GLOB.AdminProcCaller
 	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
@@ -117,10 +117,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
 	if(current_caller && current_caller != ckey)
 		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
 			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
 			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, "<span class='adminnotice'>Running your proc</span>", confidential=TRUE)
+			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
 			GLOB.AdminProcCallSpamPrevention -= ckey
 		else
 			UNTIL(!GLOB.AdminProcCaller)
@@ -161,14 +161,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!procname)
 		return
 	if(!hascall(A,procname))
-		to_chat(usr, "<span class='warning'>Error: callproc_datum(): type [A.type] has no proc named [procname].</span>", confidential=TRUE)
+		to_chat(usr, "<span class='warning'>Error: callproc_datum(): type [A.type] has no proc named [procname].</span>")
 		return
 	var/list/lst = get_callproc_args()
 	if(!lst)
 		return
 
 	if(!A || !IsValidSrc(A))
-		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>", confidential=TRUE)
+		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
 		return
 	var/msg = "[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 	log_admin(msg)
@@ -179,7 +179,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
 	. = get_callproc_returnval(returnval,procname)
 	if(.)
-		to_chat(usr, ., confidential=TRUE)
+		to_chat(usr, .)
 
 /client/proc/get_callproc_args()
 	var/argnum = input("Number of arguments","Number:",0) as num|null
@@ -520,7 +520,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/dat = list()
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(usr, "Game still loading, please hold!", confidential=TRUE)
+		to_chat(usr, "Game still loading, please hold!")
 		return
 
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] used the Test Atmos Monitor debug command.</span>")
@@ -566,7 +566,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/station_areas_blacklist = typecacheof(list(/area/holodeck/rec_center, /area/shuttle, /area/engine/supermatter, /area/science/test_area, /area/space, /area/solar, /area/mine, /area/ruin, /area/asteroid))
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		to_chat(usr, "Game still loading, please hold!", confidential=TRUE)
+		to_chat(usr, "Game still loading, please hold!")
 		return
 
 	var/log_message
@@ -871,19 +871,19 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs","Clients","Joined Clients"))
 		if("Players")
-			to_chat(usr, jointext(GLOB.player_list,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.player_list,","))
 		if("Admins")
-			to_chat(usr, jointext(GLOB.admins,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.admins,","))
 		if("Mobs")
-			to_chat(usr, jointext(GLOB.mob_list,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.mob_list,","))
 		if("Living Mobs")
-			to_chat(usr, jointext(GLOB.alive_mob_list,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.alive_mob_list,","))
 		if("Dead Mobs")
-			to_chat(usr, jointext(GLOB.dead_mob_list,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.dead_mob_list,","))
 		if("Clients")
-			to_chat(usr, jointext(GLOB.clients,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.clients,","))
 		if("Joined Clients")
-			to_chat(usr, jointext(GLOB.joined_player_list,","), confidential=TRUE)
+			to_chat(usr, jointext(GLOB.joined_player_list,","))
 
 /client/proc/cmd_display_del_log()
 	set category = "Debug"
@@ -966,8 +966,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(istype(landmark))
 		var/datum/map_template/ruin/template = landmark.ruin_template
 		usr.forceMove(get_turf(landmark))
-		to_chat(usr, "<span class='name'>[template.name]</span>", confidential=TRUE)
-		to_chat(usr, "<span class='italics'>[template.description]</span>", confidential=TRUE)
+		to_chat(usr, "<span class='name'>[template.name]</span>")
+		to_chat(usr, "<span class='italics'>[template.description]</span>")
 
 /client/proc/place_ruin()
 	set category = "Debug"
@@ -1008,10 +1008,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		var/obj/effect/landmark/ruin/landmark = GLOB.ruin_landmarks[GLOB.ruin_landmarks.len]
 		log_admin("[key_name(src)] randomly spawned ruin [ruinname] at [COORD(landmark)].")
 		usr.forceMove(get_turf(landmark))
-		to_chat(src, "<span class='name'>[template.name]</span>", confidential=TRUE)
-		to_chat(src, "<span class='italics'>[template.description]</span>", confidential=TRUE)
+		to_chat(src, "<span class='name'>[template.name]</span>")
+		to_chat(src, "<span class='italics'>[template.description]</span>")
 	else
-		to_chat(src, "<span class='warning'>Failed to place [template.name].</span>", confidential=TRUE)
+		to_chat(src, "<span class='warning'>Failed to place [template.name].</span>")
 
 /client/proc/clear_dynamic_transit()
 	set category = "Debug"
@@ -1026,6 +1026,20 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Clear Dynamic Transit") // If...
 	log_admin("[key_name(src)] cleared dynamic transit space.")
 	SSmapping.wipe_reservations()				//this goes after it's logged, incase something horrible happens.
+
+/client/proc/toggle_medal_disable()
+	set category = "Debug"
+	set name = "Toggle Medal Disable"
+	set desc = "Toggles the safety lock on trying to contact the medal hub."
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	SSmedals.hub_enabled = !SSmedals.hub_enabled
+
+	message_admins("<span class='adminnotice'>[key_name_admin(src)] [SSmedals.hub_enabled ? "disabled" : "enabled"] the medal hub lockout.</span>")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Toggle Medal Disable") // If...
+	log_admin("[key_name(src)] [SSmedals.hub_enabled ? "disabled" : "enabled"] the medal hub lockout.")
 
 /client/proc/view_runtimes()
 	set category = "Debug"

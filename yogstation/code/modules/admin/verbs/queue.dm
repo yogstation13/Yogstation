@@ -7,9 +7,9 @@
 		return
 	
 	listclearnulls(SSticker.queued_players)
-	to_chat(usr,"<span class='notice'><b>List of queued players:</b></span>", confidential=TRUE)
+	to_chat(usr,"<span class='notice'><b>List of queued players:</b></span>")
 	for(var/mob/dead/new_player/guy in SSticker.queued_players)
-		to_chat(usr,"\t[guy]", confidential=TRUE)
+		to_chat(usr,"\t[guy]")
 
 /client/proc/release_queue()
 	set category = "Server"
@@ -23,7 +23,7 @@
 	var/list/queue = SSticker.queued_players
 	
 	if(!queue.len)
-		to_chat(usr,"<span class='warning'>There is nobody in the server queue!</span>", confidential=TRUE)
+		to_chat(usr,"<span class='warning'>There is nobody in the server queue!</span>")
 		return
 	
 	if(alert("Are you sure you want to allow [queue.len] people to skip the queue and join the game?",,"Yes","No") != "Yes")

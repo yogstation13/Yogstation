@@ -326,24 +326,6 @@ h1.alert, h2.alert		{color: #000000;}
 .shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
 .cult					{color: #960000;}
-.surrender				{
-	color: #1235d1;
-	font-weight: bold; 
-	font-size: 27px; 
-	animation: surrender 1s ease-in-out infinite alternate;
-	transform-origin: 0 0;
-	display: inline-block;
-  }
-  @keyframes surrender {
-	  0% {
-	  transform: scale(1,1);
-	  color: #ff0000;
-	}
-	  100% {
-	  transform: scale(1.05,1);
-	  color: #0000ff
-	}
-  }
 
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}

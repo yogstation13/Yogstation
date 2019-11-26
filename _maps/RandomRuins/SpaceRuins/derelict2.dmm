@@ -6,19 +6,16 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
 "c" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/dinner_for_two)
 "d" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
 "e" = (
@@ -53,12 +50,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/dinner_for_two)
 "k" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/dinner_for_two)
+/obj/structure/window/reinforced,
+/turf/template_noop,
+/area/space/nearstation)
 "l" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -94,8 +88,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/dinner_for_two)
 "p" = (
-/obj/structure/window/reinforced,
-/obj/structure/lattice,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/template_noop,
 /area/space/nearstation)
 "q" = (
@@ -108,27 +103,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/dinner_for_two)
-"s" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/dinner_for_two)
-"t" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/dinner_for_two)
-"u" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
 
 (1,1,1) = {"
 a
@@ -138,9 +112,9 @@ a
 a
 a
 a
+k
+c
 p
-s
-u
 a
 a
 a
@@ -157,9 +131,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -176,9 +150,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -195,9 +169,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -212,13 +186,13 @@ a
 a
 a
 a
-f
+a
 f
 g
-t
+c
 g
 f
-f
+a
 a
 a
 a
@@ -230,7 +204,7 @@ a
 a
 a
 a
-f
+a
 f
 i
 i
@@ -238,7 +212,7 @@ i
 i
 q
 f
-f
+a
 a
 a
 a
@@ -287,7 +261,7 @@ c
 e
 e
 e
-k
+c
 i
 i
 i
@@ -299,7 +273,7 @@ c
 e
 e
 e
-k
+c
 "}
 (10,1,1) = {"
 d
@@ -344,7 +318,7 @@ a
 a
 a
 a
-f
+a
 f
 j
 i
@@ -352,7 +326,7 @@ i
 i
 i
 f
-f
+a
 a
 a
 a
@@ -364,13 +338,13 @@ a
 a
 a
 a
-f
+a
 f
 g
-s
+c
 g
 f
-f
+a
 a
 a
 a
@@ -385,9 +359,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -404,9 +378,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -423,9 +397,9 @@ a
 a
 a
 a
-p
+k
 l
-u
+p
 a
 a
 a
@@ -442,9 +416,9 @@ a
 a
 a
 a
+k
+c
 p
-t
-u
 a
 a
 a

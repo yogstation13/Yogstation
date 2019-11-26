@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
-			In Syndi-kit Special, you will receive items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
+			In Syndi-kit Special, you will recieve items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear)
@@ -453,7 +453,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "M-546 Osprey"
 	desc = "A fully-loaded minigun which packs a big punch. \
 			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
-			Slaughter your enemies through sheer force. We made this gun so advanced that it fires the whole bullet.\
+			Slaughter your enemies through sheer force. We made this gun soa dvanced that it fires the whole bullet.\
 			Thats 60% more bullet per bullet and no more useless casings!"
 	item = /obj/item/minigunbackpack
 	cost = 36
@@ -860,7 +860,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/mauler/bag
 	name = "Mauler Ammo Bag"
-	desc = "A duffel bag containing ammo for three full reloads of the LMG, scattershot carbine, and SRM-8 missile launcher that are equipped on a standard Mauler exosuit."
+	desc = "A duffel bag containing ammo for three full reloads of the LMG, scattershot carbine, and SRM-8 missile laucher that are equipped on a standard Mauler exosuit."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler
 	cost = 6
 	include_modes = list(/datum/game_mode/nuclear)
@@ -881,7 +881,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/explosives/bombanana
 	name = "Bombanana"
-	desc = "A banana with an explosive taste! Discard the peel quickly, as it will explode with the force of a Syndicate minibomb \
+	desc = "A banana with an explosive taste! discard the peel quickly, as it will explode with the force of a Syndicate minibomb \
 		a few seconds after the banana is eaten."
 	item = /obj/item/reagent_containers/food/snacks/grown/banana/bombanana
 	cost = 4 //it is a bit cheaper than a minibomb because you have to take off your helmet to eat it, which is how you arm it
@@ -918,7 +918,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			X-4 can be placed on a solid surface, such as a wall or window, and it will blast through the wall, injuring anything on the opposite side, while being safer to the user. \
 			For when you want a controlled explosion that leaves a wider, deeper, hole."
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
-	cost = 4
+	cost = 4 //
 	cant_discount = TRUE
 
 /datum/uplink_item/explosives/clown_bomb_clownops
@@ -1012,7 +1012,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/tearstache
-	name = "Tearstache Grenade"
+	name = "Teachstache Grenade"
 	desc = "A teargas grenade that launches sticky moustaches onto the face of anyone not wearing a clown or mime mask. The moustaches will \
 		remain attached to the face of all targets for one minute, preventing the use of breath masks and other such devices."
 	item = /obj/item/grenade/chem_grenade/teargas/moustache
@@ -1128,7 +1128,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/chameleon
 	name = "Chameleon Kit"
-	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more! \
+	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more! \
 			Due to budget cuts, the shoes don't provide protection against slipping."
 	item = /obj/item/storage/box/syndie_kit/chameleon
 	cost = 2
@@ -1419,7 +1419,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/medkit
 	name = "Syndicate Combat Medic Kit"
-	desc = "Included is a combat stimulant injector \
+	desc = "This first aid kit is a suspicious brown and red. Included is a combat stimulant injector \
 			for rapid healing, a medical night vision HUD for quick identification of injured personnel, \
 			and other supplies helpful for a field medic."
 	item = /obj/item/storage/firstaid/tactical
@@ -1613,13 +1613,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/race_restricted/angelcoolboy
 	name = "Angel Potion"
-	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
+	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creatures"
 	cost = 7
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	restricted_species = list("human")
-
+	
 /datum/uplink_item/race_restricted/killertomatos
-	name = "Killer Tomatoes"
+	name = "Killer Tomatos"
 	desc = "The Syndicates local gardeners brewed these up for our plant comrades (does not work against fellow plants)."
 	cost = 3
 	item = /obj/item/seeds/tomato/killer
@@ -1627,11 +1627,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/race_restricted/radiationbomb
 	name = "Radiation grenade"
-	desc = "A radiation bomb guaranteed to irradiate the fuck out of non-gaseous lifeforms."
+	desc = "A radiation bomb guarenteed to irridiate the fuck out of non gaseous lifeforms."
 	cost = 4
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
-
+	
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
@@ -1661,10 +1661,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
-
+	
 	/datum/uplink_item/role_restricted/arm_medical_gun
 	name = "Arm Mounted Medical Beamgun"
-	desc = "An arm mounted medical beamgun to heal your best buds (disclaimer: does not come with friends)."
+	desc = "A Arm Mounted medgun to heal your best buds (disclaimer: does not come with friends)."
 	item = /obj/item/autosurgeon/medibeam
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
 	cost = 8
@@ -1745,7 +1745,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Be warned, that spirits are often capricious or just little assholes. To use, simply speak your question aloud, then begin shaking."
 	item = /obj/item/toy/eightball/haunted
 	cost = 2
-	restricted_roles = list("Chaplain","Curator")
+	restricted_roles = list("Curator")
 	limited_stock = 1 //please don't spam deadchat
 
 /datum/uplink_item/role_restricted/his_grace

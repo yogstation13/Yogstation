@@ -231,13 +231,11 @@
 		var/obj/effect/holodeck_effect/HE = e
 		HE.safety(active)
 
-/obj/machinery/computer/holodeck/proc/load_program(area/holodeck/A, force = FALSE, add_delay = TRUE)
+/obj/machinery/computer/holodeck/proc/load_program(area/A, force = FALSE, add_delay = TRUE)
 	if(!is_operational())
 		A = offline_program
 		force = TRUE
-	if(A.minimum_sec_level > GLOB.security_level && !force && !(obj_flags & EMAGGED))
-		say("ERROR. Program currently unavailiable, the security level is not high enough.")
-		return
+
 	if(program == A)
 		return
 	if(current_cd > world.time && !force)

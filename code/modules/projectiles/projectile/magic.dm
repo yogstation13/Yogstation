@@ -693,7 +693,7 @@
 
 
 /obj/item/projectile/temp/runic_icycle
-	name = "Icicle"
+	name = "Icycle"
 	icon_state = "runic_icycle"
 	damage = 6
 	flag = "magic"

@@ -390,7 +390,7 @@
 
 /datum/spellbook_entry/item/rune_crate
 	name = "Rune Crate"
-	desc = "A wizard specialized in runecrafting is offering two chests full of runes! The problem is, he mixed up the contents of them so you won't know what you will get!"
+	desc = "A wizard specialized in runecrafting, is offering two chests full of runes! The problem is, he mixed them up so you won't know what you will get!"
 	item_path = /obj/structure/closet/crate/magic
 	category = "Offensive"
 	cost = 1

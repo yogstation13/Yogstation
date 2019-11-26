@@ -2,11 +2,11 @@
 ////////////////////////////////
 /proc/message_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg, confidential=TRUE)
+	to_chat(GLOB.admins, msg)
 
 /proc/relay_msg_admins(msg)
 	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg, confidential=TRUE)
+	to_chat(GLOB.admins, msg)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -22,14 +22,14 @@
 	log_admin("[key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
 
 	if(!M)
-		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.", confidential=TRUE)
+		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
 	if(M.oobe_client) //yogs start
 		if(M.oobe_client.mob)
 			.(M.oobe_client.mob) //using . because show_player_panel(M.oobe_client.mob) caused "Runtime in admin.dm,30: undefined proc or verb /client/Show Player Panel()."
 		else
-			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='warning'>Cannot open player panel because [key_name(M)] has (a)ghosted, but does not appear to have a mob.</span>")
 		return //yogs end
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
@@ -207,7 +207,7 @@
 	if (!istype(src, /datum/admins))
 		src = usr.client.holder
 	if (!istype(src, /datum/admins))
-		to_chat(usr, "Error: you are not an admin!", confidential=TRUE)
+		to_chat(usr, "Error: you are not an admin!")
 		return
 	var/dat
 	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
@@ -559,7 +559,7 @@
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return 1
 	else
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>", confidential=TRUE)
+		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
 
 	return 0
 
@@ -710,10 +710,10 @@
 	set name = "Show Traitor Panel"
 
 	if(!istype(M))
-		to_chat(usr, "This can only be used on instances of type /mob", confidential=TRUE)
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 	if(!M.mind)
-		to_chat(usr, "This mob has no mind!", confidential=TRUE)
+		to_chat(usr, "This mob has no mind!")
 		return
 
 	M.mind.traitor_panel()
@@ -753,37 +753,37 @@
 		var/mob/living/silicon/S = i
 		ai_number++
 		if(isAI(S))
-			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
+			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
 		else if(iscyborg(S))
 			var/mob/living/silicon/robot/R = S
-			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>", confidential=TRUE)
+			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>")
 		else if (ispAI(S))
-			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
+			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>")
 		else
-			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>", confidential=TRUE)
+			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>")
 
 		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.", confidential=TRUE)
+			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
-		to_chat(usr, "<b>No AIs located</b>" , confidential=TRUE)
+		to_chat(usr, "<b>No AIs located</b>" )
 
 /datum/admins/proc/output_all_devil_info()
 	var/devil_number = 0
 	for(var/datum/mind/D in SSticker.mode.devils)
 		devil_number++
 		var/datum/antagonist/devil/devil = D.has_antag_datum(/datum/antagonist/devil)
-		to_chat(usr, "Devil #[devil_number]:<br><br>" + devil.printdevilinfo(), confidential=TRUE)
+		to_chat(usr, "Devil #[devil_number]:<br><br>" + devil.printdevilinfo())
 	if(!devil_number)
-		to_chat(usr, "<b>No Devils located</b>" , confidential=TRUE)
+		to_chat(usr, "<b>No Devils located</b>" )
 
 /datum/admins/proc/output_devil_info(mob/living/M)
 	if(is_devil(M))
 		var/datum/antagonist/devil/devil = M.mind.has_antag_datum(/datum/antagonist/devil)
-		to_chat(usr, devil.printdevilinfo(), confidential=TRUE)
+		to_chat(usr, devil.printdevilinfo())
 	else
-		to_chat(usr, "<b>[M] is not a devil.", confidential=TRUE)
+		to_chat(usr, "<b>[M] is not a devil.")
 
 /datum/admins/proc/manage_free_slots()
 	if(!check_rights())
@@ -848,7 +848,7 @@
 			if(kick_only_afk && !C.is_afk()) //Ignore clients who are not afk
 				continue
 			if(message)
-				to_chat(C, message, confidential=TRUE)
+				to_chat(C, message)
 			kicked_client_names.Add("[C.key]")
 			qdel(C)
 	return kicked_client_names

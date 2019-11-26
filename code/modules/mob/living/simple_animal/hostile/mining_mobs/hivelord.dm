@@ -113,7 +113,6 @@
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	del_on_death = 1
 	stat_attack = UNCONSCIOUS
-	pass_flags = null
 	robust_searching = 1
 	var/dwarf_mob = FALSE
 	var/mob/living/carbon/human/stored_mob

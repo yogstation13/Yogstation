@@ -102,12 +102,19 @@
 		if(!findname(.))
 			break
 
-/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(lizard_name(gender))
+/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10, corporate = TRUE)
+	if(corporate)
+		for(var/i in 1 to attempts_to_find_unique_name)
+			. = capitalize(corporate_lizard_name())
 
-		if(!findname(.))
-			break
+			if(!findname(.))
+				break
+	else
+		for(var/i in 1 to attempts_to_find_unique_name)
+			. = capitalize(lizard_name(gender))
+
+			if(!findname(.))
+				break
 
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)

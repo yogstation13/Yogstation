@@ -768,7 +768,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "death, the destroyer of worlds"
 	glass_icon_state = "proj_manhattanglass"
 	glass_name = "Manhattan Project"
-	glass_desc = "A scientist's drink of choice, for pondering ways to blow up the station."
+	glass_desc = "A scientist's drink of choice, for thinking how to blow up the station."
 
 
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)

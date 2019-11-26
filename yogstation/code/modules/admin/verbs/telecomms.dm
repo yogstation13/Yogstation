@@ -3,7 +3,7 @@
 	set name = "Reset Telecomms Scripts"
 	set desc = "Blanks all telecomms scripts from all telecomms servers"
 	if(!holder)
-		to_chat(usr, "Admin only.", confidential=TRUE)
+		to_chat(usr, "Admin only.")
 		return
 	
 	if(check_rights(R_ADMIN,1))

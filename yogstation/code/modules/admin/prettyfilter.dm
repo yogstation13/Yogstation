@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 	set category = "Special Verbs"
 	set name = "Pretty Filters - List"
 
-	to_chat(usr, "<font size='3'><b>Pretty filters list</b></font>", confidential=TRUE)
+	to_chat(usr, "<font size='3'><b>Pretty filters list</b></font>")
 	for(var/line in GLOB.pretty_filter_items)
 		var/list/parts = splittext(line, "=")
 		var/pattern = parts[1]
@@ -61,8 +61,8 @@ GLOBAL_LIST_EMPTY(minor_filter_items)
 				if(index < parts.len)
 					replacement += "="
 
-		to_chat(usr, "&nbsp;&nbsp;&nbsp;<font color='#994400'><b>[pattern]</b></font> -> <font color='#004499'><b>[replacement]</b></font>", confidential=TRUE)
-	to_chat(usr, "<font size='3'><b>End of list</b></font>", confidential=TRUE)
+		to_chat(usr, "&nbsp;&nbsp;&nbsp;<font color='#994400'><b>[pattern]</b></font> -> <font color='#004499'><b>[replacement]</b></font>")
+	to_chat(usr, "<font size='3'><b>End of list</b></font>")
 
 //Filter out and replace unwanted words, prettify sentences
 /proc/pretty_filter(text, list/filter = GLOB.pretty_filter_items)

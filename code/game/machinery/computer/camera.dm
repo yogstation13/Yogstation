@@ -214,7 +214,7 @@
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
-	desc = "Damn, they better have the Yogs Channel on these things... Nope, just the /tg/ channel! Aww..."
+	desc = "Damn, they better have the /tg/ channel on these things."
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list("thunder")

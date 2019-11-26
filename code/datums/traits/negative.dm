@@ -2,7 +2,7 @@
 
 /datum/quirk/badback
 	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evenly weighted objects are fine, though."
+	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
 	value = -2
 	mood_quirk = TRUE
 	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
@@ -337,14 +337,10 @@
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
 	value = -1
 	var/slot_string = "limb"
-	var/specific = null
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 
 /datum/quirk/prosthetic_limb/on_spawn()
 	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	if(specific)
-		limb_slot = specific
-
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
 	var/obj/item/bodypart/prosthetic
@@ -368,26 +364,6 @@
 /datum/quirk/prosthetic_limb/post_add()
 	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
 	you need to use a welding tool and cables to repair it, instead of bruise packs and ointment.</span>")
-
-/datum/quirk/prosthetic_limb/left_arm
-	name = "Prosthetic Limb (Left Arm)"
-	desc = "An accident caused you to lose your left arm. Because of this, it's replaced with a prosthetic!"
-	specific = BODY_ZONE_L_ARM
-
-/datum/quirk/prosthetic_limb/right_arm
-	name = "Prosthetic Limb (Right Arm)"
-	desc = "An accident caused you to lose your right arm. Because of this, it's replaced with a prosthetic!"
-	specific = BODY_ZONE_R_ARM
-
-/datum/quirk/prosthetic_limb/left_leg
-	name = "Prosthetic Limb (Left Leg)"
-	desc = "An accident caused you to lose your left leg. Because of this, it's replaced with a prosthetic!"
-	specific = BODY_ZONE_L_LEG
-
-/datum/quirk/prosthetic_limb/right_leg
-	name = "Prosthetic Limb (Right Leg)"
-	desc = "An accident caused you to lose your right leg. Because of this, it's replaced with a prosthetic!"
-	specific = BODY_ZONE_R_LEG
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"

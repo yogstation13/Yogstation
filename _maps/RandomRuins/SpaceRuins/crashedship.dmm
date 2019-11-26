@@ -10,29 +10,9 @@
 "ac" = (
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/BMPship/Aft)
-"ad" = (
-/obj/machinery/button/door{
-	id = "packerMed";
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/turf/open/floor/plating/airless,
-/area/awaymission/BMPship/Midship)
 "ae" = (
 /turf/closed/wall/mineral/titanium/overspace,
 /area/awaymission/BMPship/Aft)
-"af" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "packerMed";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/BMPship/Midship)
 "ag" = (
 /obj/machinery/porta_turret{
 	dir = 8;
@@ -191,33 +171,9 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/BMPship/Aft)
-"aH" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/obj/machinery/button/door{
-	id = "packerMine";
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel,
-/area/awaymission/BMPship/Midship)
 "aI" = (
 /turf/closed/wall/mineral/titanium/overspace,
 /area/awaymission/BMPship/Fore)
-"aJ" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "packerMine";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/awaymission/BMPship/Midship)
 "aL" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2452,6 +2408,16 @@
 "wh" = (
 /turf/template_noop,
 /area/awaymission/BMPship)
+"ya" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "packerMine"
+	},
+/obj/machinery/button/door{
+	id = "packerMine";
+	pixel_x = -24
+	},
+/turf/open/floor/plating/airless,
+/area/awaymission/BMPship/Midship)
 "EQ" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -2459,6 +2425,22 @@
 "Hy" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "packerMine"
+	},
+/turf/open/floor/plating/airless,
+/area/awaymission/BMPship/Midship)
+"Kj" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/awaymission/BMPship/Midship)
+"KU" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "packerMed"
+	},
+/obj/machinery/button/door{
+	id = "packerMed";
+	pixel_x = -24
 	},
 /turf/open/floor/plating/airless,
 /area/awaymission/BMPship/Midship)
@@ -3831,8 +3813,8 @@ ap
 aq
 aq
 aq
-cK
 aq
+cK
 aq
 aq
 dN
@@ -4083,9 +4065,9 @@ as
 at
 ha
 at
-ad
+at
 aq
-af
+ce
 ce
 ce
 dy
@@ -4098,9 +4080,9 @@ dB
 fj
 dB
 dy
-aH
+Zb
 fm
-aJ
+Kj
 at
 gs
 gL
@@ -4135,7 +4117,7 @@ at
 bb
 ha
 at
-bK
+KU
 ce
 ce
 ce
@@ -4150,7 +4132,7 @@ fk
 dB
 dy
 ce
-Hy
+ya
 at
 gs
 at
@@ -5055,7 +5037,7 @@ al
 dm
 bN
 ac
-cV
+cE
 cV
 cV
 dD

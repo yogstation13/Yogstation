@@ -29,7 +29,9 @@
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 	var/list/crusher_loot
-	var/elimination = FALSE
+	var/medal_type
+	var/score_type = BOSS_SCORE
+	var/elimination = 0
 	var/anger_modifier = 0
 	var/obj/item/gps/internal
 	var/internal_type
@@ -83,7 +85,8 @@
 			var/tab = "megafauna_kills"
 			if(crusher_kill)
 				tab = "megafauna_kills_crusher"
-			if(!elimination)	//So legion only gets tallied once they all get killed
+			if(!elimination)	//used so the achievment only occurs for the last legion to die.
+				grant_achievement(medal_type, score_type, crusher_kill, force_grant)
 				SSblackbox.record_feedback("tally", tab, 1, "[initial(name)]")
 		..()
 
@@ -139,6 +142,24 @@
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time)
 	recovery_time = world.time + buffer_time
 	ranged_cooldown = world.time + buffer_time
+
+/mob/living/simple_animal/hostile/megafauna/proc/grant_achievement(medaltype, scoretype, crusher_kill, var/list/grant_achievement = list())
+	if(!medal_type || (flags_1 & ADMIN_SPAWNED_1) || !SSmedals.hub_enabled) //Don't award medals if the medal type isn't set
+		return FALSE
+	if(!grant_achievement.len)
+		for(var/mob/living/L in view(7,src))
+			grant_achievement += L
+	for(var/mob/living/L in grant_achievement)
+		if(L.stat || !L.client)
+			continue
+		var/client/C = L.client
+		SSmedals.UnlockMedal("Boss [BOSS_KILL_MEDAL]", C)
+		SSmedals.UnlockMedal("[medaltype] [BOSS_KILL_MEDAL]", C)
+		if(crusher_kill && istype(L.get_active_held_item(), /obj/item/twohanded/required/kinetic_crusher))
+			SSmedals.UnlockMedal("[medaltype] [BOSS_KILL_MEDAL_CRUSHER]", C)
+		SSmedals.SetScore(BOSS_SCORE, C, 1)
+		SSmedals.SetScore(score_type, C, 1)
+	return TRUE
 
 /datum/action/innate/megafauna_attack
 	name = "Megafauna Attack"

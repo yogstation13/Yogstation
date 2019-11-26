@@ -317,17 +317,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		to_chat(user, "<span class='notice'>You detach the conveyor switch.</span>")
 		qdel(src)
 
-/obj/machinery/conveyor_switch/wrench_act(mob/living/user, obj/item/I)
-	if(position)
-		to_chat(user, "<span class='warning'>\The [src] must be off before attempting to change it's direction!</span>")
-		return FALSE
-	oneway = !oneway
-	I.play_tool_sound(src, 75)
-	user.visible_message("<span class='notice'>[user] sets \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
-				"<span class='notice'>You set \the [src] to [oneway ? "one-way" : "two-way"].</span>", \
-				"<span class='italics'>You hear a ratchet.</span>")
-	return TRUE
-
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
 	desc = "A conveyor control switch. It appears to only go in one direction."

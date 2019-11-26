@@ -96,24 +96,6 @@ h1.alert, h2.alert		{color: #000000;}
 .hierophant_warning		{color: #660099; font-style: italic;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
-.surrender				{
-	color: #1235d1;
-	font-weight: bold; 
-	font-size: 3; 
-	animation: surrender 1s ease-in-out infinite alternate;
-	transform-origin: 0 0;
-	display: inline-block;
-  }
-  @keyframes surrender {
-	  0% {
-	  transform: scale(1,1);
-	  color: #ff0000;
-	}
-	  100% {
-	  transform: scale(1.05,1);
-	  color: #0000ff
-	}
-  }
 
 .revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}

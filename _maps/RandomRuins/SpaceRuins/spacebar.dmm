@@ -9,32 +9,25 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/spacebar)
 "ad" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "ae" = (
 /turf/closed/wall,
 /area/ruin/powered/spacebar)
-"af" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/ruin/powered/spacebar)
-"ag" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/spacebar)
 "ah" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating/asteroid,
 /area/ruin/powered/spacebar)
 "aj" = (
 /turf/closed/wall/mineral/titanium,
+/area/ruin/powered/spacebar)
+"ak" = (
+/obj/structure/grille,
+/obj/structure/window/shuttle,
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "al" = (
 /obj/structure/chair{
@@ -250,6 +243,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
+"aT" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/turf/closed/wall,
+/area/ruin/powered/spacebar)
 "aU" = (
 /obj/machinery/computer/teleporter{
 	id = null
@@ -263,6 +261,10 @@
 "aW" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating/asteroid,
+/area/ruin/powered/spacebar)
+"aX" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "aY" = (
 /turf/open/floor/plating,
@@ -834,7 +836,7 @@ ad
 ac
 ac
 ae
-ag
+aX
 ae
 ac
 ac
@@ -960,7 +962,7 @@ ac
 ac
 ac
 ae
-ah
+aX
 ae
 ac
 ac
@@ -1069,7 +1071,7 @@ ac
 ad
 ac
 ac
-af
+ak
 al
 ao
 aC
@@ -1244,12 +1246,12 @@ ac
 ac
 ac
 ae
-ag
+aX
 ae
 ac
 ac
 ac
-af
+ak
 bG
 ao
 aC
@@ -1327,7 +1329,7 @@ ab
 ab
 ac
 ac
-ad
+aT
 aY
 ad
 ac
@@ -1370,7 +1372,7 @@ ae
 ae
 ae
 ae
-ah
+aX
 ae
 ae
 ae
@@ -1822,7 +1824,7 @@ aa
 aa
 ac
 ac
-ad
+ah
 ac
 ac
 ae

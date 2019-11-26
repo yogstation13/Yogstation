@@ -65,7 +65,7 @@
 		if(LAZYLEN(stored_chromosomes) < max_chromosomes)
 			I.forceMove(src)
 			stored_chromosomes += I
-			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			to_chat(user, "<span class='notice'>You insert [I]</span>")
 		else
 			to_chat(user, "<span class='warnning'>You cannot store any more chromosomes.</span>")
 		return

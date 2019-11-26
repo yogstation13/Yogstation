@@ -32,7 +32,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>")
 			return
 
 		new /datum/mentors(ckey)
@@ -41,7 +41,7 @@
 		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM `[format_table_name("mentor")]` WHERE `ckey` = '[ckey]'")
 		query_get_mentor.warn_execute()
 		if(query_get_mentor.NextRow())
-			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
 			qdel(query_get_mentor)
 			return
 		qdel(query_get_mentor)
@@ -61,7 +61,7 @@
 		webhook_send_mchange(owner.ckey, C.ckey, "add")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
 
 	message_admins("[key_name_admin(usr)] added new mentor: [ckey]")
 	log_admin("[key_name(usr)] added new mentor: [ckey]")
@@ -79,7 +79,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>", confidential=TRUE)
+			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>")
 			return
 
 		C.remove_mentor_verbs()
@@ -94,7 +94,7 @@
 		webhook_send_mchange(owner.ckey, C.ckey, "remove")
 
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential=TRUE)
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
 
 	message_admins("[key_name_admin(usr)] removed mentor: [ckey]")
 	log_admin("[key_name(usr)] removed mentor: [ckey]")

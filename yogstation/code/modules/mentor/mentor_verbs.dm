@@ -20,7 +20,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
 
 	var/msg = "<b>Current Mentors:</b>\n"
@@ -34,7 +34,7 @@ GLOBAL_PROTECT(mentor_verbs)
 		msg += "\t[ckey]"
 	qdel(query_load_mentors)
 
-	to_chat(src, msg, confidential=TRUE)
+	to_chat(src, msg)
 
 /client/verb/mentorwho()
 	set name = "Mentorwho"
@@ -66,5 +66,5 @@ GLOBAL_PROTECT(mentor_verbs)
 				msg += "\t[C] is a mentor"
 			msg += "\n"
 		msg += "<span class='info'>Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.</span>"
-	to_chat(src, msg, confidential=TRUE)
+	to_chat(src, msg)
 

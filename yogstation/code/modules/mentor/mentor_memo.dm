@@ -6,7 +6,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
 
 	var/memotask = input(usr,"Choose task", "Memo") in list("Show", "Write", "Edit", "Remove")
@@ -23,7 +23,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
 
 	mentor_memo_output("Show")
@@ -33,7 +33,7 @@
 		return
 
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
 
 	var/sql_ckey = sanitizeSQL(ckey)
@@ -45,7 +45,7 @@
 				return
 
 			if(query_memocheck.NextRow())
-				to_chat(src, "You already have set a memo.", confidential=TRUE)
+				to_chat(src, "You already have set a memo.")
 				qdel(query_memocheck)
 				return
 			qdel(query_memocheck)
@@ -78,7 +78,7 @@
 			qdel(query_memolist)
 
 			if(!memolist.len)
-				to_chat(src, "No memos found in database.", confidential=TRUE)
+				to_chat(src, "No memos found in database.")
 				return
 
 			var/target_ckey = input(src, "Select whose memo to edit", "Select memo") as null|anything in memolist
@@ -137,10 +137,10 @@
 			qdel(query_memoshow)
 
 			if(!output)
-				to_chat(src, "No memos found in database.", confidential=TRUE)
+				to_chat(src, "No memos found in database.")
 				return
 
-			to_chat(src, output, confidential=TRUE)
+			to_chat(src, output)
 
 		if("Remove")
 			var/datum/DBQuery/query_memodellist = SSdbcore.NewQuery("SELECT `ckey` FROM `[format_table_name("mentor_memo")]`")
@@ -155,7 +155,7 @@
 			qdel(query_memodellist)
 
 			if(!memolist.len)
-				to_chat(src, "No memos found in database.", confidential=TRUE)
+				to_chat(src, "No memos found in database.")
 				return
 
 			var/target_ckey = input(src, "Select whose mentor memo to delete", "Select mentor memo") as null|anything in memolist

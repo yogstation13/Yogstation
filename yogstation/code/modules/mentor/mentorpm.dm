@@ -4,7 +4,7 @@
 	set name = "Mentor PM"
 
 	if(!is_mentor())
-		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>", confidential=TRUE)
+		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>")
 		return
 
 	var/list/client/targets[0]
@@ -33,7 +33,7 @@
 
 	if(QDELETED(C) && !discord_id)
 		if(is_mentor())
-			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>", confidential=TRUE)
+			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
 		else
 			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
 		return
@@ -61,7 +61,7 @@
 	log_mentor("Mentor PM: [key_name(src)]->[discord_id ? discord_id : key_name(C)]: [msg]")
 
 	if(mentor_datum && isnotpretty(msg)) // If this is, specifically, a mentor, and not an admin nor a normal player
-		to_chat(src,"<span class='danger'>You cannot send bigoted language as a mentor.</span>", confidential=TRUE)
+		to_chat(src,"<span class='danger'>You cannot send bigoted language as a mentor.</span>")
 		message_admins("[discord_id ? discord_id : key_name(src)] just tripped the pretty filter in a mentorpm: [msg]")
 		return
 	msg = emoji_parse(msg)
@@ -70,11 +70,11 @@
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	if(!C || C.is_mentor())
 		if(C)
-			to_chat(C, "<span class='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</span>", confidential=TRUE)
+			to_chat(C, "<span class='purple'>Reply PM from-<b>[key_name_mentor(src, C, 1, 0, show_char)]</b>: [msg]</span>")
 		if(discord_id)
-			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>", confidential=TRUE)
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[discord_mentor_link(whom, discord_id)]</b>: [msg]</font>")
 		else
-			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>", confidential=TRUE)
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, 0)]</b>: [msg]</font>")
 		if(ckey in SSYogs.mentortickets)
 			var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
 			T.log += "<b>[key]:</b> [msg]"
@@ -82,8 +82,8 @@
 	else
 		if(is_mentor())	//sender is an mentor but recipient is not.
 			if(C)
-				to_chat(C, "<span class='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>", confidential=TRUE)
-			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>", confidential=TRUE)
+				to_chat(C, "<span class='purple'>Mentor PM from-<b>[key_name_mentor(src, C, 1, 0, 0)]</b>: [msg]</span>")
+			to_chat(src, "<font color='green'>Mentor PM to-<b>[key_name_mentor(C, C, 1, 0, show_char)]</b>: [msg]</font>")
 			if(C.ckey in SSYogs.mentortickets)
 				var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]
 				T.log += "<b>[key]:</b> [msg]"
@@ -96,6 +96,6 @@
 	for(var/client/X in GLOB.mentors | (GLOB.admins - GLOB.deadmins))
 		if(X.key != key && (!C || X.key != C.key))	//check client/X is an Mentor and isn't the sender or recipient
 			if(discord_id)
-				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <span class='blueteamradio'> [msg]</span>", confidential=TRUE) //inform X
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[discord_mentor_link(whom, discord_id)]:</B> <span class='blueteamradio'> [msg]</span>") //inform X
 			else
-				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <span class='blueteamradio'> [msg]</span>", confidential=TRUE) //inform X
+				to_chat(X, "<B><font color='green'>Mentor PM: [key_name_mentor(src, X, 0, 0, show_char_sender)]-&gt;[key_name_mentor(C, X, 0, 0, show_char_recip)]:</B> <span class='blueteamradio'> [msg]</span>") //inform X

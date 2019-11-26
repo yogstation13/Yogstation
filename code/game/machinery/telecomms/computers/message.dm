@@ -273,7 +273,7 @@
 				auth = FALSE
 				screen = MSG_MON_SCREEN_MAIN
 			else
-				var/dkey = stripped_input(usr, "Please enter the decryption key.")
+				var/dkey = trim(input(usr, "Please enter the decryption key.") as text|null)
 				if(dkey && dkey != "")
 					if(linkedServer.decryptkey == dkey)
 						auth = TRUE
@@ -330,7 +330,7 @@
 				var/dkey = stripped_input(usr, "Please enter the decryption key.")
 				if(dkey && dkey != "")
 					if(linkedServer.decryptkey == dkey)
-						var/newkey = stripped_input(usr,"Please enter the new key (3 - 16 characters max):")
+						var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
 						if(length(newkey) <= 3)
 							message = "<span class='notice'>NOTICE: Decryption key too short!</span>"
 						else if(length(newkey) > 16)
