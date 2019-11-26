@@ -974,8 +974,8 @@
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame" 
 	id =  "wallframe/flasher" 
-	build_type = AUTOLATHE | PROTOLATHE
+	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
 	build_path = /obj/item/wallframe/flasher
-	category = list("hacked","Security","Misc. Machinery")
+	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
