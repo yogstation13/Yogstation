@@ -1,4 +1,0 @@
-author: "yacabo"
-delete-after: true 
-changes: 
-  - tweak: " The Clock Cult now calculates their power in joules rather than watts"
