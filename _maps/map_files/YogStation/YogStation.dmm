@@ -17588,7 +17588,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/tcommsat/entrance)
+/area/tcommsat/computer)
 "aIb" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -54636,7 +54636,7 @@
 /obj/item/circuitboard/machine/telecomms/server,
 /obj/item/circuitboard/machine/telecomms/server,
 /turf/open/floor/plasteel/dark,
-/area/tcommsat/entrance)
+/area/tcommsat/computer)
 "iUt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
