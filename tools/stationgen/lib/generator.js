@@ -35,10 +35,10 @@ class MapGenerator {
 		for(let x = 1; x <= this.dmm.maxx; x++) {
 			for(let y = 1; y <= this.dmm.maxy; y++) {
 				let turf = this.dmm.get_turf(x,y,1);
-				if(this.dmm.get_area(x,y,1).istype("/area/template_noop"))
-					this.dmm.set_area(x,y,1,"/area/space");
-				if(turf.istype("/turf/template_noop"))
-					this.dmm.set_turf(x,y,1,"/turf/open/space/basic");
+				//if(this.dmm.get_area(x,y,1).istype("/area/template_noop"))
+				//	this.dmm.set_area(x,y,1,"/area/space");
+				//if(turf.istype("/turf/template_noop"))
+				//	this.dmm.set_turf(x,y,1,"/turf/open/space/basic");
 				if(turf.istype("/turf/wall_marker")) {
 					let flags = turf.vars.get("wall_flags");
 					if(flags & wall_flags.WINDOW) {

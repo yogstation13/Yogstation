@@ -98,15 +98,15 @@ class MapTemplate {
 		this.anchor_area = props.anchor_area || "/area/hallway/primary";
 	}
 
-	* ordered_locs(x = this.anchor_x, y = this.anchor_y, dir = this.anchor_dir) {
+	* ordered_locs(x = this.anchor_x, y = this.anchor_y, dir = this.anchor_dir, width = this.width, height = this.height, dwidth = this.dwidth, dheight = this.dheight) {
 		let f_dx = dir_dx(dir);
 		let f_dy = dir_dy(dir);
 		let r_dx = f_dy;
 		let r_dy = -f_dx;
-		for(let ly = 0; ly < this.height; ly++) {
-			for(let lx = 0; lx < this.width; lx++) {
-				let out_x = x + f_dx * (ly - this.dheight) + r_dx * (lx - this.dwidth);
-				let out_y = y + f_dy * (ly - this.dheight) + r_dy * (lx - this.dwidth);
+		for(let ly = 0; ly < height; ly++) {
+			for(let lx = 0; lx < width; lx++) {
+				let out_x = x + f_dx * (ly - dheight) + r_dx * (lx - dwidth);
+				let out_y = y + f_dy * (ly - dheight) + r_dy * (lx - dwidth);
 				yield [out_x, out_y];
 			}
 		}
@@ -129,6 +129,12 @@ class MapTemplate {
 					|| obj.istype("/obj/effect/procedural_marker/turf_check"))
 					continue;
 				target.add_object(tx, ty, 1, this.make_rotated_copy(obj, angle));
+				if(obj.istype("/obj/docking_port/stationary")) {
+					for(let [x,y] of this.ordered_locs(tx, ty, turn_dir(obj.vars.get("dir") || 2, angle), obj.vars.get("width")||1, obj.vars.get("height")||1, obj.vars.get("dwidth")||0, obj.vars.get("dheight")||0)) {
+						target.set_turf(x,y,1,"/turf/open/space/basic");
+						target.set_area(x,y,1,"/area/space");
+					}
+				}
 			}
 
 			let target_turf = target.get_turf(tx, ty, 1);
@@ -162,10 +168,13 @@ class MapTemplate {
 	check_placement_validity(target, place_x, place_y, place_dir) {
 		let ordered_source = [...this.ordered_locs()];
 		let ordered_target = [...this.ordered_locs(place_x, place_y, place_dir)];
+
+		let angle = dirs_angle(this.anchor_dir, place_dir);
+
 		for(let i = 0; i < ordered_source.length; i++) {
 			let [sx, sy] = ordered_source[i];
 			let [tx, ty] = ordered_target[i];
-			if(tx < 1 || ty < 1 || tx > target.maxx | ty > target.maxy) {
+			if(tx < 1 || ty < 1 || tx > target.maxx || ty > target.maxy) {
 				console.log("oob");
 				return false;
 			}
@@ -175,9 +184,20 @@ class MapTemplate {
 			let target_area = target.get_area(tx, ty, 1);
 			let source_area = this.dmm.get_area(sx, sy, 1);
 
-			if(target.locate(tx, ty, 1, "/obj/effect/procedural_marker/turf_check") && !source_turf.istype(target_turf.type) && !target_turf.istype(source_turf.type)) {
+			if(target.locate(sx, sy, 1, "/obj/effect/procedural_marker/turf_check") && !source_turf.istype(target_turf.type) && !target_turf.istype(source_turf.type)) {
 				console.log("failed turf check");
 				return false;
+			}
+
+			let docking_port = this.dmm.locate(sx, sy, 1, "/obj/docking_port/stationary");
+			if(docking_port) {
+				console.log("Checking docking port");
+				for(let [x,y] of this.ordered_locs(tx, ty, turn_dir(docking_port.vars.get("dir") || 2, angle), docking_port.vars.get("width")||1, docking_port.vars.get("height")||1, docking_port.vars.get("dwidth")||0, docking_port.vars.get("dheight")||0)) {
+					if(x < 1 || y < 1 || x > target.maxx || y > target.maxy)
+						return false;
+					if(!target.get_turf(x,y,1).istype("/turf/template_noop"))
+						return false;
+				}
 			}
 
 			if(source_turf.istype("/turf/template_noop") || target_turf.istype("/turf/template_noop")) {

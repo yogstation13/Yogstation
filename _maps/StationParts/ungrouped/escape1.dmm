@@ -19,12 +19,11 @@
 "as" = (/turf/open/floor/plating,/area/hallway/secondary/exit)
 "at" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plating,/area/hallway/secondary/exit)
 "au" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Security Escape Airlock"; req_access_txt = "2"},/turf/open/floor/plating,/area/hallway/secondary/exit)
-"av" = (/turf/open/space,/area/space)
+"av" = (/obj/docking_port/stationary{dir = 4; dwidth = 12; height = 18; id = "emergency_home"; name = "BoxStation emergency evac bay"; width = 32},/turf/template_noop,/area/template_noop)
 "aw" = (/obj/machinery/door/airlock/security/glass{name = "Holding Area"; req_access_txt = "2"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "ay" = (/obj/machinery/status_display/evac{layer = 4; pixel_y = 32},/obj/machinery/vending/cola/random,/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
 "az" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/obj/structure/sign/warning/vacuum/external{pixel_y = 32},/turf/open/floor/plating,/area/hallway/secondary/exit)
 "aA" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
-"aB" = (/obj/docking_port/stationary{dir = 4; dwidth = 12; height = 18; id = "emergency_home"; name = "BoxStation emergency evac bay"; width = 32},/turf/open/space/basic,/area/space)
 "aC" = (/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
 "aD" = (/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "aE" = (/obj/item/twohanded/required/kirbyplants/random,/obj/item/radio/intercom{pixel_x = -25},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
@@ -55,36 +54,36 @@
 "bg" = (/obj/machinery/door/firedoor,/obj/effect/procedural_marker/anchor{icon_state = "anchor"; dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 
 (1,1,1) = {"
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ababadaeacadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ababadafagadaiajakacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ababadamanadaoanapacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ababadananadaqananarasasatasauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaavaa
-abadadananacacawacacacacacacalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abacayananananananazasasasasaAaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abaeaCanananananaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abadaEanananananaDacaaaFaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abaeaCaGanananaHaIacaFaFaaaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abaeaCananaJananaKacaaaFaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abadaLananananaMaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abadaNananananananaOasasasasaAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ahaPaQanananananaRacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ahbganananananaGanaTasasaUasaVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ahaWaXaYananananaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abadadbabbbcbcbdbeacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-ababadaeadaeaeaeaeacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababadaeacadadadadadaaaaaaaaaaabababababababababababababababababab
+ababadafagadaiajakacaaaaaaaaaaabababababababababababababababababab
+ababadamanadaoanapacacacacacacabababababababababababababababababab
+ababadananadaqananarasasatasauabababababababababababababababababab
+abadadananacacawacacacacacacalabababababababababababababababababab
+abacayananananananazasasasasaAavababababababababababababababababab
+abaeaCanananananaDacacacacacacabababababababababababababababababab
+abadaEanananananaDacaaaFaFaFaaabababababababababababababababababab
+abaeaCaGanananaHaIacaFaFaaaFaFabababababababababababababababababab
+abaeaCananaJananaKacaaaFaFaFaaabababababababababababababababababab
+abadaLananananaMaDacacacacacacabababababababababababababababababab
+abadaNananananananaOasasasasaAabababababababababababababababababab
+ahaPaQanananananaRacacacacacacabababababababababababababababababab
+ahbganananananaGanaTasasaUasaVabababababababababababababababababab
+ahaWaXaYananananaDacacacacacacabababababababababababababababababab
+abadadbabbbcbcbdbeacaaaaaaaaaaabababababababababababababababababab
+ababadaeadaeaeaeaeacaaaaaaaaaaabababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
+ababababababababababababababababababababababababababababababababab
 "}
