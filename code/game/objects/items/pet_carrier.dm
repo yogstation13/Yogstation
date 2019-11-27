@@ -196,7 +196,7 @@
 
 /obj/item/pet_carrier/xenobio //For Yog's xenobiology slime hunting
 	name = "Xenological Containment Unit"
-	desc = "A pet carrier with a warning sticker on it and a slightly more robust interior. Great for captureing alien life. Designed to be used in conjuction with a fulton extraction pack to send it and the creature straight to xenobiology!"
+	desc = "A pet carrier with a warning sticker on it and a slightly more robust interior. Great for capturing alien life. Designed to be used in conjuction with a fulton extraction pack to send it and the creature straight to xenobiology!"
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "xeno_carrier_open"
 	item_state = "xeno_carrier"
