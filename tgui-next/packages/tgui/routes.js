@@ -30,6 +30,7 @@ import { Holodeck } from './interfaces/Holodeck';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LanguageMenu } from './interfaces/LanguageMenu';
+import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
 import { NtosMain } from './interfaces/NtosMain';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
