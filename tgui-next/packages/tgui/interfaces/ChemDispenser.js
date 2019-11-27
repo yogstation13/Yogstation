@@ -45,57 +45,6 @@ export const ChemDispenser = props => {
         </LabeledList>
       </Section>
       <Section
-        title="Recipes"
-        buttons={(
-          <Fragment>
-            {!recording && (
-              <Box inline mx={1}>
-                <Button
-                  color="transparent"
-                  content="Clear recipes"
-                  onClick={() => act(ref, 'clear_recipes')} />
-              </Box>
-            )}
-            {!recording && (
-              <Button
-                icon="circle"
-                disabled={!data.isBeakerLoaded}
-                content="Record"
-                onClick={() => act(ref, 'record_recipe')} />
-            )}
-            {recording && (
-              <Button
-                icon="ban"
-                color="transparent"
-                content="Discard"
-                onClick={() => act(ref, 'cancel_recording')} />
-            )}
-            {recording && (
-              <Button
-                icon="floppy-o"
-                color="green"
-                content="Save"
-                onClick={() => act(ref, 'save_recording')} />
-            )}
-          </Fragment>
-        )}>
-        {recipes.map(recipe => (
-          <Button key={recipe.name}
-            icon="tint"
-            width="129.5px"
-            lineHeight="21px"
-            content={recipe.name}
-            onClick={() => act(ref, 'dispense_recipe', {
-              recipe: recipe.name,
-            })} />
-        ))}
-        {recipes.length === 0 && (
-          <Box color="light-gray">
-            No recipes.
-          </Box>
-        )}
-      </Section>
-      <Section
         title="Dispense"
         buttons={(
           beakerTransferAmounts.map(amount => (
