@@ -615,7 +615,7 @@
 			to_chat(C, "<span class='notice'>You feel blessed!</span>")
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
-			to_chat(C, "span class='notice'>You feel blessed... by... something?</span>")
+			to_chat(C, "<span class='notice'>You feel blessed... by... something?</span>")
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
 		C.adjustBruteLoss(20)
