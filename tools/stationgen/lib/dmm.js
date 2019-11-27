@@ -7,9 +7,14 @@ function vars_comparator(a,b) {
 }
 
 class Instance {
-	constructor(type = "/obj") {
+	constructor(type = "/obj", init_vars) {
 		this.type = type;
 		this.vars = new Map();
+		if(init_vars) {
+			for(let [k,v] of Object.entries(init_vars)) {
+				this.vars.set(k,v);
+			}
+		}
 		Object.seal(this);
 	}
 
@@ -23,6 +28,22 @@ class Instance {
 		} else {
 			return this.type;
 		}
+	}
+
+	istype(t, strict = false) {
+		if(this.type == t)
+			return true;
+		if(!strict && this.type.startsWith(t + "/"))
+			return true;
+		return false;
+	}
+
+	copy() {
+		let inst = new Instance(this.type);
+		for(let [k,v] of this.vars) {
+			inst.vars.set(k,v);
+		}
+		return inst;
 	}
 }
 
@@ -186,10 +207,10 @@ class DMM {
 				}
 			}
 		} else {
-			this.maxx = 1;
-			this.maxy = 1;
-			this.maxz = 1;
-			let dmm_regex = /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g;
+			this.maxx = 0;
+			this.maxy = 0;
+			this.maxz = 0;
+			let dmm_regex = /"([a-zA-Z]+)" = \(((?:.|\r?\n)*?)\)\r?\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\r\n]*)"\}/g;
 			let regex_result = null;
 			let dmm_text = maxx;
 			let grid_models = new Map();
@@ -230,6 +251,9 @@ class DMM {
 						y++;
 					}
 				}
+			}
+			for(let z_level of this.z_levels) {
+				z_level.reverse(); // origin is bottom left.
 			}
 		}
 	}
@@ -357,7 +381,7 @@ class DMM {
 		out += '\n';
 		for(let z = 1; z <= this.maxz; z++) {
 			out += `(1,1,${z}) = {"\n`;
-			for(let y = 1; y <= this.maxy; y++) {
+			for(let y = this.maxy; y >= 1; y--) {
 				for(let x = 1; x <= this.maxx; x++) {
 					out += instance_keys.get(this.get_tile(x,y,z).join(","));
 				}

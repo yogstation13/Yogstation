@@ -249,3 +249,52 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 				O.organ_flags |= ORGAN_FROZEN
 		j.update_icon()
 	qdel(src)
+
+// PROCEDURAL MAPPING STUFF
+
+/turf/wall_marker
+	icon = 'icons/turf/procedural_placeholders.dmi'
+	var/wall_flags = 0 // internal var used by the map generator. See tools/stationgen/lib/template.js
+
+// IF YOU ADD TO THIS
+// ADD IT TO tools/stationgen/lib/template.js
+/turf/wall_marker/window_wall
+	icon_state = "pre_window_wall"
+/turf/wall_marker/rwindow_wall_space
+	icon_state = "pre_rwindow_wall_space"
+/turf/wall_marker/rwindow_wall
+	icon_state = "pre_rwindow_wall"
+/turf/wall_marker/rswindow_wall
+	icon_state = "pre_rswindow_wall"
+/turf/wall_marker/rwindow_wall_floor
+	icon_state = "pre_rwindow_wall_floor"
+/turf/wall_marker/rwindow_rwall
+	icon_state = "pre_rwindow_rwall"
+/turf/wall_marker/wall
+	icon_state = "pre_wall"
+/turf/wall_marker/rwall
+	icon_state = "pre_rwall"
+/turf/wall_marker/rswindow_rwall_space
+	icon_state = "pre_rswindow_rwall_space"
+/turf/wall_marker/rcswindow_rwall_space
+	icon_state = "pre_rcswindow_rwall_space"
+/turf/wall_marker/wall_space
+	icon_state = "pre_wall_space"
+/turf/wall_marker/rwall_space
+	icon_state = "pre_rwall_space"
+/turf/wall_marker/rcwindow_rwall
+	icon_state = "pre_rcwindow_rwall"
+/turf/wall_marker/rcdswindow_rwall
+	icon_state = "pre_rcdswindow_rwall"
+
+/obj/effect/procedural_marker
+	icon = 'icons/turf/procedural_placeholders.dmi'
+	layer = POINT_LAYER
+/obj/effect/procedural_marker/anchor
+	icon_state = "anchor"
+/obj/effect/procedural_marker/turf_check
+	icon_state = "turf_check"
+/obj/effect/procedural_marker/vent
+	icon_state = "vent_marker"
+/obj/effect/procedural_marker/scrubber
+	icon_state = "scrubber_marker"

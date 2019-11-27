@@ -1,0 +1,90 @@
+"aa" = (/turf/open/space/basic,/area/space)
+"ab" = (/turf/template_noop,/area/template_noop)
+"ac" = (/turf/wall_marker/rwindow_wall,/area/hallway/secondary/exit)
+"ad" = (/turf/wall_marker/wall,/area/hallway/secondary/exit)
+"ae" = (/turf/wall_marker/rwindow_wall_floor,/area/hallway/secondary/exit)
+"af" = (/obj/machinery/camera/autoname{icon_state = "camera"; dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ag" = (/obj/machinery/computer/arcade,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ah" = (/obj/effect/procedural_marker/turf_check,/turf/open/floor/plasteel,/area/hallway/primary)
+"ai" = (/obj/machinery/light{dir = 1},/obj/structure/chair,/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aj" = (/obj/structure/chair,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ak" = (/obj/structure/chair,/obj/effect/turf_decal/stripes/line{dir = 5},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"al" = (/obj/structure/sign/warning/docking,/turf/wall_marker/rwindow_wall,/area/hallway/secondary/exit)
+"am" = (/obj/machinery/light{dir = 8; light_color = "#e8eaff"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"an" = (/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ao" = (/obj/item/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -28},/obj/structure/chair{dir = 4},/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 1},/obj/machinery/camera/autoname{icon_state = "camera"; dir = 4},/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ap" = (/obj/effect/turf_decal/stripes/line{dir = 4},/obj/structure/chair{dir = 8},/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aq" = (/obj/structure/chair{dir = 4},/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ar" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Security Escape Airlock"; req_access_txt = "2"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"as" = (/turf/open/floor/plating,/area/hallway/secondary/exit)
+"at" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"au" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Security Escape Airlock"; req_access_txt = "2"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"av" = (/turf/open/space,/area/space)
+"aw" = (/obj/machinery/door/airlock/security/glass{name = "Holding Area"; req_access_txt = "2"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ay" = (/obj/machinery/status_display/evac{layer = 4; pixel_y = 32},/obj/machinery/vending/cola/random,/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
+"az" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/obj/structure/sign/warning/vacuum/external{pixel_y = 32},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aA" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aB" = (/obj/docking_port/stationary{dir = 4; dwidth = 12; height = 18; id = "emergency_home"; name = "BoxStation emergency evac bay"; width = 32},/turf/open/space/basic,/area/space)
+"aC" = (/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
+"aD" = (/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aE" = (/obj/item/twohanded/required/kirbyplants/random,/obj/item/radio/intercom{pixel_x = -25},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
+"aF" = (/obj/structure/lattice,/turf/open/space,/area/space/nearstation)
+"aG" = (/obj/effect/landmark/event_spawn,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aH" = (/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aI" = (/obj/machinery/light{dir = 4},/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aJ" = (/obj/machinery/holopad,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aK" = (/obj/effect/turf_decal/stripes/line{dir = 4},/obj/machinery/camera/autoname{icon_state = "camera"; dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aL" = (/obj/item/twohanded/required/kirbyplants/random,/obj/effect/turf_decal/tile/red{dir = 1},/obj/machinery/power/apc/auto_name/west,/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
+"aM" = (/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aN" = (/obj/effect/turf_decal/tile/red{dir = 1},/obj/machinery/firealarm{dir = 4; pixel_x = -26},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/exit)
+"aO" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aP" = (/obj/effect/turf_decal/tile/red{dir = 1},/obj/machinery/door/firedoor,/turf/open/floor/plasteel/white/corner{dir = 4},/area/hallway/secondary/exit)
+"aQ" = (/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aR" = (/obj/structure/sign/warning/vacuum/external{pixel_x = 32},/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"aT" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Cargo Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aU" = (/obj/machinery/light/small,/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aV" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Cargo Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"aW" = (/obj/structure/extinguisher_cabinet{pixel_x = 5; pixel_y = -32},/obj/effect/turf_decal/tile/red{dir = 8},/obj/machinery/door/firedoor,/turf/open/floor/plasteel/white/corner,/area/hallway/secondary/exit)
+"aX" = (/obj/machinery/newscaster{pixel_y = -32},/obj/machinery/light,/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel/white/corner,/area/hallway/secondary/exit)
+"aY" = (/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"ba" = (/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/hallway/secondary/exit)
+"bb" = (/obj/machinery/airalarm{dir = 1; pixel_y = -22},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel/white/corner,/area/hallway/secondary/exit)
+"bc" = (/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel/white/corner,/area/hallway/secondary/exit)
+"bd" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"be" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line{dir = 6},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"bg" = (/obj/machinery/door/firedoor,/obj/effect/procedural_marker/anchor{icon_state = "anchor"; dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+
+(1,1,1) = {"
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababadaeacadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababadafagadaiajakacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababadamanadaoanapacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababadananadaqananarasasatasauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaavaa
+abadadananacacawacacacacacacalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abacayananananananazasasasasaAaBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abaeaCanananananaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abadaEanananananaDacaaaFaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abaeaCaGanananaHaIacaFaFaaaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abaeaCananaJananaKacaaaFaFaFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abadaLananananaMaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abadaNananananananaOasasasasaAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ahaPaQanananananaRacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ahbganananananaGanaTasasaUasaVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ahaWaXaYananananaDacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abadadbabbbcbcbdbeacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ababadaeadaeaeaeaeacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
