@@ -2744,6 +2744,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"aeV" = (
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "aeW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3396,6 +3410,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
+"afV" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "afW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -13936,17 +13956,6 @@
 "azi" = (
 /turf/closed/wall,
 /area/medical/paramedic)
-"azj" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "azk" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
@@ -99386,7 +99395,7 @@ aaf
 aaa
 aaf
 ayi
-azj
+aeV
 aAC
 aBS
 ayi
@@ -117240,7 +117249,7 @@ cTt
 daA
 cSn
 cSn
-cSn
+afV
 daL
 cRi
 daQ
