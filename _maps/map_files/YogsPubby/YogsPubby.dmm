@@ -33026,6 +33026,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"bkZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bla" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -45712,14 +45721,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
-"bFI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bFJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -101540,7 +101541,7 @@ aTm
 aTm
 aVu
 aXN
-bFI
+bkZ
 aFa
 bbI
 aNA
