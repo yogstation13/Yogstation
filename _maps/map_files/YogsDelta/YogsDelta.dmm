@@ -115950,6 +115950,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
+"dss" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "dst" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -171027,7 +171041,7 @@ aCB
 bgP
 aDc
 aFu
-bfD
+dss
 aXj
 bjX
 drS
