@@ -108,7 +108,7 @@
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
+		if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/slime)) // Megafauna eat slimes
 			if(!client && ranged && ranged_cooldown <= world.time)
 				OpenFire()
 		else

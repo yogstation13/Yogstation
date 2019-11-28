@@ -115961,9 +115961,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/mob/living/simple_animal/pet/fox/fennec/Autumn,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/xenobiology)
 "dst" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -116003,6 +116005,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"dsx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "dsC" = (
 /obj/structure/table/glass,
 /obj/item/folder/white,
@@ -153107,7 +153124,7 @@ bNL
 cMY
 cMY
 cTA
-cNd
+dss
 cNd
 cYK
 cTA
@@ -170258,7 +170275,7 @@ aLd
 azB
 azy
 aJt
-aAG
+dsx
 aPa
 axk
 azy
@@ -171041,7 +171058,7 @@ aCB
 bgP
 aDc
 aFu
-dss
+bfD
 aXj
 bjX
 drS
