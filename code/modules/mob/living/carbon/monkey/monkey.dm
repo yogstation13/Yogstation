@@ -105,7 +105,9 @@
 	return
 
 
-/mob/living/carbon/monkey/IsAdvancedToolUser() //Monkeys can't use advanced tools
+/mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
+	if(mind && is_monkey(mind))
+		return TRUE
 	return FALSE
 
 /mob/living/carbon/monkey/reagent_check(datum/reagent/R) //can metabolize all reagents
