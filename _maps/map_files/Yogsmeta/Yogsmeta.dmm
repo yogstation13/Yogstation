@@ -2745,18 +2745,17 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aeV" = (
-/obj/machinery/button/door{
-	id = "qm_mine_warehouse";
-	name = "Warehouse Door Control";
-	pixel_x = 24;
-	pixel_y = 28;
-	req_access_txt = "48"
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/mob/living/simple_animal/pet/fox/fennec/Autumn,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "aeW" = (
@@ -3411,6 +3410,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
+"afV" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "afW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -3490,6 +3495,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"agb" = (
+/obj/machinery/button/door{
+	id = "qm_mine_warehouse";
+	name = "Warehouse Door Control";
+	pixel_x = 24;
+	pixel_y = 28;
+	req_access_txt = "48"
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "agc" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -13951,17 +13971,6 @@
 "azi" = (
 /turf/closed/wall,
 /area/medical/paramedic)
-"azj" = (
-/obj/structure/table,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/pet_carrier/xenobio,
-/obj/item/extraction_pack,
-/obj/item/extraction_pack,
-/obj/item/paper/fluff/stations/lavaland/slime_hunter,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "azk" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
@@ -99387,7 +99396,7 @@ aaf
 aaa
 aaf
 ayi
-azj
+aeV
 aAC
 aBS
 ayi
@@ -101187,7 +101196,7 @@ dnk
 iZd
 ayj
 azp
-aeV
+agb
 aBX
 aDj
 aEz
@@ -117241,7 +117250,7 @@ cTt
 daA
 cSn
 cSn
-cSn
+afV
 daL
 cRi
 daQ
