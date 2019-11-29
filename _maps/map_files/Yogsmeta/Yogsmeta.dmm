@@ -888,17 +888,7 @@
 	name = "blast door"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/security/execution/education)
 "acb" = (
 /obj/structure/table,
@@ -1874,6 +1864,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"adz" = (
+/obj/machinery/door/airlock/external{
+	name = "Labor Camp Shuttle Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "adA" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
@@ -2296,6 +2296,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aem" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Labor Shuttle Dock";
+	dir = 8
+	},
+/obj/machinery/gulag_item_reclaimer{
+	pixel_y = 24
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aen" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -2491,6 +2508,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/central)
+"aeE" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/security/glass{
+	name = "Labor Camp Shuttle Airlock";
+	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = 1
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	icon_state = "airlock_unres_helper";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/fore)
 "aeF" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/lattice/catwalk,
@@ -2711,6 +2744,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"aeV" = (
+/obj/structure/table,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/pet_carrier/xenobio,
+/obj/item/extraction_pack,
+/obj/item/extraction_pack,
+/obj/item/paper/fluff/stations/lavaland/slime_hunter,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "aeW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -3363,6 +3410,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
+"afV" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "afW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -13903,13 +13956,6 @@
 "azi" = (
 /turf/closed/wall,
 /area/medical/paramedic)
-"azj" = (
-/obj/item/stack/ore/iron,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "azk" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/small{
@@ -14325,28 +14371,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"azQ" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Labor Shuttle Dock";
-	dir = 8
-	},
-/obj/machinery/flasher{
-	id = "PRelease";
-	pixel_x = 24;
-	pixel_y = 20
-	},
-/obj/machinery/gulag_item_reclaimer{
-	pixel_y = 24
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
 "azR" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -15019,12 +15043,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"aAW" = (
-/obj/machinery/door/airlock/external{
-	name = "Labor Camp Shuttle Airlock"
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
 "aAX" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -15701,13 +15719,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aCj" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security/glass{
-	name = "Labor Camp Shuttle Airlock"
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/fore)
 "aCk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -50373,10 +50384,6 @@
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
 "bMo" = (
-/obj/machinery/airalarm/server{
-	dir = 4;
-	pixel_x = -22
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -50389,6 +50396,10 @@
 	dir = 4;
 	external_pressure_bound = 120;
 	name = "server vent"
+	},
+/obj/machinery/airalarm/tcomms{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -56248,6 +56259,8 @@
 	dir = 9
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXh" = (
@@ -56395,6 +56408,8 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "bXx" = (
@@ -99380,7 +99395,7 @@ aaf
 aaa
 aaf
 ayi
-azj
+aeV
 aAC
 aBS
 ayi
@@ -107348,7 +107363,7 @@ avY
 ajo
 aaa
 azC
-aAW
+adz
 azC
 aDu
 aDu
@@ -107605,8 +107620,8 @@ avk
 ajo
 aaa
 aDu
-azQ
-aCj
+aem
+aeE
 aCc
 aEI
 axI
@@ -117234,7 +117249,7 @@ cTt
 daA
 cSn
 cSn
-cSn
+afV
 daL
 cRi
 daQ

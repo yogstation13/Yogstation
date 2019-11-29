@@ -7,7 +7,7 @@
 	total_positions = 0
 	spawn_positions = 0
 	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 
 	outfit = /datum/outfit/job/psych
 

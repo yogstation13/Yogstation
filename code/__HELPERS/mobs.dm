@@ -102,19 +102,12 @@
 		if(!findname(.))
 			break
 
-/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10, corporate = TRUE)
-	if(corporate)
-		for(var/i in 1 to attempts_to_find_unique_name)
-			. = capitalize(corporate_lizard_name())
+/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(lizard_name(gender))
 
-			if(!findname(.))
-				break
-	else
-		for(var/i in 1 to attempts_to_find_unique_name)
-			. = capitalize(lizard_name(gender))
-
-			if(!findname(.))
-				break
+		if(!findname(.))
+			break
 
 /proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
@@ -239,7 +232,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
@@ -276,7 +269,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = 0
 			Uloc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
 			. = 0
 			break
 
@@ -287,7 +280,7 @@ GLOBAL_LIST_EMPTY(species_list)
 				break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting)
+			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
 				. = 0
 				break
 

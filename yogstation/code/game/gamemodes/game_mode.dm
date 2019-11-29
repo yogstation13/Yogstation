@@ -28,14 +28,5 @@
 				if(!player.quiet_round) //and must not want a quiet round
 					filtered_candidates |= player
 
-	var/diff = recommended_enemies - filtered_candidates.len // The difference between how many we need and how many we have
-	if(diff <= 0) // If the filtered candidates is bigger or just as big as what is required by the gamemode
-		return shuffle(filtered_candidates)
-
-	//DRAFTING
-	var/list/drafted = shuffle(candidates - filtered_candidates) // Takes all the candidates who were filtered out, shuffles'em, and prepares them for drafting
-	if(drafted.len > diff)
-		drafted.len = diff
-
-	return shuffle(filtered_candidates + drafted)
+	return shuffle(filtered_candidates)
 

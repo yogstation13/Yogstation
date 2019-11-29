@@ -619,10 +619,8 @@
 		. += INFINITY
 
 /mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
-
 	var/list/tally = list()
-	var/list/items = get_equipped_items()
-	for(var/obj/item/I in items)
+	for(var/obj/item/I in get_equipped_items())
 		for(var/zone in target_zones)
 			if(I.body_parts_covered & zone)
 				tally["[zone]"] = max(1 - I.permeability_coefficient, target_zones["[zone]"])

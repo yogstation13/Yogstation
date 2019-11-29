@@ -363,6 +363,14 @@
 	contains = list(/obj/item/vending_refill/security)
 	crate_name = "SecTech supply crate"
 
+/datum/supply_pack/security/secway
+    name = "Secway Crate"
+    desc = "A stylish way to travel for all law enforcement. Requires Security access to open."
+    cost = 5000
+    contains = list(/obj/vehicle/ridden/secway,
+                    /obj/item/key/security)
+    crate_name = "secway crate"
+
 /datum/supply_pack/security/firingpins
 	name = "Standard Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 standard firing pins. Requires Security access to open."
@@ -1916,7 +1924,7 @@
 	name = "Chicken Crate"
 	desc = "The chicken goes bwaak!"
 	cost = 2000
-	contains = list( /mob/living/simple_animal/chick)
+	contains = list(/mob/living/simple_animal/chick)
 	crate_name = "chicken crate"
 
 /datum/supply_pack/critter/corgi
@@ -1980,7 +1988,7 @@
 
 /datum/supply_pack/critter/monkey
 	name = "Monkey Cube Crate"
-	desc = "Stop monkeying around! Contains seven monkey cubes. Just add water!"
+	desc = "Stop monkeying around! Contains five monkey cubes. Just add water!"
 	cost = 2000
 	contains = list (/obj/item/storage/box/monkeycubes)
 	crate_type = /obj/structure/closet/crate
@@ -1993,6 +2001,13 @@
 	contains = list(/mob/living/simple_animal/pet/dog/pug,
 					/obj/item/clothing/neck/petcollar)
 	crate_name = "pug crate"
+
+/datum/supply_pack/critter/sheep
+	name = "Sheep Crate"
+	desc = "The sheep goes baa!"
+	cost = 2000
+	contains = list(/mob/living/simple_animal/sheep)
+	crate_name = "sheep crate"
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
@@ -2033,7 +2048,6 @@
 					/obj/item/clothing/head/collectable/swat,
 					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/police,
-					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/xenom,
 					/obj/item/clothing/head/collectable/petehat)
 	crate_name = "collectable hats crate"
@@ -2268,10 +2282,11 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Engineering Wardrobe Supply Crate"
-	desc = "This crate contains refills for the EngiDrobe and AtmosDrobe."
+	desc = "This crate contains refills for the EngiDrobe, AtmosDrobe and SigDrobe."
 	cost = 1500
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
-					/obj/item/vending_refill/wardrobe/atmos_wardrobe)
+					/obj/item/vending_refill/wardrobe/atmos_wardrobe,
+					/obj/item/vending_refill/wardrobe/sig_wardrobe)
 	crate_name = "engineering department wardrobe supply crate"
 
 /datum/supply_pack/costumes_toys/wardrobes/general
