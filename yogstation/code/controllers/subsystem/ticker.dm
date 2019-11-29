@@ -27,10 +27,11 @@
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
 	    "https://www.youtube.com/watch?v=UlHGGKgzgzI",                      // Elbow - Leaders of the Free World
-		"https://www.youtube.com/watch?v=02FVRMhKR9I",                      // Danzig - How The Gods Kill		
+		"https://www.youtube.com/watch?v=02FVRMhKR9I",                      // Danzig - How The Gods Kill
 		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
-	    "https://www.youtube.com/watch?v=iB5Az3vbkYs")						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
-	
+	    "https://www.youtube.com/watch?v=iB5Az3vbkYs",						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
+	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo")						// Star Trek The Motion Picture: Main Theme Album Style Edit
+
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
