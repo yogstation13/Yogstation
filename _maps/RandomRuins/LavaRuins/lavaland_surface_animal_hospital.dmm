@@ -238,6 +238,10 @@
 /obj/item/hemostat,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/animal_hospital)
+"aE" = (
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/powered/animal_hospital)
 "aF" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "Restroom"
@@ -251,6 +255,14 @@
 "aG" = (
 /obj/structure/extinguisher_cabinet,
 /turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ruin/powered/animal_hospital)
+"aH" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plasteel,
 /area/ruin/powered/animal_hospital)
 "aJ" = (
 /turf/open/floor/plasteel/grimy{
@@ -755,10 +767,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/lavaland/surface/outdoors)
-"cc" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ruin/powered/animal_hospital)
 "cd" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/color/latex,
@@ -960,14 +968,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/animal_hospital)
-"cH" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/ruin/powered/animal_hospital)
 "cI" = (
 /obj/structure/table/glass,
@@ -1355,7 +1355,7 @@ cs
 as
 cG
 aK
-cH
+aH
 ae
 aW
 ao
@@ -1439,7 +1439,7 @@ aa
 ab
 bZ
 cb
-cc
+aE
 ce
 ao
 ao

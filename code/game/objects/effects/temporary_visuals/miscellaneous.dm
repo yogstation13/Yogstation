@@ -6,6 +6,11 @@
 	layer = BELOW_MOB_LAYER
 	var/splatter_type = "splatter"
 
+/obj/effect_temp_visual/dir_setting/tentacle
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "Goliath_tentacle_spawn"
+	layer = BELOW_MOB_LAYER
+
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir)
 	if(set_dir in GLOB.diagonals)
 		icon_state = "[splatter_type][pick(1, 2, 6)]"

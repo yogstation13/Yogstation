@@ -1,6 +1,6 @@
 {
     "map_name": "Yogsdelta",
-    "map_path": "yogstation/map_files/Yogsdelta",
+    "map_path": "map_files/Yogsdelta",
     "map_file": "Yogsdelta.dmm",
     "shuttles": {
 	    "emergency": "emergency_delta",

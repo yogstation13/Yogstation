@@ -18,7 +18,6 @@
 /code/__DEFINES/MC.dm @AsV9
 /code/__DEFINES/tick.dm @AsV9
 /code/controllers/master.dm @AsV9
-/yogstation/code/datums/ruins/lavaland.dm @AsV9
 /SQL/database_changelog.txt @AsV9
 /code/controllers/admin.dm @AsV9
 /code/controllers/failsafe.dm @AsV9

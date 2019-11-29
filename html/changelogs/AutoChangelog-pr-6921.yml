@@ -1,0 +1,4 @@
+author: "GenericDM"
+delete-after: true 
+changes: 
+  - bugfix: "looc no longer changes based on your deadchat name preference"

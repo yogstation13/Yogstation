@@ -330,12 +330,28 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 
 /obj/item/stack/sheet/cloth/five
 	amount = 5
+	
+/obj/item/stack/sheet/wool
+	name = "wool"
+	desc = "A bundle of wool ready to be spun on the loom."
+	singular_name = "wool ball"
+	icon_state = "sheet-wool"
+	item_state = "sheet-wool"
+	icon = 'icons/obj/stack_objects.dmi'
+	is_fabric = TRUE
+	resistance_flags = FLAMMABLE
+	force = 0
+	throwforce = 0
+	merge_type = /obj/item/stack/sheet/wool
+	pull_effort = 30
+	loom_result = /obj/item/stack/sheet/cloth
 
 /obj/item/stack/sheet/cotton
 	name = "raw cotton bundle"
 	desc = "A bundle of raw cotton ready to be spun on the loom."
 	singular_name = "raw cotton ball"
 	icon_state = "sheet-cotton"
+	item_state = "sheet-cotton"
 	is_fabric = TRUE
 	resistance_flags = FLAMMABLE
 	force = 0

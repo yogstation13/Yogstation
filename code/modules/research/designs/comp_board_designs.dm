@@ -72,7 +72,7 @@
 
 /datum/design/board/scan_console
 	name = "Computer Design (DNA Machine)"
-	desc = "Allows for the construction of circuit boards used to build a new DNA scanning console."
+	desc = "Allows for the construction of circuit boards used to build a DNA scanning console."
 	id = "scan_console"
 	build_path = /obj/item/circuitboard/computer/scan_consolenew
 	category = list("Computer Boards")
@@ -96,7 +96,7 @@
 
 /datum/design/board/crewconsole
 	name = "Computer Design (Crew monitoring computer)"
-	desc = "Allows for the construction of circuit boards used to build a Crew monitoring computer."
+	desc = "Allows for the construction of circuit boards used to build a crew monitoring computer."
 	id = "crewconsole"
 	build_path = /obj/item/circuitboard/computer/crew
 	category = list("Computer Boards")
@@ -136,7 +136,7 @@
 
 /datum/design/board/slot_machine
 	name = "Computer Design (Slot Machine)"
-	desc = "Allows for the construction of circuit boards used to build a new slot machine."
+	desc = "Allows for the construction of circuit boards used to build a slot machine."
 	id = "slotmachine"
 	build_path = /obj/item/circuitboard/computer/slot_machine
 	category = list("Computer Boards")
@@ -144,7 +144,7 @@
 
 /datum/design/board/powermonitor
 	name = "Computer Design (Power Monitor)"
-	desc = "Allows for the construction of circuit boards used to build a new power monitor."
+	desc = "Allows for the construction of circuit boards used to build a power monitor."
 	id = "powermonitor"
 	build_path = /obj/item/circuitboard/computer/powermonitor
 	category = list("Computer Boards")
@@ -184,7 +184,7 @@
 
 /datum/design/board/rdconsole
 	name = "Computer Design (R&D Console)"
-	desc = "Allows for the construction of circuit boards used to build a new R&D console."
+	desc = "Allows for the construction of circuit boards used to build an R&D console."
 	id = "rdconsole"
 	build_path = /obj/item/circuitboard/computer/rdconsole
 	category = list("Computer Boards")
@@ -232,7 +232,7 @@
 
 /datum/design/board/comm_server
 	name = "Computer Design (Telecommunications Server Monitoring Console)"
-	desc = "Allows for the construction of circuit boards used to build a telecommunication server browser and monitor."
+	desc = "Allows for the construction of circuit boards used to build a telecommunications server browser and monitor."
 	id = "comm_server"
 	build_path = /obj/item/circuitboard/computer/comm_server
 	category = list("Computer Boards")
@@ -256,7 +256,7 @@
 
 /datum/design/board/libraryconsole
 	name = "Computer Design (Library Console)"
-	desc = "Allows for the construction of circuit boards used to build a new library console."
+	desc = "Allows for the construction of circuit boards used to build a library console."
 	id = "libraryconsole"
 	build_path = /obj/item/circuitboard/computer/libraryconsole
 	category = list("Computer Boards")
@@ -264,7 +264,7 @@
 
 /datum/design/board/apc_control
 	name = "Computer Design (APC Control)"
-	desc = "Allows for the construction of circuit boards used to build a new APC control console."
+	desc = "Allows for the construction of circuit boards used to build an APC control console."
 	id = "apc_control"
 	build_path = /obj/item/circuitboard/computer/apc_control
 	category = list("Computer Boards")
@@ -272,7 +272,7 @@
 
 /datum/design/board/nanite_chamber_control
 	name = "Computer Design (Nanite Chamber Control)"
-	desc = "Allows for the construction of circuit boards used to build a new nanite chamber control console."
+	desc = "Allows for the construction of circuit boards used to build a nanite chamber control console."
 	id = "nanite_chamber_control"
 	build_path = /obj/item/circuitboard/computer/nanite_chamber_control
 	category = list("Computer Boards")
@@ -280,7 +280,7 @@
 
 /datum/design/board/nanite_cloud_control
 	name = "Computer Design (Nanite Cloud Control)"
-	desc = "Allows for the construction of circuit boards used to build a new nanite cloud control console."
+	desc = "Allows for the construction of circuit boards used to build a nanite cloud control console."
 	id = "nanite_cloud_control"
 	build_path = /obj/item/circuitboard/computer/nanite_cloud_controller
 	category = list("Computer Boards")
