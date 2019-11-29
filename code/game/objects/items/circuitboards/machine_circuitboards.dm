@@ -547,6 +547,7 @@
 		/obj/machinery/vending/wardrobe/chem_wardrobe = "ChemDrobe",
 		/obj/machinery/vending/wardrobe/gene_wardrobe = "GeneDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
+		/obj/machinery/vending/wardrobe/sig_wardrobe = "SigDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
@@ -873,7 +874,7 @@
 
 /obj/item/circuitboard/machine/public_nanite_chamber/multitool_act(mob/living/user)
 	var/new_cloud = input("Set the public nanite chamber's Cloud ID (1-100).", "Cloud ID", cloud_id) as num|null
-	if(new_cloud == null)
+	if(new_cloud && (src.loc == user))
 		return
 	cloud_id = CLAMP(round(new_cloud, 1), 1, 100)
 

@@ -221,7 +221,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "bsa", name, 400, 305, master_ui, state)
+		ui = new(user, src, ui_key, "bsa", name, 400, 220, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()
@@ -250,6 +250,8 @@
 	update_icon()
 
 /obj/machinery/computer/bsa_control/proc/calibrate(mob/user)
+	if(!GLOB.bsa_unlock)
+		return
 	var/list/gps_locators = list()
 	for(var/obj/item/gps/G in GLOB.GPS_list) //nulls on the list somehow
 		if(G.tracking)

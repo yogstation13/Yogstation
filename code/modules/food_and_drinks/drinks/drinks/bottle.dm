@@ -200,7 +200,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye vermouth"
-	desc = "Sweet, sweet dryness~"
+	desc = "Sweet, sweet dryness."
 	icon_state = "vermouthbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/vermouth = 100)
 
@@ -232,7 +232,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "extra-strong absinthe"
-	desc = "An strong alcoholic drink brewed and distributed by"
+	desc = "A strong alcoholic drink brewed and distributed by"
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
@@ -322,7 +322,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/fernet
 	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station"
+	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station."
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 

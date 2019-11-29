@@ -1,8 +1,9 @@
 /obj/structure/chair/sofa
-	name = "old ratty sofa"
+	name = "sofa"
 	icon_state = "sofamiddle"
 	icon = 'icons/obj/sofa.dmi'
 	buildstackamount = 1
+	item_chair = null
 
 /obj/structure/chair/sofa/left
 	icon_state = "sofaend_left"

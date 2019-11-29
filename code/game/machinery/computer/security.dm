@@ -232,7 +232,7 @@
 							else
 								dat += "<td>All Paid Off</td>"
 							dat += {"<td>
-							<A href='?src=[REF(src)];choice=Edit  Field;field=citation_delete;cdataid=[c.dataId]'>\[X\]</A>
+							<A href='?src=[REF(src)];choice=Edit Field;field=citation_delete;cdataid=[c.dataId]'>\[X\]</A>
 							</td>
 							</tr>"}
 						dat += "</table>"

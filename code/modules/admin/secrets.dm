@@ -54,9 +54,6 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=quickpower'>Power all SMES</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=guns'>Summon Guns</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=magic'>Summon Magic</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=events'>Summon Events (Toggle)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=onlyone'>There can only be one!</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
@@ -243,7 +240,7 @@
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>")
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>", confidential=TRUE)
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return
@@ -479,53 +476,6 @@
 				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
 			else
 				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
-
-
-
-
-		if("guns")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Guns"))
-			var/survivor_probability = 0
-			switch(alert("Do you want this to create survivors antagonists?",,"No Antags","Some Antags","All Antags!"))
-				if("Some Antags")
-					survivor_probability = 25
-				if("All Antags!")
-					survivor_probability = 100
-
-			rightandwrong(SUMMON_GUNS, usr, survivor_probability)
-
-		if("magic")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Magic"))
-			var/survivor_probability = 0
-			switch(alert("Do you want this to create survivors antagonists?",,"No Antags","Some Antags","All Antags!"))
-				if("Some Antags")
-					survivor_probability = 25
-				if("All Antags!")
-					survivor_probability = 100
-
-			rightandwrong(SUMMON_MAGIC, usr, survivor_probability)
-
-		if("events")
-			if(!check_rights(R_FUN))
-				return
-			if(!SSevents.wizardmode)
-				if(alert("Do you want to toggle summon events on?",,"Yes","No") == "Yes")
-					summonevents()
-					SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Activate"))
-
-			else
-				switch(alert("What would you like to do?",,"Intensify Summon Events","Turn Off Summon Events","Nothing"))
-					if("Intensify Summon Events")
-						summonevents()
-						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Intensify"))
-					if("Turn Off Summon Events")
-						SSevents.toggleWizardmode()
-						SSevents.resetFrequency()
-						SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Summon Events", "Disable"))
 
 		if("dorf")
 			if(!check_rights(R_FUN))

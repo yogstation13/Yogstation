@@ -7,7 +7,7 @@
 
 	if (!turf_source)
 		return
-		
+
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
 
@@ -169,4 +169,6 @@
 				soundin = pick('sound/items/bikehorn.ogg', 'sound/items/AirHorn2.ogg', 'sound/misc/sadtrombone.ogg', 'sound/items/AirHorn.ogg', 'sound/effects/reee.ogg',  'sound/items/WEEOO1.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/creep.ogg','sound/magic/Fireball.ogg' ,'sound/effects/pray.ogg', 'sound/voice/hiss1.ogg','sound/machines/buzz-sigh.ogg', 'sound/machines/ping.ogg', 'sound/weapons/flashbang.ogg', 'sound/weapons/bladeslice.ogg')
 			if("goose")
 				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
+			if ("crawling_shadows_walk")
+				soundin = pick('yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_01.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_02.ogg', 'yogstation/sound/creatures/crawlingshadows/crawling_shadows_walk_03.ogg') //WELCOME TO PATH HELL
 	return soundin
