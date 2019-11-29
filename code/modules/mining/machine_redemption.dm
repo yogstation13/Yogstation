@@ -179,14 +179,6 @@
 
 	if(!powered())
 		return
-	if(istype(W, /obj/item/card/id))
-		var/obj/item/card/id/I = user.get_active_held_item()
-		if(istype(I) && !istype(inserted_id))
-			if(!user.transferItemToLoc(I, src))
-				return
-			inserted_id = I
-			interact(user)
-		return
 
 	if(istype(W, /obj/item/disk/design_disk))
 		if(user.transferItemToLoc(W, src))
