@@ -1,0 +1,4 @@
+author: "DerelictDrone"
+delete-after: true 
+changes: 
+  - rscadd: "You can set conveyor switches to one-way and back again by using a wrench."

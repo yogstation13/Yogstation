@@ -264,3 +264,27 @@
 	id = /datum/reagent/medicine/psicodine
 	results = list(/datum/reagent/medicine/psicodine = 5)
 	required_reagents = list( /datum/reagent/medicine/mannitol = 2, /datum/reagent/water = 2, /datum/reagent/impedrezene = 1)
+
+/datum/chemical_reaction/burnmix // Chemistry recipe
+	name = "BurnMix"
+	required_temp = 700
+	id = /datum/reagent/medicine/burnmix
+	mix_message = "The solution boils, binding the remaining ingredients."
+	results = list(/datum/reagent/medicine/burnmix = 2)
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/iron = 1)
+
+/datum/chemical_reaction/burnmix2 // Ghetto recipe
+	name = "BurnMix"
+	id = /datum/reagent/medicine/burnmix
+	required_temp = 500
+	mix_message = "The solution bubbles, binding the ingredients."
+	results = list(/datum/reagent/medicine/burnmix = 3) // Fuel burns away to form BurnMix from Nutriment and ash
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/ash = 2) // Some welding fluid, any food and ash (burn some paper)
+
+/datum/chemical_reaction/burnmix3 // Ghetto recipe 2; wasteful . Replaces nutriment with ethenol but most of the ethenol dissolves in the process
+	name = "BurnMix"
+	id = /datum/reagent/medicine/burnmix
+	required_temp = 500
+	mix_message = "The solution partially dissolves, binding the remaining ingredients."
+	results = list(/datum/reagent/medicine/burnmix = 3) // fuel and most ethenol burns away to form BurnMix from remaining ethenol and ash
+	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol/beer = 3, /datum/reagent/ash = 2) // Take a booze bottle, drink some , add welding fuel and ash. Heat up with lighter

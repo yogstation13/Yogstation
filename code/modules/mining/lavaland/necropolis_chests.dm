@@ -579,7 +579,7 @@
 	icon_state = "potionflask"
 
 
-/obj/item/reagent_containers/glass/bottle/potion/syndicate
+/obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 	

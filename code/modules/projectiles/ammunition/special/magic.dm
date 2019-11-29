@@ -65,3 +65,43 @@
 
 /obj/item/ammo_casing/magic/wipe
 	projectile_type = /obj/item/projectile/magic/wipe
+
+/obj/item/ammo_casing/magic/runic_icycle
+	projectile_type = /obj/item/projectile/temp/runic_icycle
+
+/obj/item/ammo_casing/magic/runic_tentacle
+	projectile_type = /obj/item/projectile/magic/runic_tentacle
+
+/obj/item/ammo_casing/magic/runic_heal
+	projectile_type = /obj/item/projectile/magic/runic_heal
+	harmful = FALSE
+
+/obj/item/ammo_casing/magic/runic_fire
+	projectile_type = /obj/item/projectile/magic/runic_fire
+
+/obj/item/ammo_casing/magic/runic_honk
+	projectile_type = /obj/item/projectile/magic/runic_honk
+	harmful = FALSE
+
+/obj/item/ammo_casing/magic/runic_chaos
+	projectile_type = /obj/item/projectile/magic
+
+/obj/item/ammo_casing/magic/runic_bomb
+	projectile_type = /obj/item/projectile/magic/runic_bomb
+
+/obj/item/ammo_casing/magic/runic_toxin
+	projectile_type = /obj/item/projectile/magic/runic_toxin
+
+/obj/item/ammo_casing/magic/runic_death
+	projectile_type = /obj/item/projectile/magic/runic_death
+
+/obj/item/ammo_casing/magic/runic_bullet
+	projectile_type = /obj/item/projectile/magic/shotgun_slug //is bullet but actually no
+	pellets = 3
+	variance = 35
+
+/obj/item/ammo_casing/magic/runic_mutation
+	projectile_type = /obj/item/projectile/magic/runic_mutation
+
+/obj/item/ammo_casing/magic/runic_resizement
+	projectile_type = /obj/item/projectile/magic/runic_resizement
