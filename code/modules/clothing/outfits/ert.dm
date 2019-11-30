@@ -305,7 +305,7 @@
 		/obj/item/grenade/clusterbuster/cleaner=3)
 
 /datum/outfit/ert/clown
-	name = "Clown ERT"
+	name = "Honk Squad Clown"
 	id = /obj/item/card/id/ert/clown
 	belt = /obj/item/pda/clown
 	ears = /obj/item/radio/headset/headset_cent
@@ -321,12 +321,12 @@
 		/obj/item/instrument/bikehorn = 1,
 		)
 	implants = list(/obj/item/implant/sad_trombone)
-	backpack = /obj/item/storage/backpack/clown
+	back = /obj/item/storage/backpack/clown
 	box = /obj/item/storage/box/hug/survival
 	chameleon_extras = /obj/item/stamp/clown
 
 /datum/outfit/ert/clown/robust
-	name = "Clown ERT Leader"
+	name = "Honk Squad Leader"
 	id = /obj/item/card/id/ert/clown
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -335,6 +335,7 @@
 	ears = /obj/item/radio/headset/headset_cent
 	glasses = /obj/item/clothing/glasses/thermal/monocle
 	suit = /obj/item/clothing/suit/hooded/chaplain_hoodie
+	back = /obj/item/storage/backpack/clown
 	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
 	r_pocket = /obj/item/bikehorn
 	r_hand = /obj/item/twohanded/fireaxe
