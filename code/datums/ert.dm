@@ -68,6 +68,6 @@
 	leader_role = /datum/antagonist/ert/clown/robust
 	teamsize = 7
 	opendoors = FALSE
-	rename_team = "Honk Squad"
+	rename_team = "HONK Squad"
 	mission = "Bring joy and happiness to all the crew the only way a clown can honk!"
 	polldesc = "a Nanotrasen Clown Response Team"
