@@ -69,5 +69,5 @@
 	teamsize = 7
 	opendoors = FALSE
 	rename_team = "HONK Squad"
-	mission = "Bring joy and happiness to all the crew the only way a clown can honk!"
+	mission = "Bring joy and happiness to all the crew the only way a clown can. honk!"
 	polldesc = "a Nanotrasen Clown Response Team"
