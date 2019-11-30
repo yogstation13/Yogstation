@@ -83,6 +83,6 @@
 			as paranoia may spread and inhibit workplace efficiency."
 
 /datum/game_mode/traitor/changeling/trustnoone
-	name = "traitor + lings + anybody can be a antag"
+	name = "traitor + lings + anybody can be an antag"
 	config_tag = "trustnoone"
 	protected_jobs = list()
