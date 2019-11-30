@@ -4,7 +4,7 @@
 Config: config/**
 
 # When the .DME is changed
-DME Edit: **.dme
+DME Edit: **/*.dme
 
 # Any .dmi changes
 Sprites: **/*.dmi
