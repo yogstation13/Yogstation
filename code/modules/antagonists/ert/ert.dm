@@ -110,7 +110,7 @@
 
 /datum/antagonist/ert/clown/robust
 	name = "Clown Commander"
-	outfit = /datum/outfit/ert/clown/robust
+	outfit = /datum/outfit/ert/clown/leader
 	role = "Clown Commander"
 
 /datum/antagonist/ert/clown

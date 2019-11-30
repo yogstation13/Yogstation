@@ -325,7 +325,7 @@
 	box = /obj/item/storage/box/hug/survival
 	chameleon_extras = /obj/item/stamp/clown
 
-/datum/outfit/ert/clown/robust
+/datum/outfit/ert/clown/leader
 	name = "Honk Squad Leader"
 	id = /obj/item/card/id/ert/clown
 	uniform = /obj/item/clothing/under/rank/clown
