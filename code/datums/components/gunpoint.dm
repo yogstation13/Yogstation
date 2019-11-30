@@ -81,7 +81,7 @@
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction(var/flinch)
-	var/mob/living/shooter
+	var/mob/living/shooter = parent
 
 	if(flinch != TRUE && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
 		return
