@@ -21,7 +21,7 @@ Sound: '**/*.ogg'
 # Changes to the SQL subfolder
 SQL: 'SQL/**'
 
-# Encompasses both the tgui and the tgui-net folder
+# Encompasses both the tgui and the tgui-next folder
 tgui: '{tgui,tgui-next/**}'
 
 # Changes to the .Github folder
