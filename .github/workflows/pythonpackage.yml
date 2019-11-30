@@ -1,0 +1,38 @@
+name: Python package
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'html/changelogs/**'
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Build Changelog
+      run: python tools\ss13_genchangelog.py html/changelog.html html/changelogs
+    - name: stage and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Changelogs"
+        git add -u html/changelog.html
+        git add -u html/changelogs
+        git commit -m "Automatic Changelog build [ci skip]"
+    - name: Push Changelog
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
