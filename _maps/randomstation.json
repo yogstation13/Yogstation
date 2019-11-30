@@ -1,0 +1,11 @@
+{
+    "map_name": "RandomStation",
+    "map_path": "../tools/stationgen",
+    "map_file": "out.dmm",
+    "shuttles": {
+	    "emergency": "emergency_box",
+	    "ferry": "ferry_box",
+	    "cargo": "cargo_box",
+	    "whiteship": "whiteship_box"
+    }
+}

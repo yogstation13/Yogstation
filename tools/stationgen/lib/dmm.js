@@ -123,7 +123,7 @@ function encode_constant(thing) {
 		return "null";
 	if(typeof thing == "object") {
 		if(thing.file)
-			return `'thing.file'`;
+			return `'${thing.file}'`;
 		if(thing.typepath)
 			return thing.typepath;
 	}
@@ -270,7 +270,7 @@ class DMM {
 	}
 
 	locate(x,y,z,type,strict = false) {
-		let tile = this.get_tile(x,y,z);
+		let tile = this.get_tile(x,y,z, false);
 		if(!tile) return;
 		for(let inst of tile) {
 			if(strict ? inst.type == type : inst.type.startsWith(type)) {
@@ -281,7 +281,7 @@ class DMM {
 	get_turf(x,y,z) {return this.locate(x,y,z,"/turf");}
 	get_area(x,y,z) {return this.locate(x,y,z,"/area");}
 	set_turf(x,y,z,inst) {
-		let tile = this.get_tile(x,y,z);
+		let tile = this.get_tile(x,y,z, true);
 		if(!tile) return;
 		if(typeof inst == "string") inst = new Instance(inst);
 		let turf_index = -1;
@@ -299,7 +299,7 @@ class DMM {
 		}
 	}
 	set_area(x,y,z,inst) {
-		let tile = this.get_tile(x,y,z);
+		let tile = this.get_tile(x,y,z, true);
 		if(!tile) return;
 		if(typeof inst == "string") inst = new Instance(inst);
 		let turf_index = -1;
@@ -317,7 +317,7 @@ class DMM {
 		}
 	}
 	add_object(x,y,z,inst) {
-		let tile = this.get_tile(x,y,z);
+		let tile = this.get_tile(x,y,z, true);
 		if(!tile) return;
 		if(typeof inst == "string") inst = new Instance(inst);
 		let insert_index = -1;

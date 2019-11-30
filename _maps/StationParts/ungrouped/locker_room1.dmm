@@ -1,0 +1,82 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/obj/effect/procedural_marker/turf_check,/turf/open/floor/plasteel,/area/hallway)
+"ac" = (/turf/wall_marker/wall,/area/crew_quarters/locker)
+"ad" = (/turf/wall_marker/rswindow_wall,/area/crew_quarters/locker)
+"ae" = (/obj/machinery/door/firedoor,/obj/effect/procedural_marker/anchor,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"af" = (/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ag" = (/obj/machinery/status_display/evac,/turf/wall_marker/wall,/area/crew_quarters/locker)
+"ah" = (/obj/structure/closet/wardrobe/white,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ai" = (/obj/item/twohanded/required/kirbyplants/random,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aj" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ak" = (/obj/structure/reagent_dispensers/fueltank,/obj/machinery/light_switch{pixel_y = 28},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"al" = (/obj/machinery/vending/cola/random,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"am" = (/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"an" = (/obj/machinery/vending/coffee,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ao" = (/obj/machinery/vending/clothing,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ap" = (/obj/machinery/vending/cigarette,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aq" = (/obj/item/twohanded/required/kirbyplants/random,/obj/machinery/firealarm{pixel_y = 26},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ar" = (/obj/structure/closet/secure_closet/personal,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"as" = (/obj/structure/closet/wardrobe/mixed,/obj/item/radio/intercom{dir = 0; name = "Station Intercom (General)"; pixel_x = -27},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"at" = (/obj/structure/closet/wardrobe/green,/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"au" = (/obj/structure/chair/stool{pixel_y = 8},/obj/effect/landmark/start/assistant,/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"av" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aw" = (/obj/structure/chair/stool{pixel_y = 8},/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ax" = (/obj/structure/table,/obj/item/clothing/head/soft/grey{pixel_x = -2; pixel_y = 3},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"ay" = (/obj/machinery/camera{c_tag = "Locker Room West"; dir = 1},/obj/structure/sign/departments/restroom{pixel_y = -32},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"az" = (/obj/structure/closet/secure_closet/personal,/obj/machinery/airalarm{dir = 8; pixel_x = 24},/obj/machinery/camera{c_tag = "Locker Room East"; dir = 8},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aA" = (/obj/structure/closet/wardrobe/grey,/obj/machinery/requests_console{department = "Locker Room"; pixel_x = -32},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aB" = (/obj/structure/chair/stool{pixel_y = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aC" = (/obj/structure/table,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aD" = (/obj/machinery/door/airlock{name = "Unisex Restrooms"},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aE" = (/obj/structure/chair/stool{pixel_y = 8},/obj/effect/landmark/start/assistant,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aF" = (/obj/structure/closet/wardrobe/black,/obj/item/clothing/shoes/jackboots,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aG" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aH" = (/obj/structure/sink{dir = 4; pixel_x = 11},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aI" = (/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aJ" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aK" = (/obj/machinery/camera{c_tag = "Locker Room South"; dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aL" = (/turf/wall_marker/wall,/area/crew_quarters/toilet/locker)
+"aM" = (/obj/effect/landmark/xeno_spawn,/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aN" = (/obj/machinery/disposal/bin,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aO" = (/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aP" = (/obj/effect/turf_decal/stripes/line{dir = 2},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aQ" = (/obj/machinery/door/airlock/maintenance{name = "Locker Room Maintenance"; req_access_txt = "12"},/turf/wall_marker/rwindow_wall_floor,/area/crew_quarters/locker)
+"aR" = (/obj/structure/toilet{pixel_y = 8},/obj/machinery/light/small{dir = 8},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aS" = (/obj/machinery/door/airlock{name = "Unit 1"},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aT" = (/obj/machinery/light_switch{pixel_y = 28},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"aV" = (/obj/structure/table,/obj/item/razor,/obj/structure/window{icon_state = "window"; dir = 1},/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"aW" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"aX" = (/obj/structure/closet,/obj/item/clothing/under/suit_jacket/female{pixel_x = 3; pixel_y = 1},/obj/item/clothing/under/suit_jacket/really_black{pixel_x = -2},/obj/structure/window{icon_state = "window"; dir = 1},/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"aY" = (/obj/machinery/portable_atmospherics/pump,/obj/effect/turf_decal/delivery,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"aZ" = (/obj/machinery/portable_atmospherics/scrubber,/obj/effect/turf_decal/delivery,/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"bb" = (/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bd" = (/obj/effect/landmark/event_spawn,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"bf" = (/obj/machinery/door/airlock{name = "Unit 2"},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bi" = (/obj/machinery/washing_machine,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"bj" = (/obj/machinery/washing_machine,/obj/machinery/light,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/cafeteria,/area/crew_quarters/locker)
+"bk" = (/obj/effect/turf_decal/stripes/line{dir = 8},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"bo" = (/obj/machinery/light,/obj/effect/turf_decal/stripes/line{dir = 8},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/locker)
+"bq" = (/obj/machinery/door/airlock{name = "Unit 3"},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bs" = (/obj/structure/sink{dir = 4; pixel_x = 11},/obj/structure/mirror{pixel_x = 28},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bu" = (/obj/machinery/camera{c_tag = "Locker Room Toilets"; dir = 8},/obj/effect/landmark/event_spawn,/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bv" = (/obj/machinery/door/airlock{name = "Unit 4"},/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+"bw" = (/obj/machinery/airalarm{dir = 1; pixel_y = -22},/obj/item/twohanded/required/kirbyplants/random,/turf/open/floor/plasteel/freezer,/area/crew_quarters/toilet/locker)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaababaaaaaaaaaaaa
+aaacadadadacacaeafacagacacacac
+aaacahaiajakalamamanaoapaqarac
+aaacasamamamamamamamamamamarac
+aaacatamamauavaCavawamamamazac
+aaacaAamamaBaCaxaCaEamamamarac
+aaacaFamamayamamamamamamamarac
+aLaLaLaLaDaLaNamamaOaPaPaGarac
+aLaRaSaTbbaLaVaWaXacaYaZbkamad
+aLaLaLbbaHaLaWbdaWacaYaZbkamad
+aLaRbfaIbsaLbibjbiacaYaZbkamad
+aLaLaLaJaHaLadacadacaYaZboaKac
+aLaRbqaMbsaLaaaaaaacadadacaQac
+aLaLaLbbbuaLaaaaaaaaaaaaaaaaaa
+aLaRbvbbbwaLaaaaaaaaaaaaaaaaaa
+aLaLaLaLaLaLaaaaaaaaaaaaaaaaaa
+"}

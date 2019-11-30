@@ -58,6 +58,10 @@ map yogsdelta
 	votable
 endmap
 
+map randomstation
+	votable
+endmap
+
 map runtimestation
 endmap
 

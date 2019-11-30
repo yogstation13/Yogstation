@@ -95,7 +95,7 @@ class MapTemplate {
 			this.height = this.dmm.maxx;
 		}
 		this.allow_rotation = (props.allow_rotation == null) ? true : props.allow_rotation;
-		this.anchor_area = props.anchor_area || "/area/hallway/primary";
+		this.anchor_area = props.anchor_area || "/area";
 	}
 
 	* ordered_locs(x = this.anchor_x, y = this.anchor_y, dir = this.anchor_dir, width = this.width, height = this.height, dwidth = this.dwidth, dheight = this.dheight) {
@@ -134,6 +134,21 @@ class MapTemplate {
 						target.set_turf(x,y,1,"/turf/open/space/basic");
 						target.set_area(x,y,1,"/area/space");
 					}
+				} else if(obj.istype("/obj/machinery/mass_driver")) {
+					let x = tx;
+					let y = ty;
+					let driver_dir = turn_dir(obj.vars.get("dir") || 2, angle);
+					let dx = dir_dx(driver_dir);
+					let dy = dir_dy(driver_dir);
+					while(x >= 1 && y >= 1 && x <= target.maxx && y <= target.maxy) {
+						let turf = target.get_turf(x, y, 1);
+						if(turf.istype("/turf/template_noop")) {
+							target.set_turf(x, y, 1, "/turf/open/space/basic");
+							target.set_area(x, y, 1, "/area/space");
+						}
+						x += dx;
+						y += dy;
+					}
 				}
 			}
 
@@ -148,7 +163,7 @@ class MapTemplate {
 				// We don't write if the target turf is a subtype (or equal to) the source turf. For example, putting a white floor on a normal floor would keep white floor.
 			} else if(source_turf.type == "/turf/open/space/basic" && target_turf.type == "/turf/open/space") {
 				// don't upgrade regular turfs to "basic".
-			} else {
+			} else if(target_turf.istype("/turf/wall_marker") || target_turf.istype("/turf/template_noop") || target_turf.istype("/turf/open/space") || source_turf.istype(target_turf.type)) {
 				target.set_turf(tx, ty, 1, this.make_rotated_copy(source_turf, angle));
 			}
 
@@ -175,7 +190,6 @@ class MapTemplate {
 			let [sx, sy] = ordered_source[i];
 			let [tx, ty] = ordered_target[i];
 			if(tx < 1 || ty < 1 || tx > target.maxx || ty > target.maxy) {
-				console.log("oob");
 				return false;
 			}
 
@@ -184,14 +198,12 @@ class MapTemplate {
 			let target_area = target.get_area(tx, ty, 1);
 			let source_area = this.dmm.get_area(sx, sy, 1);
 
-			if(target.locate(sx, sy, 1, "/obj/effect/procedural_marker/turf_check") && !source_turf.istype(target_turf.type) && !target_turf.istype(source_turf.type)) {
-				console.log("failed turf check");
+			if(this.dmm.locate(sx, sy, 1, "/obj/effect/procedural_marker/turf_check") && !source_turf.istype(target_turf.type) && !target_turf.istype(source_turf.type)) {
 				return false;
 			}
 
 			let docking_port = this.dmm.locate(sx, sy, 1, "/obj/docking_port/stationary");
 			if(docking_port) {
-				console.log("Checking docking port");
 				for(let [x,y] of this.ordered_locs(tx, ty, turn_dir(docking_port.vars.get("dir") || 2, angle), docking_port.vars.get("width")||1, docking_port.vars.get("height")||1, docking_port.vars.get("dwidth")||0, docking_port.vars.get("dheight")||0)) {
 					if(x < 1 || y < 1 || x > target.maxx || y > target.maxy)
 						return false;
@@ -200,24 +212,37 @@ class MapTemplate {
 				}
 			}
 
+			let mass_driver = this.dmm.locate(sx, sy, 1, "/obj/machinery/mass_driver");
+			if(mass_driver) {
+				let x = tx;
+				let y = ty;
+				let driver_dir = turn_dir(mass_driver.vars.get("dir") || 2, angle);
+				let dx = dir_dx(driver_dir);
+				let dy = dir_dy(driver_dir);
+				while(x >= 1 && y >= 1 && x <= target.maxx && y <= target.maxy) {
+					let turf = target.get_turf(x, y, 1);
+					if(!turf.istype("/turf/open/space/basic") && !turf.istype("/turf/template_noop")) {
+						return false;
+					}
+					x += dx;
+					y += dy;
+				}
+			}
+
 			if(source_turf.istype("/turf/template_noop") || target_turf.istype("/turf/template_noop")) {
 				// S K I P.
 			} else if(source_turf.type == "/turf/wall_marker") {
 				if(!this.check_turf_to_wall_marker(target_turf, source_turf)) {
-					console.log("failed template wall marker");
 					return false;
 				}
 			} else if(target_turf.type == "/turf/wall_marker") {
 				if(!this.check_turf_to_wall_marker(source_turf, target_turf)) {
-					console.log("failed target wall marker");
 					return false;
 				}
 			} else if(!target_turf.istype(source_turf.type) && !source_turf.istype(target_turf.type)){
-				console.log("failed type check of turf");
 				return false;
 			}
 			if(!target_area.istype(source_area.type) && !source_area.istype(target_area.type) && source_turf.istype("/turf/open/floor") && target_turf.istype("/turf/open/floor")) {
-				console.log("non-matching area");
 				return false; // check area equality but only if it's a floor being placed on a floor.
 			}
 		}

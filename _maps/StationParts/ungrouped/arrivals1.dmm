@@ -39,8 +39,8 @@
 "aM" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/obj/machinery/door/airlock/external{name = "Port Docking Bay 1"},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "aN" = (/obj/machinery/light{dir = 8},/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "aO" = (/turf/wall_marker/wall,/area/security/checkpoint/auxiliary)
-"aP" = (/obj/machinery/door/airlock/maintenance{name = "Security Maintenance"; req_access_txt = "1"},/turf/open/floor/plating,/area/maintenance/port/fore)
-"aQ" = (/turf/wall_marker/wall,/area/hydroponics/garden)
+"aP" = (/turf/wall_marker/rwindow_wall_floor,/area/security/checkpoint/auxiliary)
+"aQ" = (/obj/machinery/door/firedoor,/obj/effect/procedural_marker/anchor{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "aR" = (/obj/machinery/camera{c_tag = "Arrivals North"; dir = 8},/obj/effect/turf_decal/tile/blue{dir = 4},/turf/open/floor/plasteel/white/corner,/area/hallway/secondary/entry)
 "aS" = (/obj/structure/closet/secure_closet/security,/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/security/checkpoint/auxiliary)
 "aT" = (/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 4},/obj/machinery/vending/wardrobe/sec_wardrobe,/turf/open/floor/plasteel,/area/security/checkpoint/auxiliary)
@@ -130,7 +130,7 @@
 "cz" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "cA" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "cB" = (/obj/effect/turf_decal/stripes/line{dir = 8},/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"cC" = (/turf/open/floor/wood,/area/hallway/secondary/entry)
+"cC" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/turf/wall_marker/rwindow_wall_floor,/area/hallway/secondary/entry)
 "cD" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line{dir = 9},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "cE" = (/obj/structure/extinguisher_cabinet{pixel_x = 27},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "cF" = (/obj/structure/lattice,/turf/open/space,/area/space/nearstation)
@@ -144,37 +144,38 @@
 "cN" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/obj/machinery/door/airlock/external{name = "Port Docking Bay 4"},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "cO" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/obj/machinery/door/airlock/external{name = "Port Docking Bay 3"},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "cP" = (/obj/docking_port/stationary{dir = 2; dwidth = 11; height = 22; id = "whiteship_home"; name = "SS13: Auxiliary Dock, Station-Port"; width = 35},/turf/template_noop,/area/template_noop)
+"cQ" = (/obj/machinery/door/airlock/maintenance{name = "Security Maintenance"; req_access_txt = "1"},/turf/wall_marker/rwindow_wall_floor,/area/security/checkpoint/auxiliary)
 
 (1,1,1) = {"
-aaaaaaaaaaabacacacadadadacadadadacadadadadadaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaacafagahaiaiaiaiaiajaiahaiaiaiaiakadaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaabacacaccCadadacadadcCacadadadadcCacaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaacafagahaiaiaiaiaiajaiahaiaiaiaiakcCaaaaaaaaaaaaaaaaaaaaaa
 alaaaaaaamanaoapaqaraqasatarauaqaraqasararavacaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaacawacaxayaxazararaAaxayaxaBaCasaDadaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaabaEabaFaoaxaGaHaIaJaxaoaFaxabaKaLacaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaxaMaxaxaxaxaxaxaMaxaaabaNaDaOaOaOaOaOaOaPaQaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabazaRaOaSaTaUaVaWaXaQaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazaYaOaZbabbbabcbdaQaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazaDaObebfbgbhbibjaQaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabkaxazblaOaObmbnbobnbpaQacacacaa
+aaaaaaaaaaaaaaaaaxaMaxaxaxaxaxaxaMaxaaabaNaDaOaPaPaOaOaOcQaPaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabazaRaOaSaTaUaVaWaXaPaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazaYaOaZbabbbabcbdcQaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazaDaObebfbgbhbibjaOaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabkaxazblaOaObmbnbobnbpaOacacacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazarbqbrbrbrbrarbsbtararacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxazarbubvbvbvbvbvbvbvbwaracaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbxarbybzbAbBbCbDaebEbFarbGbH
-aaaaaaaaaaaaaaaaaxayaxaxaxaxaxaxayaxaaabaNbIbybJbKbLbLbMaebNbFbObqbH
+aaaaaaaaaaaaaaaaaxayaxaxaxaxaxaxayaxaaabaNbIbybJbKbLbLbMaebNbFbOaQbH
 aaaaaaaaaabPbQbPaxaoaxbRbSbTbUaxaoaxaxabazarbybVbWbLbLbMaebXbFarbqbH
 aaaaaaaaaaacafacaxaMaxazararbYaxaMaxbZcacbarbycccdbBccbDaecebFaracaa
 cfaaaaaaamanaoapcgarchcbararcicharcgcbarararcjckckckckckckckclaracaa
 aaaaaaaaaaaccmagcncococococococococncocpararbqararcqarcrararcsctacaa
-aaaaaaaaaabPbPbPbPaxaxaxaxaxaxaxaxbPbPacbqcuacacacacacacacacacacacaa
+aaaaaaaaaabPbPbPbPaxaxaxaxaxaxaxaxbPbPacbqcuacadadaccCacadadaccCacaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxaGascvacaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacwaxaxcxaraeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacyczaocAararaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxaxaxcBarcCaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxcDcbcEaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaacFcFcFcFbPbPaxaxaxaxaxaxaxaxbPbPacararaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaxahaiaiaiaiaiaiaiaiahaicGararaoaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaacFaxaqaraqasararauaqaraqasarararaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaeaxcHaxazararaAaxcIaxaBcJcKcKaeaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaacFbQbPaFaxaxaGaHcLcMaxaxaFaxbPbQaeaeaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacwaxaxcxarcCaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacyczaocAararadaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxaxaxcBaradaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaxcDcbcEacaaaaaaaaaaaaaaaaaaaaaa
+aaaaaacFcFcFcFbPbPaxaxaxaxaxaxaxaxbPbPacararadaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaxahaiaiaiaiaiaiaiaiahaicGararadaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaacFaxaqaraqasararauaqaraqasarararcCaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaacaxcHaxazararaAaxcIaxaBcJcKcKaeaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaacFbQbPaFaoaxaGaHcLcMaxaoaFaxbPbQacacaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaacFcFcFcFaxcNaxaxaxaxaxaxcOaxcFcFcFaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaacPaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

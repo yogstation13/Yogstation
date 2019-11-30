@@ -1,0 +1,104 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/wall_marker/rwindow_wall_floor,/area/chapel/main)
+"ac" = (/turf/wall_marker/wall,/area/chapel/main)
+"ad" = (/turf/open/floor/plasteel/dark,/area/chapel/main)
+"ae" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"af" = (/obj/item/twohanded/required/kirbyplants/random,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"ag" = (/turf/wall_marker/window_wall,/area/chapel/main)
+"ah" = (/turf/wall_marker/wall,/area/chapel/office)
+"ai" = (/obj/machinery/door/airlock/maintenance{name = "Chapel Maintenance"; req_access_txt = "12"},/turf/wall_marker/rwindow_wall_floor,/area/chapel/main)
+"aj" = (/obj/structure/table/glass,/obj/item/reagent_containers/food/snacks/grown/poppy,/obj/item/reagent_containers/food/snacks/grown/harebell,/turf/open/floor/plasteel/chapel{dir = 4},/area/chapel/main)
+"ak" = (/obj/machinery/door/window{dir = 8; name = "Mass Driver"; req_access_txt = "22"},/obj/machinery/mass_driver{dir = 4; id = "chapelgun"; name = "Holy Driver"},/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plating,/area/chapel/main)
+"al" = (/obj/structure/sign/warning/vacuum/external{pixel_y = 32},/obj/effect/landmark/event_spawn,/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plating,/area/chapel/main)
+"am" = (/obj/machinery/door/poddoor{id = "chapelgun"; name = "Chapel Launcher Door"},/obj/structure/fans/tiny,/turf/open/floor/plating,/area/chapel/main)
+"an" = (/obj/structure/table/glass,/turf/open/floor/plasteel/chapel,/area/chapel/main)
+"ao" = (/obj/machinery/button/crematorium{id = "crematoriumChapel"; pixel_x = 25},/obj/machinery/light/small{dir = 4},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"ap" = (/obj/machinery/computer/pod/old{density = 0; icon = 'icons/obj/airlock_machines.dmi'; icon_state = "airlock_control_standby"; id = "chapelgun"; name = "Mass Driver Controller"; pixel_x = 24},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"aq" = (/obj/structure/table/wood,/obj/item/flashlight/lamp{pixel_y = 10},/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"ar" = (/obj/structure/table/wood,/obj/item/nullrod,/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"as" = (/obj/item/radio/intercom{pixel_y = 25},/obj/machinery/vending/wardrobe/chap_wardrobe,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"at" = (/obj/machinery/light/small{dir = 1},/obj/machinery/requests_console{department = "Chapel"; departmentType = 2; pixel_y = 30},/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"au" = (/obj/machinery/light_switch{pixel_y = 28},/obj/machinery/camera{c_tag = "Chapel Office"; dir = 2},/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"av" = (/obj/machinery/airalarm{pixel_y = 25},/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aw" = (/obj/structure/closet/crate/coffin,/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"ax" = (/obj/structure/closet/crate/coffin,/obj/machinery/door/window/eastleft{name = "Coffin Storage"; req_access_txt = "22"},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"ay" = (/turf/open/floor/plasteel/chapel{dir = 1},/area/chapel/main)
+"az" = (/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"aA" = (/obj/structure/bodycontainer/crematorium{id = "crematoriumChapel"},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aB" = (/obj/effect/spawner/xmastree,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"aC" = (/obj/machinery/disposal/bin,/obj/structure/disposalpipe/trunk,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aD" = (/obj/effect/landmark/start/chaplain,/obj/structure/chair,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aE" = (/obj/structure/table/wood,/obj/item/paper_bin{pixel_x = -2; pixel_y = 5},/obj/item/storage/crayons,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aF" = (/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aG" = (/obj/structure/closet/crate/coffin,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aH" = (/turf/open/floor/plasteel/chapel{dir = 8},/area/chapel/main)
+"aI" = (/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"aJ" = (/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aK" = (/obj/structure/table/glass,/turf/open/floor/plasteel/chapel{dir = 4},/area/chapel/main)
+"aL" = (/obj/machinery/airalarm{dir = 4; pixel_x = -22},/obj/machinery/camera{c_tag = "Chapel Crematorium"; dir = 4},/obj/effect/procedural_marker/vent,/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aM" = (/obj/structure/table/wood,/obj/item/pen,/obj/item/reagent_containers/food/drinks/bottle/holywater,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aN" = (/obj/machinery/door/airlock{name = "Crematorium"; req_access_txt = "27"},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aO" = (/obj/structure/closet/crate/coffin,/obj/machinery/door/window/eastleft{dir = 8; name = "Coffin Storage"; req_access_txt = "22"},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aP" = (/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aQ" = (/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aR" = (/obj/effect/procedural_marker/scrubber,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"aS" = (/obj/machinery/door/airlock/public/glass{name = "Chapel Office"; req_access_txt = "22"},/turf/open/floor/plasteel/dark,/area/chapel/office)
+"aT" = (/obj/effect/procedural_marker/vent,/turf/open/floor/carpet/purple,/area/chapel/main)
+"aU" = (/obj/effect/procedural_marker/scrubber,/turf/open/floor/carpet/purple,/area/chapel/main)
+"aV" = (/turf/wall_marker/rwindow_wall_floor,/area/hallway)
+"aW" = (/obj/machinery/door/airlock/public/glass{name = "Chapel"},/obj/machinery/door/firedoor,/turf/open/floor/carpet/purple,/area/chapel/main)
+"aX" = (/turf/open/floor/plasteel,/area/hallway)
+"aY" = (/obj/effect/procedural_marker/anchor{dir = 1},/turf/wall_marker/window_wall,/area/chapel/main)
+"aZ" = (/obj/effect/procedural_marker/turf_check,/turf/open/floor/plasteel,/area/hallway)
+"ba" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bb" = (/obj/structure/bodycontainer/morgue,/turf/open/floor/plasteel/dark,/area/chapel/office)
+"bc" = (/obj/machinery/door/airlock/maintenance{name = "Chapel Maintenance"; req_access_txt = "12"},/turf/wall_marker/rwindow_wall_floor,/area/chapel/office)
+"bd" = (/obj/structure/table/wood,/obj/item/clothing/under/burial,/obj/item/clothing/under/burial,/obj/item/clothing/under/burial,/obj/item/clothing/under/burial,/obj/item/clothing/under/burial,/obj/item/clothing/under/burial,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"be" = (/obj/structure/spirit_board,/turf/open/floor/plasteel/grimy,/area/chapel/office)
+"bh" = (/obj/machinery/camera{c_tag = "Chapel North"; dir = 2},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bj" = (/obj/machinery/door/morgue{name = "Confession Booth (Chaplain)"; req_access_txt = "22"},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bk" = (/obj/item/radio/intercom{broadcasting = 1; frequency = 1480; name = "Confessional Intercom"; pixel_x = 25},/obj/structure/chair,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bm" = (/obj/machinery/light_switch{pixel_y = 28},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bo" = (/turf/open/floor/plasteel/chapel{dir = 4},/area/chapel/main)
+"bp" = (/obj/structure/chair/wood/wings,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bq" = (/obj/effect/spawner/structure/window/reinforced/tinted,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bs" = (/turf/open/floor/plasteel/chapel,/area/chapel/main)
+"bt" = (/obj/structure/table/wood,/obj/item/flashlight/lantern,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bu" = (/obj/structure/table/wood,/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bv" = (/obj/machinery/door/morgue{name = "Confession Booth"},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bw" = (/obj/item/radio/intercom{broadcasting = 1; frequency = 1480; name = "Confessional Intercom"; pixel_x = 25},/obj/structure/chair{dir = 1},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bx" = (/obj/machinery/firealarm{dir = 4; pixel_x = -26},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"by" = (/turf/open/floor/carpet/purple,/area/chapel/main)
+"bz" = (/obj/effect/landmark/event_spawn,/turf/open/floor/carpet/purple,/area/chapel/main)
+"bE" = (/obj/effect/landmark/start/assistant,/turf/open/floor/carpet/purple,/area/chapel/main)
+"bF" = (/obj/structure/chair/pew/left{icon_state = "pewend_left"; dir = 1},/turf/open/floor/plasteel/chapel{dir = 8},/area/chapel/main)
+"bG" = (/obj/structure/chair/pew/right{icon_state = "pewend_right"; dir = 1},/turf/open/floor/plasteel/chapel,/area/chapel/main)
+"bH" = (/obj/machinery/light{dir = 4; light_color = "#e8eaff"},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bI" = (/obj/machinery/airalarm{dir = 4; pixel_x = -22},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bJ" = (/obj/effect/landmark/start/assistant,/turf/open/floor/plasteel/chapel{dir = 4},/area/chapel/main)
+"bQ" = (/obj/machinery/camera{c_tag = "Chapel South"; dir = 8},/turf/open/floor/plasteel/dark,/area/chapel/main)
+"bT" = (/turf/open/floor/carpet/purple{icon_state = "carpetsymbol"},/area/chapel/main)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaababacagagacaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaabadaeadafacacacaaaaaa
+aaaaaaaaaaaaaaaaaaaiadadadadakalamaaaaaa
+aaaaaaahahahahahahahadadadapacacacaaaaaa
+ahahbcahasatauavawaxadadadadayajagaaaaaa
+ahaAaJahaCaDaEaFawaGadadadadaHanagaaaaaa
+bcaJaoahaqaMaraFaOaGazaBaIadayaKagaaaaaa
+ahaLaJaNaFaPaFaFahahbaadadadaHanagaaaaaa
+ahbbaQahbdbeaFaRahbhadadadadacacacaaaaaa
+ahahbcahahahahaSahadadadadadbjbkacaaaaaa
+aaaaaaaaaaaibmayboadbpadayboacbqacaaaaaa
+aaaaaaaaaaacadaHbsbtbubtaHbsbvbwacaaaaaa
+aaaaaaaaaaacbxaybobybzbyayboacacacaaaaaa
+aaaaaaaaaaacbabFbGbybybEbFbGbHacaaaaaaaa
+aaaaaaaaaaacbIaybJbybybyayboadacaaaaaaaa
+aaaaaaaaaaacadbFbGaTbyaUbFbGbQacaVaVaVaV
+aaaaaaaaaaabbybybybybybybybybyaWaXaXaXaV
+aaaaaaaaaaabbybybybybybybybybyaWaXaXaXaV
+aaaaaaaaaaacafadbTbybybybTadafacaXaXaXaV
+aaaaaaaaaaacacagagagaYagagagacacaXaXaXaV
+aaaaaaaaaaaaaZaZaZaZaZaZaZaZaZaZaZaZaZaV
+"}

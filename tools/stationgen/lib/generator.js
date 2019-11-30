@@ -5,7 +5,8 @@ const {dir_dx, dir_dy} = require('./util.js');
 
 const parts = [
 	'./hallways.js',
-	'./rooms.js'
+	'./rooms.js',
+	'./maintenance.js'
 ];
 
 class MapGenerator {
@@ -17,6 +18,7 @@ class MapGenerator {
 		this.make_space_border();
 		this.generate_hallways();
 		this.place_all_rooms();
+		this.generate_maintenance();
 		this.finalize_space();
 	}
 
@@ -32,19 +34,27 @@ class MapGenerator {
 	}
 
 	finalize_space() {
+		console.log("Finalizing map...");
 		for(let x = 1; x <= this.dmm.maxx; x++) {
 			for(let y = 1; y <= this.dmm.maxy; y++) {
 				let turf = this.dmm.get_turf(x,y,1);
-				//if(this.dmm.get_area(x,y,1).istype("/area/template_noop"))
-				//	this.dmm.set_area(x,y,1,"/area/space");
-				//if(turf.istype("/turf/template_noop"))
-				//	this.dmm.set_turf(x,y,1,"/turf/open/space/basic");
+				if(this.dmm.get_area(x,y,1).istype("/area/template_noop"))
+					this.dmm.set_area(x,y,1,"/area/space");
+				if(turf.istype("/turf/template_noop"))
+					this.dmm.set_turf(x,y,1,"/turf/open/space/basic");
 				if(turf.istype("/turf/wall_marker")) {
 					let flags = turf.vars.get("wall_flags");
-					if(flags & wall_flags.WINDOW) {
+					let allow_window = true;
+					let allow_rwindow = true;
+					if(flags & wall_flags.WINDOWS) {
+						for(let dir of [1,2,4,8]) {
+							
+						}
+					}
+					if(allow_window && (flags & wall_flags.WINDOW)) {
 						this.dmm.set_turf(x,y,1,"/turf/open/floor/plating");
 						this.dmm.add_object(x,y,1,"/obj/effect/spawner/structure/window");
-					} else if(flags & wall_flags.RWINDOW) {
+					} else if(allow_window && (flags & wall_flags.RWINDOW)) {
 						this.dmm.set_turf(x,y,1,"/turf/open/floor/plating");
 						this.dmm.add_object(x,y,1,"/obj/effect/spawner/structure/window/reinforced");
 					} else if(flags & wall_flags.SPACE) {

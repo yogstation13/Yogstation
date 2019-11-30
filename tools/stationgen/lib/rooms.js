@@ -4,8 +4,11 @@ const {shuffle, dir_dx, dir_dy, turn_dir} = require('./util.js');
 const wall_flags = require('./wall_flags.js');
 
 const template_escape1 = MapTemplate.load("ungrouped/escape1.dmm");
+const template_arrivals1 = MapTemplate.load("ungrouped/arrivals1.dmm");
+const template_chapel1 = MapTemplate.load("ungrouped/chapel1.dmm");
+const template_locker_room1 = MapTemplate.load("ungrouped/locker_room1.dmm");
 
-function place_room(templates) {
+function place_room(templates, {slide = null, slide_gap = false} = {}) {
 	shuffle(templates);
 	for(let template of templates) {
 		for(let [x,y,z] of shuffle([...this.dmm.all_coordinates()])) {
@@ -21,18 +24,64 @@ function place_room(templates) {
 			}
 			if(floor_dir <= 0) continue;
 			let template_dir = turn_dir(floor_dir, 180);
-			console.log(x + ", " + y + ", " + template_dir);
 			if(template.check_placement_validity(this.dmm, x, y, template_dir)) {
-				template.place(this.dmm, x, y, template_dir);
+				let placed_x = x;
+				let placed_y = y;
+				if(slide) {
+					let right_dir = turn_dir(template_dir, 90);
+					let right_dx = dir_dx(right_dir);
+					let right_dy = dir_dy(right_dir);
+					let slide_min = 0;
+					let slide_max = 0;
+					for(let i = -1; i >= -100; i--) {
+						if(!template.check_placement_validity(this.dmm, x + right_dx * i, y + right_dy * i, template_dir)) {
+							break;
+						} else {
+							slide_min = i;
+						}
+					}
+					for(let i = 1; i <= 100; i++) {
+						if(!template.check_placement_validity(this.dmm, x + right_dx * i, y + right_dy * i, template_dir)) {
+							break;
+						} else {
+							slide_max = i;
+						}
+					}
+					let slide_right = true;
+					if(slide == "out") {
+						let focal_x, focal_y;
+						focal_x = this.dmm.maxx/2;
+						focal_y = this.dmm.maxy/2;
+						let right_awayness = ((x-focal_x) * right_dx) + ((y-focal_y) * right_dy); // do a dot product
+						if(slide == "out") {
+							slide_right = (right_awayness > 0);
+						} else {
+							slide_right = (right_awayness < 0);
+						}
+					}
+					if(slide_right) {
+						placed_x = x + right_dx * slide_max;
+						placed_y = y + right_dy * slide_max;
+					} else {
+						placed_x = x + right_dx * slide_min;
+						placed_y = y + right_dy * slide_min;
+					}
+				}
+
+				template.place(this.dmm, placed_x, placed_y, template_dir);
 				return;
 			}
 		}
 	}
-	//throw new Error("Failed to place templates on the map");
+	throw new Error("Failed to place templates on the map");
 }
 
 function place_all_rooms() {
-	this.place_room([template_escape1]);
+	console.log("Placing rooms...");
+	this.place_room([template_escape1], {slide: "out"});
+	this.place_room([template_arrivals1], {slide: "out"});
+	this.place_room([template_chapel1], {slide: "out"});
+	this.place_room([template_locker_room1], {slide: "out"});
 }
 
 module.exports = {place_room, place_all_rooms};
