@@ -59,6 +59,7 @@ SUBSYSTEM_DEF(achievements)
 		if(!achievementsEarned[C.ckey])
 			achievementsEarned[C.ckey] = list()
 		achievementsEarned[C.ckey] += achievement
+		to_chat(C, "<span class='greentext'>You have unlocked the [initial(achievement.name)] achievement!</span>")
 		return TRUE
 
 /datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
