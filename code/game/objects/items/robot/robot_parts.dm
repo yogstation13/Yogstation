@@ -274,7 +274,8 @@
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc))
 			if(!O)
 				return
-			SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
+			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
+				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
 			if(M.laws && M.laws.id != DEFAULT_AI_LAWID)
 				aisync = 0
