@@ -657,10 +657,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
 
-/obj/item/nullrod/holypara
+/*/obj/item/nullrod/holypara
 	name = "holyparasite"
 	desc = "You shouldn't see this."
-	force = 0
+	force = 0*/
 
 /*/obj/item/nullrod/holypara/equipped(mob/living/carbon/human/user, slot)
 	var/obj/i = new /obj/item/guardiancreator/choose/chaplain/antimagic(get_turf(loc))
