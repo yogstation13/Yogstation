@@ -7,3 +7,8 @@
 	name = "Bubblegum Killer"
 	desc = "Eliminate a bubblegum" //Should be improved
 	id = 1
+
+/datum/achievement/roboborg
+	name = "I live again"
+	desc = "As a roboticist, create a cyborg"
+	id = 2
