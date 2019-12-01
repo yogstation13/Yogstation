@@ -665,15 +665,27 @@
 	mob_name = "Holyparasite"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_caswhite_full"
+	var/used = FALSE
 
 /obj/item/nullrod/holypara/attack_self(mob/living/carbon/user)
-	get_stand(mob/living/carbon/user, datum/stats/holypara)
+	if(isguardian(user))
+		to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
+		return
+	var/list/guardians = user.hasparasites()
+	if(LAZYLEN(guardians))
+		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>")
+		return
+	if(used)
+		to_chat(user, <span class='holoparasite'>All the cards appear to be blank..?</span>")
+	get_stand(user, /datum/stats/holypara)
 
 /obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
+	used = TRUE
+	to_chat(H, "<span class='holoparasite'>You pull a card from the deck...</span>")
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
-		var/mob/living/simple_animal/hostile/guardian/G = new(H, "magic")
+		var/mob/living/simple_animal/hostile/guardian/G = new(H, "holy")
 		G.summoner = H.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
@@ -691,6 +703,9 @@
 		H.verbs += /mob/living/proc/guardian_comm
 		H.verbs += /mob/living/proc/guardian_recall
 		H.verbs += /mob/living/proc/guardian_reset
+	else
+		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
+		used = FALSE
 
 /datum/guardian_stats/holypara
 	damage = 2
