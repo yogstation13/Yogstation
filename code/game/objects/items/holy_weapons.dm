@@ -675,7 +675,7 @@
 	if(LAZYLEN(guardians))
 		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>")
 		return
-	if(used)
+	if(used == TRUE)
 		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
 	get_stand(user, /datum/stats/holypara)
 
