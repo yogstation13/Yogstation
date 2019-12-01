@@ -69,11 +69,12 @@ export const CrewConsole = props => {
               {data["sensors"].map(sensor => (
                 sensor.pos_x && (
                   <div className="blip" style={
-                    `left:${sensor.pos_x/data.mapsize*600}px;bottom:${sensor.pos_y/data.mapsize*600}px`
+                    `left:${(sensor.pos_x-data.minx)*(600/(data.maxx-data.minx))}px;
+                    top:${(data.maxy-sensor.pos_y)*(600/(data.maxx-data.minx))}px`
                   } />
                 )
               ))}
-              <img src="map.png" />
+              <img src="minimap-1.png" width="600px" />
             </div>
           )}
         </Section>
