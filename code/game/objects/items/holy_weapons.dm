@@ -665,6 +665,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_caswhite_full"
 	var/used = FALSE
+	var/datum/guardian_stats/holypara/stats = new
 
 /obj/item/nullrod/holypara/attack_self(mob/living/carbon/user)
 	if(isguardian(user))
@@ -676,7 +677,8 @@
 		return
 	if(used == TRUE)
 		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
-	get_stand(user, /datum/guardian_stats/holypara)
+		return
+	get_stand(user, stats)
 
 /obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
 	used = TRUE
@@ -695,8 +697,10 @@
 		G.mind.add_antag_datum(S)
 		G.stats = stats
 		G.stats.Apply(G)
+		stats.ability.master_stats = stats
 		G.show_detail()
-		G.AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
+		ADD_TRAIT(G, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
 		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
 		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
 		H.verbs += /mob/living/proc/guardian_comm
@@ -712,4 +716,7 @@
 	speed = 3
 	potential = 2
 	range = 3
-	ability = /datum/guardian_ability/major/healing
+	ability = new /datum/guardian_ability/major/healing/limited
+
+/datum/guardian_ability/major/healing/limited
+	healuser = FALSE

@@ -6,6 +6,7 @@
 	mode_on_msg = "<span class='danger'><B>You switch to healing mode.</span></B>"
 	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
 	arrow_weight = 1.1
+	var/healuser = TRUE
 
 /datum/guardian_ability/major/healing/Apply()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
@@ -19,6 +20,9 @@
 	if(mode)
 		if(target == guardian)
 			to_chat(guardian, "<span class='danger bold'>You can't heal yourself!</span>")
+			return TRUE
+		if(target == guardian.summoner?.current && healuser == FALSE)
+			to_chat(guardian, "<span class='danger bold'>You can't heal your user!</span>")
 			return TRUE
 		if(isliving(target))
 			var/mob/living/L = target
