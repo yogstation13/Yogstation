@@ -1,3 +1,4 @@
+import {Achievements} from './interfaces/Achievements';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
@@ -64,6 +65,10 @@ import { Wires } from './interfaces/Wires';
 import { Guardian } from './interfaces/Guardian';
 
 const ROUTES = {
+  achievements: {
+    component: () => Achievements,
+    scrollable: true,
+  },
   ai_airlock: {
     component: () => AiAirlock,
     scrollable: false,
