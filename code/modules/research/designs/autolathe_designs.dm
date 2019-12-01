@@ -970,3 +970,12 @@
 	build_path = /obj/item/flashlight/pen
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/wallframe/flasher
+	name = "Mounted Flash Frame" 
+	id =  "wallframe/flasher" 
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
+	build_path = /obj/item/wallframe/flasher
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
