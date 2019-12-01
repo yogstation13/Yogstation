@@ -657,12 +657,45 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashes", "smacks", "whacks")
 
-/*/obj/item/nullrod/holypara
-	name = "holyparasite"
-	desc = "You shouldn't see this."
-	force = 0*/
+/obj/item/nullrod/holypara
+	name = "deck of holy tarot cards"
+	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	w_class = WEIGHT_CLASS_SMALL
+	theme = "holy"
+	mob_name = "Holyparasite"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "deck_caswhite_full"
 
-/*/obj/item/nullrod/holypara/equipped(mob/living/carbon/human/user, slot)
-	var/obj/i = new /obj/item/guardiancreator/choose/chaplain/antimagic(get_turf(loc))
-	qdel(src)
-	user.put_in_hands(i)*/
+/obj/item/nullrod/holypara/attack_self(mob/living/carbon/user)
+	get_stand(mob/living/carbon/user, datum/stats/holypara)
+
+/obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/C = pick(candidates)
+		var/mob/living/simple_animal/hostile/guardian/G = new(H, "magic")
+		G.summoner = H.mind
+		G.key = C.key
+		G.mind.enslave_mind_to_creator(H)
+		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		var/datum/antagonist/guardian/S = new
+		S.stats = stats
+		S.summoner = H.mind
+		G.mind.add_antag_datum(S)
+		G.stats = stats
+		G.stats.Apply(G)
+		G.show_detail()
+		G.AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
+		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
+		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
+		H.verbs += /mob/living/proc/guardian_comm
+		H.verbs += /mob/living/proc/guardian_recall
+		H.verbs += /mob/living/proc/guardian_reset
+
+/datum/guardian_stats/holypara
+	damage = 2
+	defense = 2
+	speed = 3
+	potential = 2
+	range = 3
+	ability = /datum/guardian_ability/major/healing
