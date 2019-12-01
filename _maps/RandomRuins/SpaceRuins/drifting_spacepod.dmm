@@ -1,0 +1,7 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/spacepod/random,/turf/template_noop,/area/template_noop)
+
+(1,1,1) = {"
+aa
+ba
+"}
