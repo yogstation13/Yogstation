@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Holoparasites"
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
-	item = /obj/item/storage/box/syndie_kit/guardian
+	item = /obj/item/guardiancreator/tech
 	cost = 15
 	surplus = 0
 	//exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //yogs: removes restrictions on liabilit- I mean punchghosts

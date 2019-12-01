@@ -662,7 +662,7 @@
 	desc = "You shouldn't see this."
 	force = 0
 
-/obj/item/nullrod/holypara/equipped(mob/living/carbon/human/user, slot)
+/*/obj/item/nullrod/holypara/equipped(mob/living/carbon/human/user, slot)
 	var/obj/i = new /obj/item/guardiancreator/choose/chaplain/antimagic(get_turf(loc))
 	qdel(src)
-	user.put_in_hands(i)
+	user.put_in_hands(i)*/
