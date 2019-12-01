@@ -81,7 +81,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	if (!ui)
 		var/datum/asset/simple/assets = get_asset_datum(/datum/asset/simple/mapimage)
 		assets.send(user)
-		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 800, 600 , master_ui, state)
+		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 1000, 600 , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
