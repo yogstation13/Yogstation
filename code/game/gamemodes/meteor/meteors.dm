@@ -340,6 +340,16 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	if(prob(20))
 		explosion(src.loc,2,4,6,8)
 
+//Stand meteor
+/obj/effect/meteor/guardian
+	name = "glowing meteor"
+	icon_state = "glowing"
+	hits = 3
+	heavy = TRUE
+	meteorsound = 'sound/effects/bamf.ogg'
+	meteordrop = list(/obj/item/stand_arrow)
+	threat = 100
+
 //////////////////////////
 //Spookoween meteors
 /////////////////////////
