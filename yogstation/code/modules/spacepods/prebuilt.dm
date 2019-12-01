@@ -27,3 +27,17 @@
 		/obj/item/spacepod_equipment/lock/keyed/sec,
 		/obj/item/spacepod_equipment/tracker,
 		/obj/item/spacepod_equipment/cargo/chair)
+
+// adminbus spacepod for jousting events
+/obj/spacepod/prebuilt/jousting
+	name = "jousting space pod"
+	icon_state = "pod_mil"
+	armor_type = /obj/item/pod_parts/armor/security
+	cell_type = /obj/item/stock_parts/cell/infinite
+	equipment_types = list(/obj/item/spacepod_equipment/weaponry/laser,
+		/obj/item/spacepod_equipment/cargo/chair,
+		/obj/item/spacepod_equipment/cargo/chair)
+
+/obj/spacepod/prebuilt/jousting/red
+	icon_state = "pod_synd"
+	armor_type = /obj/item/pod_parts/armor/security/red
