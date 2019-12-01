@@ -74,7 +74,7 @@ export const CrewConsole = props => {
                   } />
                 )
               ))}
-              <img src="minimap-1.png" width="600px" />
+              <img src="minimap-1.png" width="600px" style={`-ms-interpolation-mode: nearest-neighbor`} />
             </div>
           )}
         </Section>
