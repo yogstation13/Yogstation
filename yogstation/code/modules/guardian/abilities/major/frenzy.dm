@@ -8,7 +8,7 @@
 
 /datum/guardian_ability/major/frenzy/Apply()
 	. = ..()
-	guardian.add_movespeed_modifier("frenzy_guardian", update=TRUE, priority=100, multiplicative_slowdown=-1)
+	guardian.add_movespeed_modifier("frenzy_guardian", update=TRUE, priority=100, multiplicative_slowdown=-0.5)
 
 /datum/guardian_ability/major/frenzy/Remove()
 	. = ..()
@@ -19,7 +19,7 @@
 
 /datum/guardian_ability/major/frenzy/Manifest()
 	if(guardian.summoner?.current)
-		guardian.summoner.current.add_movespeed_modifier("frenzy", update=TRUE, priority=100, multiplicative_slowdown=-1.5)
+		guardian.summoner.current.add_movespeed_modifier("frenzy", update=TRUE, priority=100, multiplicative_slowdown=-0.5)
 
 /datum/guardian_ability/major/frenzy/Recall()
 	if(guardian.summoner?.current)
