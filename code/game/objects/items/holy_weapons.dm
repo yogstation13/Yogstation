@@ -661,8 +661,7 @@
 	name = "deck of holy tarot cards"
 	desc = "A holy deck of tarot cards, harboring a healing spirit."
 	w_class = WEIGHT_CLASS_SMALL
-	theme = "holy"
-	mob_name = "Holyparasite"
+	var/mob_name = "Holyparasite"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_caswhite_full"
 	var/used = FALSE
@@ -677,7 +676,7 @@
 		return
 	if(used == TRUE)
 		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
-	get_stand(user, /datum/stats/holypara)
+	get_stand(user, /datum/guardian_stats/holypara)
 
 /obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
 	used = TRUE
