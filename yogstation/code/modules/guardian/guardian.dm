@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/setup_barriers()
 	cut_barriers()
-	if(!summoner?.current || !is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || get_dist_euclidian(summoner.current, src) < (range - world.view))
+	if(!summoner?.current || !client || !is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || get_dist_euclidian(summoner.current, src) < (range - world.view))
 		return
 	var/sx = summoner.current.x
 	var/sy = summoner.current.y

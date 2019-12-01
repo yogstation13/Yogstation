@@ -8,11 +8,11 @@ Points: <span class='{{data.points > 0 ? "good" : "bad"}}'>{{data.points}}</span
 	</ui-section>
 	{{#each data.ratedskills}}
 		<ui-section label='{{name}}' candystripe>
-			<ui-button action='set' state='{{level == "5" ? "selected" : null}}' params='{"name": "{{name}}", "level": "5"}'>A</ui-button>
-			<ui-button action='set' state='{{level == "4" ? "selected" : null}}' params='{"name": "{{name}}", "level": "4"}'>B</ui-button>
-			<ui-button action='set' state='{{level == "3" ? "selected" : null}}' params='{"name": "{{name}}", "level": "3"}'>C</ui-button>
-			<ui-button action='set' state='{{level == "2" ? "selected" : null}}' params='{"name": "{{name}}", "level": "2"}'>D</ui-button>
-			<ui-button action='set' state='{{level == "1" ? "selected" : null}}' params='{"name": "{{name}}", "level": "1"}'>F</ui-button>
+			<ui-button action='set' state='{{level == 5 ? "selected" : null}}' params='{"name": "{{name}}", "level": 5}'>A</ui-button>
+			<ui-button action='set' state='{{level == 4 ? "selected" : null}}' params='{"name": "{{name}}", "level": 4}'>B</ui-button>
+			<ui-button action='set' state='{{level == 3 ? "selected" : null}}' params='{"name": "{{name}}", "level": 3}'>C</ui-button>
+			<ui-button action='set' state='{{level == 2 ? "selected" : null}}' params='{"name": "{{name}}", "level": 2}'>D</ui-button>
+			<ui-button action='set' state='{{level == 1 ? "selected" : null}}' params='{"name": "{{name}}", "level": 1}'>F</ui-button>
 		</ui-section>
 	{{/each}}
 	<ui-section label='Major Ability'>

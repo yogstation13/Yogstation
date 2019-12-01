@@ -64,7 +64,7 @@
 	if(!G.stats)
 		revert_cast()
 		return
-	if(get_dist_euclidian(G.summoner, A) > G.range)
+	if(get_dist_euclidian(G.summoner.current, A) > G.range)
 		to_chat(G, "<span class='danger italics'>[A] is out of your range!</span>")
 		revert_cast()
 		return
