@@ -676,7 +676,7 @@
 		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>")
 		return
 	if(used)
-		to_chat(user, <span class='holoparasite'>All the cards appear to be blank..?</span>")
+		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
 	get_stand(user, /datum/stats/holypara)
 
 /obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
