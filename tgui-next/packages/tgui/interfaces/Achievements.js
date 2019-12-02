@@ -8,8 +8,9 @@ export const Achievements = props => {
       <Collapsible title={achievement.name} key={achievement.name}>
         <Section>
           {achievement.desc}<br />
-          {achievement.unlocked && (<span className="color-good">unlocked</span>)}
-          {!achievement.unlocked && (<span className="color-bad">locked</span>)}
+          {achievement.unlocked
+            ? <span className="color-good">unlocked</span>
+            : <span className="color-bad">locked</span>}
         </Section>
       </Collapsible>
     ))
