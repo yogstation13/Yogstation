@@ -14,6 +14,6 @@
 	id = 2
 
 	/datum/achievement/defib
-	name = "Livesaver"
+	name = "Lifesaver"
 	desc = "Successfuly defiblirate someone"
 	id = 3
