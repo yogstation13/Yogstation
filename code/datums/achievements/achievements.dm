@@ -12,3 +12,8 @@
 	name = "I live again"
 	desc = "As a roboticist, create a cyborg"
 	id = 2
+
+	/datum/achievement/defib
+	name = "Livesaver"
+	desc = "Successfuly defiblirate someone"
+	id = 3
