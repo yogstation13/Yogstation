@@ -133,8 +133,6 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 		equip_space_ninja(owner.current)
 	. = ..()
 
-
-
 /datum/antagonist/ninja/proc/on_death()
 	for(var/mob/L in GLOB.ninja_capture)
 		if(!L)
