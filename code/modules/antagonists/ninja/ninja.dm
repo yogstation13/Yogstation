@@ -186,3 +186,4 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]
 	ninjahud.leave_hud(ninja)
 	set_antag_hud(ninja, null)
+	
