@@ -23,7 +23,3 @@
 		/obj/item/storage/belt/bandolier = 1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = 1) //now in closet rather than on a table
 	generate_items_inside(items_inside,src)
-
-/obj/structure/closet/secure_closet/quartermaster/PopulateContents()
-	..()
-	new /obj/item/card/id/departmental_budget/car(src)
