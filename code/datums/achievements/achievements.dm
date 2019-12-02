@@ -13,7 +13,7 @@
 	desc = "As a roboticist, create a cyborg"
 	id = 2
 
-	/datum/achievement/defib
+/datum/achievement/defib
 	name = "Lifesaver"
 	desc = "Successfuly defiblirate someone"
 	id = 3
