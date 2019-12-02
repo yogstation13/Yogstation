@@ -64,7 +64,7 @@ It is possible to destroy the net by the occupant or someone else.
 
 	visible_message("[affecting] suddenly vanishes!")
 	affecting.forceMove(pick(GLOB.holdingfacility)) //Throw mob in to the holding facility.
-	ADD_TRAIT(affecting, TRAIT_CAPTURED, NINJA_NET)
+	GLOB.ninja_capture += affecting
 	to_chat(affecting, "<span class='danger'>You appear in a strange place. You feel very trapped.</span>")
 
 	if(!QDELETED(master))//As long as they still exist.

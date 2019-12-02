@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(ninja_capture)
+
 /datum/antagonist/ninja
 	name = "Ninja"
 	antagpanel_category = "Ninja"
@@ -131,21 +133,24 @@
 		equip_space_ninja(owner.current)
 	. = ..()
 
+
+
 /datum/antagonist/ninja/proc/on_death()
-	for(var/mob/L in GLOB.player_list)
-		if(HAS_TRAIT_FROM(L, TRAIT_CAPTURED, NINJA_NET))
-			var/atom/movable/target = L
-			if(isobj(L.loc))
-				target = L.loc
-			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
-			if(isliving(L))
-				var/mob/living/LI = L
-				LI.Knockdown(60)
-				LI.blind_eyes(30)
-				to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
-				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
-				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
-			REMOVE_TRAIT(L, TRAIT_CAPTURED, NINJA_NET)
+	for(var/mob/L in GLOB.ninja_capture)
+		if(!L)
+			continue
+		var/atom/movable/target = L
+		if(isobj(L.loc))
+			target = L.loc
+		target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
+		if(isliving(L))
+			var/mob/living/LI = L
+			LI.Knockdown(120)
+			LI.blind_eyes(10)
+			to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
+			playsound(L, 'sound/effects/phasein.ogg', 25, 1)
+			playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
+			GLOB.ninja_capture -= L
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	var/adj
