@@ -123,7 +123,7 @@
 	if(istext(string))
 		var/newstring = ""
 		var/i
-		for(i=lentext(string), i>0, i--)
+		for(i=length(string), i>0, i--)
 			if(i>=1000)
 				break
 			newstring = newstring + copytext(string, i, i+1)
