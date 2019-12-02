@@ -80,7 +80,7 @@
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "p" = (
-/mob/living/simple_animal/pet/gshepherd/roxie,
+/mob/living/simple_animal/pet/dog/gshepherd/roxie,
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "t" = (

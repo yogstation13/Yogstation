@@ -211,7 +211,7 @@
 	name = "laser system"
 	desc = "A weak laser system for space pods, fires concentrated bursts of energy."
 	icon_state = "weapon_laser"
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/laser
 	shot_cost = 600
 	fire_sound = 'sound/weapons/Laser.ogg'
 	overlay_icon = 'yogstation/icons/obj/spacepods/2x2.dmi'
