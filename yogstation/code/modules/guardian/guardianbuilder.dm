@@ -16,7 +16,7 @@
 	if(mob_name)
 		src.mob_name = mob_name
 	if(theme)
-		src.theme = theme 
+		src.theme = theme
 	if(failure_message)
 		src.failure_message = failure_message
 	if(max_points)
@@ -228,7 +228,7 @@
 	var/used_message = "<span class='holoparasite'>All the cards seem to be blank now.</span>"
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/ling_failure = "<span class='holoparasite bold'>The deck refuses to respond to a souless creature such as you.</span>"
-	var/random = TRUE
+	var/random = FALSE
 	var/allowmultiple = FALSE
 	var/allowling = TRUE
 	var/allowguardian = FALSE
@@ -256,12 +256,58 @@
 	if(builder.used)
 		to_chat(user, "[used_message]")
 		return
-	builder.ui_interact(user)
+	if(!random)
+		builder.ui_interact(user)
+	else
+		builder.saved_stats = generate_stand()
+		builder.spawn_guardian(user)
+
+/obj/item/guardiancreator/proc/generate_stand()
+	var/points = 15
+	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
+	var/list/majors = subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special)
+	var/list/major_weighted = list()
+	for(var/M in majors)
+		var/datum/guardian_ability/major/major = new M
+		major_weighted[major] = major.arrow_weight
+	var/datum/guardian_ability/major/major_ability = pickweight(major_weighted)
+	var/datum/guardian_stats/stats = new
+	stats.ability = major_ability
+	stats.ability.master_stats = stats
+	points -= major_ability.cost
+	while(points > 0)
+		if(!categories.len)
+			break
+		shuffle_inplace(categories)
+		var/cat = pick(categories)
+		points--
+		switch(cat)
+			if("Damage")
+				stats.damage++
+				if(stats.damage >= 5)
+					categories -= "Damage"
+			if("Defense")
+				stats.defense++
+				if(stats.defense >= 5)
+					categories -= "Defense"
+			if("Speed")
+				stats.speed++
+				if(stats.speed >= 5)
+					categories -= "Speed"
+			if("Potential")
+				stats.potential++
+				if(stats.potential >= 5)
+					categories -= "Potential"
+			if("Range")
+				stats.range++
+				if(stats.range >= 5)
+					categories -= "Range"
+	return stats
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/guardiancreator/debug
-	desc = "If you're seeing this and you're not debugging, yell at @Zyzarda"
+	desc = "If you're seeing this and you're not debugging, something is probably very wrong."
 	debug_mode = TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -306,3 +352,15 @@
 
 /obj/item/guardiancreator/wizard/rare
 	allowspecial = TRUE
+
+/obj/item/guardiancreator/random
+	random = TRUE
+
+/obj/item/guardiancreator/carp/random
+	random = TRUE
+
+/obj/item/guardiancreator/wizard/random
+	random = TRUE
+
+/obj/item/guardiancreator/tech/random
+	random = TRUE
