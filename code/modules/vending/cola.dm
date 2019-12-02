@@ -4,7 +4,7 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space.;Thats cheap ass soda!"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
@@ -19,9 +19,10 @@
 		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	refill_canister = /obj/item/vending_refill/cola
-	default_price = 10
+	default_price = 2
 	extra_price = 30
 	payment_department = ACCOUNT_SRV
+
 /obj/item/vending_refill/cola
 	machine_name = "Robust Softdrinks"
 	icon_state = "refill_cola"
@@ -48,7 +49,7 @@
 	name = "\improper Space Cola Vendor"
 	desc = "It vends cola, in space."
 	product_slogans = "Cola in space!"
-
+	
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
 	name = "\improper Space-up! Vendor"

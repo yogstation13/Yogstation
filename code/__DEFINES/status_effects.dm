@@ -40,6 +40,10 @@
 
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
 
+#define STATUS_EFFECT_CREEP /datum/status_effect/creep //Provides immunity to lightburn for darkspawn, does nothing to anyone else //Yogs
+
+ #define STATUS_EFFECT_TIME_DILATION /datum/status_effect/time_dilation //Provides immunity to slowdown and halves click-delay/action times //Yogs
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -97,6 +101,8 @@
 
 #define STATUS_EFFECT_STASIS /datum/status_effect/incapacitating/stasis //Halts biological functions like bleeding, chemical processing, blood regeneration, walking, etc
 
+#define STATUS_EFFECT_BROKEN_WILL /datum/status_effect/broken_will //A 30-second sleep effect reduced by 1 second for every point of damage the target takes. //Yogs
+
 /////////////
 // NEUTRAL //
 /////////////
@@ -116,6 +122,14 @@
 #define STATUS_EFFECT_HIVE_RADAR /datum/status_effect/agent_pinpointer/hivemind
 
 #define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //rewards the person who added this to the target with refreshed spells and a fair heal
+
+#define STATUS_EFFECT_HELDUP /datum/status_effect/heldup // someone is currently pointing a gun at you
+
+#define STATUS_EFFECT_HOLDUP /datum/status_effect/holdup // you are currently pointing a gun at someone
+
+#define STATUS_EFFECT_NOTSCARED /datum/status_effect/notscared // you have had a gun pointed at you and are not startled about this fact for a minute
+
+#define STATUS_EFFECT_TAGALONG /datum/status_effect/tagalong //allows darkspawn to accompany people's shadows //Yogs
 
 /////////////
 //  SLIME  //

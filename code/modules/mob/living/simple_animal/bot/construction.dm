@@ -102,6 +102,8 @@
 		if(ASSEMBLY_FOURTH_STEP)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(W.use_tool(src, user, 0, volume=40))
+					if(build_step != 3)
+						return
 					name = "shielded frame assembly"
 					to_chat(user, "<span class='notice'>You weld the vest to [src].</span>")
 					build_step++
@@ -180,6 +182,8 @@
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				to_chat(user, "<span class='notice'>You start attaching the gun to the frame...</span>")
 				if(W.use_tool(src, user, 40, volume=100))
+					if(build_step != 8)
+						return
 					name = "armed [name]"
 					to_chat(user, "<span class='notice'>The gun is now securely fastened to the frame.</span>")
 					build_step++
@@ -343,6 +347,8 @@
 		if(ASSEMBLY_FIRST_STEP)
 			if(I.tool_behaviour == TOOL_WELDER)
 				if(I.use_tool(src, user, 0, volume=40))
+					if(build_step != 0)
+						return
 					add_overlay("hs_hole")
 					to_chat(user, "<span class='notice'>You weld a hole in [src]!</span>")
 					build_step++
@@ -365,6 +371,8 @@
 
 			else if(I.tool_behaviour == TOOL_WELDER) //deconstruct
 				if(I.use_tool(src, user, 0, volume=40))
+					if(build_step != 2)
+						return
 					cut_overlay("hs_hole")
 					to_chat(user, "<span class='notice'>You weld the hole in [src] shut!</span>")
 					build_step--
@@ -398,7 +406,7 @@
 				qdel(I)
 				qdel(src)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "You adjust [src]'s arm slots to mount extra weapons")
+				to_chat(user, "You adjust [src]'s arm slots to mount extra weapons.")
 				build_step ++
 				return
 			if(istype(I, /obj/item/toy/sword))
@@ -414,7 +422,7 @@
 				else
 					if(!can_finish_build(I, user))
 						return
-					to_chat(user, "<span class='notice'>You complete the Securitron!...Something seems a bit wrong with it..?</span>")
+					to_chat(user, "<span class='notice'>You complete the Securitron! Something seems a bit wrong with it...?</span>")
 					var/mob/living/simple_animal/bot/secbot/grievous/toy/S = new(Tsec)
 					S.name = created_name
 					S.robot_arm = robot_arm
@@ -428,6 +436,7 @@
 				to_chat(user, "<span class='notice'>You remove [dropped_arm] from [src].</span>")
 				build_step--
 				if(toyswordamt > 0 || toyswordamt)
+					toyswordamt = 0
 					icon_state = initial(icon_state)
 					to_chat(user, "<span class='notice'>The superglue binding [src]'s toy swords to its chassis snaps!</span>")
 					for(var/IS in 1 to toyswordamt)
@@ -447,7 +456,7 @@
 				else
 					if(!can_finish_build(I, user))
 						return
-					to_chat(user, "<span class='notice'>You complete the Securitron!...Something seems a bit wrong with it..?</span>")
+					to_chat(user, "<span class='notice'>You complete the Securitron! Something seems a bit wrong with it...?</span>")
 					var/mob/living/simple_animal/bot/secbot/grievous/S = new(Tsec)
 					S.name = created_name
 					S.robot_arm = robot_arm
@@ -455,8 +464,9 @@
 					qdel(src)
 			else if(I.tool_behaviour == TOOL_SCREWDRIVER) //deconstruct
 				build_step--
+				swordamt = 0
 				icon_state = initial(icon_state)
-				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords</span>")
+				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords from the chassis.</span>")
 				for(var/IS in 1 to swordamt)
 					new /obj/item/melee/transforming/energy/sword/saber(Tsec)
 

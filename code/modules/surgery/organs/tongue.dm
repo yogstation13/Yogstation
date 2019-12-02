@@ -20,7 +20,8 @@
 		/datum/language/aphasia,
 		/datum/language/piratespeak,
 		/datum/language/japanese,
-		/datum/language/machine //yogs
+		/datum/language/machine, //yogs
+		/datum/language/darkspawn //also yogs
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

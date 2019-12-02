@@ -39,7 +39,7 @@
 
 /obj/item/clothing/glasses/hud/health/night
 	name = "night vision health scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	desc = "An advanced medical heads-up display that allows doctors to find patients in complete darkness."
 	icon_state = "healthhudnight"
 	item_state = "glasses"
 	darkness_view = 8
@@ -128,7 +128,7 @@
 
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
-	desc = "An advanced heads-up display which provides id data and vision in complete darkness."
+	desc = "An advanced heads-up display which provides ID data and vision in complete darkness."
 	icon_state = "securityhudnight"
 	darkness_view = 8
 	flash_protect = -1
@@ -157,7 +157,7 @@
 
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"
-	desc = "A hud with multiple functions."
+	desc = "A HUD with multiple functions."
 	actions_types = list(/datum/action/item_action/switch_hud)
 
 /obj/item/clothing/glasses/hud/toggle/attack_self(mob/user)

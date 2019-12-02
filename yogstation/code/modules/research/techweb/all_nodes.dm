@@ -92,7 +92,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4500)
 	export_price = 4500
 	prereq_ids = list("spacepod_pseat", "high_efficiency")
-	design_ids = list("podcargo_lootbox", "podcargo_crate", "podcargo_ore")
+	design_ids = list("podcargo_crate", "podcargo_ore")
 
 /datum/techweb_node/spacepod_lockbuster
 	id = "spacepod_lockbuster"

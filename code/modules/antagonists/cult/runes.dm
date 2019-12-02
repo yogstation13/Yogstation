@@ -81,8 +81,8 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 		fail_invoke()
 
 /obj/effect/rune/attack_animal(mob/living/simple_animal/M)
-	if(istype(M, /mob/living/simple_animal/shade) || istype(M, /mob/living/simple_animal/hostile/construct))
-		if(istype(M, /mob/living/simple_animal/hostile/construct/wraith/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/armored/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/builder/angelic))
+	if(istype(M, /mob/living/simple_animal/shade) || istype(M, /mob/living/simple_animal/hostile/construct) || istype(M, /mob/living/simple_animal/hostile/guardian/chaplain))
+		if(istype(M, /mob/living/simple_animal/hostile/construct/wraith/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/armored/angelic) || istype(M, /mob/living/simple_animal/hostile/construct/builder/angelic) || istype(M, /mob/living/simple_animal/hostile/guardian/chaplain))
 			to_chat(M, "<span class='warning'>You purge the rune!</span>")
 			qdel(src)
 		else if(construct_invoke || !iscultist(M)) //if you're not a cult construct we want the normal fail message
@@ -148,7 +148,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		else if(istype(M, /obj/item/toy/plush/narplush))
 			var/obj/item/toy/plush/narplush/P = M
 			P.visible_message("<span class='cult italic'>[P] squeaks loudly!</span>")
-	do_invoke_glow()
+	if(!src.density) //yogs: barrier runes play cooldown animation properly
+		do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
 	set waitfor = FALSE
@@ -647,10 +648,10 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return
 	var/mob/living/user = invokers[1]
 	..()
-	density = !density
-	update_state()
-	if(density)
+	if(!density) //yogs: so beforehand the rune's density was inverted before this, which meant this was only used to check other runes and add the timer
 		spread_density()
+	else
+		lose_density()	//yogs: why the fuck didn't they do this before I want to die
 	var/carbon_user = iscarbon(user)
 	user.visible_message("<span class='warning'>[user] [carbon_user ? "places [user.p_their()] hands on":"stares intently at"] [src], and [density ? "the air above it begins to shimmer" : "the shimmer above it fades"].</span>", \
 						 "<span class='cult italic'>You channel [carbon_user ? "your life ":""]energy into [src], [density ? "temporarily preventing" : "allowing"] passage above it.</span>")
@@ -665,7 +666,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 			W.density = TRUE
 			W.update_state()
 			W.spread_density()
-	density_timer = addtimer(CALLBACK(src, .proc/lose_density), 3000, TIMER_STOPPABLE)
 
 /obj/effect/rune/wall/proc/lose_density()
 	if(density)
@@ -685,6 +685,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	deltimer(density_timer)
 	air_update_turf(1)
 	if(density)
+		density_timer = addtimer(CALLBACK(src, .proc/lose_density), 3000, TIMER_STOPPABLE)
 		var/mutable_appearance/shimmer = mutable_appearance('icons/effects/effects.dmi', "barriershimmer", ABOVE_MOB_LAYER)
 		shimmer.appearance_flags |= RESET_COLOR
 		shimmer.alpha = 60

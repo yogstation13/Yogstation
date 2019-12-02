@@ -52,6 +52,30 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
 			src << browse("...", "window=asset_cache_browser")
 
+
+	if(href_list["__keydown"])
+		var/keydown = js_keycode_to_byond(href_list["__keydown"])
+
+		if(href_list["ctrlKey"] == "0" && keydown != "Ctrl")
+			keyUp("Ctrl")
+		if(href_list["ctrlKey"] == "1" && keydown != "Ctrl")
+			keyDown("Ctrl")
+
+		if(keydown)
+			keyDown(keydown)
+		return
+	if(href_list["__keyup"])
+		var/keyup = js_keycode_to_byond(href_list["__keyup"])
+
+		if(href_list["ctrlKey"] == "0" && keyup != "Ctrl")
+			keyUp("Ctrl")
+		if(href_list["ctrlKey"] == "1" && keyup != "Ctrl")
+			keyDown("Ctrl")
+
+		if(keyup)
+			keyUp(keyup)
+		return
+
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
 	if (!holder && mtl)
 		var/minute = round(world.time, 600)
@@ -376,7 +400,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel.glitch.me/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
+			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel2.glitch.me/lookup/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)

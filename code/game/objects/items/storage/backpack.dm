@@ -68,7 +68,7 @@
 
 /obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"
-	desc = "Space Santa uses this to deliver presents to all the nice children in space in Christmas! Wow, it's pretty big!"
+	desc = "Space Santa uses this to deliver presents to all the nice children in space! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
@@ -123,7 +123,7 @@
 
 /obj/item/storage/backpack/mime
 	name = "Parcel Parceaux"
-	desc = "A silent backpack made for those silent workers. Silence Co."
+	desc = "A silent backpack made for those silent workers. Made by Silence Co."
 	icon_state = "mimepack"
 	item_state = "mimepack"
 
@@ -212,7 +212,6 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
-	species_exception = list(/datum/species/angel) //satchels can be equipped since they are on the side, not back
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
@@ -425,7 +424,7 @@
 
 /obj/item/storage/backpack/duffelbag/syndie
 	name = "suspicious looking duffel bag"
-	desc = "A large duffel bag for holding extra tactical supplies."
+	desc = "A large duffel bag for holding extra-tactical supplies."
 	icon_state = "duffel-syndie"
 	item_state = "duffel-syndieammo"
 	slowdown = 0
@@ -550,7 +549,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
-	desc = "A large duffel bag containing a medical equipment, a Donksoft LMG, a big jumbo box of riot darts, and a knock-off pair of magboots."
+	desc = "A large duffel bag containing medical equipment, a Donksoft LMG, a big jumbo box of riot darts, and a knock-off pair of magboots."
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle/PopulateContents()
 	new /obj/item/clothing/shoes/magboots/syndie(src)
