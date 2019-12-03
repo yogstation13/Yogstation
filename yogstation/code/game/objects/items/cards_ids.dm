@@ -76,6 +76,7 @@
 		qdel(otherEmag)
 		color = rgb(40, 130, 255)
 		prox_check = FALSE
+		return
 	to_chat(user, "<span class='notice'>The cyptographic sequencers attempt to override each other before destroying themselves.</span>")
 	playsound(src.loc, "sparks", 50, 1)
 	qdel(otherEmag)
