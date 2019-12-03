@@ -214,6 +214,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(!QDELETED(summoner?.current))
 		UnregisterSignal(summoner.current, COMSIG_MOVABLE_MOVED)
 	cut_barriers()
+	var/mob/living/carbon/H = summoner.current
+	H.verbs -= /mob/living/proc/guardian_comm
+	H.verbs -= /mob/living/proc/guardian_recall
+	H.verbs -= /mob/living/proc/guardian_reset
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -492,6 +496,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return FALSE
 
 /mob/living/simple_animal/hostile/guardian/proc/Recall(forced)
+	if(berserk)
+		return
 	if(!berserk && (QDELETED(summoner?.current) || summoner.current.stat == DEAD))
 		nullspace()
 		return
