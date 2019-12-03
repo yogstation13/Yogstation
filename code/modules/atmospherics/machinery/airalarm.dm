@@ -97,6 +97,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		/datum/gas/water_vapor		= new/datum/tlv/dangerous,
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
@@ -117,6 +118,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv/no_checks,
 		/datum/gas/water_vapor		= new/datum/tlv/no_checks,
 		/datum/gas/tritium			= new/datum/tlv/no_checks,
+		/datum/gas/hydrogen			= new/datum/tlv/no_checks,
 		/datum/gas/stimulum			= new/datum/tlv/no_checks,
 		/datum/gas/nitryl			= new/datum/tlv/no_checks,
 		/datum/gas/dilithium		= new/datum/tlv/no_checks,//Yogs -- Dilithium
@@ -137,6 +139,7 @@
 		/datum/gas/hypernoblium		= new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
 		/datum/gas/water_vapor		= new/datum/tlv/dangerous,
 		/datum/gas/tritium			= new/datum/tlv/dangerous,
+		/datum/gas/hydrogen			= new/datum/tlv/dangerous,
 		/datum/gas/stimulum			= new/datum/tlv(-1, -1, 1000, 1000), // Stimulum has only positive effects
 		/datum/gas/nitryl			= new/datum/tlv/dangerous,
 		/datum/gas/dilithium		= new/datum/tlv/dangerous,//Yogs -- Dilithium
@@ -529,6 +532,7 @@
 						/datum/gas/nitrous_oxide,
 						/datum/gas/nitryl,
 						/datum/gas/tritium,
+						/datum/gas/hydrogen,
 						/datum/gas/bz,
 						/datum/gas/stimulum,
 						/datum/gas/pluoxium,//yogs comma

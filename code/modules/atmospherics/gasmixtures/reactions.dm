@@ -81,7 +81,7 @@
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
-	priority = -1 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	priority = -2 //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Tritium Combustion"
 	id = "tritfire"
 
@@ -139,9 +139,143 @@
 
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
+/datum/gas_reaction/hydrogenfire
+	priority = -2 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	name = "Hydrogen Combustion"
+	id = "hydrogenfire"
+
+/datum/gas_reaction/hydrogenfire/init_reqs()
+	min_requirements = list(
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
+		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT,
+		/datum/gas/oxygen = MINIMUM_MOLE_COUNT
+	)
+
+/datum/gas_reaction/hydrogenfire/react(datum/gas_mixture/air, datum/holder)
+	var/energy_released = 0
+	var/old_heat_capacity = air.heat_capacity()
+	var/list/cached_gases = air.gases //this speeds things up because accessing datum vars is slow
+	var/temperature = air.temperature
+	var/list/cached_results = air.reaction_results
+	cached_results["fire"] = 0
+	var/turf/open/location = isturf(holder) ? holder : null
+	var/burned_fuel = 0
+	var/initial_hydrogen = cached_gases[/datum/gas/hydrogen][MOLES]
+	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_hydrogen || MINIMUM_HYDROGEN_OXYBURN_ENERGY > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
+		burned_fuel = cached_gases[/datum/gas/oxygen][MOLES]/HYDROGEN_BURN_OXY_FACTOR
+		if(burned_fuel > initial_hydrogen) burned_fuel = initial_hydrogen
+		cached_gases[/datum/gas/hydrogen][MOLES] -= burned_fuel
+	else
+		burned_fuel = initial_hydrogen
+		cached_gases[/datum/gas/hydrogen][MOLES] *= (1 - 1/HYDROGEN_BURN_HYDROGEN_FACTOR)
+		cached_gases[/datum/gas/oxygen][MOLES] -= cached_gases[/datum/gas/hydrogen][MOLES]
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel * (HYDROGEN_BURN_HYDROGEN_FACTOR - 1))
+
+	if(burned_fuel)
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
+
+		ASSERT_GAS(/datum/gas/water_vapor, air)
+		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel
+		cached_results["fire"] += burned_fuel
+
+	if(energy_released > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = (temperature*old_heat_capacity + energy_released)/new_heat_capacity
+
+	//let the floor know a fire is happening
+	if(istype(location))
+		temperature = air.temperature
+		if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+			location.hotspot_expose(temperature, CELL_VOLUME)
+			for(var/I in location)
+				var/atom/movable/item = I
+				item.temperature_expose(air, temperature, CELL_VOLUME)
+			location.temperature_expose(air, temperature, CELL_VOLUME)
+
+	return cached_results["fire"] ? REACTING : NO_REACTION
+
+//balancing the combustion of hydrogen and trit since they are isotopes.
+/datum/gas_reaction/hydrogen_trit_equilibrium_burn
+	priority = -1
+	name = "Hydrogen Isotope Equilibrium Burn"
+	id = "hydrogen_Isotope_burn"
+
+/datum/gas_reaction/hydrogen_trit_equilibrium_burn/init_reqs()
+	min_requirements = list(
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
+		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT,
+		/datum/gas/oxygen = MINIMUM_MOLE_COUNT,
+		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT
+	)
+
+/datum/gas_reaction/hydrogen_trit_equilibrium_burn/react(datum/gas_mixture/air, datum/holder)
+	var/list/cached_gases = air.gases //this speeds things up because accessing datum vars is slow
+	var/total_isotope_count = cached_gases[/datum/gas/tritium][MOLES]+cached_gases[/datum/gas/hydrogen][MOLES]
+	var/trit_percentage = /datum/gas/tritium][MOLES]/total_isotope_count
+	var/scaled_min_trit_energy = trit_percentage*MINIMUM_TRIT_OXYBURN_ENERGY
+	var/hydrogen_percentage = /datum/gas/tritium][MOLES]/total_isotope_count
+	var/scaled_min_hydrogen_energy = hydrogen_percentage*MINIMUM_HYDROGEN_OXYBURN_ENERGY
+	var/energy_released = 0
+	var/old_heat_capacity = air.heat_capacity()
+	var/temperature = air.temperature
+	var/list/cached_results = air.reaction_results
+	cached_results["fire"] = 0
+	var/turf/open/location = isturf(holder) ? holder : null
+
+	var/burned_hydrogen = 0
+	var/initial_hydrogen = cached_gases[/datum/gas/hydrogen][MOLES]*hydrogen_percentage
+	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_hydrogen || scaled_min_hydrogen_energy > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
+		burned_hydrogen = cached_gases[/datum/gas/oxygen][MOLES]/HYDROGEN_BURN_OXY_FACTOR
+		if(burned_hydrogen > initial_hydrogen) burned_hydrogen = initial_hydrogen
+		cached_gases[/datum/gas/hydrogen][MOLES] -= burned_hydrogen
+	else
+		burned_hydrogen = initial_hydrogen
+		cached_gases[/datum/gas/hydrogen][MOLES] -= burned_hydrogen
+		cached_gases[/datum/gas/oxygen][MOLES] -= burned_hydrogen
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_hydrogen * (HYDROGEN_BURN_HYDROGEN_FACTOR - 1))
+
+	var/burned_trit = 0
+	var/initial_trit = cached_gases[/datum/gas/tritium][MOLES]*trit_percentage// Yogs
+	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_trit || scaled_min_hydrogen_energy > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
+		burned_trit = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
+		if(burned_trit > initial_trit) burned_trit = initial_trit //Yogs -- prevents negative moles of Tritium
+		cached_gases[/datum/gas/tritium][MOLES] -= burned_trit
+	else
+		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
+		cached_gases[/datum/gas/tritium][MOLES] -= burned_trit // Yogs -- Maybe a tiny performance boost? I'unno
+		cached_gases[/datum/gas/oxygen][MOLES] -= burned_trit
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_trit * (TRITIUM_BURN_TRIT_FACTOR - 1)) // Yogs -- Fixes low-energy tritium fires
+
+	if(burned_hydrogen+burned_tritium>0)
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_hydrogen) + (FIRE_TRIT_ENERGY_RELEASED * burned_trit)
+		if(location && prob(10) && burned_trit > TRITIUM_MINIMUM_RADIATION_ENERGY) //woah there let's not crash the server
+			radiation_pulse(location, (FIRE_HYDROGEN_ENERGY_RELEASED * burned_trit)/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
+
+		ASSERT_GAS(/datum/gas/water_vapor, air)
+		cached_gases[/datum/gas/water_vapor][MOLES] += burned_hydrogen+burned_trit
+		cached_results["fire"] += burned_hydrogen+burned_trit
+
+	if(energy_released > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = (temperature*old_heat_capacity + energy_released)/new_heat_capacity
+
+	//let the floor know a fire is happening
+	if(istype(location))
+		temperature = air.temperature
+		if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+			location.hotspot_expose(temperature, CELL_VOLUME)
+			for(var/I in location)
+				var/atom/movable/item = I
+				item.temperature_expose(air, temperature, CELL_VOLUME)
+			location.temperature_expose(air, temperature, CELL_VOLUME)
+
+	return cached_results["fire"] ? REACTING : NO_REACTION
+
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
-	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
+	priority = -3 //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
 
@@ -175,7 +309,7 @@
 		temperature_scale = (temperature-PLASMA_MINIMUM_BURN_TEMPERATURE)/(PLASMA_UPPER_TEMPERATURE-PLASMA_MINIMUM_BURN_TEMPERATURE)
 	if(temperature_scale > 0)
 		oxygen_burn_rate = OXYGEN_BURN_RATE_BASE - temperature_scale
-		if(cached_gases[/datum/gas/oxygen][MOLES] / cached_gases[/datum/gas/plasma][MOLES] > SUPER_SATURATION_THRESHOLD) //supersaturation. Form Tritium.
+		if(cached_gases[/datum/gas/oxygen][MOLES] / cached_gases[/datum/gas/plasma][MOLES] > SUPER_SATURATION_THRESHOLD) //supersaturation. Form Tritium and hydrogen
 			super_saturation = TRUE
 		if(cached_gases[/datum/gas/oxygen][MOLES] > cached_gases[/datum/gas/plasma][MOLES]*PLASMA_OXYGEN_FULLBURN)
 			plasma_burn_rate = (cached_gases[/datum/gas/plasma][MOLES]*temperature_scale)/PLASMA_BURN_RATE_DELTA
@@ -188,7 +322,9 @@
 			cached_gases[/datum/gas/oxygen][MOLES] = QUANTIZE(cached_gases[/datum/gas/oxygen][MOLES] - (plasma_burn_rate * oxygen_burn_rate))
 			if (super_saturation)
 				ASSERT_GAS(/datum/gas/tritium,air)
+				ASSERT_GAS(/datum/gas/hydrogen,air)
 				cached_gases[/datum/gas/tritium][MOLES] += plasma_burn_rate
+				cached_gases[/datum/gas/hydrogen][MOLES] += plasma_burn_rate
 			else
 				ASSERT_GAS(/datum/gas/carbon_dioxide,air)
 				cached_gases[/datum/gas/carbon_dioxide][MOLES] += plasma_burn_rate

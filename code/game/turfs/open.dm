@@ -272,6 +272,7 @@
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
 
+//this is a fucking abomination and should be fixed. Gas formation should be handled in atmos, but I can see why this is here.
 /turf/open/rad_act(pulse_strength)
 	. = ..()
 	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
@@ -281,3 +282,9 @@
 		air.assert_gas(/datum/gas/pluoxium)
 		air.gases[/datum/gas/pluoxium][MOLES]+=(pulse_strength/4000)
 		air.garbage_collect()
+
+	if (air.gases[/datum/gas/hydrogen])
+		air.assert_gas(/datum/gas/tritium)
+		air.gases[/datum/gas/tritium][MOLES]+=air.gases[/datum/gas/hydrogen][MOLES]/10 //this is gonna be a fucking bodge until I figure out a way to get rads on a turf.
+		air.garbage_collect()
+

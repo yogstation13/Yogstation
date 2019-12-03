@@ -46,6 +46,7 @@
 		"air" = /obj/machinery/portable_atmospherics/canister/air,
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
+		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,
 		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
 		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
@@ -106,6 +107,12 @@
 	desc = "Tritium. Inhalation might cause irradiation."
 	icon_state = "green"
 	gas_type = /datum/gas/tritium
+
+/obj/machinery/portable_atmospherics/canister/hydrogen
+	name = "hydrogen canister"
+	desc = "Hydrogen. Inhalation might cause toxicity problems."
+	icon_state = "green"
+	gas_type = /datum/gas/hydrogen
 
 /obj/machinery/portable_atmospherics/canister/nob
 	name = "hyper-noblium canister"
