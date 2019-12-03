@@ -33,6 +33,12 @@
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/CE(src)
 	new /obj/item/energy_harvester(src)
+	new /obj/item/clipboard/yog/paperwork/ce(src)
+	new /obj/item/card/id/departmental_budget/eng(src)
+	new /obj/item/clothing/under/yogs/ceturtleneck(src)
+	new /obj/item/clothing/under/yogs/cecasual(src)
+	new /obj/item/clothing/head/beret/ce(src)
+	new /obj/item/poster/firstsingularity(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"
