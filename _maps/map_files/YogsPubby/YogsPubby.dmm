@@ -28658,6 +28658,13 @@
 	pixel_x = 24
 	},
 /obj/item/paper/fluff/stations/lavaland/slime_hunter,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bcH" = (
@@ -33026,6 +33033,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
+"bkZ" = (
+/obj/structure/extraction_point{
+	name = "Xenobiology Fulton Retriever"
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "bla" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -36063,6 +36076,7 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
+/obj/item/pet_carrier/xenobio,
 /obj/item/pet_carrier/xenobio,
 /obj/item/pet_carrier/xenobio,
 /obj/item/pet_carrier/xenobio,
@@ -42604,6 +42618,12 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/medical/genetics)
+"bAO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bAP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
@@ -101024,7 +101044,7 @@ bGZ
 bGZ
 bGZ
 bGZ
-bGZ
+bAO
 bGZ
 bFG
 aAF
@@ -112610,7 +112630,7 @@ bkF
 blX
 blX
 blX
-blX
+bkZ
 blX
 blX
 blX
