@@ -41,3 +41,24 @@
 /obj/spacepod/prebuilt/jousting/red
 	icon_state = "pod_synd"
 	armor_type = /obj/item/pod_parts/armor/security/red
+
+/obj/spacepod/random
+	icon = 'goon/icons/obj/spacepods/2x2.dmi'
+	icon_state = "pod_civ"
+	construction_state = SPACEPOD_ARMOR_WELDED
+
+/obj/spacepod/random/Initialize()
+	..()
+	var/armor_type = pick(/obj/item/pod_parts/armor,
+		/obj/item/pod_parts/armor/syndicate,
+		/obj/item/pod_parts/armor/black,
+		/obj/item/pod_parts/armor/gold,
+		/obj/item/pod_parts/armor/industrial,
+		/obj/item/pod_parts/armor/security)
+	add_armor(new armor_type(src))
+	cell = new /obj/item/stock_parts/cell/high/empty(src)
+	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
+	velocity_x = rand(-15, 15)
+	velocity_y = rand(-15, 15)
+	obj_integrity = rand(100, max_integrity)
+	brakes = FALSE
