@@ -40,12 +40,12 @@
 
 /datum/achievement/cpr
 	name = "Breath of Life"
-	desc = "Perform CPR on someone"
+	desc = "Perform CPR on someone..."
 	id = 11
 
 /datum/achievement/anticpr
 	name = "Breath of Death"
-	desc = "Perform CPR with someone with incompatible lungs"
+	desc = "... with incompatible lungs"
 	id = 12
 
 /datum/achievement/changelingwin
@@ -57,3 +57,18 @@
 	name = "The Dark Shadow"
 	desc = "As a shadowling, ascend successfully"
 	id = 14
+
+/datum/achievement/death
+	name = "Flatlined"
+	desc = "You died"
+	id = 15
+
+/datum/achievement/cremated
+	name = "Back to Carbon"
+	desc = "Get cremated"
+	id = 16
+
+/datum/achievement/cremated_alive
+	name = "Burn in Hell"
+	desc = "Get cremated... alive"
+	id = 17
