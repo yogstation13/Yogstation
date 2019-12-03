@@ -37,3 +37,18 @@
 	name = "Scholars of the Arcane"
 	desc = "As a Wizard complete your objectives"
 	id = 10
+
+/datum/achievement/cpr
+	name = "Breath of Life"
+	desc = "Perform CPR on someone"
+	id = 11
+
+/datum/achievement/anticpr
+	name = "Breath of Death"
+	desc = "Perform CPR with someone with incompatible lungs"
+	id = 12
+
+/datum/achievement/changelingwin
+	name = "The Thing"
+	desc = "As a Changeling, complete your objectives"
+	id = 13
