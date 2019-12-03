@@ -20270,6 +20270,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"aNK" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "aNL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -30605,15 +30612,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"biv" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/mob/living/simple_animal/pet/fox/fennec{
-	name = "Autumn"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "biw" = (
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
@@ -81993,7 +81991,7 @@ gjl
 gjl
 bgv
 bju
-biv
+aNK
 bjk
 bmt
 boN
