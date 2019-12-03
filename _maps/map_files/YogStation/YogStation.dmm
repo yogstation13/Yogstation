@@ -10927,7 +10927,6 @@
 /area/crew_quarters/dorms)
 "aws" = (
 /obj/structure/table/wood,
-/obj/item/storage/firstaid/regular,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
