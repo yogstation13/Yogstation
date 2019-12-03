@@ -7,62 +7,62 @@
 
 /obj/structure/sign/departments/science			//These 3 have multiple types, just var-edit the icon_state to whatever one you want on the map
 	name = "\improper SCIENCE"
-	desc = "A sign labelling an area where research and science is performed."
+	desc = "A sign labeling an area where research and science is performed."
 	icon_state = "science1"
 
 /obj/structure/sign/departments/chemistry
 	name = "\improper CHEMISTRY"
-	desc = "A sign labelling an area containing chemical equipment."
+	desc = "A sign labeling an area containing chemical equipment."
 	icon_state = "chemistry1"
 
 /obj/structure/sign/departments/botany
 	name = "\improper HYDROPONICS"
-	desc = "A sign labelling an area as a place where plants are grown."
+	desc = "A sign labeling an area as a place where plants are grown."
 	icon_state = "hydro1"
 
 /obj/structure/sign/departments/xenobio
 	name = "\improper XENOBIOLOGY"
-	desc = "A sign labelling an area as a place where xenobiological entities are researched."
+	desc = "A sign labeling an area as a place where xenobiological entities are researched."
 	icon_state = "xenobio"
 
 /obj/structure/sign/departments/evac
 	name = "\improper EVACUATION"
-	desc = "A sign labelling an area where evacuation procedures take place."
+	desc = "A sign labeling an area where evacuation procedures take place."
 	icon_state = "evac"
 
 /obj/structure/sign/departments/drop
 	name = "\improper DROP PODS"
-	desc = "A sign labelling an area where drop pod loading procedures take place."
+	desc = "A sign labeling an area where drop pod loading procedures take place."
 	icon_state = "drop"
 
 /obj/structure/sign/departments/custodian
 	name = "\improper CUSTODIAN"
-	desc = "A sign labelling an area where the custodian works."
+	desc = "A sign labeling an area where the custodian works."
 	icon_state = "custodian"
 
 /obj/structure/sign/departments/engineering
 	name = "\improper ENGINEERING"
-	desc = "A sign labelling an area where engineers work."
+	desc = "A sign labeling an area where engineers work."
 	icon_state = "engine"
 
 /obj/structure/sign/departments/cargo
 	name = "\improper CARGO"
-	desc = "A sign labelling an area where cargo ships dock."
+	desc = "A sign labeling an area where cargo ships dock."
 	icon_state = "cargo"
 
 /obj/structure/sign/departments/security
 	name = "\improper SECURITY"
-	desc = "A sign labelling an area where the law is law."
+	desc = "A sign labeling an area where the law is law."
 	icon_state = "security"
 
 /obj/structure/sign/departments/holy
 	name = "\improper HOLY"
-	desc = "A sign labelling a religious area."
+	desc = "A sign labeling a religious area."
 	icon_state = "holy"
 
 /obj/structure/sign/departments/restroom
 	name = "\improper RESTROOM"
-	desc = "A sign labelling a restroom."
+	desc = "A sign labeling a restroom."
 	icon_state = "restroom"
 
 /obj/structure/sign/departments/medbay
@@ -95,12 +95,12 @@
 
 /obj/structure/sign/departments/minsky/engineering/engineering
 	name = "Engineering Department"
-	desc = "A sign labeling engineering department of the station. The fewer moving parts the better."
+	desc = "A sign labeling the engineering department of the station. The fewer moving parts the better."
 	icon_state = "minskyengi"
 
 /obj/structure/sign/departments/minsky/engineering/telecommmunications
 	name = "Telecommunications Department"
-	desc = "A sign labeling telecommunications division of the station. 'Nuff said."
+	desc = "A sign labeling the telecommunications division of the station. 'Nuff said."
 	icon_state = "minskytcom"
 
 /obj/structure/sign/departments/minsky/engineering/atmospherics
@@ -119,13 +119,13 @@
 	icon_state = "minskymedicb"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning1
-	name = "Cloning Division"
-	desc = "A sign labeling the cloning division of the station. Your last best hope."
+	name = "Cloning Ward"
+	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskyclone"
 
 /obj/structure/sign/departments/minsky/medical/clone/cloning2
-	name = "Cloning Division"
-	desc = "A sign labeling the cloning division of the station. Your last best hope."
+	name = "Cloning Ward"
+	desc = "A sign labeling the cloning facilities on the station. Your last hope."
 	icon_state = "minskycloneb"
 
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical1
@@ -140,12 +140,12 @@
 
 /obj/structure/sign/departments/minsky/medical/virology/virology1
 	name = "Virology Division"
-	desc = "A sign labeling the virology division of the station. Free hugs!!!."
+	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyviro"
 
 /obj/structure/sign/departments/minsky/medical/virology/virology2
 	name = "Virology Division"
-	desc = "A sign labeling the virology division of the station. Free hugs!!!."
+	desc = "A sign labeling the virology division of the station. Free hugs!!"
 	icon_state = "minskyvirob"
 
 /obj/structure/sign/departments/minsky/security/security
@@ -160,15 +160,15 @@
 
 /obj/structure/sign/departments/minsky/supply/mining
 	name = "Mining Division"
-	desc = "A sign labeling the mining division of the station. Minions of Smaug"
+	desc = "A sign labeling the mining division of the station. Minions of Smaug."
 	icon_state = "minskymine"
 
 /obj/structure/sign/departments/minsky/supply/janitorial
 	name = "Janitorial Division"
-	desc = "A sign labeling the janitorial closet of the station. Clean up after yourself.... please."
+	desc = "A sign labeling the janitorial closet of the station. Clean up after yourself... please."
 	icon_state = "minskyjani"
 
 /obj/structure/sign/departments/minsky/supply/hydroponics
 	name = "Hydroponics Division"
-	desc = "A sign labeling the hydroponics division of the station. Don't mind the redeye and giggles."
+	desc = "A sign labeling the hydroponics division of the station. Don't mind the redeyes and giggles."
 	icon_state = "minskyhydro"

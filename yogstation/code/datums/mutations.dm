@@ -56,7 +56,7 @@
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
 
-/datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/tourettes/on_life()
 	if(prob(10) && owner.stat == CONSCIOUS)
 		owner.Stun(20)
 		switch(rand(1, 3))

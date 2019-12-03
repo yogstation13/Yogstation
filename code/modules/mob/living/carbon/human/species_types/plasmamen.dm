@@ -57,23 +57,23 @@
 	var/current_job = J.title
 	var/datum/outfit/plasmaman/O = new /datum/outfit/plasmaman
 	switch(current_job)
-		if("Chaplain")
-			O = new /datum/outfit/plasmaman/chaplain
+		if("Bartender")
+			O = new /datum/outfit/plasmaman/bartender
+
+		if("Cook")
+			O = new /datum/outfit/plasmaman/cook
+
+		if("Botanist")
+			O = new /datum/outfit/plasmaman/botanist
 
 		if("Curator")
 			O = new /datum/outfit/plasmaman/curator
 
+		if("Chaplain")
+			O = new /datum/outfit/plasmaman/chaplain
+
 		if("Janitor")
 			O = new /datum/outfit/plasmaman/janitor
-
-		if("Botanist")
-			O = new /datum/outfit/plasmaman/botany
-
-		if("Bartender", "Lawyer")
-			O = new /datum/outfit/plasmaman/bar
-
-		if("Cook")
-			O = new /datum/outfit/plasmaman/chef
 
 		if("Security Officer")
 			O = new /datum/outfit/plasmaman/security
@@ -85,37 +85,40 @@
 			O = new /datum/outfit/plasmaman/warden
 
 		if("Cargo Technician")
-			O = new /datum/outfit/plasmaman/cargo
+			O = new /datum/outfit/plasmaman/cargo_tech
 
 		if("Quartermaster")
-			O = new /datum/outfit/plasmaman/qm
+			O = new /datum/outfit/plasmaman/quartermaster
 
 		if("Shaft Miner")
-			O = new /datum/outfit/plasmaman/mining
+			O = new /datum/outfit/plasmaman/miner
+
+		if("Lawyer")
+			O = new /datum/outfit/plasmaman/lawyer
 
 		if("Medical Doctor")
-			O = new /datum/outfit/plasmaman/medical
+			O = new /datum/outfit/plasmaman/doctor
+
+		if("Virologist")
+			O = new /datum/outfit/plasmaman/virologist
 
 		if("Chemist")
 			O = new /datum/outfit/plasmaman/chemist
 
 		if("Geneticist")
-			O = new /datum/outfit/plasmaman/genetics
-
-		if("Roboticist")
-			O = new /datum/outfit/plasmaman/robotics
-
-		if("Virologist")
-			O = new /datum/outfit/plasmaman/viro
+			O = new /datum/outfit/plasmaman/geneticist
 
 		if("Scientist")
-			O = new /datum/outfit/plasmaman/science
+			O = new /datum/outfit/plasmaman/scientist
+
+		if("Roboticist")
+			O = new /datum/outfit/plasmaman/roboticist
 
 		if("Station Engineer")
-			O = new /datum/outfit/plasmaman/engineering
+			O = new /datum/outfit/plasmaman/engineer
 
 		if("Atmospheric Technician")
-			O = new /datum/outfit/plasmaman/atmospherics
+			O = new /datum/outfit/plasmaman/atmos
 
 		if("Mime")
 			O = new /datum/outfit/plasmaman/mime

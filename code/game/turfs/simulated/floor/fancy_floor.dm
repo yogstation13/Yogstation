@@ -201,6 +201,45 @@
 	floor_tile = /obj/item/stack/tile/carpet/black
 	canSmoothWith = list(/turf/open/floor/carpet/black)
 
+/turf/open/floor/carpet/exoticblue
+	icon = 'icons/turf/floors/carpet_exoticblue.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/exoticblue
+	canSmoothWith = list(/turf/open/floor/carpet/exoticblue)
+
+/turf/open/floor/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/cyan
+	canSmoothWith = list(/turf/open/floor/carpet/cyan)
+
+/turf/open/floor/carpet/exoticgreen
+	icon = 'icons/turf/floors/carpet_exoticgreen.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/exoticgreen
+	canSmoothWith = list(/turf/open/floor/carpet/exoticgreen)
+
+/turf/open/floor/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/orange
+	canSmoothWith = list(/turf/open/floor/carpet/orange)
+
+/turf/open/floor/carpet/exoticpurple
+	icon = 'icons/turf/floors/carpet_exoticpurple.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/exoticpurple
+	canSmoothWith = list(/turf/open/floor/carpet/exoticpurple)
+
+/turf/open/floor/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/red
+	canSmoothWith = list(/turf/open/floor/carpet/red)
+
+/turf/open/floor/carpet/royalblack
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/royalblack
+	canSmoothWith = list(/turf/open/floor/carpet/royalblack)
+
+/turf/open/floor/carpet/royalblue
+	icon = 'icons/turf/floors/carpet_royalblue.dmi'
+	floor_tile = /obj/item/stack/tile/carpet/royalblue
+	canSmoothWith = list(/turf/open/floor/carpet/royalblue)
 
 /turf/open/floor/carpet/narsie_act(force, ignore_mobs, probability = 20)
 	. = (prob(probability) || force)

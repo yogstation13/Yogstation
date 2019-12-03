@@ -388,6 +388,21 @@
 	if(.)
 		new /obj/item/paper/guides/antag/guardian/wizard(get_turf(user))
 
+/datum/spellbook_entry/item/rune_crate
+	name = "Rune Crate"
+	desc = "A wizard specialized in runecrafting is offering two chests full of runes! The problem is, he mixed up the contents of them so you won't know what you will get!"
+	item_path = /obj/structure/closet/crate/magic
+	category = "Offensive"
+	cost = 1
+	buy_word = "Order"
+
+/datum/spellbook_entry/item/rune_crate/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
+	if(.)
+		new /obj/structure/closet/crate/magic(get_turf(user)) //Two crates full of magic goodies
+
+
+
 /datum/spellbook_entry/item/bloodbottle
 	name = "Bottle of Blood"
 	desc = "A bottle of magically infused blood, the smell of which will attract extradimensional beings when broken. Be careful though, the kinds of creatures summoned by blood magic are indiscriminate in their killing, and you yourself may become a victim."
@@ -480,64 +495,6 @@
 	to_chat(user, "<span class='notice'>You have cast summon ghosts!</span>")
 	playsound(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	return TRUE
-
-/datum/spellbook_entry/summon/guns
-	name = "Summon Guns"
-	desc = "Nothing could possibly go wrong with arming a crew of lunatics just itching for an excuse to kill you. There is a good chance that they will shoot each other first."
-
-/datum/spellbook_entry/summon/guns/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_guns)
-
-/datum/spellbook_entry/summon/guns/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	rightandwrong(SUMMON_GUNS, user, 10)
-	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon guns!</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/magic
-	name = "Summon Magic"
-	desc = "Share the wonders of magic with the crew and show them why they aren't to be trusted with it at the same time."
-
-/datum/spellbook_entry/summon/magic/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_magic)
-
-/datum/spellbook_entry/summon/magic/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	rightandwrong(SUMMON_MAGIC, user, 10)
-	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon magic!</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/events
-	name = "Summon Events"
-	desc = "Give Murphy's law a little push and replace all events with special wizard ones that will confound and confuse everyone. Multiple castings increase the rate of these events."
-	var/times = 0
-
-/datum/spellbook_entry/summon/events/IsAvailible()
-	if(!SSticker.mode) // In case spellbook is placed on map
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_events)
-
-/datum/spellbook_entry/summon/events/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
-	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
-	summonevents()
-	times++
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
-	to_chat(user, "<span class='notice'>You have cast summon events.</span>")
-	return TRUE
-
-/datum/spellbook_entry/summon/events/GetInfo()
-	. = ..()
-	if(times>0)
-		. += "You cast it [times] times.<br>"
-	return .
 
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"

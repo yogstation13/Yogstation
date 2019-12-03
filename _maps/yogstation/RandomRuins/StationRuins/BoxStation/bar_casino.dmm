@@ -38,7 +38,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "ag" = (
 /turf/closed/wall{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
@@ -96,7 +96,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "ao" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -159,7 +159,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 26
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
@@ -312,10 +312,9 @@
 "aR" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks,
-/obj/machinery/door/window/eastright{
-	base_state = "left";
+/obj/machinery/door/window/eastleft{
 	dir = 8;
-	icon_state = "left";
+	icon_state = "right";
 	name = "Soda Dispenser";
 	req_access_txt = "0"
 	},
@@ -527,12 +526,13 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "bq" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks/beer,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "br" = (
@@ -793,12 +793,14 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "cb" = (
+/obj/machinery/processor,
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
 	},
-/turf/open/floor/carpet,
-/area/crew_quarters/bar)
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "cc" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -807,6 +809,13 @@
 /obj/item/flashlight/lamp/green,
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/plasteel/rockvault,
+/area/crew_quarters/bar)
+"cd" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/carpet,
 /area/crew_quarters/bar)
 "cf" = (
 /obj/machinery/deepfryer,
@@ -839,14 +848,6 @@
 /area/crew_quarters/kitchen)
 "cs" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
-"ct" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "cG" = (
@@ -1089,7 +1090,7 @@ bW
 ap
 bv
 bv
-cb
+cd
 ac
 "}
 (9,1,1) = {"
@@ -1342,7 +1343,7 @@ am
 aX
 co
 co
-ct
+cb
 cG
 bH
 am

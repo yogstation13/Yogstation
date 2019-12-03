@@ -15,7 +15,7 @@
 
 /datum/design/health_hud_night
 	name = "Night Vision Health Scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	desc = "An advanced medical heads-up display that allows doctors to find patients in complete darkness."
 	id = "health_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_SILVER = 350)
@@ -35,7 +35,7 @@
 
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
-	desc = "A heads-up display which provides id data and vision in complete darkness."
+	desc = "A heads-up display which provides ID data and vision in complete darkness."
 	id = "security_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_GOLD = 350)
@@ -55,7 +55,7 @@
 
 /datum/design/diagnostic_hud_night
 	name = "Night Vision Diagnostic HUD"
-	desc = "Upgraded version of the diagnostic HUD designed to function during a power failure."
+	desc = "An upgraded version of the diagnostic HUD, designed to function during a power failure."
 	id = "diagnostic_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_PLASMA = 300)
@@ -129,7 +129,7 @@
 
 /datum/design/nvgmesons
 	name = "Night Vision Optical Meson Scanners"
-	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the UHD display."
+	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the HUD display."
 	id = "nvgmesons"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_PLASMA = 350, MAT_URANIUM = 1000)
@@ -169,7 +169,7 @@
 
 /datum/design/sci_goggles
 	name = "Science Goggles"
-	desc = "Goggles fitted with a portable analyzer capable of determining the research worth of an item or components of a machine."
+	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine."
 	id = "scigoggles"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
@@ -248,7 +248,7 @@
 
 /datum/design/plasma_tank
 	name = "Plasma Tank"
-	desc = "An empty oxygen tank."
+	desc = "An empty plasma tank."
 	id = "plasma_tank"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 2000)
