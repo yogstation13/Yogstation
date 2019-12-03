@@ -12,3 +12,8 @@
 	name = "I live again"
 	desc = "As a roboticist, create a cyborg"
 	id = 2
+
+/datum/achievement/pa_emag			//Should be hidden but that's not a thing yet
+	name = "Catastrophe"
+	desc = "Emag a Particle Accelerator"
+	id = 4
