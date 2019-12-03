@@ -141,7 +141,9 @@
 #define ACCURACY 10000
 /proc/gaussian(mean, stddev)
 	var/static/gaussian_next
-	var/R1;var/R2;var/working
+	var/R1
+	var/R2
+	var/working
 	if(gaussian_next != null)
 		R1 = gaussian_next
 		gaussian_next = null
