@@ -173,7 +173,6 @@
 
 	if(burned_fuel)
 		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
-
 		ASSERT_GAS(/datum/gas/water_vapor, air)
 		cached_gases[/datum/gas/water_vapor][MOLES] += burned_fuel
 		cached_results["fire"] += burned_fuel
@@ -200,78 +199,6 @@
 	priority = -1
 	name = "Hydrogen Isotope Equilibrium Burn"
 	id = "hydrogen_Isotope_burn"
-
-/datum/gas_reaction/hydrogen_trit_equilibrium_burn/init_reqs()
-	min_requirements = list(
-		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
-		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT,
-		/datum/gas/oxygen = MINIMUM_MOLE_COUNT,
-		/datum/gas/hydrogen = MINIMUM_MOLE_COUNT
-	)
-
-/datum/gas_reaction/hydrogen_trit_equilibrium_burn/react(datum/gas_mixture/air, datum/holder)
-	var/list/cached_gases = air.gases //this speeds things up because accessing datum vars is slow
-	var/total_isotope_count = cached_gases[/datum/gas/tritium][MOLES]+cached_gases[/datum/gas/hydrogen][MOLES]
-	var/trit_percentage = /datum/gas/tritium][MOLES]/total_isotope_count
-	var/scaled_min_trit_energy = trit_percentage*MINIMUM_TRIT_OXYBURN_ENERGY
-	var/hydrogen_percentage = /datum/gas/tritium][MOLES]/total_isotope_count
-	var/scaled_min_hydrogen_energy = hydrogen_percentage*MINIMUM_HYDROGEN_OXYBURN_ENERGY
-	var/energy_released = 0
-	var/old_heat_capacity = air.heat_capacity()
-	var/temperature = air.temperature
-	var/list/cached_results = air.reaction_results
-	cached_results["fire"] = 0
-	var/turf/open/location = isturf(holder) ? holder : null
-
-	var/burned_hydrogen = 0
-	var/initial_hydrogen = cached_gases[/datum/gas/hydrogen][MOLES]*hydrogen_percentage
-	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_hydrogen || scaled_min_hydrogen_energy > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
-		burned_hydrogen = cached_gases[/datum/gas/oxygen][MOLES]/HYDROGEN_BURN_OXY_FACTOR
-		if(burned_hydrogen > initial_hydrogen) burned_hydrogen = initial_hydrogen
-		cached_gases[/datum/gas/hydrogen][MOLES] -= burned_hydrogen
-	else
-		burned_hydrogen = initial_hydrogen
-		cached_gases[/datum/gas/hydrogen][MOLES] -= burned_hydrogen
-		cached_gases[/datum/gas/oxygen][MOLES] -= burned_hydrogen
-		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_hydrogen * (HYDROGEN_BURN_HYDROGEN_FACTOR - 1))
-
-	var/burned_trit = 0
-	var/initial_trit = cached_gases[/datum/gas/tritium][MOLES]*trit_percentage// Yogs
-	if(cached_gases[/datum/gas/oxygen][MOLES] < initial_trit || scaled_min_hydrogen_energy > (temperature * old_heat_capacity))// Yogs -- Maybe a tiny performance boost? I'unno
-		burned_trit = cached_gases[/datum/gas/oxygen][MOLES]/TRITIUM_BURN_OXY_FACTOR
-		if(burned_trit > initial_trit) burned_trit = initial_trit //Yogs -- prevents negative moles of Tritium
-		cached_gases[/datum/gas/tritium][MOLES] -= burned_trit
-	else
-		burned_fuel = initial_trit // Yogs -- Conservation of Mass fix
-		cached_gases[/datum/gas/tritium][MOLES] -= burned_trit // Yogs -- Maybe a tiny performance boost? I'unno
-		cached_gases[/datum/gas/oxygen][MOLES] -= burned_trit
-		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_trit * (TRITIUM_BURN_TRIT_FACTOR - 1)) // Yogs -- Fixes low-energy tritium fires
-
-	if(burned_hydrogen+burned_tritium>0)
-		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_hydrogen) + (FIRE_TRIT_ENERGY_RELEASED * burned_trit)
-		if(location && prob(10) && burned_trit > TRITIUM_MINIMUM_RADIATION_ENERGY) //woah there let's not crash the server
-			radiation_pulse(location, (FIRE_HYDROGEN_ENERGY_RELEASED * burned_trit)/TRITIUM_BURN_RADIOACTIVITY_FACTOR)
-
-		ASSERT_GAS(/datum/gas/water_vapor, air)
-		cached_gases[/datum/gas/water_vapor][MOLES] += burned_hydrogen+burned_trit
-		cached_results["fire"] += burned_hydrogen+burned_trit
-
-	if(energy_released > 0)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.temperature = (temperature*old_heat_capacity + energy_released)/new_heat_capacity
-
-	//let the floor know a fire is happening
-	if(istype(location))
-		temperature = air.temperature
-		if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
-			location.hotspot_expose(temperature, CELL_VOLUME)
-			for(var/I in location)
-				var/atom/movable/item = I
-				item.temperature_expose(air, temperature, CELL_VOLUME)
-			location.temperature_expose(air, temperature, CELL_VOLUME)
-
-	return cached_results["fire"] ? REACTING : NO_REACTION
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
@@ -525,7 +452,7 @@
 		/datum/gas/tritium = 30,
 		/datum/gas/plasma = 10,
 		/datum/gas/bz = 20,
-		/datum/gas/nitryl = 30,
+		/datum/gas/nitryl = 30
 		"TEMP" = STIMULUM_HEAT_SCALE/2)
 
 /datum/gas_reaction/stimformation/react(datum/gas_mixture/air)
@@ -606,42 +533,3 @@
 	//Possibly burning a bit of organic matter through maillard reaction, so a *tiny* bit more heat would be understandable
 	air.temperature += cleaned_air * 0.002
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, cleaned_air*MIASMA_RESEARCH_AMOUNT)//Turns out the burning of miasma is kinda interesting to scientists
-
-/datum/gas_reaction/stim_ball
-	priority = 7
-	name ="Stimulum Energy Ball"
-	id = "stimball"
-
-/datum/gas_reaction/stim_ball/init_reqs()
-	min_requirements = list(
-		/datum/gas/pluoxium = STIM_BALL_GAS_AMOUNT,
-		/datum/gas/stimulum = STIM_BALL_GAS_AMOUNT,
-		/datum/gas/nitryl = MINIMUM_MOLE_COUNT,
-		/datum/gas/plasma = MINIMUM_MOLE_COUNT,
-		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
-	)
-/datum/gas_reaction/stim_ball/react(datum/gas_mixture/air, datum/holder)
-	var/list/cached_gases = air.gases
-	var/turf/open/location
-	var/old_heat_capacity = air.heat_capacity()
-	if(istype(holder,/datum/pipeline)) //Find the tile the reaction is occuring on, or a random part of the network if it's a pipenet.
-		var/datum/pipeline/pipenet = holder
-		location = get_turf(pick(pipenet.members))
-	else
-		location = get_turf(holder)
-	air.assert_gases(/datum/gas/water_vapor,/datum/gas/nitryl,/datum/gas/carbon_dioxide,/datum/gas/nitrogen)
-	var/ball_shot_angle = 180*cos(cached_gases[/datum/gas/water_vapor][MOLES]/cached_gases[/datum/gas/nitryl][MOLES])+180
-	var/stim_used = min(STIM_BALL_GAS_AMOUNT/cached_gases[/datum/gas/plasma][MOLES],cached_gases[/datum/gas/stimulum][MOLES])
-	var/pluox_used = min(STIM_BALL_GAS_AMOUNT/cached_gases[/datum/gas/plasma][MOLES],cached_gases[/datum/gas/pluoxium][MOLES])
-	var/energy_released = stim_used*STIMULUM_HEAT_SCALE//Stimulum has a lot of stored energy, and breaking it up releases some of it
-	location.fire_nuclear_particle(ball_shot_angle)
-	cached_gases[/datum/gas/carbon_dioxide][MOLES] += 4*pluox_used
-	cached_gases[/datum/gas/nitrogen][MOLES] += 8*stim_used
-	cached_gases[/datum/gas/pluoxium][MOLES] -= pluox_used
-	cached_gases[/datum/gas/stimulum][MOLES] -= stim_used
-	cached_gases[/datum/gas/plasma][MOLES] *= 0.5 //Consumes half the plasma each time.
-	if(energy_released)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.temperature = CLAMP((air.temperature*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY)
-		return REACTING
