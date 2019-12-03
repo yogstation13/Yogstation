@@ -319,3 +319,9 @@
 	suffix = "goatresearch.dmm"
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats. How ironic..."
+
+/datum/map_template/ruin/space/drifting_spacepod
+	id = "drifting_spacepod"
+	suffix = "drifting_spacepod.dmm"
+	name = "Drifting Spacepod"
+	description = "An abandoned spacepod, just drifting through space."
