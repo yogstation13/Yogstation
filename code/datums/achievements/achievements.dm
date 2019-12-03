@@ -12,3 +12,18 @@
 	name = "I live again"
 	desc = "As a roboticist, create a cyborg"
 	id = 2
+
+/datum/achievement/flukeops
+	name = "Reverse Card"
+	desc = "As a member of the Crew deal a Humiliating defeat to Nuclear Team"
+	id = 5
+
+datum/achievement/nukewin
+	name = "Delta Alert"
+	desc = "As a Nuclear Operative score a Major or Minor Victory"
+	id = 6
+
+datum/achievement/honorarynukie
+	name = "Honorary Nukie"
+	desc = "Kill yourself with the nuclear authentication disk"
+	id = 7
