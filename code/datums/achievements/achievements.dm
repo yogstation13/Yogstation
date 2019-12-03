@@ -25,7 +25,7 @@
 
 /datum/achievement/badass
 	name = "Badass Syndie"
-	desc = "As a Traitor complete your objectives without buying any items"
+	desc = "As a traitor, complete your objectives without buying any items"
 	id = 8
 
 /datum/achievement/jones
@@ -35,7 +35,7 @@
 
 /datum/achievement/wizwin
 	name = "Scholars of the Arcane"
-	desc = "As a Wizard complete your objectives"
+	desc = "As a wizard, complete your objectives"
 	id = 10
 
 /datum/achievement/cpr
@@ -50,5 +50,10 @@
 
 /datum/achievement/changelingwin
 	name = "The Thing"
-	desc = "As a Changeling, complete your objectives"
+	desc = "As a changeling, complete your objectives"
 	id = 13
+
+/datum/achievement/slingascend
+	name = "The Dark Shadow"
+	desc = "As a shadowling, ascend successfully"
+	id = 14
