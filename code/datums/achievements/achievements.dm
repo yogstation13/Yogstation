@@ -32,3 +32,8 @@
 	name = "Lead Lined"
 	desc = "Survive an explosion while inside of a freezer"
 	id = 9
+
+/datum/achievement/wizwin
+	name = "Scholars of the Arcane"
+	desc = "As a Wizard complete your objectives"
+	id = 10
