@@ -27,3 +27,8 @@
 	name = "Badass Syndie"
 	desc = "As a Traitor complete your objectives without buying any items"
 	id = 8
+
+/datum/achievement/jones
+	name = "Lead Lined"
+	desc = "Survive an explosion while inside of a freezer"
+	id = 9
