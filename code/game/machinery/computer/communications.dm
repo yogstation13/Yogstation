@@ -46,7 +46,7 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	if(..())
 		return
-	if(!usr.canUseTopic(src, !issilicon(usr)))
+	if(!usr.canUseTopic(src, !issilicon(usr)) && !IsAdminGhost(usr))
 		return
 	if(!is_station_level(z) && !is_reserved_level(z)) //Can only use in transit and on SS13
 		to_chat(usr, "<span class='boldannounce'>Unable to establish a connection</span>: \black You're too far away from the station!")
@@ -154,10 +154,12 @@
 					if(SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)
 						to_chat(usr, "It's a bit late to buy a new shuttle, don't you think?")
 						return
-					if(SSshuttle.shuttle_purchased)
+					if(SSshuttle.shuttle_purchased && (SSshuttle.emag_shuttle_purchased || !(obj_flags & EMAGGED)))
 						to_chat(usr, "A replacement shuttle has already been purchased.")
 					else if(!S.prerequisites_met())
 						to_chat(usr, "You have not met the requirements for purchasing this shuttle.")
+					else if(S.emag_buy && !(obj_flags & EMAGGED))
+						return //return silently, only way this could happen is an attempted href exploit
 					else
 						var/points_to_check
 						var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -165,6 +167,8 @@
 							points_to_check = D.account_balance
 						if(points_to_check >= S.credit_cost)
 							SSshuttle.shuttle_purchased = TRUE
+							if(obj_flags & EMAGGED)
+								SSshuttle.emag_shuttle_purchased = TRUE
 							SSshuttle.unload_preview()
 							SSshuttle.load_template(S)
 							SSshuttle.existing_shuttle = SSshuttle.emergency
@@ -559,7 +563,11 @@
 			dat += "<BR>"
 			for(var/shuttle_id in SSmapping.shuttle_templates)
 				var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
-				if(S.can_be_bought && S.credit_cost < INFINITY)
+				if(S.credit_cost < INFINITY)
+					if(S.emag_buy)
+						if(!(obj_flags & EMAGGED))
+							continue
+						dat += "<font color=red>Warning: unverified shuttle!</font><BR>"
 					dat += "[S.name] | [S.credit_cost] Credits<BR>"
 					dat += "[S.description]<BR>"
 					if(S.prerequisites)

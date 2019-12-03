@@ -479,6 +479,10 @@
 					explode()
 			else
 				to_chat(user, "<span class='warning'>This type of light requires a [fitting]!</span>")
+	// hit the light socket with umbral tendrils, instantly breaking the light as opposed to RNG //yogs
+	else if(istype(W, /obj/item/umbral_tendrils))
+		break_light_tube()
+		..() //yogs end
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)

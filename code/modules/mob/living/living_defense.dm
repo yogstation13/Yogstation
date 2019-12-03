@@ -86,9 +86,12 @@
 			visible_message("<span class='danger'>[src] has been hit by [I].</span>", \
 							"<span class='userdanger'>[src] has been hit by [I].</span>")
 			var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
-			apply_damage(I.throwforce, dtype, zone, armor)
-			if(I.thrownby)
-				log_combat(I.thrownby, src, "threw and hit", I)
+			if(isobj(AM))
+				var/obj/O = AM
+				if(O.damtype != STAMINA)
+					apply_damage(I.throwforce, dtype, zone, armor)
+					if(I.thrownby)
+						log_combat(I.thrownby, src, "threw and hit", I)
 		else
 			return 1
 	else

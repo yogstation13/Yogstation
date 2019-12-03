@@ -1,6 +1,6 @@
 {
     "map_name": "MinskyStation",
-    "map_path": "yogstation/map_files/MinskyStation",
+    "map_path": "map_files/MinskyStation",
     "map_file": "MinskyStation.dmm",
     "shuttles": {
 	    "emergency": "emergency_minsky",

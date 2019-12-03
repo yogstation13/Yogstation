@@ -285,7 +285,7 @@
 
 /obj/item/reagent_containers/food/snacks/meatbun
 	name = "meat bun"
-	desc = "Has the potential to not be Dog."
+	desc = "Has the potential to not be dog."
 	icon_state = "meatbun"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -295,7 +295,7 @@
 
 /obj/item/reagent_containers/food/snacks/khachapuri
 	name = "khachapuri"
-	desc = "Bread with egg and cheese?"
+	desc = "Bread with egg and cheese."
 	icon_state = "khachapuri"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 2)
 	filling_color = "#FFFF4D"

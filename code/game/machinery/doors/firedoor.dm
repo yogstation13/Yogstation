@@ -7,7 +7,7 @@
 /obj/machinery/door/firedoor
 	name = "firelock"
 	desc = "Apply crowbar."
-	icon = 'icons/obj/doors/Doorfireglass.dmi'
+	icon = 'icons/obj/doors/doorfireglass.dmi'
 	icon_state = "door_open"
 	opacity = FALSE
 	density = FALSE
@@ -181,6 +181,7 @@
 		icon_state = "door_open"
 		if(welded)
 			add_overlay("welded_open")
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/firedoor/open()
 	. = ..()
@@ -247,7 +248,7 @@
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
-	icon = 'icons/obj/doors/Doorfire.dmi'
+	icon = 'icons/obj/doors/doorfire.dmi'
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
@@ -263,7 +264,7 @@
 /obj/structure/firelock_frame
 	name = "firelock frame"
 	desc = "A partially completed firelock."
-	icon = 'icons/obj/doors/Doorfire.dmi'
+	icon = 'icons/obj/doors/doorfire.dmi'
 	icon_state = "frame1"
 	anchored = FALSE
 	density = TRUE

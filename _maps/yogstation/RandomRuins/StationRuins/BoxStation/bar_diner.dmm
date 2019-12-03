@@ -27,7 +27,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/maintenance/starboard/fore)
 "af" = (
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/structure/table/wood,
@@ -73,7 +73,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/crew_quarters/kitchen)
+/area/maintenance/starboard/fore)
 "al" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -131,11 +131,11 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/effect/turf_decal/ameritard,
 /obj/machinery/firealarm{
 	dir = 2;
-	pixel_y = 24
+	pixel_y = 26
 	},
-/obj/effect/turf_decal/ameritard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "at" = (
@@ -721,6 +721,17 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"bJ" = (
+/obj/machinery/processor,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 "bK" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -796,16 +807,6 @@
 /area/crew_quarters/bar)
 "bU" = (
 /obj/effect/landmark/start/cook,
-/turf/open/floor/plasteel{
-	icon_state = "cafeteria"
-	},
-/area/crew_quarters/kitchen)
-"bV" = (
-/obj/machinery/processor,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /turf/open/floor/plasteel{
 	icon_state = "cafeteria"
 	},
@@ -1496,7 +1497,7 @@ aj
 bw
 bD
 bD
-bV
+bJ
 cd
 cm
 aj

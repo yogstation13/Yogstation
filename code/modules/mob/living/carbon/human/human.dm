@@ -912,9 +912,6 @@
 /mob/living/carbon/human/species/android
 	race = /datum/species/android
 
-/mob/living/carbon/human/species/angel
-	race = /datum/species/angel
-
 /mob/living/carbon/human/species/corporate
 	race = /datum/species/corporate
 
@@ -1001,6 +998,9 @@
 
 /mob/living/carbon/human/species/golem/durathread
 	race = /datum/species/golem/durathread
+	
+/mob/living/carbon/human/species/golem/snow
+	race = /datum/species/golem/snow
 
 /mob/living/carbon/human/species/golem/clockwork
 	race = /datum/species/golem/clockwork

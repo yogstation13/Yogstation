@@ -2,6 +2,15 @@
 //////////Autolathe Designs ///////
 ///////////////////////////////////
 
+/datum/design/airlock_scanner
+	name = "Airlock scanner"
+	id = "airlock_scanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 50, MAT_GLASS = 50)
+	build_path = /obj/item/airlock_scanner
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/bucket
 	name = "Bucket"
 	id = "bucket"
@@ -676,13 +685,6 @@
 	category = list("initial", "Misc")
 
 //hacked autolathe recipes
-/datum/design/flamethrower
-	name = "Flamethrower"
-	id = "flamethrower"
-	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 500)
-	build_path = /obj/item/flamethrower/full
-	category = list("hacked", "Security")
 
 /datum/design/rcd
 	name = "Rapid Construction Device (RCD)"
@@ -781,11 +783,11 @@
 	category = list("hacked", "Security")
 
 /datum/design/a357
-	name = "Speed Loader (.357)"
+	name = ".357 Bullet"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 30000)
-	build_path = /obj/item/ammo_box/a357
+	materials = list(MAT_METAL = 4000)
+	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
 /datum/design/c10mm
@@ -959,3 +961,21 @@
 	build_path = /obj/item/stack/tile/circuit/red
 	category = list("initial", "Misc")
 	maxstack = 50
+
+/datum/design/penlight
+	name = "Penlight"
+	id = "penlight"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 100, MAT_GLASS = 20)
+	build_path = /obj/item/flashlight/pen
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/wallframe/flasher
+	name = "Mounted Flash Frame" 
+	id =  "wallframe/flasher" 
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
+	build_path = /obj/item/wallframe/flasher
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
