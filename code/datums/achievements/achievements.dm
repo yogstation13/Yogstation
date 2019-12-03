@@ -4,7 +4,7 @@
 	var/id = 0 //Should be incremented so every achievement has a unique ID
 
 /datum/achievement/bubblegum
-	name = "Kick Ass and Chew Bubblegum."
+	name = "Kick Ass and Chew Bubblegum"
 	desc = "Kill Bubblegum, the king of slaughter demons." //Should be improved(?)
 	id = 1
 
@@ -22,3 +22,8 @@
 	name = "Catastrophe"
 	desc = "Emag a Particle Accelerator"
 	id = 4
+
+/datum/achievement/badass
+	name = "Badass Syndie"
+	desc = "As a Traitor complete your objectives without buying any items"
+	id = 8
