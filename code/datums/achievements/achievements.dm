@@ -13,6 +13,11 @@
 	desc = "As a roboticist, create a cyborg"
 	id = 2
 
+/datum/achievement/defib
+	name = "Lifesaver"
+	desc = "Successfully defibrillate someone"
+	id = 3
+
 /datum/achievement/pa_emag			//Should be hidden but that's not a thing yet
 	name = "Catastrophe"
 	desc = "Emag a Particle Accelerator"
