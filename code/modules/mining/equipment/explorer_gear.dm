@@ -96,6 +96,21 @@
 	clothing_flags = THICKMATERIAL // no space protection
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 80, "fire" = 100, "acid" = 100)
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
+	var/datum/martial_art/heck = new
+
+/obj/item/clothing/head/helmet/space/hostile_environment/equipped(mob/user, slot)
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_Chest\)
+		var/mob/living/carbon/human/H = user
+		style.teach(H,1)
+
+/obj/item/clothing/head/helmet/space/hostile_environment/dropped(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_CHEST) == src)
+		style.remove(H)
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
 	. = ..()
