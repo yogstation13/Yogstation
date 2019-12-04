@@ -452,7 +452,7 @@
 		/datum/gas/tritium = 30,
 		/datum/gas/plasma = 10,
 		/datum/gas/bz = 20,
-		/datum/gas/nitryl = 30
+		/datum/gas/nitryl = 30,
 		"TEMP" = STIMULUM_HEAT_SCALE/2)
 
 /datum/gas_reaction/stimformation/react(datum/gas_mixture/air)
