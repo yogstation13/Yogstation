@@ -27,8 +27,8 @@
 	desc = "A sturdy and advanced military grade service laser rifle"
 	icon_state = "laser"
 	item_state = "laser-rifle9"
-	fire_delay = 3
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasgun)
+	fire_delay = 5
+	ammo_type = list(/obj/item/projectile/beam/laser/heavylaser)
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 
