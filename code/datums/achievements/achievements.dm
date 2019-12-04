@@ -2,6 +2,7 @@
 	var/name = "achievement"
 	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
 	var/id = 0 //Should be incremented so every achievement has a unique ID
+	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum"
@@ -22,6 +23,7 @@
 	name = "Catastrophe"
 	desc = "Emag a Particle Accelerator"
 	id = 4
+	hidden = TRUE
   
 /datum/achievement/flukeops
 	name = "Reverse Card"
@@ -37,7 +39,8 @@
 	name = "Honorary Nukie"
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
-  
+  hidden = TRUE
+
 /datum/achievement/badass
 	name = "Badass Syndie"
 	desc = "As a traitor, complete your objectives without buying any items"
@@ -47,6 +50,7 @@
 	name = "Lead Lined"
 	desc = "Survive an explosion while inside of a freezer"
 	id = 9
+  hidden = TRUE
 
 /datum/achievement/wizwin
 	name = "Scholars of the Arcane"
@@ -62,6 +66,7 @@
 	name = "Breath of Death"
 	desc = "... with incompatible lungs"
 	id = 12
+  hidden = TRUE
 
 /datum/achievement/changelingwin
 	name = "The Thing"
@@ -87,3 +92,4 @@
 	name = "Burn in Hell"
 	desc = "Get cremated... alive"
 	id = 17
+  hidden = TRUE
