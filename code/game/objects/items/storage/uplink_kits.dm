@@ -195,7 +195,7 @@
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
 			
-			if("neo")
+		if("neo")
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
