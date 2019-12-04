@@ -120,7 +120,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
+	switch (pickweight(list( "bond" = 2, "brother" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
@@ -194,6 +194,14 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
+		
+		if("brother") //brotherhood of steel
+			new /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b(src)
+			new /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
+			new /obj/item/gun/energy/laser/aer9(src)
+			
+
 
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"
