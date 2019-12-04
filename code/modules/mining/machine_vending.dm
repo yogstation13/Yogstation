@@ -58,7 +58,7 @@
 		new /datum/data/mining_equipment("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,								1000),
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000), 
-		new /datum/data/mining_equipment("Gigadrill",					/obj/vehicle/ridden/gigadrill,										3000)
+		new /datum/data/mining_equipment("Gigadrill",					/obj/vehicle/ridden/gigadrill,										15000)
 		)
 
 /datum/data/mining_equipment
