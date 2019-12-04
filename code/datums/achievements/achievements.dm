@@ -39,7 +39,7 @@
 	name = "Honorary Nukie"
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
-  hidden = TRUE
+	hidden = TRUE
 
 /datum/achievement/badass
 	name = "Badass Syndie"
@@ -50,7 +50,7 @@
 	name = "Lead Lined"
 	desc = "Survive an explosion while inside of a freezer"
 	id = 9
-  hidden = TRUE
+	hidden = TRUE
 
 /datum/achievement/wizwin
 	name = "Scholars of the Arcane"
@@ -66,7 +66,7 @@
 	name = "Breath of Death"
 	desc = "... with incompatible lungs"
 	id = 12
-  hidden = TRUE
+	hidden = TRUE
 
 /datum/achievement/changelingwin
 	name = "The Thing"
@@ -92,4 +92,4 @@
 	name = "Burn in Hell"
 	desc = "Get cremated... alive"
 	id = 17
-  hidden = TRUE
+	hidden = TRUE
