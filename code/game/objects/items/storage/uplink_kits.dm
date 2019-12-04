@@ -211,7 +211,6 @@
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
 			
 
-
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"
 	desc = "Supplied to Syndicate contractors."
