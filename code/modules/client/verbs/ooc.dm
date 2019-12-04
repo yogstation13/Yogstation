@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			oocmsg_toadmins = oocmsg
 	else
 		if(is_mentor()) // If the speaker is a mentor
-			oocmsg = "<span class='ooc'>(Mentor)"
+			oocmsg = "<span class='ooc'>\[Mentor]"
 			oocmsg += "<font color='[prefs.ooccolor]'>"
 		else
 			oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
