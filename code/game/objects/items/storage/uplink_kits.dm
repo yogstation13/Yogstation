@@ -203,11 +203,12 @@
 			new /obj/item/ammo_box/magazine/m10mm/ap(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
-			
+			new /obj/item/ammo_box/magazine/m10mm/fire(src)
 			new /obj/item/reagent_containers/syringe/plasma(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
-			new /obj/item/slime_extract/sepia(src)
+			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
 			
 
 
