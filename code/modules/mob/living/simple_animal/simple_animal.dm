@@ -31,18 +31,6 @@
 	var/harm_intent_damage = 3
 	var/force_threshold = 0 //Minimum force required to deal any damage
 
-	
-	///When someone interacts with the simple animal.
-	var/response_help_continuous = "pokes" ///Help-intent verb in present continuous tense.
-	var/response_help_simple = "poke" ///Help-intent verb in present simple tense.
-	var/response_disarm_continuous = "shoves"///Disarm-intent verb in present continuous tense.
-	var/response_disarm_simple = "shove"///Disarm-intent verb in present simple tense.
-	var/response_harm_continuous = "hits"///Harm-intent verb in present continuous tense.
-	var/response_harm_simple = "hit"///Harm-intent verb in present simple tense.
-	var/harm_intent_damage = 3
-	var/force_threshold = 0///Minimum force required to deal any damage.
-
-
 	//Temperature effect
 	var/minbodytemp = 250
 	var/maxbodytemp = 350

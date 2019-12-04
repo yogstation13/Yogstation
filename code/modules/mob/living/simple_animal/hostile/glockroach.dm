@@ -1,11 +1,12 @@
-/obj/projectile/glockroachbullet
+/obj/item/projectile/glockroachbullet
 	damage = 10 //same damage as a hivebot
 	damage_type = BRUTE
+
 
 /obj/item/ammo_casing/glockroach
 	name = "0.9mm bullet casing"
 	desc = "A... 0.9mm bullet casing? What?"
-	projectile_type = /obj/projectile/glockroachbullet
+	projectile_type = /obj/item/projectile/glockroachbullet
 
 /mob/living/simple_animal/hostile/glockroach //copypasted from cockroach.dm so i could use the shooting code in hostile.dm
 	name = "glockroach"
@@ -21,11 +22,6 @@
 	maxbodytemp = INFINITY
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	mob_biotypes = MOB_ORGANIC|MOB_BUG
-	response_disarm_continuous = "shoos"
-	response_disarm_simple = "shoo"
-	response_harm_continuous = "splats"
-	response_harm_simple = "splat"
 	speak_emote = list("chitters")
 	density = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -34,8 +30,8 @@
 	verb_ask = "chitters inquisitively"
 	verb_exclaim = "chitters loudly"
 	verb_yell = "chitters loudly"
-	projectilesound = 'sound/weapons/gun/pistol/shot.ogg'
-	projectiletype = /obj/projectile/glockroachbullet
+	projectilesound = 'sound/weapons/shot.ogg'
+	projectiletype = /obj/item/projectile/glockroachbullet
 	casingtype = /obj/item/ammo_casing/glockroach
 	ranged = 1
 	var/squish_chance = 50
