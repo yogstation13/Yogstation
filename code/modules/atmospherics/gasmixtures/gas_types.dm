@@ -116,13 +116,22 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 
 /datum/gas/tritium
 	id = "tritium"
-	specific_heat = 10
+	specific_heat = 40
 	name = "Tritium"
 	gas_overlay = "tritium"
 	moles_visible = MOLES_GAS_VISIBLE
 	dangerous = TRUE
 	fusion_power = 1
 	rarity = 300
+
+/datum/gas/hydrogen
+	id = "hydrogen"
+	specific_heat = 40
+	name = "Hydrogen"
+	fusion_power = 10
+	moles_visible = MOLES_GAS_VISIBLE
+	dangerous = TRUE
+	rarity = 200
 
 /datum/gas/bz
 	id = "bz"
