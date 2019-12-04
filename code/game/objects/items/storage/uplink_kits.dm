@@ -203,12 +203,14 @@
 			new /obj/item/ammo_box/magazine/m10mm/ap(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
+			
+			new /obj/item/reagent_containers/syringe/plasma(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			
-			
-/obj/item/ammo_box/magazine/m10mm
+
+
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"
 	desc = "Supplied to Syndicate contractors."
