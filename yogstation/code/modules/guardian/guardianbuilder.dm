@@ -309,6 +309,7 @@
 /obj/item/guardiancreator/debug
 	desc = "If you're seeing this and you're not debugging, something is probably very wrong."
 	debug_mode = TRUE
+	allowspecial = TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 

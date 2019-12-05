@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/sx = summoner.current.x
 	var/sy = summoner.current.y
 	var/sz = summoner.current.z
-	if(sx - range < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
+	if(sx - range - 1 < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
 		return
 	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
 		barrier_images += image('yogstation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
@@ -118,8 +118,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
 	for(var/image/I in barrier_images)
-		I.layer = ABOVE_LIGHTING_LAYER
-		I.plane = ABOVE_LIGHTING_PLANE
+		I.layer = ABOVE_LIGHTING_PLANE
+		I.plane = FLOOR_PLANE
 		client.images += I
 
 /mob/living/simple_animal/hostile/guardian/proc/setthemename(pickedtheme) //set the guardian's theme to something cool!
@@ -391,13 +391,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		changeNext_move(atk_cooldown)
 		if(stats.ability)
 			stats.ability.AfterAttack(target)
-
-/*/mob/living/simple_animal/hostile/guardian/CanMobAutoclick(object, location, params)
-	if(istype(object, /obj/screen) || istype(object, /obj/effect))
-		return FALSE
-	if(erased_time)
-		return FALSE
-	return atk_cooldown*/
 
 /mob/living/simple_animal/hostile/guardian/death()
 	. = ..()

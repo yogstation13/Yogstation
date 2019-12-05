@@ -15,9 +15,9 @@
 	summon_type = list(/obj/effect/timestop)
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/guardian/berserk
-	summon_type = list(/obj/effect/timestop/wizard/berzerk)
+	summon_type = list(/obj/effect/timestop/berserk)
 
-/obj/effect/timestop/wizard/berzerk
+/obj/effect/timestop/berserk
 	name = "lagfield"
 	desc = "Oh no. OH NO."
 	freezerange = 4
@@ -26,8 +26,8 @@
 	pixel_y = -64
 	start_sound = 'yogstation/sound/effects/unnatural_clock_noises.ogg'
 
-/obj/effect/timestop/wizard/berzerk/Initialize(mapload, radius, time, list/immune_atoms, start)
-	. = ..()
-	var/matrix/ntransform = matrix(transform)
+/obj/effect/timestop/berserk/Initialize(mapload, radius, time, list/immune_atoms, start)
+	. = ..()	var/matrix/ntransform = matrix(transform)
 	ntransform.Scale(2)
 	animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
+

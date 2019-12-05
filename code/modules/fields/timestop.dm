@@ -33,6 +33,10 @@
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
 		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.spell_list) //It would only make sense that a person's stand would also be immune.
 			immune[G] = TRUE
+		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
+			immune[G] = TRUE
+			if(G.summoner?.current)
+				immune[G.summoner.current] = TRUE
 	if(start)
 		timestop()
 
