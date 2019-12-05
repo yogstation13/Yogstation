@@ -492,6 +492,8 @@
 #include "code\datums\diseases\advance\symptoms\vomit.dm"
 #include "code\datums\diseases\advance\symptoms\weight.dm"
 #include "code\datums\diseases\advance\symptoms\youth.dm"
+#include "code\datums\diseases\advance\symptoms\wizarditis.dm"
+#include "code\datums\diseases\advance\symptoms\radiation.dm"
 #include "code\datums\helper_datums\events.dm"
 #include "code\datums\helper_datums\getrev.dm"
 #include "code\datums\helper_datums\icon_snapshot.dm"
