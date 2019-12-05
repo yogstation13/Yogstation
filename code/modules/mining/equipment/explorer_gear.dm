@@ -109,7 +109,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_CHEST) == src)
+	if(H.get_item_by_slot(SLOT_OUTER) == src)
 		style.remove(H)
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()
