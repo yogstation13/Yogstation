@@ -90,23 +90,11 @@
 				qdel(S)
 
 
-var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
-		if(T.z != affected_mob.z)
-			continue
-		if(T.name == "space")
-			continue
-		if(!T.density)
-			var/clear = 1
-			for(var/obj/O in T)
-				if(O.density)
-					clear = 0
-					break
-			if(clear)
-				L+=T
-
-	if(!L)
-		return
+/datum/symptom/wizarditis/proc/teleport(datum/disease/advance/A)
+	var/turf/L = get_safe_random_station_turf()
+	A.affected_mob.say("SCYAR NILA!")
+	do_teleport(A.affected_mob, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC)
+	playsound(get_turf(A.affected_mob), 'sound/weapons/zapbang.ogg', 50,1)	
 	
 /datum/symptom/wizarditis/End(datum/disease/advance/A)
 	if(ishuman(A.affected_mob))
