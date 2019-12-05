@@ -27,7 +27,8 @@
 	start_sound = 'yogstation/sound/effects/unnatural_clock_noises.ogg'
 
 /obj/effect/timestop/berserk/Initialize(mapload, radius, time, list/immune_atoms, start)
-	. = ..()	var/matrix/ntransform = matrix(transform)
+	. = ..()
+	var/matrix/ntransform = matrix(transform)
 	ntransform.Scale(2)
 	animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
