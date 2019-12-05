@@ -101,7 +101,7 @@
 /obj/item/clothing/head/helmet/space/hostile_environment/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_Chest\)
+	if(slot == SLOT_UNDER\)
 		var/mob/living/carbon/human/H = user
 		style.teach(H,1)
 
