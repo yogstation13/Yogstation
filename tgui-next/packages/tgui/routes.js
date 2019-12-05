@@ -53,6 +53,7 @@ import { ScannerGate } from './interfaces/ScannerGate';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
 import { Smes } from './interfaces/Smes';
+import { SmokeMachine } from './interfaces/SmokeMachine';
 import { SolarControl } from './interfaces/SolarControl';
 import { SpaceHeater } from './interfaces/SpaceHeater';
 import { SpawnersMenu } from './interfaces/SpawnersMenu';
@@ -300,6 +301,10 @@ const ROUTES = {
   },
   smes: {
     component: () => Smes,
+    scrollable: false,
+  },
+  smoke_machine: {
+    component: () => SmokeMachine,
     scrollable: false,
   },
   solar_control: {
