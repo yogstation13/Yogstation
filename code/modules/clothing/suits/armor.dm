@@ -273,7 +273,6 @@
 /obj/item/clothing/suit/armor/stormtrooper
 	name = "Storm Trooper Armor"
 	desc = "Battle Armor from a long lost empire"
-	icon = icons/obj/clothing/starwars.dmi
 	icon_state = "startrooper"
 	item_state = "startrooper"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
