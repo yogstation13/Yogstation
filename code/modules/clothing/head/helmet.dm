@@ -148,7 +148,7 @@
 	toggle_message = "You turn off the light on"
 	alt_toggle_message = "You turn on the light on"
 	
-/obj/item/clothing/head/helmet
+/obj/item/clothing/head/stormer
 	name = "Storm Trooper Helmet"
 	desc = "Battle Helmet from a long lost empire"
 	icon = icons/obj/clothing/starwars.dmi	
