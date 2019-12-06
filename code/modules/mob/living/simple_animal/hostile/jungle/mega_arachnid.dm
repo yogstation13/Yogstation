@@ -10,8 +10,8 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BUG)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-	maxHealth = 300
-	health = 300
+	maxHealth = 1500
+	health = 1500
 	speed = 1
 	ranged = 1
 	pixel_x = -16
@@ -22,6 +22,8 @@
 	ranged_cooldown_time = 60
 	projectiletype = /obj/item/projectile/mega_arachnid
 	projectilesound = 'sound/weapons/pierce.ogg'
+	loot = list(/obj/effect/mob_spawn/human/corpse/bee_terrorist,
+	/obj/effect/mob_spawn/human/corpse/syndicatestormtrooper)
 	alpha = 50
 
 	do_footstep = TRUE
