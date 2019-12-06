@@ -151,7 +151,6 @@
 /obj/item/clothing/head/stormer
 	name = "Storm Trooper Helmet"
 	desc = "Battle Helmet from a long lost empire"
-	icon = icons/obj/clothing/starwars.dmi	
 	icon_state = "startrooperhelmet"
 	item_state = "startrooperhelmet"
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 40,"energy" = 30, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 50, "acid" = 50)
