@@ -275,6 +275,7 @@
 	desc = "Battle Armor from a long lost empire"
 	icon = icons/obj/clothing/starwars.dmi
 	icon_state = "startrooper"
+	item_state = "startrooper"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
