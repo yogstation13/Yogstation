@@ -13,6 +13,8 @@
 	var/in_use = FALSE
 	var/uses = 3
 	var/users = list()
+	var/arrowtype = "magic"
+	var/can_requiem = TRUE
 
 /obj/item/stand_arrow/Initialize()
 	. = ..()
@@ -37,7 +39,7 @@
 	var/mob/living/simple_animal/hostile/guardian/G = M
 	user.visible_message("<span class='warning'>[user] prepares to stab [H] with \the [src]!</span>", "<span class='notice'>You raise \the [src] into the air.</span>")
 	if(do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
-		if(LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G] || G.requiem || G.transforming)))
+		if(LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G] || G.requiem || G.transforming || !can_requiem)))
 			H.visible_message("<span class='holoparasite'>\The [src] rejects [H]!</span>")
 			return
 		in_use = TRUE
@@ -151,7 +153,7 @@
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
-		var/mob/living/simple_animal/hostile/guardian/G = new(H, "magic")
+		var/mob/living/simple_animal/hostile/guardian/G = new(H, arrowtype)
 		G.summoner = H.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
