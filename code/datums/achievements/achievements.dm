@@ -2,6 +2,7 @@
 	var/name = "achievement"
 	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
 	var/id = 0 //Should be incremented so every achievement has a unique ID
+	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
 
 /datum/achievement/bubblegum
 	name = "Kick Ass and Chew Bubblegum."
@@ -22,3 +23,20 @@
 	name = "Catastrophe"
 	desc = "Emag a Particle Accelerator"
 	id = 4
+	hidden = TRUE
+  
+/datum/achievement/flukeops
+	name = "Reverse Card"
+	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
+	id = 5
+
+/datum/achievement/nukewin
+	name = "Delta Alert"
+	desc = "As a Nuclear Operative, score a Major or Minor Victory"
+	id = 6
+
+/datum/achievement/honorarynukie
+	name = "Honorary Nukie"
+	desc = "Kill yourself using the nuclear authentication disk"
+	id = 7
+	hidden = TRUE

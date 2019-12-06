@@ -571,6 +571,15 @@
 	build_path = /obj/item/assembly/signaler
 	category = list("initial", "T-Comm")
 
+/datum/design/mousetrap
+	name = "Mousetrap"
+	id = "mousetrap"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 100)
+	build_path = /obj/item/assembly/mousetrap
+	category = list("initial", "Misc")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/radio_headset
 	name = "Radio Headset"
 	id = "radio_headset"
