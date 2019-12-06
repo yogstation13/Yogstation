@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	//YOG START - Yog OOC
-	
+
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
 	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
@@ -85,13 +85,13 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		clientkeys += Y.ckey
 		if(Y.holder && Y.holder.fakekey)
 			clientkeys += Y.holder.fakekey
-	pinged &= clientkeys 
+	pinged &= clientkeys
 	if(pinged.len)
 		if((world.time - last_ping_time) < 30)
 			to_chat(src,"<span class='danger'>You are pinging too much! Please wait before pinging again.</span>")
 			return
 		last_ping_time = world.time
-	
+
 	//MESSAGE CRAFTING -- This part handles actually making the messages that are to be displayed.
 	var/bussedcolor = GLOB.OOC_COLOR ? GLOB.OOC_COLOR : "" // So /TG/ decided to fuck up how OOC colours are handled.
 	// So we're sticking a weird <font color='[bussedcolor]'></font> into shit to handle their new system.
@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
-		
+
 		if(holder.fakekey) // If they're stealhminning
 			oocmsg_toadmins = oocmsg + "OOC:</span> <EM>[keyname]/([holder.fakekey]):</EM> <span class='message linkify'>[msg]</span></span></font>"
 			// ^ Message sent to people who should know when someone's stealthminning
@@ -114,14 +114,15 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			oocmsg += "OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>" // Footer for an admin or AO's OOC.
 			oocmsg_toadmins = oocmsg
 	else
-		oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
 		if(is_mentor()) // If the speaker is a mentor
-			oocmsg += "<font color='[GLOB.mentor_ooc_colour]'>"
+			oocmsg = "<span class='ooc'>\[Mentor]"
+			oocmsg += "<font color='[prefs.ooccolor]'>"
 		else
+			oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
 			oocmsg += "<font color='[bussedcolor]'>"
 		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
-	
+
 	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
@@ -419,7 +420,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set name = "Show Policy"
 	set desc = "Show special server rules related to your current character."
 	set category = "OOC"
-	
+
 	//Collect keywords
 	var/list/keywords = mob.get_policy_keywords()
 	var/header = get_policy(POLICY_VERB_HEADER)
