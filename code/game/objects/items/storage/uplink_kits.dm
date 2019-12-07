@@ -199,7 +199,7 @@
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
-			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~66 for 3 holoparasite injectors and 3 mindslave implants. difficult to conceal though.
+			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
 			new /obj/item/storage/fancy(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
@@ -215,17 +215,17 @@
 /obj/item/stand_arrow/boss/Initialize()
 	. = ..()
 	for(var/mob/living/M in range(0,src)) //this is probably a bad way of doing this help
-		if(M && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking this
+		if(M && M.mind && M.mind.has_antag_datum(/datum/antagonist/traitor)) //don't think I have a better way of checking
 			owner = M.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
-	if(owner.current == user && owner.current == M) //you have a holoparasite injector for this exact purpose
+	if(owner?.current && owner.current == user && owner.current == M) //you have a holoparasite injector for this exact purpose
 		to_chat(M, "<span class='warning'>Implanting yourself with mindslave nanites is probably a bad idea...</span>")
 		return
 	. = ..()
 
 /obj/item/stand_arrow/boss/generate_stand(mob/living/carbon/human/H)
-	if(owner.current && H != owner.current)//lol
+	if(owner?.current && H != owner.current)//lol
 		var/obj/item/implant/mindslave/M = new /obj/item/implant/mindslave() //if someone injects themself with a gangster arrow it's entirely their fault for using contraband
 		if(!M.implant(H, owner.current))
 			qdel(M)
