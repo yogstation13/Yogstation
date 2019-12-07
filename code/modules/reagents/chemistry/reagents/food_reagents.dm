@@ -657,7 +657,7 @@
 	color = "#b5a213"
 	taste_description = "tingling mushroom"
 
-/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M)
+/datum/reagent/consumable/tinlux/on_mob_metabolize(mob/living/M)
 	M.set_light(2)
 
 /datum/reagent/consumable/tinlux/on_mob_end_metabolize(mob/living/M)
