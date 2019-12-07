@@ -270,8 +270,7 @@
 					/obj/item/ammo_box/c38/iceblox)
 	crate_name = "ammo crate"
 
-/datum/supply_pack/security/
-
+/datum/supply_pack/security/armor
 	name = "Armor Crate"
 	desc = "Three vests of well-rounded, decently-protective armor. Requires Security access to open."
 	cost = 1000
@@ -280,7 +279,7 @@
 					/obj/item/clothing/suit/armor/vest)
 	crate_name = "armor crate"
 
-/datum/supply_pack/security/armor
+/datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
 	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light wielding wizards . Requires Security access to open."
 	cost = 10000
