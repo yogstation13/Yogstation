@@ -91,7 +91,10 @@
 
 /obj/machinery/mineral/stacking_machine/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheets</b><span>"
+	if(stack_amt != 1)
+		. += {"<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheets</b><span>"}
+	else if(stack_amt == 1)
+		. += {"<span class='notice'><span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet</b><spanclass>"}
 	if(panel_open)
 		. += {"The I/O is set to change [io ? "output" : "input"] currently.
 Input is <b>[dir2text(input_dir)]</b>
@@ -144,8 +147,11 @@ There are some <b>bolts</b> to limit stack size."}
 		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
 		if(stsize && (stsize > 0 && stsize <= 50))
 			stack_amt = stsize
-			to_chat(user, "<span class='notice'>[src] will now output [stack_amt] items at a time.</span>")
-		return
+			if(stack_amt != 1)
+				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheets</b><spanclass>")
+			else if(stack_amt == 1)
+				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet</b></span>")
+			return
 	return TRUE
 
 /obj/machinery/mineral/stacking_machine/attackby(obj/item/W, mob/user, params)
