@@ -52,3 +52,25 @@
 					riding_datum.force_dismount(M)
 			else
 				R.unbuckle_all_mobs()
+
+/datum/emote/dabhard
+	key = "dabb"
+	key_third_person = "Dabs"
+	restraint_check = TRUE
+	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
+	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
+
+/datum/emote/dabhard/run_emote(mob/user, params , type_override, intentional)
+	. = ..()
+	if(.)
+		var/text = key_third_person 
+		var/roll = pick(15,25)
+		if(roll < 15)
+			text = "<span class='dab'> Dabs REALLY HARD </span> "
+		else
+			text = "<span class='dab'> Dabs HARD </span> "
+
+		//H.adjustOrganLoss(ORGAN_SLOT_BRAIN,roll)
+		//H.audible_message(text)
+		user.DabAnimation()
+		

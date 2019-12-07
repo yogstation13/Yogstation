@@ -346,6 +346,26 @@ em						{font-style: normal;	font-weight: bold;}
 	}
   }
 
+
+  .dab				{
+	color: #1235d1;
+	font-weight: bold; 
+	font-size: 27px; 
+	animation: surrender 1s ease-in-out infinite alternate;
+	transform-origin: 0 0;
+	display: inline-block;
+  }
+  @keyframes surrender {
+	  0% {
+	  transform: scale(1,1);
+	  color: #ff0000;
+	}
+	  100% {
+	  transform: scale(1.05,1);
+	  color: #0000ff
+	}
+  }
+
 .cultitalic				{color: #aa1c1c;	font-style: italic;}
 .cultbold				{color: #aa1c1c; font-style: italic; font-weight: bold;}
 .cultboldtalic			{color: #aa1c1c; font-weight: bold; font-size: 24px;}
