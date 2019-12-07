@@ -142,7 +142,7 @@ There are some <b>bolts</b> to limit stack size."}
 /obj/machinery/mineral/stacking_machine/wrench_act(mob/living/user, obj/item/wrench/W)
 	if(istype(W)&&panel_open)
 		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
-		if(stsize && (stsize > 1 && stsize <= 50))
+		if(stsize && (stsize > 0 && stsize <= 50))
 			stack_amt = stsize
 			to_chat(user, "<span class='notice'>[src] will now output [stack_amt] items at a time.</span>")
 		return
