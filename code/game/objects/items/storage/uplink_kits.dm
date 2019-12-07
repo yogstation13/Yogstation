@@ -219,7 +219,7 @@
 			owner = M.mind
 
 /obj/item/stand_arrow/boss/attack(mob/living/M, mob/living/user)
-	if(owner.current == user)
+	if(owner.current == user && owner.current == M) //you have a holoparasite injector for this exact purpose
 		to_chat(M, "<span class='warning'>Implanting yourself with mindslave nanites is probably a bad idea...</span>")
 		return
 	. = ..()
