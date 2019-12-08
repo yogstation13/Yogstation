@@ -47,7 +47,7 @@
 
 	var/datum/physiology/physiology
 
-	var/can_use_vault = 1
+	var/can_use_vault = TRUE
 
 	var/list/datum/bioware = list()
 
