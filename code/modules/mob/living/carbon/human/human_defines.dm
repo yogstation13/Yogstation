@@ -47,6 +47,8 @@
 
 	var/datum/physiology/physiology
 
+	var/can_use_vault = 1
+
 	var/list/datum/bioware = list()
 
 	var/creamed = FALSE //to use with creampie overlays
