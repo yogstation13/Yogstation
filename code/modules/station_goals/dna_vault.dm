@@ -205,11 +205,14 @@
 	data["choiceA"] = ""
 	data["choiceB"] = ""
 	if(user && completed)
-		var/list/L = power_lottery[user]
-		if(L && L.len)
-			data["used"] = FALSE
-			data["choiceA"] = L[1]
-			data["choiceB"] = L[2]
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.can_use_vault == TRUE)
+				var/list/L = power_lottery[user]
+				if(L && L.len)
+					data["used"] = FALSE
+					data["choiceA"] = L[1]
+					data["choiceB"] = L[2]
 	return data
 
 /obj/machinery/dna_vault/ui_act(action, params)
@@ -277,8 +280,9 @@
 			ADD_TRAIT(H, TRAIT_PIERCEIMMUNE, "dna_vault")
 		if(VAULT_SPEED)
 			to_chat(H, "<span class='notice'>Your legs feel faster.</span>")
-			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+			H.add_movespeed_modifier(MOVESPEED_ID_DNA_VAULT, update=TRUE, priority=100, multiplicative_slowdown=-0.74, blacklisted_movetypes=(FLYING|FLOATING))
 		if(VAULT_QUICK)
 			to_chat(H, "<span class='notice'>Your arms move as fast as lightning.</span>")
 			H.next_move_modifier = 0.5
+	H.can_use_vault = FALSE
 	power_lottery[H] = list()
