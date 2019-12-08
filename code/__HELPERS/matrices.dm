@@ -27,43 +27,32 @@
 		//doesn't have an object argument because this is "Stacking" with the animate call above
 		//3 billion% intentional
 
-/atom/proc/DabAnimation(speed = 19, loops = -1, direction = 1 , hold_seconds = 2  , angle = 1 , stay = FALSE)
-	// Hopek 2019  
+/atom/proc/DabAnimation(speed = 1, loops = 1, direction = 1 , hold_seconds = 0  , angle = 1 , stay = FALSE) // Hopek 2019  
 	// By making this in atom/proc everything in the game can potentially dab. You have been warned.
-	var/list/matrices = list()
-	var/list/return_matrices = list()
-	hold_seconds = hold_seconds * 10 // Converts seconds to deciseconds 
-	// Params:: stay: if 1 dab does not return. Use this along with loop for honkery . 
+	if(hold_seconds > 9999) // if you need to hold a dab for more than 2 hours intentionally let me know.
+		return
+	if(hold_seconds > 0)
+		hold_seconds = hold_seconds * 10 // Converts seconds to deciseconds 
 	if(angle == 1) //if angle is 1: random angle. Else take angle
-		angle = pick(40,50,30,35)
+		angle = rand(25,50)
 	if(direction == 1) // direciton:: 1 for random pick, 2 for clockwise , 3 for anti-clockwise
 		direction = pick(2,3)
 	if(direction == 3) // if 3 then counter clockwise
 		angle = angle * -1
 	if(speed == 1) // if speed is 1 choose random speed from list
-		speed = pick(50,30,35,60,70)
+		speed = rand(3,5)
 
-	// initial dab matrix
-	var/matrix/M = matrix(transform) // initial dab matrix
-	M.Turn(angle)
-	matrices += M // begin write to matrix
-	matrices += matrix(transform)
-	
-	if(!stay)
-		// return dab matrix
-		var/matrix/M2 = matrix(transform) // returnDab matrix
-		M2.Turn(angle * -1) // return angle always opposite of begin angle
-		return_matrices += M2 // begin write to return matrix . Only builds if stay is false
-		return_matrices += matrix(transform)
-		if(hold_seconds > 9999) // if you need to hold for more than 2 hours intentionally then PR this check away.
-			return
+	// dab matrix here
+	var/matrix/DAB_COMMENCE = matrix(transform)
+	var/matrix/DAB_RETURN = matrix(transform)
+	DAB_COMMENCE.Turn(angle) // dab angle to matrix
 
-	// Dab animation start
-	animate(src, transform = matrices[2], time = speed, loops ) // dab to hold angle
-	if(hold_seconds >= 1)
+	// Dab animation 
+	animate(src, transform = DAB_COMMENCE, time = speed, loops ) // dab to hold angle
+	if(hold_seconds > 0)
 		sleep(hold_seconds) // time to hold the dab before going back
-	if(!stay)
-		animate(src, transform = matrices[1], time = speed * 6, loops ) // reverse dab to starting position , slower
+	if(!stay) // if stay param is false dab doesn't return
+		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
 
 //Du	mps the matrix data in format a-f
 /matrix/proc/tolist()

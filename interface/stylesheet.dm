@@ -118,19 +118,19 @@ h1.alert, h2.alert		{color: #000000;}
   .dab				{
 	color: #1235d1;
 	font-weight: bold; 
-	font-size: 3; 
-	animation: surrender 1s ease-in-out infinite alternate;
+	font-size: 27px; 
+	animation: dab 1s ease-in-out infinite alternate;
 	transform-origin: 0 0;
 	display: inline-block;
   }
-  @keyframes surrender {
+  @keyframes dab {
 	  0% {
 	  transform: scale(1,1);
-	  color: #ff0000;
+	  color: #f8e800;
 	}
 	  100% {
 	  transform: scale(1.05,1);
-	  color: #0000ff
+	  color: #00ff73
 	}
   }
 

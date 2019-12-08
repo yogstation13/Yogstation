@@ -55,7 +55,7 @@
 
 /datum/emote/dabhard
 	key = "dabb"
-	key_third_person = "Dabs"
+	key_third_person = "Dabs hard"
 	restraint_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
@@ -63,14 +63,32 @@
 /datum/emote/dabhard/run_emote(mob/user, params , type_override, intentional)
 	. = ..()
 	if(.)
-		var/text = key_third_person 
-		var/roll = pick(15,25)
-		if(roll < 15)
-			text = "<span class='dab'> Dabs REALLY HARD </span> "
-		else
-			text = "<span class='dab'> Dabs HARD </span> "
-
-		//H.adjustOrganLoss(ORGAN_SLOT_BRAIN,roll)
-		//H.audible_message(text)
-		user.DabAnimation()
+		var/mob/living/carbon/human/H = user
+		var/flavor_text = "<b>[H]<b/> <span class='danger'>dabs hard.</span>"
+		var/hard_dab_angle = rand(55,110)
+		var/dab_damage = hard_dab_angle / 5.5 // 55 = 10 , 110 = 20
+		var/dab_speed = rand(1,3)
+		var/sound_to_play = 'sound/effects/dab1.ogg'
 		
+		if (prob(4))
+			hard_dab_angle = 160 // the ultimate dab
+			dab_damage = (dab_damage * -1) * 4 // hitting the ultimate dab restores mental health
+			sound_to_play = 'sound/effects/dab3_ult.ogg'
+			flavor_text = "<b>[H] <span class='boldannounce'>hits the Ultimate DAB! <b/></span><span class='dab'>WOW!"
+			SSachievements.unlock_achievement(/datum/achievement/dab, H.client)
+
+		
+		if(hard_dab_angle != 160) // if the ultimate dab wasn't hit
+			if(hard_dab_angle > 80)
+				var/mob/living/carbon/human/H = user
+				flavor_text = "<b>[H]<b/> <span class='danger'>dabs really hard!</span>"
+				sound_to_play = 'sound/effects/dab2.ogg'
+				if(hard_dab_angle > 100)
+					flavor_text = "<b>[H]<b/> <span class='boldannounce'>dabs REALLY hard. Impressive!</span>"
+
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN,dab_damage)
+		H.audible_message(flavor_text)
+		playsound(H, sound_to_play, 50, 1)
+		user.DabAnimation(angle = hard_dab_angle , speed = dab_speed)
+		
+

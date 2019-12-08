@@ -40,3 +40,10 @@
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
 	hidden = TRUE
+
+
+/datum/achievement/dab
+	name = "King of Dab"
+	desc = "Hit the ULTIMATE dab"
+	id = 420
+	hidden = FALSE

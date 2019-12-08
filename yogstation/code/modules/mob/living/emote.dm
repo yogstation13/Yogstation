@@ -70,4 +70,6 @@
 	. = ..()
 	if(. && ishuman(user))
 		var/mob/living/carbon/human/H = user
+		var/light_dab_angle = rand(30,45)
+		H.DabAnimation(angle = light_dab_angle)
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
