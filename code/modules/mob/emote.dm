@@ -80,7 +80,6 @@
 		
 		if(hard_dab_angle != 160) // if the ultimate dab wasn't hit
 			if(hard_dab_angle > 80)
-				var/mob/living/carbon/human/H = user
 				flavor_text = "<b>[H]<b/> <span class='danger'>dabs really hard!</span>"
 				sound_to_play = 'sound/effects/dab2.ogg'
 				if(hard_dab_angle > 100)
