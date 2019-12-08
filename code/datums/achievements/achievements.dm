@@ -46,4 +46,4 @@
 	name = "King of Dab"
 	desc = "Hit the ULTIMATE dab"
 	id = 420
-	hidden = FALSE
+
