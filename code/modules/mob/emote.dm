@@ -67,15 +67,16 @@
 		var/flavor_text = "<b>[H]<b/> <span class='danger'>dabs hard.</span>"
 		var/hard_dab_angle = rand(55,110)
 		var/dab_damage = hard_dab_angle / 5.5 // 55 = 10 , 110 = 20
-		var/dab_speed = rand(1,3)
+		var/dab_speed = rand(2,7)
 		var/sound_to_play = 'sound/effects/dab1.ogg'
 		
 		if (prob(4))
 			hard_dab_angle = 160 // the ultimate dab
 			dab_damage = (dab_damage * -1) * 4 // hitting the ultimate dab restores mental health
 			sound_to_play = 'sound/effects/dab3_ult.ogg'
-			flavor_text = "<b>[H] <span class='boldannounce'>hits the Ultimate DAB! <b/></span><span class='dab'>WOW!"
+			flavor_text = "<b>[H] <span class='boldannounce'>hits the Ultimate DAB! <b/></span><span class='dab'>WOW!</span>"
 			SSachievements.unlock_achievement(/datum/achievement/dab, H.client)
+			dab_speed = 10
 
 		
 		if(hard_dab_angle != 160) // if the ultimate dab wasn't hit
