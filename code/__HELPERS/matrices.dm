@@ -51,7 +51,7 @@
 	animate(src, transform = DAB_COMMENCE, time = speed, loops ) // dab to hold angle
 	if(hold_seconds > 0)
 		sleep(hold_seconds) // time to hold the dab before going back
-	if(!stay) // if stay param is false dab doesn't return
+	if(!stay) // if stay param is true dab doesn't return
 		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
 
 //Du	mps the matrix data in format a-f
