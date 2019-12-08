@@ -85,6 +85,7 @@
 				sound_to_play = 'sound/effects/dab2.ogg'
 				if(hard_dab_angle > 100)
 					flavor_text = "<b>[H]<b/> <span class='boldannounce'>dabs REALLY hard. Impressive!</span>"
+					sound_to_play = 'sound/effects/dab4.ogg'
 
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN,dab_damage)
 		H.audible_message(flavor_text)
