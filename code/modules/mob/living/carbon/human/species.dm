@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/heatmod = 1		// multiplier for heat damage
 	var/acidmod = 1     // multiplier for acid damage // yogs - Old Plant People
 	var/stunmod = 1		// multiplier for stun duration
+	var/can_vault = 1	//if the species has been modified by a DNA vault
 	var/attack_type = BRUTE //Type of damage attack does
 	var/punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
 	var/punchdamagehigh = 10      //highest possible punch damage
