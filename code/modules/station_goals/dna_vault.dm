@@ -207,7 +207,7 @@
 	if(user && completed)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.can_use_vault == TRUE)
+			if(H.can_use_vault)
 				var/list/L = power_lottery[user]
 				if(L && L.len)
 					data["used"] = FALSE
