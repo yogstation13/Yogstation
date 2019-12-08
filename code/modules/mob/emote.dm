@@ -75,7 +75,8 @@
 			dab_damage = (dab_damage * -1) * 4 // hitting the ultimate dab restores mental health
 			sound_to_play = 'sound/effects/dab3_ult.ogg'
 			flavor_text = "<b>[H] <span class='boldannounce'>hits the Ultimate DAB! <b/></span><span class='dab'>WOW!</span>"
-			SSachievements.unlock_achievement(/datum/achievement/dab, H.client)
+			if(!issilicon(H)) // sorry silicons you don't get an easy achievment *dab
+				SSachievements.unlock_achievement(/datum/achievement/dab, H.client)
 			dab_speed = 10
 
 		
