@@ -33,6 +33,7 @@
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
+	var/notreallyacloset = FALSE // It is genuinely a closet
 
 
 /obj/structure/closet/Initialize(mapload)

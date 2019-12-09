@@ -52,11 +52,11 @@
 				mobs -= M
 
 	if(!mobs.len)
-		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>")
+		to_chat(src, "<span class='warning'>Error: no valid mobs found via selected options.</span>", confidential=TRUE)
 		return
 
 	var/mob/chosen_player = pick(mobs)
-	to_chat(src, "[chosen_player] has been chosen")
+	to_chat(src, "[chosen_player] has been chosen", confidential=TRUE)
 	holder.show_player_panel(chosen_player)
 
 /client/proc/get_law_history()

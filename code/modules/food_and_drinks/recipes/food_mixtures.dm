@@ -92,17 +92,6 @@
 	required_temp = 483.15
 	mob_react = FALSE
 
-/datum/chemical_reaction/cheesewheel
-	name = "Cheesewheel"
-	id = "cheesewheel"
-	required_reagents = list(/datum/reagent/consumable/milk = 40)
-	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-
-/datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/store/cheesewheel(location)
-
 /datum/chemical_reaction/synthmeat
 	name = "synthmeat"
 	id = "synthmeat"
@@ -177,3 +166,175 @@
 	new /obj/item/reagent_containers/food/snacks/salad/ricebowl(location)
 	if(holder && holder.my_atom)
 		qdel(holder.my_atom)
+
+////////////////////////////////////////////CHEESEMILK////////////////////////////////////////////
+/datum/chemical_reaction/bluemilk
+	name = "Blue Cheese Milk"
+	id = "bluemilk"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/penicilliumroqueforti = 1)
+	results = list(/datum/reagent/consumable/milk/blue = 30)
+
+/datum/chemical_reaction/briemilk
+	name = "Brie Cheese Milk"
+	id = "briemilk"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/penicilliumcandidum = 1)
+	results = list(/datum/reagent/consumable/milk/brie = 30)
+
+/datum/chemical_reaction/cheddarmilk
+	name = "Cheddar Cheese Milk"
+	id = "cheddarmilk"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/mesophilicculture = 1)
+	results = list(/datum/reagent/consumable/milk/cheddar = 30)
+
+/datum/chemical_reaction/fetamilk
+	name = "Feta Cheese Milk"
+	id = "fetamilk"
+	required_reagents = list(/datum/reagent/consumable/milk/sheep = 30, /datum/reagent/consumable/mesophilicculture = 1)
+	results = list(/datum/reagent/consumable/milk/feta = 30)
+
+/datum/chemical_reaction/goatmilk
+	name = "Goat Cheese Milk"
+	id = "goatmilk"
+	required_reagents = list(/datum/reagent/consumable/milk/goat = 30, /datum/reagent/consumable/mesophilicculture = 1)
+	results = list(/datum/reagent/consumable/milk/goatcheese = 30)
+	
+/datum/chemical_reaction/shoatmilk
+	name = "Shoat Milk"
+	id = "shoatmilk"
+	required_reagents = list(/datum/reagent/consumable/milk/goat = 15, /datum/reagent/consumable/milk/sheep = 15)
+	results = list(/datum/reagent/consumable/milk/shoat = 30)
+	
+/datum/chemical_reaction/halloumimilk
+	name = "Halloumi Cheese Milk"
+	id = "halloumimilk"
+	required_reagents = list(/datum/reagent/consumable/milk/shoat = 30, /datum/reagent/consumable/mesophilicculture = 1)
+	results = list(/datum/reagent/consumable/milk/halloumi = 30)
+	
+/datum/chemical_reaction/mozzarellamilk
+	name = "Mozzarella Cheese Milk"
+	id = "mozzarellamilk"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/lemonjuice = 5)
+	results = list(/datum/reagent/consumable/milk/mozzarella = 30)
+	
+/datum/chemical_reaction/parmesanmilk
+	name = "Parmesan Cheese Milk"
+	id = "parmesanmilk"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/sodiumchloride = 10)
+	results = list(/datum/reagent/consumable/milk/parmesan = 30)
+
+/datum/chemical_reaction/swissmilk
+	name = "Swiss Cheese Milk"
+	id = "swissmix"
+	required_reagents = list(/datum/reagent/consumable/milk = 30, /datum/reagent/consumable/thermophilicculture = 1)
+	results = list(/datum/reagent/consumable/milk/swiss = 30)
+
+////////////////////////////////////////////CHEESE////////////////////////////////////////////
+datum/chemical_reaction/american
+	name = "American Cheese Block"
+	id = "americancheeseblock"
+	required_reagents = list(/datum/reagent/consumable/milk = 40)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/american/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/store/cheesewheel/american(location)
+
+/datum/chemical_reaction/bluemix
+	name = "Blue Cheese Mix"
+	id = "bluemix"
+	required_reagents = list(/datum/reagent/consumable/milk/blue = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/bluemix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/blue(location)
+
+/datum/chemical_reaction/briemix
+	name = "Brie Cheese Mix"
+	id = "briemix"
+	required_reagents = list(/datum/reagent/consumable/milk/brie = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/briemix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/brie(location)
+
+/datum/chemical_reaction/cheddarmix
+	name = "Cheddar Cheese Mix"
+	id = "cheddarmix"
+	required_reagents = list(/datum/reagent/consumable/milk/cheddar = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/cheddarmix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/cheddar(location)
+
+/datum/chemical_reaction/fetamix
+	name = "Feta Cheese Mix"
+	id = "fetamix"
+	required_reagents = list(/datum/reagent/consumable/milk/feta = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/fetamix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/feta(location)
+
+/datum/chemical_reaction/goatmix
+	name = "Goat Cheese Mix"
+	id = "goatmix"
+	required_reagents = list(/datum/reagent/consumable/milk/goatcheese = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/goatmix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/goat(location)
+
+/datum/chemical_reaction/halloumimix
+	name = "Halloumi Cheese Mix"
+	id = "halloumimix"
+	required_reagents = list(/datum/reagent/consumable/milk/halloumi = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/halloumimix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/halloumi(location)
+
+/datum/chemical_reaction/mozzarellamix
+	name = "Mozzarella Cheese Mix"
+	id = "mozzarellamix"
+	required_reagents = list(/datum/reagent/consumable/milk/mozzarella = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/mozzarellamix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/mozzarella(location)
+
+/datum/chemical_reaction/parmesanmix
+	name = "Parmesan Cheese Mix"
+	id = "parmesanmix"
+	required_reagents = list(/datum/reagent/consumable/milk/parmesan = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/parmesanmix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/parmesan(location)
+
+/datum/chemical_reaction/swissmix
+	name = "Swiss Cheese Mix"
+	id = "swissmix"
+	required_reagents = list(/datum/reagent/consumable/milk/swiss = 30)
+	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
+
+/datum/chemical_reaction/swissmix/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/cheesemix/swiss(location)

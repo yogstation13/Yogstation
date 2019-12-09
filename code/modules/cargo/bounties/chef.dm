@@ -128,4 +128,11 @@
 	reward = 4000
 	required_count = 6
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/nugget)
+	
+/datum/bounty/item/chef/parmesan
+	name = "Parmesan Wheel"
+	description = "We're having pasta for dinner, but we ran out of parmesan. Send us a wheel."
+	reward = 10000
+	required_count = 1
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/store/cheesewheel/parmesan)
 

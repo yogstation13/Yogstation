@@ -50,9 +50,6 @@ datum
 		var
 			varname1 = 1
 			varname2
-			static
-				varname3
-				varname4
 		proc
 			proc1()
 				code
@@ -77,8 +74,6 @@ The previous code made compliant:
 /datum/datum1
 	var/varname1
 	var/varname2
-	var/static/varname3
-	var/static/varname4
 
 /datum/datum1/proc/proc1()
 	code
