@@ -201,21 +201,21 @@
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
 	if(!data)
-		data = 1
-	data++
+		data = list("misc" = 1)
+	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
 	if(iscultist(M))
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
 			to_chat(M, "<span class='cultlarge'>Your blood rites falter as holy water scours your body!</span>")
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				qdel(BS)
-	if(data >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
+	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
+			M.say(pick("Av'te Nar'Sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
 				M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 				M.Unconscious(120)
@@ -230,7 +230,7 @@
 					"You can't save him. Nothing can save him now", "It seems that Nar-Sie will triumph after all")].</span>")
 				if("emote")
 					M.visible_message("<span class='warning'>[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].</span>")
-	if(data >= 60)	// 30 units, 135 seconds
+	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
