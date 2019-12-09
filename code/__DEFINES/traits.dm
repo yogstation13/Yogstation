@@ -140,6 +140,7 @@
 #define TRAIT_OIL_FRIED			"oil_fried"
 #define TRAIT_SHELTERED			"sheltered"
 
+
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
 
