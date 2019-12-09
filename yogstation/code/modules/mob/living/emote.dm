@@ -71,3 +71,4 @@
 	if(. && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+		
