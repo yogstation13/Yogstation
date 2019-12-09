@@ -151,3 +151,8 @@
 /datum/mood_event/hope_lavaland
 	description = "<span class='nicegreen'>What a peculiar emblem.  It makes me feel hopeful for my future.</span>\n"
 	mood_change = 5
+
+/datum/mood_event/dab_king
+	description = "<span class='nicegreen'>I am the <b>king of dabs<b/></span>\n"
+	mood_change = 18
+	timeout = 14 MINUTES

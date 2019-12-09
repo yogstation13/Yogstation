@@ -77,6 +77,7 @@
 			flavor_text = "<b>[H] <span class='boldannounce'>hits the Ultimate DAB! <b/></span><span class='dab'>WOW!</span>"
 			if(!issilicon(H)) // sorry silicons you don't get an easy achievment *dab
 				SSachievements.unlock_achievement(/datum/achievement/dab, H.client)
+				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "dab_king", /datum/mood_event/dab_king)
 			dab_speed = 10
 
 		
