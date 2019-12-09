@@ -16,6 +16,7 @@
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
 
+	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/secondsElectrified = MACHINE_NOT_ELECTRIFIED
 	var/shockedby
 	var/visible = TRUE
@@ -298,6 +299,8 @@
 
 	do_animate("closing")
 	layer = closingLayer
+	if(air_tight)
+		density = TRUE
 	sleep(5)
 	density = TRUE
 	sleep(5)
