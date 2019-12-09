@@ -7,6 +7,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
+"aI" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "bo" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -31,7 +40,7 @@
 /area/shuttle/caravan/syndicate3)
 "bN" = (
 /obj/machinery/power/smes{
-	charge = 5e+006
+	charge = 5000000
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -62,6 +71,18 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/syndicate3)
+"eH" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "gl" = (
 /obj/machinery/door/airlock/hatch{
 	id_tag = "caravansyndicate3_bolt_port";
@@ -80,6 +101,10 @@
 	width = 15
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "ha" = (
@@ -166,6 +191,20 @@
 /obj/item/clothing/shoes/sneakers/black,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/caravan/syndicate3)
+"qT" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "rz" = (
 /obj/machinery/computer/shuttle/caravan/syndicate3{
 	dir = 8
@@ -184,6 +223,10 @@
 /obj/machinery/door/poddoor{
 	id = "caravansyndicate3_bridge"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "rV" = (
@@ -236,6 +279,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
+"uY" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/syndicate3)
 "vw" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
@@ -264,6 +321,17 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
+/area/shuttle/caravan/syndicate3)
+"wR" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "xC" = (
 /obj/machinery/light/small{
@@ -421,6 +489,12 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
 "Jv" = (
@@ -436,6 +510,10 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "Lq" = (
@@ -465,6 +543,17 @@
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/glasses/night,
 /turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/syndicate3)
+"Op" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "caravansyndicate3_bridge"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/caravan/syndicate3)
 "Pt" = (
 /obj/effect/turf_decal/stripes/line{
@@ -567,6 +656,12 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -749,20 +844,20 @@ vw
 rU
 "}
 (14,1,1) = {"
-rU
-rU
+wR
+eH
 sb
 rz
 ZK
-rU
-rU
+uY
+aI
 "}
 (15,1,1) = {"
 Jv
-rU
-rU
-rU
-rU
-rU
+Op
+qT
+qT
+qT
+Op
 Jv
 "}
