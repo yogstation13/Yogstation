@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Collapsible, Section} from '../components';
+import { Collapsible, Section } from '../components';
 
 export const Achievements = props => {
   const { data } = useBackend(props);
