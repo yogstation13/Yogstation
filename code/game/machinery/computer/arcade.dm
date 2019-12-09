@@ -79,7 +79,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
 	if(prob(0.0001)) //1 in a million
 		new /obj/item/gun/energy/pulse/prize(src)
-		SSmedals.UnlockMedal(MEDAL_PULSE, user.client)
 
 	if(!contents.len)
 		var/prizeselect
@@ -118,6 +117,19 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		new empprize(loc)
 	explosion(loc, -1, 0, 1+num_of_prizes, flame_range = 1+num_of_prizes)
 
+/obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/stack/arcadeticket))
+		var/obj/item/stack/arcadeticket/T = O
+		var/amount = T.get_amount()
+		if(amount <2)
+			to_chat(user, "<span class='warning'>You need 2 tickets to claim a prize!</span>")
+			return
+		prizevend(user)
+		T.pay_tickets()
+		T.update_icon()
+		O = T
+		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
+		return
 
 // ** BATTLE ** //
 

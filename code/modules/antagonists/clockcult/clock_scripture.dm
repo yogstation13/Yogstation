@@ -10,7 +10,7 @@ Applications: 8 servants, 3 caches, and 100 CV
 GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clockcult scripture states for announcements
 
 /proc/scripture_states_init_value()
-	return list(SCRIPTURE_DRIVER = TRUE, SCRIPTURE_SCRIPT = FALSE, SCRIPTURE_APPLICATION = FALSE) 
+	return list(SCRIPTURE_DRIVER = TRUE, SCRIPTURE_SCRIPT = FALSE, SCRIPTURE_APPLICATION = FALSE)
 
 /datum/clockwork_scripture
 	var/descname = "useless" //a simple name for the scripture's effect
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(!GLOB.ratvar_awakens && !slab.no_cost)
 		checked_penalty = check_offstation_penalty()
 		if(!get_clockwork_power(power_cost))
-			to_chat(invoker, "<span class='warning'>There isn't enough power to recite this scripture! ([DisplayPower(get_clockwork_power())]/[DisplayPower(power_cost)])</span>")
+			to_chat(invoker, "<span class='warning'>There isn't enough power to recite this scripture! ([DisplayEnergy(get_clockwork_power())]/[DisplayEnergy(power_cost)])</span>")
 			return
 	if(multiple_invokers_used && !multiple_invokers_optional && !GLOB.ratvar_awakens && !slab.no_cost)
 		var/nearby_servants = 0

@@ -388,6 +388,21 @@
 	if(.)
 		new /obj/item/paper/guides/antag/guardian/wizard(get_turf(user))
 
+/datum/spellbook_entry/item/rune_crate
+	name = "Rune Crate"
+	desc = "A wizard specialized in runecrafting is offering two chests full of runes! The problem is, he mixed up the contents of them so you won't know what you will get!"
+	item_path = /obj/structure/closet/crate/magic
+	category = "Offensive"
+	cost = 1
+	buy_word = "Order"
+
+/datum/spellbook_entry/item/rune_crate/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
+	if(.)
+		new /obj/structure/closet/crate/magic(get_turf(user)) //Two crates full of magic goodies
+
+
+
 /datum/spellbook_entry/item/bloodbottle
 	name = "Bottle of Blood"
 	desc = "A bottle of magically infused blood, the smell of which will attract extradimensional beings when broken. Be careful though, the kinds of creatures summoned by blood magic are indiscriminate in their killing, and you yourself may become a victim."

@@ -169,7 +169,7 @@
 
 /obj/item/clothing/gloves/color/latex/nitrile
 	name = "nitrile gloves"
-	desc = "Pricy sterile gloves that are stronger than latex."
+	desc = "Pricey sterile gloves that are stronger than latex."
 	icon_state = "nitrile"
 	item_state = "nitrilegloves"
 	item_color = "cmo"

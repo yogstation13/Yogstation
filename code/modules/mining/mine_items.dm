@@ -63,6 +63,7 @@
 	new /obj/item/assault_pod/mining(src)
 
 
+GLOBAL_LIST_EMPTY(dumb_rev_heads)
 /**********************Shuttle Computer**************************/
 
 /obj/machinery/computer/shuttle/mining
@@ -72,13 +73,12 @@
 	shuttleId = "mining"
 	possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
 	no_destination_swap = 1
-	var/global/list/dumb_rev_heads = list()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user)
-	if(is_station_level(user.z) && user.mind && is_head_revolutionary(user) && !(user.mind in dumb_rev_heads))
+	if(is_station_level(user.z) && user.mind && is_head_revolutionary(user) && !(user.mind in GLOB.dumb_rev_heads))
 		to_chat(user, "<span class='warning'>You get a feeling that leaving the station might be a REALLY dumb idea...</span>")
-		dumb_rev_heads += user.mind
+		GLOB.dumb_rev_heads += user.mind
 		return
 	. = ..()
 
