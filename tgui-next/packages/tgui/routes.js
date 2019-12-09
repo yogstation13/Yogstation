@@ -1,4 +1,4 @@
-import {Achievements} from './interfaces/Achievements';
+import { Achievements } from './interfaces/Achievements';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
