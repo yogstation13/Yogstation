@@ -229,9 +229,11 @@
 	name = "parmesan cheese wheel"
 	desc = "A big wheel of parmesan cheese."
 	icon_state = "parmesan_wheel"
+	bitesize = 5
+	volume = 200
 	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge/parmesan
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 20, /datum/reagent/consumable/parmesan_delight = 10)
-	tastes = list("salt" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 30, /datum/reagent/consumable/parmesan_delight = 20)
+	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan
 	name = "unmature parmesan cheese wheel"
@@ -261,8 +263,8 @@
 	desc = "A wedge of parmesan cheese. You feel incredibly artisnal holding this."
 	icon_state = "parmesan_wedge"
 	filling_color = "#F0DF9C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/parmesan_delight = 2)
-	tastes = list("salt" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/parmesan_delight = 4)
+	tastes = list("salt" = 1, "magnificence" = 1, "italy" = 1)
 
 //swiss
 /obj/item/reagent_containers/food/snacks/store/cheesewheel/swiss

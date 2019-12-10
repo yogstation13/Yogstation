@@ -4168,8 +4168,8 @@
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
 "aio" = (
-/obj/structure/closet/l3closet,
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/l3closet/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "aip" = (
@@ -22352,21 +22352,24 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "aRl" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/structure/closet/l3closet,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
+/obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/turf/open/floor/plasteel/white,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/structure/closet/l3closet/scientist,
+/turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "aRm" = (
 /obj/structure/closet/crate,
@@ -23951,15 +23954,22 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/bar)
 "aUc" = (
-/obj/structure/closet/l3closet,
 /obj/effect/turf_decal/stripes/line{
-	dir = 6
+	dir = 9
 	},
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/closet/l3closet/scientist,
 /turf/open/floor/plasteel/white,
-/area/medical/virology)
+/area/science/xenobiology)
 "aUd" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/blue{
@@ -28614,25 +28624,16 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bcD" = (
-/obj/structure/closet/l3closet,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/green{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/xenobiology)
+/obj/structure/closet/l3closet/virology,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "bcE" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -32196,14 +32197,13 @@
 /turf/closed/wall/r_wall,
 /area/science/explab)
 "bjx" = (
-/obj/structure/closet/l3closet,
 /obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	icon_state = "scrub_map_on-3";
-	dir = 8
-	},
+/obj/structure/closet/l3closet/virology,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bjy" = (
@@ -87196,8 +87196,8 @@ byn
 bzO
 bAW
 bCh
+bcD
 bjx
-aUc
 bEr
 aUO
 aVV
@@ -104663,7 +104663,7 @@ bkY
 aFi
 bpq
 bnj
-aRl
+aUc
 bqS
 bdh
 bnj
@@ -110830,7 +110830,7 @@ aEj
 aEl
 bkF
 bkF
-bcD
+aRl
 aRr
 bqR
 aNC
