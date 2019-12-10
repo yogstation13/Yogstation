@@ -98,13 +98,14 @@
 	name = "King of Credits"
 	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things since there's on
 	id = 20
-	var/amount
+	var/amount = 0
 
 /datum/achievement/cargoking/New()
 	.=..()
 	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT value FROM [format_table_name("misc")] WHERE key = 'cargorecord'")
 	Q.Execute()
-	amount = Q.item[1]
+	if(Q.item && Q.item[1])
+		amount = Q.item[1]
 	qdel(Q)
 	desc += amount
 	var/datum/callback/callbackevent = CALLBACK(SSticker, /datum/controller/subsystem/ticker.proc/cargoking)
