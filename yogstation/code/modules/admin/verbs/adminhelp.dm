@@ -437,7 +437,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	
 	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as a Github issue by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]! -</b></font><br>"
 	msg += "<font color='red'><b>You are reporting a Bug or Github Issue.</b></font><br>"
-	msg += "<font color='red'>[CONFIG_GET(string/githuburl)]</font>"
+	msg += "<font color='red'>[CONFIG_GET(string/githuburl)]/issues/new?template=bug_report.md</font>"
 	msg += "<font color='red'><b>Please navigate to the issues section and open up an issue regarding the bug or other issue you have discovered. A maintainer will deal with it shortly.</b></font><br>"
 	
 	if(initiator)
