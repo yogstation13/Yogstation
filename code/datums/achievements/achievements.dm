@@ -24,7 +24,7 @@
 	desc = "Emag a Particle Accelerator"
 	id = 4
 	hidden = TRUE
-  
+
 /datum/achievement/flukeops
 	name = "Reverse Card"
 	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
@@ -92,4 +92,16 @@
 	name = "Burn in Hell"
 	desc = "Get cremated... alive"
 	id = 17
+	hidden = TRUE
+
+/datum/achievement/Poly_silent
+	name = "Silence Bird!"
+	desc = "As a signal technician create a script that mutes poly"
+	id = 18
+	hidden = TRUE
+
+/datum/achievement/Poly_loud
+	name = "Embrace The Bird!"
+	desc = "As a signal technician create a script that makes poly LOUD"
+	id = 19
 	hidden = TRUE
