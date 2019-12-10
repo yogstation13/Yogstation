@@ -46,6 +46,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are!"
+	short_desc = "You are a free miner."
 	assignedrole = "Free Miner"
 	outfit = /datum/outfit/freeminer
 	prompt_name = "a free miner"
@@ -77,6 +78,7 @@
 	name = "Free Miner Engineer"
 	id_job = "Free Miner Engineer"
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! After years of saving, you finally have just enough parts to put your own mech together. Salvage the wreckage with a welder and a crowbar to get them."
+	short_desc = "You are a free miner engineer."
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
@@ -96,6 +98,7 @@
 	name = "Free Miner Captain"
 	id_job = "Free Miner Captain"
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are! Your ID and the ship pilot IDs in the cockpit are the only way to move your ship. Try not to lose them!"
+	short_desc = "You are a free miner captain."
 	assignedrole = "Free Miner Captain"
 	outfit = /datum/outfit/freeminer/captain
 	prompt_name = "the free miner captain"

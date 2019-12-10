@@ -32070,6 +32070,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"bno" = (
+/mob/living/simple_animal/pet/fox/fennec/Autumn,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "bnp" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
@@ -83741,12 +83745,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"dmK" = (
-/mob/living/simple_animal/pet/fox/fennec{
-	name = "Autumn"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "dmL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -108301,7 +108299,7 @@ cGscAB
 cwpcwp
 cHzcHB
 cxZcxZ
-dmKcyO
+bnocyO
 cLucLv
 cNycwp
 bsacGd
