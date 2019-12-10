@@ -32,7 +32,7 @@
 	dog_fashion = /datum/dog_fashion/head
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
-	var/list/written = list()	//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
+	var/list/written//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields = 0	//Amount of user created fields
 	var/list/stamped
@@ -56,6 +56,7 @@
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
+	written = list()
 	update_icon()
 
 
