@@ -75,5 +75,6 @@
 
 /obj/item/clothing/gloves/rapid/attack_self(mob/user)
 	var/input = stripped_input(user,"What do you want your battlecry to be? Max length of 6 characters.", ,"", 7)
+	input = replacetext(input, "*", "")
 	if(input)
 		warcry = input
