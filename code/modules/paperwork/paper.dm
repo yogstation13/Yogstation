@@ -141,7 +141,7 @@
 	var/text = info // The actual text displayed. Starts with & defaults to $info.
 	if(istype(infolang) && !user.has_language(infolang))
 		var/datum/language/paperlang = GLOB.language_datum_instances[infolang]
-		text = paper.scramble_HTML(text)
+		text = paperlang.scramble_HTML(text)
 
 	for(var/i=1,i<=written.len;++i) // Needs to be a normal for-loop because I need the indices.
 		var/x = written[i]
