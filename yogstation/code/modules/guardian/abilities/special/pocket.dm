@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		return T.z
 	return A.z
 
-/area/hippie/pocket_dimension
+/area/yogstation/pocket_dimension
 	name = "??? INVALID COORDINATES ???"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = STANDARD_GRAVITY
