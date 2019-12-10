@@ -66,10 +66,6 @@
 /obj/machinery/telecomms/relay/preset/reebe,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"ap" = (
-/obj/machinery/door/airlock/clockwork,
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aq" = (
 /obj/machinery/computer/camera_advanced/ratvar,
 /turf/open/floor/clockwork/reebe,
@@ -19520,7 +19516,7 @@ aB
 az
 ah
 ai
-ap
+ag
 ai
 an
 au
@@ -20324,7 +20320,7 @@ aj
 aj
 aj
 aj
-ap
+ag
 aH
 aj
 aj
@@ -20332,7 +20328,7 @@ ak
 aj
 aj
 aH
-ap
+ag
 aj
 aj
 aj
@@ -21136,7 +21132,7 @@ aj
 aC
 ah
 ai
-ap
+ag
 ai
 ah
 ay
