@@ -5,7 +5,7 @@ export const Achievements = props => {
   const { data } = useBackend(props);
   return (
     data["achievements"].map(achievement => (
-      <Collapsible title={achievement.name} key={achievement.name}>
+      <Collapsible title={achievement.name} key={achievement.desc}>
         <Section>
           {achievement.desc}<br />
           {achievement.unlocked
