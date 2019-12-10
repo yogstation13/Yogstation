@@ -36,14 +36,14 @@
 		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
 		return FALSE
 
-	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strange urge to serve [holder.real_name]. A simple thought about disobeying his/her commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT></span>")
+	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strong urge to greytide.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT></span>")
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)
 	GT.master = user
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
-	new_objective.explanation_text = "Serve [holder.real_name] no matter what!"
+	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your greytide brothers!"
 
 	log_game("[holder.ckey] enslaved [target.ckey] with a greytide implant")
 
@@ -54,7 +54,7 @@
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/greytide))
 		source.mind.remove_antag_datum(/datum/antagonist/greytide)
-		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer have to obey your master!</span>")
+		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer wish to greytide!</span>")
 		if(!source.mind.has_antag_datum(/datum/antagonist))
 			to_chat(source,"<span class='notice'>You are no longer an antagonist.</span>")
 
