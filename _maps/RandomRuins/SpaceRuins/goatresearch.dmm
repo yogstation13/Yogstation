@@ -18,7 +18,7 @@
 /area/ruin/powered)
 "af" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plating,
 /area/ruin/powered)
 "ag" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
@@ -164,8 +164,10 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "aK" = (
-/obj/structure/sign/departments/chemistry,
-/turf/closed/wall/mineral/titanium,
+/obj/structure/sign/departments/chemistry{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/ruin/powered)
 "aL" = (
 /obj/machinery/door/airlock/medical/glass,
@@ -216,7 +218,7 @@
 /area/ruin/powered)
 "aU" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/ruin/powered)
 "aV" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -225,8 +227,13 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "aW" = (
-/obj/structure/sign/departments/medbay/alt,
-/turf/closed/wall/mineral/titanium,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/departments/medbay/alt{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "aX" = (
 /obj/machinery/door/airlock/medical/glass,
@@ -244,8 +251,11 @@
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "ba" = (
-/obj/structure/sign/warning/vacuum,
-/turf/closed/wall/mineral/titanium,
+/obj/structure/sign/warning/vacuum{
+	pixel_x = 32
+	},
+/mob/living/simple_animal/hostile/retaliate/goat/guard,
+/turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bb" = (
 /obj/machinery/light{
@@ -268,11 +278,22 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
+"bf" = (
+/obj/effect/turf_decal/loading_area{
+	icon_state = "loadingarea";
+	dir = 8
+	},
+/obj/machinery/button{
+	id = "goatshutters";
+	pixel_y = 24
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/powered)
 "bg" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "goatshutters"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/ruin/powered)
 "bh" = (
 /obj/machinery/computer{
@@ -325,7 +346,8 @@
 /area/ruin/powered)
 "bp" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/plasteel,
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
 "bq" = (
 /obj/machinery/light{
@@ -347,7 +369,6 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Common Room"
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/mineral/titanium,
 /area/ruin/powered)
 "bu" = (
@@ -612,12 +633,6 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat,
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
-/area/ruin/powered)
-"US" = (
-/obj/machinery/button{
-	id = "goatshutters"
-	},
-/turf/closed/wall/mineral/titanium,
 /area/ruin/powered)
 "ZW" = (
 /obj/structure/closet/crate{
@@ -1203,10 +1218,10 @@ aa
 aa
 aa
 aa
-aa
 aU
 aU
-aa
+aU
+aU
 aa
 aa
 aa
@@ -4744,8 +4759,8 @@ am
 am
 am
 cb
+ab
 aW
-cf
 aM
 aM
 ca
@@ -4976,7 +4991,7 @@ am
 am
 am
 ab
-aN
+ba
 aM
 aM
 aM
@@ -5053,7 +5068,7 @@ am
 am
 am
 ab
-ba
+ab
 bl
 bl
 ab
@@ -5279,8 +5294,8 @@ ab
 an
 am
 aF
+ab
 aK
-am
 am
 cc
 ab
@@ -5514,8 +5529,8 @@ ab
 aO
 aO
 aO
-US
-bo
+ab
+bf
 bo
 bo
 bo

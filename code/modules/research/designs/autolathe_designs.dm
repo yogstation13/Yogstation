@@ -571,6 +571,15 @@
 	build_path = /obj/item/assembly/signaler
 	category = list("initial", "T-Comm")
 
+/datum/design/mousetrap
+	name = "Mousetrap"
+	id = "mousetrap"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 100)
+	build_path = /obj/item/assembly/mousetrap
+	category = list("initial", "Misc")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/radio_headset
 	name = "Radio Headset"
 	id = "radio_headset"
@@ -783,11 +792,11 @@
 	category = list("hacked", "Security")
 
 /datum/design/a357
-	name = "Speed Loader (.357)"
+	name = ".357 Bullet"
 	id = "a357"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 30000)
-	build_path = /obj/item/ammo_box/a357
+	materials = list(MAT_METAL = 4000)
+	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
 /datum/design/c10mm
@@ -970,3 +979,12 @@
 	build_path = /obj/item/flashlight/pen
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/wallframe/flasher
+	name = "Mounted Flash Frame" 
+	id =  "wallframe/flasher" 
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 10000, MAT_GLASS = 4000)
+	build_path = /obj/item/wallframe/flasher
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
