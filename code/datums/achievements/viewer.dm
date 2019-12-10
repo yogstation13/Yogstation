@@ -25,8 +25,8 @@
 		var/datum/achievement/achievement = B
 		var/list/A = list(
 			"name" = achievement.name,
-			"desc" = achievement.desc,
-			"unlocked" = achievements[achievement]
+			"unlocked" = achievements[achievement],
+			"desc" = (!achievement.hidden || achievements[achievement]) ? achievement.desc : "???"
 		)
 		data["achievements"] += list(A)
 	
