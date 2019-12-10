@@ -17133,7 +17133,7 @@
 /obj/item/storage/box/syndie_kit/chemical,
 /obj/item/storage/box/syndie_kit/emp,
 /obj/item/storage/box/syndie_kit/ez_clean,
-/obj/item/guardiancreator/tech/rare
+/obj/item/guardiancreator/tech/rare,
 /obj/item/storage/box/syndie_kit/imp_adrenal,
 /obj/item/storage/box/syndie_kit/imp_freedom,
 /obj/item/storage/box/syndie_kit/imp_macrobomb,
