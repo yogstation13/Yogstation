@@ -425,6 +425,7 @@
 							"name" = "[customsender]",
 							"job" = "[customjob]",
 							"message" = custommessage,
+							"language" = get_default_language(), // PDAs now use the language system!
 							"targets" = list("[customrecepient.owner] ([customrecepient.ownjob])")
 						))
 						// this will log the signal and transmit it to the target
