@@ -6,18 +6,18 @@
 /obj/item/implant/greytide/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> Syndicate Loyalty Implant<BR>
+<b>Name:</b> Syndicate Greytide Implant<BR>
 <b>Life:</b> Single use<BR>
 <b>Important Notes:</b> <font color='red'>Illegal</font><BR>
 <HR>
 <b>Implant Details:</b> <BR>
-<b>Function:</b> Makes the injected a slave to the owner of the implant.<HR>"}
+<b>Function:</b> Makes the injected have a strong urge to break into places.<HR>"}
 	return dat
 
 /obj/item/implant/greytide/implant(mob/source, mob/user)
 
 	if(!source.mind)
-		to_chat(user.mind, "<span class='notice'>[source] doesn't posses the mental capabilities to be a slave.</span>")
+		to_chat(user.mind, "<span class='notice'>[source] doesn't posses the mental capabilities to be a greytider.</span>")
 		return FALSE
 
 	var/mob/living/carbon/target = source
@@ -44,6 +44,7 @@
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
 	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your greytide brothers!"
+	ADD_TRAIT(target, TRAIT_PACIFISM, "Greytide Implant")
 
 	log_game("[holder.ckey] enslaved [target.ckey] with a greytide implant")
 
@@ -57,6 +58,7 @@
 		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer wish to greytide!</span>")
 		if(!source.mind.has_antag_datum(/datum/antagonist))
 			to_chat(source,"<span class='notice'>You are no longer an antagonist.</span>")
+	REMOVE_TRAIT(source, TRAIT_PACIFISM, "Greytide Implant")
 
 /obj/item/implanter/greytide
 	name = "implanter (greytide)"
