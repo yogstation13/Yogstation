@@ -17133,7 +17133,7 @@
 /obj/item/storage/box/syndie_kit/chemical,
 /obj/item/storage/box/syndie_kit/emp,
 /obj/item/storage/box/syndie_kit/ez_clean,
-/obj/item/storage/box/syndie_kit/guardian,
+/obj/item/guardiancreator/tech/rare
 /obj/item/storage/box/syndie_kit/imp_adrenal,
 /obj/item/storage/box/syndie_kit/imp_freedom,
 /obj/item/storage/box/syndie_kit/imp_macrobomb,
@@ -19462,11 +19462,11 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/guardiancreator,
-/obj/item/guardiancreator{
+/obj/item/guardiancreator/rare,
+/obj/item/guardiancreator/rare{
 	pixel_y = 3
 	},
-/obj/item/guardiancreator{
+/obj/item/guardiancreator/rare{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/bluespace,
@@ -22065,44 +22065,11 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
 "YG" = (
-<<<<<<< HEAD
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/storage/box/syndie_kit/chameleon,
-/obj/item/storage/box/syndie_kit/cluwnification,
-/obj/item/storage/box/syndie_kit/chemical,
-/obj/item/storage/box/syndie_kit/emp,
-/obj/item/storage/box/syndie_kit/ez_clean,
-/obj/item/guardiancreator/tech/rare,
-/obj/item/storage/box/syndie_kit/imp_adrenal,
-/obj/item/storage/box/syndie_kit/imp_freedom,
-/obj/item/storage/box/syndie_kit/imp_macrobomb,
-/obj/item/storage/box/syndie_kit/imp_microbomb,
-/obj/item/storage/box/syndie_kit/imp_radio,
-/obj/item/storage/box/syndie_kit/imp_mindslave,
-/obj/item/storage/box/syndie_kit/imp_storage,
-/obj/item/storage/box/syndie_kit/mimery,
-/obj/item/storage/box/syndie_kit/origami_bundle,
-/obj/item/storage/box/syndie_kit/romerol,
-/obj/item/storage/box/syndie_kit/throwing_weapons,
-/obj/item/storage/box/syndie_kit/tuberculosisgrenade,
-/turf/open/floor/plasteel,
-=======
 /obj/structure/table/wood,
 /obj/item/gun/magic/rune/bomb_rune,
 /obj/item/gun/magic/rune/bullet_rune,
 /obj/item/gun/magic/rune/mutation_rune,
 /turf/open/floor/wood,
->>>>>>> 5d977f873ccd1723e0dee3d48a1ac88925fc2a4e
 /area/centcom/testchamber)
 "YJ" = (
 /obj/item/reagent_containers/food/condiment/enzyme,
