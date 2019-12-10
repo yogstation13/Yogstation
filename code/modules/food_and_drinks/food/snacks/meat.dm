@@ -87,6 +87,7 @@
 	tastes = list("meat" = 4, "scales" = 1)
 	foodtype = MEAT | RAW
 
+
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	icon_state = "plantmeat"
 	desc = "All the joys of healthy eating with all the fun of cannibalism."
@@ -434,6 +435,10 @@
 	tastes = list("tomato" = 1)
 	foodtype = FRUIT
 
+/obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	name = "chicken cutlet"
+	tastes = list("chicken" = 1)
+
 /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
 	name = "bear cutlet"
 	tastes = list("meat" = 1, "salmon" = 1)
@@ -453,3 +458,19 @@
 /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin cutlet"
 	tastes = list("beef" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	name = "chicken meat"
+	desc = "A slab of raw chicken. Remember to wash your hands!"
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/rawcutlet/chicken
+	tastes = list("chicken" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	name = "chicken steak" //Can you have chicken steaks? Maybe this should be renamed once it gets new sprites.
+	tastes = list("chicken" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/rawcutlet/chicken
+	name = "raw chicken cutlet"
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	tastes = list("chicken" = 1)

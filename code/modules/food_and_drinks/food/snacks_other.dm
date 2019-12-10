@@ -572,3 +572,15 @@
 	desc = "I have a mouth and I must eat."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
+
+/obj/item/reagent_containers/food/snacks/cornchips
+	name = "boritos corn chips"
+	desc = "Triangular corn chips. They do seem a bit bland but would probably go well with some kind of dipping sauce."
+	icon_state = "boritos"
+	trash = /obj/item/trash/boritos
+	bitesize = 2
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cooking_oil = 2, /datum/reagent/consumable/sodiumchloride = 3)
+	junkiness = 20
+	filling_color = "#ECA735"
+	tastes = list("fried corn" = 1)
+	foodtype = JUNKFOOD | FRIED
