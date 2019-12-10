@@ -17,8 +17,8 @@
 /obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
 	new /obj/item/implanter/mindslave(src)
 
-/obj/item/storage/box/syndie_kit/imp_mindslave
+/obj/item/storage/box/syndie_kit/imp_greytide
 	name = "Greytide Implant (with injector)"
 
-/obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
+/obj/item/storage/box/syndie_kit/imp_greytide/PopulateContents()
 	new /obj/item/implanter/greytide(src)
