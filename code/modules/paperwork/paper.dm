@@ -32,6 +32,7 @@
 	dog_fashion = /datum/dog_fashion/head
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
+	var/datum/language/infolang // The language info is written in. If left NULL, info will default to being omnilingual and readable by all.
 	var/list/written//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields = 0	//Amount of user created fields
