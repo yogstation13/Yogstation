@@ -1,3 +1,8 @@
+/datum/chemical_reaction/insulin
+	name = "Insulin"
+	id = /datum/reagent/medicine/insulin
+	results = list(/datum/reagent/medicine/insulin = 2)
+	required_reagents = list(/datum/reagent/medicine/salglu_solution = 1, /datum/reagent/medicine/antitoxin = 1)
 
 /datum/chemical_reaction/leporazine
 	name = "Leporazine"
