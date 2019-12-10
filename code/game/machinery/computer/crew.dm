@@ -79,9 +79,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if (!ui)
-		var/datum/asset/simple/assets = get_asset_datum(/datum/asset/simple/mapimage)
-		assets.send(user)
-		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 800, 600 , master_ui, state)
+		for(var/datum/minimap/M in SSmapping.station_minimaps)
+			M.send(user)
+		ui = new(user, src, ui_key, "crew", "Crew Monitoring Console", 1000, 600 , master_ui, state)
 		ui.open()
 
 /datum/crewmonitor/proc/show(mob/M, source)
@@ -98,10 +98,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		z = T.z
 	var/list/zdata = update_data(z)
 	. = list()
+	var/datum/minimap/M = SSmapping.station_minimaps[1]
 	.["sensors"] = zdata
 	.["link_allowed"] = isAI(user)
-	.["mapsize"] = world.maxy
 	.["z"] = z
+	.["minx"] = M.minx
+	.["miny"] = M.miny
+	.["maxx"] = M.maxx
+	.["maxy"] = M.maxy
 
 /datum/crewmonitor/proc/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)
