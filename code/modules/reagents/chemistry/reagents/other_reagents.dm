@@ -471,6 +471,13 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/lizard
 	mutationtext = "<span class='danger'>The pain subsides. You feel... scaly.</span>"
+	
+/datum/reagent/mutationtoxin/ethereal
+	name = "Ethereal Mutation Toxin"
+	description = "A Electrifying toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/ethereal
+	mutationtext = "<span class='danger'>The pain subsides. You feel... like electricity.</span>"
 
 /datum/reagent/mutationtoxin/fly
 	name = "Fly Mutation Toxin"
