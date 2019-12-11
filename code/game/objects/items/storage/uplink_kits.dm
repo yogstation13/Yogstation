@@ -229,7 +229,7 @@
 		var/obj/item/implant/mindslave/M = new /obj/item/implant/mindslave() //if someone injects themself with a gangster arrow it's entirely their fault for using contraband
 		if(!M.implant(H, owner.current))
 			qdel(M)
-	. = ..() //sure ok fine you stole the arrow
+	. = ..() //sure ok you stole the arrow
 
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"
