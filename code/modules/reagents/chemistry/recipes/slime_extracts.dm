@@ -69,6 +69,14 @@
 	required_reagents = list(/datum/reagent/uranium/radium = 1)
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
+	
+/datum/chemical_reaction/slime/slimepreternis
+	name = "Preternis Mutation Toxin"
+	id = "youknowwhatsupmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/preternis = 1)
+	required_reagents = list(/datum/reagent/iron = 1)
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
 
 //Metal
 /datum/chemical_reaction/slime/slimemetal
