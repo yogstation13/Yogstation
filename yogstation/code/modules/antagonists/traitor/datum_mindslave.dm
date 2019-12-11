@@ -26,4 +26,4 @@
 	name = "Mindslave Objective" // alt "Take what you want, the station is yours. Avoid needless harm you are still a crewmemeber."
 	martyr_compatible = TRUE
 	completed = TRUE
-	explanation_text = "Break things, avoid harming anyone doing so. Remain loyal to your master and greytide brothers."
+	explanation_text = "Break things, take what you want, avoid harming anyone doing so. Remain loyal to your master and assistant brothers."

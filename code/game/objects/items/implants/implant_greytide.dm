@@ -17,7 +17,7 @@
 /obj/item/implant/greytide/implant(mob/source, mob/user)
 
 	if(!source.mind)
-		to_chat(user.mind, "<span class='notice'>[source] doesn't posses the mental capabilities to be a greytider.</span>")
+		to_chat(user.mind, "<span class='notice'>[source] doesn't posses the mental capabilities to be a greytider.</span>")	//"doesn't posses the mental capabilities to be a greytider"
 		return FALSE
 
 	var/mob/living/carbon/target = source
@@ -36,14 +36,14 @@
 		to_chat(holder, "<span class='warning'>[target] seems to resist the implant!</span>")
 		return FALSE
 
-	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strong urge to greytide.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT></span>")
+	to_chat(target, "<span class='userdanger'><FONT size = 3>You feel a strong urge to break everything.  You feel a strong loyalty to [holder.real_name] and your assistant brothers. You want to break into everything, but harming others isnt something you will do.</FONT></span>")
 
 	var/datum/antagonist/greytide/GT = new
 	target.mind.add_antag_datum(GT)
 	GT.master = user
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
-	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your greytide brothers!"
+	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers!"
 	ADD_TRAIT(target, TRAIT_PACIFISM, "Greytide Implant")
 
 	log_game("[holder.ckey] enslaved [target.ckey] with a greytide implant")
@@ -55,7 +55,7 @@
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/greytide))
 		source.mind.remove_antag_datum(/datum/antagonist/greytide)
-		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer wish to greytide!</span>")
+		to_chat(source,"<span class='userdanger'>You feel your free will come back to you! You no longer wish to break everything!</span>")
 		if(!source.mind.has_antag_datum(/datum/antagonist))
 			to_chat(source,"<span class='notice'>You are no longer an antagonist.</span>")
 	REMOVE_TRAIT(source, TRAIT_PACIFISM, "Greytide Implant")
