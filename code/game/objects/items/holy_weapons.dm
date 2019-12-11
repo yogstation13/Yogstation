@@ -717,9 +717,3 @@
 	potential = 2
 	range = 3
 	ability = new /datum/guardian_ability/major/healing/limited
-
-/datum/guardian_ability/major/healing/limited
-	name = "Limited Healing"
-	desc = "Allows the guardian to heal anything with the exception of its user"
-	cost = 3
-	healuser = FALSE
