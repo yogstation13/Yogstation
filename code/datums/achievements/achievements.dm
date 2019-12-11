@@ -107,6 +107,6 @@
 	if(Q.item.len)
 		amount = Q.item[1]
 	qdel(Q)
-	desc += amount
+	desc += "[amount]"
 	var/datum/callback/callbackevent = CALLBACK(SSticker, /datum/controller/subsystem/ticker.proc/cargoking)
 	SSticker.round_end_events += callbackevent
