@@ -434,7 +434,7 @@
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30, 120)
 			if (prob(max(70 - (bomb_armor * 0.5), 0)))
-				Unconscious(200)
+				Unconscious(0)
 
 		if(3)
 			b_loss = 30
@@ -443,13 +443,12 @@
 			damage_clothes(max(50 - bomb_armor, 0), BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			if (prob(max(50 - (bomb_armor * 0.5), 0)))
-				Unconscious(160)
+
 
 	take_overall_damage(b_loss,f_loss)
 
 	//attempt to dismember bodyparts
-	if(severity <= 2 || !bomb_armor)
+	if(severity > 1 & !bomb_armor)
 		var/max_limb_loss = round(4/severity) //so you don't lose four limbs at severity 3.
 		for(var/X in bodyparts)
 			var/obj/item/bodypart/BP = X
