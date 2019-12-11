@@ -19224,10 +19224,6 @@
 "PW" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
-"PX" = (
-/obj/machinery/computer/arcade/battle,
-/turf/open/floor/wood,
-/area/centcom/holding)
 "PY" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -20026,6 +20022,10 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sm" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "So" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -47928,7 +47928,7 @@ Xk
 Xk
 XM
 NT
-PX
+Ym
 CV
 Xk
 NT
@@ -51012,8 +51012,8 @@ Xk
 Xk
 XM
 NT
-Xk
-Xk
+Sm
+CV
 Xk
 NT
 Yq
@@ -51526,8 +51526,8 @@ Xk
 Xk
 GY
 NT
-Xk
-Xk
+Sm
+CV
 Xk
 NT
 vt
