@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	var/inner_sum
 	var/list/cached_gases = gases
 	TOTAL_MOLES(cached_gases, sum)
-	TOTAL_MOLES(cached_gases, inner_sum)
+	TOTAL_MOLES_INNER(cached_gases, inner_sum)
 	amount = min(amount, sum) // cant' take away more than it has
 	var/datum/gas_mixture/removed = new type
 	var/list/removed_gases = removed.gases
@@ -247,6 +247,10 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		removed_gases[id][MOLES] = removed_outer + removed_inner
 		cached_gases[id][MOLES] -= removed_outer + removed_inner
 		cached_gases[id][INNER_MOLES] -= removed_inner
+
+	garbage_collect()
+
+	return removed
 
 /datum/gas_mixture/remove_ratio(ratio)
 	if(ratio <= 0)
@@ -291,6 +295,10 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		removed_gases[id][MOLES] = removed_outer + removed_inner
 		cached_gases[id][MOLES] -= removed_outer + removed_inner
 		cached_gases[id][INNER_MOLES] -= removed_inner
+
+	garbage_collect()
+
+	return removed
 
 
 /datum/gas_mixture/clear_inner()
