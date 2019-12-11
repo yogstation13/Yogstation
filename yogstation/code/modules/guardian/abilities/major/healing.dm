@@ -47,3 +47,9 @@
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour
 			return TRUE
+
+/datum/guardian_ability/major/healing/limited
+	name = "Limited Healing"
+	desc = "Allows the guardian to heal anything with the exception of its user"
+	cost = 3
+	healuser = FALSE
