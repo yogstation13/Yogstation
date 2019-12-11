@@ -492,6 +492,13 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/pod
 	mutationtext = "<span class='danger'>The pain subsides. You feel... plantlike.</span>"
+	
+/datum/reagent/mutationtoxin/preternis
+	name = "Preternis Mutation Toxin"
+	description = "A Mechanizing toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/preternis
+	mutationtext = "<span class='danger'>The pain subsides. You feel... Mechanical.</span>"
 
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
