@@ -70,6 +70,14 @@
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
 
+/datum/chemical_reaction/slime/slimeethereal
+	name = "Ethereal Mutation Toxin"
+	id = "etherealarerealmuttoxin"
+	results = list(/datum/reagent/mutationtoxin/ethereal = 1)
+	required_reagents = list(/datum/reagent/consumable/liquidelectricity = 1)
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
+
 //Metal
 /datum/chemical_reaction/slime/slimemetal
 	name = "Slime Metal"
