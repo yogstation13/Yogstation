@@ -192,6 +192,9 @@
 	//Set news report and mode result
 	mode.set_round_result()
 
+	// Check whether the cargo king achievement was achieved
+	cargoking()
+
 	send2irc("Server", "Round just ended.")
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
