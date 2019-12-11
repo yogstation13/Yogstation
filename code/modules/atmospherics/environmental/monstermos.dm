@@ -73,7 +73,7 @@
 			T.finalize_eq() // just a bit of recursion if necessary.
 
 // This proc has a worst-case running time of about O(n^2), but this only really happens
-// if you open an airlock between two rooms. For cases involving space tiles, or Otherwise you get more like O(n)
+// if you open an airlock between two rooms. For cases involving space tiles, or Otherwise you get more like O(n*log(n)) (there's a sort in there).
 /proc/equalize_pressure_in_zone(turf/open/starting_point, cyclenum)
 	// okay I lied in the proc name it equalizes moles not pressure. Pressure is impossible.
 	// wanna know why? well let's say you have two turfs. One of them is 101.375 kPA and the other is 101.375 kPa.
@@ -229,6 +229,7 @@
 					T.curr_eq_transfer_turf.curr_eq_transfer_amount += T.curr_eq_transfer_amount
 					T.curr_eq_transfer_amount = 0
 			CHECK_TICK
+	sortTim(turfs, /proc/cmp_monstermos_resolve)
 	for(var/t in turfs)
 		var/turf/open/T = t
 		T.finalize_eq()
@@ -242,6 +243,24 @@
 			if(T.air.compare(T2.air))
 				SSair.add_to_active(T)
 				break
+
+/proc/cmp_monstermos_resolve(turf/open/A, turf/open/B)
+	// do it so that turfs where there is less airflow go first. This does mean
+	// that it runs slightly slower, but say you opened a plasma canister in the middle
+	// of a hallway. Generally, turfs farther away from the plasma canister would have less airflow in them,
+	// so that would mean that turfs farther away would be resolved first, essentially meaning they all
+	// "pull" the gases toward them. This makes it so that the plasma displaces the air around it,
+	// instead of spreading really far.
+	// TL;DR: its slightly slower but more accurate this way.
+	var/a_num = 0
+	if(A.eq_transfer_dirs)
+		for(var/i in A.eq_transfer_dirs)
+			a_num += A.eq_transfer_dirs[i]
+	var/b_num = 0
+	if(B.eq_transfer_dirs)
+		for(var/i in B.eq_transfer_dirs)
+			b_num += B.eq_transfer_dirs[i]
+	return a_num - b_num
 
 /proc/explosively_depressurize(turf/open/starting_point, cyclenum)
 	var/total_gases_deleted = 0
