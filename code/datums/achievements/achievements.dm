@@ -104,7 +104,7 @@
 	.=..()
 	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT value FROM [format_table_name("misc")] WHERE key = 'cargorecord'")
 	Q.Execute()
-	if(Q.item && Q.item[1])
+	if(Q.item.len)
 		amount = Q.item[1]
 	qdel(Q)
 	desc += amount
