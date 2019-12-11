@@ -170,36 +170,6 @@
 	else
 		close()
 
-/obj/machinery/door/firedoor/proc/is_holding_pressure()
-	var/turf/open/T = loc
-	if(!T)
-		return FALSE
-	if(!density)
-		return FALSE
-	// alrighty now we check for how much pressure we're holding back
-	var/min_moles
-	var/max_moles
-	var/list/our_gases = T.air.gases
-	TOTAL_MOLES(our_gases, min_moles)
-	max_moles = min_moles
-	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
-	density = FALSE
-	T.ImmediateCalculateAdjacentTurfs()
-	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
-	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
-		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
-			continue
-		var/list/cached_gases = T2.air.gases
-		var/moles = cached_gases
-		TOTAL_MOLES(cached_gases, moles)
-		if(moles < min_moles)
-			min_moles = moles
-		if(moles > max_moles)
-			max_moles = moles
-	density = TRUE
-	T.ImmediateCalculateAdjacentTurfs() // alright lets put it back
-	return max_moles - min_moles > 20
-
 /obj/machinery/door/firedoor/proc/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
 	if(A && A.fire)

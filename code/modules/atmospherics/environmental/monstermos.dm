@@ -251,15 +251,16 @@
 	// so that would mean that turfs farther away would be resolved first, essentially meaning they all
 	// "pull" the gases toward them. This makes it so that the plasma displaces the air around it,
 	// instead of spreading really far.
+	// on the other hand, scrubbers are a bit faster when not siphoning I guess.
 	// TL;DR: its slightly slower but more accurate this way.
 	var/a_num = 0
 	if(A.eq_transfer_dirs)
 		for(var/i in A.eq_transfer_dirs)
-			a_num += A.eq_transfer_dirs[i]
+			a_num += abs(A.eq_transfer_dirs[i])
 	var/b_num = 0
 	if(B.eq_transfer_dirs)
 		for(var/i in B.eq_transfer_dirs)
-			b_num += B.eq_transfer_dirs[i]
+			b_num += abs(B.eq_transfer_dirs[i])
 	return a_num - b_num
 
 /proc/explosively_depressurize(turf/open/starting_point, cyclenum)
