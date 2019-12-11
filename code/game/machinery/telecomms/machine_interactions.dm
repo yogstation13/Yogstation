@@ -41,7 +41,7 @@
 	dat += "<br>Power Status: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
 	if(on && toggled)
 		if(obj_flags & EMAGGED)
-			dat += "<br><font color = #AA0000>-% [Gibberish("Identification String: NULL",100)]</font>"
+			dat += "<br><font color = #AA0000>[Gibberish("Identification String: NULL",100)]</font>"
 		else if(id != "" && id)
 			dat += "<br>Identification String: <a href='?src=[REF(src)];input=id'>[id]</a>"
 		else
@@ -56,7 +56,7 @@
 
 		dat += "<br>Linked Network Entities: <ol>"
 		if(obj_flags & EMAGGED)
-			dat += "<li><font color = #000AA0>-% [Gibberish("NULL NULL (NULL)",100)]</font></li>"
+			dat += "<li><font color = #000AA0>[Gibberish("NULL NULL (NULL)",100)]</font></li>"
 
 		var/i = 0
 		for(var/obj/machinery/telecomms/T in links)
@@ -69,7 +69,7 @@
 		dat += "<br>Filtering Frequencies: "
 
 		if(obj_flags & EMAGGED)
-			dat += "<li><font color = #357353>-% [Gibberish("357353 GHz",100)]</font></li>"
+			dat += "<li><font color = #357353>[Gibberish("357353 GHz",100)]</font></li>"
 
 		i = 0
 		if(length(freq_listening))
@@ -88,7 +88,7 @@
 		if(P)
 			var/obj/machinery/telecomms/T = P.buffer
 			if(obj_flags & EMAGGED)
-				dat += "<br><font color = #3C438B>-% [Gibberish("MULTITOOL BUFFER: NULL (NULL)",100)]</font>"
+				dat += "<br><font color = #3C438B>[Gibberish("MULTITOOL BUFFER: NULL (NULL)",100)]</font>"
 			if(istype(T))
 				dat += "<br><br>MULTITOOL BUFFER: [T] ([T.id]) <a href='?src=[REF(src)];link=1'>\[Link\]</a> <a href='?src=[REF(src)];flush=1'>\[Flush\]"
 			else
@@ -120,7 +120,10 @@
 // Example of how to use below.
 
 /obj/machinery/telecomms/proc/Options_Menu()
-	return ""
+	var/dat = ""
+	if(obj_flags & EMAGGED)
+		dat += "<br><font color = #A4D7F6>-% [Gibberish("BEEP BOOP HONK!",100)]</font>"
+	return dat
 
 // The topic for Additional Options. Use this for checking href links for your specific option.
 // Example of how to use below.
@@ -133,8 +136,7 @@
 	var/dat = ""
 	dat += "<br>Broadcasting: <A href='?src=[REF(src)];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
 	dat += "<br>Receiving:    <A href='?src=[REF(src)];receive=1'>[receiving ? "YES" : "NO"]</a>"
-	if(obj_flags & EMAGGED)
-		dat += "<br><font color = #A4D7F6>-% [Gibberish("BEEP BOOP HONK!",100)]</font>"
+	dat += ..()
 	return dat
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
@@ -150,6 +152,7 @@
 
 /obj/machinery/telecomms/bus/Options_Menu()
 	var/dat = "<br>Change Signal Frequency: <A href='?src=[REF(src)];change_freq=1'>[change_frequency ? "YES ([change_frequency])" : "NO"]</a>"
+	dat += ..()
 	return dat
 
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
@@ -169,10 +172,11 @@
 				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
 
 /obj/machinery/telecomms/processor/Options_Menu()
+	var/dat
 	if(obj_flags & EMAGGED)
-		var/dat = "<br>Compressing signa;: <A href='?src=[REF(src)];proc_mode=0'>[process_mode ? "YES )" : "NO"]</a>"
-		return dat
-	. = ..()
+		dat = "<br>Compressing signa;: <A href='?src=[REF(src)];proc_mode=0'>[process_mode ? "YES" : "NO"]</a>"
+	dat += ..()
+	return dat
 
 /obj/machinery/telecomms/processor/Options_Topic(href, href_list)
 	if(obj_flags & EMAGGED)
@@ -201,7 +205,7 @@
 			if("toggle")
 
 				toggled = !toggled
-				temp = "<font color = #666633>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
+				temp = "<font color = #666633> [src] has been [toggled ? "activated" : "deactivated"].</font>"
 				update_power()
 
 
