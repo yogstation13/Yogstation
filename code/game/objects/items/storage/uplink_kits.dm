@@ -120,7 +120,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list( "bond" = 2, "neo=1" "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
@@ -194,6 +194,22 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/security(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
+			
+		if("neo")
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/gun/ballistic/automatic/pistol(src)
+			new /obj/item/gun/ballistic/automatic/pistol(src)
+			new /obj/item/ammo_box/magazine/m10mm/ap(src)
+			new /obj/item/ammo_box/magazine/m10mm/ap(src)
+			new /obj/item/ammo_box/magazine/m10mm(src)
+			new /obj/item/ammo_box/magazine/m10mm(src)
+			new /obj/item/ammo_box/magazine/m10mm/fire(src)
+			new /obj/item/reagent_containers/syringe/plasma(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill(src)
+			new /obj/item/slime_extract/sepia(src)
+			new /obj/item/slime_extract/sepia(src)
+			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
+			
 
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit

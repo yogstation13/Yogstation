@@ -147,6 +147,22 @@
 	icon_state = "justice2"
 	toggle_message = "You turn off the light on"
 	alt_toggle_message = "You turn on the light on"
+	
+/obj/item/clothing/head/stormer
+	name = "Storm Trooper Helmet"
+	desc = "Battle Helmet from a long lost empire"
+	icon_state = "startrooperhelmet"
+	item_state = "startrooperhelmet"
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 40,"energy" = 30, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 50, "acid" = 50)
+	flags_inv = HIDEEARS
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
+	strip_delay = 60
+	resistance_flags = NONE
+	flags_cover = HEADCOVERSEYES
+	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
