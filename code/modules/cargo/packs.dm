@@ -279,6 +279,18 @@
 					/obj/item/clothing/suit/armor/vest)
 	crate_name = "armor crate"
 
+/datum/supply_pack/security/stormtrooper
+	name = "Stormtrooper Crate"
+	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light wielding wizards . Requires Security access to open."
+	cost = 10000
+	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/head/stormer,
+					/obj/item/clothing/head/stormer,
+					/obj/item/clothing/head/stormer)
+	crate_name = "Stormtrooper crate"
+
 /datum/supply_pack/security/disabler
 	name = "Disabler Crate"
 	desc = "Three stamina-draining disabler weapons. Requires Security access to open."
