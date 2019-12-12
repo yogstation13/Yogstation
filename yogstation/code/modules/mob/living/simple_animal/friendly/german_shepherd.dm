@@ -1,4 +1,4 @@
-/mob/living/simple_animal/pet/gshepherd
+/mob/living/simple_animal/pet/dog/gshepherd
 	name = "german shepherd"
 	real_name = "german shepherd"
 	icon = 'yogstation/icons/mob/pets.dmi'
@@ -17,7 +17,7 @@
 	response_disarm = "bops"
 	response_harm   = "kicks"
 
-/mob/living/simple_animal/pet/gshepherd/roxie
+/mob/living/simple_animal/pet/dog/gshepherd/roxie
 	name = "Roxie"
 	real_name = "Roxie"
 	desc = "How old is this dog?"

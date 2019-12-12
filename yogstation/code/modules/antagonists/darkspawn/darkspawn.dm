@@ -187,7 +187,7 @@
 
 /datum/antagonist/darkspawn/greet()
 	to_chat(owner.current, "<span class='velvet bold big'>You are a darkspawn!</span>")
-	to_chat(owner.current, "<i>Append :a or .a before your message to silently speak with any other darkspawn.</i>")
+	to_chat(owner.current, "<i>Append :k or .k before your message to silently speak with any other darkspawn.</i>")
 	to_chat(owner.current, "<i>When you're ready, retreat to a hidden location and Divulge to shed your human skin.</i>")
 	to_chat(owner.current, "<span class='boldwarning'>If you do not do this within twenty five minutes, this will happen involuntarily. Prepare quickly.</span>")
 	to_chat(owner.current, "<i>Remember that this will make you die in the light and heal in the dark - keep to the shadows.</i>")

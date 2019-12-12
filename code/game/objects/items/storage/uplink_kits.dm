@@ -120,8 +120,8 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "brother" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
-		if("bond")
+	switch (pickweight(list( "bond" = 2,"neo=1", "brother" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
+    if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
 			new /obj/item/ammo_box/magazine/m10mm(src)
@@ -201,7 +201,21 @@
 			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
 			new /obj/item/gun/energy/laser/aer9(src)
 			
-
+		if("neo")
+			new /obj/item/clothing/glasses/sunglasses(src)
+			new /obj/item/gun/ballistic/automatic/pistol(src)
+			new /obj/item/gun/ballistic/automatic/pistol(src)
+			new /obj/item/ammo_box/magazine/m10mm/ap(src)
+			new /obj/item/ammo_box/magazine/m10mm/ap(src)
+			new /obj/item/ammo_box/magazine/m10mm(src)
+			new /obj/item/ammo_box/magazine/m10mm(src)
+			new /obj/item/ammo_box/magazine/m10mm/fire(src)
+			new /obj/item/reagent_containers/syringe/plasma(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill(src)
+			new /obj/item/slime_extract/sepia(src)
+			new /obj/item/slime_extract/sepia(src)
+			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
+			
 
 /obj/item/storage/box/syndicate/contract_kit
 	name = "Contract Kit"

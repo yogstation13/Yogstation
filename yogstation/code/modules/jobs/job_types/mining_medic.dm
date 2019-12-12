@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer and the quartermaster"
-	selection_color = "#ffeef0"
+	selection_color = "#d4ebf2"
 
 	outfit = /datum/outfit/job/miningmedic
 

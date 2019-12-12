@@ -276,6 +276,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
 "aL" = (
@@ -318,6 +319,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
 "aR" = (
@@ -544,6 +546,9 @@
 /obj/structure/bed,
 /obj/item/bedsheet/green,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bq" = (
@@ -757,6 +762,9 @@
 /obj/item/shard{
 	icon_state = "medium"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "bU" = (
@@ -791,9 +799,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/abandonedzoo)
-"KN" = (
-/turf/template_noop,
-/area/space/nearstation)
 
 (1,1,1) = {"
 ab
@@ -1154,10 +1159,10 @@ aa
 "}
 (18,1,1) = {"
 af
-ak
-ak
-ak
-ak
+ag
+ag
+ag
+ag
 af
 aa
 aa
@@ -1170,7 +1175,7 @@ ag
 ag
 bN
 bP
-KN
+aa
 aa
 "}
 (19,1,1) = {"

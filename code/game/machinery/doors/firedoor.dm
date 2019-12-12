@@ -7,7 +7,7 @@
 /obj/machinery/door/firedoor
 	name = "firelock"
 	desc = "Apply crowbar."
-	icon = 'icons/obj/doors/Doorfireglass.dmi'
+	icon = 'icons/obj/doors/doorfireglass.dmi'
 	icon_state = "door_open"
 	opacity = FALSE
 	density = FALSE
@@ -181,6 +181,7 @@
 		icon_state = "door_open"
 		if(welded)
 			add_overlay("welded_open")
+	SSdemo.mark_dirty(src)
 
 /obj/machinery/door/firedoor/open()
 	. = ..()
@@ -247,12 +248,21 @@
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
-	icon = 'icons/obj/doors/Doorfire.dmi'
+	icon = 'icons/obj/doors/doorfire.dmi'
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
 	max_integrity = 550
 
+/obj/machinery/door/firedoor/window
+	name = "window shutter"
+	icon = 'icons/obj/doors/doorfirewindow.dmi'
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by NT engineers."
+	glass = TRUE
+	explosion_block = 0
+	max_integrity = 50
+	resistance_flags = 0 // not fireproof
+	heat_proof = FALSE
 
 /obj/item/electronics/firelock
 	name = "firelock circuitry"
@@ -263,7 +273,7 @@
 /obj/structure/firelock_frame
 	name = "firelock frame"
 	desc = "A partially completed firelock."
-	icon = 'icons/obj/doors/Doorfire.dmi'
+	icon = 'icons/obj/doors/doorfire.dmi'
 	icon_state = "frame1"
 	anchored = FALSE
 	density = TRUE

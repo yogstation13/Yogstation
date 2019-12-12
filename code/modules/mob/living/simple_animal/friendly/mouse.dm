@@ -25,6 +25,7 @@
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	var/chew_probability = 1
+	var/full = FALSE
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -34,8 +35,7 @@
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
-
-
+	
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
 	src.icon_dead = "mouse_[body_color]_splat"
@@ -76,7 +76,29 @@
 				else
 					C.deconstruct()
 					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+					
+/mob/living/simple_animal/mouse/Move()
+	. = ..()
+	if(!stat)
+		eat_cheese()
 
+/mob/living/simple_animal/mouse/proc/eat_cheese()
+	var/obj/item/reagent_containers/food/snacks/cheesewedge/CW = locate(/obj/item/reagent_containers/food/snacks/cheesewedge) in loc
+	if(!QDELETED(CW) && full == FALSE)
+		say("Burp!")
+		visible_message("<span class='warning'>[src] gobbles up the [CW].</span>")
+		qdel(CW)
+		full = TRUE
+		addtimer(VARSET_CALLBACK(src, full, FALSE), 3 MINUTES)
+		
+/mob/living/simple_animal/mouse/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/reagent_containers/food/snacks/cheesewedge)) 
+		to_chat(user, "<span class='notice'>You feed [O] to [src].</span>")
+		visible_message("[src] squeaks happily!")
+		qdel(O)
+	else
+		return ..()
+		
 /*
  * Mouse types
  */
