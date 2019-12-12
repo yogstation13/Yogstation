@@ -70,6 +70,11 @@
 				step_away(src,user,15)
 				sleep(3)
 				step_away(src,user,15)
+	if(user.a_intent == INTENT_HARM)
+		if(prob(10))
+			to_chat(user, "<span class='notice'>The cyborg looks glitched...</span>")
+			Stun(30)
+
 
 /mob/living/silicon/robot/fire_act()
 	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
@@ -83,8 +88,10 @@
 	switch(severity)
 		if(1)
 			Stun(160)
+			adjustFireLoss(50)
 		if(2)
 			Stun(60)
+			adjustFireLoss(25)
 
 
 /mob/living/silicon/robot/emag_act(mob/user)

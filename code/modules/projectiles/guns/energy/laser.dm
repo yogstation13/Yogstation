@@ -49,12 +49,15 @@
 /obj/item/gun/energy/laser/cyborg
 	can_charge = FALSE
 	desc = "An energy-based laser gun that self charges. So this is what freedom looks like?"
-	charge_delay = 5
+	charge_delay = 10
 	selfcharge = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/cyborg)
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
-	return
+	charge_delay = 30
+	sleep(100)
+	charge_delay = 10
+
 
 /obj/item/gun/energy/laser/scatter
 	name = "scatter laser gun"
