@@ -415,7 +415,7 @@
 /proc/showCandidatePollWindow(mob/M, poll_time, Question, list/candidates, ignore_category, time_passed, flashwindow = TRUE)
 	set waitfor = 0
 
-	SEND_SOUND(M, 'sound/misc/notice2.ogg') //Alerting them to their consideration
+	SEND_SOUND(M, 'sound/misc/notice3.ogg') //Alerting them to their consideration
 	if(flashwindow)
 		window_flash(M.client)
 	switch(ignore_category ? askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No","Never for this round", StealFocus=0, Timeout=poll_time) : askuser(M,Question,"Please answer in [DisplayTimeText(poll_time)]!","Yes","No", StealFocus=0, Timeout=poll_time))
