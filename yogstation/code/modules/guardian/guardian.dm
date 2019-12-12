@@ -399,6 +399,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		summoner.current.death()
 	ghostize(FALSE)
 	nullspace() // move ourself into nullspace for the time being
+	summoner = null
 
 /mob/living/simple_animal/hostile/guardian/update_health_hud()
 	if(summoner?.current && hud_used && hud_used.healths)
