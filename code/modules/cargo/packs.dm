@@ -289,7 +289,7 @@
 					/obj/item/clothing/head/stormer,
 					/obj/item/clothing/head/stormer,
 					/obj/item/clothing/head/stormer)
-	crate_name = "Stormtrooper crate"
+	crate_name = "stormtrooper crate"
 
 /datum/supply_pack/security/disabler
 	name = "Disabler Crate"
