@@ -34,6 +34,12 @@
 	icon_state = "pipe11-3";
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ag" = (
@@ -171,6 +177,10 @@
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ax" = (
@@ -252,6 +262,12 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "aC" = (
@@ -329,6 +345,10 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -482,6 +502,10 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "bj" = (
@@ -595,6 +619,12 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -919,6 +949,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"sv" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "xH" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -965,6 +1004,11 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"OM" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "Uz" = (
 /obj/effect/turf_decal/stripes/corner{
 	icon_state = "warninglinecorner";
@@ -981,6 +1025,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "WN" = (
@@ -1331,7 +1376,7 @@ aq
 bH
 ac
 aE
-zh
+sv
 aa
 aa
 aQ
@@ -1359,8 +1404,8 @@ bE
 bG
 ac
 aE
-zh
-aJ
+sv
+OM
 aQ
 aT
 aa
@@ -1388,7 +1433,7 @@ ad
 ad
 zh
 zh
-aJ
+OM
 aQ
 aa
 aa
@@ -1556,7 +1601,7 @@ ad
 ad
 zh
 zh
-aJ
+OM
 aQ
 aa
 aa
@@ -1583,8 +1628,8 @@ bE
 ci
 ac
 aE
-zh
-aJ
+sv
+OM
 aQ
 aT
 aa
@@ -1611,7 +1656,7 @@ aq
 ac
 ac
 aE
-zh
+sv
 aa
 aa
 aQ
