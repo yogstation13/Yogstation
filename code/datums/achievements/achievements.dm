@@ -107,4 +107,4 @@
 	if(Q.item.len)
 		amount = Q.item[1]
 	qdel(Q)
-	desc += amount
+	desc += "[amount]"
