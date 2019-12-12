@@ -114,6 +114,13 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
 
+/obj/item/projectile/beam/emitter/on_hit(atom/target, blocked = FALSE)
+	var/turf/T = get_turf(target)
+	if(ismineralturf(T) && prob(50))
+		var/turf/closed/mineral/M = T
+		M.gets_drilled()
+	. = ..()
+
 /obj/item/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
 
