@@ -16,6 +16,7 @@
 	var/animal_count
 	var/human_count
 	var/plant_count
+	var/static/list/users = list()
 
 /datum/station_goal/dna_vault/New()
 	..()
@@ -207,7 +208,7 @@
 	if(user && completed)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(H.can_use_vault)
+			if(!(H in users))
 				var/list/L = power_lottery[user]
 				if(L && L.len)
 					data["used"] = FALSE
@@ -284,5 +285,5 @@
 		if(VAULT_QUICK)
 			to_chat(H, "<span class='notice'>Your arms move as fast as lightning.</span>")
 			H.next_move_modifier = 0.5
-	H.can_use_vault = FALSE
+	users += H
 	power_lottery[H] = list()
