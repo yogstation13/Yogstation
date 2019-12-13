@@ -21,8 +21,8 @@
 	changed_maps = list("OmegaStation")
 
 /datum/job/signal_tech/proc/OmegaStationChanges()
-	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS )
-	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS )
+	access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT)
+	minimal_access = list(ACCESS_ENGINE, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_TCOMSAT)
 	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/signal_tech
