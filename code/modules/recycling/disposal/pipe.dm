@@ -99,9 +99,7 @@
 
 	if(isfloorturf(T)) //intact floor, pop the tile
 		floorturf = T
-		if(floorturf.floor_tile)
-			new floorturf.floor_tile(T)
-		floorturf.make_plating()
+		floorturf.remove_tile()
 
 	if(direction)		// direction is specified
 		if(isspaceturf(T)) // if ended in space, then range is unlimited

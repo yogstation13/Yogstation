@@ -233,15 +233,33 @@
 		ui.open()
 		ui.set_autoupdate(state = 1)
 
-/obj/machinery/lapvend/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/lapvend/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/spacecash))
 		var/obj/item/stack/spacecash/c = I
 
 		if(!user.temporarilyRemoveItemFromInventory(c))
 			return
 		credits += c.value
-		visible_message("<span class='info'><span class='name'>[usr]</span> inserts [c.value] credits into [src].</span>")
+		visible_message("<span class='info'><span class='name'>[user]</span> inserts [c.value] credits into [src].</span>")
 		qdel(c)
+		return
+	else if(istype(I, /obj/item/holochip))
+		var/obj/item/holochip/HC = I
+		credits += HC.credits
+		visible_message("<span class='info'>[user] inserts a $[HC.credits] holocredit chip into [src].</span>")
+		qdel(HC)
+		return		
+	else if(istype(I, /obj/item/card/id))
+		if(state != 2)
+			return
+		var/obj/item/card/id/ID = I
+		var/datum/bank_account/account = ID.registered_account
+		var/target_credits = total_price - credits
+		if(!account.adjust_money(-target_credits))
+			say("Insufficient money on card to purchase!")
+			return
+		credits += target_credits
+		say("$[target_credits] has been desposited from your account.")
 		return
 	return ..()
 
@@ -287,5 +305,6 @@
 			credits -= total_price
 			say("Enjoy your new product!")
 			state = 3
-			return 1
-		return 0
+			addtimer(CALLBACK(src, .proc/reset_order), 100)
+			return TRUE
+		return FALSE

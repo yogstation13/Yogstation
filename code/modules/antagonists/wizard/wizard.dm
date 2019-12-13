@@ -304,6 +304,7 @@
 
 	if(wizardwin)
 		parts += "<span class='greentext'>The wizard was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/wizwin, owner.current.client) //wizard wins, give achievement
 	else
 		parts += "<span class='redtext'>The wizard has failed!</span>"
 
