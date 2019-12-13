@@ -26104,7 +26104,8 @@
 	},
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1;
-	name = "Air to distro"
+	name = "Air to distro";
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -29879,10 +29880,10 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/binary/pump{
+/obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 8;
 	name = "Air to External";
-	on = 1
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -44652,10 +44653,10 @@
 /area/maintenance/aft)
 "bKz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/components/binary/pump{
+/obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
 	name = "Air Outlet Pump";
-	on = 1
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -44822,7 +44823,8 @@
 	name = "Air Mixer";
 	node1_concentration = 0.2;
 	node2_concentration = 0.8;
-	on = 1
+	on = 1;
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -45133,10 +45135,10 @@
 /area/engine/atmos_distro)
 "bLH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/components/binary/pump{
+/obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
 	name = "N2 Outlet Pump";
-	on = 1
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -45431,10 +45433,10 @@
 /area/science/research)
 "bMt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/components/binary/pump{
+/obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
 	name = "O2 Outlet Pump";
-	on = 1
+	target_pressure = 4500
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)

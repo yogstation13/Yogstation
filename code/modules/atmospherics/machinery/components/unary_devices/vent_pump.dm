@@ -138,7 +138,7 @@
 			var/multiplier = 1 // fast_fill multiplier
 			if(fast_fill)
 				if(last_moles_added > 0 && last_moles_real_added > 0)
-					multiplier = CLAMP(last_moles_added / last_moles_real_added, 1, 100)
+					multiplier = CLAMP(last_moles_added / last_moles_real_added * 0.25, 1, 100)
 				else if(last_moles_added > 0 && last_moles_real_added < 0 && environment_moles != 0)
 					multiplier = 10 // pressure is going down, but let's fight it anyways
 			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure) * multiplier)
