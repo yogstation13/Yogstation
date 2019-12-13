@@ -276,11 +276,12 @@
 		T.last_eq_cycle = cyclenum
 		T.pressure_direction = 0
 		if(T.planetary_atmos)
-			T.planetary_atmos = FALSE // space > planet atmos.
+			// planet atmos > space
 			if(!warned_about_planet_atmos)
 				message_admins("Space turf(s) at [ADMIN_VERBOSEJMP(starting_point)] is connected to planetary turf(s) at [ADMIN_VERBOSEJMP(T)]!")
 				log_game("Space turf(s) at [AREACOORD(starting_point)] is connected to planetary turf(s) at [AREACOORD(T)]!")
 				warned_about_planet_atmos = TRUE
+			continue
 		if(istype(T, /turf/open/space))
 			space_turfs += T
 			T.pressure_specific_target = T
@@ -304,6 +305,8 @@
 						turfs[T2] = 1
 				else
 					turfs[T2] = 1
+	if(warned_about_planet_atmos)
+		return // planet atmos > space
 
 	var/list/progression_order = list()
 	for(var/T in space_turfs)
@@ -341,6 +344,9 @@
 			T2.pressure_direction = T.pressure_direction // extend wallslam hell into space a bit, that way you're not totally safe from WALLSLAM HELL when in space.
 		cached_gases.Cut() // oh yeah its now vacuum I guess too, that's pretty important I think.
 		T.update_visuals() // yeah removing the plasma overlay is probably important.
+		if(istype(T, /turf/open/floor) && sum > 20 && prob(CLAMP(sum / 10, 0, 30)))
+			var/turf/open/floor/F = T
+			F.remove_tile()
 
 	if((total_gases_deleted / turfs.len) > 20 && turfs.len > 10) // logging I guess
 		if(SSticker.current_state != GAME_STATE_FINISHED && SSair.log_explosive_decompression)
