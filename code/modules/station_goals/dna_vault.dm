@@ -16,7 +16,6 @@
 	var/animal_count
 	var/human_count
 	var/plant_count
-	var/static/list/users = list()
 
 /datum/station_goal/dna_vault/New()
 	..()
@@ -141,6 +140,7 @@
 	var/list/animals = list()
 	var/list/plants = list()
 	var/list/dna = list()
+	var/static/list/users = list()
 
 	var/completed = FALSE
 	var/list/power_lottery = list()
