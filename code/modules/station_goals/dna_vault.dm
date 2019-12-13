@@ -208,7 +208,7 @@
 	if(user && completed)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(!(H in users))
+			if(!users[H])
 				var/list/L = power_lottery[user]
 				if(L && L.len)
 					data["used"] = FALSE
@@ -285,5 +285,5 @@
 		if(VAULT_QUICK)
 			to_chat(H, "<span class='notice'>Your arms move as fast as lightning.</span>")
 			H.next_move_modifier = 0.5
-	users += H
+	users[H] = TRUE
 	power_lottery[H] = list()
