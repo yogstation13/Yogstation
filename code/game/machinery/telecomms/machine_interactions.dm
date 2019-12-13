@@ -120,10 +120,7 @@
 // Example of how to use below.
 
 /obj/machinery/telecomms/proc/Options_Menu()
-	var/dat = ""
-	if(obj_flags & EMAGGED)
-		dat += "<br><font color = #A4D7F6>-% [Gibberish("BEEP BOOP HONK!",100)]</font>"
-	return dat
+	return ""
 
 // The topic for Additional Options. Use this for checking href links for your specific option.
 // Example of how to use below.
@@ -136,7 +133,6 @@
 	var/dat = ""
 	dat += "<br>Broadcasting: <A href='?src=[REF(src)];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
 	dat += "<br>Receiving:    <A href='?src=[REF(src)];receive=1'>[receiving ? "YES" : "NO"]</a>"
-	dat += ..()
 	return dat
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
@@ -152,7 +148,6 @@
 
 /obj/machinery/telecomms/bus/Options_Menu()
 	var/dat = "<br>Change Signal Frequency: <A href='?src=[REF(src)];change_freq=1'>[change_frequency ? "YES ([change_frequency])" : "NO"]</a>"
-	dat += ..()
 	return dat
 
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
@@ -172,10 +167,9 @@
 				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
 
 /obj/machinery/telecomms/processor/Options_Menu()
-	var/dat
+	var/dat = ""
 	if(obj_flags & EMAGGED)
 		dat = "<br>Compressing signa;: <A href='?src=[REF(src)];proc_mode=0'>[process_mode ? "YES" : "NO"]</a>"
-	dat += ..()
 	return dat
 
 /obj/machinery/telecomms/processor/Options_Topic(href, href_list)
