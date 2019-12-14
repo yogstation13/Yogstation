@@ -725,9 +725,6 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/headmaster)
 "cF" = (
-/obj/effect/immovablerod{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-2";
