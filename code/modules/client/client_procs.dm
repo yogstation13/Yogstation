@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel.glitch.me/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
+			message_admins("New user: [key_name_admin(src)] ([address]) <a href=\"https://ipintel2.glitch.me/lookup/[address]\">(Check for VPN/Proxy)</a> is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < nnpa)

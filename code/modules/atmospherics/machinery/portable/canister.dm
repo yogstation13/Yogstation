@@ -145,6 +145,11 @@
 	gas_type = /datum/gas/miasma
 	filled = 1
 
+/obj/machinery/portable_atmospherics/canister/dilithium
+	name = "Dilithium canister"
+	desc = "A gas produced from dilithium crystal."
+	icon_state = "pink"
+	gas_type = /datum/gas/dilithium
 
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()

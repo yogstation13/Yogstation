@@ -25,7 +25,7 @@
 	pass_flags = PASSTABLE
 	attack_sound = 'sound/weapons/bite.ogg'
 	deathmessage = "rolls over, frothing at the mouth before stilling."
-	var/poison_type = "toxin"
+	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 5
 	var/buttmad = 0
 	var/melee_damage_lower_angery0 = 13
@@ -42,7 +42,7 @@
 			melee_damage_upper = melee_damage_upper_angery1
 			move_to_delay = 8
 			speed = 3
-			poison_type = "spore"
+			poison_type = /datum/reagent/toxin/spore
 			poison_per_bite = 5
 	else if(buttmad == 1)
 		if(health > maxHealth/2)
