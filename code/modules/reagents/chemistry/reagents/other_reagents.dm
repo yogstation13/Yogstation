@@ -1597,7 +1597,7 @@
 	var/current_size = 1
 	taste_description = "bitterness" // apparently what viagra tastes like
 
-/datum/reagent/growthserum/on_mob_life(mob/living/carbon/H)
+/datum/reagent/growthserum/on_mob_metabolize(mob/living/carbon/H)
 	var/newsize = current_size
 	switch(volume)
 		if(0 to 19)

@@ -8,17 +8,17 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
-		var/datum/achievement/A = i
-		achievements[A] = initial(A.id)
+		var/datum/achievement/A = new i
+		achievements[A] = A.id
 
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = '[initial(A.id)]'")
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("SELECT name, descr FROM [format_table_name("achievements")] WHERE id = '[A.id]'")
 		medalQuery.Execute()
 		if(!medalQuery.NextRow())
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, descr) VALUES ('[initial(A.name)]', '[initial(A.id)]', '[initial(A.desc)]')")
+			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("INSERT INTO [format_table_name("achievements")] (name, id, descr) VALUES ('[A.name]', '[A.id]', '[A.desc]')")
 			medalQuery2.Execute()
 			qdel(medalQuery2)
-		else if(medalQuery.item[1] != initial(A.name) || medalQuery.item[2] != initial(A.desc))
-			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[initial(A.name)]', descr = '[initial(A.desc)]' WHERE id = '[initial(A.id)]'")
+		else if(medalQuery.item[1] != A.name || medalQuery.item[2] != A.desc)
+			var/datum/DBQuery/medalQuery2 = SSdbcore.NewQuery("UPDATE [format_table_name("achievements")] SET name = '[A.name]', descr = '[A.desc]' WHERE id = '[A.id]'")
 			medalQuery2.Execute()
 			qdel(medalQuery2)
 		
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(achievements)
 		var/found_achievement = FALSE
 		for(var/I in achievements)
 			var/datum/achievement/A = I
-			if(initial(A.id) != id)
+			if(A.id != id)
 				continue
 			found_achievement = TRUE
 		if(!found_achievement)
@@ -47,23 +47,27 @@ SUBSYSTEM_DEF(achievements)
 	qdel(ridOldChieves)
 	return ..()
 
-/datum/controller/subsystem/achievements/proc/unlock_achievement(datum/achievement/achievement, client/C)
-	if(!achievements[achievement])
-		log_sql("Achievement [initial(achievement.name)] not found in list of achievements when trying to unlock for [C.ckey]")
+/datum/controller/subsystem/achievements/proc/unlock_achievement(achievementPath, client/C)
+	var/datum/achievement/achievement = get_achievement(achievementPath)
+	if(!achievement)
+		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [C.ckey]")
 		return FALSE
-	if(!has_achievement(achievement, C))
-		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[initial(achievement.id)]')")
+	if(!has_achievement(achievementPath, C))
+		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievement.id]')")
 		medalQuery.Execute()
 		qdel(medalQuery)
 		cached_achievements[C.ckey] += achievement
 		if(!achievementsEarned[C.ckey])
 			achievementsEarned[C.ckey] = list()
 		achievementsEarned[C.ckey] += achievement
+		to_chat(C, "<span class='greentext'>You have unlocked the \"[achievement.name]\" achievement!</span>")
 		return TRUE
 
-/datum/controller/subsystem/achievements/proc/has_achievement(datum/achievement/achievement, client/C)
-	if(!achievements[achievement])
-		log_sql("Achievement [initial(achievement.name)] not found in list of achievements when checking for [C.ckey]")
+/datum/controller/subsystem/achievements/proc/has_achievement(achievementPath, client/C)
+	var/datum/achievement/achievement = get_achievement(achievementPath)
+	if(!achievement)
+		log_sql("Achievement [achievementPath] not found in list of achievements when checking for [C.ckey]") 
+		return FALSE
 	if(!cached_achievements[C.ckey])
 		cache_achievements(C)
 
@@ -83,3 +87,9 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/proc/get_browser(client/C)
 	return browsers[C.ckey]
+
+/datum/controller/subsystem/achievements/proc/get_achievement(achievementPath)
+	for(var/datum/achievement/i in achievements)
+		if(istype(i, achievementPath))
+			return i
+	return FALSE
