@@ -4,6 +4,8 @@
 	var/list/eq_transfer_dirs
 	var/turf/open/curr_eq_transfer_turf
 	var/curr_eq_transfer_amount
+	var/eq_fast_done = FALSE
+	var/eq_distance_score = 0
 
 /turf/open/proc/adjust_eq_movement(turf/open/other, amount = 0)
 	if(!other)
@@ -72,8 +74,8 @@
 			var/turf/open/T = t
 			T.finalize_eq() // just a bit of recursion if necessary.
 
-// This proc has a worst-case running time of about O(n^2), but this only really happens
-// if you open an airlock between two rooms. For cases involving space tiles, or Otherwise you get more like O(n*log(n)) (there's a sort in there).
+// This proc has a worst-case running time of about O(n^2), but this is
+// is really rare. Otherwise you get more like O(n*log(n)) (there's a sort in there), or if you get lucky its faster.
 /proc/equalize_pressure_in_zone(turf/open/starting_point, cyclenum)
 	// okay I lied in the proc name it equalizes moles not pressure. Pressure is impossible.
 	// wanna know why? well let's say you have two turfs. One of them is 101.375 kPA and the other is 101.375 kPa.
@@ -115,6 +117,7 @@
 		var/turf/open/T = turfs[i]
 		T.eq_mole_delta = 0
 		T.eq_transfer_dirs = list()
+		T.eq_distance_score = i
 		if(T.planetary_atmos)
 			planet_turfs += T
 			continue
@@ -122,6 +125,7 @@
 		var/list/cached_gases = T.air.gases
 		TOTAL_MOLES(cached_gases, turf_moles)
 		T.eq_mole_delta = turf_moles
+		T.eq_fast_done = FALSE
 		total_moles += turf_moles
 		for(var/t2 in T.atmos_adjacent_turfs)
 			var/turf/open/T2 = t2
@@ -129,6 +133,7 @@
 			if(istype(T2, /turf/open/space))
 				// Uh oh! looks like someone opened an airlock to space! TIME TO SUCK ALL THE AIR OUT!!!
 				// NOT ONE OF YOU IS GONNA SURVIVE THIS
+				// (I just made explosions less laggy, you're welcome)
 				explosively_depressurize(T, cyclenum)
 				return
 	var/average_moles = total_moles / (turfs.len - planet_turfs.len)
@@ -146,6 +151,40 @@
 			taker_turfs += T
 	if(planet_turfs.len)
 		return // TODO: make it compatible with planet turfs
+	var/log_n = log(2, turfs.len)
+	if(giver_turfs.len > log_n && taker_turfs.len > log_n) // optimization - try to spread gases using an O(nlogn) algorithm that has a chance of not working first to avoid O(n^2)
+		// even if it fails, it will speed up the next part
+		var/list/eligible_adj = list()
+		sortTim(turfs, /proc/cmp_monstermos_pushorder)
+		for(var/t in turfs)
+			var/turf/open/T = t
+			T.eq_fast_done = TRUE
+			if(T.eq_mole_delta > 0)
+				eligible_adj.Cut()
+				for(var/t2 in T.atmos_adjacent_turfs)
+					var/turf/open/T2 = t2
+					if(T2.eq_fast_done)
+						continue
+					eligible_adj += T2
+				if(eligible_adj.len <= 0)
+					continue // Oof we've painted ourselves into a corner. Bad luck. Next part will handle this.
+				var/moles_to_move = T.eq_mole_delta / eligible_adj.len
+				for(var/t2 in eligible_adj)
+					var/turf/open/T2 = t2
+					T.adjust_eq_movement(T2, moles_to_move)
+					T.eq_mole_delta -= moles_to_move
+					T2.eq_mole_delta += moles_to_move
+		giver_turfs.Cut() // we need to recaclculate those now
+		taker_turfs.Cut()
+		for(var/t in turfs)
+			var/turf/open/T = t
+			if(T.planetary_atmos)
+				continue
+			if(T.eq_mole_delta > 0)
+				giver_turfs += T
+			else if(T.eq_mole_delta < 0)
+				taker_turfs += T
+
 	// alright this is the part that can become O(n^2).
 	if(giver_turfs.len < taker_turfs.len) // as an optimization, we choose one of two methods based on which list is smaller. We really want to avoid O(n^2) if we can.
 		for(var/g in giver_turfs)
@@ -229,7 +268,6 @@
 					T.curr_eq_transfer_turf.curr_eq_transfer_amount += T.curr_eq_transfer_amount
 					T.curr_eq_transfer_amount = 0
 			CHECK_TICK
-	sortTim(turfs, /proc/cmp_monstermos_resolve)
 	for(var/t in turfs)
 		var/turf/open/T = t
 		T.finalize_eq()
@@ -244,24 +282,20 @@
 				SSair.add_to_active(T)
 				break
 
-/proc/cmp_monstermos_resolve(turf/open/A, turf/open/B)
-	// do it so that turfs where there is less airflow go first. This does mean
-	// that it runs slightly slower, but say you opened a plasma canister in the middle
-	// of a hallway. Generally, turfs farther away from the plasma canister would have less airflow in them,
-	// so that would mean that turfs farther away would be resolved first, essentially meaning they all
-	// "pull" the gases toward them. This makes it so that the plasma displaces the air around it,
-	// instead of spreading really far.
-	// on the other hand, scrubbers are a bit faster when not siphoning I guess.
-	// TL;DR: its slightly slower but more accurate this way.
-	var/a_num = 0
-	if(A.eq_transfer_dirs)
-		for(var/i in A.eq_transfer_dirs)
-			a_num += abs(A.eq_transfer_dirs[i])
-	var/b_num = 0
-	if(B.eq_transfer_dirs)
-		for(var/i in B.eq_transfer_dirs)
-			b_num += abs(B.eq_transfer_dirs[i])
-	return a_num - b_num
+/proc/cmp_monstermos_pushorder(turf/open/A, turf/open/B)
+	if(A.eq_mole_delta != B.eq_mole_delta)
+		return B.eq_mole_delta - A.eq_mole_delta
+	/*var/a_len = A.atmos_adjacent_turfs?.len || 0
+	var/b_len = B.atmos_adjacent_turfs?.len || 0
+	if(a_len != b_len)
+		if(A.eq_mole_delta > 0)
+			return a_len - b_len
+		else
+			return b_len - a_len*/ // hm I think this might actually be counterproductive
+	if(A.eq_mole_delta > 0)
+		return B.eq_distance_score - A.eq_distance_score
+	else
+		return A.eq_distance_score - B.eq_distance_score
 
 /proc/explosively_depressurize(turf/open/starting_point, cyclenum)
 	var/total_gases_deleted = 0
