@@ -520,7 +520,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Toggle Ringer")//If viewing texts then erase them, if not then toggle silent status
 				silent = !silent
 			if("Clear")//Clears messages
-				tnote = null
+				tnote = list()
 			if("Ringtone")
 				var/t = input(U, "Please enter new ringtone", name, ttone) as text
 				if(in_range(src, U) && loc == U && t)
