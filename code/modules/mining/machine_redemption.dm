@@ -179,6 +179,14 @@
 
 	if(!powered())
 		return
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/I = user.get_active_held_item()
+		if(istype(I) && !istype(inserted_id))
+			if(!user.transferItemToLoc(I, src))
+				return
+			inserted_id = I
+			interact(user)
+		return
 
 	if(istype(W, /obj/item/disk/design_disk))
 		if(user.transferItemToLoc(W, src))
@@ -209,6 +217,9 @@
 /obj/machinery/mineral/ore_redemption/ui_data(mob/user)
 	var/list/data = list()
 	data["unclaimedPoints"] = points
+	if(inserted_id)
+		data["hasID"] = TRUE
+		data["claimedPoints"] = inserted_id.mining_points
 
 	data["materials"] = list()
 	var/datum/component/material_container/mat_container = materials.mat_container
@@ -231,7 +242,6 @@
 		data["disconnected"] = "mineral withdrawal is on hold"
 
 	data["diskDesigns"] = list()
-	data["hasDisk"] = FALSE
 	if(inserted_disk)
 		data["hasDisk"] = TRUE
 		if(inserted_disk.blueprints.len)
@@ -247,24 +257,32 @@
 		return
 	var/datum/component/material_container/mat_container = materials.mat_container
 	switch(action)
-		if("Claim")
-			var/mob/M = usr
-			var/obj/item/card/id/I = M.get_idcard(TRUE)
-			if(points)
-				if(I)
-					I.mining_points += points
-					points = 0
-				else
-					to_chat(usr, "<span class='warning'>No valid ID detected.</span>")
+		if("Eject")
+			if(!inserted_id)
+				return
+			usr.put_in_hands(inserted_id)
+			inserted_id = null
+			return TRUE
+		if("Insert")
+			var/obj/item/card/id/I = usr.get_active_held_item()
+			if(istype(I))
+				if(!usr.transferItemToLoc(I,src))
+					return
+				inserted_id = I
 			else
-				to_chat(usr, "<span class='warning'>No points to claim.</span>")
+				to_chat(usr, "<span class='warning'>Not a valid ID!</span>")
+			return TRUE
+		if("Claim")
+			if(inserted_id)
+				inserted_id.mining_points += points
+				points = 0
 			return TRUE
 		if("Release")
 			if(!mat_container)
 				return
 			if(materials.on_hold())
 				to_chat(usr, "<span class='warning'>Mineral access is on hold, please contact the quartermaster.</span>")
-			else if(!allowed(usr)) //check the user
+			else if(!check_access(inserted_id) && !allowed(usr)) //Check the ID inside, otherwise check the user
 				to_chat(usr, "<span class='warning'>Required access not found.</span>")
 			else
 				var/mat_id = params["id"]
@@ -315,8 +333,7 @@
 				return
 			var/alloy_id = params["id"]
 			var/datum/design/alloy = stored_research.isDesignResearchedID(alloy_id)
-			var/obj/item/card/id/I = usr.get_idcard(TRUE)
-			if((check_access(I) || allowed(usr)) && alloy)
+			if((check_access(inserted_id) || allowed(usr)) && alloy)
 				var/smelt_amount = can_smelt_alloy(alloy)
 				var/desired = 0
 				if (params["sheets"])

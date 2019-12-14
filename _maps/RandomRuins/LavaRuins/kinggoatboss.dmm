@@ -4,37 +4,43 @@
 /area/lavaland/surface/outdoors/explored)
 "b" = (
 /turf/closed/wall/mineral/silver,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "c" = (
 /turf/closed/wall/mineral/gold,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "d" = (
 /obj/structure/mineral_door/transparent/diamond{
 	sheetAmount = 1
 	},
 /turf/open/floor/mineral/silver,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "e" = (
-/obj/effect/mob_spawn/human/miner{
-	assignedrole = "null";
-	desc = "Seems this miner tried to cheese the arena using bluespace crystals. Did not turn out well";
-	mob_gender = "female";
-	mob_name = "Lyna Lavas";
-	name = "Lyna Lavas"
-	},
-/obj/item/stack/ore/bluespace_crystal,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
-"f" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
-"g" = (
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"f" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"g" = (
+/turf/open/floor/mineral/diamond,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "h" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/ruin/powered/kinggoat_arena)
@@ -46,33 +52,29 @@
 	},
 /area/ruin/powered/kinggoat_arena)
 "j" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/chair/bronze,
+/mob/living/simple_animal/hostile/retaliate/goat/king,
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
-"k" = (
-/turf/open/floor/mineral/diamond,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered/kinggoat_arena)
 "l" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
+/turf/template_noop,
+/area/template_noop)
 "m" = (
-/obj/structure/ladder/unbreakable{
-	desc = "This seems to be the ladder to the King of Goats lair. Looks to be a one way trip...";
-	id = "goatlayer";
-	name = "Ladder to the King of Goats Lair"
+/obj/effect/portal/permanent/one_way/destroy{
+	id = "king goat arena";
+	name = "king goat arena portal";
+	teleport_channel = "free"
 	},
-/obj/item/gps/internal{
-	desc = "Something about this signal seems a bit more rich then the average signal.";
-	gpstag = "Bleating Signal";
-	name = "kinggoat"
+/turf/open/indestructible/hotelwood{
+	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
+	icon_state = "diamond";
+	name = "diamond floor"
 	},
-/turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
+/area/ruin/powered/kinggoat_arena)
 "n" = (
 /mob/living/simple_animal/hostile/retaliate/goose{
 	desc = "If you are alive and reading this you should not be in this room and should prob tell a admin how you got here.";
@@ -98,29 +100,58 @@
 	},
 /area/ruin/powered/kinggoat_arena)
 "p" = (
+/obj/structure/ladder/unbreakable{
+	desc = "This seems to be the ladder to the King of Goats lair. Looks to be a one way trip...";
+	id = "goatlayer";
+	name = "Ladder to the King of Goats Lair"
+	},
+/obj/item/gps/internal{
+	desc = "Something about this signal seems a bit more rich then the average signal.";
+	gpstag = "Bleating Signal";
+	name = "kinggoat"
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"q" = (
+/obj/effect/mob_spawn/human/miner{
+	assignedrole = "null";
+	desc = "Seems this miner tried to cheese the arena using bluespace crystals. Did not turn out well";
+	mob_gender = "female";
+	mob_name = "Lyna Lavas";
+	name = "Lyna Lavas"
+	},
+/obj/item/stack/ore/bluespace_crystal,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"r" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"s" = (
 /obj/item/paper/crumpled{
 	info = "Lest ye be prepared abandon all hope ye who enter here.";
 	name = "Wise Mans Warning."
 	},
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/diamond,
-/area/ruin/powered/kinggoatlair)
-"q" = (
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
+"t" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/gold,
-/area/ruin/powered/kinggoatlair)
-"r" = (
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/structure/chair/bronze,
-/mob/living/simple_animal/hostile/retaliate/goat/king,
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered/kinggoat_arena)
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 "u" = (
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure gold! This floor seems indestructible for some reason...";
@@ -151,19 +182,7 @@
 	name = "gold floor"
 	},
 /area/ruin/powered/kinggoat_arena)
-"K" = (
-/obj/effect/portal/permanent/one_way/destroy{
-	id = "king goat arena";
-	name = "king goat arena portal";
-	teleport_channel = "free"
-	},
-/turf/open/indestructible/hotelwood{
-	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
-	icon_state = "diamond";
-	name = "diamond floor"
-	},
-/area/ruin/powered/kinggoat_arena)
-"Q" = (
+"y" = (
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope,
 /turf/open/indestructible/hotelwood{
 	desc = "Very rich floor made out of pure diamond! This floor seems indestructible for some reason...";
@@ -171,25 +190,30 @@
 	name = "diamond floor"
 	},
 /area/ruin/powered/kinggoat_arena)
+"H" = (
+/turf/open/floor/mineral/gold,
+/area/ruin/powered{
+	name = "King Goat Lair"
+	})
 
 (1,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -205,23 +229,23 @@ a
 a
 "}
 (2,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -237,23 +261,23 @@ a
 a
 "}
 (3,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -269,23 +293,23 @@ a
 a
 "}
 (4,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -301,183 +325,183 @@ a
 a
 "}
 (5,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 b
-e
-j
-g
-j
-g
+q
+f
+H
+f
+H
 b
 a
 a
 a
 "}
 (6,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 c
-f
-k
-k
-k
-q
+e
+g
+g
+g
+t
 c
 a
 a
 a
 "}
 (7,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 d
+H
 g
-k
-m
 p
-g
+s
+H
 d
 a
 a
 a
 "}
 (8,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 c
-f
-k
-k
-k
-q
+e
+g
+g
+g
+t
 c
 a
 a
 a
 "}
 (9,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
 b
-g
-l
-g
-l
-g
+H
+r
+H
+r
+H
 b
 a
 a
 a
 "}
 (10,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -493,23 +517,23 @@ a
 a
 "}
 (11,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -525,23 +549,23 @@ a
 a
 "}
 (12,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -557,23 +581,23 @@ a
 a
 "}
 (13,1,1) = {"
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
-r
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
 a
 a
 a
@@ -783,7 +807,7 @@ h
 "}
 (7,1,2) = {"
 h
-s
+j
 i
 i
 i
@@ -791,7 +815,7 @@ i
 i
 i
 i
-K
+m
 h
 i
 i
@@ -815,7 +839,7 @@ h
 "}
 (8,1,2) = {"
 h
-Q
+y
 i
 i
 i
