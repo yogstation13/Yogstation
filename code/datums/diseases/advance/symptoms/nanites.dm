@@ -57,7 +57,7 @@
 	if(!..())
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, -0.4 * power)
+	SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, -0.7 * power)
 	if(reverse_boost && SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		if(prob(A.stage_prob))
 			A.stage = min(A.stage + 1,A.max_stages)
