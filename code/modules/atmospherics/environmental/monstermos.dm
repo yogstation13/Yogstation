@@ -16,12 +16,13 @@
 		eq_transfer_dirs[other] = amount
 	else
 		eq_transfer_dirs[other] += amount
-	if(!other.eq_transfer_dirs)
-		other.eq_transfer_dirs = list()
-	if(!other.eq_transfer_dirs[src])
-		other.eq_transfer_dirs[src] = -amount
-	else
-		other.eq_transfer_dirs[src] -= amount
+	if(other != src)
+		if(!other.eq_transfer_dirs)
+			other.eq_transfer_dirs = list()
+		if(!other.eq_transfer_dirs[src])
+			other.eq_transfer_dirs[src] = -amount
+		else
+			other.eq_transfer_dirs[src] -= amount
 
 /turf/open/proc/finalize_eq()
 	var/list/transfer_dirs = eq_transfer_dirs
@@ -118,14 +119,14 @@
 		T.eq_mole_delta = 0
 		T.eq_transfer_dirs = list()
 		T.eq_distance_score = i
-		if(T.planetary_atmos)
-			planet_turfs += T
-			continue
 		var/turf_moles
 		var/list/cached_gases = T.air.gases
 		TOTAL_MOLES(cached_gases, turf_moles)
 		T.eq_mole_delta = turf_moles
 		T.eq_fast_done = FALSE
+		if(T.planetary_atmos)
+			planet_turfs += T
+			continue
 		total_moles += turf_moles
 		for(var/t2 in T.atmos_adjacent_turfs)
 			var/turf/open/T2 = t2
@@ -149,8 +150,7 @@
 			giver_turfs += T
 		else if(T.eq_mole_delta < 0)
 			taker_turfs += T
-	if(planet_turfs.len)
-		return // TODO: make it compatible with planet turfs
+
 	var/log_n = log(2, turfs.len)
 	if(giver_turfs.len > log_n && taker_turfs.len > log_n) // optimization - try to spread gases using an O(nlogn) algorithm that has a chance of not working first to avoid O(n^2)
 		// even if it fails, it will speed up the next part
@@ -268,6 +268,43 @@
 					T.curr_eq_transfer_turf.curr_eq_transfer_amount += T.curr_eq_transfer_amount
 					T.curr_eq_transfer_amount = 0
 			CHECK_TICK
+
+	if(planet_turfs.len) // now handle planet turfs
+		var/turf/open/sample = planet_turfs[1] // we're gonna assume all the planet turfs are the same.
+		var/datum/gas_mixture/G = new
+		G.copy_from_turf(sample)
+		var/list/planet_gases = G.gases
+		var/planet_sum
+		TOTAL_MOLES(planet_gases, planet_sum)
+		var/target_delta = planet_sum - average_moles
+
+		var/list/progression_order = list()
+		for(var/t in planet_turfs)
+			var/turf/open/T = t
+			progression_order[T] = 1
+			T.curr_eq_transfer_turf = T
+		// now build a map of where the path to planet turf is for each tile.
+		for(var/i = 1; i <= progression_order.len; i++)
+			var/turf/open/T = progression_order[i]
+			for(var/t2 in T.atmos_adjacent_turfs)
+				if(!turfs[t2]) continue
+				if(progression_order[t2])
+					continue
+				var/turf/open/T2 = t2
+				if(T2.planetary_atmos)
+					continue
+				T2.curr_eq_transfer_turf = T
+				progression_order[T2] = 1
+		// apply airflow to turfs
+		for(var/i = progression_order.len; i > 0; i--)
+			var/turf/open/T = progression_order[i]
+			var/turf/open/T2 = T.curr_eq_transfer_turf
+			var/airflow = T.eq_mole_delta - target_delta
+			T.adjust_eq_movement(T2, airflow)
+			if(T != T2)
+				T2.eq_mole_delta += airflow
+			T.eq_mole_delta = target_delta
+
 	for(var/t in turfs)
 		var/turf/open/T = t
 		T.finalize_eq()
