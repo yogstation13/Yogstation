@@ -76,7 +76,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = IS_SHARP_ACCURATE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	var/bayonet = TRUE	//Can this be attached to a gun?
+	var/bayonet = FALSE	//Can this be attached to a gun?
 	custom_price = 30
 
 /obj/item/kitchen/knife/Initialize()
@@ -118,7 +118,6 @@
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_price = 60
-	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
@@ -150,7 +149,6 @@
 	force = 15
 	throwforce = 15
 	materials = list()
-	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/cyborg
 	name = "cyborg knife"

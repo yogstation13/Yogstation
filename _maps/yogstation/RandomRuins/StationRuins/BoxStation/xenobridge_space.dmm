@@ -92,10 +92,6 @@
 	dirx = 1;
 	diry = -2
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "p" = (
@@ -120,12 +116,6 @@
 /obj/machinery/door/airlock/external{
 	name = "External Access";
 	req_access_txt = "10; 13"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -169,7 +159,6 @@
 /area/maintenance/starboard/aft)
 "s" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "t" = (
@@ -275,11 +264,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"N" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/window,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 
 (1,1,1) = {"
 b
@@ -296,7 +280,7 @@ y
 (2,1,1) = {"
 c
 c
-N
+j
 v
 c
 s
@@ -439,10 +423,10 @@ a
 "}
 (14,1,1) = {"
 a
-N
-N
+j
+j
 w
-N
+j
 d
 d
 d
@@ -451,10 +435,10 @@ d
 "}
 (15,1,1) = {"
 a
-N
+j
 m
 r
-N
+j
 a
 a
 a

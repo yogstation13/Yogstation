@@ -93,7 +93,7 @@
 					to_chat(pai, "<span class='rose'>oblivion... </span>")
 					qdel(pai)
 		if(href_list["toggle_transmit"] || href_list["toggle_receive"])
-			var/transmitting = href_list["toggle_transmit"] //it can't be both so if we know it's not transmitting it must be receiving.
+			var/transmitting = href_list["toggle_transmit"] //it can't be both so if we know it's not transmitting it must be receiving. 
 			var/transmit_holder = (transmitting ? WIRE_TX : WIRE_RX)
 			if(transmitting)
 				pai.can_transmit = !pai.can_transmit
@@ -154,8 +154,6 @@
 				src.add_overlay("pai-what")
 			if(10)
 				src.add_overlay("pai-null")
-			if(11)
-				src.add_overlay("pai-sunglasses")
 
 /obj/item/paicard/proc/alertUpdate()
 	audible_message("<span class ='info'>[src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", "<span class='notice'>[src] vibrates with an alert.</span>")

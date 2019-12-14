@@ -12,6 +12,7 @@
 	var/obj/machinery/stasis/bed
 	var/list/advanced_surgeries = list()
 	var/datum/techweb/linked_techweb
+	var/menu = MENU_OPERATION
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/operating/Initialize()
@@ -59,6 +60,7 @@
 	var/list/data = list()
 	data["table"] = table
 	if(table)
+		data["menu"] = menu
 
 		var/list/surgeries = list()
 		for(var/X in advanced_surgeries)
@@ -69,8 +71,8 @@
 			surgeries += list(surgery)
 		data["surgeries"] = surgeries
 
+		data["patient"] = list()
 		if(table.check_patient())
-			data["patient"] = list()
 			patient = table.patient
 			switch(patient.stat)
 				if(CONSCIOUS)
@@ -108,13 +110,15 @@
 						else
 							alternative_step = "Finish operation"
 					data["procedures"] += list(list(
-						"name" = capitalize("[parse_zone(procedure.location)] [procedure.name]"),
+						"name" = capitalize(procedure.name),
 						"next_step" = capitalize(surgery_step.name),
 						"chems_needed" = chems_needed,
 						"alternative_step" = alternative_step,
 						"alt_chems_needed" = alt_chems_needed))
 	data["bed"] = bed
 	if(bed)
+		data["menu"] = menu
+
 		var/list/surgeries = list()
 		for(var/X in advanced_surgeries)
 			var/datum/surgery/S = X
@@ -169,15 +173,18 @@
 						"alternative_step" = alternative_step,
 						"alt_chems_needed" = alt_chems_needed
 					))
-		else
-			data["patient"] = null
 	return data
 
 /obj/machinery/computer/operating/ui_act(action, params)
 	if(..())
 		return
-	if(action == "sync") //TG has this as a switch with a single entry :)))))
-		sync_surgeries()
+	switch(action)
+		if("change_menu")
+			menu = text2num(params["menu"])
+			. = TRUE
+		if("sync")
+			sync_surgeries()
+			. = TRUE
 	. = TRUE
 
 #undef MENU_OPERATION

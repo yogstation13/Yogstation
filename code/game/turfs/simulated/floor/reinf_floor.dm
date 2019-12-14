@@ -1,3 +1,4 @@
+
 /turf/open/floor/engine
 	name = "reinforced floor"
 	desc = "Extremely sturdy."
@@ -30,9 +31,6 @@
 	return //unplateable
 
 /turf/open/floor/engine/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
-	return
-
-/turf/open/floor/engine/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
 	return
 
 /turf/open/floor/engine/crowbar_act(mob/living/user, obj/item/I)

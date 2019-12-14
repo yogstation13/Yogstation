@@ -307,11 +307,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 		//	the type with the base type removed from the begaining
 		var/fancytype = types[D.type]
 		if (findtext(fancytype, types[type]))
-			fancytype = copytext(fancytype, length(types[type])+1)
-		var/shorttype = copytext("[D.type]", length("[type]")+1)
-		if (length(shorttype) > length(fancytype))
+			fancytype = copytext(fancytype, lentext(types[type])+1)
+		var/shorttype = copytext("[D.type]", lentext("[type]")+1)
+		if (lentext(shorttype) > lentext(fancytype))
 			shorttype = fancytype
-		if (!length(shorttype))
+		if (!lentext(shorttype))
 			shorttype = "/"
 
 		.["[D]([shorttype])[REF(D)]#[i]"] = D

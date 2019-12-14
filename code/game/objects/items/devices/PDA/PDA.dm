@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/f_lum = 2.3 //Luminosity for the flashlight function
 	var/silent = FALSE //To beep or not to beep, that is the question
 	var/toff = FALSE //If TRUE, messenger disabled
-	var/list/tnote = list() //Current list of received signals, which are transmuted into messages on-the-spot. Can also be just plain strings, y'know, like, who really gives a shit, y'know
+	var/tnote = null //Current Texts
 	var/last_text //No text spamming
 	var/last_everyone //No text for everyone spamming
 	var/last_noise //Also no honk spamming that's bad too
@@ -340,13 +340,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<h4>[PDAIMG(mail)] Messages</h4>"
 
-				//Build the message list
-				for(var/x in tnote)
-					if(istext(x)) // If it's literally just text
-						dat += tnote
-					else // It's hopefully a signal
-						var/datum/signal/subspace/messaging/pda/sig = x
-						dat += "<i><b><a href='byond://?src=[REF(src)];choice=Message;target=[REF(sig.source)]'>[sig.data["name"]]</a> ([sig.data["job"]]):</b></i><br>[sig.format_message(user)]<br>"
+				dat += tnote
 				dat += "<br>"
 
 			if (3)
@@ -655,7 +649,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/target_text = signal.format_target()
 	// Log it in our logs
-	tnote += signal
+	tnote += "<i><b>&rarr; To [target_text]:</b></i><br>[signal.format_message()]<br>"
 	// Show it to ghosts
 	var/ghost_message = "<span class='name'>[owner] </span><span class='game say'>PDA Message</span> --> <span class='name'>[target_text]</span>: <span class='message'>[signal.format_message()]</span>"
 	for(var/mob/M in GLOB.player_list)
@@ -671,7 +665,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		last_everyone = world.time
 
 /obj/item/pda/proc/receive_message(datum/signal/subspace/messaging/pda/signal)
-	tnote += signal
+	tnote += "<i><b>&larr; From <a href='byond://?src=[REF(src)];choice=Message;target=[REF(signal.source)]'>[signal.data["name"]]</a> ([signal.data["job"]]):</b></i><br>[signal.format_message()]<br>"
 
 	if (!silent)
 		playsound(src, 'sound/machines/twobeep_high.ogg', 50, 1)

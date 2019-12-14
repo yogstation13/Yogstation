@@ -19,7 +19,7 @@
 
 /datum/design/tricorder
 	name = "Tricorder"
-	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
+	desc = "A multifunction hand-held device useful for data sensing, analysis, and recording"
 	id = "tricorder"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL=500,MAT_SILVER=300,MAT_GOLD=300)
