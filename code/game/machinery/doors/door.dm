@@ -309,7 +309,7 @@
 	update_freelook_sight()
 	if(safe)
 		CheckForMobs()
-	else
+	else if(!(flags_1 & ON_BORDER_1))
 		crush()
 	return 1
 
