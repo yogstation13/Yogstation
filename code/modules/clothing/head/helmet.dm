@@ -163,6 +163,7 @@
 	resistance_flags = NONE
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEHAIR
+	item_color = "gamervenus"
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
