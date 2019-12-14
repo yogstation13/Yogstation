@@ -254,15 +254,6 @@
 	assemblytype = /obj/structure/firelock_frame/heavy
 	max_integrity = 550
 
-/obj/machinery/door/firedoor/window
-	name = "window shutter"
-	icon = 'icons/obj/doors/doorfirewindow.dmi'
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by NT engineers."
-	glass = TRUE
-	explosion_block = 0
-	max_integrity = 50
-	resistance_flags = 0 // not fireproof
-	heat_proof = FALSE
 
 /obj/item/electronics/firelock
 	name = "firelock circuitry"

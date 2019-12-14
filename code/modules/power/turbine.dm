@@ -129,12 +129,11 @@
 	default_deconstruction_crowbar(I)
 
 /obj/machinery/power/compressor/process()
-	if(!starter)
-		return
-	if(!turbine || (turbine.stat & BROKEN))
-		starter = FALSE
+	if(!turbine)
+		stat = BROKEN
 	if(stat & BROKEN || panel_open)
-		starter = FALSE
+		return
+	if(!starter)
 		return
 	cut_overlays()
 
@@ -327,7 +326,7 @@
 				compressor = C
 				return
 	else
-		compressor = locate(/obj/machinery/power/compressor) in range(7, src)
+		compressor = locate(/obj/machinery/power/compressor) in range(5, src)
 
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
@@ -339,15 +338,15 @@
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)
 	var/list/data = list()
 
-	data["compressor"] = compressor ? TRUE : FALSE
+	data["connected"] = (compressor && compressor.turbine) ? TRUE : FALSE
 	data["compressor_broke"] = (!compressor || (compressor.stat & BROKEN)) ? TRUE : FALSE
-	data["turbine"] = compressor?.turbine ? TRUE : FALSE
 	data["turbine_broke"] = (!compressor || !compressor.turbine || (compressor.turbine.stat & BROKEN)) ? TRUE : FALSE
-	data["online"] = compressor?.starter
+	data["broken"] = (data["compressor_broke"] || data["turbine_broke"])
+	data["online"] = compressor.starter
 
-	data["power"] = DisplayPower(compressor?.turbine?.lastgen)
-	data["rpm"] = compressor?.rpm
-	data["temp"] = compressor?.gas_contained.temperature
+	data["power"] = DisplayPower(compressor.turbine.lastgen)
+	data["rpm"] = compressor.rpm
+	data["temp"] = compressor.gas_contained.temperature
 
 	return data
 
@@ -355,9 +354,13 @@
 	if(..())
 		return
 	switch(action)
-		if("toggle_power")
+		if("power-on")
 			if(compressor && compressor.turbine)
-				compressor.starter = !compressor.starter
+				compressor.starter = TRUE
+				. = TRUE
+		if("power-off")
+			if(compressor && compressor.turbine)
+				compressor.starter = FALSE
 				. = TRUE
 		if("reconnect")
 			locate_machinery()

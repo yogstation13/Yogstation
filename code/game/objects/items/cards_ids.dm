@@ -428,14 +428,6 @@ update_label("John Doe", "Clowny")
 	access = get_all_accesses()
 	. = ..()
 
-/obj/item/card/id/ert/clown
-	registered_name = "Clown"
-	assignment = "Clown ERT"
-
-/obj/item/card/id/ert/clown/Initialize()
-	access = get_all_accesses()
-	. = ..()
-
 /obj/item/card/id/prisoner
 	name = "prisoner ID card"
 	desc = "You are a number, you are not a free man."
