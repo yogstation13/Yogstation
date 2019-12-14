@@ -18,31 +18,26 @@ export const Guardian = props => {
       <LabeledList>
         <LabeledList.Item
           label="Points"
-          color={data.points > 0 ? 'good' : 'bad'}
-        >
+          color={data.points > 0 ? 'good' : 'bad'}>
           {data.points}
         </LabeledList.Item>
       </LabeledList>
       <Tabs>
         <Tabs.Tab
           key="General"
-          label="General"
-        >
+          label="General">
           <Section
-            title="General stuff"
-          >
+            title="General stuff">
             <Button
               content={data.guardian_name || "Random Name"}
               onClick={() => act(ref, 'name')} />
             <Button
               icon="undo"
               content="Reset All"
-              onClick={() => act(ref, 'reset')}
-            />
+              onClick={() => act(ref, 'reset')} />
           </Section>
           <Section
-            title="Attack Type"
-          >
+            title="Attack Type">
             <Button
               content="Melee"
               selected={data.melee}
@@ -56,15 +51,13 @@ export const Guardian = props => {
         </Tabs.Tab>
         <Tabs.Tab
           key="stats"
-          label="Stats"
-        >
+          label="Stats">
           <LabeledList>
             {data.ratedskills.map(skill => (
               <LabeledList.Item
                 key={skill.name}
                 className="candystripe"
-                label={skill.name}
-              >
+                label={skill.name}>
                 <Button
                   content="A"
                   selected={skill.level === 5}
@@ -95,15 +88,13 @@ export const Guardian = props => {
         </Tabs.Tab>
         <Tabs.Tab
           key="ability_major"
-          label="Major Ability"
-        >
+          label="Major Ability">
           {data.abilities_major.map(ability => (
             <LabeledList.Item
               key={ability.name}
               className="candystripe"
               label={ability.name}
-              labelColor={ability.requiem ? "gold" : null}
-            >
+              labelColor={ability.requiem ? "gold" : null}>
               {ability.desc}<br />
               <Button
                 content={ability.cost + " points"}
@@ -115,14 +106,12 @@ export const Guardian = props => {
         </Tabs.Tab>
         <Tabs.Tab
           key="ability_minor"
-          label="Minor Abilities"
-        >
+          label="Minor Abilities">
           {data.abilities_minor.map(ability => (
             <LabeledList.Item
               key={ability.name}
               className="candystripe"
-              label={ability.name}
-            >
+              label={ability.name}>
               {ability.desc}<br />
               <Button
                 content={ability.cost + " points"}
@@ -134,23 +123,19 @@ export const Guardian = props => {
         </Tabs.Tab>
         <Tabs.Tab
           key="create"
-          label="Create"
-        >
+          label="Create">
           <Section
-            title="Name"
-          >
+            title="Name">
             {data.guardian_name || "Random Name"}
           </Section>
           <Section
-            title="Stats"
-          >
+            title="Stats">
             <LabeledList>
               {data.ratedskills.map(skill => (
                 <LabeledList.Item
                   key={skill.name}
                   className="candystripe"
-                  label={skill.name}
-                >
+                  label={skill.name}>
                   {number2grade[skill.level]}
                 </LabeledList.Item>
               ))}
@@ -158,15 +143,13 @@ export const Guardian = props => {
           </Section>
           {!data.no_ability && (
             <Section
-              title="Major Ability"
-            >
+              title="Major Ability">
               <LabeledList>
                 {data.abilities_major.map(ability => (
                   (!!ability.selected && (
                     <LabeledList.Item
                       key={ability.name}
-                      label={ability.name}
-                    >
+                      label={ability.name}>
                       {ability.desc}
                     </LabeledList.Item>
                   ))
@@ -175,16 +158,14 @@ export const Guardian = props => {
             </Section>
           )}
           <Section
-            title="Minor Abilities"
-          >
+            title="Minor Abilities">
             <LabeledList>
               {data.abilities_minor.map(ability => (
                 (!!ability.selected && (
                   <LabeledList.Item
                     key={ability.name}
                     className="candystripe"
-                    label={ability.name}
-                  >
+                    label={ability.name}>
                     {ability.desc}
                   </LabeledList.Item>
                 ))
