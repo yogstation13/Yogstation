@@ -162,7 +162,7 @@
 	strip_delay = 60
 	resistance_flags = NONE
 	flags_cover = HEADCOVERSEYES
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIr
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
 	item_color = "gamervenus"
 
 /obj/item/clothing/head/helmet/swat
