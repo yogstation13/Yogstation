@@ -6,10 +6,10 @@
 /datum/achievement_browser/New(client/C)
 	client = C
 
-/datum/achievement_browser/proc/get_achievements()
+/datum/achievement_browser/proc/get_achievements(client/C)
 	var/list/A = list()
 	for(var/i in SSachievements.achievements)
-		A[i] = SSachievements.has_achievement(i, client)
+		A[i] = SSachievements.has_achievement(i, C)
 	return A
 
 /datum/achievement_browser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
@@ -20,13 +20,13 @@
 
 /datum/achievement_browser/ui_data(mob/user)
 	var/data = list("achievements" = list())
-	var/list/achievements = get_achievements()
+	var/list/achievements = get_achievements(user.client)
 	for(var/B in achievements)
 		var/datum/achievement/achievement = B
 		var/list/A = list(
-			"name" = initial(achievement.name),
-			"desc" = initial(achievement.desc),
-			"unlocked" = achievements[achievement]
+			"name" = achievement.name,
+			"unlocked" = achievements[achievement],
+			"desc" = (!achievement.hidden || achievements[achievement]) ? achievement.desc : "???"
 		)
 		data["achievements"] += list(A)
 	

@@ -398,6 +398,7 @@
 		if(TC_uses==0 && traitorwin)
 			var/static/icon/badass = icon('icons/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
+			SSachievements.unlock_achievement(/datum/achievement/badass, owner.current.client)
 		result += uplink_text
 
 	result += objectives_text

@@ -8,6 +8,10 @@
 	req_access_txt = "12"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "ac" = (
@@ -24,6 +28,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "ae" = (
@@ -123,6 +131,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "ao" = (
@@ -571,6 +583,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "bg" = (
@@ -626,6 +642,10 @@
 /obj/machinery/door/airlock{
 	name = "Bar Storage";
 	req_access_txt = "25"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/bar)
@@ -905,6 +925,7 @@
 	name = "privacy shutters"
 	},
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/machinery/door/window/westright,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bQ" = (
@@ -1072,6 +1093,7 @@
 	id = "barShutters";
 	name = "privacy shutters"
 	},
+/obj/machinery/door/window/westright,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "ci" = (
@@ -1205,7 +1227,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cu" = (
-/obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -1215,6 +1236,12 @@
 /obj/machinery/door/airlock{
 	name = "Kitchen";
 	req_one_access_txt = "28"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
@@ -1408,7 +1435,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "cL" = (
-/obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -1417,6 +1443,10 @@
 	},
 /obj/machinery/door/airlock/public{
 	name = "Bar"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
