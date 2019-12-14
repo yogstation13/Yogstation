@@ -81,21 +81,21 @@
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction(var/flinch)
-	var/mob/living/shooter = parent
-
-	if(flinch != TRUE && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
-		return
-	if(disrupted)
-		return
 	if(point_of_no_return)
 		return
 	point_of_no_return = TRUE
+
+	var/mob/living/shooter = parent
 
 	if(!weapon.can_shoot() || !weapon.can_trigger_gun(shooter) || (weapon.weapon_weight == WEAPON_HEAVY && shooter.get_inactive_held_item()))
 		shooter.visible_message("<span class='danger'>[shooter] fumbles [weapon]!</span>", \
 			"<span class='danger'>You fumble [weapon] and fail to fire at [target]!</span>", target)
 		to_chat(target, "<span class='userdanger'>[shooter] fumbles [weapon] and fails to fire at you!</span>")
 		qdel(src)
+		return
+	if(disrupted)
+		return
+	if(flinch != TRUE && shooter.pulling == target) //target won't get shot if they're being moved by the shooter
 		return
 	if(weapon.check_botched(shooter))
 		return
