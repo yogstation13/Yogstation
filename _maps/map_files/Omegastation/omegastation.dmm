@@ -2107,8 +2107,7 @@
 /turf/closed/wall,
 /area/quartermaster/storage)
 "adq" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "adr" = (
@@ -8938,10 +8937,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "ant" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/quartermaster/miningdock)
+/area/quartermaster/storage)
 "anu" = (
 /obj/machinery/door/airlock{
 	name = "Custodial Closet";
@@ -22393,14 +22392,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aGc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/directions/engineering{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: EXTERNAL AIRLOCK"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/hallway/secondary/exit)
+/area/quartermaster/miningdock)
 "aGd" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/tile/neutral,
@@ -25256,6 +25250,33 @@
 /obj/structure/sign/warning/nosmoking,
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
+"aJZ" = (
+/obj/structure/sign/warning/vacuum,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/quartermaster/miningdock)
+"aKa" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/exit)
+"aKb" = (
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/atmos)
+"aKc" = (
+/obj/structure/sign/directions/engineering{
+	desc = "A sign that shows there are doors here. There are doors everywhere!";
+	icon_state = "doors";
+	name = "WARNING: EXTERNAL AIRLOCK"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/exit)
+"aKd" = (
+/obj/effect/spawner/structure/window/reinforced/tinted/shutter,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "aKe" = (
 /obj/structure/cable/white{
 	icon_state = "2-8"
@@ -26176,6 +26197,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
+"aLi" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/primary/starboard)
+"aLj" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"aLk" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "aLl" = (
 /obj/structure/cable/white{
 	icon_state = "1-8"
@@ -26915,6 +26948,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
+"aMu" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating/airless,
+/area/maintenance/port)
 "aMv" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 4;
@@ -26946,6 +26983,10 @@
 "aMw" = (
 /turf/closed/wall/r_wall/rust,
 /area/science/research)
+"aMx" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
 "aMy" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-22"
@@ -27173,10 +27214,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aMQ" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/engine/atmos)
+/area/chapel/main)
 "aMR" = (
 /obj/machinery/camera{
 	c_tag = "Supermatter Chamber";
@@ -27528,6 +27568,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"aNA" = (
+/obj/structure/sign/directions/engineering{
+	desc = "A sign that shows there are doors here. There are doors everywhere!";
+	icon_state = "doors";
+	name = "WARNING: EXTERNAL AIRLOCK"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"aNB" = (
+/obj/structure/sign/warning/vacuum,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"aNC" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/science/xenobiology)
 "aNF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28877,10 +28935,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
-"aPz" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "aPA" = (
 /obj/structure/table/wood,
 /obj/item/storage/secure/briefcase,
@@ -30022,10 +30076,6 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/maintenance/starboard/aft)
-"aRy" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "aRz" = (
 /turf/closed/wall,
@@ -39954,20 +40004,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"bjX" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/directions/engineering{
-	desc = "A sign that shows there are doors here. There are doors everywhere!";
-	icon_state = "doors";
-	name = "WARNING: EXTERNAL AIRLOCK"
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
-"bjY" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "bki" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -40158,10 +40194,6 @@
 	name = "Chapel Launcher Door"
 	},
 /obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/chapel/main)
-"blJ" = (
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/chapel/main)
 "blK" = (
@@ -41043,10 +41075,6 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
-"fOW" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "fWz" = (
 /obj/machinery/door/airlock/external{
 	name = "External Docking Port";
@@ -41221,10 +41249,6 @@
 "ibv" = (
 /turf/closed/wall,
 /area/science/xenobiology)
-"inf" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
-/area/maintenance/port)
 "iqC" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
 /turf/open/floor/engine/co2,
@@ -41488,14 +41512,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/hallway/secondary/entry)
-"lvt" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/warning/vacuum,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "lvw" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/decal/cleanable/dirt,
@@ -42253,9 +42269,6 @@
 /obj/machinery/status_display/supply,
 /turf/closed/wall/rust,
 /area/quartermaster/storage)
-"swN" = (
-/turf/closed/wall/rust,
-/area/asteroid/nearstation)
 "swZ" = (
 /turf/closed/wall/r_wall/rust,
 /area/security/brig)
@@ -71301,7 +71314,7 @@ ueC
 qMr
 kiw
 nUk
-aMQ
+aKb
 aNa
 aad
 aad
@@ -74915,7 +74928,7 @@ sJG
 aQK
 aRN
 aSS
-fOW
+aLk
 aUS
 aUU
 aWz
@@ -75172,7 +75185,7 @@ buW
 aQM
 aRO
 niM
-fOW
+aLk
 aUR
 aUU
 aWz
@@ -75429,7 +75442,7 @@ aPK
 aQN
 aRP
 pvw
-fOW
+aLk
 aUS
 aUU
 aWz
@@ -75943,7 +75956,7 @@ aKD
 aQP
 aRR
 aSU
-fOW
+aLk
 aUS
 aUU
 aWz
@@ -76200,7 +76213,7 @@ buW
 aQK
 bbk
 aSV
-fOW
+aLk
 aUR
 aUU
 aWz
@@ -76457,7 +76470,7 @@ buW
 aQR
 bbT
 aSY
-fOW
+aLk
 aUS
 aUU
 aWz
@@ -77232,7 +77245,7 @@ aEt
 aBq
 aad
 aOH
-inf
+aMu
 aOH
 sKx
 aZq
@@ -78003,7 +78016,7 @@ sKx
 sKx
 aOH
 aOH
-inf
+aMu
 aOH
 aOH
 bca
@@ -79816,11 +79829,11 @@ baj
 aad
 aad
 aad
-abT
-abT
-swN
-abT
-abT
+bfu
+bfu
+sLf
+bfu
+bfu
 aad
 aad
 aad
@@ -82135,7 +82148,7 @@ aSi
 aSL
 aSW
 blG
-blJ
+aMQ
 aaa
 aaa
 aaa
@@ -83422,16 +83435,16 @@ aaa
 aaa
 aaa
 aaa
-bgU
+aMx
 bkj
-bgU
-bgU
-bgU
-bgU
-bgU
-bgU
+aMx
+aMx
+aMx
+aMx
+aMx
+aMx
 bkj
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -83679,7 +83692,7 @@ aae
 aae
 aae
 aae
-bgU
+aMx
 bki
 bgU
 sSy
@@ -83688,7 +83701,7 @@ wWj
 qcg
 bgU
 bki
-bgU
+aMx
 aae
 aae
 aae
@@ -83932,11 +83945,11 @@ aOW
 bjh
 bfu
 bfu
-bgU
+aMx
 bgP
 bgP
-bjX
-bgU
+aNA
+aMx
 cmp
 bgU
 bkt
@@ -83945,11 +83958,11 @@ bkB
 bkE
 bgU
 cmp
-bgU
-bjY
+aMx
+aNB
 sLm
-bgU
-bgU
+aMx
+aMx
 aae
 aaa
 aaa
@@ -84206,7 +84219,7 @@ aSZ
 aUp
 aUq
 blb
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -84463,7 +84476,7 @@ aUo
 aUl
 bkX
 blc
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -84702,12 +84715,12 @@ bgP
 aOZ
 aQI
 bgP
-bgU
-bgU
-bgU
+aMx
+aMx
+aMx
 bgP
-bjY
-bgU
+aNB
+aMx
 btk
 bgU
 bku
@@ -84716,11 +84729,11 @@ bkC
 bkE
 bgU
 btk
-bgU
-bjX
+aMx
+aNA
 bgP
-bgU
-bgU
+aMx
+aMx
 aae
 aaa
 aaa
@@ -84958,13 +84971,13 @@ bgd
 bgP
 aPa
 aQJ
-bgU
+aMx
 aae
 aae
 aae
 aae
 aae
-bgU
+aMx
 bki
 bgU
 iJz
@@ -84973,7 +84986,7 @@ ezi
 luP
 bgU
 bki
-bgU
+aMx
 aae
 aae
 aae
@@ -85221,16 +85234,16 @@ aaa
 aaa
 aaa
 aaa
-bgU
+aMx
 btl
-bgU
-bgU
-bgU
-bgU
-bgU
-bgU
+aMx
+aMx
+aMx
+aMx
+aMx
+aMx
 btl
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -85729,7 +85742,7 @@ aXZ
 aYa
 aYb
 aYd
-bgU
+aMx
 aae
 aaa
 aaa
@@ -85986,7 +85999,7 @@ aWn
 bgT
 aPv
 aQV
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -86243,7 +86256,7 @@ aWn
 bgU
 aPD
 aRj
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -86500,7 +86513,7 @@ aWv
 bgU
 aPE
 aRl
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -86757,7 +86770,7 @@ aWK
 bgU
 aPD
 aRj
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -87014,7 +87027,7 @@ aWK
 bgV
 aPF
 aRm
-bgU
+aMx
 aaa
 aaa
 aaa
@@ -87271,7 +87284,7 @@ aYD
 aOK
 aPH
 aRn
-bgU
+aMx
 aae
 aaa
 aaa
@@ -88047,7 +88060,7 @@ bfP
 bfP
 sKZ
 bfP
-bjc
+aNC
 bfP
 bfP
 aad
@@ -90844,8 +90857,8 @@ bbH
 sqz
 sqz
 sqz
-lFi
-lFi
+aLi
+aLi
 axf
 aSE
 aLg
@@ -91103,7 +91116,7 @@ aae
 aae
 aae
 aae
-aRy
+aLj
 aSF
 aLn
 sJL
@@ -91357,9 +91370,9 @@ aRz
 beR
 sJq
 aaa
-aPz
-aPz
-aPz
+aKd
+aKd
+aKd
 sOM
 aSG
 aLx
@@ -91388,7 +91401,7 @@ aad
 aad
 bfP
 bfP
-bjc
+aNC
 bfP
 bfP
 aad
@@ -91614,7 +91627,7 @@ sIU
 beS
 sIU
 aae
-aPz
+aKd
 aPA
 aQB
 sOM
@@ -91871,7 +91884,7 @@ sIU
 beS
 sIU
 aaa
-aPz
+aKd
 aPB
 aQC
 sOM
@@ -91896,7 +91909,7 @@ sOM
 bgv
 sPY
 bhU
-aRy
+aLj
 bvg
 aac
 aaa
@@ -92128,7 +92141,7 @@ sIU
 beT
 sIU
 aae
-aPz
+aKd
 aPC
 aBm
 aCg
@@ -92153,7 +92166,7 @@ sON
 bgw
 sPY
 bhV
-aRy
+aLj
 bvg
 aaa
 aaa
@@ -92346,7 +92359,7 @@ aac
 aac
 aad
 aad
-ado
+adq
 aed
 ajI
 afI
@@ -92385,9 +92398,9 @@ sJN
 beU
 abN
 aaa
-aPz
-aPz
-aPz
+aKd
+aKd
+aKd
 sOM
 aSK
 aTW
@@ -92610,9 +92623,9 @@ ado
 agB
 ahq
 adp
-ado
+adq
 swL
-ado
+adq
 adn
 amC
 anp
@@ -92646,11 +92659,11 @@ aae
 aae
 aae
 sON
-aRy
-aRy
-aRy
-aRy
-aRy
+aLj
+aLj
+aLj
+aLj
+aLj
 sON
 aad
 aac
@@ -92667,7 +92680,7 @@ sOM
 bgy
 sPY
 bhX
-aRy
+aLj
 bvg
 aaa
 aaa
@@ -92860,13 +92873,13 @@ aaa
 aaa
 aaa
 aaa
-adq
+ant
 aeg
 aeX
 adp
 agC
 ahr
-lvt
+ant
 aae
 aae
 aae
@@ -92924,7 +92937,7 @@ sOM
 bgz
 sPY
 sLg
-aRy
+aLj
 bvg
 aac
 aaa
@@ -93117,18 +93130,18 @@ aaa
 aaa
 aaa
 aaa
-ado
+adq
 aeh
 lCg
-ado
+adq
 lCg
 ahq
-ado
+adq
 aaa
 aaa
 aaa
 aaa
-amD
+aGc
 anr
 alC
 aoj
@@ -93400,7 +93413,7 @@ aae
 aaa
 aac
 bvg
-azb
+aKa
 sFX
 bdJ
 azH
@@ -93657,7 +93670,7 @@ aae
 aae
 bvg
 bvg
-azb
+aKa
 sFY
 aCl
 aEd
@@ -93900,11 +93913,11 @@ aaa
 aaa
 aaa
 aae
-amD
+aGc
 aol
 apn
 aqu
-amD
+aGc
 aae
 aae
 aaf
@@ -93913,7 +93926,7 @@ aae
 aae
 axW
 sDP
-azb
+aKa
 axW
 axW
 axW
@@ -94157,11 +94170,11 @@ aaa
 aaa
 aaa
 aae
-ant
+aJZ
 aom
 apn
 aqv
-ant
+aJZ
 aae
 aaa
 aaa
@@ -94184,7 +94197,7 @@ azb
 bta
 aMz
 aNG
-azb
+aKa
 aae
 aaf
 aaa
@@ -94414,11 +94427,11 @@ aaa
 aaa
 aaa
 aaa
-amD
-amD
+aGc
+aGc
 kKd
-amD
-amD
+aGc
+aGc
 aaa
 aaa
 aaa
@@ -95454,21 +95467,21 @@ aaa
 aaf
 aae
 sDP
-azb
-azb
+aKa
+aKa
 aBh
 aCn
 aDi
-azb
-azb
-aGc
-azb
-azb
+aKa
+aKa
+aKc
+aKa
+aKa
 aDi
 aCn
 aDi
-azb
-azb
+aKa
+aKa
 axW
 aae
 aaf
@@ -95712,19 +95725,19 @@ aaf
 aae
 aae
 aae
-azb
+aKa
 aDh
 azb
 aDh
-azb
+aKa
 aae
 aae
 aae
-azb
+aKa
 aDh
 azb
 aDh
-azb
+aKa
 aae
 aae
 aae
@@ -95969,19 +95982,19 @@ aaa
 aaa
 aaa
 aaa
-azb
+aKa
 fWz
-azb
+aKa
 uxM
-azb
+aKa
 aaa
 aaa
 aaa
-azb
+aKa
 uxM
-azb
+aKa
 uxM
-azb
+aKa
 aaa
 aaa
 aaa
