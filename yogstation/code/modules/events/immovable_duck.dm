@@ -32,6 +32,7 @@
 /obj/effect/immovablerod/duck/Initialize()
 	. = ..()
 	SpinAnimation(24,-1)
+	SSaugury.unregister_doom(src)
 
 /obj/effect/immovablerod/duck/Bump(atom/clong)
 	if(prob(90))
