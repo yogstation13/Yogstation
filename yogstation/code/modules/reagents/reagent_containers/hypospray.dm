@@ -30,3 +30,20 @@
 		icon_state = "[initial(icon_state)]25"
 	else
 		icon_state = "[initial(icon_state)]0"
+		
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill
+	name = "Red Pill injector"
+	desc = "Contains two heavy doses of Red Pills (Stimulants)."
+	icon = 'yogstation/icons/obj/syringe.dmi'
+	icon_state = "stimpakpen"
+	volume = 50
+	amount_per_transfer_from_this = 25
+	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
+
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill/update_icon()
+	if(reagents.total_volume > 25)
+		icon_state = initial(icon_state)
+	else if(reagents.total_volume)
+		icon_state = "[initial(icon_state)]25"
+	else
+		icon_state = "[initial(icon_state)]0"
