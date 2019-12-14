@@ -831,7 +831,7 @@
 //POWERARMORS
 //Currently are no different from normal hardsuits, except maybe for the higher armor ratings.
 
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b/hat
 	name = "Salvaged T-45b helmet"
 	desc = "It's some barely-functional power armor helmet from a by-gone age."
 	icon_state = "hardsuit0-t45b"
@@ -848,7 +848,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	item_color = "t45b"
 	
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/hat
 	name = "Advanced power helmet"
 	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
 	icon_state = "hardsuit0-advancedpa1"
