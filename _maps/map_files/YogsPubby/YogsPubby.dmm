@@ -58072,7 +58072,7 @@
 "kGb" = (
 /obj/machinery/computer/telecomms/traffic{
 	dir = 1;
-	network = "rcommsat"
+	network = "tcommsat"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
