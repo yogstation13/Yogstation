@@ -1281,6 +1281,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 1
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		
+		if(!(target.mobility_flags & MOBILITY_STAND) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG) && user.a_intent == INTENT_DISARM && !target.shoes)
+		user.visible_message("<span class='warning'>[user] starts licking [target]'s feet!</span>",
+							"<span class='danger'>You start licking [target]'s feet...</span>", null, null, target)
+		to_chat(target, "<span class='userdanger'>[user] starts licking your feet!</span>")
+		if(do_after(user, 30, TRUE, target, TRUE))
+			user.visible_message("<span class='warning'>[user] licked [target]'s feet!</span>",
+								"<span class='notice'>You licked [target]'s feet!</span>", null, null, target)
+			to_chat(target, "<span class='userdanger'>[user] licked your feet!</span>")
+			target.adjust_fire_stacks(-2) // licking something wets it, right?
+		return TRUE
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
