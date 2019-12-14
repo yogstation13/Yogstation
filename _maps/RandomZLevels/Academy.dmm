@@ -4015,6 +4015,11 @@
 "lJ" = (
 /obj/structure/mineral_door/iron,
 /turf/open/floor/plating,
+/area/awaymission/academy/academyengine)
+"lK" = (
+/obj/effect/immovablerod{
+	dir = 4
+	},
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-2"
