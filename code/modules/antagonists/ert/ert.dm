@@ -108,6 +108,16 @@
 	outfit = /datum/outfit/death_commando
 	role = "Officer"
 
+/datum/antagonist/ert/clown/robust
+	name = "Clown Commander"
+	outfit = /datum/outfit/ert/clown/leader
+	role = "Clown Commander"
+
+/datum/antagonist/ert/clown
+	name = "Clown"
+	outfit = /datum/outfit/ert/clown
+	role = "Clown"
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
