@@ -109,6 +109,22 @@
 
 	return scrambled_text
 
+/datum/language/proc/scramble_HTML(intext) // Calls scramble() on HTML text, making sure to not disturb the HTML.
+	var/text = ""
+	var/regex/plaintext = regex(@"(?:<\/?[\w\s\d=\x22]+>|^)((?:[\w\s\d!@#$%^&*\(\)\-+?:\x22'}{\[\]~`|;,.\\])+)") // Finds plaintext within the HTML.
+	var/newtext = intext
+	var/startpos = 1
+	while(startpos < 8192 && startpos > -1)
+		var/f = plaintext.Find(newtext,startpos)
+		if(!f)
+			break
+		var/sentence = plaintext.group[1]
+		var/scramb = scramble(sentence) // The scrambled version of the sentence.
+		newtext = replacetext(newtext, sentence, scramb, f, length(sentence)+1)
+		startpos = plaintext.next + (length(scramb) - length(sentence))
+	text += newtext
+	return text
+
 /datum/language/proc/get_spoken_verb(msg_end)
 	switch(msg_end)
 		if("!")

@@ -1,0 +1,4 @@
+author: "AutisticFroggy"
+delete-after: true 
+changes: 
+  - rscadd: "You can now toggle lights with a multitool. Rigged lights explosions are now standardized with other rigged equipment."
