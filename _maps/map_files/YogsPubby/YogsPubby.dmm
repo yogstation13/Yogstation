@@ -60307,7 +60307,8 @@
 /area/maintenance/department/science)
 "kGb" = (
 /obj/machinery/computer/telecomms/traffic{
-	dir = 1
+	dir = 1;
+	network = "tcommsat"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
