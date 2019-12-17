@@ -317,7 +317,7 @@
 	return 0
 
 /obj/machinery/photocopier/proc/copier_empty()
-	if(copy || photocopy || check_ass())
+	if(copy || photocopy || doccopy || check_ass())
 		return 0
 	else
 		return 1
