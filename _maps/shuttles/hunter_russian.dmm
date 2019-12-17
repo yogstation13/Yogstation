@@ -13,8 +13,8 @@
 /area/shuttle/hunter)
 "d" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 8
+	dir = 8;
+	icon_state = "heater"
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -34,11 +34,16 @@
 /area/shuttle/hunter)
 "h" = (
 /obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
 "i" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/structure/fans/tiny,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
 "j" = (
@@ -89,8 +94,8 @@
 /area/shuttle/hunter)
 "r" = (
 /obj/effect/turf_decal/arrows{
-	icon_state = "arrows";
-	dir = 4
+	dir = 4;
+	icon_state = "arrows"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
@@ -130,8 +135,8 @@
 /area/shuttle/hunter)
 "z" = (
 /obj/structure/chair{
-	icon_state = "chair";
-	dir = 4
+	dir = 4;
+	icon_state = "chair"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
@@ -214,16 +219,36 @@
 	dwidth = 3;
 	height = 13;
 	id = "huntership";
-	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
 	name = "hunter shuttle";
 	rechargeTime = 1800;
 	width = 15
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/hunter)
 "L" = (
 /obj/effect/mob_spawn/human/fugitive/russian{
 	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/hunter)
+"U" = (
+/obj/machinery/door/airlock/security/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/hunter)
+"X" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/hunter)
@@ -360,12 +385,12 @@ b
 b
 b
 b
-h
+U
 b
 b
 b
 b
-h
+U
 b
 b
 b
@@ -432,12 +457,12 @@ a
 a
 b
 b
-h
+U
 b
 b
 b
 b
-h
+U
 b
 b
 a
@@ -487,10 +512,10 @@ a
 a
 b
 b
-v
-v
-v
-v
+X
+X
+X
+X
 b
 b
 a
