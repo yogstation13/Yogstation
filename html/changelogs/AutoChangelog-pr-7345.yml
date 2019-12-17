@@ -1,0 +1,4 @@
+author: "  McDonald072"
+delete-after: true 
+changes: 
+  - experiment: "Added ability to quickly setup debugging with Visual Studio Code."
