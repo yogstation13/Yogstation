@@ -50,7 +50,7 @@
 		var/userDir = turn(get_dir(src, user), 180)
 		var/turf/T = get_step(src, userDir)
 		var/areaName = T.loc.name
-		. += "<span class='notice'>It leads into \the [areaName].</span>"
+		. += "<span class='notice'>It leads into [areaName].</span>"
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
