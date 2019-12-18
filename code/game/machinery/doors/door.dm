@@ -47,6 +47,11 @@
 			. += "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>"
 	if(!poddoor)
 		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
+	if(!isdead(user))
+		var/userDir = turn(get_dir(src, user), 180)
+		var/turf/T = get_step(src, userDir)
+		var/areaName = T.loc.name
+		. += "<span class='notice'>It leads into [areaName].</span>"
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
