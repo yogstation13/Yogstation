@@ -79,7 +79,6 @@
 							c.name = copy.name
 							c.fields = copy.fields
 							c.update_icon()
-							c.updateinfolinks()
 							c.stamps = copy.stamps
 							if(copy.stamped)
 								c.stamped = copy.stamped.Copy()
@@ -318,7 +317,7 @@
 	return 0
 
 /obj/machinery/photocopier/proc/copier_empty()
-	if(copy || photocopy || check_ass())
+	if(copy || photocopy || doccopy || check_ass())
 		return 0
 	else
 		return 1

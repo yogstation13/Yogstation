@@ -24,7 +24,7 @@
 	desc = "Emag a Particle Accelerator"
 	id = 4
 	hidden = TRUE
-  
+
 /datum/achievement/flukeops
 	name = "Reverse Card"
 	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
@@ -94,6 +94,18 @@
 	id = 17
 	hidden = TRUE
 
+/datum/achievement/Poly_silent
+	name = "Silence Bird!"
+	desc = "As a signal technician create a script that mutes poly"
+	id = 18
+	hidden = TRUE
+
+/datum/achievement/Poly_loud
+	name = "Embrace The Bird!"
+	desc = "As a signal technician create a script that makes poly LOUD"
+	id = 19
+	hidden = TRUE
+  
 /datum/achievement/cargoking
 	name = "King of Credits"
 	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things since there's on

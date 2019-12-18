@@ -397,6 +397,11 @@
 	turf_type = /turf/open/floor/plating/ashplanet/rocky
 	defer_change = 1
 
+/turf/closed/mineral/ash_rock/airless
+	turf_type = /turf/open/floor/plating/asteroid/airless
+	baseturfs = /turf/open/floor/plating/asteroid/airless
+	initial_gas_mix = AIRLESS_ATMOS
+
 /turf/closed/mineral/snowmountain
 	name = "snowy mountainside"
 	icon = 'icons/turf/mining.dmi'
