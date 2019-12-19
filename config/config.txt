@@ -514,3 +514,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 #Mentors only see ckeys by default. Uncomment to have them only see mob name
 #MENTORS_MOBNAME_ONLY
+
+## Uncomment below to make everyone a donator
+#EVERYONE_IS_DONATOR
