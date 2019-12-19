@@ -108,7 +108,7 @@
   
 /datum/achievement/cargoking
 	name = "King of Credits"
-	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things since there's on
+	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things
 	id = 20
 	var/amount = 0
 
@@ -120,3 +120,8 @@
 		amount = Q.item[1]
 	qdel(Q)
 	desc += "[amount]"
+
+/datum/achievement/ducatduke
+	name = "Duke of Ducats"
+	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
+	id = 21
