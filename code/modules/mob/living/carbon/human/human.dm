@@ -634,7 +634,6 @@
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		var/they_ashlung = C.getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Do they have ashwalker lungs?
 		var/we_ashlung = getorgan(/obj/item/organ/lungs/ashwalker) // yogs - Does the guy doing CPR have ashwalker lungs?
-		var/anticpr = min(C.getOxyLoss(), 10) // yogs - for incompatible lungs
 
 		if(C.health > C.crit_threshold)
 			return
