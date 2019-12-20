@@ -253,6 +253,7 @@
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
 	var/static/regex/multispin_words = regex("like a record baby|right round")
+	var/static/regex/dab_words = regex("dab|yolo|yeet")
 
 	var/i = 0
 	//STUN
@@ -563,6 +564,13 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			L.SpinAnimation(speed = 10, loops = 5)
+	
+	//DAB 
+	else if((findtext(message, dab_words)))
+		cooldown = COOLDOWN_MEME
+		for(var/V in listeners)
+			var/mob/living/L = V
+			L.emote("dab")
 
 	else
 		cooldown = COOLDOWN_NONE
