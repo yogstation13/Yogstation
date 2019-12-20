@@ -60491,7 +60491,7 @@
 	id = "Psychiatristshutters";
 	name = "psychiatrist shutters control";
 	pixel_y = 26;
-	req_access_txt = "5; 33"
+	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4;
