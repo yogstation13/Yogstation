@@ -1,5 +1,5 @@
 /datum/symptom/radiation
-	name = "Iraddiant Cells"
+	name = "Ionising Cellular Emission"
 	desc = "Causes the cells in the host's body to give off harmful radiation."
 	stealth = -3
 	resistance = 2
