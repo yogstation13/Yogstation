@@ -27813,6 +27813,9 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
+/obj/machinery/camera{
+	c_tag = "Telecommunications Control room"
+	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/server)
 "aNV" = (
@@ -27833,7 +27836,8 @@
 /area/tcommsat/server)
 "aNX" = (
 /obj/machinery/computer/telecomms/monitor{
-	dir = 8
+	dir = 8;
+	network = "tcommsat"
 	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
@@ -40387,9 +40391,7 @@
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
 "buP" = (
-/obj/machinery/telecomms/message_server{
-	autolinkers = "messaging"
-	},
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/green/telecomms,
 /area/tcommsat/server)
 "buQ" = (
@@ -40415,7 +40417,7 @@
 /area/tcommsat/server)
 "buU" = (
 /obj/machinery/camera{
-	c_tag = "Communications Relay";
+	c_tag = "Telecommunications Server room";
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -42036,6 +42038,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
 	external_pressure_bound = 120;
+	internal_pressure_bound = 1000;
 	name = "server vent"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -43492,9 +43495,6 @@
 "sNa" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /obj/machinery/holopad,
@@ -43507,6 +43507,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -43655,9 +43658,6 @@
 "sNn" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -43665,6 +43665,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -43696,9 +43699,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -43707,6 +43707,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -43720,14 +43723,14 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "sNr" = (
 /obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -43759,9 +43762,6 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
@@ -43770,6 +43770,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -43808,6 +43811,10 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -43892,11 +43899,11 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "sNF" = (
 /obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
 	},
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/aisat_interior)
