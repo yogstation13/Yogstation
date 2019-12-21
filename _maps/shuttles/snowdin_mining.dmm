@@ -11,17 +11,31 @@
 	name = "mining elevator";
 	width = 5
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator2)
 "b" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator2)
 "c" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Elevator Access"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator2)
 "d" = (
@@ -47,12 +61,35 @@
 "j" = (
 /turf/closed/wall/rust,
 /area/shuttle/snowdin/elevator2)
+"q" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Elevator Access"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator2)
+"y" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator2)
 
 (1,1,1) = {"
 j
-b
+y
 a
-b
+y
 d
 "}
 (2,1,1) = {"
@@ -78,8 +115,8 @@ b
 "}
 (5,1,1) = {"
 d
-b
-c
-b
+y
+q
+y
 j
 "}

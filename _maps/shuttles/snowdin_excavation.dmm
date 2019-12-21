@@ -10,6 +10,13 @@
 	name = "excavation elevator";
 	width = 6
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator1)
 "b" = (
@@ -20,6 +27,13 @@
 "c" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Elevator Access"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/snowdin/elevator1)
@@ -38,11 +52,52 @@
 	},
 /turf/open/floor/engine,
 /area/shuttle/snowdin/elevator1)
+"g" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Elevator Access"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator1)
+"T" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Elevator Access"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator1)
+"V" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Elevator Access"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/snowdin/elevator1)
 
 (1,1,1) = {"
 d
 b
-c
+g
 a
 b
 d
@@ -64,12 +119,12 @@ e
 c
 "}
 (4,1,1) = {"
-c
+V
 e
 e
 e
 e
-c
+V
 "}
 (5,1,1) = {"
 b
@@ -82,8 +137,8 @@ b
 (6,1,1) = {"
 d
 b
-c
-c
+g
+T
 b
 d
 "}
