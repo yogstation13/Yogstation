@@ -94,6 +94,7 @@
 	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
+	SSachievements.unlock_achievement(/datum/achievement/likearecord, H.client)
 	return (MANUAL_SUICIDE)
 
 

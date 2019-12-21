@@ -40,3 +40,9 @@
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
 	hidden = TRUE
+
+/datum/achievement/likearecord
+	name = "You spin me round"
+	desc = "Use the surgical drill to spin right round like a record baby"
+	id = 12
+	hidden = TRUE
