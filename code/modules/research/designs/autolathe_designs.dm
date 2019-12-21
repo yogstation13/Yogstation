@@ -875,9 +875,11 @@
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/conveyor_construct
+	materials = list(MAT_METAL = 3000)
+	build_path = /obj/item/stack/conveyor
 	category = list("initial", "Construction")
+	maxstack = 30 
+	
 
 /datum/design/conveyor_switch
 	name = "Conveyor Belt Switch"

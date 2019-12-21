@@ -5,7 +5,7 @@
 	var/hidden = FALSE // Whether or not this achievement's description is hidden untill you accomplish this (doesn't apply to the online viewer)
 
 /datum/achievement/bubblegum
-	name = "Kick Ass and Chew Bubblegum."
+	name = "Kick Ass and Chew Bubblegum"
 	desc = "Kill Bubblegum, the king of slaughter demons." //Should be improved(?)
 	id = 1
 
@@ -24,7 +24,7 @@
 	desc = "Emag a Particle Accelerator"
 	id = 4
 	hidden = TRUE
-  
+
 /datum/achievement/flukeops
 	name = "Reverse Card"
 	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
@@ -41,8 +41,75 @@
 	id = 7
 	hidden = TRUE
 
+
 /datum/achievement/likearecord
 	name = "You spin me round"
 	desc = "Use the surgical drill to spin right round like a record baby"
 	id = 21
 	hidden = TRUE
+  
+/datum/achievement/badass
+	name = "Badass Syndie"
+	desc = "As a traitor, complete your objectives without buying any items"
+	id = 8
+
+/datum/achievement/jones
+	name = "Lead Lined"
+	desc = "Survive an explosion while inside of a freezer"
+	id = 9
+	hidden = TRUE
+
+/datum/achievement/wizwin
+	name = "Scholars of the Arcane"
+	desc = "As a wizard, complete your objectives"
+	id = 10
+
+/datum/achievement/cpr
+	name = "Breath of Life"
+	desc = "Perform CPR on someone..."
+	id = 11
+
+/datum/achievement/anticpr
+	name = "Breath of Death"
+	desc = "... with incompatible lungs"
+	id = 12
+	hidden = TRUE
+
+/datum/achievement/changelingwin
+	name = "The Thing"
+	desc = "As a changeling, complete your objectives"
+	id = 13
+
+/datum/achievement/slingascend
+	name = "The Dark Shadow"
+	desc = "As a shadowling, ascend successfully"
+	id = 14
+
+/datum/achievement/death
+	name = "Flatlined"
+	desc = "You died"
+	id = 15
+
+/datum/achievement/cremated
+	name = "Back to Carbon"
+	desc = "Get cremated"
+	id = 16
+
+/datum/achievement/cremated_alive
+	name = "Burn in Hell"
+	desc = "Get cremated... alive"
+	id = 17
+	hidden = TRUE
+
+/datum/achievement/Poly_silent
+	name = "Silence Bird!"
+	desc = "As a signal technician create a script that mutes poly"
+	id = 18
+	hidden = TRUE
+
+/datum/achievement/Poly_loud
+	name = "Embrace The Bird!"
+	desc = "As a signal technician create a script that makes poly LOUD"
+	id = 19
+	hidden = TRUE
+

@@ -34,6 +34,9 @@
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
 	var/notreallyacloset = FALSE // It is genuinely a closet
+	var/datum/gas_mixture/air_contents
+	var/airtight_when_welded = TRUE
+	var/airtight_when_closed = FALSE
 
 
 /obj/structure/closet/Initialize(mapload)
@@ -144,6 +147,7 @@
 	climb_time *= 0.5 //it's faster to climb onto an open thing
 	dump_contents()
 	update_icon()
+	update_airtightness()
 	return 1
 
 /obj/structure/closet/proc/insert(atom/movable/AM)
@@ -196,6 +200,7 @@
 	opened = FALSE
 	density = TRUE
 	update_icon()
+	update_airtightness()
 	return TRUE
 
 /obj/structure/closet/proc/toggle(mob/living/user)
@@ -255,6 +260,7 @@
 				return
 			welded = !welded
 			after_weld(welded)
+			update_airtightness()
 			user.visible_message("<span class='notice'>[user] [welded ? "welds shut" : "unwelded"] \the [src].</span>",
 							"<span class='notice'>You [welded ? "weld" : "unwelded"] \the [src] with \the [W].</span>",
 							"<span class='italics'>You hear welding.</span>")
@@ -505,3 +511,48 @@
 		user.resting = FALSE
 		togglelock(user)
 		T1.visible_message("<span class='warning'>[user] dives into [src]!</span>")
+
+/obj/structure/closet/proc/update_airtightness()
+	var/is_airtight = FALSE
+	if(airtight_when_closed && !opened)
+		is_airtight = TRUE
+	if(airtight_when_welded && welded)
+		is_airtight = TRUE
+	// okay so this might create/delete gases but the alternative is extra work and/or unnecessary spacewind from welding lockers.
+	// basically we're simulating the air being displaced without actually having the air be displaced.
+	// speaking of we should really add a way to displace air. Canisters are really big and they really ought to displace air. Alas it doesnt exist
+	// so instead I have to violate conservation of energy. Not that this game already doesn't.
+	if(is_airtight && !air_contents)
+		air_contents = new(500)
+		var/datum/gas_mixture/loc_air = loc?.return_air()
+		if(loc_air)
+			air_contents.copy_from(loc_air)
+			air_contents.remove_ratio((1 - (air_contents.volume / loc_air.volume))) // and thus we have just magically created new gases....
+	else if(!is_airtight && air_contents)
+		var/datum/gas_mixture/loc_air = loc?.return_air()
+		if(loc_air) // remember that air we created earlier? Now it's getting deleted! I mean it's still going on the turf....
+			var/remove_amount = (loc_air.total_moles() + air_contents.total_moles()) * air_contents.volume / (loc_air.volume + air_contents.volume)
+			loc.assume_air(air_contents)
+			loc.remove_air(remove_amount)
+			loc.air_update_turf()
+		air_contents = null
+
+/obj/structure/closet/return_air()
+	if(welded)
+		return air_contents
+	return ..()
+
+/obj/structure/closet/assume_air(datum/gas_mixture/giver)
+	if(air_contents)
+		return air_contents.merge(giver)
+	return ..()
+
+/obj/structure/closet/remove_air(amount)
+	if(air_contents)
+		return air_contents.remove(amount)
+	return ..()
+
+/obj/structure/closet/return_temperature()
+	if(air_contents)
+		return air_contents.temperature
+	return ..()
