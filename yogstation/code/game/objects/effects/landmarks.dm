@@ -64,7 +64,7 @@
 
 // Proc to allow you to add coniditions for choosing templates, instead of just randomly picking from the template list.
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays, 
-// Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.
+// Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git 
 /obj/effect/landmark/stationroom/proc/choose()
 	return safepick(template_names)
 
@@ -72,6 +72,11 @@
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple")
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
+
+/obj/effect/landmark/stationroom/box/bar/choose()
+	if(SSevents.holidays["St. Patrick's Day"])
+		return "Bar Irish"
+	return ..()
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
