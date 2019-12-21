@@ -50,6 +50,11 @@
 	suffix = "bar_purple.dmm"
 	name = "Bar Purple"
 
+/datum/map_template/ruin/station/box/bar/irishman
+	id = "bar_irish"
+	suffix = "bar_irish.dmm"
+	name = "Bar Irish"
+	
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
