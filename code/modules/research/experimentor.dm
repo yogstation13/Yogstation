@@ -381,7 +381,7 @@
 			visible_message("<span class='warning'>[src]'s emergency coolant system gives off a small ding!</span>")
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			var/obj/item/reagent_containers/food/drinks/coffee/C = new /obj/item/reagent_containers/food/drinks/coffee(get_turf(pick(oview(1,src))))
-			chosenchem = pick("plasma","capsaicin","ethanol")
+			chosenchem = pick(/datum/reagent/toxin/plasma,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/ethanol)
 			C.reagents.remove_any(25)
 			C.reagents.add_reagent(chosenchem , 50)
 			C.name = "Cup of Suspicious Liquid"
@@ -435,7 +435,7 @@
 			visible_message("<span class='warning'>[src]'s emergency coolant system gives off a small ding!</span>")
 			var/obj/item/reagent_containers/food/drinks/coffee/C = new /obj/item/reagent_containers/food/drinks/coffee(get_turf(pick(oview(1,src))))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1) //Ding! Your death coffee is ready!
-			chosenchem = pick("uranium","frostoil","ephedrine")
+			chosenchem = pick(/datum/reagent/uranium,/datum/reagent/consumable/frostoil,/datum/reagent/medicine/ephedrine)
 			C.reagents.remove_any(25)
 			C.reagents.add_reagent(chosenchem , 50)
 			C.name = "Cup of Suspicious Liquid"
