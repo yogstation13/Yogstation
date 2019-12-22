@@ -47,7 +47,7 @@
 			if(!SSmapping.station_room_templates[t])
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
-		template_name = choose(template_names)
+		template_name = choose()
 	if(!template_name)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
