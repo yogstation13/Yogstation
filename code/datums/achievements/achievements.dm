@@ -40,7 +40,7 @@
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
 	hidden = TRUE
-
+  
 /datum/achievement/badass
 	name = "Badass Syndie"
 	desc = "As a traitor, complete your objectives without buying any items"
@@ -121,7 +121,13 @@
 	qdel(Q)
 	desc += "[amount]"
 
+/datum/achievement/likearecord
+	name = "You spin me round"
+	desc = "Use the surgical drill to spin right round like a record baby"
+	id = 21
+	hidden = TRUE
+  
 /datum/achievement/ducatduke
 	name = "Duke of Ducats"
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
-	id = 21
+	id = 22
