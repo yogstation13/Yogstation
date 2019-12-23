@@ -644,7 +644,7 @@
 		log_combat(src, C, "CPRed")
 		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
 		// yogs start - can't CPR people with ash walker lungs whithout having them yourself
-		if(they_breathe && (they_ashlung? TRUE : FALSE) != (we_ashlung? TRUE : FALSE))
+		if(they_breathe && !!they_ashlung != !!we_ashlung)
 			C.adjustOxyLoss(10)
 			C.updatehealth()
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air enter your lungs... you feel worse...")
