@@ -1991,7 +1991,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/fore)
 "adJ" = (
@@ -2391,7 +2391,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/fore)
 "aer" = (
@@ -2478,7 +2478,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/fore)
 "aex" = (
@@ -3507,7 +3507,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "aga" = (
@@ -5171,7 +5171,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "aiN" = (
@@ -6373,7 +6373,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "akT" = (
@@ -7489,7 +7489,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "amX" = (
@@ -8793,7 +8793,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "ape" = (
@@ -12867,7 +12867,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/wardrobe/jani_wardrobe{
-	products = list(/obj/item/clothing/under/rank/janitor = 2,/obj/item/clothing/under/yogs/casualjanitorsuit = 2,/obj/item/clothing/suit/yogs/janitorcoat = 2,/obj/item/cartridge/janitor = 2,/obj/item/clothing/gloves/color/black = 2,/obj/item/clothing/head/soft/purple = 2,/obj/item/paint/paint_remover = 2,/obj/item/melee/flyswatter = 2,/obj/item/flashlight = 2,/obj/item/caution = 6,/obj/item/holosign_creator/janibarrier = 2,/obj/item/lightreplacer = 2,/obj/item/soap/nanotrasen = 2,/obj/item/storage/bag/trash = 2,/obj/item/clothing/shoes/galoshes = 2,/obj/item/watertank/janitor = 2,/obj/item/storage/belt/janitor = 2)
+	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13631,7 +13631,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/auxiliary)
 "awK" = (
@@ -13643,7 +13643,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/auxiliary)
 "awL" = (
@@ -13665,7 +13665,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/auxiliary)
 "awN" = (
@@ -13680,7 +13680,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/auxiliary)
 "awO" = (
@@ -20342,7 +20342,7 @@
 /area/maintenance/disposal/incinerator)
 "aGW" = (
 /obj/machinery/power/smes{
-	charge = 1000000
+	charge = 1e+006
 	},
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
@@ -23384,7 +23384,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/smes{
-	charge = 2000000
+	charge = 2e+006
 	},
 /obj/machinery/light/small,
 /obj/structure/cable/white{
@@ -23397,7 +23397,7 @@
 	pixel_x = 32
 	},
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -28268,7 +28268,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/engine/storage_shared)
 "aSM" = (
@@ -29273,7 +29273,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/engine/storage_shared)
 "aUj" = (
@@ -34040,7 +34040,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bbl" = (
@@ -35733,7 +35733,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bdB" = (
@@ -37186,7 +37186,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bfO" = (
@@ -38791,6 +38791,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bic" = (
+/obj/structure/cable/white,
+/obj/machinery/camera{
+	c_tag = "Armory - Interior";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/security/armory";
+	dir = 2;
+	name = "Armoury APC";
+	pixel_y = -26
+	},
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "bid" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -44109,24 +44129,35 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bpA" = (
-/obj/structure/cable/white,
-/obj/machinery/camera{
-	c_tag = "Armory - Interior";
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 32
 	},
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/machinery/power/apc{
-	areastring = "/area/ai_monitored/security/armory";
-	dir = 2;
-	name = "Armoury APC";
-	pixel_y = -26
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = -3;
+	pixel_y = 3
 	},
-/turf/open/floor/plasteel,
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
+/turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bpB" = (
 /obj/machinery/door/airlock/public/glass{
@@ -44722,7 +44753,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/fore)
 "bqu" = (
@@ -46632,7 +46663,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/engine/storage_shared)
 "btj" = (
@@ -48783,7 +48814,7 @@
 /area/ai_monitored/turret_protected/ai)
 "bwp" = (
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -52110,7 +52141,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
@@ -53174,7 +53205,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/hallway/primary/central)
 "bCh" = (
@@ -53602,7 +53633,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard)
 "bCM" = (
@@ -54154,7 +54185,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/hallway/primary/central)
 "bDy" = (
@@ -54297,7 +54328,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "bDN" = (
@@ -55160,7 +55191,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/restrooms)
 "bEP" = (
@@ -55693,7 +55724,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/vacant_room/commissary)
 "bFD" = (
@@ -56110,7 +56141,7 @@
 /obj/machinery/vending/tool,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/engine/storage_shared)
 "bGj" = (
@@ -56123,7 +56154,7 @@
 /obj/structure/closet/toolcloset,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/engine/storage_shared)
 "bGk" = (
@@ -56956,7 +56987,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "bHF" = (
@@ -57537,7 +57568,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard)
 "bIs" = (
@@ -59680,7 +59711,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "bLw" = (
@@ -59929,7 +59960,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bLP" = (
@@ -59943,7 +59974,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bLQ" = (
@@ -62472,7 +62503,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bPn" = (
@@ -62522,7 +62553,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/hallway/primary/central)
 "bPq" = (
@@ -62768,7 +62799,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/hallway/primary/central)
 "bPK" = (
@@ -63147,7 +63178,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bQt" = (
@@ -63363,7 +63394,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bQL" = (
@@ -63437,7 +63468,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bQR" = (
@@ -63470,7 +63501,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bQT" = (
@@ -63653,7 +63684,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bRh" = (
@@ -63951,7 +63982,7 @@
 /area/storage/primary)
 "bRA" = (
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -64040,7 +64071,7 @@
 	icon_state = "manifold-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "bRH" = (
@@ -64184,7 +64215,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bRV" = (
@@ -64641,7 +64672,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bSH" = (
@@ -65318,7 +65349,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bTE" = (
@@ -65977,7 +66008,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bUB" = (
@@ -66023,7 +66054,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bUF" = (
@@ -66421,7 +66452,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "bVj" = (
@@ -66950,7 +66981,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bVL" = (
@@ -67318,7 +67349,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "bWj" = (
@@ -68356,7 +68387,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "bXE" = (
@@ -68415,7 +68446,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "bXK" = (
@@ -68427,7 +68458,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "bXL" = (
@@ -68438,7 +68469,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "bXM" = (
@@ -68460,7 +68491,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "bXO" = (
@@ -68479,7 +68510,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "bXQ" = (
@@ -70977,7 +71008,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cbw" = (
@@ -71175,35 +71206,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"cbL" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 32
-	},
-/obj/structure/table/reinforced,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/mask/gas/sechailer,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "cbM" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -71459,7 +71461,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/power/smes/engineering{
-	charge = 2000000
+	charge = 2e+006
 	},
 /turf/open/floor/circuit/green,
 /area/engine/engineering)
@@ -71468,7 +71470,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/smes/engineering{
-	charge = 2000000
+	charge = 2e+006
 	},
 /turf/open/floor/circuit/green,
 /area/engine/engineering)
@@ -73213,7 +73215,7 @@
 /area/tcommsat/server)
 "ceD" = (
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/white,
 /obj/effect/turf_decal/tile/neutral{
@@ -74184,7 +74186,7 @@
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "cfY" = (
@@ -74304,7 +74306,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/dorms)
 "cgk" = (
@@ -75742,7 +75744,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/medical/storage)
 "cip" = (
@@ -77065,7 +77067,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "ckn" = (
@@ -78620,7 +78622,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/security/courtroom)
 "cmU" = (
@@ -81344,7 +81346,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cru" = (
@@ -82340,7 +82342,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "csV" = (
@@ -82921,7 +82923,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "ctU" = (
@@ -82940,7 +82942,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "ctV" = (
@@ -83090,7 +83092,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cui" = (
@@ -83149,7 +83151,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cun" = (
@@ -83193,7 +83195,7 @@
 	icon_state = "manifold-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cuq" = (
@@ -83777,7 +83779,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/science/misc_lab)
 "cvn" = (
@@ -84426,7 +84428,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "cwk" = (
@@ -85658,7 +85660,7 @@
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/medical/storage)
 "cyf" = (
@@ -85810,7 +85812,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cyp" = (
@@ -86009,7 +86011,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/aft)
 "cyG" = (
@@ -86026,7 +86028,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/aft)
 "cyH" = (
@@ -86086,7 +86088,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/aft)
 "cyL" = (
@@ -86104,7 +86106,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/aft)
 "cyM" = (
@@ -86192,7 +86194,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cyU" = (
@@ -86204,7 +86206,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cyV" = (
@@ -86300,7 +86302,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "czb" = (
@@ -87909,7 +87911,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/science/research)
 "cBB" = (
@@ -88098,7 +88100,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/science/research)
 "cBP" = (
@@ -88547,7 +88549,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/science/misc_lab)
 "cCv" = (
@@ -88841,7 +88843,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/vacant_room/commissary)
 "cCO" = (
@@ -88853,7 +88855,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cCP" = (
@@ -89436,7 +89438,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cDG" = (
@@ -91177,7 +91179,7 @@
 	name = "Replica CentCom officer's jumpsuit"
 	},
 /obj/item/clothing/head/centhat{
-	armor = list("melee" = 0,"bullet" = 0,"laser" = 0,"energy" = 0,"bomb" = 0,"bio" = 0,"rad" = 0);
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0);
 	desc = "A replica hat of a Central Commander's attire. It has a small tag on it saying, 'It's good to be emperor.'";
 	name = "Replica CentCom hat"
 	},
@@ -91253,7 +91255,7 @@
 /obj/item/folder/red,
 /obj/item/toy/gun,
 /obj/item/clothing/head/beret/sec{
-	armor = list("melee" = 0,"bullet" = 0,"laser" = 0,"energy" = 0,"bomb" = 0,"bio" = 0,"rad" = 0);
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0);
 	desc = "A replica beret resembling that of a special operations officer under Nanotrasen.";
 	name = "replica officer's beret"
 	},
@@ -91476,7 +91478,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/restrooms)
 "cGK" = (
@@ -91689,7 +91691,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cGX" = (
@@ -91702,7 +91704,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cGY" = (
@@ -92541,7 +92543,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/science/research)
 "cIl" = (
@@ -93025,7 +93027,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cIW" = (
@@ -93589,7 +93591,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cJL" = (
@@ -94829,7 +94831,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "cLp" = (
@@ -95239,7 +95241,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cLN" = (
@@ -96041,7 +96043,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "cMK" = (
@@ -96111,7 +96113,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cMR" = (
@@ -96194,7 +96196,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cMW" = (
@@ -96612,7 +96614,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cNH" = (
@@ -97286,7 +97288,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "cOI" = (
@@ -97735,7 +97737,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/starboard/aft)
 "cPA" = (
@@ -100324,7 +100326,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/medical/storage)
 "cSX" = (
@@ -101139,7 +101141,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUk" = (
@@ -101233,7 +101235,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUq" = (
@@ -101255,7 +101257,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUr" = (
@@ -101298,7 +101300,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUt" = (
@@ -101320,7 +101322,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUu" = (
@@ -101343,7 +101345,7 @@
 	icon_state = "manifold-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUv" = (
@@ -101374,7 +101376,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "cUx" = (
@@ -101670,7 +101672,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/medical/storage)
 "cUP" = (
@@ -107862,7 +107864,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "ddx" = (
@@ -108147,7 +108149,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "ddP" = (
@@ -110154,7 +110156,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/restrooms)
 "dgH" = (
@@ -110170,7 +110172,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/restrooms)
 "dgI" = (
@@ -110189,7 +110191,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/toilet/restrooms)
 "dgJ" = (
@@ -110450,7 +110452,7 @@
 	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "dha" = (
@@ -110462,7 +110464,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/locker)
 "dhb" = (
@@ -111070,7 +111072,7 @@
 	icon_state = "pipe11-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "dhT" = (
@@ -111090,7 +111092,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/fitness/recreation)
 "dhU" = (
@@ -111268,7 +111270,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "dif" = (
@@ -112377,7 +112379,7 @@
 	icon_state = "vent_map_on-1"
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/chief)
 "djy" = (
@@ -119670,7 +119672,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dvM" = (
@@ -120227,7 +120229,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dyE" = (
@@ -120734,7 +120736,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dAk" = (
@@ -121114,7 +121116,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dBn" = (
@@ -121495,7 +121497,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dDb" = (
@@ -121815,7 +121817,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/crew_quarters/heads/cmo)
 "dEe" = (
@@ -121891,7 +121893,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port)
 "dEq" = (
@@ -123596,7 +123598,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "dLT" = (
@@ -123957,7 +123959,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "dOo" = (
@@ -124073,7 +124075,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "dOT" = (
@@ -124274,7 +124276,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel{
-	heat_capacity = 1000000
+	heat_capacity = 1e+006
 	},
 /area/maintenance/port/aft)
 "dPI" = (
@@ -184281,7 +184283,7 @@ bRv
 bRv
 bXQ
 bZX
-bpA
+bic
 bLs
 cfq
 chf
@@ -184538,7 +184540,7 @@ bTk
 bVr
 bXR
 bZY
-cbL
+bpA
 bLs
 cfr
 chg
