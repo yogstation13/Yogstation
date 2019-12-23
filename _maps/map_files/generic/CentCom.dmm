@@ -18478,6 +18478,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"NI" = (
+/obj/structure/closet/lasertag/red,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "NJ" = (
 /obj/structure/table,
 /obj/item/book/manual/hydroponics_pod_people,
@@ -19170,6 +19174,13 @@
 /obj/machinery/autolathe,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"PM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/lasertag/blue,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "PO" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -19226,6 +19237,7 @@
 /area/centcom/supplypod/loading/three)
 "PX" = (
 /obj/machinery/computer/arcade/battle,
+/obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "PY" = (
@@ -19565,6 +19577,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"QP" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "QQ" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/leaper_sludge,
@@ -20652,6 +20668,10 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
+"Ul" = (
+/obj/structure/closet/lasertag/blue,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "Um" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/shovel/spade,
@@ -46902,7 +46922,7 @@ XM
 NT
 UV
 CV
-Xk
+Ul
 NT
 CT
 oV
@@ -47159,7 +47179,7 @@ Tn
 NT
 Zs
 Xk
-Xk
+NI
 NT
 Xk
 Xk
@@ -47416,7 +47436,7 @@ GY
 NT
 UV
 CV
-Xk
+Ul
 NT
 Xk
 PF
@@ -47671,7 +47691,7 @@ Xk
 Tu
 Vu
 Nd
-Gs
+PM
 Xk
 Xk
 WY
@@ -47930,7 +47950,7 @@ XM
 NT
 PX
 CV
-Xk
+Ul
 NT
 Xk
 PF
@@ -48187,7 +48207,7 @@ Tn
 NT
 Ms
 Xk
-Xk
+NI
 NT
 Xk
 Xk
@@ -48444,7 +48464,7 @@ GY
 NT
 Ym
 CV
-Xk
+Ul
 NT
 Dj
 Qu
@@ -51012,8 +51032,8 @@ Xk
 Xk
 XM
 NT
-Xk
-Xk
+QP
+CV
 Xk
 NT
 Yq
@@ -51269,7 +51289,7 @@ Xk
 Xk
 Tn
 NT
-Xk
+NI
 Xk
 Xk
 MK
@@ -51526,9 +51546,9 @@ Xk
 Xk
 GY
 NT
-Xk
-Xk
-Xk
+QP
+CV
+NI
 NT
 vt
 Mx
