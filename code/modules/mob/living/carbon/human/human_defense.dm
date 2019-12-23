@@ -443,7 +443,7 @@
 			damage_clothes(max(50 - bomb_armor, 0), BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			Unconscious(160 - (bomb_armor * 1.6))	//100 bomb armor prevents knockdown entirely
+			Knockdown(160 - (bomb_armor * 1.6))	//100 bomb armor prevents knockdown entirely
 
 	take_overall_damage(brute_loss,burn_loss)
 
