@@ -20593,7 +20593,9 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
 "TY" = (
-/obj/effect/immovablerod/duck,
+/obj/effect/immovablerod/duck{
+	notdebris = 1
+	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "Ub" = (
