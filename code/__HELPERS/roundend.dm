@@ -192,6 +192,9 @@
 	//Set news report and mode result
 	mode.set_round_result()
 
+	// Check whether the cargo king achievement was achieved
+	cargoking()
+
 	send2irc("Server", "Round just ended.")
 
 	if(length(CONFIG_GET(keyed_list/cross_server)))
@@ -590,3 +593,25 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+/datum/controller/subsystem/ticker/proc/cargoking()
+	var/datum/achievement/cargoking/CK = SSachievements.get_achievement(/datum/achievement/cargoking)
+	var/cargoking = FALSE
+	var/ducatduke = FALSE
+	if(SSshuttle.points > 1000000)//Why is the cargo budget on SSshuttle instead of SSeconomy :thinking:
+		ducatduke = TRUE
+		if(SSshuttle.points > CK.amount)
+			cargoking = TRUE
+	var/hasQM = FALSE //we only wanna update the record if there's a QM
+	for(var/mob/M in GLOB.player_list)
+		if(M.mind && M.mind.assigned_role && M.mind.assigned_role == "Quartermaster")
+			if(ducatduke)
+				SSachievements.unlock_achievement(/datum/achievement/ducatduke, M.client)
+				if(cargoking)
+					SSachievements.unlock_achievement(/datum/achievement/cargoking, M.client)
+			hasQM = TRUE //there might be more than one QM, so we do the DB stuff outside of the loop
+	if(hasQM && cargoking)
+		var/datum/DBQuery/Q = SSdbcore.New("UPDATE [format_table_name("misc")] SET value = '[SSshuttle.points]' WHERE key = 'cargorecord'")
+		Q.Execute()
+		qdel(Q)
+

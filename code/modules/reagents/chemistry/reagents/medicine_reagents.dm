@@ -841,8 +841,8 @@
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
 			sleep(100) //so the ghost has time to re-enter
-			var/mob/living/carbon/H = M
-			if(H)
+			if(iscarbon(M))
+				var/mob/living/carbon/H = M
 				for(var/organ in H.internal_organs)
 					var/obj/item/organ/O = organ
 					O.setOrganDamage(0)

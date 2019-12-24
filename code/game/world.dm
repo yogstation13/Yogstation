@@ -2,10 +2,15 @@
 
 GLOBAL_VAR(restart_counter)
 
+/world/proc/enable_debugger()
+    var/dll = world.GetConfig("env", "EXTOOLS_DLL") || (fexists("./extools.dll") && "./extools.dll")
+    if (dll)
+        call(dll, "debug_initialize")()
+
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-
+	enable_debugger() //This does nothing if you aren't trying to debug
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()
