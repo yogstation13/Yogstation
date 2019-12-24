@@ -47050,6 +47050,14 @@
 "bQg" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"bQh" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Firefighting equipment";
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "bQi" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -49602,18 +49610,6 @@
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
-"cfv" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Firefighting equipment";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "cfw" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/port/aft)
@@ -86080,15 +86076,15 @@ bCq
 pew
 bqD
 bCq
-bWC
-bWC
+aaa
 gXs
-bWC
-bWC
-bWC
-bWC
-bWC
-bWC
+aaa
+aaa
+gXs
+gXs
+aaa
+gXs
+aaa
 bPr
 cay
 ccw
@@ -86337,7 +86333,7 @@ bCq
 bCq
 bqD
 bCq
-bWC
+aaa
 btG
 btG
 btG
@@ -86345,7 +86341,7 @@ btG
 btG
 btG
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -86594,7 +86590,7 @@ bGq
 bGq
 bww
 bPr
-bWC
+aaa
 btG
 bgN
 bZo
@@ -86859,7 +86855,7 @@ big
 bii
 bgN
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87108,7 +87104,7 @@ cCf
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 bYz
 big
@@ -87116,7 +87112,7 @@ bgN
 bkZ
 eGt
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87365,7 +87361,7 @@ gWd
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 bgN
 bii
@@ -87630,7 +87626,7 @@ bzk
 cbn
 aGa
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87879,7 +87875,7 @@ nxv
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 iaS
 ess
@@ -87887,7 +87883,7 @@ bzR
 pGU
 bOC
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -88136,7 +88132,7 @@ aEY
 bNI
 bHE
 bCq
-bWC
+aaa
 btG
 bPQ
 bxP
@@ -88401,7 +88397,7 @@ aRT
 bMM
 aGd
 btG
-bWC
+aaa
 bCq
 cay
 ccw
@@ -111789,7 +111785,7 @@ cNW
 ccV
 cOe
 cOe
-cfv
+bQh
 cBL
 cOe
 cNW
@@ -115626,7 +115622,7 @@ aaa
 aaf
 aaa
 aaf
-aae
+aoV
 aaa
 aaa
 aaa
