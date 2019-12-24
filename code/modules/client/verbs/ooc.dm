@@ -118,7 +118,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			oocmsg = "<span class='ooc'>\[Mentor]"
 			oocmsg += "<font color='[prefs.ooccolor]'>"
 		else
-			oocmsg = "<span class='ooc'>[is_donator(src) ? "(Donator)" : ""]"
+			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
 			oocmsg += "<font color='[bussedcolor]'>"
 		oocmsg += "<span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></font></span>"
 		oocmsg_toadmins = oocmsg
