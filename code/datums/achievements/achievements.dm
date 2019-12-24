@@ -24,7 +24,7 @@
 	desc = "Emag a Particle Accelerator"
 	id = 4
 	hidden = TRUE
-  
+
 /datum/achievement/flukeops
 	name = "Reverse Card"
 	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
@@ -40,7 +40,7 @@
 	desc = "Kill yourself using the nuclear authentication disk"
 	id = 7
 	hidden = TRUE
-
+  
 /datum/achievement/badass
 	name = "Badass Syndie"
 	desc = "As a traitor, complete your objectives without buying any items"
@@ -93,3 +93,41 @@
 	desc = "Get cremated... alive"
 	id = 17
 	hidden = TRUE
+
+/datum/achievement/Poly_silent
+	name = "Silence Bird!"
+	desc = "As a signal technician create a script that mutes poly"
+	id = 18
+	hidden = TRUE
+
+/datum/achievement/Poly_loud
+	name = "Embrace The Bird!"
+	desc = "As a signal technician create a script that makes poly LOUD"
+	id = 19
+	hidden = TRUE
+  
+/datum/achievement/cargoking
+	name = "King of Credits"
+	desc = "As the QM, beat the current record of cargo credits: " //theoretically, if someone manages to get to an amount that's larger than 1992 digits, this'd break DB things
+	id = 20
+	var/amount = 0
+
+/datum/achievement/cargoking/New()
+	.=..()
+	var/datum/DBQuery/Q = SSdbcore.NewQuery("SELECT value FROM [format_table_name("misc")] WHERE key = 'cargorecord'")
+	Q.Execute()
+	if(Q.item.len)
+		amount = Q.item[1]
+	qdel(Q)
+	desc += "[amount]"
+
+/datum/achievement/likearecord
+	name = "You spin me round"
+	desc = "Use the surgical drill to spin right round like a record baby"
+	id = 21
+	hidden = TRUE
+  
+/datum/achievement/ducatduke
+	name = "Duke of Ducats"
+	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
+	id = 22

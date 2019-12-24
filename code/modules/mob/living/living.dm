@@ -642,7 +642,7 @@
 	if(buckled)
 		return
 	if(client && client.move_delay >= world.time + world.tick_lag*2)
-		pressure_resistance_prob_delta -= 30
+		pressure_resistance_prob_delta -= 10
 
 	var/list/turfs_to_check = list()
 
@@ -658,11 +658,11 @@
 		for(var/t in turfs_to_check)
 			T = t
 			if(T.density)
-				pressure_resistance_prob_delta -= 20
+				pressure_resistance_prob_delta -= 5
 				continue
 			for (var/atom/movable/AM in T)
 				if (AM.density && AM.anchored)
-					pressure_resistance_prob_delta -= 20
+					pressure_resistance_prob_delta -= 5
 					break
 	if(!force_moving)
 		..(pressure_difference, direction, pressure_resistance_prob_delta)

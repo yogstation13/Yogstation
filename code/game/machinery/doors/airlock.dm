@@ -90,7 +90,6 @@
 	var/shuttledocked = 0
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
 
-	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
 	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
 	var/list/shocking_log //yogs - who electrified this door.
