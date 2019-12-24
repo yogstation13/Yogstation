@@ -40,7 +40,9 @@
 	dat += "<br>[temp]<br>"
 	dat += "<br>Power Status: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
 	if(on && toggled)
-		if(id != "" && id)
+		if(obj_flags & EMAGGED)
+			dat += "<br><font color = #AA0000>[Gibberish("Identification String: NULL",100)]</font>"
+		else if(id != "" && id)
 			dat += "<br>Identification String: <a href='?src=[REF(src)];input=id'>[id]</a>"
 		else
 			dat += "<br>Identification String: <a href='?src=[REF(src)];input=id'>NULL</a>"
@@ -53,6 +55,8 @@
 		dat += Options_Menu()
 
 		dat += "<br>Linked Network Entities: <ol>"
+		if(obj_flags & EMAGGED)
+			dat += "<li><font color = #000AA0>[Gibberish("NULL NULL (NULL)",100)]</font></li>"
 
 		var/i = 0
 		for(var/obj/machinery/telecomms/T in links)
@@ -63,6 +67,9 @@
 		dat += "</ol>"
 
 		dat += "<br>Filtering Frequencies: "
+
+		if(obj_flags & EMAGGED)
+			dat += "<li><font color = #357353>[Gibberish("357353 GHz",100)]</font></li>"
 
 		i = 0
 		if(length(freq_listening))
@@ -80,6 +87,8 @@
 
 		if(P)
 			var/obj/machinery/telecomms/T = P.buffer
+			if(obj_flags & EMAGGED)
+				dat += "<br><font color = #3C438B>[Gibberish("MULTITOOL BUFFER: NULL (NULL)",100)]</font>"
 			if(istype(T))
 				dat += "<br><br>MULTITOOL BUFFER: [T] ([T.id]) <a href='?src=[REF(src)];link=1'>\[Link\]</a> <a href='?src=[REF(src)];flush=1'>\[Flush\]"
 			else
@@ -157,6 +166,22 @@
 				change_frequency = 0
 				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
 
+/obj/machinery/telecomms/processor/Options_Menu()
+	var/dat = ""
+	if(obj_flags & EMAGGED)
+		dat = "<br>Compressing signa;: <A href='?src=[REF(src)];proc_mode=0'>[process_mode ? "YES" : "NO"]</a>"
+	return dat
+
+/obj/machinery/telecomms/processor/Options_Topic(href, href_list)
+	if(obj_flags & EMAGGED)
+		if(href_list["proc_mode"])
+			if(canAccess(usr))
+				if(process_mode == 1)
+					process_mode = 0
+					temp = "<font color = #666633>-% Compressing Signal activated %-</font>"
+				else
+					process_mode = 1
+					temp = "<font color = #666633>-% Signal Compression halted %-</font>"
 
 /obj/machinery/telecomms/Topic(href, href_list)
 	if(..())
@@ -174,7 +199,7 @@
 			if("toggle")
 
 				toggled = !toggled
-				temp = "<font color = #666633>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
+				temp = "<font color = #666633> [src] has been [toggled ? "activated" : "deactivated"].</font>"
 				update_power()
 
 

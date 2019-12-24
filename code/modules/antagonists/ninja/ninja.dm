@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(ninja_capture)
+
 /datum/antagonist/ninja
 	name = "Ninja"
 	antagpanel_category = "Ninja"
@@ -15,10 +17,16 @@
 
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
 	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	for(var/obj/item/implant/explosive/E in M.implants)
+		if(E)
+			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
@@ -124,6 +132,24 @@
 	if(give_equipment)
 		equip_space_ninja(owner.current)
 	. = ..()
+
+/datum/antagonist/ninja/proc/on_death()
+	for(var/mob/L in GLOB.ninja_capture)
+		if(get_area(L) == GLOB.areas_by_type[/area/centcom/holding])
+			if(!L)
+				continue
+			var/atom/movable/target = L
+			if(isobj(L.loc))
+				target = L.loc
+			target.forceMove(get_turf(pick(GLOB.generic_event_spawns)))
+			if(isliving(L))
+				var/mob/living/LI = L
+				LI.Knockdown(120)
+				LI.blind_eyes(10)
+				to_chat(L, "<span class='danger'>You lose your footing as the dojo suddenly disappears. You're free!</span>")
+				playsound(L, 'sound/effects/phasein.ogg', 25, 1)
+				playsound(L, 'sound/effects/sparks2.ogg', 50, 1)
+		GLOB.ninja_capture -= L
 
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	var/adj
