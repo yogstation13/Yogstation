@@ -642,7 +642,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		"name" = "[owner]",
 		"job" = "[ownjob]",
 		"message" = message,
-		"language" = user.get_default_language(),
+		"language" = user.get_selected_language(),
 		"targets" = string_targets
 	))
 	if (picture)

@@ -574,5 +574,5 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)

@@ -192,7 +192,7 @@
 			if(!A.mutable)
 				return
 			if(A)
-				var/new_name = sanitize_name(html_encode(params["name"]))
+				var/new_name = html_encode(params["name"])
 				if(!new_name || ..())
 					return
 				A.AssignName(new_name)
