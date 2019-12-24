@@ -43,15 +43,17 @@
 	GT.master = user
 	var/datum/objective/greytide/new_objective = new /datum/objective/greytide
 	GT.objectives += new_objective
-	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers!"
+	new_objective.explanation_text = "Never betray [holder.real_name] or abandon your assistant brothers! Remember not to harm other's "
 	ADD_TRAIT(target, TRAIT_PACIFISM, "Greytide Implant")
 
+	message_admins("[target.ckey] was implanted by with greytide implant ")
 	log_game("[holder.ckey] enslaved [target.ckey] with a greytide implant")
 
 	return ..()
 
 /obj/item/implant/greytide/removed(mob/source)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/greytide))
 		source.mind.remove_antag_datum(/datum/antagonist/greytide)
@@ -64,5 +66,5 @@
 	name = "implanter (greytide)"
 
 /obj/item/implanter/greytide/Initialize()
-	imp = new /obj/item/implant/greytide(src)
 	..()
+	imp = new /obj/item/implant/greytide(src)

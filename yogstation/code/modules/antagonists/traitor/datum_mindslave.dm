@@ -19,7 +19,6 @@
 	job_rank = ROLE_TRAITOR
 	show_in_antagpanel = FALSE
 	antag_moodlet = /datum/mood_event/focused
-	can_hijack = FALSE
 	var/mob/living/carbon/master // I think I need to keep this for log purposes
 
 /datum/objective/greytide
