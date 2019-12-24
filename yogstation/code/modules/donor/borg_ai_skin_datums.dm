@@ -211,10 +211,10 @@
 	module_locked = "Engineering"
 
 /datum/borg_skin/gutsy
-	name = "Mr Gutsy (standard)"
+	name = "Mr Gutsy (universal)"
 	icon_state = "gutsy_standard"
 	owner = null
-	module_locked = "Standard"
+	module_locked = null
 
 /datum/borg_skin/gutsy_med
 	name = "Mr Gutsy (medical)"

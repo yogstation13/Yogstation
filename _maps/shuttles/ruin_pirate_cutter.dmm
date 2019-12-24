@@ -64,35 +64,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"ei" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "eL" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 10;
 	faction = list("pirate")
 	},
 /turf/closed/wall/mineral/plastitanium,
-/area/shuttle/caravan/pirate)
-"fa" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "fh" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -304,12 +281,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
 "mI" = (
@@ -343,17 +314,6 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
-/area/shuttle/caravan/pirate)
-"nO" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "oe" = (
 /obj/structure/table,
@@ -531,12 +491,6 @@
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "to" = (
@@ -643,20 +597,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"xf" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "xg" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -728,10 +668,6 @@
 /obj/machinery/door/airlock/external{
 	id_tag = "caravanpirate_bolt_starboard"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "Av" = (
@@ -743,12 +679,6 @@
 	name = "Medbay"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
 "AP" = (
@@ -904,12 +834,6 @@
 	name = "Armory"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/caravan/pirate)
 "II" = (
@@ -931,16 +855,12 @@
 	dwidth = 14;
 	height = 13;
 	id = "caravanpirate";
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Pirate Cutter";
 	port_direction = 8;
 	preferred_direction = 4;
 	width = 22
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "Jv" = (
@@ -965,10 +885,6 @@
 /obj/machinery/door/airlock/external{
 	id_tag = "caravanpirate_bolt_starboard"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "Ld" = (
@@ -1004,15 +920,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/pirate)
-"Ok" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/caravan/pirate)
 "Pc" = (
 /obj/structure/sign/departments/engineering,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -1022,20 +929,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/caravan/pirate)
-"PG" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "caravanpirate_bridge"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "Rq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1053,10 +946,6 @@
 /obj/machinery/door/airlock/external{
 	id_tag = "caravanpirate_bolt_port"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/caravan/pirate)
 "RC" = (
@@ -1073,7 +962,7 @@
 /area/shuttle/caravan/pirate)
 "RK" = (
 /obj/machinery/power/smes{
-	charge = 5000000
+	charge = 5e+006
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -1330,7 +1219,7 @@ oL
 "}
 (10,1,1) = {"
 Jv
-Ok
+Bi
 Ld
 nD
 bH
@@ -1340,7 +1229,7 @@ iX
 vd
 GQ
 Ld
-nO
+Bi
 Jv
 "}
 (11,1,1) = {"
@@ -1483,11 +1372,11 @@ Jv
 Jv
 Jv
 Jv
-Ok
+Bi
 oO
 EB
 bd
-nO
+Bi
 Jv
 Jv
 Jv
@@ -1499,9 +1388,9 @@ Jv
 Jv
 Jv
 Bi
-fa
+Bi
 fL
-PG
+Bi
 Bi
 Jv
 Jv
@@ -1514,9 +1403,9 @@ Jv
 Jv
 Jv
 Jv
-ei
-xf
-ei
+Bi
+Bi
+Bi
 Jv
 Jv
 Jv

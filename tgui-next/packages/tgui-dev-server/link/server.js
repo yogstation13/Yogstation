@@ -68,6 +68,7 @@ const handleLinkMessage = msg => {
 
 // WebSocket-based client link
 const setupWebSocketLink = () => {
+  const logger = createLogger('link');
   const port = 3000;
   const wss = new WebSocket.Server({ port });
 
@@ -90,6 +91,7 @@ const setupWebSocketLink = () => {
 
 // One way HTTP-based client link for IE8
 const setupHttpLink = () => {
+  const logger = createLogger('link');
   const port = 3001;
 
   const server = http.createServer((req, res) => {

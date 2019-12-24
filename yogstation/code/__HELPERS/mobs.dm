@@ -22,9 +22,6 @@
 	if(is_admin(user))
 		return TRUE
 
-	if(CONFIG_GET(flag/everyone_is_donator))
-		return TRUE
-
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client)

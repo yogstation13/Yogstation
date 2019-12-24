@@ -4,21 +4,12 @@
 /area/shuttle/escape)
 "b" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "c" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock";
 	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -73,12 +64,6 @@
 	name = "Secure Transport Vessel 5";
 	width = 14
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "l" = (
@@ -111,12 +96,6 @@
 "q" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -162,69 +141,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"z" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"D" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"J" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"K" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"L" = (
-/obj/structure/closet/crate/secure/loot,
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"M" = (
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"N" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Q" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 8;
-	name = "8maintenance loot spawner"
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"X" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 
 (1,1,1) = {"
 a
@@ -232,9 +148,9 @@ c
 a
 k
 a
-X
-X
-X
+b
+b
+b
 a
 q
 a
@@ -247,11 +163,11 @@ b
 d
 g
 l
-K
 n
 n
 n
-D
+n
+n
 l
 s
 l
@@ -263,11 +179,11 @@ b
 e
 h
 l
-J
 l
 l
 l
-M
+l
+l
 l
 l
 l
@@ -279,11 +195,11 @@ b
 f
 i
 v
-Q
 o
-N
+o
+o
 p
-L
+p
 r
 w
 m
@@ -296,9 +212,9 @@ a
 j
 a
 a
-z
-z
-z
+b
+b
+b
 a
 a
 a

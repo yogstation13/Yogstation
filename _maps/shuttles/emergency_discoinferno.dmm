@@ -83,10 +83,6 @@
 /obj/machinery/door/airlock/gold{
 	req_access_txt = "19"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape)
 "q" = (
@@ -114,12 +110,6 @@
 	heat_proof = 1;
 	resistance_flags = 2
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/plasma,
 /area/shuttle/escape)
 "v" = (
@@ -128,12 +118,6 @@
 /area/shuttle/escape)
 "w" = (
 /obj/machinery/door/airlock/gold,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "x" = (
@@ -236,35 +220,6 @@
 "O" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
-"P" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/shuttle/escape)
-"Q" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/shuttle/escape)
-"V" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/shuttle/escape)
-"W" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/plasma,
-/area/shuttle/escape)
-"Y" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 
 (1,1,1) = {"
 a
@@ -274,19 +229,19 @@ a
 b
 b
 b
-P
+c
 b
 u
 b
-P
-P
-P
+c
+c
+c
 b
 O
 b
 w
 b
-P
+c
 b
 a
 "}
@@ -339,7 +294,7 @@ M
 N
 "}
 (4,1,1) = {"
-V
+c
 d
 i
 i
@@ -358,12 +313,12 @@ r
 c
 x
 x
-Y
+x
 M
 N
 "}
 (5,1,1) = {"
-V
+c
 e
 j
 j
@@ -387,7 +342,7 @@ M
 N
 "}
 (6,1,1) = {"
-V
+c
 f
 j
 n
@@ -411,7 +366,7 @@ M
 N
 "}
 (7,1,1) = {"
-V
+c
 e
 j
 j
@@ -435,7 +390,7 @@ M
 N
 "}
 (8,1,1) = {"
-V
+c
 g
 k
 k
@@ -474,7 +429,7 @@ s
 r
 r
 r
-W
+r
 c
 A
 x
@@ -514,19 +469,19 @@ a
 b
 b
 b
-Q
+c
 b
 b
 b
-Q
-Q
-Q
+c
+c
+c
 b
 b
 b
-Q
+c
 b
-Q
+c
 b
 a
 "}

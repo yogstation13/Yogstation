@@ -400,15 +400,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aG" = (
@@ -499,12 +490,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "aP" = (
@@ -548,10 +533,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aW" = (
@@ -563,15 +544,9 @@
 	dwidth = 11;
 	height = 18;
 	name = "Delta emergency shuttle";
-	port_direction = 4;
+	width = 30;
 	preferred_direction = 2;
-	width = 30
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
+	port_direction = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -716,12 +691,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bl" = (
@@ -793,10 +762,6 @@
 	name = "Holding Area";
 	req_access_txt = "2"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bu" = (
@@ -807,10 +772,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bv" = (
@@ -819,12 +780,6 @@
 	req_access_txt = "2"
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -906,7 +861,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bH" = (
@@ -938,12 +892,6 @@
 	name = "Emergency Recovery Airlock"
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -981,7 +929,6 @@
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/neutral,
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bR" = (
@@ -991,10 +938,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bS" = (
@@ -1046,12 +989,6 @@
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -1427,7 +1364,6 @@
 /area/shuttle/escape)
 "cC" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "cF" = (
@@ -1446,211 +1382,9 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"dO" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"fE" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"gu" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
 "hB" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"jn" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"kW" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"lx" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"pT" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"ql" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"xA" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Fk" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Gb" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"HJ" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Iy" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Jj" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"JZ" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"KT" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"OE" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"Ru" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"Rx" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -1659,17 +1393,17 @@ ac
 ae
 af
 af
-Gb
-Gb
+hB
+hB
 af
 af
 aO
 aT
 aW
 af
-Gb
-Gb
-Gb
+hB
+hB
+hB
 af
 aO
 af
@@ -1690,17 +1424,17 @@ ad
 af
 ah
 cA
-ql
+av
 av
 aH
 an
-kW
+aE
 aU
-HJ
+aE
 an
 av
 av
-fE
+av
 cA
 aE
 af
@@ -1721,17 +1455,17 @@ ad
 hB
 ai
 ao
-jn
 ao
 ao
 ao
-Jj
-ao
-jn
 ao
 ao
 ao
-Jj
+ao
+ao
+ao
+ao
+ao
 ao
 bo
 bt
@@ -1752,17 +1486,17 @@ ad
 hB
 ai
 ao
-Iy
 aw
 aw
 aw
-lx
+aw
+aw
 ao
-Iy
 aw
 aw
 aw
-lx
+aw
+aw
 ao
 bo
 af
@@ -1781,21 +1515,21 @@ aa
 ac
 ac
 af
-dO
-KT
+ai
+ao
 ax
 aC
 aI
 aK
 ax
-KT
+ao
 aX
 aK
 be
 aD
 aX
-KT
-Rx
+ao
+bo
 hB
 bx
 bw
@@ -1814,17 +1548,17 @@ ad
 af
 cy
 ao
-ql
 av
 av
 av
-fE
+av
+av
 ao
-ql
 av
 av
 av
-fE
+av
+av
 ao
 bo
 af
@@ -1845,22 +1579,22 @@ ad
 hB
 ai
 ao
-jn
 ao
 ao
 ao
-Jj
-ao
-jn
 ao
 ao
 ao
-Jj
+ao
+ao
+ao
+ao
+ao
 ao
 bp
 af
 af
-Ru
+bt
 hB
 aT
 af
@@ -1868,7 +1602,7 @@ cb
 cf
 cf
 cr
-JZ
+hB
 "}
 (8,1,1) = {"
 ac
@@ -1876,17 +1610,17 @@ ac
 af
 cy
 ao
-Iy
 aw
 aw
 aw
-lx
+aw
+aw
 ao
-Iy
 aw
 aw
 aw
-lx
+aw
+aw
 ao
 bo
 hB
@@ -1899,27 +1633,27 @@ cc
 cc
 cl
 cs
-JZ
+hB
 "}
 (9,1,1) = {"
 ab
 ad
 hB
-xA
-gu
+ai
+ao
 ax
 aD
 aI
 aK
 ax
-gu
+ao
 aX
 aC
 be
 bj
 aX
-gu
-OE
+ao
+bo
 bu
 ai
 ao
@@ -1930,7 +1664,7 @@ cc
 cc
 cm
 ct
-JZ
+hB
 "}
 (10,1,1) = {"
 ab
@@ -1938,17 +1672,17 @@ ad
 hB
 ai
 ao
-ql
 av
 av
 av
-fE
+av
+av
 ao
-ql
 av
 av
 av
-fE
+av
+av
 ao
 bo
 bu
@@ -1961,7 +1695,7 @@ cc
 cc
 cn
 cu
-JZ
+hB
 "}
 (11,1,1) = {"
 ac
@@ -1969,17 +1703,17 @@ ac
 af
 ai
 ao
-jn
 ao
 ao
 ao
-Jj
-ao
-jn
 ao
 ao
 ao
-Jj
+ao
+ao
+ao
+ao
+ao
 ao
 bo
 hB
@@ -1992,7 +1726,7 @@ cc
 cg
 cl
 cv
-JZ
+hB
 "}
 (12,1,1) = {"
 ab
@@ -2000,17 +1734,17 @@ ad
 hB
 ah
 ap
-Iy
+aw
 aE
 aE
 aw
-lx
+aw
 cB
-Iy
+aw
 aw
 aw
 aE
-kW
+aE
 ap
 ah
 af
@@ -2023,7 +1757,7 @@ cb
 ch
 ch
 cw
-JZ
+hB
 "}
 (13,1,1) = {"
 ab
@@ -2033,7 +1767,7 @@ af
 aq
 ag
 aF
-Fk
+aF
 ag
 aP
 af
@@ -2185,25 +1919,25 @@ aa
 ac
 ae
 af
-pT
-pT
-pT
-pT
+hB
+hB
+hB
+hB
 af
 af
 aT
 af
-pT
-pT
-pT
-pT
-pT
+hB
+hB
+hB
+hB
+hB
 af
 af
-pT
+hB
 bL
 bL
-pT
+hB
 af
 aa
 aa

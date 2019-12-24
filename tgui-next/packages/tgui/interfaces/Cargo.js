@@ -301,13 +301,15 @@ export const CargoExpress = props => {
   const { config, data } = state;
   const { ref } = config;
   const supplies = data.supplies || {};
+
   return (
     <Fragment>
       <InterfaceLockNoticeBox
         siliconUser={data.siliconUser}
         locked={data.locked}
         onLockStatusChange={() => act(ref, 'lock')}
-        accessText="a QM-level ID card" />
+        accessText="a QM-level ID card"
+      />
       {!data.locked &&(
         <Fragment>
           <Section
@@ -322,17 +324,19 @@ export const CargoExpress = props => {
                 <Button
                   content="Cargo Bay"
                   selected={!data.usingBeacon}
-                  onClick={() => act(ref, 'LZCargo')} />
+                  onClick={() => act(ref, 'LZCargo')}
+                />
                 <Button
+                  content={(<Fragment>{data.beaconzone} ({data.beaconName})</Fragment>)}
                   selected={data.usingBeacon}
                   disabled={!data.hasBeacon}
-                  onClick={() => act(ref, 'LZBeacon')}>
-                  {data.beaconzone} ({data.beaconName})
-                </Button>
+                  onClick={() => act(ref, 'LZBeacon')}
+                />
                 <Button
                   content={data.printMsg}
                   disabled={!data.canBuyBeacon}
-                  onClick={() => act(ref, 'printBeacon')} />
+                  onClick={() => act(ref, 'printBeacon')}
+                />
               </LabeledList.Item>
               <LabeledList.Item label="Notice">
                 {data.message}

@@ -9,17 +9,10 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "d" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "e" = (
@@ -83,23 +76,11 @@
 	id = "arrivy";
 	name = "ship shutters"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "n" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
@@ -161,11 +142,6 @@
 "C" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
-"V" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -221,7 +197,7 @@ h
 o
 o
 f
-V
+d
 "}
 (8,1,1) = {"
 d
@@ -229,7 +205,7 @@ i
 C
 C
 f
-V
+d
 "}
 (9,1,1) = {"
 d
@@ -237,7 +213,7 @@ f
 o
 o
 f
-V
+d
 "}
 (10,1,1) = {"
 b

@@ -20,15 +20,6 @@
 "d" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
-"e" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "f" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
@@ -37,10 +28,6 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "h" = (
@@ -54,31 +41,7 @@
 	name = "NES Port";
 	width = 19
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"i" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"j" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"k" = (
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "l" = (
 /obj/machinery/vending/wallmed,
@@ -92,11 +55,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "o" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "p" = (
@@ -142,23 +100,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Infirmary"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"x" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "y" = (
 /obj/structure/table/reinforced,
@@ -167,18 +109,6 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"z" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "A" = (
 /obj/structure/chair/comfy/brown{
@@ -197,12 +127,6 @@
 /obj/item/radio,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
-"C" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "D" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -214,12 +138,6 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Cockpit";
 	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
@@ -258,12 +176,6 @@
 	name = "Emergency Shuttle Brig";
 	req_access_txt = "2"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "L" = (
@@ -272,27 +184,8 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
-"M" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"O" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Q" = (
 /obj/machinery/light,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "R" = (
@@ -306,7 +199,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "T" = (
@@ -318,24 +210,9 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"U" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "V" = (
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -361,13 +238,6 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/shuttle/escape)
-"Z" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -438,39 +308,39 @@ d
 (6,1,1) = {"
 a
 d
-Z
-r
-M
 s
-Z
 r
-M
+s
+s
+s
+r
+s
 d
 a
 "}
 (7,1,1) = {"
 a
 m
-Z
-r
-M
 s
-Z
 r
-M
+s
+s
+s
+r
+s
 m
 a
 "}
 (8,1,1) = {"
 d
 d
-i
+s
 Q
 d
 m
 d
 V
-U
+s
 d
 d
 "}
@@ -479,9 +349,9 @@ g
 r
 r
 r
-C
 r
-k
+r
+r
 r
 r
 r
@@ -492,9 +362,9 @@ h
 r
 r
 r
-C
 r
-k
+r
+r
 r
 r
 r
@@ -503,13 +373,13 @@ g
 (11,1,1) = {"
 d
 d
-e
-e
+s
+s
 o
-j
-x
-e
-e
+r
+o
+s
+s
 d
 d
 "}
@@ -518,9 +388,9 @@ a
 m
 s
 s
-Z
+s
 r
-M
+s
 s
 s
 m
@@ -531,9 +401,9 @@ a
 m
 s
 s
-Z
+s
 r
-M
+s
 s
 s
 m
@@ -546,7 +416,7 @@ t
 s
 S
 r
-z
+S
 s
 t
 d
@@ -609,9 +479,9 @@ a
 a
 a
 d
-O
-O
-O
+m
+m
+m
 d
 a
 a

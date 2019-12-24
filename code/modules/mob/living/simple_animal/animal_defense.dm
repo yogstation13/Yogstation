@@ -115,19 +115,19 @@
 	..()
 	var/bomb_armor = getarmor(null, "bomb")
 	switch (severity)
-		if (EXPLODE_DEVASTATE)
+		if (1)
 			if(prob(bomb_armor))
 				adjustBruteLoss(500)
 			else
 				gib()
 				return
-		if (EXPLODE_HEAVY)
+		if (2)
 			var/bloss = 60
 			if(prob(bomb_armor))
 				bloss = bloss / 1.5
 			adjustBruteLoss(bloss)
 
-		if (EXPLODE_LIGHT)
+		if(3)
 			var/bloss = 30
 			if(prob(bomb_armor))
 				bloss = bloss / 1.5

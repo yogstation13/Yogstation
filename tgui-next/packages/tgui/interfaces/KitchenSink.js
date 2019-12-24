@@ -1,5 +1,8 @@
 import { Component } from 'inferno';
-import { BlockQuote, Box, Button, Collapsible, Input, LabeledList, NumberInput, ProgressBar, Section, Tabs, Tooltip } from '../components';
+import {
+  Box, Button, Collapsible, Input, LabeledList,
+  NumberInput, ProgressBar, Section, Tabs, Tooltip, BlockQuote,
+} from '../components';
 
 const COLORS_ARBITRARY = [
   'red',

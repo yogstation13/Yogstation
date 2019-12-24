@@ -83,20 +83,12 @@
 	name = "Escape Shuttle Cell";
 	req_access_txt = "2"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "p" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Escape Shuttle Infirmary"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "q" = (
@@ -119,18 +111,7 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"w" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "x" = (
 /obj/structure/chair/comfy/shuttle{
@@ -173,12 +154,6 @@
 	name = "Mini emergency shuttle";
 	width = 21
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "D" = (
@@ -209,10 +184,6 @@
 	name = "Escape Shuttle Cockpit";
 	req_access_txt = "19"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "J" = (
@@ -283,13 +254,6 @@
 /obj/item/crowbar,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"U" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "W" = (
 /obj/structure/table,
 /obj/item/clothing/suit/apron/surgical,
@@ -298,13 +262,6 @@
 /area/shuttle/escape)
 "X" = (
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"Y" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -316,9 +273,9 @@ b
 b
 b
 b
-U
-U
-U
+n
+n
+n
 b
 b
 b
@@ -374,7 +331,7 @@ b
 K
 K
 Q
-w
+n
 "}
 (4,1,1) = {"
 c
@@ -397,7 +354,7 @@ H
 t
 f
 R
-w
+n
 "}
 (5,1,1) = {"
 c
@@ -420,7 +377,7 @@ I
 f
 f
 S
-w
+n
 "}
 (6,1,1) = {"
 c
@@ -443,7 +400,7 @@ b
 L
 f
 R
-w
+n
 "}
 (7,1,1) = {"
 c
@@ -466,7 +423,7 @@ b
 M
 M
 T
-w
+n
 "}
 (8,1,1) = {"
 b
@@ -501,7 +458,7 @@ b
 u
 b
 b
-Y
+n
 b
 b
 B

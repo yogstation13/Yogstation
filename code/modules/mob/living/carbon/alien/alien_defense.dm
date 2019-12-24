@@ -107,15 +107,15 @@ In all, this is a lot like the monkey code. /N
 		return
 	..()
 	switch (severity)
-		if (EXPLODE_DEVASTATE)
+		if (1)
 			gib()
 			return
 
-		if (EXPLODE_HEAVY)
+		if (2)
 			take_overall_damage(60, 60)
 			adjustEarDamage(30,120)
 
-		if (EXPLODE_LIGHT)
+		if(3)
 			take_overall_damage(30,0)
 			if(prob(50))
 				Unconscious(20)

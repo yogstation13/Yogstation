@@ -488,5 +488,3 @@
 /datum/config_entry/flag/reopen_roundstart_suicide_roles_command_report
 
 /datum/config_entry/flag/protect_AI_from_traitor
-
-/datum/config_entry/flag/everyone_is_donator

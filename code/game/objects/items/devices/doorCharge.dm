@@ -16,14 +16,14 @@
 
 /obj/item/doorCharge/ex_act(severity, target)
 	switch(severity)
-		if(EXPLODE_DEVASTATE)
+		if(1)
 			visible_message("<span class='warning'>[src] detonates!</span>")
 			explosion(src.loc,0,2,1,flame_range = 4)
 			qdel(src)
-		if(EXPLODE_HEAVY)
+		if(2)
 			if(prob(50))
 				ex_act(EXPLODE_DEVASTATE)
-		if(EXPLODE_LIGHT)
+		if(3)
 			if(prob(25))
 				ex_act(EXPLODE_DEVASTATE)
 

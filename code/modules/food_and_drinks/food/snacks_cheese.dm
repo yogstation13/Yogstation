@@ -245,7 +245,6 @@
 	tastes = list("bitter salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize()
-	. = ..()
 	addtimer(CALLBACK(src, .proc/ageCheese), 20 MINUTES)
 
 /obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/proc/ageCheese()

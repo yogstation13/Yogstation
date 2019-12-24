@@ -70,12 +70,6 @@
 	id = "cargounload";
 	name = "supply dock unloading door"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "l" = (
@@ -99,12 +93,6 @@
 	dir = 4;
 	dwidth = 4;
 	width = 12
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
@@ -151,12 +139,6 @@
 	req_access_txt = "31"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "s" = (
@@ -167,12 +149,6 @@
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "cargoload"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/supply)

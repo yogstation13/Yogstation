@@ -18478,10 +18478,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"NI" = (
-/obj/structure/closet/lasertag/red,
-/turf/open/floor/wood,
-/area/centcom/holding)
 "NJ" = (
 /obj/structure/table,
 /obj/item/book/manual/hydroponics_pod_people,
@@ -19174,13 +19170,6 @@
 /obj/machinery/autolathe,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"PM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/lasertag/blue,
-/turf/open/floor/wood,
-/area/centcom/holding)
 "PO" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/tile/green{
@@ -19237,7 +19226,6 @@
 /area/centcom/supplypod/loading/three)
 "PX" = (
 /obj/machinery/computer/arcade/battle,
-/obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "PY" = (
@@ -19577,10 +19565,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"QP" = (
-/obj/machinery/computer/arcade/minesweeper,
-/turf/open/floor/wood,
-/area/centcom/holding)
 "QQ" = (
 /obj/structure/lattice/catwalk/swarmer_catwalk,
 /obj/effect/decal/cleanable/leaper_sludge,
@@ -20609,9 +20593,7 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
 "TY" = (
-/obj/effect/immovablerod/duck{
-	notdebris = 1
-	},
+/obj/effect/immovablerod/duck,
 /turf/open/floor/engine,
 /area/centcom/testchamber)
 "Ub" = (
@@ -20670,10 +20652,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/testchamber)
-"Ul" = (
-/obj/structure/closet/lasertag/blue,
-/turf/open/floor/wood,
-/area/centcom/holding)
 "Um" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/shovel/spade,
@@ -46924,7 +46902,7 @@ XM
 NT
 UV
 CV
-Ul
+Xk
 NT
 CT
 oV
@@ -47181,7 +47159,7 @@ Tn
 NT
 Zs
 Xk
-NI
+Xk
 NT
 Xk
 Xk
@@ -47438,7 +47416,7 @@ GY
 NT
 UV
 CV
-Ul
+Xk
 NT
 Xk
 PF
@@ -47693,7 +47671,7 @@ Xk
 Tu
 Vu
 Nd
-PM
+Gs
 Xk
 Xk
 WY
@@ -47952,7 +47930,7 @@ XM
 NT
 PX
 CV
-Ul
+Xk
 NT
 Xk
 PF
@@ -48209,7 +48187,7 @@ Tn
 NT
 Ms
 Xk
-NI
+Xk
 NT
 Xk
 Xk
@@ -48466,7 +48444,7 @@ GY
 NT
 Ym
 CV
-Ul
+Xk
 NT
 Dj
 Qu
@@ -51034,8 +51012,8 @@ Xk
 Xk
 XM
 NT
-QP
-CV
+Xk
+Xk
 Xk
 NT
 Yq
@@ -51291,7 +51269,7 @@ Xk
 Xk
 Tn
 NT
-NI
+Xk
 Xk
 Xk
 MK
@@ -51548,9 +51526,9 @@ Xk
 Xk
 GY
 NT
-QP
-CV
-NI
+Xk
+Xk
+Xk
 NT
 vt
 Mx

@@ -4019,7 +4019,6 @@
 "lK" = (
 /obj/effect/immovablerod{
 	dir = 4
-	notdebris = 1
 	},
 /obj/structure/cable,
 /obj/structure/cable{

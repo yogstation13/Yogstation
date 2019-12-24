@@ -286,9 +286,9 @@
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper)
+					/obj/item/clothing/head/stormer,
+					/obj/item/clothing/head/stormer,
+					/obj/item/clothing/head/stormer)
 	crate_name = "stormtrooper crate"
 
 /datum/supply_pack/security/disabler

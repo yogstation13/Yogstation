@@ -1,4 +1,0 @@
-author: "boodaliboo"
-delete-after: true 
-changes: 
-  - bugfix: "Santas bag should once again regen gifts. A bit faster than before, too."

@@ -4,9 +4,6 @@
 /area/shuttle/mining)
 "b" = (
 /obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "c" = (
@@ -45,12 +42,6 @@
 	port_direction = 4;
 	width = 7
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "i" = (
@@ -79,33 +70,19 @@
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/open/floor/plating/airless,
 /area/shuttle/mining)
-"E" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/mining)
 "Q" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/mining)
-"T" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/mining)
 
 (1,1,1) = {"
 a
 a
-T
+b
 a
-T
+b
 a
 a
 "}
@@ -139,9 +116,9 @@ a
 (5,1,1) = {"
 a
 a
-E
+b
 h
-E
+b
 a
 a
 "}

@@ -198,11 +198,11 @@
 	if(!ascended)
 		var/b_loss
 		switch (severity)
-			if (EXPLODE_DEVASTATE)
+			if (1)
 				b_loss = 500
-			if (EXPLODE_HEAVY)
+			if (2)
 				b_loss = 150
-			if (EXPLODE_LIGHT)
+			if(3)
 				b_loss = 30
 		if(has_bane(BANE_LIGHT))
 			b_loss *=2

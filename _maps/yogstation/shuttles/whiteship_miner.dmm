@@ -8,13 +8,6 @@
 	req_access_txt = "71"
 	},
 /obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ad" = (
@@ -52,12 +45,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ai" = (
@@ -84,8 +71,8 @@
 /area/shuttle/abandoned)
 "ak" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "burst_s"
+	icon_state = "burst_s";
+	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
@@ -136,10 +123,6 @@
 	name = "cargo bay"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "aq" = (
@@ -233,8 +216,8 @@
 /area/shuttle/abandoned)
 "aD" = (
 /obj/structure/shuttle/engine/heater{
-	dir = 8;
-	icon_state = "heater"
+	icon_state = "heater";
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -255,10 +238,6 @@
 	name = "bathroom"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "aH" = (
@@ -302,10 +281,6 @@
 	name = "E.V.A. equipment"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "aN" = (
@@ -355,10 +330,6 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bf" = (
@@ -367,10 +338,6 @@
 	},
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bg" = (
@@ -421,12 +388,6 @@
 	name = "recovery shuttle interior airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bD" = (
@@ -460,12 +421,6 @@
 	name = "living quarters"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bP" = (
@@ -473,12 +428,6 @@
 	name = "bridge"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "bT" = (
@@ -509,10 +458,6 @@
 	name = "hydroponics"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "cg" = (
@@ -520,10 +465,6 @@
 	name = "kitchen"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "ci" = (
@@ -537,10 +478,6 @@
 	welded = 0
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cl" = (
@@ -606,8 +543,8 @@
 /area/shuttle/abandoned)
 "cy" = (
 /obj/structure/sink{
-	dir = 8;
 	icon_state = "sink";
+	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -651,8 +588,8 @@
 /area/shuttle/abandoned)
 "cZ" = (
 /obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower"
+	icon_state = "shower";
+	dir = 4
 	},
 /obj/machinery/door/window/westright{
 	dir = 4
@@ -874,10 +811,6 @@
 	name = "engineering bay"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "pg" = (
@@ -896,7 +829,7 @@
 	height = 15;
 	id = "whiteship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Free Miner Ship";
 	port_direction = 8;
 	preferred_direction = 4;
@@ -908,10 +841,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "pP" = (
@@ -999,10 +928,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/fans/tiny,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "Bi" = (
@@ -1205,10 +1130,6 @@
 	name = "free miner ship interior airlock"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "Zb" = (
