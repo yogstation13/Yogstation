@@ -3,4 +3,3 @@ delete-after: true
 changes: 
   - rscdel: "Wiznerds no longer own immovable rods"
   - bugfix: "Ducks probably don't trigger the auto-follow"
-  - experiment: "I don't know how to code"
