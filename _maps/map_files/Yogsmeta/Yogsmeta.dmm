@@ -8047,6 +8047,8 @@
 /obj/effect/turf_decal/bot,
 /obj/item/storage/box/breacherslug,
 /obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anr" = (

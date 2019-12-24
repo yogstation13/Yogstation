@@ -29835,6 +29835,8 @@
 /obj/structure/rack,
 /obj/item/storage/box/breacherslug,
 /obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bcX" = (
