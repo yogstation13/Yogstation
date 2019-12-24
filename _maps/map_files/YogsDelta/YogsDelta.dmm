@@ -37002,7 +37002,6 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/gun/ballistic/shotgun/riot,
 /obj/effect/turf_decal/bot,
 /obj/item/gun/ballistic/shotgun/riot,
 /obj/structure/window/reinforced{
@@ -38809,6 +38808,8 @@
 	},
 /obj/item/storage/box/breacherslug,
 /obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "bid" = (
