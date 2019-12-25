@@ -41,7 +41,7 @@
 			material_amount /= max_ammo
 			LAZYSET(bullet_cost, material, material_amount)
 
-/obj/item/ammo_box/proc/autolathe_crafted()
+/obj/item/ammo_box/autolathe_crafted()
 	calc_mats(force = TRUE)
 
 /obj/item/ammo_box/proc/get_round(keep = FALSE)
