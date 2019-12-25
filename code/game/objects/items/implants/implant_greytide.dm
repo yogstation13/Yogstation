@@ -66,5 +66,5 @@
 	name = "implanter (greytide)"
 
 /obj/item/implanter/greytide/Initialize()
-	..()
+	. = ..()
 	imp = new /obj/item/implant/greytide(src)
