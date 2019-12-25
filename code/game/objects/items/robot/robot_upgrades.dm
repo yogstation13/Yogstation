@@ -526,7 +526,7 @@
 /obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(obj/item/surgical_processor/SP in R.module.modules)
+		for(var/obj/item/surgical_processor/SP in R.module.modules)
 			R.module.remove_module(SP, TRUE)
 
 /obj/item/borg/upgrade/ai
@@ -617,7 +617,7 @@
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
+		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
 			R.module.remove_module(RPED, TRUE)
 
 /obj/item/borg/upgrade/pinpointer
@@ -644,7 +644,7 @@
 /obj/item/borg/upgrade/pinpointer/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		for(obj/item/pinpointer/crew/PP in R.module.modules)
+		for(var/obj/item/pinpointer/crew/PP in R.module.modules)
 			R.module.remove_module(PP, TRUE)
 
 /obj/item/borg/upgrade/transform
