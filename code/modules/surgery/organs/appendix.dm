@@ -64,7 +64,7 @@
 	icon_state = "implant-filter"
 	name = "cybernetic appendix"
 
-/obj/item/organ/appendix/cybernetic/emp_act()
+/obj/item/organ/appendix/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
