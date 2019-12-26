@@ -327,6 +327,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(target)
 		for(var/datum/antagonist/antag in target.antag_datums)
 			for(var/datum/objective/O in antag.objectives)
+				if(istype(O, /datum/objective/assist) && O.target == owner)//let's not
+					continue
 				if(!O.check_completion())
 					return FALSE
 	return TRUE
