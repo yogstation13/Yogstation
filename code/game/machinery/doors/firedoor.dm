@@ -323,7 +323,7 @@
 			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 			M.pulling.forceMove(T1)
 	for(var/mob/living/M in T2)
-		if(M.stat == CONSCIOUS M.pulling && M.pulling.loc == T1)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1)
 			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
 			M.pulling.forceMove(T2)
 	. = ..()
