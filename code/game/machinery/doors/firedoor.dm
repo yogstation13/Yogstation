@@ -311,6 +311,23 @@
 	opacity = TRUE
 	density = TRUE
 
+/obj/machinery/door/firedoor/border_only/close()
+	if(density)
+		return TRUE
+	if(operating || welded)
+		return
+	var/turf/T1 = get_turf(src)
+	var/turf/T2 = get_step(T1, dir)
+	for(var/mob/living/M in T1)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T2)
+			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+			M.pulling.forceMove(T1)
+	for(var/mob/living/M in T2)
+		if(M.stat == CONSCIOUS M.pulling && M.pulling.loc == T1)
+			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+			M.pulling.forceMove(T2)
+	. = ..()
+
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
 	var/area/A = get_area(src)
 	if(A && A.fire)
