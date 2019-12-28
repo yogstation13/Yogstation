@@ -19,6 +19,8 @@
 
 	var/datum/gas_mixture/turf_air = T.return_air()
 	var/datum/gas_mixture/stank_breath = T.remove_air(1 / turf_air.volume * turf_air.total_moles())
+	if(!stank_breath)
+		return
 	stank_breath.volume = 1
 	var/oxygen_pp = 0
 	if(stank_breath.gases[/datum/gas/oxygen])
