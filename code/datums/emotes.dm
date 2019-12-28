@@ -77,7 +77,7 @@
 		user.visible_message(msg)
 
 /// For handling emote cooldown, return true to allow the emote to happen
-/datum/emote/proc/check_cooldown(mob/user, intentional) 
+/datum/emote/proc/check_cooldown(mob/user, intentional, update=TRUE) 
 	if(!intentional)
 		return TRUE
 	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
