@@ -82,6 +82,8 @@
 		return TRUE
 	if(user.emotes_used && user.emotes_used[src] + cooldown > world.time)
 		return FALSE
+	if(!update)
+		return TRUE
 	if(!user.emotes_used)
 		user.emotes_used = list()
 	user.emotes_used[src] = world.time
