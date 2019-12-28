@@ -799,7 +799,7 @@
 
 /obj/item/storage/box/breacherslug
 	name = "box of breaching shotgun shells"
-	desc = "A box full of breaching slugs, designed for rapid entry"
+	desc = "A box full of breaching slugs, designed for rapid entry."
 	icon_state = "breachershot_box"
 	illustration = null
 
