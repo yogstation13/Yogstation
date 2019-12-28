@@ -142,6 +142,5 @@
 	name = "breaching slug"
 	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows with minimal shots."
 	icon_state = "breacher"
-	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(MAT_METAL=4000)
