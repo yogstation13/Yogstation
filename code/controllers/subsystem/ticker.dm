@@ -214,7 +214,9 @@ SUBSYSTEM_DEF(ticker)
 		if(GLOB.master_mode == "secret")
 			hide_mode = 1
 			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode = config.pick_mode(GLOB.secret_force_mode)
+				var/datum/game_mode/smode  	
+				if(runnable_modes.len)
+					smode = config.pick_mode(GLOB.secret_force_mode)
 				if(!smode.can_start())
 					message_admins("<span class='notice'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
 				else
@@ -222,9 +224,10 @@ SUBSYSTEM_DEF(ticker)
 
 		if(!mode)
 			if(!runnable_modes.len)
-				to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
-				return 0
-			mode = pickweight(runnable_modes)
+				mode = new /datum/game_mode/extended()
+				message_admins("<span class='notice'>Unable to choose any non-extended gamemode, running extended</span>")
+			else
+				mode = pickweight(runnable_modes)
 			if(!mode)	//too few roundtypes all run too recently
 				mode = pick(runnable_modes)
 

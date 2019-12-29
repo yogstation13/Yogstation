@@ -34,6 +34,12 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "h" = (
@@ -51,6 +57,12 @@
 	port_direction = 4;
 	preferred_direction = 2;
 	width = 26
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -175,13 +187,32 @@
 "p" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
+"O" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"W" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Y" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 a
 c
 e
 e
-h
+W
 e
 e
 g
@@ -189,7 +220,7 @@ e
 i
 e
 e
-h
+W
 e
 e
 g
@@ -314,7 +345,7 @@ f
 f
 f
 h
-h
+O
 "}
 (6,1,1) = {"
 b
@@ -342,7 +373,7 @@ f
 f
 f
 f
-h
+O
 "}
 (7,1,1) = {"
 b
@@ -370,7 +401,7 @@ f
 f
 f
 f
-h
+O
 "}
 (8,1,1) = {"
 c
@@ -398,7 +429,7 @@ f
 f
 f
 f
-h
+O
 "}
 (9,1,1) = {"
 b
@@ -426,7 +457,7 @@ f
 f
 f
 f
-h
+O
 "}
 (10,1,1) = {"
 b
@@ -454,7 +485,7 @@ f
 f
 f
 f
-h
+O
 "}
 (11,1,1) = {"
 b
@@ -482,7 +513,7 @@ f
 f
 f
 h
-h
+O
 "}
 (12,1,1) = {"
 c
@@ -573,19 +604,19 @@ a
 c
 e
 e
-h
+Y
 e
 e
 e
-h
+Y
 e
 e
 e
-h
+Y
 e
 e
 e
-h
+Y
 e
 e
 p

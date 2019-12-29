@@ -369,8 +369,20 @@
 		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 
 	parts += text
-
+	handle_achievements()
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/nuclear/proc/handle_achievements()
+	switch(get_result())
+		if(NUKE_RESULT_FLUKE)
+			for(var/mob/living/carbon/human/H in GLOB.player_list) //if you observe, too bad
+				if(!is_nuclear_operative(H))
+					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
+		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				if(is_nuclear_operative(H))
+					SSachievements.unlock_achievement(/datum/achievement/nukewin, H.client)
+
 
 /datum/team/nuclear/antag_listing_name()
 	if(syndicate_name)

@@ -9,25 +9,32 @@
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/spacebar)
 "ad" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "ae" = (
 /turf/closed/wall,
 /area/ruin/powered/spacebar)
+"af" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
+"ag" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/spacebar)
 "ah" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating/asteroid,
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "aj" = (
 /turf/closed/wall/mineral/titanium,
-/area/ruin/powered/spacebar)
-"ak" = (
-/obj/structure/grille,
-/obj/structure/window/shuttle,
-/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "al" = (
 /obj/structure/chair{
@@ -164,7 +171,10 @@
 /turf/closed/wall,
 /area/ruin/powered/spacebar)
 "aG" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = null;
+	req_access_txt = "25"
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aH" = (
@@ -174,7 +184,10 @@
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aI" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = null;
+	req_access_txt = "25"
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aJ" = (
@@ -243,11 +256,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/spacebar)
-"aT" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/closed/wall,
-/area/ruin/powered/spacebar)
 "aU" = (
 /obj/machinery/computer/teleporter{
 	id = null
@@ -261,10 +269,6 @@
 "aW" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating/asteroid,
-/area/ruin/powered/spacebar)
-"aX" = (
-/obj/machinery/door/airlock/external,
-/turf/open/floor/plating,
 /area/ruin/powered/spacebar)
 "aY" = (
 /turf/open/floor/plating,
@@ -836,7 +840,7 @@ ad
 ac
 ac
 ae
-aX
+ag
 ae
 ac
 ac
@@ -962,7 +966,7 @@ ac
 ac
 ac
 ae
-aX
+ah
 ae
 ac
 ac
@@ -1071,7 +1075,7 @@ ac
 ad
 ac
 ac
-ak
+af
 al
 ao
 aC
@@ -1246,12 +1250,12 @@ ac
 ac
 ac
 ae
-aX
+ag
 ae
 ac
 ac
 ac
-ak
+af
 bG
 ao
 aC
@@ -1329,7 +1333,7 @@ ab
 ab
 ac
 ac
-aT
+ad
 aY
 ad
 ac
@@ -1372,7 +1376,7 @@ ae
 ae
 ae
 ae
-aX
+ah
 ae
 ae
 ae
@@ -1824,7 +1828,7 @@ aa
 aa
 ac
 ac
-ah
+ad
 ac
 ac
 ae
