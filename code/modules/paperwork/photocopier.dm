@@ -7,6 +7,9 @@
 /*
  * Photocopier
  */
+
+#define MAX_TONER 40 // The maximum amount of toner in the photocopier, as well as the amount of toner given by toner cartridges.
+
 /obj/machinery/photocopier
 	name = "photocopier"
 	desc = "Used to copy important documents and anatomy studies."
@@ -23,7 +26,7 @@
 	var/obj/item/photo/photocopy = null
 	var/obj/item/documents/doccopy = null
 	var/copies = 1	//how many copies to print!
-	var/toner = 40 //how much toner is left! woooooo~
+	var/toner = MAX_TONER //how much toner is left! woooooo~
 	var/maxcopies = 10	//how many copies can be copied at once- idea shamelessly stolen from bs12's copier!
 	var/greytoggle = "Greyscale"
 	var/mob/living/ass //i can't believe i didn't write a stupid-ass comment about this var when i first coded asscopy.
@@ -246,7 +249,7 @@
 			if(!user.temporarilyRemoveItemFromInventory(O))
 				return
 			qdel(O)
-			toner = 40
+			toner = MAX_TONER
 			to_chat(user, "<span class='notice'>You insert [O] into [src].</span>")
 			updateUsrDialog()
 		else
@@ -339,3 +342,6 @@
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
 	var/charges = 5
 	var/max_charges = 5
+
+
+#undef MAX_TONER
