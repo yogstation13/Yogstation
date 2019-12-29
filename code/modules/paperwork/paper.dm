@@ -253,7 +253,7 @@
 			if(id == "end")
 				written += templist
 			else
-				written.Insert(id,templist)
+				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_icon()
 
