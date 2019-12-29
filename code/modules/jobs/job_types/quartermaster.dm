@@ -33,7 +33,8 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
-	backpack_contents = list() //yogs - removes cargo budget
+	l_pocket = /obj/item/export_scanner
+	backpack_contents = list()
 
 	chameleon_extras = /obj/item/stamp/qm
 
