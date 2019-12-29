@@ -41,6 +41,7 @@ import { InfraredEmitter } from './interfaces/InfraredEmitter';
 import { Intellicard } from './interfaces/Intellicard';
 import { RoboticsControlConsole } from './interfaces/RoboticsControlConsole';
 import { KeycardAuth } from './interfaces/KeycardAuth';
+import { LaborClaimConsole } from './interfaces/LaborClaimConsole';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { LaunchpadConsole, LaunchpadRemote } from './interfaces/Launchpad';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
@@ -273,6 +274,10 @@ const ROUTES = {
   },
   keycard_auth: {
     component: () => KeycardAuth,
+    scrollable: false,
+  },
+  labor_claim_console: {
+    component: () => LaborClaimConsole,
     scrollable: false,
   },
   language_menu: {
