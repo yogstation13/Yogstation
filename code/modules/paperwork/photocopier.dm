@@ -71,9 +71,9 @@
 						var/obj/item/paper/c = new /obj/item/paper (loc)
 						if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
 							if(toner > 10)	//lots of toner, make it dark
-								c.info = "<font color = #101010>"
+								c.coloroverride = "101010"
 							else			//no toner? shitty copies for you!
-								c.info = "<font color = #808080>"
+								c.coloroverride = "808080"
 							var/copyinfo = copy.info
 							copyinfo = replacetext(copyinfo, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
 							copyinfo = replacetext(copyinfo, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
