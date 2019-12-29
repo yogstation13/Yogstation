@@ -133,6 +133,7 @@
 		return
 	to_chat(user, "<span class='notice'>You begin to awaken the Killer Tomato...</span>")
 	awakening = 1
+	log_game("[key_name(usr)] activated a killer tomato at [AREACOORD(src)].")
 
 	spawn(30)
 		if(!QDELETED(src))
