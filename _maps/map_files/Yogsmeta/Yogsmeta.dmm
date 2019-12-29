@@ -8026,6 +8026,8 @@
 	pixel_y = -2
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/storage/box/firingpins,
+/obj/item/storage/box/firingpins,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anp" = (
@@ -8042,12 +8044,11 @@
 /area/crew_quarters/fitness/recreation)
 "anq" = (
 /obj/structure/rack,
-/obj/item/storage/box/firingpins{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/firingpins,
 /obj/effect/turf_decal/bot,
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anr" = (
