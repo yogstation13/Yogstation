@@ -127,6 +127,7 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/map/station(src)
+	new /obj/item/flashlight/flare/emergency(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
 	..() // we want the survival stuff too.
@@ -138,7 +139,7 @@
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/map/station(src)
-
+	new /obj/item/flashlight/flare/emergency(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
@@ -146,6 +147,7 @@
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/map/station(src)
+	new /obj/item/flashlight/flare/emergency(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -162,6 +164,7 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/map/station(src)
+	new /obj/item/flashlight/flare/emergency(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
