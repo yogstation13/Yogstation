@@ -66,16 +66,23 @@
 							copy_as_paper = 0
 					if(copy_as_paper)
 						var/obj/item/paper/c = new /obj/item/paper (loc)
-						if(length(copy.info) > 0)	//Only print and add content if the copied doc has words on it
+						if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
 							if(toner > 10)	//lots of toner, make it dark
 								c.info = "<font color = #101010>"
 							else			//no toner? shitty copies for you!
 								c.info = "<font color = #808080>"
-							var/copied = copy.info
-							copied = replacetext(copied, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
-							copied = replacetext(copied, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
-							c.info += copied
-							c.info += "</font>"
+							var/copyinfo = copy.info
+							copyinfo = replacetext(copyinfo, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
+							copyinfo = replacetext(copyinfo, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+							c.info += copyinfo + "</font>"
+							//Now for copying the new $written var
+							for(var/L in copy.written)
+								if(istype(L,/datum/langtext))
+									var/datum/langtext/oldL = L
+									var/datum/langtext/newL = new(oldL.text,oldL.lang)
+									c.written += newL
+								else
+									c.written += L
 							c.name = copy.name
 							c.fields = copy.fields
 							c.update_icon()
