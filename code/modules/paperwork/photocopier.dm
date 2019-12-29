@@ -54,6 +54,10 @@
 	user << browse(dat, "window=copier")
 	onclose(user, "copier")
 
+/obj/machinery/photocopier/proc/clearcolor(text) // Breaks all font color spans in the HTML text.
+	return replacetext(replacetext(text, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor="), "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=") //This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+
+
 /obj/machinery/photocopier/Topic(href, href_list)
 	if(..())
 		return
@@ -75,14 +79,13 @@
 							else			//no toner? shitty copies for you!
 								c.coloroverride = "808080"
 							var/copyinfo = copy.info
-							copyinfo = replacetext(copyinfo, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action
-							copyinfo = replacetext(copyinfo, "<font face=\"[CRAYON_FONT]\" color=", "<font face=\"[CRAYON_FONT]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+							copyinfo = clearcolor(copyinfo)
 							c.info += copyinfo + "</font>"
 							//Now for copying the new $written var
 							for(var/L in copy.written)
 								if(istype(L,/datum/langtext))
 									var/datum/langtext/oldL = L
-									var/datum/langtext/newL = new(oldL.text,oldL.lang)
+									var/datum/langtext/newL = new(clearcolor(oldL.text),oldL.lang)
 									c.written += newL
 								else
 									c.written += L
@@ -124,7 +127,7 @@
 			for(var/i = 0, i < copies, i++)
 				var/icon/temp_img
 				if(ishuman(ass) && (ass.get_item_by_slot(SLOT_W_UNIFORM) || ass.get_item_by_slot(SLOT_WEAR_SUIT)))
-					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" )
+					to_chat(usr, "<span class='notice'>You feel kind of silly, copying [ass == usr ? "your" : ass][ass == usr ? "" : "\'s"] ass with [ass == usr ? "your" : "[ass.p_their()]"] clothes on.</span>" ) // '
 					break
 				else if(toner >= 5 && !busy && check_ass()) //You have to be sitting on the copier and either be a xeno or a human without clothes on.
 					if(isalienadult(ass) || istype(ass, /mob/living/simple_animal/hostile/alien)) //Xenos have their own asses, thanks to Pybro.
