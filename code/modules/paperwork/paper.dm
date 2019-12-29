@@ -66,7 +66,7 @@
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return
-	if(info)
+	if(info || length(written))
 		icon_state = "paper_words"
 		return
 	icon_state = "paper"
