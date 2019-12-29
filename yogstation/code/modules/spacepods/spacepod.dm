@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 					user.visible_message("[user] slices off [src]'s armor.", "<span class='notice'>You slice off [src]'s armor.</span>")
 					construction_state = SPACEPOD_ARMOR_SECURED
 					update_icon()
-				return TRUE
+			return TRUE
 	return ..()
 
 /obj/spacepod/attack_hand(mob/user as mob)
