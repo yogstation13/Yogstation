@@ -61120,7 +61120,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "cbR" = (
-/obj/structure/chair/office/dark,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "MedbayFoyer";
@@ -61135,6 +61134,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -62091,7 +62093,6 @@
 /turf/closed/wall,
 /area/medical/medbay/central)
 "cdx" = (
-/obj/machinery/computer/crew,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -62102,7 +62103,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/wall,
 /area/medical/medbay/central)
 "cdy" = (
 /obj/effect/turf_decal/tile/blue,
