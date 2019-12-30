@@ -65,7 +65,7 @@
 
 /datum/design/diagnostic_hud_night
 	name = "Night Vision Diagnostic HUD"
-	desc = "An upgraded version of the Health Scanner HUD with an optical meson scanner."
+	desc = "An upgraded version of the diagnostic HUD, designed to function during a power failure."
 	id = "diagnostic_hud_night"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_URANIUM = 1000, MAT_PLASMA = 300)
