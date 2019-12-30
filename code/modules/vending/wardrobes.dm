@@ -243,6 +243,7 @@
 					/obj/item/pen/blue = 2,
 					/obj/item/pen/fourcolor = 1,
 					/obj/item/pen/fountain = 2,
+					/obj/item/toner = 3,
 					/obj/item/clothing/accessory/pocketprotector = 2,
 					/obj/item/clothing/under/rank/curator/skirt = 2,
 					/obj/item/clothing/under/gimmick/rank/captain/suit/skirt = 2,
