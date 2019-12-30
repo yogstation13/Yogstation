@@ -326,8 +326,6 @@
 	name = "safety flare"
 	desc = "A flare issued to nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey nanotrasen'."
 	brightness_on = 3
-	icon_state = "flare"
-	item_state = "flare"
 	frng_min = 40
 	frng_max = 70
 
