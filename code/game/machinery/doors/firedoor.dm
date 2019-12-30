@@ -319,13 +319,17 @@
 	var/turf/T1 = get_turf(src)
 	var/turf/T2 = get_step(T1, dir)
 	for(var/mob/living/M in T1)
-		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T2 && !M.pulling.anchored && (!M.buckled || !M.buckled.buckle_prevents_pull))
-			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
-			M.pulling.forceMove(T1)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T2 && !M.pulling.anchored)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T1)
 	for(var/mob/living/M in T2)
-		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored && (!M.buckled || !M.buckled.buckle_prevents_pull))
-			to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
-			M.pulling.forceMove(T2)
+		if(M.stat == CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes</span>")
+				M.pulling.forceMove(T2)
 	. = ..()
 
 /obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
