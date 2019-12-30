@@ -1,4 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - imageadd: "Makes the hydroponics analyzer sprite consistent with the health analyzer."

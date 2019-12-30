@@ -1,26 +1,5 @@
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
-
-/obj/item/reagent_containers/food/snacks/store/cheesewheel
-	name = "cheese wheel"
-	desc = "A big wheel of delcious Cheddar."
-	icon_state = "cheesewheel"
-	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
-	slices_num = 5
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5)
-	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("cheese" = 1)
-	foodtype = DAIRY
-
-/obj/item/reagent_containers/food/snacks/cheesewedge
-	name = "cheese wedge"
-	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
-	icon_state = "cheesewedge"
-	filling_color = "#FFD700"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("cheese" = 1)
-	foodtype = DAIRY
-
 /obj/item/reagent_containers/food/snacks/watermelonslice
 	name = "watermelon slice"
 	desc = "A slice of watery goodness."
@@ -49,7 +28,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "chocolate bar"
-	desc = "Such, sweet, fattening food."
+	desc = "Such sweet, fattening food."
 	icon_state = "chocolatebar"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
 	filling_color = "#A0522D"
@@ -139,7 +118,7 @@
 
 /obj/item/reagent_containers/food/snacks/carrotfries
 	name = "carrot fries"
-	desc = "Tasty fries from fresh Carrots."
+	desc = "Tasty fries from fresh carrots."
 	icon_state = "carrotfries"
 	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -176,7 +155,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	filling_color = "#F0E68C"
 	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN
+	foodtype = MEAT | GRAIN | EGG
 
 /obj/item/reagent_containers/food/snacks/beans
 	name = "tin of beans"
@@ -195,7 +174,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin = 2)
 	filling_color = "#008000"
 	tastes = list("cobwebs" = 1)
-	foodtype = MEAT | TOXIC
+	foodtype = MEAT | TOXIC | EGG // "Spidereggpeople" sounds like a fun ashwalker-ey variant of eggpeople
 
 /obj/item/reagent_containers/food/snacks/spiderling
 	name = "spiderling"
@@ -217,7 +196,7 @@
 
 /obj/item/reagent_containers/food/snacks/chococoin
 	name = "chocolate coin"
-	desc = "A completely edible but nonflippable festive coin."
+	desc = "A completely edible but non-flippable festive coin."
 	icon_state = "chococoin"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 1)
@@ -329,7 +308,7 @@
 
 /obj/item/reagent_containers/food/snacks/melonfruitbowl
 	name = "melon fruit bowl"
-	desc = "For people who wants edible fruit bowls."
+	desc = "For people who want edible fruit bowls."
 	icon_state = "melonfruitbowl"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -340,7 +319,7 @@
 
 /obj/item/reagent_containers/food/snacks/spacefreezy
 	name = "space freezy"
-	desc = "The best icecream in space."
+	desc = "The best ice cream in space."
 	icon_state = "spacefreezy"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/bluecherryjelly = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -432,7 +411,7 @@
 
 /obj/item/reagent_containers/food/snacks/powercrepe
 	name = "Powercrepe"
-	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
+	desc = "With great power, comes great crepes. It looks like a pancake filled with jelly but packs quite a punch."
 	icon_state = "powercrepe"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/iron = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cherryjelly = 5)

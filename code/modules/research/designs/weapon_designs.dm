@@ -74,6 +74,16 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/breaching_slug/sec
+	name = "Breaching Slug"
+	desc = "A 12 gauge anti-material slug. Great for breaching airlocks and windows with minimal shots."
+	id = "sec_Brslug"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 4000)
+	build_path = /obj/item/ammo_casing/shotgun/breacher
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/pin_testing
 	name = "Test-Range Firing Pin"
 	desc = "This safety firing pin allows firearms to be operated within proximity to a firing range."
@@ -157,7 +167,7 @@
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
-	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
+	desc = "A gun that shoots temperature energy beams to change temperature."
 	id = "temp_gun"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 5000, MAT_GLASS = 500, MAT_SILVER = 3000)
@@ -178,7 +188,7 @@
 
 /datum/design/large_grenade
 	name = "Large Grenade"
-	desc = "A grenade that affects a larger area and use larger containers."
+	desc = "A grenade that affects a larger area and uses larger containers."
 	id = "large_Grenade"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 3000)
@@ -218,7 +228,7 @@
 
 /datum/design/xray
 	name = "X-ray Laser Gun"
-	desc = "Not quite as menacing as it sounds"
+	desc = "Not quite as menacing as it sounds."
 	id = "xray_laser"
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 5000, MAT_URANIUM = 4000, MAT_METAL = 5000, MAT_TITANIUM = 2000, MAT_BLUESPACE = 2000)
@@ -228,7 +238,7 @@
 
 /datum/design/ioncarbine
 	name = "Ion Carbine"
-	desc = "How to dismantle a cyborg : The gun."
+	desc = "How to dismantle a cyborg: The gun."
 	id = "ioncarbine"
 	build_type = PROTOLATHE
 	materials = list(MAT_SILVER = 6000, MAT_METAL = 8000, MAT_URANIUM = 2000)
@@ -250,7 +260,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 4000)
@@ -260,7 +270,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ap"
 	materials = list(MAT_METAL = 6000, MAT_SILVER = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -268,7 +278,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle"
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ic"
 	materials = list(MAT_METAL = 6000, MAT_SILVER = 600, MAT_GLASS = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic

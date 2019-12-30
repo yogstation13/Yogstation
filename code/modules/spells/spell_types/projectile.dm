@@ -51,6 +51,12 @@
 		if(ignored_factions && ignored_factions.len && faction_check(M.faction,ignored_factions))
 			return FALSE
 
+/obj/item/projectile/magic/spell/on_hit(mob/living/carbon/target)
+	.=..()
+	if(target.anti_magic_check())
+		target.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
+		return BULLET_ACT_BLOCK
+
 
 //NEEDS MAJOR CODE CLEANUP.
 

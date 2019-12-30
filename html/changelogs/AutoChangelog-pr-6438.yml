@@ -1,5 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - tweak: "adds sounds to floodlight construction"
-  - tweak: "floodlights try to connect to wires upon building"

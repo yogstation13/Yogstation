@@ -59,7 +59,7 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "It's a very smart uniform with a special pocket for tip."
+	desc = "It's a very smart uniform with a special pocket for tips."
 	icon_state = "waiter"
 	item_state = "waiter"
 	item_color = "waiter"
@@ -658,7 +658,7 @@
 
 /obj/item/clothing/under/sailor
 	name = "sailor suit"
-	desc = "Skipper's in the wardroom drinkin gin'."
+	desc = "Skipper's in the wardroom drinkin' gin."
 	icon_state = "sailor"
 	item_state = "b_suit"
 	item_color = "sailor"
@@ -720,7 +720,7 @@
 
 /obj/item/clothing/under/rank/security/navyblue/russian
 	name = "\improper Russian officer's uniform"
-	desc = "The latest in fashionable russian outfits."
+	desc = "The latest in fashionable Russian outfits."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"
@@ -824,3 +824,39 @@
 	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
 	icon_state = "blue_mech_suit"
 	item_state = "blue_mech_suit"
+
+/obj/item/clothing/under/lampskirt
+	name = "lamp dress"
+	desc = "A peculier garment woven in silk; under the lower dress appears to be a lamp and a switch."
+	icon_state = "lampskirt_male"
+	item_state = "lampskirt_male"
+	item_color = "lampskirt_male"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET
+	can_adjust = FALSE
+	var/brightness_on = 1 //luminosity when the light is on
+	var/on = FALSE
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+
+/obj/item/clothing/under/lampskirt/attack_self(mob/user)
+	on = !on
+	icon_state = "[initial(icon_state)][on ? "-light":""]"
+	item_state = icon_state
+	user.update_inv_w_uniform() //So the mob overlay updates
+
+	if(on)
+		set_light(brightness_on)
+		user.visible_message("<span class='notice'>[user] discreetly pulls a cord for the bulbs under [user.p_their()] skirt, turning [user.p_them()] on.</span>")
+	else
+		set_light(0)
+
+	for(var/X in actions)
+		var/datum/action/A=X
+		A.UpdateButtonIcon()
+
+/obj/item/clothing/under/lampskirt/female
+	icon_state = "lampskirt_female"
+	item_state = "lampskirt_female"
+	item_color = "lampskirt_female"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET
+	can_adjust = FALSE
+	fitted = FEMALE_UNIFORM_TOP

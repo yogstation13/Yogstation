@@ -1,5 +1,0 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - rscdel: "Traitor AIs can no longer use malf abilities"
-  - rscadd: "Malf AI now has its own gamemode"

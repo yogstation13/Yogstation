@@ -19,6 +19,10 @@
 		stack_trace("[e] on [e.file]:[e.line]")
 		qdel(src)
 	..()
+	
+/datum/brain_trauma/hypnosis/on_clone(phrase)
+	if(clonable)
+		return new type(hypnotic_phrase)
 
 /datum/brain_trauma/hypnosis/on_gain()
 	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")

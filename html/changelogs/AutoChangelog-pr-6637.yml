@@ -1,8 +1,0 @@
-author: "  Identification"
-delete-after: true 
-changes: 
-  - rscadd: "Adds spur boots to the warden's locker."
-  - soundadd: "The spurs make a sound when the wearer moves."
-  - imageadd: "Armory officer uniform updated."
-  - imageadd: "Warden's spur jackboots."
-  - tweak: "Armory officer's uniform renamed to Gulag officer uniform."

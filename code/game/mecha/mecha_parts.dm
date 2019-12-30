@@ -38,7 +38,7 @@
 
 /obj/item/mecha_parts/part/ripley_torso
 	name = "\improper Ripley torso"
-	desc = "A torso part of Ripley APLU. Contains power unit, processing core and life support systems."
+	desc = "A Ripley APLU torso part. Contains power unit, processing core and life support systems."
 	icon_state = "ripley_harness"
 
 /obj/item/mecha_parts/part/ripley_left_arm
@@ -74,7 +74,7 @@
 
 /obj/item/mecha_parts/part/odysseus_torso
 	name = "\improper Odysseus torso"
-	desc="A torso part of Odysseus. Contains power unit, processing core and life support systems along with an attachment port for a mounted sleeper."
+	desc="An Odysseus torso part. Contains power unit, processing core and life support systems along with an attachment port for a mounted sleeper."
 	icon_state = "odysseus_torso"
 
 /obj/item/mecha_parts/part/odysseus_left_arm
@@ -94,7 +94,7 @@
 
 /obj/item/mecha_parts/part/odysseus_right_leg
 	name = "\improper Odysseus right leg"
-	desc = "An odysseus right leg. Contains complex servodrives and balance maintaining systems to maintain stability for critical patients."
+	desc = "An Odysseus right leg. Contains complex servodrives and balance maintaining systems to maintain stability for critical patients."
 	icon_state = "odysseus_r_leg"
 
 ///////// Gygax
@@ -105,7 +105,7 @@
 
 /obj/item/mecha_parts/part/gygax_torso
 	name = "\improper Gygax torso"
-	desc = "A torso part of Gygax. Contains power unit, processing core and life support systems."
+	desc = "A Gygax torso part. Contains power unit, processing core and life support systems."
 	icon_state = "gygax_harness"
 
 /obj/item/mecha_parts/part/gygax_head
@@ -148,7 +148,7 @@
 
 /obj/item/mecha_parts/part/durand_torso
 	name = "\improper Durand torso"
-	desc = "A torso part of Durand. Contains power unit, processing core and life support systems within a robust protective frame."
+	desc = "A Durand torso part. Contains power unit, processing core and life support systems within a robust protective frame."
 	icon_state = "durand_harness"
 
 /obj/item/mecha_parts/part/durand_head
@@ -197,7 +197,7 @@
 
 /obj/item/mecha_parts/part/honker_torso
 	name = "\improper H.O.N.K torso"
-	desc = "A torso part of H.O.N.K. Contains chuckle unit, bananium core and honk support systems."
+	desc = "A H.O.N.K. torso part. Contains chuckle unit, bananium core and honk support systems."
 	icon_state = "honker_harness"
 
 /obj/item/mecha_parts/part/honker_head

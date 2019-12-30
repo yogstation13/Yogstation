@@ -69,7 +69,7 @@
 
 /obj/effect/portal/permanent/one_way/recall/hierophant
 	name = "Hierophant Arena Portal"
-	desc = "They call him the hierophant. He's the king of the rumba beat. When he plays the maracas you go Chick chicky boom Chick chicky boom."
+	desc = "They call him the hierophant. He's the king of the rumba beat. When he plays the maracas you go chick chicky boom, chick chicky boom."
 	id = "vr hierophant"
 
 /obj/effect/portal/permanent/one_way/destroy/hierophant
