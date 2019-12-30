@@ -1,5 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - rscadd: "makes tcomms loose eficiency at higher temperatures"
-  - experiment: "tcomms generate heat this may be unbalanced as hell"

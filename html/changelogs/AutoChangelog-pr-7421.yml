@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Reduces the timer on the firelock open when there is a pressure difference"

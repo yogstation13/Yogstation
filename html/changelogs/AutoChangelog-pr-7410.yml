@@ -1,0 +1,5 @@
+author: "  Identification"
+delete-after: true 
+changes: 
+  - rscadd: "Yogbot has been added to the AI random name roster."
+  - rscdel: "Removed the name Fagor from the AI random name roster for being unpronounceable as of the filter."

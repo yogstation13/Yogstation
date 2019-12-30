@@ -66,6 +66,12 @@
 /obj/machinery/door/airlock/shuttle{
 	name = "Arrivals Shuttle Airlock"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
 "n" = (
@@ -73,8 +79,8 @@
 	dir = 8
 	},
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 4
+	dir = 4;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
@@ -86,22 +92,22 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
 "q" = (
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 4
+	dir = 4;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
 "r" = (
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
@@ -111,8 +117,8 @@
 /area/shuttle/arrival)
 "t" = (
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)
@@ -135,8 +141,8 @@
 	pixel_y = -30
 	},
 /obj/structure/chair/comfy/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "shuttle_chair"
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/arrival)

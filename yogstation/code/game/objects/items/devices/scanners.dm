@@ -15,7 +15,7 @@ TRICORDER
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
 	item_state = "analyzer"
-	desc = "A multifunction hand-held device useful for data sensing, analysis, and recording"
+	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -41,7 +41,8 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 //Tricorder differentiates from slimes and nonslimes
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
-	atmosanalyzer_scan()
+	var/turf/U = get_turf(I)
+	atmosanalyzer_scan(U.return_air(), user, I)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))

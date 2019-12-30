@@ -363,10 +363,13 @@
 /datum/outfit/plasmaman
 	name = "Plasmaman"
 
-	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
+	back = /obj/item/storage/backpack
+	ears = /obj/item/radio/headset
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	shoes = /obj/item/clothing/shoes/sneakers/black
 
 /datum/outfit/death_commando
 	name = "Death Commando"

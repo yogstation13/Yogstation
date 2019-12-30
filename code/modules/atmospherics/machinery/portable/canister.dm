@@ -50,7 +50,8 @@
 		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma
+		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
+		"dilithium" = /obj/machinery/portable_atmospherics/canister/dilithium
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -145,6 +146,11 @@
 	gas_type = /datum/gas/miasma
 	filled = 1
 
+/obj/machinery/portable_atmospherics/canister/dilithium
+	name = "Dilithium canister"
+	desc = "A gas produced from dilithium crystal."
+	icon_state = "pink"
+	gas_type = /datum/gas/dilithium
 
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()

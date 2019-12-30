@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/pineapple
 	seed = /obj/item/seeds/pineapple
-	name = "pineapples"
+	name = "pineapple"
 	desc = "Blorble."
 	icon_state = "pineapple"
 	force = 4
