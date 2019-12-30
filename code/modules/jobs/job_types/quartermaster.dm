@@ -34,7 +34,6 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/export_scanner
-	backpack_contents = list()
 
 	chameleon_extras = /obj/item/stamp/qm
 
