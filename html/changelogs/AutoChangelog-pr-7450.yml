@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - tweak: "Miners and Mining Medics can no longer start as rev heads again."
