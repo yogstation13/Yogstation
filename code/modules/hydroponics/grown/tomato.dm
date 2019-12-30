@@ -133,7 +133,6 @@
 		return
 	to_chat(user, "<span class='notice'>You begin to awaken the Killer Tomato...</span>")
 	awakening = 1
-	log_game("[key_name(usr)] activated a killer tomato at [AREACOORD(src)].")
 
 	spawn(30)
 		if(!QDELETED(src))
@@ -145,3 +144,4 @@
 			K.health = K.maxHealth
 			K.visible_message("<span class='notice'>The Killer Tomato growls as it suddenly awakens.</span>")
 			qdel(src)
+			log_game("[key_name(usr)] activated a killer tomato at [AREACOORD(src)].")
