@@ -74,7 +74,7 @@
 	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/choose()
-	if(SSevents.holidays["St. Patrick's Day"])
+	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		return "Bar Irish"
 	return ..()
 
