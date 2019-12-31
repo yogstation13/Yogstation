@@ -153,7 +153,7 @@
 	else if(IS_IN_STASIS(L_occupant))
 		thaw_them(L_occupant)
 	while(obj_flags & EMAGGED && drain_time == TRUE && L_occupant.getStaminaLoss() <= 200)
-		sleep(5)
+		sleep(4)
 		L_occupant.adjustStaminaLoss(5)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
