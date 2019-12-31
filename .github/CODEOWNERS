@@ -23,6 +23,7 @@
 /code/controllers/failsafe.dm @AsV9
 /code/controllers/subsystem.dm @AsV9
 /code/controllers/subsystem/timer.dm @AsV9
+/code/datums/achievements/achievements.dm @AsV9
 
 #Identification
 

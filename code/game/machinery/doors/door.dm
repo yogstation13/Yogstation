@@ -16,6 +16,7 @@
 
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT
 
+	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/secondsElectrified = MACHINE_NOT_ELECTRIFIED
 	var/shockedby
 	var/visible = TRUE
@@ -46,6 +47,11 @@
 			. += "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>"
 	if(!poddoor)
 		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
+	if(!isdead(user))
+		var/userDir = turn(get_dir(src, user), 180)
+		var/turf/T = get_step(src, userDir)
+		var/areaName = T.loc.name
+		. += "<span class='notice'>It leads into [areaName].</span>"
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
@@ -192,6 +198,36 @@
 /obj/machinery/door/proc/try_to_crowbar(obj/item/I, mob/user)
 	return
 
+/obj/machinery/door/proc/is_holding_pressure()
+	var/turf/open/T = loc
+	if(!T)
+		return FALSE
+	if(!density)
+		return FALSE
+	// alrighty now we check for how much pressure we're holding back
+	var/min_moles
+	var/max_moles
+	var/list/our_gases = T.air.gases
+	TOTAL_MOLES(our_gases, min_moles)
+	max_moles = min_moles
+	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
+	density = FALSE
+	T.ImmediateCalculateAdjacentTurfs()
+	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
+	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
+		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
+			continue
+		var/list/cached_gases = T2.air.gases
+		var/moles = cached_gases
+		TOTAL_MOLES(cached_gases, moles)
+		if(moles < min_moles)
+			min_moles = moles
+		if(moles > max_moles)
+			max_moles = moles
+	density = TRUE
+	T.ImmediateCalculateAdjacentTurfs() // alright lets put it back
+	return max_moles - min_moles > 20
+
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
 	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
 		try_to_crowbar(I, user)
@@ -298,6 +334,8 @@
 
 	do_animate("closing")
 	layer = closingLayer
+	if(air_tight)
+		density = TRUE
 	sleep(5)
 	density = TRUE
 	sleep(5)
@@ -309,7 +347,7 @@
 	update_freelook_sight()
 	if(safe)
 		CheckForMobs()
-	else
+	else if(!(flags_1 & ON_BORDER_1))
 		crush()
 	return 1
 

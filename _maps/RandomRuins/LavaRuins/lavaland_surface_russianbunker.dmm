@@ -216,7 +216,7 @@
 "aH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
@@ -309,7 +309,7 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/ruin/unpowered{
 	name = "\improper Russian Bunker";
 	noteleport = 1
