@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		appendix = new()
 		appendix.Insert(C)
 
-	if(tail && (!should_have_tail || replace_current))
+	if(tail && (!should_have_tail))
 		tail.Remove(C,1)
 		QDEL_NULL(tail)
 	if(should_have_tail && !tail)
