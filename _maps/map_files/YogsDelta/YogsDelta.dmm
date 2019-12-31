@@ -698,9 +698,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"abu" = (
-/turf/closed/wall/r_wall,
-/area/clerk)
 "abv" = (
 /obj/item/stack/cable_coil,
 /obj/structure/lattice/catwalk,
@@ -44044,14 +44041,16 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/security/armory";
 	dir = 2;
 	name = "Armoury APC";
 	pixel_y = -26
 	},
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "bpB" = (
@@ -59279,9 +59278,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bLd" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bLe" = (
@@ -59934,10 +59930,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
-"bLV" = (
-/obj/structure/window/reinforced,
-/turf/open/space,
-/area/space)
 "bLW" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -60980,6 +60972,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bNr" = (
@@ -64044,7 +64038,7 @@
 "bRP" = (
 /obj/structure/sign/warning/vacuum,
 /turf/closed/wall,
-/area/space/nearstation)
+/area/aisat)
 "bRQ" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube/curved/flipped{
@@ -83821,7 +83815,7 @@
 /obj/structure/sign/directions/command{
 	dir = 1
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/hallway/secondary/command)
 "cvA" = (
 /obj/structure/cable/white{
@@ -83889,7 +83883,7 @@
 	icon_state = "doors";
 	name = "WARNING: BLAST DOORS"
 	},
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/clerk)
 "cvG" = (
 /obj/effect/landmark/start/medical_doctor,
@@ -123674,13 +123668,16 @@
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
 "dLw" = (
-/obj/structure/frame/computer,
 /obj/item/circuitboard/computer/secure_data,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/machinery/status_display/evac{
 	pixel_x = -32
+	},
+/obj/structure/frame/computer{
+	icon_state = "0";
+	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
@@ -123977,8 +123974,11 @@
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
 "dNi" = (
-/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/computer{
+	icon_state = "0";
+	dir = 4
+	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office/private_investigators_office)
 "dNj" = (
@@ -129698,6 +129698,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"pKo" = (
+/turf/closed/wall,
+/area/aisat)
 "pQm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white{
@@ -135573,7 +135576,7 @@ aaa
 ajr
 ajr
 aad
-bLV
+bkE
 bsD
 bmj
 bVN
@@ -143034,7 +143037,7 @@ bRP
 bgI
 dje
 bYk
-aJD
+pKo
 aad
 aad
 aad
@@ -172611,7 +172614,7 @@ ach
 dgz
 dhJ
 aaZ
-bKm
+bLd
 bZp
 bPE
 cNA
@@ -172868,7 +172871,7 @@ abL
 dgA
 abL
 aaZ
-bKm
+bLd
 bZp
 bPE
 cNz
@@ -173117,15 +173120,15 @@ cjJ
 bzq
 bMc
 abk
-abu
+aaZ
 abM
 abL
 aci
 acm
 dgB
 acZ
-abu
-bKm
+aaZ
+bLd
 bZp
 bPE
 cNz
@@ -173374,7 +173377,7 @@ crg
 byW
 bMt
 cvz
-abu
+aaZ
 aaZ
 aaZ
 aaZ

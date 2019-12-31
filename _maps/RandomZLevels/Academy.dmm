@@ -3868,7 +3868,7 @@
 /area/awaymission/academy/academycellar)
 "lg" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator/choose,
+/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academycellar)
 "lh" = (
@@ -4019,6 +4019,7 @@
 "lK" = (
 /obj/effect/immovablerod{
 	dir = 4
+	notdebris = 1
 	},
 /obj/structure/cable,
 /obj/structure/cable{
