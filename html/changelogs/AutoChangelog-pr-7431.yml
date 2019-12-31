@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Safety flares added to player boxes. They give off less light and last for less time than normal flares."
