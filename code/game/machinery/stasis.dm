@@ -108,20 +108,12 @@
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	drain_time = TRUE
-	if(obj_flags & EMAGGED)
-		INVOKE_ASYNC(src, .proc/drain_them, target)
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
 	if(target == occupant)
 		use_power = IDLE_POWER_USE
 		drain_time = FALSE
-
-/obj/machinery/stasis/proc/drain_them(mob/living/target)
-	to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
-	while(drain_time == TRUE && target.getStaminaLoss() <= 200)
-		sleep(4)
-		target.adjustStaminaLoss(5)
 
 /obj/machinery/stasis/post_buckle_mob(mob/living/L)
 	if(!can_be_occupant(L))
@@ -131,6 +123,8 @@
 		chill_out(L)
 	update_icon()
 	check_patient()
+	if(obj_flags & EMAGGED && drain_time == TRUE)
+		to_chat(L, "<span class='warning'>Your limbs start to feel numb...</span>")
 
 /obj/machinery/stasis/proc/check_patient()
 	var/mob/living/carbon/human/M = occupant
@@ -158,6 +152,9 @@
 			chill_out(L_occupant)
 	else if(IS_IN_STASIS(L_occupant))
 		thaw_them(L_occupant)
+	while(obj_flags & EMAGGED && drain_time == TRUE && L_occupant.getStaminaLoss() <= 200)
+		sleep(5)
+		L_occupant.adjustStaminaLoss(5)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
