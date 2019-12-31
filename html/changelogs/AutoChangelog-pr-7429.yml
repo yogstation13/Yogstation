@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Changelog and rules buttons are not in darkmode by default."

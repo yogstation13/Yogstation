@@ -36,7 +36,7 @@
 			if(PDA)
 				PDA.icon = 'yogstation/icons/obj/pda.dmi'
 				PDA.icon_state = "pda-pipboy"
-				PDA.slot_flags |= SLOT_GLOVES
+				PDA.slot_flags |= ITEM_SLOT_GLOVES
 		if(4)//rainbow
 			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
 			if(PDA)

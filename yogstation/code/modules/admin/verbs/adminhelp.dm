@@ -209,6 +209,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=wiki'>WIKI</A>)"
+	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=bug'>BUG</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion'>MHELP</a>)"
 
 //private
@@ -428,7 +429,27 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("Marked as WIKI issue by [usr.ckey]")
 	Resolve(silent = TRUE)
+	
+//Resolve ticket with bug message
+/datum/admin_help/proc/GithubIssue(key_name = key_name_admin(usr))
+	if(state != AHELP_ACTIVE)
+		return
+	
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as a Github issue by [usr.client.holder?.fakekey ? "an Administrator" : key_name(usr, 0, 0)]! -</b></font><br>"
+	msg += "<font color='red'><b>You are reporting a Bug or Github Issue.</b></font><br>"
+	msg += "<font color='red'>[CONFIG_GET(string/githuburl)]/issues/new?template=bug_report.md</font>"
+	msg += "<font color='red'><b>Please fill out the issues form with detailed information about the bug or other issue you have discovered.</b></font><br>"
+	
+	if(initiator)
+		to_chat(initiator, msg, confidential=TRUE)
 
+	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "BUG")
+	msg = "Ticket [TicketHref("#[id]")] marked as BUG by [key_name]"
+	message_admins(msg)
+	log_admin_private(msg)
+	AddInteraction("Marked as BUG issue by [usr.ckey]")
+	Resolve(silent = TRUE)
+		
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
 	var/reply_link = "<a href='?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=reply'><img border='0' width='16' height='16' class='uiIcon16 icon-comment' /> Reply</a>"
@@ -563,6 +584,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			Administer()
 		if("wiki")
 			WikiIssue()
+		if("bug")
+			GithubIssue()
 		if("popup")
 			PopUps()
 

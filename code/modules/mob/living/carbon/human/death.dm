@@ -47,6 +47,9 @@
 		var/datum/antagonist/hivemind/hive = mind.has_antag_datum(/datum/antagonist/hivemind)
 		hive.destroy_hive()
 
+	if(client)
+		SSachievements.unlock_achievement(/datum/achievement/death, client)
+
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	set_species(/datum/species/skeleton)
