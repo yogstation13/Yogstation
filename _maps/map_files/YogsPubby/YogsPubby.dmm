@@ -29462,7 +29462,6 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bch" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -32703,7 +32702,6 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -33610,7 +33608,6 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "bjX" = (
-/obj/structure/filingcabinet,
 /obj/machinery/requests_console{
 	department = "Security";
 	departmentType = 5;
@@ -33629,6 +33626,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/med,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bjY" = (
@@ -34480,7 +34478,6 @@
 /turf/open/floor/plasteel/dark,
 /area/science/explab)
 "blB" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -34941,7 +34938,6 @@
 	dir = 4;
 	network = list("ss13","medbay")
 	},
-/obj/structure/closet/secure_closet/security/med,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -34949,6 +34945,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bmt" = (
@@ -46963,7 +46960,6 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = -32
 	},
-/obj/structure/filingcabinet/security,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -46971,6 +46967,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "bEX" = (
@@ -53221,7 +53218,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bUk" = (
-/obj/machinery/computer/secure_data,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -53229,6 +53225,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bUl" = (
@@ -53870,7 +53867,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "bWA" = (
-/obj/structure/filingcabinet,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the engine containment area.";
 	dir = 4;
@@ -53885,13 +53881,13 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bWC" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
 	},
-/obj/structure/closet/secure_closet/security/engine,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -53899,6 +53895,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/engine,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bWD" = (
