@@ -143,7 +143,6 @@
 	new /obj/item/sensor_device(src)
 	new /obj/item/storage/box/bodybags(src)
 	new /obj/item/extinguisher/mini(src)
-	new /obj/item/clothing/glasses/hud/health(src)
 	var/obj/item/key/K = new(src)
 	K.name = "ATV key"
 	K.desc = "It's a small grey key. Don't let those goddamn ashwalkers get it."
