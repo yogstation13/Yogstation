@@ -469,6 +469,13 @@
 	result = /obj/item/extendohand
 	category = CAT_MISC
 
+/datum/crafting_recipe/cloth_curtain
+	name = "Curtains"
+	// reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
+	reqs = 	list(/obj/item/stack/rods = 1) // remove this line when you PR. Simple recipe for testing
+	result = /obj/structure/cloth_curtain
+	category = CAT_MISC
+
 /datum/crafting_recipe/chemical_payload
 	name = "Chemical Payload (C4)"
 	result = /obj/item/bombcore/chemical
