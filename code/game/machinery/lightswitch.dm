@@ -34,8 +34,12 @@
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
 	. += "It is [area.lightswitch ? "on" : "off"]."
+	if(obj_flags & EMAGGED)
+		. += "You hear a faint hum coming from the switch."
 
 /obj/machinery/light_switch/interact(mob/user)
+	if(obj_flags & EMAGGED)
+		shock(user,50)
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
@@ -61,3 +65,21 @@
 		return
 	if(!(stat & (BROKEN|NOPOWER)))
 		power_change()
+
+/obj/machinery/light_switch/proc/shock(mob/user)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	if (electrocute_mob(user, get_area(src), src, 0.7, TRUE))
+		return TRUE
+	else
+		return FALSE
+
+/obj/machinery/light_switch/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the Sequencer.</span>")
+		return
+	to_chat(user, "<span class='notice'>You swipe the Sequencer on the light switch. The light switch gives of a soft hum.</span>")
+	obj_flags |= EMAGGED
