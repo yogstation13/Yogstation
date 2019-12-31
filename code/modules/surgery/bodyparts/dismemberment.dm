@@ -359,7 +359,7 @@
 		limb_list -= excluded_limbs
 	for(var/Z in limb_list)
 		. += regenerate_limb(Z, noheal)
-	if(DIGITIGRADE in species_traits)
+	if(dna && dna.species && DIGITIGRADE in dna.species.species_traits)
 		Digitigrade_Leg_Swap(FALSE)
 
 /mob/living/proc/regenerate_limb(limb_zone, noheal)
