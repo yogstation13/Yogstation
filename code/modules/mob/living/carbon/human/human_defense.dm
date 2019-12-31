@@ -423,7 +423,6 @@
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
 				damage_clothes(400 - bomb_armor, BRUTE, "bomb")
-				return
 
 		if (EXPLODE_HEAVY)
 			brute_loss = 60
@@ -444,7 +443,7 @@
 			damage_clothes(max(50 - bomb_armor, 0), BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			Unconscious(160 - (bomb_armor * 1.6))	//100 bomb armor prevents knockdown entirely
+			Knockdown(160 - (bomb_armor * 1.6))	//100 bomb armor prevents knockdown entirely
 
 	take_overall_damage(brute_loss,burn_loss)
 
