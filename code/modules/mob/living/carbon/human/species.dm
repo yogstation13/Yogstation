@@ -760,8 +760,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 //I wag in death
 /datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
-	if(H && H.getorganslot(ORGAN_SLOT_TAIL))
-		stop_wagging_tail(H)
+	stop_wagging_tail(H)
 	return
 
 /datum/species/proc/auto_equip(mob/living/carbon/human/H)
@@ -1704,8 +1703,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		ToggleFlight(H)
 		flyslip(H)
 	. = stunmod * H.physiology.stun_mod * amount
-	if(H.getorganslot(ORGAN_SLOT_TAIL))
-		stop_wagging_tail(H)
+	stop_wagging_tail(H)
 
 //////////////
 //Space Move//
