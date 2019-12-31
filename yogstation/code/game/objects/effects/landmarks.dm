@@ -74,9 +74,9 @@
 	icon_state = "bar_box"
 
 /obj/effect/landmark/stationroom/box/bar/choose()
+	. = ..()
 	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		return "Bar Irish"
-	return ..()
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
