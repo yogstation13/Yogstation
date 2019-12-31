@@ -182,7 +182,7 @@
 		for(var/obj/item/storage/bag/ore/cyborg/S in R.module)
 			R.module.remove_module(S, TRUE)
 
-		var/obj/item/storage/bag/ore/holding/H = locate() in R  //yogs start
+		var/obj/item/storage/bag/ore/holding/H = locate() in R.module.modules  //yogs start
 		if(H)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a satchel of holding.</span>")
 			return FALSE
@@ -214,7 +214,7 @@
 		for(var/obj/item/storage/bag/trash/cyborg/TB in R.module.modules)
 			R.module.remove_module(TB, TRUE)
 
-		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R //yogs start
+		var/obj/item/storage/bag/trash/bluespace/cyborg/B = locate() in R.module.modules //yogs start
 		if(B)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a trash bag of holding.</span>")
 			return FALSE
@@ -246,7 +246,7 @@
 		for(var/obj/item/mop/cyborg/M in R.module.modules)
 			R.module.remove_module(M, TRUE)
 
-		var/obj/item/mop/advanced/cyborg/A = locate() in R  //yogs start
+		var/obj/item/mop/advanced/cyborg/A = locate() in R.module.modules  //yogs start
 		if(A)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a advanced mop module.</span>")
 			return FALSE
@@ -321,7 +321,7 @@
 /obj/item/borg/upgrade/selfrepair/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/borg/upgrade/selfrepair/U = locate() in R
+		var/obj/item/borg/upgrade/selfrepair/U = locate() in R.module.modules
 		if(U)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a self-repair module.</span>")
 			return FALSE
@@ -487,7 +487,7 @@
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R //yogs start
+		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module.modules //yogs start
 		if(S)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a defibrillator module.</span>")
 			return FALSE
@@ -499,8 +499,8 @@
 /obj/item/borg/upgrade/defib/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/twohanded/shockpaddles/cyborg/S = locate() in R.module
-		R.module.remove_module(S, TRUE)
+		for(var/obj/item/twohanded/shockpaddles/cyborg/S in R.module.modules)
+			R.module.remove_module(S, TRUE)
 
 /obj/item/borg/upgrade/processor
 	name = "medical cyborg surgical processor"
@@ -514,7 +514,7 @@
 /obj/item/borg/upgrade/processor/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/surgical_processor/SP = locate() in R  //yogs start
+		var/obj/item/surgical_processor/SP = locate() in R.module.modules  //yogs start
 		if(SP)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a surgical processor module.</span>")
 			return FALSE
@@ -526,8 +526,8 @@
 /obj/item/borg/upgrade/processor/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/surgical_processor/SP = locate() in R.module
-		R.module.remove_module(SP, TRUE)
+		for(var/obj/item/surgical_processor/SP in R.module.modules)
+			R.module.remove_module(SP, TRUE)
 
 /obj/item/borg/upgrade/ai
 	name = "B.O.R.I.S. module"
@@ -605,7 +605,7 @@
 	. = ..()
 	if(.)
 
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R
+		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module.modules
 		if(RPED)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a RPED module.</span>")
 			return FALSE
@@ -617,8 +617,7 @@
 /obj/item/borg/upgrade/rped/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module
-		if (RPED)
+		for(var/obj/item/storage/part_replacer/cyborg/RPED in R.module.modules)
 			R.module.remove_module(RPED, TRUE)
 
 /obj/item/borg/upgrade/pinpointer
@@ -633,7 +632,7 @@
 	. = ..()
 	if(.)
 
-		var/obj/item/pinpointer/crew/PP = locate() in R
+		var/obj/item/pinpointer/crew/PP = locate() in R.module.modules
 		if(PP)
 			to_chat(user, "<span class='warning'>This unit is already equipped with a pinpointer module.</span>")
 			return FALSE
@@ -645,8 +644,7 @@
 /obj/item/borg/upgrade/pinpointer/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/pinpointer/crew/PP = locate() in R.module
-		if (PP)
+		for(var/obj/item/pinpointer/crew/PP in R.module.modules)
 			R.module.remove_module(PP, TRUE)
 
 /obj/item/borg/upgrade/transform
