@@ -69,3 +69,13 @@
 	id = "maint_xenobridge_lattice"
 	suffix = "xenobridge_space.dmm"
 	name = "Xenobiology Lattice"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/rpg
+	id = "maint_rpg"
+	suffix = "maint_rpg.dmm"
+	name = "Roleplaying Room"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/detective
+	id = "maint_detective"
+	suffix = "maint_detective.dmm"
+	name = "Detective Room"
