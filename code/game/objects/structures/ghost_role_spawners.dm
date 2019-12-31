@@ -11,7 +11,7 @@
 	roundstart = FALSE
 	death = FALSE
 	mob_species = /datum/species/pod
-	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed." 
+	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
 	flavour_text = "Your masters, benevolent as they were, created uncounted \
 	seed vaults and spread them across the universe to every planet they could chart. You are in one such seed vault. Your goal is to cultivate and spread life wherever it will go while waiting \
 	for contact from your creators. Estimated time of last contact: Deployment, 5x10^3 millennia ago.</b>"
@@ -19,7 +19,7 @@
 
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
 	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
-	"Venus", "Sprout","Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper")
+	"Venus", "Sprout", "Cocoa", "Strawberry", "Citrus", "Oak", "Cactus", "Pepper", "Juniper", "Cannabis")
 	new_spawn.fully_replace_character_name(null,plant_name)
 	if(ishuman(new_spawn))
 		var/mob/living/carbon/human/H = new_spawn

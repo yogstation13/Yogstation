@@ -50,7 +50,8 @@
 		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma
+		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
+		"dilithium" = /obj/machinery/portable_atmospherics/canister/dilithium
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
