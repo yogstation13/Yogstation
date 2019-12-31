@@ -69,3 +69,13 @@
 	id = "maint_xenobridge_lattice"
 	suffix = "xenobridge_space.dmm"
 	name = "Xenobiology Lattice"
+
+/datum/map_template/ruin/station/box/maint/oldbar
+	id = "port_quarter_maint_space_walk"
+	suffix = "port_quarter_maint_space_walk.dmm"
+	name = "Space Walk Port Quarter Maint"
+
+/datum/map_template/ruin/station/box/maint/oldbar/spacewalk
+	id = "port_quarter_maint_old_bar"
+	suffix = "port_quarter_maint_old_bar.dmm"
+	name = "Old Bar Port Quarter Maint"

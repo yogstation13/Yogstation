@@ -1,0 +1,56 @@
+"a" = (/turf/open/floor/plating,/area/maintenance/port/aft)
+"b" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/effect/mapping_helpers/airlock/abandoned,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plating,/area/maintenance/port/aft)
+"c" = (/obj/structure/lattice,/turf/open/space/basic,/area/space/nearstation)
+"d" = (/obj/structure/closet/emcloset,/turf/open/floor/plating,/area/maintenance/port/aft)
+"e" = (/obj/effect/spawner/structure/window/reinforced/shutter,/turf/open/floor/plating,/area/maintenance/port/aft)
+"f" = (/turf/closed/wall,/area/maintenance/port/aft)
+"g" = (/obj/structure/cable{icon_state = "1-2"},/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plating,/area/maintenance/port/aft)
+"h" = (/turf/open/space/basic,/area/space)
+"i" = (/obj/structure/disposalpipe/segment{dir = 6},/obj/structure/cable{icon_state = "2-4"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"j" = (/obj/structure/disposalpipe/junction/yjunction{dir = 1},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 5},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/floor/plating,/area/maintenance/port/aft)
+"k" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/plating,/area/maintenance/port/aft)
+"l" = (/obj/machinery/door/airlock/maintenance{name = "Incinerator Access"; req_access_txt = "12"},/obj/effect/mapping_helpers/airlock/abandoned,/obj/structure/barricade/wooden{name = "wooden barricade (CLOSED)"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"m" = (/turf/open/floor/plating,/area/space/nearstation)
+"n" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{dir = 4},/turf/open/floor/plating,/area/maintenance/port/aft)
+"o" = (/obj/structure/chair{dir = 8},/turf/open/floor/plating,/area/maintenance/port/aft)
+"p" = (/obj/structure/closet/wardrobe/black,/obj/effect/decal/cleanable/cobweb,/turf/open/floor/plating,/area/maintenance/port/aft)
+"q" = (/obj/structure/closet/wardrobe/black,/turf/open/floor/plating,/area/maintenance/port/aft)
+"r" = (/obj/structure/disposalpipe/segment,/obj/structure/cable{icon_state = "1-2"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"s" = (/obj/effect/landmark/blobstart,/turf/open/floor/plating,/area/maintenance/port/aft)
+"t" = (/obj/structure/rack,/obj/effect/spawner/lootdrop/maintenance,/obj/machinery/light/floor,/turf/open/floor/plating,/area/maintenance/port/aft)
+"u" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/structure/cable{icon_state = "2-8"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"v" = (/obj/structure/closet,/obj/effect/spawner/lootdrop/maintenance{lootcount = 2; name = "2maintenance loot spawner"},/obj/machinery/light/floor,/turf/open/floor/plating,/area/maintenance/port/aft)
+"w" = (/obj/structure/closet/emcloset,/obj/machinery/light/floor,/turf/open/floor/plating,/area/maintenance/port/aft)
+"x" = (/obj/structure/cable{icon_state = "2-4"},/obj/structure/disposalpipe/segment{dir = 6},/turf/open/floor/plating,/area/maintenance/port/aft)
+"y" = (/obj/structure/chair{dir = 4},/obj/machinery/light/floor,/turf/open/floor/plating,/area/maintenance/port/aft)
+"z" = (/obj/structure/cable{icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/open/floor/plating,/area/maintenance/port/aft)
+"A" = (/obj/structure/chair{dir = 4},/turf/open/floor/plating,/area/maintenance/port/aft)
+"B" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/plating,/area/maintenance/port/aft)
+"C" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor/plating,/area/maintenance/port/aft)
+"D" = (/obj/structure/closet/crate,/obj/item/coin/silver,/turf/open/floor/plating,/area/maintenance/port/aft)
+"E" = (/obj/effect/spawner/lootdrop/maintenance{lootcount = 3; name = "3maintenance loot spawner"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"F" = (/obj/effect/landmark/xeno_spawn,/turf/open/floor/plating,/area/maintenance/port/aft)
+"G" = (/obj/structure/disposalpipe/segment{dir = 9},/obj/structure/cable{icon_state = "1-8"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"H" = (/obj/item/storage/box/lights/mixed,/turf/open/floor/plating,/area/maintenance/port/aft)
+"I" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{icon_state = "4-8"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"J" = (/obj/structure/chair{dir = 1},/obj/machinery/light/floor,/turf/open/floor/plating,/area/maintenance/port/aft)
+"K" = (/obj/structure/cable{icon_state = "4-8"},/turf/open/floor/plating,/area/maintenance/port/aft)
+"L" = (/obj/structure/disposalpipe/segment{dir = 5},/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "4-8"},/turf/open/floor/plating,/area/maintenance/port/aft)
+
+(1,1,1) = {"
+fffbffccceeegfd
+fheaehhheBCijkn
+fceaehmceoaraee
+fheatechevarehc
+fewaecccmearecm
+laasehhehheryeh
+feaaaeeteearAeh
+fheEaaaaFaiGehc
+ecceeeHaiIGaemc
+fcmhheaiGeeehch
+fhccheiGehcmchc
+fmhcewraehhhchc
+feeeaarehehffff
+aDJDaaraetefpqx
+KKKKKKLIIIIuaaz
+"}
