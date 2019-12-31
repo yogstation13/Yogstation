@@ -14,6 +14,7 @@
 	payment_department = ACCOUNT_MED
 	var/stasis_enabled = TRUE
 	var/last_stasis_sound = FALSE
+	var/drain_time = FALSE
 	var/stasis_can_toggle = 0
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
@@ -31,6 +32,8 @@
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.</span>"
+	if(obj_flags & EMAGGED)
+		. += "<span class='warning'>There's a worrying blue mist surrounding it.</span>"
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -104,11 +107,21 @@
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
+	drain_time = TRUE
+	if(obj_flags & EMAGGED)
+		INVOKE_ASYNC(src, .proc/drain_them, target)
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
 	if(target == occupant)
 		use_power = IDLE_POWER_USE
+		drain_time = FALSE
+
+/obj/machinery/stasis/proc/drain_them(mob/living/target)
+	to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
+	while(drain_time == TRUE && target.getStaminaLoss() <= 200)
+		sleep(4)
+		target.adjustStaminaLoss(5)
 
 /obj/machinery/stasis/post_buckle_mob(mob/living/L)
 	if(!can_be_occupant(L))
@@ -161,4 +174,12 @@
 		unbuckle_mob(occupant)
 	else
 		..()
+
+/obj/machinery/stasis/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, "<span class='warning'>The stasis bed's safeties are already overriden!</span>")
+		return
+	to_chat(user, "<span class='notice'>You override the stasis bed's safeties!</span>")
+	obj_flags |= EMAGGED
+
 #undef STASIS_TOGGLE_COOLDOWN
