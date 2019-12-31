@@ -14,6 +14,7 @@
 					/obj/item/seeds/cherry = 3,
 					/obj/item/seeds/chanter = 3,
 					/obj/item/seeds/chili = 3,
+					/obj/item/seeds/cinnamomum = 3,
 					/obj/item/seeds/cocoapod = 3,
 					/obj/item/seeds/coffee = 3,
 					/obj/item/seeds/corn = 3,
@@ -49,8 +50,10 @@
 					  /obj/item/seeds/reishi = 2,
 					  /obj/item/seeds/cannabis = 3,
 					  /obj/item/seeds/starthistle = 2,
-					  /obj/item/seeds/random = 3)//yogs -- reverted to three instead of /tg/'s two
+					  /obj/item/seeds/random = 3)
 	premium = list(/obj/item/reagent_containers/spray/waterflower = 1)
+	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/hydroseeds
 	default_price = 10
 	extra_price = 50

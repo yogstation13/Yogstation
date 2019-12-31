@@ -69,6 +69,7 @@ import { TurbineComputer } from './interfaces/TurbineComputer';
 import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
+import { Guardian } from './interfaces/Guardian';
 
 const ROUTES = {
   achievements: {
@@ -374,6 +375,10 @@ const ROUTES = {
   wires: {
     component: () => Wires,
     scrollable: false,
+  },
+  guardian: {
+    component: () => Guardian,
+    scrollable: true,
   },
 };
 
