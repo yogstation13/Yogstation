@@ -205,11 +205,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		appendix = new()
 		appendix.Insert(C)
 
-	if(tail && (!should_have_tail))
+	if(tail && (!should_have_tail || replace_current))
 		tail.Remove(C,1)
 		QDEL_NULL(tail)
 	if(should_have_tail && !tail)
 		tail = new mutanttail()
+		if(iscatperson(C))
+			tail.tail_type = C.dna.features["tail_human"]
+		if(islizard(C))
+			var/obj/item/organ/tail/lizard/T = tail
+			T.tail_type = C.dna.features["tail_lizard"]
+			T.spines = C.dna.features["spines"]
 		tail.Insert(C)
 
 	if(C.get_bodypart(BODY_ZONE_HEAD))
