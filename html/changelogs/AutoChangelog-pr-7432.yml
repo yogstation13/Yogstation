@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Quartermaster spawns with an export scanner."
