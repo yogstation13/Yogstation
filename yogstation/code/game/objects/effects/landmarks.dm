@@ -76,3 +76,6 @@
 
 /obj/effect/landmark/stationroom/box/xenobridge
 	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
+
+/obj/effect/landmark/stationroom/box/port_quarter
+	template_names = list("Space Walk Port Quarter Maint", "Old Bar Port Quarter Maint")
