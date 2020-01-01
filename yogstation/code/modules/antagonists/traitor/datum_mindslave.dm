@@ -26,3 +26,8 @@
 	martyr_compatible = TRUE
 	completed = TRUE
 	explanation_text = "Break things, take what you want, avoid harming anyone doing so. Remain loyal to your master and assistant brothers."
+
+/datum/antagonist/greytide/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	var/obj/item/implant/greytide/IMP = locate() in new_body.implants
+	if(!IMP)
+		on_removal()
