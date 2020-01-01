@@ -571,6 +571,15 @@
 	build_path = /obj/item/assembly/signaler
 	category = list("initial", "T-Comm")
 
+/datum/design/mousetrap
+	name = "Mousetrap"
+	id = "mousetrap"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 100)
+	build_path = /obj/item/assembly/mousetrap
+	category = list("initial", "Misc")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/radio_headset
 	name = "Radio Headset"
 	id = "radio_headset"
@@ -866,9 +875,11 @@
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/conveyor_construct
+	materials = list(MAT_METAL = 3000)
+	build_path = /obj/item/stack/conveyor
 	category = list("initial", "Construction")
+	maxstack = 30 
+	
 
 /datum/design/conveyor_switch
 	name = "Conveyor Belt Switch"

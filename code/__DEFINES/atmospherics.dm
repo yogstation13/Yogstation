@@ -3,6 +3,7 @@
 #define MOLES			1
 #define ARCHIVE			2
 #define GAS_META		3
+#define INNER_MOLES		4
 #define META_GAS_SPECIFIC_HEAT	1
 #define META_GAS_NAME			2
 #define META_GAS_MOLES_VISIBLE	3
@@ -157,7 +158,7 @@
 #define AIRLESS_ATMOS				"TEMP=2.7" //space
 #define FROZEN_ATMOS				"o2=22;n2=82;TEMP=180" //-93.15°C snow and ice turfs
 #define KITCHEN_COLDROOM_ATMOS		"o2=33;n2=124;TEMP=193.15" //-80°C kitchen coldroom; higher amount of mol to reach about 101.3 kpA
-#define BURNMIX_ATMOS				"o2=2500;plasma=5000;TEMP=370" //used in the holodeck burn test program
+#define BURNMIX_ATMOS				"o2=100;plasma=200;TEMP=370" //used in the holodeck burn test program
 
 //ATMOSPHERICS DEPARTMENT GAS TANK TURFS
 #define ATMOS_TANK_N2O				"n2o=6000;TEMP=293.15"
@@ -285,6 +286,14 @@
 	for(var/total_moles_id in cached_gases){\
 		out_var += cached_gases[total_moles_id][MOLES];\
 	}
+
+#define TOTAL_MOLES_INNER(cached_gases, out_var)\
+	out_var = 0;\
+	for(var/total_moles_id in cached_gases){\
+		var/list/total_moles_cached_gas = cached_gases[total_moles_id];\
+		out_var += min(total_moles_cached_gas[INNER_MOLES], total_moles_cached_gas[MOLES]);\
+	}
+
 #ifdef TESTING
 GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #define CALCULATE_ADJACENT_TURFS(T) if (SSadjacent_air.queue[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSadjacent_air.queue[T] = 1 }

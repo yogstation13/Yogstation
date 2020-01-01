@@ -406,7 +406,7 @@
 /area/awaymission/academy/headmaster)
 "bw" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator/choose,
+/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academyengine)
 "bx" = (
@@ -727,6 +727,7 @@
 "cF" = (
 /obj/effect/immovablerod{
 	dir = 4
+	notdebris = 1
 	},
 /obj/structure/cable,
 /obj/structure/cable{

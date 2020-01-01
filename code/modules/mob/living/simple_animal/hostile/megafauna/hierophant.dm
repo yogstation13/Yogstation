@@ -442,7 +442,7 @@ Difficulty: Hard
 	if(!blinking)
 		if(target && isliving(target))
 			var/mob/living/L = target
-			if(L.stat != DEAD)
+			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/slime)) // Megafauna eat slimes
 				if(ranged_cooldown <= world.time)
 					calculate_rage()
 					ranged_cooldown = world.time + max(5, ranged_cooldown_time - anger_modifier * 0.75)
