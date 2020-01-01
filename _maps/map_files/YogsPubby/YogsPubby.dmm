@@ -375,7 +375,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/mmedical,
+/obj/machinery/mineral/equipment_vendor,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aaE" = (
@@ -30877,9 +30877,19 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "beM" = (
-/obj/machinery/mineral/equipment_vendor,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/pickaxe{
+	pixel_x = 5
+	},
+/obj/item/shovel{
+	pixel_x = -5
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -31318,17 +31328,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bfE" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
 /obj/machinery/camera{
 	c_tag = "Cargo Mining Dock";
 	dir = 4
