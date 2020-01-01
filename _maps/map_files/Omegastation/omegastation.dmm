@@ -11063,8 +11063,6 @@
 	c_tag = "Mining Dock";
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aqr" = (
