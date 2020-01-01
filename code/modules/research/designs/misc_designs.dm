@@ -23,6 +23,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/health_hud_meson
+	name = "Meson Health Scanner HUD"
+	desc = "An upgraded version of the diagnostic HUD, designed to function during a power failure."
+	id = "health_hud_meson"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_PLASMA = 100)
+	build_path = /obj/item/clothing/glasses/hud/health/meson
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/security_hud
 	name = "Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
