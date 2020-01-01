@@ -269,3 +269,15 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50)
+	
+/obj/item/clothing/suit/armor/stormtrooper
+	name = "Storm Trooper Armor"
+	desc = "Battle Armor from a long lost empire"
+	icon_state = "stormtrooper"
+	item_state = "stormtrooper"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 60, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80)
+	slowdown = 0.9

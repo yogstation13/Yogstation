@@ -312,6 +312,37 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "protect nonhuman"
 	human_check = FALSE
 
+/datum/objective/assist
+	name = "assist"
+	var/target_role_type
+	martyr_compatible = TRUE
+
+/datum/objective/assist/find_target_by_role(role, role_type=FALSE,invert=FALSE)
+	if(!invert)
+		target_role_type = role_type
+	..()
+	return target
+
+/datum/objective/assist/check_completion()
+	if(target)
+		for(var/datum/antagonist/antag in target.antag_datums)
+			for(var/datum/objective/O in antag.objectives)
+				if(istype(O, /datum/objective/assist))//assuming someone gives people assist objectives in a circle for some reason
+					continue
+				if(!O.check_completion())
+					return FALSE
+	return TRUE
+
+/datum/objective/assist/update_explanation_text()
+	..()
+	if(target && target.current)
+		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] completes their objectives."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assist/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+
 /datum/objective/hijack
 	name = "hijack"
 	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
@@ -1020,6 +1051,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/maroon,
 		/datum/objective/debrain,
 		/datum/objective/protect,
+		/datum/objective/assist,
 		/datum/objective/destroy,
 		/datum/objective/hijack,
 		/datum/objective/escape,

@@ -171,7 +171,10 @@
 /turf/closed/wall,
 /area/ruin/powered/spacebar)
 "aG" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = null;
+	req_access_txt = "25"
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aH" = (
@@ -181,7 +184,10 @@
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aI" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = null;
+	req_access_txt = "25"
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/spacebar)
 "aJ" = (
