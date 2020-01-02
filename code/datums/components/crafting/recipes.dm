@@ -457,6 +457,12 @@
 	result = /obj/item/stack/tile/carpet/black/fifty
 	category = CAT_MISC
 
+/datum/crafting_recipe/garbage_bin
+	name = "Garbage Bin"
+	reqs = 	list(/obj/item/stack/sheet/metal = 3)
+	result = /obj/structure/closet/crate/bin
+	category = CAT_MISC
+
 /datum/crafting_recipe/showercurtain
 	name = "Shower Curtains"
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/plastic = 2, /obj/item/stack/rods = 1)
