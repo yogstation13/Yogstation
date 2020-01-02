@@ -107,7 +107,7 @@
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
-		to_chat(L, "<span class='warning'>Your limbs start to feel numb...</span>")
+		to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
