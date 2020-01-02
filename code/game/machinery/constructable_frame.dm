@@ -277,7 +277,7 @@
 			I.forceMove(loc)
 	..()
 
-/obj/structure/frame/machine/mouseDrop_T(atom/dropping, mob/user)
+/obj/structure/frame/machine/MouseDrop_T(atom/dropping, mob/user)
 	if(istype(dropping, /obj/item/circuitboard))
 		attackby(dropping, user)
 	else
