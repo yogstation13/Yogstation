@@ -47,7 +47,9 @@ import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
 import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
 import { NtosArcade } from './interfaces/NtosArcade';
+import { NtnetRelay } from './interfaces/NtnetRelay';
 import { NtosMain } from './interfaces/NtosMain';
+import { NtosConfiguration } from './interfaces/NtosConfiguration';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
 import { NtosWrapper } from './interfaces/NtosWrapper';
@@ -298,6 +300,22 @@ const ROUTES = {
     component: () => Mule,
     scrollable: false,
   },
+  ntnet_relay: {
+    component: () => NtnetRelay,
+    scrollable: false,
+  },
+  ntos_arcade: {
+    component: () => NtosArcade,
+    wrapper: () => NtosWrapper,
+    scrollable: false,
+    theme: 'ntos',
+  },
+  ntos_configuration: {
+    component: () => NtosConfiguration,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
   ntos_main: {
     component: () => NtosMain,
     wrapper: () => NtosWrapper,
@@ -310,14 +328,14 @@ const ROUTES = {
     scrollable: true,
     theme: 'ntos',
   },
-  ntos_arcade: {
-    component: () => NtosArcade,
-    wrapper: () => NtosWrapper,
-    scrollable: false,
-    theme: 'ntos',
-  },
   ntos_power_monitor: {
     component: () => PowerMonitor,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
+  ntos_station_alert: {
+    component: () => StationAlertConsole,
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
