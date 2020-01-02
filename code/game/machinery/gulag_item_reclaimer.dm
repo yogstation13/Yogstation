@@ -80,29 +80,18 @@
 
 	return data
 
-/obj/machinery/gulag_item_reclaimer/ui_act(action, list/params)
-	switch(action)
-		if("handle_id")
-			if(inserted_id)
-				usr.put_in_hands(inserted_id)
-				inserted_id = null
-			else
-				var/obj/item/I = usr.is_holding_item_of_type(/obj/item/card/id/prisoner)
-				if(I)
-					if(!usr.transferItemToLoc(I, src))
-						return
-					inserted_id = I
+/obj/machinery/gulag_item_reclaimer/ui_act(action, params)
+	if(..())
+		return
 
+	switch(action)
 		if("release_items")
-			var/mob/M = locate(params["mobref"]) in stored_items
-			if(M == usr || allowed(usr))
-				if(inserted_id)
-					var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
-					if(D)
-						D.adjust_money(inserted_id.points * 1.5)
-				drop_items(M)
-			else
-				to_chat(usr, "Access denied.")
+			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
+			if(H != usr && !allowed(usr))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				return
+			drop_items(H)
+			. = TRUE
 
 /obj/machinery/gulag_item_reclaimer/proc/drop_items(mob/user)
 	if(!stored_items[user])
