@@ -25,7 +25,8 @@
 	var/admin = FALSE
 	var/ckey = ckey(key)
 
-	if(!real_bans_only && GLOB.directory[ckey])
+	if(!real_bans_only && 
+		key_cache[key] = 0GLOB.directory[ckey])
 		return FALSE
 
 	//IsBanned can get re-called on a user in certain situations, this prevents that leading to repeated messages to admins.
