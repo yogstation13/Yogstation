@@ -70,7 +70,6 @@
 
 /**********************Mineral stacking unit**************************/
 
-
 /obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
 	icon = 'icons/obj/machines/mining_machines.dmi'
@@ -88,6 +87,7 @@
 	var/datum/component/remote_materials/materials
 	var/force_connect = FALSE
 	var/io = 0 //This is used for determining whether we change the Input or Output
+
 
 /obj/machinery/mineral/stacking_machine/examine(mob/user)
 	. = ..()
@@ -114,53 +114,6 @@ There are some <b>bolts</b> to limit stack size."}
 	if(istype(AM, /obj/item/stack/sheet) && AM.loc == get_step(src, input_dir))
 		process_sheet(AM)
 
-/obj/machinery/mineral/stacking_machine/multitool_act(mob/living/user, obj/item/multitool/M)
-	if(istype(M))
-		if(istype(M.buffer, /obj/machinery/mineral/stacking_unit_console) && !panel_open)
-			CONSOLE = M.buffer
-			CONSOLE.machine = src
-			to_chat(user, "<span class='notice'>You link [src] to the console in [M]'s buffer.</span>")
-			return TRUE
-	if(panel_open)
-		io = !io
-		to_chat(user, "<span class='notice'>You set the I/O to change [io ? "output" : "input"].</span>")
-		return TRUE
-
-/obj/machinery/mineral/stacking_machine/attack_hand(mob/user)
-	if(panel_open &&(io == 0))
-		input_dir = turn(input_dir, -90)
-		if(input_dir == output_dir) //Input and output can't be the same or you create the immovable sheet.
-			input_dir = turn(input_dir, -90)
-		to_chat(user, "<span class='notice'>You set [src]'s input to take from the [dir2text(input_dir)].</span>")
-		return
-	else if (panel_open && (io == 1))
-		output_dir = turn(output_dir, -90)
-		if(input_dir == output_dir)
-			output_dir = turn(output_dir, -90)
-		to_chat(user, "<span class='notice'>You set [src]'s output to drop stacks [dir2text(output_dir)].</span>")
-		return
-	return TRUE
-
-
-/obj/machinery/mineral/stacking_machine/wrench_act(mob/living/user, obj/item/wrench/W)
-	if(istype(W)&&panel_open)
-		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
-		if(stsize && (stsize > 0 && stsize <= 50))
-			stack_amt = stsize
-			if(stack_amt != 1)
-				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheets</b><spanclass>")
-			else if(stack_amt == 1)
-				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet</b></span>")
-			return
-	return TRUE
-
-/obj/machinery/mineral/stacking_machine/attackby(obj/item/W, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "stacker-open", "stacker", W))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(W))
-		return
-
 /obj/machinery/mineral/stacking_machine/proc/process_sheet(obj/item/stack/sheet/inp)
 	var/key = inp.merge_type
 	var/obj/item/stack/sheet/storage = stack_list[key]
@@ -183,3 +136,51 @@ There are some <b>bolts</b> to limit stack size."}
 		unload_mineral(out)
 		storage.amount -= stack_amt
 
+/obj/machinery/mineral/stacking_machine/attackby(obj/item/W, mob/user, params)
+	if(default_deconstruction_screwdriver(user, "stacker-open", "stacker", W))
+		updateUsrDialog()
+		return
+	if(default_deconstruction_crowbar(W))
+		return
+
+	if(!powered())
+		return
+
+	if(W.tool_behaviour == TOOL_WRENCH && panel_open)
+		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
+		if(stsize && (stsize > 0 && stsize <= 50))
+			stack_amt = stsize
+			if(stack_amt != 1)
+				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheets</b><spanclass>")
+			else if(stack_amt == 1)
+				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet</b></span>")
+			return
+
+	return ..()
+
+/obj/machinery/mineral/stacking_machine/attack_hand(mob/user)
+	if(panel_open &&(io == 0))
+		input_dir = turn(input_dir, -90)
+		if(input_dir == output_dir) //Input and output can't be the same or you create the immovable sheet.
+			input_dir = turn(input_dir, -90)
+		to_chat(user, "<span class='notice'>You set [src]'s input to take from the [dir2text(input_dir)].</span>")
+		return
+	else if (panel_open && (io == 1))
+		output_dir = turn(output_dir, -90)
+		if(input_dir == output_dir)
+			output_dir = turn(output_dir, -90)
+		to_chat(user, "<span class='notice'>You set [src]'s output to drop stacks [dir2text(output_dir)].</span>")
+		return
+	return TRUE
+
+/obj/machinery/mineral/stacking_machine/multitool_act(mob/living/user, obj/item/multitool/M)
+	if(istype(M))
+		if(istype(M.buffer, /obj/machinery/mineral/stacking_unit_console) && !panel_open)
+			CONSOLE = M.buffer
+			CONSOLE.machine = src
+			to_chat(user, "<span class='notice'>You link [src] to the console in [M]'s buffer.</span>")
+			return TRUE
+	if(panel_open)
+		io = !io
+		to_chat(user, "<span class='notice'>You set the I/O to change [io ? "output" : "input"].</span>")
+		return TRUE
