@@ -29,6 +29,7 @@ import { DisposalUnit } from './interfaces/DisposalUnit';
 import { RadioactiveMicrolaser } from './interfaces/RadioactiveMicrolaser';
 import { DnaVault } from './interfaces/DnaVault';
 import { EmergencyShuttleConsole } from './interfaces/EmergencyShuttleConsole';
+import { EightBallVote } from './interfaces/EightBallVote';
 import { EngravedMessage } from './interfaces/EngravedMessage';
 import { Gps } from './interfaces/Gps';
 import { GravityGenerator } from './interfaces/GravityGenerator';
@@ -230,6 +231,10 @@ const ROUTES = {
   },
   emergency_shuttle_console: {
     component: () => EmergencyShuttleConsole,
+    scrollable: false
+  }
+  eightball: {
+    component: () => EightBallVote,
     scrollable: false,
   },
   engraved_message: {
