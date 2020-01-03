@@ -94,6 +94,7 @@ import { Autolathe } from './interfaces/Autolathe';
 import { NotificationPreferences } from './interfaces/NotificationPreferences';
 import { ExosuitControlConsole } from './interfaces/ExosuitControlConsole';
 import { ParticleAccelerator } from './interfaces/ParticleAccelerator';
+import { SyndContractor } from './interfaces/SyndContractor';
 
 const ROUTES = {
   achievements: {
@@ -455,6 +456,12 @@ const ROUTES = {
   suit_storage_unit: {
     component: () => SuitStorageUnit,
     scrollable: false,
+  },
+  synd_contract: {
+    component: () => SyndContractor,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'syndicate',
   },
   tanks: {
     component: () => Tank,
