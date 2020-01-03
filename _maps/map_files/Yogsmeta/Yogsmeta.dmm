@@ -12783,28 +12783,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"avP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"avQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/engine/engineering)
-"avR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "avS" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating{
@@ -13468,6 +13446,9 @@
 	dir = 6;
 	icon_state = "pipe11-1"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "axb" = (
@@ -13482,6 +13463,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8;
 	icon_state = "pipe11-1"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -15114,6 +15098,9 @@
 	dir = 8;
 	icon_state = "pipe11-1"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "azU" = (
@@ -15475,7 +15462,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aAu" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -15487,6 +15473,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9;
 	icon_state = "pipe11-1"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -16242,9 +16231,6 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "aBM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -16256,6 +16242,7 @@
 	dir = 4;
 	icon_state = "manifold-1"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aBN" = (
@@ -127812,7 +127799,7 @@ axT
 axY
 aAr
 axb
-avP
+aTO
 axc
 aFK
 aTO
@@ -128069,7 +128056,7 @@ axU
 ayS
 dCk
 azT
-avQ
+axY
 deh
 aGn
 aCZ
@@ -128326,7 +128313,7 @@ atu
 atH
 aKA
 azT
-avQ
+axY
 dei
 aHQ
 deB
@@ -128583,7 +128570,7 @@ cgh
 cgi
 awV
 aAu
-avR
+aCZ
 aEr
 aKL
 aGY
