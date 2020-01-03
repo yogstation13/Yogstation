@@ -375,7 +375,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/mmedical,
+/obj/machinery/mineral/equipment_vendor,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aaE" = (
@@ -5597,6 +5597,8 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "akM" = (
@@ -29460,7 +29462,6 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bch" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -29831,8 +29832,10 @@
 /area/solar/starboard)
 "bcW" = (
 /obj/structure/rack,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "bcX" = (
@@ -30874,9 +30877,19 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "beM" = (
-/obj/machinery/mineral/equipment_vendor,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/pickaxe{
+	pixel_x = 5
+	},
+/obj/item/shovel{
+	pixel_x = -5
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -31315,17 +31328,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
 "bfE" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
 /obj/machinery/camera{
 	c_tag = "Cargo Mining Dock";
 	dir = 4
@@ -32699,7 +32701,6 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -33606,7 +33607,6 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "bjX" = (
-/obj/structure/filingcabinet,
 /obj/machinery/requests_console{
 	department = "Security";
 	departmentType = 5;
@@ -33625,6 +33625,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/med,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bjY" = (
@@ -33777,17 +33778,17 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bkl" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/closed/wall,
 /area/tcommsat/computer)
 "bkm" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
-/obj/structure/cable/yellow{
+/obj/item/wrench,
+/obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/item/wrench,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "bkn" = (
@@ -33802,18 +33803,18 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "bko" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8;
 	icon_state = "pipe11-1"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
@@ -34045,21 +34046,21 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "bkL" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bkM" = (
@@ -34476,7 +34477,6 @@
 /turf/open/floor/plasteel/dark,
 /area/science/explab)
 "blB" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -34937,7 +34937,6 @@
 	dir = 4;
 	network = list("ss13","medbay")
 	},
-/obj/structure/closet/secure_closet/security/med,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -34945,6 +34944,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "bmt" = (
@@ -41326,7 +41326,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
@@ -41632,10 +41632,10 @@
 	name = "Telecommunications External Access";
 	req_access_txt = "61"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "bwI" = (
@@ -41643,10 +41643,10 @@
 	brightness = 3;
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "bwJ" = (
@@ -41657,14 +41657,14 @@
 	name = "Telecommunications External Access";
 	req_access_txt = "61"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "bwK" = (
@@ -41703,19 +41703,19 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bwO" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/item/stack/cable_coil,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9;
 	icon_state = "pipe11-1"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
@@ -45105,7 +45105,8 @@
 	},
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
-	req_access_txt = "10; 61"
+	req_access_txt = "0";
+	req_one_access_txt = "10; 61"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -46959,7 +46960,6 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = -32
 	},
-/obj/structure/filingcabinet/security,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -46967,6 +46967,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "bEX" = (
@@ -47825,7 +47826,8 @@
 "bGq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Telecommunications Transit Tube";
-	req_access_txt = "10; 61"
+	req_access_txt = "0";
+	req_one_access_txt = "10; 61"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -49123,14 +49125,8 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -49146,7 +49142,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
@@ -49644,9 +49640,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bJo" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Telecommunications Maintenance";
 	req_access_txt = "61"
@@ -49663,6 +49656,9 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
@@ -49684,8 +49680,8 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
-/obj/structure/cable/yellow,
 /obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "bJr" = (
@@ -49731,12 +49727,12 @@
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "bJu" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6;
 	icon_state = "pipe11-3"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
@@ -49753,9 +49749,6 @@
 	dir = 1;
 	network = list("tcomms");
 	start_active = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4;
@@ -49914,9 +49907,6 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bJK" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9;
 	icon_state = "pipe11-1"
@@ -49926,6 +49916,9 @@
 	icon_state = "scrub_map_on-3"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "bJL" = (
@@ -50883,13 +50876,13 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "bLK" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/components/binary/pump/on/layer3{
 	dir = 1;
 	icon_state = "pump_on_map-3";
 	name = "Waste to Space"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -53217,7 +53210,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bUk" = (
-/obj/machinery/computer/secure_data,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -53225,6 +53217,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/machinery/computer/security,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bUl" = (
@@ -53866,7 +53859,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "bWA" = (
-/obj/structure/filingcabinet,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the engine containment area.";
 	dir = 4;
@@ -53881,13 +53873,13 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bWC" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
 	},
-/obj/structure/closet/secure_closet/security/engine,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -53895,6 +53887,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/engine,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bWD" = (
@@ -56471,12 +56464,6 @@
 "clw" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/computer)
-"clB" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/closed/wall/r_wall,
-/area/tcommsat/computer)
 "clC" = (
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/transit_tube,
@@ -56521,9 +56508,6 @@
 	idSelf = "telecomms_airlock_control";
 	pixel_x = -24
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/machinery/power/apc{
 	areastring = "/area/tcommsat/computer";
 	dir = 1;
@@ -56538,6 +56522,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
@@ -56592,10 +56579,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/structure/cable{
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "cmx" = (
@@ -56805,7 +56792,7 @@
 	name = "Telecomms Server APC";
 	pixel_y = -24
 	},
-/obj/structure/cable,
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "cnv" = (
@@ -59252,7 +59239,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 5
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -59274,9 +59261,6 @@
 	req_access_txt = "61"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -59285,6 +59269,9 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "gwn" = (
@@ -59380,11 +59367,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "gJK" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/manifold/general/hidden{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -59454,7 +59441,7 @@
 /obj/machinery/atmospherics/pipe/manifold/general/hidden{
 	dir = 1
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -59671,9 +59658,6 @@
 /area/maintenance/department/science)
 "hQz" = (
 /obj/structure/closet/emcloset/anchored,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "hQC" = (
@@ -60177,10 +60161,10 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "ksO" = (
-/obj/structure/cable{
+/obj/machinery/atmospherics/pipe/simple/general/hidden,
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "kvj" = (
@@ -60426,15 +60410,15 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "lcU" = (
@@ -60760,7 +60744,7 @@
 /obj/machinery/power/smes{
 	charge = 5e+006
 	},
-/obj/structure/cable,
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "mHy" = (
@@ -60820,11 +60804,11 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "mVt" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -60850,11 +60834,11 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "naE" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -60984,11 +60968,11 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "nAx" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -61406,13 +61390,13 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "oNN" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
+/obj/machinery/atmospherics/pipe/manifold/general/hidden,
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/general/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "oPy" = (
@@ -61811,7 +61795,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
 "qzp" = (
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -61961,11 +61945,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "qYS" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
@@ -62026,10 +62010,6 @@
 	},
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/space/nearstation)
-"roc" = (
-/obj/structure/cable,
-/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "rqj" = (
 /obj/machinery/power/emitter,
@@ -62496,7 +62476,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 6
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
@@ -62513,13 +62493,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"tfw" = (
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
 "tfP" = (
 /obj/item/beacon,
 /turf/open/floor/engine,
@@ -62967,10 +62940,10 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "uMD" = (
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -91946,23 +91919,23 @@ tue
 pjH
 pjH
 pjH
-roc
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-mVM
-tfw
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
+pjH
 pjH
 pjH
 uHG
@@ -92480,9 +92453,9 @@ aaa
 aaa
 bBW
 bJw
-clB
+clw
 hQz
-clB
+clw
 bwN
 bIw
 brV

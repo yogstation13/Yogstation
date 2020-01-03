@@ -198,7 +198,7 @@
 	glass_icon_state = "glass_white"
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
-	
+
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
 	description = "An opaque white liquid produced by the mammary glands of goats."
@@ -210,7 +210,7 @@
 	description = "An opaque white liquid produced by the mammary glands of sheep."
 	taste_description = "sheep"
 	glass_name = "glass of sheep milk"
-	
+
 /datum/reagent/consumable/milk/blue
 	name = "Blue Cheese Milk"
 	description = "An opaque white liquid."
@@ -222,7 +222,7 @@
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
-	
+
 /datum/reagent/consumable/milk/cheddar
 	name = "Cheddar Cheese Milk"
 	description = "An opaque white liquid."
@@ -234,13 +234,13 @@
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
-	
+
 /datum/reagent/consumable/milk/goatcheese
 	name = "Goat Cheese Milk"
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
-	
+
 /datum/reagent/consumable/milk/shoat
 	name = "Shoat Milk"
 	description = "An opaque white liquid."
@@ -252,7 +252,7 @@
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
-	
+
 /datum/reagent/consumable/milk/mozzarella
 	name = "Mozzarella Cheese Milk"
 	description = "An opaque white liquid."
@@ -264,7 +264,7 @@
 	description = "An opaque white liquid."
 	taste_description = "bitter"
 	glass_name = "glass of cheese milk"
-	
+
 /datum/reagent/consumable/milk/swiss
 	name = "Swiss Cheese Milk"
 	description = "An opaque white liquid."
@@ -852,3 +852,11 @@
 	glass_icon_state = "red_queen"
 	glass_name = "Red Queen"
 	glass_desc = "DRINK ME."
+
+/datum/reagent/consumable/sprited_cranberry
+	name = "Sprited Cranberry"
+	description = "A limited edition winter spiced cranberry drink."
+	quality = DRINK_GOOD
+	color = "#fffafa"
+	taste_description = "cranberry"
+	glass_name = "glass of sprited cranberry"

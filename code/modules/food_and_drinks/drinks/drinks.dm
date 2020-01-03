@@ -531,6 +531,12 @@
 	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
 	foodtype = SUGAR | JUNKFOOD
 
+/obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry
+	name = "Sprited Cranberry"
+	desc = "A limited edition winter spiced cranberry drink."
+	icon_state = "sprited_cranberry"
+	list_reagents = list(/datum/reagent/consumable/sprited_cranberry = 30)
+
 /obj/item/reagent_containers/food/drinks/soda_cans/air
 	name = "canned air"
 	desc = "There is no air shortage. Do not drink."
