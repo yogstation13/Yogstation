@@ -41,6 +41,7 @@ import { Intellicard } from './interfaces/Intellicard';
 import { RoboticsControlConsole } from './interfaces/RoboticsControlConsole';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LanguageMenu } from './interfaces/LanguageMenu';
+import { LaunchpadConsole, LaunchpadRemote } from './interfaces/Launchpad';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
 import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
@@ -270,6 +271,15 @@ const ROUTES = {
   language_menu: {
     component: () => LanguageMenu,
     scrollable: true,
+  },
+  launchpad_console: {
+    component: () => LaunchpadConsole,
+    scrollable: true,
+  },
+  launchpad_remote: {
+    component: () => LaunchpadRemote,
+    scrollable: false,
+    theme: 'syndicate',
   },
   mech_bay_power_console: {
     component: () => MechBayPowerConsole,
