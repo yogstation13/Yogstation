@@ -25,7 +25,7 @@
 
 /datum/design/health_hud_meson
 	name = "Meson Health Scanner HUD"
-	desc = "An upgraded version of the diagnostic HUD, designed to function during a power failure."
+	desc = "An upgraded version of the Health Scanner HUD, functions the same and in addition allows the user to see basic structural and terrain layouts through walls."
 	id = "health_hud_meson"
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_PLASMA = 100)
