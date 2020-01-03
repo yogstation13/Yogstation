@@ -113,9 +113,7 @@
 		dat += "<h3>[a]</h3>"
 		dat += "<div class='statusDisplay'><ul>"
 		for(var/datum/data/mining_equipment/prize in categories[a])
-			dat += "<li><tr><td>[prize.equipment_name]</td>          \
-					<td>[prize.cost]</td>          	\
-					<td><A href='?src=\ref[src];purchase=\ref[prize]'>Purchase</A></td></tr></li>"
+			dat += "<div>[prize.equipment_name] <div style='float:right; display:inline-block'> [prize.cost] <A href='?src=\ref[src];purchase=\ref[prize]'>Purchase</A> </div> </div>"
 		dat += "</ul></div>"
 		dat += "<br>"
 
