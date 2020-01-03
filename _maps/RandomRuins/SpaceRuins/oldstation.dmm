@@ -616,13 +616,13 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hivebot)
 "bH" = (
-/obj/machinery/door/firedoor/closed,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/closed{
+	icon_state = "door_closed";
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betanorth)
@@ -2740,6 +2740,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
@@ -5156,21 +5159,6 @@
 "lz" = (
 /turf/open/floor/plating/airless,
 /area/template_noop)
-"lA" = (
-/obj/machinery/door/airlock/science,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "lL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -5226,7 +5214,7 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/hivebot)
-"nH" = (
+"od" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only,
@@ -5234,7 +5222,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation)
+/area/ruin/space/has_grav/ancientstation/rnd)
 "oM" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -5258,49 +5246,31 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
-"pJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation)
-"rs" = (
-/obj/machinery/door/firedoor/closed,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/betanorth)
-"rB" = (
-/obj/machinery/door/airlock/science,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
-"rD" = (
-/obj/effect/decal/cleanable/dirt,
+"qA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/rnd)
+/area/ruin/space/has_grav/ancientstation)
+"rn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
+"su" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only/closed,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/betanorth)
 "sC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock,
@@ -5310,6 +5280,16 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toilet,
 /turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/ancientstation)
+"sL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/structure/closet/crate/engineering/electrical,
+/obj/item/holosign_creator/atmos,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
 "td" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5335,17 +5315,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
-"vI" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "wC" = (
 /obj/structure/particle_accelerator/power_box,
 /obj/effect/decal/cleanable/dirt,
@@ -5358,15 +5327,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
-"yN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "zh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/purple,
@@ -5393,17 +5353,32 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"BO" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Dj" = (
 /obj/structure/transit_tube{
 	dir = 4
 	},
 /turf/template_noop,
 /area/space/nearstation)
-"DD" = (
+"Ee" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "FH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/mirror{
@@ -5432,28 +5407,35 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
-"JM" = (
+"Kg" = (
+/obj/machinery/door/airlock/science,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/structure/closet/crate/engineering/electrical,
-/obj/item/holosign_creator/atmos,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation)
-"JQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Ku" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/particle_accelerator/control_box,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"KE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "KR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tank/internals/plasma/full,
@@ -5500,6 +5482,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
+"On" = (
+/obj/machinery/door/airlock/science,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "OA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -5520,6 +5517,17 @@
 /mob/living/simple_animal/hostile/hivebot,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"OZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation)
 "Pl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -5558,6 +5566,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
+"QN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/rnd)
 "Sf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/particle_accelerator/fuel_chamber,
@@ -5582,17 +5600,6 @@
 	pixel_x = -26
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation)
-"Xl" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "XJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5628,16 +5635,6 @@
 	},
 /obj/item/soap/nanotrasen,
 /turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/ancientstation)
-"Zt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 
 (1,1,1) = {"
@@ -5852,7 +5849,7 @@ bI
 bI
 bI
 bI
-rs
+su
 bq
 bq
 fX
@@ -5900,7 +5897,7 @@ bI
 dk
 bI
 bI
-rs
+su
 bq
 bq
 fY
@@ -6816,7 +6813,7 @@ em
 fd
 Yi
 gj
-DD
+Yi
 hm
 em
 ie
@@ -6864,7 +6861,7 @@ eL
 fe
 fE
 gk
-JQ
+rn
 hn
 em
 if
@@ -7574,8 +7571,8 @@ aR
 bn
 ak
 ak
-Xl
-Xl
+OZ
+OZ
 cQ
 ds
 dR
@@ -7681,7 +7678,7 @@ fn
 fJ
 gy
 fJ
-Zt
+qA
 dt
 dt
 dt
@@ -7693,7 +7690,7 @@ bC
 aY
 aY
 kG
-JM
+sL
 aY
 aG
 aa
@@ -7725,11 +7722,11 @@ du
 bN
 dE
 bN
-pJ
+KE
 bN
 gz
 bN
-nH
+Ee
 dE
 bN
 bN
@@ -8599,8 +8596,8 @@ dy
 dy
 dy
 dy
-lA
-rB
+Kg
+On
 jV
 jV
 jV
@@ -8832,7 +8829,7 @@ eb
 eh
 eb
 gO
-yN
+od
 eb
 ea
 fR
@@ -8880,7 +8877,7 @@ eb
 eb
 eb
 gP
-rD
+QN
 hi
 lL
 ir
@@ -9271,7 +9268,7 @@ bD
 bD
 bD
 bD
-vI
+BO
 bD
 bD
 aa
