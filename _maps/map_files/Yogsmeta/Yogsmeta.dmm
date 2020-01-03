@@ -52573,7 +52573,7 @@
 "bMV" = (
 /obj/structure/disposalpipe/segment,
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -59197,7 +59197,7 @@
 	},
 /obj/item/clothing/neck/stethoscope,
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -61116,7 +61116,7 @@
 "cbV" = (
 /obj/structure/bed/roller,
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -67103,7 +67103,7 @@
 /area/maintenance/port/aft)
 "clm" = (
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -68308,7 +68308,7 @@
 "cnt" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -71226,7 +71226,7 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -77063,7 +77063,7 @@
 "cAS" = (
 /obj/structure/chair/stool,
 /obj/item/radio/intercom{
-	broadcasting = 1;
+	broadcasting = 0;
 	frequency = 1485;
 	listening = 1;
 	name = "Station Intercom (Medbay)";
@@ -85085,6 +85085,17 @@
 "ejI" = (
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"ekA" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "eqG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -85404,17 +85415,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"jiI" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "jtW" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance";
@@ -86168,16 +86168,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"uQo" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/obj/machinery/door/window/westleft{
-	name = "MULEbot Access";
-	req_access_txt = "31"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "uRM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -86256,6 +86246,16 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"wdJ" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/door/window/westleft{
+	name = "MULEbot Access";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "wiZ" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -105586,7 +105586,7 @@ aDR
 azK
 aAq
 aAS
-uQo
+wdJ
 aCw
 aHz
 aJH
@@ -118778,7 +118778,7 @@ dvY
 dvY
 cqs
 djh
-jiI
+ekA
 bjt
 cql
 cyd
