@@ -11063,8 +11063,6 @@
 	c_tag = "Mining Dock";
 	dir = 4
 	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "aqr" = (
@@ -14073,9 +14071,9 @@
 	pixel_y = -3
 	},
 /obj/machinery/power/apc{
+	areastring = "/area/medical";
 	dir = 8;
 	name = "Medbay APC";
-	areastring = "/area/medical/medbay/zone3";
 	pixel_x = -26
 	},
 /obj/structure/cable/white,

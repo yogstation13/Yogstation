@@ -8026,6 +8026,8 @@
 	pixel_y = -2
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/storage/box/firingpins,
+/obj/item/storage/box/firingpins,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anp" = (
@@ -8042,12 +8044,11 @@
 /area/crew_quarters/fitness/recreation)
 "anq" = (
 /obj/structure/rack,
-/obj/item/storage/box/firingpins{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/firingpins,
 /obj/effect/turf_decal/bot,
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anr" = (
@@ -14703,7 +14704,6 @@
 /obj/machinery/light_switch{
 	pixel_y = 38
 	},
-/obj/structure/closet/wardrobe/miner,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -14726,7 +14726,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/mmedical,
+/obj/structure/closet/wardrobe/miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "azq" = (
@@ -61119,7 +61119,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "cbR" = (
-/obj/structure/chair/office/dark,
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "MedbayFoyer";
@@ -61134,6 +61133,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -62090,7 +62092,6 @@
 /turf/closed/wall,
 /area/medical/medbay/central)
 "cdx" = (
-/obj/machinery/computer/crew,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -62101,7 +62102,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/closed/wall,
 /area/medical/medbay/central)
 "cdy" = (
 /obj/effect/turf_decal/tile/blue,
