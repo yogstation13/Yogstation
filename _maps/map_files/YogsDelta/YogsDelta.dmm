@@ -86810,7 +86810,6 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
 "czX" = (
-/obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -86820,6 +86819,15 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/machinery/suit_storage_unit/command,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/machinery/door/window/westleft{
+	name = "Command Suit Storage";
+	req_access_txt = "19"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
@@ -125826,6 +125834,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"dUC" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/suit_storage_unit/command,
+/obj/machinery/door/window/westright{
+	name = "Command Suit Storage";
+	req_access_txt = "19"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
 "dUN" = (
 /obj/structure/cable/white{
 	icon_state = "0-8"
@@ -167465,7 +167492,7 @@ cwI
 cyq
 czX
 cBn
-czX
+dUC
 cEJ
 cGn
 cvo
