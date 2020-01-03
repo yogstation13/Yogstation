@@ -256,6 +256,14 @@ Contains:
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
 
 /obj/item/clothing/head/helmet/space/eva
+	name = "EVA helmet"
+	icon_state = "space"
+	item_state = "space"
+	desc = "A lightweight space helmet with the basic ability to protect the wearer from the vacuum of space during emergencies."
+	flash_protect = 0
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
+
+/obj/item/clothing/head/helmet/space/heads
 	name = "Command EVA helmet"
 	icon_state = "heads"
 	item_state = "heads"
@@ -269,14 +277,6 @@ Contains:
 	item_state = "heads"
 	desc = "A sleek modern suit with the ability to protect you whilst in space, the stitching is lined with plasteel alloy."
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
-
-/obj/item/clothing/head/helmet/space/heads
-	name = "EVA helmet"
-	icon_state = "space"
-	item_state = "space"
-	desc = "A lightweight space helmet with the basic ability to protect the wearer from the vacuum of space during emergencies."
-	flash_protect = 0
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65)
 
 /obj/item/clothing/head/helmet/space/freedom
 	name = "eagle helmet"
