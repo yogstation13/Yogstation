@@ -166,7 +166,6 @@
 	#define SPEECH_LANGUAGE 5
 	#define SPEECH_IGNORE_SPAM 6
 	#define SPEECH_FORCED 7 */
-#define COMSIG_MOB_EMOTE "mob_emote" // from /mob/living/emote(): ()
 
 // /mob/living signals
 #define COMSIG_LIVING_RESIST "living_resist"					//from base of mob/living/resist() (/mob/living)
