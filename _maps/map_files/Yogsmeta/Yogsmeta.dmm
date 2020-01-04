@@ -85085,17 +85085,6 @@
 "ejI" = (
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"ekA" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "eqG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -85201,6 +85190,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
+"gzK" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/door/window/westleft{
+	name = "MULEbot Access";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "gLo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -85399,6 +85398,17 @@
 /obj/structure/table,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iNZ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "iZd" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -86246,16 +86256,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"wdJ" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/obj/machinery/door/window/westleft{
-	name = "MULEbot Access";
-	req_access_txt = "31"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "wiZ" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -86344,9 +86344,7 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "xdW" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe{
-	products = list(/obj/item/clothing/under/rank/janitor = 2, /obj/item/clothing/under/yogs/casualjanitorsuit = 2, /obj/item/clothing/suit/yogs/janitorcoat = 2, /obj/item/cartridge/janitor = 2, /obj/item/clothing/gloves/color/black = 2, /obj/item/clothing/head/soft/purple = 2, /obj/item/paint/paint_remover = 2, /obj/item/melee/flyswatter = 2, /obj/item/flashlight = 2, /obj/item/caution = 6, /obj/item/holosign_creator/janibarrier = 2, /obj/item/lightreplacer = 2, /obj/item/soap/nanotrasen = 2, /obj/item/storage/bag/trash = 2, /obj/item/clothing/shoes/galoshes = 2, /obj/item/watertank/janitor = 2, /obj/item/storage/belt/janitor = 2)
-	},
+/obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
 /area/janitor)
 "xse" = (
@@ -105586,7 +105584,7 @@ aDR
 azK
 aAq
 aAS
-wdJ
+gzK
 aCw
 aHz
 aJH
@@ -118778,7 +118776,7 @@ dvY
 dvY
 cqs
 djh
-ekA
+iNZ
 bjt
 cql
 cyd
