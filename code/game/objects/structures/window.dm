@@ -823,7 +823,7 @@
 
 /obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/cloth(loc, 2)
-	new /obj/item/stack/rods (loc, 1)
+	new /obj/item/stack/rods(loc, 1)
 	qdel(src)
 
 /obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
