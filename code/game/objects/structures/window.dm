@@ -805,7 +805,7 @@
 	if(anchored)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] cuts apart [src].</span>",
+	user.visible_message("<span class='warning'>[user] starts cuttting apart [src].</span>",
 		"<span class='notice'>You start to cut apart [src].</span>", "You hear cutting.")
 	if(I.use_tool(src, user, 50, volume=100) && !anchored)
 		to_chat(user, "<span class='notice'>You cut apart [src].</span>")
