@@ -793,6 +793,7 @@
 /obj/structure/cloth_curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))
 		color = input(user,"","Choose Color",color) as color
+		return TRUE
 	else
 		return ..()
 
@@ -804,7 +805,7 @@
 	if(anchored)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] cuts apart [src].</span>",
+	user.visible_message("<span class='warning'>[user] starts cuttting apart [src].</span>",
 		"<span class='notice'>You start to cut apart [src].</span>", "You hear cutting.")
 	if(I.use_tool(src, user, 50, volume=100) && !anchored)
 		to_chat(user, "<span class='notice'>You cut apart [src].</span>")
@@ -821,8 +822,8 @@
 	toggle()
 
 /obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/cloth (loc, 2)
-	new /obj/item/stack/rods (loc, 1)
+	new /obj/item/stack/sheet/cloth(loc, 2)
+	new /obj/item/stack/rods(loc, 1)
 	qdel(src)
 
 /obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
