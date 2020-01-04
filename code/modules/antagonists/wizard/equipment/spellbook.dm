@@ -434,7 +434,7 @@
 
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
-	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted."
+	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."
 	item_path = /obj/item/clothing/suit/space/hardsuit/shielded/wizard
 	limit = 1
 	category = "Defensive"
