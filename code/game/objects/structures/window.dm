@@ -793,6 +793,7 @@
 /obj/structure/cloth_curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))
 		color = input(user,"","Choose Color",color) as color
+		return TRUE
 	else
 		return ..()
 
