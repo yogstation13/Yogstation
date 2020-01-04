@@ -827,11 +827,9 @@
 	qdel(src)
 
 /obj/structure/cloth_curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
-	switch(damage_type)
-		if(damage_amount)
+	if(damage_amount)
+		switch(damage_type)
 			if(BRUTE)
 				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
-			else
-				playsound(loc, 'sound/weapons/tap.ogg', 50, 1)
 			if(BURN)
 				playsound(loc, 'sound/items/welder.ogg', 80, 1)
