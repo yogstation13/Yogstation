@@ -306,6 +306,12 @@ Key procs
 							/datum/language/machine = list(LANGUAGE_ATOM),
 							/datum/language/draconic = list(LANGUAGE_ATOM))
 
+/datum/language_holder/preternis
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/machine = list(LANGUAGE_ATOM),)
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/machine = list(LANGUAGE_ATOM),)
+
 /datum/language_holder/empty
 	understood_languages = list()
 	spoken_languages = list()
