@@ -1,0 +1,5 @@
+author: "Readystorm546"
+delete-after: true 
+changes: 
+  - tweak: "Changed around some carp spawn locations."
+  - rscdel: "Removed some useless firelock placement. inconstant spacestation tiles"
