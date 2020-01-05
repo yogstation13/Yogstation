@@ -15,8 +15,8 @@
 /area/crew_quarters/heads/hos)
 "aac" = (
 /obj/effect/landmark/stationroom/box/foreportmaint1,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
+/turf/template_noop,
+/area/template_noop)
 "aad" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
@@ -3089,12 +3089,6 @@
 	name = "Mixing Room Exterior Airlock";
 	req_access_txt = "8"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
 "afS" = (
@@ -4133,12 +4127,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "testlab";
 	name = "test chamber blast door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/science/misc_lab)
@@ -5631,12 +5619,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/science/misc_lab)
 "akD" = (
@@ -5943,10 +5925,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "alg" = (
@@ -6835,10 +6813,6 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "amX" = (
@@ -8030,12 +8004,8 @@
 	name = "Atmospherics Maintenance";
 	req_access_txt = "12;24"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -8043,6 +8013,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "apy" = (
@@ -9426,10 +9397,6 @@
 /area/maintenance/starboard/fore)
 "asx" = (
 /obj/structure/door_assembly/door_assembly_mai,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "asy" = (
@@ -10391,7 +10358,6 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -10606,10 +10572,10 @@
 	req_access_txt = "12"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "avg" = (
@@ -11535,7 +11501,6 @@
 	name = "Electrical Maintenance";
 	req_access_txt = "11"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
@@ -20469,6 +20434,15 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
@@ -21067,10 +21041,10 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "aQe" = (
@@ -34246,12 +34220,6 @@
 	id = "robotics2";
 	name = "robotics lab shutters"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "bpX" = (
@@ -35099,10 +35067,6 @@
 	name = "research lab shutters"
 	},
 /obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/science/lab)
 "bry" = (
@@ -35164,10 +35128,10 @@
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -36663,10 +36627,6 @@
 	name = "robotics lab shutters"
 	},
 /obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "buk" = (
@@ -36923,12 +36883,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
 "buB" = (
@@ -37105,16 +37059,10 @@
 	name = "Air Supply Maintenance";
 	req_access_txt = "12"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "buU" = (
@@ -37191,12 +37139,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -37501,12 +37443,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -38905,10 +38841,6 @@
 	name = "test chamber blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/explab)
 "byw" = (
@@ -44252,10 +44184,6 @@
 	name = "test chamber blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bJJ" = (
@@ -44267,10 +44195,6 @@
 	name = "test chamber blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bJK" = (
@@ -44286,10 +44210,6 @@
 	name = "test chamber blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bJL" = (
@@ -44305,10 +44225,6 @@
 	id = "misclab";
 	name = "test chamber blast door"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bJM" = (
@@ -44320,10 +44236,6 @@
 	name = "test chamber blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bJN" = (
@@ -44525,7 +44437,6 @@
 /area/quartermaster/miningdock)
 "bKo" = (
 /obj/machinery/light,
-/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKp" = (
@@ -46458,12 +46369,6 @@
 /area/crew_quarters/fitness)
 "bOK" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bOL" = (
@@ -47297,12 +47202,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bRX" = (
@@ -47350,12 +47249,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bSb" = (
@@ -47495,12 +47388,6 @@
 	id = "xenobio3";
 	name = "containment blast door"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bTc" = (
@@ -47536,12 +47423,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio8";
 	name = "containment blast door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -47682,12 +47563,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bUf" = (
@@ -47723,12 +47598,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bUi" = (
@@ -47750,10 +47619,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"bUr" = (
-/obj/item/cigbutt,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "bUs" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -47882,11 +47747,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
-"bVu" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/aft)
 "bVx" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
 /turf/open/floor/plating/airless,
@@ -47974,12 +47834,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bWm" = (
@@ -48011,12 +47865,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bWr" = (
@@ -48099,10 +47947,6 @@
 /area/security/checkpoint/engineering)
 "bWV" = (
 /obj/structure/door_assembly/door_assembly_mai,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bXe" = (
@@ -48124,12 +47968,6 @@
 	id = "xenobio2";
 	name = "containment blast door"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bXg" = (
@@ -48144,12 +47982,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio7";
 	name = "containment blast door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -48302,12 +48134,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bYh" = (
@@ -48320,12 +48146,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bYr" = (
@@ -48386,12 +48206,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/barricade/wooden{
 	name = "wooden barricade (CLOSED)"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -48647,12 +48461,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bZW" = (
@@ -48684,12 +48492,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "bZZ" = (
@@ -48789,12 +48591,6 @@
 	id = "xenobio1";
 	name = "containment blast door"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "caW" = (
@@ -48809,12 +48605,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio6";
 	name = "containment blast door"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
@@ -48947,10 +48737,10 @@
 	req_access_txt = "12"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cbI" = (
@@ -49010,12 +48800,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "cbT" = (
@@ -49035,12 +48819,6 @@
 	name = "containment blast door"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "cbY" = (
@@ -49613,10 +49391,10 @@
 	req_access_txt = "12"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cfw" = (
@@ -51949,20 +51727,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"cyL" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "cyM" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -52741,15 +52505,15 @@
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "8;12"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -53130,17 +52894,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cTI" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "cTJ" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -53540,10 +53293,11 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "eRz" = (
@@ -53972,11 +53726,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"gay" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
-/area/maintenance/aft)
 "gaW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -54536,12 +54285,6 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
-"icC" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/reagent_containers/food/drinks/flask/det,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "ihS" = (
 /turf/closed/wall/r_wall,
 /area/medical/sleeper)
@@ -54739,6 +54482,17 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
+"iSS" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "iTb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -54936,15 +54690,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"jKH" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "jLm" = (
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plasteel,
@@ -55071,6 +54816,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"kjv" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "kkd" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -55130,10 +54896,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"krw" = (
-/obj/item/reagent_containers/food/drinks/beer,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "kuh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -55344,12 +55106,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"llx" = (
-/obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigpack_uplift,
-/obj/item/cigbutt,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "llD" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -55652,16 +55408,14 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"mGY" = (
+"mFi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "mKj" = (
 /obj/structure/table,
@@ -55774,12 +55528,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -56136,12 +55884,6 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -56576,9 +56318,6 @@
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/nanite)
-"qiQ" = (
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "qkq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -56811,10 +56550,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"qLL" = (
-/obj/item/clothing/head/fedora/det_hat,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "qLM" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57128,11 +56863,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"sfM" = (
-/obj/structure/rack,
-/obj/item/detective_scanner,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "sga" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -57246,12 +56976,6 @@
 /area/engine/atmos)
 "sCF" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "sDl" = (
@@ -57309,10 +57033,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"sEA" = (
-/obj/structure/chair/wood,
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "sHo" = (
 /turf/open/floor/engine,
 /area/escapepodbay)
@@ -57522,6 +57242,13 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"tor" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "tpq" = (
 /obj/item/coin/silver{
 	pixel_x = 7;
@@ -57623,16 +57350,6 @@
 	dir = 1
 	},
 /area/chapel/main)
-"tBW" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/maintenance/aft)
 "tCj" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -57888,10 +57605,10 @@
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -58196,6 +57913,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"vLl" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "vMA" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 1
@@ -58571,43 +58301,14 @@
 /obj/item/storage/secure/briefcase,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"wWo" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Incinerator Access";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "wXz" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
-"xbu" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+"wZZ" = (
+/obj/effect/landmark/stationroom/box/aftmaint,
+/turf/template_noop,
+/area/template_noop)
 "xcL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -58677,14 +58378,8 @@
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "xrr" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -74458,9 +74153,9 @@ aqK
 alU
 arS
 alU
-amC
-amC
-amC
+qQV
+qQV
+qQV
 aac
 alU
 arS
@@ -74715,10 +74410,10 @@ aqL
 alU
 arS
 alU
-amC
-amC
-amC
-amC
+qQV
+qQV
+qQV
+qQV
 alU
 arS
 aBI
@@ -74969,13 +74664,13 @@ alU
 aoS
 amC
 aom
-cPR
+iSS
 arS
 alU
-amC
-amC
-amC
-amC
+qQV
+qQV
+qQV
+qQV
 alU
 arS
 aBI
@@ -75229,10 +74924,10 @@ aqM
 arF
 arS
 alU
-amC
-amC
-amC
-amC
+qQV
+qQV
+qQV
+qQV
 alU
 aAV
 aBl
@@ -75486,10 +75181,10 @@ aqO
 arG
 arS
 alU
-amC
-amC
-amC
-amC
+qQV
+qQV
+qQV
+qQV
 azF
 azF
 azF
@@ -78304,7 +77999,7 @@ aaa
 aaa
 alU
 alU
-ank
+vLl
 alU
 alU
 aoV
@@ -81206,7 +80901,7 @@ bWy
 bXx
 bYw
 bZj
-wWo
+bYy
 bHE
 eRw
 bHE
@@ -81649,13 +81344,13 @@ anp
 amC
 amC
 amC
-cPR
+iSS
 aqR
 aqR
 aGh
 aqR
 aqR
-aqR
+tor
 axv
 arP
 arP
@@ -81725,7 +81420,7 @@ bHE
 bCq
 bQa
 cpY
-cyL
+bCr
 cqy
 cAi
 bQa
@@ -81989,7 +81684,7 @@ bCq
 bCq
 bCq
 bCq
-uEA
+bTz
 bCq
 bPr
 bPr
@@ -83968,7 +83663,7 @@ arP
 asP
 aqR
 aqR
-aqR
+cPR
 axB
 ayG
 ayG
@@ -86085,15 +85780,15 @@ bCq
 pew
 bqD
 bCq
-bWC
-bWC
+aaa
 gXs
-bWC
-bWC
-bWC
-bWC
-bWC
-bWC
+aaa
+aaa
+gXs
+gXs
+aaa
+gXs
+aaa
 bPr
 cay
 ccw
@@ -86342,7 +86037,7 @@ bCq
 bCq
 bqD
 bCq
-bWC
+aaa
 btG
 btG
 btG
@@ -86350,7 +86045,7 @@ btG
 btG
 btG
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -86599,7 +86294,7 @@ bGq
 bGq
 bww
 bPr
-bWC
+aaa
 btG
 bgN
 bZo
@@ -86864,7 +86559,7 @@ big
 bii
 bgN
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87113,7 +86808,7 @@ cCf
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 bYz
 big
@@ -87121,7 +86816,7 @@ bgN
 bkZ
 eGt
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87370,7 +87065,7 @@ gWd
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 bgN
 bii
@@ -87635,7 +87330,7 @@ bzk
 cbn
 aGa
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -87884,7 +87579,7 @@ nxv
 bNI
 bHE
 bPr
-bWC
+aaa
 btG
 iaS
 ess
@@ -87892,7 +87587,7 @@ bzR
 pGU
 bOC
 btG
-bWC
+aaa
 bPr
 cay
 ccw
@@ -88141,7 +87836,7 @@ aEY
 bNI
 bHE
 bCq
-bWC
+aaa
 btG
 bPQ
 bxP
@@ -88406,7 +88101,7 @@ aRT
 bMM
 aGd
 btG
-bWC
+aaa
 bCq
 cay
 ccw
@@ -96612,11 +96307,11 @@ bDE
 bFK
 bvj
 btU
-avy
-avy
-avy
-avy
-avy
+qQV
+qQV
+qQV
+qQV
+wZZ
 aZZ
 aSJ
 buY
@@ -96869,11 +96564,11 @@ bvj
 bvj
 ihS
 btU
-bzs
-gay
-qiQ
-qiQ
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 bae
 aSJ
 aSJ
@@ -97126,11 +96821,11 @@ bGR
 bIj
 ihS
 btU
-bzs
-qLL
-llx
-bVu
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 bag
 aSJ
 bvv
@@ -97383,11 +97078,11 @@ bDR
 adf
 ihS
 btU
-bzs
-sEA
-icC
-qiQ
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 bah
 aSJ
 bvv
@@ -97640,11 +97335,11 @@ bDR
 bIl
 ihS
 btU
-bzs
-bUr
-bVu
-bUr
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 bai
 aSJ
 bvv
@@ -97897,11 +97592,11 @@ bDR
 bIk
 ihS
 btU
-bzs
-sfM
-qiQ
-krw
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 bai
 bgu
 bvw
@@ -98154,11 +97849,11 @@ bDR
 mKj
 ihS
 btY
-bzs
-bzs
-tBW
-bzs
-avy
+qQV
+qQV
+qQV
+qQV
+qQV
 avy
 avy
 avy
@@ -98412,15 +98107,15 @@ pnj
 ihS
 bui
 bLT
-bLT
-bLT
-bLT
-bLT
-bLT
-bLT
-bLT
-bLT
 yan
+bLT
+bLT
+bLT
+bLT
+bLT
+bLT
+bLT
+bLT
 bLT
 bwY
 avy
@@ -102730,7 +102425,7 @@ aty
 auF
 apC
 alP
-xrr
+kjv
 alP
 alP
 alP
@@ -105043,7 +104738,7 @@ anf
 anf
 alP
 alP
-atB
+xrr
 alP
 alP
 alP
@@ -106665,7 +106360,7 @@ cmq
 cOe
 axl
 cOe
-cTI
+bYr
 cmn
 cBT
 cBU
@@ -107427,7 +107122,7 @@ bBe
 avH
 jDm
 atN
-aOJ
+aNt
 ciK
 cjC
 bNB
@@ -109734,14 +109429,14 @@ aqX
 asW
 bQZ
 cNW
-mGY
+cae
 cNW
 cNW
 cNW
 cNW
 cNW
 bBM
-cbf
+mFi
 cbf
 cbf
 bDI
@@ -109997,7 +109692,7 @@ cOx
 cOx
 cOe
 cNW
-xbu
+bBT
 ciL
 cjE
 bMB
@@ -111279,7 +110974,7 @@ cNW
 cNW
 cNW
 cNW
-jKH
+qpS
 cNW
 cNW
 cNW
@@ -115631,7 +115326,7 @@ aaa
 aaf
 aaa
 aaf
-aae
+aoV
 aaa
 aaa
 aaa

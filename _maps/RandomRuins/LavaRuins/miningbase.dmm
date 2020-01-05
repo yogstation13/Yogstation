@@ -256,6 +256,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+/obj/vehicle/ridden/atv,
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "aG" = (
@@ -533,7 +534,7 @@
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "bh" = (
-/obj/vehicle/ridden/atv,
+/obj/structure/closet/secure_closet/mmedical,
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "bi" = (

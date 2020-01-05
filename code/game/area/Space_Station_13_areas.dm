@@ -818,6 +818,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "checkpoint_aux"
 
 /area/security/checkpoint/escape
+	name = "Security Post - Escape"
 	icon_state = "checkpoint_esc"
 
 /area/security/checkpoint/supply
