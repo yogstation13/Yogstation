@@ -240,6 +240,8 @@
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
+	var/bulb_vacuum_colour = "#004AFF"	// colour of the light when air alarm detects a vacuum
+
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
 	icon_state = "tube-broken"
@@ -322,7 +324,9 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if(emergency_mode || (A && A.fire))
+			if (A && A.vacuum)
+				icon_state = "[base_state]_vacuum"
+			else if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
 			else
 				icon_state = "[base_state]"
@@ -351,7 +355,9 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.fire)
+		if (A && A.vacuum)
+			CO = bulb_vacuum_colour
+		else if (A && A.fire)
 			CO = bulb_emergency_colour
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
