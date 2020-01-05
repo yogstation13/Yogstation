@@ -240,7 +240,7 @@
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
-	var/bulb_vacuum_colour = "#004AFF"	// colour of the light when air alarm detects a vacuum
+	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
