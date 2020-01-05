@@ -324,10 +324,10 @@
 				icon_state = "[base_state]"
 				return
 			var/area/A = get_area(src)
-			if (A && A.vacuum)
-				icon_state = "[base_state]_vacuum"
-			else if(emergency_mode || (A && A.fire))
+			if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
+			else if (A && A.vacuum)
+				icon_state = "[base_state]_vacuum"
 			else
 				icon_state = "[base_state]"
 				if(on && !forced_off)
@@ -355,10 +355,10 @@
 		if(color)
 			CO = color
 		var/area/A = get_area(src)
-		if (A && A.vacuum)
-			CO = bulb_vacuum_colour
-		else if (A && A.fire)
+		if (A && A.fire)
 			CO = bulb_emergency_colour
+		else if (A && A.vacuum)
+			CO = bulb_vacuum_colour
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power
