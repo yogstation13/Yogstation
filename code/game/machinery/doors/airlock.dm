@@ -138,6 +138,8 @@
 		switch(outcome)
 			if(1 to 9)
 				var/turf/here = get_turf(src)
+				for(var/obj/machinery/door/firedoor/FD in here)
+					qdel(FD)
 				for(var/turf/closed/T in range(2, src))
 					here.PlaceOnTop(T.type)
 					qdel(src)
