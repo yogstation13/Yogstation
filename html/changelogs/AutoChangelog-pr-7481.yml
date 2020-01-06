@@ -1,0 +1,4 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Tables reduce spacewind by 5x and racks by 10x"
