@@ -692,18 +692,26 @@
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "bz" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Mining Communications APC";
-	pixel_x = 1;
-	pixel_y = 25
+	dir = 8;
+	name = "Mining Station Starboard Wing APC";
+	pixel_x = -25;
+	pixel_y = 0
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "bA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel/dark,
@@ -832,6 +840,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"bS" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mining Communications APC";
+	pixel_x = 0;
+	pixel_y = 23
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "bT" = (
 /turf/closed/wall/r_wall,
 /area/mine/maintenance)
@@ -877,25 +898,16 @@
 /area/mine/living_quarters)
 "ca" = (
 /obj/machinery/power/apc{
-	dir = 8;
-	name = "Mining Station Starboard Wing APC";
-	pixel_x = -27;
-	pixel_y = 2
+	dir = 1;
+	name = "Mining Station Port Wing APC";
+	pixel_x = 0;
+	pixel_y = 23
 	},
 /obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
+	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel,
-/area/mine/production)
+/area/mine/living_quarters)
 "cb" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1498,18 +1510,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"dp" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Mining Station Port Wing APC";
-	pixel_x = 1;
-	pixel_y = 25
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
@@ -2695,7 +2695,7 @@ ac
 ac
 ac
 bT
-bz
+bS
 bH
 bT
 cu
@@ -2986,7 +2986,7 @@ bQ
 bQ
 bQ
 bQ
-dp
+ca
 dm
 bL
 bL
@@ -3622,7 +3622,7 @@ aQ
 aT
 aY
 bR
-ca
+bz
 bn
 ck
 da
