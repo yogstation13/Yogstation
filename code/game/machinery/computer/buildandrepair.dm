@@ -146,4 +146,4 @@
 	if(istype(dropping, /obj/item/circuitboard))
 		attackby(dropping, user)
 	else
-		return ..()
+		..()
