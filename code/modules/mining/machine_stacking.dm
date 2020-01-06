@@ -93,14 +93,14 @@
 
 /obj/machinery/mineral/stacking_machine/examine(mob/user)
 	. = ..()
-		. += {"<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>"}
+		. += "<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>"
 	if(panel_open)
-		. += {"The I/O is set to change [io ? "output" : "input"] currently.
-Input is <b>[dir2text(input_dir)]</b>
-Output is <b>[dir2text(output_dir)]</b>
-There is a dial that can be <b>turned by hand</b> to change direction.
-The I/O setting can be <b>changed with a multitool</b> to change what the dial controls
-There are some <b>bolts</b> to limit stack size."}
+		. += "The I/O is set to change <b>[io ? "output" : "input"]</b> currently. \
+Input is <b>[dir2text(input_dir)]</b> \
+and Output is <b>[dir2text(output_dir)]</b>. \
+There is a dial that can be <b>turned by hand</b> to change direction. \
+The I/O setting can be <b>changed with a multitool</b> to change what the dial controls. \
+There are some <b>bolts</b> to limit stack size."
 
 /obj/machinery/mineral/stacking_machine/Initialize(mapload)
 	. = ..()
