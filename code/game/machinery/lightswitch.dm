@@ -81,7 +81,7 @@
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>Nothing new seems to happen when you swipe the emag.</span>")
 		return
-	to_chat(user, "<span class='notice'>You swipe the emag on the light switch. The light switch gives of a soft hum.</span>")
+	to_chat(user, "<span class='notice'>You swipe the emag on the light switch. The light switch gives off a soft hum.</span>")
 	if(user.can_hear())
-		to_chat(user, "<span class='notice'>The light switch gives of a soft hum.</span>")
+		to_chat(user, "<span class='notice'>The light switch gives off a soft hum.</span>")
 	obj_flags |= EMAGGED
