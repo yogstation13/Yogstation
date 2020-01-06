@@ -55,7 +55,7 @@
 /area/space/nearstation)
 "l" = (
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "m" = (
 /obj/structure/disposalpipe/segment{
