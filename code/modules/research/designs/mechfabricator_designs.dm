@@ -615,15 +615,6 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_upgrade_disablercooler
-	name = "Cyborg Upgrade (Rapid Disabler Cooling Module)"
-	id = "borg_upgrade_disablercooler"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/disablercooler
-	materials = list(MAT_METAL = 20000 , MAT_GLASS = 6000, MAT_GOLD = 2000, MAT_DIAMOND = 2000)
-	construction_time = 120
-	category = list("Cyborg Upgrade Modules")
-
 /datum/design/borg_upgrade_diamonddrill
 	name = "Cyborg Upgrade (Diamond Drill)"
 	id = "borg_upgrade_diamonddrill"
