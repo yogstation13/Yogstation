@@ -1,5 +1,3 @@
-author: "Hopekz"
-delete-after: true 
-changes: 
-  - rscadd: "Makes Preternis compatible with tgUI's language holder."
-  - bugfix: "fixed sheltered Preternis spawning in with Japanese."
+author: Hopekz
+changes: []
+delete-after: true

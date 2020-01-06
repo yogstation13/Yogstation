@@ -1,4 +1,3 @@
-author: "monster860"
-delete-after: true 
-changes: 
-  - bugfix: "firelocks no longer spawn in walls"
+author: monster860
+changes: []
+delete-after: true
