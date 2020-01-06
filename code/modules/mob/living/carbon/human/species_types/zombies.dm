@@ -15,6 +15,11 @@
 	disliked_food = NONE
 	liked_food = GROSS | MEAT | RAW
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | ERT_SPAWN
+	// zombies have no body heat unless the environment gives it to them
+	// they will take damage when things catch fire, or when it is to cold to move
+	bodytemp_normal = T0C
+	bodytemp_heat_damage_limit = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	bodytemp_cold_damage_limit = MINIMUM_TEMPERATURE_TO_MOVE
 
 /datum/species/zombie/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])

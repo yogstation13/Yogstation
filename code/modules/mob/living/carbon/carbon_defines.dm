@@ -15,7 +15,7 @@
 
 	var/disgust = 0
 
-//inventory slots
+	//inventory slots
 	var/obj/item/back = null
 	var/obj/item/clothing/mask/wear_mask = null
 	var/obj/item/clothing/neck/wear_neck = null
@@ -63,3 +63,9 @@
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/stam_regen_start_time = 0 //used to halt stamina regen temporarily
 	var/stam_paralyzed = FALSE //knocks you down
+
+	// Protection from the elements
+	// This is insulation against increasing or decreasing body temperature
+	// 0 - 1 value which corresponds to the percentage of protection
+	var/heat_protection = 0 // No heat protection
+	var/cold_protection = 0 // No cold protection
