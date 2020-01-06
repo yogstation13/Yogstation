@@ -202,7 +202,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/T = M
 		if(!ishumanbasic(T))
-			return TRUE
+			return ..()
 		return FALSE
 	return ..()
 
