@@ -69,6 +69,8 @@
 		return
 
 /**********************Mineral stacking unit**************************/
+#define INPUT 0
+#define OUTPUT 1
 
 /obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
@@ -86,15 +88,12 @@
 	var/stack_amt = 50 //amount to stack before releassing
 	var/datum/component/remote_materials/materials
 	var/force_connect = FALSE
-	var/io = 0 //This is used for determining whether we change the Input or Output
+	var/io = INPUT //This is used for determining whether we change the Input or Output
 
 
 /obj/machinery/mineral/stacking_machine/examine(mob/user)
 	. = ..()
-	if(stack_amt != 1)
-		. += {"<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheets</b><span>"}
-	else if(stack_amt == 1)
-		. += {"<span class='notice'><span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet</b><spanclass>"}
+		. += {"<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>"}
 	if(panel_open)
 		. += {"The I/O is set to change [io ? "output" : "input"] currently.
 Input is <b>[dir2text(input_dir)]</b>
@@ -109,7 +108,7 @@ There are some <b>bolts</b> to limit stack size."}
 	materials = AddComponent(/datum/component/remote_materials, "stacking", mapload, FALSE, mapload && force_connect)
 
 /obj/machinery/mineral/stacking_machine/HasProximity(atom/movable/AM)
-	if(panel_open || !powered())
+	if(panel_open || (stat & (BROKEN|NOPOWER)))
 		return
 	if(istype(AM, /obj/item/stack/sheet) && AM.loc == get_step(src, input_dir))
 		process_sheet(AM)
@@ -148,24 +147,23 @@ There are some <b>bolts</b> to limit stack size."}
 
 	if(W.tool_behaviour == TOOL_WRENCH && panel_open)
 		var/stsize = input(user, "How much should [src] stack to? (1-50)", "Stack size") as null|num
-		if(stsize && (stsize > 0 && stsize <= 50))
-			stack_amt = stsize
-			if(stack_amt != 1)
-				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheets</b><spanclass>")
-			else if(stack_amt == 1)
-				to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet</b></span>")
+		if(stsize)
+			stack_amt = CLAMP(stsize,1,50)
+			to_chat(user, "<span class='notice'>[src] is now set to output <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>")
 			return
 
 	return ..()
 
 /obj/machinery/mineral/stacking_machine/attack_hand(mob/user)
-	if(panel_open &&(io == 0))
+	if(!panel_open)
+		return ..()
+	if(io == INPUT)
 		input_dir = turn(input_dir, -90)
 		if(input_dir == output_dir) //Input and output can't be the same or you create the immovable sheet.
 			input_dir = turn(input_dir, -90)
 		to_chat(user, "<span class='notice'>You set [src]'s input to take from the [dir2text(input_dir)].</span>")
 		return
-	else if (panel_open && (io == 1))
+	else if (io == OUTPUT)
 		output_dir = turn(output_dir, -90)
 		if(input_dir == output_dir)
 			output_dir = turn(output_dir, -90)
