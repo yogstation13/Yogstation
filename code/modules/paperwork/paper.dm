@@ -247,7 +247,7 @@
 				if(text == PAPER_FIELD)
 					templist += text
 				else
-					var/datum/langtext/L = new(text,usr.get_default_language())
+					var/datum/langtext/L = new(text,usr.get_selected_language())
 					templist += L
 			var/id = href_list["write"]
 			if(id == "end")

@@ -118440,11 +118440,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/science/mixing)
-"drS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/mmedical,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "drT" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
@@ -174625,7 +174620,7 @@ aFu
 bfD
 aXj
 bjX
-drS
+aJw
 baQ
 aLA
 aig
