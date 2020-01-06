@@ -20,7 +20,6 @@
 			silenced = TRUE
 			continue
 		if(P.run_emote(src, param, m_type, intentional))
-			SEND_SIGNAL(src, P, act, m_type, message, intentional)
 			return TRUE
 	if(intentional && !silenced)
 		to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list.</span>")
