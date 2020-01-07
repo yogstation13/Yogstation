@@ -2600,7 +2600,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/pizzaparty,
+/obj/effect/spawner/lootdrop/minor/beret_or_rabbitears,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
 "gi" = (
@@ -4774,7 +4774,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/bin,
-/obj/effect/spawner/lootdrop/gambling,
+/obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
 "kt" = (
@@ -5053,7 +5053,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
@@ -5772,7 +5771,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/medbay)
 "mx" = (
@@ -8055,7 +8056,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
-/obj/effect/spawner/lootdrop/gambling,
+/obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
 "qR" = (
@@ -8079,7 +8080,7 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin,
-/obj/effect/spawner/lootdrop/gambling,
+/obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
 "qV" = (
