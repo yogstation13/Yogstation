@@ -259,7 +259,7 @@
 	hat_offset = -3
 
 /obj/item/robot_module/detective
-	name = "Security"
+	name = "Detective"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,  // placeholder for when I make ziptie maker
@@ -272,14 +272,14 @@
 		/obj/item/healthanalyzer
 		)
 	emag_modules = list(
-		/obj/item/gun/energy/laser/cyborg // placeholder for when I make the cyborg revolver
+		/obj/item/gun/ballistic/revolver/detective/cyborg
 		)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear // even medical borg gets a spear so I guess this stays in
 		)
-	cyborg_base_icon = "sec"
-	moduleselect_icon = "security"
+	cyborg_base_icon = "sec" // replace this with its own thing
+	moduleselect_icon = "security" // replace this with its own thing
 	can_be_pushed = FALSE
 	hat_offset = 3
 

@@ -133,6 +133,11 @@
 			to_chat(user, "<span class='notice'>You remove the modifications on [src]. Now it will fire .38 rounds.</span>")
 	return TRUE
 
+/obj/item/gun/ballistic/revolver/detective/cyborg
+		name = "\improper Colt Detective Special Module"
+	desc = "A classic, fires .38-special rounds. Recharge at a recharge station"
+
+
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"

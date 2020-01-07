@@ -222,6 +222,73 @@
 /obj/item/restraints/handcuffs/cable/zipties/used/attack()
 	return
 
+
+
+// cyborg ziptie fabricator
+
+/obj/item/restraints/handcuffs/cable/zipties/cyborg_fabricator
+	name = "ziptie fabricator"
+	desc = "Plastic, disposable ziptie fabricator that can be used to create temporary restrain devices that are destroyed after use."
+
+
+/obj/item/restraints/cable/zipties/cyborg_fabricator/attack(mob/living/carbon/C, mob/living/user)
+	if(!istype(C))
+		return
+
+	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
+		to_chat(user, "<span class='warning'>Uh... how do those things work?!</span>")
+		apply_cuffs(user,user)
+		return
+
+	// chance of monkey retaliation
+	if(ismonkey(C) && prob(MONKEY_CUFF_RETALIATION_PROB))
+		var/mob/living/carbon/monkey/M
+		M = C
+		M.retaliate(user)
+
+	if(!C.handcuffed)
+		if(C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore())
+			C.visible_message("<span class='danger'>[user] is trying to put [src.name] on [C]!</span>", \
+								"<span class='userdanger'>[user] is trying to put [src.name] on [C]!</span>")
+
+			playsound(loc, cuffsound, 30, 1, -2)
+			if(do_mob(user, C, 30) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
+				if(iscyborg(user))
+					apply_cuffs(C, user, TRUE)
+				else
+					apply_cuffs(C, user)
+				to_chat(user, "<span class='notice'>You handcuff [C].</span>")
+				SSblackbox.record_feedback("tally", "handcuffs", 1, type)
+
+				log_combat(user, C, "handcuffed")
+			else
+				to_chat(user, "<span class='warning'>You fail to handcuff [C]!</span>")
+				log_combat(user, C, "attempted to handcuff")
+		else
+			to_chat(user, "<span class='warning'>[C] doesn't have two hands...</span>")
+
+/obj/item/restraints/cable/zipties/cyborg_fabricator/proc/apply_cuffs(mob/living/carbon/target, mob/user, var/dispense = 0)
+	
+	if(target.handcuffed)
+		return
+
+	if(!user.temporarilyRemoveItemFromInventory(src) && !dispense)
+		return
+
+	var/obj/item/restraints/handcuffs/cuffs = src
+	if(trashtype)
+		cuffs = new trashtype()
+	else if(dispense)
+		cuffs = new type()
+
+	cuffs.forceMove(target)
+	target.handcuffed = cuffs
+
+	target.update_handcuffed()
+	if(trashtype && !dispense)
+		qdel(src)
+	return
+
 //Legcuffs
 
 /obj/item/restraints/legcuffs
