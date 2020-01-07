@@ -10,6 +10,7 @@ import { AtmosMixer } from './interfaces/AtmosMixer';
 import { AtmosPump } from './interfaces/AtmosPump';
 import { BankMachine } from './interfaces/BankMachine';
 import { BluespaceArtillery } from './interfaces/BluespaceArtillery';
+import { Bepis } from './interfaces/Bepis';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canister } from './interfaces/Canister';
@@ -24,6 +25,7 @@ import { ComputerFabricator } from './interfaces/ComputerFabricator';
 import { Crayon } from './interfaces/Crayon';
 import { CrewConsole } from './interfaces/CrewConsole';
 import { Cryo } from './interfaces/Cryo';
+import { DecalPainter } from './interfaces/DecalPainter';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { DnaVault } from './interfaces/DnaVault';
 import { EngravedMessage } from './interfaces/EngravedMessage';
@@ -128,6 +130,10 @@ const ROUTES = {
     component: () => BluespaceArtillery,
     scrollable: false,
   },
+   bepis: {
+    component: () => Bepis,
+    scrollable: false,
+  },
   canister: {
     component: () => Canister,
     scrollable: false,
@@ -178,6 +184,10 @@ const ROUTES = {
   },
   cryo: {
     component: () => Cryo,
+    scrollable: false,
+  },
+  decal_painter: {
+    component: () => DecalPainter,
     scrollable: false,
   },
   disposal_unit: {
