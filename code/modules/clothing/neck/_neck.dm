@@ -199,6 +199,7 @@
 	var/tagname = null
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
+	var/mob/living/carbon/human/T = M
 	if(!ishumanbasic(T))
 		return ..()
 	return FALSE
