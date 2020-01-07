@@ -34,7 +34,7 @@
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
 	. += "It is [area.lightswitch ? "on" : "off"]."
-	if(obj_flags & EMAGGED & user.can_hear())
+	if((obj_flags & EMAGGED) && user.can_hear())
 		. += "You hear a faint hum coming from the switch."
 
 /obj/machinery/light_switch/interact(mob/user)
