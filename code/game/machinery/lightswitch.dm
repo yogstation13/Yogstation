@@ -39,7 +39,7 @@
 
 /obj/machinery/light_switch/interact(mob/user)
 	if(obj_flags & EMAGGED)
-		shock(user,50)
+		shock(user)
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
