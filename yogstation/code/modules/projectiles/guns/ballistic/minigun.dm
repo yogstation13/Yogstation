@@ -116,7 +116,6 @@
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
-	canMouseDown = TRUE
 	var/obj/item/minigunbackpack/ammo_pack
 
 /obj/item/gun/ballistic/minigunosprey/Initialize()
@@ -143,11 +142,11 @@
 			ammo_pack.overheat += burst_size
 			..()
 		else
-			to_chat(user, "The gun's heat sensor locked the trigger to prevent lens damage.")
+			to_chat(user, "The gun's heat sensor locked the trigger to prevent heat damage.")
 
 /obj/item/gun/ballistic/minigunosprey/afterattack(atom/target, mob/living/user, flag, params)
 	if(!ammo_pack || ammo_pack.loc != user)
-		to_chat(user, "You need the backpack power source to fire the gun!")
+		to_chat(user, "You need more ammo to fire the gun!")
 	. = ..()
 
 /obj/item/gun/ballistic/minigunosprey/dropped(mob/living/user)
