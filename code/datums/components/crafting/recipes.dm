@@ -457,10 +457,28 @@
 	result = /obj/item/stack/tile/carpet/black/fifty
 	category = CAT_MISC
 
+/datum/crafting_recipe/garbage_bin
+	name = "Garbage Bin"
+	reqs = 	list(/obj/item/stack/sheet/metal = 3)
+	result = /obj/structure/closet/crate/bin
+	category = CAT_MISC
+
 /datum/crafting_recipe/showercurtain
 	name = "Shower Curtains"
 	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/sheet/plastic = 2, /obj/item/stack/rods = 1)
 	result = /obj/structure/curtain
+	category = CAT_MISC
+
+/datum/crafting_recipe/shower
+	name = "Shower"
+	reqs = 	list(/obj/item/stack/rods = 4, /obj/item/stack/sheet/metal = 1)
+	result = /obj/machinery/shower
+	category = CAT_MISC
+
+/datum/crafting_recipe/sink
+	name = "Sink"
+	reqs = 	list(/obj/item/stack/rods = 1, /obj/item/stack/sheet/metal = 4)
+	result = /obj/structure/sink
 	category = CAT_MISC
 
 /datum/crafting_recipe/extendohand

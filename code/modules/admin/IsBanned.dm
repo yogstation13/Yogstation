@@ -7,15 +7,27 @@
 #define STICKYBAN_MAX_ADMIN_MATCHES 1
 
 /world/IsBanned(key, address, computer_id, type, real_bans_only=FALSE)
+	var/static/key_cache = list()
+	if(!real_bans_only)
+		if(key_cache[key])
+			return list("reason"="concurrent connection attempts", "desc"="You are attempting to connect too fast. Try again.")
+		key_cache[key] = 1
+
 	debug_world_log("isbanned(): '[args.Join("', '")]'")
 	if (!key || (!real_bans_only && (!address || !computer_id)))
 		if(real_bans_only)
+			key_cache[key] = 0
 			return FALSE
 		log_access("Failed Login (invalid data): [key] [address]-[computer_id]")
+		key_cache[key] = 0
 		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided invalid or blank information to the server on connection (byond username, IP, and Computer ID.) Provided information for reference: Username:'[key]' IP:'[address]' Computer ID:'[computer_id]'. (If you continue to get this error, please restart byond or contact byond support.)")
 
 	var/admin = FALSE
 	var/ckey = ckey(key)
+
+	if(!real_bans_only && GLOB.directory[ckey])
+		key_cache[key] = 0
+		return FALSE
 
 	//IsBanned can get re-called on a user in certain situations, this prevents that leading to repeated messages to admins.
 	var/static/list/checkedckeys = list()
@@ -36,15 +48,18 @@
 					addclientmessage(ckey,"<span class='adminnotice'>You have been allowed to bypass the whitelist</span>")
 			else
 				log_access("Failed Login: [key] - Not on whitelist")
+				key_cache[key] = 0
 				return list("reason"="whitelist", "desc" = "\nReason: You are not on the white list for this server")
 
 	//Guest Checking
 	if(!real_bans_only && !C && IsGuestKey(key))
 		if (CONFIG_GET(flag/guest_ban))
 			log_access("Failed Login: [key] - Guests not allowed")
+			key_cache[key] = 0
 			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 		if (CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
 			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
+			key_cache[key] = 0
 			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
 
 	//Population Cap Checking
@@ -54,6 +69,7 @@
 		if(living_player_count() + (SSticker && SSticker.queued_players.len) >= extreme_popcap) // if the extreme popcap has been reached
 			if(!admin && !GLOB.joined_player_list.Find(ckey) && !(is_donator(C) || (C.ckey in get_donators()))) // if they are not exempt
 				log_access("Failed Login: [key] - Population cap reached")
+				key_cache[key] = 0
 				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 /*Yogs continue
 	if(!real_bans_only && !C && extreme_popcap && !admin)
@@ -101,6 +117,7 @@ Yogs End*/
 				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
 				[expires] If you wish to appeal this ban please use the keyword 'assistantgreytide' to register an account on the forums."} //yogs
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
+				key_cache[key] = 0
 				return list("reason"="Banned","desc"="[desc]")
 
 	var/list/ban = ..()	//default pager ban stuff
@@ -109,6 +126,7 @@ Yogs End*/
 		if (!admin)
 			. = ban
 		if (real_bans_only)
+			key_cache[key] = 0
 			return
 		var/bannedckey = "ERROR"
 		if (ban["ckey"])
@@ -119,6 +137,7 @@ Yogs End*/
 		//rogue ban in the process of being reverted.
 		if (cachedban && (cachedban["reverting"] || cachedban["timeout"]))
 			world.SetConfig("ban", bannedckey, null)
+			key_cache[key] = 0
 			return null
 
 		if (cachedban && ckey != bannedckey)
@@ -145,6 +164,7 @@ Yogs End*/
 				newmatches_admin[ckey] = ckey
 
 			if (cachedban["reverting"] || cachedban["timeout"])
+				key_cache[key] = 0
 				return null
 
 			newmatches[ckey] = ckey
@@ -182,6 +202,7 @@ Yogs End*/
 						cachedban -= "reverting"
 						SSstickyban.cache[bannedckey] = cachedban
 						world.SetConfig("ban", bannedckey, list2stickyban(cachedban))
+				key_cache[key] = 0
 				return null
 
 		if (ban["fromdb"])
@@ -201,6 +222,7 @@ Yogs End*/
 			if (message)
 				message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass a matching host/sticky ban on [bannedckey]</span>")
 				addclientmessage(ckey,"<span class='adminnotice'>You have been allowed to bypass a matching host/sticky ban on [bannedckey]</span>")
+			key_cache[key] = 0
 			return null
 
 		if (C) //user is already connected!.
@@ -210,6 +232,7 @@ Yogs End*/
 		. = list("reason" = "Stickyban", "desc" = desc)
 		log_access("Failed Login: [key] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
 
+	key_cache[key] = 0
 	return .
 
 

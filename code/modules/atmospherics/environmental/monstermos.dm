@@ -1,3 +1,5 @@
+#define MONSTERMOS_TURF_LIMIT 75
+
 /turf/open
 	var/last_eq_cycle
 	var/eq_mole_delta = 0
@@ -119,15 +121,16 @@
 		T.eq_mole_delta = 0
 		T.eq_transfer_dirs = list()
 		T.eq_distance_score = i
-		var/turf_moles
-		var/list/cached_gases = T.air.gases
-		TOTAL_MOLES(cached_gases, turf_moles)
-		T.eq_mole_delta = turf_moles
-		T.eq_fast_done = FALSE
-		if(T.planetary_atmos)
-			planet_turfs += T
-			continue
-		total_moles += turf_moles
+		if(i < MONSTERMOS_TURF_LIMIT)
+			var/turf_moles
+			var/list/cached_gases = T.air.gases
+			TOTAL_MOLES(cached_gases, turf_moles)
+			T.eq_mole_delta = turf_moles
+			T.eq_fast_done = FALSE
+			if(T.planetary_atmos)
+				planet_turfs += T
+				continue
+			total_moles += turf_moles
 		for(var/t2 in T.atmos_adjacent_turfs)
 			var/turf/open/T2 = t2
 			turfs[T2] = 1
@@ -137,6 +140,9 @@
 				// (I just made explosions less laggy, you're welcome)
 				explosively_depressurize(T, cyclenum)
 				return
+		CHECK_TICK
+	if(turfs.len >= MONSTERMOS_TURF_LIMIT)
+		turfs.Cut(MONSTERMOS_TURF_LIMIT)
 	var/average_moles = total_moles / (turfs.len - planet_turfs.len)
 	var/list/giver_turfs = list()
 	var/list/taker_turfs = list()
@@ -174,6 +180,7 @@
 					T.adjust_eq_movement(T2, moles_to_move)
 					T.eq_mole_delta -= moles_to_move
 					T2.eq_mole_delta += moles_to_move
+				CHECK_TICK
 		giver_turfs.Cut() // we need to recaclculate those now
 		taker_turfs.Cut()
 		for(var/t in turfs)
