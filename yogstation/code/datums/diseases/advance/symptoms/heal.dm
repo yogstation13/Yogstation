@@ -9,8 +9,10 @@
 	passive_message = "<span class='notice'>You feel tough.</span>"
 	var/Toxin_damage = FALSE
 	var/Hunger_reduction = 8
-	threshold_desc = "<b>Resistance 9:</b> No blood loss.<br>\
-					  <b>Stage Speed 7:</b> Reduces nutrients used."
+	threshold_descs = list(
+		"Resistance 9" = "No blood loss.",
+		"Stage Speed 7" = "Reduces nutrients used."
+	)
 
 /datum/symptom/heal/conversion/Start(datum/disease/advance/A)
 	if(!..())

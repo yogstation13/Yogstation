@@ -1,4 +1,3 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "simplemobs can be revived with strange reagent again"
+author: SomeguyManperson
+changes: []
+delete-after: true
