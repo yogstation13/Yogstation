@@ -264,7 +264,7 @@
 	id = "frag nade"
 	cost = 18
 	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
-
+/*
 /datum/gang_item/equipment/implant_breaker
 	name = "Implant Breaker"
 	id = "implant_breaker"
@@ -275,7 +275,7 @@
 /datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	var/obj/item/O = new item_path(user.loc, gang)
 	user.put_in_hands(O)
-
+*/
 /datum/gang_item/equipment/wetwork_boots
 	name = "Wetwork boots"
 	id = "wetwork"
