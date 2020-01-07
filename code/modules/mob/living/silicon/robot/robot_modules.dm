@@ -269,7 +269,8 @@
 		/obj/item/bodybag,
 		/obj/item/evidencebag,
 		/obj/item/toy/crayon/white,
-		/obj/item/healthanalyzer
+		/obj/item/healthanalyzer,
+		/obj/item/gun/ballistic/revolver/detective/cyborg // DEBUG for the love of god don't forget to remove this when you finish WIP PR
 		)
 	emag_modules = list(
 		/obj/item/gun/ballistic/revolver/detective/cyborg
