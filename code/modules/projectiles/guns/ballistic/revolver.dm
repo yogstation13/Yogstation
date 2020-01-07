@@ -135,7 +135,7 @@
 
 /obj/item/gun/ballistic/revolver/detective/cyborg
 		name = "\improper Colt Detective Special Module"
-	desc = "A classic, fires .38-special rounds. Recharge at a recharge station"
+		desc = "A classic, fires .38-special rounds. Recharge at a recharge station"
 
 
 
