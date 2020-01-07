@@ -264,7 +264,12 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,  // placeholder for when I make ziptie maker
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
-		/obj/item/wantedposterposter
+		/obj/item/wantedposterposter,
+		/obj/item/detective_scanner,
+		/obj/item/bodybag,
+		/obj/item/evidencebag,
+		/obj/item/toy/crayon/white,
+		/obj/item/healthanalyzer
 		)
 	emag_modules = list(
 		/obj/item/gun/energy/laser/cyborg // placeholder for when I make the cyborg revolver
