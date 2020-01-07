@@ -905,6 +905,17 @@
 	name = "\improper Departmental Techfab (Machine Board) - Science"
 	icon_state = "science"
 	build_path = /obj/machinery/rnd/production/techfab/department/science
+	
+/obj/item/circuitboard/machine/bepis
+	name = "BEPIS Chamber (Machine Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/rnd/bepis
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/scanning_module = 1)
 
 //Security
 
