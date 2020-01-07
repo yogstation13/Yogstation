@@ -2600,10 +2600,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/minor/beret_or_rabbitears{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/spawner/lootdrop/minor/beret_or_rabbitears,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
 "gi" = (
