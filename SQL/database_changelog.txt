@@ -1,12 +1,36 @@
 Any time you make a change to the schema files, remember to increment the database schema version. Generally increment the minor number, major should be reserved for significant changes to the schema. Both values go up to 255.
 
-The latest database version is 5.2; The query to update the schema revision table is:
+The latest database version is 5.3; The query to update the schema revision table is:
 
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 2);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 3);
 or
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 2);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 3);
 
 In any query remember to add a prefix to the table names if you use one.
+
+----------------------------------------------------
+
+version 5.3 10 Dec 2019, by Nichlas0010
+
+Added two tables for achievements, one for the metadata and one for storing achieved achievements, as well as a misc table which is essentially just a glorified assoc list
+
+CREATE TABLE `achievements` (
+	`name` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `earned_achievements` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE `misc` (
+	`key` VARCHAR(32) NOT NULL,
+	`value` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`key`)
+) ENGINE=InnoDB;
 
 ----------------------------------------------------
 

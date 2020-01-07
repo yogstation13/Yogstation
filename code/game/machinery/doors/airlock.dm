@@ -90,7 +90,6 @@
 	var/shuttledocked = 0
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
 
-	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
 	var/list/bolt_log //yogs - Who can it be bolting all my doors? Go away, don't come down here no more.
 	var/list/shocking_log //yogs - who electrified this door.
@@ -139,6 +138,8 @@
 		switch(outcome)
 			if(1 to 9)
 				var/turf/here = get_turf(src)
+				for(var/obj/machinery/door/firedoor/FD in here)
+					qdel(FD)
 				for(var/turf/closed/T in range(2, src))
 					here.PlaceOnTop(T.type)
 					qdel(src)

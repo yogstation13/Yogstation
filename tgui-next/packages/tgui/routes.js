@@ -1,4 +1,4 @@
-import {Achievements} from './interfaces/Achievements';
+import { Achievements } from './interfaces/Achievements';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
@@ -8,6 +8,7 @@ import { AtmosControlConsole } from './interfaces/AtmosControlConsole';
 import { AtmosFilter } from './interfaces/AtmosFilter';
 import { AtmosMixer } from './interfaces/AtmosMixer';
 import { AtmosPump } from './interfaces/AtmosPump';
+import { BankMachine } from './interfaces/BankMachine';
 import { BluespaceArtillery } from './interfaces/BluespaceArtillery';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
@@ -27,6 +28,8 @@ import { DisposalUnit } from './interfaces/DisposalUnit';
 import { DnaVault } from './interfaces/DnaVault';
 import { EngravedMessage } from './interfaces/EngravedMessage';
 import { Gps } from './interfaces/Gps';
+import { GravityGenerator } from './interfaces/GravityGenerator';
+import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
 import { Holodeck } from './interfaces/Holodeck';
 import { ImplantChair } from './interfaces/ImplantChair';
 import { KeycardAuth } from './interfaces/KeycardAuth';
@@ -39,17 +42,21 @@ import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
 import { NtosWrapper } from './interfaces/NtosWrapper';
 import { NuclearBomb } from './interfaces/NuclearBomb';
 import { OperatingComputer } from './interfaces/OperatingComputer';
-import { OreRedemptionMachine } from './interfaces/OreRedemptionMachine';
 import { OreBox } from './interfaces/OreBox';
+import { OreRedemptionMachine } from './interfaces/OreRedemptionMachine';
+import { Pandemic } from './interfaces/Pandemic';
 import { PersonalCrafting } from './interfaces/PersonalCrafting';
 import { PortableGenerator } from './interfaces/PortableGenerator';
+import { PortablePump, PortableScrubber } from './interfaces/PortableAtmos';
 import { PowerMonitor } from './interfaces/PowerMonitor';
 import { Radio } from './interfaces/Radio';
 import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
-import { GulagItemReclaimer } from './interfaces/GulagItemReclaimer';
+import { SatelliteControl } from './interfaces/SatelliteControl';
+import { ScannerGate } from './interfaces/ScannerGate';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
 import { Smes } from './interfaces/Smes';
+import { SmokeMachine } from './interfaces/SmokeMachine';
 import { SolarControl } from './interfaces/SolarControl';
 import { SpaceHeater } from './interfaces/SpaceHeater';
 import { SpawnersMenu } from './interfaces/SpawnersMenu';
@@ -62,6 +69,7 @@ import { TurbineComputer } from './interfaces/TurbineComputer';
 import { Uplink } from './interfaces/Uplink';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
+import { Guardian } from './interfaces/Guardian';
 
 const ROUTES = {
   achievements: {
@@ -102,6 +110,10 @@ const ROUTES = {
   },
   atmos_pump: {
     component: () => AtmosPump,
+    scrollable: false,
+  },
+  bank_machine: {
+    component: () => BankMachine,
     scrollable: false,
   },
   borgopanel: {
@@ -184,6 +196,10 @@ const ROUTES = {
     component: () => Gps,
     scrollable: true,
   },
+  gravity_generator: {
+    component: () => GravityGenerator,
+    scrollable: false,
+  },
   gulag_item_reclaimer: {
     component: () => GulagItemReclaimer,
     scrollable: true,
@@ -255,12 +271,24 @@ const ROUTES = {
     component: () => OperatingComputer,
     scrollable: true,
   },
+  pandemic: {
+    component: () => Pandemic,
+    scrollable: true,
+  },
   personal_crafting: {
     component: () => PersonalCrafting,
     scrollable: true,
   },
   portable_generator: {
     component: () => PortableGenerator,
+    scrollable: false,
+  },
+  portable_pump: {
+    component: () => PortablePump,
+    scrollable: false,
+  },
+  portable_scrubber: {
+    component: () => PortableScrubber,
     scrollable: false,
   },
   power_monitor: {
@@ -275,6 +303,14 @@ const ROUTES = {
     component: () => RapidPipeDispenser,
     scrollable: true,
   },
+  sat_control: {
+    component: () => SatelliteControl,
+    scrollable: false,
+  },
+  scanner_gate: {
+    component: () => ScannerGate,
+    scrollable: true,
+  },
   shuttle_manipulator: {
     component: () => ShuttleManipulator,
     scrollable: true,
@@ -285,6 +321,10 @@ const ROUTES = {
   },
   smes: {
     component: () => Smes,
+    scrollable: false,
+  },
+  smoke_machine: {
+    component: () => SmokeMachine,
     scrollable: false,
   },
   solar_control: {
@@ -335,6 +375,10 @@ const ROUTES = {
   wires: {
     component: () => Wires,
     scrollable: false,
+  },
+  guardian: {
+    component: () => Guardian,
+    scrollable: true,
   },
 };
 

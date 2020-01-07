@@ -976,9 +976,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		to_chat(holder, "<span class='cult italic'>The shield's illusions are back at full strength!</span>")
 
 /obj/item/shield/mirror/IsReflect()
-	if(prob(block_chance))
-		return TRUE
-	return FALSE
+	return prob(block_chance)
 
 /obj/item/shield/mirror/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/turf/T = get_turf(hit_atom)

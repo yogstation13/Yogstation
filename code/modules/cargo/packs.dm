@@ -279,6 +279,18 @@
 					/obj/item/clothing/suit/armor/vest)
 	crate_name = "armor crate"
 
+/datum/supply_pack/security/stormtrooper
+	name = "Stormtrooper Crate"
+	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light wielding wizards . Requires Security access to open."
+	cost = 10000
+	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper)
+	crate_name = "stormtrooper crate"
+
 /datum/supply_pack/security/disabler
 	name = "Disabler Crate"
 	desc = "Three stamina-draining disabler weapons. Requires Security access to open."
@@ -687,23 +699,9 @@
 
 /datum/supply_pack/engineering/conveyor
 	name = "Conveyor Assembly Crate"
-	desc = "Keep production moving along with fifteen conveyor belts. Conveyor switch included. If you have any questions, check out the enclosed instruction book."
+	desc = "Keep production moving along with thirty conveyor belts. Conveyor switch included. If you have any questions, check out the enclosed instruction book."
 	cost = 1500
-	contains = list(/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
-					/obj/item/conveyor_construct,
+	contains = list(/obj/item/stack/conveyor/thirty,
 					/obj/item/conveyor_switch_construct,
 					/obj/item/paper/guides/conveyor)
 	crate_name = "conveyor assembly crate"
@@ -1305,7 +1303,7 @@
 					/obj/item/storage/box/beakers,
 					/obj/item/reagent_containers/glass/bottle/mutagen)
 	crate_name = "virus crate"
-	crate_type = /obj/structure/closet/crate/secure/plasma
+	crate_type = /obj/structure/closet/crate/secure/medical
 	dangerous = TRUE
 
 /datum/supply_pack/medical/vending

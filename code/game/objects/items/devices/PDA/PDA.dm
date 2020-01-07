@@ -51,7 +51,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/f_lum = 2.3 //Luminosity for the flashlight function
 	var/silent = FALSE //To beep or not to beep, that is the question
 	var/toff = FALSE //If TRUE, messenger disabled
-	var/tnote = null //Current Texts
+	var/list/tnote = list() //Current list of received signals, which are transmuted into messages on-the-spot. Can also be just plain strings, y'know, like, who really gives a shit, y'know
 	var/last_text //No text spamming
 	var/last_everyone //No text for everyone spamming
 	var/last_noise //Also no honk spamming that's bad too
@@ -340,7 +340,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 				dat += "<h4>[PDAIMG(mail)] Messages</h4>"
 
-				dat += tnote
+				//Build the message list
+				for(var/x in tnote)
+					if(istext(x)) // If it's literally just text
+						dat += tnote
+					else // It's hopefully a signal
+						var/datum/signal/subspace/messaging/pda/sig = x
+						dat += "<i><b><a href='byond://?src=[REF(src)];choice=Message;target=[REF(sig.source)]'>[sig.data["name"]]</a> ([sig.data["job"]]):</b></i><br>[sig.format_message(user)]<br>"
 				dat += "<br>"
 
 			if (3)
@@ -514,7 +520,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if("Toggle Ringer")//If viewing texts then erase them, if not then toggle silent status
 				silent = !silent
 			if("Clear")//Clears messages
-				tnote = null
+				tnote = list()
 			if("Ringtone")
 				var/t = input(U, "Please enter new ringtone", name, ttone) as text
 				if(in_range(src, U) && loc == U && t)
@@ -636,6 +642,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		"name" = "[owner]",
 		"job" = "[ownjob]",
 		"message" = message,
+		"language" = user.get_selected_language(),
 		"targets" = string_targets
 	))
 	if (picture)
@@ -649,7 +656,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/target_text = signal.format_target()
 	// Log it in our logs
-	tnote += "<i><b>&rarr; To [target_text]:</b></i><br>[signal.format_message()]<br>"
+	tnote += signal
 	// Show it to ghosts
 	var/ghost_message = "<span class='name'>[owner] </span><span class='game say'>PDA Message</span> --> <span class='name'>[target_text]</span>: <span class='message'>[signal.format_message()]</span>"
 	for(var/mob/M in GLOB.player_list)
@@ -665,7 +672,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		last_everyone = world.time
 
 /obj/item/pda/proc/receive_message(datum/signal/subspace/messaging/pda/signal)
-	tnote += "<i><b>&larr; From <a href='byond://?src=[REF(src)];choice=Message;target=[REF(signal.source)]'>[signal.data["name"]]</a> ([signal.data["job"]]):</b></i><br>[signal.format_message()]<br>"
+	tnote += signal
 
 	if (!silent)
 		playsound(src, 'sound/machines/twobeep_high.ogg', 50, 1)
@@ -689,7 +696,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		if(signal.data["automated"])
 			reply = "\[Automated Message\]"
 
-		to_chat(L, "[icon2html(src)] <b>Message from [hrefstart][signal.data["name"]] ([signal.data["job"]])[hrefend], </b>[signal.format_message()] [reply]")
+		to_chat(L, "[icon2html(src)] <b>Message from [hrefstart][signal.data["name"]] ([signal.data["job"]])[hrefend], </b>[signal.format_message(L)] [reply]")
 
 	update_icon()
 	add_overlay(icon_alert)
@@ -963,7 +970,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	aiPDA.create_message(src, selected)
 
 
-/mob/living/silicon/verb/cmd_toggle_pda_receiver()
+/mob/living/silicon/ai/verb/cmd_toggle_pda_receiver()
 	set category = "AI Commands"
 	set name = "PDA - Toggle Sender/Receiver"
 	if(usr.stat == DEAD)
@@ -974,7 +981,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
 
-/mob/living/silicon/verb/cmd_toggle_pda_silent()
+/mob/living/silicon/ai/verb/cmd_toggle_pda_silent()
 	set category = "AI Commands"
 	set name = "PDA - Toggle Ringer"
 	if(usr.stat == DEAD)
@@ -986,7 +993,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
 
-/mob/living/silicon/proc/cmd_show_message_log(mob/user)
+/mob/living/silicon/ai/proc/cmd_show_message_log(mob/user)
 	if(incapacitated())
 		return
 	if(!isnull(aiPDA))
@@ -995,6 +1002,37 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		to_chat(user, "You do not have a PDA. You should make an issue report about this.")
 
+/mob/living/silicon/pai/verb/cmd_toggle_pda_receiver()
+	set category = "AI Commands"
+	set name = "PDA - Toggle Sender/Receiver"
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	if(!isnull(aiPDA))
+		aiPDA.toff = !aiPDA.toff
+		to_chat(usr, "<span class='notice'>PDA sender/receiver toggled [(aiPDA.toff ? "Off" : "On")]!</span>")
+	else
+		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
+
+/mob/living/silicon/pai/verb/cmd_toggle_pda_silent()
+	set category = "AI Commands"
+	set name = "PDA - Toggle Ringer"
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	if(!isnull(aiPDA))
+		//0
+		aiPDA.silent = !aiPDA.silent
+		to_chat(usr, "<span class='notice'>PDA ringer toggled [(aiPDA.silent ? "Off" : "On")]!</span>")
+	else
+		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
+
+/mob/living/silicon/pai/proc/cmd_show_message_log(mob/user)
+	if(incapacitated())
+		return
+	if(!isnull(aiPDA))
+		var/HTML = "<html><head><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"
+		user << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
+	else
+		to_chat(user, "You do not have a PDA. You should make an issue report about this.")
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
 /obj/item/pda/emp_act(severity)

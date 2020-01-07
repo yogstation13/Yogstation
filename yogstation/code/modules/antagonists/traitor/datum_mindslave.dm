@@ -7,6 +7,11 @@
 	can_hijack = HIJACK_HIJACKER
 	var/mob/living/carbon/master
 
+/datum/antagonist/mindslave/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	var/obj/item/implant/mindslave/IMP = locate() in new_body.implants
+	if(!IMP)
+		on_removal()
+
 /datum/objective/mindslave
 	name = "Mindslave Objective"
 	martyr_compatible = TRUE
