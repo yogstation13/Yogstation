@@ -229,6 +229,15 @@
 /obj/item/restraints/handcuffs/cable/zipties/cyborg_fabricator
 	name = "ziptie fabricator"
 	desc = "Plastic, disposable ziptie fabricator that can be used to create temporary restrain devices that are destroyed after use."
+	icon_state = "cuff"
+	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
+	materials = list()
+	breakouttime = 450 //Deciseconds = 45s
+	trashtype = /obj/item/restraints/handcuffs/cable/zipties/used
+	item_color = "white"
+
+	
 
 
 /obj/item/restraints/cable/zipties/cyborg_fabricator/attack(mob/living/carbon/C, mob/living/user)
@@ -245,6 +254,8 @@
 		var/mob/living/carbon/monkey/M
 		M = C
 		M.retaliate(user)
+
+	var/cuffsound = 'sound/weapons/cablecuff.ogg'
 
 	if(!C.handcuffed)
 		if(C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore())
@@ -274,6 +285,8 @@
 
 	if(!user.temporarilyRemoveItemFromInventory(src) && !dispense)
 		return
+	
+	var/trashtype = /obj/item/restraints/handcuffs/cable/zipties/used
 
 	var/obj/item/restraints/handcuffs/cuffs = src
 	if(trashtype)
