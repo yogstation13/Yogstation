@@ -71,3 +71,8 @@
 	icon_state = "spacecash1000"
 	singular_name = "one thousand credit bill"
 	value = 1000
+
+/obj/item/stack/spacecash/c10000
+	icon_state = "spacecash10000"
+	singular_name = "ten thousand credit bill"
+	value = 10000
