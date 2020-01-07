@@ -126,7 +126,7 @@
 /datum/techweb/proc/copy_research_to(datum/techweb/receiver, unlock_hidden = TRUE)				//Adds any missing research to theirs.
 	if(unlock_hidden)
 	for(var/i in receiver.hidden_nodes)
-			CHECK_TICK
+		CHECK_TICK
 			if(!hidden_nodes[i])
 				receiver.hidden_nodes -= i		//We can see it so let them see it too.
 	for(var/i in researched_nodes)
