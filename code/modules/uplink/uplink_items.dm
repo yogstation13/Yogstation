@@ -449,18 +449,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/dangerous/minigun
-	name = "M-546 Osprey"
-	desc = "A fully-loaded minigun which packs a big punch. \
-			This deadly giant weapon has a massive 500-round magazine of devastating 5.46mm caseless ammunition.\
-			Slaughter your enemies through sheer force. We made this gun so advanced that it fires the whole bullet.\
-			Thats 60% more bullet per bullet and no more useless casings!"
-	item = /obj/item/minigunbackpack
-	cost = 36
-	surplus = 0
-	cant_discount = TRUE
-	include_modes = list(/datum/game_mode/nuclear)
-
 /datum/uplink_item/dangerous/carbine
 	name = "M-90gl Carbine"
 	desc = "A fully-loaded, specialized three-round burst carbine that fires 5.56mm ammunition from a 30 round magazine \
