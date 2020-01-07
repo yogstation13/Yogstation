@@ -788,6 +788,10 @@
 /mob/living/silicon/robot/modules/standard
 	set_module = /obj/item/robot_module/standard
 
+/mob/living/silicon/robot/modules/detective
+	set_module = /obj/item/robot_module/detective
+	icon_state = "sec"
+
 /mob/living/silicon/robot/modules/medical
 	set_module = /obj/item/robot_module/medical
 	icon_state = "medical"
