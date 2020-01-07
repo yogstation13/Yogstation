@@ -833,3 +833,5 @@
 				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
 			if(BURN)
 				playsound(loc, 'sound/items/welder.ogg', 80, 1)
+	else
+		playsound(loc, 'sound/weapons/tap.ogg', 50, 1)
