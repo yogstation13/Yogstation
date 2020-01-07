@@ -822,6 +822,8 @@
 	toggle()
 
 /obj/structure/cloth_curtain/deconstruct(disassembled = TRUE)
+	if(QDELETED(src))
+		return
 	new /obj/item/stack/sheet/cloth(loc, 2)
 	new /obj/item/stack/rods(loc, 1)
 	qdel(src)
