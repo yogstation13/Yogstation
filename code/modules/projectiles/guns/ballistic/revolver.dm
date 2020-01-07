@@ -136,7 +136,30 @@
 /obj/item/gun/ballistic/revolver/detective/cyborg
 		name = "\improper Colt Detective Special Module"
 		desc = "A classic, fires .38-special rounds. Recharge at a recharge station"
+		casing_ejector = TRUE
 
+/obj/item/gun/ballistic/revolver/detective/cyborg/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	..()
+
+// DEBUG oh god oh fuck please work
+/obj/item/gun/ballistic/revolver/detective/cyborg/attack_self(mob/living/user)
+	return
+
+/// DEBUG Don't forget to update this
+/obj/item/gun/ballistic/revolver/detective/cyborg/get_ammo(countchambered = FALSE, countempties = TRUE)
+	var/boolets = 0 //mature var names for mature people
+	if (chambered && countchambered)
+		boolets++ // DEBUG change this out to work with the new system in your head
+	if (magazine)
+		boolets += magazine.ammo_count(countempties)
+	return boolets
+
+// DEBUG change this out asshole
+/obj/item/gun/ballistic/revolver/detective/cyborg/chamber_round(spin_cylinder = TRUE)
+	if(spin_cylinder)
+		chambered = magazine.get_round(TRUE)
+	else
+		chambered = magazine.stored_ammo[1]
 
 
 /obj/item/gun/ballistic/revolver/mateba
