@@ -73,7 +73,7 @@
 
 /obj/effect/spawner/lootdrop/trashbin
 	name = "trash spawner"
-	loot = list(obj/item/cigbutt = 1,
+	loot = list(/obj/item/cigbutt = 1,
 			/obj/item/trash/cheesie = 1,
 			/obj/item/trash/candy = 1,
 			/obj/item/trash/chips = 1,
