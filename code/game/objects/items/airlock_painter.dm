@@ -7,8 +7,6 @@
 
 	w_class = WEIGHT_CLASS_SMALL
 
-	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
-
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -132,7 +130,6 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "decal_sprayer"
 	item_state = "decalsprayer"
-	custom_materials = list(/datum/material/iron=2000, /datum/material/glass=500)
 	var/stored_dir = 2
 	var/stored_color = ""
 	var/stored_decal = "warningline"
