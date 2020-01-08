@@ -126,6 +126,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
@@ -137,14 +138,15 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
-
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
@@ -161,6 +163,7 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()

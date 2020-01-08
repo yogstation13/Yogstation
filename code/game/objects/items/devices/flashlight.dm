@@ -258,13 +258,15 @@
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
+	var/frng_min = 800
+	var/frng_max = 1000
 	heat = 1000
 	light_color = LIGHT_COLOR_FLARE
 	grind_results = list(/datum/reagent/sulfur = 15)
 
 /obj/item/flashlight/flare/Initialize()
 	. = ..()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel = rand(frng_min, frng_max)
 
 /obj/item/flashlight/flare/process()
 	open_flame(heat)
@@ -319,6 +321,13 @@
 
 /obj/item/flashlight/flare/is_hot()
 	return on * heat
+
+/obj/item/flashlight/flare/emergency
+	name = "safety flare"
+	desc = "A flare issued to nanotrasen employees for emergencies. There are instructions on the side, it reads 'pull cord, make light, obey nanotrasen'."
+	brightness_on = 3
+	frng_min = 40
+	frng_max = 70
 
 /obj/item/flashlight/flare/torch
 	name = "torch"

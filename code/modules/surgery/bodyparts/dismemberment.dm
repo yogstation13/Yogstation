@@ -359,6 +359,8 @@
 		limb_list -= excluded_limbs
 	for(var/Z in limb_list)
 		. += regenerate_limb(Z, noheal)
+	if(("legs" in dna.species.mutant_bodyparts) && dna.features["legs"] == "Digitigrade Legs")
+		Digitigrade_Leg_Swap(FALSE)
 
 /mob/living/proc/regenerate_limb(limb_zone, noheal)
 	return
@@ -374,6 +376,5 @@
 			L.burn_dam = 0
 			L.brutestate = 0
 			L.burnstate = 0
-
 		L.attach_limb(src, 1)
 		return 1
