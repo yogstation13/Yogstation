@@ -453,7 +453,7 @@
 	icon_living = "deer-doe"
 	icon_dead = "deer-doe-dead"
 	gender = FEMALE
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak = list("Weeeeeeee?","Weeee","WEOOOOOOOOOO")
 	speak_emote = list("grunts","grunts lowly")
 	emote_hear = list("brays.")
