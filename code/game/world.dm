@@ -11,6 +11,7 @@ GLOBAL_VAR(restart_counter)
 //So subsystems globals exist, but are not initialised
 /world/New()
 	enable_debugger() //This does nothing if you aren't trying to debug
+
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()
@@ -179,6 +180,10 @@ GLOBAL_VAR(restart_counter)
 
 	handler = new handler()
 	return handler.TryRun(input)
+
+/proc/on_world_topic_banned(addr) //Called by extools topic filter upon banning an IP.
+	message_admins("[addr] has been banned until restart for potential /world/Topic() abuse.")
+	log_world("[addr] has been banned until restart for potential /world/Topic() abuse.")
 
 /world/proc/AnnouncePR(announcement, list/payload)
 	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
