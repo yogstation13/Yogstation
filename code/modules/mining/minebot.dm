@@ -130,9 +130,10 @@
 				to_chat(M, "<span class='info'>[src] has been set to attack hostile wildlife.</span>")
 		return
 
-/mob/living/simple_animal/hostile/mining_drone/CanPass(atom/movable/O)
-	if(istype(O, /obj/item/projectile/kinetic))
-		var/obj/item/projectile/kinetic/K = O
+/mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/O)
+	. = ..()
+	if(istype(O, /obj/projectile/kinetic))
+		var/obj/projectile/kinetic/K = O
 		if(K.kinetic_gun)
 			for(var/A in K.kinetic_gun.get_modkits())
 				var/obj/item/borg/upgrade/modkit/M = A
@@ -140,7 +141,6 @@
 					return TRUE
 	if(istype(O, /obj/item/projectile/destabilizer))
 		return TRUE
-	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/proc/SetCollectBehavior()
 	mode = MINEDRONE_COLLECT
