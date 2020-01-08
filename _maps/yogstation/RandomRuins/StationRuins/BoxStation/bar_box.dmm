@@ -405,9 +405,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/goat{
-	name = "Pete"
-	},
+/obj/effect/spawner/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aY" = (
