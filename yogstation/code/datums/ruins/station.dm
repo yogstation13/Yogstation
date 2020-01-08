@@ -50,6 +50,11 @@
 	suffix = "bar_purple.dmm"
 	name = "Bar Purple"
 
+/datum/map_template/ruin/station/box/bar/irishman
+	id = "bar_irish"
+	suffix = "bar_irish.dmm"
+	name = "Bar Irish"
+	
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
@@ -69,3 +74,14 @@
 	id = "maint_xenobridge_lattice"
 	suffix = "xenobridge_space.dmm"
 	name = "Xenobiology Lattice"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/rpg
+	id = "maint_rpg"
+	suffix = "maint_rpg.dmm"
+	name = "Roleplaying Room"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/detective
+	id = "maint_detective"
+	suffix = "maint_detective.dmm"
+	name = "Detective Room"
+  
