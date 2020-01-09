@@ -488,6 +488,12 @@ update_label("John Doe", "Clowny")
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
 	access = list(ACCESS_AWAY_GENERAL)
 
+/obj/item/card/id/away/derelict/robo
+	name = "Outdated Roboticist ID"
+	desc = "An old Roboticit's ID. Surely it has some use?"
+	access = list(ACCESS_ROBOTICS)
+	icon_state = "centcom"
+
 /obj/item/card/id/away/hotel
 	name = "Staff ID"
 	desc = "A staff ID used to access the hotel's doors."

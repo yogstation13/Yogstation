@@ -606,6 +606,10 @@
 	pixel_x = -5;
 	pixel_y = -3
 	},
+/obj/item/areaeditor/blueprints{
+	desc = "Use to build new structures in the wastes.";
+	name = "land claim"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/derelict/bridge/ai_upload)
 "bV" = (
@@ -4484,12 +4488,29 @@
 "Sv" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
+"SH" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/item/stack/sheet/bluespace_crystal{
+	amount = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/derelict/bridge)
 "Tm" = (
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "Uz" = (
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"UZ" = (
+/obj/item/card/id/away/derelict/robo,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged4"
+	},
+/area/ruin/space/derelict/bridge/ai_upload)
 "Vz" = (
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
@@ -11081,7 +11102,7 @@ ax
 bz
 bM
 bL
-bE
+UZ
 bO
 cf
 aa
@@ -12677,7 +12698,7 @@ cX
 cF
 dq
 cs
-dI
+SH
 ea
 eb
 ea
