@@ -2,7 +2,7 @@
 #define CHANGELING_PHEROMONE_MAX_DISTANCE 25 //They can smell your fear a mile away.  Well, 50 meters.
 #define CHANGELING_PHEROMONE_PING_TIME 20 //2s update time.
 
-
+/*
 /datum/action/changeling/pheromone_receptors
 	name = "Pheromone Receptors"
 	desc = "We attune our senses to track other changelings by scent.  The closer they are, the easier we can find them."
@@ -56,3 +56,4 @@
 /obj/screen/alert/status_effect/agent_pinpointer/changeling
 	name = "Pheromone Scent"
 	desc = "The nose always knows."
+*/
