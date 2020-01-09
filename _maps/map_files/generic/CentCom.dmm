@@ -7427,6 +7427,10 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
+"qF" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17691,9 +17695,10 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "Lx" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 8
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -21338,6 +21343,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Ww" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "Wx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -48502,11 +48513,11 @@ Lk
 Lo
 Lo
 KH
+Ww
 KV
 KV
 KV
-KV
-KV
+qF
 KH
 KH
 KH
