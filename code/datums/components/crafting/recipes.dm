@@ -481,6 +481,12 @@
 	result = /obj/structure/sink
 	category = CAT_MISC
 
+/datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
+	name = "Toilet"
+	reqs = 	list(/obj/item/stack/sheet/metal = 5 , /obj/structure/mopbucket)
+	result = /obj/structure/toilet
+	category = CAT_MISC
+
 /datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
