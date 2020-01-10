@@ -67,6 +67,7 @@
 		return
 	if(default_deconstruction_crowbar(W))
 		return
+	return ..()
 
 /**********************Mineral stacking unit**************************/
 #define INPUT 0
@@ -93,7 +94,7 @@
 
 /obj/machinery/mineral/stacking_machine/examine(mob/user)
 	. = ..()
-		. += "<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>"
+	. += "<span class='notice'>Currently outputting stacks at <b>[stack_amt] sheet[(stack_amt > 1) ? "s" : ""]</b><span>"
 	if(panel_open)
 		. += "The I/O is set to change <b>[io ? "output" : "input"]</b> currently."
 		. += "Input is <b>[dir2text(input_dir)]</b>"
@@ -169,7 +170,7 @@
 			output_dir = turn(output_dir, -90)
 		to_chat(user, "<span class='notice'>You set [src]'s output to drop stacks [dir2text(output_dir)].</span>")
 		return
-	return TRUE
+	return ..()
 
 /obj/machinery/mineral/stacking_machine/multitool_act(mob/living/user, obj/item/multitool/M)
 	if(istype(M))
