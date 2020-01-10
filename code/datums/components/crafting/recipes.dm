@@ -736,3 +736,9 @@
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+
+/datum/crafting_recipe/urinal 
+	name = "Urinal"
+	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
+	result = /obj/structure/urinal
+	category = CAT_MISC
