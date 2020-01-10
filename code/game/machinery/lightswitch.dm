@@ -35,7 +35,7 @@
 	. = ..()
 	. += "It is [area.lightswitch ? "on" : "off"]."
 	if((obj_flags & EMAGGED) && user.can_hear())
-		. += "<span class="danger">You hear a faint hum coming from the switch.</span>"
+		. += "<span class='danger'>You hear a faint hum coming from the switch.</span>"
 
 /obj/machinery/light_switch/interact(mob/user)
 	if(obj_flags & EMAGGED)
@@ -73,9 +73,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 	electrocute_mob(user, get_area(src), src, 0.7, TRUE)
-		return TRUE
-	else
-		return FALSE
+
 
 /obj/machinery/light_switch/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
