@@ -241,6 +241,7 @@
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
 	var/bulb_vacuum_colour = "#4F82FF"	// colour of the light when air alarm is set to severe
+	var/bulb_vacuum_brightness = 4
 
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
@@ -359,6 +360,7 @@
 			CO = bulb_emergency_colour
 		else if (A && A.vacuum)
 			CO = bulb_vacuum_colour
+			BR = bulb_vacuum_brightness
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power
