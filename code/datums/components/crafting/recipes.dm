@@ -481,10 +481,22 @@
 	result = /obj/structure/sink
 	category = CAT_MISC
 
+/datum/crafting_recipe/toilet // best moment of my life - Hopek 2020
+	name = "Toilet"
+	reqs = 	list(/obj/item/stack/sheet/metal = 5 , /obj/structure/mopbucket)
+	result = /obj/structure/toilet
+	category = CAT_MISC
+
 /datum/crafting_recipe/extendohand
 	name = "Extendo-Hand"
 	reqs = list(/obj/item/bodypart/r_arm/robot = 1, /obj/item/clothing/gloves/boxing = 1)
 	result = /obj/item/extendohand
+	category = CAT_MISC
+
+/datum/crafting_recipe/cloth_curtain
+	name = "Curtains"
+	reqs = 	list(/obj/item/stack/sheet/cloth = 2, /obj/item/stack/rods = 1)
+	result = /obj/structure/cloth_curtain
 	category = CAT_MISC
 
 /datum/crafting_recipe/chemical_payload
@@ -724,3 +736,9 @@
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+
+/datum/crafting_recipe/urinal 
+	name = "Urinal"
+	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
+	result = /obj/structure/urinal
+	category = CAT_MISC
