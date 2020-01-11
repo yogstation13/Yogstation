@@ -21,6 +21,25 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 		gas_info[META_GAS_ID] = initial(gas.id)
 		.[gas_path] = gas_info
 
+/mob/verb/profile_atmos()
+	var/datum/gas_mixture/A = new
+	var/datum/gas_mixture/B = new
+	A.parse_gas_string("o2=200;n2=800;TEMP=50")
+	B.parse_gas_string("co2=500;plasma=500;TEMP=5000")
+	var/pa
+	var/pb
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		B.transfer_to(A, 1);
+		A.transfer_to(B, 1);
+		//A.merge(B.remove(1))
+		//B.merge(A.remove(1))
+	pb = world.tick_usage
+	var/total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time: [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+
+
 /proc/gas_id2path(id)
 	var/list/meta_gas = GLOB.meta_gas_info
 	if(id in meta_gas)
