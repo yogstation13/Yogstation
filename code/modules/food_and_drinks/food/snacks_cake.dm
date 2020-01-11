@@ -95,6 +95,23 @@
 	tastes = list("cake" = 4, "cream cheese" = 3)
 	foodtype = GRAIN | DAIRY
 
+/obj/item/reagent_containers/food/snacks/store/cake/donk
+	name = "donk cake"
+	desc = "Who thought this would be a good idea?"
+	icon_state = "donkcake"
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/donk
+	slices_num = 5
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 10)
+	tastes = list("cake" = 4, "donk pocket" = 3, "meat" = 1)
+	foodtype = GRAIN | DAIRY | MEAT
+
+/obj/item/reagent_containers/food/snacks/cakeslice/donk
+	name = "donk cake slice"
+	desc = "Smells like donkpocket."
+	icon_state = "donkcake_slice"
+	filling_color = "#614F2F"
+	tastes = list("cake" = 4, "donk pocket" = 3, "meat" = 1)
+	foodtype = GRAIN | DAIRY | MEAT
 
 /obj/item/reagent_containers/food/snacks/store/cake/orange
 	name = "orange cake"
