@@ -146,19 +146,19 @@
 
 /datum/chemical_reaction/toxins_special
 	name = "Toxins Special"
-	id = /datum/chemical_reaction/toxins_special
+	id = /datum/reagent/consumable/ethanol/toxins_special
 	results = list(/datum/reagent/consumable/ethanol/toxins_special = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, /datum/reagent/toxin/plasma = 2)
 
 /datum/chemical_reaction/beepsky_smash
 	name = "Beepsky Smash"
-	id = "beepksysmash"
+	id = /datum/reagent/consumable/ethanol/beepsky_smash
 	results = list(/datum/reagent/consumable/ethanol/beepsky_smash = 5)
 	required_reagents = list(/datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol/quadruple_sec = 2, /datum/reagent/iron = 1)
 
 /datum/chemical_reaction/doctor_delight
-	name = "The Doctor's Delight"
-	id = "doctordelight"
+	name = "Doctor's Delight"
+	id = /datum/reagent/consumable/doctor_delight
 	results = list(/datum/reagent/consumable/doctor_delight = 5)
 	required_reagents = list(/datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/medicine/cryoxadone = 1)
 
