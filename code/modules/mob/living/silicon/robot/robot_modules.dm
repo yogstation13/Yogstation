@@ -330,7 +330,7 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
-		/obj/item/gun/energy/disabler/cyborg,
+		/obj/item/detective_scanner,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/wantedposterposter,
 		/obj/item/donutsynth)
@@ -347,16 +347,6 @@
 	to_chat(loc, "<span class='userdanger'>While you have picked the security module, you still have to follow your laws, NOT Space Law. \
 	For Asimov, this means you must follow criminals' orders unless there is a law 1 reason not to.</span>")
 
-/obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
-	..()
-	var/obj/item/gun/energy/disabler/cyborg/T = locate(/obj/item/gun/energy/disabler/cyborg) in basic_modules
-	if(T)
-		if(T.cell.charge < T.cell.maxcharge)
-			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]
-			T.cell.give(S.e_cost * coeff)
-			T.update_icon()
-		else
-			T.charge_tick = 0
 
 /obj/item/robot_module/peacekeeper
 	name = "Peacekeeper"

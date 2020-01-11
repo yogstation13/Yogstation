@@ -88,35 +88,6 @@
 	if (.)
 		R.remove_movespeed_modifier("VTEC")
 
-/obj/item/borg/upgrade/disablercooler
-	name = "cyborg rapid disabler cooling module"
-//	desc = "Used to cool a mounted disabler, increasing the potential current in it and thus its recharge rate."
-	desc = "It used to give unspeakable power to security modules. Now it rests; broken, abandoned."
-	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = /obj/item/robot_module/security
-
-/obj/item/borg/upgrade/disablercooler/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
-		if(!T)
-			to_chat(user, "<span class='notice'>There's no disabler in this unit!</span>")
-			return FALSE
-		if(T.charge_delay <= 2)
-			to_chat(R, "<span class='notice'>A cooling unit is already installed!</span>")
-			to_chat(user, "<span class='notice'>There's no room for another cooling unit!</span>")
-			return FALSE
-
-		T.charge_delay = max(2 , T.charge_delay - 4)
-
-/obj/item/borg/upgrade/disablercooler/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
-		if(!T)
-			return FALSE
-		T.charge_delay = initial(T.charge_delay)
 
 /obj/item/borg/upgrade/thrusters
 	name = "ion thruster upgrade"
