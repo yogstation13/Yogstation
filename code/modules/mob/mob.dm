@@ -304,7 +304,8 @@
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return
 
-	visible_message("<span class='notice'>[src] examines [A]!</span>")
+	if(isturf(loc) && (isturf(A) || isturf(A.loc)))
+		visible_message("<span class='notice'>[src] examines [A]!</span>")
 	face_atom(A)
 	var/list/result = A.examine(src)
 	to_chat(src, result.Join("\n"))
