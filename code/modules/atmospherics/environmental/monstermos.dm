@@ -350,7 +350,6 @@
 	// start by figuring out which turfs are actually affected
 	var/warned_about_planet_atmos = FALSE
 	for(var/i = 1; i <= turfs.len; i++)
-		CHECK_TICK
 		var/turf/open/T = turfs[i]
 		T.last_eq_cycle = cyclenum
 		T.pressure_direction = 0
@@ -392,7 +391,6 @@
 		progression_order[T] = 1
 	// now build a map of where the path to space is for each tile.
 	for(var/i = 1; i <= progression_order.len; i++)
-		CHECK_TICK
 		var/turf/open/T = progression_order[i]
 		for(var/t2 in T.atmos_adjacent_turfs)
 			if(!turfs[t2]) continue
@@ -407,7 +405,6 @@
 			progression_order[T2] = 1
 	// apply pressure differences to turfs
 	for(var/i = progression_order.len; i > 0; i--)
-		CHECK_TICK
 		var/turf/open/T = progression_order[i]
 		if(T.pressure_direction == 0)
 			continue
