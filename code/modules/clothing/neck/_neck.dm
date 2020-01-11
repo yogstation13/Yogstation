@@ -199,9 +199,10 @@
 	var/tagname = null
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	if(!ishumanbasic(M) || iscatperson(M))
-		return ..()
-	return FALSE
+	var/mob/living/carbon/C = M
+	if(C && ishumanbasic(C) && !iscatperson(C))
+		return FALSE
+	return ..()
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = copytext(sanitize(input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot") as null|text),1,MAX_NAME_LEN)
