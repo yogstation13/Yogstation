@@ -6519,8 +6519,8 @@
 "ajH" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch";
-	req_access_txt = "0";
-	req_one_access_txt = "24"
+	req_access_txt = "24";
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable/white{
 	icon_state = "1-2"
