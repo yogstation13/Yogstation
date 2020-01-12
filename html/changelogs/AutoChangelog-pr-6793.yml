@@ -1,4 +1,0 @@
-author: "  alexkar598"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes some nanites that were supposed to make more nanites but didn't"

@@ -269,7 +269,7 @@
 
 /obj/item/reagent_containers/food/snacks/burger/baseball
 	name = "home run baseball burger"
-	desc = "It's still warm. The steam coming off of it looks like baseball."
+	desc = "It's still warm. The steam coming off of it looks like a baseball."
 	icon_state = "baseball"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtype = GRAIN | GROSS

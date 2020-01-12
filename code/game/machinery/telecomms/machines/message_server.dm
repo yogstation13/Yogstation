@@ -121,15 +121,26 @@
 	return copy
 
 // PDA signal datum
+/datum/signal/subspace/messaging/pda
+	var/datum/language/lang // Stores what language the message was written in.
+
+/datum/signal/subspace/messaging/pda/New(init_source,init_data)
+	..()
+	lang = data["language"] || /datum/language/common
+
 /datum/signal/subspace/messaging/pda/proc/format_target()
 	if (length(data["targets"]) > 1)
 		return "Everyone"
 	return data["targets"][1]
 
-/datum/signal/subspace/messaging/pda/proc/format_message()
+/datum/signal/subspace/messaging/pda/proc/format_message(mob/living/listener)
+	var/msg = data["message"]
+	if(istype(listener) && !listener.has_language(lang))
+		var/datum/language/langue = GLOB.language_datum_instances[lang]
+		msg = langue.scramble(msg)
 	if (logged && data["photo"])
-		return "\"[data["message"]]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
-	return "\"[data["message"]]\""
+		return "\"[msg]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
+	return "\"[msg]\""
 
 /datum/signal/subspace/messaging/pda/broadcast()
 	if (!logged)  // Can only go through if a message server logs it

@@ -24,3 +24,6 @@
 
 /obj/item/ammo_casing/energy/disabler/hos
 	e_cost = 60
+
+/obj/item/ammo_casing/energy/disabler/cyborg
+	e_cost = 100

@@ -101,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 80px;
+	right: 135px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -131,13 +131,13 @@ a.popt {text-decoration: none;}
 }
 #userBar .subCell:hover {background: #ccc;}
 #userBar .toggle {
-	width: 40px;
+	width: 45px;
     background: #ccc;
     border-top: 0;
     float: right;
     text-align: center;
 }
-#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub {clear: both; display: none; width: 180px;}
 #userBar .sub.scroll {overflow-y: scroll;}
 #userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
 #userBar .sub span {
@@ -326,6 +326,24 @@ h1.alert, h2.alert		{color: #000000;}
 .shadowling				{color: #3b2769;}
 .velvet					{color: #21007F;}
 .cult					{color: #960000;}
+.surrender				{
+	color: #1235d1;
+	font-weight: bold; 
+	font-size: 27px; 
+	animation: surrender 1s ease-in-out infinite alternate;
+	transform-origin: 0 0;
+	display: inline-block;
+  }
+  @keyframes surrender {
+	  0% {
+	  transform: scale(1,1);
+	  color: #ff0000;
+	}
+	  100% {
+	  transform: scale(1.05,1);
+	  color: #0000ff
+	}
+  }
 
 .cultitalic				{color: #960000;	font-style: italic;}
 .cultbold				{color: #960000; font-style: italic; font-weight: bold;}

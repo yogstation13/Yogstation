@@ -20,6 +20,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
 
+	var/list/station_minimaps = list()
+
 	var/list/areas_in_z = list()
 
 	var/loading_ruins = FALSE
@@ -102,6 +104,8 @@ SUBSYSTEM_DEF(mapping)
 	setup_map_transitions()
 	generate_station_area_list()
 	initialize_reserved_level()
+	// Build minimaps
+	build_minimaps()
 	return ..()
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
@@ -246,7 +250,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// load mining
 	if(config.minetype == "lavaland")
-		LoadGroup(FailedZs, "Lavaland", "yogstation/map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
+		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
 	else if (!isnull(config.minetype))
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
@@ -280,7 +284,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(map_voted)
 		map_voted = FALSE
 		return
-	
+
 	var/players = GLOB.clients.len
 	var/list/mapvotes = list()
 	//count votes
@@ -384,7 +388,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		var/datum/map_template/shuttle/S = new shuttle_type()
 		if(unbuyable.Find(S.mappath))
-			S.can_be_bought = FALSE
+			S.credit_cost = INFINITY
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
@@ -519,7 +523,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	used_turfs.Cut()
 	reserve_turfs(clearing)
 
-
+/datum/controller/subsystem/mapping/proc/build_minimaps()
+	to_chat(world, "<span class='boldannounce'>Building minimaps...</span>")
+	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
+		station_minimaps += new /datum/minimap(z)
 
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
 	for(var/B in areas)

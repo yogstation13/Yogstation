@@ -5,6 +5,15 @@
  * lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
  */
 
+#define PAPER_FIELD "<span class=\"paper_field\"></span>"
+
+/datum/langtext // A datum to describe a piece of writing that stores a language value with it.
+	var/text = "" // The text that is written.
+	var/datum/language/lang // the language it's written in.
+/datum/langtext/New(t,datum/language/l)
+	text = t
+	lang = l
+
 /obj/item/paper
 	name = "paper"
 	gender = NEUTER
@@ -22,8 +31,9 @@
 	max_integrity = 50
 	dog_fashion = /datum/dog_fashion/head
 
-	var/info		//What's actually written on the paper.
-	var/info_links	//A different version of the paper which includes html links at fields and EOF
+	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
+	var/datum/language/infolang // The language info is written in. If left NULL, info will default to being omnilingual and readable by all.
+	var/list/written//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields = 0	//Amount of user created fields
 	var/list/stamped
@@ -47,8 +57,8 @@
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
+	written = list()
 	update_icon()
-	updateinfolinks()
 
 
 /obj/item/paper/update_icon()
@@ -69,10 +79,10 @@
 
 	if(in_range(user, src) || isobserver(user))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
 		. += "<span class='warning'>You're too far away to read it!</span>"
@@ -121,64 +131,37 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)]<HR>[stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(render_body(user))]<HR>[stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 
+/obj/item/paper/proc/render_body(mob/user,links = FALSE)
+	var/text = info // The actual text displayed. Starts with & defaults to $info.
+	if(istype(infolang) && !user.has_language(infolang))
+		var/datum/language/paperlang = GLOB.language_datum_instances[infolang]
+		text = paperlang.scramble_HTML(text)
 
-/obj/item/paper/proc/addtofield(id, text, links = 0)
-	var/locid = 0
-	var/laststart = 1
-	var/textindex = 1
-	while(locid < 15)	//hey whoever decided a while(1) was a good idea here, i hate you
-		var/istart = 0
-		if(links)
-			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
-		else
-			istart = findtext(info, "<span class=\"paper_field\">", laststart)
-
-		if(istart == 0)
-			return	//No field found with matching id
-
-		laststart = istart+1
-		locid++
-		if(locid == id)
-			var/iend = 1
-			if(links)
-				iend = findtext(info_links, "</span>", istart)
+	for(var/i=1,i<=written.len;++i) // Needs to be a normal for-loop because I need the indices.
+		var/x = written[i]
+		if(istype(x,/datum/langtext))
+			var/datum/langtext/X = x
+			if(user.has_language(X.lang))
+				text += X.text
 			else
-				iend = findtext(info, "</span>", istart)
-
-			//textindex = istart+26
-			textindex = iend
-			break
-
+				var/datum/language/paperlang = GLOB.language_datum_instances[X.lang]
+				text += paperlang.scramble_HTML(X.text)
+		else if(links)
+			text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "</span>"
 	if(links)
-		var/before = copytext(info_links, 1, textindex)
-		var/after = copytext(info_links, textindex)
-		info_links = before + text + after
-	else
-		var/before = copytext(info, 1, textindex)
-		var/after = copytext(info, textindex)
-		info = before + text + after
-		updateinfolinks()
-
-
-/obj/item/paper/proc/updateinfolinks()
-	info_links = info
-	for(var/i in 1 to min(fields, 15))
-		addtofield(i, "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>", 1)
-	info_links = info_links + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>"
-
+		text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "</span>"
+	return text
 
 /obj/item/paper/proc/clearpaper()
-	info = null
 	stamps = null
 	LAZYCLEARLIST(stamped)
 	cut_overlays()
-	updateinfolinks()
 	update_icon()
 
 
@@ -194,16 +177,9 @@
 		var/obj/item/toy/crayon/C = P
 		t = "<font face=\"[CRAYON_FONT]\" color=[C.paint_color]><b>[t]</b></font>"
 
-	// Count the fields
-	var/laststart = 1
-	while(fields < 15)
-		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
-		if(i == 0)
-			break
-		laststart = i+1
-		fields++
-
-	return t
+	var/list/T = splittext(t,PAPER_FIELD,1,0,TRUE) // The list of subsections.. Splits the text on where paper fields have been created.
+	//The TRUE marks that we're keeping these "seperator" paper fields; they're included in this list.
+	return T // :) 
 
 /obj/item/paper/proc/reload_fields() // Useful if you made the paper programicly and want to include fields. Also runs updateinfolinks() for you.
 	fields = 0
@@ -214,7 +190,6 @@
 			break
 		laststart = i+1
 		fields++
-	updateinfolinks()
 
 
 /obj/item/paper/proc/openhelp(mob/user)
@@ -250,7 +225,7 @@
 		openhelp(usr)
 		return
 	if(href_list["write"])
-		var/id = href_list["write"]
+		
 		var/t =  stripped_multiline_input("Enter what you want to write:", "Write", no_trim=TRUE)
 		if(!t || !usr.canUseTopic(src, BE_CLOSE, literate))
 			return
@@ -263,17 +238,23 @@
 
 		if(!in_range(src, usr) && loc != usr && !istype(loc, /obj/item/clipboard) && loc.loc != usr && usr.get_active_held_item() != i)	//Some check to see if he's allowed to write
 			return
-
 		log_paper("[key_name(usr)] writing to paper [t]")
-		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
+		var/list/T = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html nibblets
 
-		if(t != null)	//No input from the user means nothing needs to be added
-			if(id!="end")
-				addtofield(text2num(id), t) // He wants to edit a field, let him.
+		if(T.len)	//No input from the user means nothing needs to be added
+			var/list/templist = list() // All the stuff we're adding to $written
+			for(var/text in T)
+				if(text == PAPER_FIELD)
+					templist += text
+				else
+					var/datum/langtext/L = new(text,usr.get_selected_language())
+					templist += L
+			var/id = href_list["write"]
+			if(id == "end")
+				written += templist
 			else
-				info += t // Oh, he wants to edit to the end of the file, let him.
-				updateinfolinks()
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
+				written.Insert(id,templist)
+			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_icon()
 
 
@@ -288,7 +269,7 @@
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
 			return
 		else
 			to_chat(user, "<span class='notice'>You don't know how to read or write.</span>")
@@ -370,3 +351,6 @@
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
+
+
+#undef PAPER_FIELD

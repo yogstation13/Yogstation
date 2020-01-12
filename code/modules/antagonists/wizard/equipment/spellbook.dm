@@ -380,13 +380,26 @@
 	name = "Guardian Deck"
 	desc = "A deck of guardian tarot cards, capable of binding a personal guardian to your body. There are multiple types of guardian available, but all of them will transfer some amount of damage to you. \
 	It would be wise to avoid buying these with anything capable of causing you to swap bodies with others."
-	item_path = /obj/item/guardiancreator/choose/wizard
+	item_path = /obj/item/guardiancreator/wizard
 	category = "Assistance"
 
 /datum/spellbook_entry/item/guardian/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	. = ..()
+
+/datum/spellbook_entry/item/rune_crate
+	name = "Rune Crate"
+	desc = "A wizard specialized in runecrafting is offering two chests full of runes! The problem is, he mixed up the contents of them so you won't know what you will get!"
+	item_path = /obj/structure/closet/crate/magic
+	category = "Offensive"
+	cost = 1
+	buy_word = "Order"
+
+/datum/spellbook_entry/item/rune_crate/Buy(mob/living/carbon/human/user,obj/item/spellbook/book)
+	. = ..()
 	if(.)
-		new /obj/item/paper/guides/antag/guardian/wizard(get_turf(user))
+		new /obj/structure/closet/crate/magic(get_turf(user)) //Two crates full of magic goodies
+
+
 
 /datum/spellbook_entry/item/bloodbottle
 	name = "Bottle of Blood"

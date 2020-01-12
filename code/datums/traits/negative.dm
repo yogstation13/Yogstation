@@ -2,7 +2,7 @@
 
 /datum/quirk/badback
 	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
+	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evenly weighted objects are fine, though."
 	value = -2
 	mood_quirk = TRUE
 	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
@@ -261,7 +261,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING)))) //yogs - thrall & sling check
+	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING) || H.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN) || H.mind.has_antag_datum(ANTAG_DATUM_VEIL)))) //yogs - thrall & sling check
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -337,10 +337,14 @@
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
 	value = -1
 	var/slot_string = "limb"
+	var/specific = null
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 
 /datum/quirk/prosthetic_limb/on_spawn()
 	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(specific)
+		limb_slot = specific
+
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
 	var/obj/item/bodypart/prosthetic
@@ -364,6 +368,26 @@
 /datum/quirk/prosthetic_limb/post_add()
 	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
 	you need to use a welding tool and cables to repair it, instead of bruise packs and ointment.</span>")
+
+/datum/quirk/prosthetic_limb/left_arm
+	name = "Prosthetic Limb (Left Arm)"
+	desc = "An accident caused you to lose your left arm. Because of this, it's replaced with a prosthetic!"
+	specific = BODY_ZONE_L_ARM
+
+/datum/quirk/prosthetic_limb/right_arm
+	name = "Prosthetic Limb (Right Arm)"
+	desc = "An accident caused you to lose your right arm. Because of this, it's replaced with a prosthetic!"
+	specific = BODY_ZONE_R_ARM
+
+/datum/quirk/prosthetic_limb/left_leg
+	name = "Prosthetic Limb (Left Leg)"
+	desc = "An accident caused you to lose your left leg. Because of this, it's replaced with a prosthetic!"
+	specific = BODY_ZONE_L_LEG
+
+/datum/quirk/prosthetic_limb/right_leg
+	name = "Prosthetic Limb (Right Leg)"
+	desc = "An accident caused you to lose your right leg. Because of this, it's replaced with a prosthetic!"
+	specific = BODY_ZONE_R_LEG
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
@@ -536,3 +560,19 @@
 	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
 	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
 	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
+
+/datum/quirk/sheltered
+	name = "Sheltered"
+	desc = "You never learned galactic common."
+	value = -3
+	mob_trait = TRAIT_SHELTERED
+	gain_text = "<span class='danger'>You do not understand galactic common.</span>"
+	lose_text = "<span class='notice'>You start to put together what people are saying in galactic common.</span>"
+	medical_record_text = "Patient looks perplexed when questioned in galactic common."
+
+
+/datum/quirk/sheltered/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.remove_language(/datum/language/common)
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
+		H.grant_language(/datum/language/japanese)

@@ -120,6 +120,7 @@
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
+	nodamage = TRUE
 	knockdown = 40
 	speed = 1
 	range = 5
@@ -140,8 +141,6 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.lying)
-			return BULLET_ACT_FORCE_PIERCE
 		if(!iscyborg(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
