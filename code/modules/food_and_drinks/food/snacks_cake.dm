@@ -101,6 +101,7 @@
 	icon_state = "donkcake"
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/donk
 	slices_num = 5
+	list_reagents = list(/datum/reagent/medicine/omnizine = 10)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("cake" = 4, "donk pocket" = 3, "meat" = 1)
 	foodtype = GRAIN | DAIRY | MEAT
