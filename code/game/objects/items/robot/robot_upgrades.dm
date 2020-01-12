@@ -663,3 +663,15 @@
 	desc = "Allows you to to turn a cyborg into a clown, honk."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/clown
+
+/obj/item/borg/upgrade/transform/security
+	name = "borg module picker (Security)"
+	desc = "Allows you to to turn a cyborg into a validhunter, HALT!"
+	icon_state = "cyborg_upgrade3"
+	new_module = /obj/item/robot_module/security
+
+/obj/item/borg/upgrade/transform/security/action()
+	if(CONFIG_GET(flag/disable_secborg))
+		to_chat(user, "<span class='warning'>Nanotrasen policy disallows the use of weapons of mass destruction.</span>")
+		return FALSE
+	return ..()
