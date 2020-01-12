@@ -17605,6 +17605,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"azv" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plasteel/dark,
+/area/medical)
 "azw" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -25104,13 +25111,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/medical)
-"aJO" = (
-/obj/structure/closet/secure_closet/paramedic,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/regular,
-/obj/item/borg/sight/hud/med,
-/turf/open/floor/plasteel/dark,
 /area/medical)
 "aJP" = (
 /obj/effect/turf_decal/tile/blue{
@@ -84439,7 +84439,7 @@ ayc
 awy
 aqn
 ayb
-aJO
+azv
 aKg
 aph
 aYL
