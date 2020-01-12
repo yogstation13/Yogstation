@@ -6516,6 +6516,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"ajH" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch";
+	req_access_txt = "24";
+	req_one_access_txt = "0"
+	},
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "ajI" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -13180,6 +13193,19 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"atf" = (
+/obj/structure/cable/white{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Maintenance Hatch";
+	req_access_txt = "0";
+	req_one_access_txt = "10;24"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "atg" = (
 /turf/open/floor/plating,
 /area/maintenance/port/central)
@@ -17579,6 +17605,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"azv" = (
+/obj/structure/closet/secure_closet/paramedic,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plasteel/dark,
+/area/medical)
 "azw" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -19069,18 +19102,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/maintenance/port)
-"aBw" = (
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/port)
 "aBx" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
@@ -19832,18 +19853,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"aCF" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Maintenance Hatch";
-	req_access_txt = "12"
-	},
-/obj/structure/cable/white{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plating,
-/area/maintenance/port)
 "aCG" = (
 /obj/machinery/light{
 	dir = 8
@@ -25102,13 +25111,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/medical)
-"aJO" = (
-/obj/structure/closet/secure_closet/paramedic,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/regular,
-/obj/item/borg/sight/hud/med,
-/turf/open/floor/plasteel/dark,
 /area/medical)
 "aJP" = (
 /obj/effect/turf_decal/tile/blue{
@@ -77726,18 +77728,18 @@ aIU
 aIV
 aIW
 aJW
-aCF
+ajH
 aDy
 bbO
 bbL
 bbL
 aEF
 bbL
-aBw
+atf
 aFE
 aLZ
 aBv
-aBw
+atf
 aYJ
 aOL
 ovS
@@ -84437,7 +84439,7 @@ ayc
 awy
 aqn
 ayb
-aJO
+azv
 aKg
 aph
 aYL
