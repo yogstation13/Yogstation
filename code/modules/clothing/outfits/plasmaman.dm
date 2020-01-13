@@ -234,7 +234,7 @@
 	l_pocket = /obj/item/bikehorn
 	back = /obj/item/storage/backpack/clown
 	
-/datum/outfit/plasmaman/engineer
+/datum/outfit/plasmaman/signal_tech
 	name = "Plasmaman Signal Technician"
 
 	belt = /obj/item/storage/belt/utility/full
