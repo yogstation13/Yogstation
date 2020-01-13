@@ -244,11 +244,7 @@
 	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
-
-	backpack = /obj/item/storage/backpack/industrial
-	satchel = /obj/item/storage/backpack/satchel/eng
-	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
-	box = /obj/item/storage/box/engineer
+	back = /obj/item/storage/backpack/industrial
 	pda_slot = SLOT_L_STORE
 
 /datum/outfit/plasmaman/miningmedic
@@ -265,10 +261,7 @@
 	l_hand = /obj/item/storage/firstaid/regular
 	l_pocket =  /obj/item/pda/medical
 	gloves = /obj/item/clothing/gloves/color/latex
-
-	backpack = /obj/item/storage/backpack/medic
-	satchel = /obj/item/storage/backpack/satchel/med
-	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	back = /obj/item/storage/backpack/medic
 
 /datum/outfit/plasmaman/paramedic
 	name = "Plasmaman Paramedic"
@@ -283,6 +276,24 @@
 	l_hand = /obj/item/roller
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/gps
-	backpack = /obj/item/storage/backpack/medic
-	satchel = /obj/item/storage/backpack/satchel/med
-	duffelbag = /obj/item/storage/backpack/duffelbag/med
+	back = /obj/item/storage/backpack/medic
+
+/datum/outfit/plasmaman/psych
+	name = "Plasmaman Psych"
+
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+	l_hand = /obj/item/storage/briefcase
+	glasses = /obj/item/clothing/glasses/regular
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_med
+
+/datum/outfit/plasmaman/clerk
+	name = "Plasmaman Clerk"
+
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_srv
+	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+	back = /obj/item/storage/backpack
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	backpack_contents = list(/obj/item/circuitboard/machine/paystand = 1)
