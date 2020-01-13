@@ -1,4 +1,3 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - soundadd: "Midround notifications now sound different from announcements"
+author: ynot01
+changes: []
+delete-after: true

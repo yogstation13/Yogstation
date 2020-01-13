@@ -89,6 +89,7 @@
 			forge_team_objectives()
 		forge_objectives()
 	remove_clownmut()
+	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
 	. = ..()
 
 /datum/antagonist/changeling/on_removal()

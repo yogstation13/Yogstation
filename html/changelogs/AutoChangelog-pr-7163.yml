@@ -1,4 +1,3 @@
-author: "nichlas0010"
-delete-after: true 
-changes: 
-  - tweak: "The hub entry now features a tagline and doesn't feature the map and gamemode"
+author: nichlas0010
+changes: []
+delete-after: true
