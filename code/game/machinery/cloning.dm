@@ -9,7 +9,7 @@
 #define SPEAK(message) radio.talk_into(src, message, radio_channel)
 
 /obj/machinery/clonepod
-	name = "cloning pod"
+	name = "cloning poopoo"
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = TRUE
 	icon = 'icons/obj/machines/cloning.dmi'
