@@ -14783,11 +14783,11 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "aBZ" = (
-/obj/structure/disposalpipe/junction/flip{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aCa" = (
@@ -51830,6 +51830,16 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard)
+"bOd" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/sign/warning/deathsposal{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "bOe" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -59751,13 +59761,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"iLl" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "iPj" = (
 /obj/machinery/igniter{
 	id = "xenoigniter";
@@ -87381,7 +87384,7 @@ aDZ
 gmy
 aDZ
 aFS
-auv
+aDZ
 aDZ
 aDZ
 aAR
@@ -107971,7 +107974,7 @@ aKS
 bqr
 xzp
 bnK
-iLl
+bOd
 bkF
 bwm
 bKU
