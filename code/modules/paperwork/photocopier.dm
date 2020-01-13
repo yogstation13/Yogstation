@@ -344,5 +344,3 @@
 	var/charges = 5
 	var/max_charges = 5
 
-
-#undef MAX_TONER
