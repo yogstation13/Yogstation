@@ -8,12 +8,12 @@ about: Suggest an idea for this project but dont, make a suggestion on the forum
 
 ```
 *************************************************************************************
-**DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.**
+**DO NOT POST THAT HERE.DO NOT POST THAT HERE.DO NOT POST THAT HERE.**
 *************************************************************************************
-**DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.**
+**DO NOT POST THAT HERE.DO NOT POST THAT HERE.DO NOT POST THAT HERE.**
 *************************************************************************************
-**DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.**
+**DO NOT POST THAT HERE.DO NOT POST THAT HERE.DO NOT POST THAT HERE.**
 *************************************************************************************
-**DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.DO NOT POST THAT SHIT HERE.**
+**DO NOT POST THAT HERE.DO NOT POST THAT HERE.DO NOT POST THAT HERE.**
 *************************************************************************************
 ```
