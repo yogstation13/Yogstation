@@ -7427,6 +7427,10 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
+"qF" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -17133,7 +17137,7 @@
 /obj/item/storage/box/syndie_kit/chemical,
 /obj/item/storage/box/syndie_kit/emp,
 /obj/item/storage/box/syndie_kit/ez_clean,
-/obj/item/storage/box/syndie_kit/guardian,
+/obj/item/guardiancreator/tech/rare,
 /obj/item/storage/box/syndie_kit/imp_adrenal,
 /obj/item/storage/box/syndie_kit/imp_freedom,
 /obj/item/storage/box/syndie_kit/imp_macrobomb,
@@ -17691,9 +17695,10 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "Lx" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 8
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -19474,11 +19479,11 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/guardiancreator,
-/obj/item/guardiancreator{
+/obj/item/guardiancreator/rare,
+/obj/item/guardiancreator/rare{
 	pixel_y = 3
 	},
-/obj/item/guardiancreator{
+/obj/item/guardiancreator/rare{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/bluespace,
@@ -21338,6 +21343,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Ww" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "Wx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -22045,7 +22056,7 @@
 	},
 /obj/machinery/food_cart,
 /obj/item/reagent_containers/food/snacks/pizza/arnold,
-/obj/item/guardiancreator/carp/choose,
+/obj/item/guardiancreator/carp/rare,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "YA" = (
@@ -48502,11 +48513,11 @@ Lk
 Lo
 Lo
 KH
+Ww
 KV
 KV
 KV
-KV
-KV
+qF
 KH
 KH
 KH

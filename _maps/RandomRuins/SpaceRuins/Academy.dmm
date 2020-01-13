@@ -7,7 +7,7 @@
 /area/space)
 "ac" = (
 /turf/closed/indestructible/rock,
-/area/space)
+/area/ruin/unpowered)
 "ad" = (
 /turf/closed/indestructible/rock,
 /area/awaymission/academy/academyengine)
@@ -155,7 +155,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 23;
 	req_access = ""
 	},
 /turf/open/floor/carpet,
@@ -406,7 +406,7 @@
 /area/awaymission/academy/headmaster)
 "bw" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator/choose,
+/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academyengine)
 "bx" = (
@@ -445,7 +445,7 @@
 "bE" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "bF" = (
 /obj/machinery/door/airlock/gold{
 	locked = 1
@@ -513,7 +513,7 @@
 "bR" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 32
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -726,7 +726,7 @@
 /area/awaymission/academy/headmaster)
 "cF" = (
 /obj/effect/immovablerod{
-	dir = 4
+	dir = 4;
 	notdebris = 1
 	},
 /obj/structure/cable,
@@ -837,8 +837,8 @@
 	icon_state = "warningline";
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/awaymission/academy/classrooms)
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "cZ" = (
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -1638,6 +1638,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
+"fj" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	environ = 3;
+	equipment = 3;
+	locked = 0;
+	pixel_y = 23;
+	req_access = ""
+	},
+/turf/open/floor/plasteel{
+	icon_state = "grimy"
+	},
+/area/awaymission/academy/classrooms)
 "fk" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/cafeteria,
@@ -1881,21 +1897,20 @@
 	},
 /area/awaymission/academy/classrooms)
 "fU" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
 	dir = 1;
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 23;
 	req_access = ""
 	},
-/turf/open/floor/plasteel{
-	icon_state = "grimy"
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
 	},
-/area/awaymission/academy/classrooms)
+/turf/open/floor/plasteel,
+/area/awaymission/academy/academyaft)
 "fV" = (
 /turf/open/floor/carpet,
 /area/awaymission/academy/classrooms)
@@ -3086,15 +3101,14 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 32;
+	pixel_y = 23;
 	req_access = ""
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel,
-/area/awaymission/academy/academyaft)
+/turf/open/floor/carpet,
+/area/awaymission/academy/academygate)
 "ja" = (
 /mob/living/simple_animal/hostile/wizard{
 	name = "Jaidon The Brave"
@@ -3772,7 +3786,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/awaymission/academy/academyaft)
 "kG" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -4230,7 +4244,7 @@
 /area/awaymission/academy/academygate)
 "lN" = (
 /turf/closed/mineral/random,
-/area/awaymission/academy/academycellar)
+/area/ruin/unpowered)
 "lO" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "AcademyGate"
@@ -4283,9 +4297,6 @@
 	},
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)
-"ma" = (
-/turf/closed/mineral/random,
-/area/space)
 "mb" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/grass,
@@ -4381,20 +4392,6 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
-"mt" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	environ = 3;
-	equipment = 3;
-	locked = 0;
-	pixel_y = 32;
-	req_access = ""
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academygate)
 "mu" = (
 /mob/living/simple_animal/hostile/netherworld,
 /turf/open/floor/vault,
@@ -4427,12 +4424,6 @@
 "mA" = (
 /obj/structure/cable{
 	icon_state = "1-4"
-	},
-/turf/open/floor/carpet,
-/area/awaymission/academy/academygate)
-"mB" = (
-/obj/structure/cable{
-	icon_state = "1-8"
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
@@ -7646,7 +7637,7 @@ lN
 lR
 lR
 lN
-ma
+lN
 ac
 aa
 aa
@@ -7752,16 +7743,16 @@ aa
 ac
 ac
 ac
-ma
 lN
 lN
+lN
 lR
 lR
 lR
 lR
 lR
 lN
-ma
+lN
 aa
 aa
 aa
@@ -7867,7 +7858,7 @@ aa
 aa
 ac
 ac
-ma
+lN
 lN
 lR
 lR
@@ -8530,7 +8521,7 @@ eN
 eN
 iI
 iL
-iZ
+fU
 jg
 iw
 iD
@@ -9432,7 +9423,7 @@ eO
 fc
 eL
 dh
-fU
+fj
 gg
 fW
 gz
@@ -10514,8 +10505,8 @@ lL
 lL
 mb
 mk
-ms
 mA
+lM
 lM
 lM
 lM
@@ -10629,8 +10620,8 @@ lK
 lK
 lK
 lI
-mt
-mB
+iZ
+lM
 lM
 lM
 lM
@@ -13412,14 +13403,14 @@ ab
 ac
 ac
 ac
-ad
-ae
-ae
-ae
-ae
-ad
 ac
-ad
+ae
+ae
+ae
+ae
+ac
+ac
+ac
 ae
 af
 aA
@@ -13526,15 +13517,15 @@ ab
 aa
 ac
 ac
-ad
+ac
 ae
 ae
 ai
 ai
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 aB
@@ -13649,7 +13640,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 ae
 ae
@@ -13765,8 +13756,8 @@ af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 ae
@@ -13881,7 +13872,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 af
 ae
@@ -14341,7 +14332,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 af
 ae
@@ -14455,8 +14446,8 @@ af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 af
 ae
@@ -14569,7 +14560,7 @@ af
 af
 ae
 ae
-ad
+ac
 ae
 ae
 ae
@@ -14676,15 +14667,15 @@ aa
 aa
 ac
 ac
-ad
+ac
 ae
 ae
 af
 af
 ae
 ae
-ad
-ad
+ac
+ac
 ae
 an
 aC
@@ -14791,15 +14782,15 @@ ab
 ab
 ac
 ac
-ad
-ad
-ae
-ae
-ae
-ae
-ad
 ac
-ad
+ac
+ae
+ae
+ae
+ae
+ac
+ac
+ac
 ae
 ae
 ae
