@@ -233,3 +233,56 @@
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	l_pocket = /obj/item/bikehorn
 	back = /obj/item/storage/backpack/clown
+
+/datum/outfit/plasmaman/sigtech
+	name = "Plasmaman Signal Technician"
+
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = /obj/item/pda/signaltech
+	ears = /obj/item/radio/headset/headset_eng
+	uniform = /obj/item/clothing/under/plasmaman/engineering
+	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
+	gloves = /obj/item/clothing/gloves/color/black
+	shoes = /obj/item/clothing/shoes/workboots
+
+	backpack = /obj/item/storage/backpack/industrial
+	satchel = /obj/item/storage/backpack/satchel/eng
+	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
+	box = /obj/item/storage/box/engineer
+	pda_slot = SLOT_L_STORE
+
+/datum/outfit/plasmaman/miningmedic
+	name = "Plasmaman Mining Medic"
+
+	backpack_contents = list(/obj/item/roller = 1,\
+		/obj/item/kitchen/knife/combat/survival = 1,\
+		/obj/item/gps/mining = 1)
+	belt = /obj/item/storage/belt/mining/medical
+	ears = /obj/item/radio/headset/headset_medcargo
+	glasses = /obj/item/clothing/glasses/hud/health/meson
+	shoes = /obj/item/clothing/shoes/workboots/mining
+	uniform = /obj/item/clothing/under/plasmaman/mining
+	l_hand = /obj/item/storage/firstaid/regular
+	l_pocket =  /obj/item/pda/medical
+	gloves = /obj/item/clothing/gloves/color/latex
+
+	backpack = /obj/item/storage/backpack/medic
+	satchel = /obj/item/storage/backpack/satchel/med
+	duffelbag = /obj/item/storage/backpack/duffelbag/med
+
+/datum/outfit/plasmaman/paramedic
+	name = "Plasmaman Paramedic"
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	backpack_contents = list(/obj/item/storage/firstaid/regular)
+	belt = /obj/item/pda/para
+	ears = /obj/item/radio/headset/headset_med
+	uniform = /obj/item/clothing/under/plasmaman/medical
+	suit = /obj/item/clothing/suit/toggle/labcoat/emt
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	l_hand = /obj/item/roller
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/gps
+	backpack = /obj/item/storage/backpack/medic
+	satchel = /obj/item/storage/backpack/satchel/med
+	duffelbag = /obj/item/storage/backpack/duffelbag/med
