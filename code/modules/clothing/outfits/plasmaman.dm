@@ -245,7 +245,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
 	back = /obj/item/storage/backpack/industrial
-	pda_slot = SLOT_L_STORE
+
 
 /datum/outfit/plasmaman/miningmedic
 	name = "Plasmaman Mining Medic"
