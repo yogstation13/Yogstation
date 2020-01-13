@@ -365,6 +365,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	transfer_fingerprints_to(NC)
 	qdel(src)
 
+/obj/item/conveyor_switch_construct/attackby(obj/item/I, mob/user, params)
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		id = "[rand()]"
+		to_chat(user, "<span class='notice'>You pulse \the [src]'s connection, randomly generating a new network ID.</span>")
+	return
+
 /obj/item/stack/conveyor
 	name = "conveyor belt assembly"
 	desc = "A conveyor belt assembly."
@@ -399,6 +405,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		to_chat(user, "<span class='notice'>You link the switch to the conveyor belt assembly.</span>")
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
+	if(I.tool_behaviour == TOOL_MULTITOOL)
+		id = ""
+		to_chat(user, "<span class='notice'>You unlink the conveyor belt assembly from any switches it's connected to.</span>")
 
 /obj/item/stack/conveyor/update_weight()
 	return FALSE
