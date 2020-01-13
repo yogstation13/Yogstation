@@ -212,7 +212,7 @@
 		add_overlay("[locked ? "" : "un"]locked")
 		
 /obj/item/pet_carrier/xenobio/load_occupant(mob/living/user, mob/living/target)
-	if(!istype(occupant, /mob/living/simple_animal/slime))
+	if(!istype(target, /mob/living/simple_animal/slime))
 		to_chat(user, "<span class='warning'>[src] is made for slimes only!</span>")
 		return
 	return ..()
