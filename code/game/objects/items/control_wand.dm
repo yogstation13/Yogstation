@@ -18,7 +18,7 @@
 /obj/item/door_remote/Initialize()
 	. = ..()
 	for(var/i in region_access)
-		access_list + get_region_accesses(i)
+		access_list += get_region_accesses(i)
 	AddComponent(/datum/component/ntnet_interface)
 
 /obj/item/door_remote/attack_self(mob/user)
