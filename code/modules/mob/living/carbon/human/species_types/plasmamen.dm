@@ -125,6 +125,9 @@
 
 		if("Clown")
 			O = new /datum/outfit/plasmaman/clown
+			
+		if("Signal Technician")
+			O = new /datum/outfit/plasmaman/signal_tech
 
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
