@@ -395,7 +395,13 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	var/other_changelings_exist = FALSE
+	for(var/datum/antagonist/changeling/CL in GLOB.antagonists)
+		if(CL != src)
+			other_changelings_exist = TRUE
+			BREAK
+	
+	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
