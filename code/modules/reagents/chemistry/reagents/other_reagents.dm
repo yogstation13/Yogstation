@@ -632,7 +632,7 @@
 	L.ForceContractDisease(new /datum/disease/transformation/morph(), FALSE, TRUE)
 	
 /datum/reagent/pacmanimfunnyrightilikepacmanthatmakesmefunnyplease
-	name = "Pac Man's Curse"
+	name = "Pac-Man's Curse"
 	description = "An advanced corruptive toxin produced by something great"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	can_synth = FALSE
