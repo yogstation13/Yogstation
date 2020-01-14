@@ -1951,13 +1951,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/applejack
 	name = "Applejack"
-	description = "The perfect beverage for when you feel the need to horse around."
+	description = "Applejack is a strong apple-flavored alcoholic drink produced from apples. Popular in the American colonial era, the drink's prevalence declined in the 19th and 20th centuries amid competition from other spirits."
 	color = "#ff6633"
 	boozepwr = 20
 	taste_description = "an honest day's work at the orchard"
 	glass_icon_state = "applejack_glass"
 	glass_name = "Applejack"
-	glass_desc = "You feel like you could drink this all neight."
+	glass_desc = "Applejack is created by distilling cider via a method known as jacking, where the beverage is frozen and the ice is removed, leaving only the alcoholic content."
 
 /datum/reagent/consumable/ethanol/jack_rose
 	name = "Jack Rose"
