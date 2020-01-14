@@ -353,6 +353,7 @@
 	key_third_person = "surrenders"
 	message = "<span class='surrender'>puts their hands on their head and falls to the ground, they surrender!</span>"
 	emote_type = EMOTE_AUDIBLE
+	mob_type_blacklist_typecache = list(/mob/living/simple_animal)
 
 /datum/emote/living/surrender/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
