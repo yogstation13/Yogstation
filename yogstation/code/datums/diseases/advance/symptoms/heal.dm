@@ -49,7 +49,7 @@
 	if(!parts.len)
 		return
 		
-	M.nutrition = M.adjust_nutrition(-(Hunger_reduction * Hunger_multi)) // So heal to nutrient ratio doesnt change
+	M.adjust_nutrition(-(Hunger_reduction * Hunger_multi)) // So heal to nutrient ratio doesnt change
 	
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING && !Toxin_damage)
 		M.blood_volume -= 10
