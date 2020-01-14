@@ -828,7 +828,7 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
-	
+
 //POWERARMORS
 //Currently are no different from normal hardsuits, except maybe for the higher armor ratings.
 
@@ -837,7 +837,7 @@
 	desc = "It's some barely-functional power armor helmet from a by-gone age."
 	icon_state = "hardsuit0-t45b"
 	item_state = "t45b_helm"
-	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 25) 
+	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 25)
 	item_color = "t45b"
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b
@@ -848,7 +848,7 @@
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	item_color = "t45b"
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	name = "Advanced power helmet"
 	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
