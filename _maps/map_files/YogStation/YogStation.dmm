@@ -41253,7 +41253,6 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/obj/item/clothing/under/janimaid,
 /obj/item/key/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
