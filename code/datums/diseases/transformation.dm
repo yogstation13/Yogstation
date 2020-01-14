@@ -227,10 +227,10 @@
 
 /datum/disease/transformation/pacman
 	name = "Pac-Man's Curse"
-	cure_text = /datum/reagent/consumable/nothing
+	cure_text = /datum/reagent/consumable/adminordrazine
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Pac-Man's Curse"
-	desc = "A 'gift' from somewhere amazing"
+	desc = "A 'gift' from somewhere amazing."
 	stage_prob = 20
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = 0
