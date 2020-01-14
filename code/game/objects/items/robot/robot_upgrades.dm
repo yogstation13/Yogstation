@@ -666,7 +666,7 @@
 
 /obj/item/borg/upgrade/transform/security
 	name = "borg module picker (Security)"
-	desc = "Allows you to turn a cyborg into a validhunter, HALT!"
+	desc = "Allows you to turn a cyborg into a hunter, HALT!"
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/security
 
