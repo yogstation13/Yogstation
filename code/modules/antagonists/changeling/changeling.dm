@@ -399,7 +399,7 @@
 	for(var/datum/antagonist/changeling/CL in GLOB.antagonists)
 		if(CL != src)
 			other_changelings_exist = TRUE
-			BREAK
+			break
 	
 	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
