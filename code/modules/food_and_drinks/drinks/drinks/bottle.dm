@@ -397,7 +397,7 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/applejack
-	name = "Buckin' Bronco's Applejack"
+	name = "Farmer Johns All American Applejack"
 	desc = "Kicks like a horse, tastes like an apple!"
 	custom_price = 10
 	icon_state = "applejack_bottle"
