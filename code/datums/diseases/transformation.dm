@@ -227,7 +227,7 @@
 
 /datum/disease/transformation/pacman
 	name = "Pac-Man's Curse"
-	cure_text = /datum/reagent/consumable/adminordrazine
+	cure_text = adminordrazine
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Pac-Man's Curse"
 	desc = "A 'gift' from somewhere amazing."
