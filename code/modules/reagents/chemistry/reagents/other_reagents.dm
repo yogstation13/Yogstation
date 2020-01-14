@@ -633,7 +633,7 @@
 	
 /datum/reagent/pacmantransformer
 	name = "Pac-Man's Curse"
-	description = "An advanced corruptive toxin produced by something great"
+	description = "An advanced corruptive toxin produced by something great."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	can_synth = FALSE
 	taste_description = "decay"
