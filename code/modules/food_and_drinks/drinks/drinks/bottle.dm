@@ -398,7 +398,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/applejack
 	name = "Farmer Johns All American Applejack"
-	desc = "Kicks like a horse, tastes like an apple!"
+	desc = "All American Applejack from the heartland, home of the brave and land of the guns." // thanks hippie for this description
 	custom_price = 10
 	icon_state = "applejack_bottle"
 	isGlass = TRUE
