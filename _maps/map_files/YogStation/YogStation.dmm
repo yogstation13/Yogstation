@@ -3224,7 +3224,7 @@
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/fore/secondary";
 	dir = 1;
-	name = "Fore Maintenance APC";
+	name = "Secondary Fore Maintenance APC";
 	pixel_y = 23
 	},
 /obj/structure/disposalpipe/segment{
@@ -8007,7 +8007,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "apy" = (
@@ -15025,7 +15024,7 @@
 /area/maintenance/starboard/fore)
 "aDL" = (
 /obj/machinery/camera{
-	c_tag = "Permabrig Holodeck";
+	c_tag = "Prison Holodeck";
 	dir = 8;
 	network = list("ss13","prison")
 	},
@@ -21021,10 +21020,6 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "aQd" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Biohazard Disposals";
-	req_access_txt = "12"
-	},
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -21034,6 +21029,9 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -26317,7 +26315,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "25;26;35;28;46;37;38"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -47268,6 +47266,30 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"bQD" = (
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Maintenance";
+	req_access_txt = "12;24"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"bQE" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/item/storage/secure/safe{
+	pixel_x = -23
+	},
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "bQF" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -47280,6 +47302,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bQG" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/taperecorder,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "bQH" = (
 /obj/structure/closet/l3closet,
 /obj/effect/turf_decal/stripes/line{
@@ -49020,19 +49052,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"cbO" = (
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Maintenance";
-	req_access_txt = "12;24"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "cbR" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -55696,18 +55715,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"npb" = (
-/obj/structure/table/wood,
-/obj/item/taperecorder,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/obj/item/storage/secure/safe{
-	pixel_x = -23
-	},
-/turf/open/floor/plasteel/grimy,
-/area/security/detectives_office)
 "nqo" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /obj/effect/turf_decal/tile/neutral{
@@ -56039,11 +56046,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"oOO" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "oQp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -87302,7 +87304,7 @@ anc
 aow
 apd
 mMW
-npb
+bQE
 aYi
 apd
 asZ
@@ -88075,7 +88077,7 @@ bON
 iRL
 bLE
 ayZ
-oOO
+bQG
 ivq
 apd
 avt
@@ -100737,7 +100739,7 @@ aYB
 dRN
 bZQ
 aNG
-cbO
+bQD
 aNI
 sKP
 xsx

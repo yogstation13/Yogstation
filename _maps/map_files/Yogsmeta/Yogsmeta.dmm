@@ -12772,6 +12772,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"avP" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance{
+	id_tag = "commissarydoor";
+	req_one_access_txt = "12;63;48;50;36"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "avS" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating{
@@ -24514,22 +24530,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"aQv" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	id_tag = "commissarydoor";
-	req_one_access_txt = "12;63;48;50"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "aQw" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -110832,7 +110832,7 @@ aVM
 aMd
 rrB
 rrB
-aQv
+avP
 rrB
 rrB
 bcg
