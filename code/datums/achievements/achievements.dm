@@ -131,3 +131,11 @@
 	name = "Duke of Ducats"
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
 	id = 22
+
+// The achievements that are basically just "greentext as this sort of antag"
+
+/datum/achievement/greentext
+	name = "Green Text"
+	desc = "As an Antagonist achieve your first green text"
+	id = 23
+
