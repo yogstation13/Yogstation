@@ -159,3 +159,12 @@
 	desc = "As a Cult Master, summon Nar-Sie"
 	id = 27
 
+/datum/achievement/greentext/revolution
+	name = "Down with Nanotrasen"
+	desc = "As a Revolutionary, complete your objectives"
+	id = 28
+
+/datum/achievement/greentext/revolution/head
+	name = "Viva la Revolution!"
+	desc = "As a Head Revolutionary, complete your objectives"
+	id = 29
