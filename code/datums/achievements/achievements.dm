@@ -149,3 +149,13 @@
 	desc = "As the Eminence, summon Ratvar"
 	id = 25
 
+/datum/achievement/greentext/narsie
+	name = "Blood Rites"
+	desc = "As a member of Blood Cult summon Nar-Sie"
+	id = 26
+
+/datum/achievement/greentext/narsie/master
+	name = "Master of Blood"
+	desc = "As a Cult Master, summon Nar-Sie"
+	id = 27
+
