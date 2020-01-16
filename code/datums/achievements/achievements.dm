@@ -139,3 +139,13 @@
 	desc = "As an Antagonist achieve your first green text"
 	id = 23
 
+/datum/achievement/greentext/ratvar
+	name = "Clock Work"
+	desc = "As a Servant of Ratvar summon Ratvar"
+	id = 24
+
+/datum/achievement/greentext/ratvar/eminence
+	name = "Clock Work"
+	desc = "As the Eminence, summon Ratvar"
+	id = 25
+
