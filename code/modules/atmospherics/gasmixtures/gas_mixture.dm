@@ -484,3 +484,36 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 10/20*5 = 2.5
 10 = 2.5/5*20
 */
+
+/*
+/mob/verb/profile_atmos()
+	/world{loop_checks = 0;}
+	var/datum/gas_mixture/A = new
+	var/datum/gas_mixture/B = new
+	A.parse_gas_string("o2=200;n2=800;TEMP=50")
+	B.parse_gas_string("co2=500;plasma=500;TEMP=5000")
+	var/pa
+	var/pb
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		B.transfer_to(A, 1)
+		A.transfer_to(B, 1)
+	pb = world.tick_usage
+	var/total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (gas transfer): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		B.total_moles();
+	pb = world.tick_usage
+	total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (total_moles): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		var/datum/gas_mixture/GM = new
+	pb = world.tick_usage
+	total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (new gas mixture): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+*/
