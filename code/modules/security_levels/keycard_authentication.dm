@@ -102,7 +102,6 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 
 /obj/machinery/keycard_auth/proc/trigger_event(confirmer)
 	if(confirmer == triggerer)
-		message_admins("[ADMIN_LOOKUPFLW(triggerer)] attempted to both trigger and confirm event [event].")
 		return
 
 	log_game("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
