@@ -168,3 +168,8 @@
 	name = "Viva la Revolution!"
 	desc = "As a Head Revolutionary, complete your objectives"
 	id = 29
+
+/datum/achievement/greentext/blob
+	name = "Grey Goo"
+	desc = "As a Blob complete your objectives"
+	id = 32
