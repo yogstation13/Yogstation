@@ -312,6 +312,37 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	name = "protect nonhuman"
 	human_check = FALSE
 
+/datum/objective/assist
+	name = "assist"
+	var/target_role_type
+	martyr_compatible = TRUE
+
+/datum/objective/assist/find_target_by_role(role, role_type=FALSE,invert=FALSE)
+	if(!invert)
+		target_role_type = role_type
+	..()
+	return target
+
+/datum/objective/assist/check_completion()
+	if(target)
+		for(var/datum/antagonist/antag in target.antag_datums)
+			for(var/datum/objective/O in antag.objectives)
+				if(istype(O, /datum/objective/assist))//assuming someone gives people assist objectives in a circle for some reason
+					continue
+				if(!O.check_completion())
+					return FALSE
+	return TRUE
+
+/datum/objective/assist/update_explanation_text()
+	..()
+	if(target && target.current)
+		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] completes their objectives."
+	else
+		explanation_text = "Free Objective"
+
+/datum/objective/assist/admin_edit(mob/admin)
+	admin_simple_target_pick(admin)
+
 /datum/objective/hijack
 	name = "hijack"
 	explanation_text = "Hijack the shuttle to ensure no loyalist Nanotrasen crew escape alive and out of custody."
@@ -504,6 +535,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal/proc/set_target(datum/objective_item/item)
 	if(item)
 		targetinfo = item
+		targetinfo.objective = src
 		steal_target = targetinfo.targetitem
 		explanation_text = "Steal [targetinfo.name]"
 		give_special_equipment(targetinfo.special_equipment)
@@ -831,52 +863,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Steal at least five items!"
 	var/list/wanted_items = list()
 
-/datum/objective/steal_five_of_type/New()
-	..()
-	wanted_items = typecacheof(wanted_items)
-
-/datum/objective/steal_five_of_type/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	var/stolen_count = 0
-	for(var/datum/mind/M in owners)
-		if(!isliving(M.current))
-			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
-		for(var/obj/I in all_items) //Check for wanted items
-			if(is_type_in_typecache(I, wanted_items))
-				stolen_count++
-	return stolen_count >= 5
-
-/datum/objective/steal_five_of_type/summon_guns
-	name = "steal guns"
-	explanation_text = "Steal at least five guns!"
-	wanted_items = list(/obj/item/gun)
-
-/datum/objective/steal_five_of_type/summon_magic
-	name = "steal magic"
-	explanation_text = "Steal at least five magical artefacts!"
-	wanted_items = list()
-
-/datum/objective/steal_five_of_type/summon_magic/New()
-	wanted_items = GLOB.summoned_magic_objectives
-	..()
-
-/datum/objective/steal_five_of_type/summon_magic/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	var/stolen_count = 0
-	for(var/datum/mind/M in owners)
-		if(!isliving(M.current))
-			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
-		for(var/obj/I in all_items) //Check for wanted items
-			if(istype(I, /obj/item/book/granter/spell))
-				var/obj/item/book/granter/spell/spellbook = I
-				if(!spellbook.used || !spellbook.oneuse) //if the book still has powers...
-					stolen_count++ //it counts. nice.
-			else if(is_type_in_typecache(I, wanted_items))
-				stolen_count++
-	return stolen_count >= 5
-
 //Created by admin tools
 /datum/objective/custom
 	name = "custom"
@@ -1065,6 +1051,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/maroon,
 		/datum/objective/debrain,
 		/datum/objective/protect,
+		/datum/objective/assist,
 		/datum/objective/destroy,
 		/datum/objective/hijack,
 		/datum/objective/escape,

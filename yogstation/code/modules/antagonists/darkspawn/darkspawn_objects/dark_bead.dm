@@ -6,12 +6,14 @@
 	icon_state = "dark_bead"
 	item_state = "disintegrate"
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | UNACIDABLE | INDESTRUCTIBLE
+	item_flags = DROPDEL
 	w_class = 5
 	light_color = "#21007F"
 	light_power = 0.3
 	light_range = 2
 	var/eating = FALSE //If we're devouring someone's will
 	var/datum/action/innate/darkspawn/devour_will/linked_ability //The ability that keeps data for us
+	var/full_restore = TRUE
 
 /obj/item/dark_bead/Initialize()
 	. = ..()
@@ -31,11 +33,14 @@
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(user)
 	if(!darkspawn || eating || L == user) //no eating urself ;)))))))
 		return
+	if(!istype(L, /mob/living/carbon))
+		to_chat(user, "<span calss='warning'>[L]'s mind is not powerful enough to be of use.</span>")
+		return
 	linked_ability = darkspawn.has_ability("devour_will")
 	if(!linked_ability) //how did you even get this?
 		qdel(src)
 		return
-	if(!L.mind || is_darkspawn_or_veil(L))
+	if(!L.mind || isdarkspawn(L))
 		to_chat(user, "<span class='warning'>You cannot drain allies or the mindless.</span>")
 		return
 	if(!L.health || L.stat)
@@ -47,6 +52,9 @@
 	if(linked_ability.last_victim == L.ckey)
 		to_chat(user, "<span class='warning'>[L]'s mind is still too scrambled. Drain someone else first.</span>")
 		return
+	if(isveil(L))
+		full_restore = FALSE
+		to_chat(user, "<span class='warning'>[L] has been veiled and will not produce as much psi as an unmodified victim.</span>")
 	eating = TRUE
 	if(user.loc != L)
 		user.visible_message("<span class='warning'>[user] grabs [L] and leans in close...</span>", "<span class='velvet bold'>cera qo...</span><br>\
@@ -74,13 +82,16 @@
 			qdel(src, force = TRUE)
 			return
 	user.visible_message("<span class='warning'>[user] gently lowers [L] to the ground...</span>", "<span class='velvet'><b>...aranupdejc</b><br>\
-	You devour [L]'s will. Your Psi has been fully restored.\n\
-	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities.<br>\
+	You devour [L]'s will. Your Psi has been [!full_restore ? "partially restored." : "fully restored.\n\
+	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
 	<span class='warning'>[L] is now severely weakened and will take some time to recover.</span> \
 	<span class='warning'>Additionally, you can not drain them again without first draining someone else.</span>")
 	playsound(L, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
-	darkspawn.psi = darkspawn.psi_cap
-	darkspawn.lucidity++
+	if(full_restore)
+		darkspawn.psi = darkspawn.psi_cap
+		darkspawn.lucidity++ //no getting free lucidity from veils that wouldn't be fun. They'll still count towards winning though.
+	else
+		darkspawn.psi += 20
 	if(linked_ability.victims[L] == FALSE)
 		to_chat(user, "<span class ='warning'> You have already drained this individual previously, and their lucidity will not contribute any more to the sacrament!</span>")
 	else

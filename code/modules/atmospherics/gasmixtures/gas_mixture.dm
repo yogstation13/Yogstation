@@ -13,13 +13,14 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 /proc/init_gaslist_cache()
 	. = list()
 	for(var/id in GLOB.meta_gas_info)
-		var/list/cached_gas = new(3)
+		var/list/cached_gas = new(4)
 
 		.[id] = cached_gas
 
 		cached_gas[MOLES] = 0
 		cached_gas[ARCHIVE] = 0
 		cached_gas[GAS_META] = GLOB.meta_gas_info[id]
+		cached_gas[INNER_MOLES] = 0
 
 /datum/gas_mixture
 	var/list/gases
@@ -116,17 +117,28 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Update archived versions of variables
 	//Returns: 1 in all cases
 
-/datum/gas_mixture/proc/merge(datum/gas_mixture/giver)
+/datum/gas_mixture/proc/merge(datum/gas_mixture/giver, inner = TRUE)
 	//Merges all air from giver into self. Deletes giver.
 	//Returns: 1 if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/remove(amount)
-	//Proportionally removes amount of gas from the gas_mixture
+	//Removes amount of gas from the gas_mixture
 	//Returns: gas_mixture with the gases removed
 
 /datum/gas_mixture/proc/remove_ratio(ratio)
 	//Proportionally removes amount of gas from the gas_mixture
 	//Returns: gas_mixture with the gases removed
+
+/datum/gas_mixture/proc/remove_outer(amount)
+	//Removes amount of gas from the gas_mixture, while avoiding removing inner gases
+	//Returns: gas_mixture with the gases removed
+
+/datum/gas_mixture/proc/remove_ratio_outer(ratio)
+	//Proportionally removes amount of gas from the gas_mixture, while avoiding removing inner gases
+	//Returns: gas_mixture with the gases removed
+
+/datum/gas_mixture/proc/clear_inner()
+	//sets the INNER_MOLES of all gases to 0
 
 /datum/gas_mixture/proc/copy()
 	//Creates new, identical gas mixture
@@ -169,7 +181,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	return 1
 
-/datum/gas_mixture/merge(datum/gas_mixture/giver)
+/datum/gas_mixture/merge(datum/gas_mixture/giver, inner = TRUE)
 	if(!giver)
 		return 0
 
@@ -187,6 +199,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	for(var/giver_id in giver_gases)
 		ASSERT_GAS(giver_id, src)
 		cached_gases[giver_id][MOLES] += giver_gases[giver_id][MOLES]
+		if(inner)
+			cached_gases[giver_id][INNER_MOLES] += giver_gases[giver_id][MOLES]
 
 	return 1
 
@@ -202,9 +216,38 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	removed.temperature = temperature
 	for(var/id in cached_gases)
-		ADD_GAS(id, removed.gases)
+		ADD_GAS(id, removed_gases)
 		removed_gases[id][MOLES] = QUANTIZE((cached_gases[id][MOLES] / sum) * amount)
 		cached_gases[id][MOLES] -= removed_gases[id][MOLES]
+		cached_gases[id][INNER_MOLES] = max(0, cached_gases[id][INNER_MOLES] - QUANTIZE((cached_gases[id][INNER_MOLES] / sum) * amount))
+	garbage_collect()
+
+	return removed
+
+/datum/gas_mixture/remove_outer(amount)
+	if(amount <= 0)
+		return null
+	var/sum
+	var/inner_sum
+	var/list/cached_gases = gases
+	TOTAL_MOLES(cached_gases, sum)
+	TOTAL_MOLES_INNER(cached_gases, inner_sum)
+	amount = min(amount, sum) // cant' take away more than it has
+	var/datum/gas_mixture/removed = new type
+	var/list/removed_gases = removed.gases
+
+	var/outer_amount = min(sum - inner_sum, amount)
+	var/inner_amount = outer_amount < amount ? (amount - (sum - inner_sum)) : 0
+
+	removed.temperature = temperature
+	for(var/id in cached_gases)
+		ADD_GAS(id, removed_gases)
+		var/removed_outer = sum > inner_sum ? QUANTIZE(max(0, cached_gases[id][MOLES] - cached_gases[id][INNER_MOLES]) / (sum - inner_sum) * outer_amount) : 0
+		var/removed_inner = inner_sum ? QUANTIZE(cached_gases[id][INNER_MOLES] / inner_sum * inner_amount) : 0
+		removed_gases[id][MOLES] = removed_outer + removed_inner
+		cached_gases[id][MOLES] -= removed_outer + removed_inner
+		cached_gases[id][INNER_MOLES] -= removed_inner
+
 	garbage_collect()
 
 	return removed
@@ -220,13 +263,48 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	removed.temperature = temperature
 	for(var/id in cached_gases)
-		ADD_GAS(id, removed.gases)
+		ADD_GAS(id, removed_gases)
 		removed_gases[id][MOLES] = QUANTIZE(cached_gases[id][MOLES] * ratio)
 		cached_gases[id][MOLES] -= removed_gases[id][MOLES]
+		cached_gases[id][INNER_MOLES] -= QUANTIZE(cached_gases[id][INNER_MOLES] * ratio)
 
 	garbage_collect()
 
 	return removed
+
+/datum/gas_mixture/remove_ratio_outer(ratio)
+	if(ratio <= 0)
+		return null
+	ratio = min(ratio, 1)
+
+	var/sum
+	var/inner_sum
+	var/list/cached_gases = gases
+	var/datum/gas_mixture/removed = new type
+	var/list/removed_gases = removed.gases
+	TOTAL_MOLES(cached_gases, sum)
+	TOTAL_MOLES_INNER(cached_gases, inner_sum)
+	var/outer_ratio = sum > inner_sum ? min(1, ratio * sum / (sum - inner_sum)) : 0
+	var/inner_ratio = (outer_ratio >= 1 && inner_sum) ? (((ratio * sum) - (outer_ratio * (sum - inner_sum))) / inner_sum) : 0
+
+	removed.temperature = temperature
+	for(var/id in cached_gases)
+		ADD_GAS(id, removed_gases)
+		var/removed_outer = QUANTIZE(max(0, cached_gases[id][MOLES] - cached_gases[id][INNER_MOLES]) * outer_ratio)
+		var/removed_inner = QUANTIZE(cached_gases[id][INNER_MOLES] * inner_ratio)
+		removed_gases[id][MOLES] = removed_outer + removed_inner
+		cached_gases[id][MOLES] -= removed_outer + removed_inner
+		cached_gases[id][INNER_MOLES] -= removed_inner
+
+	garbage_collect()
+
+	return removed
+
+
+/datum/gas_mixture/clear_inner()
+	var/list/cached_gases = gases
+	for(var/id in cached_gases)
+		cached_gases[id][INNER_MOLES] = 0
 
 /datum/gas_mixture/copy()
 	var/list/cached_gases = gases
@@ -281,7 +359,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	return 1
 
 /datum/gas_mixture/share(datum/gas_mixture/sharer, atmos_adjacent_turfs = 4)
-
+	clear_inner()
+	sharer.clear_inner()
 	var/list/cached_gases = gases
 	var/list/sharer_gases = sharer.gases
 
@@ -430,7 +509,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 					continue reaction_loop
 
 			//at this point, all requirements for the reaction are satisfied. we can now react()
-			
+
 			. |= reaction.react(src, holder)
 			if (. & STOP_REACTIONS)
 				break

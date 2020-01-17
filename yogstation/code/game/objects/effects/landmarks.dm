@@ -45,9 +45,9 @@
 	if(!template_name)
 		for(var/t in template_names)
 			if(!SSmapping.station_room_templates[t])
-				log_world("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
+				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
-		template_name = safepick(template_names)
+		template_name = choose()
 	if(!template_name)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
@@ -55,17 +55,28 @@
 	var/datum/map_template/template = SSmapping.station_room_templates[template_name]
 	if(!template)
 		return FALSE
-	log_world("Ruin \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
+	testing("Ruin \"[template_name]\" placed at ([T.x], [T.y], [T.z])")
 	template.load(T, centered = FALSE)
 	template.loaded++
 	GLOB.stationroom_landmarks -= src
 	qdel(src)
 	return TRUE
 
+// Proc to allow you to add conditions for choosing templates, instead of just randomly picking from the template list.
+// Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
+// Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
+/obj/effect/landmark/stationroom/proc/choose()
+	return safepick(template_names)
+
 /obj/effect/landmark/stationroom/box/bar
-	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple")
+	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese")
 	icon = 'yogstation/icons/rooms/box/bar.dmi'
 	icon_state = "bar_box"
+
+/obj/effect/landmark/stationroom/box/bar/choose()
+	. = ..()
+	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
+		return "Bar Irish"
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM", "Engine Singulo And Tesla")
@@ -73,3 +84,9 @@
 
 /obj/effect/landmark/stationroom/box/foreportmaint1
 	template_names = list("Maintenance Surgery")
+
+/obj/effect/landmark/stationroom/box/xenobridge
+	template_names = list("Xenobiology Bridge", "Xenobiology Lattice")
+
+/obj/effect/landmark/stationroom/box/aftmaint
+	template_names = list("Roleplaying Room", "Detective Room")

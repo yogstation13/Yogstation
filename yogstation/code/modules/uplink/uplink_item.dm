@@ -39,9 +39,6 @@
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
 
-/datum/uplink_item/device_tools/emag
-	cost = 8
-
 /datum/uplink_item/role_restricted/his_grace
 	include_objectives = list(/datum/objective/hijack)
 
@@ -111,6 +108,14 @@
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
 	surplus = 20
+
+/datum/uplink_item/implants/greytide
+	name = "Greytide Implant"
+	desc = "An implant injected into another body, forcing the victim to greytide."
+	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	cost = 5
+	surplus = 20
+	restricted_roles = list("Assistant")
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"

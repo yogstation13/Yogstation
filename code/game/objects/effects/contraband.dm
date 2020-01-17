@@ -345,12 +345,12 @@
 
 /obj/structure/sign/poster/contraband/borg_fancy_1
 	name = "Borg Fancy"
-	desc = "Being fancy can be for any borg, just need a suit."
+	desc = "Being fancy can be for any borg, they just need a suit."
 	icon_state = "poster20"
 
 /obj/structure/sign/poster/contraband/borg_fancy_2
 	name = "Borg Fancy v2"
-	desc = "Borg Fancy, Now only taking the most fancy."
+	desc = "Borg Fancy. Now only taking the most fancy."
 	icon_state = "poster21"
 
 /obj/structure/sign/poster/contraband/kss13
@@ -401,7 +401,7 @@
 
 /obj/structure/sign/poster/contraband/cc64k_ad
 	name = "CC 64K Ad"
-	desc = "The latest portable computer from Comrade Computing, with a whole 64kB of ram!"
+	desc = "The latest portable computer from Comrade Computing, with a whole 64kB of RAM!"
 	icon_state = "poster31"
 
 /obj/structure/sign/poster/contraband/punch_shit
@@ -622,7 +622,7 @@
 
 /obj/structure/sign/poster/official/fruit_bowl
 	name = "Fruit Bowl"
-	desc = " Simple, yet awe-inspiring."
+	desc = "Simple, yet awe-inspiring."
 	icon_state = "poster27_legit"
 
 /obj/structure/sign/poster/official/pda_ad
@@ -637,7 +637,7 @@
 
 /obj/structure/sign/poster/official/nanomichi_ad
 	name = "Nanomichi Ad"
-	desc = " A poster advertising Nanomichi brand audio cassettes."
+	desc = "A poster advertising Nanomichi brand audio cassettes."
 	icon_state = "poster30_legit"
 
 /obj/structure/sign/poster/official/twelve_gauge

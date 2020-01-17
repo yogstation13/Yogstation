@@ -91,6 +91,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("carp")
 			for(var/type in (subtypesof(/datum/guardianname/carp) - namedatum.type))
 				possible_names += new type
+		if("holy")
+			for(var/type in (subtypesof(/datum/guardianname/holy) - namedatum.type))
+				possible_names += new type
 	namedatum = pick(possible_names)
 	updatetheme(pickedtheme)
 
@@ -586,6 +589,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /obj/item/guardiancreator/choose/chaplain/antimagic
 	name = "deck of holy tarot cards"
 	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	w_class = WEIGHT_CLASS_SMALL
+	theme = "holy"
+	mob_name = "Holyparasite"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_caswhite_full"
 

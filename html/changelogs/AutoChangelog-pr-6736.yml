@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "VTEC cyborg module functional once more"
-  - rscadd: "Disabler cooler module has been given a warning as to not use it until fixed"

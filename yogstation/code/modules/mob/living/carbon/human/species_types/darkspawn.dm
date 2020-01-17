@@ -10,7 +10,7 @@
 	heatmod = 1.5
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE, SLOT_HEAD)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
-	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
+	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 	var/list/upgrades = list()
 
@@ -37,12 +37,12 @@
 			if(upgrades["dark_healing"])
 				healing_amount *= 1.25
 			H.adjustBruteLoss(-healing_amount)
-			H.adjustFireLoss(-healing_amount * 0.5)
+			H.adjustFireLoss(-healing_amount)
 			H.adjustToxLoss(-healing_amount)
 			H.adjustStaminaLoss(-healing_amount * 20)
-			H.AdjustStun(-healing_amount * 4)
-			H.AdjustKnockdown(-healing_amount * 4)
-			H.AdjustUnconscious(-healing_amount * 4)
+			H.AdjustStun(-healing_amount * 40)
+			H.AdjustKnockdown(-healing_amount * 40)
+			H.AdjustUnconscious(-healing_amount * 40)
 			H.SetSleeping(0)
 			H.setOrganLoss(ORGAN_SLOT_BRAIN,0)
 			H.setCloneLoss(0)
