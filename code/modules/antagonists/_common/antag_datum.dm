@@ -143,9 +143,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	if(objectives.len == 0 || objectives_complete)
 		report += "<span class='greentext big'>The [name] was successful!</span>"
-		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current)
 		if(istype(greentext_achieve))
 			SSachievements.unlock_achievement(greentext_achieve,owner.current)
+		else // The above still does award the generic greentext achievement, just implicitly.
+			SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client) 
 	else
 		report += "<span class='redtext big'>The [name] has failed!</span>"
 

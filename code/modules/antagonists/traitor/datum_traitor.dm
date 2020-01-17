@@ -421,7 +421,7 @@
 
 	if(traitorwin)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
-		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current)
+		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
 		if(istype(greentext_achieve))
 			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 	else
