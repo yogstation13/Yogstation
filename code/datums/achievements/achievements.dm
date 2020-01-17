@@ -178,4 +178,14 @@
 	name = "\"You wouldn't get it\""
 	desc = "As a Clown Operative score a Major or Minor Victory"
 	id = 33
+
+/datum/achievement/greentext/internal
+	name = "Triple Cross"
+	desc = "As an Internal Affairs Agent, complete your objectives"
+	id = 34
+
+/datum/achievement/greentext/external
+	name = "Quadruple Cross"
+	desc = "As an External Affairs Agent, complete your objectives"
+	id = 35
 //end-greentext
