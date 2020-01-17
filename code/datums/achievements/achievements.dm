@@ -201,10 +201,14 @@
 //end-greentext
 
 //start-redtext
+/datum/achievement/redtext
+	name = "Mission Failed, We'll Get'em Next Time"
+	desc = "As an antagonist, fail your objectives."
+	id = 36
 
 /datum/achievement/redtext/winlost
 	name = "Arcane Failure"
 	desc = "As a Wizard, fail your objectives."
-	id = 36
+	id = 37
 	hidden = TRUE
 //end-redtext
