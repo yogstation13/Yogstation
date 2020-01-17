@@ -35,7 +35,7 @@
 /obj/effect/mob_spawn/human/fugitive/russian
 	name = "russian pod"
 	flavour_text = "Ay blyat. I am a space-russian smuggler! We were mid-flight when our cargo was beamed off our ship!"
-	short_desc = "Боб Робертс был здесь водка привет весело перевести это"
+	short_desc = "&#x411;&#x43E;&#x431; &#x420;&#x43E;&#x431;&#x435;&#x440;&#x442;&#x441; &#x431;&#x44B;&#x43B; &#x437;&#x434;&#x435;&#x441;&#x44C; &#x432;&#x43E;&#x434;&#x43A;&#x430; &#x43F;&#x440;&#x438;&#x432;&#x435;&#x442; &#x432;&#x435;&#x441;&#x435;&#x43B;&#x43E; &#x43F;&#x435;&#x440;&#x435;&#x432;&#x435;&#x441;&#x442;&#x438; &#x44D;&#x442;&#x43E;"
 	back_story = "russian"
 	desc = "A small sleeper typically used to make long distance travel a bit more bearable."
 	mob_name = "russian"
