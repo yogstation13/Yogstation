@@ -1,6 +1,8 @@
 //OFFSETS - Used so that each general like "group" of achievements can be added to w/o fucking up the whole incremental pattern we got going on.
 //DO NOT MAKE OFFSET VALUES THAT ARE GREATER THAN 2^15 OR LESS THAN 128.
+//TO BE HONEST THIS OFFSET DOESN'T EVEN NEED TO BE POWER OF TWO, THOUGH.
 #define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
+#define REDTEXT 512 // Offset for redtexts.
 
 /datum/achievement
 	var/name = "achievement"
@@ -136,19 +138,6 @@
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
 	id = 22
 
-//start-redtext
-/datum/achievement/redtext
-	name = "Mission Failed, We'll Get'em Next Time"
-	desc = "As an antagonist, fail your objectives."
-	id = 23
-
-/datum/achievement/redtext/winlost
-	name = "Arcane Failure"
-	desc = "As a Wizard, fail your objectives."
-	id = 24
-	hidden = TRUE
-//end-redtext
-
 // The achievements that are basically just "greentext as this sort of antag"
 
 /datum/achievement/greentext
@@ -237,5 +226,18 @@
 	id = GREENTEXT + 17
 
 //end-greentext
+
+//start-redtext
+/datum/achievement/redtext
+	name = "Mission Failed, We'll Get'em Next Time"
+	desc = "As an antagonist, fail your objectives."
+	id = REDTEXT + 1
+
+/datum/achievement/redtext/winlost
+	name = "Arcane Failure"
+	desc = "As a Wizard, fail your objectives."
+	id = REDTEXT + 2
+	hidden = TRUE
+//end-redtext
 
 #undef GREENTEXT
