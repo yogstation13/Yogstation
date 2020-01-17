@@ -189,3 +189,12 @@
 	desc = "As an External Affairs Agent, complete your objectives"
 	id = 35
 //end-greentext
+
+//start-redtext
+
+/datum/achievement/redtext/winlost
+	name = "Arcane Failure"
+	desc = "As a Wizard, fail your objectives."
+	id = 36
+
+//end-redtext
