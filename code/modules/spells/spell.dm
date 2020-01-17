@@ -192,8 +192,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		var/list/casting_clothes = typecacheof(list(/obj/item/clothing/suit/wizrobe,
 		/obj/item/clothing/suit/space/hardsuit/wizard,
 		/obj/item/clothing/head/wizard,
-		/obj/item/clothing/head/helmet/space/hardsuit/wizard,
-		/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
+		/obj/item/clothing/head/wizard/armor,
+		/obj/item/clothing/suit/wizrobe/armor,
 		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard))
 
 		if(clothes_req) //clothes check
