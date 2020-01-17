@@ -203,17 +203,22 @@
 	name = "Space Aids"
 	desc = "As Sentient Disease, survive and complete your objectives"
 	id = 36
+
+/datum/achievement/greentext/pirate
+	name = "Yaaaahr!"
+	desc = "As member of the Pirate crew, collect sufficient bounty from the crew"
+	id = 37
 //end-greentext
 
 //start-redtext
 /datum/achievement/redtext
 	name = "Mission Failed, We'll Get'em Next Time"
 	desc = "As an antagonist, fail your objectives."
-	id = 37
+	id = 38
 
 /datum/achievement/redtext/winlost
 	name = "Arcane Failure"
 	desc = "As a Wizard, fail your objectives."
-	id = 38
+	id = 39
 	hidden = TRUE
 //end-redtext
