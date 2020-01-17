@@ -174,7 +174,7 @@
 	desc = "As a Gang Member, take over the station"
 	id = 30
 
-/datum/achievement/greentext/gang/leader
+/datum/achievement/greentext/gangleader
 	name = "\"I have built my organization upon fear.\""
 	desc = "As a Gang Leader, take over the station"
 	id = 31
