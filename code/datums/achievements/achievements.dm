@@ -52,7 +52,7 @@
 	id = 9
 	hidden = TRUE
 
-/datum/achievement/wizwin
+/datum/achievement/greentext/wizwin
 	name = "Scholars of the Arcane"
 	desc = "As a wizard, complete your objectives"
 	id = 10
@@ -68,12 +68,12 @@
 	id = 12
 	hidden = TRUE
 
-/datum/achievement/changelingwin
+/datum/achievement/greentext/changelingwin
 	name = "The Thing"
 	desc = "As a changeling, complete your objectives"
 	id = 13
 
-/datum/achievement/slingascend
+/datum/achievement/greentext/slingascend
 	name = "The Dark Shadow"
 	desc = "As a shadowling, ascend successfully"
 	id = 14
