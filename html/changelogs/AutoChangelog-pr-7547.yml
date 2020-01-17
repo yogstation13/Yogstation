@@ -1,0 +1,5 @@
+author: "Darkstick"
+delete-after: true 
+changes: 
+  - rscadd: "Added a sink to the recovery shuttle"
+  - rscdel: "Had to sacrifice a bed and a light fixture, however I replaced it by two small light fixtures instead"

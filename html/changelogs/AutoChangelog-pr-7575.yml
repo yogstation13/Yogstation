@@ -1,0 +1,4 @@
+author: "DerelictDrone"
+delete-after: true 
+changes: 
+  - rscadd: "Conveyors may be recycled now."

@@ -1,4 +1,3 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "holdup doesn't break when pulling the target"
+author: SomeguyManperson
+changes: []
+delete-after: true

@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "limbs will now stay as they were when added to a body, rather than resetting to the body's default limb"
