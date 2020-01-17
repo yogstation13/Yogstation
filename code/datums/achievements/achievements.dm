@@ -198,17 +198,22 @@
 	name = "Quadruple Cross"
 	desc = "As an External Affairs Agent, complete your objectives"
 	id = 35
+
+/datum/achievement/greentext/disease
+	name = "Space Aids"
+	desc = "As Sentient Disease, survive and complete your objectives"
+	id = 36
 //end-greentext
 
 //start-redtext
 /datum/achievement/redtext
 	name = "Mission Failed, We'll Get'em Next Time"
 	desc = "As an antagonist, fail your objectives."
-	id = 36
+	id = 37
 
 /datum/achievement/redtext/winlost
 	name = "Arcane Failure"
 	desc = "As a Wizard, fail your objectives."
-	id = 37
+	id = 38
 	hidden = TRUE
 //end-redtext
