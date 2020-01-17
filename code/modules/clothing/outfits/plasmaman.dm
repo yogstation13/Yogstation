@@ -1,6 +1,9 @@
 /datum/outfit/job/plasmaman/bartender
 	name = "Plasmaman Bartender"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	suit = /obj/item/clothing/suit/armor/vest
 	ears = /obj/item/radio/headset/headset_srv
@@ -10,6 +13,9 @@
 /datum/outfit/job/plasmaman/cook
 	name = "Plasmaman Cook"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/chef
 	suit = /obj/item/clothing/suit/toggle/chef
 	ears = /obj/item/radio/headset/headset_srv
@@ -18,6 +24,8 @@
 	name = "Plasmaman Botanist"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/botany
 	ears = /obj/item/radio/headset/headset_srv
 	suit = /obj/item/clothing/suit/apron
@@ -30,6 +38,8 @@
 	name = "Plasmaman Curator"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/curator
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/curator
 	ears = /obj/item/radio/headset/headset_srv
 	l_hand = /obj/item/storage/bag/books
@@ -40,6 +50,9 @@
 /datum/outfit/job/plasmaman/chaplain
 	name = "Plasmaman Chaplain"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/chaplain
 	ears = /obj/item/radio/headset/headset_srv
 	backpack = /obj/item/storage/backpack/cultpack
@@ -49,6 +62,9 @@
 /datum/outfit/job/plasmaman/janitor
 	name = "Plasmaman Janitor"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/janitor
 	ears = /obj/item/radio/headset/headset_srv
 
@@ -56,6 +72,8 @@
 	name = "Plasmaman Security Officer"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black
@@ -71,6 +89,9 @@
 /datum/outfit/job/plasmaman/detective
 	name = "Plasmaman Detective"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	ears = /obj/item/radio/headset/headset_sec/alt
 	neck = /obj/item/clothing/neck/tie/detective
@@ -83,6 +104,8 @@
 	name = "Plasmaman Warden"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/security/warden
 	ears = /obj/item/radio/headset/headset_sec/alt
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -99,6 +122,9 @@
 /datum/outfit/job/plasmaman/cargo_tech
 	name = "Plasmaman Cargo Technician"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/cargo
 	ears = /obj/item/radio/headset/headset_cargo
 	l_hand = /obj/item/export_scanner
@@ -106,6 +132,9 @@
 /datum/outfit/job/plasmaman/quartermaster
 	name = "Plasmaman Quartermaster"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/qm
 	ears = /obj/item/radio/headset/headset_cargo
 	shoes = /obj/item/clothing/shoes/sneakers/brown
@@ -115,6 +144,9 @@
 /datum/outfit/job/plasmaman/miner
 	name = "Plasmaman Shaft Miner"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/mining
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
@@ -128,7 +160,12 @@
 /datum/outfit/job/plasmaman/lawyer
 	name = "Plasmaman Laywer"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	shoes = /obj/item/clothing/shoes/laceup
 	ears = /obj/item/radio/headset/headset_srvsec
 	suit = /obj/item/clothing/suit/toggle/lawyer
@@ -140,6 +177,8 @@
 	name = "Plasmaman Medical Doctor"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/medical
 	ears = /obj/item/radio/headset/headset_med
 	suit =  /obj/item/clothing/suit/toggle/labcoat
@@ -153,6 +192,8 @@
 	name = "Plasmaman Virologist"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/viro
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/viro
 	ears = /obj/item/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/sneakers/white
@@ -166,6 +207,9 @@
 /datum/outfit/job/plasmaman/chemist
 	name = "Plasmaman Chemist"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/chemist
 	glasses = /obj/item/clothing/glasses/science
 	ears = /obj/item/radio/headset/headset_med
@@ -179,6 +223,8 @@
 	name = "Plasmaman Geneticist"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/genetics
 	ears = /obj/item/radio/headset/headset_medsci
 	shoes = /obj/item/clothing/shoes/sneakers/white
@@ -192,6 +238,9 @@
 /datum/outfit/job/plasmaman/scientist
 	name = "Plasmaman Scientist"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/science
 	ears = /obj/item/radio/headset/headset_sci
 	shoes = /obj/item/clothing/shoes/sneakers/white
@@ -202,6 +251,9 @@
 /datum/outfit/job/plasmaman/roboticist
 	name = "Plasmaman Roboticist"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman/robotics
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci
@@ -214,6 +266,8 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	uniform = /obj/item/clothing/under/plasmaman/engineering
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/workboots
@@ -227,6 +281,8 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	uniform = /obj/item/clothing/under/plasmaman/atmospherics
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
 	r_pocket = /obj/item/analyzer
@@ -240,6 +296,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/mime
 	uniform = /obj/item/clothing/under/plasmaman/mime
 	mask = /obj/item/clothing/mask/gas/mime
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	ears = /obj/item/radio/headset/headset_srv
 	gloves = /obj/item/clothing/gloves/color/white
 	suit = /obj/item/clothing/suit/suspenders
@@ -252,6 +309,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/clown
 	uniform = /obj/item/clothing/under/plasmaman/clown
 	mask = /obj/item/clothing/mask/gas/clown_hat
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	ears = /obj/item/radio/headset/headset_srv
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	l_pocket = /obj/item/bikehorn
@@ -262,6 +320,9 @@
 /datum/outfit/job/plasmaman/sigtech
 	name = "Plasmaman Signal Technician"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/storage/belt/utility/full
 	l_pocket = /obj/item/pda/signaltech
 	ears = /obj/item/radio/headset/headset_eng
@@ -277,6 +338,9 @@
 /datum/outfit/job/plasmaman/miningmedic
 	name = "Plasmaman Mining Medic"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1,\
 		/obj/item/gps/mining = 1)
@@ -296,6 +360,8 @@
 	name = "Plasmaman Paramedic"
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	backpack_contents = list(/obj/item/storage/firstaid/regular)
 	belt = /obj/item/pda/para
 	ears = /obj/item/radio/headset/headset_med
@@ -312,6 +378,9 @@
 /datum/outfit/job/plasmaman/psych
 	name = "Plasmaman Psych"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
 	l_hand = /obj/item/storage/briefcase
@@ -322,6 +391,9 @@
 /datum/outfit/job/plasmaman/clerk
 	name = "Plasmaman Clerk"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	belt = /obj/item/pda
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
@@ -331,18 +403,24 @@
 /datum/outfit/job/plasmaman/tourist
 	name = "Plasmaman Tourist"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
 	belt = /obj/item/pda
 	backpack_contents = list(/obj/item/camera_film, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20, /obj/item/stack/spacecash/c20)
-	r_hand =  /obj/item/camera
+	l_hand =  /obj/item/camera
 	l_pocket = /obj/item/camera_film
 	r_pocket = /obj/item/camera_film
 
 /datum/outfit/job/plasmaman/assistant
 	name = "Plasmaman Assistant"
 
+	head = /obj/item/clothing/head/helmet/space/plasmaman
+	r_hand= /obj/item/tank/internals/plasmaman/belt/full
+	mask = /obj/item/clothing/mask/breath
 	uniform = /obj/item/clothing/under/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset
