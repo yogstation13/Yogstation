@@ -101,7 +101,8 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	event_source = null
 
 /obj/machinery/keycard_auth/proc/trigger_event(confirmer)
-	if(confirmer == triggerer)
+	var/list/heads = SSjob.get_all_heads()
+	if(confirmer == triggerer && heads.len > 1)
 		return
 
 	log_game("[key_name(triggerer)] triggered and [key_name(confirmer)] confirmed event [event]")
