@@ -206,5 +206,5 @@
 	name = "Arcane Failure"
 	desc = "As a Wizard, fail your objectives."
 	id = 36
-
+	hidden = TRUE
 //end-redtext
