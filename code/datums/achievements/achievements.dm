@@ -10,7 +10,7 @@
 	id = 1
 
 /datum/achievement/roboborg
-	name = "I live again"
+	name = "I Live Again"
 	desc = "As a roboticist, create a cyborg"
 	id = 2
 
@@ -101,7 +101,7 @@
 	hidden = TRUE
 
 /datum/achievement/Poly_loud
-	name = "Embrace The Bird!"
+	name = "Embrace the Bird!"
 	desc = "As a signal technician create a script that makes poly LOUD"
 	id = 19
 	hidden = TRUE
@@ -122,7 +122,7 @@
 	desc += "[amount]"
 
 /datum/achievement/likearecord
-	name = "You spin me round"
+	name = "You Spin Me Round"
 	desc = "Use the surgical drill to spin right round like a record baby"
 	id = 21
 	hidden = TRUE
