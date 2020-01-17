@@ -208,17 +208,28 @@
 	name = "Yaaaahr!"
 	desc = "As member of the Pirate crew, collect sufficient bounty from the crew"
 	id = 37
+
+/datum/achievement/greentext/vampire
+	name = "Count de Ville"
+	desc = "As a Vampire, complete your objectives"
+	id = 38
+
+/datum/achievement/greentext/revenant
+	name = "From The Shadows"
+	desc = "As a Revenant, complete your objectives"
+	id = 39
+
 //end-greentext
 
 //start-redtext
 /datum/achievement/redtext
 	name = "Mission Failed, We'll Get'em Next Time"
 	desc = "As an antagonist, fail your objectives."
-	id = 38
+	id = 40
 
 /datum/achievement/redtext/winlost
 	name = "Arcane Failure"
 	desc = "As a Wizard, fail your objectives."
-	id = 39
+	id = 41
 	hidden = TRUE
 //end-redtext
