@@ -169,6 +169,16 @@
 	desc = "As a Head Revolutionary, complete your objectives"
 	id = 29
 
+/datum/achievement/greentext/gang
+	name = "Turf War"
+	desc = "As a Gang Member, take over the station"
+	id = 30
+
+/datum/achievement/greentext/gang/leader
+	name = "\"I have built my organization upon fear.\""
+	desc = "As a Gang Leader, take over the station"
+	id = 31
+
 /datum/achievement/greentext/blob
 	name = "Grey Goo"
 	desc = "As a Blob complete your objectives"
