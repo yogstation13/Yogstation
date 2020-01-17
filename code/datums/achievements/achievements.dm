@@ -10,7 +10,7 @@
 	id = 1
 
 /datum/achievement/roboborg
-	name = "I live again"
+	name = "I Live Again"
 	desc = "As a roboticist, create a cyborg"
 	id = 2
 
@@ -19,20 +19,20 @@
 	desc = "Successfully defibrillate someone"
 	id = 3
 
-/datum/achievement/pa_emag			//Should be hidden but that's not a thing yet
+/datum/achievement/pa_emag
 	name = "Catastrophe"
-	desc = "Emag a Particle Accelerator"
+	desc = "Emag a particle accelerator"
 	id = 4
 	hidden = TRUE
 
 /datum/achievement/flukeops
 	name = "Reverse Card"
-	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
+	desc = "As a member of the Crew, deal a humiliating defeat to Nuclear Team"
 	id = 5
 
 /datum/achievement/nukewin
 	name = "Delta Alert"
-	desc = "As a Nuclear Operative, score a Major or Minor Victory"
+	desc = "As a nuclear operative, score a major or minor victory"
 	id = 6
 
 /datum/achievement/honorarynukie
@@ -96,13 +96,13 @@
 
 /datum/achievement/Poly_silent
 	name = "Silence Bird!"
-	desc = "As a signal technician create a script that mutes poly"
+	desc = "As a signal technician, create a script that mutes poly"
 	id = 18
 	hidden = TRUE
 
 /datum/achievement/Poly_loud
-	name = "Embrace The Bird!"
-	desc = "As a signal technician create a script that makes poly LOUD"
+	name = "Embrace the Bird!"
+	desc = "As a signal technician, create a script that makes poly LOUD"
 	id = 19
 	hidden = TRUE
   
@@ -122,8 +122,8 @@
 	desc += "[amount]"
 
 /datum/achievement/likearecord
-	name = "You spin me round"
-	desc = "Use the surgical drill to spin right round like a record baby"
+	name = "You Spin Me Round"
+	desc = "Use a surgical drill to spin right round like a record baby"
 	id = 21
 	hidden = TRUE
   
