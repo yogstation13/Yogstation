@@ -1,3 +1,7 @@
+//OFFSETS - Used so that each general like "group" of achievements can be added to w/o fucking up the whole incremental pattern we got going on.
+//DO NOT MAKE OFFSET VALUES THAT ARE GREATER THAN 2^15 OR LESS THAN 128.
+#define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
+
 /datum/achievement
 	var/name = "achievement"
 	var/desc = "Please make an issue on github, including this achievement's name and how you got it."
@@ -132,104 +136,106 @@
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
 	id = 22
 
+//start-redtext
+/datum/achievement/redtext
+	name = "Mission Failed, We'll Get'em Next Time"
+	desc = "As an antagonist, fail your objectives."
+	id = 23
+
+/datum/achievement/redtext/winlost
+	name = "Arcane Failure"
+	desc = "As a Wizard, fail your objectives."
+	id = 24
+	hidden = TRUE
+//end-redtext
+
 // The achievements that are basically just "greentext as this sort of antag"
 
 /datum/achievement/greentext
 	name = "Green Text"
 	desc = "As an Antagonist achieve your first green text"
-	id = 23
+	id = GREENTEXT + 1
 
 /datum/achievement/greentext/ratvar
 	name = "Clock Work"
 	desc = "As a Servant of Ratvar summon Ratvar"
-	id = 24
+	id = GREENTEXT + 2
 
 /datum/achievement/greentext/ratvar/eminence
 	name = "Clock Work"
 	desc = "As the Eminence, summon Ratvar"
-	id = 25
+	id = GREENTEXT + 3
 
 /datum/achievement/greentext/narsie
 	name = "Blood Rites"
 	desc = "As a member of Blood Cult summon Nar-Sie"
-	id = 26
+	id = GREENTEXT + 4
 
 /datum/achievement/greentext/narsie/master
 	name = "Master of Blood"
 	desc = "As a Cult Master, summon Nar-Sie"
-	id = 27
+	id = GREENTEXT + 5
 
 /datum/achievement/greentext/revolution
 	name = "Down with Nanotrasen"
 	desc = "As a Revolutionary, complete your objectives"
-	id = 28
+	id = GREENTEXT + 6
 
 /datum/achievement/greentext/revolution/head
 	name = "Viva la Revolution!"
 	desc = "As a Head Revolutionary, complete your objectives"
-	id = 29
+	id = GREENTEXT + 7
 
 /datum/achievement/greentext/gang
 	name = "Turf War"
 	desc = "As a Gang Member, take over the station"
-	id = 30
+	id = GREENTEXT + 8
 
 /datum/achievement/greentext/gangleader
 	name = "\"I have built my organization upon fear.\""
 	desc = "As a Gang Leader, take over the station"
-	id = 31
+	id = GREENTEXT + 9
 
 /datum/achievement/greentext/blob
 	name = "Grey Goo"
 	desc = "As a Blob complete your objectives"
-	id = 32
+	id = GREENTEXT + 10
 
 /datum/achievement/greentext/clownop
 	name = "\"You wouldn't get it\""
 	desc = "As a Clown Operative score a Major or Minor Victory"
-	id = 33
+	id = GREENTEXT + 11
 
 /datum/achievement/greentext/internal
 	name = "Triple Cross"
 	desc = "As an Internal Affairs Agent, complete your objectives"
-	id = 34
+	id = GREENTEXT + 12
 
 /datum/achievement/greentext/external
 	name = "Quadruple Cross"
 	desc = "As an External Affairs Agent, complete your objectives"
-	id = 35
+	id = GREENTEXT + 13
 
 /datum/achievement/greentext/disease
 	name = "Space Aids"
 	desc = "As Sentient Disease, survive and complete your objectives"
-	id = 36
+	id = GREENTEXT + 14
 
 /datum/achievement/greentext/pirate
 	name = "Yaaaahr!"
 	desc = "As member of the Pirate crew, collect sufficient bounty from the crew"
-	id = 37
+	id = GREENTEXT + 15
 
 /datum/achievement/greentext/vampire
 	name = "Count de Ville"
 	desc = "As a Vampire, complete your objectives"
-	id = 38
+	id = GREENTEXT + 16
 
 /datum/achievement/greentext/revenant
 	name = "From The Shadows"
 	desc = "As a Revenant, complete your objectives"
-	id = 39
+	id = GREENTEXT + 17
 
 //end-greentext
 
-//start-redtext
-/datum/achievement/redtext
-	name = "Mission Failed, We'll Get'em Next Time"
-	desc = "As an antagonist, fail your objectives."
-	id = 40
-
-/datum/achievement/redtext/winlost
-	name = "Arcane Failure"
-	desc = "As a Wizard, fail your objectives."
-	id = 41
-	hidden = TRUE
-//end-redtext
+#undef GREENTEXT
