@@ -335,9 +335,9 @@
 	if(check_victory())
 		for(var/H in revs)
 			var/datum/mind/M = H
-			SSachievements.unlock_achievement(/datum/achievement/greentext/revolution,M.current)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/revolution,M.current.client)
 			if(M.has_antag_datum(/datum/antagonist/rev/head))
-				SSachievements.unlock_achievement(/datum/achievement/greentext/revolution/head,M.current)
+				SSachievements.unlock_achievement(/datum/achievement/greentext/revolution/head,M.current.client)
 	
 	if(headrevs.len)
 		var/list/headrev_part = list()
