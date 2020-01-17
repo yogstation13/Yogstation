@@ -30,7 +30,7 @@
 	desc = "As a member of the Crew, deal a Humiliating defeat to Nuclear Team"
 	id = 5
 
-/datum/achievement/nukewin
+/datum/achievement/greentext/nukewin
 	name = "Delta Alert"
 	desc = "As a Nuclear Operative, score a Major or Minor Victory"
 	id = 6
@@ -173,3 +173,9 @@
 	name = "Grey Goo"
 	desc = "As a Blob complete your objectives"
 	id = 32
+
+/datum/achievement/greentext/clownop
+	name = "\"You wouldn't get it\""
+	desc = "As a Clown Operative score a Major or Minor Victory"
+	id = 33
+//end-greentext
