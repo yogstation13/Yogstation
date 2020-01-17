@@ -50,6 +50,16 @@
 	suffix = "bar_purple.dmm"
 	name = "Bar Purple"
 
+/datum/map_template/ruin/station/box/bar/irishman
+	id = "bar_irish"
+	suffix = "bar_irish.dmm"
+	name = "Bar Irish"
+
+/datum/map_template/ruin/station/box/bar/cheese
+	id = "bar_cheese"
+	suffix = "bar_cheese.dmm"
+	name = "Bar Cheese"
+
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
@@ -59,3 +69,23 @@
 	id = "engine_singulo_tesla"
 	suffix = "engine_singulo_tesla.dmm"
 	name = "Engine Singulo And Tesla"
+
+/datum/map_template/ruin/station/box/maint/xenobridge
+	id = "maint_xenobridge_default"
+	suffix = "xenobridge_default.dmm"
+	name = "Xenobiology Bridge"
+
+/datum/map_template/ruin/station/box/maint/xenobridge/lattice
+	id = "maint_xenobridge_lattice"
+	suffix = "xenobridge_space.dmm"
+	name = "Xenobiology Lattice"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/rpg
+	id = "maint_rpg"
+	suffix = "maint_rpg.dmm"
+	name = "Roleplaying Room"
+
+/datum/map_template/ruin/station/box/maint/aftmaint/detective
+	id = "maint_detective"
+	suffix = "maint_detective.dmm"
+	name = "Detective Room"

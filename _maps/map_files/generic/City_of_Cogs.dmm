@@ -66,12 +66,6 @@
 /obj/machinery/telecomms/relay/preset/reebe,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"ap" = (
-/obj/machinery/door/airlock/clockwork/brass{
-	name = "Ark Chamber"
-	},
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aq" = (
 /obj/machinery/computer/camera_advanced/ratvar,
 /turf/open/floor/clockwork/reebe,
@@ -212,6 +206,10 @@
 	dir = 1
 	},
 /turf/open/indestructible/reebe_void,
+/area/reebe/city_of_cogs)
+"aO" = (
+/obj/effect/spawner/lootdrop/clockcult,
+/turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "bj" = (
 /obj/structure/destructible/clockwork/eminence_spire,
@@ -16892,7 +16890,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -17090,7 +17088,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -17300,7 +17298,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -17504,7 +17502,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -17691,6 +17689,16 @@ aj
 aj
 aj
 aj
+aO
+aj
+aj
+aj
+aj
+aO
+aj
+aj
+aj
+aO
 aj
 aj
 aj
@@ -17699,17 +17707,7 @@ aj
 aj
 aj
 aj
-aj
-aj
-aj
-aj
-aj
-aj
-aj
-aj
-aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -18092,6 +18090,7 @@ aj
 aj
 aj
 aj
+aO
 aj
 aj
 aj
@@ -18110,13 +18109,12 @@ aj
 aj
 aj
 aj
+aO
 aj
 aj
 aj
 aj
-aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -18292,7 +18290,7 @@ ad
 ad
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -18522,7 +18520,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -19301,7 +19299,7 @@ ad
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -19332,7 +19330,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aN
@@ -19506,7 +19504,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 ah
@@ -19514,11 +19512,11 @@ aj
 aj
 aj
 aj
-aj
+aB
 az
 ah
 ai
-ap
+ag
 ai
 an
 au
@@ -20108,7 +20106,7 @@ ad
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -20313,7 +20311,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -20322,7 +20320,7 @@ aj
 aj
 aj
 aj
-ap
+ag
 aH
 aj
 aj
@@ -20330,7 +20328,7 @@ ak
 aj
 aj
 aH
-ap
+ag
 aj
 aj
 aj
@@ -20341,10 +20339,10 @@ aj
 aj
 aj
 aj
+aO
 aj
 aj
-aj
-aj
+aO
 aj
 aN
 aj
@@ -20948,7 +20946,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -21117,7 +21115,7 @@ aj
 ad
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -21134,7 +21132,7 @@ aj
 aC
 ah
 ai
-ap
+ag
 ai
 ah
 ay
@@ -21323,7 +21321,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -21553,7 +21551,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -22130,7 +22128,7 @@ ad
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -22156,11 +22154,11 @@ aj
 aj
 aj
 aj
+aO
 aj
 aj
 aj
-aj
-aj
+aO
 aj
 aN
 aj
@@ -22335,7 +22333,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -22557,7 +22555,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -22763,7 +22761,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aN
@@ -22949,7 +22947,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -23144,6 +23142,7 @@ ad
 aj
 aj
 aj
+aO
 aj
 aj
 aj
@@ -23163,8 +23162,7 @@ aj
 aj
 aj
 aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -23350,20 +23348,20 @@ aj
 aj
 aj
 aj
+aO
 aj
 aj
 aj
 aj
 aj
 aj
+aO
 aj
 aj
 aj
 aj
 aj
-aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -23556,7 +23554,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -23965,7 +23963,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj

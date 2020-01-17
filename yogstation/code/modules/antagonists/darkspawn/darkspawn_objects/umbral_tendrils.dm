@@ -10,6 +10,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
+	item_flags = ABSTRACT | DROPDEL
 	var/datum/antagonist/darkspawn/darkspawn
 	var/obj/item/umbral_tendrils/twin
 
@@ -50,22 +51,23 @@
 /obj/item/umbral_tendrils/afterattack(atom/target, mob/living/user, proximity)
 	if(!darkspawn)
 		return
-	if(istype(target, /obj/structure/glowshroom))
-		visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
-		qdel(target)
-	if(isliving(target))
-		var/mob/living/L = target
-		if(isethereal(target))
-			target.emp_act(EMP_LIGHT)
-		for(var/obj/item/O in target)
-			if(O.light_range && O.light_power)
-				disintegrate(O)
-			if(L.pulling && L.pulling.light_range && isitem(L.pulling))
-				disintegrate(L.pulling)
-	else if(isitem(target))
-		var/obj/item/I = target
-		if(I.light_range && I.light_power)
-			disintegrate(I)
+	if(proximity)
+		if(istype(target, /obj/structure/glowshroom))
+			visible_message("<span class='warning'>[src] tears [target] to shreds!</span>")
+			qdel(target)
+		if(isliving(target))
+			var/mob/living/L = target
+			if(isethereal(target))
+				target.emp_act(EMP_LIGHT)
+			for(var/obj/item/O in target)
+				if(O.light_range && O.light_power)
+					disintegrate(O)
+				if(L.pulling && L.pulling.light_range && isitem(L.pulling))
+					disintegrate(L.pulling)
+		else if(isitem(target))
+			var/obj/item/I = target
+			if(I.light_range && I.light_power)
+				disintegrate(I)
 	switch(user.a_intent) //Note that airlock interactions can be found in airlock.dm.
 		if(INTENT_HELP)
 			if(isopenturf(target))
@@ -118,6 +120,7 @@
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
 	damage = 0
+	nodamage = TRUE
 	knockdown = 40
 	speed = 1
 	range = 5
@@ -138,21 +141,19 @@
 	. = TRUE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.lying)
-			return BULLET_ACT_FORCE_PIERCE
 		if(!iscyborg(target))
 			playsound(target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE)
 			if(!twinned)
 				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target], knocking them off their feet!</span>", \
 				"<span class='userdanger'>You're knocked off your feet!</span>")
-				L.Paralyze(10)
-				L.Knockdown(40)
+				L.Paralyze(20)
+				L.Knockdown(60)
 			else
 				target.throw_at(get_step_towards(firer, target), 7, 2) //pull them towards us!
 				target.visible_message("<span class='warning'>[firer]'s [name] slam into [target] and drag them across the ground!</span>", \
 				"<span class='userdanger'>You're suddenly dragged across the floor!</span>")
-				L.Paralyze(20) //these can't hit people who are already on the ground but they can be spammed to all shit
-				L.Knockdown(60)
+				L.Paralyze(30) //these can't hit people who are already on the ground but they can be spammed to all shit
+				L.Knockdown(80)
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, target, 'yogstation/sound/magic/pass_attack.ogg', 50, TRUE), 1)
 		else
 			var/mob/living/silicon/robot/R = target
@@ -163,3 +164,4 @@
 			playsound(R, 'sound/effects/bang.ogg', 50, TRUE)
 			R.Paralyze(40) //this is the only real anti-borg spell  get
 			R.adjustBruteLoss(10)
+

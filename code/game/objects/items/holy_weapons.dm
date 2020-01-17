@@ -438,7 +438,9 @@
 		S.ckey = C.ckey
 		S.fully_replace_character_name(null, "The spirit of [name]")
 		S.status_flags |= GODMODE
-		S.language_holder = user.language_holder.copy(S)
+		S.copy_languages(user, LANGUAGE_MASTER)	//Make sure the sword can understand and communicate with the user.
+		S.update_atom_languages()
+		grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue
 		var/input = stripped_input(S,"What are you named?", ,"", MAX_NAME_LEN)
 
 		if(src && input)
@@ -658,11 +660,62 @@
 	attack_verb = list("bashes", "smacks", "whacks")
 
 /obj/item/nullrod/holypara
-	name = "holyparasite"
-	desc = "You shouldn't see this."
-	force = 0
+	name = "deck of holy tarot cards"
+	desc = "A holy deck of tarot cards, harboring a healing spirit."
+	w_class = WEIGHT_CLASS_SMALL
+	var/mob_name = "Holyparasite"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "deck_caswhite_full"
+	var/used = FALSE
+	var/datum/guardian_stats/holypara/stats = new
 
-/obj/item/nullrod/holypara/equipped(mob/living/carbon/human/user, slot)
-	var/obj/i = new /obj/item/guardiancreator/choose/chaplain/antimagic(get_turf(loc))
-	qdel(src)
-	user.put_in_hands(i)
+/obj/item/nullrod/holypara/attack_self(mob/living/carbon/user)
+	if(isguardian(user))
+		to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
+		return
+	var/list/guardians = user.hasparasites()
+	if(LAZYLEN(guardians))
+		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>")
+		return
+	if(used == TRUE)
+		to_chat(user, "<span class='holoparasite'>All the cards appear to be blank..?</span>")
+		return
+	get_stand(user, stats)
+
+/obj/item/nullrod/holypara/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
+	used = TRUE
+	to_chat(H, "<span class='holoparasite'>You pull a card from the deck...</span>")
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Holyparasite of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/C = pick(candidates)
+		var/mob/living/simple_animal/hostile/guardian/G = new(H, "holy")
+		G.summoner = H.mind
+		G.key = C.key
+		G.mind.enslave_mind_to_creator(H)
+		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		var/datum/antagonist/guardian/S = new
+		S.stats = stats
+		S.summoner = H.mind
+		G.mind.add_antag_datum(S)
+		G.stats = stats
+		G.stats.Apply(G)
+		stats.ability.master_stats = stats
+		G.show_detail()
+		ADD_TRAIT(G, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+		ADD_TRAIT(G, TRAIT_HOLY, SPECIES_TRAIT)
+		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, with a holy tarot deck.")
+		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
+		H.verbs += /mob/living/proc/guardian_comm
+		H.verbs += /mob/living/proc/guardian_recall
+		H.verbs += /mob/living/proc/guardian_reset
+	else
+		to_chat(H, "<span class='holoparasite'>And it's blank? Perhaps you should try again later.</span>")
+		used = FALSE
+
+/datum/guardian_stats/holypara
+	damage = 2
+	defense = 2
+	speed = 3
+	potential = 2
+	range = 3
+	ability = new /datum/guardian_ability/major/healing/limited

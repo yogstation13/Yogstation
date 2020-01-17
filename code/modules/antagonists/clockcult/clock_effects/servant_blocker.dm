@@ -1,7 +1,7 @@
 //Marks the point at which "no man's land" begins on Reebe. Servants can't pass beyond this point in any way.
 /obj/effect/clockwork/servant_blocker
-	name = "glowing arrow"
-	desc = "A faintly glowing image of an arrow on the ground. Convenient!"
+	name = "glowing cross"
+	desc = "A faintly glowing image of an cross on the ground. Convenient!"
 	icon_state = "servant_blocker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE

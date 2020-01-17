@@ -62,7 +62,7 @@
 
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
-	desc = "Suit for a cyborg costume."
+	desc = "A suit for a cyborg costume."
 	icon_state = "death"
 	item_state = "death"
 	flags_1 = CONDUCT_1
@@ -72,7 +72,7 @@
 
 /obj/item/clothing/suit/justice
 	name = "justice suit"
-	desc = "this pretty much looks ridiculous" //Needs no fixing
+	desc = "This pretty much looks ridiculous." //Needs no fixing
 	icon_state = "justice"
 	item_state = "justice"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
@@ -358,13 +358,13 @@
 
 /obj/item/clothing/suit/nerdshirt
 	name = "gamer shirt"
-	desc = "A baggy shirt with vintage game character Phanic the Weasel. Why would anyone wear this?"
+	desc = "A baggy shirt featuring vintage game character Phanic the Weasel. Why would anyone wear this?"
 	icon_state = "nerdshirt"
 	item_state = "nerdshirt"
 
 /obj/item/clothing/suit/vapeshirt //wearing this is asking to get beat.
 	name = "Vape Naysh shirt"
-	desc = "A cheap white T-shirt with a big tacky \"VN\" on the front, Why would you wear this unironically?"
+	desc = "A cheap white t-shirt with a big tacky \"VN\" on the front, Why would you wear this unironically?"
 	icon_state = "vapeshirt"
 	item_state = "vapeshirt"
 
@@ -461,7 +461,7 @@
 
 /obj/item/clothing/suit/gothcoat
 	name = "gothic coat"
-	desc = "Perfect for those who want stalk in a corner of a bar."
+	desc = "Perfect for those who want to stalk in a corner of the bar."
 	icon_state = "gothcoat"
 	item_state = "gothcoat"
 

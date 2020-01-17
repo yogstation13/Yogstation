@@ -106,6 +106,10 @@
 	name = "Emergency Shuttle Cockpit";
 	req_access_txt = "19"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "az" = (
@@ -169,12 +173,24 @@
 	name = "Emergency Shuttle Brig";
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aI" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock";
 	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
@@ -190,6 +206,9 @@
 /area/shuttle/escape)
 "aM" = (
 /obj/structure/table,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aP" = (
@@ -198,6 +217,12 @@
 	},
 /obj/docking_port/mobile/emergency{
 	name = "Box emergency shuttle"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -239,6 +264,12 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aW" = (
@@ -251,12 +282,20 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Cargo"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aZ" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Infirmary"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bb" = (
@@ -266,6 +305,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bd" = (
@@ -325,6 +365,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "bn" = (
@@ -352,6 +393,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bs" = (
@@ -361,12 +403,150 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"cN" = (
+/obj/structure/table,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"dz" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "ga" = (
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"iq" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"pf" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"pv" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"tt" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"xy" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"yw" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"yP" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Dv" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Eu" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Io" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Ir" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"Ri" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"SI" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"Wn" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"WU" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "XC" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"XX" = (
+/obj/structure/table,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -381,9 +561,9 @@ aI
 ad
 aP
 ad
-ac
-ac
-ac
+pf
+pf
+pf
 ad
 aV
 ad
@@ -404,11 +584,11 @@ aF
 aG
 ad
 bn
+yw
 ao
 ao
 ao
-ao
-ao
+Dv
 bo
 ad
 bb
@@ -428,11 +608,11 @@ aG
 aJ
 ad
 aQ
+Ri
 aC
 aC
 aC
-aC
-aC
+dz
 aW
 ad
 bb
@@ -442,7 +622,7 @@ bi
 bk
 "}
 (4,1,1) = {"
-ac
+SI
 af
 am
 ar
@@ -452,11 +632,11 @@ aG
 aJ
 ad
 aC
+pv
 aS
 aS
 aS
-aS
-aS
+yP
 aC
 aX
 bb
@@ -466,7 +646,7 @@ bi
 bk
 "}
 (5,1,1) = {"
-ac
+SI
 ag
 aC
 as
@@ -475,13 +655,13 @@ ac
 aH
 ac
 bj
-aC
+Wn
+Io
 aT
 aT
 aT
-aT
-aT
-aC
+WU
+Wn
 ad
 bc
 br
@@ -490,7 +670,7 @@ bi
 bk
 "}
 (6,1,1) = {"
-ac
+SI
 ah
 aC
 at
@@ -500,11 +680,11 @@ aC
 aK
 bm
 aC
+Ri
 aC
 aC
 aC
-aC
-aC
+dz
 bp
 az
 ad
@@ -514,7 +694,7 @@ bi
 bk
 "}
 (7,1,1) = {"
-ac
+SI
 ag
 aC
 aC
@@ -522,14 +702,14 @@ ay
 aC
 aC
 ao
-aM
-aC
+cN
+tt
+pv
 aS
 aS
 aS
-aS
-aS
-aC
+yP
+tt
 ac
 XC
 bs
@@ -538,21 +718,21 @@ bi
 bk
 "}
 (8,1,1) = {"
-ac
+SI
 ai
 ao
 ao
 az
-an
-aC
+Eu
+tt
 aM
-aM
+XX
 aC
+Io
 aT
 aT
 aT
-aT
-aT
+WU
 aC
 aZ
 ga
@@ -572,11 +752,11 @@ aC
 aC
 aC
 aC
+Ri
 aC
 aC
 aC
-aC
-aC
+dz
 aC
 ac
 ga
@@ -596,11 +776,11 @@ bl
 an
 an
 aR
+iq
 am
 am
 am
-am
-am
+Ir
 aR
 ac
 bd
@@ -615,21 +795,21 @@ aa
 aa
 aa
 ad
-ac
+xy
 ad
-ac
-ad
-ad
-ad
-ac
-ac
-ac
+xy
 ad
 ad
 ad
-ac
+xy
+xy
+xy
 ad
-ac
+ad
+ad
+xy
+ad
+xy
 ad
 aa
 "}

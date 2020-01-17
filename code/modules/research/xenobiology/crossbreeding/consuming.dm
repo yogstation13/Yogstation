@@ -101,7 +101,7 @@ Consuming extracts:
 
 /obj/item/slime_cookie/orange
 	name = "fiery cookie"
-	desc = "A orange cookie with a fiery pattern. Feels warm."
+	desc = "An orange cookie with a fiery pattern. Feels warm."
 	icon_state = "orange"
 	taste = "cinnamon and burning"
 
@@ -343,12 +343,12 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/green
 	colour = "green"
-	effect_desc = "Creates a slime cookie that is absolutely disgusting, makes the target vomit, however all reagent in their body are also removed."
+	effect_desc = "Creates a slime cookie that is absolutely disgusting. Makes the target vomit, however all reagents in their body are also removed."
 	cookietype = /obj/item/slime_cookie/green
 
 /obj/item/slime_cookie/green
 	name = "gross cookie"
-	desc = "A disgusting green cookie, seeping with pus. You kind of feel ill just looking at it."
+	desc = "A disgusting green cookie, seeping with pus. You feel ill just looking at it."
 	icon_state = "green"
 	taste = "the contents of your stomach"
 

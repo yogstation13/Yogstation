@@ -514,7 +514,35 @@ CREATE TABLE `SS13_stickyban_matched_cid` (
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
 
+--
+-- Table structure for table `SS13_achievements`
+--
+DROP TABLE IF EXISTS `SS13_achievements`;
+CREATE TABLE `SS13_achievements` (
+	`name` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL,
+	`descr` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
 
+--
+-- Table structure for table `SS13_earned_achievements`
+--
+DROP TABLE IF EXISTS `SS13_earned_achievements`;
+CREATE TABLE `SS13_earned_achievements` (
+	`ckey` VARCHAR(32) NOT NULL,
+	`id` INT UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
+--
+-- Table structure for table `achievements`
+--
+DROP TABLE IF EXISTS `SS13_misc`;
+CREATE TABLE `SS13_misc` (
+	`key` VARCHAR(32) NOT NULL,
+	`value` VARCHAR(2048) NOT NULL,
+	PRIMARY KEY (`key`)
+) ENGINE=InnoDB;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

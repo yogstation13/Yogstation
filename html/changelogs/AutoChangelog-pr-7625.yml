@@ -1,0 +1,4 @@
+author: "yacabo"
+delete-after: true 
+changes: 
+  - bugfix: "Tricorder will no longer atmo scan when clicking on literally anything"
