@@ -241,3 +241,4 @@
 //end-redtext
 
 #undef GREENTEXT
+#undef REDTEXT
