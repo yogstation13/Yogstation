@@ -369,7 +369,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		id = "[rand()]"
 		to_chat(user, "<span class='notice'>You pulse \the [src]'s connection, randomly generating a new network ID.</span>")
-	return
 
 /obj/item/stack/conveyor
 	name = "conveyor belt assembly"
