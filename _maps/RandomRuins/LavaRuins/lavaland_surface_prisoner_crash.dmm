@@ -128,6 +128,7 @@
 "z" = (
 /obj/effect/mob_spawn/human/nanotrasensoldier,
 /obj/effect/decal/cleanable/blood,
+/obj/item/kitchen/knife/combat/survival,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "A" = (

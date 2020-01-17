@@ -25,12 +25,13 @@
 /code/controllers/subsystem/timer.dm @AsV9
 /code/datums/achievements/achievements.dm @AsV9
 
+
 #Identification
 
-/icons/ @Ihonkification
-/yogstation/icons/ @Ihonkification
+/icons/ @Idinuum
+/yogstation/icons/ @Idinuum
 
 #Ktlwjec
-/_maps/ @Ktlwjec
+/_maps/ @Ktlwjec1
 
 #Multiple Owners

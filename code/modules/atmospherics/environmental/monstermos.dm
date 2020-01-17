@@ -140,6 +140,7 @@
 				// (I just made explosions less laggy, you're welcome)
 				explosively_depressurize(T, cyclenum)
 				return
+		CHECK_TICK
 	if(turfs.len >= MONSTERMOS_TURF_LIMIT)
 		turfs.Cut(MONSTERMOS_TURF_LIMIT)
 	var/average_moles = total_moles / (turfs.len - planet_turfs.len)
@@ -179,6 +180,7 @@
 					T.adjust_eq_movement(T2, moles_to_move)
 					T.eq_mole_delta -= moles_to_move
 					T2.eq_mole_delta += moles_to_move
+				CHECK_TICK
 		giver_turfs.Cut() // we need to recaclculate those now
 		taker_turfs.Cut()
 		for(var/t in turfs)
@@ -348,6 +350,7 @@
 	// start by figuring out which turfs are actually affected
 	var/warned_about_planet_atmos = FALSE
 	for(var/i = 1; i <= turfs.len; i++)
+		CHECK_TICK
 		var/turf/open/T = turfs[i]
 		T.last_eq_cycle = cyclenum
 		T.pressure_direction = 0
@@ -389,6 +392,7 @@
 		progression_order[T] = 1
 	// now build a map of where the path to space is for each tile.
 	for(var/i = 1; i <= progression_order.len; i++)
+		CHECK_TICK
 		var/turf/open/T = progression_order[i]
 		for(var/t2 in T.atmos_adjacent_turfs)
 			if(!turfs[t2]) continue
@@ -403,6 +407,7 @@
 			progression_order[T2] = 1
 	// apply pressure differences to turfs
 	for(var/i = progression_order.len; i > 0; i--)
+		CHECK_TICK
 		var/turf/open/T = progression_order[i]
 		if(T.pressure_direction == 0)
 			continue

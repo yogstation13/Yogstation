@@ -1,4 +1,3 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "phoyocopier will check ig secret documents are present instead of being able to eat them if something else is placed on the copier"
+author: SomeguyManperson
+changes: []
+delete-after: true
