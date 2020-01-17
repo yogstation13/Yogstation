@@ -32,6 +32,7 @@
 	dog_fashion = /datum/dog_fashion/head
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
+	var/coloroverride // A hexadecimal as a string that, if set, overrides the font color of the whole document. Used by photocopiers
 	var/datum/language/infolang // The language info is written in. If left NULL, info will default to being omnilingual and readable by all.
 	var/list/written//What's written on the paper by people. Stores /datum/langtext values, plus plaintext values that mark where fields are.
 	var/stamps		//The (text for the) stamps on the paper.
@@ -66,7 +67,7 @@
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return
-	if(info)
+	if(info || length(written))
 		icon_state = "paper_words"
 		return
 	icon_state = "paper"
@@ -138,7 +139,10 @@
 		onclose(usr, "[name]")
 
 /obj/item/paper/proc/render_body(mob/user,links = FALSE)
-	var/text = info // The actual text displayed. Starts with & defaults to $info.
+	var/text = ""// The actual text displayed. Starts with & defaults to $info.
+	if(coloroverride)
+		text = "<font color='#[coloroverride]'>"
+	text += info
 	if(istype(infolang) && !user.has_language(infolang))
 		var/datum/language/paperlang = GLOB.language_datum_instances[infolang]
 		text = paperlang.scramble_HTML(text)
@@ -156,6 +160,8 @@
 			text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "</span>"
 	if(links)
 		text += "<span class=\"paper_field\">" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "</span>"
+	if(coloroverride)
+		text += "</font>"
 	return text
 
 /obj/item/paper/proc/clearpaper()
@@ -253,7 +259,7 @@
 			if(id == "end")
 				written += templist
 			else
-				written.Insert(id,templist)
+				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_icon()
 
