@@ -63,6 +63,47 @@
 	..()
 	. = 1
 
+/datum/reagent/drug/crank/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
+	M.adjustToxLoss(2*REM, 0)
+	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1*REM)
+	..()
+
+/datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+		var/obj/item/I = M.get_active_held_item()
+		if(I && M.dropItemToGround(I))
+			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage3(mob/living/M)
+	if(prob(20) && iscarbon(M))
+		M.Jitter(10)
+		var/obj/item/I = M.get_active_held_item()
+		if(I && M.dropItemToGround(I))
+			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 3*REM)
+	..()
+	. = 1
+
+/datum/reagent/drug/nicotine/addiction_act_stage4(mob/living/M)
+	if(prob(40) && iscarbon(M))
+		M.Jitter(10)
+		var/obj/item/I = M.get_active_held_item()
+		if(I && M.dropItemToGround(I))
+			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 3*REM)
+	..()
+	. = 1
+
 /datum/reagent/drug/crank
 	name = "Crank"
 	description = "Reduces stun times by about 200%. If overdosed or addicted it will deal significant Toxin, Brute and Brain damage."
