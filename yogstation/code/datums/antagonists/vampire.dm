@@ -341,6 +341,7 @@
 
 	if(vampwin)
 		result += "<span class='greentext'>The vampire was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext/vampire, owner.current.client)
 	else
 		result += "<span class='redtext'>The vampire has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
