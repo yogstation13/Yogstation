@@ -131,3 +131,8 @@
 	name = "Duke of Ducats"
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
 	id = 22
+
+/datum/achievement/keycard_auth
+	name = "On my authority"
+	desc = "Trigger a keycard authentication device event, by yourself."
+	id = 23
