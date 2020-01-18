@@ -173,6 +173,14 @@
 	pull_icon.screen_loc = ui_borg_pull
 	hotkeybuttons += pull_icon
 
+	using = new /obj/screen/move_up
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
+	using = new /obj/screen/move_down
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
 
 	zone_select = new /obj/screen/zone_sel/robot()
 	zone_select.update_icon(mymob)

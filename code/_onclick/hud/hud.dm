@@ -75,10 +75,14 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	hand_slots = list()
 
-	for(var/mytype in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/plane_master/instance = new mytype()
-		plane_masters["[instance.plane]"] = instance
-		instance.backdrop(mymob)
+	for(var/level in -1 to 5)
+		for(var/mytype in subtypesof(/obj/screen/plane_master))
+			if(!initial(mytype:is_multiz_plane) && level != 0)
+				continue
+			var/obj/screen/plane_master/instance = new mytype()
+			instance.set_level(level)
+			plane_masters["[instance.plane]"] = instance
+			instance.backdrop(mymob)
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)

@@ -682,6 +682,26 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		return
 	user_thrust_dir = direction
 
+/obj/spacepod/relaymove_multiz(mob/user, direction)
+	if(user != pilot || pilot.incapacitated())
+		return
+	var/turf/target = get_step(src, direction)
+	if(!target)
+		to_chat(user, "<span class='warning'>There's nothing in that direction!</span>")
+		return
+	// do a multi-tile check for movement
+
+	for(var/turf/T in locs)
+		if(has_gravity(T))
+			return
+		var/turf/destination = get_step_multiz(T, direction)
+		if(!(T.zPassOut(src, direction, destination) && destination.zPassIn(src, direction, T)))
+			return
+	if(cell && cell.use(50))
+		forceMove(target)
+	else
+		to_chat(user, "<span class='warning'>You are out of power!</span>")
+
 /obj/spacepod/Entered()
 	. = ..()
 /obj/spacepod/Exited()

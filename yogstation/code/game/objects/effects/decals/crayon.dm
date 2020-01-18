@@ -10,7 +10,7 @@
 /obj/effect/decal/cleanable/crayon/gang
 	icon = 'yogstation/icons/effects/crayondecal.dmi'
 	layer = ABOVE_NORMAL_TURF_LAYER //Harder to hide
-	plane = GAME_PLANE
+	plane = ADJUSTING_PLANE(GAME_PLANE)
 	do_icon_rotate = FALSE //These are designed to always face south, so no rotation please.
 	var/datum/team/gang/gang
 

@@ -33,6 +33,30 @@
 	else
 		toggle_internals(user)
 
+/obj/item/tank/jetpack/proc/get_user()
+	if(iscarbon(loc))
+		var/mob/living/carbon/M = loc
+		if(M.back == src)
+			return M
+		else
+			if(isturf(M.loc))
+				var/turf/T = M.loc
+				T.zFall(M)
+
+/obj/item/tank/jetpack/process()
+	. = ..()
+	var/mob/user = get_user()
+	if(user && on && isturf(user.loc))
+		var/turf/T = user.loc
+		var/turf/below = T.below()
+		var/hovering = FALSE
+		// HORRIBLE HACK
+		on = FALSE
+		hovering = below && T.can_zFall(user, 1, below) && user.can_zFall(T, 1, below, DOWN)
+		on = TRUE
+		// END OF HORRIBLE HACK
+		if(hovering)
+			allow_thrust(0.01, user) // if they run out of gas in mid-air they're gonna have a real bad time
 
 /obj/item/tank/jetpack/proc/cycle(mob/user)
 	if(user.incapacitated())
@@ -64,6 +88,9 @@
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
+	if(isturf(user.loc))
+		var/turf/T = user.loc
+		T.zFall(user) // you made big mistake
 
 /obj/item/tank/jetpack/proc/move_react(mob/user)
 	allow_thrust(0.01, user)
@@ -77,6 +104,7 @@
 
 	var/datum/gas_mixture/removed = air_contents.remove(num)
 	if(removed.total_moles() < 0.005)
+		air_contents.merge(removed) // fuck put it back
 		turn_off(user)
 		return
 
@@ -204,6 +232,9 @@
 		to_chat(user, "<span class='warning'>You need a tank in your suit storage!</span>")
 		return
 	..()
+
+/obj/item/tank/jetpack/suit/get_user()
+	return cur_user
 
 /obj/item/tank/jetpack/suit/turn_on(mob/user)
 	if(!istype(loc, /obj/item/clothing/suit/space/hardsuit) || !ishuman(loc.loc) || loc.loc != user)

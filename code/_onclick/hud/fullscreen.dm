@@ -158,6 +158,13 @@
 /obj/screen/fullscreen/color_vision/blue
 	color = "#0000ff"
 
+/obj/screen/fullscreen/lighting_proxy
+	icon = null
+	icon_state = ""
+	blend_mode = BLEND_MULTIPLY
+	show_when_dead = TRUE
+	layer = LIGHTING_LAYER
+
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"

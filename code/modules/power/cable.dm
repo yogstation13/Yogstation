@@ -107,6 +107,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(cable_colors[cable_color])
 		cable_color = cable_colors[cable_color]
 	update_icon()
+	if(d1 == d2) // its vertical
+		AddComponent(/datum/component/vertical_parallax/cable)
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
@@ -302,6 +304,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	var/turf/TB  = get_step(src, direction)
+	var/turf/T_below = get_step_multiz(TB, DOWN)
+	var/turf/T_above = get_step_multiz(TB, UP)
 
 	for(var/obj/structure/cable/C in TB)
 
@@ -320,6 +324,36 @@ By design, d1 is the smallest direction and d2 is the highest
 				merge_powernets(powernet,C.powernet)
 			else
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
+	if(T_below)
+		for(var/obj/structure/cable/C in T_below)
+			if(!C)
+				continue
+			if(src == C)
+				continue
+			if(C.d1 == fdir && C.d2 == fdir) // we've got a vertical cable.
+				if(!C.powernet)
+					var/datum/powernet/newPN = new()
+					newPN.add_cable(C)
+				if(powernet)
+					merge_powernets(powernet,C.powernet)
+				else
+					C.powernet.add_cable(src)
+	if(T_above && d1 == d2)
+		for(var/obj/structure/cable/C in T_above)
+			if(!C)
+				continue
+			if(src == C)
+				continue
+			if(C.d1 == fdir || C.d2 == fdir)
+				if(!C.powernet)
+					var/datum/powernet/newPN = new()
+					newPN.add_cable(C)
+				if(powernet)
+					merge_powernets(powernet,C.powernet)
+				else
+					C.powernet.add_cable(src)
+	
+
 
 // merge with the powernets of power objects in the source turf
 /obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
@@ -359,6 +393,28 @@ By design, d1 is the smallest direction and d2 is the highest
 				continue
 
 			to_connect += M //we'll connect the machines after all cables are merged
+	
+	
+	var/turf/T_below = get_step_multiz(loc, DOWN)
+	var/turf/T_above = get_step_multiz(loc, UP)
+	if(T_below)
+		for(var/obj/structure/cable/C in T_below)
+			if(C.d1 == C.d2 && (C.d1 == d1 || C.d1 == d2)) //only connected if they have a common direction
+				if(C.powernet == powernet)
+					continue
+				if(C.powernet)
+					merge_powernets(powernet, C.powernet)
+				else
+					powernet.add_cable(C) //the cable was powernetless, let's just add it to our powernet
+	if(T_above)
+		for(var/obj/structure/cable/C in T_above)
+			if(d1 == d2 && (d1 == C.d1 || d1 == C.d2)) //only connected if they have a common direction
+				if(C.powernet == powernet)
+					continue
+				if(C.powernet)
+					merge_powernets(powernet, C.powernet)
+				else
+					powernet.add_cable(C) //the cable was powernetless, let's just add it to our powernet
 
 	//now that cables are done, let's connect found machines
 	for(var/obj/machinery/power/PM in to_connect)
@@ -374,11 +430,14 @@ By design, d1 is the smallest direction and d2 is the highest
 	. = list()	// this will be a list of all connected power objects
 	var/turf/T
 
+	var/turned_d1 = d1 ? turn(d1, 180) : 0
+	var/turned_d2 = d2 ? turn(d2, 180) : 0
+
 	//get matching cables from the first direction
 	if(d1) //if not a node cable
 		T = get_step(src, d1)
 		if(T)
-			. += power_list(T, src, turn(d1, 180), powernetless_only) //get adjacents matching cables
+			. += power_list(T, src, turned_d1, powernetless_only) //get adjacents matching cables
 
 	if(d1&(d1-1)) //diagonal direction, must check the 4 possibles adjacents tiles
 		T = get_step(src,d1&3) // go north/south
@@ -393,7 +452,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	//do the same on the second direction (which can't be 0)
 	T = get_step(src, d2)
 	if(T)
-		. += power_list(T, src, turn(d2, 180), powernetless_only) //get adjacents matching cables
+		. += power_list(T, src, turned_d2, powernetless_only) //get adjacents matching cables
 
 	if(d2&(d2-1)) //diagonal direction, must check the 4 possibles adjacents tiles
 		T = get_step(src,d2&3) // go north/south
@@ -403,6 +462,31 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(T)
 			. += power_list(T, src, d2 ^ 12, powernetless_only) //get diagonally matching cables
 	. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
+
+	if(d2 == d1)
+		if(T)
+			T = get_step_multiz(src, UP)
+			. += power_list(T, src, d2, powernetless_only)
+			if(T)
+				T = get_step(T, d2)
+				. += power_list(T, src, turn(d2, 180), powernetless_only)
+	T = get_step_multiz(src, DOWN)
+	if(T)
+		for(var/obj/structure/cable/C in T)
+			if(C != src && C.d1 == C.d2 && (C.d2 == d1 || C.d2 == d2) && (!powernetless_only || !C.powernet))
+				. += C
+		if(d1)
+			T = get_step(T, d1)
+			if(T)
+				for(var/obj/structure/cable/C in T)
+					if(C != src && C.d1 == C.d2 && C.d1 == turned_d1 && (!powernetless_only || !C.powernet))
+						. += C
+		T = get_step_multiz(src, DOWN)
+		T = get_step(T, d2)
+		if(T)
+			for(var/obj/structure/cable/C in T)
+				if(C != src && C.d1 == C.d2 && C.d2 == turned_d2 && (!powernetless_only || !C.powernet))
+					. += C
 
 	return .
 
@@ -590,16 +674,53 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	if(!isturf(user.loc))
 		return
 
-	if(!isturf(T) || T.intact || !T.can_have_cabling())
-		to_chat(user, "<span class='warning'>You can only lay cables on catwalks and plating!</span>")
-		return
-
 	if(get_amount() < 1) // Out of cable
 		to_chat(user, "<span class='warning'>There is no cable left!</span>")
 		return
 
 	if(get_dist(T,user) > 1) // Too far
 		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away!</span>")
+		return
+	
+	if(iswallturf(T))
+		if(get_amount() < 2)
+			to_chat(user, "<span class='warning'>There is not enough cable to do that!</span>")
+			return
+		var/wall_dir = get_dir(user, T)
+		if(!(wall_dir in GLOB.cardinals))
+			return // no diagonal memes here (for now)
+		var/turf/UT = user.loc
+		for(var/obj/structure/cable/LC in UT)
+			if(LC.d2 == wall_dir && LC.d1 == wall_dir)
+				to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
+				return
+		
+		var/obj/structure/cable/C = get_new_cable(UT)
+
+		//set up the new cable
+		C.d1 = wall_dir
+		C.d2 = wall_dir
+		C.add_fingerprint(user)
+		C.update_icon()
+		C.AddComponent(/datum/component/vertical_parallax/cable)
+
+		//create a new powernet with the cable, if needed it will be merged later
+		var/datum/powernet/PN = new()
+		PN.add_cable(C)
+
+		C.mergeConnectedNetworks(C.d2) //merge the powernet with adjacents powernets
+		C.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
+
+		use(2)
+
+		if(C.shock(user, 50))
+			if(prob(50)) //fail
+				new /obj/item/stack/cable_coil(get_turf(C), 2, C.color)
+				C.deconstruct()
+		return C
+
+	if(!isturf(T) || T.intact || !T.can_have_cabling())
+		to_chat(user, "<span class='warning'>You can only lay cables on catwalks and plating!</span>")
 		return
 
 	var/dirn

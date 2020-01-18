@@ -537,6 +537,11 @@
 			if (value & GLOB.bitfields[name][i])
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
+	else if (name == "plane" && (value < -10000 || value > 10000))
+		var/relative_value = (value - FLOAT_PLANE)
+		if(relative_value > 10000)
+			relative_value -= 65536
+		item = "[VV_HTML_ENCODE(name)] = <span class='value'>FLOAT_PLANE + [VV_HTML_ENCODE(relative_value)]</span>"
 	else
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
 

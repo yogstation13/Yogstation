@@ -106,6 +106,8 @@ SUBSYSTEM_DEF(overlays)
 				if (A.flags_1 & OVERLAY_QUEUED_1)
 					COMPILE_OVERLAYS(A)
 			appearance_bro.appearance = overlay //this works for images and atoms too!
+			if(appearance_bro.plane != FLOAT_PLANE && (isatom(overlay) || ispath(overlay))) // It's an object - we gotta get the plane fixed
+				appearance_bro.plane = OVERLAY_PLANE(appearance_bro.plane, plane)
 			if(!ispath(overlay))
 				var/image/I = overlay
 				appearance_bro.dir = I.dir

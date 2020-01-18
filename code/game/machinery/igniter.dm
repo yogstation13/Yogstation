@@ -3,7 +3,7 @@
 	desc = "It's useful for igniting plasma."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "igniter0"
-	plane = FLOOR_PLANE
+	plane = ADJUSTING_PLANE(FLOOR_PLANE)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4

@@ -459,6 +459,10 @@
 	suffix = "box"
 	name = "labour shuttle (Box)"
 
+/datum/map_template/shuttle/labour/monster
+	suffix = "monster"
+	name = "labour shuttle (Monster)"
+
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
 	name = "basic syndicate infiltrator"

@@ -11,6 +11,7 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
 	baseturfs = /turf/open/floor/plating
+	merge_cables = FALSE
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 50 /* nich really doesn't like pipes that go through walls */\
@@ -179,6 +180,9 @@
 		return
 
 	return ..()
+
+/turf/closed/wall/can_lay_cable()
+	return can_have_cabling()
 
 /turf/closed/wall/proc/try_clean(obj/item/W, mob/user, turf/T)
 	if((user.a_intent != INTENT_HELP) || !LAZYLEN(dent_decals))

@@ -32,6 +32,9 @@
 							//IE if the turf is supposed to be water, set TRUE.
 
 	var/tiled_dirt = FALSE // use smooth tiled dirt decal
+	var/adjacent_openspaces = 0
+	var/obj/effect/edge_openspace/edge_openspace
+	var/merge_cables = TRUE
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
@@ -81,6 +84,7 @@
 		has_opaque_atom = TRUE
 
 	ComponentInitialize()
+	update_adjacent_openspace()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -120,9 +124,37 @@
 		return
 	user.Move_Pulled(src)
 
+/turf/proc/update_adjacent_openspace()
+	if(adjacent_openspaces > 0 && !edge_openspace)
+		edge_openspace = new(src)
+		edge_openspace.vis_contents += below()
+	else if(adjacent_openspaces <= 0 && edge_openspace)
+		edge_openspace.vis_contents.Cut()
+		QDEL_NULL(edge_openspace)
+/turf/proc/add_adjacent_openspace()
+	adjacent_openspaces++
+	update_adjacent_openspace()
+
+/turf/proc/remove_adjacent_openspace()
+	adjacent_openspaces--
+	update_adjacent_openspace()
+
+
+/turf/update_multiz()
+	. = ..()
+	if(edge_openspace)
+		edge_openspace.vis_contents.Cut()
+		edge_openspace.vis_contents += below()
+
 /turf/proc/multiz_turf_del(turf/T, dir)
+	if(dir != DOWN)
+		return
+	update_multiz()
 
 /turf/proc/multiz_turf_new(turf/T, dir)
+	if(dir != DOWN)
+		return
+	update_multiz()
 
 //zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air
@@ -153,7 +185,7 @@
 	return TRUE
 
 /turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
-	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
+	return !A.anchored && zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
 
 /turf/proc/zFall(atom/movable/A, levels = 1, force = FALSE)
 	var/turf/target = get_step_multiz(src, DOWN)
@@ -162,10 +194,19 @@
 	if(!force && (!can_zFall(A, levels, target) || !A.can_zFall(src, levels, target, DOWN)))
 		return FALSE
 	A.visible_message("<span class='danger'>[A] falls through [src]!</span>")
+	var/atom/movable/A2 = A.pulling
+	if(A2)
+		A2.zfalling = TRUE
 	A.zfalling = TRUE
 	A.forceMove(target)
 	A.zfalling = FALSE
+	if(A2)
+		A2.forceMove(target)
+		A.start_pulling(A2)
+		A2.zfalling = FALSE
 	target.zImpact(A, levels)
+	if(A2 && A2.loc == target)
+		target.zImpact(A2, levels)
 	return TRUE
 
 /turf/proc/handleRCL(obj/item/twohanded/rcl/C, mob/user)
@@ -184,10 +225,11 @@
 		return TRUE
 	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
-		for(var/obj/structure/cable/LC in src)
-			if(!LC.d1 || !LC.d2)
-				LC.attackby(C,user)
-				return
+		if(merge_cables)
+			for(var/obj/structure/cable/LC in src)
+				if(!LC.d1 || !LC.d2)
+					LC.attackby(C,user)
+					return
 		coil.place_turf(src, user)
 		return TRUE
 

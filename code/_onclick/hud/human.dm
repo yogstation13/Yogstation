@@ -118,6 +118,16 @@
 	using.screen_loc = ui_drop_throw
 	static_inventory += using
 
+	using = new /obj/screen/move_up()
+	using.icon = ui_style
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
+	using = new /obj/screen/move_down()
+	using.icon = ui_style
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "i_clothing"
 	inv_box.icon = ui_style

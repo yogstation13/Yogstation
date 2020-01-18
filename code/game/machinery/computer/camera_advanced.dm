@@ -216,6 +216,11 @@
 	else
 		sprint = initial
 
+/mob/camera/aiEye/remote/relaymove_multiz(mob/user,direct)
+	var/turf/step = get_step_multiz(src, direct)
+	if(step)
+		setLoc(step)
+
 /datum/action/innate/camera_off
 	name = "End Camera View"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'

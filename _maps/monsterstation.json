@@ -1,0 +1,12 @@
+{
+    "map_name": "MonsterStation",
+    "map_path": "map_files/MonsterStation",
+    "map_file": "MonsterStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_meta",
+	    "emergency": "emergency_box"
+	},
+	"traits": [{"Up": 1}, {"Up": 1, "Down": -1, "Baseturf" : "/turf/open/openspace"}, {"Up": 1, "Down": -1, "Baseturf" : "/turf/open/openspace"}, {"Down": -1, "Baseturf" : "/turf/open/openspace"}]
+}

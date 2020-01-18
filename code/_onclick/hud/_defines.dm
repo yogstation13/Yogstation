@@ -77,6 +77,7 @@
 
 //Lower right, persistent menu
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
+#define ui_multiz "EAST-1:28,SOUTH+2:7"
 #define ui_above_movement "EAST-2:26,SOUTH+1:7"
 #define ui_above_intent "EAST-3:24, SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
@@ -172,6 +173,7 @@
 
 //Ghosts
 
+#define ui_ghost_multiz "SOUTH:6,CENTER-3:24"
 #define ui_ghost_jumptomob "SOUTH:6,CENTER-2:24"
 #define ui_ghost_orbit "SOUTH:6,CENTER-1:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER:24"

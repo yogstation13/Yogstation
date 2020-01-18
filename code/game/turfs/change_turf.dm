@@ -82,6 +82,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
+	var/old_adjacent_openspaces = adjacent_openspaces
+	var/old_edge_openspace = edge_openspace
 
 	var/old_exl = explosion_level
 	var/old_exi = explosion_id
@@ -115,6 +117,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		W.AfterChange(flags)
 
 	W.blueprint_data = old_bp
+	W.adjacent_openspaces = old_adjacent_openspaces
+	W.edge_openspace = old_edge_openspace
 
 	if(SSlighting.initialized)
 		recalc_atom_opacity()

@@ -8,7 +8,7 @@
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
 	max_integrity = 50
 	layer = LATTICE_LAYER //under pipes
-	plane = FLOOR_PLANE
+	plane = ADJUSTING_PLANE(FLOOR_PLANE)
 	var/number_of_rods = 1
 	canSmoothWith = list(/obj/structure/lattice,
 	/turf/open/floor,
@@ -118,6 +118,11 @@
 	for(var/obj/structure/cable/C in T)
 		C.deconstruct()
 	..()
+
+/obj/structure/lattice/catwalk/glass
+	name = "glass catwalk"
+	icon = 'icons/obj/smooth_structures/catwalk_glass.dmi'
+	icon_state = "glass_lattice"
 
 /obj/structure/lattice/catwalk/clockwork
 	name = "clockwork catwalk"

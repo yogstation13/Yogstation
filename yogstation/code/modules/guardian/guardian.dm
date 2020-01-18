@@ -118,8 +118,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
 	barrier_images += image('yogstation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
 	for(var/image/I in barrier_images)
-		I.layer = ABOVE_LIGHTING_PLANE
-		I.plane = FLOOR_PLANE
+		I.layer = ABOVE_LIGHTING_LAYER
+		I.plane = ADJUSTED_PLANE(FLOOR_PLANE, I.loc.plane)
 		client.images += I
 
 /mob/living/simple_animal/hostile/guardian/proc/setthemename(pickedtheme) //set the guardian's theme to something cool!

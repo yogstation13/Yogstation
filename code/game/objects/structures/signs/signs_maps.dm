@@ -48,7 +48,6 @@
 
 //minsky variant direction signs
 
-
 /obj/structure/sign/directions/minsky/science
 	name = "science department"
 	desc = "A direction sign, pointing out which way the Science department is."
@@ -83,3 +82,25 @@
 	name = "command department"
 	desc = "A direction sign, pointing out which way the Command department is."
 	icon_state = "minskydirection_bridge"
+
+// deck signs signs
+
+/obj/structure/sign/deck/deck1
+	name = "deck 1"
+	desc = "A sign telling you you are on deck 1"
+	icon_state = "deck1"
+
+/obj/structure/sign/deck/deck2
+	name = "deck 2"
+	desc = "A sign telling you you are on deck 2"
+	icon_state = "deck2"
+
+/obj/structure/sign/deck/deck3
+	name = "deck 3"
+	desc = "A sign telling you you are on deck 3"
+	icon_state = "deck3"
+
+/obj/structure/sign/deck/deck4
+	name = "deck 4"
+	desc = "A sign telling you you are on deck 4"
+	icon_state = "deck4"

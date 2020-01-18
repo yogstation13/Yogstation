@@ -72,6 +72,16 @@
 	using.icon = ui_style
 	static_inventory += using
 
+	using = new /obj/screen/move_up
+	using.icon = ui_style
+	using.screen_loc = ui_ghost_multiz
+	static_inventory += using
+
+	using = new /obj/screen/move_down
+	using.icon = ui_style
+	using.screen_loc = ui_ghost_multiz
+	static_inventory += using
+
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
 	var/mob/dead/observer/O = mymob

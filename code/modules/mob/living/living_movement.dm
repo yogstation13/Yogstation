@@ -42,7 +42,18 @@
 		remove_movespeed_modifier(MOVESPEED_ID_LIVING_TURF_SPEEDMOD)
 
 /mob/living/can_zFall(turf/T, levels)
-	return !(movement_type & FLYING)
+	var/obj/item/tank/jetpack/J
+	J = get_jetpack()
+	if(J && J.on)
+		return FALSE
+	return ..()
 
 /mob/living/canZMove(dir, turf/target)
-	return can_zTravel(target, dir) && (movement_type & FLYING)
+	if(!can_zTravel(target, dir))
+		return FALSE
+	if((movement_type & FLYING) || !has_gravity(loc))
+		return TRUE
+	var/obj/item/tank/jetpack/J
+	J = get_jetpack()
+	if(J && J.on && J.allow_thrust(0.02, src))
+		return TRUE

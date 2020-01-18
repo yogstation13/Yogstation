@@ -80,11 +80,15 @@
 		AM.forceMove(get_turf(src))
 	return ..()
 
+/obj/effectr/dummy/phased_mob/spell_jaunt/relaymove_multiz(var/mob/user, direction)
+	relaymove(user, direction)
+
 /obj/effect/dummy/phased_mob/spell_jaunt/relaymove(var/mob/user, direction)
 	if ((movedelay > world.time) || reappearing || !direction)
 		return
-	var/turf/newLoc = get_step(src,direction)
-	setDir(direction)
+	var/turf/newLoc = get_step_multiz(src,direction)
+	if(!(direction & (UP|DOWN)))
+		setDir(direction)
 
 	movedelay = world.time + movespeed
 

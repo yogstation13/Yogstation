@@ -899,9 +899,16 @@
 
 /mob/proc/sync_lighting_plane_alpha()
 	if(hud_used)
-		var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-		if (L)
-			L.alpha = lighting_alpha
+		for(var/plane_str in hud_used.plane_masters)
+			var/obj/screen/plane_master/lighting/L = hud_used.plane_masters[plane_str]
+			if(istype(L))
+				if(lighting_alpha == 255 || lighting_alpha == null)
+					L.color = null
+				else
+					var/float_alpha = lighting_alpha == null ? 1 : lighting_alpha / 255
+					var/inv_float_alpha = 1 - float_alpha
+					L.color = list(float_alpha, 0, 0, 0, float_alpha, 0, 0, 0, float_alpha, inv_float_alpha, inv_float_alpha, inv_float_alpha)
+					//L.alpha = lighting_alpha
 
 /mob/proc/update_mouse_pointer()
 	if (!client)

@@ -743,7 +743,7 @@
 		I = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
 	else if(used_item)
 		I = image(icon = used_item, loc = A, layer = A.layer + 0.1)
-		I.plane = GAME_PLANE
+		I.plane = OVERLAY_PLANE(GAME_PLANE, A.plane)
 
 		// Scale the icon.
 		I.transform *= 0.75
@@ -914,7 +914,7 @@
 	if(!istype(loc, /turf))
 		return
 	var/image/I = image(icon = src, loc = loc, layer = layer + 0.1)
-	I.plane = GAME_PLANE
+	I.plane = OVERLAY_PLANE(GAME_PLANE, loc.plane)
 	I.transform *= 0.75
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	var/turf/T = get_turf(src)

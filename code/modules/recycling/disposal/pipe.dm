@@ -32,15 +32,20 @@
 	if(dir in GLOB.diagonals) // Bent pipes already have all the dirs set
 		initialize_dirs = NONE
 
+	dpdir = NONE
 	if(initialize_dirs != DISP_DIR_NONE)
-		dpdir = dir
+		dpdir |= dir
 
-		if(initialize_dirs & DISP_DIR_LEFT)
-			dpdir |= turn(dir, 90)
-		if(initialize_dirs & DISP_DIR_RIGHT)
-			dpdir |= turn(dir, -90)
-		if(initialize_dirs & DISP_DIR_FLIP)
-			dpdir |= turn(dir, 180)
+	if(initialize_dirs & DISP_DIR_LEFT)
+		dpdir |= turn(dir, 90)
+	if(initialize_dirs & DISP_DIR_RIGHT)
+		dpdir |= turn(dir, -90)
+	if(initialize_dirs & DISP_DIR_FLIP)
+		dpdir |= turn(dir, 180)
+	if(initialize_dirs & DISP_DIR_UP)
+		dpdir |= UP
+	if(initialize_dirs & DISP_DIR_DOWN)
+		dpdir |= DOWN
 	update()
 
 // pipe is deleted
@@ -56,7 +61,12 @@
 // returns the direction of the next pipe object, given the entrance dir
 // by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(obj/structure/disposalholder/H)
-	return dpdir & (~turn(H.dir, 180))
+	var/flipped = turn(H.dir, 180)
+	if(H.dir == UP)
+		flipped = DOWN
+	if(H.dir == DOWN)
+		flipped = UP
+	return dpdir & (~flipped)
 
 // transfer the holder through this pipe segment
 // overridden for special behaviour
@@ -83,7 +93,7 @@
 // update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = get_turf(src)
-	hide(T.intact && !isspaceturf(T))	// space never hides pipes
+	hide(T.intact)
 
 // hide called by levelupdate if turf intact status changes
 // change visibility status and force update of icon
@@ -294,7 +304,7 @@
 	if(H.dir == DOWN)
 		return dir
 	else
-		return NONE
+		return DOWN
 
 // a broken pipe
 /obj/structure/disposalpipe/broken

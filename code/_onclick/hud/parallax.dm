@@ -11,6 +11,8 @@
 	var/parallax_layers_max = 4
 	var/parallax_animate_timer
 
+	var/list/vertical_parallax_images = list()
+
 /datum/hud/proc/create_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
@@ -32,28 +34,36 @@
 		C.parallax_layers.len = C.parallax_layers_max
 
 	C.screen |= (C.parallax_layers)
-	var/obj/screen/plane_master/PM = screenmob.hud_used.plane_masters["[PLANE_SPACE]"]
 	if(screenmob != mymob)
-		C.screen -= locate(/obj/screen/plane_master/parallax_white) in C.screen
-		C.screen += PM
-	PM.color = list(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		1, 1, 1, 1,
-		0, 0, 0, 0
-		)
+		for(var/obj/screen/plane_master/parallax_white/PM in C.screen)
+			C.screen -= PM
+	for(var/plane_str in screenmob.hud_used.plane_masters)
+		var/obj/screen/plane_master/parallax_white/PM = screenmob.hud_used.plane_masters[plane_str]
+		if(istype(PM))
+			if(screenmob != mymob)
+				C.screen += PM
+			PM.color = list(
+				0, 0, 0, 0,
+				0, 0, 0, 0,
+				0, 0, 0, 0,
+				1, 1, 1, 1,
+				0, 0, 0, 0
+				)
 
 
 /datum/hud/proc/remove_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
 	C.screen -= (C.parallax_layers_cached)
-	var/obj/screen/plane_master/PM = screenmob.hud_used.plane_masters["[PLANE_SPACE]"]
 	if(screenmob != mymob)
-		C.screen -= locate(/obj/screen/plane_master/parallax_white) in C.screen
-		C.screen += PM
-	PM.color = initial(PM.color)
+		for(var/obj/screen/plane_master/parallax_white/PM in C.screen)
+			C.screen -= PM
+	for(var/plane_str in screenmob.hud_used.plane_masters)
+		var/obj/screen/plane_master/parallax_white/PM = screenmob.hud_used.plane_masters[plane_str]
+		if(istype(PM))
+			if(screenmob != mymob)
+				C.screen += PM
+			PM.color = initial(PM.color)
 	C.parallax_layers = null
 
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
@@ -175,6 +185,21 @@
 	if(!posobj)
 		return
 	var/area/areaobj = posobj.loc
+
+	// update 3D
+	if(C.vertical_parallax_images)
+		C.images -= C.vertical_parallax_images
+		QDEL_LIST(C.vertical_parallax_images)
+	else
+		C.vertical_parallax_images = list()
+	for(var/datum/component/vertical_parallax/VP in GLOB.vertical_parallax_objects) // not the best but meh
+		var/atom/A = VP.parent
+		if(abs(A.x - posobj.x) <= 8 && abs(A.y - posobj.y) <= 8)
+			var/list/vp_images = VP.get_images(posobj)
+			if(vp_images)
+				C.vertical_parallax_images += vp_images
+	if(C.vertical_parallax_images.len)
+		C.images += C.vertical_parallax_images
 
 	// Update the movement direction of the parallax if necessary (for shuttles)
 	set_parallax_movedir(areaobj.parallax_movedir, FALSE)

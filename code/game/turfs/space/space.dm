@@ -17,7 +17,7 @@
 	var/destination_y
 
 	var/global/datum/gas_mixture/immutable/space/space_gas = new
-	plane = PLANE_SPACE
+	plane = ADJUSTING_PLANE(PLANE_SPACE)
 	layer = SPACE_LAYER
 	light_power = 0.25
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
@@ -195,7 +195,7 @@
 /turf/open/space/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	underlay_appearance.icon = 'icons/turf/space.dmi'
 	underlay_appearance.icon_state = SPACE_ICON_STATE
-	underlay_appearance.plane = PLANE_SPACE
+	underlay_appearance.plane = OVERLAY_PLANE(PLANE_SPACE, asking_turf.plane)
 	return TRUE
 
 

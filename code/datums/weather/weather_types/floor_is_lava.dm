@@ -19,7 +19,7 @@
 	target_trait = ZTRAIT_STATION
 
 	overlay_layer = ABOVE_OPEN_TURF_LAYER //Covers floors only
-	overlay_plane = FLOOR_PLANE
+	overlay_plane = ADJUSTING_PLANE(FLOOR_PLANE)
 	immunity_type = "lava"
 
 

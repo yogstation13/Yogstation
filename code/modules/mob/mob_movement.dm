@@ -263,6 +263,22 @@
 /mob/proc/update_gravity()
 	return
 
+/mob/onTransitZ(old_z, new_z)
+	if(hud_used)
+		var/offset_down = SSmapping.level_trait(old_z, ZTRAIT_DOWN)
+		var/offset_up = SSmapping.level_trait(old_z, ZTRAIT_UP)
+		var/animate_offset = 0
+		if(offset_down && old_z + offset_down == new_z)
+			animate_offset = 1
+		else if(offset_up && old_z + offset_up == new_z)
+			animate_offset = -1
+		if(animate_offset != 0)
+			for(var/pm_key in hud_used.plane_masters)
+				var/obj/screen/plane_master/PM = hud_used.plane_masters[pm_key]
+				PM.animate_level_change(animate_offset, 2)
+
+	. = ..()
+
 //bodypart selection - Cyberboss
 //8 toggles through head - eyes - mouth
 //4: r-arm 5: chest 6: l-arm
@@ -370,6 +386,11 @@
 	set name = "Move Upwards"
 	set category = "IC"
 
+	var/obj/structure/ladder/L = locate(/obj/structure/ladder) in loc
+	if(L && L.up)
+		L.travel(TRUE, src, istype(src, /mob/dead/observer), L.up)
+		return
+
 	if(zMove(UP, TRUE))
 		to_chat(src, "<span class='notice'>You move upwards.</span>")
 
@@ -377,12 +398,27 @@
 	set name = "Move Down"
 	set category = "IC"
 
+	var/obj/structure/ladder/L = locate(/obj/structure/ladder) in loc
+	if(L && L.down)
+		L.travel(FALSE, src, istype(src, /mob/dead/observer), L.down)
+		return
+
 	if(zMove(DOWN, TRUE))
 		to_chat(src, "<span class='notice'>You move down.</span>")
 
 /mob/proc/zMove(dir, feedback = FALSE)
 	if(dir != UP && dir != DOWN)
 		return FALSE
+	if(remote_control)					//we're controlling something, our movement is relayed to it
+		return remote_control.relaymove_multiz(src, dir)
+
+	if(buckled)							//if we're buckled to something, tell it we moved.
+		return buckled.relaymove_multiz(src, dir)
+
+	if(isobj(loc) || ismob(loc))	//Inside an object, tell it we moved
+		var/atom/O = loc
+		return O.relaymove_multiz(src, dir)
+
 	var/turf/target = get_step_multiz(src, dir)
 	if(!target)
 		if(feedback)
@@ -392,8 +428,14 @@
 		if(feedback)
 			to_chat(src, "<span class='warning'>You couldn't move there!</span>")
 		return FALSE
+	var/prev_inertia_dir = inertia_dir
 	forceMove(target)
+	newtonian_move(prev_inertia_dir) // make sure we dont lose momentum from z-transitioning
 	return TRUE
 
 /mob/proc/canZMove(direction, turf/target)
 	return FALSE
+
+
+/mob/dead/observer/canZMove(direction, turf/target)
+	return TRUE

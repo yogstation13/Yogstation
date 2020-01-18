@@ -585,6 +585,9 @@
 		return
 	return domove(direction)
 
+/obj/mecha/relaymove_multiz(mob/user, direction)
+	relaymove(user, direction)
+
 /obj/mecha/proc/domove(direction)
 	if(can_move >= world.time)
 		return 0
@@ -618,6 +621,9 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
 		move_result = mechsteprand()
+	else if(dir & (UP|DOWN))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
+		move_result = mechstepmultiz(direction)
 	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
 		move_result = mechturn(direction)
 	else
@@ -638,6 +644,20 @@
 /obj/mecha/proc/mechstep(direction)
 	var/current_dir = dir
 	var/result = step(src,direction)
+	if(strafe)
+		setDir(current_dir)
+	if(result && stepsound)
+		playsound(src,stepsound,40,1)
+	return result
+
+/obj/mecha/proc/mechstepmultiz(direction)
+	var/current_dir = dir
+	var/turf/target = get_step_multiz(src, dir)
+	if(!target)
+		return FALSE
+	var/result = can_zTravel(target, direction) && !has_gravity(loc)
+	if(result)
+		forceMove(target)
 	if(strafe)
 		setDir(current_dir)
 	if(result && stepsound)

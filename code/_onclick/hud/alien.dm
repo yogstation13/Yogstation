@@ -71,6 +71,17 @@
 	using.screen_loc = ui_drop_throw
 	static_inventory += using
 
+	using = new /obj/screen/move_up
+	using.icon = ui_style
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
+	using = new /obj/screen/move_down
+	using.icon = ui_style
+	using.screen_loc = ui_multiz
+	static_inventory += using
+
+
 	using = new /obj/screen/resist()
 	using.icon = ui_style
 	using.screen_loc = ui_above_movement

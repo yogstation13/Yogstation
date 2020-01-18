@@ -6,7 +6,7 @@
 	icon             = LIGHTING_ICON
 	icon_state       = "transparent"
 	color            = null //we manually set color in init instead
-	plane            = LIGHTING_PLANE
+	plane            = ADJUSTING_PLANE(LIGHTING_PLANE)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer            = LIGHTING_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
@@ -26,7 +26,8 @@
 	if (myturf.lighting_object)
 		qdel(myturf.lighting_object, force = TRUE)
 	myturf.lighting_object = src
-	myturf.luminosity = 0
+	if(!istype(myturf, /turf/open/openspace)) // openspace might have turfs below it that are quite illuminated.
+		myturf.luminosity = 0
 
 	for(var/turf/open/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
 		S.update_starlight()

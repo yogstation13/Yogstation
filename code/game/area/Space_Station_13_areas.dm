@@ -549,6 +549,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	clockwork_warp_allowed = FALSE
 	clockwork_warp_fail = "The gravitons generated here could throw off your warp's destination and possibly throw you into deep space."
 
+/area/engine/gravity_generator/deck1
+	name = "Deck 1 Gravity Generator"
+/area/engine/gravity_generator/deck2
+	name = "Deck 2 Gravity Generator"
+/area/engine/gravity_generator/deck3
+	name = "Deck 3 Gravity Generator"
+/area/engine/gravity_generator/deck4
+	name = "Deck 4 Gravity Generator"
+/area/engine/gravity_generator/deck5
+	name = "Deck 5 Gravity Generator"
+
 /area/engine/storage
 	name = "Engineering Storage"
 	icon_state = "engi_storage"

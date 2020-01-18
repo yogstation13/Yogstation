@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	feedback_details += "Vent Coords: [center.x],[center.y],[center.z]"
 	var/image/plasma_image = image(image_icon,center,image_state,FLY_LAYER)
 	plasma_image.alpha = 50
-	plasma_image.plane = GAME_PLANE
+	plasma_image.plane = OVERLAY_PLANE(GAME_PLANE, center.plane)
 	flood_images += plasma_image
 	flood_turfs += center
 	if(target.client)
@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				continue
 			var/image/new_plasma = image(image_icon,T,image_state,FLY_LAYER)
 			new_plasma.alpha = 50
-			new_plasma.plane = GAME_PLANE
+			new_plasma.plane = OVERLAY_PLANE(GAME_PLANE, T.plane)
 			flood_images += new_plasma
 			flood_turfs += T
 	if(target.client)

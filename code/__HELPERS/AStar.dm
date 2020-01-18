@@ -104,7 +104,7 @@ Actual Adjacent procs :
 	if(!start || !end)
 		stack_trace("Invalid A* start or destination")
 		return FALSE
-	if( start.z != end.z || start == end ) //no pathfinding between z levels
+	if(!(start.z in get_multiz_accessible_levels(end.z)) || start == end ) //no pathfinding between z levels that aren't linked in z-space
 		return FALSE
 	if(maxnodes)
 		//if start turf is farther than maxnodes from end turf, no need to do anything
@@ -142,7 +142,8 @@ Actual Adjacent procs :
 				var/f= 1<<i //get cardinal directions.1,2,4,8
 				if(cur.bf & f)
 					var/T = get_step(cur.source,f)
-					if(T != exclude)
+					T = call(cur.source,adjacent)(caller, T, id, simulated_only)
+					if(T && T != exclude)
 						var/datum/PathNode/CN = openc[T]  //current checking turf
 						var/r=((f & MASK_ODD)<<1)|((f & MASK_EVEN)>>1) //getting reverse direction throught swapping even and odd bits.((f & 01010101)<<1)|((f & 10101010)>>1)
 						var/newg = cur.g + call(cur.source,dist)(T)
@@ -150,15 +151,13 @@ Actual Adjacent procs :
 						//is already in open list, check if it's a better way from the current turf
 							CN.bf &= 15^r //we have no closed, so just cut off exceed dir.00001111 ^ reverse_dir.We don't need to expand to checked turf.
 							if((newg < CN.g) )
-								if(call(cur.source,adjacent)(caller, T, id, simulated_only))
-									CN.setp(cur,newg,CN.h,cur.nt+1)
-									open.ReSort(CN)//reorder the changed element in the list
+								CN.setp(cur,newg,CN.h,cur.nt+1)
+								open.ReSort(CN)//reorder the changed element in the list
 						else
 						//is not already in open list, so add it
-							if(call(cur.source,adjacent)(caller, T, id, simulated_only))
-								CN = new(T,cur,newg,call(T,dist)(end),cur.nt+1,15^r)
-								open.Insert(CN)
-								openc[T] = CN
+							CN = new(T,cur,newg,call(T,dist)(end),cur.nt+1,15^r)
+							open.Insert(CN)
+							openc[T] = CN
 		cur.bf = 0
 		CHECK_TICK
 	//reverse the path to get it from start to finish
@@ -176,18 +175,41 @@ Actual Adjacent procs :
 	var/list/L = new()
 	var/turf/T
 	var/static/space_type_cache = typecacheof(/turf/open/space)
+	var/static/openspace_type_cache = typecacheof(/turf/open/openspace)
+	var/stairs_dir = 0
+	var/obj/structure/stairs/our_stairs = locate(/obj/structure/stairs) in loc
+	if(our_stairs && our_stairs.isTerminator())
+		stairs_dir = our_stairs.dir
 
-	for(var/k in 1 to GLOB.cardinals.len)
-		T = get_step(src,GLOB.cardinals[k])
+	for(var/cdir in GLOB.cardinals)
+		var/turf/O = stairs_dir == cdir ? get_step_multiz(src, UP) : src
+		T = get_step(O,cdir)
 		if(!T || (simulated_only && space_type_cache[T.type]))
 			continue
-		if(!T.density && !LinkBlockedWithAccess(T,caller, ID))
+		if(openspace_type_cache[T.type])
+			T = T.below()
+			var/obj/structure/stairs/S = locate(/obj/structure/stairs) in T
+			if(!S || !S.isTerminator() || S.dir != turn(cdir, 180))
+				continue
+		if(!T.density && !O.LinkBlockedWithAccess(T,caller, ID))
 			L.Add(T)
 	return L
 
 /turf/proc/reachableTurftest(caller, var/turf/T, ID, simulated_only)
+	var/obj/structure/stairs/our_stairs = locate(/obj/structure/stairs) in src // stairs
+	if(our_stairs && our_stairs.isTerminator() && our_stairs.dir == get_dir(src, T))
+		var/turf/A = above()
+		return A.reachableTurftest(caller, T.above(), ID, simulated_only)
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
-		return TRUE
+		if(SSpathfinder.openspace_type_cache[T.type])
+			var/turf/B = T.below()
+			if(!T.can_zFall(caller, 1, B))
+				return T // we're not falling down there so we can just walk across
+			var/obj/structure/stairs/S = locate(/obj/structure/stairs) in B
+			if(!S || !S.isTerminator() || S.dir != get_dir(T, src))
+				return
+			return B
+		return T
 
 //Returns adjacent turfs in cardinal directions that are reachable via atmos
 /turf/proc/reachableAdjacentAtmosTurfs()

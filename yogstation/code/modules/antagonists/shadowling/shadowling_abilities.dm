@@ -765,7 +765,7 @@
 		return
 
 	move_delay = world.time + move_speed
-	var/turf/newLoc = get_step(src,direction)
+	var/turf/newLoc = get_step_multiz(src,direction)
 	forceMove(newLoc)
 
 /obj/effect/dummy/phased_mob/shadowling/proc/check_light_level()

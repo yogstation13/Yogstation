@@ -215,7 +215,7 @@
 		vis_contents = list()
 		var/mutable_appearance/M = mutable_appearance('icons/turf/space.dmi', "black")
 		M.layer = TURF_LAYER
-		M.plane = FLOOR_PLANE
+		M.plane = OVERLAY_PLANE(FLOOR_PLANE, plane)
 		add_overlay(M)
 	else
 		vis_contents = list(target_turf)

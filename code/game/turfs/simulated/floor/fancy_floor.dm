@@ -280,7 +280,7 @@
 	icon_state = "0"
 	floor_tile = /obj/item/stack/tile/fakespace
 	broken_states = list("damaged")
-	plane = PLANE_SPACE
+	plane = ADJUSTING_PLANE(PLANE_SPACE)
 	tiled_dirt = FALSE
 
 /turf/open/floor/fakespace/Initialize()
@@ -290,5 +290,5 @@
 /turf/open/floor/fakespace/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	underlay_appearance.icon = 'icons/turf/space.dmi'
 	underlay_appearance.icon_state = SPACE_ICON_STATE
-	underlay_appearance.plane = PLANE_SPACE
+	underlay_appearance.plane = OVERLAY_PLANE(PLANE_SPACE, asking_turf.plane)
 	return TRUE

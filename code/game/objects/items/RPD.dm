@@ -22,6 +22,8 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("Digital Valve",		/obj/machinery/atmospherics/components/binary/valve/digital),
 		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/manifold4w),
 		new /datum/pipe_info/pipe("Layer Manifold",		/obj/machinery/atmospherics/pipe/layer_manifold),
+		new /datum/pipe_info/pipe("Upward Bend",		/obj/machinery/atmospherics/pipe/upward),
+		new /datum/pipe_info/pipe("Downward Bend",		/obj/machinery/atmospherics/pipe/downward),
 	),
 	"Devices" = list(
 		new /datum/pipe_info/pipe("Connector",			/obj/machinery/atmospherics/components/unary/portables_connector),
@@ -51,6 +53,9 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 		new /datum/pipe_info/disposal("Y-Junction",		/obj/structure/disposalpipe/junction/yjunction),
 		new /datum/pipe_info/disposal("Sort Junction",	/obj/structure/disposalpipe/sorting/mail, PIPE_TRIN_M),
 		new /datum/pipe_info/disposal("Trunk",			/obj/structure/disposalpipe/trunk),
+		new /datum/pipe_info/disposal("Upward Bend",	/obj/structure/disposalpipe/upward),
+		new /datum/pipe_info/disposal("Downward Bend",	/obj/structure/disposalpipe/downward),
+		new /datum/pipe_info/disposal("Vertical Pipe",	/obj/structure/disposalpipe/vertical, PIPE_ONEDIR),
 		new /datum/pipe_info/disposal("Bin",			/obj/machinery/disposal/bin, PIPE_ONEDIR),
 		new /datum/pipe_info/disposal("Outlet",			/obj/structure/disposaloutlet),
 		new /datum/pipe_info/disposal("Chute",			/obj/machinery/disposal/deliveryChute),

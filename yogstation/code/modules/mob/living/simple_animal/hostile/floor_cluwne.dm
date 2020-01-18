@@ -187,7 +187,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		cluwnehole = new(src.loc)
 		addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Appear), MANIFEST_DELAY)
 	else
-		layer = GAME_PLANE
+		plane = ADJUSTING_PLANE(GAME_PLANE)
 		invisibility = INVISIBILITY_OBSERVER
 		density = FALSE
 		mobility_flags |= MOBILITY_MOVE
@@ -366,7 +366,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		visible_message("<span class='danger'>[src] begins dragging [H] under the floor!</span>")
 		if(do_after(src, 50, target = H) && eating)
 			H.become_blind()
-			H.layer = GAME_PLANE
+			H.plane = ADJUSTING_PLANE(GAME_PLANE)
 			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
 			H.anchored = TRUE

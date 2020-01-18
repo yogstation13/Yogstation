@@ -61,8 +61,8 @@
 	var/overlay_state = icon_screen
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir, alpha=128)
+	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, FLOAT_PLANE, dir)
+	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, OVERLAY_PLANE(ABOVE_LIGHTING_PLANE, plane), dir, alpha=128)
 
 /obj/machinery/computer/power_change()
 	..()

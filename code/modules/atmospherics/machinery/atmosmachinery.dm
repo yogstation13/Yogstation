@@ -89,7 +89,7 @@
 	node_connects.len = device_type
 
 	for(var/i in 1 to device_type)
-		for(var/D in GLOB.cardinals)
+		for(var/D in GLOB.cardinals_multiz)
 			if(D & GetInitDirections())
 				if(D in node_connects)
 					continue
@@ -110,7 +110,7 @@
 		node_connects = getNodeConnects()
 
 	for(var/i in 1 to device_type)
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_connects[i]))
+		for(var/obj/machinery/atmospherics/target in get_step_multiz(src,node_connects[i]))
 			if(can_be_node(target, i))
 				nodes[i] = target
 				break
@@ -125,13 +125,13 @@
 
 //Find a connecting /obj/machinery/atmospherics in specified direction
 /obj/machinery/atmospherics/proc/findConnecting(direction, prompted_layer)
-	for(var/obj/machinery/atmospherics/target in get_step(src, direction))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step_multiz(src, direction))
+		if(target.initialize_directions & get_dir_multiz(target,src))
 			if(connection_check(target, prompted_layer))
 				return target
 
 /obj/machinery/atmospherics/proc/connection_check(obj/machinery/atmospherics/target, given_layer)
-	if(isConnectable(target, given_layer) && target.isConnectable(src, given_layer) && (target.initialize_directions & get_dir(target,src)))
+	if(isConnectable(target, given_layer) && target.isConnectable(src, given_layer) && (target.initialize_directions & get_dir_multiz(target,src)))
 		return TRUE
 	return FALSE
 

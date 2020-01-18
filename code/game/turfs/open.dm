@@ -1,5 +1,5 @@
 /turf/open
-	plane = FLOOR_PLANE
+	plane = ADJUSTING_PLANE(FLOOR_PLANE)
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 1.5\

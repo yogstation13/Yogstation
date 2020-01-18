@@ -231,6 +231,26 @@
 	if(usr.stat == CONSCIOUS)
 		usr.dropItemToGround(usr.get_active_held_item())
 
+/obj/screen/move_up
+	name = "move up"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "move_up"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/move_up/Click()
+	usr.up()
+
+/obj/screen/move_down
+	name = "move down"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "move_down"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/move_down/Click()
+	usr.down()
+		
 /obj/screen/act_intent
 	name = "intent"
 	icon_state = "help"

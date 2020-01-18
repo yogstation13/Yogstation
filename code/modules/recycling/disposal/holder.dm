@@ -88,7 +88,7 @@
 
 // find the turf which should contain the next pipe
 /obj/structure/disposalholder/proc/nextloc()
-	return get_step(src, dir)
+	return get_step_multiz(src, dir)
 
 // find a matching pipe on a turf
 /obj/structure/disposalholder/proc/findpipe(turf/T)
@@ -96,6 +96,10 @@
 		return null
 
 	var/fdir = turn(dir, 180)	// flip the movement direction
+	if(dir == UP)
+		fdir = DOWN
+	if(dir == DOWN)
+		fdir = UP
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.dpdir)		// find pipe direction mask that matches flipped dir
 			return P

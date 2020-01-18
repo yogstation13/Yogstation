@@ -156,13 +156,13 @@
 /turf/closed/wall/diagonal_smooth(adjacencies)
 	adjacencies = reverse_ndir(..())
 	if(adjacencies)
-		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = OVERLAY_PLANE(FLOOR_PLANE, plane))
 		var/list/U = list(underlay_appearance)
 		if(fixed_underlay)
 			if(fixed_underlay["space"])
 				underlay_appearance.icon = 'icons/turf/space.dmi'
 				underlay_appearance.icon_state = SPACE_ICON_STATE
-				underlay_appearance.plane = PLANE_SPACE
+				underlay_appearance.plane = OVERLAY_PLANE(PLANE_SPACE, plane)
 			else
 				underlay_appearance.icon = fixed_underlay["icon"]
 				underlay_appearance.icon_state = fixed_underlay["icon_state"]

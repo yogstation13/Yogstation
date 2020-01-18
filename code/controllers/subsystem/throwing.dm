@@ -146,6 +146,10 @@ SUBSYSTEM_DEF(throwing)
 
 	if (callback)
 		callback.Invoke()
+	
+	var/turf/T = get_turf(thrownthing)
+	if(istype(T))
+		T.zFall(thrownthing) // zFall is disabled during throws so that things can be thrown over gaps, but we still want to be able to throw stuff down.
 
 	qdel(src)
 

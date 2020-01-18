@@ -76,15 +76,20 @@
 	if(dir in GLOB.diagonals) // Bent pipes
 		return dir
 
+	dpdir = 0
 	if(initialize_dirs != DISP_DIR_NONE)
-		dpdir = dir
+		dpdir |= dir
 
-		if(initialize_dirs & DISP_DIR_LEFT)
-			dpdir |= turn(dir, 90)
-		if(initialize_dirs & DISP_DIR_RIGHT)
-			dpdir |= turn(dir, -90)
-		if(initialize_dirs & DISP_DIR_FLIP)
-			dpdir |= turn(dir, 180)
+	if(initialize_dirs & DISP_DIR_LEFT)
+		dpdir |= turn(dir, 90)
+	if(initialize_dirs & DISP_DIR_RIGHT)
+		dpdir |= turn(dir, -90)
+	if(initialize_dirs & DISP_DIR_FLIP)
+		dpdir |= turn(dir, 180)
+	if(initialize_dirs & DISP_DIR_UP)
+		dpdir |= UP
+	if(initialize_dirs & DISP_DIR_DOWN)
+		dpdir |= DOWN
 	return dpdir
 
 /obj/structure/disposalconstruct/ComponentInitialize()

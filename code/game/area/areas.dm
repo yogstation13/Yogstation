@@ -7,7 +7,7 @@
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = AREA_LAYER
-	plane = BLACKNESS_PLANE //Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
+	plane = ADJUSTING_PLANE(WEATHER_PLANE) //Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
 
@@ -502,8 +502,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		for(var/i in forced_gravity)
 			max_grav = max(max_grav, i)
 		return max_grav
+	
+	var/turf/space_check = T
+	while(istype(space_check, /turf/open/openspace))
+		space_check = space_check.below()
 
-	if(isspaceturf(T)) // Turf never has gravity
+	if(isspaceturf(space_check)) // Turf never has gravity
 		return 0
 
 	var/area/A = get_area(T)

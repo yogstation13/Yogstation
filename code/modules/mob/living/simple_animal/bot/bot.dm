@@ -488,6 +488,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(!path)
 		return FALSE
 	if(path.len > 1)
+		var/turf/this_z_target = path[1]
+		this_z_target = locate(this_z_target.x, this_z_target.y, z) // find the equivalent of this turf on this z-level.
 		step_towards(src, path[1])
 		if(get_turf(src) == path[1]) //Successful move
 			increment_path()
@@ -999,7 +1001,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 			MA.icon = path_image_icon
 			MA.icon_state = path_image_icon_state
 			MA.layer = ABOVE_OPEN_TURF_LAYER
-			MA.plane = 0
+			MA.plane = OVERLAY_PLANE(GAME_PLANE, T.plane)
 			MA.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 			MA.color = path_image_color
 			MA.dir = direction

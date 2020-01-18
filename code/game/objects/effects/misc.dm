@@ -48,7 +48,7 @@
 /obj/effect/fullbright
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
-	plane = LIGHTING_PLANE
+	plane = ADJUSTING_PLANE(LIGHTING_PLANE)
 	layer = LIGHTING_LAYER
 	blend_mode = BLEND_ADD
 

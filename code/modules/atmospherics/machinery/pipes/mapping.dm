@@ -1,6 +1,6 @@
 //Colored pipes, use these for mapping
 
-#define HELPER_PARTIAL(Fulltype, Type, Iconbase, Color) \
+#define HELPER_PARTIAL(Fulltype, Iconbase, Color) \
 	##Fulltype {						\
 		pipe_color = Color;				\
 		color = Color;					\
@@ -8,7 +8,6 @@
 	##Fulltype/visible {				\
 		level = PIPE_VISIBLE_LEVEL;		\
 		layer = GAS_PIPE_VISIBLE_LAYER;	\
-		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-visible");\
 	}									\
 	##Fulltype/visible/layer1 {			\
 		piping_layer = 1;				\
@@ -20,7 +19,6 @@
 	}									\
 	##Fulltype/hidden {					\
 		level = PIPE_HIDDEN_LEVEL;		\
-		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-hidden");\
 	}									\
 	##Fulltype/hidden/layer1 {			\
 		piping_layer = 1;				\
@@ -31,21 +29,39 @@
 		icon_state = Iconbase + "-3";	\
 	}
 
-#define HELPER_PARTIAL_NAMED(Fulltype, Type, Iconbase, Color, Name) \
-	HELPER_PARTIAL(Fulltype, Type, Iconbase, Color)	\
+#define HELPER_PARTIAL_NAMED(Fulltype, Iconbase, Name, Color) \
+	HELPER_PARTIAL(Fulltype, Iconbase, Color)	\
 	##Fulltype {								\
 		name = Name;							\
 	}
 
+#define HELPER_FASTDMM(Fulltype, Type) \
+	##Fulltype/visible {				\
+		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-visible");\
+	}									\
+	##Fulltype/hidden {					\
+		FASTDMM_PROP(pipe_group = "atmos-[piping_layer]-"+Type+"-hidden");\
+	}
+
 #define HELPER(Type, Color) \
-	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/simple/##Type, #Type, "pipe11", Color) 		\
-	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/manifold/##Type, #Type, "manifold", Color)		\
-	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/manifold4w/##Type, #Type, "manifold4w", Color)
+	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/simple/##Type, "pipe11", Color) 		\
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/simple/##Type, #Type)					\
+	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/upward/##Type, "pipe-1u", Color) 		\
+	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/downward/##Type, "pipe-1d", Color) 		\
+	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/manifold/##Type, "manifold", Color)		\
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/manifold/##Type, #Type)				\
+	HELPER_PARTIAL(/obj/machinery/atmospherics/pipe/manifold4w/##Type, "manifold4w", Color) \
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/manifold4w/##Type, #Type)
 
 #define HELPER_NAMED(Type, Name, Color) \
-	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/simple/##Type, #Type, "pipe11", Color, Name) 		\
-	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/manifold/##Type, #Type, "manifold", Color, Name)		\
-	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/manifold4w/##Type, #Type, "manifold4w", Color, Name)
+	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/simple/##Type, "pipe11", Name, Color) 		\
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/simple/##Type, #Type)								\
+	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/upward/##Type, "pipe-1u", Name, Color) 		\
+	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/downward/##Type, "pipe-1d", Name, Color) 		\
+	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/manifold/##Type, "manifold", Name, Color)		\
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/manifold/##Type, #Type) 							\
+	HELPER_PARTIAL_NAMED(/obj/machinery/atmospherics/pipe/manifold4w/##Type, "manifold4w", Name, Color) \
+	HELPER_FASTDMM(/obj/machinery/atmospherics/pipe/manifold4w/##Type, #Type)
 
 HELPER(general, null)
 HELPER(yellow, rgb(255, 198, 0))
@@ -65,3 +81,4 @@ HELPER_NAMED(supplymain, "main air supply pipe", rgb(130, 43, 255))
 #undef HELPER
 #undef HELPER_PARTIAL_NAMED
 #undef HELPER_PARTIAL
+#undef HELPER_FASTDMM

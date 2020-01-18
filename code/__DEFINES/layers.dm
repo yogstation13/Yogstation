@@ -1,15 +1,38 @@
 //Defines for atom layers and planes
 //KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
-#define CLICKCATCHER_PLANE -99
+#if DM_VERSION >= 513
+	#define CLICKCATCHER_PLANE -9999
+	#define PLANE_SPACE -1000
+	#define PLANE_SPACE_PARALLAX -500
+#else
+	#define CLICKCATCHER_PLANE -99
+	#define PLANE_SPACE -10
+	#define PLANE_SPACE_PARALLAX -5
+#endif
 
-#define PLANE_SPACE -95
-#define PLANE_SPACE_PARALLAX -90
-
+#define ZSHADOW_PLANE -3
 #define FLOOR_PLANE -2
 #define GAME_PLANE -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define WEATHER_PLANE 1 // This one gets *no plane master*
+#define LIGHTING_PLANE 2
+#define ABOVE_LIGHTING_PLANE 3
+#define CAMERA_STATIC_PLANE 4
 
+#define PLANE_ZLEVEL_OFFSET 8
+
+#if DM_VERSION >= 513
+	#define ADJUSTING_PLANE(plane) (FLOAT_PLANE + (plane))
+	#define ADJUSTED_PLANE(plane, depth) ((plane) - (depth) * PLANE_ZLEVEL_OFFSET)
+	#define OVERLAY_PLANE(target_plane, parent_plane) (((target_plane >= -10000 && target_plane <= 10000) ? FLOAT_PLANE : 0) + (target_plane) - (parent_plane >= -10000 && parent_plane <= 10000 ? parent_plane : (parent_plane - FLOAT_PLANE)))
+#else
+	#define ADJUSTING_PLANE(plane) (plane)
+	#define ADJUSTED_PLANE(plane) (plane)
+	#define OVERLAY_PLANE(target_plane, parent_plane) (target_plane)
+#endif
+
+#define BELOW_SPACE_LAYER 1.6 // basically stuff that really belongs to the lower z-level.
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
 #define MID_TURF_LAYER 2.02
@@ -80,19 +103,15 @@
 
 #define CHAT_LAYER 12.5
 
-#define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15
 
-#define ABOVE_LIGHTING_PLANE 16
 #define ABOVE_LIGHTING_LAYER 16
 
-#define FLOOR_OPENSPACE_PLANE 17
 #define OPENSPACE_LAYER 17
 
 #define BYOND_LIGHTING_PLANE 18
 #define BYOND_LIGHTING_LAYER 18
 
-#define CAMERA_STATIC_PLANE 19
 #define CAMERA_STATIC_LAYER 19
 
 //HUD layer defines
