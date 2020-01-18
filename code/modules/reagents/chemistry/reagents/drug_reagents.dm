@@ -60,11 +60,16 @@
 /datum/reagent/drug/nicotine/overdose_process(mob/living/M)
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1*REM)
+	if(prob(5) && iscarbon(M))
+		M.Jitter(10)
+		var/obj/item/I = M.get_active_held_item()
+		if(I && M.dropItemToGround(I))
+			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 	..()
 
 /datum/reagent/drug/nicotine/addiction_act_stage2(mob/living/M)
@@ -73,7 +78,6 @@
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
 			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
-	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2*REM)
 	..()
 	. = 1
 
@@ -83,7 +87,6 @@
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
 			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
-	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 3*REM)
 	..()
 	. = 1
 
@@ -93,7 +96,6 @@
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
 			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
-	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 3*REM)
 	..()
 	. = 1
 
