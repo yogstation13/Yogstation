@@ -312,12 +312,10 @@
 		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
 
 	if (href_list["change_name"])
-		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
-		if(!isnull(userinput))
-			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			if(newname)
-				log_game("[key_name(usr)] renamed [name] to [newname]")
-				name = newname ? newname : initial(name)
+		var/userinput = stripped_input(occupant, "Choose new exosuit name", "Rename exosuit", "", MAX_NAME_LEN)
+		if(!userinput || usr != occupant || usr.incapacitated())
+			return
+		name = userinput
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access
