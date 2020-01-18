@@ -7935,7 +7935,6 @@
 	areastring = "/area/maintenance/port/fore";
 	dir = 1;
 	name = "Port Bow Maintenance APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable{
@@ -10909,7 +10908,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/auxiliary";
 	name = "Security Checkpoint APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable,
@@ -11104,8 +11102,7 @@
 	areastring = "/area/hydroponics/garden";
 	dir = 4;
 	name = "Garden APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -12559,7 +12556,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/storage/primary";
 	name = "Primary Tool Storage APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable{
@@ -13597,8 +13593,7 @@
 	areastring = "/area/clerk";
 	dir = 8;
 	name = "Gift Shop APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -17566,7 +17561,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/vacant_room/commissary";
 	name = "Vacant Commissary APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/rack,
@@ -20490,7 +20484,6 @@
 "aOP" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer3{
 	dir = 4;
-	icon_state = "inje_map-3";
 	name = "Waste Ejector"
 	},
 /turf/open/floor/plating/airless,
@@ -22173,8 +22166,6 @@
 /turf/open/floor/plasteel,
 /area/bridge)
 "aSz" = (
-/obj/structure/table/reinforced,
-/obj/item/aicard,
 /obj/item/multitool,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -22182,6 +22173,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/item/aicard,
 /turf/open/floor/plasteel,
 /area/bridge)
 "aSA" = (
@@ -24360,8 +24353,7 @@
 	areastring = "/area/maintenance/port";
 	dir = 8;
 	name = "Port Maintenance APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -25232,8 +25224,7 @@
 	areastring = "/area/crew_quarters/toilet/locker";
 	dir = 4;
 	name = "Locker Restrooms APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -25660,6 +25651,9 @@
 "aZy" = (
 /obj/machinery/camera{
 	c_tag = "Conference Room"
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = 25
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -29352,7 +29346,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/storage";
 	name = "Cargo Bay APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable{
@@ -34028,7 +34021,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/sorting";
 	name = "Delivery Office APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable{
@@ -39372,7 +39364,6 @@
 /obj/machinery/power/apc{
 	areastring = "/area/quartermaster/office";
 	name = "Cargo Office APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable{
@@ -45698,7 +45689,6 @@
 	areastring = "/area/security/checkpoint/supply";
 	dir = 1;
 	name = "Cargo Security APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable{
@@ -46091,7 +46081,6 @@
 "bOf" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
-	req_access_txt = "0";
 	req_one_access_txt = "10;61"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
@@ -46107,7 +46096,6 @@
 "bOg" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
-	req_access_txt = "0";
 	req_one_access_txt = "10;61"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
@@ -47093,8 +47081,7 @@
 	areastring = "/area/maintenance/solars/port/aft";
 	dir = 4;
 	name = "Port Quarter Solar APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/machinery/camera{
 	c_tag = "Aft Port Solar Control";
@@ -47108,8 +47095,7 @@
 	areastring = "/area/maintenance/solars/starboard/aft";
 	dir = 8;
 	name = "Starboard Quarter Solar APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -88613,7 +88599,7 @@ aRl
 aSx
 aTX
 aYg
-gME
+aWU
 cva
 adK
 aet
@@ -89641,7 +89627,7 @@ aRp
 aSB
 aTZ
 aZg
-aWU
+gME
 cva
 eQU
 aeu
@@ -90155,7 +90141,7 @@ aRr
 aSD
 ceh
 aZj
-gME
+aWU
 cva
 adK
 aet
