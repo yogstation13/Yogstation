@@ -63,13 +63,6 @@
 	..()
 	. = 1
 
-/datum/reagent/drug/crank/overdose_process(mob/living/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
-	M.adjustToxLoss(2*REM, 0)
-	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
-	..()
-	. = 1
-
 /datum/reagent/drug/nicotine/addiction_act_stage1(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1*REM)
 	..()
