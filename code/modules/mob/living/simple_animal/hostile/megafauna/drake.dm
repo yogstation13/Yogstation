@@ -57,8 +57,6 @@ Difficulty: Medium
 	var/swooping = NONE
 	var/player_cooldown = 0
 	internal_type = /obj/item/gps/internal/dragon
-	medal_type = BOSS_MEDAL_DRAKE
-	score_type = DRAKE_SCORE
 	deathmessage = "collapses into a pile of bones, its flesh sloughing away."
 	deathsound = 'sound/magic/demon_dies.ogg'
 	do_footstep = TRUE
@@ -190,7 +188,7 @@ Difficulty: Medium
 		if(istype(T, /turf/open/indestructible))
 			continue
 		if(!istype(T, /turf/closed/indestructible))
-			T.ChangeTurf(/turf/open/floor/plating/asteroid/basalt/lava_land_surface)
+			T.ChangeTurf(/turf/open/floor/plating/asteroid/basalt/lava_land_surface, flags = CHANGETURF_INHERIT_AIR)
 		else
 			indestructible_turfs += T
 	SLEEP_CHECK_DEATH(10) // give them a bit of time to realize what attack is actually happening
@@ -456,9 +454,9 @@ Difficulty: Medium
 	if(!istype(T, /turf/closed) && !istype(T, /turf/open/lava))
 		var/lava_turf = /turf/open/lava/smooth
 		var/reset_turf = T.type
-		T.ChangeTurf(lava_turf)
+		T.ChangeTurf(lava_turf, flags = CHANGETURF_INHERIT_AIR)
 		sleep(reset_time)
-		T.ChangeTurf(reset_turf)
+		T.ChangeTurf(reset_turf, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/temp_visual/drakewall
 	desc = "An ash drakes true flame."
@@ -600,9 +598,6 @@ obj/effect/temp_visual/fireball
 	lava_pools(10, 2) // less pools but longer delay before spawns
 	player_cooldown = world.time + 200 // needs seperate cooldown or cant use fire attacks
 
-/mob/living/simple_animal/hostile/megafauna/dragon/lesser/grant_achievement(medaltype,scoretype)
-	return
-
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon
 	name = "space dragon"
 	maxHealth = 250
@@ -627,9 +622,6 @@ obj/effect/temp_visual/fireball
 	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
 	attack_action_types = list()
 	small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/grant_achievement(medaltype,scoretype)
-	return
 
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/Initialize()
 	var/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon/repulse_action = new /obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon(src)

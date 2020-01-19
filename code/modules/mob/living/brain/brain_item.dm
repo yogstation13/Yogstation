@@ -253,6 +253,8 @@
 			. += BT
 
 /obj/item/organ/brain/proc/can_gain_trauma(datum/brain_trauma/trauma, resilience)
+	if(!owner || owner.stat == DEAD)
+		return FALSE
 	if(!ispath(trauma))
 		trauma = trauma.type
 	if(!initial(trauma.can_gain))

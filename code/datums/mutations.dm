@@ -165,7 +165,7 @@
 		qdel(src)
 
 /datum/mutation/human/proc/grant_spell()
-	if(!power || !owner)
+	if(!ispath(power) || !owner)
 		return FALSE
 
 	power = new power()

@@ -27,7 +27,7 @@
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
-	var/static/UIbackup = TRUE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
+	var/static/UIbackup = FALSE  // yogs use html instead of tgui    set this to 1/TRUE when tgui breaks //Remember to disable this when we fix it for real
 /obj/machinery/sleeper/Initialize() //yogs: doesn't port sleeper deletion because fuck that
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
@@ -236,17 +236,13 @@
 		if(!is_operational() || !mob_occupant)
 			return
 		else
-			if(mob_occupant.health < min_health && href_list["inject"] != "/datum/reagent/medicine/epinephrine")
-				return
-			else
-				for(var/chem in available_chems)
-					if("[chem]" == href_list["inject"])
-						if(src.inject_chem(chem, mob_occupant))
-							. = TRUE
-						break
-		if(.)
-			if(scrambled_chems && prob(5))
-				to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			for(var/chem in available_chems)
+				if("[chem]" == href_list["inject"])
+					if(inject_chem(chem, usr))
+						. = TRUE
+						if(scrambled_chems && prob(5))
+							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					break
 
 	usr.set_machine(src)
 	ui_interact(usr)
@@ -299,7 +295,7 @@
 	data["chems"] = list()
 	for(var/chem in available_chems)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
-		data["chems"] += list(list("name" = R.name, "id" = ckey(R.name), "allowed" = chem_allowed(chem)))
+		data["chems"] += list(list("name" = R.name, "id" = "[chem]", "allowed" = chem_allowed(chem)))   //yogs modifies id
 
 	data["occupant"] = list()
 	var/mob/living/mob_occupant = occupant
@@ -346,15 +342,15 @@
 				open_machine()
 			. = TRUE
 		if("inject")
-			var/chem = params["chem"]
-			if(!is_operational() || !mob_occupant)
+			if(!is_operational() || !mob_occupant)				//yogs start
 				return
-			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
-				return
-			if(inject_chem(chem, usr))
-				. = TRUE
-				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+			for(var/chem in available_chems)
+				if("[chem]" == params["chem"])
+					if(inject_chem(chem, usr))
+						. = TRUE
+						if(scrambled_chems && prob(5))
+							to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					break				//yogs end
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
@@ -371,9 +367,10 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	var/amount = mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency
-	var/occ_health = mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine
-	return amount && occ_health
+	if(mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency)			//yogs start
+		if(mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine)
+			return TRUE
+	return FALSE				//yogs end
 
 /obj/machinery/sleeper/proc/reset_chem_buttons()
 	scrambled_chems = FALSE

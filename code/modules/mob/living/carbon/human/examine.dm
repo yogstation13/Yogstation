@@ -172,6 +172,8 @@
 				msg += "[t_He] [t_has] minor bruising.\n"
 			else if(temp < 50)
 				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
+			else if(src.dna.species.id == "egg" && temp >= 200)
+				msg += "[t_He] look[p_s()] ready to crack into a million pieces!"
 			else
 				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
 
@@ -265,7 +267,7 @@
 				if (getToxLoss() >= 10)
 					msg += "[t_He] seem[p_s()] sickly.\n"
 				var/datum/component/mood/mood = src.GetComponent(/datum/component/mood)
-				if(mood.sanity <= SANITY_DISTURBED)
+				if(mood && mood.sanity <= SANITY_DISTURBED)
 					msg += "[t_He] seem[p_s()] distressed.\n"
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (HAS_TRAIT(src, TRAIT_BLIND))

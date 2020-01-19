@@ -43,7 +43,6 @@
 /obj/item/clothing/mask/fakemoustache/italian
 	name = "italian moustache"
 	desc = "Made from authentic Italian moustache hairs. Gives the wearer an irresistable urge to gesticulate wildly."
-	clothing_flags = SHOWEROKAY
 	modifies_speech = TRUE
 
 /obj/item/clothing/mask/fakemoustache/italian/handle_speech(datum/source, list/speech_args)
@@ -72,7 +71,7 @@
 
 /obj/item/clothing/mask/pig
 	name = "pig mask"
-	desc = "A rubber pig mask with a builtin voice modulator."
+	desc = "A rubber pig mask with a built in voice modulator."
 	icon_state = "pig"
 	item_state = "pig"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -86,7 +85,7 @@
 
 /obj/item/clothing/mask/pig/cursed
 	name = "pig face"
-	desc = "It looks like a mask, but closer inspection reveals it's melded onto this persons face!"
+	desc = "It looks like a mask, but closer inspection reveals it's melded onto this person's face!"
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
@@ -98,7 +97,7 @@
 ///frog mask - reeee!!
 /obj/item/clothing/mask/frog
 	name = "frog mask"
-	desc = "An ancient mask carved in the shape of a frog.<br> Sanity is like gravity, all it needs is a push."
+	desc = "An ancient mask carved in the shape of a frog.<br>Sanity is like gravity: all it needs is a push."
 	icon_state = "frog"
 	item_state = "frog"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
@@ -142,7 +141,7 @@
 
 /obj/item/clothing/mask/cowmask/cursed
 	name = "cow face"
-	desc = "It looks like a cow mask, but closer inspection reveals it's melded onto this persons face!"
+	desc = "It looks like a cow mask, but closer inspection reveals it's melded onto this person's face!"
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
@@ -166,7 +165,7 @@
 
 /obj/item/clothing/mask/horsehead/cursed
 	name = "horse face"
-	desc = "It initially looks like a mask, but it's melded into the poor person's face."
+	desc = "It looks like a horse mask, but closer inspection reveals it's melded onto this person's face!"
 	clothing_flags = NONE
 	flags_inv = HIDEFACIALHAIR
 

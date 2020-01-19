@@ -159,6 +159,7 @@
 	return D
 
 /datum/disease/proc/after_add()
+	stage_act()
 	return
 
 

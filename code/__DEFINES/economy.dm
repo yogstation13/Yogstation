@@ -7,7 +7,6 @@
 #define PAYCHECK_HARD 40
 #define PAYCHECK_COMMAND 100
 
-#define PAYCHECK_WELFARE 5 //NEETbucks
 
 #define MAX_GRANT_CIV 2500
 #define MAX_GRANT_ENG 3000

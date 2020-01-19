@@ -29,3 +29,6 @@
 	new /obj/item/door_remote/research_director(src)
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
 	new /obj/item/storage/photo_album/RD(src)
+	new /obj/item/clipboard/yog/paperwork/rd(src)
+	new /obj/item/card/id/departmental_budget/sci(src)
+	new /obj/item/clothing/under/yogs/rdema(src)

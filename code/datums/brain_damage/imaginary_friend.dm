@@ -8,6 +8,8 @@
 	var/friend_initialized = FALSE
 
 /datum/brain_trauma/special/imaginary_friend/on_gain()
+	if(!owner.client || owner.stat == DEAD)
+		return qdel(src)
 	..()
 	make_friend()
 	get_ghost()
@@ -87,7 +89,6 @@
 
 	trauma = _trauma
 	owner = trauma.owner
-	copy_known_languages_from(owner, TRUE)
 
 	setup_friend()
 

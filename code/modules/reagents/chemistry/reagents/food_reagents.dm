@@ -415,8 +415,6 @@
 			if(prob(20)) //stays in the system much longer than sprinkles/banana juice, so heals slower to partially compensate
 				H.heal_bodypart_damage(1,1, 0)
 				. = 1
-		else //chefs' robust space-Italian metabolism lets them eat garlic without producing allyl methyl sulfide
-			H.adjust_hygiene(-0.15 * volume)
 	..()
 
 /datum/reagent/consumable/sprinkles
@@ -659,7 +657,7 @@
 	color = "#b5a213"
 	taste_description = "tingling mushroom"
 
-/datum/reagent/consumable/tinlux/reaction_mob(mob/living/M)
+/datum/reagent/consumable/tinlux/on_mob_metabolize(mob/living/M)
 	M.set_light(2)
 
 /datum/reagent/consumable/tinlux/on_mob_end_metabolize(mob/living/M)
@@ -742,3 +740,43 @@
 	taste_mult = 2
 	taste_description = "bitter sweetness"
 	reagent_state = SOLID
+	
+/datum/reagent/consumable/mesophilicculture
+	name = "mesophilic culture"
+	description = "A mixture of mesophilic bacteria used to make most cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/thermophilicculture
+	name = "thermophilic culture"
+	description = "A mixture of thermophilic bacteria used to make some cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/penicilliumcandidum
+	name = "penicillium candidum"
+	description = "A special bacterium used to make brie."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+
+/datum/reagent/consumable/penicilliumroqueforti
+	name = "penicillium roqueforti"
+	description = "A special bacterium used to make blue cheese."
+	color = "#365E30" // rgb: 54, 94, 48
+	taste_description = "bitterness"
+	
+/datum/reagent/consumable/parmesan_delight
+	name = "Parmesan Delight"
+	description = "The time spent cultivating parmesan has produced this magical liquid."
+	color = "#FFD700" // rgb: 255, 140, 255
+	quality = DRINK_VERYGOOD
+	taste_description = "salty goodness"
+
+/datum/reagent/consumable/parmesan_delight/on_mob_life(mob/living/carbon/M)
+	M.adjustBruteLoss(-0.5, 0)
+	M.adjustFireLoss(-0.5, 0)
+	M.adjustToxLoss(-0.5, 0)
+	M.adjustOxyLoss(-0.5, 0)
+	M.heal_bodypart_damage(1,1, 0)
+	..()
+

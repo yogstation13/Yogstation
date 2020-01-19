@@ -48,6 +48,10 @@
 
 /obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
+	if(isobj(AM))
+		var/obj/O = AM
+		if(O.damtype == STAMINA)
+			return
 	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)

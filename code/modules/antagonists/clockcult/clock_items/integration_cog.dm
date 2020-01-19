@@ -6,7 +6,8 @@
 	desc = "A small cogwheel that fits in the palm of your hand."
 	clockwork_desc = "A small cogwheel that can be inserted into an open APC to siphon power from it passively.<br>\
 	<span class='brass'>It can be used on a locked APC to open its cover!</span><br>\
-	<span class='brass'>Siphons <b>5 W</b> of power per second while in an APC.</span>"
+	<span class='brass'>Siphons <b>10 W</b> of power per second while in a powered APC.</span><br>\
+	<span class='brass'>Siphons <b>5 W</b> of power per second while in an unpowered APC.</span>"
 	icon_state = "wall_gear"
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON

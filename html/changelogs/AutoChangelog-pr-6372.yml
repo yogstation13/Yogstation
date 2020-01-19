@@ -1,5 +1,0 @@
-author: "fluffe9911"
-delete-after: true 
-changes: 
-  - rscadd: "There is now a rare chance a zombie may spawn during the middle of the round!"
-  - tweak: "Blob zombies from the wizard event are now regular zombies that may infect you!"
