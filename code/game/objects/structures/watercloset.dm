@@ -261,13 +261,9 @@
 			H.lip_color = initial(H.lip_color)
 			H.wash_cream()
 			H.regenerate_icons()
-			H.adjust_hygiene(10)
 		user.drowsyness = max(user.drowsyness - rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
 	else
 		SEND_SIGNAL(user, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-		if(ishuman(user))
-			var/mob/living/carbon/human/dirtyboy = user
-			dirtyboy.adjust_hygiene(10)
 
 /obj/structure/sink/attackby(obj/item/O, mob/living/user, params)
 	if(busy)
@@ -310,11 +306,11 @@
 		to_chat(user, "<span class='notice'>You tear off a strip of gauze and make a rag.</span>")
 		G.use(1)
 		return
-	
+
 	//yogs start - BANDAGES
 	if(istype(O, /obj/item/medical/bandage/))
 		var/obj/item/medical/bandage/B = O
-		B.wash(O, user)			
+		B.wash(O, user)
 		return
 	//yogs end
 
@@ -400,12 +396,14 @@
 		layer = WALL_OBJ_LAYER
 		density = TRUE
 		open = FALSE
+		opacity = TRUE
 
 	else
 		icon_state = "open"
 		layer = SIGN_LAYER
 		density = FALSE
 		open = TRUE
+		opacity = FALSE
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/toy/crayon))

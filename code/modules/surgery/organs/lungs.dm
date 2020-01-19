@@ -298,9 +298,10 @@
 			//Miasma sickness
 			if(prob(0.5 * miasma_pp))
 				var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(min(round(max(miasma_pp/2, 1), 1), 6), min(round(max(miasma_pp, 1), 1), 8))
-				//tl;dr the first argument chooses the smaller of miasma_pp/2 or 6(typical max virus symptoms), the second chooses the smaller of miasma_pp or 8(max virus symptom level) //
-				miasma_disease.name = "Unknown"//^each argument has a minimum of 1 and rounds to the nearest value. Feel free to change the pp scaling I couldn't decide on good numbers for it.
-				miasma_disease.try_infect(owner)
+				if(owner.CanContractDisease(miasma_disease))
+					//tl;dr the first argument chooses the smaller of miasma_pp/2 or 6(typical max virus symptoms), the second chooses the smaller of miasma_pp or 8(max virus symptom level) //
+					miasma_disease.name = "Unknown"//^each argument has a minimum of 1 and rounds to the nearest value. Feel free to change the pp scaling I couldn't decide on good numbers for it.
+					miasma_disease.try_infect(owner)
 
 			// Miasma side effects
 			switch(miasma_pp)
@@ -426,7 +427,7 @@
 
 /obj/item/organ/lungs/cybernetic
 	name = "cybernetic lungs"
-	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Allows for greater intakes of oxygen than organic lungs, requiring slightly less pressure."
+	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Slightly more effecient than organic lungs."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
 	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
@@ -438,15 +439,22 @@
 		return
 	owner.losebreath = 20
 
-
 /obj/item/organ/lungs/cybernetic/upgraded
 	name = "upgraded cybernetic lungs"
-	desc = "A more advanced version of the stock cybernetic lungs. Features the ability to filter out lower levels of toxins and carbon dioxide."
+	desc = "A more advanced version of the stock cybernetic lungs, for use in hazardous environments. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
-	safe_toxins_max = 20
-	safe_co2_max = 20
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	safe_oxygen_min = 10
+	safe_co2_max = 20
+	safe_toxins_max = 20 //Higher resistance to most harmful gasses 
+	SA_para_min = 3
+	SA_sleep_min = 6
+	BZ_trip_balls_min = 2
 
 	cold_level_1_threshold = 200
 	cold_level_2_threshold = 140
-	cold_level_3_threshold = 100
+	cold_level_3_threshold = 80
+
+	heat_level_1_threshold = 500
+	heat_level_2_threshold = 800
+	heat_level_3_threshold = 1400

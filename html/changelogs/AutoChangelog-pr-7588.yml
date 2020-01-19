@@ -1,0 +1,5 @@
+author: "alexkar598"
+delete-after: true 
+changes: 
+  - rscdel: "Removed the ability to chose the security module on borgs by default."
+  - rscadd: "Added an upgrade to allow a borg to switch to the security module. It is locked behing the Advanced Weaponry tech node"

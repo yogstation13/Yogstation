@@ -42,3 +42,30 @@
 	if(inflamed)
 		S.reagents.add_reagent(/datum/reagent/toxin/bad_food, 5)
 	return S
+
+/obj/item/organ/appendix/cybernetic
+	name = "cybernetic appendix"
+	desc = "One of the most advanced cybernetic organs ever created."
+	icon_state = "implant-filter"
+	organ_flags = ORGAN_SYNTHETIC
+	now_failing = "<span class='warning'>NOT AGAIN!</span>"
+	now_fixed = "<span class='info'>Thank god that's over.</span>"
+
+/obj/item/organ/appendix/cybernetic/on_life()
+	..()
+	if(inflamed)
+		var/mob/living/carbon/M = owner
+		for(var/datum/disease/appendicitis/A in M.diseases)
+			A.cure()
+		inflamed = FALSE
+		M.emote("chuckle") //you really think that will stop me?
+
+/obj/item/organ/appendix/cybernetic/update_icon()
+	icon_state = "implant-filter"
+	name = "cybernetic appendix"
+
+/obj/item/organ/appendix/cybernetic/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	damage += 100/severity

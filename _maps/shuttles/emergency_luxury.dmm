@@ -7,6 +7,16 @@
 /area/shuttle/escape/luxury)
 "ac" = (
 /obj/machinery/door/airlock/external,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
@@ -15,6 +25,16 @@
 /obj/machinery/door/airlock/gold,
 /obj/effect/forcefield/luxury_shuttle{
 	name = "Ticket Booth"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
@@ -29,6 +49,16 @@
 /obj/machinery/door/airlock/gold,
 /obj/effect/forcefield/luxury_shuttle{
 	name = "Ticket Booth"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
@@ -90,6 +120,16 @@
 /area/shuttle/escape/luxury)
 "aq" = (
 /obj/machinery/door/airlock/gold,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
 "ar" = (
@@ -108,15 +148,30 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape/luxury)
 "at" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "au" = (
 /obj/structure/chair/comfy,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "av" = (
 /obj/structure/chair/comfy{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
@@ -124,81 +179,105 @@
 /obj/machinery/computer/communications{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
 "ax" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "ay" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/notasandwich,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "az" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aA" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/kebab/tofu,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aB" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/honkdae,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aC" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aD" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/candiedapple,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aE" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/burger/baconburger,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aF" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/benedict,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aG" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/cakeslice/chocolate,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aH" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/spaghetti/chowmein,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aI" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/dulcedebatataslice,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aJ" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/salad/validsalad,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aK" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/carneburrito,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aL" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/chawanmushi,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aM" = (
@@ -235,6 +314,9 @@
 "aS" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/eggplantparm,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aT" = (
@@ -255,6 +337,9 @@
 "aW" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/snacks/cherrycupcake,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aX" = (
@@ -292,12 +377,14 @@
 /obj/structure/chair/comfy{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "be" = (
 /obj/machinery/computer/crew{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
 "bf" = (
@@ -309,6 +396,9 @@
 	icon_state = "plant-21";
 	pixel_x = -3;
 	pixel_y = 3
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
@@ -347,6 +437,39 @@
 	pixel_y = 3
 	},
 /obj/machinery/light,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"cW" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-21";
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"df" = (
+/obj/structure/chair/comfy,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"ht" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
 "hA" = (
@@ -354,9 +477,124 @@
 /obj/item/surgical_drapes,
 /turf/open/floor/mineral/gold,
 /area/shuttle/escape/luxury)
+"lw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"md" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"qQ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"uY" = (
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-21";
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/machinery/light,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"wQ" = (
+/obj/structure/chair/comfy,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"xn" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
 "zg" = (
 /obj/machinery/vending/wallmed,
 /turf/closed/indestructible/riveted/uranium,
+/area/shuttle/escape/luxury)
+"Aj" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Cd" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/shuttle/escape/luxury)
+"DA" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"EE" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"HL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Ij" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"JO" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Ln" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Og" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "OL" = (
 /obj/item/surgicaldrill,
@@ -367,6 +605,46 @@
 /obj/item/circular_saw,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Qx" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"QK" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"Sw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"Wm" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/escape/luxury)
+"Wt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/gold,
+/area/shuttle/escape/luxury)
+"YK" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 
 (1,1,1) = {"
@@ -403,7 +681,7 @@ ab
 "}
 (3,1,1) = {"
 ab
-af
+Cd
 ag
 ab
 ab
@@ -424,12 +702,12 @@ an
 ab
 bl
 aj
-aj
+JO
 aj
 aj
 bj
-aj
-aj
+EE
+Qx
 OL
 ab
 "}
@@ -440,13 +718,13 @@ ag
 ab
 aj
 at
-at
-at
-at
+lw
+Sw
+YK
 aj
+JO
 aj
-aj
-aj
+QK
 ab
 "}
 (6,1,1) = {"
@@ -459,8 +737,8 @@ au
 ax
 aN
 bd
-aj
-aj
+Ij
+qQ
 bg
 bp
 ab
@@ -476,7 +754,7 @@ ay
 aO
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -492,7 +770,7 @@ az
 aP
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -508,7 +786,7 @@ aA
 aQ
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -524,7 +802,7 @@ aB
 aR
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -535,12 +813,12 @@ ag
 ag
 ab
 aj
-au
+df
 aC
 aS
-bd
+Og
 aj
-aj
+JO
 bh
 bh
 ab
@@ -556,7 +834,7 @@ aD
 aT
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -566,13 +844,13 @@ ab
 ab
 ab
 ab
-aj
+Qx
 au
 aE
 aU
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -581,14 +859,14 @@ ab
 ad
 aj
 aj
-bj
+Wt
 aj
 au
 aF
 aV
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -597,14 +875,14 @@ ab
 ab
 aj
 aj
+JO
 aj
-aj
-au
+wQ
 aG
 aW
-bd
+Wm
 aj
-aj
+JO
 bh
 bh
 ab
@@ -613,14 +891,14 @@ ab
 ab
 aj
 aj
-aj
+JO
 aj
 au
 aH
 aX
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -629,14 +907,14 @@ ab
 ab
 aj
 aj
-aj
+JO
 aj
 au
 aI
 aY
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -645,14 +923,14 @@ ab
 ab
 aj
 aj
-aj
+JO
 aj
 au
 aJ
 aZ
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -661,14 +939,14 @@ ab
 ab
 aj
 aj
-aj
+JO
 aj
 au
 aK
 ba
 bd
 aj
-aj
+JO
 bh
 bh
 ab
@@ -677,16 +955,16 @@ ab
 ae
 aj
 aj
-bk
+HL
 aj
 au
 aL
 bb
 bd
-aj
-aj
-bg
-bp
+Qx
+Ln
+cW
+uY
 ab
 "}
 (21,1,1) = {"
@@ -695,12 +973,12 @@ ab
 ab
 ab
 aj
-at
-at
-at
-at
+md
+xn
+DA
+xn
 aj
-aj
+JO
 aj
 aj
 ab
@@ -716,7 +994,7 @@ aj
 aj
 aj
 aj
-aj
+JO
 aj
 aj
 ab
@@ -728,11 +1006,11 @@ bi
 ab
 aj
 av
-av
-av
-av
+ht
+ht
+Aj
 aj
-aj
+JO
 aj
 aj
 ab
@@ -748,8 +1026,8 @@ aM
 bc
 be
 bk
-aj
-aj
+JO
+QK
 ak
 ab
 "}

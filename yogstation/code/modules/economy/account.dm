@@ -3,4 +3,4 @@
 		return
 	for(var/obj/A in bank_cards)
 		playsound(A, 'sound/machines/twobeep.ogg', 50, TRUE)
-		A.send_speech(message, 1, src, , message_language = A.get_default_language())
+		A.send_speech(message, 1, A, , message_language = A.get_selected_language())

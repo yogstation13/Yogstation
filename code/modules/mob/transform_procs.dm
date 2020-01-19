@@ -455,6 +455,7 @@
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
+	update_atom_languages()
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
 	. = new_xeno
@@ -544,6 +545,27 @@
 		new_gorilla.key = key
 	to_chat(new_gorilla, "<B>You are now a gorilla. Ooga ooga!</B>")
 	. = new_gorilla
+	qdel(src)
+
+/mob/living/carbon/human/proc/pacmanize()
+	if (notransform)
+		return
+	notransform = TRUE
+	Paralyze(1, ignore_canstun = TRUE)
+	for(var/obj/item/W in src)
+		dropItemToGround(W)
+	regenerate_icons()
+	icon = null
+	invisibility = INVISIBILITY_MAXIMUM
+	for(var/t in bodyparts)	//this really should not be necessary
+		qdel(t)
+
+	var/mob/living/simple_animal/pacman/new_pacman = new /mob/living/simple_animal/pacman (loc)
+	new_pacman.a_intent = INTENT_HARM
+	new_pacman.key = key
+
+	to_chat(new_pacman, "<B>You are now a pacman. I LOVE PACMAN!</B>")
+	. = new_pacman
 	qdel(src)
 
 /mob/living/carbon/human/Animalize()

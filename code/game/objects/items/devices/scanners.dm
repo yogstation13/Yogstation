@@ -104,6 +104,7 @@ GENE SCANNER
 		scanmode = 0
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
+	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
 
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
@@ -455,6 +456,10 @@ GENE SCANNER
 
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
+	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
+
+/obj/item/proc/scangasses(mob/user)
+	//yogs stop
 
 	if (user.stat || user.eye_blind)
 		return
@@ -649,7 +654,7 @@ GENE SCANNER
 		to_chat(user, "<span class='warning'>Warning: slime is starving!</span>")
 	else if (T.nutrition < T.get_hunger_nutrition())
 		to_chat(user, "<span class='warning'>Warning: slime is hungry</span>")
-	to_chat(user, "Electric change strength: [T.powerlevel]")
+	to_chat(user, "Electric charge strength: [T.powerlevel]")
 	to_chat(user, "Health: [round(T.health/T.maxHealth,0.01)*100]%")
 	if (T.slime_mutation[4] == T.colour)
 		to_chat(user, "This slime does not evolve any further.")
@@ -657,13 +662,13 @@ GENE SCANNER
 		if (T.slime_mutation[3] == T.slime_mutation[4])
 			if (T.slime_mutation[2] == T.slime_mutation[1])
 				to_chat(user, "Possible mutation: [T.slime_mutation[3]]")
-				to_chat(user, "Genetic destability: [T.mutation_chance/2] % chance of mutation on splitting")
+				to_chat(user, "Genetic instability: [T.mutation_chance/2] % chance of mutation on splitting")
 			else
 				to_chat(user, "Possible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]] (x2)")
-				to_chat(user, "Genetic destability: [T.mutation_chance] % chance of mutation on splitting")
+				to_chat(user, "Genetic instability: [T.mutation_chance] % chance of mutation on splitting")
 		else
 			to_chat(user, "Possible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]], [T.slime_mutation[4]]")
-			to_chat(user, "Genetic destability: [T.mutation_chance] % chance of mutation on splitting")
+			to_chat(user, "Genetic instability: [T.mutation_chance] % chance of mutation on splitting")
 	if (T.cores > 1)
 		to_chat(user, "Multiple cores detected")
 	to_chat(user, "Growth progress: [T.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]")

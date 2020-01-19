@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
+	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
 	var/id = "NULL" // identification string
 	var/network = "NULL" // the network of the machinery
@@ -30,6 +31,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/toggled = TRUE 	// Is it toggled on
 	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
 	var/hide = FALSE  // Is it a hidden machine?
+
+	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
+	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
 
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
@@ -142,10 +146,33 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	// Update the icon
 	update_icon()
 
+	var/turf/T = get_turf(src) //yogs
+	var/speedloss = 0
+	var/datum/gas_mixture/env = T.return_air()
+	var/temperature = env.temperature
+	if(temperature <= 150)				// 150K optimal operating parameters
+		net_efective = 100
+	else
+		if(temperature >= 1150)		// at 1000K above 150K the efectivity becomes 0
+			net_efective = 0
+			speedloss = netspeed
+		else
+			var/ratio = 1000/netspeed			// temp per one unit of speedloss
+			speedloss = round((temperature - 150)/ratio)	// exact speedloss
+			net_efective = 100 - speedloss/netspeed		// percantage speedloss ui use only
+	//yogs end
+
+
 	if(traffic > 0)
-		traffic -= netspeed
-		if (traffic < 0)  //yogs start
-			traffic = 0   //yogs end
+		var/deltaT = netspeed - speedloss  //yogs start
+		if (traffic < deltaT)
+			deltaT = traffic
+			traffic = 0
+		else
+			traffic -= deltaT
+		if(generates_heat)
+			env.temperature += deltaT * heatoutput / env.heat_capacity()   //yogs end
+
 
 /obj/machinery/telecomms/emp_act(severity)
 	. = ..()
@@ -158,3 +185,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/proc/de_emp()
 	stat &= ~EMPED
+
+/obj/machinery/telecomms/emag_act()
+	obj_flags |= EMAGGED
+	visible_message("<span class='notice'>Sparks fly out of the[src]!</span>")
+	traffic += 50

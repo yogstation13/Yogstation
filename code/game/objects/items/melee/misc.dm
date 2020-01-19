@@ -175,8 +175,8 @@
 
 	var/cooldown = 40 // Default wait time until can stun again.
 	var/stun_time_carbon = 60 // How long we stun for - 6 seconds.
-	var/stun_time_silicon = 0.60 // Multiplier for stunning silicons; if enabled, is 60% of human stun time. 
-	var/affect_silicon = FALSE // Does it stun silicons. 
+	var/stun_time_silicon = 0.60 // Multiplier for stunning silicons; if enabled, is 60% of human stun time.
+	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
 	var/stun_animation = FALSE // Do we animate the "hit" when stunning.
@@ -225,7 +225,7 @@
 	.["local"] = "<span class='danger'>You pulse [target]'s sensors with the baton!</span>"
 
 	return .
-	
+
 // Are we applying any special effects when we stun to carbon
 /obj/item/melee/classic_baton/proc/additional_effects_carbon(mob/living/target, mob/living/user)
 	return
@@ -261,7 +261,7 @@
 
 				user.visible_message(desc["visible"], desc["local"])
 				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
-				
+
 				if (stun_animation)
 					user.do_attack_animation(target)
 			else
@@ -385,12 +385,12 @@
 	item_flags = NONE
 	force = 5
 
-	cooldown = 30 
-	stun_time_carbon = 85 
-	affect_silicon = TRUE 
+	cooldown = 30
+	stun_time_carbon = 85
+	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
-	stun_animation = TRUE 
+	stun_animation = TRUE
 
 	on_icon_state = "contractor_baton_1"
 	off_icon_state = "contractor_baton_0"
@@ -492,7 +492,7 @@
 
 /obj/item/melee/supermatter_sword/proc/consume_turf(turf/T)
 	var/oldtype = T.type
-	var/turf/newT = T.ScrapeAway()
+	var/turf/newT = T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	if(newT.type == oldtype)
 		return
 	playsound(T, 'sound/effects/supermatter.ogg', 50, 1)

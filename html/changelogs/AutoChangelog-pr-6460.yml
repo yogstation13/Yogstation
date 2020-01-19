@@ -1,5 +1,0 @@
-author: "Ihonkification"
-delete-after: true 
-changes: 
-  - imageadd: "Updates medkit sprites to be consistent."
-  - imageadd: "The tactical medkit now has a in-hand sprite"

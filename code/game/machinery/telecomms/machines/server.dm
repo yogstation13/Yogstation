@@ -39,7 +39,7 @@
 
 	// If the signal is still compressed, make the log entry gibberish
 	var/compression = signal.data["compression"]
-	if(compression > 0)
+	if(compression > 0 || (obj_flags & EMAGGED))
 		log.input_type = "Corrupt File"
 		log.parameters["name"] = Gibberish(signal.data["name"], compression + 50)
 		log.parameters["job"] = Gibberish(signal.data["job"], compression + 50)

@@ -331,6 +331,10 @@
 	report += "<span class='header'>[name]:</span>"
 	if(winner)
 		report += "<span class='greentext'>The [name] gang was successful!</span>"
+		for(var/datum/mind/M in leaders)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/gangleader,M.current)
+		for(var/datum/mind/M in members) // Leaders are included in this too
+			SSachievements.unlock_achievement(/datum/achievement/greentext/gang,M.current) // and so get the lower achievement, too
 	else
 		report += "<span class='redtext'>The [name] gang has failed!</span>"
 
@@ -423,7 +427,7 @@
 		if(ishuman(gangmind.current))
 			var/mob/living/carbon/human/gangster = gangmind.current
 			//Gangster must be alive and on station
-			if((gangster.stat == DEAD) || (is_station_level(gangster.z)))
+			if((gangster.stat == DEAD) || (!is_station_level(gangster.z)))
 				continue
 
 			var/obj/item/clothing/outfit

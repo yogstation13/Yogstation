@@ -1,4 +1,3 @@
-
 /*
 
 CONTAINS:
@@ -13,10 +12,10 @@ TRICORDER
 
 /obj/item/multitool/tricorder
 	name = "tricorder"
+	desc = "A multifunction handheld device useful for data sensing, analysis, and recording."
 	icon = 'yogstation/icons/obj/device.dmi'
 	icon_state = "tricorder"
 	item_state = "analyzer"
-	desc = "A multifunction hand-held device useful for data sensing, analysis, and recording"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -42,7 +41,8 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 //Tricorder differentiates from slimes and nonslimes
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
-	atmosanalyzer_scan()
+	var/turf/U = get_turf(I)
+	atmosanalyzer_scan(U.return_air(), user, I)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))
@@ -55,101 +55,40 @@ obj/item/multitool/tricorder/suicide_act(mob/living/carbon/user)
 		lesserhealthscan(user, M)
 		return
 
-//Gas Analyzer functions
-/obj/item/multitool/tricorder/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity)
+//Gas Analyzer Tank Scan
+/obj/item/multitool/tricorder/afterattack(atom/A as obj, mob/user, proximity)
 	if(!proximity)
 		return
 	A.analyzer_act(user, src)
 
+//Gas Analyzer Turf Scan
 /obj/item/multitool/tricorder/attack_self(mob/user)
-	//Copy + Pasted right off the Gas Analyzer
-	add_fingerprint(user)
+	scangasses(user)
 
-	if (user.stat || user.eye_blind)
-		return
-
-	var/turf/location = user.loc
-	if(!istype(location))
-		return
-
-	var/datum/gas_mixture/environment = location.return_air()
-
-	var/pressure = environment.return_pressure()
-	var/total_moles = environment.total_moles()
-
-	to_chat(user, "<span class='info'><B>Results:</B></span>")
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(user, "<span class='info'>Pressure: [round(pressure, 0.01)] kPa</span>")
-	else
-		to_chat(user, "<span class='alert'>Pressure: [round(pressure, 0.01)] kPa</span>")
-	if(total_moles)
-		var/list/env_gases = environment.gases
-
-		environment.assert_gases(arglist(GLOB.hardcoded_gases))
-		var/o2_concentration = env_gases[/datum/gas/oxygen][MOLES]/total_moles
-		var/n2_concentration = env_gases[/datum/gas/nitrogen][MOLES]/total_moles
-		var/co2_concentration = env_gases[/datum/gas/carbon_dioxide][MOLES]/total_moles
-		var/plasma_concentration = env_gases[/datum/gas/plasma][MOLES]/total_moles
-
-		if(abs(n2_concentration - N2STANDARD) < 20)
-			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/nitrogen][MOLES], 0.01)] mol)</span>")
-		else
-			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/nitrogen][MOLES], 0.01)] mol)</span>")
-
-		if(abs(o2_concentration - O2STANDARD) < 2)
-			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/oxygen][MOLES], 0.01)] mol)</span>")
-		else
-			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/oxygen][MOLES], 0.01)] mol)</span>")
-
-		if(co2_concentration > 0.01)
-			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/carbon_dioxide][MOLES], 0.01)] mol)</span>")
-		else
-			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/carbon_dioxide][MOLES], 0.01)] mol)</span>")
-
-		if(plasma_concentration > 0.005)
-			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/plasma][MOLES], 0.01)] mol)</span>")
-		else
-			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(env_gases[/datum/gas/plasma][MOLES], 0.01)] mol)</span>")
-
-		environment.garbage_collect()
-
-		for(var/id in env_gases)
-			if(id in GLOB.hardcoded_gases)
-				continue
-			var/gas_concentration = env_gases[id][MOLES]/total_moles
-			to_chat(user, "<span class='alert'>[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] % ([round(env_gases[id][MOLES], 0.01)] mol)</span>")
-		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
-
-//If medicalTricorder is set to 0 then the tricorder will not be as effective as a regular medical scanner
-proc/lesserhealthscan(mob/user, mob/living/M)
+//If medicalTricorder is set to FALSE then the tricorder will not be as effective as a regular medical scanner
+/obj/item/proc/lesserhealthscan(mob/user, mob/living/M)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
-	var/oxy_loss = M.getOxyLoss()
-	var/tox_loss = M.getToxLoss()
-	var/fire_loss = M.getFireLoss()
-	var/brute_loss = M.getBruteLoss()
+	var/oxy_damage = M.getOxyLoss()
+	var/tox_damage = M.getToxLoss()
+	var/fire_damage = M.getFireLoss()
+	var/brute_damage = M.getBruteLoss()
+	var/brain_status = M.getOrganLoss(ORGAN_SLOT_BRAIN)
 
-	// Damage descriptions
+	// Status Readout
 	// Tricorder can detect damage but can only give estimates in most cases
-	if(brute_loss > 5)
-		to_chat(user, "\t[brute_loss > 100 ? "Catastrophic" : brute_loss > 75 ? "Extreme" : brute_loss > 50 ? "Severe" : "Minor"] tissue damage detected.</span>")
-	if(fire_loss > 5)
-		to_chat(user, "\t[fire_loss > 100 ? "Catastrophic" : fire_loss > 75 ? "Extreme" : fire_loss > 50 ? "Severe" : "Minor"] burn damage detected.</span>")
-	if(oxy_loss > 5)
-		to_chat(user, "\t[oxy_loss > 100 ? "Catastrophic" : oxy_loss > 75 ? "Extreme" : oxy_loss > 50 ? "Severe" : "Minor"] oxygen deprivation detected.</span>")
-	if(tox_loss > 5)
-		to_chat(user, "\t[tox_loss > 100 ? "Catastrophic" : tox_loss > 75 ? "Extreme" : tox_loss > 50 ? "Severe" : "Minor"] blood toxin levels detected.</span>")
-	if (M.getOrganLoss(ORGAN_SLOT_BRAIN) >= 200 || !M.getorgan(/obj/item/organ/brain))
-		to_chat(user, "\t<span class='alert'>Subject's brain function is non-existent.</span>")
-	else if (M.getOrganLoss(ORGAN_SLOT_BRAIN) >= 120)
-		to_chat(user, "\t<span class='alert'>Severe brain damage detected. Subject likely to have mental traumas.</span>")
-	else if (M.getOrganLoss(ORGAN_SLOT_BRAIN) >= 45)
-		to_chat(user, "\t<span class='alert'>Brain damage detected.</span>")
-	if (M.radiation)
-		to_chat(user, "\t<span class='alert'>Subject is irradiated.</span>")
-		to_chat(user, "\t<span class='info'>Radiation Level: [M.radiation]%.</span>")
-
-	// Time of death
-	if(M.tod && (M.stat == DEAD))
-		to_chat(user, "<span class='info'>Time of Death:</span> [M.tod]")
+	//Temperature
+	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+	//Brute
+	to_chat(user, "\t <font color='red'>*</font> Brute Damage: <font color ='orange'>[brute_damage > 100 ? "<font color='red'>Critical</font>" : brute_damage > 75 ? "Catastrophic" : brute_damage > 50 ? "Extreme" : brute_damage > 25 ? "Severe" : brute_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	//Burn
+	to_chat(user, "\t <font color='#FF8000'>*</font> Burn damage: <font color ='orange'>[fire_damage > 100 ? "<font color='red'>Critical</font>" : fire_damage > 75 ? "Catastrophic" : fire_damage > 50 ? "Extreme" : fire_damage > 25 ? "Severe" : fire_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	//Oxygen
+	to_chat(user, "\t <font color='blue'>*</font> Blood Oxygen Concentration: <font color ='orange'>[oxy_damage > 100 ? "<font color='red'>Critical</font>" : oxy_damage > 75 ? "Dangerous" : oxy_damage > 50 ? "Low" : oxy_damage > 25 ? "Concerning" : oxy_damage > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
+	//Toxin
+	to_chat(user, "\t <font color='green'>*</font> Blood Toxin Levels: <font color ='orange'>[tox_damage > 100 ? "<font color='red'>Critical</font>" : tox_damage > 75 ? "Catastrophic" : tox_damage > 50 ? "Extreme" : tox_damage > 25 ? "Severe" : tox_damage > 0 ? "Minor" : "<font color='blue'>None</font>"]</font></span>")
+	//Brain
+	to_chat(user, "\t <font color='Fuchsia'>*</font> Brain Activity: <font color ='orange'>[brain_status >= 200 ? "<font color='red'>Not Detected</font>" : brain_status > 100 ? "Low" : brain_status > 0 ? "High" : "<font color='blue'>Full</font>"]</font></span>")
+	//Radiation
+	to_chat(user, "\t <font color='yellow'>*</font> Radiation Levels: [M.radiation ? "<font color='red'>[M.radiation]</font>" : "<font color='blue'>None</font>"]</span>")

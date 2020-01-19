@@ -19,7 +19,7 @@
 #define BLOOD_VOLUME_SLIME_SPLIT	(2.0 * BLOOD_VOLUME_GENERIC) // Amount of blood needed by slimebois for splitting in twain
 
 //Blood multiplers -- Multiply the original default value of blood your Carbon has with these in order to get the actual blood tiers
-// i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever 
+// i.e.	if(h.blood_volume < initial(h.blood_volume) * BLOOD_OKAY_MULTI) or whatever
 //used by :living/proc/get_blood_state()
 #define BLOOD_MAXIMUM_MULTI 3.6 // 360%
 #define BLOOD_SAFE_MULTI 0.848	// 84.8%
@@ -48,6 +48,7 @@
 #define MOB_SIZE_SMALL 1
 #define MOB_SIZE_HUMAN 2
 #define MOB_SIZE_LARGE 3
+#define MOB_SIZE_HUGE 4
 
 //Ventcrawling defines
 #define VENTCRAWLER_NONE   0
@@ -169,11 +170,6 @@
 #define SANITY_CRAZY 25
 #define SANITY_INSANE 0
 
-//Hygiene levels for humans
-#define HYGIENE_LEVEL_CLEAN 250
-#define HYGIENE_LEVEL_NORMAL 200
-#define HYGIENE_LEVEL_DIRTY 75
-
 //Nutrition levels for humans
 #define NUTRITION_LEVEL_FAT 600
 #define NUTRITION_LEVEL_FULL 550
@@ -291,7 +287,6 @@
 
 #define	HUNGER_FACTOR		0.1	//factor at which mob nutrition decreases
 #define	ETHEREAL_CHARGE_FACTOR	0.12 //factor at which ethereal's charge decreases
-#define	HYGIENE_FACTOR  0.1	//factor at which mob hygiene decreases
 #define	REAGENTS_METABOLISM 0.4	//How many units of reagent are consumed per tick, by default.
 #define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)	// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
 

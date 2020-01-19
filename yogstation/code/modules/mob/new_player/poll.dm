@@ -32,6 +32,9 @@
 		return
 	if(pollid == -1)
 		return
+	pollid = text2num(pollid)
+	if(!pollid)
+		return
 	if(!SSdbcore.IsConnected())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return

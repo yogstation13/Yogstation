@@ -95,6 +95,18 @@
 		</tbody>
 		</table>
 	</ui-section>
+	<ui-section>
+		{{#if data.z == 2}}
+			<div class='map'>
+				{{#each data.sensors}}
+					{{#if pos_x != null}}
+						<div class='blip' style='left:{{pos_x/data.mapsize*600}}px;bottom:{{pos_y/data.mapsize*600}}px'></div>
+					{{/if}}
+				{{/each}}
+				<img src='map.png'>
+			</div>
+		{{/if}}
+	</ui-section>
 </ui-display>
 
 <style>
@@ -135,4 +147,17 @@
 	table.crew td {
 		padding : 0px 10px;
 	}
+	
+	.map {
+       width: 600px;
+       height: 600px;
+       position: relative;
+    }
+    .blip {
+       position: absolute;
+       z-index: 500;
+	   width: 5px;
+	   height: 5px;
+       background-color: #FF0000;
+    }
 </style>
