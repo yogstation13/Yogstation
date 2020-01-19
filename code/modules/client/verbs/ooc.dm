@@ -29,7 +29,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	if(QDELETED(src))
 		return
 
-	msg = copytext_char(sanitize(to_utf8(msg, src)), 1, MAX_MESSAGE_LEN)
+	msg = copytext(sanitize(to_utf8(msg, src)), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
