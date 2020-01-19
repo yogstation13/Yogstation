@@ -47,7 +47,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	message = copytext_char(sanitize(to_utf8(message)), 1, MAX_MESSAGE_LEN) // yogs - libvg support
+	message = copytext(sanitize(to_utf8(message)), 1, MAX_MESSAGE_LEN) // yogs - libvg support
 
 	usr.emote("me",1,message,TRUE)
 
