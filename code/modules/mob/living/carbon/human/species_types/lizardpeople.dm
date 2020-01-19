@@ -31,10 +31,22 @@
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + 10)
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 10)
 
-// Lizards are cold blooded and do not stabilize body temperature naturally
+// Lizards are cold blooded and do not stabilize body temperature naturally unless very cold or hot
 // Return the the amount of change in temperature
 /datum/species/lizard/natural_bodytemperature_stabilization(mob/living/carbon/human/H)
-	return 0 // No natural temperature change, only enviromental
+	var/body_temp = H.bodytemperature // Get current body temperature
+	var/body_temperature_difference = bodytemp_normal - body_temp
+
+	// We are very cold, increate body temperature
+	// let lizards stabilize to 10 degrees over cold damage limit.
+	if(body_temp <= (bodytemp_cold_damage_limit + 10))
+		return max((body_temperature_difference * H.metabolism_efficiency / BODYTEMP_AUTORECOVERY_DIVISOR), \
+			bodytemp_autorecovery_min)
+
+	// We are very hot, reduce the body temperature
+	// let lizards stabilize to 10 degrees under hot damage limit.
+	if(body_temp >= (bodytemp_heat_damage_limit - 10))
+		return min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -bodytemp_autorecovery_min)
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
