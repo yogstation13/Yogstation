@@ -1290,6 +1290,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return 1
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		
+		if(!(target.mobility_flags & MOBILITY_STAND) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG) && user.a_intent == INTENT_DISARM && !target.shoes)
+		user.visible_message("<span class='warning'>[user] starts tickling [target]'s feet!</span>",
+							"<span class='danger'>You start tickling [target]'s feet...</span>", null, null, target)
+		to_chat(target, "<span class='userdanger'>[user] starts tickling your feet!</span>")
+		if(do_after(user, 30, TRUE, target, TRUE))
+			user.visible_message("<span class='warning'>[user] tickled [target]'s feet!</span>",
+								"<span class='notice'>You tickled [target]'s feet!</span>", null, null, target)
+			to_chat(target, "<span class='userdanger'>[user] tickled your feet!</span>")
+		return TRUE
+		
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
