@@ -329,8 +329,8 @@
 	var/speak_text = input(src, "What would you like to say with your minions?", "Blob Broadcast", null) as text
 	if(!speak_text)
 		return
-	else
-		to_chat(src, "You broadcast with your minions, <B>[speak_text]</B>")
+	speak_text = to_utf8(speak_text, src)
+	to_chat(src, "You broadcast with your minions, <B>[speak_text]</B>")
 	for(var/BLO in blob_mobs)
 		var/mob/living/simple_animal/hostile/blob/BM = BLO
 		if(BM.stat == CONSCIOUS)
