@@ -43912,6 +43912,12 @@
 	req_access_txt = "48";
 	shuttledocked = 1
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "bJc" = (
@@ -47319,6 +47325,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bQI" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Incinerator Access";
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "bQJ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -47326,6 +47349,21 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bQK" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Incinerator Access";
+	req_access_txt = "12"
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/structure/barricade/wooden{
+	name = "wooden barricade (CLOSED)"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "bQL" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -48492,17 +48530,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
-/area/maintenance/port/aft)
-"bYy" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Incinerator Access";
-	req_access_txt = "12"
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/structure/barricade/wooden{
-	name = "wooden barricade (CLOSED)"
-	},
-/turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bYz" = (
 /obj/machinery/light{
@@ -80949,7 +80976,7 @@ bWy
 bXx
 bYw
 bZj
-bYy
+bQK
 bHE
 eRw
 bHE
@@ -81975,7 +82002,7 @@ bCq
 bCq
 bCq
 bCq
-bYy
+bQI
 bCq
 bCq
 bLv
