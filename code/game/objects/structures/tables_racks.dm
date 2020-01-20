@@ -118,7 +118,7 @@
 		. = . || (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
-	send_signal(user, COMSIG_MOB_TABLING)
+	SEND_SIGNAL(user, COMSIG_MOB_TABLING)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	pushed_mob.visible_message("<span class='notice'>[user] places [pushed_mob] onto [src].</span>", \
