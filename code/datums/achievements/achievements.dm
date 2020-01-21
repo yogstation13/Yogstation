@@ -33,7 +33,7 @@
 
 /datum/achievement/flukeops
 	name = "Reverse Card"
-	desc = "As a member of the crew, deal a humiliating defeat to nuclear team"
+	desc = "As a member of the crew, deal a humiliating defeat to the nuclear team"
 	id = 5
 
 /datum/achievement/greentext/nukewin
