@@ -12,7 +12,7 @@
 	var/syndicate = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
-
+	greentext_achieve = /datum/achievement/greentext/internal
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -234,6 +234,7 @@
 			special_role = TRAITOR_AGENT_ROLE
 			syndicate = TRUE
 			forge_single_objective()
+			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()
