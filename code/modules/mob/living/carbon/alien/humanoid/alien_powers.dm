@@ -98,7 +98,7 @@ Doesn't work on other aliens/AI.*/
 	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 		to_chat(user, "<span class='noticealien'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
 		return FALSE
-	var/msg = sanitize(input("Message:", "Alien Whisper") as text|null)
+	var/msg = sanitize(to_utf8(input("Message:", "Alien Whisper") as text|null, usr))
 	if(msg)
 		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 			to_chat(user, "<span class='notice'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
