@@ -24757,17 +24757,17 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/modular_computer/console/preset/engineering,
+/obj/machinery/requests_console{
+	department = "Engineering";
+	departmentType = 0;
+	name = "Engineering RC";
+	pixel_x = 64
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aIy" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
-/obj/machinery/requests_console{
-	department = "Engineering";
-	departmentType = 0;
-	name = "Engineering RC";
-	pixel_x = 32
-	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
