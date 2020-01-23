@@ -23,8 +23,11 @@
 /obj/machinery/door/airlock/maintenance
 	name = "maintenance access"
 	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/maint/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
+	doorOpen = 'sound/machines/airlock-latch.ogg'
+	doorClose = 'sound/machines/airlock-latchclose.ogg'
 
 /obj/machinery/door/airlock/maintenance/external
 	name = "external airlock access"
