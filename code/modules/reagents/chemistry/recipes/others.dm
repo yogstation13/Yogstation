@@ -11,6 +11,12 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
+/datum/chemical_reaction/lube
+	name = "Graveyard"
+	id = /datum/reagent/consumable/graveyard
+	results = list(/datum/reagent/consumable/graveyard = 3)
+	required_reagents = list(/datum/reagent/consumable/space_cola, /datum/reagent/consumable/dr_gibb, /datum/reagent/consumable/space_up = 1) //soda
+
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"
 	id = /datum/reagent/spraytan
