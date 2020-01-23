@@ -25655,6 +25655,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/locker)
+"aZy" = (
+/obj/machinery/camera{
+	c_tag = "Conference Room"
+	},
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "aZz" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
@@ -56305,13 +56311,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"pUo" = (
-/obj/machinery/camera{
-	step_x = 0;
-	c_tag = "Conference Room"
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "pUq" = (
 /obj/effect/landmark/secequipment,
 /obj/effect/turf_decal/bot,
@@ -87362,7 +87361,7 @@ aVe
 aWK
 aYq
 aZP
-pUo
+aZy
 bdu
 bbC
 bbC
