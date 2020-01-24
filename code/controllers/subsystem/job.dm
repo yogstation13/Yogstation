@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(job)
 // Attempts to Assign player to Role
 /datum/controller/subsystem/job/proc/AssignRole(mob/dead/new_player/player, rank, latejoin = FALSE)
 	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(CanAssignRole(player, rank)
+	if(CanAssignRole(player, rank))
 		var/datum/job/job = GetJob(rank)
 		var/position_limit = job.total_positions
 		if(!latejoin)
