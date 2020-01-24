@@ -1779,8 +1779,7 @@
 	areastring = "/area/construction/mining/aux_base";
 	dir = 8;
 	name = "Auxiliary Construction APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -7507,8 +7506,7 @@
 	areastring = "/area/hallway/primary/fore";
 	dir = 8;
 	name = "Port Primary Hallway APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -18994,8 +18992,7 @@
 	areastring = "/area/quartermaster/sorting";
 	dir = 8;
 	name = "Delivery Office APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -20516,8 +20513,7 @@
 	areastring = "/area/quartermaster/storage";
 	dir = 8;
 	name = "Cargo Bay APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -25413,8 +25409,7 @@
 	areastring = "/area/hallway/secondary/service";
 	dir = 8;
 	name = "Service Hall APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -25638,7 +25633,6 @@
 	areastring = "/area/security/prison";
 	dir = 2;
 	name = "Prison Wing APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/effect/turf_decal/tile/red{
@@ -47282,8 +47276,7 @@
 	areastring = "/area/storage/primary";
 	dir = 8;
 	name = "Primary Tool Storage APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -48065,8 +48058,7 @@
 	areastring = "/area/storage/tech";
 	dir = 8;
 	name = "Technology Storage APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -63439,8 +63431,7 @@
 	areastring = "/area/lawoffice";
 	dir = 8;
 	name = "Law Office APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/landmark/start/lawyer,
 /turf/open/floor/wood,
@@ -68699,8 +68690,7 @@
 	areastring = "/area/library";
 	dir = 8;
 	name = "Library APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -68866,8 +68856,7 @@
 	areastring = "/area/vacant_room/commissary";
 	dir = 8;
 	name = "Vacant Commissary APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -84666,8 +84655,7 @@
 	areastring = "/area/security/checkpoint/science/research";
 	dir = 8;
 	name = "Security Post - Science APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/machinery/button/door{
 	desc = "A remote control switch.";
@@ -92329,8 +92317,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -93130,7 +93117,6 @@
 	areastring = "/area/science/misc_lab/range";
 	dir = 2;
 	name = "Testing Range APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/table/reinforced,
@@ -106264,8 +106250,7 @@
 	areastring = "/area/science/lab";
 	dir = 8;
 	name = "Research and Development Lab APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -106779,7 +106764,6 @@
 	areastring = "/area/medical/abandoned";
 	dir = 2;
 	name = "Abandoned Medical Lab APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /turf/open/floor/plating,
@@ -109709,8 +109693,7 @@
 	areastring = "/area/science/mixing";
 	dir = 8;
 	name = "Toxins Lab APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -118273,8 +118256,7 @@
 	areastring = "/area/library/abandoned";
 	dir = 8;
 	name = "Abandoned Library APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -119574,8 +119556,7 @@
 	areastring = "/area/security/detectives_office/private_investigators_office";
 	dir = 8;
 	name = "Private Investigator's Office APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office/private_investigators_office)
@@ -119602,7 +119583,6 @@
 	areastring = "/area/maintenance/aft";
 	dir = 2;
 	name = "Aft Maintenance APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /turf/open/floor/plating,
@@ -119673,8 +119653,7 @@
 	areastring = "/area/security/checkpoint/customs/auxiliary";
 	dir = 8;
 	name = "Departures Customs APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/machinery/camera{
 	c_tag = "Departures Customs";
@@ -119794,8 +119773,7 @@
 	areastring = "/area/chapel/main";
 	dir = 8;
 	name = "Chapel APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -119860,8 +119838,7 @@
 	areastring = "/area/security/checkpoint/escape";
 	dir = 8;
 	name = "Departures Checkpoint APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/item/crowbar,
 /obj/item/wrench,
