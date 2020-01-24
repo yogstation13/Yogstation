@@ -29163,6 +29163,9 @@
 /area/bridge/meeting_room)
 "bgI" = (
 /obj/machinery/computer/slot_machine,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = -32
+	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "bgJ" = (
@@ -29188,12 +29191,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/paramedic)
-"bgL" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = -32
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "bgM" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -30711,7 +30708,15 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bjC" = (
-/obj/structure/closet/wardrobe/black,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/bridge/meeting_room";
+	dir = 4;
+	name = "Conference Room APC";
+	pixel_x = 24
+	},
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bjD" = (
@@ -31446,15 +31451,10 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bkX" = (
-/obj/machinery/power/apc{
-	areastring = "/area/bridge/meeting_room";
-	dir = 4;
-	name = "Conference Room APC";
-	pixel_x = 24
-	},
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "1-8"
 	},
+/obj/structure/closet/wardrobe/black,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bkY" = (
@@ -36579,9 +36579,11 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "/area/medical/medbay/central";
-	dir = 4;
+	dir = 1;
 	name = "Medbay APC";
-	pixel_x = 24
+	pixel_w = 0;
+	pixel_x = 0;
+	pixel_y = 28
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -86831,7 +86833,7 @@ aVc
 aWI
 aYo
 aZM
-aZy
+aZC
 bdt
 bcZ
 bdY
@@ -87093,7 +87095,7 @@ bdt
 bbM
 bcN
 bew
-bgL
+bbX
 aZP
 aZP
 aZP
@@ -87345,14 +87347,14 @@ aVe
 aWK
 aYq
 aZP
-aZC
+aZy
 bdu
 bbC
 bbC
 bez
 bbX
-bbX
 bjE
+bbX
 bbX
 bmo
 bnQ
