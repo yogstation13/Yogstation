@@ -693,7 +693,6 @@
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
 		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
-		G.mind.add_antag_datum(S)
 		G.stats = stats
 		G.stats.Apply(G)
 		stats.ability.master_stats = stats
