@@ -29191,6 +29191,31 @@
 	},
 /turf/open/floor/plating,
 /area/medical/paramedic)
+"bgL" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/medbay/central";
+	dir = 1;
+	name = "Medbay APC";
+	pixel_y = 23
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "bgM" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -36572,31 +36597,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bui" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/medical/medbay/central";
-	dir = 1;
-	name = "Medbay APC";
-	pixel_y = 28
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "buj" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics2";
@@ -98166,7 +98166,7 @@ sVZ
 bFA
 pnj
 ihS
-bui
+bgL
 bLT
 yan
 bLT
