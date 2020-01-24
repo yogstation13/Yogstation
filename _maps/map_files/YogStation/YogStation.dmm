@@ -36581,8 +36581,6 @@
 	areastring = "/area/medical/medbay/central";
 	dir = 1;
 	name = "Medbay APC";
-	pixel_w = 0;
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/structure/disposalpipe/segment{
