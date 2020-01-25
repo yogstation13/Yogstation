@@ -9455,6 +9455,7 @@
 	},
 /obj/structure/table,
 /obj/item/hand_labeler,
+/obj/item/paper/guides/jobs/security/labor_lockers,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "asM" = (
@@ -47403,7 +47404,6 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bQP" = (
-/obj/structure/closet,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -47416,6 +47416,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/personal/prisoner,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "bQQ" = (
@@ -47440,17 +47441,16 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "bQS" = (
-/obj/structure/closet,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/personal/prisoner,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "bQT" = (
-/obj/structure/closet,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -47458,6 +47458,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/personal/prisoner,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "bQU" = (
