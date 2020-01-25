@@ -20,6 +20,9 @@
 	var/include_se = FALSE //mutations
 	var/include_ui = FALSE //appearance
 	var/include_ue = FALSE //blood type, UE, and name
+	//costs of cloning
+	var/biomatter = 0 //If we do not have at least 1000 biomatter you can't clone the body.
+	var/clone_cost = 100
 
 	var/loading = FALSE // Nice loading text
 	var/autoprocess = FALSE
@@ -160,7 +163,11 @@
 			P.buffer = src
 			to_chat(user, "<font color = #666633>-% Successfully stored [REF(P.buffer)] [P.buffer.name] in buffer %-</font color>")
 		return
-	else
+	else if(istype(W, /obj/item/reagent_containers/food/))
+		var/obj/item/reagent_containers/food/F = W
+		biomatter += F.volume //we compost the food and it's volume is fueling biomatter
+		to_chat(user, "<span class='notice'>You put biomatter in the console.</span>")
+		qdel(W)
 		return ..()
 
 /obj/machinery/computer/cloning/ui_interact(mob/user)
@@ -179,6 +186,7 @@
 	else
 		dat += "<span class='linkOff'>Autoprocess</span>"
 	dat += "<h3>Cloning Pod Status</h3>"
+	dat += "<h4>Biomatter :[biomatter]</h4>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
 		if(1)
@@ -488,9 +496,15 @@
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+			else if(biomatter < clone_cost)
+				temp = "<font class='bad'>Not enough biomatter to create the body, current amount of biomatter is [biomatter]!</font>"
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+				success = FALSE
 			else
 				var/result = grow_clone_from_record(pod, C, empty)
 				if(result & CLONING_SUCCESS)
+					biomatter -= clone_cost
+					clone_cost += 25
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 					if(active_record == C)
@@ -624,3 +638,6 @@
 	records += R
 	log_cloning("[M ? key_name(M) : "Autoprocess"] added the [body_only ? "body-only " : ""]record of [key_name(mob_occupant)] to [src] at [AREACOORD(src)].")
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)
+
+/obj/machinery/computer/cloning/roundstart
+	biomatter = 350 //:)))))))))))))))))))))))))

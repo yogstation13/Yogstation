@@ -572,3 +572,13 @@
 	desc = "I have a mouth and I must eat."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
+
+/obj/item/reagent_containers/food/snacks/biomatter
+	name = "Biomatter"
+	desc = "Pure biology matter, is it tasty?"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "biomatter"
+	volume = 25
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/bad_food = 15, /datum/reagent/consumable/sugar = 5)
+	tastes = list("pure biology" = 6, "pure matter" = 6)
+	foodtype = JUNKFOOD | SUGAR | FRUIT | PINEAPPLE | VEGETABLES | DAIRY | GRAIN | BREAKFAST | FRIED | MEAT | ALCOHOL | GROSS | EGG
