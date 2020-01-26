@@ -15,7 +15,7 @@
 	name = "Graveyard"
 	id = /datum/reagent/consumable/graveyard
 	results = list(/datum/reagent/consumable/graveyard = 3)
-	required_reagents = list(/datum/reagent/consumable/space_cola, /datum/reagent/consumable/dr_gibb, /datum/reagent/consumable/space_up = 1) //soda
+	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
 
 /datum/chemical_reaction/spraytan
 	name = "Spray Tan"
