@@ -863,13 +863,13 @@
 	
 /datum/reagent/consumable/graveyard
 	name = "Graveyard"
-	description = "What Happens when you mix all the sodas in the fountain you get this monstorsity"
+	description = "What happens when you mix all the sodas in the fountain? You get this monstrosity!"
 	color = "#dcb137"
 	quality = DRINK_VERYGOOD
-	taste_description = "Tastes like liquid diabetes"
+	taste_description = "liquid diabetes"
 	glass_icon_state = "cream_soda"
 	glass_name = "Graveyard"
-	glass_desc = "just looking at is making you want feel sick"
+	glass_desc = "Just looking at this is making you feel sick."
 
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
