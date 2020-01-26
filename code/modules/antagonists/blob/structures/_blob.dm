@@ -17,7 +17,7 @@
 	var/heal_timestamp = 0 //we got healed when?
 	var/brute_resist = 0.5 //multiplies brute damage by this
 	var/fire_resist = 1 //multiplies burn damage by this
-	var/atmosblock = FALSE //if the blob blocks atmos and heat spread
+	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
 /obj/structure/blob/Initialize(mapload, owner_overmind)

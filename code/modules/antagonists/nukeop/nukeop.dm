@@ -380,8 +380,12 @@
 					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
 		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				if(is_nuclear_operative(H))
-					SSachievements.unlock_achievement(/datum/achievement/nukewin, H.client)
+				var/datum/mind/M = H.mind
+				if(M && M.has_antag_datum(/datum/antagonist/nukeop))
+					if(M.has_antag_datum(/datum/antagonist/nukeop/clownop) || M.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
+						SSachievements.unlock_achievement(/datum/achievement/greentext/clownop, H.client)
+					else
+						SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
 
 
 /datum/team/nuclear/antag_listing_name()

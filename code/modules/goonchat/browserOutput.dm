@@ -218,7 +218,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		// Do the double-encoding outside the loop to save nanoseconds
 		var/twiceEncoded = url_encode(url_encode(message))
 		for(var/I in target)
-			message = to_utf8(message, I) // yogs - LibVG
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 			if (!C)
 				continue
@@ -239,8 +238,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 		if (!C)
 			return
-
-		message = to_utf8(message, target) // yogs - LibVG
 
 		//Send it to the old style output window.
 		SEND_TEXT(C, original_message)

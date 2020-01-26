@@ -63,8 +63,7 @@
 	areastring = "/area/clerk";
 	dir = 8;
 	name = "Gift Shop APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2143,7 +2142,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -4027,7 +4025,6 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Prison Wing APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable{
@@ -5048,7 +5045,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -8140,7 +8136,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Gravity Generator APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/machinery/light{
@@ -14783,11 +14778,11 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "aBZ" = (
-/obj/structure/disposalpipe/junction/flip{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aCa" = (
@@ -21595,7 +21590,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -25256,7 +25250,6 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -28229,7 +28222,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -28533,7 +28525,6 @@
 	areastring = "/area/quartermaster/office";
 	dir = 2;
 	name = "Cargo Office APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /turf/open/floor/plasteel,
@@ -28794,7 +28785,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Security Checkpoint APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable,
@@ -32137,8 +32127,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster/official/random{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33400,7 +33389,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -33897,7 +33885,6 @@
 /obj/machinery/light,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -36200,7 +36187,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -39207,7 +39193,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -45327,7 +45312,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -48954,7 +48938,6 @@
 	idExterior = "telecomms_airlock_exterior";
 	idInterior = "telecomms_airlock_interior";
 	idSelf = "telecomms_airlock_control";
-	pixel_x = 0;
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel,
@@ -49800,7 +49783,6 @@
 /obj/item/radio,
 /obj/machinery/airalarm{
 	dir = 2;
-	pixel_x = 0;
 	pixel_y = 22
 	},
 /obj/effect/turf_decal/tile/yellow{
@@ -51830,6 +51812,16 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard)
+"bOd" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/sign/warning/deathsposal{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "bOe" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -56471,8 +56463,7 @@
 	pixel_y = 30
 	},
 /obj/item/radio/intercom{
-	pixel_x = 26;
-	pixel_y = 0
+	pixel_x = 26
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -59751,13 +59742,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"iLl" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "iPj" = (
 /obj/machinery/igniter{
 	id = "xenoigniter";
@@ -87381,7 +87365,7 @@ aDZ
 gmy
 aDZ
 aFS
-auv
+aDZ
 aDZ
 aDZ
 aAR
@@ -107971,7 +107955,7 @@ aKS
 bqr
 xzp
 bnK
-iLl
+bOd
 bkF
 bwm
 bKU
