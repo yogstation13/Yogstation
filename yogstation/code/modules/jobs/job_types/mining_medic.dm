@@ -26,6 +26,7 @@
 		/obj/item/gps/mining = 1)
 	belt = /obj/item/storage/belt/mining/medical
 	ears = /obj/item/radio/headset/headset_medcargo
+	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/regular

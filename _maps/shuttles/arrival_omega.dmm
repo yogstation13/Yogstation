@@ -87,6 +87,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "k" = (
@@ -218,6 +224,10 @@
 /area/shuttle/arrival)
 "x" = (
 /obj/machinery/door/airlock/shuttle/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
 "y" = (
@@ -252,6 +262,25 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"J" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"T" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/arrival)
+"V" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 
 (1,1,1) = {"
 a
@@ -259,11 +288,11 @@ d
 f
 j
 f
-p
-p
+J
+J
 d
-p
-p
+J
+J
 j
 F
 f
@@ -287,7 +316,7 @@ u
 f
 f
 p
-p
+V
 "}
 (3,1,1) = {"
 c
@@ -305,7 +334,7 @@ v
 x
 y
 z
-p
+V
 "}
 (4,1,1) = {"
 b
@@ -323,7 +352,7 @@ w
 f
 f
 p
-p
+V
 "}
 (5,1,1) = {"
 a
@@ -331,11 +360,11 @@ d
 f
 f
 f
-p
-p
+T
+T
 d
-p
-p
+T
+T
 f
 F
 f

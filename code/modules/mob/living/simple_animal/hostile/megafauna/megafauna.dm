@@ -25,7 +25,7 @@
 	move_force = MOVE_FORCE_OVERPOWERING
 	move_resist = MOVE_FORCE_OVERPOWERING
 	pull_force = MOVE_FORCE_OVERPOWERING
-	mob_size = MOB_SIZE_LARGE
+	mob_size = MOB_SIZE_HUGE
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 	var/list/crusher_loot
@@ -127,13 +127,13 @@
 
 /mob/living/simple_animal/hostile/megafauna/ex_act(severity, target)
 	switch (severity)
-		if (1)
+		if (EXPLODE_DEVASTATE)
 			adjustBruteLoss(250)
 
-		if (2)
+		if (EXPLODE_HEAVY)
 			adjustBruteLoss(100)
 
-		if(3)
+		if (EXPLODE_LIGHT)
 			adjustBruteLoss(50)
 
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time)

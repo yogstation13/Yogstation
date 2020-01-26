@@ -1,0 +1,6 @@
+author: "Potototatoh"
+delete-after: true 
+changes: 
+  - bugfix: "fixed the syringe looking like dookie"
+  - imageadd: "replaces the syringe and autoinjectors"
+  - imagedel: "deleted some icons and images"

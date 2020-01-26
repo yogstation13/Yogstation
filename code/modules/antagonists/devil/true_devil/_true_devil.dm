@@ -29,7 +29,7 @@
 /mob/living/carbon/true_devil/Initialize()
 	create_bodyparts() //initialize bodyparts
 	create_internal_organs()
-	grant_all_languages(omnitongue=TRUE)
+	grant_all_languages()
 	..()
 
 /mob/living/carbon/true_devil/create_internal_organs()
@@ -198,11 +198,11 @@
 	if(!ascended)
 		var/b_loss
 		switch (severity)
-			if (1)
+			if (EXPLODE_DEVASTATE)
 				b_loss = 500
-			if (2)
+			if (EXPLODE_HEAVY)
 				b_loss = 150
-			if(3)
+			if (EXPLODE_LIGHT)
 				b_loss = 30
 		if(has_bane(BANE_LIGHT))
 			b_loss *=2

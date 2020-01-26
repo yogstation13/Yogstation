@@ -1,0 +1,4 @@
+author: "Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Command EVA suits, available in boxstation and deltastation EVA."
