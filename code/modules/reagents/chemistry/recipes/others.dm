@@ -114,8 +114,9 @@
 /datum/chemical_reaction/biomatter_creation
 	name = "Biomatter Creator"
 	id = "biomatter_creation"
-	required_reagents = list(/datum/reagent/blood = 15, /datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/sugar = 15)
+	required_reagents = list(/datum/reagent/blood = 15, /datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 15)
 	required_temp = 501
+	mob_react = FALSE
 
 /datum/chemical_reaction/biomatter_creation/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)

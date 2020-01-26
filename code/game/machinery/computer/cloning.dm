@@ -21,7 +21,7 @@
 	var/include_ui = FALSE //appearance
 	var/include_ue = FALSE //blood type, UE, and name
 	//costs of cloning
-	var/biomatter = 0 //If we do not have at least 1000 biomatter you can't clone the body.
+	var/biomatter = 0 //If we do not have at least 100 biomatter you can't clone the body. (125 if you upgraded the pod)
 	var/clone_cost = 100
 
 	var/loading = FALSE // Nice loading text
@@ -86,6 +86,7 @@
 
 		var/result = grow_clone_from_record(pod, R)
 		if(result & CLONING_SUCCESS)
+			biomatter -= clone_cost
 			temp = "[R.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 			log_cloning("Cloning of [key_name(R.fields["mindref"])] automatically started via autoprocess - [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
 		if(result & CLONING_DELETE_RECORD)
@@ -504,7 +505,6 @@
 				var/result = grow_clone_from_record(pod, C, empty)
 				if(result & CLONING_SUCCESS)
 					biomatter -= clone_cost
-					clone_cost += 25
 					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 					if(active_record == C)

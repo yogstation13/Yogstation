@@ -37616,9 +37616,6 @@
 /turf/open/floor/grass,
 /area/medical/genetics)
 "bqW" = (
-/obj/machinery/computer/cloning{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -37628,6 +37625,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/machinery/computer/cloning/roundstart{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/medical/genetics)
