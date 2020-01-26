@@ -17,7 +17,7 @@
 	var/heal_timestamp = 0 //we got healed when?
 	var/brute_resist = 0.9 //multiplies brute damage by this
 	var/fire_resist = 0.9 //multiplies burn damage by this
-	var/atmosblock = FALSE //if the blob blocks atmos and heat spread
+	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
 /obj/structure/blob/Initialize(mapload, owner_overmind)
@@ -400,4 +400,8 @@
 		icon_state = "blob"
 		name = "dead blob"
 		desc = "A thick wall of lifeless tendrils."
+<<<<<<< HEAD
 		brute_resist = 0.3
+=======
+		brute_resist = 0.25
+>>>>>>> 0bd31fb067ef051a85d07265a5c8d6d092e1b03d

@@ -1004,8 +1004,7 @@
 	dir = 4
 	},
 /obj/structure/sign/warning/pods{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -1021,8 +1020,7 @@
 /area/security/prison)
 "acj" = (
 /obj/structure/sign/warning/pods{
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/open/floor/plating,
 /area/security/prison)
@@ -1414,7 +1412,6 @@
 	areastring = "/area/security/prison";
 	dir = 1;
 	name = "Prison Wing APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
@@ -1737,8 +1734,7 @@
 	dir = 10
 	},
 /obj/machinery/newscaster{
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
@@ -2989,7 +2985,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -4471,7 +4466,6 @@
 	areastring = "/area/ai_monitored/security/armory";
 	dir = 2;
 	name = "Armory APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow{
@@ -6636,7 +6630,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -10251,7 +10244,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -10987,7 +10979,6 @@
 	areastring = "/area/security/brig";
 	dir = 2;
 	name = "Brig APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow,
@@ -11826,8 +11817,7 @@
 	areastring = "/area/engine/storage_shared";
 	dir = 8;
 	name = "Shared Engineering Storage APC";
-	pixel_x = -24;
-	pixel_y = 0
+	pixel_x = -24
 	},
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
@@ -12772,6 +12762,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"avP" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance{
+	id_tag = "commissarydoor";
+	req_one_access_txt = "12;63;48;50;36"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "avS" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating{
@@ -17142,7 +17148,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -18243,7 +18248,6 @@
 	areastring = "/area/crew_quarters/locker";
 	dir = 2;
 	name = "Locker Room APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow,
@@ -18536,7 +18540,6 @@
 	areastring = "/area/security/checkpoint/supply";
 	dir = 1;
 	name = "Security Post - Cargo Bay APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
@@ -21678,7 +21681,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -21964,7 +21966,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/engine,
@@ -22188,7 +22189,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -23537,8 +23537,7 @@
 	areastring = "/area/hydroponics/garden";
 	dir = 4;
 	name = "Garden APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -24514,22 +24513,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"aQv" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	id_tag = "commissarydoor";
-	req_one_access_txt = "12;63;48;50"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "aQw" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -25227,7 +25210,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -25850,7 +25832,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -26965,7 +26946,6 @@
 	areastring = "/area/security/courtroom";
 	dir = 2;
 	name = "Courtroom APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow{
@@ -28193,7 +28173,6 @@
 /obj/item/plant_analyzer,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -28973,7 +28952,6 @@
 	areastring = "/area/hallway/primary/port";
 	dir = 1;
 	name = "Port Hallway APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
@@ -30533,7 +30511,6 @@
 	areastring = "/area/quartermaster/storage";
 	dir = 2;
 	name = "Cargo Bay APC";
-	pixel_x = 0;
 	pixel_y = -23
 	},
 /obj/structure/cable/yellow,
@@ -31421,7 +31398,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -32864,7 +32840,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -33871,7 +33846,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -35599,8 +35573,7 @@
 	areastring = "/area/vacant_room/commissary";
 	dir = 4;
 	name = "Vacant Commissary APC";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/structure/cable/yellow,
 /obj/structure/rack,
@@ -36652,7 +36625,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white/corner,
@@ -36679,7 +36651,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -39440,7 +39411,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -40143,7 +40113,6 @@
 	areastring = "/area/maintenance/starboard";
 	dir = 1;
 	name = "Starboard Maintenance APC";
-	pixel_x = 0;
 	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
@@ -41843,7 +41812,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark/corner,
@@ -43525,7 +43493,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/wood,
@@ -50739,7 +50706,6 @@
 /obj/structure/table/wood,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/wood,
@@ -56136,7 +56102,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -56149,7 +56114,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -56923,8 +56887,7 @@
 	areastring = "/area/maintenance/solars/port/aft";
 	dir = 8;
 	name = "Port Quarter Solar APC";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -59019,7 +58982,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -60356,7 +60318,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -60444,7 +60405,6 @@
 "caM" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -61558,7 +61518,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -62017,7 +61976,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -65443,7 +65401,6 @@
 "ciE" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white/side{
@@ -70779,7 +70736,6 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -75574,7 +75530,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -75845,7 +75800,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -76107,7 +76061,6 @@
 /obj/structure/table/glass,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/white,
@@ -76331,7 +76284,6 @@
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
@@ -76448,7 +76400,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -26
 	},
 /turf/open/floor/plasteel,
@@ -110832,7 +110783,7 @@ aVM
 aMd
 rrB
 rrB
-aQv
+avP
 rrB
 rrB
 bcg

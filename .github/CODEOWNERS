@@ -25,6 +25,7 @@
 /code/controllers/subsystem/timer.dm @AsV9
 /code/datums/achievements/achievements.dm @AsV9
 
+
 #Identification
 
 /icons/ @Idinuum
@@ -32,5 +33,10 @@
 
 #Ktlwjec
 /_maps/ @Ktlwjec1
+
+#monster860
+
+/code/modules/atmospherics/ @monster860
+/yogstation/code/modules/atmospherics/ @monster860
 
 #Multiple Owners
