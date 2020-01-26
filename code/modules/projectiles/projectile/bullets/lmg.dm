@@ -6,7 +6,7 @@
 // Mech LMG
 
 /obj/item/projectile/bullet/lmg
-	damage = 20
+	damage = 22
 
 // Mech FNX-99
 

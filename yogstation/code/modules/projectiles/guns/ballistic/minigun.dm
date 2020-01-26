@@ -177,8 +177,10 @@
 	current_user.setDir(angle2dir_cardinal(angle))
 
 /obj/item/gun/ballistic/minigunosprey/process()
-	if(world.time >= timeleftrev)
-		rev = TRUE
+	if(timeleftrev)
+		if(world.time >= timeleftrev)
+			rev = TRUE
 	if(!rev)
 		return
-	process_fire(current_user.client.mouseObject, current_user)
+	if(current_user)
+		process_fire(current_user.client.mouseObject, current_user)

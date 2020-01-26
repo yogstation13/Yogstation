@@ -44,3 +44,8 @@
 		BS.overmind = overmind
 		BS.update_icons()
 		overmind.blob_mobs.Add(BS)
+
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		if(spore_cooldown != (initial(spore_cooldown) / temp.spore_creation_modifier))
+			spore_cooldown = initial(spore_cooldown) / temp.spore_creation_modifier

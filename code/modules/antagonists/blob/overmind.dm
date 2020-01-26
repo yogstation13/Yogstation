@@ -40,6 +40,8 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
 
+	var/expansion_cost_modifier = 1
+
 /mob/camera/blob/Initialize(mapload, starting_points = 60)
 	validate_location()
 	blob_points = starting_points
@@ -55,7 +57,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	color = blobstrain.complementary_color
 	if(blob_core)
 		blob_core.update_icon()
-	SSshuttle.registerHostileEnvironment(src)
+	//SSshuttle.registerHostileEnvironment(src)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -275,3 +277,184 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/datum/antagonist/blob/B = mind.has_antag_datum(/datum/antagonist/blob)
 	if(!B)
 		mind.add_antag_datum(/datum/antagonist/blob)
+
+#define STAGE1 0
+#define STAGE2 9000
+#define STAGE3 18000
+#define STAGE4 36000
+#define INFECTION_VICTORY_TIMER 9000
+
+
+
+/mob/camera/blob/infection
+	name = "Infection Overmind"
+	real_name = "Infection Overmind"
+	desc = "The overmind. It controls the infection."
+	max_blob_points = 750
+	blobstrain = /datum/blobstrain/reagent/infection
+	free_strain_rerolls = 0
+	blobwincount = "Infinity"
+	var/stage = 1
+	var/biopoints = 0
+	var/biopoint_interval = 3000
+	var/biopoint_timer
+	var/stage_timer_begun
+
+	//Stage Boosts
+	var/stage_health = 1
+	var/stage_attack = 1
+	var/stage_resources = 1
+
+	var/health_modifier = 1
+
+	//Point Buffer, very hacky, love you Nich
+	var/stage_point_buffer
+
+	var/brute_resistance = 0
+	var/fire_resistance = 0
+
+	//Blobbernauts
+
+	var/blobber_health_bonus = 1
+
+	var/blobber_attack_bonus = 1
+
+	var/blobber_melee_defence = 0
+	var/blobber_fire_defence = 0
+
+	var/blobbers_enabled = FALSE
+
+	//Blob Spores
+	var/blob_zombies = FALSE
+	var/spore_health_modifier = 1
+	var/spore_damage_modifier = 1
+	var/spore_creation_modifier = 1
+
+	var/stage_speed_modifier = 1
+
+	var/victory_timer
+	var/victory_timer_started = FALSE
+
+	var/strong_blob_bonus = 1
+
+	var/won
+
+	//ZONES
+	var/zone = 0
+	var/zone_interval = 4500
+	var/zone_timer
+
+	var/timers_enabled = FALSE
+
+	var/available_upgrades = list()
+
+
+
+/mob/camera/blob/infection/process()
+	if(!blob_core)
+		qdel(src)
+	if(!victory_in_progress && max_count < blobs_legit.len)
+		max_count = blobs_legit.len
+
+	if(!timers_enabled)
+		return
+
+	if(biopoint_timer <= world.time)
+		biopoints++
+		biopoint_timer = world.time + biopoint_interval
+
+	if(stage_timer_begun <= (world.time + (STAGE2 * stage_speed_modifier)))
+		if(stage_timer_begun <= (world.time + (STAGE3 * stage_speed_modifier)))
+			if(stage_timer_begun <= (world.time + (STAGE4 * stage_speed_modifier)))
+				if(!stage == 5)
+					stage = 4
+			else
+				stage = 3
+		else
+			stage = 2
+
+	handleStage()
+	if(stage_point_buffer >= 1)
+		stage_point_buffer--
+		add_points(1)
+
+	if(victory_timer_started)
+		if(victory_timer <= world.time)
+			if(!won)
+				victory()
+				won = TRUE
+
+	if(zone_timer <= world.time)
+		zone++
+		zone_timer = world.time + zone_interval
+
+
+/mob/camera/blob/infection/proc/startVictory()
+	victory_timer = world.time + INFECTION_VICTORY_TIMER
+	victory_timer_started = TRUE
+	stage = 5
+	handleStage()
+	priority_announce("The Infection has reached the Self Destruct and is about to become unstoppable! You have 15 minutes to stop it, hurry!","CentCom Biological Monitoring Division")
+
+/mob/camera/blob/infection/proc/stopVictory()
+	victory_timer = world.time
+	victory_timer_started = FALSE
+	stage = 1
+	priority_announce("The Infection has been beaten back, congratulations. Now find a way to stop it for good!","CentCom Biological Monitoring Division")
+
+
+/mob/camera/blob/infection/Initialize(mapload, starting_points = 60)
+	..()
+	blob_points = 250
+	biopoint_timer = world.time + biopoint_interval
+	stage_timer_begun = world.time
+	zone_timer = world.time + zone_interval
+	var/datum/blobstrain/BS = /datum/blobstrain/reagent/infection
+	set_strain(BS)
+	color = blobstrain.complementary_color
+	if(blob_core)
+		blob_core.update_icon()
+
+	for(var/U in subtypesof(/datum/infection_upgrade))
+		available_upgrades += new U
+
+
+/mob/camera/blob/infection/proc/handleStage()
+	switch(stage)
+		if(1)
+			return
+		if(2)
+			stage_health = 1.05
+			stage_attack = 1.05
+			stage_resources = 1.1
+			return
+		if(3)
+			stage_health = 1.15
+			stage_attack = 1.10
+			stage_resources = 1.2
+			return
+		if(4)
+			stage_health = 1.35
+			stage_attack = 1.20
+			stage_resources = 1.35
+			return
+
+		if(5)
+			stage_health = 1.25
+			stage_attack = 1.15
+			stage_resources = 1.05
+			return
+
+/mob/camera/blob/infection/add_points(points)
+	stage_point_buffer += (points * stage_resources) - points
+	blob_points = CLAMP(blob_points + points, 0, max_blob_points)
+	hud_used.blobpwrdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[round(blob_points)]</font></div>"
+
+/mob/camera/blob/infection/Stat()
+	..()
+	if(statpanel("Status"))
+		stat(null, "Bio-points: [biopoints]")
+		stat(null, "Time to next Bio-point: [max(round((biopoint_timer - world.time)*0.1, 0.1), 0)]")
+		stat(null, "Stage: [stage]")
+		stat(null, "Zone: [zone]")
+		stat(null, "Time to next zone: [max(round((zone_timer - world.time)*0.1, 0.1), 0)]")

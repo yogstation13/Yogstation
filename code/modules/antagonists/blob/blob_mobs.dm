@@ -102,6 +102,17 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/blob/blobspore/Life()
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		if(melee_damage_lower != (initial(melee_damage_lower) * temp.spore_damage_modifier))
+			melee_damage_lower = initial(melee_damage_lower) * temp.spore_damage_modifier
+
+		if(melee_damage_upper != (initial(melee_damage_lower) * temp.spore_damage_modifier))
+			melee_damage_upper = initial(melee_damage_upper) * temp.spore_damage_modifier
+
+		if(maxHealth != (initial(maxHealth) * temp.spore_health_modifier))
+			maxHealth = initial(maxHealth) * temp.spore_health_modifier
+
 	if(!is_zombie && isturf(src.loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == DEAD)
@@ -112,6 +123,10 @@
 	..()
 
 /mob/living/simple_animal/hostile/blob/blobspore/proc/Zombify(mob/living/carbon/human/H)
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		if(!temp.blob_zombies)
+			return
 	is_zombie = 1
 	if(H.wear_suit)
 		var/obj/item/clothing/suit/armor/A = H.wear_suit
@@ -227,6 +242,22 @@
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/Life()
 	if(..())
+
+		if(istype(overmind, /mob/camera/blob/infection))
+			var/mob/camera/blob/infection/temp = overmind
+			if(maxHealth != (initial(maxHealth) * temp.blobber_health_bonus))
+				maxHealth = initial(maxHealth) * temp.blobber_health_bonus
+
+			if(melee_damage_lower != (initial(melee_damage_lower)* temp.blobber_attack_bonus))
+				melee_damage_lower = initial(melee_damage_lower) * temp.blobber_attack_bonus
+
+			if(melee_damage_upper != (initial(melee_damage_upper)* temp.blobber_attack_bonus))
+				melee_damage_upper = initial(melee_damage_upper) * temp.blobber_attack_bonus
+
+			var/brute_coeff = 0.5 * (1 - temp.blobber_melee_defence)
+			var/burn_coeff = 1 * (1 - temp.blobber_fire_defence)
+			damage_coeff = list(BRUTE = brute_coeff, BURN = burn_coeff, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+
 		var/list/blobs_in_area = range(2, src)
 		if(independent)
 			return // strong independent blobbernaut that don't need no blob
@@ -290,6 +321,10 @@
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
 	flick("blobbernaut_death", src)
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			crew.addPoints(15)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent
 	independent = TRUE

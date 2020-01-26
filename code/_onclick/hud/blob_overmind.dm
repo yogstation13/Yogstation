@@ -122,6 +122,16 @@
 		var/mob/camera/blob/B = usr
 		B.relocate_core()
 
+/obj/screen/blob/Upgrades
+	icon_state = "ui_help"
+	name = "Infection Upgrades"
+	desc = "Opens the Infection Upgrade Menu"
+
+/obj/screen/blob/Upgrades/Click()
+	if(isovermind(usr))
+		var/mob/camera/blob/infection/B = usr
+		B.open_upgrades()
+
 /datum/hud/blob_overmind/New(mob/owner)
 	..()
 	var/obj/screen/using
@@ -175,3 +185,8 @@
 	using = new /obj/screen/blob/RelocateCore()
 	using.screen_loc = ui_storage2
 	static_inventory += using
+
+	if(istype(usr, /mob/camera/blob/infection))
+		using = new /obj/screen/blob/Upgrades()
+		using.screen_loc = "WEST:38,NORTH:-3"
+		static_inventory += using

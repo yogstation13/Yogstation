@@ -10,23 +10,34 @@
 	layer = BELOW_MOB_LAYER
 	CanAtmosPass = ATMOS_PASS_PROC
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	max_integrity = 30
+	max_integrity = 40
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)
 	var/health_regen = 2 //how much health this blob regens when pulsed
 	var/pulse_timestamp = 0 //we got pulsed when?
 	var/heal_timestamp = 0 //we got healed when?
-	var/brute_resist = 0.5 //multiplies brute damage by this
-	var/fire_resist = 1 //multiplies burn damage by this
+	var/brute_resist = 0.9 //multiplies brute damage by this
+	var/fire_resist = 0.9 //multiplies burn damage by this
 	var/atmosblock = FALSE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
 /obj/structure/blob/Initialize(mapload, owner_overmind)
 	. = ..()
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		var/area/ourArea = get_area(src)
+		if(ourArea.infection_block_level > temp.zone)
+			qdel(src)
+			return
+
 	if(owner_overmind)
 		overmind = owner_overmind
 		var/area/Ablob = get_area(src)
 		if(Ablob.blob_allowed) //Is this area allowed for winning as blob?
 			overmind.blobs_legit += src
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		max_integrity = (max_integrity * temp.health_modifier) * temp.stage_health
+
 	GLOB.blobs += src //Keep track of the blob in the normal list either way
 	setDir(pick(GLOB.cardinals))
 	update_icon()
@@ -45,6 +56,10 @@
 		overmind.blobs_legit -= src  //if it was in the legit blobs list, it isn't now
 	GLOB.blobs -= src //it's no longer in the all blobs list either
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
+	for(var/D in GLOB.crewDatum)
+		if(istype(D, /datum/infection_crew))
+			var/datum/infection_crew/crew = D
+			crew.addPoints(1)
 	return ..()
 
 /obj/structure/blob/blob_act()
@@ -165,6 +180,15 @@
 		return 0
 	var/make_blob = TRUE //can we make a blob?
 
+
+	if(istype(overmind, /mob/camera/blob/infection))
+		var/mob/camera/blob/infection/temp = overmind
+		var/area/turfArea = get_area(T)
+		if(turfArea.infection_block_level > temp.zone)
+			make_blob = FALSE
+			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+
+
 	if(isspaceturf(T) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
@@ -234,6 +258,13 @@
 		else
 			to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
 		to_chat(user, typereport(user).Join("\n"))
+	else if(istype(I, /obj/item/implanter/blob))
+		var/obj/item/implanter/blob/implanter = I
+		to_chat(user, "<span class='notice'>You begin taking a sample from the [name]</span>")
+		if(I.use_tool(src, user, 50, volume=100))
+			implanter.sample = TRUE
+			implanter.update_icon()
+			to_chat(user, "<span class='big'>Sample gathered, return it to the Research Console!</span>")
 	else
 		return ..()
 
@@ -271,9 +302,18 @@
 /obj/structure/blob/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
-			damage_amount *= brute_resist
+			if(istype(overmind, /mob/camera/blob/infection))
+				var/mob/camera/blob/infection/temp = overmind
+				damage_amount *= (brute_resist - temp.brute_resistance)
+			else
+				damage_amount *= brute_resist
 		if(BURN)
-			damage_amount *= fire_resist
+			if(istype(overmind, /mob/camera/blob/infection))
+				var/mob/camera/blob/infection/temp = overmind
+				damage_amount *= (fire_resist - temp.fire_resistance)
+			else
+				damage_amount *= fire_resist
+
 		if(CLONE)
 		else
 			return 0
@@ -335,9 +375,9 @@
 	icon_state = "blob"
 	light_range = 0
 	obj_integrity = 21 //doesn't start at full health
-	max_integrity = 25
+	max_integrity = 30
 	health_regen = 1
-	brute_resist = 0.25
+	brute_resist = 0.3
 
 /obj/structure/blob/normal/scannerreport()
 	if(obj_integrity <= 15)
@@ -355,9 +395,9 @@
 		icon_state = "blob"
 		name = "blob"
 		desc = "A thick wall of writhing tendrils."
-		brute_resist = 0.25
+		brute_resist = 0.3
 	else
 		icon_state = "blob"
 		name = "dead blob"
 		desc = "A thick wall of lifeless tendrils."
-		brute_resist = 0.25
+		brute_resist = 0.3

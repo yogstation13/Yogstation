@@ -6,7 +6,7 @@ Assistant
 	flag = ASSISTANT
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 5
+	total_positions = -1
 	spawn_positions = 5
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"

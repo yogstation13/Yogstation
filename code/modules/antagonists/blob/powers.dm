@@ -248,7 +248,7 @@
 
 /mob/camera/blob/verb/expand_blob_power()
 	set category = "Blob"
-	set name = "Expand/Attack Blob ([BLOB_SPREAD_COST])"
+	set name = "Expand/Attack Blob ([BLOB_SPREAD_COST * expansion_cost_modifier])"
 	set desc = "Attempts to create a new blob in this tile. If the tile isn't clear, instead attacks it, damaging mobs and objects and refunding [BLOB_ATTACK_REFUND] points."
 	var/turf/T = get_turf(src)
 	expand_blob(T)
@@ -262,7 +262,7 @@
 	if(!possibleblobs.len)
 		to_chat(src, "<span class='warning'>There is no blob adjacent to the target tile!</span>")
 		return
-	if(can_buy(BLOB_SPREAD_COST))
+	if(can_buy(BLOB_SPREAD_COST * expansion_cost_modifier))
 		var/attacksuccess = FALSE
 		for(var/mob/living/L in T)
 			if(ROLE_BLOB in L.faction) //no friendly/dead fire
@@ -277,7 +277,7 @@
 				add_points(BLOB_ATTACK_REFUND)
 			else
 				to_chat(src, "<span class='warning'>There is a blob there!</span>")
-				add_points(BLOB_SPREAD_COST) //otherwise, refund all of the cost
+				add_points(BLOB_SPREAD_COST * expansion_cost_modifier) //otherwise, refund all of the cost
 		else
 			var/list/cardinalblobs = list()
 			var/list/diagonalblobs = list()
@@ -299,7 +299,7 @@
 					playsound(OB, 'sound/effects/splat.ogg', 50, 1)
 					add_points(BLOB_ATTACK_REFUND)
 				else
-					add_points(BLOB_SPREAD_COST) //if we're attacking diagonally and didn't hit anything, refund
+					add_points(BLOB_SPREAD_COST * expansion_cost_modifier) //if we're attacking diagonally and didn't hit anything, refund
 		if(attacksuccess)
 			last_attack = world.time + CLICK_CD_MELEE
 		else
@@ -383,3 +383,61 @@
 	if(!placed && autoplace_max_time <= world.time)
 		to_chat(src, "<span class='big'><font color=\"#EE4000\">You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)].</font></span>")
 		to_chat(src, "<span class='big'><font color=\"#EE4000\">You [manualplace_min_time ? "will be able to":"can"] manually place your blob core by pressing the Place Blob Core button in the bottom right corner of the screen.</font></span>")
+
+/mob/camera/blob/infection/strain_reroll()
+	return
+
+/mob/camera/blob/infection/reroll_strain()
+	to_chat(src, "<span class='big'>The Infection cannot reroll it's strain!</span>")
+
+/mob/camera/blob/infection/verb/open_upgrades()
+	set category = "Blob"
+	set name = "Infection Upgrades"
+	set desc = "Upgrades for your infection!."
+	open_upgrades_menu(usr)
+
+/mob/camera/blob/infection/create_blobbernaut()
+	if(!blobbers_enabled)
+		to_chat(src, "<s0an class='big'>You have not unlocked Blobbernauts yet!</b>")
+		return
+	..()
+
+/mob/camera/blob/infection/proc/open_upgrades_menu(mob/user)
+	var/dat
+	dat += "<h1>Infection Upgrades</h1>"
+	dat += "<span>Bio-points: [biopoints]</span>"
+	dat += "<br><br>"
+
+
+	for(var/i in available_upgrades)
+		var/datum/infection_upgrade/U = i
+		if(U.bought)
+			continue
+		dat += "<span>[initial(U.name)]<br>[initial(U.desc)]<br>Cost: [initial(U.cost)] bio-points</span><br>"
+		if(U.desc_req)
+			dat += "<b>Prequisites: [U.desc_req]</b><br>"
+		dat += "<a href='?src=[REF(src)];buy=[initial(U.id)]'>Purchase</a><br><br>"
+
+
+	var/datum/browser/popup = new(user, "Infection", "Infection Upgrades", 800, 1000)
+	popup.set_content(dat)
+	popup.open()
+	onclose(user, "Infection")
+
+
+/mob/camera/blob/infection/Topic(href, href_list)
+	if(href_list["buy"])
+		for(var/U in available_upgrades)
+			var/datum/infection_upgrade/upgrade = U
+			if("[upgrade.id]" == href_list["buy"])
+				var/returnVal = upgrade.onPurchase(usr)
+				if(returnVal == 0)
+					to_chat(usr, "<span class='big'>Not enough bio-points to purchase that upgrade!</span>")
+				else if(returnVal == 2)
+					to_chat(usr, "<span class='big'>Upgrade prerequisite not met!</span>")
+				else
+					to_chat(usr, "<span class='big'>Upgrade purchased!</span>")
+
+	open_upgrades_menu(usr)
+
+
