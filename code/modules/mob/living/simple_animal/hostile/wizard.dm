@@ -18,7 +18,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attacktext = "punches"
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/punch1.ogg' // this is only here so i can recommit this
 	a_intent = INTENT_HARM
 	faction = list(ROLE_WIZARD)
 	status_flags = CANPUSH
