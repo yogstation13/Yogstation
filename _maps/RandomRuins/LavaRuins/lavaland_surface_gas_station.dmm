@@ -33,6 +33,22 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
+"ah" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/closet/crate/secure{
+	name = "Emergency Supplies Crate";
+	req_access_txt = "36"
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/cable_coil/random,
+/obj/item/gun/ballistic/automatic/surplus,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_box/magazine/m10mm/rifle,
+/turf/open/floor/plating,
+/area/ruin/powered/gasstation)
 "ai" = (
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/effect/turf_decal/sand,
@@ -290,23 +306,6 @@
 	name = "security camera";
 	network = list("gasstation")
 	},
-/turf/open/floor/plating,
-/area/ruin/powered/gasstation)
-"aO" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/closet/crate/secure{
-	name = "Emergency Supplies Crate";
-	req_access_txt = "36"
-	},
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/cable_coil/random,
 /turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "aP" = (
@@ -1141,7 +1140,7 @@ an
 ar
 md
 aj
-aO
+ah
 aV
 bc
 aj

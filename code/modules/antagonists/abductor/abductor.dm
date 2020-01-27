@@ -146,6 +146,7 @@
 	for(var/datum/objective/O in objectives)
 		if(!O.check_completion())
 			won = FALSE
+			break
 	if(won)
 		result += "<span class='greentext big'>[name] team fulfilled its mission!</span>"
 	else
