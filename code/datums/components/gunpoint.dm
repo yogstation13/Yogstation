@@ -54,7 +54,7 @@
 /datum/component/gunpoint/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, .proc/flinch)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN), .proc/noshooted)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOB_THROW, COMSIG_MOB_FIRED_GUN, COMSIG_MOB_TABLING), .proc/noshooted)
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)

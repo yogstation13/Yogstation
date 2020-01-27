@@ -201,6 +201,12 @@
 	results = list(/datum/reagent/medicine/pyroxadone = 2)
 	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/toxin/slimejelly = 1)
 
+/datum/chemical_reaction/pyroxadone2
+	name = "Pyroxadone"
+	id = /datum/reagent/medicine/pyroxadone
+	results = list(/datum/reagent/medicine/pyroxadone = 2)
+	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/medicine/omnizine = 1, /datum/reagent/phlogiston = 1)
+
 /datum/chemical_reaction/clonexadone
 	name = "Clonexadone"
 	id = /datum/reagent/medicine/clonexadone

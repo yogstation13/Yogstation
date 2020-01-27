@@ -2243,6 +2243,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fR" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/clothing/suit/space/hardsuit/wizard,
+/obj/item/clothing/suit/space/freedom,
+/obj/item/clothing/suit/space/hardsuit/ert/jani,
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor,
+/obj/item/clothing/suit/space/hardsuit/shielded/swat,
+/obj/item/clothing/suit/space/hardsuit/syndi/owl,
+/obj/item/clothing/suit/space/hardsuit/syndi/elite,
+/obj/item/clothing/suit/space/hostile_environment,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/clothing/suit/wizrobe/armor,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -7427,6 +7462,10 @@
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
+"qF" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "qG" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -8127,41 +8166,6 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"rY" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/item/clothing/suit/space/hardsuit/wizard,
-/obj/item/clothing/suit/space/freedom,
-/obj/item/clothing/suit/space/hardsuit/ert/jani,
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor,
-/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
-/obj/item/clothing/suit/space/hardsuit/shielded/swat,
-/obj/item/clothing/suit/space/hardsuit/syndi/owl,
-/obj/item/clothing/suit/space/hardsuit/syndi/elite,
-/obj/item/clothing/suit/space/hostile_environment,
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "sa" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
@@ -17691,9 +17695,10 @@
 /turf/open/floor/plating,
 /area/centcom/evac)
 "Lx" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 8
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
@@ -21338,6 +21343,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Ww" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/centcom/evac)
 "Wx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -48502,11 +48513,11 @@ Lk
 Lo
 Lo
 KH
+Ww
 KV
 KV
 KV
-KV
-KV
+qF
 KH
 KH
 KH
@@ -71617,7 +71628,7 @@ xD
 RO
 Kl
 wq
-rY
+fR
 TP
 Xl
 xD

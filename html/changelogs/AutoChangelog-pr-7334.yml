@@ -1,5 +1,3 @@
-author: "Mr-Space"
-delete-after: true 
-changes: 
-  - rscdel: "Wiznerds no longer own immovable rods"
-  - bugfix: "Ducks probably don't trigger the auto-follow"
+author: Mr-Space
+changes: []
+delete-after: true

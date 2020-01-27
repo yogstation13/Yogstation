@@ -10,7 +10,6 @@
 	name = "Theatre Backstage";
 	req_access_txt = "46"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/ameritard,
@@ -391,9 +390,7 @@
 	icon_state = "scrub_map_on-3";
 	dir = 8
 	},
-/mob/living/simple_animal/cow{
-	name = "Betsy"
-	},
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel{
 	icon_state = "showroomfloor"
 	},

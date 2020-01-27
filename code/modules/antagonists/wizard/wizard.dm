@@ -304,10 +304,10 @@
 
 	if(wizardwin)
 		parts += "<span class='greentext'>The wizard was successful!</span>"
-		SSachievements.unlock_achievement(/datum/achievement/wizwin, owner.current.client) //wizard wins, give achievement
+		SSachievements.unlock_achievement(/datum/achievement/greentext/wizwin, owner.current.client) //wizard wins, give achievement
 	else
 		parts += "<span class='redtext'>The wizard has failed!</span>"
-
+		SSachievements.unlock_achievement(/datum/achievement/redtext/winlost, owner.current.client) //wizard loses, still give achievement lol
 	if(owner.spell_list.len>0)
 		parts += "<B>[owner.name] used the following spells: </B>"
 		var/list/spell_names = list()

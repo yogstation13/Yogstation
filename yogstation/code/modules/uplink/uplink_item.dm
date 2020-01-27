@@ -52,13 +52,6 @@
 /////////New Items////////
 //////////////////////////
 
-/datum/uplink_item/dangerous/katana
-	name = "Katana"
-	desc = "The katana is an edged weapon with a blade of pure degeneracy. While more robust than an energy sword, it cannot be as easily sheathed and hidden. At a glance, it looks like a fake katana; you can tell from the pixels."
-	item = /obj/item/katana/faketoy
-	cost = 10
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
-
 /datum/uplink_item/stealthy_weapons/door_charge
 	name = "Explosive Airlock Charge"
 	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
@@ -108,6 +101,14 @@
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 7
 	surplus = 20
+
+/datum/uplink_item/implants/greytide
+	name = "Greytide Implant"
+	desc = "An implant injected into another body, forcing the victim to greytide."
+	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	cost = 5
+	surplus = 20
+	restricted_roles = list("Assistant")
 
 /datum/uplink_item/badass/frying_pan
 	name = "Bananium Plated Frying Pan"

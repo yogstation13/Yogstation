@@ -1,0 +1,5 @@
+author: "  Saratoubi"
+delete-after: true 
+changes: 
+  - rscadd: "replaces hivebots with benos, increases avaviable spawns from 3 to 5, adds entire west wing that includes: Medbay, ATMOS, and Mining departments."
+  - rscdel: "Boring old hivebots."

@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(demo)
 		last_completed++
 		var/atom/movable/M = marked_dirty[marked_dirty.len]
 		marked_dirty.len--
-		if(M.gc_destroyed || !M)
+		if(QDELETED(M))
 			continue
 		if(M.loc == M.demo_last_loc && M.appearance == M.demo_last_appearance)
 			continue
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(demo)
 		last_completed++
 		var/atom/movable/M = marked_new[marked_new.len]
 		marked_new.len--
-		if(M.gc_destroyed || !M)
+		if(QDELETED(M))
 			continue
 		var/loc_string = "null"
 		if(isturf(M.loc))
@@ -411,7 +411,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
 	if(!isobj(M) && !ismob(M))
 		return
-	if(M.gc_destroyed)
+	if(QDELING(M))
 		return
 	marked_new[M] = TRUE
 	if(marked_dirty[M])
@@ -421,7 +421,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
 	if(!isobj(M) && !ismob(M))
 		return
-	if(M.gc_destroyed)
+	if(QDELING(M))
 		return
 	if(!marked_new[M])
 		marked_dirty[M] = TRUE
