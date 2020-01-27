@@ -12,7 +12,7 @@
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/graveyard
-	name = "Graveyard"
+	name = "Grave-Digger"
 	id = /datum/reagent/consumable/graveyard
 	results = list(/datum/reagent/consumable/graveyard = 3)
 	required_reagents = list(/datum/reagent/consumable/space_cola = 1, /datum/reagent/consumable/dr_gibb = 1, /datum/reagent/consumable/space_up = 1) //soda
