@@ -868,7 +868,7 @@
 	quality = DRINK_VERYGOOD
 	taste_description = "liquid diabetes"
 	glass_icon_state = "cream_soda"
-	glass_name = "Graveyard"
+	glass_name = "Grave-Digger"
 	glass_desc = "Just looking at this is making you feel sick."
 
 /datum/reagent/consumable/graveyard/on_mob_life(mob/living/carbon/M)
