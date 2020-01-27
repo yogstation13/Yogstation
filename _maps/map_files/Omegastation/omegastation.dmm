@@ -1891,7 +1891,7 @@
 	c_tag = "Bridge Center";
 	dir = 1
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/item/clothing/mask/cigarette/cigar/havana{
 	pixel_x = -3
 	},
@@ -6333,7 +6333,7 @@
 /area/hallway/primary/starboard)
 "ajv" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/item/lighter,
 /obj/machinery/firealarm{
 	dir = 1;
@@ -17123,13 +17123,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
 "ayN" = (
-/obj/item/storage/fancy/cigarettes/cigars{
+/obj/item/storage/box/fancy/cigarettes/cigars{
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22259,7 +22259,7 @@
 	id = "kitchencounter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -29518,11 +29518,11 @@
 /area/chapel/main)
 "aQF" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aQG" = (
@@ -30865,10 +30865,10 @@
 /area/maintenance/starboard/aft)
 "aSK" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigpack_uplift{
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
 	pixel_x = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_carp{
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
 	pixel_x = -3
 	},
 /obj/item/lighter,
@@ -31347,7 +31347,7 @@
 /area/crew_quarters/lounge)
 "aTC" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "aTD" = (
@@ -34725,7 +34725,7 @@
 	icon_state = "minibar";
 	name = "skeletal minibar"
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
@@ -39636,7 +39636,7 @@
 /area/chapel/main)
 "bjk" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
@@ -39771,11 +39771,11 @@
 /area/chapel/main)
 "bjA" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/machinery/light{
 	dir = 4
 	},
