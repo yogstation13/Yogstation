@@ -679,7 +679,7 @@
 	pixel_x = 3;
 	pixel_y = 11
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_syndicate{
+/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate{
 	pixel_x = -3
 	},
 /obj/item/lighter{

@@ -1324,7 +1324,7 @@
 /area/awaymission/vr/syndicate)
 "qD" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "qF" = (
@@ -1935,7 +1935,7 @@
 /area/awaymission/vr/hub)
 "Bp" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/mineral/titanium/yellow,
 /area/awaymission/vr/syndicate)
 "Bq" = (
