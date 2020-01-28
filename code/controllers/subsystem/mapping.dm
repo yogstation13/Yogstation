@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (!pickedmap)
 		return
 	var/datum/map_config/VM = global.config.maplist[pickedmap]
-	message_admins("Randomly rotating map to [VM.map_name]")
+	message_admins("Randomly rotating map to [VM.map_name].")
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, "<span class='boldannounce'>Map rotation has chosen [VM.map_name] for next round!</span>")
