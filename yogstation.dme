@@ -3222,7 +3222,6 @@
 #include "yogstation\code\modules\guardian\abilities\major\time.dm"
 #include "yogstation\code\modules\guardian\abilities\minor\snares.dm"
 #include "yogstation\code\modules\guardian\abilities\minor\teleport.dm"
-#include "yogstation\code\modules\guardian\abilities\special\absolution.dm"
 #include "yogstation\code\modules\guardian\abilities\special\pocket.dm"
 #include "yogstation\code\modules\guardian\abilities\special\time.dm"
 #include "yogstation\code\modules\holidays\holidays.dm"
