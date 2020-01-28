@@ -111,7 +111,7 @@
 
 /datum/language/proc/scramble_HTML(intext) // Calls scramble() on HTML text, making sure to not disturb the HTML.
 	var/text = ""
-	var/regex/plaintext = regex(@"((>|^)([^<>]+)<|$") // Finds plaintext within the HTML.
+	var/regex/plaintext = regex(@"((>|^)([^<>]+)(?:<|$)") // Finds plaintext within the HTML.
 	var/newtext = intext
 	var/startpos = 1
 	while(startpos < 8192 && startpos > -1)
