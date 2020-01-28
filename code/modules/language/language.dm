@@ -118,7 +118,7 @@
 		var/regexstart = plaintext.Find(newtext,startpos) // Where the *regex* first matches
 		if(!regexstart)
 			break
-		var/capturestart = regexstart + length(plantext.group[1]) // Where the *capture* first matches, the actual plaintext of this section
+		var/capturestart = regexstart + length(plaintext.group[1]) // Where the *capture* first matches, the actual plaintext of this section
 		var/sentence = plaintext.group[2]
 		var/scramb = scramble(sentence) // The scrambled version of the sentence.
 		newtext = replacetext(newtext, sentence, scramb, capturestart, capturestart + length(sentence)+1)
