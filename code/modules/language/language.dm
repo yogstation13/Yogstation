@@ -111,17 +111,18 @@
 
 /datum/language/proc/scramble_HTML(intext) // Calls scramble() on HTML text, making sure to not disturb the HTML.
 	var/text = ""
-	var/regex/plaintext = regex(@"(?:<\/?[\w\s\d=\x22]+>|^)((?:[\w\s\d!@#$%^&*\(\)\-+?:\x22'}{\[\]~`|;,.\\])+)") // Finds plaintext within the HTML.
+	var/regex/plaintext = regex(@"((?:<\/?[\w\s\d=\x22]+>|^))((?:[\w\s\d!@#$%^&*\(\)\-+?:\x22'}{\[\]~`|;,.\\])+)") // Finds plaintext within the HTML.
 	var/newtext = intext
 	var/startpos = 1
 	while(startpos < 8192 && startpos > -1)
 		var/f = plaintext.Find(newtext,startpos)
 		if(!f)
 			break
-		var/sentence = plaintext.group[1]
+		var/sentence = plaintext.group[2]
+		var/pre = plaintext.group[1]
 		var/scramb = scramble(sentence) // The scrambled version of the sentence.
-		newtext = replacetext(newtext, sentence, scramb, f, length(sentence)+1)
-		startpos = plaintext.next + (length(scramb) - length(sentence))
+		newtext = replacetext(newtext, sentence, scramb, f + length(pre), f + length(pre) + length(sentence)+1)
+		startpos = max(plaintext.next + (length(scramb) - length(sentence)), f + 1)
 	text += newtext
 	return text
 
