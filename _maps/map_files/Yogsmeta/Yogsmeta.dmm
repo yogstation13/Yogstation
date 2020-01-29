@@ -50408,6 +50408,8 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/table/glass,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "bIM" = (
