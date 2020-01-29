@@ -250,6 +250,10 @@
 	name = "\"I'm givin' it all she's got, Captain!\""
 	desc = "As Chief Engineer, produce more than three megawatts of power."
 	id = ENGINEERING + 3
+/datum/achievement/engineering/toasty
+	name = "Nice and Toasty"
+	desc = "Get set on fire in a fire-resistant suit."
+	id = ENGINEERING + 4
 //end-engineering
 
 #undef GREENTEXT
