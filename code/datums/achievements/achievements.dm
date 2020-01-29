@@ -254,7 +254,7 @@
 
 //start-engineering
 /datum/achievement/engineering
-	name = "Issac Clarke"
+	name = "Isaac Clarke"
 	desc = "Survive a full round as part of the Engineering team."
 	id = ENGIEDEPT + 1
 /datum/achievement/engineering/solar
