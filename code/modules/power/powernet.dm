@@ -14,9 +14,11 @@
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/netexcess = 0			// excess power on the powernet (typically avail-load)///////
 	var/delayedload = 0			// load applied to powernet between power ticks.
+	var/z = 0 // the Z coordinate of this powernet. Only used by some random achievement, at the moment.
 
-/datum/powernet/New()
+/datum/powernet/New(newz)
 	SSmachines.powernets += src
+	z = newz
 
 /datum/powernet/Destroy()
 	//Go away references, you suck!
