@@ -3,6 +3,7 @@
 //TO BE HONEST THIS OFFSET DOESN'T EVEN NEED TO BE POWER OF TWO, THOUGH.
 #define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
 #define REDTEXT 512 // Offset for redtexts.
+#define ENGINEERING 768 // Offset for engineering-related achievements.
 
 /datum/achievement
 	var/name = "achievement"
@@ -240,5 +241,13 @@
 	hidden = TRUE
 //end-redtext
 
+//start-engineering
+/datum/achievement/engineering/solar
+	name = "Honest Work"
+	desc = "Set up one of the solar arrays as part of the Engineering team."
+	id = ENGINEERING + 2
+//end-engineering
+
 #undef GREENTEXT
 #undef REDTEXT
+#undef ENGINEERING
