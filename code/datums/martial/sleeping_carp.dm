@@ -165,7 +165,7 @@
 	name = "bo staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
 	force = 10
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 10
 	force_wielded = 24
@@ -216,7 +216,7 @@
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
-		H.adjustStaminaLoss(rand(13,20))
+		H.adjustStaminaLoss(rand(27,35))
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
