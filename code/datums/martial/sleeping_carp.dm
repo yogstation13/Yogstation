@@ -216,6 +216,16 @@
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
+		SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, H, user)
+		SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, H, user)
+		H.lastattacker = user.real_name
+		H.lastattackerckey = user.ckey
+
+		user.do_attack_animation(H)
+		H.attacked_by(src, user)
+
+		log_combat(user, H, "Bo Staffed", src.name, "((DAMTYPE: STAMINA)")
+		add_fingerprint(user)
 		H.adjustStaminaLoss(rand(28,35))
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
