@@ -246,6 +246,10 @@
 	name = "Honest Work"
 	desc = "Set up one of the solar arrays as part of the Engineering team."
 	id = ENGINEERING + 2
+/datum/achievement/engineering/scotty
+	name = "\"I'm givin' it all she's got, Captain!\""
+	desc = "As Chief Engineer, produce more than three megawatts of power."
+	id = ENGINEERING + 3
 //end-engineering
 
 #undef GREENTEXT

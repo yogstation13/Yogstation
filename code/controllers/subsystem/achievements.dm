@@ -1,10 +1,11 @@
 SUBSYSTEM_DEF(achievements)
 	name = "Achievements"
-	flags = SS_NO_FIRE
+	flags = SS_BACKGROUND
 	var/list/achievements = list()
 	var/list/cached_achievements = list()
 	var/list/browsers = list()
 	var/list/achievementsEarned = list()
+	var/mob/living/carbon/human/CE // The current guy that SSachievements believes to be the CE.
 
 /datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
@@ -47,6 +48,23 @@ SUBSYSTEM_DEF(achievements)
 	qdel(ridOldChieves)
 	return ..()
 
+/datum/controller/subsystem/achievements/fire(resumed)
+	//The solar panel achievement
+	if(!CE)
+		for(var/x in GLOB.player_list)
+			if(ishuman(x))
+				var/mob/living/carbon/human/H = x
+				if(H?.mind.assigned_role == "Chief Engineer")
+					CE = H
+					break
+	else
+		for(var/n in SSmachines.powernets)
+			var/datum/powernet/net = n
+			if(net.z == 2) // If the powernet is on the station z-level
+				if(net.avail == 3000 && CE.stat != DEAD && CE.client) // If there's 3 MW available (Value is in kW)
+					unlock_achievement(/datum/achievement/engineering/scotty, CE.client)
+
+//Ad-hoc procs
 /datum/controller/subsystem/achievements/proc/unlock_achievement(achievementPath, client/C)
 	var/datum/achievement/achievement = get_achievement(achievementPath)
 	if(!achievement)
