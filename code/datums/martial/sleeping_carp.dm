@@ -216,7 +216,7 @@
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
-		H.adjustStaminaLoss(rand(27,35))
+		H.adjustStaminaLoss(rand(28,35))
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
