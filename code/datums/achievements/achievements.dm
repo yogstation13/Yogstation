@@ -139,6 +139,12 @@
 	desc = "As the QM, have a million cargo credits by the end of the round" //Cargoking-junior
 	id = 22
 
+/datum/achievement/dab
+	name = "Brain Damage"
+	desc = "Dab."
+	id = 23
+	hidden = TRUE
+
 // The achievements that are basically just "greentext as this sort of antag"
 
 /datum/achievement/greentext
