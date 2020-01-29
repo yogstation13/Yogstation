@@ -242,6 +242,10 @@
 //end-redtext
 
 //start-engineering
+/datum/achievement/engineering
+	name = "Issac Clarke"
+	desc = "Survive a full round as part of the Engineering team."
+	id = ENGINEERING + 1
 /datum/achievement/engineering/solar
 	name = "Honest Work"
 	desc = "Set up one of the solar arrays as part of the Engineering team."
