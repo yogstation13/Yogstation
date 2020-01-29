@@ -3,7 +3,7 @@
 //TO BE HONEST THIS OFFSET DOESN'T EVEN NEED TO BE POWER OF TWO, THOUGH.
 #define GREENTEXT 256 // An offset for new greentext-related achievements, to keep the incremental pattern.
 #define REDTEXT 512 // Offset for redtexts.
-#define ENGINEERING 768 // Offset for engineering-related achievements.
+#define ENGIEDEPT 768 // Offset for engineering-related achievements.
 
 /datum/achievement
 	var/name = "achievement"
@@ -256,21 +256,21 @@
 /datum/achievement/engineering
 	name = "Issac Clarke"
 	desc = "Survive a full round as part of the Engineering team."
-	id = ENGINEERING + 1
+	id = ENGIEDEPT + 1
 /datum/achievement/engineering/solar
 	name = "Honest Work"
 	desc = "Set up one of the solar arrays as part of the Engineering team."
-	id = ENGINEERING + 2
+	id = ENGIEDEPT + 2
 /datum/achievement/engineering/scotty
 	name = "\"I'm givin' it all she's got, Captain!\""
 	desc = "As Chief Engineer, produce more than three megawatts of power."
-	id = ENGINEERING + 3
+	id = ENGIEDEPT + 3
 /datum/achievement/engineering/toasty
 	name = "Nice and Toasty"
 	desc = "Get set on fire in a fire-resistant suit."
-	id = ENGINEERING + 4
+	id = ENGIEDEPT + 4
 //end-engineering
 
 #undef GREENTEXT
 #undef REDTEXT
-#undef ENGINEERING
+#undef ENGIEDEPT
