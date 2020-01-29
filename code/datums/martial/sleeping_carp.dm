@@ -222,7 +222,6 @@
 		H.lastattackerckey = user.ckey
 
 		user.do_attack_animation(H)
-		H.attacked_by(src, user)
 
 		log_combat(user, H, "Bo Staffed", src.name, "((DAMTYPE: STAMINA)")
 		add_fingerprint(user)
