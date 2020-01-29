@@ -211,7 +211,7 @@
 									  "[user] smacks [H] with the butt of [src]!", \
 									  "[user] broadsides [H] with [src]!", \
 									  "[user] smashes [H]'s head with [src]!", \
-									  "[user] beats [H] with front of [src]!", \
+									  "[user] beats [H] with the front of [src]!", \
 									  "[user] twirls and slams [H] with [src]!")
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
