@@ -26,7 +26,7 @@
 	desc = "Successfully defibrillate someone"
 	id = 3
 
-/datum/achievement/pa_emag			//Should be hidden but that's not a thing yet
+/datum/achievement/engineering/pa_emag
 	name = "Catastrophe"
 	desc = "Emag a Particle Accelerator"
 	id = 4
