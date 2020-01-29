@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(achievements)
 		for(var/n in SSmachines.powernets)
 			var/datum/powernet/net = n
 			if(net.z == 2) // If the powernet is on the station z-level
-				if(net.avail == 3000 && CE.stat != DEAD && CE.client) // If there's 3 MW available (Value is in kW)
+				if(net.avail >= 3000 && CE.stat != DEAD && CE.client) // If there's 3 MW available (Value is in kW)
 					unlock_achievement(/datum/achievement/engineering/scotty, CE.client)
 
 //Ad-hoc procs
