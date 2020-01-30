@@ -576,3 +576,38 @@
 	H.remove_language(/datum/language/common)
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
+
+/datum/quirk/random_accent
+	name = "random Accent"
+	desc = "You have developed a random accent."
+	value = -1
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent.</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+
+/datum/quirk/random_accent/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/RNG_accent = pick(
+		"Belter",
+		"Brooklyn",
+		"Connery",
+		"Cowboy",
+		"light Cowboy",
+		"heavy French",
+		"heavy German",
+		"German",
+		"Jive",
+		"old English",
+		"ork",
+		"owo",
+		"Pirate",
+		"light Pirate",
+		"Scottish",
+		"light Scottish",
+		"light Shakespearean",
+		"heavy Shakespearean",
+		"heavy Swedish",
+		"Valley")
+		//H.remove_language(/datum/language/common)
