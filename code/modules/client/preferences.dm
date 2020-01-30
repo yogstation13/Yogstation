@@ -1446,7 +1446,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(department)
 						prefered_security_department = department
 				if("accent")
-					var/aksent = input(user,"Choose your accent:","Available Accents") as null|anything in (strings("accents.json", "accent_file_names", directory = "strings/accents") + "None")
+					var/aksent = input(user,"Choose your accent:","Available Accents") as null|anything in (assoc_list_strip_value(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
 					if(aksent)
 						if(aksent == "None")
 							accent = initial(accent)
