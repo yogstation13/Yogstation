@@ -53,7 +53,7 @@
 		var/message = speech_args[SPEECH_MESSAGE]
 		if(message[1] != "*")
 			message = " [message]"
-			var/list/accent_words = strings("accent_valspeak.json", accent_name, directory = "strings/accents")
+			var/list/accent_words = strings(GLOB.accents[accent_name], accent_name, directory = "strings/accents")
 			for(var/key in accent_words)
 				var/value = accent_words[key]
 				if(islist(value))

@@ -590,5 +590,5 @@
 
 /datum/quirk/random_accent/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	accent_name = pick(strings("accents.json", "accent_file_names", directory = "strings/accents")) // Right now this pick just picks a straight random.
+	accent_name = pick(assoc_list_strip_value(GLOB.accents)) // Right now this pick just picks a straight random.
 	H.mind.accent_name = accent_name
