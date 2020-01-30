@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(achievements)
 		for(var/x in GLOB.player_list)
 			if(ishuman(x))
 				var/mob/living/carbon/human/H = x
-				if(H?.mind.assigned_role == "Chief Engineer")
+				if(H.mind?.assigned_role == "Chief Engineer")
 					CE = H
 					break
 	else
