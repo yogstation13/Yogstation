@@ -179,6 +179,23 @@
 	var/dat = ""
 	dat += "<a href='byond://?src=[REF(src)];refresh=1'>Refresh</a>"
 
+	if(pods)
+		for(var/P in pods)
+			var/obj/machinery/clonepod/pod = P
+			if(pod.efficiency >= 3)
+				clone_cost = 110
+				if(pod.efficiency >= 4)
+					clone_cost = 115
+					if(pod.efficiency >= 5)
+						clone_cost = 120
+						if(pod.efficiency >= 6)
+							clone_cost = 130
+							if(pod.efficiency >= 7)
+								clone_cost = 140
+								if(pod.efficiency >= 8) //normally it doesn't go further than 8 but a bus might :)
+									clone_cost = 150
+	else
+		clone_cost = 100
 	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
 		if(!autoprocess)
 			dat += "<a href='byond://?src=[REF(src)];task=autoprocess'>Autoprocess</a>"
@@ -187,7 +204,8 @@
 	else
 		dat += "<span class='linkOff'>Autoprocess</span>"
 	dat += "<h3>Cloning Pod Status</h3>"
-	dat += "<h4>Biomatter :[biomatter]</h4>"
+	dat += "<h4>Biomatter : [biomatter]</h4>"
+	dat += "<h4>Cost of Cloning : [clone_cost]</h4>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
 		if(1)
@@ -473,7 +491,6 @@
 	else if (href_list["refresh"])
 		updateUsrDialog()
 		playsound(src, "terminal_type", 25, 0)
-
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		var/empty = href_list["empty"]
