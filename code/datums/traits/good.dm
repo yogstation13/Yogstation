@@ -184,3 +184,67 @@
 	gain_text = "<span class='notice'>You feel HONGRY.</span>"
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"
 	medical_record_text = "Patient demonstrates a disturbing capacity for eating."
+
+/datum/quirk/accent
+	name = "Accent"
+	desc = "You have developed an accent."
+	value = -1
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent..</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words..</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+
+/datum/quirk/accent/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	
+	// Trying to set up the menu thing.
+	accentlist = list()
+	var/list/accentlist = list(
+		"Belter",
+		"Brooklyn",
+		"Connery",
+		"Cowboy",
+		"light Cowboy",
+		"heavy French",
+		"heavy German",
+		"German",
+		"Jive",
+		"old English",
+		"ork",
+		"owo",
+		"Pirate",
+		"light Pirate",
+		"Scottish",
+		"light Scottish",
+		"light Shakespearean",
+		"heavy Shakespearean",
+		"heavy Swedish",
+		"Valley")
+	var/choice = input(quirk_holder,"Which accent do you have?","Select an accent") as null|anything in accentlist
+	var/list/accent_names = strings("accents.json", "accent_file_names", directory = "strings/accents")
+
+	
+
+		 
+	//var/RNG_accent = pick("Belter") // placeholder. Doesn't even do anything at the moment.
+
+/datum/quirk/accent/proc/generate_accent_names()
+	return list()
+
+/datum/quirk/accent/proc/handle_speech(datum/source, mob/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = " [message]"
+		var/list/accent_words = strings("accent_valspeak.json", "Valley", directory = "strings/accents")
+		for(var/key in accent_words)
+			var/value = accent_words[key]
+			if(islist(value))
+				value = pick(value)
+			message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
+			message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
+			message = replacetextEx(message, " [key]", " [value]")
+		//if(prob(100))
+			//message += pick(" test1!"," test2!"," test3!")
+	speech_args[SPEECH_MESSAGE] = trim(message)
