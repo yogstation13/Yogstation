@@ -213,7 +213,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	donor_item      = sanitize_integer(donor_item, 0, donor_start_tools.len, 0)
 	purrbation      = sanitize_integer(purrbation, 0, 1, initial(purrbation))
 	
-	accent			= sanitize_inlist(accent, strings("accents.json", "accent_file_names", directory = "strings/accents"), initial(accent))
+	accent			= sanitize_inlist(accent, assoc_list_strip_value(GLOB.accents), initial(accent))
 	// yogs end
 
 	load_keybindings(S) // yogs - Custom keybindings
