@@ -62,4 +62,3 @@
 				message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
 				message = replacetextEx(message, " [key]", " [value]")
 		speech_args[SPEECH_MESSAGE] = trim(message)
-		accent_name = pick(strings("accents.json", "accent_file_names", directory = "strings/accents")) // Right now this pick just picks a straight random.
