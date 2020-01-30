@@ -577,37 +577,33 @@
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
 
+
 /datum/quirk/random_accent
-	name = "random Accent"
+	name = "Randomized Accent"
 	desc = "You have developed a random accent."
 	value = -1
 	mob_trait = TRAIT_RANDOM_ACCENT
 	gain_text = "<span class='danger'>You have developed an accent.</span>"
 	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
 	medical_record_text = "Patient is difficult to understand."
+	var/accent_name // Stores the name of the accent we shall make this player suffer with.
 
 
 /datum/quirk/random_accent/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/RNG_accent = pick(
-		"Belter",
-		"Brooklyn",
-		"Connery",
-		"Cowboy",
-		"light Cowboy",
-		"heavy French",
-		"heavy German",
-		"German",
-		"Jive",
-		"old English",
-		"ork",
-		"owo",
-		"Pirate",
-		"light Pirate",
-		"Scottish",
-		"light Scottish",
-		"light Shakespearean",
-		"heavy Shakespearean",
-		"heavy Swedish",
-		"Valley")
-		//H.remove_language(/datum/language/common)
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	accent_name = pick(strings("accents.json", "accent_file_names", directory = "strings/accents"))
+
+/datum/quirk/random_accent/proc/handle_speech(datum/source, mob/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = " [message]"
+		var/list/accent_words = strings("accent_valspeak.json", accent_name, directory = "strings/accents")
+		for(var/key in accent_words)
+			var/value = accent_words[key]
+			if(islist(value))
+				value = pick(value)
+			message = replacetextEx(message, " [uppertext(key)]", " [uppertext(value)]")
+			message = replacetextEx(message, " [capitalize(key)]", " [capitalize(value)]")
+			message = replacetextEx(message, " [key]", " [value]")
+	speech_args[SPEECH_MESSAGE] = trim(message)
