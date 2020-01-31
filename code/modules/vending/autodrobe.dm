@@ -186,6 +186,7 @@
 					/obj/item/clothing/shoes/clown_shoes/beeshoes = 1) //yogs clothes for autodrobe end here
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 					  /obj/item/clothing/head/powdered_wig = 1,
+					  /obj/item/toy/toyritualdagger = 1,
 					  /obj/item/gun/magic/wand = 2,
 					  /obj/item/clothing/glasses/sunglasses/garb = 2,
 					  /obj/item/clothing/glasses/blindfold = 1,
