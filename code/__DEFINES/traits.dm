@@ -141,7 +141,6 @@
 #define TRAIT_SHELTERED			"sheltered"
 #define TRAIT_ONEWAYROAD		"one-way road"
 #define TRAIT_RANDOM_ACCENT		"random_accent"
-#define TRAIT_ACCENT			"accent"
 
 
 //non-mob traits
