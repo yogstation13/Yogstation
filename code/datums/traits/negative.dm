@@ -588,7 +588,8 @@
 	medical_record_text = "Patient is difficult to understand."
 	var/accent_name // Stores the name of the accent we shall make this player suffer with.
 
-/datum/quirk/random_accent/on_spawn()
+/datum/quirk/random_accent/post_add()
 	var/mob/living/carbon/human/H = quirk_holder
 	accent_name = pick(assoc_list_strip_value(GLOB.accents)) // Right now this pick just picks a straight random.
 	H.mind.accent_name = accent_name
+	H.mind.transfer_to(H)
