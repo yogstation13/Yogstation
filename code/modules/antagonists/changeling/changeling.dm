@@ -89,6 +89,7 @@
 			forge_team_objectives()
 		forge_objectives()
 	remove_clownmut()
+	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
 	. = ..()
 
 /datum/antagonist/changeling/on_removal()
@@ -394,7 +395,13 @@
 		if(!CTO.escape_objective_compatible)
 			escape_objective_possible = FALSE
 			break
-	var/changeling_objective = pick(list(1,3)) //yogs - fuck absorb most
+	var/other_changelings_exist = FALSE
+	for(var/datum/antagonist/changeling/CL in GLOB.antagonists)
+		if(CL != src)
+			other_changelings_exist = TRUE
+			break
+	
+	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
@@ -568,7 +575,7 @@
 
 	if(changelingwin)
 		parts += "<span class='greentext'>The changeling was successful!</span>"
-		SSachievements.unlock_achievement(/datum/achievement/changelingwin, owner.current.client) //changeling wins, give achivement
+		SSachievements.unlock_achievement(/datum/achievement/greentext/changelingwin, owner.current.client) //changeling wins, give achivement
 	else
 		parts += "<span class='redtext'>The changeling has failed.</span>"
 
