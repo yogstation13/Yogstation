@@ -484,6 +484,8 @@
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually
+		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
+			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name
