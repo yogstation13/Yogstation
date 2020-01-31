@@ -478,7 +478,7 @@
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
 	if(CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(new_character, client, TRUE)
+		SSquirks.AssignQuirks(H, client, TRUE)
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
