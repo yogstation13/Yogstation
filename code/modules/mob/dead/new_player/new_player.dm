@@ -408,9 +408,6 @@
 					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergencyCallTime)*0.5)
 						SSticker.mode.make_antag_chance(humanc)
 
-	if(humanc && CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(humanc, humanc.client, TRUE)
-
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
 /mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
@@ -480,6 +477,8 @@
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
+	if(CONFIG_GET(flag/roundstart_traits))
+		SSquirks.AssignQuirks(new_character, client, TRUE)
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
