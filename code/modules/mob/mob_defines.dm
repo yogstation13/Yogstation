@@ -106,3 +106,5 @@
 	var/registered_z
 	
 	var/memory_amt = 0
+
+	var/list/emotes_used /// Used for tracking last uses of emotes for cooldown purposes

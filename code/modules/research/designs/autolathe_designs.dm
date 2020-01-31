@@ -982,6 +982,15 @@
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/stethoscope
+	name = "Stethoscope"
+	id = "stethoscope"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 300)
+	build_path = /obj/item/clothing/neck/stethoscope
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame" 
 	id =  "wallframe/flasher" 

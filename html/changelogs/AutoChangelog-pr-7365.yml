@@ -1,4 +1,3 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "strange reagent works on simplemobs"
+author: SomeguyManperson
+changes: []
+delete-after: true
