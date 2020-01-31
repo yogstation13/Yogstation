@@ -285,7 +285,7 @@
 /area/awaymission/academy/headmaster)
 "ba" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/structure/mirror/magic/lesser{
+/obj/structure/mirror{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -337,8 +337,6 @@
 "bj" = (
 /obj/structure/safe/floor,
 /obj/item/voodoo,
-/obj/item/gun/magic/wand/fireball,
-/obj/item/clothing/suit/space/hardsuit/wizard,
 /turf/open/floor/wood,
 /area/awaymission/academy/headmaster)
 "bk" = (
@@ -726,7 +724,7 @@
 /area/awaymission/academy/headmaster)
 "cF" = (
 /obj/effect/immovablerod{
-	dir = 4
+	dir = 4;
 	notdebris = 1
 	},
 /obj/structure/cable,
@@ -1638,6 +1636,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
+"fj" = (
+/obj/structure/mirror/magic/lesser{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
+/area/awaymission/academy/academyaft)
 "fk" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/cafeteria,
@@ -3268,8 +3275,16 @@
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
 "jt" = (
+/obj/effect/turf_decal/tile/green{
+	icon_state = "tile_corner";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	icon_state = "tile_corner";
+	dir = 8
+	},
 /mob/living/simple_animal/hostile/wizard{
-	name = "Alexander The Holy"
+	name = "Colburn The Egg"
 	},
 /turf/open/floor/plasteel,
 /area/awaymission/academy/academyaft)
@@ -3281,9 +3296,12 @@
 /area/awaymission/academy/academyaft)
 "jv" = (
 /mob/living/simple_animal/hostile/wizard{
-	name = "Colburn The Egg"
+	name = "Alexander The Holy"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria";
+	dir = 2
+	},
 /area/awaymission/academy/academyaft)
 "jw" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -4342,6 +4360,9 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/academygate)
+"mj" = (
+/turf/open/space/basic,
+/area/space)
 "mk" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -8767,7 +8788,7 @@ iL
 aj
 aa
 aa
-aa
+mj
 aa
 bE
 aa
@@ -8990,7 +9011,7 @@ eL
 eL
 iK
 hq
-hW
+jt
 QZ
 hW
 hq
@@ -9109,8 +9130,8 @@ iX
 iU
 jC
 hq
-jV
-jV
+fj
+jy
 jV
 jV
 jV
@@ -9229,8 +9250,8 @@ jV
 jV
 jV
 jV
+jv
 jV
-jy
 jV
 hq
 iW
@@ -12099,9 +12120,9 @@ iU
 iX
 iX
 iX
-jt
 iX
-jv
+iX
+iX
 iX
 iX
 iX
