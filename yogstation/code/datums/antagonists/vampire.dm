@@ -97,7 +97,7 @@
 /datum/antagonist/vampire/greet()
 	to_chat(owner, "<span class='userdanger'>You are a Vampire!</span>")
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
-	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
+	to_chat(owner, "<font color='red' size='4'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</font>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
