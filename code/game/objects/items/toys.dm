@@ -306,7 +306,17 @@
 	attack_verb = list("pricked", "absorbed", "gored")
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
-
+	
+/obj/item/toy/toyritualdagger
+	name = "Ritual Dagger"
+	desc = "It looks like one of those toys nar sie cultist give to there children."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "render"
+	item_state = "cultdagger
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	attack_verb = list("pricked", "poked")
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
