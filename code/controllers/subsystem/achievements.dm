@@ -52,6 +52,8 @@ SUBSYSTEM_DEF(achievements)
 	if(!achievement)
 		log_sql("Achievement [achievementPath] not found in list of achievements when trying to unlock for [C.ckey]")
 		return FALSE
+	if(istype(achievement,/datum/achievement/greentext) && achievementPath != /datum/achievement/greentext)
+		unlock_achievement(/datum/achievement/greentext,C) // Oooh, a little bit recursive!
 	if(!has_achievement(achievementPath, C))
 		var/datum/DBQuery/medalQuery = SSdbcore.NewQuery("INSERT INTO [format_table_name("earned_achievements")] (ckey, id) VALUES ('[C.ckey]', '[achievement.id]')")
 		medalQuery.Execute()
@@ -90,6 +92,6 @@ SUBSYSTEM_DEF(achievements)
 
 /datum/controller/subsystem/achievements/proc/get_achievement(achievementPath)
 	for(var/datum/achievement/i in achievements)
-		if(istype(i, achievementPath))
+		if(i.type == achievementPath) // Can't use istype() here since it needs to be the EXACT correct type.
 			return i
 	return FALSE

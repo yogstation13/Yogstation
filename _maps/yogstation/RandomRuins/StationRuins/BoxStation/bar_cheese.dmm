@@ -463,7 +463,7 @@
 	icon_state = "vent_map_on-1";
 	dir = 8
 	},
-/mob/living/simple_animal/sheep,
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "bg" = (
