@@ -49,6 +49,9 @@ import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
 import { NtosArcade } from './interfaces/NtosArcade';
 import { NtnetRelay } from './interfaces/NtnetRelay';
+import { NtosCard } from './interfaces/NtosCard';
+import { NtosCrewManifest } from './interfaces/NtosCrewManifest';
+import { NtosJobManager } from './interfaces/NtosJobManager';
 import { NtosMain } from './interfaces/NtosMain';
 import { NtosConfiguration } from './interfaces/NtosConfiguration';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
@@ -316,8 +319,26 @@ const ROUTES = {
     scrollable: false,
     theme: 'ntos',
   },
+  ntos_card: {
+    component: () => NtosCard,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
   ntos_configuration: {
     component: () => NtosConfiguration,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
+  ntos_crew_manifest: {
+    component: () => NtosCrewManifest,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
+  ntos_job_manager: {
+    component: () => NtosJobManager,
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
