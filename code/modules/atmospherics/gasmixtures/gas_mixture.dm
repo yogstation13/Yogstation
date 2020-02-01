@@ -121,8 +121,12 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Returns: 1 if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/remove(amount)
-	//Proportionally removes amount of gas from the gas_mixture
+	//Removes amount of gas from the gas_mixture
 	//Returns: gas_mixture with the gases removed
+
+/datum/gas_mixture/proc/transfer_to(datum/gas_mixture/target, amount)
+	//Transfers amount of gas to target. Equivalent to target.merge(remove(amount)) but faster.
+	//Removes amount of gas from the gas_mixture
 
 /datum/gas_mixture/proc/remove_ratio(ratio)
 	//Proportionally removes amount of gas from the gas_mixture
@@ -190,6 +194,30 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	return 1
 
+/datum/gas_mixture/transfer_to(datum/gas_mixture/target, amount) // Transfer gases
+	var/list/cached_gases = gases
+	var/sum
+	TOTAL_MOLES(cached_gases, sum)
+	amount = min(amount, sum) //Can not take more air than tile has!
+	if(amount <= 0)
+		return null
+	var/list/target_gases = target.gases
+	var/heat_capacity_transferred = 0
+	for(var/id in cached_gases)
+		ASSERT_GAS(id, target)
+		var/list/cached_gas = cached_gases[id]
+		var/moles_to_transfer = QUANTIZE((cached_gases[id][MOLES] / sum) * amount)
+		target_gases[id][MOLES] += moles_to_transfer
+		cached_gas[MOLES] -= moles_to_transfer
+		heat_capacity_transferred += cached_gas[GAS_META][META_GAS_SPECIFIC_HEAT] * moles_to_transfer
+
+	if(abs(temperature - target.temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/target_heat_capacity = target.heat_capacity()
+		var/target_heat_capacity_before = heat_capacity_transferred
+		target.temperature = (temperature * heat_capacity_transferred + target.temperature * target_heat_capacity_before) / target_heat_capacity
+	
+	garbage_collect()
+
 /datum/gas_mixture/remove(amount)
 	var/sum
 	var/list/cached_gases = gases
@@ -202,7 +230,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	removed.temperature = temperature
 	for(var/id in cached_gases)
-		ADD_GAS(id, removed.gases)
+		ADD_GAS(id, removed_gases)
 		removed_gases[id][MOLES] = QUANTIZE((cached_gases[id][MOLES] / sum) * amount)
 		cached_gases[id][MOLES] -= removed_gases[id][MOLES]
 	garbage_collect()
@@ -220,7 +248,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	removed.temperature = temperature
 	for(var/id in cached_gases)
-		ADD_GAS(id, removed.gases)
+		ADD_GAS(id, removed_gases)
 		removed_gases[id][MOLES] = QUANTIZE(cached_gases[id][MOLES] * ratio)
 		cached_gases[id][MOLES] -= removed_gases[id][MOLES]
 
@@ -281,7 +309,6 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	return 1
 
 /datum/gas_mixture/share(datum/gas_mixture/sharer, atmos_adjacent_turfs = 4)
-
 	var/list/cached_gases = gases
 	var/list/sharer_gases = sharer.gases
 
@@ -430,7 +457,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 					continue reaction_loop
 
 			//at this point, all requirements for the reaction are satisfied. we can now react()
-			
+
 			. |= reaction.react(src, holder)
 			if (. & STOP_REACTIONS)
 				break
@@ -456,4 +483,37 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 
 10/20*5 = 2.5
 10 = 2.5/5*20
+*/
+
+/*
+/mob/verb/profile_atmos()
+	/world{loop_checks = 0;}
+	var/datum/gas_mixture/A = new
+	var/datum/gas_mixture/B = new
+	A.parse_gas_string("o2=200;n2=800;TEMP=50")
+	B.parse_gas_string("co2=500;plasma=500;TEMP=5000")
+	var/pa
+	var/pb
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		B.transfer_to(A, 1)
+		A.transfer_to(B, 1)
+	pb = world.tick_usage
+	var/total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (gas transfer): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		B.total_moles();
+	pb = world.tick_usage
+	total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (total_moles): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
+	pa = world.tick_usage
+	for(var/I in 1 to 100000)
+		var/datum/gas_mixture/GM = new
+	pb = world.tick_usage
+	total_time = (pb-pa) * world.tick_lag
+	to_chat(src, "Total time (new gas mixture): [total_time]ms")
+	to_chat(src, "Operations per second: [100000 / (total_time/1000)]")
 */

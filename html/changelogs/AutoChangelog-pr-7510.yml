@@ -1,0 +1,4 @@
+author: "yacabo"
+delete-after: true 
+changes: 
+  - rscadd: "Blue warning lights turn on when a hostile atmosphere is detected"

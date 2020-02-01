@@ -126,6 +126,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/survival/radio/PopulateContents()
@@ -137,14 +138,15 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
-
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
@@ -161,6 +163,7 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/flashlight/flare/emergency(src)
 	new /obj/item/map/station(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
@@ -796,6 +799,16 @@
 /obj/item/storage/box/lethalshot/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
+
+/obj/item/storage/box/breacherslug
+	name = "box of breaching shotgun shells"
+	desc = "A box full of breaching slugs, designed for rapid entry."
+	icon_state = "breachershot_box"
+	illustration = null
+
+/obj/item/storage/box/breacherslug/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/beanbag
 	name = "box of beanbags"

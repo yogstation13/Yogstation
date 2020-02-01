@@ -303,6 +303,12 @@
 	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 
+/datum/team/revolution/proc/check_victory()
+	for(var/datum/objective/O in objectives)
+		if(!O.check_completion())
+			return FALSE
+	return TRUE
+
 /datum/team/revolution/roundend_report()
 	if(!members.len)
 		return
@@ -326,6 +332,13 @@
 	var/list/targets = list()
 	var/list/datum/mind/headrevs = get_antag_minds(/datum/antagonist/rev/head)
 	var/list/datum/mind/revs = get_antag_minds(/datum/antagonist/rev,TRUE)
+	if(check_victory())
+		for(var/H in revs)
+			var/datum/mind/M = H
+			SSachievements.unlock_achievement(/datum/achievement/greentext/revolution,M.current.client)
+			if(M.has_antag_datum(/datum/antagonist/rev/head))
+				SSachievements.unlock_achievement(/datum/achievement/greentext/revolution/head,M.current.client)
+	
 	if(headrevs.len)
 		var/list/headrev_part = list()
 		headrev_part += "<span class='header'>The head revolutionaries were:</span>"

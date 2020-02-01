@@ -1,0 +1,5 @@
+author: "Potototatoh"
+delete-after: true 
+changes: 
+  - imageadd: "replace db shotgun sprite"
+  - imagedel: "replaces db shotgun sprite  e"

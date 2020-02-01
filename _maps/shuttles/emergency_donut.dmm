@@ -110,6 +110,10 @@
 	name = "Cockpit";
 	req_access_txt = "19"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "av" = (
@@ -163,6 +167,12 @@
 	name = "Containment Cell";
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "aE" = (
@@ -214,6 +224,12 @@
 	name = "Emergency Shuttle Brig";
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aM" = (
@@ -240,6 +256,12 @@
 	name = "Emergency Shuttle Airlock";
 	req_access_txt = "2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aQ" = (
@@ -252,6 +274,12 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aS" = (
@@ -261,6 +289,12 @@
 /obj/docking_port/mobile/emergency{
 	name = "Donut emergency shuttle";
 	width = 34
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -317,6 +351,10 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Emergency Shuttle Infirmary"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bd" = (
@@ -493,6 +531,27 @@
 /obj/structure/table/optable,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"rL" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"sp" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ZL" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -517,7 +576,7 @@ aa
 aa
 ab
 aR
-ac
+ZL
 aR
 ab
 aa
@@ -675,7 +734,7 @@ bs
 bt
 "}
 (6,1,1) = {"
-ac
+rL
 af
 al
 am
@@ -711,7 +770,7 @@ bs
 bt
 "}
 (7,1,1) = {"
-ac
+rL
 ag
 al
 am
@@ -747,7 +806,7 @@ bs
 bt
 "}
 (8,1,1) = {"
-ac
+rL
 ah
 al
 am
@@ -783,7 +842,7 @@ bs
 bt
 "}
 (9,1,1) = {"
-ac
+rL
 ai
 al
 am
@@ -977,7 +1036,7 @@ aa
 ab
 ab
 aR
-ac
+sp
 aR
 ab
 aa
@@ -985,7 +1044,7 @@ aa
 aa
 ab
 aR
-ac
+sp
 aR
 ab
 aa

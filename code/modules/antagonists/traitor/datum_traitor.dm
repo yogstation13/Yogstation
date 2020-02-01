@@ -271,7 +271,7 @@
 		if(TRAITOR_AI)
 			add_law_zero()
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
-			owner.current.grant_language(/datum/language/codespeak)
+			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
@@ -398,6 +398,7 @@
 		if(TC_uses==0 && traitorwin)
 			var/static/icon/badass = icon('icons/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
+			SSachievements.unlock_achievement(/datum/achievement/badass, owner.current.client)
 		result += uplink_text
 
 	result += objectives_text
@@ -420,6 +421,9 @@
 
 	if(traitorwin)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
+		SSachievements.unlock_achievement(/datum/achievement/greentext,owner.current.client)
+		if(istype(greentext_achieve))
+			SSachievements.unlock_achievement(greentext_achieve,owner.current)
 	else
 		result += "<span class='redtext'>The [special_role_text] has failed!</span>"
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')

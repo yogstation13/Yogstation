@@ -1,3 +1,8 @@
+/datum/chemical_reaction/insulin
+	name = "Insulin"
+	id = /datum/reagent/medicine/insulin
+	results = list(/datum/reagent/medicine/insulin = 2)
+	required_reagents = list(/datum/reagent/medicine/salglu_solution = 1, /datum/reagent/medicine/antitoxin = 1)
 
 /datum/chemical_reaction/leporazine
 	name = "Leporazine"
@@ -195,6 +200,12 @@
 	id = /datum/reagent/medicine/pyroxadone
 	results = list(/datum/reagent/medicine/pyroxadone = 2)
 	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/toxin/slimejelly = 1)
+
+/datum/chemical_reaction/pyroxadone2
+	name = "Pyroxadone"
+	id = /datum/reagent/medicine/pyroxadone
+	results = list(/datum/reagent/medicine/pyroxadone = 2)
+	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/medicine/omnizine = 1, /datum/reagent/phlogiston = 1)
 
 /datum/chemical_reaction/clonexadone
 	name = "Clonexadone"
