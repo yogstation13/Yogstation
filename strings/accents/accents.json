@@ -15,12 +15,12 @@
 	"ork": "accent_ork.json",
 	"owo": "accent_owo.json",
 	"Pirate": "accent_pirate.json",
-	"light Pirate": "accent_piratelight.json",
-	"Scottish": "accent_scottish.json",
+	"light Pirate": "accent_piratelight.json", 
+	"Scottish": "accent_scottish.json", 
 	"light Scottish": "accent_scottishlight.json",
 	"light Shakespearean": "accent_shakespeareanlight.json",
 	"heavy Shakespearean": "accent_shakespearean.json",
-	"heavy Swedish": "accent_swedish.json",
+	"Muppet": "accent_chef_muppet.json",
 	"Valley": "accent_valspeak.json"
 
 		}
