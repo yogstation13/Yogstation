@@ -332,7 +332,8 @@
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
-		/obj/item/wantedposterposter)
+		/obj/item/wantedposterposter,
+		/obj/item/donutsynth)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear)
@@ -348,7 +349,7 @@
 
 /obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
-	var/obj/item/gun/energy/e_gun/advtaser/cyborg/T = locate(/obj/item/gun/energy/e_gun/advtaser/cyborg) in basic_modules
+	var/obj/item/gun/energy/disabler/cyborg/T = locate(/obj/item/gun/energy/disabler/cyborg) in basic_modules
 	if(T)
 		if(T.cell.charge < T.cell.maxcharge)
 			var/obj/item/ammo_casing/energy/S = T.ammo_type[T.select]

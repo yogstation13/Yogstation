@@ -266,7 +266,6 @@
 
 	if(!new_mob)
 		return
-	new_mob.grant_language(/datum/language/common)
 
 	// Some forms can still wear some items
 	for(var/obj/item/W in contents)
@@ -693,7 +692,7 @@
 
 
 /obj/item/projectile/temp/runic_icycle
-	name = "Icycle"
+	name = "Icicle"
 	icon_state = "runic_icycle"
 	damage = 6
 	flag = "magic"

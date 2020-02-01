@@ -34,6 +34,12 @@
 	icon_state = "pipe11-3";
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ag" = (
@@ -171,6 +177,10 @@
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ax" = (
@@ -252,6 +262,12 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "aC" = (
@@ -330,6 +346,10 @@
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aJ" = (
@@ -353,10 +373,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aN" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space)
 "aO" = (
 /obj/structure/particle_accelerator/particle_emitter/left,
 /turf/open/floor/engine,
@@ -486,6 +502,10 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "bj" = (
@@ -599,6 +619,12 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -754,11 +780,11 @@
 "bS" = (
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "bT" = (
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "bU" = (
 /obj/machinery/power/grounding_rod,
 /obj/machinery/light{
@@ -923,6 +949,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"sv" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "xH" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -969,6 +1004,11 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"OM" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "Uz" = (
 /obj/effect/turf_decal/stripes/corner{
 	icon_state = "warninglinecorner";
@@ -985,6 +1025,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "WN" = (
@@ -1282,7 +1323,7 @@ aM
 ad
 aa
 aa
-aN
+aQ
 bs
 bs
 bs
@@ -1290,7 +1331,7 @@ bs
 bs
 bs
 bs
-aN
+aQ
 aa
 yi
 bZ
@@ -1318,9 +1359,9 @@ zg
 kx
 kx
 yo
-aN
+aQ
 aa
-aN
+aQ
 yi
 ad
 bu
@@ -1335,20 +1376,20 @@ aq
 bH
 ac
 aE
-zh
+sv
 aa
 aa
-aN
+aQ
 bt
 bM
-aN
+aQ
 bt
 aa
 bM
 bt
-aN
+aQ
 aa
-aN
+aQ
 cj
 ad
 bu
@@ -1363,9 +1404,9 @@ bE
 bG
 ac
 aE
-zh
-aJ
-aN
+sv
+OM
+aQ
 aT
 aa
 aa
@@ -1375,8 +1416,8 @@ aa
 aa
 aa
 aT
-aN
-aN
+aQ
+aQ
 yi
 ad
 du
@@ -1392,12 +1433,12 @@ ad
 ad
 zh
 zh
-aJ
-aN
+OM
+aQ
 aa
 aa
 aa
-aN
+aQ
 aa
 aa
 aa
@@ -1425,14 +1466,14 @@ aa
 aa
 aa
 aa
-aN
+aQ
 aa
 aa
 aa
 aa
 aa
 aa
-aN
+aQ
 yi
 ad
 bu
@@ -1453,14 +1494,14 @@ aa
 aa
 aa
 aa
-bM
+aR
 bS
-bM
-aN
-aN
+aR
+aQ
+aQ
 aT
-aN
-aN
+aQ
+aQ
 yi
 ad
 bu
@@ -1477,18 +1518,18 @@ aL
 aP
 bC
 aJ
-aN
+aQ
 aa
 aa
 bN
-bM
-bM
-bM
+aR
+aR
+aR
 aa
 aa
 aa
 aa
-aN
+aQ
 cj
 ad
 bu
@@ -1505,13 +1546,13 @@ bB
 ba
 bg
 aJ
-aN
+aQ
 aT
-aN
-aN
-bM
+aQ
+aQ
+aR
 bT
-bM
+aR
 aa
 aa
 aa
@@ -1533,13 +1574,13 @@ aG
 aG
 bh
 aJ
-aN
+aQ
 aa
 aa
 aa
 aa
 aa
-aN
+aQ
 bX
 aa
 aa
@@ -1560,14 +1601,14 @@ ad
 ad
 zh
 zh
-aJ
-aN
+OM
+aQ
 aa
 aa
 aa
 bR
 aa
-aN
+aQ
 aa
 aa
 aa
@@ -1587,9 +1628,9 @@ bE
 ci
 ac
 aE
-zh
-aJ
-aN
+sv
+OM
+aQ
 aT
 aa
 aa
@@ -1599,8 +1640,8 @@ aT
 aa
 aa
 aT
-aN
-aN
+aQ
+aQ
 yi
 ad
 du
@@ -1615,20 +1656,20 @@ aq
 ac
 ac
 aE
-zh
+sv
 aa
 aa
-aN
+aQ
 bJ
 bM
 aa
 bJ
-aN
+aQ
 bM
 bJ
-aN
+aQ
 aa
-aN
+aQ
 cj
 ad
 bu
@@ -1654,9 +1695,9 @@ jh
 kx
 kx
 Bx
-aN
+aQ
 aa
-aN
+aQ
 yi
 ad
 bu
@@ -1674,7 +1715,7 @@ be
 ad
 aa
 aa
-aN
+aQ
 bs
 bs
 bs
@@ -1682,7 +1723,7 @@ bs
 bs
 bs
 bs
-aN
+aQ
 aa
 yi
 qG

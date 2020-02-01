@@ -72,7 +72,7 @@
 														datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "portable_scrubber", name, 420, 435, master_ui, state)
+		ui = new(user, src, ui_key, "portable_scrubber", name, 320, 335, master_ui, state)
 		ui.open()
 
 /obj/machinery/portable_atmospherics/scrubber/ui_data()
@@ -91,6 +91,8 @@
 		data["holding"] = list()
 		data["holding"]["name"] = holding.name
 		data["holding"]["pressure"] = round(holding.air_contents.return_pressure())
+	else
+		data["holding"] = null
 	return data
 
 /obj/machinery/portable_atmospherics/scrubber/replace_tank(mob/living/user, close_valve)

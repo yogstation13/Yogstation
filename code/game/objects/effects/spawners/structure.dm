@@ -79,6 +79,12 @@ again.
 			spawn_list = list(/obj/structure/grille, /obj/structure/window/spawner/north, /obj/structure/window/spawner/west)
 	. = ..()
 
+//shutter
+/obj/effect/spawner/structure/window/shutter
+	name = "shutter window spawner"
+	icon_state = "shwindow_spawner"
+	spawn_list = list(/obj/machinery/door/firedoor/window, /obj/structure/grille, /obj/structure/window/fulltile)
+
 //reinforced
 
 /obj/effect/spawner/structure/window/reinforced
@@ -86,6 +92,13 @@ again.
 	icon_state = "rwindow_spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile)
 
+//reinforced shutter
+/obj/effect/spawner/structure/window/reinforced/shutter
+	name = "reinforced shutter window spawner"
+	icon_state = "shrwindow_spawner"
+	spawn_list = list(/obj/machinery/door/firedoor/window, /obj/structure/grille, /obj/structure/window/reinforced/fulltile)
+
+//hollow
 /obj/effect/spawner/structure/window/hollow/reinforced
 	name = "hollow reinforced window spawner"
 	icon_state = "hrwindow_spawner_full"
@@ -147,6 +160,11 @@ again.
 	icon_state = "twindow_spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/tinted/fulltile)
 
+//tinted reinforced shutter
+/obj/effect/spawner/structure/window/reinforced/tinted/shutter
+	name = "tinted reinforced shutter window spawner"
+	icon_state = "shtwindow_spawner"
+	spawn_list = list(/obj/machinery/door/firedoor/window, /obj/structure/grille, /obj/structure/window/reinforced/tinted/fulltile)
 
 //shuttle window
 
@@ -355,3 +373,10 @@ again.
 		if(NORTHWEST)
 			spawn_list = list(/obj/structure/grille, /obj/structure/window/plasma/reinforced/spawner/north, /obj/structure/window/plasma/reinforced/spawner/west)
 	. = ..()
+
+//reinforced plasma shutter
+
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter
+	name = "reinforced plasma shutter window spawner"
+	icon_state = "shprwindow_spawner"
+	spawn_list = list(/obj/machinery/door/firedoor/window, /obj/structure/grille, /obj/structure/window/plasma/reinforced/fulltile)

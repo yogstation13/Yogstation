@@ -1,6 +1,7 @@
 
 
 /mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE)
+	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || hit_percent <= 0)
 		return 0
@@ -167,11 +168,11 @@
 //It automatically updates damage overlays if necessary
 //It automatically updates health status
 /mob/living/carbon/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
-	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute,burn,stamina,required_status)
+	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute,burn,stamina,required_status ? required_status : BODYPART_ORGANIC)
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
-	if(picked.heal_damage(brute, burn, stamina, required_status))
+	if(picked.heal_damage(brute, burn, stamina, required_status ? required_status : BODYPART_ORGANIC))
 		update_damage_overlays()
 
 //Damages ONE bodypart randomly selected from damagable ones.

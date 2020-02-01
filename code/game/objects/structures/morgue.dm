@@ -261,8 +261,14 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		update_icon()
 
 		for(var/mob/living/M in conts)
-			if (M.stat != DEAD)
+			if(M.stat != DEAD)
 				M.emote("scream")
+			if(M.client)
+				if(M.stat != DEAD)
+					SSachievements.unlock_achievement(/datum/achievement/cremated_alive, M.client) //they are in body and alive, give achievement
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.client) //they are in body, but dead, they can have one achievement
+			else if(M.oobe_client) //they might be ghosted if they are dead, we'll allow it.
+				SSachievements.unlock_achievement(/datum/achievement/cremated, M.oobe_client) //no burning alive achievement if you are ghosted though
 			if(user)
 				log_combat(user, M, "cremated")
 			else

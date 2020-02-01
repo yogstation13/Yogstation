@@ -698,7 +698,7 @@
 				dst = previous
 			else
 				dst = destination
-			. = "transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
+			. = "In transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
 	else if(mode == SHUTTLE_RECHARGING)
 		return "[docked_at], recharging [getTimerStr()]"
 	else
@@ -786,8 +786,8 @@
 	current_engines = max(0,current_engines + mod)
 	if(in_flight())
 		var/delta_coeff = engine_coeff / old_coeff
-		modTimer(delta_coeff) 
- 
+		modTimer(delta_coeff)
+
 /obj/docking_port/mobile/proc/count_engines()
 	. = 0
 	for(var/thing in shuttle_areas)

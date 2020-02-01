@@ -425,6 +425,7 @@
 							"name" = "[customsender]",
 							"job" = "[customjob]",
 							"message" = custommessage,
+							"language" = usr.get_selected_language(), // PDAs now use the language system!
 							"targets" = list("[customrecepient.owner] ([customrecepient.ownjob])")
 						))
 						// this will log the signal and transmit it to the target
@@ -465,7 +466,6 @@
 
 /obj/item/paper/monitorkey/proc/print(obj/machinery/telecomms/message_server/server)
 	info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
-	info_links = info
 	add_overlay("paper_words")
 
 /obj/item/paper/monitorkey/LateInitialize()
