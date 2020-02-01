@@ -10,7 +10,6 @@
 	name = "Theatre Backstage";
 	req_access_txt = "46"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/ameritard,

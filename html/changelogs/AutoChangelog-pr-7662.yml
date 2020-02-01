@@ -1,0 +1,4 @@
+author: "Mr-Space"
+delete-after: true 
+changes: 
+  - bugfix: "Plasmamen can pick different bag types now."
