@@ -165,8 +165,10 @@
 		// Check if random role is requested
 		if(href_list["SelectedJob"] == "Random")
 			var/datum/job/job = SSjob.GetRandomJob(src)
-			if(job != FALSE)
-				href_list["SelectedJob"] = job.title
+			if(!job)
+				to_chat(usr, "<span class='warning'>There is no randomly assignable Job at this time. Please manually choose one of the other possible options.</span>")
+				return
+			href_list["SelectedJob"] = job.title
 
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
