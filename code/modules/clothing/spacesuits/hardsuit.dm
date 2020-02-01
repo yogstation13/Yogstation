@@ -420,6 +420,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
+	slowdown = 0
 
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
 	. = ..()
@@ -851,10 +852,10 @@
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	name = "Advanced power helmet"
 	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
-	icon_state = "hardsuit0-advancedpa1"
+	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
 	armor = list("melee" = 50, "bullet" = 48, "laser" = 25, "energy" = 25, "bomb" = 48, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 25)
-	item_color = "advancedpa1"
+	item_color = "advpa1"
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
 	name = "Advanced power armor"

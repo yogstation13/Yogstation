@@ -1,4 +1,0 @@
-author: "Lostlarry"
-delete-after: true 
-changes: 
-  - tweak: "each tcomms network now works with copy of the signal instead of signal itself"

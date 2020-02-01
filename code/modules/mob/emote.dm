@@ -13,12 +13,18 @@
 	if(!length(key_emotes))
 		if(intentional)
 			to_chat(src, "<span class='notice'>'[act]' emote does not exist. Say *help for a list.</span>")
-		return
+		return FALSE
+	var/silenced = FALSE
 	for(var/datum/emote/P in key_emotes)
+		if(!P.check_cooldown(src, intentional))
+			silenced = TRUE
+			continue
 		if(P.run_emote(src, param, m_type, intentional))
-			return
-	if(intentional)
+			return TRUE
+	if(intentional && !silenced)
 		to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list.</span>")
+	return FALSE
+
 
 /datum/emote/flip
 	key = "flip"
@@ -26,6 +32,7 @@
 	restraint_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
+	cooldown = 0 SECONDS
 
 /datum/emote/flip/run_emote(mob/user, params , type_override, intentional)
 	. = ..()
@@ -38,6 +45,7 @@
 	restraint_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
+	cooldown = 0 SECONDS
 
 /datum/emote/spin/run_emote(mob/user, params ,  type_override, intentional)
 	. = ..()

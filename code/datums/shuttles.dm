@@ -237,9 +237,7 @@
 	emag_buy = TRUE
 
 /datum/map_template/shuttle/emergency/arena/prerequisites_met()
-	if("bubblegum" in SSshuttle.shuttle_purchase_requirements_met)
-		return TRUE
-	return FALSE
+	return SSachievements.has_achievement(/datum/achievement/bubblegum, usr.client)
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"

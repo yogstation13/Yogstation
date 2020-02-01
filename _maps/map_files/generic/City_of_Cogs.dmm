@@ -66,12 +66,6 @@
 /obj/machinery/telecomms/relay/preset/reebe,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"ap" = (
-/obj/machinery/door/airlock/clockwork/brass{
-	name = "Ark Chamber"
-	},
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aq" = (
 /obj/machinery/computer/camera_advanced/ratvar,
 /turf/open/floor/clockwork/reebe,
@@ -17294,11 +17288,11 @@ aj
 aj
 aj
 aj
-aO
 aj
 aj
 aj
-aO
+aj
+aj
 aj
 aj
 aj
@@ -17706,7 +17700,7 @@ aj
 aj
 aO
 aj
-aO
+aj
 aj
 aj
 aj
@@ -18102,7 +18096,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -18302,7 +18296,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -18703,7 +18697,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -18926,7 +18920,7 @@ ah
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -19334,7 +19328,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aO
 aj
@@ -19522,7 +19516,7 @@ aB
 az
 ah
 ai
-ap
+ag
 ai
 an
 au
@@ -19938,7 +19932,7 @@ ai
 ah
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -20117,7 +20111,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 ai
 aj
@@ -20326,7 +20320,7 @@ aj
 aj
 aj
 aj
-ap
+ag
 aH
 aj
 aj
@@ -20334,7 +20328,7 @@ ak
 aj
 aj
 aH
-ap
+ag
 aj
 aj
 aj
@@ -20520,7 +20514,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 ai
@@ -20949,7 +20943,7 @@ ai
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aO
@@ -21123,7 +21117,7 @@ aj
 aj
 aO
 aj
-aO
+aj
 aj
 aj
 aj
@@ -21138,7 +21132,7 @@ aj
 aC
 ah
 ai
-ap
+ag
 ai
 ah
 ay
@@ -21733,9 +21727,9 @@ aj
 aj
 aj
 aj
-aO
 aj
-aO
+aj
+aj
 aj
 aj
 ah
@@ -21755,7 +21749,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -21955,7 +21949,7 @@ ah
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -22343,7 +22337,7 @@ aO
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj
@@ -22747,19 +22741,19 @@ aj
 aj
 aj
 aj
-aO
-aj
-aO
 aj
 aj
 aj
 aj
 aj
-aO
 aj
 aj
 aj
-aO
+aj
+aj
+aj
+aj
+aj
 aj
 aj
 aj
@@ -23162,7 +23156,7 @@ aj
 aj
 aj
 aj
-aO
+aj
 aj
 aj
 aj

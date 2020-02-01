@@ -261,7 +261,7 @@
 
 /datum/quirk/nyctophobia/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if((H.dna.species.id in list("shadow", "nightmare")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING)))) //yogs - thrall & sling check
+	if((H.dna.species.id in list("shadow", "nightmare", "darkspawn")) || (H.mind && (H.mind.has_antag_datum(ANTAG_DATUM_THRALL) || H.mind.has_antag_datum(ANTAG_DATUM_SLING) || H.mind.has_antag_datum(ANTAG_DATUM_DARKSPAWN) || H.mind.has_antag_datum(ANTAG_DATUM_VEIL)))) //yogs - thrall & sling check
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	var/lums = T.get_lumcount()
@@ -574,11 +574,12 @@
 /datum/quirk/sheltered/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/common)
-	if(!H.can_speak_in_language(/datum/language/draconic) && !H.can_speak_in_language(/datum/language/machine))
+	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
 
+
 /datum/quirk/random_accent
-	name = "random Accent"
+	name = "Randomized Accent"
 	desc = "You have developed a random accent."
 	value = -1
 	mob_trait = TRAIT_RANDOM_ACCENT
@@ -586,28 +587,8 @@
 	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
 	medical_record_text = "Patient is difficult to understand."
 
-
-/datum/quirk/random_accent/on_spawn()
+/datum/quirk/random_accent/post_add()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/RNG_accent = pick(
-		"Belter",
-		"Brooklyn",
-		"Connery",
-		"Cowboy",
-		"light Cowboy",
-		"heavy French",
-		"heavy German",
-		"German",
-		"Jive",
-		"old English",
-		"ork",
-		"owo",
-		"Pirate",
-		"light Pirate",
-		"Scottish",
-		"light Scottish",
-		"light Shakespearean",
-		"heavy Shakespearean",
-		"heavy Swedish",
-		"Valley")
-		//H.remove_language(/datum/language/common)
+	if(!H.mind.accent_name)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents))// Right now this pick just picks a straight random one from all implemented.

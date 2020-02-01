@@ -572,7 +572,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -632,7 +632,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -699,7 +699,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -759,7 +759,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Guest Room APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1335,7 +1335,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Guest Room APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1403,7 +1403,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Guest Room APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -1725,8 +1725,8 @@
 /area/ruin/space/has_grav/hotel)
 "en" = (
 /obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/hotel/workroom)
@@ -1835,7 +1835,7 @@
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Laundry APC";
-	pixel_y = -24
+	pixel_y = -23
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
@@ -1902,12 +1902,15 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "eL" = (
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
+/obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/ruin/space/has_grav/hotel/bar";
+	dir = 2;
+	name = "Kitchen APC";
+	pixel_y = -23
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/bar)
+/area/ruin/space/has_grav/hotel)
 "eM" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -2034,13 +2037,21 @@
 /area/ruin/space/has_grav/hotel)
 "fh" = (
 /obj/machinery/power/apc/highcap/five_k{
-	dir = 2;
-	name = "Kitchen APC";
-	pixel_y = -24
+	dir = 1;
+	name = "Power Storage APC";
+	pixel_y = 23
 	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/bar)
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
 "fi" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/bar)
@@ -2076,27 +2087,23 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/hotel)
 "fn" = (
-/obj/machinery/power/apc/highcap/five_k{
-	dir = 2;
-	name = "Security APC";
-	pixel_y = -24
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 8
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 8
+	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/security)
+/area/ruin/space/has_grav/hotel)
 "fo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2115,32 +2122,29 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "fp" = (
+/obj/machinery/power/apc/highcap/five_k{
+	dir = 2;
+	name = "Staff Room APC";
+	pixel_y = -23
+	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "0-4"
 	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
+/mob/living/simple_animal/bot/medbot{
+	name = "Accidents Happen"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/pool)
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/hotel/workroom)
 "fq" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
 "fr" = (
 /obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/ruin/space/has_grav/hotel/security";
 	dir = 2;
-	name = "Pool APC";
-	pixel_y = -24
+	name = "Security APC";
+	pixel_y = -23
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2148,16 +2152,16 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/pool)
+/area/ruin/space/has_grav/hotel)
 "fs" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Hotel Maintenance";
@@ -2355,12 +2359,12 @@
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
 "fO" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/dock)
 "fP" = (
@@ -2510,7 +2514,7 @@
 "ge" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_y = -24
+	pixel_y = -26
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel)
@@ -3074,18 +3078,27 @@
 /area/ruin/space/has_grav/hotel/power)
 "hA" = (
 /obj/machinery/power/apc/highcap/five_k{
+	areastring = "/area/ruin/space/has_grav/hotel/pool";
 	dir = 2;
-	name = "Staff Room APC";
-	pixel_y = -24
+	name = "Pool APC";
+	pixel_y = -23
 	},
 /obj/structure/cable{
-	icon_state = "0-4"
+	icon_state = "4-8"
 	},
-/mob/living/simple_animal/bot/medbot{
-	name = "Accidents Happen"
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/hotel/workroom)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
 "hB" = (
 /obj/structure/mirror{
 	pixel_y = -32
@@ -3141,7 +3154,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/bar)
+/area/ruin/space/has_grav/hotel)
 "hJ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/soysauce,
@@ -3321,23 +3334,17 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/custodial)
 "ib" = (
-/obj/machinery/door/airlock{
-	name = "Custodial Closet";
+/obj/machinery/door/airlock/engineering{
+	name = "Power Storage";
 	req_access_txt = "200,201"
 	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/custodial)
+/area/ruin/space/has_grav/hotel)
 "ic" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
@@ -3350,31 +3357,19 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel)
 "id" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Power Storage";
-	req_access_txt = "200,201"
+/obj/machinery/door/airlock/security/glass{
+	name = "Hotel Security Checkpoint";
+	req_access_txt = "203"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/power)
+/area/ruin/space/has_grav/hotel)
 "ie" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Hotel Maintenance";
-	req_access_txt = "201"
+/obj/machinery/firealarm{
+	pixel_y = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	icon_state = "pipe11-3";
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel/pool)
 "if" = (
 /obj/machinery/smartfridge/food,
@@ -3412,6 +3407,42 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
+"il" = (
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1;
+	piping_layer = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel/power)
+"im" = (
+/obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1;
+	piping_layer = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel/power)
+"in" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/components/binary/valve/on/layer1{
+	name = "Air Release Valve"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/power)
+"io" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/power/apc/highcap/five_k{
+	dir = 2;
+	name = "Dock APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel/dock)
 "ip" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -3424,6 +3455,25 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
+"ir" = (
+/obj/machinery/power/apc/highcap/five_k{
+	dir = 2;
+	name = "Custodial APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/hotel/custodial)
 "is" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/tile/yellow{
@@ -3488,22 +3538,23 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
 "iw" = (
-/obj/machinery/power/apc/highcap/five_k{
-	dir = 1;
-	name = "Power Storage APC";
-	pixel_y = 25
+/obj/machinery/door/airlock{
+	name = "Custodial Closet";
+	req_access_txt = "200,201"
 	},
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 8
+	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/power)
+/area/ruin/space/has_grav/hotel)
 "ix" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty,
@@ -3541,6 +3592,21 @@
 "iC" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/hotel)
+"iD" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Hotel Maintenance";
+	req_access_txt = "201"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	icon_state = "pipe11-3";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel)
 "iE" = (
 /obj/structure/cable{
@@ -3650,18 +3716,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/hotel)
-"je" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/power/apc/highcap/five_k{
-	dir = 2;
-	name = "Dock APC";
-	pixel_y = -24
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/dock)
 "jf" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -3677,15 +3731,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
-"jq" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Hotel Security Checkpoint";
-	req_access_txt = "203"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/security)
 "ju" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/firedoor,
@@ -3877,12 +3922,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
-"jV" = (
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
-/turf/open/floor/wood,
-/area/ruin/space/has_grav/hotel/pool)
 "jW" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/hotel/pool)
@@ -3926,15 +3965,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/power)
-"kf" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/components/binary/valve/on/layer1{
-	name = "Air Release Valve"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/power)
@@ -4380,19 +4410,6 @@
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/pool)
-"lp" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
-"lq" = (
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/components/unary/tank/air{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/hotel/power)
 "lr" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
@@ -4969,25 +4986,6 @@
 "mI" = (
 /obj/structure/table,
 /obj/item/storage/bag/trash,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/hotel/custodial)
-"mJ" = (
-/obj/machinery/power/apc/highcap/five_k{
-	dir = 2;
-	name = "Custodial APC";
-	pixel_y = -24
-	},
-/obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -5896,7 +5894,7 @@ gk
 ht
 fi
 eg
-id
+ib
 it
 iI
 fd
@@ -5976,7 +5974,7 @@ ke
 ks
 kH
 hk
-lp
+il
 kH
 aa
 ac
@@ -6042,11 +6040,11 @@ iK
 fk
 gn
 jC
-kf
+in
 kt
 kI
 kY
-lp
+il
 kH
 aa
 ac
@@ -6107,7 +6105,7 @@ hv
 fi
 cq
 kH
-iw
+fh
 iK
 iK
 Gd
@@ -6116,7 +6114,7 @@ jD
 ku
 kH
 ho
-lq
+im
 kH
 aa
 ac
@@ -6186,7 +6184,7 @@ iK
 kv
 kH
 hz
-lp
+il
 kH
 aa
 ac
@@ -6256,7 +6254,7 @@ kg
 kw
 kH
 hP
-lp
+il
 kH
 aa
 ac
@@ -6305,7 +6303,7 @@ cZ
 es
 cZ
 eK
-fh
+eL
 fi
 fQ
 fZ
@@ -6459,7 +6457,7 @@ hT
 if
 iy
 fi
-fn
+fr
 jG
 jI
 kk
@@ -6530,7 +6528,7 @@ hn
 hn
 hI
 iV
-jq
+id
 jJ
 kj
 gV
@@ -6584,7 +6582,7 @@ dM
 dM
 dM
 cZ
-eL
+eM
 fi
 fx
 fx
@@ -6966,7 +6964,7 @@ jG
 ml
 ml
 ia
-mJ
+ir
 md
 aa
 aa
@@ -7035,7 +7033,7 @@ jG
 jG
 md
 md
-ib
+iw
 md
 md
 am
@@ -7245,7 +7243,7 @@ jQ
 jQ
 jQ
 jQ
-ie
+iD
 jQ
 jQ
 jQ
@@ -7509,7 +7507,7 @@ cF
 cF
 iC
 am
-fp
+fn
 jQ
 jS
 ko
@@ -7573,13 +7571,13 @@ di
 gF
 ha
 hq
-hA
+fp
 di
 cF
 cF
 eT
 am
-fr
+hA
 jQ
 jR
 jR
@@ -7861,7 +7859,7 @@ eT
 iM
 ft
 jQ
-jV
+ie
 jY
 jY
 kD
@@ -8349,7 +8347,7 @@ fu
 er
 iF
 iP
-je
+io
 jQ
 jR
 jR

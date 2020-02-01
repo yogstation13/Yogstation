@@ -23,6 +23,7 @@
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
 	var/lightswitch = TRUE
+	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
@@ -64,6 +65,8 @@
 	var/xenobiology_compatible = FALSE //Can the Xenobio management console transverse this area by default?
 	var/list/canSmoothWithAreas //typecache to limit the areas that atoms in this area can smooth with
 
+	var/minimap_color = null // if null, chooses random one
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 GLOBAL_LIST_EMPTY(teleportlocs)
@@ -86,6 +89,15 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 // ===
 
 /area/New()
+	if(!minimap_color) // goes in New() because otherwise it doesn't fucking work
+		// generate one using the icon_state
+		if(icon_state && icon_state != "unknown")
+			var/icon/I = new(icon, icon_state, dir)
+			I.Scale(1,1)
+			minimap_color = I.GetPixel(1,1)
+		else // no icon state? use random.
+			minimap_color = rgb(rand(50,70),rand(50,70),rand(50,70))
+
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
 	if (unique)
@@ -326,6 +338,18 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/set_vacuum_alarm_effect() //Just like fire alarm but blue
+	vacuum = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	for(var/obj/machinery/light/L in src)
+		L.update()
+
+/area/proc/unset_vacuum_alarm_effect()
+	vacuum = FALSE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/obj/machinery/light/L in src)
 		L.update()
 

@@ -233,3 +233,67 @@
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	l_pocket = /obj/item/bikehorn
 	back = /obj/item/storage/backpack/clown
+
+/datum/outfit/plasmaman/sigtech
+	name = "Plasmaman Signal Technician"
+
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = /obj/item/pda/signaltech
+	ears = /obj/item/radio/headset/headset_eng
+	uniform = /obj/item/clothing/under/plasmaman/engineering
+	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms
+	gloves = /obj/item/clothing/gloves/color/black
+	shoes = /obj/item/clothing/shoes/workboots
+	back = /obj/item/storage/backpack/industrial
+
+
+/datum/outfit/plasmaman/miningmedic
+	name = "Plasmaman Mining Medic"
+
+	backpack_contents = list(/obj/item/roller = 1,\
+		/obj/item/kitchen/knife/combat/survival = 1,\
+		/obj/item/gps/mining = 1)
+	belt = /obj/item/storage/belt/mining/medical
+	ears = /obj/item/radio/headset/headset_medcargo
+	glasses = /obj/item/clothing/glasses/hud/health/meson
+	shoes = /obj/item/clothing/shoes/workboots/mining
+	uniform = /obj/item/clothing/under/plasmaman/mining
+	l_hand = /obj/item/storage/firstaid/regular
+	l_pocket =  /obj/item/pda/medical
+	gloves = /obj/item/clothing/gloves/color/latex
+	back = /obj/item/storage/backpack/medic
+
+/datum/outfit/plasmaman/paramedic
+	name = "Plasmaman Paramedic"
+
+	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
+	backpack_contents = list(/obj/item/storage/firstaid/regular)
+	belt = /obj/item/pda/para
+	ears = /obj/item/radio/headset/headset_med
+	uniform = /obj/item/clothing/under/plasmaman/medical
+	suit = /obj/item/clothing/suit/toggle/labcoat/emt
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	l_hand = /obj/item/roller
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/gps
+	back = /obj/item/storage/backpack/medic
+
+/datum/outfit/plasmaman/psych
+	name = "Plasmaman Psych"
+
+	shoes = /obj/item/clothing/shoes/sneakers/brown
+	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+	l_hand = /obj/item/storage/briefcase
+	glasses = /obj/item/clothing/glasses/regular
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_med
+
+/datum/outfit/plasmaman/clerk
+	name = "Plasmaman Clerk"
+
+	belt = /obj/item/pda
+	ears = /obj/item/radio/headset/headset_srv
+	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
+	back = /obj/item/storage/backpack
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	backpack_contents = list(/obj/item/circuitboard/machine/paystand = 1)

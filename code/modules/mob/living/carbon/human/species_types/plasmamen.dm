@@ -126,6 +126,21 @@
 		if("Clown")
 			O = new /datum/outfit/plasmaman/clown
 
+		if("Signal Technician")
+			O = new /datum/outfit/plasmaman/sigtech
+
+		if("Mining Medic")
+			O = new /datum/outfit/plasmaman/miningmedic
+
+		if("Paramedic")
+			O = new /datum/outfit/plasmaman/paramedic
+
+		if("Psychiatrist")
+			O = new /datum/outfit/plasmaman/psych
+
+		if("Clerk")
+			O = new /datum/outfit/plasmaman/clerk
+
 	H.equipOutfit(O, visualsOnly)
 	H.internal = H.get_item_for_held_index(2)
 	H.update_internals_hud_icon(1)
