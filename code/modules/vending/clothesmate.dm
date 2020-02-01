@@ -36,9 +36,9 @@
 		            /obj/item/clothing/neck/scarf/black = 3,
 		            /obj/item/clothing/neck/scarf/zebra = 3,
 		            /obj/item/clothing/neck/scarf/christmas = 3,
-		            //obj/item/clothing/neck/stripedredscarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedbluescarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedgreenscarf = 3, //yogs -- commented out to be replaced by yog-brand scarves
+		            /obj/item/clothing/neck/stripedredscarf = 3,
+		            /obj/item/clothing/neck/stripedbluescarf = 3,
+		            /obj/item/clothing/neck/stripedgreenscarf = 3,
 		            /obj/item/clothing/neck/tie/blue = 3,
 		            /obj/item/clothing/neck/tie/red = 3,
 		            /obj/item/clothing/neck/tie/black = 3,
