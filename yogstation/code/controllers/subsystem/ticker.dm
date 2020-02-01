@@ -25,6 +25,7 @@
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=zlD5uvOt_Sw",                      // HL2 - Apprehension and Evasion
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
+		"https://www.youtube.com/watch?v=KFQpSp-3APw",                      // SS13 - Spectacular Suns
 		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
 	    "https://www.youtube.com/watch?v=iB5Az3vbkYs",						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
 	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
