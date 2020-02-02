@@ -78,8 +78,9 @@ SUBSYSTEM_DEF(job)
 		SetupOccupations()
 	return type_occupations[jobtype]
 
-// Checks for if player is Assignable to Role
-/datum/controller/subsystem/job/proc/CanAssignRole(mob/dead/new_player/player, rank)
+// Attempts to Assign player to Role
+/datum/controller/subsystem/job/proc/AssignRole(mob/dead/new_player/player, rank, latejoin = FALSE)
+	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(player && player.mind && rank)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
@@ -90,14 +91,6 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
 			return FALSE
-		return TRUE
-	return FALSE
-
-// Attempts to Assign player to Role
-/datum/controller/subsystem/job/proc/AssignRole(mob/dead/new_player/player, rank, latejoin = FALSE)
-	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(CanAssignRole(player, rank))
-		var/datum/job/job = GetJob(rank)
 		var/position_limit = job.total_positions
 		if(!latejoin)
 			position_limit = job.spawn_positions
@@ -173,8 +166,7 @@ SUBSYSTEM_DEF(job)
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			JobDebug("GRJ Random job can give, Player: [player], Job: [job]")
-			if(CanAssignRole(player, job.title))
-				return job
+			return job
 
 // Assign a random job to a specific player
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/dead/new_player/player)
