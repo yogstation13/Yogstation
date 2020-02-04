@@ -92,6 +92,7 @@
 		var/datum/objective/protect/yandere_one = new
 		yandere_one.owner = owner
 		yandere_one.target = obsessionmind
+		yandere_one.update_explaination_text()
 		objectives += yandere_one
 		var/datum/objective/maroon/yandere_two = new
 		yandere_two.owner = owner
