@@ -118,8 +118,6 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
 
-/obj/item/storage/box/fancy/candle_box/attack_self(mob_user)
-	return
 
 ////////////
 //CIG PACK//
