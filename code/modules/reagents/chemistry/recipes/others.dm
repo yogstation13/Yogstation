@@ -11,7 +11,7 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/graveyard
+/datum/chemical_reaction/gravedigger
 	name = "Grave-Digger"
 	id = /datum/reagent/consumable/graveyard
 	results = list(/datum/reagent/consumable/gravedigger = 3)
