@@ -861,7 +861,7 @@
 	taste_description = "cranberry"
 	glass_name = "glass of sprited cranberry"
 	
-/datum/reagent/consumable/graveyard
+/datum/reagent/consumable/gravedigger
 	name = "Grave-Digger"
 	description = "What happens when you mix all the sodas in the fountain? You get this monstrosity!"
 	color = "#dcb137"
