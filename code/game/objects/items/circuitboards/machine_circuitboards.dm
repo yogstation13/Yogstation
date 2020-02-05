@@ -684,6 +684,17 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stack/cable_coil = 2)
 
+/obj/item/circuitboard/machine/humangrinder
+	name = "Human Grinder (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/humangrinder
+	req_components = list(
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stack/sheet/glass = 2,
+		/obj/item/stack/cable_coil = 2)
+
 /obj/item/circuitboard/machine/cryo_tube
 	name = "Cryotube (Machine Board)"
 	icon_state = "medical"

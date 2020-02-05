@@ -182,18 +182,14 @@
 	if(pods)
 		for(var/P in pods)
 			var/obj/machinery/clonepod/pod = P
-			if(pod.efficiency >= 3)
-				clone_cost = 110
-				if(pod.efficiency >= 4)
-					clone_cost = 115
-					if(pod.efficiency >= 5)
-						clone_cost = 120
-						if(pod.efficiency >= 6)
-							clone_cost = 130
-							if(pod.efficiency >= 7)
-								clone_cost = 140
-								if(pod.efficiency >= 8) //normally it doesn't go further than 8 but a bus might :)
-									clone_cost = 150
+			if(pod.efficiency >= 1) //1-2 efficiency should set it back to 100, since if efficiency falls under 3 it won't change back to 100.
+				clone_cost = 100
+				if(pod.efficiency >= 3)
+					clone_cost = 100+5*pod.efficiency-5 //110-125
+					if(pod.efficiency >= 6)
+						clone_cost = 100+10*pod.efficiency-30 //130-150
+						if(pod.efficiency >= 9) //normally it doesn't go further than 8 but a bus might :)
+							clone_cost = 100+10*pod.efficiency
 	else
 		clone_cost = 100
 	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
