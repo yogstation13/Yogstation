@@ -104,18 +104,6 @@
 	open_machine()
 
 /obj/machinery/humangrinder/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/card/id))
-		var/obj/item/card/id/X = I
-		if(X.access == ACCESS_GENETICS)
-			if(!unlock)
-				unlock = TRUE
-				to_chat(user, "<span class='warning'>Body Grinder is Unlocked!</span>")
-			else
-				unlock = FALSE
-				to_chat(user, "<span class='warning'>Body Grinder is Locked!</span>")
-		else
-			to_chat(user, "<span class='warning'>You don't have permission to unlock this machine!</span>")
-
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
 		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
 		return
@@ -144,7 +132,7 @@
 	var/dat
 	if(grindy)
 		dat += "<div class='StatusDisplay'>Grinder is grinding, be patient!</div><BR>"
-		if(!unlock)
+		if(locked)
 			dat += "<div class='StatusDisplay'>The Grinder is Locked!</div><BR>"
 	else
 		dat += "<div class='StatusDisplay'>You currently have [biomatter_count] biomatter</div><BR>"
@@ -161,10 +149,11 @@
 		return
 	if("grind")
 		if(occupant)
-			if(unlock)
+			var/mob/living/occupant
+			if(occupant.stat == DEAD)
 				grinding()
 			else
-				to_chat("<span class='warning'>You don't have enough access to grind a body!</span>")
+				to_chat("<span class='warning'>The body isn't dead yet!</span>")
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		else
 			to_chat("<span class='warning'>There is no dead body!</span>")
