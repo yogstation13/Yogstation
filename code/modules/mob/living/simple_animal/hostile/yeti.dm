@@ -1,16 +1,17 @@
 /mob/living/simple_animal/hostile/yeti
 	name = "yeti"
 	desc = "It's a horrifyingly enormous yeti, and it seems to resemble something nostalgic"
-	icon_state = "tomato"
-	icon_living = "tomato"
-	icon_dead = "tomato_dead"
+	icon = 'goon/icons/obj/yeti.dmi'
+	icon_state = "yeti"
+	icon_living = "yeti"
+	icon_dead = "yeti_dead"
 	gender = NEUTER
 	speak_chance = 0
-	turns_per_move = 5
 	maxHealth = 100
 	health = 100
 	see_in_dark = 3
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/killertomato = 2)
+	speed = 3
+	butcher_results = list(/obj/item/stack/sheet/bone = 5)
 	response_harm   = "smacks"
 	melee_damage_lower = 10
 	melee_damage_upper = 15
