@@ -408,9 +408,6 @@
 					if(SSshuttle.emergency.timeLeft(1) > initial(SSshuttle.emergencyCallTime)*0.5)
 						SSticker.mode.make_antag_chance(humanc)
 
-	if(humanc && CONFIG_GET(flag/roundstart_traits))
-		SSquirks.AssignQuirks(humanc, humanc.client, TRUE)
-
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
 /mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
@@ -480,10 +477,14 @@
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
 	H.dna.update_dna_identity()
+	if(CONFIG_GET(flag/roundstart_traits))
+		SSquirks.AssignQuirks(H, client, TRUE)
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually
+		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
+			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name
