@@ -366,6 +366,12 @@
 /obj/machinery/microwave,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
+"KI" = (
+/mob/living/simple_animal/hostile/yeti,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/snow_biodome)
 "KS" = (
 /obj/item/twohanded/required/chainsaw,
 /obj/structure/closet,
@@ -960,7 +966,7 @@ ak
 ak
 ak
 ak
-ak
+KI
 ak
 ak
 ak
