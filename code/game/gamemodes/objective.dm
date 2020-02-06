@@ -1053,7 +1053,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/protect,
 		/datum/objective/assist,
 		/datum/objective/destroy,
-		/datum/objective/hijack,
 		/datum/objective/escape,
 		/datum/objective/survive,
 		/datum/objective/martyr,
