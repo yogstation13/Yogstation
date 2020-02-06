@@ -13,9 +13,9 @@
 
 /* RECIPES */
 
-/datum/generecipe/hulk
-	required = "/datum/mutation/human/strong; /datum/mutation/human/radioactive"
-	result = HULK
+/datum/generecipe/telekinesis
+	required = "/datum/mutation/human/mindread; /datum/mutation/human/radiation"
+	result = TK
 
 /datum/generecipe/x_ray
 	required = "/datum/mutation/human/thermal; /datum/mutation/human/radioactive"
@@ -28,7 +28,7 @@
 /datum/generecipe/shock
 	required = "/datum/mutation/human/insulated; /datum/mutation/human/radioactive"
 	result = SHOCKTOUCH
-	
+
 /datum/generecipe/antiglow
 	required = "/datum/mutatin/human/glow; /datum/mutation/human/void"
 	result = ANTIGLOWY

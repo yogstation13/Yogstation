@@ -5,6 +5,7 @@
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
+	conflicts = list(TK,DWARFISM)
 	text_gain_indication = "<span class='notice'>Your muscles hurt!</span>"
 	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
@@ -16,6 +17,7 @@
 		return
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
+	owner.transform = owner.transform.Scale(1, 1.25)
 	owner.update_body_parts()
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "hulk", /datum/mood_event/hulk)
 	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
@@ -35,6 +37,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	owner.update_body_parts()
+	owner.transform = owner.transform.Scale(1, 0.8)
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "hulk")
 
 /datum/mutation/human/hulk/proc/handle_speech(original_message, wrapped_message)
