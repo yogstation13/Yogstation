@@ -32,7 +32,7 @@
 		return
 
 	if((stat & MAINT) || panel_open)
-		icon_state = initial(icon_state)+ (state_open ? "_open" : "") + "_maintenance"
+		icon_state = initial(icon_state)+ (state_open ? "_open" : "") + "_maint"
 		return
 
 	//running and someone in there
