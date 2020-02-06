@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/yeti
-	name = "yeti"
+	name = "Angry Stick Yeti"
 	desc = "It's a horrifyingly enormous yeti, and it seems to resemble something nostalgic"
 	icon = 'goon/icons/obj/yeti.dmi'
 	icon_state = "yeti"
@@ -15,7 +15,7 @@
 	response_harm   = "smacks"
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	attacktext = "slams"
+	attacktext = "slashes, claws"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	faction = list("skeleton")
 
