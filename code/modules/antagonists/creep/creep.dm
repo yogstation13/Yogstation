@@ -45,9 +45,6 @@
 
 /datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
-	var/datum/objective/assassinate/obsessed/kill = new
-	kill.owner = owner
-	kill.target = obsessionmind
 	var/datum/quirk/family_heirloom/family_heirloom
 
 	for(var/datum/quirk/quirky in obsessionmind.current.roundstart_quirks)
@@ -95,7 +92,22 @@
 				jealous.target = obsessionmind//will reroll into a coworker on the objective itself
 				objectives += jealous
 
-	objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
+	if(prob(50))
+		var/datum/objective/protect/yandere_one = new
+		yandere_one.owner = owner
+		yandere_one.target = obsessionmind
+		yandere_one.update_explanation_text()
+		objectives += yandere_one
+		var/datum/objective/maroon/yandere_two = new
+		yandere_two.owner = owner
+		yandere_two.target = obsessionmind
+		yandere_two.update_explanation_text() //usually called in find_target()
+		objectives += yandere_two
+	else
+		var/datum/objective/assassinate/obsessed/kill = new
+		kill.owner = owner
+		kill.target = obsessionmind
+		objectives += kill//finally add the assassinate last, because you'd have to complete it last to greentext.
 	for(var/datum/objective/O in objectives)
 		O.update_explanation_text()
 
