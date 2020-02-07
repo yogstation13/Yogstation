@@ -1,761 +1,354 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/escape)
-"ac" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"ad" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"ae" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"af" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"ag" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"ah" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"ai" = (
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aj" = (
-/obj/structure/table/glass,
-/obj/item/defibrillator/loaded,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"ak" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"al" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"am" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"an" = (
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"ao" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"ap" = (
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/brute{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/storage/firstaid/brute,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aq" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"ar" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"as" = (
-/obj/machinery/door/airlock/public/glass,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"at" = (
-/obj/structure/table/glass,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/storage/firstaid/toxin,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"au" = (
-/obj/structure/shuttle/engine/propulsion/right{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"av" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aw" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"ax" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"ay" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{
-	name = "pasghetti";
-	pixel_x = 4;
-	pixel_y = 7
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"az" = (
-/obj/structure/table,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aA" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aB" = (
-/obj/structure/table,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aC" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	use_power = 0
-	},
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"aD" = (
-/obj/machinery/door/airlock/public/glass,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"aE" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aF" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aG" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aH" = (
-/obj/machinery/door/airlock/titanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aI" = (
-/obj/machinery/light/small,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aJ" = (
-/obj/machinery/door/airlock/titanium,
-/obj/docking_port/mobile/emergency{
-	dheight = 0;
-	dir = 8;
-	dwidth = 6;
-	height = 18;
-	name = "Birdboat emergency escape shuttle";
-	port_direction = 4;
-	width = 14
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aK" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"aL" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aM" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "security airlock";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aN" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aO" = (
-/obj/machinery/light,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aP" = (
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aQ" = (
-/obj/structure/table,
-/obj/machinery/recharger{
-	active_power_usage = 0;
-	idle_power_usage = 0;
-	pixel_y = 4;
-	use_power = 0
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aR" = (
-/obj/structure/table,
-/obj/item/storage/box/handcuffs,
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aS" = (
-/obj/machinery/computer/communications{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aT" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aU" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"aV" = (
-/obj/machinery/computer/emergency_shuttle,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aW" = (
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
-"aX" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aY" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"aZ" = (
-/obj/structure/table/optable,
-/obj/item/surgical_drapes,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"ba" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bb" = (
-/obj/structure/table,
-/obj/item/scalpel,
-/obj/item/retractor{
-	pixel_y = 5
-	},
-/obj/item/hemostat,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bc" = (
-/obj/structure/table,
-/obj/item/cautery,
-/obj/item/surgicaldrill,
-/obj/item/circular_saw{
-	pixel_y = 9
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"bd" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"be" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 2
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"bf" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 2
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"bg" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"bh" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/light,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"bi" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bj" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"bk" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
-"bl" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"bIn" = (/obj/structure/table/glass,/obj/item/storage/firstaid/brute{pixel_x = 5; pixel_y = 5},/obj/item/storage/firstaid/brute,/obj/machinery/light{dir = 4},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"bUL" = (/obj/structure/chair/comfy/shuttle{dir = 8},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"ctd" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"cFw" = (/obj/machinery/door/airlock/titanium,/obj/docking_port/mobile/emergency{dheight = 0; dir = 8; dwidth = 6; height = 18; name = "Birdboat emergency escape shuttle"; port_direction = 4; width = 14},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"cLI" = (/obj/structure/table,/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"cSF" = (/turf/closed/wall/mineral/titanium,/area/shuttle/escape)
+"cXk" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/machinery/light,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"dgR" = (/obj/structure/extinguisher_cabinet{pixel_y = -32},/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"djT" = (/obj/structure/shuttle/engine/propulsion/right{dir = 4},/turf/open/floor/plating/airless,/area/shuttle/escape)
+"dyY" = (/obj/machinery/vending/wallmed{name = "Emergency NanoMed"; use_power = 0},/turf/closed/wall/mineral/titanium/nodiagonal,/area/shuttle/escape)
+"dzi" = (/obj/structure/chair/comfy/shuttle{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"dKs" = (/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"ezj" = (/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"eFM" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/chocolatebar,/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"eHU" = (/obj/machinery/light/small,/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"eUJ" = (/obj/machinery/door/airlock/security/glass{name = "security airlock"; req_access_txt = "63"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"fhj" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"fGv" = (/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
+"ipc" = (/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"iqT" = (/obj/machinery/door/airlock/titanium,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"iyu" = (/obj/machinery/light,/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"iDR" = (/obj/machinery/light{dir = 4},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"iIE" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/structure/window/reinforced,/obj/machinery/light{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"iRn" = (/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"jaI" = (/obj/structure/chair/comfy/shuttle,/obj/machinery/light{dir = 1},/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"jfG" = (/obj/structure/chair/comfy/shuttle,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"jIG" = (/obj/machinery/stasis,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"kpq" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/open/floor/plating/airless,/area/shuttle/escape)
+"kwH" = (/obj/structure/chair/comfy/shuttle,/obj/structure/window/reinforced{dir = 1; pixel_y = 2},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"kyU" = (/obj/structure/chair/comfy/shuttle,/obj/structure/window/reinforced{dir = 1; pixel_y = 2},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"kYQ" = (/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"lnQ" = (/obj/structure/table/optable,/obj/item/surgical_drapes,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"lHZ" = (/obj/effect/spawner/structure/window/shuttle,/obj/machinery/door/firedoor/border_only,/turf/open/floor/plating,/area/shuttle/escape)
+"mIT" = (/obj/structure/table,/obj/machinery/recharger{active_power_usage = 0; idle_power_usage = 0; pixel_y = 4; use_power = 0},/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"mLe" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"njt" = (/obj/structure/extinguisher_cabinet{pixel_y = -32},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"nmY" = (/obj/effect/spawner/structure/window/shuttle,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/escape)
+"nZl" = (/obj/structure/table,/obj/item/scalpel,/obj/item/retractor{pixel_y = 5},/obj/item/hemostat,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"oQr" = (/obj/structure/table/glass,/obj/item/storage/firstaid/fire{pixel_x = 5; pixel_y = 5},/obj/item/storage/firstaid/toxin,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"qrX" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"qMV" = (/obj/machinery/door/airlock/public/glass,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"rai" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"rap" = (/obj/structure/table,/obj/item/cautery,/obj/item/surgicaldrill,/obj/item/circular_saw{pixel_y = 9},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"rjP" = (/obj/structure/table,/obj/item/storage/box/handcuffs,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"rEd" = (/obj/machinery/door/airlock/command/glass{name = "bridge door"; req_access_txt = "19"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"rSs" = (/obj/structure/shuttle/engine/propulsion/left{dir = 4},/turf/open/floor/plating/airless,/area/shuttle/escape)
+"sjd" = (/obj/structure/table/glass,/obj/item/defibrillator/loaded,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"srD" = (/obj/structure/chair/comfy/shuttle,/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"sJj" = (/obj/structure/chair/comfy/shuttle{dir = 8},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"taq" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"},/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"tra" = (/obj/machinery/door/airlock/command/glass{name = "bridge door"; req_access_txt = "19"},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"tAT" = (/obj/structure/table,/obj/machinery/light{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"tWR" = (/obj/machinery/door/airlock/public/glass,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
+"uRM" = (/obj/effect/spawner/structure/window/shuttle,/turf/open/floor/plating,/area/shuttle/escape)
+"vby" = (/turf/open/floor/mineral/titanium,/area/shuttle/escape)
+"vim" = (/turf/closed/wall/mineral/titanium/nodiagonal,/area/shuttle/escape)
+"vxb" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-22"},/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
+"wTJ" = (/obj/machinery/computer/communications{dir = 4},/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
+"xKG" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{name = "pasghetti"; pixel_x = 4; pixel_y = 7},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"xMw" = (/obj/structure/table,/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"xXh" = (/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"yaZ" = (/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/plastitanium,/area/shuttle/escape)
+"yeb" = (/obj/machinery/computer/emergency_shuttle,/turf/open/floor/mineral/titanium/blue,/area/shuttle/escape)
 
 (1,1,1) = {"
-aa
-aa
-ab
-ab
-ar
-ab
-ar
-ar
-ar
-ar
-ar
-ab
-aa
-aa
+arG
+arG
+cSF
+cSF
+nmY
+cSF
+nmY
+nmY
+nmY
+nmY
+nmY
+cSF
+arG
+arG
 "}
 (2,1,1) = {"
-aa
-ab
-ad
-aS
-aN
-ao
-ag
-aw
-aw
-aw
-ag
-ad
-ab
-aa
+arG
+cSF
+vim
+wTJ
+vxb
+uRM
+fhj
+sJj
+sJj
+sJj
+fhj
+vim
+cSF
+arG
 "}
 (3,1,1) = {"
-aa
-ab
-aV
-aT
-an
-aL
-an
-an
-an
-an
-an
-bg
-ab
-aa
+arG
+cSF
+yeb
+bUL
+vby
+rEd
+vby
+vby
+vby
+vby
+vby
+ctd
+cSF
+arG
 "}
 (4,1,1) = {"
-aa
-ao
-aW
-an
-aO
-ab
-al
-al
-az
-an
-an
-bg
-ab
-aa
+arG
+uRM
+fGv
+vby
+iyu
+cSF
+yaZ
+yaZ
+xMw
+vby
+vby
+ctd
+cSF
+arG
 "}
 (5,1,1) = {"
-aa
-ao
-aW
-an
-af
-ab
-aF
-aF
-aA
-an
-an
-bg
-ab
-aa
+arG
+uRM
+fGv
+vby
+njt
+cSF
+dzi
+dzi
+eFM
+vby
+vby
+ctd
+cSF
+arG
 "}
 (6,1,1) = {"
-aa
-ab
-aN
-an
-aN
-ab
-am
-ay
-aB
-bd
-bd
-bh
-ad
-ab
+arG
+cSF
+vxb
+vby
+vxb
+cSF
+tAT
+xKG
+cLI
+iRn
+iRn
+cXk
+vim
+cSF
 "}
 (7,1,1) = {"
-aa
-ab
-ab
-aU
-ao
-ab
-an
-an
-an
-an
-an
-an
-bi
-ab
+arG
+cSF
+cSF
+tra
+uRM
+cSF
+vby
+vby
+vby
+vby
+vby
+vby
+taq
+cSF
 "}
 (8,1,1) = {"
-aa
-ab
-aX
-aP
-aP
-ao
-ae
-an
-an
-an
-an
-an
-bj
-ab
+arG
+cSF
+jfG
+xXh
+xXh
+uRM
+rai
+vby
+vby
+vby
+vby
+vby
+dgR
+cSF
 "}
 (9,1,1) = {"
-aa
-ab
-aX
-aP
-aP
-aM
-av
-av
-aE
-be
-av
-av
-bk
-ac
+arG
+cSF
+jfG
+xXh
+xXh
+eUJ
+dKs
+dKs
+mLe
+kyU
+dKs
+dKs
+srD
+lHZ
 "}
 (10,1,1) = {"
-aa
-ab
-aY
-aP
-aP
-ao
-an
-an
-aG
-bf
-an
-an
-bk
-ac
+arG
+cSF
+jaI
+xXh
+xXh
+uRM
+vby
+vby
+qrX
+kwH
+vby
+vby
+srD
+lHZ
 "}
 (11,1,1) = {"
-aa
-ab
-aX
-aP
-aQ
-ab
-an
-an
-aG
-bf
-an
-an
-bk
-ac
+arG
+cSF
+jfG
+xXh
+mIT
+cSF
+vby
+vby
+qrX
+kwH
+vby
+vby
+srD
+lHZ
 "}
 (12,1,1) = {"
-aa
-ab
-aX
-aP
-aR
-ab
-an
-an
-aK
-bf
-an
-an
-bi
-ab
+arG
+cSF
+jfG
+xXh
+rjP
+cSF
+vby
+vby
+iIE
+kwH
+vby
+vby
+taq
+cSF
 "}
 (13,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ad
-av
-av
-aC
-ab
-as
-ao
-ab
-ab
+cSF
+cSF
+cSF
+cSF
+cSF
+vim
+dKs
+dKs
+dyY
+cSF
+qMV
+uRM
+cSF
+cSF
 "}
 (14,1,1) = {"
-ab
-bb
-aZ
-ai
-ai
-aD
-an
-an
-aD
-ax
-ai
-ai
-ah
-ab
+cSF
+nZl
+lnQ
+kYQ
+kYQ
+tWR
+vby
+vby
+tWR
+ipc
+kYQ
+kYQ
+jIG
+cSF
 "}
 (15,1,1) = {"
-ab
-bc
-ai
-ai
-ai
-aD
-an
-an
-aD
-ai
-ai
-ai
-ai
-ab
+cSF
+rap
+kYQ
+kYQ
+kYQ
+tWR
+vby
+vby
+tWR
+kYQ
+kYQ
+kYQ
+kYQ
+cSF
 "}
 (16,1,1) = {"
-ab
-bl
-ba
-bl
-ab
-ab
-aH
-aH
-ab
-ab
-at
-ap
-aj
-ab
+cSF
+ezj
+iDR
+ezj
+cSF
+cSF
+iqT
+iqT
+cSF
+cSF
+oQr
+bIn
+sjd
+cSF
 "}
 (17,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-an
-aI
-ab
-ab
-ab
-ab
-ab
-ab
+cSF
+cSF
+cSF
+cSF
+cSF
+cSF
+vby
+eHU
+cSF
+cSF
+cSF
+cSF
+cSF
+cSF
 "}
 (18,1,1) = {"
-ab
-au
-aq
-ak
-ab
-ab
-aH
-aJ
-ab
-ab
-au
-aq
-ak
-ab
+cSF
+djT
+kpq
+rSs
+cSF
+cSF
+iqT
+cFw
+cSF
+cSF
+djT
+kpq
+rSs
+cSF
 "}

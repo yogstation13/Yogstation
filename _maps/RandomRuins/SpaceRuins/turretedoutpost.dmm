@@ -1,831 +1,496 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
-"ac" = (
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/turretedoutpost)
-"ad" = (
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/turretedoutpost)
-"ae" = (
-/obj/structure/table/reinforced,
-/obj/item/stock_parts/cell/hyper,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"af" = (
-/obj/structure/frame/computer,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ag" = (
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ah" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ai" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/turretedoutpost)
-"aj" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/turretedoutpost)
-"ak" = (
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/turretedoutpost)
-"al" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/turretedoutpost)
-"am" = (
-/obj/structure/table/reinforced,
-/obj/item/folder,
-/obj/item/radio,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"an" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ao" = (
-/obj/machinery/porta_turret,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/turretedoutpost)
-"ap" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aq" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ar" = (
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"as" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"at" = (
-/obj/item/rack_parts,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"au" = (
-/obj/item/rack_parts,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"av" = (
-/obj/structure/rack,
-/obj/item/firing_pin,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aw" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ax" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"ay" = (
-/obj/item/rack_parts,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"az" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aA" = (
-/obj/structure/tank_dispenser/oxygen,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aB" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/head/ushanka,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aC" = (
-/obj/structure/table/reinforced,
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aD" = (
-/obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/radio,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aE" = (
-/obj/machinery/vending/clothing,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aF" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aG" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aH" = (
-/obj/structure/rack,
-/obj/item/ammo_box/c9mm,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aI" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aJ" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aK" = (
-/obj/structure/bed,
-/obj/item/bedsheet/orange,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aL" = (
-/obj/structure/rack,
-/obj/item/clothing/head/helmet/swat,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aM" = (
-/obj/structure/rack,
-/obj/item/crowbar/red,
-/obj/item/paper/crumpled,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aN" = (
-/obj/structure/chair/office/dark,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aO" = (
-/obj/structure/chair/comfy/beige{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aP" = (
-/obj/structure/bed,
-/obj/item/bedsheet/orange,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aQ" = (
-/obj/structure/rack,
-/obj/item/grenade/chem_grenade/teargas,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aR" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/crumpled,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light,
-/obj/item/camera_bug,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aT" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aU" = (
-/obj/structure/table/reinforced,
-/obj/item/pen/blue,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aV" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = 3
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"aW" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aX" = (
-/obj/item/rack_parts,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aY" = (
-/obj/structure/rack,
-/obj/item/storage/belt/military,
-/obj/machinery/light,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"aZ" = (
-/obj/structure/rack,
-/obj/item/clothing/head/helmet/riot,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/turretedoutpost)
-"ba" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/breadslice/meat,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/turretedoutpost)
-"Nu" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/turretedoutpost)
+// This map has been converted using maphash
+"aep" = (/obj/structure/rack,/obj/item/firing_pin,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 4},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"arG" = (/turf/template_noop,/area/template_noop)
+"avg" = (/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"aWQ" = (/obj/structure/rack,/obj/item/crowbar/red,/obj/item/paper/crumpled,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"cpU" = (/obj/structure/chair/comfy/beige{dir = 4},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"cwu" = (/turf/open/floor/plating/airless,/area/ruin/space/has_grav/turretedoutpost)
+"cRd" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/drinks/bottle/vodka{pixel_x = -4; pixel_y = 4},/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{pixel_x = 3},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"dbj" = (/obj/structure/rack,/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"dop" = (/obj/structure/bed,/obj/item/bedsheet/orange,/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"dEb" = (/obj/item/rack_parts,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 4},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"dQq" = (/obj/structure/grille,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/turretedoutpost)
+"dRF" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"dUm" = (/obj/structure/rack,/obj/item/ammo_box/c9mm,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"efk" = (/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"esc" = (/obj/structure/lattice,/turf/template_noop,/area/space/nearstation)
+"eYg" = (/obj/structure/rack,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 4},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"fdY" = (/obj/structure/bed,/obj/item/bedsheet/orange,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"fAB" = (/obj/structure/table/reinforced,/obj/item/pen/blue,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"gHr" = (/obj/item/rack_parts,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"hnT" = (/obj/structure/chair/office/dark,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"iby" = (/obj/structure/rack,/obj/item/clothing/head/helmet/riot,/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"iKP" = (/obj/structure/rack,/obj/item/grenade/chem_grenade/teargas,/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"iLp" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/snacks/breadslice/meat,/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"jwo" = (/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"jQE" = (/obj/structure/table/reinforced,/obj/item/stock_parts/cell/hyper,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"jRT" = (/obj/structure/table/reinforced,/obj/item/folder,/obj/item/radio,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"kgq" = (/obj/structure/rack,/obj/item/storage/belt/military,/obj/machinery/light,/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"lzv" = (/obj/structure/rack,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"lIn" = (/obj/structure/filingcabinet,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"mbn" = (/obj/structure/chair/office/dark{dir = 8},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"nbg" = (/obj/machinery/door/airlock,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"nwj" = (/turf/open/floor/plating,/area/ruin/space/has_grav/turretedoutpost)
+"olL" = (/obj/machinery/light,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"ovr" = (/obj/item/rack_parts,/obj/effect/turf_decal/tile/neutral,/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"paF" = (/obj/machinery/power/apc{name = "Worn-out APC"; pixel_y = -23},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"pgR" = (/obj/structure/table/reinforced,/obj/item/paper_bin,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"pBS" = (/obj/structure/table/reinforced,/obj/item/clipboard,/obj/machinery/light{dir = 1},/obj/item/radio,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"pMA" = (/obj/structure/table/reinforced,/obj/item/clothing/head/ushanka,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"pPe" = (/obj/structure/table/reinforced,/obj/item/paper/crumpled,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/obj/effect/turf_decal/tile/red{dir = 8},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"pTT" = (/turf/closed/wall/r_wall,/area/ruin/space/has_grav/turretedoutpost)
+"qhp" = (/obj/machinery/porta_turret,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/turretedoutpost)
+"qlL" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"qvA" = (/obj/machinery/light{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"qCV" = (/obj/structure/table/reinforced,/obj/structure/reagent_dispensers/peppertank{pixel_y = 32},/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"rnU" = (/obj/structure/table/reinforced,/obj/machinery/light,/obj/item/camera_bug,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"rxa" = (/obj/structure/rack,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 4},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"tmf" = (/obj/machinery/door/airlock/external,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/turf/open/floor/plating,/area/ruin/space/has_grav/turretedoutpost)
+"ucl" = (/obj/machinery/door/airlock/external,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/turf/open/floor/plating,/area/ruin/space/has_grav/turretedoutpost)
+"uMS" = (/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/ruin/space/has_grav/turretedoutpost)
+"uOL" = (/obj/structure/rack,/obj/item/clothing/head/helmet/swat,/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"vkd" = (/obj/structure/tank_dispenser/oxygen,/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
+"vJJ" = (/obj/structure/frame/computer,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"wNB" = (/obj/machinery/vending/clothing,/turf/open/floor/plasteel,/area/ruin/space/has_grav/turretedoutpost)
+"xRI" = (/obj/item/rack_parts,/obj/machinery/light{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 1},/obj/effect/turf_decal/tile/neutral{dir = 4},/turf/open/floor/plasteel/dark,/area/ruin/space/has_grav/turretedoutpost)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+esc
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ab
-ab
-aa
-ab
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+esc
+esc
+esc
+arG
+esc
+arG
+arG
+arG
 "}
 (3,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-al
-al
-al
-al
-al
-al
-al
-al
-ab
-ab
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+cwu
+cwu
+cwu
+cwu
+cwu
+cwu
+cwu
+cwu
+esc
+esc
+arG
+arG
 "}
 (4,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-al
-ao
-ad
-ad
-ad
-ad
-ad
-ad
-ao
-al
-ab
-ab
-aa
+arG
+arG
+arG
+arG
+arG
+cwu
+qhp
+pTT
+pTT
+pTT
+pTT
+pTT
+pTT
+qhp
+cwu
+esc
+esc
+arG
 "}
 (5,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-al
-ad
-ad
-ay
-aF
-aL
-aF
-ad
-ad
-al
-ab
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+cwu
+pTT
+pTT
+gHr
+lzv
+uOL
+lzv
+pTT
+pTT
+cwu
+esc
+arG
+arG
 "}
 (6,1,1) = {"
-aa
-ab
-ab
-ab
-ab
-al
-ad
-as
-az
-az
-az
-az
-aW
-ad
-al
-ab
-aa
-aa
+arG
+esc
+esc
+esc
+esc
+cwu
+pTT
+rxa
+efk
+efk
+efk
+efk
+dbj
+pTT
+cwu
+esc
+arG
+arG
 "}
 (7,1,1) = {"
-aa
-aa
-aa
-ab
-aa
-al
-ad
-at
-az
-aG
-aG
-az
-aX
-ad
-al
-ab
-ab
-aa
+arG
+arG
+arG
+esc
+arG
+cwu
+pTT
+dEb
+efk
+eYg
+eYg
+efk
+ovr
+pTT
+cwu
+esc
+esc
+arG
 "}
 (8,1,1) = {"
-aa
-aa
-ab
-ab
-aa
-al
-ad
-au
-az
-aH
-aM
-az
-aY
-ad
-al
-aa
-aa
-aa
+arG
+arG
+esc
+esc
+arG
+cwu
+pTT
+xRI
+efk
+dUm
+aWQ
+efk
+kgq
+pTT
+cwu
+arG
+arG
+arG
 "}
 (9,1,1) = {"
-aa
-ab
-ab
-ab
-aa
-al
-ad
-av
-az
-az
-az
-az
-aZ
-ad
-al
-ab
-aa
-aa
+arG
+esc
+esc
+esc
+arG
+cwu
+pTT
+aep
+efk
+efk
+efk
+efk
+iby
+pTT
+cwu
+esc
+arG
+arG
 "}
 (10,1,1) = {"
-aa
-ab
-aa
-ab
-aa
-al
-ad
-ad
-aA
-az
-az
-aQ
-ad
-ad
-al
-ab
-aa
-aa
+arG
+esc
+arG
+esc
+arG
+cwu
+pTT
+pTT
+vkd
+efk
+efk
+iKP
+pTT
+pTT
+cwu
+esc
+arG
+arG
 "}
 (11,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ad
-ad
-aI
-aI
-ad
-ad
-ao
-al
-ab
-aa
-aa
+arG
+arG
+dQq
+dQq
+dQq
+dQq
+dQq
+pTT
+pTT
+dRF
+dRF
+pTT
+pTT
+qhp
+cwu
+esc
+arG
+arG
 "}
 (12,1,1) = {"
-aa
-aa
-ac
-ad
-ad
-ad
-ad
-ad
-aB
-aJ
-aJ
-aR
-ad
-al
-ab
-ab
-ab
-aa
+arG
+arG
+dQq
+pTT
+pTT
+pTT
+pTT
+pTT
+pMA
+avg
+avg
+pPe
+pTT
+cwu
+esc
+esc
+esc
+arG
 "}
 (13,1,1) = {"
-aa
-aa
-ac
-ad
-ae
-am
-ap
-ad
-aC
-ag
-ag
-aS
-ad
-al
-ab
-aa
-aa
-aa
+arG
+arG
+dQq
+pTT
+jQE
+jRT
+lIn
+pTT
+qCV
+jwo
+jwo
+rnU
+pTT
+cwu
+esc
+arG
+arG
+arG
 "}
 (14,1,1) = {"
-aa
-aa
-ac
-ad
-af
-an
-aq
-ad
-aD
-ag
-aN
-aT
-ad
-al
-aa
-aa
-aa
-aa
+arG
+arG
+dQq
+pTT
+vJJ
+mbn
+olL
+pTT
+pBS
+jwo
+hnT
+pgR
+pTT
+cwu
+arG
+arG
+arG
+arG
 "}
 (15,1,1) = {"
-aa
-aa
-ac
-ad
-af
-ag
-ag
-aw
-ag
-ag
-ag
-aU
-ad
-ac
-ac
-ab
-ab
-ab
+arG
+arG
+dQq
+pTT
+vJJ
+jwo
+jwo
+qlL
+jwo
+jwo
+jwo
+fAB
+pTT
+dQq
+dQq
+esc
+esc
+esc
 "}
 (16,1,1) = {"
-aa
-ab
-ac
-ad
-af
-ag
-ag
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ac
-ab
-aa
-aa
+arG
+esc
+dQq
+pTT
+vJJ
+jwo
+jwo
+pTT
+pTT
+pTT
+pTT
+pTT
+pTT
+pTT
+dQq
+esc
+arG
+arG
 "}
 (17,1,1) = {"
-aa
-aa
-ac
-ad
-ag
-ag
-ag
-ax
-ag
-ag
-aO
-aV
-ba
-ad
-ac
-ab
-ab
-aa
+arG
+arG
+dQq
+pTT
+jwo
+jwo
+jwo
+nbg
+jwo
+jwo
+cpU
+cRd
+iLp
+pTT
+dQq
+esc
+esc
+arG
 "}
 (18,1,1) = {"
-aa
-ab
-ac
-ad
-ah
-ag
-ar
-ad
-aE
-ag
-ag
-ag
-ag
-ad
-ac
-aa
-aa
-aa
+arG
+esc
+dQq
+pTT
+qvA
+jwo
+paF
+pTT
+wNB
+jwo
+jwo
+jwo
+jwo
+pTT
+dQq
+arG
+arG
+arG
 "}
 (19,1,1) = {"
-ab
-aa
-ac
-ad
-ai
-ai
-ad
-ad
-ad
-ag
-ag
-ag
-ag
-ad
-ac
-aa
-aa
-aa
+esc
+arG
+dQq
+pTT
+tmf
+tmf
+pTT
+pTT
+pTT
+jwo
+jwo
+jwo
+jwo
+pTT
+dQq
+arG
+arG
+arG
 "}
 (20,1,1) = {"
-ab
-ab
-ac
-ad
-aj
-ak
-ad
-al
-ad
-aK
-aP
-aP
-aP
-ad
-ac
-aa
-aa
-aa
+esc
+esc
+dQq
+pTT
+uMS
+nwj
+pTT
+cwu
+pTT
+dop
+fdY
+fdY
+fdY
+pTT
+dQq
+arG
+arG
+arG
 "}
 (21,1,1) = {"
-aa
-ab
-ac
-ad
-ak
-ak
-ad
-al
-ad
-ad
-ad
-ad
-ad
-ad
-ac
-ab
-ab
-aa
+arG
+esc
+dQq
+pTT
+nwj
+nwj
+pTT
+cwu
+pTT
+pTT
+pTT
+pTT
+pTT
+pTT
+dQq
+esc
+esc
+arG
 "}
 (22,1,1) = {"
-ab
-ab
-ac
-ad
-Nu
-Nu
-ad
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-ab
-aa
+esc
+esc
+dQq
+pTT
+ucl
+ucl
+pTT
+dQq
+dQq
+dQq
+dQq
+dQq
+dQq
+dQq
+dQq
+arG
+esc
+arG
 "}

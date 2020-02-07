@@ -1,387 +1,292 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"b" = (
-/turf/closed/wall/mineral/sandstone,
-/area/ruin/unpowered)
-"c" = (
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"d" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"e" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"f" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"g" = (
-/obj/structure/table,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"h" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spidereggsham,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"i" = (
-/obj/item/flashlight/flare/torch,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"j" = (
-/obj/structure/table,
-/obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/flashlight/flare/torch,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"k" = (
-/obj/structure/mineral_door/sandstone,
-/obj/structure/fans/tiny/invisible,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"l" = (
-/obj/effect/turf_decal/sand,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"m" = (
-/obj/structure/rack,
-/obj/item/clothing/head/helmet/roman,
-/obj/item/clothing/shoes/roman,
-/obj/item/clothing/under/roman,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"n" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"o" = (
-/obj/structure/rack,
-/obj/item/claymore{
-	desc = "It's cracked and blunted";
-	force = 21;
-	name = "Ancient Sword"
-	},
-/obj/item/shield/riot/roman{
-	block_chance = 25;
-	desc = "Bears an inscription on the inside: <i>\"Necropolis venio domus\"</i>.";
-	name = "battered shield"
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"p" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"q" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"r" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"s" = (
-/obj/structure/table,
-/obj/item/flashlight/flare/torch,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"t" = (
-/obj/structure/rack,
-/obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/clothing/under/roman,
-/obj/item/clothing/shoes/roman,
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"aDy" = (/obj/structure/rack,/obj/item/clothing/head/helmet/roman/legionnaire,/obj/item/clothing/under/roman,/obj/item/clothing/shoes/roman,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"aXR" = (/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"bCC" = (/obj/effect/turf_decal/sand,/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"bCV" = (/obj/structure/bed,/obj/item/bedsheet/brown,/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/unpowered)
+"cDh" = (/obj/structure/rack,/obj/item/clothing/head/helmet/roman,/obj/item/clothing/shoes/roman,/obj/item/clothing/under/roman,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"dnn" = (/obj/structure/rack,/obj/item/claymore{desc = "It's cracked and blunted"; force = 21; name = "Ancient Sword"},/obj/item/shield/riot/roman{block_chance = 25; desc = "Bears an inscription on the inside: <i>'Necropolis venio domus'</i>."; name = "battered shield"},/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"ebw" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"eSJ" = (/obj/structure/bed,/obj/item/bedsheet/brown,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"gps" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/unpowered)
+"kwf" = (/obj/structure/table,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"nqw" = (/obj/structure/mineral_door/sandstone,/obj/structure/fans/tiny/invisible,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"olR" = (/turf/closed/wall/mineral/sandstone,/area/ruin/unpowered)
+"oBL" = (/obj/structure/table,/obj/item/clothing/head/helmet/roman/legionnaire,/obj/item/flashlight/flare/torch,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"quI" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/spidereggsham,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"vLX" = (/obj/structure/bed,/obj/item/bedsheet/yellow,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"vQa" = (/obj/structure/table,/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"vRm" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"wnT" = (/obj/item/flashlight/flare/torch,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"wFh" = (/obj/structure/table,/obj/item/flashlight/flare/torch,/obj/effect/turf_decal/sand,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"xsS" = (/mob/living/simple_animal/hostile/asteroid/hivelord/legion,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/unpowered)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
 "}
 (2,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-b
-b
-b
-b
-b
-b
-a
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+olR
+olR
+olR
+olR
+olR
+olR
+ebw
 "}
 (3,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-m
-m
-m
-m
-b
-b
+ebw
+olR
+olR
+olR
+olR
+olR
+olR
+olR
+olR
+olR
+cDh
+cDh
+cDh
+cDh
+olR
+olR
 "}
 (4,1,1) = {"
-a
-b
-c
-d
-i
-b
-d
-d
-e
-b
-d
-l
-e
-c
-t
-b
+ebw
+olR
+xsS
+aXR
+wnT
+olR
+aXR
+aXR
+gps
+olR
+aXR
+bCC
+gps
+xsS
+aDy
+olR
 "}
 (5,1,1) = {"
-a
-b
-d
-g
-d
-b
-e
-c
-d
-k
-d
-d
-e
-i
-t
-b
+ebw
+olR
+aXR
+kwf
+aXR
+olR
+gps
+xsS
+aXR
+nqw
+aXR
+aXR
+gps
+wnT
+aDy
+olR
 "}
 (6,1,1) = {"
-a
-b
-e
-h
-e
-k
-d
-e
-e
-b
-d
-d
-d
-l
-t
-b
+ebw
+olR
+gps
+quI
+gps
+nqw
+aXR
+gps
+gps
+olR
+aXR
+aXR
+aXR
+bCC
+aDy
+olR
 "}
 (7,1,1) = {"
-a
-b
-d
-d
-c
-b
-l
-d
-i
-b
-o
-o
-o
-o
-b
-b
+ebw
+olR
+aXR
+aXR
+xsS
+olR
+bCC
+aXR
+wnT
+olR
+dnn
+dnn
+dnn
+dnn
+olR
+olR
 "}
 (8,1,1) = {"
-a
-b
-b
-b
-b
-b
-d
-d
-l
-b
-b
-b
-b
-b
-b
-a
+ebw
+olR
+olR
+olR
+olR
+olR
+aXR
+aXR
+bCC
+olR
+olR
+olR
+olR
+olR
+olR
+ebw
 "}
 (9,1,1) = {"
-a
-b
-f
-d
-f
-b
-d
-e
-d
-b
-p
-r
-p
-p
-b
-a
+ebw
+olR
+vLX
+aXR
+vLX
+olR
+aXR
+gps
+aXR
+olR
+eSJ
+bCV
+eSJ
+eSJ
+olR
+ebw
 "}
 (10,1,1) = {"
-a
-b
-d
-c
-d
-b
-d
-l
-d
-b
-d
-d
-d
-l
-b
-a
+ebw
+olR
+aXR
+xsS
+aXR
+olR
+aXR
+bCC
+aXR
+olR
+aXR
+aXR
+aXR
+bCC
+olR
+ebw
 "}
 (11,1,1) = {"
-a
-b
-d
-d
-d
-k
-d
-d
-e
-k
-d
-d
-q
-s
-b
-a
+ebw
+olR
+aXR
+aXR
+aXR
+nqw
+aXR
+aXR
+gps
+nqw
+aXR
+aXR
+vQa
+wFh
+olR
+ebw
 "}
 (12,1,1) = {"
-a
-b
-f
-d
-j
-b
-d
-d
-e
-b
-d
-d
-d
-d
-b
-a
+ebw
+olR
+vLX
+aXR
+oBL
+olR
+aXR
+aXR
+gps
+olR
+aXR
+aXR
+aXR
+aXR
+olR
+ebw
 "}
 (13,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-k
-b
-b
-r
-r
-p
-p
-b
-a
+ebw
+olR
+olR
+olR
+olR
+olR
+olR
+nqw
+olR
+olR
+bCV
+bCV
+eSJ
+eSJ
+olR
+ebw
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-a
-n
-n
-n
-b
-b
-b
-b
-b
-b
-a
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+vRm
+vRm
+vRm
+olR
+olR
+olR
+olR
+olR
+olR
+ebw
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-n
-n
-a
-a
-a
-a
-a
-a
-a
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+vRm
+vRm
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
+ebw
 "}

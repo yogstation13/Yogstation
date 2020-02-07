@@ -1,2383 +1,1172 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"am" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"an" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"ao" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"ap" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"aq" = (
-/obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"ar" = (
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"as" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood/old,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"at" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"au" = (
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"av" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 1;
-	sortType = 3
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"aw" = (
-/obj/structure/window/reinforced,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"ax" = (
-/obj/effect/decal/cleanable/food/pie_smudge,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"ay" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"az" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aA" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aC" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aE" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aI" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/obj/item/bikehorn,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"aK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/decal/cleanable/food/pie_smudge,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"aM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aO" = (
-/obj/item/bikehorn,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"aS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"aT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"aV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aW" = (
-/obj/item/bikehorn,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aX" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/disposaloutlet{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"aY" = (
-/obj/item/bikehorn,
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"aZ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"ba" = (
-/obj/effect/decal/cleanable/food/pie_smudge,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bb" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/structure/table,
-/obj/item/paper/crumpled/bloody/ruins/lavaland/clown_planet/escape,
-/obj/item/pen/fourcolor,
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"be" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/structure/table,
-/obj/item/flashlight/lamp/bananalamp,
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/food/pie_smudge,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/item/pickaxe,
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/turf/open/indestructible{
-	icon_state = "light_on"
-	},
-/area/ruin/powered/clownplanet)
-"bk" = (
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bl" = (
-/turf/open/indestructible{
-	icon_state = "light_on"
-	},
-/area/ruin/powered/clownplanet)
-"bm" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bn" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bp" = (
-/turf/closed/mineral/bananium,
-/area/ruin/powered/clownplanet)
-"bq" = (
-/obj/item/pickaxe,
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"br" = (
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bs" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"bu" = (
-/obj/item/bikehorn,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bx" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"by" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bz" = (
-/obj/machinery/disposal/deliveryChute{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"bA" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bB" = (
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bC" = (
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 1;
-	invisibility = 101
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bD" = (
-/obj/structure/mecha_wreckage/honker,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"bE" = (
-/obj/effect/decal/cleanable/oil,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"bF" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bI" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"bL" = (
-/obj/item/reagent_containers/food/drinks/trophy/gold_cup,
-/obj/structure/table/glass,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bM" = (
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bN" = (
-/obj/machinery/disposal/deliveryChute,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bO" = (
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bP" = (
-/obj/structure/statue/bananium/clown,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bQ" = (
-/obj/structure/table/glass,
-/obj/item/grown/bananapeel/bluespace,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bR" = (
-/obj/structure/table/glass,
-/obj/item/clothing/shoes/clown_shoes/banana_shoes,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bS" = (
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bT" = (
-/obj/item/slime_extract/rainbow,
-/obj/structure/table/glass,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bU" = (
-/obj/item/bikehorn/airhorn,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bV" = (
-/obj/structure/table/glass,
-/obj/item/gun/magic/staff/honk,
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"bW" = (
-/obj/item/bikehorn,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bY" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"bZ" = (
-/obj/machinery/door/airlock/bananium,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"ca" = (
-/obj/item/bikehorn,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"cc" = (
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"ch" = (
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/clownplanet)
-"cu" = (
-/turf/open/floor/plating,
-/area/ruin/powered/clownplanet)
-"dB" = (
-/obj/structure/disposalpipe/segment{
-	invisibility = 101
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"dC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"dD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"dE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"dF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"dG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	invisibility = 101
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"dH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/indestructible{
-	icon_state = "white"
-	},
-/area/ruin/powered/clownplanet)
-"dI" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"dK" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"dL" = (
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/item/coin/bananium,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered/clownplanet)
-"dM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"dO" = (
-/obj/machinery/light,
-/turf/open/indestructible/sound{
-	icon_state = "bananium";
-	name = "bananium floor";
-	sound = 'sound/effects/clownstep1.ogg';
-	wet = 16
-	},
-/area/ruin/powered/clownplanet)
-"eX" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/lavaland/surface/outdoors/explored)
-"gX" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/chasm/lavaland,
-/area/lavaland/surface/outdoors/explored)
-"hY" = (
-/obj/machinery/light,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/clownplanet)
-"pv" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/clownplanet)
-"ye" = (
-/turf/open/lava/smooth,
-/area/ruin/powered/clownplanet)
-"CB" = (
-/obj/item/paper/crumpled/bloody/ruins/lavaland/clown_planet/hope,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/lavaland/surface/outdoors/explored)
-"Hj" = (
-/obj/effect/decal/cleanable/food/pie_smudge,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/indestructible{
-	icon_state = "darkfull";
-	wet = 8
-	},
-/area/ruin/powered/clownplanet)
-"KX" = (
-/obj/item/grown/bananapeel{
-	color = "#2F3000";
-	name = "stealth banana peel"
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"LH" = (
-/obj/machinery/disposal/deliveryChute{
-	desc = "The following is engraved upon the chute: A FATE WORSE THAN DEATH LIES WITHIN";
-	dir = 1;
-	name = "THE TRIAL OF HONKITUDE"
-	},
-/obj/structure/disposalpipe/trunk,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/powered/clownplanet)
-"Mv" = (
-/obj/effect/mapping_helpers/no_lava,
-/mob/living/simple_animal/hostile/retaliate/clown,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"MR" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/clownplanet)
-"TD" = (
-/obj/structure/disposalpipe/trunk,
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/powered/clownplanet)
-"Xm" = (
-/obj/item/clothing/head/cone,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/lavaland/surface/outdoors/explored)
-"XO" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
-"Yf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/clownplanet)
-"YI" = (
-/obj/machinery/light/small,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/noslip{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/powered/clownplanet)
+// This map has been converted using maphash
+"aaG" = (/obj/structure/disposalpipe/segment{dir = 9},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"arG" = (/turf/template_noop,/area/template_noop)
+"aKn" = (/obj/item/grown/bananapeel{color = "#2F3000"; name = "stealth banana peel"},/obj/effect/mapping_helpers/no_lava,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"aLm" = (/obj/effect/decal/cleanable/dirt,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"aPT" = (/obj/structure/disposalpipe/segment{dir = 6},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"aRu" = (/obj/effect/decal/cleanable/cobweb/cobweb2,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"buR" = (/obj/structure/disposalpipe/segment{dir = 5},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"bCK" = (/turf/closed/mineral/bananium,/area/ruin/powered/clownplanet)
+"bCP" = (/obj/machinery/light{dir = 1},/obj/effect/mapping_helpers/no_lava,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered/clownplanet)
+"cgE" = (/obj/effect/decal/cleanable/cobweb/cobweb2,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"cyU" = (/obj/effect/decal/cleanable/food/pie_smudge,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"cCY" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"cGj" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood/old,/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"cNO" = (/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"dkS" = (/obj/item/clothing/head/cone,/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/lavaland/surface/outdoors/explored)
+"doo" = (/obj/structure/disposalpipe/segment{dir = 5},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"dqP" = (/obj/item/paper/crumpled/bloody/ruins/lavaland/clown_planet/hope,/obj/effect/decal/cleanable/blood/old,/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/lavaland/surface/outdoors/explored)
+"dvK" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"dyc" = (/obj/structure/window/reinforced,/obj/structure/disposalpipe/segment{invisibility = 101},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"dzy" = (/turf/open/lava/smooth,/area/ruin/powered/clownplanet)
+"dCG" = (/obj/machinery/light{dir = 8},/obj/effect/mapping_helpers/no_lava,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered/clownplanet)
+"dPN" = (/obj/structure/disposalpipe/segment{dir = 10},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"dRq" = (/obj/structure/disposalpipe/segment,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"eeZ" = (/obj/machinery/disposal/deliveryChute{dir = 1},/obj/structure/disposalpipe/trunk,/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"ejq" = (/obj/structure/disposalpipe/segment{dir = 6},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"eyR" = (/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/machinery/light/small{dir = 8},/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"eYY" = (/obj/structure/statue/bananium/clown,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"fcX" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/item/pickaxe,/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"fof" = (/obj/item/bikehorn,/obj/structure/disposalpipe/segment{dir = 10},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"fqt" = (/obj/structure/table/glass,/obj/item/gun/magic/staff/honk,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"fug" = (/obj/machinery/light,/obj/effect/mapping_helpers/no_lava,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered/clownplanet)
+"gbo" = (/obj/item/bikehorn/airhorn,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"gpl" = (/obj/item/bikehorn,/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"gpR" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/decal/cleanable/cobweb,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"gqu" = (/obj/structure/disposalpipe/segment{dir = 9},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"gyW" = (/obj/structure/disposalpipe/segment{invisibility = 101},/obj/machinery/light/small{brightness = 3; dir = 8},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"gQC" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/turf/open/indestructible{icon_state = "light_on"},/area/ruin/powered/clownplanet)
+"gRk" = (/obj/structure/disposalpipe/segment{invisibility = 101},/obj/machinery/light/small{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"hdJ" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/effect/decal/cleanable/food/pie_smudge,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"hhJ" = (/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/item/coin/bananium,/obj/machinery/light/small{dir = 4},/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"hjK" = (/obj/machinery/light,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"hqv" = (/obj/item/reagent_containers/food/drinks/trophy/gold_cup,/obj/structure/table/glass,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"hGT" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"hIn" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/machinery/light/small{brightness = 3; dir = 8},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"hJh" = (/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"irE" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"ism" = (/obj/item/bikehorn,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"itw" = (/obj/effect/decal/cleanable/dirt,/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"iGc" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/machinery/light/small{dir = 4},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"jdu" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/effect/decal/cleanable/dirt,/obj/machinery/light/small{dir = 8},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"jiV" = (/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"jlK" = (/obj/structure/disposalpipe/segment{invisibility = 101},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"jEA" = (/obj/structure/disposalpipe/sorting/mail/flip{dir = 1; sortType = 3},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"jHF" = (/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"jOb" = (/obj/effect/decal/cleanable/food/pie_smudge,/obj/effect/turf_decal/tile/yellow{dir = 4},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow,/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"jXO" = (/obj/effect/decal/cleanable/cobweb,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"kxw" = (/obj/structure/disposalpipe/segment{dir = 9},/obj/machinery/light/small{dir = 4},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"lct" = (/obj/structure/disposalpipe/segment{dir = 6},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"luP" = (/obj/item/slime_extract/rainbow,/obj/structure/table/glass,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"lCE" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"lZi" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/structure/table,/obj/item/paper/crumpled/bloody/ruins/lavaland/clown_planet/escape,/obj/item/pen/fourcolor,/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"mxC" = (/obj/structure/disposalpipe/segment{dir = 10},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"mAu" = (/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"mAE" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"mBh" = (/obj/item/pickaxe,/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"mES" = (/obj/effect/mapping_helpers/no_lava,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"nnh" = (/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"nCj" = (/obj/structure/mecha_wreckage/honker,/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"nDm" = (/obj/structure/disposalpipe/junction/yjunction{dir = 1; invisibility = 101},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"nSj" = (/obj/machinery/light{dir = 1},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"nWR" = (/obj/structure/table/glass,/obj/item/clothing/shoes/clown_shoes/banana_shoes,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"nYX" = (/obj/effect/decal/cleanable/cobweb,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"onp" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/machinery/light/small{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"pbG" = (/obj/structure/table/glass,/obj/item/grown/bananapeel/bluespace,/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"phI" = (/obj/machinery/light{dir = 4},/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered/clownplanet)
+"pnS" = (/obj/structure/disposalpipe/trunk,/obj/structure/disposaloutlet{dir = 1},/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/powered/clownplanet)
+"pCy" = (/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/lavaland/surface/outdoors/explored)
+"pEC" = (/obj/structure/disposalpipe/segment{dir = 10},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"pFL" = (/obj/structure/disposalpipe/segment{dir = 9},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"qaS" = (/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 8},/obj/effect/turf_decal/tile/red{dir = 4},/obj/effect/turf_decal/tile/red{dir = 1},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"qej" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood/old,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"qov" = (/obj/structure/disposalpipe/trunk,/obj/structure/disposaloutlet{dir = 1},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"qCj" = (/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"qHr" = (/obj/structure/disposalpipe/segment{dir = 9},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"qZu" = (/obj/structure/disposalpipe/segment{dir = 5},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"rdR" = (/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"rer" = (/obj/item/bikehorn,/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"rZT" = (/obj/machinery/light/small,/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/powered/clownplanet)
+"rZZ" = (/obj/structure/disposalpipe/segment{dir = 6},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"ssK" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"sPf" = (/obj/structure/disposalpipe/segment{dir = 5},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"sRF" = (/obj/structure/disposalpipe/segment{dir = 6},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"tiR" = (/obj/effect/decal/cleanable/food/pie_smudge,/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"tnr" = (/obj/machinery/disposal/deliveryChute,/obj/structure/disposalpipe/trunk{dir = 1},/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"tqo" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/effect/decal/cleanable/food/pie_smudge,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"tKT" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/carpet,/area/ruin/powered/clownplanet)
+"upj" = (/obj/effect/mapping_helpers/no_lava,/mob/living/simple_animal/hostile/retaliate/clown,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors/explored)
+"upY" = (/obj/effect/decal/cleanable/oil,/obj/structure/disposalpipe/segment{dir = 10},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"utP" = (/obj/structure/disposalpipe/segment{dir = 6},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"uEs" = (/obj/machinery/light{dir = 1},/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"uSg" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"uZS" = (/obj/structure/disposalpipe/segment{dir = 5},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
+"vir" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"vEz" = (/obj/machinery/disposal/deliveryChute{desc = "The following is engraved upon the chute: A FATE WORSE THAN DEATH LIES WITHIN"; dir = 1; name = "THE TRIAL OF HONKITUDE"},/obj/structure/disposalpipe/trunk,/obj/effect/mapping_helpers/no_lava,/turf/open/floor/noslip{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/powered/clownplanet)
+"wfQ" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood/old,/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"wkp" = (/obj/item/bikehorn,/obj/effect/decal/cleanable/dirt,/obj/structure/disposalpipe/segment{invisibility = 101},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"woo" = (/obj/structure/disposalpipe/segment{dir = 10},/obj/machinery/light/small{dir = 4},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"wDy" = (/turf/open/indestructible{icon_state = "light_on"},/area/ruin/powered/clownplanet)
+"wSR" = (/obj/structure/disposalpipe/segment{dir = 9},/obj/effect/decal/cleanable/dirt,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"xgg" = (/obj/machinery/door/airlock/bananium,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"xmy" = (/obj/effect/mapping_helpers/no_lava,/turf/open/chasm/lavaland,/area/lavaland/surface/outdoors/explored)
+"xob" = (/obj/structure/disposalpipe/trunk{dir = 4},/obj/structure/disposaloutlet{dir = 8},/turf/open/floor/plating,/area/ruin/powered/clownplanet)
+"xqn" = (/obj/structure/disposalpipe/segment{dir = 4; invisibility = 101},/obj/structure/table,/obj/item/flashlight/lamp/bananalamp,/turf/open/indestructible{icon_state = "white"},/area/ruin/powered/clownplanet)
+"xDi" = (/obj/structure/disposalpipe/segment{dir = 5},/obj/item/bikehorn,/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow{dir = 8},/obj/effect/turf_decal/tile/yellow{dir = 4},/turf/open/indestructible{icon_state = "darkfull"; wet = 8},/area/ruin/powered/clownplanet)
+"xDC" = (/obj/item/bikehorn,/obj/effect/decal/cleanable/dirt,/turf/open/indestructible/sound{icon_state = "bananium"; name = "bananium floor"; sound = 'sound/effects/clownstep1.ogg'; wet = 16},/area/ruin/powered/clownplanet)
+"xXL" = (/obj/structure/disposalpipe/segment{invisibility = 101},/turf/closed/wall/r_wall,/area/ruin/powered/clownplanet)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-XO
-XO
-XO
-XO
-XO
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+mES
+mES
+mES
+mES
+mES
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cc
-cc
-cc
-cc
-cc
-cc
-cc
-pv
-XO
-gX
-XO
-XO
-gX
-pv
-cc
-cc
-cc
-cc
-cc
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+jiV
+jiV
+jiV
+jiV
+jiV
+jiV
+jiV
+phI
+mES
+xmy
+mES
+mES
+xmy
+phI
+jiV
+jiV
+jiV
+jiV
+jiV
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (3,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-cc
-cc
-cc
-ye
-ye
-ye
-ye
-ye
-cc
-cc
-gX
-gX
-KX
-gX
-gX
-cc
-cc
-ye
-ye
-ye
-cc
-cc
-cc
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+jiV
+jiV
+jiV
+dzy
+dzy
+dzy
+dzy
+dzy
+jiV
+jiV
+xmy
+xmy
+aKn
+xmy
+xmy
+jiV
+jiV
+dzy
+dzy
+dzy
+jiV
+jiV
+jiV
+arG
+arG
+arG
+arG
 "}
 (4,1,1) = {"
-aa
-aa
-aa
-aa
-cc
-cc
-ye
-ye
-ye
-ao
-aJ
-ao
-aJ
-ye
-cc
-cc
-gX
-gX
-gX
-cc
-cc
-ye
-ye
-aU
-cu
-ye
-ye
-cc
-cc
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+jiV
+jiV
+dzy
+dzy
+dzy
+lct
+uZS
+lct
+uZS
+dzy
+jiV
+jiV
+xmy
+xmy
+xmy
+jiV
+jiV
+dzy
+dzy
+hGT
+jHF
+dzy
+dzy
+jiV
+jiV
+arG
+arG
+arG
 "}
 (5,1,1) = {"
-aa
-aa
-aa
-cc
-cc
-ye
-ye
-am
-au
-aS
-dE
-aH
-bf
-aJ
-ye
-cc
-cc
-cc
-cc
-cc
-bO
-bB
-aU
-ye
-ye
-ye
-ye
-ye
-cc
-cc
-aa
-aa
+arG
+arG
+arG
+jiV
+jiV
+dzy
+dzy
+rZZ
+jlK
+qHr
+jdu
+wSR
+hdJ
+uZS
+dzy
+jiV
+jiV
+jiV
+jiV
+jiV
+jXO
+qCj
+hGT
+dzy
+dzy
+dzy
+dzy
+dzy
+jiV
+jiV
+arG
+arG
 "}
 (6,1,1) = {"
-aa
-aa
-aa
-cc
-ye
-ye
-cc
-aF
-at
-ar
-aW
-ar
-aG
-aL
-ye
-cc
-bB
-bH
-bB
-cc
-bB
-bH
-bY
-bB
-aU
-ye
-aU
-ye
-ye
-cc
-Yf
-aa
+arG
+arG
+arG
+jiV
+dzy
+dzy
+jiV
+gpR
+aPT
+rdR
+wkp
+rdR
+qZu
+ssK
+dzy
+jiV
+qCj
+aLm
+qCj
+jiV
+qCj
+aLm
+qej
+qCj
+hGT
+dzy
+hGT
+dzy
+dzy
+jiV
+bCP
+arG
 "}
 (7,1,1) = {"
-aa
-aa
-cc
-cc
-ye
-am
-ax
-aB
-az
-at
-ar
-aJ
-aL
-aL
-cc
-bx
-bA
-bB
-bH
-bH
-bB
-bH
-bB
-bB
-bB
-cc
-ye
-cu
-ye
-cc
-cc
-aa
+arG
+arG
+jiV
+jiV
+dzy
+rZZ
+tiR
+aaG
+dvK
+aPT
+rdR
+uZS
+ssK
+ssK
+jiV
+nYX
+qaS
+qCj
+aLm
+aLm
+qCj
+aLm
+qCj
+qCj
+qCj
+jiV
+dzy
+jHF
+dzy
+jiV
+jiV
+arG
 "}
 (8,1,1) = {"
-aa
-aa
-cc
-ye
-ye
-ap
-ar
-aG
-az
-aL
-aX
-aL
-bb
-dF
-bp
-cc
-dI
-bA
-bB
-cc
-cc
-bH
-cc
-bB
-bB
-bB
-aU
-ye
-ye
-ye
-cc
-aa
+arG
+arG
+jiV
+dzy
+dzy
+dPN
+rdR
+qZu
+dvK
+ssK
+xob
+ssK
+uSg
+hIn
+bCK
+jiV
+nSj
+qaS
+qCj
+jiV
+jiV
+aLm
+jiV
+qCj
+qCj
+qCj
+hGT
+dzy
+dzy
+dzy
+jiV
+arG
 "}
 (9,1,1) = {"
-aa
-aa
-cc
-ye
-am
-ar
-ar
-aH
-aA
-aA
-aL
-bb
-bb
-bb
-bq
-bp
-cc
-cc
-bA
-bB
-bB
-bH
-bB
-bB
-ca
-bH
-dO
-cc
-ye
-ye
-cc
-aa
+arG
+arG
+jiV
+dzy
+rZZ
+rdR
+rdR
+wSR
+mAE
+mAE
+ssK
+uSg
+uSg
+uSg
+mBh
+bCK
+jiV
+jiV
+qaS
+qCj
+qCj
+aLm
+qCj
+qCj
+xDC
+aLm
+hjK
+jiV
+dzy
+dzy
+jiV
+arG
 "}
 (10,1,1) = {"
-aa
-Mv
-cc
-ye
-an
-as
-ar
-aG
-aL
-az
-aL
-bb
-bb
-bj
-bl
-br
-bA
-bA
-bA
-bB
-cc
-bB
-bB
-bH
-bH
-bB
-bB
-ye
-aU
-ye
-cc
-cc
+arG
+upj
+jiV
+dzy
+mxC
+cGj
+rdR
+qZu
+ssK
+dvK
+ssK
+uSg
+uSg
+gQC
+wDy
+cNO
+qaS
+qaS
+qaS
+qCj
+jiV
+qCj
+qCj
+aLm
+aLm
+qCj
+qCj
+dzy
+hGT
+dzy
+jiV
+jiV
 "}
 (11,1,1) = {"
-aa
-hY
-cc
-ye
-ao
-ch
-dB
-aH
-az
-az
-aL
-bb
-bg
-bj
-bl
-bp
-cc
-bA
-bA
-bB
-bB
-cc
-bB
-bB
-bB
-bB
-bH
-ye
-aU
-ye
-ye
-cc
+arG
+fug
+jiV
+dzy
+lct
+xXL
+gRk
+wSR
+dvK
+dvK
+ssK
+uSg
+fcX
+gQC
+wDy
+bCK
+jiV
+qaS
+qaS
+qCj
+qCj
+jiV
+qCj
+qCj
+qCj
+qCj
+aLm
+dzy
+hGT
+dzy
+dzy
+jiV
 "}
 (12,1,1) = {"
-aa
-Mv
-cc
-ye
-ap
-ar
-ar
-aI
-az
-an
-aB
-aL
-bb
-dG
-br
-cc
-cc
-bA
-bB
-bB
-cc
-cc
-bB
-bB
-cc
-bB
-bH
-ye
-cu
-aU
-ye
-cc
+arG
+upj
+jiV
+dzy
+dPN
+rdR
+rdR
+xDi
+dvK
+mxC
+aaG
+ssK
+uSg
+iGc
+cNO
+jiV
+jiV
+qaS
+qCj
+qCj
+jiV
+jiV
+qCj
+qCj
+jiV
+qCj
+aLm
+dzy
+jHF
+hGT
+dzy
+jiV
 "}
 (13,1,1) = {"
-XO
-Mv
-cc
-ye
-cc
-at
-ar
-aB
-aM
-ax
-ar
-aB
-aL
-aL
-bs
-ch
-aJ
-cc
-cc
-cc
-bP
-bS
-cc
-dM
-bB
-bH
-ca
-bB
-ye
-aU
-ye
-cc
+mES
+upj
+jiV
+dzy
+jiV
+aPT
+rdR
+aaG
+vir
+tiR
+rdR
+aaG
+ssK
+ssK
+ejq
+xXL
+uZS
+jiV
+jiV
+jiV
+eYY
+eyR
+jiV
+uEs
+qCj
+aLm
+xDC
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (14,1,1) = {"
-XO
-Xm
-cc
-cc
-ye
-an
-ar
-ar
-ar
-ar
-aY
-ar
-aH
-aA
-aV
-ay
-az
-cc
-cc
-bL
-bM
-bM
-bM
-cc
-bB
-bH
-bH
-bB
-ye
-aU
-ye
-cc
+mES
+dkS
+jiV
+jiV
+dzy
+mxC
+rdR
+rdR
+rdR
+rdR
+rer
+rdR
+wSR
+mAE
+cCY
+buR
+dvK
+jiV
+jiV
+hqv
+nnh
+nnh
+nnh
+jiV
+qCj
+aLm
+aLm
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (15,1,1) = {"
-eX
-eX
-LH
-ch
-ch
-au
-ar
-ch
-ar
-aT
-ch
-ax
-ar
-aH
-aD
-aA
-aM
-aG
-cc
-dK
-bQ
-bT
-bM
-cc
-cc
-bH
-bB
-bB
-ye
-aU
-ye
-cc
+pCy
+pCy
+vEz
+xXL
+xXL
+jlK
+rdR
+xXL
+rdR
+itw
+xXL
+tiR
+rdR
+wSR
+hJh
+mAE
+vir
+qZu
+jiV
+tKT
+pbG
+luP
+nnh
+jiV
+jiV
+aLm
+qCj
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (16,1,1) = {"
-eX
-CB
-YI
-cc
-ye
-ao
-ar
-aJ
-at
-aG
-at
-ar
-ar
-au
-bt
-aM
-aG
-aV
-ch
-bN
-bM
-bU
-bM
-bZ
-bB
-bH
-bB
-cc
-ye
-aU
-ye
-cc
+pCy
+dqP
+rZT
+jiV
+dzy
+lct
+rdR
+uZS
+aPT
+qZu
+aPT
+rdR
+rdR
+jlK
+doo
+vir
+qZu
+cCY
+xXL
+tnr
+nnh
+gbo
+nnh
+xgg
+qCj
+aLm
+qCj
+jiV
+dzy
+hGT
+dzy
+jiV
 "}
 (17,1,1) = {"
-eX
-eX
-TD
-ch
-ch
-av
-ay
-aA
-aA
-aL
-aA
-bc
-ar
-aG
-bu
-by
-bC
-aD
-cc
-bM
-bR
-bV
-bM
-cc
-bB
-bB
-bB
-bB
-ye
-aU
-ye
-cc
+pCy
+pCy
+pnS
+xXL
+xXL
+jEA
+buR
+mAE
+mAE
+ssK
+mAE
+sRF
+rdR
+qZu
+fof
+dRq
+nDm
+hJh
+jiV
+nnh
+nWR
+fqt
+nnh
+jiV
+qCj
+qCj
+qCj
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (18,1,1) = {"
-XO
-eX
-cc
-cc
-ye
-cc
-az
-az
-az
-aA
-aA
-aA
-aC
-aM
-aG
-Hj
-aL
-bI
-cc
-bL
-bM
-bM
-bM
-cc
-bB
-bB
-bB
-bB
-ye
-aU
-ye
-cc
+mES
+pCy
+jiV
+jiV
+dzy
+jiV
+dvK
+dvK
+dvK
+mAE
+mAE
+mAE
+mAu
+vir
+qZu
+jOb
+ssK
+wfQ
+jiV
+hqv
+nnh
+nnh
+nnh
+jiV
+qCj
+qCj
+qCj
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (19,1,1) = {"
-XO
-Mv
-cc
-ye
-ye
-cc
-az
-az
-aO
-aA
-aA
-aL
-cc
-cc
-aZ
-cc
-bD
-cc
-bB
-cc
-bP
-dL
-cc
-dM
-bB
-bH
-bH
-bB
-ye
-aU
-ye
-cc
+mES
+upj
+jiV
+dzy
+dzy
+jiV
+dvK
+dvK
+gpl
+mAE
+mAE
+ssK
+jiV
+jiV
+irE
+jiV
+nCj
+jiV
+qCj
+jiV
+eYY
+hhJ
+jiV
+uEs
+qCj
+aLm
+aLm
+qCj
+dzy
+hGT
+dzy
+jiV
 "}
 (20,1,1) = {"
-aa
-Mv
-cc
-ye
-cc
-cc
-aA
-aA
-aA
-az
-aA
-aL
-bh
-bk
-bn
-cc
-bE
-aJ
-bB
-bB
-cc
-cc
-bY
-bB
-bB
-bH
-bB
-ye
-aU
-cu
-ye
-cc
+arG
+upj
+jiV
+dzy
+jiV
+jiV
+mAE
+mAE
+mAE
+dvK
+mAE
+ssK
+utP
+gyW
+pFL
+jiV
+upY
+uZS
+qCj
+qCj
+jiV
+jiV
+qej
+qCj
+qCj
+aLm
+qCj
+dzy
+hGT
+jHF
+dzy
+jiV
 "}
 (21,1,1) = {"
-aa
-hY
-cc
-ye
-cc
-cc
-dC
-aK
-aL
-az
-aL
-bd
-bb
-bl
-bl
-bp
-cc
-aZ
-bA
-bB
-bB
-cc
-bB
-bH
-bB
-bB
-bB
-ye
-aU
-ye
-ye
-cc
+arG
+fug
+jiV
+dzy
+jiV
+jiV
+onp
+tqo
+ssK
+dvK
+ssK
+lZi
+uSg
+wDy
+wDy
+bCK
+jiV
+irE
+qaS
+qCj
+qCj
+jiV
+qCj
+aLm
+qCj
+qCj
+qCj
+dzy
+hGT
+dzy
+dzy
+jiV
 "}
 (22,1,1) = {"
-aa
-Mv
-cc
-ye
-aq
-aw
-aB
-aL
-aP
-az
-aL
-be
-bb
-bl
-bl
-bz
-ch
-bK
-cc
-bB
-bB
-bH
-bH
-bH
-bB
-bW
-dO
-cc
-aU
-ye
-cc
-cc
+arG
+upj
+jiV
+dzy
+qov
+dyc
+aaG
+ssK
+lCE
+dvK
+ssK
+xqn
+uSg
+wDy
+wDy
+eeZ
+xXL
+gqu
+jiV
+qCj
+qCj
+aLm
+aLm
+aLm
+qCj
+ism
+hjK
+jiV
+hGT
+dzy
+jiV
+jiV
 "}
 (23,1,1) = {"
-aa
-aa
-cc
-ye
-cc
-cc
-aC
-aA
-aA
-aO
-aZ
-bb
-bi
-bm
-br
-bp
-cc
-bA
-bA
-bB
-bB
-bH
-bH
-bB
-bB
-cc
-cc
-ye
-cu
-ye
-cc
-aa
+arG
+arG
+jiV
+dzy
+jiV
+jiV
+mAu
+mAE
+mAE
+gpl
+irE
+uSg
+pEC
+sPf
+cNO
+bCK
+jiV
+qaS
+qaS
+qCj
+qCj
+aLm
+aLm
+qCj
+qCj
+jiV
+jiV
+dzy
+jHF
+dzy
+jiV
+arG
 "}
 (24,1,1) = {"
-aa
-aa
-cc
-ye
-cc
-cc
-aD
-aA
-aL
-aA
-aL
-aL
-bh
-dH
-bp
-cc
-dI
-bA
-bB
-bB
-bB
-bB
-bB
-cc
-bB
-bB
-ye
-cu
-ye
-ye
-cc
-aa
+arG
+arG
+jiV
+dzy
+jiV
+jiV
+hJh
+mAE
+ssK
+mAE
+ssK
+ssK
+utP
+kxw
+bCK
+jiV
+nSj
+qaS
+qCj
+qCj
+qCj
+qCj
+qCj
+jiV
+qCj
+qCj
+dzy
+jHF
+dzy
+dzy
+jiV
+arG
 "}
 (25,1,1) = {"
-aa
-aa
-cc
-ye
-ye
-cc
-aE
-aA
-aA
-aA
-aM
-aB
-aL
-cc
-cc
-bA
-bA
-bB
-bB
-bB
-bH
-bW
-bB
-bB
-bB
-cc
-ye
-aU
-ye
-cc
-cc
-aa
+arG
+arG
+jiV
+dzy
+dzy
+jiV
+cgE
+mAE
+mAE
+mAE
+vir
+aaG
+ssK
+jiV
+jiV
+qaS
+qaS
+qCj
+qCj
+qCj
+aLm
+ism
+qCj
+qCj
+qCj
+jiV
+dzy
+hGT
+dzy
+jiV
+jiV
+arG
 "}
 (26,1,1) = {"
-aa
-aa
-cc
-cc
-ye
-cc
-cc
-aM
-aB
-dD
-ar
-ar
-aS
-cc
-ye
-cc
-bF
-bB
-bB
-cc
-bB
-bB
-cc
-bB
-bB
-ye
-cu
-ye
-ye
-cc
-Yf
-aa
+arG
+arG
+jiV
+jiV
+dzy
+jiV
+jiV
+vir
+aaG
+woo
+rdR
+rdR
+qHr
+jiV
+dzy
+jiV
+aRu
+qCj
+qCj
+jiV
+qCj
+qCj
+jiV
+qCj
+qCj
+dzy
+jHF
+dzy
+dzy
+jiV
+bCP
+arG
 "}
 (27,1,1) = {"
-aa
-aa
-aa
-cc
-cc
-ye
-ye
-cc
-cu
-cc
-ba
-aC
-cu
-cc
-ye
-cc
-cc
-cc
-cc
-cc
-bB
-bB
-bB
-ye
-ye
-ye
-ye
-ye
-cc
-cc
-aa
-aa
+arG
+arG
+arG
+jiV
+jiV
+dzy
+dzy
+jiV
+jHF
+jiV
+cyU
+mAu
+jHF
+jiV
+dzy
+jiV
+jiV
+jiV
+jiV
+jiV
+qCj
+qCj
+qCj
+dzy
+dzy
+dzy
+dzy
+dzy
+jiV
+jiV
+arG
+arG
 "}
 (28,1,1) = {"
-aa
-aa
-aa
-aa
-cc
-cc
-ye
-ye
-ye
-aU
-aU
-aU
-cc
-ye
-cc
-cc
-gX
-gX
-gX
-cc
-cc
-ye
-ye
-cu
-aU
-ye
-ye
-cc
-cc
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+jiV
+jiV
+dzy
+dzy
+dzy
+hGT
+hGT
+hGT
+jiV
+dzy
+jiV
+jiV
+xmy
+xmy
+xmy
+jiV
+jiV
+dzy
+dzy
+jHF
+hGT
+dzy
+dzy
+jiV
+jiV
+arG
+arG
+arG
 "}
 (29,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-cc
-cc
-cc
-ye
-ye
-ye
-ye
-ye
-cc
-cc
-gX
-gX
-KX
-gX
-gX
-cc
-cc
-ye
-ye
-ye
-cc
-cc
-cc
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+jiV
+jiV
+jiV
+dzy
+dzy
+dzy
+dzy
+dzy
+jiV
+jiV
+xmy
+xmy
+aKn
+xmy
+xmy
+jiV
+jiV
+dzy
+dzy
+dzy
+jiV
+jiV
+jiV
+arG
+arG
+arG
+arG
 "}
 (30,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cc
-cc
-cc
-cc
-cc
-cc
-cc
-MR
-XO
-XO
-XO
-XO
-gX
-MR
-cc
-cc
-cc
-cc
-cc
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+jiV
+jiV
+jiV
+jiV
+jiV
+jiV
+jiV
+dCG
+mES
+mES
+mES
+mES
+xmy
+dCG
+jiV
+jiV
+jiV
+jiV
+jiV
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (31,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-XO
-gX
-XO
-XO
-XO
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+mES
+xmy
+mES
+mES
+mES
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}

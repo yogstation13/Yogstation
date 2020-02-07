@@ -1,1049 +1,494 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/turf/closed/indestructible/riveted/uranium,
-/area/shuttle/escape/luxury)
-"ac" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken2"
-	},
-/area/shuttle/escape/luxury)
-"ad" = (
-/obj/machinery/door/airlock/gold,
-/obj/effect/forcefield/luxury_shuttle{
-	name = "Ticket Booth"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"ae" = (
-/obj/docking_port/mobile/emergency{
-	dir = 2;
-	dwidth = 5;
-	height = 14;
-	name = "Luxury emergency shuttle";
-	width = 25
-	},
-/obj/machinery/door/airlock/gold,
-/obj/effect/forcefield/luxury_shuttle{
-	name = "Ticket Booth"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"af" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
-/area/shuttle/escape/luxury)
-"ag" = (
-/turf/open/floor/wood,
-/area/shuttle/escape/luxury)
-"ah" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/shuttle/escape/luxury)
-"ai" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
-/area/shuttle/escape/luxury)
-"aj" = (
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"ak" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"al" = (
-/obj/structure/mirror{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"am" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/shuttle/escape/luxury)
-"an" = (
-/obj/machinery/light/small,
-/turf/open/floor/wood{
-	icon_state = "wood-broken2"
-	},
-/area/shuttle/escape/luxury)
-"ao" = (
-/obj/machinery/light/small,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/shuttle/escape/luxury)
-"ap" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"aq" = (
-/obj/machinery/door/airlock/gold,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"ar" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape/luxury)
-"as" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/escape/luxury)
-"at" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"au" = (
-/obj/structure/chair/comfy,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"av" = (
-/obj/structure/chair/comfy{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"aw" = (
-/obj/machinery/computer/communications{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"ax" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"ay" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/notasandwich,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"az" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aA" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/kebab/tofu,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aB" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/honkdae,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aC" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/enchiladas,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aD" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/candiedapple,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aE" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/burger/baconburger,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aF" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/benedict,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aG" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/cakeslice/chocolate,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aH" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/spaghetti/chowmein,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aI" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/dulcedebatataslice,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aJ" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/salad/validsalad,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aK" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/carneburrito,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aL" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/chawanmushi,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aM" = (
-/obj/machinery/computer/emergency_shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"aN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/melonfruitbowl,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aO" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/khachapuri,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aP" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aQ" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aR" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/honeybun,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aS" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/eggplantparm,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aT" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/spaghetti/copypasta,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aU" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/bearsteak,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aV" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aW" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/cherrycupcake,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aX" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/customizable/pizza,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aY" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/hotdog,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"aZ" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/pie/grapetart,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"ba" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/burger/superbite,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"bb" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/cakeslice/slimecake,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"bc" = (
-/obj/machinery/computer/station_alert{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bd" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"be" = (
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bf" = (
-/obj/machinery/stasis,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bg" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bh" = (
-/turf/open/floor/plating/beach/coastline_b,
-/area/shuttle/escape/luxury)
-"bi" = (
-/obj/machinery/light,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bj" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bk" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bl" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"bp" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/machinery/light,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"cW" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"df" = (
-/obj/structure/chair/comfy,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"ht" = (
-/obj/structure/chair/comfy{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"hA" = (
-/obj/structure/table/optable,
-/obj/item/surgical_drapes,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"lw" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"md" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"qQ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"uY" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/machinery/light,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"wQ" = (
-/obj/structure/chair/comfy,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"xn" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"zg" = (
-/obj/machinery/vending/wallmed,
-/turf/closed/indestructible/riveted/uranium,
-/area/shuttle/escape/luxury)
-"Aj" = (
-/obj/structure/chair/comfy{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Cd" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
-/area/shuttle/escape/luxury)
-"DA" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"EE" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"HL" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Ij" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"JO" = (
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Ln" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Og" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"OL" = (
-/obj/item/surgicaldrill,
-/obj/item/scalpel,
-/obj/item/retractor,
-/obj/item/cautery,
-/obj/item/hemostat,
-/obj/item/circular_saw,
-/obj/structure/table/wood/fancy,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Qx" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"QK" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"Sw" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"Wm" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
-"Wt" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/gold,
-/area/shuttle/escape/luxury)
-"YK" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/shuttle/escape/luxury)
+// This map has been converted using maphash
+"akT" = (/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"arG" = (/turf/template_noop,/area/template_noop)
+"atP" = (/obj/machinery/stasis,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"aFn" = (/obj/structure/toilet{dir = 4},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"aPY" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/melonfruitbowl,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"aRD" = (/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"aXm" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/hotdog,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"bdX" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/cakeslice/slimecake,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"bxD" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/pie/grapetart,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"bEB" = (/turf/open/floor/wood{icon_state = "wood-broken3"},/area/shuttle/escape/luxury)
+"bIU" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/honeybun,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"bVb" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/carneburrito,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"bVZ" = (/obj/machinery/computer/station_alert{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"clH" = (/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"cPe" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/eggplantparm,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"cSX" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/cakeslice/chocolate,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"cVF" = (/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"dfJ" = (/obj/structure/chair/comfy{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"djl" = (/obj/machinery/light{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"dyI" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"dHr" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/burger/baconburger,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"eRx" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-10"},/obj/machinery/light{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"eRQ" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/candiedapple,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"ffb" = (/obj/machinery/door/airlock/gold,/obj/effect/forcefield/luxury_shuttle{name = "Ticket Booth"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"fkI" = (/turf/closed/indestructible/riveted/uranium,/area/shuttle/escape/luxury)
+"fol" = (/turf/open/floor/wood{icon_state = "wood-broken7"},/area/shuttle/escape/luxury)
+"frK" = (/obj/structure/chair/comfy,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"fXm" = (/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"fZt" = (/obj/structure/chair/comfy{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"gkB" = (/obj/structure/chair/comfy{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"gxB" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/spaghetti/copypasta,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"gIX" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/dulcedebatataslice,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"gNS" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"; pixel_x = -3; pixel_y = 3},/obj/machinery/light,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"hoI" = (/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"hqb" = (/obj/machinery/computer/crew{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"igD" = (/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"igL" = (/obj/structure/shuttle/engine/heater{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plating/airless,/area/shuttle/escape/luxury)
+"iiw" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/burger/superbite,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"iky" = (/turf/open/floor/plating/beach/coastline_b,/area/shuttle/escape/luxury)
+"ipZ" = (/obj/machinery/light/small,/turf/open/floor/wood{icon_state = "wood-broken2"},/area/shuttle/escape/luxury)
+"jod" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"jRG" = (/obj/structure/chair/comfy{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"jYK" = (/obj/machinery/light,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"kcO" = (/obj/structure/mirror{pixel_y = 32},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"krs" = (/obj/machinery/computer/emergency_shuttle{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"ksN" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"kun" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/kebab/tofu,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"kQv" = (/obj/machinery/light{dir = 4},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"lNc" = (/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/wood{icon_state = "wood-broken3"},/area/shuttle/escape/luxury)
+"lNg" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/benedict,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"lOs" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/chawanmushi,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"mks" = (/obj/machinery/door/airlock/external,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/wood{icon_state = "wood-broken2"},/area/shuttle/escape/luxury)
+"mrB" = (/obj/structure/chair/comfy,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"myt" = (/obj/docking_port/mobile/emergency{dir = 2; dwidth = 5; height = 14; name = "Luxury emergency shuttle"; width = 25},/obj/machinery/door/airlock/gold,/obj/effect/forcefield/luxury_shuttle{name = "Ticket Booth"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"mzv" = (/turf/open/floor/wood{icon_state = "wood-broken5"},/area/shuttle/escape/luxury)
+"mCk" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"; pixel_x = -3; pixel_y = 3},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"mEd" = (/obj/machinery/light{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"mIh" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"ncW" = (/obj/structure/chair/comfy{dir = 4},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"nnF" = (/obj/structure/shuttle/engine/propulsion{dir = 8},/turf/open/floor/plating/airless,/area/shuttle/escape/luxury)
+"okr" = (/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"oui" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-10"},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"oNA" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/honkdae,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"peA" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/spaghetti/chowmein,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"pIV" = (/obj/machinery/computer/communications{dir = 8},/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"pJQ" = (/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"qkp" = (/obj/machinery/door/airlock/gold,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"qSi" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/salad/validsalad,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"qSI" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"; pixel_x = -3; pixel_y = 3},/obj/machinery/light,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"rvz" = (/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"rZQ" = (/turf/open/floor/wood,/area/shuttle/escape/luxury)
+"sHt" = (/obj/machinery/light/small,/turf/open/floor/wood{icon_state = "wood-broken6"},/area/shuttle/escape/luxury)
+"sHy" = (/obj/structure/chair/comfy,/obj/machinery/door/firedoor/border_only{dir = 1},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"sJb" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/khachapuri,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"tRe" = (/obj/structure/chair/comfy{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"tUf" = (/obj/item/twohanded/required/kirbyplants{icon_state = "plant-21"; pixel_x = -3; pixel_y = 3},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"tZu" = (/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"udq" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/cherrycupcake,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"ujz" = (/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"ukr" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/grilledcheese,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"uRD" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"vew" = (/obj/machinery/vending/wallmed,/turf/closed/indestructible/riveted/uranium,/area/shuttle/escape/luxury)
+"vMU" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/enchiladas,/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"wkx" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/customizable/pizza,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"wHd" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/bearsteak,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"wIT" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/notasandwich,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"wRp" = (/turf/open/floor/wood{icon_state = "wood-broken"},/area/shuttle/escape/luxury)
+"wTJ" = (/obj/structure/table/wood/fancy,/obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti,/obj/machinery/door/firedoor/border_only,/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"xez" = (/obj/machinery/light{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"xiD" = (/obj/item/surgicaldrill,/obj/item/scalpel,/obj/item/retractor,/obj/item/cautery,/obj/item/hemostat,/obj/item/circular_saw,/obj/structure/table/wood/fancy,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
+"xzZ" = (/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/carpet,/area/shuttle/escape/luxury)
+"xCQ" = (/obj/structure/table/optable,/obj/item/surgical_drapes,/turf/open/floor/mineral/gold,/area/shuttle/escape/luxury)
 
 (1,1,1) = {"
-aa
-ab
-ab
-ab
-ab
-ar
-ar
-ar
-ar
-ab
-ab
-ab
-ab
-aa
+arG
+fkI
+fkI
+fkI
+fkI
+nnF
+nnF
+nnF
+nnF
+fkI
+fkI
+fkI
+fkI
+arG
 "}
 (2,1,1) = {"
-ab
-ab
-am
-ab
-ab
-as
-as
-as
-as
-ab
-bf
-hA
-ab
-ab
+fkI
+fkI
+fol
+fkI
+fkI
+igL
+igL
+igL
+igL
+fkI
+atP
+xCQ
+fkI
+fkI
 "}
 (3,1,1) = {"
-ab
-Cd
-ag
-ab
-ab
-ab
-ab
-ab
-ab
-zg
-aj
-aj
-zg
-ab
+fkI
+lNc
+rZQ
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+vew
+aRD
+aRD
+vew
+fkI
 "}
 (4,1,1) = {"
-ab
-ag
-an
-ab
-bl
-aj
-JO
-aj
-aj
-bj
-EE
-Qx
-OL
-ab
+fkI
+rZQ
+ipZ
+fkI
+eRx
+aRD
+ujz
+aRD
+aRD
+mEd
+dyI
+cVF
+xiD
+fkI
 "}
 (5,1,1) = {"
-ab
-ag
-ag
-ab
-aj
-at
-lw
-Sw
-YK
-aj
-JO
-aj
-QK
-ab
+fkI
+rZQ
+rZQ
+fkI
+aRD
+clH
+fXm
+xzZ
+jod
+aRD
+ujz
+aRD
+hoI
+fkI
 "}
 (6,1,1) = {"
-ab
-ag
-ag
-ab
-aj
-au
-ax
-aN
-bd
-Ij
-qQ
-bg
-bp
-ab
+fkI
+rZQ
+rZQ
+fkI
+aRD
+sHy
+wTJ
+aPY
+gkB
+rvz
+igD
+mCk
+gNS
+fkI
 "}
 (7,1,1) = {"
-ab
-ah
-ag
-ab
-aj
-au
-ay
-aO
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+wRp
+rZQ
+fkI
+aRD
+sHy
+wIT
+sJb
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (8,1,1) = {"
-ab
-ag
-ag
-ab
-aj
-au
-az
-aP
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+rZQ
+rZQ
+fkI
+aRD
+sHy
+mIh
+ukr
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (9,1,1) = {"
-ab
-ag
-ag
-ab
-aj
-au
-aA
-aQ
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+rZQ
+rZQ
+fkI
+aRD
+sHy
+kun
+uRD
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (10,1,1) = {"
-ab
-ai
-ao
-ab
-aj
-au
-aB
-aR
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+mzv
+sHt
+fkI
+aRD
+sHy
+oNA
+bIU
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (11,1,1) = {"
-ab
-ag
-ag
-ab
-aj
-df
-aC
-aS
-Og
-aj
-JO
-bh
-bh
-ab
+fkI
+rZQ
+rZQ
+fkI
+aRD
+frK
+vMU
+cPe
+fZt
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (12,1,1) = {"
-ac
-ag
-af
-ab
-aj
-au
-aD
-aT
-bd
-aj
-JO
-bh
-bh
-ab
+mks
+rZQ
+bEB
+fkI
+aRD
+sHy
+eRQ
+gxB
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (13,1,1) = {"
-ab
-ab
-ab
-ab
-Qx
-au
-aE
-aU
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+fkI
+fkI
+fkI
+cVF
+sHy
+dHr
+wHd
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (14,1,1) = {"
-ad
-aj
-aj
-Wt
-aj
-au
-aF
-aV
-bd
-aj
-JO
-bh
-bh
-ab
+ffb
+aRD
+aRD
+xez
+aRD
+sHy
+lNg
+ksN
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (15,1,1) = {"
-ab
-aj
-aj
-JO
-aj
-wQ
-aG
-aW
-Wm
-aj
-JO
-bh
-bh
-ab
+fkI
+aRD
+aRD
+ujz
+aRD
+mrB
+cSX
+udq
+dfJ
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (16,1,1) = {"
-ab
-aj
-aj
-JO
-aj
-au
-aH
-aX
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+aRD
+aRD
+ujz
+aRD
+sHy
+peA
+wkx
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (17,1,1) = {"
-ab
-aj
-aj
-JO
-aj
-au
-aI
-aY
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+aRD
+aRD
+ujz
+aRD
+sHy
+gIX
+aXm
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (18,1,1) = {"
-ab
-aj
-aj
-JO
-aj
-au
-aJ
-aZ
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+aRD
+aRD
+ujz
+aRD
+sHy
+qSi
+bxD
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (19,1,1) = {"
-ab
-aj
-aj
-JO
-aj
-au
-aK
-ba
-bd
-aj
-JO
-bh
-bh
-ab
+fkI
+aRD
+aRD
+ujz
+aRD
+sHy
+bVb
+iiw
+gkB
+aRD
+ujz
+iky
+iky
+fkI
 "}
 (20,1,1) = {"
-ae
-aj
-aj
-HL
-aj
-au
-aL
-bb
-bd
-Qx
-Ln
-cW
-uY
-ab
+myt
+aRD
+aRD
+djl
+aRD
+sHy
+lOs
+bdX
+gkB
+cVF
+akT
+tUf
+qSI
+fkI
 "}
 (21,1,1) = {"
-ab
-ab
-ab
-ab
-aj
-md
-xn
-DA
-xn
-aj
-JO
-aj
-aj
-ab
+fkI
+fkI
+fkI
+fkI
+aRD
+tZu
+pJQ
+okr
+pJQ
+aRD
+ujz
+aRD
+aRD
+fkI
 "}
 (22,1,1) = {"
-ab
-ak
-ap
-ab
-aj
-aj
-aj
-aj
-aj
-aj
-JO
-aj
-aj
-ab
+fkI
+oui
+aFn
+fkI
+aRD
+aRD
+aRD
+aRD
+aRD
+aRD
+ujz
+aRD
+aRD
+fkI
 "}
 (23,1,1) = {"
-ab
-aj
-bi
-ab
-aj
-av
-ht
-ht
-Aj
-aj
-JO
-aj
-aj
-ab
+fkI
+aRD
+jYK
+fkI
+aRD
+tRe
+jRG
+jRG
+ncW
+aRD
+ujz
+aRD
+aRD
+fkI
 "}
 (24,1,1) = {"
-ab
-al
-aj
-aq
-bk
-aw
-aM
-bc
-be
-bk
-JO
-QK
-ak
-ab
+fkI
+kcO
+aRD
+qkp
+kQv
+pIV
+krs
+bVZ
+hqb
+kQv
+ujz
+hoI
+oui
+fkI
 "}
 (25,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
+fkI
 "}

@@ -1,47 +1,40 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/lavaland/surface/outdoors)
-"b" = (
-/obj/effect/sliding_puzzle/lavaland,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"c" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+// This map has been converted using maphash
+"eAx" = (/obj/effect/sliding_puzzle/lavaland,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"mvi" = (/turf/template_noop,/area/lavaland/surface/outdoors)
+"wUl" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
+mvi
+mvi
+mvi
+mvi
+mvi
 "}
 (2,1,1) = {"
-a
-c
-c
-c
-a
+mvi
+wUl
+wUl
+wUl
+mvi
 "}
 (3,1,1) = {"
-a
-c
-b
-c
-a
+mvi
+wUl
+eAx
+wUl
+mvi
 "}
 (4,1,1) = {"
-a
-c
-c
-c
-a
+mvi
+wUl
+wUl
+wUl
+mvi
 "}
 (5,1,1) = {"
-a
-a
-a
-a
-a
+mvi
+mvi
+mvi
+mvi
+mvi
 "}

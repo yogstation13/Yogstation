@@ -1,365 +1,310 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
-"c" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/oldteleporter)
-"d" = (
-/turf/closed/wall/r_wall,
-/area/ruin/space/oldteleporter)
-"e" = (
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
-"f" = (
-/turf/open/floor/plasteel/airless{
-	icon_state = "damaged2"
-	},
-/area/ruin/space/oldteleporter)
-"g" = (
-/obj/structure/light_construct/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/airless{
-	icon_state = "damaged3"
-	},
-/area/ruin/space/oldteleporter)
-"h" = (
-/obj/machinery/computer/teleporter{
-	dir = 1
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
-"i" = (
-/obj/machinery/teleport/station,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
-"j" = (
-/obj/machinery/teleport/hub,
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
-"k" = (
-/obj/structure/light_construct/small{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/oldteleporter)
-"l" = (
-/obj/structure/table,
-/obj/item/stock_parts/cell{
-	charge = 100;
-	maxcharge = 15000
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
-"m" = (
-/turf/open/floor/plasteel/airless{
-	icon_state = "damaged4"
-	},
-/area/ruin/space/oldteleporter)
-"n" = (
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/space/oldteleporter)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"bck" = (/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"esc" = (/obj/structure/lattice,/turf/template_noop,/area/space/nearstation)
+"gEx" = (/turf/open/floor/plating/airless,/area/ruin/space/oldteleporter)
+"iIo" = (/obj/structure/table,/obj/item/stock_parts/cell{charge = 100; maxcharge = 15000},/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"lAm" = (/turf/closed/wall/r_wall,/area/ruin/space/oldteleporter)
+"nhS" = (/turf/open/floor/plasteel/airless{icon_state = "damaged4"},/area/ruin/space/oldteleporter)
+"reL" = (/obj/machinery/computer/teleporter{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"sjx" = (/obj/structure/light_construct/small{dir = 1},/turf/open/floor/plasteel/airless{icon_state = "damaged3"},/area/ruin/space/oldteleporter)
+"sOj" = (/obj/machinery/teleport/hub,/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"uGL" = (/obj/machinery/power/apc{name = "Worn-out APC"; pixel_y = -23},/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"uVm" = (/obj/machinery/teleport/station,/turf/open/floor/plasteel/airless,/area/ruin/space/oldteleporter)
+"vzB" = (/obj/structure/light_construct/small{dir = 4},/turf/open/floor/plating/airless,/area/ruin/space/oldteleporter)
+"vXB" = (/turf/open/floor/plasteel/airless{icon_state = "damaged2"},/area/ruin/space/oldteleporter)
 
 (1,1,1) = {"
-a
-a
-a
-a
-b
-a
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+esc
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-a
-a
-a
-a
-b
-b
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (3,1,1) = {"
-a
-a
-a
-b
-b
-b
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (4,1,1) = {"
-a
-a
-a
-b
-b
-b
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (5,1,1) = {"
-a
-a
-a
-b
-b
-b
-d
-d
-d
-d
-d
-a
+arG
+arG
+arG
+esc
+esc
+esc
+lAm
+lAm
+lAm
+lAm
+lAm
+arG
 "}
 (6,1,1) = {"
-a
-a
-a
-b
-b
-d
-d
-g
-e
-l
-d
-d
+arG
+arG
+arG
+esc
+esc
+lAm
+lAm
+sjx
+bck
+iIo
+lAm
+lAm
 "}
 (7,1,1) = {"
-a
-a
-a
-b
-b
-d
-c
-e
-e
-m
-e
-d
+arG
+arG
+arG
+esc
+esc
+lAm
+gEx
+bck
+bck
+nhS
+bck
+lAm
 "}
 (8,1,1) = {"
-a
-a
-a
-b
-c
-d
-c
-e
-h
-c
-n
-d
+arG
+arG
+arG
+esc
+gEx
+lAm
+gEx
+bck
+reL
+gEx
+uGL
+lAm
 "}
 (9,1,1) = {"
-a
-a
-a
-b
-c
-c
-e
-e
-i
-e
-e
-d
+arG
+arG
+arG
+esc
+gEx
+gEx
+bck
+bck
+uVm
+bck
+bck
+lAm
 "}
 (10,1,1) = {"
-a
-a
-a
-b
-c
-d
-f
-e
-j
-e
-e
-d
+arG
+arG
+arG
+esc
+gEx
+lAm
+vXB
+bck
+sOj
+bck
+bck
+lAm
 "}
 (11,1,1) = {"
-b
-b
-b
-b
-c
-d
-e
-e
-e
-e
-c
-c
+esc
+esc
+esc
+esc
+gEx
+lAm
+bck
+bck
+bck
+bck
+gEx
+gEx
 "}
 (12,1,1) = {"
-a
-b
-a
-b
-b
-d
-c
-e
-k
-f
-d
-c
+arG
+esc
+arG
+esc
+esc
+lAm
+gEx
+bck
+vzB
+vXB
+lAm
+gEx
 "}
 (13,1,1) = {"
-b
-b
-b
-b
-b
-c
-c
-d
-d
-d
-d
-a
+esc
+esc
+esc
+esc
+esc
+gEx
+gEx
+lAm
+lAm
+lAm
+lAm
+arG
 "}
 (14,1,1) = {"
-b
-b
-b
-b
-b
-c
-b
-b
-b
-a
-a
-a
+esc
+esc
+esc
+esc
+esc
+gEx
+esc
+esc
+esc
+arG
+arG
+arG
 "}
 (15,1,1) = {"
-b
-b
-b
-b
-b
-c
-b
-a
-a
-a
-a
-a
+esc
+esc
+esc
+esc
+esc
+gEx
+esc
+arG
+arG
+arG
+arG
+arG
 "}
 (16,1,1) = {"
-b
-b
-b
-b
-b
-b
-a
-a
-a
-a
-a
-a
+esc
+esc
+esc
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (17,1,1) = {"
-b
-b
-b
-b
-b
-a
-a
-a
-a
-a
-a
-a
+esc
+esc
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (18,1,1) = {"
-a
-b
-b
-b
-a
-a
-a
-a
-a
-a
-a
-a
+arG
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (19,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-a
-a
-a
-a
-a
+arG
+esc
+esc
+esc
+esc
+esc
+esc
+arG
+arG
+arG
+arG
+arG
 "}
 (20,1,1) = {"
-b
-b
-b
-a
-b
-b
-a
-a
-a
-a
-a
-a
+esc
+esc
+esc
+arG
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (21,1,1) = {"
-a
-b
-a
-a
-b
-b
-a
-a
-a
-a
-a
-a
+arG
+esc
+arG
+arG
+esc
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}

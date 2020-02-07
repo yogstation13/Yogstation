@@ -1,144 +1,59 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Elevator Access"
-	},
-/obj/docking_port/mobile/elevator{
-	dir = 4;
-	height = 6;
-	id = "snowdin_excavation";
-	name = "excavation elevator";
-	width = 6
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
-"b" = (
-/obj/structure/window/reinforced/fulltile/ice,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
-"c" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Elevator Access"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
-"d" = (
-/turf/closed/wall/ice,
-/area/shuttle/snowdin/elevator1)
-"e" = (
-/turf/open/floor/engine,
-/area/shuttle/snowdin/elevator1)
-"f" = (
-/obj/machinery/computer/shuttle/snowdin/mining{
-	dir = 2;
-	name = "Excavation Elevator Console";
-	possible_destinations = "snowdin_excavation_top;snowdin_excavation_down";
-	shuttleId = "snowdin_excavation"
-	},
-/turf/open/floor/engine,
-/area/shuttle/snowdin/elevator1)
-"g" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Elevator Access"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
-"T" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Elevator Access"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
-"V" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Elevator Access"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/snowdin/elevator1)
+// This map has been converted using maphash
+"bCj" = (/turf/closed/wall/ice,/area/shuttle/snowdin/elevator1)
+"fEj" = (/obj/machinery/door/airlock/public/glass{name = "Elevator Access"},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"gRU" = (/obj/machinery/door/airlock/public/glass{name = "Elevator Access"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"ijl" = (/obj/machinery/door/airlock/public/glass{name = "Elevator Access"},/obj/docking_port/mobile/elevator{dir = 4; height = 6; id = "snowdin_excavation"; name = "excavation elevator"; width = 6},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"ogP" = (/obj/machinery/door/airlock/public/glass{name = "Elevator Access"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"oEM" = (/obj/machinery/door/airlock/public/glass{name = "Elevator Access"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"qoZ" = (/turf/open/floor/engine,/area/shuttle/snowdin/elevator1)
+"sFz" = (/obj/structure/window/reinforced/fulltile/ice,/obj/structure/grille,/turf/open/floor/plating,/area/shuttle/snowdin/elevator1)
+"uqy" = (/obj/machinery/computer/shuttle/snowdin/mining{dir = 2; name = "Excavation Elevator Console"; possible_destinations = "snowdin_excavation_top;snowdin_excavation_down"; shuttleId = "snowdin_excavation"},/turf/open/floor/engine,/area/shuttle/snowdin/elevator1)
 
 (1,1,1) = {"
-d
-b
-g
-a
-b
-d
+bCj
+sFz
+ogP
+ijl
+sFz
+bCj
 "}
 (2,1,1) = {"
-b
-e
-e
-e
-e
-b
+sFz
+qoZ
+qoZ
+qoZ
+qoZ
+sFz
 "}
 (3,1,1) = {"
-c
-e
-e
-e
-e
-c
+gRU
+qoZ
+qoZ
+qoZ
+qoZ
+gRU
 "}
 (4,1,1) = {"
-V
-e
-e
-e
-e
-V
+oEM
+qoZ
+qoZ
+qoZ
+qoZ
+oEM
 "}
 (5,1,1) = {"
-b
-f
-e
-e
-e
-b
+sFz
+uqy
+qoZ
+qoZ
+qoZ
+sFz
 "}
 (6,1,1) = {"
-d
-b
-g
-T
-b
-d
+bCj
+sFz
+ogP
+fEj
+sFz
+bCj
 "}

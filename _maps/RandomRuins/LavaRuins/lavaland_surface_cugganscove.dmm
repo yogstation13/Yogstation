@@ -1,1132 +1,765 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/template_noop)
-"ab" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/template_noop)
-"ac" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/template_noop)
-"ad" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered)
-"ae" = (
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"af" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ag" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"ah" = (
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"ai" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"aj" = (
-/obj/structure/closet/emcloset,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"ak" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/lava/smooth/lava_land_surface,
-/area/template_noop)
-"al" = (
-/turf/closed/wall,
-/area/ruin/unpowered)
-"am" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"an" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"ao" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"ap" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
-/obj/item/book/manual/wiki/security_space_law,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aq" = (
-/obj/structure/table/wood,
-/obj/item/trash/candle,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"ar" = (
-/obj/structure/closet/crate/bin,
-/obj/item/paper{
-	info = "If you are reading this then you just unpackaged your Fortress in a pill! Simply shake the pill in your hand and place it where you wish to have your desired fortress! Nanotrasen is not responsible for any unfortunate death, maiming, grevious injuries and sudden unexpected live burials. Have a safe and secure day!";
-	name = "Paper- Fortress Pill!"
-	},
-/obj/effect/decal/cleanable/ash,
-/obj/item/melee/transforming/energy/sword/pirate,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"as" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"at" = (
-/obj/structure/bed,
-/obj/item/bedsheet/qm,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"au" = (
-/obj/effect/mob_spawn/human/corpse/pirate,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"av" = (
-/mob/living/simple_animal/parrot,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aw" = (
-/obj/item/broken_bottle,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"ax" = (
-/obj/item/coin/diamond,
-/obj/item/stack/spacecash/c500,
-/obj/item/stack/sheet/mineral/gold,
-/turf/open/floor/mineral/silver,
-/area/ruin/unpowered)
-"ay" = (
-/obj/structure/closet/crate/engineering/electrical,
-/obj/item/pizzabox/meat,
-/obj/item/coin/adamantine,
-/obj/item/coin/diamond,
-/obj/item/coin/silver,
-/obj/item/coin/silver,
-/obj/item/coin/silver,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/reagent_containers/food/drinks/flask/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/obj/effect/spawner/lootdrop/gambling,
-/obj/effect/spawner/lootdrop/gambling,
-/obj/effect/spawner/lootdrop/gambling,
-/turf/open/floor/mineral/gold,
-/area/ruin/unpowered)
-"az" = (
-/obj/structure/closet/crate/secure/loot,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/silver,
-/area/ruin/unpowered)
-"aA" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aB" = (
-/obj/item/coin/antagtoken,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aC" = (
-/obj/item/newspaper,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aD" = (
-/obj/structure/falsewall/reinforced,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"aE" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/silver,
-/area/ruin/unpowered)
-"aF" = (
-/obj/item/coin/diamond,
-/obj/item/stack/spacecash/c200,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
-/turf/open/floor/mineral/silver,
-/area/ruin/unpowered)
-"aG" = (
-/obj/structure/closet/crate/secure/loot,
-/turf/open/floor/mineral/silver,
-/area/ruin/unpowered)
-"aH" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating,
-/area/template_noop)
-"aI" = (
-/obj/machinery/door/airlock/security,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aJ" = (
-/obj/machinery/door/airlock/highsecurity,
-/obj/structure/barricade/wooden,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aK" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/lava/smooth,
-/area/template_noop)
-"aL" = (
-/turf/open/lava/smooth,
-/area/template_noop)
-"aM" = (
-/turf/open/floor/plating,
-/area/template_noop)
-"aN" = (
-/obj/machinery/door/airlock/hatch,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered)
-"aO" = (
-/obj/machinery/door/airlock/hatch,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aP" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aQ" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aR" = (
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aS" = (
-/obj/item/trash/syndi_cakes,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aT" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aU" = (
-/obj/structure/table,
-/obj/item/kitchen/fork,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aV" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aW" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating,
-/area/template_noop)
-"aX" = (
-/obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aY" = (
-/obj/structure/chair,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"aZ" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"ba" = (
-/obj/effect/decal/cleanable/robot_debris,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bb" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating,
-/area/template_noop)
-"bc" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bd" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cubannachos,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"be" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/fishandchips,
-/obj/item/reagent_containers/food/snacks/fishandchips,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bf" = (
-/obj/item/chair,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bg" = (
-/obj/structure/table,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bh" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bi" = (
-/obj/structure/table,
-/obj/item/toy/toy_xeno,
-/obj/item/toy/sword,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bj" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bk" = (
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bl" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/cubancarp,
-/obj/item/reagent_containers/food/snacks/cubannachos,
-/obj/item/reagent_containers/food/snacks/cubannachos,
-/obj/item/reagent_containers/food/snacks/fishandchips,
-/obj/item/reagent_containers/food/snacks/fishandchips,
-/obj/item/reagent_containers/food/snacks/fishfingers,
-/obj/item/reagent_containers/food/snacks/fishfingers,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered)
-"bm" = (
-/obj/machinery/door/airlock/freezer,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered)
-"bn" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bo" = (
-/obj/item/trash/tray,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bp" = (
-/obj/item/trash/cheesie,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"bq" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/snacks/carpmeat,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"br" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bs" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bt" = (
-/obj/item/toy/gun/toyglock,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bu" = (
-/obj/structure/table_frame,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bv" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bw" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bx" = (
-/obj/item/stack/sheet/metal,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"by" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"bz" = (
-/obj/machinery/door/airlock/wood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bA" = (
-/obj/machinery/door/airlock/wood,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bB" = (
-/obj/structure/closet/wardrobe/pink,
-/obj/item/clothing/under/pirate,
-/obj/item/clothing/under/pirate,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/head/bandana,
-/obj/item/clothing/head/bandana,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bC" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bD" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bE" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/item/toy/plush/carpplushie,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bF" = (
-/obj/structure/closet/wardrobe/pink,
-/obj/item/clothing/under/pirate,
-/obj/item/clothing/under/pirate,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/head/bandana,
-/obj/item/clothing/head/bandana,
-/obj/item/toy/katana,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bG" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bH" = (
-/obj/item/toy/plush/stuffedmonkey,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bI" = (
-/obj/structure/bed,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bJ" = (
-/obj/item/paper{
-	info = "Ello there matey! Congratulations on fidning mi' cove! Trapped up in this hellscape of... shit. If you're reading this message you probably know me as the great Cuggan who slayed the terrible legion, but if you don't... than I'm probably one of them."
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"ahq" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/toy/plush/carpplushie,/turf/open/floor/wood,/area/ruin/unpowered)
+"ahZ" = (/obj/structure/table_frame,/turf/open/floor/wood,/area/ruin/unpowered)
+"aAf" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plating,/area/template_noop)
+"bmy" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/wood,/area/ruin/unpowered)
+"bvw" = (/obj/item/toy/plush/stuffedmonkey,/turf/open/floor/wood,/area/ruin/unpowered)
+"bye" = (/turf/open/floor/plating,/area/ruin/unpowered)
+"bNR" = (/obj/structure/table,/obj/item/toy/toy_xeno,/obj/item/toy/sword,/turf/open/floor/wood,/area/ruin/unpowered)
+"chf" = (/turf/closed/wall,/area/ruin/unpowered)
+"cjU" = (/obj/structure/chair,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"crA" = (/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"cXd" = (/obj/structure/closet/emcloset,/obj/item/tank/internals/emergency_oxygen,/obj/item/tank/internals/emergency_oxygen,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/turf/open/floor/plating,/area/ruin/unpowered)
+"dib" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"dwA" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/template_noop)
+"dUN" = (/obj/structure/table,/obj/item/kitchen/fork,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"euX" = (/obj/effect/decal/cleanable/robot_debris,/obj/item/reagent_containers/glass/bucket,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"eLv" = (/obj/item/trash/cheesie,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"eTP" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"eTS" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood,/area/ruin/unpowered)
+"fwG" = (/obj/machinery/door/airlock/highsecurity,/obj/structure/barricade/wooden,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"fHC" = (/obj/structure/bed,/turf/open/floor/wood,/area/ruin/unpowered)
+"fIZ" = (/obj/machinery/door/airlock,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"fYH" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"gkC" = (/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/floor/plating,/area/ruin/unpowered)
+"gsB" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"gZJ" = (/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/lava/smooth/lava_land_surface,/area/template_noop)
+"hpG" = (/obj/machinery/door/airlock/wood,/turf/open/floor/wood,/area/ruin/unpowered)
+"hqW" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/template_noop)
+"iav" = (/turf/open/lava/smooth/lava_land_surface,/area/template_noop)
+"iaG" = (/obj/effect/decal/cleanable/dirt,/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/ruin/unpowered)
+"iaY" = (/obj/machinery/door/airlock/hatch,/obj/structure/fans/tiny/invisible,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/unpowered)
+"ieF" = (/turf/open/floor/plating,/area/template_noop)
+"ijz" = (/obj/effect/mob_spawn/human/corpse/pirate,/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/ruin/unpowered)
+"irF" = (/obj/machinery/door/airlock/freezer,/turf/open/floor/plasteel/freezer,/area/ruin/unpowered)
+"ixv" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/mineral/silver,/area/ruin/unpowered)
+"iTw" = (/obj/item/trash/tray,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"jhO" = (/obj/structure/rack,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/wood,/area/ruin/unpowered)
+"jnQ" = (/obj/effect/decal/cleanable/blood,/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,/obj/item/book/manual/wiki/security_space_law,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"joC" = (/obj/item/trash/syndi_cakes,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"jsP" = (/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/floor/plating,/area/template_noop)
+"jZK" = (/obj/structure/closet/crate/bin,/obj/item/paper{info = "If you are reading this then you just unpackaged your Fortress in a pill! Simply shake the pill in your hand and place it where you wish to have your desired fortress! Nanotrasen is not responsible for any unfortunate death, maiming, grevious injuries and sudden unexpected live burials. Have a safe and secure day!"; name = "Paper- Fortress Pill!"},/obj/effect/decal/cleanable/ash,/obj/item/melee/transforming/energy/sword/pirate,/turf/open/floor/wood,/area/ruin/unpowered)
+"kbj" = (/obj/effect/decal/cleanable/blood/gibs/limb,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"klr" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/ruin/unpowered)
+"kqp" = (/obj/structure/closet/crate/secure/loot,/turf/open/floor/mineral/silver,/area/ruin/unpowered)
+"kyC" = (/obj/structure/table,/obj/item/kitchen/rollingpin,/obj/item/kitchen/knife,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"kWa" = (/turf/open/floor/wood,/area/ruin/unpowered)
+"kZa" = (/obj/item/coin/diamond,/obj/item/stack/spacecash/c500,/obj/item/stack/sheet/mineral/gold,/turf/open/floor/mineral/silver,/area/ruin/unpowered)
+"liX" = (/obj/structure/table/wood,/obj/item/trash/candle,/turf/open/floor/wood,/area/ruin/unpowered)
+"lSE" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/ruin/unpowered)
+"lYK" = (/obj/item/broken_bottle,/turf/open/floor/wood,/area/ruin/unpowered)
+"mhc" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"miU" = (/obj/item/coin/antagtoken,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"mQc" = (/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/lava/smooth,/area/template_noop)
+"mQz" = (/obj/structure/closet/crate,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/plating,/area/ruin/unpowered)
+"neg" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plating,/area/template_noop)
+"nlu" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"nnb" = (/obj/machinery/door/airlock/security,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"nMI" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_containers/food/snacks/cubancarp,/obj/item/reagent_containers/food/snacks/cubannachos,/obj/item/reagent_containers/food/snacks/cubannachos,/obj/item/reagent_containers/food/snacks/fishandchips,/obj/item/reagent_containers/food/snacks/fishandchips,/obj/item/reagent_containers/food/snacks/fishfingers,/obj/item/reagent_containers/food/snacks/fishfingers,/turf/open/floor/plasteel/freezer,/area/ruin/unpowered)
+"nZx" = (/obj/item/toy/gun/toyglock,/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"oke" = (/obj/item/coin/diamond,/obj/item/stack/spacecash/c200,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/gold,/turf/open/floor/mineral/silver,/area/ruin/unpowered)
+"oJS" = (/obj/item/newspaper,/turf/open/floor/wood,/area/ruin/unpowered)
+"pHl" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"qsg" = (/obj/structure/rack,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"qIQ" = (/obj/machinery/door/airlock/hatch,/obj/structure/fans/tiny/invisible,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"qXI" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/cubannachos,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"rut" = (/obj/structure/closet/wardrobe/pink,/obj/item/clothing/under/pirate,/obj/item/clothing/under/pirate,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/glasses/eyepatch,/obj/item/clothing/glasses/eyepatch,/obj/item/clothing/head/bandana,/obj/item/clothing/head/bandana,/turf/open/floor/wood,/area/ruin/unpowered)
+"ryl" = (/obj/structure/closet/crate/secure/loot,/obj/effect/decal/cleanable/dirt,/turf/open/floor/mineral/silver,/area/ruin/unpowered)
+"rNT" = (/turf/open/floor/plasteel,/area/ruin/unpowered)
+"sqc" = (/obj/item/chair,/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"sZl" = (/obj/machinery/door/airlock/wood,/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/ruin/unpowered)
+"tlV" = (/obj/item/stack/sheet/metal,/turf/open/floor/plating,/area/ruin/unpowered)
+"tvh" = (/obj/structure/bed,/obj/item/bedsheet,/turf/open/floor/wood,/area/ruin/unpowered)
+"tvp" = (/mob/living/simple_animal/parrot,/turf/open/floor/wood,/area/ruin/unpowered)
+"tBB" = (/obj/effect/mob_spawn/human/corpse/syndicatesoldier,/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"tLy" = (/obj/structure/closet/crate/engineering/electrical,/obj/item/pizzabox/meat,/obj/item/coin/adamantine,/obj/item/coin/diamond,/obj/item/coin/silver,/obj/item/coin/silver,/obj/item/coin/silver,/obj/item/stack/spacecash/c1000,/obj/item/stack/spacecash/c1000,/obj/item/stack/spacecash/c1000,/obj/item/reagent_containers/food/drinks/flask/gold,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/gold,/obj/effect/spawner/lootdrop/gambling,/obj/effect/spawner/lootdrop/gambling,/obj/effect/spawner/lootdrop/gambling,/turf/open/floor/mineral/gold,/area/ruin/unpowered)
+"tOD" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"uqp" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/fishandchips,/obj/item/reagent_containers/food/snacks/fishandchips,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"uxV" = (/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"uzB" = (/obj/structure/falsewall/reinforced,/turf/open/floor/plating,/area/ruin/unpowered)
+"vfr" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"vrG" = (/obj/item/paper{info = "Ello there matey! Congratulations on fidning mi' cove! Trapped up in this hellscape of... shit. If you're reading this message you probably know me as the great Cuggan who slayed the terrible legion, but if you don't... than I'm probably one of them."},/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"wcd" = (/obj/structure/bed,/obj/item/bedsheet/qm,/turf/open/floor/wood,/area/ruin/unpowered)
+"wyG" = (/obj/structure/closet/wardrobe/pink,/obj/item/clothing/under/pirate,/obj/item/clothing/under/pirate,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/glasses/eyepatch,/obj/item/clothing/glasses/eyepatch,/obj/item/clothing/head/bandana,/obj/item/clothing/head/bandana,/obj/item/toy/katana,/turf/open/floor/wood,/area/ruin/unpowered)
+"wEa" = (/turf/open/lava/smooth,/area/template_noop)
+"wOQ" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/snacks/carpmeat,/obj/item/reagent_containers/food/condiment/flour,/obj/item/reagent_containers/food/condiment/flour,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"xji" = (/obj/machinery/door/airlock,/turf/open/floor/plating,/area/ruin/unpowered)
+"xVB" = (/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"yeZ" = (/obj/machinery/door/airlock,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"yhk" = (/turf/closed/wall/r_wall,/area/ruin/unpowered)
 
 (1,1,1) = {"
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aK
-aL
-aL
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ac
+hqW
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+mQc
+wEa
+wEa
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+dwA
+dwA
 "}
 (2,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
-aL
-aa
-aL
-ab
-ab
-ac
-ac
-ak
-aa
-ab
-ab
-ac
-ab
-ab
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+hqW
+wEa
+hqW
+wEa
+iav
+iav
+dwA
+dwA
+gZJ
+hqW
+iav
+iav
+dwA
+iav
+iav
 "}
 (3,1,1) = {"
-ab
-ab
-ab
-ac
-ab
-ab
-ab
-ac
-ab
-ab
-ab
-aL
-aL
-ak
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+iav
+iav
+iav
+dwA
+iav
+iav
+iav
+dwA
+iav
+iav
+iav
+wEa
+wEa
+gZJ
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
 "}
 (4,1,1) = {"
-ab
-aa
-ab
-ab
-ab
-ab
-ak
-ab
-ab
-ab
-aH
-aL
-aL
-ab
-ab
-ab
-ak
-ab
-aa
-ab
-ab
-ab
-ab
-ab
-ab
+iav
+hqW
+iav
+iav
+iav
+iav
+gZJ
+iav
+iav
+iav
+jsP
+wEa
+wEa
+iav
+iav
+iav
+gZJ
+iav
+hqW
+iav
+iav
+iav
+iav
+iav
+iav
 "}
 (5,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ab
-ab
-ab
-aM
-aW
-bb
-ab
-ab
-ab
-ab
-ab
-aa
-aa
-ab
-ab
-aa
-ab
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+dwA
+iav
+iav
+iav
+ieF
+neg
+aAf
+iav
+iav
+iav
+iav
+iav
+hqW
+hqW
+iav
+iav
+hqW
+iav
 "}
 (6,1,1) = {"
-ab
-ab
-ac
-ab
-ab
-ab
-ab
-ab
-aa
-ab
-ad
-aN
-aN
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-aa
-ab
-ab
-ab
+iav
+iav
+dwA
+iav
+iav
+iav
+iav
+iav
+hqW
+iav
+yhk
+iaY
+iaY
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+hqW
+iav
+iav
+iav
 "}
 (7,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-aa
-ab
-aa
-ab
-aa
-ad
-ae
-aP
-ad
-bh
-bj
-bt
-bk
-al
-bB
-ad
-ad
-aa
-ab
-ab
+iav
+iav
+iav
+iav
+iav
+hqW
+iav
+hqW
+iav
+hqW
+yhk
+rNT
+mhc
+yhk
+qsg
+kWa
+nZx
+jhO
+chf
+rut
+yhk
+yhk
+hqW
+iav
+iav
 "}
 (8,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-aO
-aO
-ad
-bi
-as
-bu
-by
-bz
-as
-bH
-ad
-ab
-ab
-ab
+iav
+iav
+iav
+hqW
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+qIQ
+qIQ
+yhk
+bNR
+eTS
+ahZ
+xVB
+hpG
+eTS
+bvw
+yhk
+iav
+iav
+iav
 "}
 (9,1,1) = {"
-ab
-ab
-ab
-ab
-ad
-ae
-af
-af
-ae
-af
-aI
-af
-af
-bc
-bj
-br
-bv
-bw
-al
-bC
-bC
-ad
-aa
-ac
-ab
+iav
+iav
+iav
+iav
+yhk
+rNT
+gsB
+gsB
+rNT
+gsB
+nnb
+gsB
+gsB
+fIZ
+kWa
+vfr
+lSE
+uxV
+chf
+tvh
+tvh
+yhk
+hqW
+dwA
+iav
 "}
 (10,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-af
-al
-ao
-al
-ao
-al
-aP
-af
-al
-bk
-bs
-bj
-as
-al
-al
-al
-ad
-aa
-ab
-ab
+iav
+iav
+iav
+hqW
+yhk
+gsB
+chf
+tOD
+chf
+tOD
+chf
+mhc
+gsB
+chf
+jhO
+nlu
+kWa
+eTS
+chf
+chf
+chf
+yhk
+hqW
+iav
+iav
 "}
 (11,1,1) = {"
-ab
-ab
-aa
-aa
-ad
-ae
-al
-ae
-al
-aA
-al
-af
-ae
-al
-al
-al
-bw
-ah
-al
-bB
-as
-ad
-ab
-ab
-ab
+iav
+iav
+hqW
+hqW
+yhk
+rNT
+chf
+rNT
+chf
+tBB
+chf
+gsB
+rNT
+chf
+chf
+chf
+uxV
+bye
+chf
+rut
+eTS
+yhk
+iav
+iav
+iav
 "}
 (12,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-af
-al
-ap
-al
-aB
-al
-af
-aX
-al
-bl
-al
-bj
-an
-bA
-bD
-bD
-ad
-ab
-ab
-ab
+iav
+iav
+iav
+hqW
+yhk
+gsB
+chf
+jnQ
+chf
+miU
+chf
+gsB
+eTP
+chf
+nMI
+chf
+kWa
+gkC
+sZl
+bmy
+bmy
+yhk
+iav
+iav
+iav
 "}
 (13,1,1) = {"
-ab
-ab
-ab
-ab
-ad
-ag
-ad
-ad
-ad
-ad
-ad
-aQ
-al
-al
-bm
-al
-ai
-by
-al
-bE
-bI
-ad
-ab
-ab
-ab
+iav
+iav
+iav
+iav
+yhk
+xji
+yhk
+yhk
+yhk
+yhk
+yhk
+yeZ
+chf
+chf
+irF
+chf
+klr
+xVB
+chf
+ahq
+fHC
+yhk
+iav
+iav
+iav
 "}
 (14,1,1) = {"
-ac
-ab
-ab
-aa
-ad
-ah
-ad
-aq
-as
-as
-aJ
-aR
-bJ
-aT
-bn
-al
-ai
-ah
-al
-al
-al
-ad
-aa
-ab
-aa
+dwA
+iav
+iav
+hqW
+yhk
+bye
+yhk
+liX
+eTS
+eTS
+fwG
+crA
+vrG
+pHl
+kbj
+chf
+klr
+bye
+chf
+chf
+chf
+yhk
+hqW
+iav
+hqW
 "}
 (15,1,1) = {"
-ab
-ab
-ab
-ab
-ad
-ai
-ad
-ar
-au
-aC
-ad
-aS
-aY
-bd
-bo
-al
-bx
-ah
-al
-bF
-as
-ad
-aa
-ab
-ab
+iav
+iav
+iav
+iav
+yhk
+klr
+yhk
+jZK
+ijz
+oJS
+yhk
+joC
+cjU
+qXI
+iTw
+chf
+tlV
+bye
+chf
+wyG
+eTS
+yhk
+hqW
+iav
+iav
 "}
 (16,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-ai
-ad
-as
-av
-as
-ad
-aT
-aZ
-be
-aT
-al
-ah
-ah
-bz
-bj
-bj
-ad
-ab
-ab
-ab
+iav
+iav
+iav
+hqW
+yhk
+klr
+yhk
+eTS
+tvp
+eTS
+yhk
+pHl
+fYH
+uqp
+pHl
+chf
+bye
+bye
+hpG
+kWa
+kWa
+yhk
+iav
+iav
+iav
 "}
 (17,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-ai
-ad
-at
-aw
-as
-ad
-aU
-ba
-bf
-aR
-al
-ah
-af
-al
-bG
-bC
-ad
-ab
-ab
-ac
+iav
+iav
+iav
+hqW
+yhk
+klr
+yhk
+wcd
+lYK
+eTS
+yhk
+dUN
+euX
+sqc
+crA
+chf
+bye
+gsB
+chf
+iaG
+tvh
+yhk
+iav
+iav
+dwA
 "}
 (18,1,1) = {"
-ab
-ab
-aa
-aa
-ad
-ag
-ad
-ad
-ad
-aD
-ad
-aV
-aR
-aR
-bp
-al
-af
-af
-al
-al
-al
-ad
-ab
-ab
-ab
+iav
+iav
+hqW
+hqW
+yhk
+xji
+yhk
+yhk
+yhk
+uzB
+yhk
+dib
+crA
+crA
+eLv
+chf
+gsB
+gsB
+chf
+chf
+chf
+yhk
+iav
+iav
+iav
 "}
 (19,1,1) = {"
-ab
-aa
-ab
-aa
-ad
-ai
-am
-ad
-ax
-aE
-ad
-aT
-aT
-bg
-bq
-al
-ae
-ae
-ag
-ai
-am
-ad
-aa
-aa
-ab
+iav
+hqW
+iav
+hqW
+yhk
+klr
+mQz
+yhk
+kZa
+ixv
+yhk
+pHl
+pHl
+kyC
+wOQ
+chf
+rNT
+rNT
+xji
+klr
+mQz
+yhk
+hqW
+hqW
+iav
 "}
 (20,1,1) = {"
-ab
-ab
-ab
-ab
-ad
-ai
-an
-ad
-ay
-aF
-ad
-aQ
-al
-al
-al
-al
-bc
-al
-al
-aj
-ad
-ad
-aa
-ab
-ab
+iav
+iav
+iav
+iav
+yhk
+klr
+gkC
+yhk
+tLy
+oke
+yhk
+yeZ
+chf
+chf
+chf
+chf
+fIZ
+chf
+chf
+cXd
+yhk
+yhk
+hqW
+iav
+iav
 "}
 (21,1,1) = {"
-ab
-ab
-ab
-aa
-ad
-aj
-ai
-ad
-az
-aG
-ad
-ae
-af
-ae
-ae
-af
-ae
-ad
-ad
-ad
-ad
-aa
-ab
-ab
-ab
+iav
+iav
+iav
+hqW
+yhk
+cXd
+klr
+yhk
+ryl
+kqp
+yhk
+rNT
+gsB
+rNT
+rNT
+gsB
+rNT
+yhk
+yhk
+yhk
+yhk
+hqW
+iav
+iav
+iav
 "}
 (22,1,1) = {"
-ab
-ab
-ab
-ab
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ab
-ab
-aa
-ab
-ab
-ab
-ab
+iav
+iav
+iav
+iav
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+iav
+iav
+hqW
+iav
+iav
+iav
+iav
 "}
 (23,1,1) = {"
-ab
-ab
-ab
-aa
-aa
-ab
-ab
-aa
-ab
-aa
-aa
-ab
-ab
-aa
-aa
-ab
-aa
-ab
-aa
-ab
-ab
-ab
-ab
-ab
-ab
+iav
+iav
+iav
+hqW
+hqW
+iav
+iav
+hqW
+iav
+hqW
+hqW
+iav
+iav
+hqW
+hqW
+iav
+hqW
+iav
+hqW
+iav
+iav
+iav
+iav
+iav
+iav
 "}
 (24,1,1) = {"
-ab
-ac
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ac
-ab
-ab
-aa
-aa
-ab
+iav
+dwA
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+dwA
+dwA
+iav
+iav
+hqW
+hqW
+iav
 "}
 (25,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ac
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+iav
+iav
+iav
+iav
+iav
+iav
+dwA
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
+iav
 "}

@@ -1,403 +1,343 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/closed/indestructible/oldshuttle/corner{
-	dir = 8
-	},
-/area/ruin/powered/shuttle/medium_4)
-"c" = (
-/turf/closed/indestructible/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"d" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"e" = (
-/turf/closed/indestructible/oldshuttle/corner,
-/area/ruin/powered/shuttle/medium_4)
-"f" = (
-/turf/closed/indestructible/oldshuttle/corner{
-	dir = 1
-	},
-/area/ruin/powered/shuttle/medium_4)
-"g" = (
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"h" = (
-/turf/closed/indestructible/oldshuttle/corner{
-	dir = 4
-	},
-/area/ruin/powered/shuttle/medium_4)
-"i" = (
-/obj/structure/closet{
-	icon_state = "oldcloset"
-	},
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"j" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 1
-	},
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_4)
-"k" = (
-/turf/closed/indestructible/oldshuttle{
-	icon_state = "orange"
-	},
-/area/ruin/powered/shuttle/medium_4)
-"l" = (
-/obj/structure/chair/old{
-	dir = 1
-	},
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"r" = (
-/obj/machinery/power/generator,
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"s" = (
-/obj/machinery/power/smes,
-/turf/open/floor/oldshuttle,
-/area/ruin/powered/shuttle/medium_4)
-"t" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_4)
-"u" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_4)
-"v" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/shuttle/medium_4)
-"w" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_4)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"bCI" = (/turf/closed/indestructible/oldshuttle{icon_state = "orange"},/area/ruin/powered/shuttle/medium_4)
+"cgs" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/space,/area/ruin/powered/shuttle/medium_4)
+"eIt" = (/turf/closed/indestructible/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"faz" = (/turf/closed/indestructible/oldshuttle/corner{dir = 1},/area/ruin/powered/shuttle/medium_4)
+"iod" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"iul" = (/obj/structure/shuttle/engine/propulsion/burst{dir = 1},/turf/open/space,/area/ruin/powered/shuttle/medium_4)
+"jYl" = (/turf/closed/indestructible/oldshuttle/corner,/area/ruin/powered/shuttle/medium_4)
+"kmh" = (/obj/structure/shuttle/engine/propulsion/burst,/turf/open/space,/area/ruin/powered/shuttle/medium_4)
+"lYa" = (/obj/structure/chair/old{dir = 1},/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"maY" = (/turf/closed/indestructible/oldshuttle/corner{dir = 4},/area/ruin/powered/shuttle/medium_4)
+"pOW" = (/obj/machinery/power/generator,/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"rmk" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered/shuttle/medium_4)
+"rms" = (/obj/structure/shuttle/engine/propulsion/burst/left,/turf/open/space,/area/ruin/powered/shuttle/medium_4)
+"uTv" = (/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"vvZ" = (/turf/closed/indestructible/oldshuttle/corner{dir = 8},/area/ruin/powered/shuttle/medium_4)
+"xWC" = (/obj/machinery/power/smes,/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
+"yiF" = (/obj/structure/closet{icon_state = "oldcloset"},/turf/open/floor/oldshuttle,/area/ruin/powered/shuttle/medium_4)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-b
-c
-k
-t
-a
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+vvZ
+eIt
+bCI
+rms
+arG
 "}
 (2,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-b
-c
-c
-f
-g
-k
-k
-w
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+vvZ
+eIt
+eIt
+faz
+uTv
+bCI
+bCI
+kmh
 "}
 (3,1,1) = {"
-a
-a
-a
-a
-a
-b
-d
-f
-g
-g
-g
-g
-k
-k
-w
+arG
+arG
+arG
+arG
+arG
+vvZ
+iod
+faz
+uTv
+uTv
+uTv
+uTv
+bCI
+bCI
+kmh
 "}
 (4,1,1) = {"
-a
-a
-a
-a
-j
-k
-g
-g
-g
-g
-b
-d
-k
-u
-a
+arG
+arG
+arG
+arG
+iul
+bCI
+uTv
+uTv
+uTv
+uTv
+vvZ
+iod
+bCI
+cgs
+arG
 "}
 (5,1,1) = {"
-a
-a
-a
-a
-b
-c
-g
-g
-g
-b
-f
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+vvZ
+eIt
+uTv
+uTv
+uTv
+vvZ
+faz
+arG
+arG
+arG
+arG
 "}
 (6,1,1) = {"
-a
-a
-b
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-h
-a
+arG
+arG
+vvZ
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+maY
+arG
 "}
 (7,1,1) = {"
-a
-b
-f
-i
-c
-i
-i
-i
-i
-i
-i
-c
-s
-c
-h
+arG
+vvZ
+faz
+yiF
+eIt
+yiF
+yiF
+yiF
+yiF
+yiF
+yiF
+eIt
+xWC
+eIt
+maY
 "}
 (8,1,1) = {"
-b
-f
-i
-i
-c
-l
-l
-l
-l
-l
-l
-c
-g
-e
-c
+vvZ
+faz
+yiF
+yiF
+eIt
+lYa
+lYa
+lYa
+lYa
+lYa
+lYa
+eIt
+uTv
+jYl
+eIt
 "}
 (9,1,1) = {"
-c
-g
-g
-g
-g
-l
-l
-l
-l
-l
-b
-c
-g
-g
-c
+eIt
+uTv
+uTv
+uTv
+uTv
+lYa
+lYa
+lYa
+lYa
+lYa
+vvZ
+eIt
+uTv
+uTv
+eIt
 "}
 (10,1,1) = {"
-d
-g
-g
-g
-g
-g
-g
-g
-g
-g
-c
-r
-g
-g
-d
+iod
+uTv
+uTv
+uTv
+uTv
+uTv
+uTv
+uTv
+uTv
+uTv
+eIt
+pOW
+uTv
+uTv
+iod
 "}
 (11,1,1) = {"
-c
-g
-g
-g
-g
-l
-l
-l
-l
-l
-e
-c
-g
-g
-c
+eIt
+uTv
+uTv
+uTv
+uTv
+lYa
+lYa
+lYa
+lYa
+lYa
+jYl
+eIt
+uTv
+uTv
+eIt
 "}
 (12,1,1) = {"
-e
-h
-i
-i
-c
-l
-l
-l
-l
-l
-l
-c
-g
-b
-c
+jYl
+maY
+yiF
+yiF
+eIt
+lYa
+lYa
+lYa
+lYa
+lYa
+lYa
+eIt
+uTv
+vvZ
+eIt
 "}
 (13,1,1) = {"
-a
-e
-h
-i
-c
-i
-i
-i
-i
-i
-i
-c
-s
-c
-f
+arG
+jYl
+maY
+yiF
+eIt
+yiF
+yiF
+yiF
+yiF
+yiF
+yiF
+eIt
+xWC
+eIt
+faz
 "}
 (14,1,1) = {"
-a
-a
-e
-c
-c
-c
-c
-c
-c
-c
-c
-c
-c
-f
-a
+arG
+arG
+jYl
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+eIt
+faz
+arG
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-e
-c
-g
-g
-g
-e
-h
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+jYl
+eIt
+uTv
+uTv
+uTv
+jYl
+maY
+arG
+arG
+arG
+arG
 "}
 (16,1,1) = {"
-a
-a
-a
-a
-j
-k
-g
-g
-g
-g
-e
-d
-k
-t
-a
+arG
+arG
+arG
+arG
+iul
+bCI
+uTv
+uTv
+uTv
+uTv
+jYl
+iod
+bCI
+rms
+arG
 "}
 (17,1,1) = {"
-a
-a
-a
-a
-a
-e
-d
-h
-g
-g
-g
-g
-k
-k
-w
+arG
+arG
+arG
+arG
+arG
+jYl
+iod
+maY
+uTv
+uTv
+uTv
+uTv
+bCI
+bCI
+kmh
 "}
 (18,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-e
-c
-c
-h
-g
-k
-k
-w
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+jYl
+eIt
+eIt
+maY
+uTv
+bCI
+bCI
+kmh
 "}
 (19,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-e
-c
-k
-v
-a
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+jYl
+eIt
+bCI
+rmk
+arG
 "}

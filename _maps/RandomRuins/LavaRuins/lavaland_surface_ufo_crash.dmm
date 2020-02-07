@@ -1,461 +1,379 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"b" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"c" = (
-/turf/closed/wall/mineral/abductor,
-/area/lavaland/surface/outdoors)
-"d" = (
-/turf/closed/wall/mineral/abductor,
-/area/ruin/unpowered)
-"j" = (
-/obj/machinery/abductor/experiment{
-	team_number = 100
-	},
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"k" = (
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"l" = (
-/obj/machinery/abductor/pad{
-	team_number = 100
-	},
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"o" = (
-/obj/item/hemostat/alien,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"p" = (
-/obj/effect/mob_spawn/human/abductor,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"q" = (
-/obj/structure/closet/abductor,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"s" = (
-/obj/structure/table/optable/abductor,
-/obj/item/cautery/alien,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"t" = (
-/obj/structure/table/abductor,
-/obj/effect/spawner/lootdrop/lavaland_surface_ufo_crash,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"v" = (
-/obj/item/scalpel/alien,
-/obj/item/surgical_drapes,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"w" = (
-/obj/item/retractor/alien,
-/obj/item/paper/guides/antag/abductor,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"y" = (
-/obj/machinery/abductor/gland_dispenser,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"z" = (
-/obj/structure/table/abductor,
-/obj/item/surgicaldrill/alien,
-/obj/item/circular_saw/alien,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"A" = (
-/obj/structure/bed/abductor,
-/turf/open/floor/plating/abductor{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"aqu" = (/obj/machinery/abductor/gland_dispenser,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"dAf" = (/obj/structure/table/abductor,/obj/effect/spawner/lootdrop/lavaland_surface_ufo_crash,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"dAm" = (/obj/structure/bed/abductor,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"ezO" = (/obj/machinery/abductor/pad{team_number = 100},/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"eKk" = (/obj/effect/mob_spawn/human/abductor,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"gOl" = (/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"hUF" = (/obj/structure/table/abductor,/obj/item/surgicaldrill/alien,/obj/item/circular_saw/alien,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"ikU" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/lavaland/surface/outdoors)
+"jBE" = (/obj/item/retractor/alien,/obj/item/paper/guides/antag/abductor,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"kNo" = (/turf/closed/wall/mineral/abductor,/area/ruin/unpowered)
+"mbq" = (/obj/item/scalpel/alien,/obj/item/surgical_drapes,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"mnd" = (/obj/machinery/abductor/experiment{team_number = 100},/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"oPQ" = (/obj/structure/closet/abductor,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"ptI" = (/obj/structure/table/optable/abductor,/obj/item/cautery/alien,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"sqw" = (/obj/item/hemostat/alien,/turf/open/floor/plating/abductor{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"wUl" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"xNe" = (/turf/closed/wall/mineral/abductor,/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
 "}
 (2,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
 "}
 (3,1,1) = {"
-a
-a
-a
-c
-a
-a
-a
-a
-a
-a
+ikU
+ikU
+ikU
+xNe
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
 "}
 (4,1,1) = {"
-a
-a
-c
-d
-a
-a
-a
-a
-a
-a
+ikU
+ikU
+xNe
+kNo
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
 "}
 (5,1,1) = {"
-a
-a
-d
-j
-k
-k
-a
-y
-d
-a
+ikU
+ikU
+kNo
+mnd
+gOl
+gOl
+ikU
+aqu
+kNo
+ikU
 "}
 (6,1,1) = {"
-a
-a
-d
-k
-o
-s
-v
-z
-d
-a
+ikU
+ikU
+kNo
+gOl
+sqw
+ptI
+mbq
+hUF
+kNo
+ikU
 "}
 (7,1,1) = {"
-a
-a
-d
-l
-p
-k
-w
-A
-d
-a
+ikU
+ikU
+kNo
+ezO
+eKk
+gOl
+jBE
+dAm
+kNo
+ikU
 "}
 (8,1,1) = {"
-a
-a
-c
-d
-q
-t
-q
-d
-c
-a
+ikU
+ikU
+xNe
+kNo
+oPQ
+dAf
+oPQ
+kNo
+xNe
+ikU
 "}
 (9,1,1) = {"
-a
-a
-b
-c
-d
-d
-d
-c
-b
-a
+ikU
+ikU
+wUl
+xNe
+kNo
+kNo
+kNo
+xNe
+wUl
+ikU
 "}
 (10,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (11,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (12,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (13,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (14,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (15,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (16,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (17,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (18,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (19,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-b
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
 "}
 (20,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (21,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (22,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (23,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (24,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (25,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (26,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (27,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (28,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (29,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-a
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
+ikU
 "}
 (30,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-a
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+ikU
 "}

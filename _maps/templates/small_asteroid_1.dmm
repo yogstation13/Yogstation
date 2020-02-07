@@ -1,81 +1,75 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/closed/mineral,
-/area/space)
-"c" = (
-/turf/closed/mineral/random/low_chance,
-/area/space)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"fdF" = (/turf/closed/mineral,/area/space)
+"jeb" = (/turf/closed/mineral/random/low_chance,/area/space)
 
 (1,1,1) = {"
-a
-a
-b
-c
-b
-b
-b
-a
+arG
+arG
+fdF
+jeb
+fdF
+fdF
+fdF
+arG
 "}
 (2,1,1) = {"
-a
-b
-b
-c
-c
-c
-c
-a
+arG
+fdF
+fdF
+jeb
+jeb
+jeb
+jeb
+arG
 "}
 (3,1,1) = {"
-b
-b
-c
-c
-c
-c
-b
-b
+fdF
+fdF
+jeb
+jeb
+jeb
+jeb
+fdF
+fdF
 "}
 (4,1,1) = {"
-b
-b
-c
-c
-c
-c
-c
-b
+fdF
+fdF
+jeb
+jeb
+jeb
+jeb
+jeb
+fdF
 "}
 (5,1,1) = {"
-a
-c
-c
-c
-c
-c
-b
-a
+arG
+jeb
+jeb
+jeb
+jeb
+jeb
+fdF
+arG
 "}
 (6,1,1) = {"
-a
-a
-c
-b
-c
-b
-b
-a
+arG
+arG
+jeb
+fdF
+jeb
+fdF
+fdF
+arG
 "}
 (7,1,1) = {"
-a
-a
-a
-b
-b
-b
-a
-a
+arG
+arG
+arG
+fdF
+fdF
+fdF
+arG
+arG
 "}

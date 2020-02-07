@@ -1,478 +1,329 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"b" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/ruin/powered)
-"c" = (
-/turf/closed/wall/mineral/iron,
-/area/ruin/powered)
-"e" = (
-/obj/item/clothing/suit/space/orange,
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"f" = (
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"g" = (
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"h" = (
-/obj/item/shovel,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"i" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"j" = (
-/obj/structure/sink/puddle,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"k" = (
-/obj/structure/glowshroom/single,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"l" = (
-/obj/item/storage/toolbox/emergency,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
-"m" = (
-/obj/structure/rack,
-/obj/item/seeds/reishi,
-/obj/item/seeds/plump,
-/obj/item/seeds/plump,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom,
-/obj/item/seeds/tower,
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"n" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"o" = (
-/turf/open/floor/plating,
-/area/ruin/powered)
-"p" = (
-/obj/structure/rack,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/storage/bag/ore,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"q" = (
-/obj/structure/glowshroom/single,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"r" = (
-/obj/structure/rack,
-/obj/item/pickaxe/emergency,
-/obj/item/tank/internals/oxygen,
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"s" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"t" = (
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/ruin/powered)
-"u" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/black,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"v" = (
-/obj/structure/fans,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"w" = (
-/obj/machinery/smartfridge/survival_pod,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"x" = (
-/obj/effect/mob_spawn/human/hermit,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"y" = (
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"z" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/tubes,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"A" = (
-/obj/structure/table,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"B" = (
-/obj/structure/table/survival_pod,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"C" = (
-/obj/structure/tubes,
-/obj/item/crowbar,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"D" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 1
-	},
-/obj/machinery/door/airlock/survival_pod/glass,
-/obj/structure/fans/tiny,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
-"E" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 8
-	},
-/turf/closed/wall/mineral/titanium/interior,
-/area/ruin/powered)
-"F" = (
-/turf/closed/wall/mineral/titanium,
-/area/ruin/powered)
-"G" = (
-/turf/closed/wall/mineral/titanium/interior,
-/area/ruin/powered)
-"H" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod Airlock"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"I" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/ruin/powered)
-"J" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/powered)
-"L" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/cultivator,
-/turf/open/floor/plating,
-/area/ruin/powered)
-"M" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"P" = (
-/turf/template_noop,
-/area/template_noop)
-"S" = (
-/obj/item/clothing/head/helmet/space/orange,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"aRO" = (/obj/structure/sink/puddle,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"bLy" = (/obj/effect/decal/cleanable/blood/footprints{dir = 1},/obj/machinery/door/airlock/survival_pod/glass,/obj/structure/fans/tiny,/turf/open/floor/pod/dark,/area/ruin/powered)
+"bOD" = (/turf/closed/wall/mineral/titanium,/area/ruin/powered)
+"chL" = (/obj/item/clothing/suit/space/orange,/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"cAT" = (/obj/structure/rack,/obj/item/storage/bag/plants/portaseeder,/obj/item/storage/bag/ore,/obj/item/storage/firstaid/regular,/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"edv" = (/obj/item/storage/toolbox/emergency,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"eOm" = (/obj/machinery/smartfridge/survival_pod,/turf/open/floor/pod/dark,/area/ruin/powered)
+"fbd" = (/turf/closed/wall/mineral/titanium/survival/pod,/area/ruin/powered)
+"giu" = (/obj/effect/spawner/structure/window/shuttle,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/powered)
+"huy" = (/turf/open/floor/plating,/area/ruin/powered)
+"ikU" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/lavaland/surface/outdoors)
+"ipU" = (/obj/structure/table/survival_pod,/turf/open/floor/pod/dark,/area/ruin/powered)
+"jiQ" = (/obj/structure/tubes,/obj/item/crowbar,/obj/effect/decal/cleanable/blood/drip,/turf/open/floor/pod/dark,/area/ruin/powered)
+"loh" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"lro" = (/obj/machinery/hydroponics/soil,/turf/open/floor/plating,/area/ruin/powered)
+"lGS" = (/obj/effect/mob_spawn/human/hermit,/turf/open/floor/pod/dark,/area/ruin/powered)
+"lIp" = (/obj/structure/bed/pod,/obj/item/bedsheet/black,/turf/open/floor/plating,/area/ruin/powered)
+"lLA" = (/turf/open/floor/pod/dark,/area/ruin/powered)
+"mvV" = (/obj/structure/glowshroom/single,/turf/open/floor/plating,/area/ruin/powered)
+"mIF" = (/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"mUK" = (/obj/item/clothing/head/helmet/space/orange,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"mXP" = (/obj/item/shovel,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"nbQ" = (/obj/structure/table,/obj/item/kitchen/knife/combat/survival,/turf/open/floor/plating,/area/ruin/powered)
+"pnt" = (/obj/structure/fans,/turf/open/floor/pod/dark,/area/ruin/powered)
+"puK" = (/turf/closed/wall/mineral/titanium/interior,/area/ruin/powered)
+"qbK" = (/obj/machinery/light/small{dir = 4},/obj/structure/tubes,/turf/open/floor/plating,/area/ruin/powered)
+"qOZ" = (/obj/structure/chair{dir = 4},/turf/open/floor/mineral/titanium/blue,/area/ruin/powered)
+"rdz" = (/obj/machinery/hydroponics/soil,/obj/item/cultivator,/turf/open/floor/plating,/area/ruin/powered)
+"rLF" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/ruin/powered)
+"rTp" = (/turf/closed/wall/mineral/iron,/area/ruin/powered)
+"toB" = (/obj/structure/rack,/obj/item/pickaxe/emergency,/obj/item/tank/internals/oxygen,/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"tyF" = (/obj/structure/glowshroom/single,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"ufh" = (/obj/structure/rack,/obj/item/seeds/reishi,/obj/item/seeds/plump,/obj/item/seeds/plump,/obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom,/obj/item/seeds/tower,/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"uvb" = (/turf/open/floor/plating/asteroid/basalt,/area/ruin/powered)
+"vaE" = (/obj/structure/shuttle/engine/propulsion/burst{dir = 8},/turf/closed/wall/mineral/titanium/interior,/area/ruin/powered)
+"wOl" = (/obj/item/reagent_containers/glass/bucket,/turf/open/floor/plating/asteroid{name = "dirt"},/area/ruin/powered)
+"wUl" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"yig" = (/obj/machinery/door/airlock/titanium{name = "Escape Pod Airlock"},/turf/open/floor/mineral/titanium/blue,/area/ruin/powered)
 
 (1,1,1) = {"
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-s
-s
-s
-P
-P
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+wUl
+wUl
+wUl
+arG
+arG
 "}
 (3,1,1) = {"
-P
-P
-P
-P
-P
-a
-a
-a
-a
-a
-s
-s
-s
-s
-s
-P
+arG
+arG
+arG
+arG
+arG
+ikU
+ikU
+ikU
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (4,1,1) = {"
-P
-P
-P
-a
-a
-a
-a
-a
-a
-a
-a
-s
-s
-s
-s
-P
+arG
+arG
+arG
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (5,1,1) = {"
-P
-P
-a
-a
-a
-b
-c
-b
-t
-t
-t
-t
-t
-s
-s
-s
+arG
+arG
+ikU
+ikU
+ikU
+rLF
+rTp
+rLF
+fbd
+fbd
+fbd
+fbd
+fbd
+wUl
+wUl
+wUl
 "}
 (6,1,1) = {"
-P
-a
-a
-a
-b
-b
-L
-n
-t
-v
-x
-B
-t
-s
-s
-s
+arG
+ikU
+ikU
+ikU
+rLF
+rLF
+rdz
+lro
+fbd
+pnt
+lGS
+ipU
+fbd
+wUl
+wUl
+wUl
 "}
 (7,1,1) = {"
-a
-a
-a
-a
-b
-m
-o
-o
-t
-w
-y
-y
-D
-s
-s
-s
+ikU
+ikU
+ikU
+ikU
+rLF
+ufh
+huy
+huy
+fbd
+eOm
+lLA
+lLA
+bLy
+wUl
+wUl
+wUl
 "}
 (8,1,1) = {"
-a
-b
-b
-b
-c
-f
-o
-q
-o
-o
-z
-C
-t
-s
-s
-s
+ikU
+rLF
+rLF
+rLF
+rTp
+uvb
+huy
+mvV
+huy
+huy
+qbK
+jiQ
+fbd
+wUl
+wUl
+wUl
 "}
 (9,1,1) = {"
-a
-b
-f
-i
-g
-f
-f
-o
-o
-o
-t
-t
-t
-s
-s
-s
+ikU
+rLF
+uvb
+wOl
+mIF
+uvb
+uvb
+huy
+huy
+huy
+fbd
+fbd
+fbd
+wUl
+wUl
+wUl
 "}
 (10,1,1) = {"
-a
-b
-S
-j
-g
-g
-f
-f
-u
-o
-A
-b
-P
-s
-s
-s
+ikU
+rLF
+mUK
+aRO
+mIF
+mIF
+uvb
+uvb
+lIp
+huy
+nbQ
+rLF
+arG
+wUl
+wUl
+wUl
 "}
 (11,1,1) = {"
-a
-c
-e
-h
-l
-c
-p
-r
-c
-c
-c
-b
-P
-P
-s
-s
+ikU
+rTp
+chL
+mXP
+edv
+rTp
+cAT
+toB
+rTp
+rTp
+rTp
+rLF
+arG
+arG
+wUl
+wUl
 "}
 (12,1,1) = {"
-a
-b
-b
-k
-M
-b
-b
-b
-b
-a
-a
-P
-P
-E
-H
-E
+ikU
+rLF
+rLF
+tyF
+loh
+rLF
+rLF
+rLF
+rLF
+ikU
+ikU
+arG
+arG
+vaE
+yig
+vaE
 "}
 (13,1,1) = {"
-a
-a
-b
-b
-b
-b
-a
-a
-a
-a
-P
-P
-P
-F
-I
-F
+ikU
+ikU
+rLF
+rLF
+rLF
+rLF
+ikU
+ikU
+ikU
+ikU
+arG
+arG
+arG
+bOD
+qOZ
+bOD
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-P
-P
-P
-P
-F
-I
-F
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+ikU
+arG
+arG
+arG
+arG
+bOD
+qOZ
+bOD
 "}
 (15,1,1) = {"
-P
-P
-a
-a
-P
-P
-P
-P
-P
-P
-P
-P
-P
-G
-J
-G
+arG
+arG
+ikU
+ikU
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+puK
+giu
+puK
 "}
 (16,1,1) = {"
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
-P
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}

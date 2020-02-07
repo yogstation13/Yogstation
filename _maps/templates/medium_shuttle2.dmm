@@ -1,575 +1,444 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/structure/shuttle/engine/propulsion/burst/left{
-	dir = 8
-	},
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_2)
-"c" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/powered/shuttle/medium_2)
-"d" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/ruin/powered/shuttle/medium_2)
-"f" = (
-/obj/structure/shuttle/engine/propulsion/burst/right{
-	dir = 8
-	},
-/turf/open/space,
-/area/ruin/powered/shuttle/medium_2)
-"g" = (
-/turf/closed/wall/mineral/titanium,
-/area/ruin/powered/shuttle/medium_2)
-"i" = (
-/turf/closed/wall/mineral/titanium/overspace,
-/area/ruin/powered/shuttle/medium_2)
-"k" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"l" = (
-/obj/machinery/door/airlock/external/glass,
-/turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_2)
-"m" = (
-/turf/open/floor/plasteel,
-/area/ruin/powered/shuttle/medium_2)
-"n" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"o" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"p" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"r" = (
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/ruin/powered/shuttle/medium_2)
-"s" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"t" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"u" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"v" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_2)
-"w" = (
-/obj/machinery/power/smes/magical,
-/turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_2)
-"x" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/ruin/powered/shuttle/medium_2)
-"y" = (
-/obj/structure/chair/comfy{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/shuttle/medium_2)
-"B" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ruin/powered/shuttle/medium_2)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"bTb" = (/obj/effect/spawner/structure/window/shuttle,/turf/open/floor/plating,/area/ruin/powered/shuttle/medium_2)
+"fvu" = (/obj/structure/shuttle/engine/heater{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plating/airless,/area/ruin/powered/shuttle/medium_2)
+"gRL" = (/turf/closed/wall/mineral/plastitanium,/area/ruin/powered/shuttle/medium_2)
+"iQc" = (/obj/effect/turf_decal/tile/blue{dir = 1},/obj/effect/turf_decal/tile/blue,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"jzX" = (/obj/structure/table,/turf/open/floor/plasteel,/area/ruin/powered/shuttle/medium_2)
+"kFD" = (/obj/machinery/power/smes/magical,/turf/open/floor/plating,/area/ruin/powered/shuttle/medium_2)
+"lld" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/ruin/powered/shuttle/medium_2)
+"lpj" = (/turf/closed/wall/mineral/titanium,/area/ruin/powered/shuttle/medium_2)
+"lSw" = (/turf/closed/wall/mineral/titanium/overspace,/area/ruin/powered/shuttle/medium_2)
+"mqp" = (/obj/structure/shuttle/engine/propulsion/burst/right{dir = 8},/turf/open/space,/area/ruin/powered/shuttle/medium_2)
+"muc" = (/obj/machinery/door/airlock/external/glass,/turf/open/floor/plating,/area/ruin/powered/shuttle/medium_2)
+"nCc" = (/obj/structure/table,/obj/item/storage/firstaid/regular,/obj/effect/turf_decal/tile/blue{dir = 1},/obj/effect/turf_decal/tile/blue,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"ogj" = (/turf/open/floor/plasteel,/area/ruin/powered/shuttle/medium_2)
+"oKL" = (/obj/machinery/sleeper{dir = 1},/obj/effect/turf_decal/tile/blue{dir = 1},/obj/effect/turf_decal/tile/blue,/obj/effect/turf_decal/tile/blue{dir = 4},/obj/effect/turf_decal/tile/blue{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"qwR" = (/obj/structure/shuttle/engine/propulsion/burst/left{dir = 8},/turf/open/space,/area/ruin/powered/shuttle/medium_2)
+"qPP" = (/obj/structure/chair/comfy{dir = 4},/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 4},/obj/effect/turf_decal/tile/yellow{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"sjh" = (/turf/closed/wall/mineral/titanium/nodiagonal,/area/ruin/powered/shuttle/medium_2)
+"uiJ" = (/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 4},/obj/effect/turf_decal/tile/yellow{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"uyN" = (/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"xhY" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
+"ygS" = (/obj/structure/table/reinforced,/obj/effect/turf_decal/tile/yellow{dir = 1},/obj/effect/turf_decal/tile/yellow,/obj/effect/turf_decal/tile/yellow{dir = 4},/obj/effect/turf_decal/tile/yellow{dir = 8},/turf/open/floor/plasteel/dark,/area/ruin/powered/shuttle/medium_2)
 
 (1,1,1) = {"
-a
-a
-a
-b
-f
-a
-a
-a
-b
-f
-a
-a
-a
+arG
+arG
+arG
+qwR
+mqp
+arG
+arG
+arG
+qwR
+mqp
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-a
-a
-a
-c
-c
-a
-a
-a
-c
-c
-a
-a
-a
+arG
+arG
+arG
+fvu
+fvu
+arG
+arG
+arG
+fvu
+fvu
+arG
+arG
+arG
 "}
 (3,1,1) = {"
-a
-a
-a
-d
-d
-a
-a
-a
-d
-d
-a
-a
-a
+arG
+arG
+arG
+gRL
+gRL
+arG
+arG
+arG
+gRL
+gRL
+arG
+arG
+arG
 "}
 (4,1,1) = {"
-b
-f
-d
-d
-d
-d
-a
-d
-d
-d
-d
-b
-f
+qwR
+mqp
+gRL
+gRL
+gRL
+gRL
+arG
+gRL
+gRL
+gRL
+gRL
+qwR
+mqp
 "}
 (5,1,1) = {"
-c
-c
-d
-d
-g
-g
-l
-g
-g
-d
-d
-c
-c
+fvu
+fvu
+gRL
+gRL
+lpj
+lpj
+muc
+lpj
+lpj
+gRL
+gRL
+fvu
+fvu
 "}
 (6,1,1) = {"
-d
-d
-g
-g
-g
-r
-m
-r
-g
-g
-g
-d
-d
+gRL
+gRL
+lpj
+lpj
+lpj
+jzX
+ogj
+jzX
+lpj
+lpj
+lpj
+gRL
+gRL
 "}
 (7,1,1) = {"
-d
-d
-g
-m
-m
-m
-m
-m
-m
-m
-g
-d
-d
+gRL
+gRL
+lpj
+ogj
+ogj
+ogj
+ogj
+ogj
+ogj
+ogj
+lpj
+gRL
+gRL
 "}
 (8,1,1) = {"
-d
-g
-g
-n
-g
-B
-w
-B
-g
-n
-g
-g
-d
+gRL
+lpj
+lpj
+xhY
+lpj
+sjh
+kFD
+sjh
+lpj
+xhY
+lpj
+lpj
+gRL
 "}
 (9,1,1) = {"
-d
-g
-k
-k
-g
-g
-B
-g
-g
-k
-k
-g
-d
+gRL
+lpj
+uyN
+uyN
+lpj
+lpj
+sjh
+lpj
+lpj
+uyN
+uyN
+lpj
+gRL
 "}
 (10,1,1) = {"
-d
-g
-k
-k
-g
-g
-g
-g
-g
-k
-k
-g
-d
+gRL
+lpj
+uyN
+uyN
+lpj
+lpj
+lpj
+lpj
+lpj
+uyN
+uyN
+lpj
+gRL
 "}
 (11,1,1) = {"
-a
-i
-g
-n
-g
-g
-g
-g
-g
-n
-g
-i
-a
+arG
+lSw
+lpj
+xhY
+lpj
+lpj
+lpj
+lpj
+lpj
+xhY
+lpj
+lSw
+arG
 "}
 (12,1,1) = {"
-a
-a
-g
-k
-k
-n
-k
-n
-k
-k
-g
-a
-a
+arG
+arG
+lpj
+uyN
+uyN
+xhY
+uyN
+xhY
+uyN
+uyN
+lpj
+arG
+arG
 "}
 (13,1,1) = {"
-a
-a
-g
-k
-k
-g
-g
-g
-k
-k
-g
-a
-a
+arG
+arG
+lpj
+uyN
+uyN
+lpj
+lpj
+lpj
+uyN
+uyN
+lpj
+arG
+arG
 "}
 (14,1,1) = {"
-a
-a
-g
-g
-n
-g
-g
-g
-n
-g
-g
-a
-a
+arG
+arG
+lpj
+lpj
+xhY
+lpj
+lpj
+lpj
+xhY
+lpj
+lpj
+arG
+arG
 "}
 (15,1,1) = {"
-a
-a
-l
-k
-k
-g
-g
-g
-k
-k
-l
-a
-a
+arG
+arG
+muc
+uyN
+uyN
+lpj
+lpj
+lpj
+uyN
+uyN
+muc
+arG
+arG
 "}
 (16,1,1) = {"
-a
-a
-i
-g
-n
-g
-g
-g
-n
-g
-i
-a
-a
+arG
+arG
+lSw
+lpj
+xhY
+lpj
+lpj
+lpj
+xhY
+lpj
+lSw
+arG
+arG
 "}
 (17,1,1) = {"
-a
-a
-a
-g
-k
-k
-k
-k
-k
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+uyN
+uyN
+uyN
+uyN
+uyN
+lpj
+arG
+arG
+arG
 "}
 (18,1,1) = {"
-a
-a
-a
-g
-n
-g
-g
-g
-n
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+xhY
+lpj
+lpj
+lpj
+xhY
+lpj
+arG
+arG
+arG
 "}
 (19,1,1) = {"
-a
-a
-a
-g
-o
-s
-x
-k
-k
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+iQc
+nCc
+bTb
+uyN
+uyN
+lpj
+arG
+arG
+arG
 "}
 (20,1,1) = {"
-a
-a
-a
-g
-o
-t
-x
-k
-k
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+iQc
+oKL
+bTb
+uyN
+uyN
+lpj
+arG
+arG
+arG
 "}
 (21,1,1) = {"
-a
-a
-a
-g
-n
-g
-g
-g
-n
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+xhY
+lpj
+lpj
+lpj
+xhY
+lpj
+arG
+arG
+arG
 "}
 (22,1,1) = {"
-a
-a
-a
-g
-k
-k
-x
-k
-k
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+uyN
+uyN
+bTb
+uyN
+uyN
+lpj
+arG
+arG
+arG
 "}
 (23,1,1) = {"
-a
-a
-a
-g
-k
-k
-x
-k
-k
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+uyN
+uyN
+bTb
+uyN
+uyN
+lpj
+arG
+arG
+arG
 "}
 (24,1,1) = {"
-a
-a
-a
-g
-n
-g
-g
-g
-n
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+xhY
+lpj
+lpj
+lpj
+xhY
+lpj
+arG
+arG
+arG
 "}
 (25,1,1) = {"
-a
-a
-a
-g
-p
-p
-y
-p
-p
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+uiJ
+uiJ
+qPP
+uiJ
+uiJ
+lpj
+arG
+arG
+arG
 "}
 (26,1,1) = {"
-a
-a
-a
-g
-p
-u
-u
-u
-p
-g
-a
-a
-a
+arG
+arG
+arG
+lpj
+uiJ
+ygS
+ygS
+ygS
+uiJ
+lpj
+arG
+arG
+arG
 "}
 (27,1,1) = {"
-a
-a
-a
-i
-g
-v
-v
-v
-g
-i
-a
-a
-a
+arG
+arG
+arG
+lSw
+lpj
+lld
+lld
+lld
+lpj
+lSw
+arG
+arG
+arG
 "}
 (28,1,1) = {"
-a
-a
-a
-a
-i
-a
-a
-a
-i
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+lSw
+arG
+arG
+arG
+lSw
+arG
+arG
+arG
+arG
 "}

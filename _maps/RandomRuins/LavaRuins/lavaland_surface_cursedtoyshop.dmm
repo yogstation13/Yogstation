@@ -1,1156 +1,431 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/closed/wall/mineral/wood,
-/area/ruin/powered)
-"ab" = (
-/obj/structure/table/wood,
-/obj/item/gun/ballistic/automatic/toy/pistol,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ac" = (
-/obj/structure/table/wood,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ad" = (
-/obj/structure/table/wood,
-/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ae" = (
-/obj/structure/table/wood,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"af" = (
-/obj/structure/table/wood,
-/obj/item/gun/ballistic/automatic/toy,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ag" = (
-/obj/structure/table/wood,
-/obj/item/toy/ammo/gun,
-/obj/item/toy/ammo/gun,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ah" = (
-/obj/machinery/vending/clothing,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"ai" = (
-/obj/machinery/vending/gifts,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"aj" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/gas/clown_hat,
-/obj/item/clothing/shoes/clown_shoes,
-/obj/item/clothing/under/rank/clown,
-/obj/item/storage/backpack/clown,
-/obj/item/clothing/gloves/color/rainbow/clown,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ak" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/hooded/bloated_human,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"al" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/hooded/ian_costume,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"am" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/monkeysuit,
-/obj/item/clothing/mask/gas/monkeymask,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"an" = (
-/obj/structure/table/wood,
-/obj/item/gun/ballistic/shotgun/toy,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ao" = (
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"ap" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/imperium_monk,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aq" = (
-/obj/structure/table/wood,
-/obj/item/ammo_box/foambox/riot,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ar" = (
-/obj/structure/table/wood,
-/obj/item/toy/sword{
-	pixel_y = 9
-	},
-/obj/item/toy/sword{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/item/toy/sword,
-/obj/item/melee/transforming/energy/sword/bananium{
-	pixel_x = 6;
-	pixel_y = 12
-	},
-/obj/item/toy/sword{
-	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up.";
-	name = "toy sword"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"as" = (
-/obj/structure/table/wood,
-/obj/item/toy/talking/griffin{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/toy/talking/owl{
-	pixel_x = 5;
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"at" = (
-/obj/structure/table/wood,
-/obj/item/grenade/smokebomb{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/grenade/smokebomb{
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/grenade/smokebomb{
-	pixel_x = -5
-	},
-/obj/item/grenade/smokebomb,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"au" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"av" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/wizrobe,
-/obj/item/clothing/head/wizard,
-/obj/item/clothing/shoes/sandal,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aw" = (
-/obj/structure/rack,
-/obj/item/clothing/shoes/roman,
-/obj/item/clothing/under/roman,
-/obj/item/clothing/head/helmet/roman,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ax" = (
-/obj/structure/table/wood,
-/obj/item/toy/talking/codex_gigas,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ay" = (
-/obj/structure/table/wood,
-/obj/item/toy/talking/figure/jexp,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"az" = (
-/obj/structure/table/wood,
-/obj/item/toy/gun,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aA" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/poncho,
-/obj/item/clothing/suit/poncho/green,
-/obj/item/clothing/suit/poncho/red,
-/obj/item/clothing/suit/poncho/ponchoshame,
-/obj/item/clothing/head/sombrero,
-/obj/item/clothing/head/sombrero/green,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aB" = (
-/obj/machinery/light,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"aC" = (
-/obj/machinery/vending/magivend,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"aD" = (
-/obj/structure/rack,
-/obj/item/clothing/head/rice_hat,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aE" = (
-/obj/structure/rack,
-/obj/item/clothing/head/santa,
-/obj/item/storage/backpack/santabag,
-/obj/item/clothing/suit/wizrobe/santa,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aF" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/hooded/bee_costume,
-/obj/item/clothing/mask/rat/bee,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aG" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/xenos,
-/obj/item/clothing/head/xenos,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aH" = (
-/obj/structure/table/wood,
-/obj/item/toy/toyballoon{
-	pixel_x = -6
-	},
-/obj/item/toy/toyballoon,
-/obj/item/toy/toyballoon{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/toy/toyballoon{
-	pixel_x = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aI" = (
-/obj/structure/table/wood,
-/obj/item/gun/magic/wand,
-/obj/item/gun/magic/wand{
-	pixel_x = 6
-	},
-/obj/item/gun/magic/wand/fireball/inert{
-	desc = "It's not just a stick, it's a MAGIC stick!";
-	icon_state = "nothingwand";
-	name = "wand of nothing";
-	pixel_x = -6
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aJ" = (
-/obj/structure/table/wood,
-/obj/item/toy/xmas_cracker{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/toy/xmas_cracker,
-/obj/item/toy/xmas_cracker{
-	pixel_x = 6
-	},
-/obj/item/toy/xmas_cracker{
-	pixel_x = -6
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aK" = (
-/obj/structure/table/wood,
-/obj/item/clothing/gloves/boxing,
-/obj/item/clothing/gloves/boxing{
-	pixel_x = -5
-	},
-/obj/item/clothing/gloves/boxing/yellow{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aL" = (
-/obj/structure/table/wood,
-/obj/item/clothing/gloves/boxing/green{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/clothing/gloves/boxing/green,
-/obj/item/clothing/gloves/boxing/blue{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aM" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/assistant,
-/obj/item/toy/figure/bartender{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/obj/item/toy/figure/botanist{
-	pixel_y = 6
-	},
-/obj/item/toy/figure/chaplain{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/obj/item/toy/figure/chef{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/toy/figure/janitor{
-	pixel_x = -5
-	},
-/obj/item/toy/figure/curator{
-	pixel_x = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aN" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/atmos{
-	pixel_x = -7
-	},
-/obj/item/toy/figure/ce,
-/obj/item/toy/figure/engineer{
-	pixel_x = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aO" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/borg{
-	pixel_x = 5
-	},
-/obj/item/toy/talking/AI{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aP" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/detective{
-	pixel_y = 7
-	},
-/obj/item/toy/figure/hos{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/toy/figure/lawyer{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/toy/figure/secofficer{
-	pixel_x = -5
-	},
-/obj/item/toy/figure/warden{
-	pixel_x = 5
-	},
-/obj/item/toy/figure/captain,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aQ" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
-	},
-/area/ruin/powered)
-"aR" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"aS" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"aT" = (
-/obj/structure/table/wood,
-/obj/structure/table/wood,
-/obj/item/toy/heartballoon,
-/obj/item/toy/heartballoon{
-	pixel_x = -2;
-	pixel_y = 9
-	},
-/obj/item/toy/heartballoon{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/heartballoon{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/toy/heartballoon{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aU" = (
-/obj/structure/table/wood,
-/obj/item/toy/nuke,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"aW" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/cargotech{
-	pixel_y = 7
-	},
-/obj/item/toy/figure/miner{
-	pixel_x = -5
-	},
-/obj/item/toy/figure/qm{
-	pixel_x = 5
-	},
-/obj/item/toy/figure/hop,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aX" = (
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aY" = (
-/obj/structure/table/wood,
-/obj/item/toy/toygrenade,
-/obj/item/toy/toygrenade{
-	pixel_x = 6
-	},
-/obj/item/toy/toygrenade{
-	pixel_x = 4;
-	pixel_y = 11
-	},
-/obj/item/toy/toygrenade{
-	pixel_y = 7
-	},
-/obj/item/toy/toygrenade{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"aZ" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/chemist{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/toy/figure/md{
-	pixel_y = 6
-	},
-/obj/item/toy/figure/virologist{
-	pixel_x = -5
-	},
-/obj/item/toy/figure/geneticist{
-	pixel_x = 5
-	},
-/obj/item/toy/figure/cmo,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"ba" = (
-/obj/structure/table/wood,
-/obj/item/toy/syndicateballoon{
-	pixel_x = -6
-	},
-/obj/item/toy/syndicateballoon{
-	pixel_x = 5
-	},
-/obj/item/toy/syndicateballoon,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bb" = (
-/obj/structure/table/wood,
-/obj/item/twohanded/dualsaber/toy,
-/obj/item/toy/katana{
-	pixel_x = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bc" = (
-/obj/structure/table/wood,
-/obj/item/toy/snappop,
-/obj/item/toy/snappop{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/item/toy/snappop{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/toy/snappop{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bd" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/clown{
-	pixel_x = -4;
-	pixel_y = 6
-	},
-/obj/item/toy/figure/ian{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/toy/figure/mime,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"be" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/syndie{
-	pixel_y = 3
-	},
-/obj/item/toy/figure/wizard{
-	pixel_x = 7
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bf" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/rd{
-	pixel_x = -5
-	},
-/obj/item/toy/figure/roboticist,
-/obj/item/toy/figure/scientist{
-	pixel_x = 5
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bg" = (
-/obj/structure/table/wood,
-/obj/item/toy/figure/dsquad{
-	pixel_x = 5
-	},
-/obj/item/toy/figure/ninja,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bh" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/ruin/powered)
-"bi" = (
-/obj/structure/table/wood,
-/obj/item/toy/spinningtoy,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bj" = (
-/obj/structure/table/wood,
-/obj/item/clothing/mask/facehugger/toy{
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bk" = (
-/obj/structure/table/wood,
-/obj/item/toy/minimeteor,
-/obj/item/toy/minimeteor{
-	pixel_x = -6;
-	pixel_y = -5
-	},
-/obj/item/toy/minimeteor{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/item/toy/minimeteor{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/toy/minimeteor,
-/obj/item/toy/minimeteor{
-	pixel_x = 7;
-	pixel_y = -5
-	},
-/obj/item/toy/minimeteor{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bl" = (
-/obj/machinery/newscaster,
-/turf/closed/wall/mineral/wood,
-/area/ruin/powered)
-"bm" = (
-/obj/machinery/vending/wallmed{
-	name = "Emergency NanoMed";
-	req_access_txt = "0";
-	use_power = 0
-	},
-/turf/closed/wall/mineral/wood,
-/area/ruin/powered)
-"bn" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/ruin/powered)
-"bo" = (
-/obj/structure/table/wood,
-/obj/item/toy/plush/stuffedmonkey{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/toy/plush/stuffedmonkey,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bp" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"bq" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"br" = (
-/obj/structure/table/wood,
-/obj/item/clothing/mask/horsehead,
-/obj/item/clothing/mask/pig{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/clothing/mask/cowmask,
-/obj/item/clothing/mask/fakemoustache,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bs" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bt" = (
-/obj/machinery/door/window/southleft,
-/turf/open/floor/carpet,
-/area/ruin/powered)
-"bu" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/wood,
-/obj/item/toy/prize/fireripley{
-	pixel_x = -7;
-	pixel_y = 6
-	},
-/obj/item/toy/prize/ripley,
-/obj/item/toy/prize/deathripley,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bv" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/wood,
-/obj/item/toy/prize/honk{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/toy/prize/reticence,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bw" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/wood,
-/obj/item/toy/prize/odysseus,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bx" = (
-/obj/structure/table/wood,
-/obj/item/toy/prize/marauder{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/toy/prize/phazon{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/item/toy/prize/durand,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"by" = (
-/obj/structure/table/wood,
-/obj/item/banhammer,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bz" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
-/area/ruin/powered)
-"bA" = (
-/turf/open/floor/light,
-/area/ruin/powered)
-"bB" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/light,
-/area/ruin/powered)
-"bC" = (
-/obj/structure/table/wood,
-/obj/item/toy/prize/mauler{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/toy/prize/seraph{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/toy/prize/gygax{
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bD" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_y = 8
-	},
-/obj/item/pen,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bE" = (
-/obj/structure/table/wood,
-/obj/item/toy/redbutton,
-/obj/item/toy/redbutton,
-/obj/item/toy/redbutton,
-/obj/item/toy/redbutton,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/light,
-/area/ruin/powered)
-"bG" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bH" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -27;
-	pixel_y = 0
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bI" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/ruin/powered)
-"bJ" = (
-/obj/item/paper{
-	info = "A reminder that all Donksoft RIOT toys and foam darts are to be reboxed and returned due to a recent incident involving an assistant, a security guard and an open airlock.";
-	name = "LEGAL NOTICE!!"
-	},
-/mob/living/simple_animal/pet/cat/clown{
-	desc = "Has been living off of nothing but spaghetti since its master died. Poor cat!";
-	name = "Honkbottom"
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/powered)
-"bK" = (
-/obj/machinery/door/window/eastright,
-/turf/open/floor/light,
-/area/ruin/powered)
-"bL" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
-/area/ruin/powered)
-"bM" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bN" = (
-/obj/structure/table/wood,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/item/reagent_containers/food/snacks/spaghetti/copypasta,
-/obj/item/kitchen/fork,
-/turf/open/floor/wood,
-/area/ruin/powered)
-"bO" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/item/gun/ballistic/automatic/pistol,
-/obj/effect/mob_spawn/human/clown/corpse,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/wood,
-/area/ruin/powered)
+// This map has been converted using maphash
+"ase" = (/obj/machinery/newscaster,/turf/closed/wall/mineral/wood,/area/ruin/powered)
+"asj" = (/obj/structure/chair/office/dark{dir = 8},/obj/item/gun/ballistic/automatic/pistol,/obj/effect/mob_spawn/human/clown/corpse,/obj/effect/decal/cleanable/blood/old,/turf/open/floor/wood,/area/ruin/powered)
+"aye" = (/obj/structure/mineral_door/wood,/obj/structure/fans/tiny/invisible,/turf/open/floor/carpet,/area/ruin/powered)
+"aLH" = (/obj/structure/table/wood,/obj/item/clothing/mask/facehugger/toy{pixel_y = 7},/turf/open/floor/wood,/area/ruin/powered)
+"ceD" = (/obj/structure/table/wood,/obj/item/toy/talking/griffin{pixel_x = -5; pixel_y = 8},/obj/item/toy/talking/owl{pixel_x = 5; pixel_y = 8},/turf/open/floor/wood,/area/ruin/powered)
+"ceU" = (/obj/structure/table/wood,/obj/item/twohanded/dualsaber/toy,/obj/item/toy/katana{pixel_x = 6},/turf/open/floor/wood,/area/ruin/powered)
+"cuf" = (/obj/structure/rack,/obj/item/clothing/head/santa,/obj/item/storage/backpack/santabag,/obj/item/clothing/suit/wizrobe/santa,/turf/open/floor/wood,/area/ruin/powered)
+"cDl" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered)
+"cNK" = (/obj/structure/table/wood,/obj/item/toy/figure/assistant,/obj/item/toy/figure/bartender{pixel_x = 8; pixel_y = 5},/obj/item/toy/figure/botanist{pixel_y = 6},/obj/item/toy/figure/chaplain{pixel_x = 5; pixel_y = -6},/obj/item/toy/figure/chef{pixel_x = -5; pixel_y = 4},/obj/item/toy/figure/janitor{pixel_x = -5},/obj/item/toy/figure/curator{pixel_x = 5},/turf/open/floor/wood,/area/ruin/powered)
+"dar" = (/obj/structure/table/wood,/obj/machinery/light/small{dir = 8},/obj/item/reagent_containers/food/snacks/spaghetti/copypasta,/obj/item/kitchen/fork,/turf/open/floor/wood,/area/ruin/powered)
+"dmw" = (/turf/open/floor/wood{icon_state = "wood-broken4"},/area/ruin/powered)
+"dpc" = (/obj/structure/table/wood,/obj/item/clothing/gloves/boxing,/obj/item/clothing/gloves/boxing{pixel_x = -5},/obj/item/clothing/gloves/boxing/yellow{pixel_x = 3; pixel_y = 6},/turf/open/floor/wood,/area/ruin/powered)
+"duk" = (/obj/structure/rack,/obj/item/clothing/suit/monkeysuit,/obj/item/clothing/mask/gas/monkeymask,/turf/open/floor/wood,/area/ruin/powered)
+"dFu" = (/obj/machinery/light{dir = 8},/turf/open/floor/carpet,/area/ruin/powered)
+"dQr" = (/obj/structure/table/wood,/obj/item/gun/ballistic/automatic/toy/pistol,/turf/open/floor/wood,/area/ruin/powered)
+"dSX" = (/obj/structure/table/wood,/obj/item/toy/redbutton,/obj/item/toy/redbutton,/obj/item/toy/redbutton,/obj/item/toy/redbutton,/turf/open/floor/wood,/area/ruin/powered)
+"eeJ" = (/obj/structure/table/wood,/obj/structure/table/wood,/obj/item/toy/heartballoon,/obj/item/toy/heartballoon{pixel_x = -2; pixel_y = 9},/obj/item/toy/heartballoon{pixel_x = -6; pixel_y = 5},/obj/item/toy/heartballoon{pixel_x = 2; pixel_y = 4},/obj/item/toy/heartballoon{pixel_x = 4; pixel_y = 4},/obj/machinery/light{dir = 8},/turf/open/floor/wood,/area/ruin/powered)
+"ezF" = (/obj/machinery/vending/magivend,/turf/open/floor/carpet,/area/ruin/powered)
+"eBk" = (/obj/structure/table/wood,/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted,/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/ruin/powered)
+"eKE" = (/obj/structure/window/reinforced,/obj/structure/table/wood,/obj/item/toy/prize/odysseus,/turf/open/floor/wood,/area/ruin/powered)
+"eNq" = (/obj/structure/table/wood,/obj/item/toy/plush/stuffedmonkey{pixel_x = 6; pixel_y = 4},/obj/item/toy/plush/stuffedmonkey,/turf/open/floor/wood,/area/ruin/powered)
+"fAm" = (/obj/structure/rack,/obj/item/clothing/suit/hooded/bloated_human,/turf/open/floor/wood,/area/ruin/powered)
+"goh" = (/obj/structure/rack,/obj/item/clothing/suit/hooded/ian_costume,/turf/open/floor/wood,/area/ruin/powered)
+"gRn" = (/obj/structure/table/wood,/obj/item/gun/ballistic/automatic/toy,/turf/open/floor/wood,/area/ruin/powered)
+"hpo" = (/obj/structure/rack,/obj/item/clothing/suit/xenos,/obj/item/clothing/head/xenos,/turf/open/floor/wood,/area/ruin/powered)
+"hth" = (/obj/structure/table/wood,/obj/item/toy/prize/mauler{pixel_x = -5; pixel_y = 6},/obj/item/toy/prize/seraph{pixel_x = 4; pixel_y = 5},/obj/item/toy/prize/gygax{pixel_y = 7},/turf/open/floor/wood,/area/ruin/powered)
+"hBi" = (/obj/structure/rack,/obj/item/clothing/suit/poncho,/obj/item/clothing/suit/poncho/green,/obj/item/clothing/suit/poncho/red,/obj/item/clothing/suit/poncho/ponchoshame,/obj/item/clothing/head/sombrero,/obj/item/clothing/head/sombrero/green,/turf/open/floor/wood,/area/ruin/powered)
+"hCI" = (/turf/open/floor/wood{icon_state = "wood-broken3"},/area/ruin/powered)
+"icL" = (/turf/open/floor/light,/area/ruin/powered)
+"iun" = (/turf/closed/wall/mineral/wood,/area/ruin/powered)
+"iDI" = (/obj/structure/table/wood,/obj/item/toy/nuke,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/open/floor/wood,/area/ruin/powered)
+"iSg" = (/obj/structure/table/wood,/obj/item/toy/figure/borg{pixel_x = 5},/obj/item/toy/talking/AI{pixel_x = -5; pixel_y = 4},/turf/open/floor/wood,/area/ruin/powered)
+"jBe" = (/obj/machinery/door/window/eastright,/turf/open/floor/light,/area/ruin/powered)
+"jJm" = (/obj/structure/table/wood,/obj/item/toy/figure/syndie{pixel_y = 3},/obj/item/toy/figure/wizard{pixel_x = 7},/turf/open/floor/wood,/area/ruin/powered)
+"keY" = (/obj/structure/table/wood,/obj/item/toy/xmas_cracker{pixel_x = 3; pixel_y = 6},/obj/item/toy/xmas_cracker,/obj/item/toy/xmas_cracker{pixel_x = 6},/obj/item/toy/xmas_cracker{pixel_x = -6},/turf/open/floor/wood,/area/ruin/powered)
+"kjP" = (/obj/structure/table/wood,/obj/item/toy/figure/clown{pixel_x = -4; pixel_y = 6},/obj/item/toy/figure/ian{pixel_x = 5; pixel_y = 3},/obj/item/toy/figure/mime,/turf/open/floor/wood,/area/ruin/powered)
+"kJm" = (/obj/structure/table/wood,/obj/item/toy/snappop,/obj/item/toy/snappop{pixel_x = 1; pixel_y = 7},/obj/item/toy/snappop{pixel_x = 5; pixel_y = 3},/obj/item/toy/snappop{pixel_x = -6; pixel_y = 7},/turf/open/floor/wood,/area/ruin/powered)
+"kKC" = (/turf/open/floor/carpet,/area/ruin/powered)
+"kMK" = (/obj/structure/window/reinforced,/obj/structure/table/wood,/obj/item/toy/prize/fireripley{pixel_x = -7; pixel_y = 6},/obj/item/toy/prize/ripley,/obj/item/toy/prize/deathripley,/turf/open/floor/wood,/area/ruin/powered)
+"kPw" = (/obj/structure/table/wood,/obj/item/toy/talking/codex_gigas,/turf/open/floor/wood,/area/ruin/powered)
+"lGK" = (/obj/structure/table/wood,/obj/item/toy/sword{pixel_y = 9},/obj/item/toy/sword{pixel_x = 6; pixel_y = 7},/obj/item/toy/sword,/obj/item/melee/transforming/energy/sword/bananium{pixel_x = 6; pixel_y = 12},/obj/item/toy/sword{desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."; name = "toy sword"},/turf/open/floor/wood,/area/ruin/powered)
+"lIc" = (/obj/machinery/light{dir = 8},/turf/open/floor/light,/area/ruin/powered)
+"miz" = (/obj/structure/mineral_door/wood,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood,/area/ruin/powered)
+"mpn" = (/obj/structure/table/wood,/obj/item/toy/syndicateballoon{pixel_x = -6},/obj/item/toy/syndicateballoon{pixel_x = 5},/obj/item/toy/syndicateballoon,/turf/open/floor/wood,/area/ruin/powered)
+"mAw" = (/obj/structure/rack,/obj/item/clothing/suit/imperium_monk,/turf/open/floor/wood,/area/ruin/powered)
+"mDj" = (/obj/machinery/light{dir = 1},/turf/open/floor/carpet,/area/ruin/powered)
+"mZy" = (/obj/structure/window/reinforced,/obj/structure/table/wood,/obj/item/toy/prize/honk{pixel_x = 4; pixel_y = 6},/obj/item/toy/prize/reticence,/turf/open/floor/wood,/area/ruin/powered)
+"nwI" = (/obj/structure/table/wood,/obj/item/toy/figure/chemist{pixel_x = -6; pixel_y = 5},/obj/item/toy/figure/md{pixel_y = 6},/obj/item/toy/figure/virologist{pixel_x = -5},/obj/item/toy/figure/geneticist{pixel_x = 5},/obj/item/toy/figure/cmo,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/open/floor/wood,/area/ruin/powered)
+"nAf" = (/obj/structure/rack,/obj/item/clothing/suit/wizrobe,/obj/item/clothing/head/wizard,/obj/item/clothing/shoes/sandal,/turf/open/floor/wood,/area/ruin/powered)
+"nLX" = (/obj/structure/table/wood,/obj/item/toy/gun,/turf/open/floor/wood,/area/ruin/powered)
+"ozV" = (/obj/machinery/vending/gifts,/turf/open/floor/carpet,/area/ruin/powered)
+"oAR" = (/turf/open/floor/wood{icon_state = "wood-broken6"},/area/ruin/powered)
+"oFq" = (/obj/structure/rack,/obj/item/clothing/head/rice_hat,/turf/open/floor/wood,/area/ruin/powered)
+"oLJ" = (/obj/machinery/vending/wallmed{name = "Emergency NanoMed"; req_access_txt = "0"; use_power = 0},/turf/closed/wall/mineral/wood,/area/ruin/powered)
+"oWn" = (/obj/structure/table/wood,/obj/item/toy/figure/atmos{pixel_x = -7},/obj/item/toy/figure/ce,/obj/item/toy/figure/engineer{pixel_x = 5},/turf/open/floor/wood,/area/ruin/powered)
+"pct" = (/obj/structure/table/wood,/obj/item/toy/toygrenade,/obj/item/toy/toygrenade{pixel_x = 6},/obj/item/toy/toygrenade{pixel_x = 4; pixel_y = 11},/obj/item/toy/toygrenade{pixel_y = 7},/obj/item/toy/toygrenade{pixel_x = -4; pixel_y = 4},/turf/open/floor/wood,/area/ruin/powered)
+"ptG" = (/obj/structure/rack,/obj/item/clothing/mask/gas/clown_hat,/obj/item/clothing/shoes/clown_shoes,/obj/item/clothing/under/rank/clown,/obj/item/storage/backpack/clown,/obj/item/clothing/gloves/color/rainbow/clown,/turf/open/floor/wood,/area/ruin/powered)
+"puM" = (/obj/structure/table/wood,/obj/item/ammo_box/magazine/toy/pistol/riot,/obj/item/ammo_box/magazine/toy/pistol/riot,/obj/item/ammo_box/magazine/toy/pistol/riot,/turf/open/floor/wood,/area/ruin/powered)
+"pOE" = (/obj/structure/table/wood,/obj/item/ammo_box/foambox/riot,/turf/open/floor/wood,/area/ruin/powered)
+"pOS" = (/obj/structure/table/wood,/obj/item/clothing/mask/horsehead,/obj/item/clothing/mask/pig{pixel_x = -5; pixel_y = 3},/obj/item/clothing/mask/cowmask,/obj/item/clothing/mask/fakemoustache,/turf/open/floor/wood,/area/ruin/powered)
+"pXu" = (/obj/structure/table/wood,/obj/item/clothing/gloves/boxing/green{pixel_x = -8; pixel_y = 4},/obj/item/clothing/gloves/boxing/green,/obj/item/clothing/gloves/boxing/blue{pixel_x = 6; pixel_y = 4},/turf/open/floor/wood,/area/ruin/powered)
+"qaw" = (/obj/machinery/light{dir = 1},/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/ruin/powered)
+"qeE" = (/obj/structure/table/wood,/obj/item/toy/minimeteor,/obj/item/toy/minimeteor{pixel_x = -6; pixel_y = -5},/obj/item/toy/minimeteor{pixel_x = -9; pixel_y = 6},/obj/item/toy/minimeteor{pixel_x = 4; pixel_y = 2},/obj/item/toy/minimeteor,/obj/item/toy/minimeteor{pixel_x = 7; pixel_y = -5},/obj/item/toy/minimeteor{pixel_x = 6; pixel_y = 4},/turf/open/floor/wood,/area/ruin/powered)
+"qjw" = (/obj/structure/table/wood,/obj/item/gun/magic/wand,/obj/item/gun/magic/wand{pixel_x = 6},/obj/item/gun/magic/wand/fireball/inert{desc = "It's not just a stick, it's a MAGIC stick!"; icon_state = "nothingwand"; name = "wand of nothing"; pixel_x = -6},/turf/open/floor/wood,/area/ruin/powered)
+"qmy" = (/obj/structure/table/wood,/obj/item/toy/figure/cargotech{pixel_y = 7},/obj/item/toy/figure/miner{pixel_x = -5},/obj/item/toy/figure/qm{pixel_x = 5},/obj/item/toy/figure/hop,/turf/open/floor/wood,/area/ruin/powered)
+"qnd" = (/obj/structure/table/wood,/obj/item/toy/spinningtoy,/turf/open/floor/wood,/area/ruin/powered)
+"qQy" = (/obj/structure/chair/office/dark{dir = 1},/obj/structure/noticeboard{dir = 4; pixel_x = -27; pixel_y = 0},/turf/open/floor/wood,/area/ruin/powered)
+"rba" = (/obj/structure/table/wood,/obj/item/grenade/smokebomb{pixel_x = 6; pixel_y = 5},/obj/item/grenade/smokebomb{pixel_x = -6; pixel_y = 8},/obj/item/grenade/smokebomb{pixel_x = -5},/obj/item/grenade/smokebomb,/turf/open/floor/wood,/area/ruin/powered)
+"rgB" = (/obj/structure/table/wood,/obj/item/toy/ammo/gun,/obj/item/toy/ammo/gun,/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/ruin/powered)
+"rgX" = (/turf/open/floor/wood{icon_state = "wood-broken7"},/area/ruin/powered)
+"rBp" = (/turf/open/floor/wood,/area/ruin/powered)
+"rTc" = (/obj/structure/table/wood,/obj/item/paper_bin{pixel_y = 8},/obj/item/pen,/turf/open/floor/wood,/area/ruin/powered)
+"sdN" = (/obj/structure/window/reinforced{dir = 4},/turf/open/floor/light,/area/ruin/powered)
+"sBM" = (/obj/item/paper{info = "A reminder that all Donksoft RIOT toys and foam darts are to be reboxed and returned due to a recent incident involving an assistant, a security guard and an open airlock."; name = "LEGAL NOTICE!!"},/mob/living/simple_animal/pet/cat/clown{desc = "Has been living off of nothing but spaghetti since its master died. Poor cat!"; name = "Honkbottom"},/turf/open/floor/wood{icon_state = "wood-broken"},/area/ruin/powered)
+"sKt" = (/obj/structure/table/wood,/obj/item/toy/figure/rd{pixel_x = -5},/obj/item/toy/figure/roboticist,/obj/item/toy/figure/scientist{pixel_x = 5},/turf/open/floor/wood,/area/ruin/powered)
+"sND" = (/obj/structure/table/wood,/obj/item/banhammer,/turf/open/floor/wood,/area/ruin/powered)
+"tGY" = (/obj/machinery/light{dir = 8},/turf/open/floor/wood{icon_state = "wood-broken7"},/area/ruin/powered)
+"tRc" = (/obj/structure/rack,/obj/item/clothing/shoes/roman,/obj/item/clothing/under/roman,/obj/item/clothing/head/helmet/roman,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/open/floor/wood,/area/ruin/powered)
+"uei" = (/obj/structure/table/wood,/obj/item/toy/talking/figure/jexp,/turf/open/floor/wood,/area/ruin/powered)
+"uoj" = (/obj/machinery/vending/clothing,/turf/open/floor/carpet,/area/ruin/powered)
+"usI" = (/obj/machinery/door/window/southleft,/turf/open/floor/carpet,/area/ruin/powered)
+"uVM" = (/obj/structure/table/wood,/obj/item/gun/ballistic/shotgun/toy,/turf/open/floor/wood,/area/ruin/powered)
+"vfx" = (/turf/open/floor/wood{icon_state = "wood-broken5"},/area/ruin/powered)
+"vQj" = (/obj/structure/rack,/obj/item/clothing/suit/hooded/bee_costume,/obj/item/clothing/mask/rat/bee,/turf/open/floor/wood,/area/ruin/powered)
+"whL" = (/obj/structure/table/wood,/obj/item/toy/figure/dsquad{pixel_x = 5},/obj/item/toy/figure/ninja,/turf/open/floor/wood,/area/ruin/powered)
+"woU" = (/obj/structure/table/wood,/obj/item/toy/figure/detective{pixel_y = 7},/obj/item/toy/figure/hos{pixel_x = 6; pixel_y = 5},/obj/item/toy/figure/lawyer{pixel_x = -7; pixel_y = 4},/obj/item/toy/figure/secofficer{pixel_x = -5},/obj/item/toy/figure/warden{pixel_x = 5},/obj/item/toy/figure/captain,/turf/open/floor/wood,/area/ruin/powered)
+"wpy" = (/obj/structure/table/wood,/turf/open/floor/wood,/area/ruin/powered)
+"wZQ" = (/obj/structure/table/wood,/obj/item/toy/toyballoon{pixel_x = -6},/obj/item/toy/toyballoon,/obj/item/toy/toyballoon{pixel_x = 6; pixel_y = 4},/obj/item/toy/toyballoon{pixel_x = 4},/turf/open/floor/wood,/area/ruin/powered)
+"xcn" = (/obj/machinery/light{dir = 8},/turf/open/floor/wood,/area/ruin/powered)
+"xwN" = (/obj/structure/table/wood,/obj/item/toy/prize/marauder{pixel_x = -6; pixel_y = 4},/obj/item/toy/prize/phazon{pixel_x = 6; pixel_y = 7},/obj/item/toy/prize/durand,/turf/open/floor/wood,/area/ruin/powered)
+"xGm" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/open/floor/wood,/area/ruin/powered)
+"xXj" = (/obj/machinery/light,/turf/open/floor/carpet,/area/ruin/powered)
+"ylk" = (/obj/structure/table/wood,/obj/item/ammo_box/magazine/toy/pistol/riot,/obj/item/ammo_box/magazine/toy/pistol/riot,/turf/open/floor/wood,/area/ruin/powered)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+iun
 "}
 (2,1,1) = {"
-aa
-ab
-an
-aq
-aq
-aq
-aa
-aH
-aT
-aY
-ba
-bi
-bo
-ao
-bt
-bA
-bF
-bA
-aa
+iun
+dQr
+uVM
+pOE
+pOE
+pOE
+iun
+wZQ
+eeJ
+pct
+mpn
+qnd
+eNq
+kKC
+usI
+icL
+lIc
+icL
+iun
 "}
 (3,1,1) = {"
-aa
-ac
-ao
-ao
-ao
-aB
-aa
-aI
-ao
-ao
-ao
-ao
-ao
-ao
-bu
-bA
-bA
-bA
-aa
+iun
+puM
+kKC
+kKC
+kKC
+xXj
+iun
+qjw
+kKC
+kKC
+kKC
+kKC
+kKC
+kKC
+kMK
+icL
+icL
+icL
+iun
 "}
 (4,1,1) = {"
-aa
-ad
-ao
-ao
-ao
-ao
-aa
-aJ
-ao
-ao
-ao
-ao
-ao
-ao
-bv
-bA
-bA
-bA
-aa
+iun
+eBk
+kKC
+kKC
+kKC
+kKC
+iun
+keY
+kKC
+kKC
+kKC
+kKC
+kKC
+kKC
+mZy
+icL
+icL
+icL
+iun
 "}
 (5,1,1) = {"
-aa
-ab
-ao
-ar
-ax
-ao
-au
-ao
-ao
-ao
-bb
-bj
-ao
-ao
-bw
-bB
-bB
-bK
-aa
+iun
+dQr
+kKC
+lGK
+kPw
+kKC
+aye
+kKC
+kKC
+kKC
+ceU
+aLH
+kKC
+kKC
+eKE
+sdN
+sdN
+jBe
+iun
 "}
 (6,1,1) = {"
-aa
-ae
-ao
-as
-ay
-ao
-aa
-aK
-ao
-ao
-ao
-ao
-ao
-ao
-bx
-bC
-bE
-ao
-aa
+iun
+ylk
+kKC
+ceD
+uei
+kKC
+iun
+dpc
+kKC
+kKC
+kKC
+kKC
+kKC
+kKC
+xwN
+hth
+dSX
+kKC
+iun
 "}
 (7,1,1) = {"
-aa
-af
-ao
-ao
-ao
-ao
-aa
-aL
-aU
-ao
-bc
-bk
-ao
-ao
-ao
-ao
-ao
-aB
-aa
+iun
+gRn
+kKC
+kKC
+kKC
+kKC
+iun
+pXu
+iDI
+kKC
+kJm
+qeE
+kKC
+kKC
+kKC
+kKC
+kKC
+xXj
+iun
 "}
 (8,1,1) = {"
-aa
-ag
-ao
-at
-az
-aB
-aa
-aa
-aa
-au
-aa
-aa
-ao
-br
-by
-ao
-ao
-ao
-aa
+iun
+rgB
+kKC
+rba
+nLX
+xXj
+iun
+iun
+iun
+aye
+iun
+iun
+kKC
+pOS
+sND
+kKC
+kKC
+kKC
+iun
 "}
 (9,1,1) = {"
-aa
-ah
-ao
-ao
-ao
-ao
-aa
-aM
-aV
-ao
-bd
-aa
-bp
-ao
-ao
-ao
-ao
-ao
-aa
+iun
+uoj
+kKC
+kKC
+kKC
+kKC
+iun
+cNK
+dFu
+kKC
+kjP
+iun
+mDj
+kKC
+kKC
+kKC
+kKC
+kKC
+iun
 "}
 (10,1,1) = {"
-aa
-ai
-ao
-ao
-ao
-aC
-aa
-aN
-ao
-ao
-be
-bl
-ao
-ao
-ao
-aa
-aa
-bq
-aa
+iun
+ozV
+kKC
+kKC
+kKC
+ezF
+iun
+oWn
+kKC
+kKC
+jJm
+ase
+kKC
+kKC
+kKC
+iun
+iun
+miz
+iun
 "}
 (11,1,1) = {"
-aa
-aa
-aa
-au
-aa
-aa
-aa
-aO
-ao
-ao
-bf
-bm
-ao
-ao
-ao
-bD
-bH
-bL
-aa
+iun
+iun
+iun
+aye
+iun
+iun
+iun
+iSg
+kKC
+kKC
+sKt
+oLJ
+kKC
+kKC
+kKC
+rTc
+qQy
+vfx
+iun
 "}
 (12,1,1) = {"
-aa
-aj
-ao
-ao
-ao
-aD
-aa
-aP
-aW
-aZ
-bg
-aa
-ao
-ao
-ao
-bG
-bI
-bM
-aa
+iun
+ptG
+kKC
+kKC
+kKC
+oFq
+iun
+woU
+qmy
+nwI
+whL
+iun
+kKC
+kKC
+kKC
+wpy
+oAR
+xGm
+iun
 "}
 (13,1,1) = {"
-aa
-ak
-ao
-av
-ao
-aE
-aa
-aa
-aa
-aa
-aa
-aa
-bq
-aa
-aa
-aa
-bq
-aa
-aa
+iun
+fAm
+kKC
+nAf
+kKC
+cuf
+iun
+iun
+iun
+iun
+iun
+iun
+miz
+iun
+iun
+iun
+miz
+iun
+iun
 "}
 (14,1,1) = {"
-aa
-al
-ao
-ao
-ao
-aF
-aa
-aQ
-aX
-aX
-aX
-bn
-aX
-bs
-bz
-aa
-aX
-bN
-aa
+iun
+goh
+kKC
+kKC
+kKC
+vQj
+iun
+dmw
+rBp
+rBp
+rBp
+tGY
+rBp
+xcn
+hCI
+iun
+rBp
+dar
+iun
 "}
 (15,1,1) = {"
-aa
-am
-ap
-aw
-aA
-aG
-aa
-aR
-aX
-aS
-bh
-aX
-aX
-aS
-aX
-aa
-bJ
-bO
-aa
+iun
+duk
+mAw
+tRc
+hBi
+hpo
+iun
+qaw
+rBp
+cDl
+rgX
+rBp
+rBp
+cDl
+rBp
+iun
+sBM
+asj
+iun
 "}
 (16,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aS
-aa
-aS
-aS
-aa
-aS
-aS
-aS
-aa
-aa
-aa
-aa
+iun
+iun
+iun
+iun
+iun
+iun
+iun
+cDl
+iun
+cDl
+cDl
+iun
+cDl
+cDl
+cDl
+iun
+iun
+iun
+iun
 "}

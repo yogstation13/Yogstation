@@ -1,797 +1,545 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/structure/shuttle/engine/propulsion/left{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"ac" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"ad" = (
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/transport)
-"af" = (
-/turf/closed/wall/r_wall,
-/area/shuttle/transport)
-"ag" = (
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"ai" = (
-/obj/machinery/vending/liberationstation,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aj" = (
-/obj/machinery/door/airlock/vault,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"ak" = (
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"al" = (
-/obj/machinery/computer/shuttle/ferry/request{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"am" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"an" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/vending/autodrobe,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"ao" = (
-/obj/structure/mirror/magic/badmin{
-	pixel_x = 30
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"ap" = (
-/turf/closed/wall,
-/area/shuttle/transport)
-"aq" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/vending/clothing,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"ar" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"as" = (
-/obj/structure/emergency_shield,
-/turf/open/floor/mineral/titanium/blue/airless,
-/area/shuttle/transport)
-"at" = (
-/obj/machinery/door/airlock,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"au" = (
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"av" = (
-/obj/machinery/door/airlock/wood,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"aw" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/transport)
-"az" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/shuttle/transport)
-"aB" = (
-/obj/structure/grille/broken,
-/obj/structure/window/fulltile,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aC" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"aD" = (
-/turf/open/floor/carpet,
-/area/shuttle/transport)
-"aE" = (
-/turf/open/floor/bluespace,
-/area/shuttle/transport)
-"aF" = (
-/obj/machinery/vending/sovietsoda,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aG" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aH" = (
-/obj/machinery/newscaster{
-	pixel_y = 30
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aI" = (
-/obj/structure/bed,
-/obj/item/bedsheet/wiz,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aJ" = (
-/obj/structure/chair/comfy/shuttle,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aK" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aL" = (
-/turf/closed/wall/rust,
-/area/shuttle/transport)
-"aM" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/transport)
-"aN" = (
-/obj/machinery/power/grounding_rod{
-	anchored = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aO" = (
-/obj/machinery/door/airlock/titanium,
-/obj/docking_port/mobile{
-	dir = 8;
-	dwidth = 8;
-	height = 27;
-	id = "ferry";
-	name = "The Lighthouse";
-	port_direction = 2;
-	width = 16
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aP" = (
-/obj/machinery/vending/magivend,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aQ" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aR" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"aS" = (
-/obj/structure/table/wood,
-/obj/item/toy/crayon/spraycan,
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"aT" = (
-/obj/structure/bed,
-/obj/item/bedsheet/centcom,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aU" = (
-/obj/structure/bed,
-/obj/item/bedsheet/rainbow,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aV" = (
-/obj/structure/closet/crate,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aW" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aX" = (
-/obj/structure/window/fulltile,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/transport)
-"aY" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/transport)
-"ba" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "garbage"
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bb" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "garbage";
-	layer = 2.5
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bc" = (
-/obj/structure/table/wood,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/vending_refill/snack,
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bd" = (
-/obj/item/twohanded/required/kirbyplants/dead{
-	desc = "It doesn't look very healthy...";
-	name = "potted plant"
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"be" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "garbage"
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bf" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "garbage"
-	},
-/obj/structure/plasticflaps,
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bg" = (
-/obj/machinery/conveyor/inverted{
-	dir = 10;
-	id = "garbage"
-	},
-/turf/open/floor/wood,
-/area/shuttle/transport)
-"bh" = (
-/obj/structure/foamedmetal,
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"bi" = (
-/obj/structure/shuttle/engine/heater,
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"bj" = (
-/obj/structure/shuttle/engine/propulsion/right,
-/turf/open/floor/plating/airless,
-/area/shuttle/transport)
-"Vs" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/transport)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"auC" = (/obj/structure/chair/office/dark{dir = 4},/turf/open/floor/wood,/area/shuttle/transport)
+"aMh" = (/obj/effect/spawner/structure/window/shuttle,/turf/closed/wall/mineral/titanium,/area/shuttle/transport)
+"aSY" = (/obj/structure/chair/comfy/shuttle,/turf/open/floor/wood,/area/shuttle/transport)
+"bfN" = (/obj/machinery/door/airlock,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"bkv" = (/obj/structure/table/wood,/obj/item/toy/crayon/spraycan,/turf/open/floor/wood,/area/shuttle/transport)
+"bJO" = (/turf/closed/wall/rust,/area/shuttle/transport)
+"bMc" = (/obj/machinery/conveyor{dir = 4; id = "garbage"},/turf/open/floor/wood,/area/shuttle/transport)
+"bTN" = (/obj/structure/foamedmetal,/turf/open/floor/plating/airless,/area/shuttle/transport)
+"ciP" = (/obj/machinery/power/grounding_rod{anchored = 1},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"dfG" = (/obj/structure/shuttle/engine/heater,/turf/open/floor/plating/airless,/area/shuttle/transport)
+"dti" = (/obj/item/twohanded/required/kirbyplants/dead{desc = "It doesn't look very healthy..."; name = "potted plant"},/turf/open/floor/wood,/area/shuttle/transport)
+"dHI" = (/obj/machinery/conveyor/inverted{dir = 10; id = "garbage"},/turf/open/floor/wood,/area/shuttle/transport)
+"epL" = (/turf/open/floor/carpet,/area/shuttle/transport)
+"eEr" = (/obj/structure/grille/broken,/turf/open/floor/plating/airless,/area/shuttle/transport)
+"eYW" = (/obj/structure/shuttle/engine/propulsion/left{dir = 4},/turf/open/floor/plating/airless,/area/shuttle/transport)
+"fPj" = (/turf/open/floor/plating/airless,/area/shuttle/transport)
+"geO" = (/obj/structure/shuttle/engine/heater{dir = 8},/turf/open/floor/plating/airless,/area/shuttle/transport)
+"gfP" = (/obj/machinery/conveyor{dir = 1; id = "garbage"},/turf/open/floor/wood,/area/shuttle/transport)
+"gla" = (/obj/structure/grille/broken,/obj/structure/window/fulltile,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"gEn" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/vending/autodrobe,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"gWC" = (/obj/structure/table/wood,/obj/item/flashlight/lamp/green,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"ibD" = (/turf/open/floor/wood,/area/shuttle/transport)
+"ixq" = (/obj/structure/bed,/obj/item/bedsheet/rainbow,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"iQR" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/vending/clothing,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"iSe" = (/obj/structure/bed,/obj/item/bedsheet/wiz,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"jHc" = (/obj/structure/shuttle/engine/propulsion/right,/turf/open/floor/plating/airless,/area/shuttle/transport)
+"jHA" = (/turf/closed/wall,/area/shuttle/transport)
+"jWa" = (/obj/structure/chair/comfy/shuttle,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"kMh" = (/obj/effect/spawner/structure/window/reinforced,/turf/closed/wall/mineral/titanium,/area/shuttle/transport)
+"kQN" = (/obj/machinery/newscaster{pixel_y = 30},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"kUe" = (/obj/machinery/computer/shuttle/ferry/request{dir = 8},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"lxR" = (/obj/machinery/vending/snack,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"mjk" = (/obj/machinery/conveyor{dir = 1; id = "garbage"; layer = 2.5},/turf/open/floor/wood,/area/shuttle/transport)
+"mwo" = (/obj/machinery/door/airlock/wood,/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/wood,/area/shuttle/transport)
+"nfl" = (/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"otA" = (/obj/machinery/vending/liberationstation,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"puu" = (/turf/closed/wall/mineral/titanium/nodiagonal,/area/shuttle/transport)
+"pGJ" = (/obj/structure/table/wood,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/shuttle/transport)
+"qhT" = (/obj/machinery/conveyor{dir = 4; id = "garbage"},/obj/structure/plasticflaps,/turf/open/floor/wood,/area/shuttle/transport)
+"qHx" = (/obj/effect/spawner/structure/window/shuttle,/obj/machinery/door/firedoor/border_only{dir = 4},/turf/open/floor/plating,/area/shuttle/transport)
+"qHN" = (/turf/closed/wall/mineral/titanium,/area/shuttle/transport)
+"qMi" = (/obj/structure/mirror/magic/badmin{pixel_x = 30},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"rmi" = (/obj/machinery/door/airlock/vault,/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating/airless,/area/shuttle/transport)
+"rtc" = (/obj/machinery/vending/sovietsoda,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"rxo" = (/turf/open/floor/bluespace,/area/shuttle/transport)
+"tvr" = (/obj/effect/spawner/structure/window,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"tJL" = (/obj/effect/spawner/structure/window/shuttle,/turf/open/floor/plating,/area/shuttle/transport)
+"tKW" = (/obj/structure/window/fulltile,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"uhk" = (/obj/structure/table/wood,/obj/structure/window/reinforced{dir = 4},/obj/item/vending_refill/snack,/turf/open/floor/wood,/area/shuttle/transport)
+"uwb" = (/obj/structure/closet/crate,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"vRr" = (/obj/structure/chair/comfy/shuttle{dir = 1},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"wBC" = (/obj/machinery/vending/magivend,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"wUF" = (/obj/machinery/door/airlock/titanium,/obj/docking_port/mobile{dir = 8; dwidth = 8; height = 27; id = "ferry"; name = "The Lighthouse"; port_direction = 2; width = 16},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"xZR" = (/obj/structure/bed,/obj/item/bedsheet/centcom,/turf/open/floor/mineral/titanium/blue,/area/shuttle/transport)
+"ydH" = (/turf/closed/wall/r_wall,/area/shuttle/transport)
+"ydP" = (/obj/structure/emergency_shield,/turf/open/floor/mineral/titanium/blue/airless,/area/shuttle/transport)
 
 (1,1,1) = {"
-aa
-af
-aa
-ag
-aa
-aa
-ag
-ag
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-aa
+arG
+ydH
+arG
+fPj
+arG
+arG
+fPj
+fPj
+arG
+arG
+arG
+arG
+arG
+arG
+eYW
+arG
 "}
 (2,1,1) = {"
-aa
-af
-af
-aj
-af
-af
-aa
-ag
-aa
-aa
-ab
-aa
-aa
-aa
-ac
-aa
+arG
+ydH
+ydH
+rmi
+ydH
+ydH
+arG
+fPj
+arG
+arG
+eYW
+arG
+arG
+arG
+geO
+arG
 "}
 (3,1,1) = {"
-ab
-af
-ag
-ag
-am
-af
-aa
-ag
-aa
-ag
-ac
-ag
-aa
-ag
-ag
-aa
+eYW
+ydH
+fPj
+fPj
+eEr
+ydH
+arG
+fPj
+arG
+fPj
+geO
+fPj
+arG
+fPj
+fPj
+arG
 "}
 (4,1,1) = {"
-ac
-af
-bh
-bh
-an
-aq
-as
-aB
-as
-as
-aX
-bh
-bh
-bh
-bi
-bj
+geO
+ydH
+bTN
+bTN
+gEn
+iQR
+ydP
+gla
+ydP
+ydP
+tKW
+bTN
+bTN
+bTN
+dfG
+jHc
 "}
 (5,1,1) = {"
-ad
-aM
-ai
-ak
-ao
-ak
-ak
-ak
-ak
-aP
-aX
-ba
-be
-bh
-bi
-bj
+qHN
+puu
+otA
+nfl
+qMi
+nfl
+nfl
+nfl
+nfl
+wBC
+tKW
+gfP
+bMc
+bTN
+dfG
+jHc
 "}
 (6,1,1) = {"
-aa
-ad
-aM
-al
-ap
-ap
-at
-ap
-aL
-aQ
-ap
-aL
-be
-bh
-aM
-ad
+arG
+qHN
+puu
+kUe
+jHA
+jHA
+bfN
+jHA
+bJO
+tvr
+jHA
+bJO
+bMc
+bTN
+puu
+qHN
 "}
 (7,1,1) = {"
-aa
-aa
-ad
-ad
-aM
-ar
-au
-au
-au
-au
-au
-aL
-bf
-aM
-ad
-aa
+arG
+arG
+qHN
+qHN
+puu
+aSY
+ibD
+ibD
+ibD
+ibD
+ibD
+bJO
+qhT
+puu
+qHN
+arG
 "}
 (8,1,1) = {"
-aa
-aa
-aa
-aa
-ad
-ar
-au
-au
-au
-aR
-au
-bb
-bg
-ad
-aa
-aa
+arG
+arG
+arG
+arG
+qHN
+aSY
+ibD
+ibD
+ibD
+auC
+ibD
+mjk
+dHI
+qHN
+arG
+arG
 "}
 (9,1,1) = {"
-aa
-aa
-aa
-aa
-ap
-ap
-av
-aC
-aC
-aS
-aC
-bc
-aM
-ad
-aa
-aa
+arG
+arG
+arG
+arG
+jHA
+jHA
+mwo
+pGJ
+pGJ
+bkv
+pGJ
+uhk
+puu
+qHN
+arG
+arG
 "}
 (10,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ap
-au
-aD
-aD
-aD
-aD
-bd
-ad
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+jHA
+ibD
+epL
+epL
+epL
+epL
+dti
+qHN
+arG
+arG
+arG
 "}
 (11,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ap
-ap
-aD
-aD
-aD
-aD
-aM
-ad
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+jHA
+jHA
+epL
+epL
+epL
+epL
+puu
+qHN
+arG
+arG
+arG
 "}
 (12,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ap
-aD
-aD
-aD
-aD
-ad
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+jHA
+epL
+epL
+epL
+epL
+qHN
+arG
+arG
+arG
+arG
 "}
 (13,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ap
-aE
-aN
-aE
-aM
-ad
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+jHA
+rxo
+ciP
+rxo
+puu
+qHN
+arG
+arG
+arG
+arG
 "}
 (14,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aw
-aE
-aN
-aE
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+aMh
+rxo
+ciP
+rxo
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (15,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aw
-aE
-aE
-aE
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+aMh
+rxo
+rxo
+rxo
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (16,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-ak
-aE
-ak
-aY
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+nfl
+rxo
+nfl
+kMh
+arG
+arG
+arG
+arG
+arG
 "}
 (17,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aF
-aE
-aT
-aw
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+rtc
+rxo
+xZR
+aMh
+arG
+arG
+arG
+arG
+arG
 "}
 (18,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aG
-aE
-aU
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+lxR
+rxo
+ixq
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (19,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aH
-aE
-aV
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+kQN
+rxo
+uwb
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (20,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-az
-aI
-aE
-aW
-az
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+tJL
+iSe
+rxo
+vRr
+tJL
+arG
+arG
+arG
+arG
+arG
 "}
 (21,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-ak
-aE
-aW
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+nfl
+rxo
+vRr
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (22,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aJ
-aE
-aW
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+jWa
+rxo
+vRr
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (23,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aJ
-aE
-aW
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+jWa
+rxo
+vRr
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (24,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-az
-aJ
-aE
-aW
-az
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+tJL
+jWa
+rxo
+vRr
+tJL
+arG
+arG
+arG
+arG
+arG
 "}
 (25,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aJ
-aE
-aW
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+jWa
+rxo
+vRr
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (26,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-aK
-aE
-aW
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+gWC
+rxo
+vRr
+qHN
+arG
+arG
+arG
+arG
+arG
 "}
 (27,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-Vs
-aO
-Vs
-ad
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+qHN
+qHx
+wUF
+qHx
+qHN
+arG
+arG
+arG
+arG
+arG
 "}

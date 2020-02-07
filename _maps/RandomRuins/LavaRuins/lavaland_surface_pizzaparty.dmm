@@ -1,651 +1,404 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"c" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"d" = (
-/turf/closed/wall,
-/area/ruin/unpowered)
-"e" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"f" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/cups,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"g" = (
-/obj/structure/reagent_dispensers/water_cooler{
-	name = "punch cooler";
-	reagent_id = /datum/reagent/consumable/ethanol/bacchus_blessing
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"h" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"i" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"j" = (
-/obj/item/reagent_containers/food/snacks/pizzaslice/mushroom,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"k" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"l" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"m" = (
-/obj/item/chair/wood/wings,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"n" = (
-/obj/structure/glowshroom/single,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"o" = (
-/obj/item/trash/plate,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"p" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"q" = (
-/obj/item/chair/wood/wings,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"r" = (
-/obj/structure/chair/wood/wings,
-/obj/effect/decal/remains/human,
-/obj/item/clothing/head/festive{
-	desc = "A festive party hat with the name 'timmy' scribbled on the front.";
-	name = "party hat"
-	},
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"s" = (
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"t" = (
-/obj/structure/chair/wood/wings,
-/obj/effect/decal/remains/human,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"u" = (
-/obj/structure/glowshroom/single,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"v" = (
-/obj/structure/lattice,
-/obj/item/chair/wood/wings,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"w" = (
-/obj/item/kitchen/fork,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"x" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/pizzaparty,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"y" = (
-/obj/structure/table/wood,
-/obj/item/trash/plate,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"z" = (
-/obj/structure/table/wood,
-/obj/structure/glowshroom/single,
-/obj/item/a_gift,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"A" = (
-/obj/structure/table/wood,
-/obj/item/trash/plate,
-/obj/item/kitchen/fork,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"C" = (
-/obj/structure/chair/wood/wings{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"D" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/pizzaslice/margherita,
-/obj/item/trash/plate,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"E" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/pizzaslice/meat,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"F" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/store/cake/birthday,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"G" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"H" = (
-/obj/item/chair/wood/wings,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"I" = (
-/obj/item/kitchen/fork,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"J" = (
-/obj/structure/glowshroom/single,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"K" = (
-/obj/structure/chair/wood/wings{
-	dir = 1
-	},
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"L" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"M" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/a_gift,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"N" = (
-/obj/structure/lattice,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"O" = (
-/obj/item/kitchen/knife,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"P" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
-"Q" = (
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"aoM" = (/obj/structure/chair/wood/wings,/obj/effect/decal/remains/human,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"arG" = (/turf/template_noop,/area/template_noop)
+"azk" = (/obj/item/kitchen/fork,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"buP" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/snacks/pizzaslice/margherita,/obj/item/trash/plate,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"bQt" = (/obj/effect/decal/remains/human,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"ccK" = (/obj/structure/glowshroom/single,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"chf" = (/turf/closed/wall,/area/ruin/unpowered)
+"cVs" = (/obj/structure/chair/wood/wings{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"dkF" = (/obj/effect/decal/cleanable/dirt,/obj/item/a_gift,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"dUN" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/snacks/store/cake/birthday,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"fwT" = (/obj/structure/table/wood,/obj/effect/spawner/lootdrop/pizzaparty,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"fGa" = (/obj/structure/lattice,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"gpA" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"hfw" = (/obj/item/reagent_containers/food/snacks/pizzaslice/mushroom,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"hAZ" = (/obj/item/kitchen/fork,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"izD" = (/obj/machinery/light{dir = 4},/obj/structure/table/wood,/obj/effect/spawner/lootdrop/pizzaparty,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/cobweb/cobweb2,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"iRR" = (/obj/item/chair/wood/wings,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"jrt" = (/obj/structure/lattice,/obj/item/chair/wood/wings,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"knD" = (/obj/item/trash/plate,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"kLY" = (/obj/structure/glowshroom/single,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"kTL" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"lHO" = (/obj/structure/chair/wood/wings{dir = 1},/obj/effect/decal/remains/human,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"lMu" = (/obj/structure/table/wood,/obj/effect/spawner/lootdrop/pizzaparty,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"lPr" = (/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"lQc" = (/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"meR" = (/obj/machinery/light{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"oTs" = (/obj/structure/lattice,/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
+"pZN" = (/obj/item/chair/wood/wings,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"qlY" = (/obj/item/chair/wood/wings,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"qIK" = (/obj/structure/reagent_dispensers/water_cooler{name = "punch cooler"; reagent_id = /datum/reagent/consumable/ethanol/bacchus_blessing},/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"qVz" = (/obj/structure/table/wood,/obj/item/trash/plate,/obj/item/kitchen/fork,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"rcR" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"sol" = (/obj/structure/table/wood,/obj/structure/glowshroom/single,/obj/item/a_gift,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"srK" = (/obj/structure/table/wood,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"stU" = (/obj/structure/table/wood,/obj/item/storage/box/cups,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"sYA" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/snacks/pizzaslice/meat,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"ubC" = (/obj/structure/glowshroom/single,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"uIz" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"uJj" = (/obj/structure/table/wood,/obj/item/trash/plate,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"uSG" = (/obj/item/kitchen/knife,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"wMh" = (/obj/structure/chair/wood/wings,/obj/effect/decal/remains/human,/obj/item/clothing/head/festive{desc = "A festive party hat with the name 'timmy' scribbled on the front."; name = "party hat"},/turf/open/floor/wood{initial_gas_mix = "o2=14;n2=23;TEMP=300"},/area/ruin/unpowered)
+"wUl" = (/turf/open/floor/plating/asteroid/basalt/lava_land_surface,/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
-a
-a
-b
-b
-a
-a
-b
-b
-b
-b
-b
-b
-b
-b
-a
-a
-a
-a
+arG
+arG
+wUl
+wUl
+arG
+arG
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-c
-c
-b
-b
-b
-b
-a
-a
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+oTs
+oTs
+wUl
+wUl
+wUl
+wUl
+arG
+arG
 "}
 (3,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-c
-c
-e
-e
-c
-c
-b
-b
-b
-a
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+oTs
+oTs
+gpA
+gpA
+oTs
+oTs
+wUl
+wUl
+wUl
+arG
 "}
 (4,1,1) = {"
-b
-b
-b
-b
-d
-b
-c
-c
-e
-h
-h
-e
-Q
-e
-d
-b
-b
-a
+wUl
+wUl
+wUl
+wUl
+chf
+wUl
+oTs
+oTs
+gpA
+rcR
+rcR
+gpA
+lQc
+gpA
+chf
+wUl
+wUl
+arG
 "}
 (5,1,1) = {"
-a
-b
-b
-b
-d
-b
-m
-e
-w
-h
-w
-h
-h
-e
-d
-b
-b
-b
+arG
+wUl
+wUl
+wUl
+chf
+wUl
+iRR
+gpA
+azk
+rcR
+azk
+rcR
+rcR
+gpA
+chf
+wUl
+wUl
+wUl
 "}
 (6,1,1) = {"
-a
-b
-b
-b
-d
-f
-n
-h
-h
-c
-e
-M
-e
-c
-b
-b
-b
-b
+arG
+wUl
+wUl
+wUl
+chf
+stU
+kLY
+rcR
+rcR
+oTs
+gpA
+dkF
+gpA
+oTs
+wUl
+wUl
+wUl
+wUl
 "}
 (7,1,1) = {"
-b
-b
-b
-b
-d
-g
-o
-h
-h
-C
-J
-h
-d
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+wUl
+chf
+qIK
+knD
+rcR
+rcR
+cVs
+ccK
+rcR
+chf
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (8,1,1) = {"
-b
-b
-b
-b
-e
-h
-p
-q
-x
-D
-K
-M
-d
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+wUl
+gpA
+rcR
+bQt
+pZN
+fwT
+buP
+lHO
+dkF
+chf
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (9,1,1) = {"
-b
-b
-b
-c
-e
-i
-h
-r
-y
-E
-h
-h
-c
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+oTs
+gpA
+kTL
+rcR
+wMh
+uJj
+sYA
+rcR
+rcR
+oTs
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (10,1,1) = {"
-b
-b
-b
-c
-e
-j
-h
-s
-z
-F
-q
-N
-c
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+oTs
+gpA
+hfw
+rcR
+lPr
+sol
+dUN
+pZN
+fGa
+oTs
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (11,1,1) = {"
-b
-b
-b
-b
-e
-e
-h
-t
-A
-G
-q
-h
-c
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+wUl
+gpA
+gpA
+rcR
+aoM
+qVz
+srK
+pZN
+rcR
+oTs
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (12,1,1) = {"
-b
-b
-b
-b
-d
-k
-h
-s
-s
-H
-h
-O
-d
-b
-b
-b
-b
-b
+wUl
+wUl
+wUl
+wUl
+chf
+lMu
+rcR
+lPr
+lPr
+qlY
+rcR
+uSG
+chf
+wUl
+wUl
+wUl
+wUl
+wUl
 "}
 (13,1,1) = {"
-b
-b
-b
-b
-d
-k
-h
-u
-s
-s
-o
-n
-d
-b
-b
-b
-b
-a
+wUl
+wUl
+wUl
+wUl
+chf
+lMu
+rcR
+ubC
+lPr
+lPr
+knD
+kLY
+chf
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (14,1,1) = {"
-b
-b
-b
-b
-d
-l
-i
-h
-e
-I
-L
-P
-d
-b
-b
-b
-b
-a
+wUl
+wUl
+wUl
+wUl
+chf
+izD
+kTL
+rcR
+gpA
+hAZ
+uIz
+meR
+chf
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (15,1,1) = {"
-b
-b
-b
-b
-d
-d
-e
-e
-N
-e
-e
-d
-d
-b
-b
-b
-b
-a
+wUl
+wUl
+wUl
+wUl
+chf
+chf
+gpA
+gpA
+fGa
+gpA
+gpA
+chf
+chf
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (16,1,1) = {"
-a
-b
-b
-b
-b
-b
-c
-v
-b
-c
-b
-b
-b
-b
-b
-b
-b
-a
+arG
+wUl
+wUl
+wUl
+wUl
+wUl
+oTs
+jrt
+wUl
+oTs
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+arG
 "}
 (17,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-a
-a
-a
+arG
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+arG
+arG
+arG
 "}
 (18,1,1) = {"
-a
-a
-a
-a
-b
-b
-b
-b
-b
-b
-b
-b
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+wUl
+arG
+arG
+arG
+arG
+arG
+arG
 "}

@@ -1,154 +1,77 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/machinery/porta_turret/syndicate/pod,
-/turf/closed/wall/mineral/plastitanium,
-/area/shuttle/assault_pod)
-"c" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"d" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/shuttle/assault_pod)
-"e" = (
-/obj/machinery/door/airlock/centcom{
-	aiControlDisabled = 1;
-	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
-	},
-/obj/docking_port/mobile/assault_pod{
-	dwidth = 3;
-	name = "steel rain";
-	port_direction = 4;
-	preferred_direction = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/assault_pod)
-"h" = (
-/obj/machinery/computer/shuttle/syndicate/drop_pod,
-/turf/closed/wall/mineral/plastitanium,
-/area/shuttle/assault_pod)
-"p" = (
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"t" = (
-/obj/machinery/door/airlock/centcom{
-	aiControlDisabled = 1;
-	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/assault_pod)
-"D" = (
-/obj/structure/chair/comfy/shuttle,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"H" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"L" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/assault_pod)
-"R" = (
-/obj/machinery/door/airlock/centcom{
-	name = "Assault Pod";
-	opacity = 1;
-	req_access_txt = "150"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/assault_pod)
-"V" = (
-/turf/template_noop,
-/area/template_noop)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"dol" = (/obj/machinery/computer/shuttle/syndicate/drop_pod,/turf/closed/wall/mineral/plastitanium,/area/shuttle/assault_pod)
+"fca" = (/obj/structure/chair/comfy/shuttle{dir = 4},/turf/open/floor/mineral/plastitanium/red,/area/shuttle/assault_pod)
+"fRW" = (/turf/closed/wall/mineral/plastitanium,/area/shuttle/assault_pod)
+"gIc" = (/obj/machinery/door/airlock/centcom{name = "Assault Pod"; opacity = 1; req_access_txt = "150"},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plating,/area/shuttle/assault_pod)
+"iVp" = (/obj/machinery/porta_turret/syndicate/pod,/turf/closed/wall/mineral/plastitanium,/area/shuttle/assault_pod)
+"kcd" = (/obj/machinery/door/airlock/centcom{aiControlDisabled = 1; name = "Assault Pod"; opacity = 1; req_access_txt = "150"},/obj/docking_port/mobile/assault_pod{dwidth = 3; name = "steel rain"; port_direction = 4; preferred_direction = 4},/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/open/floor/plating,/area/shuttle/assault_pod)
+"oVD" = (/obj/structure/chair/comfy/shuttle{dir = 1},/obj/machinery/light,/turf/open/floor/mineral/plastitanium/red,/area/shuttle/assault_pod)
+"tkC" = (/obj/machinery/door/airlock/centcom{aiControlDisabled = 1; name = "Assault Pod"; opacity = 1; req_access_txt = "150"},/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/turf/open/floor/plating,/area/shuttle/assault_pod)
+"wrP" = (/obj/structure/chair/comfy/shuttle,/obj/machinery/light{dir = 1},/turf/open/floor/mineral/plastitanium/red,/area/shuttle/assault_pod)
+"wIt" = (/turf/open/floor/mineral/plastitanium/red,/area/shuttle/assault_pod)
+"xCe" = (/obj/structure/chair/comfy/shuttle{dir = 8},/turf/open/floor/mineral/plastitanium/red,/area/shuttle/assault_pod)
 
 (1,1,1) = {"
-V
-b
-d
-t
-d
-b
-V
+arG
+iVp
+fRW
+tkC
+fRW
+iVp
+arG
 "}
 (2,1,1) = {"
-b
-d
-c
-p
-c
-d
-b
+iVp
+fRW
+fca
+wIt
+fca
+fRW
+iVp
 "}
 (3,1,1) = {"
-d
-c
-p
-H
-p
-c
-d
+fRW
+fca
+wIt
+xCe
+wIt
+fca
+fRW
 "}
 (4,1,1) = {"
-R
-p
-L
-h
-D
-p
-e
+gIc
+wIt
+oVD
+dol
+wrP
+wIt
+kcd
 "}
 (5,1,1) = {"
-d
-H
-p
-c
-p
-H
-d
+fRW
+xCe
+wIt
+fca
+wIt
+xCe
+fRW
 "}
 (6,1,1) = {"
-b
-d
-H
-p
-H
-d
-b
+iVp
+fRW
+xCe
+wIt
+xCe
+fRW
+iVp
 "}
 (7,1,1) = {"
-V
-b
-d
-t
-d
-b
-V
+arG
+iVp
+fRW
+tkC
+fRW
+iVp
+arG
 "}

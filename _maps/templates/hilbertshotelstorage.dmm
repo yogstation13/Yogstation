@@ -1,23 +1,19 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/indestructible/hotelwall,
-/area/hilbertshotelstorage)
-"b" = (
-/turf/open/indestructible/hotelwood,
-/area/hilbertshotelstorage)
+// This map has been converted using maphash
+"sjn" = (/turf/open/indestructible/hotelwood,/area/hilbertshotelstorage)
+"xXN" = (/turf/closed/indestructible/hotelwall,/area/hilbertshotelstorage)
 
 (1,1,1) = {"
-a
-a
-a
+xXN
+xXN
+xXN
 "}
 (2,1,1) = {"
-a
-b
-a
+xXN
+sjn
+xXN
 "}
 (3,1,1) = {"
-a
-a
-a
+xXN
+xXN
+xXN
 "}

@@ -1,317 +1,212 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/closed/wall/r_wall,
-/area/ruin/space/abandoned_tele)
-"c" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
-"d" = (
-/obj/structure/frame/computer,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"e" = (
-/obj/machinery/teleport/station,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"f" = (
-/obj/machinery/teleport/hub,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"g" = (
-/obj/item/shard{
-	icon_state = "medium"
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"h" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"i" = (
-/obj/structure/rack,
-/obj/item/clothing/gloves/color/yellow,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"j" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"k" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"l" = (
-/obj/item/stock_parts/cell,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"m" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"n" = (
-/obj/effect/decal/cleanable/robot_debris/old,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"o" = (
-/obj/effect/spawner/lootdrop/crate_spawner,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"p" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"q" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/flashlight,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"r" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/beacon,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"s" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"u" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"v" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"w" = (
-/obj/item/shard,
-/obj/item/electronics/apc,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"x" = (
-/obj/structure/closet,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"y" = (
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"z" = (
-/obj/structure/closet/crate,
-/obj/item/aicard,
-/obj/item/multitool,
-/obj/item/weldingtool,
-/obj/item/wrench,
-/obj/item/circuitboard/computer/teleporter,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"A" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"B" = (
-/obj/structure/girder,
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
-"O" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"bJJ" = (/obj/item/shard,/obj/item/electronics/apc,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"bRV" = (/obj/structure/frame/computer,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"cxN" = (/obj/effect/spawner/lootdrop/crate_spawner,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"cBt" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"dfZ" = (/obj/structure/girder,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"dWG" = (/obj/structure/rack,/obj/item/clothing/gloves/color/yellow,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"dZs" = (/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"esc" = (/obj/structure/lattice,/turf/template_noop,/area/space/nearstation)
+"fJD" = (/obj/machinery/teleport/hub,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"hzs" = (/obj/machinery/teleport/station,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"hMm" = (/obj/machinery/door/airlock/external,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"hMB" = (/obj/structure/closet,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"ixu" = (/obj/effect/spawner/structure/window/hollow/reinforced/end{dir = 4},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"jQV" = (/obj/item/stock_parts/cell,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"kbH" = (/obj/effect/decal/cleanable/dirt,/obj/item/beacon,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"phw" = (/obj/effect/decal/cleanable/robot_debris/old,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"psV" = (/obj/effect/decal/cleanable/dirt,/obj/item/flashlight,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"rOT" = (/obj/structure/closet/crate,/obj/item/aicard,/obj/item/multitool,/obj/item/weldingtool,/obj/item/wrench,/obj/item/circuitboard/computer/teleporter,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"sAi" = (/obj/effect/decal/cleanable/blood/old,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"sVT" = (/turf/closed/wall/r_wall,/area/ruin/space/abandoned_tele)
+"tHU" = (/obj/effect/decal/cleanable/oil,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"tOQ" = (/obj/effect/spawner/structure/window/hollow/reinforced/end{dir = 8},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"tUk" = (/obj/item/shard{icon_state = "medium"},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"uJC" = (/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"vFL" = (/obj/item/storage/toolbox/electrical{pixel_x = 1; pixel_y = -1},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"xjo" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
+"xHF" = (/obj/machinery/door/airlock/external,/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/turf/open/floor/plating/airless,/area/ruin/space/abandoned_tele)
 
 (1,1,1) = {"
-a
-a
-a
-a
-c
-a
-a
-a
-a
-a
-a
-a
+arG
+arG
+arG
+arG
+esc
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-a
-a
-c
-a
-c
-a
-c
-a
-a
-a
-a
-a
+arG
+arG
+esc
+arG
+esc
+arG
+esc
+arG
+arG
+arG
+arG
+arG
 "}
 (3,1,1) = {"
-a
-a
-c
-j
-p
-j
-c
-a
-a
-a
-a
-a
+arG
+arG
+esc
+tOQ
+xHF
+tOQ
+esc
+arG
+arG
+arG
+arG
+arG
 "}
 (4,1,1) = {"
-a
-c
-c
-k
-h
-k
-c
-c
-a
-a
-a
-a
+arG
+esc
+esc
+ixu
+uJC
+ixu
+esc
+esc
+arG
+arG
+arG
+arG
 "}
 (5,1,1) = {"
-a
-c
-b
-b
-O
-b
-b
-c
-a
-a
-a
-a
+arG
+esc
+sVT
+sVT
+hMm
+sVT
+sVT
+esc
+arG
+arG
+arG
+arG
 "}
 (6,1,1) = {"
-a
-b
-b
-h
-h
-s
-b
-b
-a
-a
-a
-a
+arG
+sVT
+sVT
+uJC
+uJC
+dZs
+sVT
+sVT
+arG
+arG
+arG
+arG
 "}
 (7,1,1) = {"
-b
-b
-g
-l
-q
-u
-h
-b
-b
-c
-a
-a
+sVT
+sVT
+tUk
+jQV
+psV
+sAi
+uJC
+sVT
+sVT
+esc
+arG
+arG
 "}
 (8,1,1) = {"
-b
-d
-h
-m
-n
-h
-h
-z
-b
-c
-c
-a
+sVT
+bRV
+uJC
+cBt
+phw
+uJC
+uJC
+rOT
+sVT
+esc
+esc
+arG
 "}
 (9,1,1) = {"
-b
-e
-h
-h
-r
-v
-m
-h
-c
-c
-a
-c
+sVT
+hzs
+uJC
+uJC
+kbH
+tHU
+cBt
+uJC
+esc
+esc
+arG
+esc
 "}
 (10,1,1) = {"
-b
-f
-h
-n
-h
-h
-h
-A
-h
-a
-a
-c
+sVT
+fJD
+uJC
+phw
+uJC
+uJC
+uJC
+xjo
+uJC
+arG
+arG
+esc
 "}
 (11,1,1) = {"
-b
-b
-i
-m
-h
-w
-y
-b
-B
-c
-a
-a
+sVT
+sVT
+dWG
+cBt
+uJC
+bJJ
+vFL
+sVT
+dfZ
+esc
+arG
+arG
 "}
 (12,1,1) = {"
-c
-b
-b
-o
-s
-x
-b
-b
-c
-a
-a
-a
+esc
+sVT
+sVT
+cxN
+dZs
+hMB
+sVT
+sVT
+esc
+arG
+arG
+arG
 "}
 (13,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-a
-a
-a
-a
-a
+arG
+arG
+sVT
+sVT
+sVT
+sVT
+sVT
+arG
+arG
+arG
+arG
+arG
 "}

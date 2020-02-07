@@ -1,833 +1,515 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/ruin/space/djstation/solars)
-"ac" = (
-/obj/machinery/power/solar/fake,
-/turf/open/floor/plasteel/airless/solarpanel,
-/area/ruin/space/djstation/solars)
-"ad" = (
-/turf/open/floor/plating/airless,
-/area/ruin/space/djstation/solars)
-"ae" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
-"af" = (
-/turf/closed/wall,
-/area/ruin/space/djstation)
-"ag" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ah" = (
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ai" = (
-/obj/machinery/telecomms/relay/preset/ruskie,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"aj" = (
-/obj/machinery/power/terminal,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ak" = (
-/obj/item/multitool,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"al" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"am" = (
-/obj/item/extinguisher,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"an" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/smes/magical{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit.";
-	name = "power storage unit"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ao" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ap" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	name = "Worn-out APC";
-	pixel_y = -23
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"aq" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/item/storage/box/lights/mixed,
-/obj/structure/sign/warning/electricshock{
-	pixel_y = -32
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"ar" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"as" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/orange,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
-/obj/item/clothing/mask/breath,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"at" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"au" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"av" = (
-/obj/machinery/vending/snack,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aw" = (
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"ax" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"ay" = (
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"az" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aA" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aB" = (
-/obj/effect/spawner/lootdrop/crate_spawner,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aC" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aD" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aE" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aF" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aG" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Kitchen"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aH" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	broadcasting = 0;
-	dir = 8;
-	freerange = 1;
-	listening = 1;
-	name = "Pirate Radio Listening Channel"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aI" = (
-/obj/structure/chair/office/light,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aJ" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Rest Room"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aK" = (
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aL" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aM" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aN" = (
-/obj/machinery/light/small,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aO" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/djstation)
-"aP" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aQ" = (
-/obj/structure/table,
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	dir = 8;
-	freerange = 1;
-	listening = 0;
-	name = "Pirate Radio Broadcast Channel"
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aR" = (
-/obj/structure/table,
-/obj/item/paper/fluff/ruins/djstation,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aS" = (
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aT" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aU" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aV" = (
-/obj/structure/closet,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/djstation)
-"aW" = (
-/obj/structure/disposalpipe/segment,
-/turf/closed/wall,
-/area/ruin/space/djstation)
-"aX" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Washroom"
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
-"aY" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"aZ" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"ba" = (
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
-"bb" = (
-/obj/structure/chair,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"bc" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/space_heater,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"bd" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/clothing/under/soviet,
-/obj/item/clothing/head/ushanka,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"be" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
-"bf" = (
-/obj/structure/toilet{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/djstation)
-"bg" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/pen,
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"bh" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/djstation)
-"bi" = (
-/obj/machinery/door/airlock/external{
-	name = "Ruskie DJ Station"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
-"bj" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/disposaloutlet,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"Co" = (
-/obj/machinery/door/airlock/external{
-	name = "Ruskie DJ Station"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
+// This map has been converted using maphash
+"arG" = (/turf/template_noop,/area/template_noop)
+"aUh" = (/obj/machinery/newscaster{pixel_y = 32},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"bKl" = (/obj/item/extinguisher,/turf/open/floor/plating,/area/ruin/space/djstation)
+"bZH" = (/obj/machinery/telecomms/relay/preset/ruskie,/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/ruin/space/djstation)
+"cri" = (/obj/machinery/power/solar/fake,/turf/open/floor/plasteel/airless/solarpanel,/area/ruin/space/djstation/solars)
+"cCx" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/ruin/space/djstation)
+"dIf" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"dKQ" = (/obj/structure/closet,/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"ecm" = (/obj/machinery/door/airlock/external{name = "Ruskie DJ Station"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/turf/open/floor/plating,/area/ruin/space/djstation)
+"esc" = (/obj/structure/lattice,/turf/template_noop,/area/space/nearstation)
+"fig" = (/obj/structure/cable{icon_state = "1-2"},/turf/open/floor/plating,/area/ruin/space/djstation)
+"fBW" = (/obj/machinery/sleeper{dir = 8},/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"fJg" = (/obj/machinery/door/airlock/public/glass{name = "Rest Room"},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"glE" = (/obj/structure/frame/computer{anchored = 1; dir = 4},/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"gss" = (/obj/machinery/door/airlock/maintenance_hatch,/turf/open/floor/plating,/area/ruin/space/djstation)
+"gMP" = (/turf/closed/wall,/area/ruin/space/djstation)
+"gZK" = (/turf/open/floor/plasteel/freezer,/area/ruin/space/djstation)
+"hlu" = (/obj/structure/chair{dir = 1},/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"hGC" = (/obj/structure/table,/obj/item/paper/fluff/ruins/djstation,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"hLd" = (/obj/machinery/light/small,/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"hOH" = (/obj/structure/table,/obj/machinery/cell_charger,/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"hVw" = (/turf/open/floor/plating/airless,/area/ruin/space/djstation/solars)
+"ivb" = (/turf/open/floor/plating,/area/ruin/space/djstation)
+"iMl" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/rack,/obj/item/clothing/under/soviet,/obj/item/clothing/head/ushanka,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"jbu" = (/obj/machinery/disposal/bin,/obj/structure/disposalpipe/trunk,/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"jdF" = (/obj/structure/table,/obj/item/paper_bin{pixel_x = 1; pixel_y = 9},/obj/item/pen,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"kpj" = (/obj/machinery/door/airlock/public/glass{name = "Kitchen"},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"ktJ" = (/obj/structure/cable{icon_state = "0-2"},/obj/machinery/power/smes/magical{desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."; name = "power storage unit"},/turf/open/floor/plating,/area/ruin/space/djstation)
+"kyB" = (/obj/machinery/light/small,/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"kyJ" = (/obj/structure/chair,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"kPX" = (/obj/structure/bed,/obj/item/bedsheet,/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"leS" = (/obj/structure/disposalpipe/segment,/turf/open/floor/plating/airless,/area/space/nearstation)
+"ltc" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"lCW" = (/obj/machinery/power/terminal,/turf/open/floor/plating,/area/ruin/space/djstation)
+"mxy" = (/obj/structure/cable{icon_state = "4-8"},/obj/item/storage/box/lights/mixed,/obj/structure/sign/warning/electricshock{pixel_y = -32},/turf/open/floor/plating,/area/ruin/space/djstation)
+"mMp" = (/obj/machinery/door/airlock/hatch{name = "Washroom"},/turf/open/floor/plasteel/freezer,/area/ruin/space/djstation)
+"nrR" = (/obj/effect/spawner/lootdrop/crate_spawner,/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"pdt" = (/obj/structure/disposalpipe/trunk{dir = 1},/obj/structure/disposaloutlet,/turf/open/floor/plating/airless,/area/space/nearstation)
+"qbe" = (/obj/machinery/door/airlock/external{name = "Ruskie DJ Station"},/obj/effect/mapping_helpers/airlock/cyclelink_helper,/turf/open/floor/plating,/area/ruin/space/djstation)
+"qeE" = (/obj/machinery/light_switch{pixel_y = 28},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"qlF" = (/obj/structure/chair/office/light,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"qrq" = (/obj/structure/grille,/turf/open/floor/plating/airless,/area/ruin/space/djstation/solars)
+"raT" = (/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"rba" = (/obj/machinery/light_switch{pixel_y = 28},/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"rfG" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/obj/machinery/light/small,/turf/open/floor/plasteel/freezer,/area/ruin/space/djstation)
+"roe" = (/obj/structure/table,/obj/machinery/microwave{pixel_y = 8},/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/ruin/space/djstation)
+"rQV" = (/obj/structure/sign/warning/vacuum/external{pixel_y = -32},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"sev" = (/obj/structure/cable{icon_state = "0-4"},/obj/machinery/power/apc{name = "Worn-out APC"; pixel_y = -23},/turf/open/floor/plating,/area/ruin/space/djstation)
+"spJ" = (/obj/structure/toilet{pixel_y = 8},/turf/open/floor/plasteel/freezer,/area/ruin/space/djstation)
+"syt" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"tAQ" = (/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"tTD" = (/obj/structure/closet/emcloset,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"uAa" = (/obj/structure/rack,/obj/item/clothing/suit/space/syndicate/orange,/obj/item/clothing/head/helmet/space/syndicate/orange,/obj/item/clothing/mask/breath,/turf/open/floor/plating,/area/ruin/space/djstation)
+"uAm" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/space_heater,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"uCX" = (/obj/structure/table,/obj/item/radio/intercom{broadcasting = 1; dir = 8; freerange = 1; listening = 0; name = "Pirate Radio Broadcast Channel"},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"uOh" = (/obj/structure/disposalpipe/segment,/turf/closed/wall,/area/ruin/space/djstation)
+"uSX" = (/obj/structure/table,/obj/item/radio/intercom{broadcasting = 0; dir = 8; freerange = 1; listening = 1; name = "Pirate Radio Listening Channel"},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"uVU" = (/obj/machinery/vending/snack,/obj/machinery/light/small{dir = 1},/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"vdV" = (/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/turf/open/floor/plating,/area/ruin/space/djstation)
+"vBK" = (/obj/structure/cable{icon_state = "1-8"},/turf/open/floor/plating,/area/ruin/space/djstation)
+"vHx" = (/obj/structure/table,/obj/item/flashlight/lamp,/turf/open/floor/plasteel/grimy,/area/ruin/space/djstation)
+"vZK" = (/obj/structure/table,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/plasteel/cafeteria,/area/ruin/space/djstation)
+"wow" = (/obj/item/multitool,/turf/open/floor/plating,/area/ruin/space/djstation)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
-af
-ag
-ag
-ag
-af
-aa
-ae
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+qrq
+qrq
+qrq
+qrq
+qrq
+qrq
+qrq
+arG
+gMP
+cCx
+cCx
+cCx
+gMP
+arG
+esc
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-az
-aF
-aM
-aW
-aZ
-aZ
-aZ
-bj
-aa
+arG
+arG
+arG
+arG
+arG
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+hOH
+roe
+jbu
+uOh
+leS
+leS
+leS
+pdt
+arG
 "}
 (3,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aA
-aA
-aN
-af
-ae
-ae
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+dIf
+dIf
+kyB
+gMP
+esc
+esc
+arG
+arG
+arG
 "}
 (4,1,1) = {"
-aa
-aa
-aa
-aa
-ae
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aA
-aA
-aO
-af
-af
-af
-af
-aa
-aa
+arG
+arG
+arG
+arG
+esc
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+dIf
+dIf
+hlu
+gMP
+gMP
+gMP
+gMP
+arG
+arG
 "}
 (5,1,1) = {"
-aa
-aa
-aa
-ae
-ae
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aA
-aA
-aA
-aX
-ba
-be
-af
-aa
-aa
+arG
+arG
+arG
+esc
+esc
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+dIf
+dIf
+dIf
+mMp
+gZK
+rfG
+gMP
+arG
+arG
 "}
 (6,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-af
-ag
-ag
-af
-ag
-ag
-af
-af
-af
-ag
-aG
-ag
-af
-af
-bf
-af
-aa
-aa
+qrq
+qrq
+qrq
+qrq
+qrq
+gMP
+cCx
+cCx
+gMP
+cCx
+cCx
+gMP
+gMP
+gMP
+cCx
+kpj
+cCx
+gMP
+gMP
+spJ
+gMP
+arG
+arG
 "}
 (7,1,1) = {"
-ab
-ac
-ac
-ac
-ac
-ag
-ah
-ah
-ah
-am
-ah
-ap
-af
-au
-aw
-aw
-aw
-aw
-af
-af
-af
-aa
-aa
+qrq
+cri
+cri
+cri
+cri
+cCx
+ivb
+ivb
+ivb
+bKl
+ivb
+sev
+gMP
+tTD
+tAQ
+tAQ
+tAQ
+tAQ
+gMP
+gMP
+gMP
+arG
+arG
 "}
 (8,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ag
-ah
-ah
-ah
-ah
-ah
-aq
-af
-av
-aw
-aH
-aP
-aw
-bb
-bg
-af
-aa
-aa
+qrq
+hVw
+hVw
+hVw
+hVw
+cCx
+ivb
+ivb
+ivb
+ivb
+ivb
+mxy
+gMP
+uVU
+tAQ
+uSX
+vZK
+tAQ
+kyJ
+jdF
+gMP
+arG
+arG
 "}
 (9,1,1) = {"
-ab
-ac
-ac
-ac
-ac
-af
-ai
-ah
-aj
-an
-ao
-ar
-at
-aw
-aw
-aI
-aQ
-aw
-aw
-aw
-af
-aa
-aa
+qrq
+cri
+cri
+cri
+cri
+gMP
+bZH
+ivb
+lCW
+ktJ
+fig
+vBK
+gss
+tAQ
+tAQ
+qlF
+uCX
+tAQ
+tAQ
+tAQ
+gMP
+arG
+arG
 "}
 (10,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ag
-ah
-ah
-ak
-ah
-ah
-ah
-af
-ax
-aw
-aH
-aR
-aw
-bc
-bh
-af
-af
-af
+qrq
+hVw
+hVw
+hVw
+hVw
+cCx
+ivb
+ivb
+wow
+ivb
+ivb
+ivb
+gMP
+qeE
+tAQ
+uSX
+hGC
+tAQ
+uAm
+rQV
+gMP
+gMP
+gMP
 "}
 (11,1,1) = {"
-ab
-ac
-ac
-ac
-ac
-ag
-ah
-ah
-al
-ah
-ah
-as
-af
-ay
-aw
-aw
-aw
-aY
-bd
-aw
-bi
-ah
-Co
+qrq
+cri
+cri
+cri
+cri
+cCx
+ivb
+ivb
+vdV
+ivb
+ivb
+uAa
+gMP
+aUh
+tAQ
+tAQ
+tAQ
+syt
+iMl
+tAQ
+qbe
+ivb
+ecm
 "}
 (12,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-af
-ag
-ag
-af
-ag
-ag
-af
-af
-af
-ag
-aJ
-ag
-af
-af
-af
-af
-af
-af
+qrq
+qrq
+qrq
+qrq
+qrq
+gMP
+cCx
+cCx
+gMP
+cCx
+cCx
+gMP
+gMP
+gMP
+cCx
+fJg
+cCx
+gMP
+gMP
+gMP
+gMP
+gMP
+gMP
 "}
 (13,1,1) = {"
-aa
-aa
-ae
-ae
-ae
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aB
-aK
-aS
-af
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+esc
+esc
+esc
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+nrR
+raT
+glE
+gMP
+arG
+arG
+arG
+arG
+arG
 "}
 (14,1,1) = {"
-aa
-aa
-aa
-aa
-ae
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aC
-aK
-aT
-af
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+esc
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+rba
+raT
+ltc
+gMP
+arG
+arG
+arG
+arG
+arG
 "}
 (15,1,1) = {"
-aa
-aa
-aa
-aa
-ae
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aD
-aK
-aU
-af
-ae
-ae
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+esc
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+kPX
+raT
+hLd
+gMP
+esc
+esc
+arG
+arG
+arG
 "}
 (16,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
-ac
-ad
-ac
-ad
-ac
-ab
-aa
-af
-aE
-aL
-aV
-af
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+qrq
+cri
+hVw
+cri
+hVw
+cri
+qrq
+arG
+gMP
+vHx
+fBW
+dKQ
+gMP
+arG
+arG
+arG
+arG
+arG
 "}
 (17,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
-af
-ag
-ag
-ag
-af
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+qrq
+qrq
+qrq
+qrq
+qrq
+qrq
+qrq
+arG
+gMP
+cCx
+cCx
+cCx
+gMP
+arG
+arG
+arG
+arG
+arG
 "}
 (18,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ae
-ae
-aa
-ae
-aa
-aa
-ae
-aa
-aa
-aa
-aa
-aa
-aa
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+esc
+esc
+arG
+esc
+arG
+arG
+esc
+arG
+arG
+arG
+arG
+arG
+arG
 "}

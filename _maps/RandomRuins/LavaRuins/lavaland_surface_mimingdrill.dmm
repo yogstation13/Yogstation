@@ -1,427 +1,292 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/closed/mineral/volcanic/lava_land_surface,
-/area/ruin/unpowered)
-"b" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ruin/unpowered)
-"c" = (
-/obj/structure/falsewall/titanium,
-/turf/open/floor/plating,
-/area/ruin/unpowered)
-"d" = (
-/obj/structure/window/shuttle,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"e" = (
-/obj/structure/closet,
-/obj/item/clothing/mask/gas/mime,
-/obj/item/clothing/shoes/sneakers/mime,
-/obj/item/clothing/under/rank/mime,
-/obj/item/toy/crayon/spraycan/mimecan,
-/obj/item/toy/figure/mime,
-/obj/item/storage/backpack/mime,
-/obj/item/storage/box/syndie_kit/mimery,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"f" = (
-/obj/structure/closet/crate/internals,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"g" = (
-/obj/machinery/computer,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"h" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"i" = (
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"j" = (
-/obj/structure/closet/crate,
-/obj/item/tank/internals/emergency_oxygen,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"k" = (
-/obj/structure/closet,
-/obj/item/clothing/mask/gas/mime,
-/obj/item/clothing/shoes/sneakers/mime,
-/obj/item/clothing/under/rank/mime,
-/obj/item/storage/backpack/mime,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"l" = (
-/obj/structure/closet/crate,
-/obj/item/storage/toolbox/syndicate,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"m" = (
-/obj/structure/table_frame,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"n" = (
-/obj/structure/table,
-/obj/item/pickaxe/drill/diamonddrill,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"o" = (
-/obj/machinery/door/airlock/silver,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"p" = (
-/obj/item/chair,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"q" = (
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"r" = (
-/obj/structure/fans/tiny/invisible,
-/obj/machinery/door/airlock/external/glass,
-/turf/open/floor/plasteel/white,
-/area/ruin/unpowered)
-"s" = (
-/obj/item/storage/bag/ore,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"t" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/customizable/sandwich{
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/snacks/customizable/sandwich{
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/snacks/cheesewedge,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"u" = (
-/obj/structure/girder,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"v" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"w" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"x" = (
-/obj/structure/table,
-/obj/item/storage/bag/ore,
-/obj/item/mining_scanner,
-/obj/item/clothing/glasses/meson,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"y" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"z" = (
-/obj/item/shard,
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"A" = (
-/obj/item/shard,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"B" = (
-/obj/structure/table,
-/obj/item/pickaxe,
-/obj/item/tank/internals/emergency_oxygen,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"C" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"D" = (
-/turf/open/chasm,
-/area/ruin/unpowered)
-"E" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"F" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered)
-"G" = (
-/obj/item/shard,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"H" = (
-/obj/item/pickaxe,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
-"I" = (
-/obj/item/pickaxe,
-/turf/open/floor/plating/asteroid/basalt/lava,
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"bqB" = (/obj/item/storage/bag/ore,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"crA" = (/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"dfX" = (/obj/item/shard,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"dib" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"efm" = (/obj/structure/closet,/obj/item/clothing/mask/gas/mime,/obj/item/clothing/shoes/sneakers/mime,/obj/item/clothing/under/rank/mime,/obj/item/storage/backpack/mime,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"eFs" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"hwj" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/customizable/sandwich{pixel_y = 6},/obj/item/reagent_containers/food/snacks/customizable/sandwich{pixel_y = 6},/obj/item/reagent_containers/food/snacks/cheesewedge,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"hUu" = (/obj/structure/falsewall/titanium,/turf/open/floor/plating,/area/ruin/unpowered)
+"hZz" = (/obj/structure/table,/obj/item/storage/bag/ore,/obj/item/mining_scanner,/obj/item/clothing/glasses/meson,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"hZJ" = (/obj/item/chair,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"iJw" = (/obj/item/pickaxe,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"jgL" = (/obj/structure/closet/crate,/obj/item/storage/toolbox/syndicate,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"luC" = (/obj/machinery/computer,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"lMk" = (/turf/closed/wall/mineral/titanium/nodiagonal,/area/ruin/unpowered)
+"mvv" = (/obj/effect/mob_spawn/human/corpse/damaged,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"oqY" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"ove" = (/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"oSc" = (/obj/structure/table_frame,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"pzx" = (/obj/machinery/door/airlock/silver,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"pOT" = (/turf/open/chasm,/area/ruin/unpowered)
+"qMb" = (/obj/item/shard,/obj/effect/decal/cleanable/blood/splatter,/obj/effect/mob_spawn/human/corpse/damaged,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"rjw" = (/obj/structure/closet/crate,/obj/item/tank/internals/emergency_oxygen,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"rNL" = (/turf/closed/mineral/volcanic/lava_land_surface,/area/ruin/unpowered)
+"sKZ" = (/obj/structure/girder,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"tss" = (/obj/structure/table,/obj/item/pickaxe,/obj/item/tank/internals/emergency_oxygen,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"tDg" = (/obj/item/shard,/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"umg" = (/obj/structure/table,/obj/item/pickaxe/drill/diamonddrill,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"uvt" = (/obj/structure/window/shuttle,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"uMG" = (/obj/structure/closet/crate,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"vxN" = (/obj/item/pickaxe,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"vNQ" = (/turf/open/floor/plating/asteroid/basalt/lava,/area/ruin/unpowered)
+"waM" = (/obj/structure/fans/tiny/invisible,/obj/machinery/door/airlock/external/glass,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"xDl" = (/obj/structure/closet,/obj/item/clothing/mask/gas/mime,/obj/item/clothing/shoes/sneakers/mime,/obj/item/clothing/under/rank/mime,/obj/item/toy/crayon/spraycan/mimecan,/obj/item/toy/figure/mime,/obj/item/storage/backpack/mime,/obj/item/storage/box/syndie_kit/mimery,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"xKJ" = (/obj/structure/closet/crate/internals,/obj/item/tank/internals/emergency_oxygen,/obj/item/tank/internals/emergency_oxygen,/turf/open/floor/plasteel/white,/area/ruin/unpowered)
+"yhk" = (/turf/closed/wall/r_wall,/area/ruin/unpowered)
 
 (1,1,1) = {"
-a
-a
-a
-a
-a
-u
-q
-q
-u
-a
-a
-a
-a
-a
-a
+rNL
+rNL
+rNL
+rNL
+rNL
+sKZ
+vNQ
+vNQ
+sKZ
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
 "}
 (2,1,1) = {"
-a
-b
-c
-c
-b
-v
-q
-q
-u
-a
-a
-a
-a
-a
-a
+rNL
+lMk
+hUu
+hUu
+lMk
+uMG
+vNQ
+vNQ
+sKZ
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
 "}
 (3,1,1) = {"
-a
-c
-e
-i
-r
-q
-q
-q
-q
-q
-u
-a
-q
-u
-a
+rNL
+hUu
+xDl
+crA
+waM
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+sKZ
+rNL
+vNQ
+sKZ
+rNL
 "}
 (4,1,1) = {"
-a
-c
-f
-i
-c
-q
-q
-q
-q
-q
-q
-q
-q
-u
-a
+rNL
+hUu
+xKJ
+crA
+hUu
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+sKZ
+rNL
 "}
 (5,1,1) = {"
-a
-c
-c
-o
-c
-q
-q
-C
-E
-E
-E
-E
-H
-a
-a
+rNL
+hUu
+hUu
+pzx
+hUu
+vNQ
+vNQ
+mvv
+eFs
+eFs
+eFs
+eFs
+vxN
+rNL
+rNL
 "}
 (6,1,1) = {"
-a
-c
-g
-i
-c
-q
-y
-y
-y
-y
-y
-q
-q
-q
-a
+rNL
+hUu
+luC
+crA
+hUu
+vNQ
+oqY
+oqY
+oqY
+oqY
+oqY
+vNQ
+vNQ
+vNQ
+rNL
 "}
 (7,1,1) = {"
-a
-c
-h
-i
-c
-q
-y
-D
-D
-D
-y
-q
-a
-a
-a
+rNL
+hUu
+dib
+crA
+hUu
+vNQ
+oqY
+pOT
+pOT
+pOT
+oqY
+vNQ
+rNL
+rNL
+rNL
 "}
 (8,1,1) = {"
-a
-d
-i
-p
-d
-q
-y
-D
-F
-D
-y
-q
-a
-a
-a
+rNL
+uvt
+crA
+hZJ
+uvt
+vNQ
+oqY
+pOT
+yhk
+pOT
+oqY
+vNQ
+rNL
+rNL
+rNL
 "}
 (9,1,1) = {"
-a
-b
-d
-d
-b
-q
-y
-D
-D
-D
-y
-q
-u
-a
-a
+rNL
+lMk
+uvt
+uvt
+lMk
+vNQ
+oqY
+pOT
+pOT
+pOT
+oqY
+vNQ
+sKZ
+rNL
+rNL
 "}
 (10,1,1) = {"
-a
-a
-j
-q
-s
-w
-z
-E
-E
-G
-y
-q
-q
-a
-a
+rNL
+rNL
+rjw
+vNQ
+bqB
+ove
+tDg
+eFs
+eFs
+qMb
+oqY
+vNQ
+vNQ
+rNL
+rNL
 "}
 (11,1,1) = {"
-a
-a
-k
-q
-q
-q
-A
-q
-q
-q
-q
-q
-q
-a
-a
+rNL
+rNL
+efm
+vNQ
+vNQ
+vNQ
+dfX
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+rNL
+rNL
 "}
 (12,1,1) = {"
-a
-a
-l
-q
-q
-q
-q
-q
-A
-q
-q
-a
-I
-a
-a
+rNL
+rNL
+jgL
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+dfX
+vNQ
+vNQ
+rNL
+iJw
+rNL
+rNL
 "}
 (13,1,1) = {"
-a
-a
-m
-q
-q
-q
-q
-q
-q
-q
-u
-a
-w
-a
-a
+rNL
+rNL
+oSc
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+vNQ
+sKZ
+rNL
+ove
+rNL
+rNL
 "}
 (14,1,1) = {"
-a
-a
-n
-q
-t
-x
-B
-q
-a
-a
-a
-a
-a
-a
-a
+rNL
+rNL
+umg
+vNQ
+hwj
+hZz
+tss
+vNQ
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
+rNL
 "}

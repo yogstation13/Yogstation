@@ -1,1026 +1,505 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered)
-"ab" = (
-/turf/closed/wall/r_wall/rust,
-/area/ruin/unpowered)
-"ac" = (
-/turf/template_noop,
-/area/template_noop)
-"ad" = (
-/turf/closed/wall/mineral/bananium,
-/area/ruin/unpowered)
-"ae" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"af" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/clown,
-/obj/item/chair/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ag" = (
-/obj/item/nullrod/clown,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ah" = (
-/obj/item/ship_in_a_bottle,
-/obj/item/coin/bananium{
-	pixel_x = 27;
-	pixel_y = 6
-	},
-/obj/item/coin/bananium{
-	pixel_x = 24;
-	pixel_y = 5
-	},
-/obj/item/flashlight/lamp/bananalamp{
-	pixel_x = 1;
-	pixel_y = 15
-	},
-/obj/structure/table/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ai" = (
-/obj/item/reagent_containers/food/snacks/soup/clownstears,
-/obj/item/toy/figure/clown{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/structure/table/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"aj" = (
-/obj/item/paper{
-	info = "Unfortunately our objective with retrieving a long lost artifact that once belonged to a reverred Clown King has failed. I've barred myself in in hopes he doesn't get in here, but the others were not so fortunate, If he gets in..HonkMother protect me."
-	},
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ak" = (
-/obj/item/stamp/clown,
-/obj/item/stack/spacecash/c1000,
-/obj/structure/table/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"al" = (
-/obj/structure/chair/bananium{
-	icon_state = "bananium_chair";
-	dir = 8
-	},
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"am" = (
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"an" = (
-/obj/structure/closet/malf,
-/obj/item/clothing/gloves/color/rainbow/clown,
-/obj/item/clothing/mask/gas/clown_hat,
-/obj/item/clothing/shoes/clown_shoes,
-/obj/item/clothing/under/rank/clown,
-/obj/item/storage/backpack/clown,
-/obj/item/storage/backpack/duffelbag/clown,
-/obj/item/cartridge/virus/clown,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ao" = (
-/obj/machinery/door/airlock/bananium,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ap" = (
-/obj/structure/bed{
-	pixel_y = 0
-	},
-/obj/item/bedsheet/clown,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"aq" = (
-/obj/structure/window/reinforced,
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/burger/mime,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"ar" = (
-/obj/structure/table,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"as" = (
-/obj/structure/window/reinforced,
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grown/banana/mime,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"at" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"au" = (
-/obj/item/shard,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"av" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aw" = (
-/obj/structure/statue/bananium/clown,
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
-"ax" = (
-/obj/machinery/door/airlock/highsecurity,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"ay" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"az" = (
-/obj/machinery/door/airlock/highsecurity,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aA" = (
-/obj/machinery/door/airlock/vault,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/carpet,
-/area/ruin/unpowered)
-"aB" = (
-/obj/item/stack/rods,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aC" = (
-/obj/structure/toilet{
-	layer = 3.5;
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aD" = (
-/turf/closed/wall,
-/area/ruin/unpowered)
-"aE" = (
-/obj/structure/toilet{
-	layer = 3.5;
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aF" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aG" = (
-/obj/structure/door_assembly/door_assembly_bananium,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aI" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/honkdae{
-	pixel_x = 7;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/snacks/honkdae,
-/obj/item/reagent_containers/food/snacks/honkdae,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"aJ" = (
-/obj/structure/table,
-/obj/item/restraints/handcuffs/cable,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aK" = (
-/obj/structure/girder,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aL" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aM" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aN" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aO" = (
-/obj/structure/table/wood,
-/obj/item/pickaxe/silver,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aP" = (
-/turf/closed/wall/rust,
-/area/ruin/unpowered)
-"aQ" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aR" = (
-/obj/item/stack/rods,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aS" = (
-/obj/item/stack/sheet/metal,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aT" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"aU" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"aV" = (
-/obj/machinery/door/airlock,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aW" = (
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aX" = (
-/obj/machinery/door/airlock/bananium,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aY" = (
-/obj/structure/table,
-/obj/item/scalpel,
-/obj/item/circular_saw{
-	pixel_z = 5
-	},
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"aZ" = (
-/obj/item/stack/sheet/metal,
-/obj/item/stack/rods,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4";
-	tag = ""
-	},
-/area/ruin/unpowered)
-"ba" = (
-/obj/structure/bed/pod,
-/obj/effect/mob_spawn/human/clown,
-/obj/item/bedsheet/clown,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bb" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bc" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/clown,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bd" = (
-/obj/item/grown/bananapeel,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"be" = (
-/obj/structure/bed/pod,
-/obj/effect/mob_spawn/human/clown,
-/obj/item/bedsheet/clown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bf" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/item/toy/crayon/mime,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bg" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/remains/human,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bh" = (
-/obj/item/reagent_containers/food/snacks/honkdae{
-	pixel_x = 25;
-	pixel_y = 10
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered)
-"bi" = (
-/obj/structure/table,
-/obj/item/clothing/mask/gas/clown_hat{
-	pixel_y = 9
-	},
-/obj/item/clothing/mask/gas/clown_hat{
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bj" = (
-/obj/structure/table,
-/obj/item/target/clown{
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bk" = (
-/obj/structure/table,
-/obj/item/megaphone/clown,
-/obj/item/megaphone/clown,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bl" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bm" = (
-/obj/machinery/door/airlock/wood,
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bn" = (
-/obj/structure/bed/pod,
-/obj/effect/mob_spawn/human/clown,
-/obj/item/bedsheet/clown,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bo" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bp" = (
-/obj/structure/bed/pod,
-/obj/effect/mob_spawn/human/clown,
-/obj/item/bedsheet/clown,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bq" = (
-/obj/item/clothing/mask/gas/clown_hat{
-	pixel_y = 30
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"br" = (
-/obj/item/grown/bananapeel,
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark{
-	dir = 8
-	},
-/area/ruin/unpowered)
-"bs" = (
-/obj/effect/decal/cleanable/oil/streak,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bt" = (
-/obj/machinery/door/airlock,
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bu" = (
-/obj/structure/closet/secure_closet/freezer/cream_pie,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bv" = (
-/obj/item/paperplane,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bw" = (
-/obj/item/coin/bananium,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bx" = (
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark{
-	dir = 8
-	},
-/area/ruin/unpowered)
-"by" = (
-/obj/structure/table,
-/obj/item/mecha_parts/mecha_equipment/weapon/honker,
-/obj/item/pickaxe/drill,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bz" = (
-/obj/machinery/door/airlock/wood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"bA" = (
-/obj/item/coin/bananium,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bB" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/store/bread/banana,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"bC" = (
-/obj/structure/mecha_wreckage/honker,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bD" = (
-/obj/effect/decal/cleanable/robot_debris,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bE" = (
-/obj/effect/decal/cleanable/shreds,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/unpowered)
-"bG" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grown/banana{
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/turf/open/floor/plasteel,
-/area/ruin/unpowered)
-"lb" = (
-/mob/living/simple_animal/crab/clown{
-	name = "Mr Krebs"
-	},
-/turf/open/floor/mineral/bananium,
-/area/ruin/unpowered)
+// This map has been converted using maphash
+"anN" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"arG" = (/turf/template_noop,/area/template_noop)
+"azf" = (/obj/item/paperplane,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"aGe" = (/obj/structure/table,/obj/item/mecha_parts/mecha_equipment/weapon/honker,/obj/item/pickaxe/drill,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"aVo" = (/obj/item/ship_in_a_bottle,/obj/item/coin/bananium{pixel_x = 27; pixel_y = 6},/obj/item/coin/bananium{pixel_x = 24; pixel_y = 5},/obj/item/flashlight/lamp/bananalamp{pixel_x = 1; pixel_y = 15},/obj/structure/table/bananium,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"bkx" = (/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"cfJ" = (/obj/structure/table/wood,/obj/item/pickaxe/silver,/turf/open/floor/wood,/area/ruin/unpowered)
+"chf" = (/turf/closed/wall,/area/ruin/unpowered)
+"cjD" = (/obj/structure/bed/pod,/obj/effect/mob_spawn/human/clown,/obj/item/bedsheet/clown,/obj/effect/decal/cleanable/blood/old,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"doE" = (/obj/structure/statue/bananium/clown,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"dYi" = (/obj/item/paper{info = "Unfortunately our objective with retrieving a long lost artifact that once belonged to a reverred Clown King has failed. I've barred myself in in hopes he doesn't get in here, but the others were not so fortunate, If he gets in..HonkMother protect me."},/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"eit" = (/obj/effect/turf_decal/stripes/line{dir = 8; icon_state = "warningline"},/turf/open/floor/plasteel/dark{dir = 8},/area/ruin/unpowered)
+"erv" = (/obj/item/stack/rods,/turf/open/floor/wood,/area/ruin/unpowered)
+"fzR" = (/obj/effect/decal/cleanable/blood,/obj/effect/mob_spawn/human/clown,/obj/item/chair/bananium,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"fIZ" = (/obj/machinery/door/airlock,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"gsB" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"guz" = (/obj/structure/bed,/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"gwW" = (/obj/machinery/door/airlock/vault,/obj/structure/fans/tiny/invisible,/turf/open/floor/carpet,/area/ruin/unpowered)
+"gBC" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/grown/banana{pixel_y = 7},/obj/item/reagent_containers/food/snacks/grown/banana,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"gBR" = (/obj/item/stamp/clown,/obj/item/stack/spacecash/c1000,/obj/structure/table/bananium,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"hoN" = (/obj/item/reagent_containers/food/snacks/soup/clownstears,/obj/item/toy/figure/clown{pixel_x = 6; pixel_y = 6},/obj/structure/table/bananium,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"hpG" = (/obj/machinery/door/airlock/wood,/turf/open/floor/wood,/area/ruin/unpowered)
+"hxT" = (/obj/structure/bed{pixel_y = 0},/obj/item/bedsheet/clown,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"hDZ" = (/obj/item/coin/bananium,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"hSN" = (/obj/machinery/door/airlock,/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"iDC" = (/obj/structure/closet/malf,/obj/item/clothing/gloves/color/rainbow/clown,/obj/item/clothing/mask/gas/clown_hat,/obj/item/clothing/shoes/clown_shoes,/obj/item/clothing/under/rank/clown,/obj/item/storage/backpack/clown,/obj/item/storage/backpack/duffelbag/clown,/obj/item/cartridge/virus/clown,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"iJz" = (/obj/structure/chair/office/dark{dir = 4},/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"jlq" = (/obj/item/reagent_containers/food/snacks/honkdae{pixel_x = 25; pixel_y = 10},/turf/closed/wall/r_wall,/area/ruin/unpowered)
+"jZm" = (/obj/structure/bed/pod,/obj/effect/mob_spawn/human/clown,/obj/item/bedsheet/clown,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"ktA" = (/obj/item/stack/rods,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"kyI" = (/obj/structure/table,/obj/item/restraints/handcuffs/cable,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"kIz" = (/obj/structure/filingcabinet,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"kWa" = (/turf/open/floor/wood,/area/ruin/unpowered)
+"lHB" = (/obj/effect/decal/cleanable/blood/tracks,/obj/item/toy/crayon/mime,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"lVy" = (/obj/effect/decal/cleanable/shreds,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"mhn" = (/obj/machinery/door/airlock/highsecurity,/turf/open/floor/wood,/area/ruin/unpowered)
+"mtw" = (/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"mzl" = (/obj/item/stack/sheet/metal,/obj/item/stack/rods,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"nFe" = (/obj/structure/toilet{layer = 3.5; pixel_x = 2; pixel_y = 5},/turf/open/floor/plasteel,/area/ruin/unpowered)
+"nIB" = (/obj/item/coin/bananium,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"nJx" = (/obj/structure/girder,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"ogt" = (/obj/structure/bed/pod,/obj/effect/mob_spawn/human/clown,/obj/item/bedsheet/clown,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"oIv" = (/obj/structure/bed/pod,/obj/item/bedsheet/clown,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"oOq" = (/obj/structure/window/reinforced,/obj/structure/table,/obj/item/reagent_containers/food/snacks/burger/mime,/turf/open/floor/wood,/area/ruin/unpowered)
+"oSp" = (/obj/structure/table,/obj/item/clothing/mask/gas/clown_hat{pixel_y = 9},/obj/item/clothing/mask/gas/clown_hat{pixel_y = 4},/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"oWG" = (/obj/effect/decal/cleanable/oil/streak,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"pcf" = (/obj/structure/toilet{layer = 3.5; pixel_x = 2; pixel_y = 5},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"pjJ" = (/obj/structure/chair/office/dark{dir = 1},/turf/open/floor/wood,/area/ruin/unpowered)
+"pok" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/store/bread/banana,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"ppC" = (/turf/closed/wall/rust,/area/ruin/unpowered)
+"pxw" = (/obj/item/shard,/turf/open/floor/wood,/area/ruin/unpowered)
+"qgr" = (/obj/structure/chair/bananium{dir = 8; icon_state = "bananium_chair"},/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"qiE" = (/obj/structure/table,/obj/item/scalpel,/obj/item/circular_saw{pixel_z = 5},/turf/open/floor/plasteel,/area/ruin/unpowered)
+"qkr" = (/obj/effect/decal/cleanable/robot_debris,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"qwv" = (/obj/structure/table,/obj/item/megaphone/clown,/obj/item/megaphone/clown,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"qzE" = (/obj/structure/table,/turf/open/floor/wood,/area/ruin/unpowered)
+"qIf" = (/obj/structure/door_assembly/door_assembly_bananium,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"qRl" = (/obj/structure/window/reinforced,/obj/structure/table,/obj/item/reagent_containers/food/snacks/grown/banana/mime,/turf/open/floor/wood,/area/ruin/unpowered)
+"rNT" = (/turf/open/floor/plasteel,/area/ruin/unpowered)
+"smk" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/remains/human,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"stS" = (/obj/structure/table/wood,/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"suG" = (/obj/item/grown/bananapeel,/obj/effect/turf_decal/stripes/line{dir = 8; icon_state = "warningline"},/turf/open/floor/plasteel/dark{dir = 8},/area/ruin/unpowered)
+"sFH" = (/obj/effect/decal/cleanable/blood/old,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"sXB" = (/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"tgn" = (/obj/item/clothing/mask/gas/clown_hat{pixel_y = 30},/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"thM" = (/obj/structure/table/wood,/obj/item/flashlight/lamp,/turf/open/floor/wood,/area/ruin/unpowered)
+"tVx" = (/mob/living/simple_animal/crab/clown{name = "Mr Krebs"},/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"uuh" = (/obj/structure/mecha_wreckage/honker,/obj/effect/turf_decal/tile/red,/obj/effect/turf_decal/tile/red{dir = 4; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 1; icon_state = "tile_corner"},/obj/effect/turf_decal/tile/red{dir = 8; icon_state = "tile_corner"},/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"uxV" = (/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"uCG" = (/obj/machinery/door/airlock/bananium,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"uRE" = (/obj/machinery/door/airlock/wood,/obj/structure/fans/tiny/invisible,/turf/open/floor/wood,/area/ruin/unpowered)
+"uSi" = (/obj/item/stack/sheet/metal,/turf/open/floor/wood{icon_state = "wood-broken6"; tag = ""},/area/ruin/unpowered)
+"uVG" = (/obj/structure/table/wood,/turf/open/floor/wood,/area/ruin/unpowered)
+"vBv" = (/obj/machinery/door/airlock/highsecurity,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"vJX" = (/obj/structure/table,/obj/item/target/clown{pixel_y = 8},/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"vRz" = (/obj/structure/closet/secure_closet/freezer/cream_pie,/obj/item/reagent_containers/food/snacks/pie/cream,/obj/item/reagent_containers/food/snacks/pie/cream,/obj/item/reagent_containers/food/snacks/pie/cream,/obj/item/reagent_containers/food/snacks/pie/cream,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"wsL" = (/turf/closed/wall/r_wall/rust,/area/ruin/unpowered)
+"wIi" = (/obj/structure/table,/obj/item/reagent_containers/food/snacks/honkdae{pixel_x = 7; pixel_y = 12},/obj/item/reagent_containers/food/snacks/honkdae,/obj/item/reagent_containers/food/snacks/honkdae,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel/dark,/area/ruin/unpowered)
+"wIM" = (/turf/closed/wall/mineral/bananium,/area/ruin/unpowered)
+"wTy" = (/obj/item/nullrod/clown,/obj/effect/decal/cleanable/blood,/turf/open/floor/mineral/bananium,/area/ruin/unpowered)
+"xoh" = (/obj/item/grown/bananapeel,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"xuP" = (/obj/machinery/door/airlock/bananium,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"xVB" = (/turf/open/floor/wood{icon_state = "wood-broken4"; tag = ""},/area/ruin/unpowered)
+"ybE" = (/obj/structure/bed/pod,/obj/effect/mob_spawn/human/clown,/obj/item/bedsheet/clown,/turf/open/floor/plasteel,/area/ruin/unpowered)
+"yhk" = (/turf/closed/wall/r_wall,/area/ruin/unpowered)
 
 (1,1,1) = {"
-aa
-aa
-ab
-aa
-ab
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+yhk
+yhk
+wsL
+yhk
+wsL
+yhk
+yhk
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
 "}
 (2,1,1) = {"
-ab
-ad
-ad
-ad
-ad
-ad
-aa
-ab
-aa
-aA
-aK
-aR
-aZ
-aa
-bh
-aa
-aa
-aa
-ab
-ac
+wsL
+wIM
+wIM
+wIM
+wIM
+wIM
+yhk
+wsL
+yhk
+gwW
+nJx
+ktA
+mzl
+yhk
+jlq
+yhk
+yhk
+yhk
+wsL
+arG
 "}
 (3,1,1) = {"
-aa
-ad
-ae
-ah
-am
-ad
-aw
-am
-ab
-ay
-aL
-aS
-at
-ab
-aI
-bl
-bl
-by
-ab
-ac
+yhk
+wIM
+kIz
+aVo
+sXB
+wIM
+doE
+sXB
+wsL
+uxV
+stS
+uSi
+kWa
+wsL
+wIi
+bkx
+bkx
+aGe
+wsL
+arG
 "}
 (4,1,1) = {"
-aa
-ad
-af
-ai
-am
-ao
-am
-am
-aa
-at
-aM
-aT
-ay
-aa
-bi
-bq
-bs
-bC
-aa
-ac
+yhk
+wIM
+fzR
+hoN
+sXB
+uCG
+sXB
+sXB
+yhk
+kWa
+uVG
+pjJ
+uxV
+yhk
+oSp
+tgn
+oWG
+uuh
+yhk
+arG
 "}
 (5,1,1) = {"
-ab
-ad
-ag
-aj
-am
-ad
-aw
-am
-aa
-at
-aM
-at
-at
-aa
-bj
-bl
-bv
-bD
-aa
-ac
+wsL
+wIM
+wTy
+dYi
+sXB
+wIM
+doE
+sXB
+yhk
+kWa
+uVG
+kWa
+kWa
+yhk
+vJX
+bkx
+azf
+qkr
+yhk
+arG
 "}
 (6,1,1) = {"
-aa
-ad
-ad
-ad
-ao
-ad
-ad
-ao
-aa
-at
-aN
-aU
-ay
-aa
-bk
-bl
-bw
-bE
-aa
-ac
+yhk
+wIM
+wIM
+wIM
+uCG
+wIM
+wIM
+uCG
+yhk
+kWa
+thM
+iJz
+uxV
+yhk
+qwv
+bkx
+nIB
+lVy
+yhk
+arG
 "}
 (7,1,1) = {"
-ab
-aa
-ad
-ak
-am
-ad
-am
-am
-ab
-aB
-aO
-aM
-at
-ab
-aa
-br
-bx
-bx
-ab
-ac
+wsL
+yhk
+wIM
+gBR
+sXB
+wIM
+sXB
+sXB
+wsL
+erv
+cfJ
+uVG
+kWa
+wsL
+yhk
+suG
+eit
+eit
+wsL
+arG
 "}
 (8,1,1) = {"
-ac
-aa
-ad
-al
-lb
-ad
-am
-am
-ab
-av
-ay
-aB
-at
-ay
-bm
-at
-ay
-at
-ab
-ac
+arG
+yhk
+wIM
+qgr
+tVx
+wIM
+sXB
+sXB
+wsL
+xVB
+uxV
+erv
+kWa
+uxV
+uRE
+kWa
+uxV
+kWa
+wsL
+arG
 "}
 (9,1,1) = {"
-ac
-aa
-ad
-am
-am
-ad
-am
-am
-ab
-aa
-aa
-aa
-aa
-ab
-aa
-aa
-bz
-ab
-ab
-ac
+arG
+yhk
+wIM
+sXB
+sXB
+wIM
+sXB
+sXB
+wsL
+yhk
+yhk
+yhk
+yhk
+wsL
+yhk
+yhk
+hpG
+wsL
+wsL
+arG
 "}
 (10,1,1) = {"
-ac
-aa
-ad
-an
-ap
-ad
-am
-am
-ab
-aC
-aH
-aP
-ba
-be
-bn
-aD
-aW
-aW
-aa
-ac
+arG
+yhk
+wIM
+iDC
+hxT
+wIM
+sXB
+sXB
+wsL
+pcf
+gsB
+ppC
+cjD
+ogt
+jZm
+chf
+rNT
+rNT
+yhk
+arG
 "}
 (11,1,1) = {"
-ac
-aa
-ad
-ad
-ad
-ad
-am
-am
-aa
-aD
-aH
-aV
-bb
-bf
-bo
-bt
-aH
-bA
-aa
-ac
+arG
+yhk
+wIM
+wIM
+wIM
+wIM
+sXB
+sXB
+yhk
+chf
+gsB
+fIZ
+mtw
+lHB
+anN
+hSN
+gsB
+hDZ
+yhk
+arG
 "}
 (12,1,1) = {"
-ac
-aa
-aa
-aa
-aa
-ab
-am
-am
-aa
-aE
-aH
-aD
-bc
-ba
-bp
-aD
-aW
-aH
-aa
-ac
+arG
+yhk
+yhk
+yhk
+yhk
+wsL
+sXB
+sXB
+yhk
+nFe
+gsB
+chf
+oIv
+cjD
+ybE
+chf
+rNT
+gsB
+yhk
+arG
 "}
 (13,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-aa
-am
-am
-aa
-aD
-aP
-aP
-aD
-aD
-aD
-aD
-aH
-aW
-aa
-ac
+arG
+arG
+arG
+arG
+arG
+yhk
+sXB
+sXB
+yhk
+chf
+ppC
+ppC
+chf
+chf
+chf
+chf
+gsB
+rNT
+yhk
+arG
 "}
 (14,1,1) = {"
-ac
-ac
-ac
-ab
-aa
-aa
-aa
-ax
-aa
-aF
-aD
-aW
-aD
-bg
-aD
-aW
-bA
-aW
-aa
-ac
+arG
+arG
+arG
+wsL
+yhk
+yhk
+yhk
+mhn
+yhk
+sFH
+chf
+rNT
+chf
+smk
+chf
+rNT
+hDZ
+rNT
+yhk
+arG
 "}
 (15,1,1) = {"
-ac
-ac
-ac
-aa
-aq
-at
-av
-at
-ab
-aG
-aD
-aX
-aD
-aG
-aD
-aH
-aH
-aW
-aa
-ac
+arG
+arG
+arG
+yhk
+oOq
+kWa
+xVB
+kWa
+wsL
+qIf
+chf
+xuP
+chf
+qIf
+chf
+gsB
+gsB
+rNT
+yhk
+arG
 "}
 (16,1,1) = {"
-ac
-ac
-ac
-aa
-ar
-au
-at
-ay
-az
-aH
-aH
-aW
-aW
-aH
-aV
-aW
-aW
-aW
-ab
-ac
+arG
+arG
+arG
+yhk
+qzE
+pxw
+kWa
+uxV
+vBv
+gsB
+gsB
+rNT
+rNT
+gsB
+fIZ
+rNT
+rNT
+rNT
+wsL
+arG
 "}
 (17,1,1) = {"
-ac
-ac
-ac
-ab
-as
-av
-at
-at
-ab
-aW
-aW
-aH
-bd
-aH
-aD
-bu
-bB
-bG
-ab
-ac
+arG
+arG
+arG
+wsL
+qRl
+xVB
+kWa
+kWa
+wsL
+rNT
+rNT
+gsB
+xoh
+gsB
+chf
+vRz
+pok
+gBC
+wsL
+arG
 "}
 (18,1,1) = {"
-ac
-ac
-ac
-aa
-aa
-ab
-aa
-aa
-aa
-aJ
-aQ
-aY
-aW
-aW
-aa
-ab
-ab
-aa
-ab
-ac
+arG
+arG
+arG
+yhk
+yhk
+wsL
+yhk
+yhk
+yhk
+kyI
+guz
+qiE
+rNT
+rNT
+yhk
+wsL
+wsL
+yhk
+wsL
+arG
 "}
 (19,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+arG
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+yhk
+arG
+arG
+arG
+arG
+arG
 "}
