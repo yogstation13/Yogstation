@@ -890,27 +890,26 @@
 /mob/living/silicon/robot/updatehealth()
 	..()
 	if(health < maxHealth*0.5) //Gradual break down of modules as more damage is sustained
-		src.add_movespeed_modifier("borgdamage1", update=TRUE, priority=100, multiplicative_slowdown=0.3, blacklisted_movetypes=(FLYING|FLOATING))
 		if(uneq_module(held_items[3]))
 			playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
 			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 3 OFFLINE.\"</span>")
 			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 3 OFFLINE.</span>")
 		if(health < 0)
-			src.add_movespeed_modifier("borgdamage2", update=TRUE, priority=100, multiplicative_slowdown=0.3, blacklisted_movetypes=(FLYING|FLOATING))
 			if(uneq_module(held_items[2]))
 				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 2 OFFLINE.\"</span>")
 				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 2 OFFLINE.</span>")
 				playsound(loc, 'sound/machines/warning-buzzer.ogg', 60, 1, 1)
 			if(health < -maxHealth*0.5)
-				src.add_movespeed_modifier("borgdamage3", update=TRUE, priority=100, multiplicative_slowdown=0.3, blacklisted_movetypes=(FLYING|FLOATING))
 				if(uneq_module(held_items[1]))
 					audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>")
 					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1, 1)
-	else
-		src.remove_movespeed_modifier("borgdamage1")
-		src.remove_movespeed_modifier("borgdamage2")
-		src.remove_movespeed_modifier("borgdamage3")
+
+/mob/living/silicon/robot/movement_delay()
+	. = ..()
+	var/hd = maxHealth - health
+	if(hd > 50)
+		. -= (health - maxHealth) / 200
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
