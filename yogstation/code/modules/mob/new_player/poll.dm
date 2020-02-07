@@ -136,6 +136,7 @@
 				var/votecount = 0
 				while(rating_query.NextRow())
 					votecount = text2num(rating_query.item[1])
+					qdel(rating_query)
 				votecounts["[I]"] = votecount
 				if(votecount > maxvote)
 					maxvote = votecount
