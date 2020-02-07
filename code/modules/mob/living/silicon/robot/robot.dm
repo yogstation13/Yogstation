@@ -909,7 +909,7 @@
 	. = ..()
 	var/hd = maxHealth - health
 	if(hd > 50)
-		. += hd/125
+		. += hd/100
 
 /mob/living/silicon/robot/update_sight()
 	if(!client)
