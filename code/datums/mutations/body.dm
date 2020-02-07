@@ -285,7 +285,7 @@
 	var/warpchance = 0
 
 /datum/mutation/human/badblink/on_life()
-	if(!HAS_TRAIT_FROM(owner, TRAIT_STABLEHEART, CLONING_POD_TRAIT) && prob(warpchance))
+	if(!istype(owner.loc, /turf) && prob(warpchance))
 		var/warpmessage = pick(
 		"<span class='warning'>With a sickening 720-degree twist of [owner.p_their()] back, [owner] vanishes into thin air.</span>",
 		"<span class='warning'>[owner] does some sort of strange backflip into another dimension. It looks pretty painful.</span>",
