@@ -543,7 +543,7 @@
 	dir = 1;
 	environ = 0;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/carpet,
@@ -921,7 +921,7 @@
 	dir = 1;
 	environ = 0;
 	equipment = 3;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/plating,
@@ -1242,7 +1242,7 @@
 	},
 /obj/machinery/power/apc/unlocked{
 	dir = 1;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/bar,
