@@ -58,7 +58,9 @@
 	onclose(user, "folder")
 	add_fingerprint(usr)
 
-/obj/item/folder/AltClick(mob/living/user)
+/obj/item/folder/AltClick(mob/living/user, proximity)
+	if(!proximity)
+		return
 	if(contents.len)
 		to_chat(user, "<span class='warning'>You can't fold this folder with something still inside!</span>")
 		return
