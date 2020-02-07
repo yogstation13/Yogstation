@@ -36,6 +36,8 @@ import { ImplantChair } from './interfaces/ImplantChair';
 import { KeycardAuth } from './interfaces/KeycardAuth';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { MechBayPowerConsole } from './interfaces/MechBayPowerConsole';
+import { MedicalKiosk } from './interfaces/MedicalKiosk';
+import { MiningVendor } from './interfaces/MiningVendor';
 import { NtosArcade } from './interfaces/NtosArcade';
 import { NtosMain } from './interfaces/NtosMain';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
@@ -231,6 +233,10 @@ const ROUTES = {
   mech_bay_power_console: {
     component: () => MechBayPowerConsole,
     scrollable: false,
+  },
+  mining_vendor: {
+    component: () => MiningVendor,
+    scrollable: true,
   },
   ntos_main: {
     component: () => NtosMain,
