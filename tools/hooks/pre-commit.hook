@@ -1,2 +1,2 @@
 #!/bin/bash
-exec tools/hooks/python.sh -m precommit
+node tools/maphash/index.js --root-dir . --all
