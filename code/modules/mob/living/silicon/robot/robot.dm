@@ -380,13 +380,13 @@
 		if (!W.tool_start_check(user, amount=0)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
 			return
 		if(src == user)
-			if(health >= 0)
+			if(health > 0)
 				to_chat(user, "<span class='warning'>You have repaired what you could! Get some help to repair the remaining damage.</span>")
 				return
 			to_chat(user, "<span class='notice'>You start fixing yourself...</span>")
 			if(!W.use_tool(src, user, 50))
 				return
-			if(health >= 0)
+			if(health > 0)
 				return //safety check to prevent spam clciking and queing
 		
 		adjustBruteLoss(-30)
