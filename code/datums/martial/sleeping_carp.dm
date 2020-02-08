@@ -216,6 +216,7 @@
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
+		playsound(get_turf(user), 'sound/effects/hit_kick.ogg', 75, 1, -1)
 		SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, H, user)
 		SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, H, user)
 		H.lastattacker = user.real_name
