@@ -1,6 +1,6 @@
 /obj/machinery/humangrinder
 	name = "Body Grinder 501"
-	desc = "This big grinder can blend bodies into biomatter"
+	desc = "This big grinder can blend bodies into biomatter. Alt-click to open the door."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "human_grinder"
 	density = TRUE
