@@ -483,11 +483,8 @@
 /turf/open/floor/plasteel,
 /area/medical/genetics)
 "aaY" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "aaZ" = (
 /turf/closed/wall/r_wall,
@@ -53328,6 +53325,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"epu" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/mob/living/carbon/monkey,
+/turf/open/floor/plasteel,
+/area/medical/genetics)
 "eqZ" = (
 /obj/machinery/nuclearbomb/beer,
 /turf/open/floor/plating,
@@ -54322,6 +54327,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/medical/paramedic)
+"hLN" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/humangrinder,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "hMp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 9
@@ -101482,7 +101495,7 @@ bon
 aaW
 aaX
 bsN
-aaX
+epu
 aaY
 bnq
 bsL
@@ -101739,8 +101752,8 @@ bon
 bpK
 brd
 bpK
-bpK
 bvu
+hLN
 bns
 bxd
 bon

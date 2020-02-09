@@ -77359,8 +77359,8 @@
 /turf/open/floor/wood,
 /area/library)
 "ckP" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/blue,
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "ckQ" = (
@@ -100178,7 +100178,6 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "cSO" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/light,
 /obj/machinery/light_switch{
 	pixel_x = 7;
@@ -100195,6 +100194,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/machinery/humangrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "cSP" = (

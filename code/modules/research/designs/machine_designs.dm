@@ -202,6 +202,14 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	category = list("Medical Machinery")
 
+/datum/design/board/humangrinder
+	name = "Machine Design (Body Grinder)"
+	desc = "The circuit board for a Body Grinder."
+	id = "humangrinder"
+	build_path = /obj/item/circuitboard/machine/humangrinder
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	category = list("Medical Machinery")
+
 /datum/design/board/clonepod
 	name = "Machine Design (Clone Pod)"
 	desc = "Allows for the construction of circuit boards used to build a cloning pod."

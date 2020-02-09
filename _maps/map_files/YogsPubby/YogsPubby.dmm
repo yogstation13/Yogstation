@@ -39786,13 +39786,11 @@
 /turf/open/floor/grass,
 /area/medical/genetics)
 "btU" = (
-/obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/humangrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "btV" = (

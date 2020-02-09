@@ -55380,6 +55380,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/humangrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bSb" = (
