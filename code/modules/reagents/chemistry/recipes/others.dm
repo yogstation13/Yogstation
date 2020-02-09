@@ -114,7 +114,7 @@
 /datum/chemical_reaction/biomatter_creation
 	name = "Biomatter Creator"
 	id = "biomatter_creation"
-	required_reagents = list(/datum/reagent/blood = 15, /datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 5)
+	required_reagents = list(/datum/reagent/blood = 10, /datum/reagent/consumable/nutriment = 5)
 	mob_react = FALSE
 
 /datum/chemical_reaction/biomatter_creation/on_reaction(datum/reagents/holder, created_volume)

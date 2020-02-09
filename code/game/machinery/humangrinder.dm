@@ -6,14 +6,13 @@
 	density = TRUE
 	idle_power_usage = NO_POWER_USE
 	active_power_usage = 400
-	occupant_typecache = list(/mob/living/carbon)
+	occupant_typecache = /mob/living/carbon
 	circuit = /obj/item/circuitboard/machine/humangrinder
 	var/efficiency
 	var/biomatter_count = 0
 	var/locked = FALSE
 	var/message_cooldown
 	var/breakout_time = 1200
-	var/grindy = FALSE
 	var/unlock = TRUE
 
 /obj/machinery/humangrinder/RefreshParts()
@@ -130,27 +129,21 @@
 		return
 	. = ..()
 	var/dat
-	if(grindy)
-		dat += "<div class='StatusDisplay'>Grinder is grinding, be patient!</div><BR>"
-		if(locked)
-			dat += "<div class='StatusDisplay'>The Grinder is Locked!</div><BR>"
-	else
-		dat += "<div class='StatusDisplay'>You currently have [biomatter_count] biomatter</div><BR>"
-		dat += "<a href='byond://?src=[REF(src)];task=grind'>Grind the body</a><BR>"
-		dat += "<a href='byond://?src=[REF(src)];task=biomatter'>Empty Biomatter</a>"
-
+	dat += "<div class='StatusDisplay'>You currently have [biomatter_count] biomatter</div><BR>"
+	dat += "<a href='byond://?src=[REF(src)];task=grind'>Grind the body</a><BR>"
+	dat += "<a href='byond://?src=[REF(src)];task=biomatter'>Empty Biomatter</a>"
 	var/datum/browser/popup = new(user, "Clone Grinder", name, 350, 200)
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/humangrinder/Topic(href, href_list)
+	var/mob/living/O = occupant
 	if(..())
 		return
 	if("grind")
 		if(occupant)
-			var/mob/living/occupant
-			if(occupant.stat == DEAD)
+			if(O.stat == DEAD)
 				grinding()
 			else
 				to_chat("<span class='warning'>The body isn't dead yet!</span>")
@@ -159,22 +152,20 @@
 			to_chat("<span class='warning'>There is no dead body!</span>")
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 	if("biomatter")
-		if(biomatter_count > 0.9)
-			biomattering()
-			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-		else
-			to_chat("<span class='warning'>Machine is void of biomatter!</span>")
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+		biomattering()
+		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
 /obj/machinery/humangrinder/proc/grinding()
 	qdel(occupant)
-	grindy = TRUE
 	locked = TRUE
 	sleep(200/efficiency)
-	grindy = FALSE
 	locked = FALSE
-	biomatter_count += efficiency/8
+	biomatter_count += efficiency/4
 
 /obj/machinery/humangrinder/proc/biomattering()
-	biomatter_count -= 1
-	new /obj/item/reagent_containers/food/snacks/biomatter(src)
+	if(biomatter_count >= 1)
+		do
+			biomatter_count -= 1
+			new /obj/item/reagent_containers/food/snacks/biomatter(src)
+			close_machine()
+		while(biomatter_count >= 1)
