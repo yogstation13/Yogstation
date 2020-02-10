@@ -15,6 +15,7 @@
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
 		"https://www.youtube.com/watch?v=3W7mwRpUbqQ", 						// Stellardrone - Comet Haley
+		"https://www.youtube.com/watch?v=qGyPuey-1Jw",						// Irish Rovers - Drunken Sailer
 		"https://www.youtube.com/watch?v=lyMTHk5-B30", 						// Visager - Miniboss fight
 		"https://www.youtube.com/watch?v=2ziRMLrriu0", 						// Jeroen Tel - Tintin on the Moon (Remix by Admiral Hippie)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
