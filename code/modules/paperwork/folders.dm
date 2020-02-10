@@ -58,6 +58,16 @@
 	onclose(user, "folder")
 	add_fingerprint(usr)
 
+/obj/item/folder/AltClick(mob/living/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(contents.len)
+		to_chat(user, "<span class='warning'>You can't fold this folder with something still inside!</span>")
+		return
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	var/obj/item/I = new /obj/item/stack/sheet/cardboard
+	qdel(src)
+	user.put_in_hands(I)
 
 /obj/item/folder/Topic(href, href_list)
 	..()
