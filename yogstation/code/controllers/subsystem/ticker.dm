@@ -10,7 +10,6 @@
 		"https://soundcloud.com/jeffimam/title-plasma-attack", 				// Jeff Imam - Title - Plasma Attack
 		"https://www.youtube.com/watch?v=KaOC9danxNo", 						// David Bowie - Space Oddity (Cover by Chris Hadfield)
 		"https://www.youtube.com/watch?v=_lAfMT5FIZE", 						// Clint Mansell - Moon OST #1 - Welcome to Lunar Industries
-		"https://www.youtube.com/watch?v=f2cGxy-ZHIs", 						// Ólafur Arnalds - So Close (feat. Arnór Dan)
 		"https://www.youtube.com/watch?v=UaD4AiqYDyA", 						// X-CEED - Flip-Flap
 		"https://www.youtube.com/watch?v=icy4-CQHVh4", 						// Joseph "Zhaytee" Toscano - Absconditus
 		"https://www.youtube.com/watch?v=dCPWE4WexM8", 						// Hiroaki Yoshida, Hitomi Komatsu - Robocop Theme (Remix by Cboyardee)
