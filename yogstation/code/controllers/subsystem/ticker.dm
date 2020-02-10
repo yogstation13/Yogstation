@@ -24,6 +24,7 @@
 		"https://www.youtube.com/watch?v=Uhy_e5wIX44",						// Maurizio De Jorio - Running in the 90s (Remix by Sytricka)
 		"https://www.youtube.com/watch?v=na_Zac23b5E",						// Basil Poledouris - Klendathu Drop
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
+		"https://www.youtube.com/watch?v=qGyPuey-1Jw"						// Irish Rovers - Drunken Sailer
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
 	    "https://www.youtube.com/watch?v=UlHGGKgzgzI",                      // Elbow - Leaders of the Free World
