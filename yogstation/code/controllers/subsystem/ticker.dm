@@ -18,6 +18,7 @@
 		"https://www.youtube.com/watch?v=lyMTHk5-B30", 						// Visager - Miniboss fight
 		"https://www.youtube.com/watch?v=2ziRMLrriu0", 						// Jeroen Tel - Tintin on the Moon (Remix by Admiral Hippie)
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
+		"https://www.youtube.com/watch?v=KFQpSp-3APw" 						// Andreas Pfluger - Pingu Season 3 Main Theme
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
 		"https://www.youtube.com/watch?v=2MtOpB5LlUA",						// Yugo Kanno - il vento d'oro (Golden Wind)
