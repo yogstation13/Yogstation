@@ -13,9 +13,6 @@
 
 /* RECIPES */
 
-/datum/generecipe/telekinesis
-	required = "/datum/mutation/human/mindread; /datum/mutation/human/void"
-	result = TK
 
 /datum/generecipe/x_ray
 	required = "/datum/mutation/human/thermal; /datum/mutation/human/radioactive"
