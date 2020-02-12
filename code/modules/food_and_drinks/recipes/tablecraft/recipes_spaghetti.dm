@@ -68,3 +68,15 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/spaghetti/butternoodles
 	subcategory = CAT_SPAGHETTI
+
+/datum/crafting_recipe/food/falfredo
+	name = "Fettuccine Alfredo"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge/parmesan = 1,
+		/datum/reagent/consumable/blackpepper = 1,
+		/obj/item/reagent_containers/food/snacks/butter = 1,
+		/datum/reagent/consumable/cream = 5
+	)
+	result = /obj/item/reagent_containers/food/snacks/spaghetti/falfredo
+	subcategory = CAT_SPAGHETTI
