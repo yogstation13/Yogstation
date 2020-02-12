@@ -156,6 +156,26 @@
 	if(prob(60/severity))
 		to_chat(owner, "<span class='warning'>Your breathing tube suddenly closes!</span>")
 		owner.losebreath += 2
+		
+/obj/item/organ/cyberimp/brain/cerebrum
+	name = "Head Slug Cerebrum"
+	desc = "A remenant of a headslugs brain, I wonder what would happen if you put this in your head."
+	var/active = 0
+	var/list/stored_items = list()
+	implant_color = "#DE7E00"
+	slot = ORGAN_SLOT_BRAIN_SLUG
+
+
+/obj/item/organ/cyberimp/brain/cerebrum/on_gain()
+	..()
+	ADD_TRAIT(owner, TRAIT_NOSLIPALL, "ligament_hook")
+	ADD_TRAIT(owner, TRAIT_EASYDISMEMBER, "ligament_hook")
+
+/obj/item/organ/cyberimp/brain/cerebrum/on_lose()
+	..()
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "ligament_hook")
+	REMOVE_TRAIT(owner, TRAIT_EASYDISMEMBER, "ligament_hook")
+	
 
 //BOX O' IMPLANTS
 
