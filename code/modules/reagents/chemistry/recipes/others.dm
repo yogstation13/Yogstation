@@ -543,6 +543,23 @@
 		new /mob/living/simple_animal/pet/dog/corgi(location)
 	..()
 
+//monkey powder heehoo
+/datum/chemical_reaction/monkey_powder
+	name = /datum/reagent/monkey_powder
+	id = /datum/reagent/monkey_powder
+	results = list(/datum/reagent/monkey_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment=2,/datum/reagent/liquidgibs = 1)
+
+/datum/chemical_reaction/monkey
+	name = "monkey"
+	id = "monkey"
+	required_reagents = list(/datum/reagent/monkey_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/monkey/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	new /mob/living/carbon/monkey(location)
+
+
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
 	id = /datum/reagent/hair_dye
