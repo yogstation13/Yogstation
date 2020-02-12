@@ -110,7 +110,7 @@
 	desc = "A dish of fresh fettuccine tossed with creamy butter and Parmesan cheese. The proportions are huge."
 	icon_state = "falfredo"
 	bitesize = 8
-	trash = obj/item/trash/plate
+	trash = /obj/item/trash/plate
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
 	cooked_type = null
 	filling_color = "#DC143C"
