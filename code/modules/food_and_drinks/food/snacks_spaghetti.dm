@@ -104,3 +104,15 @@
 	cooked_type = null
 	tastes = list("noodle" = 1, "butter" = 1)
 	foodtype = GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/spaghetti/falfredo
+	name = "fettuccine alfredo"
+	desc = "A dish of fresh fettuccine tossed with creamy butter and Parmesan cheese. The proportions are huge."
+	icon_state = "falfredo"
+	bitesize = 8
+	trash = obj/item/trash/plate
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/parmesan_delight = 4)
+	cooked_type = null
+	filling_color = "#DC143C"
+	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1)
+	foodtype = GRAIN | DAIRY | VEGETABLES
