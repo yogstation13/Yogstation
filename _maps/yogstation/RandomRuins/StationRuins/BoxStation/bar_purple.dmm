@@ -1014,7 +1014,7 @@
 /obj/structure/table/reinforced{
 	color = "purple"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "bY" = (

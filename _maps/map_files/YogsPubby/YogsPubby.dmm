@@ -4796,7 +4796,7 @@
 /area/security/main)
 "ajm" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box{
+/obj/item/storage/box/fancy/donut_box{
 	pixel_y = 2
 	},
 /obj/structure/noticeboard{
@@ -5772,7 +5772,7 @@
 /area/maintenance/department/crew_quarters/dorms)
 "alc" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/cigars,
+/obj/item/storage/box/fancy/cigarettes/cigars,
 /obj/item/stack/spacecash/c20,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
@@ -14724,7 +14724,7 @@
 /area/crew_quarters/heads/captain)
 "aBS" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /obj/item/lighter,
 /obj/item/clothing/glasses/hud/security/sunglasses,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -28347,7 +28347,7 @@
 	id = "kitchenshutters";
 	name = "kitchen shutters"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -31591,7 +31591,7 @@
 "bgo" = (
 /obj/structure/table,
 /obj/item/trash/plate,
-/obj/item/storage/fancy/rollingpapers,
+/obj/item/storage/box/fancy/rollingpapers,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -35450,7 +35450,7 @@
 /obj/structure/table,
 /obj/item/folder/white,
 /obj/item/clothing/gloves/color/latex,
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/machinery/light_switch{
 	pixel_x = 22
 	},
@@ -54624,7 +54624,7 @@
 /area/maintenance/department/engine)
 "cba" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
+/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "cbb" = (
@@ -57377,7 +57377,7 @@
 /area/chapel/office)
 "cth" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
@@ -57686,7 +57686,7 @@
 /area/chapel/main/monastery)
 "cwl" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
@@ -57870,7 +57870,7 @@
 /area/library)
 "czB" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /turf/open/floor/carpet,
 /area/library)
 "czC" = (
@@ -60647,7 +60647,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "mHy" = (
-/obj/item/storage/fancy/cigarettes/cigpack_shadyjims,
+/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims,
 /turf/open/floor/wood,
 /area/maintenance/department/engine)
 "mIa" = (

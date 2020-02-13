@@ -498,7 +498,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "bo" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes{
+/obj/item/storage/box/fancy/cigarettes{
 	pixel_y = 2
 	},
 /obj/item/lighter{
@@ -1781,7 +1781,7 @@
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
-/obj/item/storage/fancy/egg_box,
+/obj/item/storage/box/fancy/egg_box,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
@@ -13039,7 +13039,7 @@
 /area/awaymission/undergroundoutpost45/mining)
 "xb" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/cigarettes{
+/obj/item/storage/box/fancy/cigarettes{
 	pixel_x = -2
 	},
 /obj/item/lighter{

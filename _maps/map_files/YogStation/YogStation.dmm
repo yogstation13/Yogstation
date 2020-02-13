@@ -3625,7 +3625,7 @@
 /area/security/warden)
 "agY" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -20137,7 +20137,7 @@
 /area/hallway/primary/port)
 "aOj" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes{
+/obj/item/storage/box/fancy/cigarettes{
 	pixel_y = 2
 	},
 /obj/item/lighter/greyscale{
@@ -22193,7 +22193,7 @@
 /area/bridge)
 "aSE" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel,
 /area/bridge)
 "aSF" = (
@@ -26289,7 +26289,7 @@
 /area/crew_quarters/toilet/locker)
 "baP" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
 "baQ" = (
@@ -27844,7 +27844,7 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "bdX" = (
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/table,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -51567,7 +51567,7 @@
 "crm" = (
 /obj/structure/table,
 /obj/item/storage/box/matches,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "crp" = (
