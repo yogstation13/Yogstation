@@ -141,9 +141,9 @@
 /obj/item/gun/ballistic/revolver/detective/cyborg/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	..()
 
-// DEBUG oh god oh fuck please work
+
 /obj/item/gun/ballistic/revolver/detective/cyborg/attack_self(mob/living/user)
-	return
+	return // magazene is in robot. We return here to prevent fired casings returning to robot. 
 
 /// DEBUG Don't forget to update this
 /obj/item/gun/ballistic/revolver/detective/cyborg/get_ammo(countchambered = FALSE, countempties = TRUE)
