@@ -271,11 +271,12 @@
 		/obj/item/toy/crayon/white,
 		/obj/item/healthanalyzer,
 		/obj/item/gun/ballistic/revolver/detective/cyborg, // DEBUG for the love of god don't forget to remove this when you finish WIP PR
-		/obj/item/ammo_box/c38 // DEBUG for the love of god don't forget to remove this when you finish WIP PR
+		/obj/item/ammo_box/c38, // DEBUG for the love of god don't forget to remove this when you finish WIP PR
+		/obj/item/melee/classic_baton/detective_borg_baton
 		)
 	emag_modules = list(
 		/obj/item/gun/ballistic/revolver/detective/cyborg,
-		/obj/item/ammo_box/c38 
+		/obj/item/ammo_box/c38
 		)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/security,

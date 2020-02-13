@@ -309,6 +309,12 @@
 			if (wait_desc)
 				to_chat(user, wait_desc)
 
+/obj/item/melee/classic_baton/detective_borg_baton
+	name = "Cyborg police baton"
+	desc = "A wooden truncheon for beating criminal scum. Safety precautions prevent you from swinging this with full force."
+	force = 6 // 6 brute from 12 brute
+	stun_time_carbon = 30 //  3 seconds form 6 seconds.
+
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
 	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
