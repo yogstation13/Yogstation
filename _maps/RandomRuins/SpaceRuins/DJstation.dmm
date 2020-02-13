@@ -75,7 +75,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "Worn-out APC";
-	pixel_y = -23
+	pixel_y = -24
 	},
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
