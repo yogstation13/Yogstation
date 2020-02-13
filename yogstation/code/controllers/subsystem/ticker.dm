@@ -20,7 +20,6 @@
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=2MtOpB5LlUA",						// Yugo Kanno - il vento d'oro (Golden Wind)
 		"https://www.youtube.com/watch?v=Uhy_e5wIX44",						// Maurizio De Jorio - Running in the 90s (Remix by Sytricka)
 		"https://www.youtube.com/watch?v=na_Zac23b5E",						// Basil Poledouris - Klendathu Drop
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
