@@ -849,7 +849,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(25)
 	},
-/obj/item/storage/fancy/egg_box,
+/obj/item/storage/box/fancy/egg_box,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/milk,
 /obj/item/reagent_containers/food/condiment/flour,

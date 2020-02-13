@@ -160,7 +160,7 @@
 /area/maintenance/starboard/aft)
 "r" = (
 /obj/structure/chair,
-/obj/item/storage/fancy/cigarettes,
+/obj/item/storage/box/fancy/cigarettes,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},

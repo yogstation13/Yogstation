@@ -579,7 +579,7 @@
 /area/hallway/secondary/command)
 "abh" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
@@ -1144,7 +1144,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/item/storage/box/donkpockets,
 /obj/machinery/airalarm{
 	dir = 8;
@@ -7170,7 +7170,7 @@
 /area/hallway/secondary/entry)
 "ams" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
 "amt" = (
@@ -18942,13 +18942,13 @@
 /area/crew_quarters/bar)
 "aEZ" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigars{
+/obj/item/storage/box/fancy/cigarettes/cigars{
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/cigarettes/cigars/havana,
+/obj/item/storage/box/fancy/cigarettes/cigars/havana,
 /obj/item/radio/intercom{
 	pixel_y = 26
 	},
@@ -32774,7 +32774,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/bridge)
 "aZo" = (
@@ -34650,7 +34650,7 @@
 	id = "kitchencounter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor/border_only{
@@ -35860,7 +35860,7 @@
 /area/hallway/primary/fore)
 "bdP" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/bridge/meeting_room/council)
 "bdQ" = (
@@ -41804,7 +41804,7 @@
 /area/security/main)
 "bmo" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -47751,7 +47751,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -48164,7 +48164,7 @@
 /area/hallway/primary/port)
 "bvt" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/library)
 "bvu" = (
@@ -53266,7 +53266,7 @@
 /area/ai_monitored/turret_protected/ai)
 "bCr" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -60594,7 +60594,7 @@
 /area/crew_quarters/heads/captain)
 "bMM" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/captain)
 "bMN" = (
@@ -66091,7 +66091,7 @@
 /area/maintenance/port)
 "bUM" = (
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -70367,7 +70367,7 @@
 /area/engine/engineering)
 "cav" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -81106,7 +81106,7 @@
 	dir = 4;
 	pixel_x = -23
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -84500,11 +84500,11 @@
 /area/library)
 "cwu" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cwv" = (
@@ -88953,7 +88953,7 @@
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "cDa" = (
@@ -89858,7 +89858,7 @@
 /area/library)
 "cEq" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
@@ -92765,7 +92765,7 @@
 /area/maintenance/department/medical)
 "cIH" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -120849,11 +120849,11 @@
 /area/crew_quarters/abandoned_gambling_den)
 "dzc" = (
 /obj/structure/table/wood/poker,
-/obj/item/storage/fancy/cigarettes/dromedaryco{
+/obj/item/storage/box/fancy/cigarettes/dromedaryco{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/box/fancy/cigarettes/dromedaryco,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/abandoned_gambling_den)
@@ -123214,11 +123214,11 @@
 /area/crew_quarters/theatre/abandoned)
 "dIc" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/crew_quarters/theatre/abandoned)
@@ -123811,10 +123811,10 @@
 /area/security/detectives_office/private_investigators_office)
 "dLy" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/cigarettes/cigpack_uplift{
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
 	pixel_x = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_carp{
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
 	pixel_x = -3
 	},
 /obj/item/lighter,
@@ -125708,11 +125708,11 @@
 /area/chapel/office)
 "dUl" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "dUm" = (
@@ -128172,7 +128172,7 @@
 /area/chapel/office)
 "eeF" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
@@ -128343,11 +128343,11 @@
 /area/chapel/office)
 "efs" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -128507,11 +128507,11 @@
 /area/chapel/office)
 "efY" = (
 /obj/structure/table/wood,
-/obj/item/storage/fancy/candle_box{
+/obj/item/storage/box/fancy/candle_box{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/fancy/candle_box,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "efZ" = (
