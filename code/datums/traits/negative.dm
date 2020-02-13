@@ -555,7 +555,8 @@
 /datum/quirk/unstable
 	name = "Unstable"
 	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
-	value = 0 // yogs - haha no free points for you
+	value = -2
+	mood_quirk = TRUE
 	mob_trait = TRAIT_UNSTABLE
 	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
 	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
@@ -576,3 +577,19 @@
 	H.remove_language(/datum/language/common)
 	if(!H.can_speak_language(/datum/language/draconic) && !H.can_speak_language(/datum/language/machine))
 		H.grant_language(/datum/language/japanese)
+
+
+/datum/quirk/random_accent
+	name = "Randomized Accent"
+	desc = "You have developed a random accent."
+	value = -1
+	mob_trait = TRAIT_RANDOM_ACCENT
+	gain_text = "<span class='danger'>You have developed an accent.</span>"
+	lose_text = "<span class='notice'>You have better control of how you pronounce your words.</span>"
+	medical_record_text = "Patient is difficult to understand."
+
+/datum/quirk/random_accent/post_add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(!H.mind.accent_name)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+	H.mind.accent_name = pick(assoc_list_strip_value(GLOB.accents))// Right now this pick just picks a straight random one from all implemented.

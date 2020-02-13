@@ -1,0 +1,5 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "Emote cooldown framework has been added. This means you cannot spam a single emote in rapid succession (sorry macro kiddies)!"
+  - rscadd: "Used this new emote cooldown framework to add a longer delay to *deathgasp . Take that spamming silicons!"

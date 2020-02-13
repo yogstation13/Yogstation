@@ -77,6 +77,7 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+// List of possible actions user has chosen on the New Players menus
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
 		return 0
@@ -160,6 +161,14 @@
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
 				to_chat(usr, "<span class='warning'>Server is full.</span>")
 				return
+
+		// Check if random role is requested
+		if(href_list["SelectedJob"] == "Random")
+			var/datum/job/job = SSjob.GetRandomJob(src)
+			if(!job)
+				to_chat(usr, "<span class='warning'>There is no randomly assignable Job at this time. Please manually choose one of the other possible options.</span>")
+				return
+			href_list["SelectedJob"] = job.title
 
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
@@ -457,6 +466,15 @@
 		column_counter++
 		if(column_counter > 0 && (column_counter % 3 == 0))
 			dat += "</td><td valign='top'>"
+
+	// Random Job Section
+	dat += "<fieldset style='width: 185px; border: 2px solid #f0ebe2; display: inline'>"
+	dat += "<legend align='center' style='color: #f0ebe2'>Random</legend>"
+	dat += "<a class='job' href='byond://?src=[REF(src)];SelectedJob=Random'>Random Job</a>"
+	// TODO could add random job selection to be based on player preferences too
+	dat += "</fieldset><br>"
+
+	// Table end
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
 	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 580)
@@ -484,6 +502,8 @@
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = 0					//we wish to transfer the key manually
+		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
+			mind.accent_name = client.prefs.accent
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 
 	H.name = real_name

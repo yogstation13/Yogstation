@@ -1,4 +1,3 @@
-author: "Saratoubi"
-delete-after: true 
-changes: 
-  - tweak: "Replaced single tile firelocked with border firelocks on Charlie station (old station), added ATMOS holoproject, 1 micro-manipulator, and 1 basic matter bin."
+author: Saratoubi
+changes: []
+delete-after: true

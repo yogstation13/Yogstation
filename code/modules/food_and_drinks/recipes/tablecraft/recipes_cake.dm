@@ -84,6 +84,15 @@
 	result = /obj/item/reagent_containers/food/snacks/store/cake/brain
 	subcategory = CAT_CAKE
 
+/datum/crafting_recipe/food/donkcake
+	name = "Donk cake"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/donkpocket/warm = 2,
+		/obj/item/reagent_containers/food/snacks/store/cake/plain = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/store/cake/donk
+	subcategory = CAT_CAKE
+
 /datum/crafting_recipe/food/slimecake
 	name = "Slime cake"
 	reqs = list(
