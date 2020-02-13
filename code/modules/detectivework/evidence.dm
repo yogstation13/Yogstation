@@ -87,3 +87,8 @@
 /obj/item/storage/box/evidence/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/evidencebag(src)
+
+/obj/item/evidencebag/detective_borg
+	name = "evidence bag fabricator"
+	desc = "An empty evidence bag."
+	// TODO: make this variant of bag have a cooldown so it can't be spawned. Also make it use energy

@@ -267,16 +267,16 @@
 		/obj/item/wantedposterposter,
 		/obj/item/detective_scanner,
 		/obj/item/bodybag,
-		/obj/item/evidencebag,
+		/obj/item/evidencebag/detective_borg,
 		/obj/item/toy/crayon/white,
 		/obj/item/healthanalyzer,
 		/obj/item/gun/ballistic/revolver/detective/cyborg, // DEBUG for the love of god don't forget to remove this when you finish WIP PR
-		/obj/item/ammo_box/c38, // DEBUG for the love of god don't forget to remove this when you finish WIP PR
+		/obj/item/ammo_box/c38/detective_borg, // DEBUG for the love of god don't forget to remove this when you finish WIP PR
 		/obj/item/melee/classic_baton/detective_borg_baton
 		)
 	emag_modules = list(
 		/obj/item/gun/ballistic/revolver/detective/cyborg,
-		/obj/item/ammo_box/c38
+		/obj/item/ammo_box/c38/detective_borg
 		)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/security,

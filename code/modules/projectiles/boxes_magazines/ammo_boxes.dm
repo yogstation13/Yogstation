@@ -15,6 +15,10 @@
 	multiple_sprites = 1
 	materials = list(MAT_METAL = 20000)
 
+/obj/item/ammo_box/c38/detective_borg
+	name = "speed loader module (.38)"
+	desc = "Module designed to quickly reload your revolver."
+
 /obj/item/ammo_box/c38/trac
 	name = "speed loader (.38 TRAC)"
 	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
