@@ -39,8 +39,6 @@
 			if(valentines.len && prob(4))
 				var/mob/living/notgoodenough = pick_n_take(valentines)
 				forge_valentines_objective(notgoodenough, date)
-		else
-			L.mind.add_antag_datum(/datum/antagonist/heartbreaker)
 
 /proc/forge_valentines_objective(mob/living/lover,mob/living/date)
 	lover.mind.special_role = "valentine"
