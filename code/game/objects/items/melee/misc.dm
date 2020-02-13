@@ -310,7 +310,7 @@
 				to_chat(user, wait_desc)
 
 /obj/item/melee/classic_baton/detective_borg_baton
-	name = "Cyborg police baton"
+	name = "Cyborg police baton module"
 	desc = "A wooden truncheon for beating criminal scum. Safety precautions prevent you from swinging this with full force."
 	force = 6 // 6 brute from 12 brute
 	stun_time_carbon = 30 //  3 seconds form 6 seconds.

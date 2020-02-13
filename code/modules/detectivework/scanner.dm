@@ -19,7 +19,9 @@
 	var/range = 8
 	var/view_check = TRUE
 	var/forensicPrintCount = 0
+	var/scan_time = 30
 	actions_types = list(/datum/action/item_action/displayDetectiveScanResults)
+
 
 /datum/action/item_action/displayDetectiveScanResults
 	name = "Display Forensic Scanner Results"
@@ -124,7 +126,7 @@
 
 		// Fingerprints
 		if(length(fingerprints))
-			sleep(30)
+			sleep(scan_time)
 			add_log("<span class='info'><B>Prints:</B></span>")
 			for(var/finger in fingerprints)
 				add_log("[finger]")
@@ -132,7 +134,7 @@
 
 		// Blood
 		if (length(blood))
-			sleep(30)
+			sleep(scan_time)
 			add_log("<span class='info'><B>Blood:</B></span>")
 			found_something = 1
 			for(var/B in blood)
@@ -140,7 +142,7 @@
 
 		//Fibers
 		if(length(fibers))
-			sleep(30)
+			sleep(scan_time)
 			add_log("<span class='info'><B>Fibers:</B></span>")
 			for(var/fiber in fibers)
 				add_log("[fiber]")
@@ -148,7 +150,7 @@
 
 		//Reagents
 		if(length(reagents))
-			sleep(30)
+			sleep(scan_time)
 			add_log("<span class='info'><B>Reagents:</B></span>")
 			for(var/R in reagents)
 				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
@@ -212,3 +214,119 @@
 	to_chat(user, "<span class='notice'><B>Scanner Report</B></span>")
 	for(var/iterLog in log)
 		to_chat(user, iterLog)
+
+/obj/item/detective_scanner/detective_borg
+	name = "forensic nose"
+	desc = "Your robotic nose can be used to sniff out objects and biomass for DNA and fingerprints. Reduced range but processes results much quicker. Able to print a report of the findings."
+	range = 1 // Your nose can only sniff close to you
+	scan_time = 10 // you process scans much faster
+
+/obj/item/detective_scanner/detective_borg/proc/scan_borg(atom/A, mob/user)
+	set waitfor = 0
+	if(!scanning)
+		// Can remotely scan objects and mobs.
+		if((get_dist(A, user) > range) || (!(A in view(range, user)) && view_check) || (loc != user))
+			return
+
+		scanning = 1
+
+		user.visible_message("\The [user] sniffs with the [src.name] twords \the [A] .")
+		to_chat(user, "<span class='notice'>You sniff \the [A]. You are now analysing the results...</span>")
+
+
+		// GATHER INFORMATION
+
+		//Make our lists
+		var/list/fingerprints = list()
+		var/list/blood = A.return_blood_DNA()
+		var/list/fibers = A.return_fibers()
+		var/list/reagents = list()
+
+		var/target_name = A.name
+
+		// Start gathering
+
+		if(ishuman(A))
+
+			var/mob/living/carbon/human/H = A
+			if(!H.gloves)
+				fingerprints += md5(H.dna.uni_identity)
+
+		else if(!ismob(A))
+
+			fingerprints = A.return_fingerprints()
+
+			// Only get reagents from non-mobs.
+			if(A.reagents && A.reagents.reagent_list.len)
+
+				for(var/datum/reagent/R in A.reagents.reagent_list)
+					reagents[R.name] = R.volume
+
+					// Get blood data from the blood reagent.
+					if(istype(R, /datum/reagent/blood))
+
+						if(R.data["blood_DNA"] && R.data["blood_type"])
+							var/blood_DNA = R.data["blood_DNA"]
+							var/blood_type = R.data["blood_type"]
+							LAZYINITLIST(blood)
+							blood[blood_DNA] = blood_type
+
+		// We gathered everything. Create a fork and slowly display the results to the holder of the scanner.
+
+		var/found_something = 0
+		add_log("<B>[station_time_timestamp()][get_timestamp()] - [target_name]</B>", 0)
+
+		// Fingerprints
+		if(length(fingerprints))
+			sleep(scan_time)
+			add_log("<span class='info'><B>Prints:</B></span>")
+			for(var/finger in fingerprints)
+				add_log("[finger]")
+			found_something = 1
+
+		// Blood
+		if (length(blood))
+			sleep(scan_time)
+			add_log("<span class='info'><B>Blood:</B></span>")
+			found_something = 1
+			for(var/B in blood)
+				add_log("Type: <font color='red'>[blood[B]]</font> DNA: <font color='red'>[B]</font>")
+
+		//Fibers
+		if(length(fibers))
+			sleep(scan_time)
+			add_log("<span class='info'><B>Fibers:</B></span>")
+			for(var/fiber in fibers)
+				add_log("[fiber]")
+			found_something = 1
+
+		//Reagents
+		if(length(reagents))
+			sleep(scan_time)
+			add_log("<span class='info'><B>Reagents:</B></span>")
+			for(var/R in reagents)
+				add_log("Reagent: <font color='red'>[R]</font> Volume: <font color='red'>[reagents[R]]</font>")
+			found_something = 1
+
+		// Get a new user
+		var/mob/holder = null
+		if(ismob(src.loc))
+			holder = src.loc
+
+		if(!found_something)
+			add_log("<I># No forensic traces found #</I>", 0) // Don't display this to the holder user
+			if(holder)
+				to_chat(holder, "<span class='warning'>Unable to sense any fingerprints, materials, fibers, or blood on \the [target_name]!</span>")
+		else
+			if(holder)
+				to_chat(holder, "<span class='notice'>You finish processing results from \the [target_name].</span>")
+
+		add_log("---------------------------------------------------------", 0)
+		scanning = 0
+		return
+
+
+/obj/item/detective_scanner/detective_borg/afterattack(atom/A, mob/user, params)
+	. = ..()
+	scan_borg(A, user)
+	return FALSE

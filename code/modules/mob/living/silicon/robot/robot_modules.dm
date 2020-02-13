@@ -265,7 +265,7 @@
 		/obj/item/restraints/handcuffs/cable/zipties,  // placeholder for when I make ziptie maker
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/wantedposterposter,
-		/obj/item/detective_scanner,
+		/obj/item/detective_scanner/detective_borg,
 		/obj/item/bodybag,
 		/obj/item/evidencebag/detective_borg,
 		/obj/item/toy/crayon/white,
