@@ -18,7 +18,7 @@
 	response_disarm = "flails at"
 	response_harm   = "flails at"
 	harm_intent_damage = 0
-	melee_damage_lower = 160 //Was 35, buffed
+	melee_damage_lower = 160 //Was 60, buffed
 	melee_damage_upper = 160
 	attacktext = "rends"
 	attack_sound = 'sound/weapons/slash.ogg'
