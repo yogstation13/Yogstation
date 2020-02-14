@@ -494,7 +494,6 @@
 	hitspeed = 1 // zip ties are heavier than candy.. I think
 	emaggedhitdamage = 8
 	hitdamage = 4
-	..()
 
 /obj/item/borg/lollipop/ziptie_fabricator/proc/shootZIP(atom/target, mob/living/user, params)	// zip ties are candy!
 	if(candy <= 0)
