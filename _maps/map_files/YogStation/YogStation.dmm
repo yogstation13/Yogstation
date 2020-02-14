@@ -24683,8 +24683,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/sorting/mail{
-	sortType = 15;
-	dir = 8
+	dir = 8;
+	sortType = 15
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -34665,19 +34665,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"bqR" = (
-/obj/structure/table,
-/obj/item/crowbar,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/structure/sign/warning/nosmoking{
-	pixel_y = 30
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bqS" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -35267,15 +35254,6 @@
 /obj/machinery/vending/cart,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"brX" = (
-/obj/structure/table,
-/obj/item/storage/box/masks,
-/obj/item/storage/box/gloves{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "brY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -35913,17 +35891,6 @@
 	dir = 6
 	},
 /area/science/research)
-"btf" = (
-/obj/machinery/requests_console{
-	department = "Medbay";
-	departmentType = 1;
-	name = "Medbay RC";
-	pixel_x = -30
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "btg" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -39601,10 +39568,6 @@
 /obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"bzW" = (
-/obj/structure/closet/l3closet,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "bzX" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -40948,13 +40911,6 @@
 /obj/machinery/camera{
 	c_tag = "Medbay Storage";
 	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
-"bCM" = (
-/obj/structure/closet/secure_closet/medical3,
-/obj/machinery/airalarm{
-	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -53617,10 +53573,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fcR" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "feu" = (
 /obj/machinery/nuclearbomb/selfdestruct,
 /obj/effect/turf_decal/tile/neutral,
@@ -54479,6 +54431,14 @@
 /obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space/basic,
 /area/space/nearstation)
+"ift" = (
+/obj/machinery/door/airlock/medical/glass{
+	id_tag = "GeneticsDoor";
+	name = "Genetics";
+	req_access_txt = "5; 68"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "ihS" = (
 /turf/closed/wall/r_wall,
 /area/medical/sleeper)
@@ -54884,6 +54844,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jIs" = (
+/obj/effect/spawner/structure/window/reinforced,
+/area/medical/sleeper)
 "jLm" = (
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plasteel,
@@ -55448,6 +55411,15 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"mcG" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 30
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "mdx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -55713,6 +55685,10 @@
 "nds" = (
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"nfD" = (
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "ngM" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
@@ -55826,6 +55802,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"nCM" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "nCP" = (
 /obj/effect/landmark/stationroom/box/xenobridge,
 /turf/template_noop,
@@ -55909,6 +55889,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"nTb" = (
+/obj/structure/closet/l3closet,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "nTg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -56055,6 +56042,14 @@
 "oyT" = (
 /turf/closed/wall/r_wall,
 /area/engine/break_room)
+"oCO" = (
+/obj/machinery/door/airlock/medical/glass{
+	id_tag = "MedbayFoyer";
+	name = "Medbay";
+	req_access_txt = "5"
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/central)
 "oDw" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -57382,6 +57377,10 @@
 /obj/item/beacon,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"tqt" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "trb" = (
 /obj/machinery/light{
 	dir = 4
@@ -57689,6 +57688,24 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"uyC" = (
+/obj/machinery/requests_console{
+	department = "Medbay";
+	departmentType = 1;
+	name = "Medbay RC";
+	pixel_x = -30
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/table,
+/obj/item/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/storage/box/masks,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "uzN" = (
 /obj/machinery/telecomms/bus/preset_one,
 /obj/machinery/light{
@@ -94089,8 +94106,8 @@ bfF
 bfF
 bfF
 bfF
-bog
-bog
+oCO
+oCO
 bof
 bnf
 bvj
@@ -94346,8 +94363,8 @@ bmF
 bob
 bnB
 bfF
-bqR
-brX
+mcG
+bhh
 bof
 bng
 bvj
@@ -94605,7 +94622,7 @@ hlU
 bpD
 bqO
 aXC
-btf
+uyC
 bnk
 bvj
 aCP
@@ -96924,7 +96941,7 @@ bxR
 bxR
 bvj
 bvj
-bzW
+nTb
 bqW
 bCT
 bGR
@@ -97437,8 +97454,8 @@ bwI
 bxT
 bxQ
 bAt
-bvj
-bCM
+jIs
+nfD
 bqW
 bDR
 bDR
@@ -99233,10 +99250,10 @@ brh
 bua
 bua
 bua
+tqt
 bua
 bua
-bua
-bhh
+bAp
 bhh
 bmv
 aPr
@@ -99491,9 +99508,9 @@ bua
 bvn
 bvy
 bxX
-fcR
-bua
-bAp
+bsL
+ift
+bhh
 bhh
 bmv
 aDR
@@ -99758,7 +99775,7 @@ brY
 bhh
 aEf
 bhh
-bhh
+nCM
 bRN
 bIK
 aQy
