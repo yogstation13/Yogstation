@@ -483,6 +483,50 @@
 			to_chat(user, "<span class='notice'>Module is now dispensing lollipops.</span>")
 	..()
 
+/obj/item/borg/lollipop/ziptie_fabricator
+	name = "Zip-tie fabricator" // hah probably didn't think I'd use this code for this purpose - Hopek
+	desc = "Dispences zip tie's. Produces zip ties on the fly using an internal printer."
+	icon_state = "lollipop" // TODO: new icon goes here
+	candymax = 1 // 1 zip tie active at a time
+	charge_delay = 100 // 10 seconds
+	charging = TRUE // zipties take a while to fabricate
+	firedelay = 30 // 3 seconds
+	hitspeed = 1 // zip ties are heavier than candy.. I think
+	emaggedhitdamage = 8
+	hitdamage = 4
+	..()
+
+/obj/item/borg/lollipop/ziptie_fabricator/proc/shootZIP(atom/target, mob/living/user, params)	// zip ties are candy!
+	if(candy <= 0)
+		to_chat(user, "<span class='warning'>Still producing a zip tie!</span>")
+		return FALSE
+	candy--
+	var/obj/item/ammo_casing/caseless/gumball/A = new /obj/item/ammo_casing/caseless/gumball(src)
+	A.BB.damage = hitdamage // keeping this in just in-case someone makes zipties damage
+	if(hitdamage)
+		A.BB.nodamage = FALSE
+	A.BB.speed = 0.5
+	A.BB.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255)) // Randomly colored zip ties. Hilarious
+	playsound(src.loc, 'sound/weapons/bulletflyby3.ogg', 50, 1)
+	A.fire_casing(target, user, params, 0, 0, null, 0, src)
+	user.visible_message("<span class='warning'>[user] shoots a zip tie at [target]!</span>")
+	check_amount()
+
+/obj/item/borg/lollipop/ziptie_fabricator/afterattack(atom/target, mob/living/user, proximity, click_params)
+	. = ..()
+	check_amount()
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		if(!R.cell.use(12))
+			to_chat(user, "<span class='warning'>Not enough power.</span>")
+			return FALSE
+		if(R.emagged)
+			hitdamage = emaggedhitdamage
+		if(!proximity)
+			return FALSE
+		shootZIP(target, user, click_params)
+		hitdamage = initial(hitdamage) 
+
 #undef DISPENSE_LOLLIPOP_MODE
 #undef THROW_LOLLIPOP_MODE
 #undef THROW_GUMBALL_MODE
