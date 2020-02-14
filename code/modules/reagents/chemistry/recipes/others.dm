@@ -557,7 +557,7 @@
 
 /datum/chemical_reaction/monkey/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	new /mob/living/carbon/monkey(location)
+	if (location) new /mob/living/carbon/monkey(location)
 
 
 /datum/chemical_reaction/hair_dye
