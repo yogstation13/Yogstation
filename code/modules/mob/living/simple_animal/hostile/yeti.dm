@@ -23,3 +23,13 @@
 	minbodytemp = 150
 	maxbodytemp = 500
 	gold_core_spawnable = HOSTILE_SPAWN
+
+/obj/effect/spawner/lootdrop/mob/yeti
+	name = "Yeti"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/yeti = 1,
+			/mob/living/simple_animal/pet/penguin = 1,
+			/mob/living/simple_animal/hostile/skeleton/ice = 1,
+			/mob/living/simple_animal/hostile/skeleton/eskimo = 1,
+			/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing = 1)
