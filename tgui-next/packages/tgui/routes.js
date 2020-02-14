@@ -52,10 +52,15 @@ import { MiningVendor } from './interfaces/MiningVendor';
 import { Mule } from './interfaces/Mule';
 import { MalfunctionModulePicker } from './interfaces/MalfunctionModulePicker';
 import { NtnetRelay } from './interfaces/NtnetRelay';
+import { NtosAiRestorer } from './interfaces/NtosAiRestorer';
 import { NtosArcade } from './interfaces/NtosArcade';
 import { NtosConfiguration } from './interfaces/NtosConfiguration';
 import { NtosMain } from './interfaces/NtosMain';
+import { NtosFileManager } from './interfaces/NtosFileManager';
+import { NtosNetDos } from './interfaces/NtosNetDos';
 import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
+import { NtosNetMonitor } from './interfaces/NtosNetMonitor';
+import { NtosRevelation } from './interfaces/NtosRevelation';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
 import { NtosWrapper } from './interfaces/NtosWrapper';
 import { NuclearBomb } from './interfaces/NuclearBomb';
@@ -326,6 +331,12 @@ const ROUTES = {
     component: () => NtnetRelay,
     scrollable: false,
   },
+  ntos_ai_restorer: {
+    component: () => NtosAiRestorer,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
   ntos_arcade: {
     component: () => NtosArcade,
     wrapper: () => NtosWrapper,
@@ -338,14 +349,32 @@ const ROUTES = {
     scrollable: true,
     theme: 'ntos',
   },
+  ntos_file_manager: {
+    component: () => NtosFileManager,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
   ntos_main: {
     component: () => NtosMain,
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
   },
+  ntos_net_dos: {
+    component: () => NtosNetDos,
+    wrapper: () => NtosWrapper,
+    scrollable: false,
+    theme: 'syndicate',
+  },
   ntos_net_downloader: {
     component: () => NtosNetDownloader,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
+  },
+  ntos_net_monitor: {
+    component: () => NtosNetMonitor,
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
@@ -355,6 +384,12 @@ const ROUTES = {
     wrapper: () => NtosWrapper,
     scrollable: true,
     theme: 'ntos',
+  },
+  ntos_revelation: {
+    component: () => NtosRevelation,
+    wrapper: () => NtosWrapper,
+    scrollable: false,
+    theme: 'syndicate',
   },
   ntos_station_alert: {
     component: () => StationAlertConsole,
