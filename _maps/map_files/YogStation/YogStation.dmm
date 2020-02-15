@@ -54919,30 +54919,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jWH" = (
-/obj/structure/table/glass,
-/obj/item/paper_bin{
-	pixel_y = 4
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = -4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/obj/item/pet_carrier/xenobio,
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "jXT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -56647,18 +56623,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"qMU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "qPL" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -56819,6 +56783,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"rFv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/computer/camera_advanced/xenobio{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "rFO" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/reagent_dispensers/fueltank,
@@ -58628,6 +58604,30 @@
 /obj/item/clothing/under/yogs/rank/clerk/skirt,
 /turf/open/floor/plasteel,
 /area/clerk)
+"xTD" = (
+/obj/structure/table/glass,
+/obj/item/paper_bin{
+	pixel_y = 4
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/pen{
+	pixel_x = -4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/obj/item/pet_carrier/xenobio,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "xWi" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -103618,7 +103618,7 @@ bLa
 bMi
 buu
 bPy
-qMU
+rFv
 bJN
 bRW
 bTb
@@ -103875,7 +103875,7 @@ ajm
 bMi
 buu
 bMi
-jWH
+xTD
 bLe
 bRV
 bTa
