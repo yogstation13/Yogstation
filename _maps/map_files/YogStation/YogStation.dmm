@@ -24683,8 +24683,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/sorting/mail{
-	sortType = 15;
-	dir = 8
+	dir = 8;
+	sortType = 15
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -51413,10 +51413,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
-"cpG" = (
-/obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "cpR" = (
 /obj/machinery/door/airlock{
 	name = "Observatory Access"
@@ -58738,6 +58734,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/white,
 /area/tcommsat/computer)
+"yfu" = (
+/obj/machinery/stasis,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "yjy" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -94870,7 +94870,7 @@ bxc
 aso
 ats
 bDT
-cpG
+yfu
 bDC
 bId
 bvj
