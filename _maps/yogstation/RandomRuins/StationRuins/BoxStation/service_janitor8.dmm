@@ -1,5 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"c" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel,
+/area/janitor)
+"e" = (
+/turf/open/floor/plasteel,
+/area/janitor)
+"f" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
@@ -9,20 +16,17 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
 /area/janitor)
-"c" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel,
-/area/janitor)
-"e" = (
-/turf/open/floor/plasteel,
-/area/janitor)
 "h" = (
-/obj/machinery/requests_console{
-	department = "Janitorial";
-	departmentType = 1;
-	pixel_y = -29
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
 	},
-/obj/vehicle/ridden/janicart,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/mob/living/simple_animal/hostile/lizard{
+	name = "Wags-His-Tail";
+	real_name = "Wags-His-Tail"
+	},
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
 "i" = (
@@ -38,48 +42,30 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/janitor)
-"k" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/item/storage/box/lights/mixed,
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/plasteel,
-/area/janitor)
 "m" = (
 /turf/closed/wall,
 /area/janitor)
-"o" = (
-/obj/structure/chair/stool,
-/obj/effect/landmark/start/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
 "p" = (
-/obj/item/storage/box/mousetraps,
-/obj/item/storage/box/mousetraps,
-/obj/item/restraints/legcuffs/beartrap,
-/obj/item/restraints/legcuffs/beartrap,
-/turf/open/floor/plasteel,
-/area/janitor)
-"s" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plasteel,
 /area/janitor)
-"v" = (
-/obj/structure/disposalpipe/segment,
+"q" = (
+/obj/structure/table,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel,
 /area/janitor)
-"w" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/mob/living/simple_animal/hostile/lizard{
-	name = "Wags-His-Tail";
-	real_name = "Wags-His-Tail"
-	},
+"u" = (
+/obj/structure/closet/l3closet/janitor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"v" = (
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/janitor)
 "z" = (
@@ -114,6 +100,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"H" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plasteel,
+/area/janitor)
 "I" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -140,16 +133,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"P" = (
-/obj/structure/table,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
+"Q" = (
+/obj/machinery/requests_console{
+	department = "Janitorial";
+	departmentType = 1;
+	pixel_y = -29
+	},
+/obj/vehicle/ridden/janicart,
 /turf/open/floor/plasteel,
 /area/janitor)
-"R" = (
-/obj/structure/closet/l3closet/janitor,
+"S" = (
+/obj/item/storage/box/mousetraps,
+/obj/item/storage/box/mousetraps,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
 /turf/open/floor/plasteel,
 /area/janitor)
 "T" = (
@@ -187,14 +184,14 @@ m
 "}
 (3,1,1) = {"
 m
-s
-o
-h
+p
+e
+Q
 m
 "}
 (4,1,1) = {"
 m
-a
+f
 D
 V
 m
@@ -203,28 +200,28 @@ m
 m
 z
 F
-p
+S
 m
 "}
 (6,1,1) = {"
 E
 v
 M
-R
+u
 m
 "}
 (7,1,1) = {"
 m
 c
-w
+h
 i
 J
 "}
 (8,1,1) = {"
 m
-k
-P
-R
+H
+q
+u
 m
 "}
 (9,1,1) = {"
