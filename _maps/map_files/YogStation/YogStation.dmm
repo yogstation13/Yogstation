@@ -8366,16 +8366,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"aql" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "aqm" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -9132,29 +9122,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"asc" = (
-/obj/effect/landmark/xeno_spawn,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "asd" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"ase" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "asf" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -9181,25 +9152,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
-"ash" = (
-/obj/machinery/door/airlock{
-	id_tag = "Dorm4";
-	name = "Dorm 4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "asi" = (
@@ -9618,12 +9570,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"atf" = (
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "atg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10983,24 +10929,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"avT" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "Dorm4";
-	name = "Dorm Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "avU" = (
 /obj/item/paper/crumpled,
 /turf/open/floor/plasteel/airless{
@@ -11101,24 +11029,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"awe" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "Dorm3";
-	name = "Dorm Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "awf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -11194,34 +11104,6 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
-"awl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
-"awm" = (
-/obj/machinery/door/airlock{
-	id_tag = "Dorm3";
-	name = "Dorm 3"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "awn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -11796,24 +11678,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"axs" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "Dorm2";
-	name = "Dorm Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "axt" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -12292,24 +12156,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ayp" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/button/door{
-	id = "Dorm1";
-	name = "Dorm Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "ayq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -13532,25 +13378,6 @@
 	dir = 4
 	},
 /area/crew_quarters/theatre)
-"aAO" = (
-/obj/machinery/door/airlock{
-	id_tag = "Dorm2";
-	name = "Dorm 2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "aAP" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
@@ -13677,16 +13504,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/clerk)
-"aBf" = (
-/obj/structure/table,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "aBg" = (
 /obj/structure/closet/crate,
 /obj/item/target/syndicate,
@@ -15566,25 +15383,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
-"aEQ" = (
-/obj/machinery/door/airlock{
-	id_tag = "Dorm1";
-	name = "Dorm 1"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/dorms)
 "aER" = (
 /obj/structure/table,
 /obj/item/paper/fluff/holodeck/disclaimer,
@@ -24683,8 +24481,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/sorting/mail{
-	sortType = 15;
-	dir = 8
+	dir = 8;
+	sortType = 15
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -54067,6 +53865,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gDo" = (
+/turf/template_noop,
+/area/space)
 "gDO" = (
 /obj/machinery/pipedispenser,
 /turf/open/floor/plasteel/dark,
@@ -55448,6 +55249,10 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"mbj" = (
+/obj/effect/landmark/stationroom/box/dorm_edoor,
+/turf/template_noop,
+/area/space)
 "mdx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -90450,19 +90255,19 @@ anv
 aoA
 bNR
 apT
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
-arf
+gDo
+gDo
+gDo
+mbj
+gDo
+gDo
+mbj
+gDo
+gDo
+mbj
+gDo
+gDo
+mbj
 anF
 aJw
 bOS
@@ -90707,19 +90512,19 @@ anv
 ajb
 bNR
 apT
-arf
-aBf
-atf
-arf
-aBf
-atf
-arf
-aBf
-atf
-arf
-aBf
-atf
-arf
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
 anF
 aJw
 aaa
@@ -90964,19 +90769,19 @@ anv
 aoz
 bNR
 apT
-arf
-aql
-asc
-arf
-aql
-awl
-arf
-aql
-awl
-arf
-aql
-asc
-arf
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
 anF
 aJw
 aaa
@@ -91221,19 +91026,19 @@ anD
 avD
 bNR
 apT
-arf
-avT
-ase
-arf
-awe
-ase
-arf
-axs
-ase
-arf
-ayp
-ase
-arf
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
 anF
 aJw
 aJw
@@ -91478,19 +91283,19 @@ anz
 aoC
 bNR
 apT
-arf
-arf
-ash
-arf
-arf
-awm
-arf
-arf
-aAO
-arf
-arf
-aEQ
-arf
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
+gDo
 aoa
 aJw
 aJv
