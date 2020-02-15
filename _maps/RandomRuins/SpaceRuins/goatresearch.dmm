@@ -102,7 +102,6 @@
 "az" = (
 /obj/item/wrench/medical,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	icon_state = "pipe11-2";
 	dir = 9
 	},
 /turf/open/floor/mineral/titanium/white,
