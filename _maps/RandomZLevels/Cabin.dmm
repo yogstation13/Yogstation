@@ -106,7 +106,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "cabin APC";
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-4"

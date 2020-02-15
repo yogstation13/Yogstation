@@ -17,6 +17,10 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
+	FASTDMM_PROP(\
+		pipe_astar_cost = 1\
+	)
+
 	var/attachment_holes = TRUE
 
 /turf/open/floor/plating/examine(mob/user)

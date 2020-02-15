@@ -1,0 +1,6 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscadd: "Added a framework to support accents."
+  - rscadd: "Added a new negative trait to pick a random accent."
+  - rscadd: "Added 20 new unique accents to our glorious game!"

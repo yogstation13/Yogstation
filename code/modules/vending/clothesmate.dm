@@ -36,9 +36,9 @@
 		            /obj/item/clothing/neck/scarf/black = 3,
 		            /obj/item/clothing/neck/scarf/zebra = 3,
 		            /obj/item/clothing/neck/scarf/christmas = 3,
-		            //obj/item/clothing/neck/stripedredscarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedbluescarf = 3,	//yogs -- commented out to be replaced by yog-brand scarves
-		            //obj/item/clothing/neck/stripedgreenscarf = 3, //yogs -- commented out to be replaced by yog-brand scarves
+		            /obj/item/clothing/neck/stripedredscarf = 3,
+		            /obj/item/clothing/neck/stripedbluescarf = 3,
+		            /obj/item/clothing/neck/stripedgreenscarf = 3,
 		            /obj/item/clothing/neck/tie/blue = 3,
 		            /obj/item/clothing/neck/tie/red = 3,
 		            /obj/item/clothing/neck/tie/black = 3,
@@ -181,7 +181,6 @@
 		           /obj/item/clothing/suit/jacket/leather = 1,
 		           /obj/item/clothing/suit/jacket/leather/overcoat = 1,
 		           /obj/item/clothing/under/pants/mustangjeans = 1,
-		           /obj/item/clothing/neck/necklace/dope = 3,
 		           /obj/item/clothing/suit/jacket/letterman_nanotrasen = 1, //yogs added a ,
 		           /obj/item/clothing/head/yogs/formalhat = 1, //yogs start
 		           /obj/item/clothing/suit/yogs/trainman = 1,

@@ -126,7 +126,7 @@
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -472,7 +472,7 @@
 	height = 17;
 	hidden = 1;
 	id = "syndicate";
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "syndicate infiltrator";
 	port_direction = 4;
 	width = 23

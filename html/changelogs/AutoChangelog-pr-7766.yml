@@ -1,0 +1,4 @@
+author: "DerelictDrone"
+delete-after: true 
+changes: 
+  - rscadd: "You may now fold any folder by alt-clicking on it, so long as it's empty."

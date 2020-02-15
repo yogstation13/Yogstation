@@ -1,0 +1,4 @@
+author: "  Hopek"
+delete-after: true 
+changes: 
+  - rscdel: "Removed gold necklace contraband from the clothing vendor. NT no longer sells contraband."
