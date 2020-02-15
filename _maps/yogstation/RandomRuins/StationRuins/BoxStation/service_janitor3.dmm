@@ -1,0 +1,240 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel,
+/area/janitor)
+"d" = (
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/turf/open/floor/plasteel,
+/area/janitor)
+"e" = (
+/turf/open/floor/plasteel,
+/area/janitor)
+"g" = (
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/storage/box/mousetraps,
+/obj/item/storage/box/mousetraps,
+/turf/open/floor/plasteel,
+/area/janitor)
+"h" = (
+/obj/machinery/requests_console{
+	department = "Janitorial";
+	departmentType = 1;
+	pixel_y = -29
+	},
+/obj/vehicle/ridden/janicart,
+/turf/open/floor/plasteel,
+/area/janitor)
+"i" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/janitor)
+"j" = (
+/obj/machinery/door/window/westleft{
+	name = "Janitorial Delivery";
+	req_access_txt = "26"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/janitor)
+"m" = (
+/turf/closed/wall,
+/area/janitor)
+"o" = (
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/janitor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"p" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/structure/closet/l3closet/janitor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"u" = (
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"v" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/janitor)
+"w" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/mob/living/simple_animal/hostile/lizard{
+	name = "Wags-His-Tail";
+	real_name = "Wags-His-Tail"
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"x" = (
+/obj/machinery/light_switch{
+	pixel_y = 28
+	},
+/obj/machinery/camera{
+	c_tag = "Custodial Closet"
+	},
+/obj/machinery/vending/wardrobe/jani_wardrobe,
+/turf/open/floor/plasteel,
+/area/janitor)
+"z" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/plasteel,
+/area/janitor)
+"D" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"E" = (
+/obj/machinery/door/airlock{
+	name = "Custodial Closet";
+	req_access_txt = "26"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/event_spawn,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/janitor)
+"F" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"J" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Custodial Maintenance";
+	req_access_txt = "26"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/janitor)
+"L" = (
+/obj/structure/closet/l3closet/janitor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"M" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"P" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/janitor)
+"Q" = (
+/obj/structure/table,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plasteel,
+/area/janitor)
+"T" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/key/janitor,
+/turf/open/floor/plasteel,
+/area/janitor)
+"V" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/janitor)
+
+(1,1,1) = {"
+m
+m
+m
+m
+m
+"}
+(2,1,1) = {"
+m
+L
+e
+T
+m
+"}
+(3,1,1) = {"
+m
+p
+o
+h
+m
+"}
+(4,1,1) = {"
+m
+x
+D
+V
+m
+"}
+(5,1,1) = {"
+m
+Q
+F
+z
+m
+"}
+(6,1,1) = {"
+E
+v
+M
+g
+m
+"}
+(7,1,1) = {"
+m
+c
+w
+i
+J
+"}
+(8,1,1) = {"
+m
+u
+d
+P
+m
+"}
+(9,1,1) = {"
+m
+j
+m
+m
+m
+"}

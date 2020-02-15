@@ -8048,10 +8048,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
-"apG" = (
-/obj/machinery/portable_atmospherics/canister/water_vapor,
-/turf/open/floor/plasteel,
-/area/janitor)
 "apH" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 2
@@ -14852,15 +14848,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aDv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "aDw" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -24683,8 +24670,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/sorting/mail{
-	sortType = 15;
-	dir = 8
+	dir = 8;
+	sortType = 15
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -34503,26 +34490,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bqE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
-"bqF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/mob/living/simple_animal/hostile/lizard{
-	name = "Wags-His-Tail";
-	real_name = "Wags-His-Tail"
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "bqG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -40076,22 +40043,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"bAT" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bAU" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bAV" = (
-/obj/machinery/door/window/westleft{
-	name = "Janitorial Delivery";
-	req_access_txt = "26"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bAW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -41238,27 +41189,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"bDq" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/obj/item/key/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bDr" = (
-/obj/item/restraints/legcuffs/beartrap,
-/obj/item/restraints/legcuffs/beartrap,
-/obj/item/storage/box/mousetraps,
-/obj/item/storage/box/mousetraps,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bDs" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bDt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -41391,13 +41321,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"bDH" = (
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/structure/closet/l3closet/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bDI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -41414,24 +41337,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bDK" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
-	},
-/obj/machinery/camera{
-	c_tag = "Custodial Closet"
-	},
-/obj/structure/closet/l3closet/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bDL" = (
-/obj/vehicle/ridden/janicart,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bDM" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bDN" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -42098,16 +42003,6 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bFf" = (
-/obj/structure/chair/stool,
-/obj/effect/landmark/start/janitor,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bFg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bFh" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -42125,12 +42020,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bFi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "bFj" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -42143,13 +42032,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bFk" = (
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/storage/box/lights/mixed,
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bFl" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -42203,19 +42085,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bFs" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Custodial Maintenance";
-	req_access_txt = "26"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/janitor)
 "bFt" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -42785,19 +42654,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/entrance)
-"bGB" = (
-/obj/structure/table,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/item/grenade/chem_grenade/cleaner,
-/obj/machinery/requests_console{
-	department = "Janitorial";
-	departmentType = 1;
-	pixel_y = -29
-	},
-/obj/item/reagent_containers/spray/cleaner,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bGC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42811,18 +42667,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
-"bGD" = (
-/obj/structure/janitorialcart,
-/turf/open/floor/plasteel,
-/area/janitor)
-"bGE" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/janitor)
 "bGF" = (
 /obj/machinery/door/airlock/hatch{
 	autoclose = 0;
@@ -52250,19 +52094,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cBy" = (
-/obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access_txt = "26"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/landmark/event_spawn,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/janitor)
 "cBz" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/engine,
@@ -56006,6 +55837,9 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"ojh" = (
+/turf/template_noop,
+/area/space)
 "omY" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -56751,6 +56585,10 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"rov" = (
+/obj/effect/landmark/stationroom/box/janitor,
+/turf/template_noop,
+/area/template_noop)
 "rqq" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Corridor West";
@@ -57265,9 +57103,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"tcL" = (
-/turf/open/floor/plasteel,
-/area/janitor)
 "tes" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -89985,11 +89820,11 @@ buP
 aOx
 aJq
 bBr
-bCv
-bCv
-bCv
-bCv
-bCv
+ojh
+ojh
+ojh
+ojh
+rov
 btz
 fip
 fip
@@ -90242,11 +90077,11 @@ bOS
 aJq
 aJq
 bBu
-bCv
-bAT
-tcL
-bDq
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bKy
 bLK
@@ -90499,11 +90334,11 @@ bOS
 aJq
 aJq
 bBt
-bCv
-bDH
-bFf
-bGB
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bZN
 bLK
@@ -90756,11 +90591,11 @@ bOS
 aJq
 aJq
 aXf
-bCv
-bDK
-bFi
-bGE
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bBR
 bLK
@@ -91013,11 +90848,11 @@ bqH
 aJq
 aJq
 qkv
-bCv
-bDL
-aDv
-bGD
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bAw
 bLK
@@ -91270,11 +91105,11 @@ bqH
 aMm
 aJq
 bBv
-cBy
-bDM
-bqE
-bDr
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bLK
 bLK
@@ -91527,11 +91362,11 @@ bqH
 aJq
 aJq
 aXf
-bCv
-bAU
-bqF
-bFg
-bFs
+ojh
+ojh
+ojh
+ojh
+ojh
 bJt
 bLK
 ydU
@@ -91784,11 +91619,11 @@ bqH
 aLY
 aLY
 bBx
-bCv
-apG
-bFk
-bDs
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 leB
 mmQ
@@ -92041,11 +91876,11 @@ bqH
 aJq
 aJq
 byW
-bCv
-bAV
-bCv
-bCv
-bCv
+ojh
+ojh
+ojh
+ojh
+ojh
 btC
 bLK
 fKP

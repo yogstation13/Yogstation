@@ -89,3 +89,37 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/janitor
+	id = "Janitor1"
+	suffix = "service_janitor1.dmm"
+	name = "Janitor1"
+/datum/map_template/ruin/station/box/janitor/janitor2
+	id = "Janitor2"
+	suffix = "service_janitor2.dmm"
+	name = "Janitor2"
+/datum/map_template/ruin/station/box/janitor/janitor3
+	id = "Janitor3"
+	suffix = "service_janitor3.dmm"
+	name = "Janitor3"
+/datum/map_template/ruin/station/box/janitor/janitor4
+	id = "Janitor4"
+	suffix = "service_janitor4.dmm"
+	name = "Janitor4"
+
+/datum/map_template/ruin/station/box/janitor/janitor5
+	id = "Janitor5"
+	suffix = "service_janitor5.dmm"
+	name = "Janitor5"
+/datum/map_template/ruin/station/box/janitor/janitor6
+	id = "Janitor6"
+	suffix = "service_janitor6.dmm"
+	name = "Janitor6"
+/datum/map_template/ruin/station/box/janitor/janitor7
+	id = "Janitor7"
+	suffix = "service_janitor7.dmm"
+	name = "Janitor7"
+/datum/map_template/ruin/station/box/janitor/janitor8
+	id = "Janitor8"
+	suffix = "service_janitor8.dmm"
+	name = "Janitor8"
