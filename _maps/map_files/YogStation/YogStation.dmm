@@ -38379,13 +38379,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"bxL" = (
-/obj/machinery/camera{
-	c_tag = "Central Hallway South-East";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bxM" = (
 /obj/structure/chair/office/dark,
 /obj/effect/landmark/event_spawn,
@@ -38982,16 +38975,6 @@
 	pixel_y = -32
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"byX" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -53166,12 +53149,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"dnZ" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = -28
-	},
-/turf/closed/wall,
-/area/medical/sleeper)
 "dpy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -53190,9 +53167,6 @@
 /obj/item/flashlight/lantern,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"dvx" = (
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "dCA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -53948,6 +53922,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"grO" = (
+/obj/machinery/camera{
+	c_tag = "Central Hallway South-East";
+	dir = 8
+	},
+/obj/structure/sign/departments/minsky/medical/medical2{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "gtZ" = (
 /obj/structure/transit_tube/curved/flipped,
 /turf/open/space/basic,
@@ -54549,6 +54533,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"iGI" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "iMi" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -54878,6 +54868,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jXk" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Surgery Observation";
+	req_access_txt = "5"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "jXT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -55138,6 +55145,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"kYl" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "lar" = (
 /obj/machinery/telecomms/hub/preset,
 /obj/effect/turf_decal/tile/neutral{
@@ -56829,20 +56840,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/escapepodbay)
-"rIw" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Surgery Observation";
-	req_access_txt = "5"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "rJj" = (
 /obj/structure/closet/l3closet/virology,
 /obj/effect/turf_decal/tile/green,
@@ -58348,12 +58345,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"wGT" = (
-/obj/structure/sign/departments/minsky/medical/medical2{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "wIv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -92564,7 +92555,7 @@ bmf
 buX
 buX
 bqH
-aJq
+aMo
 aJq
 bBy
 aJw
@@ -93846,12 +93837,12 @@ azI
 dEb
 aJq
 aJq
-wGT
+aJq
 bne
-bxL
+grO
 aJq
-byX
 aJq
+aRt
 bCA
 aJw
 bFr
@@ -94363,7 +94354,7 @@ dif
 bof
 bng
 bvj
-dvx
+iGI
 bAl
 rFw
 bzI
@@ -94619,7 +94610,7 @@ bqO
 aXC
 loA
 bnk
-dnZ
+bvj
 erY
 bAl
 arb
@@ -94876,7 +94867,7 @@ bqT
 aWG
 bJG
 bJG
-rIw
+jXk
 bot
 bxc
 aso
@@ -99503,7 +99494,7 @@ bua
 olQ
 rlq
 bsL
-bsL
+kYl
 bua
 bAp
 bhh
