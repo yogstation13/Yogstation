@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the bo staff to the uplink for 8 tc. The bo staff is slightly weaker than the standard esword when attacking lethally but can be wielded on disarm intent to cause large amounts of stamina damage and incapacitate its target"
+  - rscdel: "bo staff no longer has a chance to randomly 8 second stun, and the knockout duration is 30 seconds instead of a minute"
