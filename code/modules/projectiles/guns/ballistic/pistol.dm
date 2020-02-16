@@ -86,7 +86,7 @@
 	icon_state = "lathe"
 	mag_type = /obj/item/ammo_box/magazine/lathe
 	fire_delay = 1
-	bolt_type = BOLT_TYPE_LOCKING
+	bolt_type = BOLT_TYPE_OPEN
 	fire_sound_volume = 80
 	casing_ejector = FALSE
 	fire_sound = "yogstation/sound/weapons/coilgun_fire.ogg"
