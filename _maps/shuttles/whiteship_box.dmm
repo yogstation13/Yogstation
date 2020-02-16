@@ -23,7 +23,7 @@
 	height = 17;
 	id = "whiteship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Hospital Ship";
 	port_direction = 8;
 	preferred_direction = 4;
@@ -413,7 +413,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Hospital Ship Crew Quarters APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/neutral,
@@ -1100,7 +1100,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Hospital Ship Medbay APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /turf/open/floor/plasteel/white,
@@ -1547,7 +1547,7 @@
 /area/shuttle/abandoned/engine)
 "cu" = (
 /obj/machinery/power/smes/engineering{
-	charge = 1000000
+	charge = 1e+006
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2239,7 +2239,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Hospital Ship Bridge APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/blue{

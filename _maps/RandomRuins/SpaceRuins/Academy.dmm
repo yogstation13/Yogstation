@@ -155,7 +155,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /turf/open/floor/carpet,
@@ -404,7 +404,6 @@
 /area/awaymission/academy/headmaster)
 "bw" = (
 /obj/structure/table/wood,
-/obj/item/guardiancreator,
 /turf/open/floor/engine/cult,
 /area/awaymission/academy/academyengine)
 "bx" = (
@@ -511,7 +510,7 @@
 "bR" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 23
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -1887,7 +1886,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /turf/open/floor/plasteel{
@@ -3084,7 +3083,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /obj/structure/cable{
@@ -4370,7 +4369,7 @@
 	environ = 3;
 	equipment = 3;
 	locked = 0;
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = ""
 	},
 /obj/structure/cable{

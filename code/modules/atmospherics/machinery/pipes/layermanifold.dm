@@ -12,6 +12,11 @@
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "manifoldlayer"
 
+	FASTDMM_PROP(\
+		pipe_type = PIPE_TYPE_STRAIGHT,\
+		pipe_interference_group = list("atmos-1","atmos-2","atmos-3")\
+	)
+
 	var/list/front_nodes
 	var/list/back_nodes
 

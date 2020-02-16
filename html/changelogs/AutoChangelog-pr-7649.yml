@@ -1,0 +1,5 @@
+author: " monster860"
+delete-after: true 
+changes: 
+  - tweak: "Window shutters can now *always* be opened without a crowbar no matter what"
+  - tweak: "Fire alarms now longer prevent hand-opening of thin firelocks"
