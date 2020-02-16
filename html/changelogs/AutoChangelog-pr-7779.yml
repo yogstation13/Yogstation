@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "Power armor in the lavaland loot"
+  - rscdel: "No more stimpacks in the lavaland loot"
