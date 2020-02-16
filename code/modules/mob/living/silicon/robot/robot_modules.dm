@@ -262,7 +262,7 @@
 	name = "Detective"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/restraints/handcuffs/cable/zipties,  // placeholder for when I make ziptie maker
+		/obj/item/borg/lollipop/ziptie_fabricator,  // placeholder for when I make ziptie maker
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/wantedposterposter,
 		/obj/item/detective_scanner/detective_borg,
@@ -282,7 +282,7 @@
 		/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear // even medical borg gets a spear so I guess this stays in
 		)
-	cyborg_base_icon = "sec" // replace this with its own thing
+	cyborg_base_icon = "detective" // replace this with its own thing
 	moduleselect_icon = "security" // replace this with its own thing
 	can_be_pushed = FALSE
 	hat_offset = 3

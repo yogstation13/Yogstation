@@ -230,8 +230,8 @@
 
 		scanning = 1
 
-		user.visible_message("\The [user] sniffs with the [src.name] twords \the [A] .")
-		to_chat(user, "<span class='notice'>You sniff \the [A]. You are now analysing the results...</span>")
+		user.visible_message("\The [user] sniffs \the [A] with the [src.name].")
+		to_chat(user, "<span class='notice'>You sniff \the [A]. Analysing the results...</span>")
 
 
 		// GATHER INFORMATION
