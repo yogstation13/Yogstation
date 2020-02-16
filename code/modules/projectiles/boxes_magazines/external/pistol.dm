@@ -59,7 +59,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_box/magazine/lathe
-	name = "Lathe Magazine"
+	name = "lathe magazine"
 	desc = "An autolathe magazine"
 	icon_state = "glass"
 	ammo_type = /obj/item/ammo_casing/caseless/lathe

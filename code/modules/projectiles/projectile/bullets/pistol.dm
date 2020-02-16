@@ -36,5 +36,5 @@
 	fire_stacks = 2
 
 /obj/item/projectile/bullet/lathe
-	name = "Lathe Bullet"
+	name = "lathe bullet"
 	damage = 15

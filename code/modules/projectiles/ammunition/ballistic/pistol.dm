@@ -49,9 +49,9 @@
 	projectile_type = /obj/item/projectile/bullet/a50AE
 
 /obj/item/ammo_casing/caseless/lathe
-	name = "Glass Metal Alloy Round"
+	name = "glass metal alloy round"
 	desc = "A round made out of a magnetized Glass and Metal alloy"
 	caliber = "lathe"
 	projectile_type = /obj/item/projectile/bullet/lathe
-	icon_state = "lathe_casing"
+	icon_state = "lathe-casing"
 	heavy_metal = FALSE
