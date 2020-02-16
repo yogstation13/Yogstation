@@ -1,0 +1,180 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/item/flashlight/lamp,
+/obj/structure/table,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"c" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"d" = (
+/turf/closed/wall,
+/area/hallway/secondary/entry)
+"e" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/chair/comfy/black,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"f" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+"g" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"h" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"i" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"j" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/obj/structure/table,
+/obj/item/storage/box/fancy/cigarettes{
+	pixel_y = 2
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+"m" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+"t" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"u" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"v" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"x" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"z" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+"B" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"E" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"M" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/chair/comfy/black,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"Q" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+"V" = (
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"X" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/checker,
+/area/hallway/secondary/entry)
+"Y" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/structure/table,
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
+
+(1,1,1) = {"
+v
+v
+v
+v
+"}
+(2,1,1) = {"
+m
+c
+t
+X
+"}
+(3,1,1) = {"
+M
+Y
+j
+u
+"}
+(4,1,1) = {"
+V
+z
+Q
+V
+"}
+(5,1,1) = {"
+e
+o
+f
+g
+"}
+(6,1,1) = {"
+b
+i
+i
+b
+"}
+(7,1,1) = {"
+d
+d
+d
+d
+"}
+(8,1,1) = {"
+x
+E
+B
+h
+"}

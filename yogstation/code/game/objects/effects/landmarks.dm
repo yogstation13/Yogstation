@@ -90,3 +90,6 @@
 
 /obj/effect/landmark/stationroom/box/aftmaint
 	template_names = list("Roleplaying Room", "Detective Room")
+
+/obj/effect/landmark/stationroom/box/arrivalslounge
+	template_names = list("Arrival lounge 1", "Arrival lounge 2", "Arrival lounge 3", "Arrival lounge 4", "Arrival lounge 5", "Arrival lounge 6")

@@ -89,3 +89,29 @@
 	id = "maint_detective"
 	suffix = "maint_detective.dmm"
 	name = "Detective Room"
+
+/datum/map_template/ruin/station/box/arrivalslounge
+	id = "arrivalslounge1"
+	suffix = "arrivals_mid1.dmm"
+	name = "Arrival lounge 1"
+
+/datum/map_template/ruin/station/box/arrivalslounge/lounge2
+	id = "arrivalslounge2"
+	suffix = "arrivals_mid2.dmm"
+	name = "Arrival lounge 2"
+/datum/map_template/ruin/station/box/arrivalslounge/lounge3
+	id = "arrivalslounge3"
+	suffix = "arrivals_mid3.dmm"
+	name = "Arrival lounge 3"
+/datum/map_template/ruin/station/box/arrivalslounge/lounge4
+	id = "arrivalslounge4"
+	suffix = "arrivals_mid4.dmm"
+	name = "Arrival lounge 4"
+/datum/map_template/ruin/station/box/arrivalslounge/lounge5
+	id = "arrivalslounge5"
+	suffix = "arrivals_mid5.dmm"
+	name = "Arrival lounge 5"
+/datum/map_template/ruin/station/box/arrivalslounge/lounge6
+	id = "arrivalslounge6"
+	suffix = "arrivals_mid6.dmm"
+	name = "Arrival lounge 6"

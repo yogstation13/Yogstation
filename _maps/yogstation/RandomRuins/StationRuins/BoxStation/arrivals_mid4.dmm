@@ -1,0 +1,167 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"d" = (
+/turf/closed/wall,
+/area/hallway/secondary/entry)
+"e" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"h" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"i" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"k" = (
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"r" = (
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/item/reagent_containers/food/snacks/chips,
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"s" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"t" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"v" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/hallway/secondary/entry)
+"x" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"y" = (
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"B" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"E" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
+"F" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"G" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"M" = (
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/structure/table/wood,
+/obj/item/lighter/greyscale{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/storage/box/fancy/cigarettes{
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"U" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/turf/open/floor/ballpit,
+/area/hallway/secondary/entry)
+"Y" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+"Z" = (
+/obj/structure/chair/comfy/beige,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/showroomfloor,
+/area/hallway/secondary/entry)
+
+(1,1,1) = {"
+v
+v
+v
+v
+"}
+(2,1,1) = {"
+Y
+k
+k
+y
+"}
+(3,1,1) = {"
+s
+A
+e
+t
+"}
+(4,1,1) = {"
+Y
+c
+U
+Y
+"}
+(5,1,1) = {"
+Z
+F
+G
+i
+"}
+(6,1,1) = {"
+M
+k
+k
+r
+"}
+(7,1,1) = {"
+d
+d
+d
+d
+"}
+(8,1,1) = {"
+x
+E
+B
+h
+"}
