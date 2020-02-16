@@ -89,7 +89,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	fire_sound_volume = 80
 	casing_ejector = FALSE
-	fire_sound = "sound/weapons/coilgun_fire.ogg"
+	fire_sound = "yogstation/sound/weapons/coilgun_fire.ogg"
 
 /obj/item/gun/ballistic/automatic/pistol/lathe/no_mag
 	spawnwithmagazine = FALSE

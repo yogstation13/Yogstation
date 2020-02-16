@@ -62,6 +62,6 @@
 	name = "Lathe Magazine"
 	desc = "An autolathe magazine"
 	icon_state = "glass"
-	ammo_type = /obj/item/ammo_casing/lathe
+	ammo_type = /obj/item/ammo_casing/caseless/lathe
 	max_ammo = 5
 	multiple_sprites = 1
