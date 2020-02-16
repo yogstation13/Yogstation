@@ -103,15 +103,9 @@
 	id = "arrivalslounge3"
 	suffix = "arrivals_mid3.dmm"
 	name = "Arrival lounge 3"
+
 /datum/map_template/ruin/station/box/arrivalslounge/lounge4
 	id = "arrivalslounge4"
 	suffix = "arrivals_mid4.dmm"
 	name = "Arrival lounge 4"
-/datum/map_template/ruin/station/box/arrivalslounge/lounge5
-	id = "arrivalslounge5"
-	suffix = "arrivals_mid5.dmm"
-	name = "Arrival lounge 5"
-/datum/map_template/ruin/station/box/arrivalslounge/lounge6
-	id = "arrivalslounge6"
-	suffix = "arrivals_mid6.dmm"
-	name = "Arrival lounge 6"
+
