@@ -143,3 +143,66 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 		user.put_in_hands(gun)
 	else
 		user.dropItemToGround(src, TRUE)
+
+///////
+//AWP//
+///////
+
+/obj/item/gun/ballistic/automatic/sniper_rifle/alt
+	name = "AWP"
+	desc = "A powerful sniper rifle chambered in .338 lapua magnum. It kinda smells like tears of silvers, whatever that means."
+	icon_state = "sniper_alt"
+	item_state = "sniper_alt"
+	fire_sound = 'sound/weapons/awp_fire.ogg'
+	fire_sound_volume = 100
+	load_sound = 'sound/weapons/awp_clipin.ogg'
+	load_empty_sound = 'sound/weapons/awp_clipin.ogg'
+	rack_sound = 'sound/weapons/boltpull.ogg'
+	mag_type = /obj/item/ammo_box/magazine/sniper_rounds/alt
+	bolt_drop_sound = 'sound/weapons/boltdown.ogg'
+	lock_back_sound = 'sound/weapons/boltup.ogg'
+	eject_sound = 'sound/weapons/awp_clipout.ogg'
+	eject_empty_sound = 'sound/weapons/awp_clipout.ogg'
+	bolt_wording = "bolt"
+	bolt_type = BOLT_TYPE_STANDARD
+	semi_auto = FALSE
+
+obj/item/gun/ballistic/automatic/sniper_rifle/alt/update_icon()
+	..()
+	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
+
+/obj/item/gun/ballistic/automatic/sniper_rifle/alt/equipped(mob/user, slot)
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_HANDS)
+		playsound(loc, 'sound/weapons/awp_deploy.ogg', 100, FALSE, 8)
+	return
+
+obj/item/gun/ballistic/automatic/sniper_rifle/alt/rack(mob/user = null)
+	if (bolt_locked == FALSE)
+		to_chat(user, "<span class='notice'>You open the bolt of \the [src]</span>")
+		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
+		process_chamber(FALSE, FALSE, FALSE)
+		bolt_locked = TRUE
+		update_icon()
+		return
+	drop_bolt(user)
+
+obj/item/gun/ballistic/automatic/sniper_rifle/alt/can_shoot()
+	if (bolt_locked)
+		return FALSE
+	return ..()
+
+obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
+	if (!bolt_locked)
+		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
+		return
+	return ..()
+
+/obj/item/gun/ballistic/automatic/sniper_rifle/alt/examine(mob/user)
+	. = ..()
+	. += "The bolt is [bolt_locked ? "open" : "closed"]."
+
+obj/item/gun/ballistic/rifle/update_icon()
+	..()
+	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")

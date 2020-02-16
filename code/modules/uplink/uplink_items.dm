@@ -493,6 +493,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/dangerous/sniper/alt
+	name = "Alternative Sniper Rifle"
+	desc = "Who needs a modern .50 sniper rifle when you can get a classic .338 lapua magnum sniper rifle!.\
+			Does a bit less damage and has less armor penetration than the .50 sniper rifle and\
+			uses a bolt action mechanism, however."
+	item = /obj/item/gun/ballistic/automatic/sniper_rifle/alt
+	cost = 14
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/dangerous/pistol
 	name = "Stechkin Pistol"
 	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
@@ -759,6 +769,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = ".50 Magazine"
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
 	item = /obj/item/ammo_box/magazine/sniper_rounds
+
+/datum/uplink_item/ammo/sniper/basic/alt
+	name = ".338 Lapua Magnum Magazine"
+	desc = "An additional standard 10-round magazine for use with .338 sniper rifles."
+	item = /obj/item/ammo_box/magazine/sniper_rounds/alt
+	cost = 3
 
 /datum/uplink_item/ammo/sniper/penetrator
 	name = ".50 Penetrator Magazine"

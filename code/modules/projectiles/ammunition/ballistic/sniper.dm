@@ -18,3 +18,12 @@
 	name = ".50 penetrator round bullet casing"
 	desc = "A .50 caliber penetrator round casing."
 	projectile_type = /obj/item/projectile/bullet/p50/penetrator
+
+// .338 (Sniper)
+
+/obj/item/ammo_casing/m338lapua
+	name = ".338 lapua magnum bullet casing"
+	desc = "A .338 bullet casing."
+	caliber = ".338"
+	projectile_type = /obj/item/projectile/bullet/m338lapua
+	icon_state = ".338"

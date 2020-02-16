@@ -25,3 +25,17 @@
 	desc = "An extremely powerful round capable of passing straight through cover and anyone unfortunate enough to be behind it."
 	ammo_type = /obj/item/ammo_casing/p50/penetrator
 	max_ammo = 5
+
+/obj/item/ammo_box/magazine/sniper_rounds/alt
+	name = "sniper rounds (.338 lapua magnum)"
+	icon_state = ".338mag"
+	ammo_type = /obj/item/ammo_casing/m338lapua
+	max_ammo = 10
+	caliber = ".338"
+
+/obj/item/ammo_box/magazine/sniper_rounds/alt/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "[initial(icon_state)]-ammo"
+	else
+		icon_state = "[initial(icon_state)]"

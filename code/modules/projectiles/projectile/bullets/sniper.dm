@@ -44,3 +44,11 @@
 	damage = 25
 	speed = 0.3
 	range = 16
+
+// .338 (Sniper)
+
+/obj/item/projectile/bullet/m338lapua
+	name =".338 bullet"
+	damage = 55
+	dismemberment = 0
+	armour_penetration = 50
