@@ -737,8 +737,32 @@
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
-/datum/crafting_recipe/urinal 
+/datum/crafting_recipe/urinal
 	name = "Urinal"
 	reqs = 	list(/obj/item/stack/sheet/metal = 4 , /obj/item/pipe = 2)
 	result = /obj/structure/urinal
 	category = CAT_MISC
+
+/datum/crafting_recipe/lathepistol
+	name = "Lathe Pistol"
+	result = /obj/item/gun/ballistic/automatic/pistol/lathe/no_mag
+	time = 150
+	reqs = list (/obj/item/stack/sheet/metal = 15,
+				 /obj/item/stack/cable_coil = 25,
+				 /obj/item/circuitboard/machine/autolathe = 1,
+				 /obj/item/weaponcrafting/receiver = 1,
+				 /obj/item/pipe = 1)
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER, TOOL_SCREWDRIVER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/lathemag
+	name = "Lathe Mag"
+	result = /obj/item/ammo_box/magazine/lathe
+	time = 20
+	reqs = list (/obj/item/stack/sheet/metal = 10,
+				 /obj/item/stack/sheet/glass = 5,
+				 /obj/item/stack/cable_coil = 5)
+	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER, TOOL_SCREWDRIVER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO

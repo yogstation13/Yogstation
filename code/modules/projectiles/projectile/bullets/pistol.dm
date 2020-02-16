@@ -34,3 +34,7 @@
 	name = "10mm incendiary bullet"
 	damage = 15
 	fire_stacks = 2
+
+/obj/item/projectile/bullet/lathe
+	name = "Lathe Bullet"
+	damage = 15

@@ -57,3 +57,11 @@
 	caliber = ".50"
 	max_ammo = 7
 	multiple_sprites = 1
+
+/obj/item/ammo_box/magazine/lathe
+	name = "Lathe Magazine"
+	desc = "An autolathe magazine"
+	icon_state = "glass"
+	ammo_type = /obj/item/ammo_casing/lathe
+	max_ammo = 5
+	multiple_sprites = 6
