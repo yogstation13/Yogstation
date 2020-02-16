@@ -64,4 +64,4 @@
 	icon_state = "glass"
 	ammo_type = /obj/item/ammo_casing/lathe
 	max_ammo = 5
-	multiple_sprites = 6
+	multiple_sprites = 1

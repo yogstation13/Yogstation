@@ -53,4 +53,4 @@
 	desc = "A round made out of a magnetized Glass and Metal alloy"
 	caliber = "lathe"
 	projectile_type = /obj/item/projectile/bullet/lathe
-	icon_state = "lathe"
+	icon_state = "lathe_casing"

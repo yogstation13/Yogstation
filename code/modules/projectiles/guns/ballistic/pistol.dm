@@ -83,11 +83,11 @@
 /obj/item/gun/ballistic/automatic/pistol/lathe
 	name = "Lathe Pistol"
 	desc = "A makeshift pistol with an internal microlathe which prints bullets out of a magnetized alloy of metal and glass which are then magnetically shot through a magnetic coil. Has a short delay so the lathe can print another round."
-	icon_state = "pistol"
+	icon_state = "lathe_casing"
 	mag_type = /obj/item/ammo_box/magazine/lathe
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_NO_BOLT
-	fire_sound_volume = 20
+	fire_sound_volume = 80
 	casing_ejector = FALSE
 	fire_sound = "sound/weapons/coilgun_fire.ogg"
 
