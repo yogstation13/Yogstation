@@ -1,19 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/obj/item/lighter/greyscale{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/item/storage/box/fancy/cigarettes{
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/blackwhite,
-/area/hallway/secondary/entry)
 "d" = (
 /turf/closed/wall,
 /area/hallway/secondary/entry)
@@ -36,16 +21,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/hallway/secondary/entry)
-"k" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/turf/open/floor/plasteel/blackwhite,
-/area/hallway/secondary/entry)
-"l" = (
-/obj/structure/chair/comfy/beige,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/start/assistant,
-/turf/open/floor/plasteel/blackwhite,
-/area/hallway/secondary/entry)
 "m" = (
 /obj/structure/chair/comfy/beige{
 	dir = 8
@@ -62,6 +37,38 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/hallway/secondary/entry)
+"q" = (
+/obj/structure/chair/comfy/beige,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/assistant,
+/obj/structure/window{
+	dir = 1
+	},
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
+"r" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/structure/window,
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
+"t" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/storage/box/fancy/cigarettes{
+	pixel_y = 2
+	},
+/obj/structure/window,
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
 "v" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -76,6 +83,13 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"y" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/structure/window{
+	dir = 1
+	},
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
 "E" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -86,12 +100,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/hallway/secondary/entry)
-"G" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
-/turf/open/floor/plasteel/blackwhite,
-/area/hallway/secondary/entry)
 "H" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Arrivals Lounge"
@@ -101,13 +109,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"I" = (
+/obj/structure/chair/comfy/beige{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/window,
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
 "K" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"S" = (
+"P" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
 	pixel_x = 1;
@@ -115,13 +131,15 @@
 	},
 /obj/item/reagent_containers/food/snacks/chips,
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist,
+/obj/structure/window{
+	dir = 1
+	},
 /turf/open/floor/plasteel/blackwhite,
 /area/hallway/secondary/entry)
 "V" = (
-/obj/structure/chair/comfy/beige{
+/obj/structure/window{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/blackwhite,
 /area/hallway/secondary/entry)
 "W" = (
@@ -139,6 +157,10 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/hallway/secondary/entry)
+"Z" = (
+/obj/structure/window,
+/turf/open/floor/plasteel/blackwhite,
+/area/hallway/secondary/entry)
 
 (1,1,1) = {"
 v
@@ -147,34 +169,34 @@ H
 v
 "}
 (2,1,1) = {"
+V
 i
 i
-i
-i
+Z
 "}
 (3,1,1) = {"
-k
+y
 p
 j
-G
+r
 "}
 (4,1,1) = {"
-i
+V
 F
 X
-i
+Z
 "}
 (5,1,1) = {"
-l
+q
 e
 w
-V
+I
 "}
 (6,1,1) = {"
-S
+P
 m
 i
-b
+t
 "}
 (7,1,1) = {"
 d
