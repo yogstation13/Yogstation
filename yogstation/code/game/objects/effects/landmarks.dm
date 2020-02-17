@@ -92,4 +92,4 @@
 	template_names = list("Roleplaying Room", "Detective Room")
 
 /obj/effect/landmark/stationroom/box/arrivalslounge
-	template_names = list("Arrival lounge 1", "Arrival lounge 2", "Arrival lounge 3", "Arrival lounge 4")
+	template_names = list("Original lounge", "Dark lounge", "Checkered lounge", "Vaporwave lounge")

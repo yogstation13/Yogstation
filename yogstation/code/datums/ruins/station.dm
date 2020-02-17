@@ -93,19 +93,19 @@
 /datum/map_template/ruin/station/box/arrivalslounge
 	id = "arrivalslounge1"
 	suffix = "arrivals_mid1.dmm"
-	name = "Arrival lounge 1"
+	name = "Original lounge"
 
 /datum/map_template/ruin/station/box/arrivalslounge/lounge2
 	id = "arrivalslounge2"
 	suffix = "arrivals_mid2.dmm"
-	name = "Arrival lounge 2"
+	name = "Dark lounge"
 /datum/map_template/ruin/station/box/arrivalslounge/lounge3
 	id = "arrivalslounge3"
 	suffix = "arrivals_mid3.dmm"
-	name = "Arrival lounge 3"
+	name = "Checkered lounge"
 
 /datum/map_template/ruin/station/box/arrivalslounge/lounge4
 	id = "arrivalslounge4"
 	suffix = "arrivals_mid4.dmm"
-	name = "Arrival lounge 4"
+	name = "Vaporwave lounge"
 
