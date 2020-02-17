@@ -4,7 +4,7 @@
 	weight = 10
 	max_occurrences = 1
 
-	min_players = 20
+	min_players = 25
 
 	gamemode_blacklist = list("blob") //Just in case a blob survives that long
 

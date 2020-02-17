@@ -108,7 +108,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/donkpockets,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/item/reagent_containers/food/snacks/cookie,
 /obj/item/reagent_containers/food/snacks/cookie{
 	pixel_x = -6;
@@ -209,25 +209,25 @@
 "ar" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes{
+/obj/item/storage/box/fancy/cigarettes{
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_carp{
+/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
 	pixel_x = 10;
 	pixel_y = 6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_robust{
+/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
 	pixel_x = 2
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_midori{
+/obj/item/storage/box/fancy/cigarettes/cigpack_midori{
 	pixel_x = 10
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_shadyjims{
+/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims{
 	pixel_x = 2;
 	pixel_y = -6
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_uplift{
+/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
 	pixel_x = 10;
 	pixel_y = -6
 	},
@@ -575,7 +575,7 @@
 	dir = 1
 	},
 /obj/machinery/power/smes/engineering{
-	charge = 1000000
+	charge = 1e+006
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -809,7 +809,7 @@
 	aidisabled = 1;
 	dir = 1;
 	name = "Pirate Corvette APC";
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = null
 	},
 /obj/structure/reagent_dispensers/watertank,
@@ -886,7 +886,7 @@
 	height = 16;
 	id = "pirateship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0,"THROW" = 0);
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Pirate Ship";
 	port_direction = 2;
 	preferred_direction = 1;

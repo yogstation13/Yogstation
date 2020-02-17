@@ -20,17 +20,17 @@
 		"https://www.youtube.com/watch?v=GISnTECX8Eg",						// Chris Remo - Space Asshole
 		"https://www.youtube.com/watch?v=w34fSnJNP-4",						// Leslie Fish - Dawson's Chrstian (Singer unknown)
 		"https://www.youtube.com/watch?v=le1eD6I7k4s",						// Ronald Jenkee - Piano Wire
-		"https://www.youtube.com/watch?v=2MtOpB5LlUA",						// Yugo Kanno - il vento d'oro (Golden Wind)
 		"https://www.youtube.com/watch?v=Uhy_e5wIX44",						// Maurizio De Jorio - Running in the 90s (Remix by Sytricka)
 		"https://www.youtube.com/watch?v=na_Zac23b5E",						// Basil Poledouris - Klendathu Drop
 		"https://www.youtube.com/watch?v=WcLzUZSGT6Q",						// Hans Zimmer, Benjamin Wallfisch - Mesa
 		"https://www.youtube.com/watch?v=Aj0htz_RzlY",						// Mega Drive - Converter
 		"https://www.youtube.com/watch?v=d2xkpz-26jM",						// Admiral Hippie - Clown.wmv
 	    "https://www.youtube.com/watch?v=UlHGGKgzgzI",                      // Elbow - Leaders of the Free World
-		"https://www.youtube.com/watch?v=02FVRMhKR9I",                      // Danzig - How The Gods Kill
 		"https://www.youtube.com/watch?v=fMn30T5wEVg",						// Mike Morasky - SynTek Residential Mall (Extended by FoxOnTheRails)
 	    "https://www.youtube.com/watch?v=iB5Az3vbkYs",						// Coalescence - Risk of Rain (Cover by Nahu Pyrope)
-	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo")						// Star Trek The Motion Picture: Main Theme Album Style Edit
+	    "https://www.youtube.com/watch?v=SQOdPQQf2Uo",						// Star Trek The Motion Picture: Main Theme Album Style Edit
+		"https://www.youtube.com/watch?v=cJxSwxexZYo")						// She Blinded Me With Science (2009 Remastered Version)
+
 
 	selected_lobby_music = pick(songs)
 

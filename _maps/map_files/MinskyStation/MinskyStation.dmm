@@ -8748,7 +8748,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "aqJ" = (
@@ -29281,7 +29281,7 @@
 	},
 /area/bridge)
 "beX" = (
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -30721,7 +30721,7 @@
 /area/crew_quarters/heads/captain)
 "bic" = (
 /obj/structure/table/glass,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -67882,7 +67882,7 @@
 	name = "kitchen shutters"
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
