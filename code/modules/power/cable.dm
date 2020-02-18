@@ -49,6 +49,11 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/cable_color = "red"
 	color = "#ff0000"
+	FASTDMM_PROP(\
+		pipe_type = PIPE_TYPE_CABLE,\
+		pipe_interference_group = list("cable"),\
+		pipe_group = "cable-[cable_color]"\
+	)
 
 /obj/structure/cable/yellow
 	cable_color = "yellow"

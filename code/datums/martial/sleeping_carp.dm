@@ -165,7 +165,7 @@
 	name = "bo staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
 	force = 10
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK
 	force_unwielded = 10
 	force_wielded = 24
@@ -211,22 +211,28 @@
 									  "[user] smacks [H] with the butt of [src]!", \
 									  "[user] broadsides [H] with [src]!", \
 									  "[user] smashes [H]'s head with [src]!", \
-									  "[user] beats [H] with front of [src]!", \
+									  "[user] beats [H] with the front of [src]!", \
 									  "[user] twirls and slams [H] with [src]!")
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
-		H.adjustStaminaLoss(rand(13,20))
-		if(prob(10))
-			H.visible_message("<span class='warning'>[H] collapses!</span>", \
-								   "<span class='userdanger'>Your legs give out!</span>")
-			H.Paralyze(80)
+		playsound(get_turf(user), 'sound/effects/hit_kick.ogg', 75, 1, -1)
+		SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, H, user)
+		SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, H, user)
+		H.lastattacker = user.real_name
+		H.lastattackerckey = user.ckey
+
+		user.do_attack_animation(H)
+
+		log_combat(user, H, "Bo Staffed", src.name, "((DAMTYPE: STAMINA)")
+		add_fingerprint(user)
+		H.adjustStaminaLoss(rand(28,33))
 		if(H.staminaloss && !H.IsSleeping())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!</span>", \
 									   "<span class='userdanger'>[user] knocks you unconscious!</span>")
-				H.SetSleeping(600)
+				H.SetSleeping(300)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 150)
 	else
 		return ..()
