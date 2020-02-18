@@ -18,7 +18,7 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
-"u" = (
+"k" = (
 /obj/structure/bed,
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -58,15 +58,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
-"W" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-u
+k
 j
 E
 "}
 (5,1,1) = {"
 E
 E
-W
+j
 E
 "}

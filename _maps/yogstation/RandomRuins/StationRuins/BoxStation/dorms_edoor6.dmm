@@ -1,15 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"c" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/nanotrasen,
-/turf/open/floor/carpet/exoticblue,
-/area/crew_quarters/dorms)
 "d" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -30,14 +19,16 @@
 	},
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
-"l" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
+"r" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/turf/closed/wall,
+/obj/item/bedsheet/nanotrasen,
+/turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/dorms)
 "E" = (
 /turf/closed/wall,
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-c
+r
 S
 E
 "}
 (5,1,1) = {"
 E
 E
-l
+S
 E
 "}

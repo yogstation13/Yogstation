@@ -8,14 +8,16 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
-"t" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
+"l" = (
+/obj/structure/bed,
+/obj/machinery/airalarm{
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/turf/closed/wall,
+/obj/item/bedsheet/purple,
+/turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
 "v" = (
 /obj/structure/closet/secure_closet/personal,
@@ -56,17 +58,6 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/dorms)
-"P" = (
-/obj/structure/bed,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 8
-	},
-/obj/item/bedsheet/purple,
-/turf/open/floor/carpet/exoticpurple,
-/area/crew_quarters/dorms)
 
 (1,1,1) = {"
 E
@@ -88,13 +79,13 @@ E
 "}
 (4,1,1) = {"
 E
-P
+l
 c
 E
 "}
 (5,1,1) = {"
 E
 E
-t
+c
 E
 "}
