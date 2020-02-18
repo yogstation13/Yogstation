@@ -177,7 +177,6 @@ GLOBAL_VAR_INIT(food_for_next_mouse, 0)
 	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
 	
 	SSminor_mapping.trigger_migration(mice)
-	world << mice
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	if(cheesed)
